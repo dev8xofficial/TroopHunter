@@ -18,7 +18,7 @@ const Header = () => {
 
   return (
     <header className="py-4 md:py-6 z-20 fixed w-full">
-      <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto flex justify-between items-center">
+      <div className="max-w-5xl 2xl:max-w-6xl px-8 lg:px-6 mx-auto flex justify-between items-center">
         <a
           href="#"
           class="text-3xl md:text-4xl inline-block font-extrabold text-teal-600 hover:text-teal-700 transition"

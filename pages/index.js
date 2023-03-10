@@ -20,7 +20,7 @@ export default function Home() {
       <main className="relative leading-relaxed min-h-screen overflow-x-hidden">
         <Header />
         <section className="h-[75vh] sm:h-[70vh] flex items-center">
-          <div className="max-w-4xl 2xl:max-w-5xl w-full px-8 lg:px-0 mx-auto">
+          <div className="max-w-5xl 2xl:max-w-6xl px-8 lg:px-6 mx-auto">
             <div className="md:w-[80%] sm:-mb-[15%]">
               <h1 className="text-3xl sm:text-[35px] text-zinc-800 leading-[1.1] font-semibold mb-4">
                 I am Abdul Rehman, <br className="block sm:hidden" /> Full Stack
@@ -81,7 +81,7 @@ export default function Home() {
           </div>
         </section>
         <section className="bg-teal-50 pt-16 pb-16 sm:pb-20 sm:pt-20 md:pt-24 md:pb-24 lg:pt-44">
-          <div className="max-w-4xl 2xl:max-w-5xl w-full px-8 lg:px-0 mx-auto mb-20">
+          <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto mb-20">
             <p
               className="text-xl md:text-2xl text-zinc-800 font-medium"
               style={{ lineHeight: "1.5" }}
@@ -95,7 +95,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="max-w-4xl 2xl:max-w-5xl w-full px-8 lg:px-0 mx-auto space-y-28">
+          <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto space-y-28">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-[55%]">
                 <Image
@@ -168,7 +168,7 @@ export default function Home() {
           </div>
         </section>
         <section className="py-16 sm:py-20">
-          <div className="max-w-4xl 2xl:max-w-5xl w-full px-8 lg:px-0 mx-auto">
+          <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto">
             <h2 className="text-2xl md:text-3xl font-medium flex items-center space-x-3">
               <span>Contact</span>{" "}
               <EnvelopeIcon className="w-7 md:w-8"></EnvelopeIcon>
@@ -194,7 +194,7 @@ export default function Home() {
           </div>
         </section>
         <footer className="border-t py-6">
-          <div className="max-w-4xl 2xl:max-w-5xl w-full px-8 lg:px-0 mx-auto flex flex-col items-center sm:flex-row justify-between">
+          <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto flex flex-col items-center sm:flex-row justify-between">
             <p className="text-gray-600 mb-3.5 sm:mb-0">
               Copyright &copy; 2023 by Abdul Rehman.
             </p>
