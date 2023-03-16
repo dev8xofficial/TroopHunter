@@ -19,9 +19,28 @@ export default function Home() {
       </Head>
       <main className="relative leading-relaxed min-h-screen overflow-x-hidden">
         <Header />
-        <section className="h-[75vh] sm:h-[70vh] flex items-center">
-          <div className="max-w-5xl 2xl:max-w-6xl px-8 lg:px-6 mx-auto">
-            <div className="md:w-[80%] sm:-mb-[15%]">
+        <section className="min-h-[85vh] sm:min-h-[70vh] flex items-center">
+          <div className="max-w-5xl 2xl:max-w-6xl w-full px-8 lg:px-6 mx-auto md:grid grid-cols-7 sm:-mb-[6%]">
+            <div className="col-span-2 mb-5 md:mb-0">
+              <Image
+                width={350}
+                height={350}
+                src="/abdul-rehman.jpg"
+                alt="Abdul Rehman"
+                className="rounded-full border-[6px] p-1.5 bg-gray-50 shadow w-48 md:w-[93%]"
+              />
+            </div>
+            <div className="col-span-5 pl-2 lg:pl-5 flex flex-col justify-center">
+              <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl mb-3 lg:mb-4">
+                I am Abdul Rehman <br /> Full stack developer
+              </h1>
+              <p className="text-zinc-600 text-lg sm:pr-5">
+                I build innovative and secure web applications using various
+                programming languages and technologies such as HTML, CSS,
+                JavaScript, React, Node.js, and MongoDB.
+              </p>
+            </div>
+            {/* <div className="lg:w-[80%] sm:-mb-[15%]">
               <h1 className="text-3xl sm:text-[35px] text-zinc-800 leading-[1.1] font-semibold mb-4">
                 I am Abdul Rehman, <br className="block sm:hidden" /> Full Stack
                 Developer based in Pakistan
@@ -38,7 +57,7 @@ export default function Home() {
               >
                 Projects
               </button>
-            </div>
+            </div> */}
           </div>
         </section>
         <section className="grid-cols-4 hidden lg:grid space-x-8 transform translate-y-[45%] -mx-16">
@@ -80,38 +99,54 @@ export default function Home() {
             />
           </div>
         </section>
-        <section className="bg-teal-50 pt-16 pb-16 sm:pb-20 sm:pt-20 md:pt-24 md:pb-24 lg:pt-44">
-          <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto mb-20">
+        <section className="pt-14 bg-[#fafafa] pb-14 sm:pb-20 sm:pt-20 md:pt-24 md:pb-24 lg:pt-44">
+          <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+              About Me
+            </h2>
             <p
-              className="text-xl md:text-2xl text-zinc-800 font-medium"
+              className="text-lg lg:text-[22px] text-zinc-600 mb-4"
               style={{ lineHeight: "1.5" }}
             >
               {"I'm"} a Full Stack Developer with a passion for creating
               innovative web apps using modern tech like React, Next.js,
               Node.js, Express, and MongoDB. I collaborate with clients to bring
-              their ideas to life and achieve their business goals. I deliver
-              high-quality work that exceeds expectations. {"Let's"} create a
-              cutting-edge app that sets your business apart.
+              their ideas to life and achieve their business goals.
+            </p>
+            <p
+              className="text-lg lg:text-[22px] text-zinc-600"
+              style={{ lineHeight: "1.5" }}
+            >
+              {" "}
+              I deliver high-quality work that exceeds expectations. {
+                "Let's"
+              }{" "}
+              create a cutting-edge app that sets your business apart.
             </p>
           </div>
-
-          <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto space-y-28">
+        </section>
+        <section className="py-12 md:py-16  lg:py-20">
+          <div className="text-center mb-12 md:mb-16">
+            <div className="inline-block w-16 mb-2 h-1 rounded bg-teal-500"></div>
+            <h2 className="text-3xl md:text-4xl font-semibold">Projects</h2>
+          </div>
+          <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto space-y-20 sm:space-y-28">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-[55%]">
                 <Image
                   width={700}
                   height={400}
                   src="/project-0.png"
-                  className="rounded-xl shadow-xl shadow-gray-200"
+                  className="rounded-xl shadow-lg shadow-gray-100 border border-gray-100"
                   alt="Project"
                 />
               </div>
               <div className="md:w-[45%] pt-6 md:pt-0 md:pl-10">
                 <p className="text-sm font-medium mb-1">React | TailwindCSS</p>
-                <h2 className="text-2xl sm:text-3xl font-medium mb-3">
+                <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
                   THDC CRM
-                </h2>
-                <p className="text-zinc-500">
+                </h3>
+                <p className="text-zinc-500 text-[17px]">
                   Total Health Dental Care personal CRM project for doctors is a
                   customer relationship management system designed to help
                   dentists manage their patient data and appointments.
@@ -125,16 +160,16 @@ export default function Home() {
                   width={700}
                   height={400}
                   src="/project-1.png"
-                  className="rounded-xl shadow-xl shadow-gray-200"
+                  className="rounded-xl shadow-lg shadow-gray-100 border border-gray-100"
                   alt="Project"
                 />
               </div>
               <div className="md:w-[45%] pt-6 md:pt-0 md:pr-10">
                 <p className="text-sm font-medium mb-1">HTML5 | TailwindCSS</p>
-                <h2 className="text-2xl sm:text-3xl font-medium mb-3">
+                <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
                   Honeydu
-                </h2>
-                <p className="text-zinc-500">
+                </h3>
+                <p className="text-zinc-500 text-[17px]">
                   Experience the power of seamless money management with
                   Honeydue. With its intuitive design and advanced features, you
                   can easily send and receive money from anyone, generate
@@ -148,7 +183,7 @@ export default function Home() {
                   width={700}
                   height={400}
                   src="/project-2.png"
-                  className="rounded-xl shadow-xl shadow-gray-200"
+                  className="rounded-xl shadow-lg shadow-gray-100 border border-gray-100"
                   alt="Project"
                 />
               </div>
@@ -156,8 +191,10 @@ export default function Home() {
                 <p className="text-sm font-medium mb-1">
                   HTML5 | CSS3 | Sass | jQuery
                 </p>
-                <h2 className="text-2xl sm:text-3xl font-medium mb-3">Coral</h2>
-                <p className="text-zinc-500">
+                <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
+                  Coral
+                </h3>
+                <p className="text-zinc-500 text-[17px]">
                   Coral is a consulting & development studio based in los
                   angeles. They lead & build advanced internal systems,
                   scaleable consumer products and robust fintech platforms for
@@ -165,18 +202,41 @@ export default function Home() {
                 </p>
               </div>
             </div>
+            <div className="flex flex-col md:flex-row-reverse items-center">
+              <div className="md:w-[55%]">
+                <Image
+                  width={700}
+                  height={400}
+                  src="/project-3.png"
+                  className="rounded-xl shadow-lg shadow-gray-100 border border-gray-100"
+                  alt="Project"
+                />
+              </div>
+              <div className="md:w-[45%] pt-6 md:pt-0 md:pr-10">
+                <p className="text-sm font-medium mb-1">React | TailwindCSS</p>
+                <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
+                  GoldenDao
+                </h3>
+                <p className="text-zinc-500 text-[17px]">
+                  Experience the power of seamless money management with
+                  Honeydue. With its intuitive design and advanced features, you
+                  can easily send and receive money from anyone, generate
+                  invoices, and stay on top of your finances.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
-        <section className="py-16 sm:py-20">
+        <section className="py-16 sm:py-20 bg-gray-50">
           <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto">
-            <h2 className="text-2xl md:text-3xl font-medium flex items-center space-x-3">
+            <h2 className="text-3xl md:text-4xl font-semibold flex items-center space-x-3">
               <span>Contact</span>{" "}
               <EnvelopeIcon className="w-7 md:w-8"></EnvelopeIcon>
             </h2>
             <p className="text-gray-600 text-lg mt-4">
               Contact me via{" "}
               <Link
-                href="#"
+                href="https://www.linkedin.com/in/helloabdul"
                 className="text-blue-500 hover:text-blue-600 hover:underline"
               >
                 LinkedIn
@@ -202,13 +262,13 @@ export default function Home() {
               <ul class="flex space-x-6">
                 <li>
                   <a
-                    href="#"
+                    href="https://www.facebook.com/rj.malik.96"
                     class="text-xl hover:text-teal-600 p-0.5 transition"
                   >
                     <i class="fab fa-facebook-f"></i>
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a
                     href="#"
                     class="text-xl hover:text-teal-600 p-0.5 transition"
@@ -223,14 +283,22 @@ export default function Home() {
                   >
                     <i class="fab fa-twitter"></i>
                   </a>
-                </li>
+                </li> */}
 
                 <li>
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/in/helloabdul"
                     class="text-xl hover:text-teal-600 p-0.5 transition"
                   >
                     <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:contact@helloabdul.com"
+                    class="text-xl hover:text-teal-600 p-0.5 transition"
+                  >
+                    <i class="fas fa-envelope"></i>
                   </a>
                 </li>
               </ul>
