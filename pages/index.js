@@ -1,10 +1,13 @@
-import { EnvelopeIcon } from "@heroicons/react/20/solid";
+import { EnvelopeIcon, PlayIcon } from "@heroicons/react/20/solid";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import Header from "../components/header/header";
+import VideoModal from "../components/Modals/VideoModal";
 
 export default function Home() {
+  const [modalInfo, setModalInfo] = useState({ open: false, video: "" });
   return (
     <>
       <Head>
@@ -18,6 +21,11 @@ export default function Home() {
         <title>Abdul Rehman | Full Stack Developer</title>
       </Head>
       <main className="relative leading-relaxed min-h-screen overflow-x-hidden">
+        <VideoModal
+          open={modalInfo.open}
+          video={modalInfo.video}
+          setOpen={setModalInfo}
+        />
         <Header />
         <section className="min-h-[85vh] sm:min-h-[70vh] flex items-center">
           <div className="max-w-5xl 2xl:max-w-6xl w-full px-8 lg:px-6 mx-auto md:grid grid-cols-7 sm:-mb-[6%]">
@@ -60,7 +68,7 @@ export default function Home() {
             </div> */}
           </div>
         </section>
-        <section className="grid-cols-4 hidden lg:grid space-x-8 transform translate-y-[45%] -mx-16">
+        <section className="justify-between hidden lg:flex space-x-8 transform translate-y-[45%] -mx-16">
           <div className="transform rotate-[4deg]">
             <Image
               width={370}
@@ -146,11 +154,25 @@ export default function Home() {
                 <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
                   THDC CRM
                 </h3>
-                <p className="text-zinc-500 text-[17px]">
+                <p className="text-zinc-500 text-[17px] mb-3">
                   Total Health Dental Care personal CRM project for doctors is a
                   customer relationship management system designed to help
                   dentists manage their patient data and appointments.
                 </p>
+
+                <button
+                  onClick={() => {
+                    setModalInfo({
+                      open: true,
+                      video: "/videos/crm.mov",
+                    });
+                  }}
+                  type="button"
+                  className="inline-flex items-center gap-x-1.5 rounded-md bg-teal-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+                >
+                  <PlayIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
+                  Watch Video
+                </button>
               </div>
             </div>
 
@@ -169,12 +191,26 @@ export default function Home() {
                 <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
                   Honeydu
                 </h3>
-                <p className="text-zinc-500 text-[17px]">
+                <p className="text-zinc-500 text-[17px] mb-3">
                   Experience the power of seamless money management with
                   Honeydue. With its intuitive design and advanced features, you
                   can easily send and receive money from anyone, generate
                   invoices, and stay on top of your finances.
                 </p>
+
+                <button
+                  onClick={() => {
+                    setModalInfo({
+                      open: true,
+                      video: "/videos/honeydu.mp4",
+                    });
+                  }}
+                  type="button"
+                  className="inline-flex items-center gap-x-1.5 rounded-md bg-teal-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+                >
+                  <PlayIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
+                  Watch Video
+                </button>
               </div>
             </div>
             <div className="flex flex-col md:flex-row items-center">
@@ -194,12 +230,25 @@ export default function Home() {
                 <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
                   Coral
                 </h3>
-                <p className="text-zinc-500 text-[17px]">
+                <p className="text-zinc-500 text-[17px] mb-3">
                   Coral is a consulting & development studio based in los
                   angeles. They lead & build advanced internal systems,
                   scaleable consumer products and robust fintech platforms for
                   startups and industry veterans.
                 </p>
+                <button
+                  onClick={() => {
+                    setModalInfo({
+                      open: true,
+                      video: "/videos/coral.mp4",
+                    });
+                  }}
+                  type="button"
+                  className="inline-flex items-center gap-x-1.5 rounded-md bg-teal-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+                >
+                  <PlayIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
+                  Watch Video
+                </button>
               </div>
             </div>
             <div className="flex flex-col md:flex-row-reverse items-center">
@@ -217,12 +266,25 @@ export default function Home() {
                 <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
                   GoldenDao
                 </h3>
-                <p className="text-zinc-500 text-[17px]">
+                <p className="text-zinc-500 text-[17px] mb-3">
                   Experience the power of seamless money management with
                   Honeydue. With its intuitive design and advanced features, you
                   can easily send and receive money from anyone, generate
                   invoices, and stay on top of your finances.
                 </p>
+                <button
+                  onClick={() => {
+                    setModalInfo({
+                      open: true,
+                      video: "/videos/golden-dao.mp4",
+                    });
+                  }}
+                  type="button"
+                  className="inline-flex items-center gap-x-1.5 rounded-md bg-teal-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+                >
+                  <PlayIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
+                  Watch Video
+                </button>
               </div>
             </div>
           </div>
