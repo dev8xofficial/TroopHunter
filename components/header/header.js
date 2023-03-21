@@ -1,6 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Bars2Icon,
   Bars3Icon,
@@ -12,25 +12,44 @@ import { classNames } from "../../utils/helpers";
 const Header = () => {
   const [open, setOpen] = useState(false);
 
+  const [headerFixed, setHeaderFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = (e) => {
+      console.log(window.scrollY);
+      if (window.scrollY > 0) {
+        setHeaderFixed(true);
+      } else {
+        setHeaderFixed(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleMenuButtonClick = () => {
     setOpen((prevState) => !prevState);
   };
 
   return (
-    <header className="py-4 md:py-6 z-20 fixed w-full">
+    <header
+      className={`${
+        headerFixed ? "py-2 md:py-4 shadow" : "py-4 md:py-6"
+      } transition-all z-20 fixed w-full bg-white`}
+    >
       <div className="max-w-5xl 2xl:max-w-6xl px-8 lg:px-6 mx-auto flex justify-between items-center">
-        <a
-          href="#"
+        <Link
+          href="/"
           class="text-3xl md:text-4xl inline-block font-extrabold text-teal-600 hover:text-teal-700 transition"
         >
           AR.
-        </a>
-        {/* <nav className="hidden md:block">
+        </Link>
+        <nav className="hidden md:block">
           <ul className="flex items-center space-x-7">
             <li>
               <Link
-                class="text-teal-700 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
-                href="#"
+                class="inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
+                href="/"
               >
                 Home
               </Link>
@@ -38,7 +57,7 @@ const Header = () => {
             <li>
               <Link
                 class="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
-                href="#"
+                href="#about"
               >
                 About
               </Link>
@@ -46,12 +65,12 @@ const Header = () => {
             <li>
               <Link
                 class="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
-                href="#"
+                href="#projects"
               >
                 Projects
               </Link>
             </li>
-
+            {/* 
             <li>
               <Link
                 class="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
@@ -59,31 +78,31 @@ const Header = () => {
               >
                 Services
               </Link>
-            </li>
+            </li> */}
 
             <li>
               <Link
                 class="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
-                href="#"
+                href="#contact"
               >
                 Contact
               </Link>
             </li>
           </ul>
-        </nav> */}
-        <div className="relative inline-block text-left">
+        </nav>
+        <div className="relative inline-block text-left md:hidden">
           <div>
             <button
-              className="inline-block group relative rounded-full hover:bg-transparent"
+              className="inline-block transform translate-y-1 group relative rounded-full hover:bg-transparent"
               onClick={handleMenuButtonClick}
             >
               <div
                 className={classNames(
-                  "transform group-hover:scale-[.35] bg-white scale-100 transition-all duration-[400ms] group-hover:bg-teal-600 w-full p-2.5 rounded-full h-full",
+                  "transform bg-white scale-100 transition-all duration-[400ms] w-full p-2.5 rounded-full h-full",
                   open ? "rotate-90" : ""
                 )}
               >
-                <Bars2Icon className="w-6 h-6 group-hover:opacity-0 duration-500"></Bars2Icon>
+                <Bars2Icon className="w-6 h-6 duration-500"></Bars2Icon>
               </div>
             </button>
           </div>
@@ -102,7 +121,8 @@ const Header = () => {
               <div className="py-1">
                 <div>
                   <Link
-                    href="#"
+                    onClick={() => setOpen(false)}
+                    href="/"
                     className={classNames(
                       "hover:bg-zinc-100 hover:text-zinc-900 text-zinc-700 block px-4 py-2 text-sm"
                     )}
@@ -113,7 +133,8 @@ const Header = () => {
 
                 <div>
                   <Link
-                    href="#"
+                    onClick={() => setOpen(false)}
+                    href="#about"
                     className={classNames(
                       "hover:bg-zinc-100 hover:text-zinc-900 text-zinc-700 block px-4 py-2 text-sm"
                     )}
@@ -123,7 +144,8 @@ const Header = () => {
                 </div>
                 <div>
                   <Link
-                    href="#"
+                    onClick={() => setOpen(false)}
+                    href="#projects"
                     className={classNames(
                       "hover:bg-zinc-100 hover:text-zinc-900 text-zinc-700 block px-4 py-2 text-sm"
                     )}
@@ -144,7 +166,8 @@ const Header = () => {
 
                 <div>
                   <Link
-                    href="#"
+                    onClick={() => setOpen(false)}
+                    href="#contact"
                     className={classNames(
                       "hover:bg-zinc-100 hover:text-zinc-900 text-zinc-700 block px-4 py-2 text-sm"
                     )}

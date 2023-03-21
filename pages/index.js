@@ -35,10 +35,10 @@ export default function Home() {
                 height={350}
                 src="/abdul-rehman.jpg"
                 alt="Abdul Rehman"
-                className="rounded-full border-[6px] p-1.5 bg-gray-50 shadow w-48 md:w-[93%]"
+                className="rounded-full border-4 md:border-[6px] p-1 md:p-1.5 bg-gray-50 shadow w-40 sm:w-44 md:w-48 lg:w-[90%]"
               />
             </div>
-            <div className="col-span-5 pl-2 lg:pl-5 flex flex-col justify-center">
+            <div className="col-span-5 pl-2 lg:pl-2 flex flex-col justify-center">
               <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl mb-3 lg:mb-4">
                 I am Abdul Rehman <br /> Full stack developer
               </h1>
@@ -107,7 +107,10 @@ export default function Home() {
             />
           </div>
         </section>
-        <section className="pt-14 bg-[#fafafa] pb-14 sm:pb-20 sm:pt-20 md:pt-24 md:pb-24 lg:pt-44">
+        <section
+          id="about"
+          className="pt-14 bg-[#fafafa] pb-14 sm:pb-20 sm:pt-20 md:pt-24 md:pb-24 lg:pt-44 scroll-mt-8"
+        >
           <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto">
             <h2 className="text-3xl md:text-4xl font-semibold mb-4">
               About Me
@@ -133,7 +136,7 @@ export default function Home() {
             </p>
           </div>
         </section>
-        <section className="py-12 md:py-16  lg:py-20">
+        <section id="projects" className="py-12 md:py-16 lg:py-20 scroll-mt-8">
           <div className="text-center mb-12 md:mb-16">
             <div className="inline-block w-16 mb-2 h-1 rounded bg-teal-500"></div>
             <h2 className="text-3xl md:text-4xl font-semibold">Projects</h2>
@@ -289,7 +292,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="py-16 sm:py-20 bg-gray-50">
+        <section id="contact" className="py-16 sm:py-20 bg-gray-50 scroll-mt-8">
           <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto">
             <h2 className="text-3xl md:text-4xl font-semibold flex items-center space-x-3">
               <span>Contact</span>{" "}
