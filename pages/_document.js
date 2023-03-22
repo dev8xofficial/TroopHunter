@@ -7,7 +7,10 @@ export default function Document() {
         <meta />
         <meta
           name="description"
-          content="I'm a Full Stack Developer with a passion for creating innovative web apps using modern tech like React, Next.js, Node.js, Express, and MongoDB. I collaborate with clients to bring their ideas to life and achieve their business goals."
+          content="I'm a Frontend Developer with a passion for creating
+          innovative web apps using modern tech like React, Next.js,
+          TailwindCSS, Material UI. I collaborate with clients to bring
+          their ideas to life and achieve their business goals."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
