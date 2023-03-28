@@ -144,168 +144,40 @@ export default function Home() {
           </div>
           <ParallaxProvider scrollAxis="vertical">
             <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto space-y-20 sm:space-y-28">
-              <div className="flex flex-col md:flex-row items-center">
-                <div className="md:w-[55%]">
-                  <Parallax speed={4}>
-                    <Image
-                      width={700}
-                      height={400}
-                      src="/project-0.png"
-                      className="rounded-xl shadow-lg shadow-gray-100 border border-gray-100"
-                      alt="Project"
-                    />
-                  </Parallax>
-                </div>
-                <div className="md:w-[45%] pt-6 md:pt-0 md:pl-10">
-                  <p className="text-sm font-medium mb-1">
-                    React | TailwindCSS
-                  </p>
-                  <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
-                    THDC CRM
-                  </h3>
-                  <p className="text-zinc-500 text-[17px] mb-3">
-                    Total Health Dental Care personal CRM project for doctors is
-                    a customer relationship management system designed to help
-                    dentists manage their patient data and appointments.
-                  </p>
-
-                  <button
-                    onClick={() => {
-                      setModalInfo({
-                        open: true,
-                        video: "/videos/crm.mov",
-                      });
-                    }}
-                    type="button"
-                    className="inline-flex items-center gap-x-1.5 rounded-md bg-teal-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
-                  >
-                    <PlayIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
-                    Watch Video
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex flex-col md:flex-row-reverse items-center">
-                <div className="md:w-[55%]">
-                  <Parallax speed={-4}>
-                    <Image
-                      width={700}
-                      height={400}
-                      src="/project-1.png"
-                      className="rounded-xl shadow-lg shadow-gray-100 border border-gray-100"
-                      alt="Project"
-                    />
-                  </Parallax>
-                </div>
-                <div className="md:w-[45%] pt-6 md:pt-0 md:pr-10">
-                  <p className="text-sm font-medium mb-1">
-                    HTML5 | TailwindCSS
-                  </p>
-                  <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
-                    Honeydu
-                  </h3>
-                  <p className="text-zinc-500 text-[17px] mb-3">
-                    Experience the power of seamless money management with
-                    Honeydue. With its intuitive design and advanced features,
-                    you can easily send and receive money from anyone, generate
-                    invoices, and stay on top of your finances.
-                  </p>
-
-                  <button
-                    onClick={() => {
-                      setModalInfo({
-                        open: true,
-                        video: "/videos/honeydu.mp4",
-                      });
-                    }}
-                    type="button"
-                    className="inline-flex items-center gap-x-1.5 rounded-md bg-teal-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
-                  >
-                    <PlayIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
-                    Watch Video
-                  </button>
-                </div>
-              </div>
-              <div className="flex flex-col md:flex-row items-center">
-                <div className="md:w-[55%]">
-                  <Parallax speed={4}>
-                    <Image
-                      width={700}
-                      height={400}
-                      src="/project-2.png"
-                      className="rounded-xl shadow-lg shadow-gray-100 border border-gray-100"
-                      alt="Project"
-                    />
-                  </Parallax>
-                </div>
-                <div className="md:w-[45%] pt-6 md:pt-0 md:pl-10">
-                  <p className="text-sm font-medium mb-1">
-                    HTML5 | CSS3 | Sass | jQuery
-                  </p>
-                  <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
-                    Coral
-                  </h3>
-                  <p className="text-zinc-500 text-[17px] mb-3">
-                    Coral is a consulting & development studio based in los
-                    angeles. They lead & build advanced internal systems,
-                    scaleable consumer products and robust fintech platforms for
-                    startups and industry veterans.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setModalInfo({
-                        open: true,
-                        video: "/videos/coral.mp4",
-                      });
-                    }}
-                    type="button"
-                    className="inline-flex items-center gap-x-1.5 rounded-md bg-teal-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
-                  >
-                    <PlayIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
-                    Watch Video
-                  </button>
-                </div>
-              </div>
-              <div className="flex flex-col md:flex-row-reverse items-center">
-                <div className="md:w-[55%]">
-                  <Parallax speed={-4}>
-                    <Image
-                      width={700}
-                      height={400}
-                      src="/project-3.png"
-                      className="rounded-xl shadow-lg shadow-gray-100 border border-gray-100"
-                      alt="Project"
-                    />
-                  </Parallax>
-                </div>
-                <div className="md:w-[45%] pt-6 md:pt-0 md:pr-10">
-                  <p className="text-sm font-medium mb-1">
-                    React | TailwindCSS
-                  </p>
-                  <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">
-                    GoldenDao
-                  </h3>
-                  <p className="text-zinc-500 text-[17px] mb-3">
-                    Experience the power of seamless money management with
-                    Honeydue. With its intuitive design and advanced features,
-                    you can easily send and receive money from anyone, generate
-                    invoices, and stay on top of your finances.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setModalInfo({
-                        open: true,
-                        video: "/videos/golden-dao.mp4",
-                      });
-                    }}
-                    type="button"
-                    className="inline-flex items-center gap-x-1.5 rounded-md bg-teal-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
-                  >
-                    <PlayIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
-                    Watch Video
-                  </button>
-                </div>
-              </div>
+              <Project
+                title="THDC CRM"
+                image="/project-0.png"
+                video="/videos/crm.mp4"
+                subtitle="React | TailwindCSS"
+                description="I built the Total Health Dental Care personal CRM website for doctors, a customer relationship management system to manage patient data and appointments."
+              />
+              <Project
+                reverse
+                title="Honeydu"
+                video="/videos/honeydu.mp4"
+                image="/project-1.png"
+                subtitle="HTML5 | TailwindCSS"
+                description="I built the Honeydue web app UI, a powerful money management tool with an intuitive design and advanced features to help users send and receive money, generate invoices, and track their finances."
+              />
+              <Project
+                title="Coral"
+                image="/project-2.png"
+                video="/videos/coral.mp4"
+                subtitle="HTML5 | CSS3 | Sass | jQuery"
+                description="I built the website for Coral, a consulting and development studio based in Los Angeles that specializes in building advanced internal systems, scalable consumer products, and robust fintech platforms for startups and industry veterans."
+              />
+              <Project
+                reverse
+                title="GoldenDao"
+                video="/videos/golden-dao.mp4"
+                image="/project-3.png"
+                subtitle="React | TailwindCSS"
+                description="I built the website for this project, which aimed to advance
+                AAPI solidarity and empowerment through a collaborative
+                community and DAO. My contribution included designing the
+                layout, creating content, and overcoming challenges to
+                ensure the website's functionality."
+              />
             </div>
           </ParallaxProvider>
         </section>
@@ -391,3 +263,47 @@ export default function Home() {
     </>
   );
 }
+
+const Project = ({ title, subtitle, description, image, reverse, video }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div
+      className={`flex flex-col ${
+        reverse ? "md:flex-row-reverse" : "md:flex-row"
+      } items-center`}
+    >
+      <div className="md:w-[55%]">
+        <Parallax speed={reverse ? -4 : 4}>
+          <Image
+            width={700}
+            height={400}
+            src={image}
+            className="rounded-xl shadow-lg shadow-gray-100 border border-gray-100"
+            alt="Project"
+          />
+        </Parallax>
+      </div>
+      <div
+        className={`md:w-[45%] pt-6 md:pt-0 ${
+          reverse ? "md:pr-10" : "md:pl-10"
+        }`}
+      >
+        <p className="text-sm font-medium mb-1">{subtitle}</p>
+        <h3 className="text-2xl sm:text-[28px] font-semibold mb-3">{title}</h3>
+        <p className="text-zinc-500 text-[17px] mb-3">{description}</p>
+        <button
+          onClick={() => {
+            setOpen(true);
+          }}
+          type="button"
+          className="inline-flex items-center gap-x-1.5 rounded-md bg-teal-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+        >
+          <PlayIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
+          Watch Video
+        </button>
+      </div>
+      <VideoModal open={open} setOpen={setOpen} src={video} />
+    </div>
+  );
+};

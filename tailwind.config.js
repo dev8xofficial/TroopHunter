@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        "work-sans": "'Work Sans', sans-serif",
+        poppins: "'Poppins', sans-serif",
       },
     },
   },

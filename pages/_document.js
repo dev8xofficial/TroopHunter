@@ -39,7 +39,7 @@ export default function Document() {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-      <body className="font-work-sans text-zinc-700">
+      <body className="font-poppins text-zinc-700">
         <Main />
         <NextScript />
       </body>

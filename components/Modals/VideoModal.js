@@ -1,51 +1,42 @@
-import { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
-import IframeResizer from "iframe-resizer-react";
 
-export default function VideoModal({ setOpen, open, video }) {
-  const cancelButtonRef = useRef(null);
+export default function VideoModal({ open, setOpen, src }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (open) {
+      if (videoRef?.current?.currentTime) {
+        videoRef.current.currentTime = 0; // set the playback time to 0
+      }
+      videoRef?.current?.play();
+    } else {
+      videoRef?.current?.pause();
+    }
+  }, [open]);
 
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-50"
-        initialFocus={cancelButtonRef}
-        onClose={() => setOpen({ open: false })}
+    <div
+      className={`w-full min-h-screen fixed top-0 left-0 z-50 bg-black bg-opacity-70 transition duration-300 ${
+        open
+          ? "pointer-events-auto opacity-100"
+          : "pointer-events-none opacity-0"
+      }`}
+    >
+      <div
+        className="w-full z-40 top-0 left-0 h-full absolute"
+        onClick={() => setOpen(false)}
+      ></div>
+      <div
+        className={`transform absolute z-50 ${
+          open ? "top-1/2" : "top-[60%]"
+        } left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl bg-white text-left shadow-xl transition-all w-[95%] sm:max-w-5xl`}
       >
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-black bg-opacity-70 transition-opacity" />
-        </Transition.Child>
-
-        <div className="fixed inset-0 z-50 overflow-y-auto">
-          <div className="flex min-h-full justify-center p-4 text-center items-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              enterTo="opacity-100 translate-y-0 sm:scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-6xl">
-                <div>
-                  <video src={video} controls autoplay="true"></video>
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
+        <div>
+          <video ref={videoRef} src={src} controls></video>
         </div>
-      </Dialog>
-    </Transition.Root>
+      </div>
+    </div>
   );
 }
