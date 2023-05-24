@@ -40,7 +40,7 @@ const Header = () => {
       <div className="max-w-5xl 2xl:max-w-6xl px-8 lg:px-6 mx-auto flex justify-between items-center">
         <Link
           href="/"
-          class="text-3xl md:text-4xl inline-block font-extrabold text-teal-600 hover:text-teal-700 transition"
+          className="text-3xl md:text-4xl inline-block font-extrabold text-teal-600 hover:text-teal-700 transition"
         >
           AR.
         </Link>
@@ -48,7 +48,7 @@ const Header = () => {
           <ul className="flex items-center space-x-7">
             <li>
               <Link
-                class="inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
+                className="inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
                 href="/"
               >
                 Home
@@ -56,7 +56,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                class="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
+                className="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
                 href="#about"
               >
                 About
@@ -64,7 +64,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                class="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
+                className="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
                 href="#projects"
               >
                 Projects
@@ -73,7 +73,7 @@ const Header = () => {
             {/* 
             <li>
               <Link
-                class="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
+                className="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
                 href="#"
               >
                 Services
@@ -82,7 +82,7 @@ const Header = () => {
 
             <li>
               <Link
-                class="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
+                className="hover:text-zinc-700 text-zinc-600 inline-block transform hover:-translate-y-0.5 text-base lg:text-[17px] py-1 px-0.5 transition duration-200"
                 href="#contact"
               >
                 Contact

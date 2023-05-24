@@ -16,15 +16,15 @@ export default function Home() {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
           integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer"
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
         />
         <title>Abdul Rehman | Frontend Developer</title>
       </Head>
       <main className="relative leading-relaxed min-h-screen overflow-x-hidden">
         <VideoModal
           open={modalInfo.open}
-          video={modalInfo.video}
+          src={modalInfo.video}
           setOpen={setModalInfo}
         />
         <Header />
@@ -142,7 +142,7 @@ export default function Home() {
             <div className="inline-block w-16 mb-2 h-1 rounded bg-teal-500"></div>
             <h2 className="text-3xl md:text-4xl font-semibold">Projects</h2>
           </div>
-          <ParallaxProvider scrollAxis="vertical">
+          <ParallaxProvider>
             <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto space-y-20 sm:space-y-28">
               <Project
                 title="THDC CRM"
@@ -213,46 +213,46 @@ export default function Home() {
               Copyright &copy; 2023 by Abdul Rehman.
             </p>
             <div>
-              <ul class="flex space-x-6">
+              <ul className="flex space-x-6">
                 <li>
                   <a
                     href="https://www.facebook.com/rj.malik.96"
-                    class="text-xl hover:text-teal-600 p-0.5 transition"
+                    className="text-xl hover:text-teal-600 p-0.5 transition"
                   >
-                    <i class="fab fa-facebook-f"></i>
+                    <i className="fab fa-facebook-f"></i>
                   </a>
                 </li>
                 {/* <li>
                   <a
                     href="#"
-                    class="text-xl hover:text-teal-600 p-0.5 transition"
+                    className="text-xl hover:text-teal-600 p-0.5 transition"
                   >
-                    <i class="fab fa-instagram"></i>
+                    <i className="fab fa-instagram"></i>
                   </a>
                 </li>
                 <li>
                   <a
                     href="#"
-                    class="text-xl hover:text-teal-600 p-0.5 transition"
+                    className="text-xl hover:text-teal-600 p-0.5 transition"
                   >
-                    <i class="fab fa-twitter"></i>
+                    <i className="fab fa-twitter"></i>
                   </a>
                 </li> */}
 
                 <li>
                   <a
                     href="https://www.linkedin.com/in/helloabdul"
-                    class="text-xl hover:text-teal-600 p-0.5 transition"
+                    className="text-xl hover:text-teal-600 p-0.5 transition"
                   >
-                    <i class="fab fa-linkedin-in"></i>
+                    <i className="fab fa-linkedin-in"></i>
                   </a>
                 </li>
                 <li>
                   <a
                     href="mailto:contact@helloabdul.com"
-                    class="text-xl hover:text-teal-600 p-0.5 transition"
+                    className="text-xl hover:text-teal-600 p-0.5 transition"
                   >
-                    <i class="fas fa-envelope"></i>
+                    <i className="fas fa-envelope"></i>
                   </a>
                 </li>
               </ul>
@@ -264,7 +264,16 @@ export default function Home() {
   );
 }
 
-const Project = ({ title, subtitle, description, image, reverse, video }) => {
+interface ProjectProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  reverse?: boolean;
+  video: string;
+}
+
+const Project = ({ title, subtitle, description, image, reverse, video }: ProjectProps) => {
   const [open, setOpen] = useState(false);
 
   return (
