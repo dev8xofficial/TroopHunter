@@ -19,7 +19,7 @@ export default function Home() {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        <title>Abdul Rehman | Frontend Developer</title>
+        <title>Abdul Rehma   | Frontend Developer</title>
       </Head>
       <main className="relative leading-relaxed min-h-screen overflow-x-hidden">
         <VideoModal
