@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import Header from "../components/header/header";
 import VideoModal from "../components/Modals/VideoModal";
+import va from '@vercel/analytics';
 
 export default function Home() {
   const [modalInfo, setModalInfo] = useState({ open: false, video: "" });
@@ -304,6 +305,7 @@ const Project = ({ title, subtitle, description, image, reverse, video }: Projec
         <button
           onClick={() => {
             setOpen(true);
+            va.track(title);
           }}
           type="button"
           className="inline-flex items-center gap-x-1.5 rounded-md bg-teal-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-700 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
