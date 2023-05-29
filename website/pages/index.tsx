@@ -1,15 +1,15 @@
-import { EnvelopeIcon, PlayIcon } from "@heroicons/react/20/solid";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import { Parallax, ParallaxProvider } from "react-scroll-parallax";
-import Header from "../components/header/header";
-import VideoModal from "../components/Modals/VideoModal";
+import { EnvelopeIcon, PlayIcon } from '@heroicons/react/20/solid';
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import Header from '../components/header/header';
+import VideoModal from '../components/Modals/VideoModal';
 import va from '@vercel/analytics';
 
 export default function Home() {
-  const [modalInfo, setModalInfo] = useState({ open: false, video: "" });
+  const [modalInfo, setModalInfo] = useState({ open: false, video: '' });
   return (
     <>
       <Head>
@@ -119,7 +119,7 @@ export default function Home() {
             </h2>
             <p
               className="text-lg lg:text-[22px] text-zinc-600 mb-4"
-              style={{ lineHeight: "1.5" }}
+              style={{ lineHeight: '1.5' }}
             >
               {"I'm"} a Frontend Developer with a passion for creating
               innovative web apps using modern tech like React, Next.js,
@@ -128,12 +128,12 @@ export default function Home() {
             </p>
             <p
               className="text-lg lg:text-[22px] text-zinc-600"
-              style={{ lineHeight: "1.5" }}
+              style={{ lineHeight: '1.5' }}
             >
-              {" "}
+              {' '}
               I deliver high-quality work that exceeds expectations. {
                 "Let's"
-              }{" "}
+              }{' '}
               create a cutting-edge app that sets your business apart.
             </p>
           </div>
@@ -185,24 +185,24 @@ export default function Home() {
         <section id="contact" className="py-16 sm:py-20 bg-gray-50 scroll-mt-8">
           <div className="max-w-5xl 2xl:max-w-6xl px-8 mx-auto">
             <h2 className="text-3xl md:text-4xl font-semibold flex items-center space-x-3">
-              <span>Contact</span>{" "}
+              <span>Contact</span>{' '}
               <EnvelopeIcon className="w-7 md:w-8"></EnvelopeIcon>
             </h2>
             <p className="text-gray-600 text-lg mt-4">
-              Contact me via{" "}
+              Contact me via{' '}
               <Link
                 href="https://www.linkedin.com/in/helloabdul"
                 className="text-blue-500 hover:text-blue-600 hover:underline"
               >
                 LinkedIn
-              </Link>{" "}
-              or{" "}
+              </Link>{' '}
+              or{' '}
               <Link
                 className="text-blue-500 hover:text-blue-600 hover:underline"
                 href="mailto:contact@helloabdul.com"
               >
                 email
-              </Link>{" "}
+              </Link>{' '}
               for any inquiries or project opportunities. I am eager to
               collaborate and help achieve our goals.
             </p>
@@ -274,13 +274,20 @@ interface ProjectProps {
   video: string;
 }
 
-const Project = ({ title, subtitle, description, image, reverse, video }: ProjectProps) => {
+const Project = ({
+  title,
+  subtitle,
+  description,
+  image,
+  reverse,
+  video,
+}: ProjectProps) => {
   const [open, setOpen] = useState(false);
 
   return (
     <div
       className={`flex flex-col ${
-        reverse ? "md:flex-row-reverse" : "md:flex-row"
+        reverse ? 'md:flex-row-reverse' : 'md:flex-row'
       } items-center`}
     >
       <div className="md:w-[55%]">
@@ -296,7 +303,7 @@ const Project = ({ title, subtitle, description, image, reverse, video }: Projec
       </div>
       <div
         className={`md:w-[45%] pt-6 md:pt-0 ${
-          reverse ? "md:pr-10" : "md:pl-10"
+          reverse ? 'md:pr-10' : 'md:pl-10'
         }`}
       >
         <p className="text-sm font-medium mb-1">{subtitle}</p>
