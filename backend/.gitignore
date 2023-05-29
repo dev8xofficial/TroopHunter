@@ -6,6 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+.package-lock.json
 
 node_modules
 dist
@@ -26,7 +27,6 @@ dist-ssr
 # local env files
 .env*.local
 .env
-.package-lock.json
 
 # Docker files
 docker-compose*
