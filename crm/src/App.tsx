@@ -35,7 +35,8 @@ function App() {
   ) : (
     <>
       <Routes>
-        <Route path="/" element={<ECommerce />} />
+        <Route path="/" element={<SignIn />} />
+        <Route path="/ecommerce" element={<ECommerce />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forms/form-elements" element={<FormElements />} />
