@@ -5,6 +5,7 @@ import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 import Calendar from './pages/Calendar';
 import Chart from './pages/Chart';
+import Lead from './pages/Lead';
 import ECommerce from './pages/Dashboard/ECommerce';
 import FormElements from './pages/Form/FormElements';
 import FormLayout from './pages/Form/FormLayout';
@@ -36,6 +37,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<SignIn />} />
+        <Route path="/lead" element={<Lead />} />
         <Route path="/ecommerce" element={<ECommerce />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/profile" element={<Profile />} />
