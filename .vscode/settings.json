@@ -1,0 +1,8 @@
+{
+  "tree-generator.exclude": {
+    "**/node_modules": true,
+    "**/public": true,
+    "**/fonts": true,
+    "**/images": true
+  }
+}

@@ -1,0 +1,316 @@
+Prompt 1:
+Software Requirement Specification (SRS)
+
+Introduction
+1.1 Purpose
+The purpose of this document is to define the requirements and specifications for the development of a backend system using modern technologies and tools. The system will provide user registration, authentication, CRUD operations for user and business data, CSV data import, pagination, filtering, integration with Gmail authentication, and follow the MVC architectural pattern.
+
+1.2 Scope
+The backend system will handle user-related operations such as registration, login, and authentication, as well as CRUD operations for user and business data. It will provide secure storage of user passwords, integration with Gmail authentication, import functionality for business data from CSV files, and follow the MVC architectural pattern for code organization. The system will implement input handling, error handling, logging, and use an Object-Relational Mapping (ORM) for database interactions. It will also include comprehensive testing, performance optimization, and deployment considerations.
+
+1.3 Target Audience
+The target audience for this document includes developers, testers, project managers, and stakeholders involved in the development and deployment of the backend system.
+
+Technologies and Tools
+The following modern technologies and tools will be used in the development of the backend system:
+
+- Node.js: A runtime environment for executing JavaScript code server-side.
+- Express: A fast and minimalist web application framework for Node.js.
+- PostgreSQL: An open-source relational database management system.
+- TypeScript: A statically typed superset of JavaScript that compiles to plain JavaScript.
+- Sequelize: An ORM for Node.js that supports multiple databases and provides an easy-to-use API for interacting with the database.
+- JWT (JSON Web Tokens): A standard for securely transmitting information between parties as a JSON object.
+- Nodemon: A utility that monitors changes in the source code and automatically restarts the server during development.
+- Jest: A popular testing framework for JavaScript applications with built-in support for unit testing and assertions.
+- Winston: A versatile logging library for Node.js that allows for logging at different levels and provides flexibility in configuring log outputs.
+- CSV Parser: A library for parsing CSV files and extracting data.
+- Swagger: A toolset for designing, building, documenting, and consuming RESTful APIs.
+- Docker: A platform for developing, deploying, and running applications using containerization.
+- Kubernetes: An open-source container orchestration platform for automating deployment, scaling, and management of containerized applications.
+
+System Requirements
+3.1 Database Configuration
+
+3.1.1 Install PostgreSQL and establish a connection to the database.
+3.1.2 Design the User table and its fields: Define the structure of the User table, including fields such as First Name, Last Name, Email, Password, and Gmail authentication details.
+3.1.3 Implement secure password storage with bcrypt: Hash and securely store user passwords using bcrypt for enhanced security.
+3.1.4 Create the Business table with its fields: Design the Business table schema with fields such as Name, Address, Phone number, Opening Time, Closing Time, Dine-in Availability, Takeaway Options, Website URL, Location, and Delivery details.
+3.1.5 Establish appropriate relationships between User and Business tables: Set up relationships, such as foreign keys, between the User and Business tables to establish associations and ensure data integrity.
+
+3.2 User Authentication
+
+3.2.1 Implement email and password authentication: Develop the functionality for users to sign up and sign in securely using their email and password.
+3.2.2 Integrate Gmail authentication: Enable users to log in using their Gmail accounts, integrating with Gmail's authentication system.
+
+3.3 Middleware Functions
+
+3.3.1 Develop middleware functions for authentication and authorization to secure routes and actions.
+3.3.2
+
+ Implement request validation middleware: Validate incoming requests to ensure data integrity and prevent malicious activities.
+3.3.3 Create error handling middleware: Handle errors and provide appropriate error responses to users, including the use of appropriate HTTP status codes.
+
+3.4 User Management
+
+3.4.1 Implement CRUD operations for user data: Develop functionality for creating, reading, updating, and deleting user data.
+3.4.2 Validate user input: Define validation rules and requirements for user data fields, such as data types, length restrictions, and any specific business rules.
+
+3.5 Business Management
+
+3.5.1 Implement CRUD operations for business data: Develop functionality for creating, reading, updating, and deleting business data.
+3.5.2 Import business data from CSV: Allow users to import business data from CSV files, validate the data, and store it in the database.
+3.5.3 Validate business data input: Define validation rules and requirements for business data fields, such as data types, length restrictions, and any specific business rules.
+
+3.6 Pagination and Filtering
+
+3.6.1 Implement pagination: Enable paginated retrieval of user and business data to enhance performance and usability.
+3.6.2 Enable filtering options: Allow users to filter user and business data based on specified criteria, such as name, location, or availability.
+
+3.7 Logging and Error Handling
+
+3.7.1 Implement logging functionality: Log important events, errors, and exceptions to aid in debugging and monitoring.
+3.7.2 Define common error scenarios: Identify potential error scenarios, such as invalid input, database connection failures, and authentication errors.
+3.7.3 Provide appropriate error messages and HTTP status codes: Define clear error messages and HTTP status codes to be returned for each error scenario.
+
+Testing and Quality Assurance
+4.1 Test Types and Coverage
+
+4.1.1 Unit Testing: Develop and execute unit tests for individual functions and components to ensure their correctness.
+4.1.2 Integration Testing: Test the interactions between different components and modules to ensure the system works as a whole.
+4.1.3 Performance Testing: Conduct performance tests to evaluate the system's responsiveness and resource usage under different loads.
+4.1.4 Security Testing: Perform security tests to identify vulnerabilities and ensure the system's robustness against potential attacks.
+
+4.2 Testing Tools and Frameworks
+
+4.2.1 Jest: Use Jest as the primary testing framework for unit and integration testing.
+4.2.2 Supertest: Employ Supertest to test the API endpoints and their responses.
+4.2.3 Performance Testing Tools: Utilize performance testing tools, such as Apache JMeter or Artillery, to simulate various loads and measure system performance.
+
+Deployment and Maintenance
+5.1 Deployment Environment
+
+5.1.1 Set up a production server environment: Establish a production server environment to deploy the backend system securely.
+5.1.2 Dockerize the application: Containerize the backend system using Docker to ensure portability and easier deployment across different environments.
+5.1.3 Deploy with Kubernetes: Utilize Kubernetes for container orchestration and management, ensuring scalability and high availability.
+
+5.2 Version Control and Update Management
+
+5.2.1 Use Git for version control: Set up a Git repository to track and manage changes in the source code.
+5.2.2 Establish a branching strategy: Define a branching strategy, such as Gitflow, to manage feature development, bug fixes, and releases.
+5.2.3 Plan for updates and maintenance: Define a process for updating and maintaining the system, including handling bug fixes, feature enhancements, and security patches.
+
+Requirement Specification (SRS) document addresses the identified issues and provides a more comprehensive overview of the expected behavior, functionality, non-functional requirements, testing approach, deployment, and maintenance considerations for the backend system. It aims to serve as a reference for the development team, testers, and stakeholders throughout the development and deployment process.
+
+You are a Full stack developer and quality assurance engineer having 20 years of extensive experience in your skills.  Read this SRS document carefully and understand it. I'll give you the file structure than provide you the code of all of my files. Than I'll ask your help to complete this backend.
+
+Prompt 2:
+File structure
+* [backend/](./helloabdul/backend)
+  * [config/](./helloabdul/backend/config)
+    * [config.json](./helloabdul/backend/config/config.json)
+  * [migrations/](./helloabdul/backend/migrations)
+  * [models/](./helloabdul/backend/models)
+    * [index.js](./helloabdul/backend/models/index.js)
+  * [seeders/](./helloabdul/backend/seeders)
+  * [src/](./helloabdul/backend/src)
+    * [config/](./helloabdul/backend/src/config)
+      * [auth.ts](./helloabdul/backend/src/config/auth.ts)
+      * [database.ts](./helloabdul/backend/src/config/database.ts)
+    * [controllers/](./helloabdul/backend/src/controllers)
+      * [businessController.ts](./helloabdul/backend/src/controllers/businessController.ts)
+      * [userController.ts](./helloabdul/backend/src/controllers/userController.ts)
+    * [middlewares/](./helloabdul/backend/src/middlewares)
+      * [authMiddleware.ts](./helloabdul/backend/src/middlewares/authMiddleware.ts)
+      * [authorizeMiddleware.ts](./helloabdul/backend/src/middlewares/authorizeMiddleware.ts)
+      * [errorHandler.ts](./helloabdul/backend/src/middlewares/errorHandler.ts)
+      * [notFoundHandler.ts](./helloabdul/backend/src/middlewares/notFoundHandler.ts)
+    * [models/](./helloabdul/backend/src/models)
+      * [Business.ts](./helloabdul/backend/src/models/Business.ts)
+      * [User.ts](./helloabdul/backend/src/models/User.ts)
+    * [routes/](./helloabdul/backend/src/routes)
+      * [businessRoutes.ts](./helloabdul/backend/src/routes/businessRoutes.ts)
+      * [userRoutes.ts](./helloabdul/backend/src/routes/userRoutes.ts)
+    * [services/](./helloabdul/backend/src/services)
+      * [businessService.ts](./helloabdul/backend/src/services/businessService.ts)
+      * [userService.ts](./helloabdul/backend/src/services/userService.ts)
+    * [tests/](./helloabdul/backend/src/tests)
+      * [businessController.test.ts](./helloabdul/backend/src/tests/businessController.test.ts)
+      * [userController.test.ts](./helloabdul/backend/src/tests/userController.test.ts)
+    * [utils/](./helloabdul/backend/src/utils)
+      * [csvParser.ts](./helloabdul/backend/src/utils/csvParser.ts)
+      * [validationUtils.ts](./helloabdul/backend/src/utils/validationUtils.ts)
+    * [index.ts](./helloabdul/backend/src/index.ts)
+    * [server.ts](./helloabdul/backend/src/server.ts)
+  * [.env](./helloabdul/backend/.env)
+  * [.env.example](./helloabdul/backend/.env.example)
+  * [.gitignore](./helloabdul/backend/.gitignore)
+  * [.prettierrc](./helloabdul/backend/.prettierrc)
+  * [Dockerfile.dev](./helloabdul/backend/Dockerfile.dev)
+  * [Dockerfile.prod](./helloabdul/backend/Dockerfile.prod)
+  * [README.md](./helloabdul/backend/README.md)
+  * [SRS.txt](./helloabdul/backend/SRS.txt)
+  * [docker-compose.yml](./helloabdul/backend/docker-compose.yml)
+  * [package-lock.json](./helloabdul/backend/package-lock.json)
+  * [package.json](./helloabdul/backend/package.json)
+  * [tsconfig.json](./helloabdul/backend/tsconfig.json)
+* [crm/](./helloabdul/crm)
+  * [src/](./helloabdul/crm/src)
+    * [components/](./helloabdul/crm/src/components)
+      * [Breadcrumb.tsx](./helloabdul/crm/src/components/Breadcrumb.tsx)
+      * [CardFour.tsx](./helloabdul/crm/src/components/CardFour.tsx)
+      * [CardOne.tsx](./helloabdul/crm/src/components/CardOne.tsx)
+      * [CardThree.tsx](./helloabdul/crm/src/components/CardThree.tsx)
+      * [CardTwo.tsx](./helloabdul/crm/src/components/CardTwo.tsx)
+      * [ChartFour.tsx](./helloabdul/crm/src/components/ChartFour.tsx)
+      * [ChartOne.tsx](./helloabdul/crm/src/components/ChartOne.tsx)
+      * [ChartThree.tsx](./helloabdul/crm/src/components/ChartThree.tsx)
+      * [ChartTwo.tsx](./helloabdul/crm/src/components/ChartTwo.tsx)
+      * [ChatCard.tsx](./helloabdul/crm/src/components/ChatCard.tsx)
+      * [CheckboxFive.tsx](./helloabdul/crm/src/components/CheckboxFive.tsx)
+      * [CheckboxFour.tsx](./helloabdul/crm/src/components/CheckboxFour.tsx)
+      * [CheckboxOne.tsx](./helloabdul/crm/src/components/CheckboxOne.tsx)
+      * [CheckboxThree.tsx](./helloabdul/crm/src/components/CheckboxThree.tsx)
+      * [CheckboxTwo.tsx](./helloabdul/crm/src/components/CheckboxTwo.tsx)
+      * [DarkModeSwitcher.tsx](./helloabdul/crm/src/components/DarkModeSwitcher.tsx)
+      * [DataStats.tsx](./helloabdul/crm/src/components/DataStats.tsx)
+      * [DropdownDefault.tsx](./helloabdul/crm/src/components/DropdownDefault.tsx)
+      * [DropdownMessage.tsx](./helloabdul/crm/src/components/DropdownMessage.tsx)
+      * [DropdownNotification.tsx](./helloabdul/crm/src/components/DropdownNotification.tsx)
+      * [DropdownUser.tsx](./helloabdul/crm/src/components/DropdownUser.tsx)
+      * [Header.tsx](./helloabdul/crm/src/components/Header.tsx)
+      * [MapOne.tsx](./helloabdul/crm/src/components/MapOne.tsx)
+      * [Sidebar.tsx](./helloabdul/crm/src/components/Sidebar.tsx)
+      * [SidebarLinkGroup.tsx](./helloabdul/crm/src/components/SidebarLinkGroup.tsx)
+      * [SwitcherFour.tsx](./helloabdul/crm/src/components/SwitcherFour.tsx)
+      * [SwitcherOne.tsx](./helloabdul/crm/src/components/SwitcherOne.tsx)
+      * [SwitcherThree.tsx](./helloabdul/crm/src/components/SwitcherThree.tsx)
+      * [SwitcherTwo.tsx](./helloabdul/crm/src/components/SwitcherTwo.tsx)
+      * [TableOne.tsx](./helloabdul/crm/src/components/TableOne.tsx)
+      * [TableThree.tsx](./helloabdul/crm/src/components/TableThree.tsx)
+      * [TableTwo.tsx](./helloabdul/crm/src/components/TableTwo.tsx)
+      * [TaskHeader.tsx](./helloabdul/crm/src/components/TaskHeader.tsx)
+    * [hooks/](./helloabdul/crm/src/hooks)
+      * [useColorMode.tsx](./helloabdul/crm/src/hooks/useColorMode.tsx)
+      * [useLocalStorage.tsx](./helloabdul/crm/src/hooks/useLocalStorage.tsx)
+    * [js/](./helloabdul/crm/src/js)
+      * [drag.ts](./helloabdul/crm/src/js/drag.ts)
+      * [us-aea-en.js](./helloabdul/crm/src/js/us-aea-en.js)
+    * [layout/](./helloabdul/crm/src/layout)
+      * [DefaultLayout.tsx](./helloabdul/crm/src/layout/DefaultLayout.tsx)
+    * [pages/](./helloabdul/crm/src/pages)
+      * [Authentication/](./helloabdul/crm/src/pages/Authentication)
+        * [SignIn.tsx](./helloabdul/crm/src/pages/Authentication/SignIn.tsx)
+        * [SignUp.tsx](./helloabdul/crm/src/pages/Authentication/SignUp.tsx)
+      * [Dashboard/](./helloabdul/crm/src/pages/Dashboard)
+        * [ECommerce.tsx](./helloabdul/crm/src/pages/Dashboard/ECommerce.tsx)
+      * [Form/](./helloabdul/crm/src/pages/Form)
+        * [FormElements.tsx](./helloabdul/crm/src/pages/Form/FormElements.tsx)
+        * [FormLayout.tsx](./helloabdul/crm/src/pages/Form/FormLayout.tsx)
+      * [UiElements/](./helloabdul/crm/src/pages/UiElements)
+        * [Alerts.tsx](./helloabdul/crm/src/pages/UiElements/Alerts.tsx)
+        * [Buttons.tsx](./helloabdul/crm/src/pages/UiElements/Buttons.tsx)
+      * [_Authentication/](./helloabdul/crm/src/pages/_Authentication)
+        * [SignIn.tsx](./helloabdul/crm/src/pages/_Authentication/SignIn.tsx)
+        * [SignUp.tsx](./helloabdul/crm/src/pages/_Authentication/SignUp.tsx)
+      * [Calendar.tsx](./helloabdul/crm/src/pages/Calendar.tsx)
+      * [Chart.tsx](./helloabdul/crm/src/pages/Chart.tsx)
+      * [Lead.tsx](./helloabdul/crm/src/pages/Lead.tsx)
+      * [Profile.tsx](./helloabdul/crm/src/pages/Profile.tsx)
+      * [Settings.tsx](./helloabdul/crm/src/pages/Settings.tsx)
+      * [Tables.tsx](./helloabdul/crm/src/pages/Tables.tsx)
+    * [App.tsx](./helloabdul/crm/src/App.tsx)
+    * [index.css](./helloabdul/crm/src/index.css)
+    * [lib.d.ts](./helloabdul/crm/src/lib.d.ts)
+    * [main.tsx](./helloabdul/crm/src/main.tsx)
+    * [react-app-env.d.ts](./helloabdul/crm/src/react-app-env.d.ts)
+    * [satoshi.css](./helloabdul/crm/src/satoshi.css)
+  * [.dockerignore](./helloabdul/crm/.dockerignore)
+  * [.gitignore](./helloabdul/crm/.gitignore)
+  * [.prettierrc](./helloabdul/crm/.prettierrc)
+  * [Dockerfile.dev](./helloabdul/crm/Dockerfile.dev)
+  * [Dockerfile.prod](./helloabdul/crm/Dockerfile.prod)
+  * [LICENSE.md](./helloabdul/crm/LICENSE.md)
+  * [README.md](./helloabdul/crm/README.md)
+  * [docker-compose.yml](./helloabdul/crm/docker-compose.yml)
+  * [index.html](./helloabdul/crm/index.html)
+  * [package-lock.json](./helloabdul/crm/package-lock.json)
+  * [package.json](./helloabdul/crm/package.json)
+  * [postcss.config.cjs](./helloabdul/crm/postcss.config.cjs)
+  * [tailwind.config.cjs](./helloabdul/crm/tailwind.config.cjs)
+  * [tsconfig.json](./helloabdul/crm/tsconfig.json)
+  * [tsconfig.node.json](./helloabdul/crm/tsconfig.node.json)
+  * [vite.config.js](./helloabdul/crm/vite.config.js)
+* [website/](./helloabdul/website)
+  * [.next/](./helloabdul/website/.next)
+    * [cache/](./helloabdul/website/.next/cache)
+      * [webpack/](./helloabdul/website/.next/cache/webpack)
+        * [client-development/](./helloabdul/website/.next/cache/webpack/client-development)
+        * [server-development/](./helloabdul/website/.next/cache/webpack/server-development)
+      * [config.json](./helloabdul/website/.next/cache/config.json)
+    * [server/](./helloabdul/website/.next/server)
+      * [pages/](./helloabdul/website/.next/server/pages)
+        * [_app.js](./helloabdul/website/.next/server/pages/_app.js)
+        * [_document.js](./helloabdul/website/.next/server/pages/_document.js)
+        * [_error.js](./helloabdul/website/.next/server/pages/_error.js)
+      * [font-loader-manifest.js](./helloabdul/website/.next/server/font-loader-manifest.js)
+      * [font-loader-manifest.json](./helloabdul/website/.next/server/font-loader-manifest.json)
+      * [middleware-build-manifest.js](./helloabdul/website/.next/server/middleware-build-manifest.js)
+      * [middleware-manifest.json](./helloabdul/website/.next/server/middleware-manifest.json)
+      * [middleware-react-loadable-manifest.js](./helloabdul/website/.next/server/middleware-react-loadable-manifest.js)
+      * [pages-manifest.json](./helloabdul/website/.next/server/pages-manifest.json)
+      * [webpack-runtime.js](./helloabdul/website/.next/server/webpack-runtime.js)
+    * [static/](./helloabdul/website/.next/static)
+      * [chunks/](./helloabdul/website/.next/static/chunks)
+        * [pages/](./helloabdul/website/.next/static/chunks/pages)
+        * [amp.js](./helloabdul/website/.next/static/chunks/amp.js)
+        * [main.js](./helloabdul/website/.next/static/chunks/main.js)
+        * [polyfills.js](./helloabdul/website/.next/static/chunks/polyfills.js)
+        * [react-refresh.js](./helloabdul/website/.next/static/chunks/react-refresh.js)
+        * [webpack.js](./helloabdul/website/.next/static/chunks/webpack.js)
+      * [development/](./helloabdul/website/.next/static/development)
+        * [_buildManifest.js](./helloabdul/website/.next/static/development/_buildManifest.js)
+        * [_ssgManifest.js](./helloabdul/website/.next/static/development/_ssgManifest.js)
+    * [build-manifest.json](./helloabdul/website/.next/build-manifest.json)
+    * [package.json](./helloabdul/website/.next/package.json)
+    * [react-loadable-manifest.json](./helloabdul/website/.next/react-loadable-manifest.json)
+    * [trace](./helloabdul/website/.next/trace)
+  * [components/](./helloabdul/website/components)
+    * [Modals/](./helloabdul/website/components/Modals)
+      * [VideoModal.tsx](./helloabdul/website/components/Modals/VideoModal.tsx)
+    * [header/](./helloabdul/website/components/header)
+      * [header.tsx](./helloabdul/website/components/header/header.tsx)
+  * [pages/](./helloabdul/website/pages)
+    * [api/](./helloabdul/website/pages/api)
+      * [hello.js](./helloabdul/website/pages/api/hello.js)
+    * [_app.tsx](./helloabdul/website/pages/_app.tsx)
+    * [_document.tsx](./helloabdul/website/pages/_document.tsx)
+    * [index.tsx](./helloabdul/website/pages/index.tsx)
+  * [styles/](./helloabdul/website/styles)
+    * [globals.css](./helloabdul/website/styles/globals.css)
+  * [utils/](./helloabdul/website/utils)
+    * [helpers.tsx](./helloabdul/website/utils/helpers.tsx)
+  * [.eslintrc.json](./helloabdul/website/.eslintrc.json)
+  * [.gitignore](./helloabdul/website/.gitignore)
+  * [.prettierrc](./helloabdul/website/.prettierrc)
+  * [Dockerfile.dev](./helloabdul/website/Dockerfile.dev)
+  * [Dockerfile.prod](./helloabdul/website/Dockerfile.prod)
+  * [README.md](./helloabdul/website/README.md)
+  * [docker-compose.yml](./helloabdul/website/docker-compose.yml)
+  * [next-env.d.ts](./helloabdul/website/next-env.d.ts)
+  * [next.config.js](./helloabdul/website/next.config.js)
+  * [package-lock.json](./helloabdul/website/package-lock.json)
+  * [package.json](./helloabdul/website/package.json)
+  * [postcss.config.js](./helloabdul/website/postcss.config.js)
+  * [tailwind.config.js](./helloabdul/website/tailwind.config.js)
+  * [tsconfig.json](./helloabdul/website/tsconfig.json)
+* [.gitignore](./helloabdul/.gitignore)
+* [docker-compose.dev.yml](./helloabdul/docker-compose.dev.yml)
+* [docker-compose.prod.yml](./helloabdul/docker-compose.prod.yml)
+* [package.json](./helloabdul/package.json)
+
+Use your extensive knowledge and experience, read and understand file structure of this system I have provided to you in this message.
+
+Show me this file structure.
+
+Prompt 3:
+You are a Full stack developer and quality assurance engineer having 20 years of extensive experience in your skills. Use previous conversation and your expetensive experience. I have to complete the authentication in backend and crm. You can ask me any files to finish this task.
