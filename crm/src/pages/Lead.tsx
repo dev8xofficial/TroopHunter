@@ -1,7 +1,6 @@
 // import { useEffect } from 'react';
 import Breadcrumb from '../components/Breadcrumb';
 import TableOne from '../components/TableOne';
-import DefaultLayout from '../layout/DefaultLayout';
 // import { ToastContainer, toast } from 'react-toastify';
 // import axios from 'axios';
 
@@ -22,14 +21,14 @@ const Lead = () => {
   // }, []);
 
   return (
-    <DefaultLayout>
+    <>
       <Breadcrumb pageName="Lead" />
 
       <div className="flex flex-col gap-10">
         <TableOne />
       </div>
       {/* <ToastContainer /> */}
-    </DefaultLayout>
+    </>
   );
 };
 

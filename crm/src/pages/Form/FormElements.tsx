@@ -8,65 +8,41 @@ import SwitcherFour from '../../components/SwitcherFour';
 import SwitcherOne from '../../components/SwitcherOne';
 import SwitcherThree from '../../components/SwitcherThree';
 import SwitcherTwo from '../../components/SwitcherTwo';
-import DefaultLayout from '../../layout/DefaultLayout';
 
 const FormElements = () => {
   return (
-    <DefaultLayout>
+    <>
       <Breadcrumb pageName="FormElements" />
 
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
         <div className="flex flex-col gap-9">
           {/* <!-- Input Fields --> */}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium text-black dark:text-white">
-                Input Fields
-              </h3>
+            <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">Input Fields</h3>
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Default Input
-                </label>
-                <input
-                  type="text"
-                  placeholder="Default Input"
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                />
+                <label className="mb-3 block text-black dark:text-white">Default Input</label>
+                <input type="text" placeholder="Default Input" className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
               </div>
 
               <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Active Input
-                </label>
-                <input
-                  type="text"
-                  placeholder="Active Input"
-                  className="w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input"
-                />
+                <label className="mb-3 block text-black dark:text-white">Active Input</label>
+                <input type="text" placeholder="Active Input" className="w-full rounded-lg border-[1.5px] border-primary bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input" />
               </div>
 
               <div>
-                <label className="mb-3 block font-medium text-black dark:text-white">
-                  Disabled label
-                </label>
-                <input
-                  type="text"
-                  placeholder="Disabled label"
-                  disabled
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:disabled:bg-black"
-                />
+                <label className="mb-3 block font-medium text-black dark:text-white">Disabled label</label>
+                <input type="text" placeholder="Disabled label" disabled className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:disabled:bg-black" />
               </div>
             </div>
           </div>
 
           {/* <!-- Toggle switch input --> */}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium text-black dark:text-white">
-                Toggle switch input
-              </h3>
+            <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">Toggle switch input</h3>
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <SwitcherOne />
@@ -78,33 +54,21 @@ const FormElements = () => {
 
           {/* <!-- Time and date --> */}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium text-black dark:text-white">
-                Time and date
-              </h3>
+            <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">Time and date</h3>
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Date picker
-                </label>
+                <label className="mb-3 block text-black dark:text-white">Date picker</label>
                 <div className="relative">
-                  <input
-                    type="date"
-                    className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                  />
+                  <input type="date" className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                 </div>
               </div>
 
               <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Select date
-                </label>
+                <label className="mb-3 block text-black dark:text-white">Select date</label>
                 <div className="relative">
-                  <input
-                    type="date"
-                    className="custom-input-date custom-input-date-2 w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                  />
+                  <input type="date" className="custom-input-date custom-input-date-2 w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                 </div>
               </div>
             </div>
@@ -112,29 +76,23 @@ const FormElements = () => {
 
           {/* <!-- File upload --> */}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium text-black dark:text-white">
-                File upload
-              </h3>
+            <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">File upload</h3>
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Attach file
-                </label>
+                <label className="mb-3 block text-black dark:text-white">Attach file</label>
                 <input
                   type="file"
-                  className="w-full cursor-pointer rounded-lg border-[1.5px] border-stroke bg-transparent font-medium outline-none transition file:mr-5 file:border-collapse file:cursor-pointer file:border-0 file:border-r file:border-solid file:border-stroke file:bg-whiter file:py-3 file:px-5 file:hover:bg-primary file:hover:bg-opacity-10 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-form-strokedark dark:file:bg-white/30 dark:file:text-white dark:focus:border-primary"
+                  className="w-full cursor-pointer rounded-lg border-[1.5px] border-stroke bg-transparent font-medium outline-none transition file:mr-5 file:border-collapse file:cursor-pointer file:border-0 file:border-r file:border-solid file:border-stroke file:bg-whiter file:px-5 file:py-3 file:hover:bg-primary file:hover:bg-opacity-10 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-form-strokedark dark:file:bg-white/30 dark:file:text-white dark:focus:border-primary"
                 />
               </div>
 
               <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Attach file
-                </label>
+                <label className="mb-3 block text-black dark:text-white">Attach file</label>
                 <input
                   type="file"
-                  className="w-full rounded-md border border-stroke p-3 outline-none transition file:mr-4 file:rounded file:border-[0.5px] file:border-stroke file:bg-[#EEEEEE] file:py-1 file:px-2.5 file:text-sm file:font-medium focus:border-primary file:focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-strokedark dark:file:bg-white/30 dark:file:text-white"
+                  className="w-full rounded-md border border-stroke p-3 outline-none transition file:mr-4 file:rounded file:border-[0.5px] file:border-stroke file:bg-[#EEEEEE] file:px-2.5 file:py-1 file:text-sm file:font-medium focus:border-primary file:focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-strokedark dark:file:bg-white/30 dark:file:text-white"
                 />
               </div>
             </div>
@@ -144,54 +102,31 @@ const FormElements = () => {
         <div className="flex flex-col gap-9">
           {/* <!-- Textarea Fields --> */}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium text-black dark:text-white">
-                Textarea Fields
-              </h3>
+            <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">Textarea Fields</h3>
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Default textarea
-                </label>
-                <textarea
-                  rows={6}
-                  placeholder="Default textarea"
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                ></textarea>
+                <label className="mb-3 block text-black dark:text-white">Default textarea</label>
+                <textarea rows={6} placeholder="Default textarea" className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"></textarea>
               </div>
 
               <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Active textarea
-                </label>
-                <textarea
-                  rows={6}
-                  placeholder="Active textarea"
-                  className="w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input"
-                ></textarea>
+                <label className="mb-3 block text-black dark:text-white">Active textarea</label>
+                <textarea rows={6} placeholder="Active textarea" className="w-full rounded-lg border-[1.5px] border-primary bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input"></textarea>
               </div>
 
               <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Disabled textarea
-                </label>
-                <textarea
-                  rows={6}
-                  disabled
-                  placeholder="Disabled textarea"
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:disabled:bg-black"
-                ></textarea>
+                <label className="mb-3 block text-black dark:text-white">Disabled textarea</label>
+                <textarea rows={6} disabled placeholder="Disabled textarea" className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:disabled:bg-black"></textarea>
               </div>
             </div>
           </div>
 
           {/* <!-- Checkbox and radio --> */}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium text-black dark:text-white">
-                Checkbox and radio
-              </h3>
+            <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">Checkbox and radio</h3>
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <CheckboxOne />
@@ -204,25 +139,15 @@ const FormElements = () => {
 
           {/* <!-- Select input --> */}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium text-black dark:text-white">
-                Select input
-              </h3>
+            <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">Select input</h3>
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Select Country
-                </label>
+                <label className="mb-3 block text-black dark:text-white">Select Country</label>
                 <div className="relative z-20 bg-white dark:bg-form-input">
-                  <span className="absolute top-1/2 left-4 z-30 -translate-y-1/2">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                  <span className="absolute left-4 top-1/2 z-30 -translate-y-1/2">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g opacity="0.8">
                         <path
                           fillRule="evenodd"
@@ -230,12 +155,7 @@ const FormElements = () => {
                           d="M10.0007 2.50065C5.85852 2.50065 2.50065 5.85852 2.50065 10.0007C2.50065 14.1428 5.85852 17.5007 10.0007 17.5007C14.1428 17.5007 17.5007 14.1428 17.5007 10.0007C17.5007 5.85852 14.1428 2.50065 10.0007 2.50065ZM0.833984 10.0007C0.833984 4.93804 4.93804 0.833984 10.0007 0.833984C15.0633 0.833984 19.1673 4.93804 19.1673 10.0007C19.1673 15.0633 15.0633 19.1673 10.0007 19.1673C4.93804 19.1673 0.833984 15.0633 0.833984 10.0007Z"
                           fill="#637381"
                         ></path>
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M0.833984 9.99935C0.833984 9.53911 1.20708 9.16602 1.66732 9.16602H18.334C18.7942 9.16602 19.1673 9.53911 19.1673 9.99935C19.1673 10.4596 18.7942 10.8327 18.334 10.8327H1.66732C1.20708 10.8327 0.833984 10.4596 0.833984 9.99935Z"
-                          fill="#637381"
-                        ></path>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M0.833984 9.99935C0.833984 9.53911 1.20708 9.16602 1.66732 9.16602H18.334C18.7942 9.16602 19.1673 9.53911 19.1673 9.99935C19.1673 10.4596 18.7942 10.8327 18.334 10.8327H1.66732C1.20708 10.8327 0.833984 10.4596 0.833984 9.99935Z" fill="#637381"></path>
                         <path
                           fillRule="evenodd"
                           clipRule="evenodd"
@@ -245,19 +165,13 @@ const FormElements = () => {
                       </g>
                     </svg>
                   </span>
-                  <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
+                  <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-12 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                     <option value="">USA</option>
                     <option value="">UK</option>
                     <option value="">Canada</option>
                   </select>
-                  <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                  <span className="absolute right-4 top-1/2 z-10 -translate-y-1/2">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g opacity="0.8">
                         <path
                           fillRule="evenodd"
@@ -272,21 +186,13 @@ const FormElements = () => {
               </div>
 
               <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Multiselect Dropdown
-                </label>
+                <label className="mb-3 block text-black dark:text-white">Multiselect Dropdown</label>
                 <div className="relative z-20 w-full rounded border border-stroke p-1.5 pr-8 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                   <div className="flex flex-wrap items-center">
-                    <span className="m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray py-1.5 px-2.5 text-sm font-medium dark:border-strokedark dark:bg-white/30">
+                    <span className="m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray px-2.5 py-1.5 text-sm font-medium dark:border-strokedark dark:bg-white/30">
                       Design
                       <span className="cursor-pointer pl-2 hover:text-danger">
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
                             fillRule="evenodd"
                             clipRule="evenodd"
@@ -296,16 +202,10 @@ const FormElements = () => {
                         </svg>
                       </span>
                     </span>
-                    <span className="m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray py-1.5 px-2.5 text-sm font-medium dark:border-strokedark dark:bg-white/30">
+                    <span className="m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray px-2.5 py-1.5 text-sm font-medium dark:border-strokedark dark:bg-white/30">
                       Development
                       <span className="cursor-pointer pl-2 hover:text-danger">
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
                             fillRule="evenodd"
                             clipRule="evenodd"
@@ -316,22 +216,12 @@ const FormElements = () => {
                       </span>
                     </span>
                   </div>
-                  <select
-                    name=""
-                    id=""
-                    className="absolute top-0 left-0 z-20 h-full w-full bg-transparent opacity-0"
-                  >
+                  <select name="" id="" className="absolute left-0 top-0 z-20 h-full w-full bg-transparent opacity-0">
                     <option value="">Option</option>
                     <option value="">Option</option>
                   </select>
-                  <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                  <span className="absolute right-4 top-1/2 z-10 -translate-y-1/2">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g opacity="0.8">
                         <path
                           fillRule="evenodd"
@@ -348,7 +238,7 @@ const FormElements = () => {
           </div>
         </div>
       </div>
-    </DefaultLayout>
+    </>
   );
 };
 
