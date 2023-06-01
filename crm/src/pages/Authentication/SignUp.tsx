@@ -39,7 +39,7 @@ const SignUp = () => {
       const { firstName, lastName, email, password } = values;
 
       try {
-        const response = await axios.post(`${process.env.BACKEND_URL}/users`, {
+        const response = await axios.post(`${process.env.BACKEND_URL}/auth/register`, {
           firstName,
           lastName,
           email,
