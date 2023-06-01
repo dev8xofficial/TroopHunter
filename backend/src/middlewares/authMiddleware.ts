@@ -1,8 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { jwtSecret } from '../config/auth';
 
-export const authenticateUser = (req: Request, res: Response, next: NextFunction) => {
+interface AuthenticatedRequest extends Request {
+  user?: any; // Replace 'any' with the actual type of the user object
+}
+
+export const authenticateUser = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   const token = req.headers.authorization?.split(' ')[1];
 
   if (!token) {
@@ -10,8 +13,8 @@ export const authenticateUser = (req: Request, res: Response, next: NextFunction
   }
 
   try {
-    const decoded = jwt.verify(token, jwtSecret);
-    // req.user = decoded;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET ?? '');
+    req.user = decoded;
     next();
   } catch (error) {
     console.error('Error authenticating user:', error);
@@ -19,9 +22,8 @@ export const authenticateUser = (req: Request, res: Response, next: NextFunction
   }
 };
 
-export const authorizeUser = (req: Request, res: Response, next: NextFunction) => {
-  const userRole = 'admin';
-  // const userRole = req.user.role;
+export const authorizeUser = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+  const userRole = req.user.role;
 
   if (userRole !== 'admin') {
     return res.status(403).json({ error: 'Forbidden' });

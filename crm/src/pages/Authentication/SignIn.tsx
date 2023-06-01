@@ -39,6 +39,7 @@ const SignIn = () => {
         });
         const token = response.data.token;
         console.log('Login successful! Token:', token);
+        localStorage.setItem('token', token);
         // Handle success, such as showing a success message or redirecting to another page
         // Write code to redirect to lead page in react.js
         navigate('/lead');

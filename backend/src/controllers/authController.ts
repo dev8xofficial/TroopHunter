@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import User from '../models/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { jwtSecret } from '../config/auth';
 
 export const login = async (req: Request, res: Response) => {
   try {
@@ -21,7 +20,7 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // Generate a JWT token
-    const token = jwt.sign({ userId: user.id }, jwtSecret);
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '');
 
     // Send the token in the response
     res.json({ token });
