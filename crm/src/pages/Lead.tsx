@@ -27,7 +27,6 @@ const Lead = () => {
       <div className="flex flex-col gap-10">
         <TableOne />
       </div>
-      {/* <ToastContainer /> */}
     </>
   );
 };

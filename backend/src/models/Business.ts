@@ -1,19 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-
-interface BusinessAttributes {
-  id?: number;
-  name: string;
-  address: string;
-  phone: string;
-  openingTime: string;
-  closingTime: string;
-  dineIn: boolean;
-  takeaway: boolean;
-  website: string;
-  location: string;
-  delivery: boolean;
-}
+import { BusinessAttributes } from '../types/business';
 
 class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public id?: number;

@@ -1,18 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-
+import { ToastContainer } from 'react-toastify';
 import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { ISignUpFormValues } from '../../types/formik';
+import { register } from '../../store/actions/authActions';
 
 const SignUp = () => {
-  interface IFormValues {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-  }
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const formikSchema = Yup.object().shape({
@@ -22,7 +17,7 @@ const SignUp = () => {
     password: Yup.string().required('Enter password.'),
   });
 
-  const initialValues: IFormValues = {
+  const initialValues: ISignUpFormValues = {
     firstName: '',
     lastName: '',
     email: '',
@@ -34,20 +29,15 @@ const SignUp = () => {
     enableReinitialize: true,
     validationSchema: formikSchema,
     onSubmit: async (values) => {
-      const { firstName, lastName, email, password } = values;
-
-      try {
-        const response = await axios.post(`${process.env.BACKEND_URL}/auth/register`, {
-          firstName,
-          lastName,
-          email,
-          password,
-        });
-        console.log('User created:', response.data);
-        navigate('/');
-      } catch (error: any) {
-        toast(error.response.data.error);
-      }
+      await dispatch(
+        register({
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          password: values.password,
+          navigate,
+        })
+      );
     },
   });
 

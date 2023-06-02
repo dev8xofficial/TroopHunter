@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import errorHandler from './middlewares/errorHandler';
 import notFoundHandler from './middlewares/notFoundHandler';
+import { formatResponse, sanitizeResponse } from './middlewares/responseMiddleware';
 import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
 import businessRoutes from './routes/businessRoutes';
@@ -16,6 +17,10 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
+
+// Response Handler
+app.use(formatResponse); // Apply the formatResponse middleware
+app.use(sanitizeResponse); // Apply the sanitizeResponse middleware
 
 // Routes
 app.get('/', (req, res) => {

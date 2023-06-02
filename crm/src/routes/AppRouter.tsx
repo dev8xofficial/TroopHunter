@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { URLS } from './Urls';
 import AuthLayout from '../layout/AuthLayout';
 import DefaultLayout from '../layout/DefaultLayout';
+import { useSelector } from 'react-redux';
 
 export const PublicRoute = ({ userToken, children }: any) => {
   if (userToken) {
@@ -19,45 +20,47 @@ export const PrivateRoute = ({ userToken, children }: any) => {
 };
 
 const AppRouter: FC = () => {
-  const userToken = localStorage.getItem('token');
+  const userToken = useSelector((state: any) => state.auth.token);
 
   return (
     <>
-      <Routes>
-        {URLS.map((obj: any) => {
-          return obj.isPublic ? (
-            <React.Fragment key={obj.path}>
-              {obj.path == '*' ? (
-                <Route path={obj.path} element={<obj.component />} key={obj.path} />
-              ) : (
-                <Route
-                  path={obj.path}
-                  element={
-                    <PublicRoute userToken={userToken}>
-                      <AuthLayout>
-                        <obj.component />
-                      </AuthLayout>
-                    </PublicRoute>
-                  }
-                  key={obj.path}
-                />
-              )}
-            </React.Fragment>
-          ) : (
-            <Route
-              path={obj.path}
-              element={
-                <PrivateRoute userToken={userToken}>
-                  <DefaultLayout>
-                    <obj.component />
-                  </DefaultLayout>
-                </PrivateRoute>
-              }
-              key={obj.path}
-            />
-          );
-        })}
-      </Routes>
+      <Router>
+        <Routes>
+          {URLS.map((obj: any) => {
+            return obj.isPublic ? (
+              <React.Fragment key={obj.path}>
+                {obj.path == '*' ? (
+                  <Route path={obj.path} element={<obj.component />} key={obj.path} />
+                ) : (
+                  <Route
+                    path={obj.path}
+                    element={
+                      <PublicRoute userToken={userToken}>
+                        <AuthLayout>
+                          <obj.component />
+                        </AuthLayout>
+                      </PublicRoute>
+                    }
+                    key={obj.path}
+                  />
+                )}
+              </React.Fragment>
+            ) : (
+              <Route
+                path={obj.path}
+                element={
+                  <PrivateRoute userToken={userToken}>
+                    <DefaultLayout>
+                      <obj.component />
+                    </DefaultLayout>
+                  </PrivateRoute>
+                }
+                key={obj.path}
+              />
+            );
+          })}
+        </Routes>
+      </Router>
     </>
   );
 };

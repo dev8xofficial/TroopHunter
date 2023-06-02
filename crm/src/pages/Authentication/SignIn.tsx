@@ -1,16 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
+import { login } from '../../store/actions/authActions';
+import { ISignInFormmValues } from '../../types/formik';
 
 const SignIn = () => {
-  interface IFormValues {
-    email: string;
-    password: string;
-  }
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const formikSchema = Yup.object().shape({
@@ -18,7 +14,7 @@ const SignIn = () => {
     password: Yup.string().required('Enter password.'),
   });
 
-  const initialValues: IFormValues = {
+  const initialValues: ISignInFormmValues = {
     email: '',
     password: '',
   };
@@ -28,20 +24,13 @@ const SignIn = () => {
     enableReinitialize: true,
     validationSchema: formikSchema,
     onSubmit: async (values) => {
-      const { email, password } = values;
-
-      try {
-        const response = await axios.post(`${process.env.BACKEND_URL}/auth/login`, {
-          email,
-          password,
-        });
-        const token = response.data.token;
-        console.log('Login successful! Token:', token);
-        localStorage.setItem('token', token);
-        navigate('/');
-      } catch (error: any) {
-        toast(error.response.data.error);
-      }
+      await dispatch(
+        login({
+          email: values.email,
+          password: values.password,
+          navigate,
+        })
+      );
     },
   });
 
@@ -122,7 +111,6 @@ const SignIn = () => {
           </div>
         </Form>
       </FormikProvider>
-      <ToastContainer />
     </>
   );
 };

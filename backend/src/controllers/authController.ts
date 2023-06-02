@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import User from '../models/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { getMessage } from '../utils/message';
 
 export const login = async (req: Request, res: Response) => {
   try {
@@ -10,23 +11,22 @@ export const login = async (req: Request, res: Response) => {
     // Check if the user exists
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(401).json({ error: 'Invalid email' });
+      return res.status(getMessage('INVALID_EMAIL').code).json({ error: getMessage('INVALID_EMAIL').message });
     }
 
     // Compare the provided password with the stored hashed password
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-      return res.status(401).json({ error: 'Invalid password' });
+      return res.status(getMessage('INVALID_PASSWORD').code).json({ error: getMessage('INVALID_PASSWORD').message });
     }
 
     // Generate a JWT token
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '');
 
     // Send the token in the response
-    res.json({ token });
+    res.sendSuccess({ user, token, message: getMessage('LOGGED_IN').message });
   } catch (error) {
-    console.error('Error logging in:', error);
-    res.status(500).json({ error: 'Failed to login' });
+    return res.status(getMessage('LOGIN_FAILED').code).json({ error: getMessage('LOGIN_FAILED').message });
   }
 };
 
@@ -37,7 +37,7 @@ export const register = async (req: Request, res: Response) => {
     // Check if the user already exists
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
-      return res.status(409).json({ error: 'User already exists' });
+      return res.status(getMessage('DUPLICATE_USER').code).json({ error: getMessage('DUPLICATE_USER').message });
     }
 
     // Hash the password
@@ -51,9 +51,8 @@ export const register = async (req: Request, res: Response) => {
       password: hashedPassword,
     });
 
-    res.status(201).json(user);
+    res.sendSuccess({ user, message: getMessage('ACCOUNT_CREATED').message });
   } catch (error) {
-    console.error('Error creating user:', error);
-    res.status(500).json({ error: 'Failed to create user' });
+    return res.status(getMessage('FAILED_TO_CREATE_USER').code).json({ error: getMessage('FAILED_TO_CREATE_USER').message });
   }
 };
