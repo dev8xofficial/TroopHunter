@@ -10,7 +10,7 @@ function App() {
     setTimeout(() => {
       preloader.style.display = 'none';
       setLoading(false);
-    }, 2000);
+    }, 1000);
   }
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   return loading ? (
-    <p className="text-center text-danger">Failed to lead app</p>
+    <p className="text-danger text-center">Failed to lead app</p>
   ) : (
     <>
       <AppRouter />

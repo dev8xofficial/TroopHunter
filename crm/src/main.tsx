@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { store, persistor } from './store';
 import './index.css';
-import './satoshi.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
