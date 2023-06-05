@@ -1,7 +1,6 @@
-import { ReactNode } from 'react';
-import { Fragment } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+import { ReactNode, Fragment } from 'react';
+import { Disclosure, Menu, Transition, Popover } from '@headlessui/react';
+import { MagnifyingGlassIcon, AdjustmentsVerticalIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const user = {
@@ -21,6 +20,17 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ];
 
+const stats = [
+  { name: 'Total Results', value: '248', changeType: 'positive', borderRight: true },
+  { name: 'Changed jobs in past 90 days', value: '7', changeType: 'negative', borderRight: true },
+  { name: 'Outstanding invoices', value: '76', changeType: 'positive', borderRight: true },
+  { name: 'Expenses', value: '20', changeType: 'negative', borderRight: true },
+  { name: 'Total Result', value: '248', changeType: 'positive', borderRight: true },
+  { name: 'Changed jobs in past 90 day', value: '7', changeType: 'negative', borderRight: true },
+  { name: 'Outstanding invoice', value: '76', changeType: 'positive', borderRight: true },
+  { name: 'Expense', value: '20', changeType: 'negative', borderRight: true },
+];
+
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
@@ -32,14 +42,6 @@ interface DefaultLayoutProps {
 const DefaultLayout = ({ children }: DefaultLayoutProps) => {
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
       <div className="min-h-full">
         <Disclosure as="nav" className="border-b border-gray-700 bg-gray-800">
           {({ open }) => (
@@ -136,20 +138,232 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           )}
         </Disclosure>
 
-        <header className="bg-gray-800 shadow-sm">
-          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-            <div className="flex flex-1 justify-center px-2">
-              <div className="w-full max-w-lg lg:max-w-xl">
-                <label htmlFor="search" className="sr-only">
-                  Search
-                </label>
-                <div className="relative text-gray-400 focus-within:text-gray-600">
-                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
+        <header className="">
+          <div className="flex w-full items-center justify-center space-x-8 bg-gray-800 px-4 py-4 sm:px-6 lg:px-8">
+            {/* Advanced Search */}
+            <div className="max-w-7xl flex-1">
+              <div className="flex flex-1 justify-center">
+                <div className="w-full xl:max-w-lg">
+                  <label htmlFor="search" className="sr-only">
+                    Search
+                  </label>
+                  <div className="relative text-gray-400 focus-within:text-gray-600">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                      <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    <input id="search" className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:text-sm sm:leading-6" placeholder="Search" type="search" name="search" />
                   </div>
-                  <input id="search" className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:text-sm sm:leading-6" placeholder="Search" type="search" name="search" />
                 </div>
               </div>
+            </div>
+
+            {/* Filters */}
+            <Popover className="sm:relative xl:hidden">
+              <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-white">
+                <AdjustmentsVerticalIcon className="h-5 w-5" aria-hidden="true" />
+              </Popover.Button>
+
+              <Transition as={Fragment} enter="transition ease-out duration-200" enterFrom="opacity-0 translate-y-1" enterTo="opacity-100 translate-y-0" leave="transition ease-in duration-150" leaveFrom="opacity-100 translate-y-0" leaveTo="opacity-0 translate-y-1">
+                <Popover.Panel className="absolute right-0 z-20 mt-5 flex w-screen max-w-max">
+                  <div className="max-h-96 w-screen max-w-md flex-auto overflow-auto rounded-md bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                    <div>
+                      <ul role="list" className="divide-y">
+                        <li>
+                          <Disclosure as="div">
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                  <span>Your leads & accounts</span>
+                                  {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
+                                </Disclosure.Button>
+                                <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
+                                  <div>
+                                    <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                      Badge
+                                      <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                        <span className="sr-only">Remove</span>
+                                        <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                          <path d="M4 4l6 6m0-6l-6 6" />
+                                        </svg>
+                                        <span className="absolute -inset-1" />
+                                      </button>
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                  </div>
+                                </Disclosure.Panel>
+                              </>
+                            )}
+                          </Disclosure>
+                        </li>
+                        <li>
+                          <Disclosure as="div">
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                  <span>Relationship</span>
+                                  {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
+                                </Disclosure.Button>
+                                <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
+                                  <div>
+                                    <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                      Badge
+                                      <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                        <span className="sr-only">Remove</span>
+                                        <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                          <path d="M4 4l6 6m0-6l-6 6" />
+                                        </svg>
+                                        <span className="absolute -inset-1" />
+                                      </button>
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                  </div>
+                                </Disclosure.Panel>
+                              </>
+                            )}
+                          </Disclosure>
+                        </li>
+                        <li>
+                          <Disclosure as="div">
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                  <span>Company</span>
+                                  {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
+                                </Disclosure.Button>
+                                <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
+                                  <div>
+                                    <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                      Badge
+                                      <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                        <span className="sr-only">Remove</span>
+                                        <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                          <path d="M4 4l6 6m0-6l-6 6" />
+                                        </svg>
+                                        <span className="absolute -inset-1" />
+                                      </button>
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                  </div>
+                                </Disclosure.Panel>
+                              </>
+                            )}
+                          </Disclosure>
+                        </li>
+                        <li>
+                          <Disclosure as="div">
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                  <span>Industry</span>
+                                  {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
+                                </Disclosure.Button>
+                                <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
+                                  <div>
+                                    <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                      Badge
+                                      <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                        <span className="sr-only">Remove</span>
+                                        <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                          <path d="M4 4l6 6m0-6l-6 6" />
+                                        </svg>
+                                        <span className="absolute -inset-1" />
+                                      </button>
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                  </div>
+                                </Disclosure.Panel>
+                              </>
+                            )}
+                          </Disclosure>
+                        </li>
+                        <li>
+                          <Disclosure as="div">
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                  <span>Company headcount</span>
+                                  {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
+                                </Disclosure.Button>
+                                <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
+                                  <div>
+                                    <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                      Badge
+                                      <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                        <span className="sr-only">Remove</span>
+                                        <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                          <path d="M4 4l6 6m0-6l-6 6" />
+                                        </svg>
+                                        <span className="absolute -inset-1" />
+                                      </button>
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                  </div>
+                                </Disclosure.Panel>
+                              </>
+                            )}
+                          </Disclosure>
+                        </li>
+                        <li>
+                          <Disclosure as="div">
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                  <span>Function</span>
+                                  {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
+                                </Disclosure.Button>
+                                <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
+                                  <div>
+                                    <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                      Badge
+                                      <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                        <span className="sr-only">Remove</span>
+                                        <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                          <path d="M4 4l6 6m0-6l-6 6" />
+                                        </svg>
+                                        <span className="absolute -inset-1" />
+                                      </button>
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                  </div>
+                                </Disclosure.Panel>
+                              </>
+                            )}
+                          </Disclosure>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </Popover.Panel>
+              </Transition>
+            </Popover>
+          </div>
+
+          {/* Statistics */}
+          <div className="overflow-hidden xl:hidden">
+            <div className="overflow-auto">
+              <ol role="list" className="mb-1 grid w-full grid-flow-col grid-rows-1 divide-x bg-white">
+                {stats.map((stat) => (
+                  <li key={stat.name} className="w-fit border-b px-6 py-4">
+                    <div className="flex items-center justify-center">
+                      <div className="ml-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-700">
+                        {stat.value} {stat.name}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         </header>
