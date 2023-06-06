@@ -93,18 +93,18 @@ const Lists = () => {
                     <img className="h-6 w-6 rounded-full bg-gray-50 ring-2 ring-white" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Benjamin Russel" />
                   </div>
                 </div>
-                <span className="ml-3 capitalize text-indigo-500">my saved leads(50)</span>
+                <span className="ml-3 capitalize text-indigo-600">my saved leads(50)</span>
               </div>
               <div className="mx-6 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:flex"></div>
               <div className="hidden sm:block">
-                <button type="button" className="inline-flex items-center py-2 capitalize text-gray-500 hover:text-indigo-500">
+                <button type="button" className="inline-flex items-center py-2 capitalize text-gray-500 hover:text-indigo-600">
                   <PlusIcon className="mr-0.5 h-5 w-5" aria-hidden="true" />
                   Create lead list
                 </button>
               </div>
               <div className="mx-6 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r sm:flex"></div>
               <div>
-                <button type="button" className="inline-flex items-center rounded-md border border-indigo-500 px-3 py-2 text-sm text-indigo-500 shadow-sm hover:bg-indigo-400 hover:text-white">
+                <button type="button" className="inline-flex items-center rounded-md border border-indigo-600 px-3 py-2 text-sm text-indigo-600 shadow-sm hover:bg-indigo-600 hover:text-white">
                   Save search
                 </button>
               </div>
@@ -117,7 +117,7 @@ const Lists = () => {
       <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         {/* Empty State */}
         <div className="col-span-12 hidden flex-col items-center justify-center rounded-md border py-20 shadow xl:col-span-8">
-          <MagnifyingGlassCircleIcon className="-ml-0.5 h-20 w-20 text-indigo-500" aria-hidden="true" />
+          <MagnifyingGlassCircleIcon className="-ml-0.5 h-20 w-20 text-indigo-600" aria-hidden="true" />
           <div className="text-center">
             <h3 className="mt-2 text-sm font-semibold text-gray-900">No results</h3>
             <p className="mt-2 text-sm text-gray-500">Start your query by customizing your search criteria here</p>

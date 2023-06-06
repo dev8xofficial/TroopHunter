@@ -33,8 +33,8 @@ const Lists = () => {
               <ul role="list" className="flex gap-x-3 gap-y-1 whitespace-nowrap lg:flex-col">
                 {secondaryNavigation.map((item) => (
                   <li key={item.name}>
-                    <button onClick={() => handleSecondaryNavigation(item)} className={classNames(item.current ? 'bg-gray-50 text-indigo-500' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-500', 'group flex w-full gap-x-3 rounded-md py-2 pl-2 pr-3 text-sm font-semibold leading-6')}>
-                      <item.icon className={classNames(item.current ? 'text-indigo-500' : 'text-gray-400 group-hover:text-indigo-500', 'h-6 w-6 shrink-0')} aria-hidden="true" />
+                    <button onClick={() => handleSecondaryNavigation(item)} className={classNames(item.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex w-full gap-x-3 rounded-md py-2 pl-2 pr-3 text-sm font-semibold leading-6')}>
+                      <item.icon className={classNames(item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600', 'h-6 w-6 shrink-0')} aria-hidden="true" />
                       {item.name}
                     </button>
                   </li>
@@ -58,14 +58,14 @@ const Lists = () => {
                               <div className="col-span-full flex items-center gap-x-8">
                                 <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover" />
                                 <div>
-                                  <button type="button" className="rounded-md border border-indigo-500 bg-white/10 px-3 py-2 text-sm font-semibold text-indigo-500 shadow-sm hover:bg-indigo-500 hover:text-white">
+                                  <button type="button" className="rounded-md border border-indigo-600 bg-white/10 px-3 py-2 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-600 hover:text-white">
                                     Change avatar
                                   </button>
                                   <p className="mt-2 text-xs leading-5 text-gray-400">JPG, GIF or PNG. 1MB max.</p>
                                 </div>
                               </div>
                             </div>
-                            <button type="button" className="font-semibold text-indigo-500 hover:text-indigo-500">
+                            <button type="button" className="font-semibold text-indigo-600 hover:text-indigo-600">
                               Update
                             </button>
                           </dd>
@@ -75,10 +75,10 @@ const Lists = () => {
                           <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
                             <div>
                               <div>
-                                <input type="firstName" name="firstName" id="firstName" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" placeholder="Toom" />
+                                <input type="firstName" name="firstName" id="firstName" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Toom" />
                               </div>
                             </div>
-                            <button type="button" className="font-semibold text-indigo-500 hover:text-indigo-500">
+                            <button type="button" className="font-semibold text-indigo-600 hover:text-indigo-600">
                               Update
                             </button>
                           </dd>
@@ -88,10 +88,10 @@ const Lists = () => {
                           <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
                             <div>
                               <div>
-                                <input type="lastName" name="lastName" id="lastName" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" placeholder="Cook" />
+                                <input type="lastName" name="lastName" id="lastName" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Cook" />
                               </div>
                             </div>
-                            <button type="button" className="font-semibold text-indigo-500 hover:text-indigo-500">
+                            <button type="button" className="font-semibold text-indigo-600 hover:text-indigo-600">
                               Update
                             </button>
                           </dd>
@@ -110,7 +110,7 @@ const Lists = () => {
                           <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">Old Password</dt>
                           <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
                             <div className="w-full max-w-xs">
-                              <input type="oldPassword" name="oldPassword" id="oldPassword" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" />
+                              <input type="oldPassword" name="oldPassword" id="oldPassword" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                           </dd>
                         </div>
@@ -118,7 +118,7 @@ const Lists = () => {
                           <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">New Password</dt>
                           <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
                             <div className="w-full max-w-xs">
-                              <input type="newPassword" name="newPassword" id="newPassword" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" />
+                              <input type="newPassword" name="newPassword" id="newPassword" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                           </dd>
                         </div>
@@ -126,12 +126,12 @@ const Lists = () => {
                           <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">Confirm Password</dt>
                           <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
                             <div className="w-full max-w-xs">
-                              <input type="confirmPassword" name="confirmPassword" id="confirmPassword" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" />
+                              <input type="confirmPassword" name="confirmPassword" id="confirmPassword" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                           </dd>
                         </div>
                         <div className="pt-6 sm:flex">
-                          <button type="button" className="inline-flex items-center rounded-md border border-indigo-500 px-3 py-2 text-sm text-indigo-500 shadow-sm hover:bg-indigo-500 hover:text-white">
+                          <button type="button" className="inline-flex items-center rounded-md border border-indigo-600 px-3 py-2 text-sm text-indigo-600 shadow-sm hover:bg-indigo-600 hover:text-white">
                             Save search
                           </button>
                         </div>

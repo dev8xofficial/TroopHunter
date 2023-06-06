@@ -18,17 +18,6 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ];
 
-const stats = [
-  { name: 'Total Results', value: '248', changeType: 'positive', borderRight: true },
-  { name: 'Changed jobs in past 90 days', value: '7', changeType: 'negative', borderRight: true },
-  { name: 'Outstanding invoices', value: '76', changeType: 'positive', borderRight: true },
-  { name: 'Expenses', value: '20', changeType: 'negative', borderRight: true },
-  { name: 'Total Result', value: '248', changeType: 'positive', borderRight: true },
-  { name: 'Changed jobs in past 90 day', value: '7', changeType: 'negative', borderRight: true },
-  { name: 'Outstanding invoice', value: '76', changeType: 'positive', borderRight: true },
-  { name: 'Expense', value: '20', changeType: 'negative', borderRight: true },
-];
-
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
@@ -168,7 +157,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                   </button>
                 </div>
                 <span className="relative hidden whitespace-nowrap text-white md:inline-block">
-                  <button type="button" className="px-3.5 py-2.5 text-sm capitalize hover:text-indigo-500">
+                  <button type="button" className="px-3.5 py-2.5 text-sm capitalize hover:text-indigo-600">
                     saved searches
                   </button>
                   <span className="absolute -right-4 top-0 rounded-md bg-red-600 px-1 text-xs">66+</span>
@@ -187,19 +176,19 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                   <div className="flex min-h-full items-center justify-center p-4 text-center">
                     <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
                       <Dialog.Panel className="w-full max-w-5xl transform divide-y overflow-hidden rounded-md bg-white text-left align-middle shadow-xl transition-all">
-                        <Dialog.Title as="h3" className="px-6 py-4 text-lg font-medium leading-6 text-gray-900">
+                        <Dialog.Title as="h3" className="bg-gray-800 px-6 py-4 text-lg font-medium leading-6 text-white">
                           <div className="flex items-center justify-between">
-                            <AdjustmentsVerticalIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+                            <AdjustmentsVerticalIcon className="mr-3 h-5 w-5" aria-hidden="true" />
                             <div className="min-w-0 flex-1">
-                              <h2 className="text-lg leading-7 sm:truncate sm:text-xl sm:tracking-tight">Filter your search</h2>
+                              <h2 className="text-lg leading-7 sm:truncate sm:text-xl sm:tracking-tight">Search Filters</h2>
                               <p className="text-sm sm:hidden">0 results</p>
                             </div>
                             <div className="flex items-center space-x-3 md:ml-4">
                               <p className="hidden sm:block">0 results</p>
-                              <button type="button" className="ml-3 inline-flex items-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                              <button type="button" className="ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-600 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 Search
                               </button>
-                              <button onClick={closeModal} type="button" className="rounded-full p-2 shadow-sm hover:text-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                              <button onClick={closeModal} type="button" className="rounded-full p-2 shadow-sm hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 <XMarkIcon className="h-5 w-5" aria-hidden="true" />
                               </button>
                             </div>
@@ -392,23 +381,6 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                 </div>
               </Dialog>
             </Transition>
-          </div>
-
-          {/* Statistics */}
-          <div className="overflow-hidden xl:hidden">
-            <div className="overflow-auto">
-              <ol role="list" className="mb-1 grid w-full grid-flow-col grid-rows-1 divide-x bg-white">
-                {stats.map((stat) => (
-                  <li key={stat.name} className="w-fit border-b px-6 py-4">
-                    <div className="flex items-center justify-center">
-                      <div className="ml-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-700">
-                        {stat.value} {stat.name}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
           </div>
         </header>
         <main>{children}</main>
