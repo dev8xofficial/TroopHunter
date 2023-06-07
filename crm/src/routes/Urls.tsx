@@ -1,6 +1,5 @@
 import _SignIn from '../pages/_SignIn';
 import _SignUp from '../pages/_SignUp';
-// import Lead from '../pages/Lead';
 import Home from '../pages/Home';
 import Lists from '../pages/Lists';
 import _Settings from '../pages/_Settings';

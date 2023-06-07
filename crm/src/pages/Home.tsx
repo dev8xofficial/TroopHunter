@@ -1,7 +1,7 @@
 // import { useEffect } from 'react';
 // import { ToastContainer, toast } from 'react-toastify';
 // import axios from 'axios';
-import { XMarkIcon, PlusIcon, EllipsisVerticalIcon, MinusIcon, ListBulletIcon, MagnifyingGlassCircleIcon, AdjustmentsVerticalIcon } from '@heroicons/react/20/solid';
+import { XMarkIcon, PlusIcon, EllipsisVerticalIcon, MinusIcon, ListBulletIcon, MagnifyingGlassCircleIcon, AdjustmentsVerticalIcon, DocumentTextIcon } from '@heroicons/react/20/solid';
 import { Fragment, useState } from 'react';
 import { Menu, Transition, Dialog, Disclosure } from '@headlessui/react';
 
@@ -99,20 +99,21 @@ const Lead = () => {
   return (
     <>
       {/* Action tab */}
-      <div className="border-b shadow">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+      <div className="justify-betweens xl: flex h-16 items-center border-b border-gray-700 bg-gray-800 text-white shadow xl:border-none xl:bg-transparent xl:text-inherit">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="min-w-0 flex-1">
               <h2 className="text-lg leading-7 sm:truncate sm:text-xl sm:tracking-tight">Lead results</h2>
             </div>
             <div className="flex items-center space-x-3">
               <div>
-                <button type="button" className="inline-flex items-center rounded-md border border-indigo-600 px-3 py-2 text-sm text-indigo-600 shadow-sm hover:bg-indigo-600 hover:text-white">
-                  Save search
+                <button type="button" className="xl:hover-border-indigo-600 inline-flex items-center rounded-full border p-3 text-sm shadow-sm hover:border-indigo-600 hover:bg-indigo-600 hover:text-white xl:rounded-md xl:border-indigo-600 xl:px-3 xl:py-2 xl:text-indigo-600">
+                  <DocumentTextIcon className="h-5 w-5 xl:hidden" aria-hidden="true" />
+                  <span className="hidden xl:inline-block">Save search</span>
                 </button>
               </div>
               <div className="xl:hidden">
-                <button type="button" onClick={openModal} className="inline-flex items-center rounded-full p-3 text-sm hover:bg-indigo-600 hover:text-white">
+                <button type="button" onClick={openModal} className="inline-flex items-center rounded-full border p-3 text-sm hover:border-indigo-500 hover:bg-indigo-600 hover:text-white">
                   <AdjustmentsVerticalIcon className="mr-0.5 h-5 w-5" aria-hidden="true" />
                 </button>
                 {/* Advanced search filters */}

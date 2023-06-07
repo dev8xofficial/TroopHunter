@@ -1,4 +1,4 @@
-import { PlusIcon, EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
+import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 
@@ -71,15 +71,15 @@ const Lists = () => {
   return (
     <>
       {/* Action tab */}
-      <div className="border-b shadow">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+      <div className="justify-betweens xl: flex h-16 items-center border-b border-gray-700 bg-gray-800 text-white shadow xl:border-none xl:bg-transparent xl:text-inherit">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="min-w-0 flex-1">
-              <h2 className="text-lg leading-7 sm:truncate sm:text-xl sm:tracking-tight">Lead results</h2>
+              <h2 className="text-lg leading-7 sm:truncate sm:text-xl sm:tracking-tight">Lists</h2>
             </div>
             <div className="flex items-center text-sm">
-              <div className="hidden items-center lg:flex">
-                <div className="flex -space-x-0.5">
+              <div className="flex items-center">
+                <div className="hidden -space-x-0.5 sm:flex">
                   <div>
                     <img className="h-6 w-6 rounded-full bg-gray-50 ring-2 ring-white" src="https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Emma Dorsey" />
                   </div>
@@ -93,28 +93,28 @@ const Lists = () => {
                     <img className="h-6 w-6 rounded-full bg-gray-50 ring-2 ring-white" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Benjamin Russel" />
                   </div>
                 </div>
-                <span className="ml-3 capitalize text-indigo-600">my saved leads(50)</span>
+                <span className="ml-3 capitalize xl:text-indigo-600">my saved leads(50)</span>
               </div>
-              <div className="mx-6 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:flex"></div>
+              {/* <div className="mx-6 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:flex"></div>
               <div className="hidden sm:block">
-                <button type="button" className="inline-flex items-center py-2 capitalize text-gray-500 hover:text-indigo-600">
+                <button type="button" className="inline-flex items-center py-2 capitalize hover:text-indigo-600 xl:text-gray-500">
                   <PlusIcon className="mr-0.5 h-5 w-5" aria-hidden="true" />
                   Create lead list
                 </button>
-              </div>
-              <div className="mx-6 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r sm:flex"></div>
+              </div> */}
+              {/* <div className="mx-6 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r sm:flex"></div>
               <div>
-                <button type="button" className="inline-flex items-center rounded-md border border-indigo-600 px-3 py-2 text-sm text-indigo-600 shadow-sm hover:bg-indigo-600 hover:text-white">
+                <button type="button" className="xl:hover-border-indigo-600 inline-flex items-center rounded-md border px-3 py-2 text-sm shadow-sm hover:border-indigo-600 hover:bg-indigo-600 hover:text-white xl:border-indigo-600 xl:text-indigo-600">
                   Save search
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Empty State */}
         <div className="col-span-12 hidden flex-col items-center justify-center rounded-md border py-20 shadow xl:col-span-8">
           <MagnifyingGlassCircleIcon className="-ml-0.5 h-20 w-20 text-indigo-600" aria-hidden="true" />
@@ -125,7 +125,7 @@ const Lists = () => {
         </div>
 
         {/* Table */}
-        <div className="-mx-4 mt-4 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
+        <div className="overflow-auto rounded-md ring-1 ring-gray-300 sm:mx-0">
           <table className="min-w-full divide-y divide-gray-300">
             <thead>
               <tr>
@@ -142,7 +142,7 @@ const Lists = () => {
                   Owner
                 </th>
                 <th scope="col">
-                  <button className="flex w-full items-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  <button className="flex w-full items-center whitespace-nowrap px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     Last Updated
                     <ChevronUpDownIcon className="h-5 w-5" aria-hidden="true" />
                   </button>
