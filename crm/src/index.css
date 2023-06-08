@@ -11,7 +11,7 @@
 /* ICON BUTTON */
 
 .icon-btn {
-  @apply relative inline-flex items-center justify-center rounded-full p-3 text-sm transition focus:outline-none;
+  @apply relative inline-flex items-center justify-center rounded-full p-3 text-sm transition focus:outline-none duration-200;
 }
 
 .icon-btn:disabled {

@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { login } from '../store/actions/authActions';
 import { ISignInFormmValues } from '../types/formik';
+import TextField from '../components/Inputs/TextField/TextField';
+import Button from '../components/Inputs/Button/Button';
 
 const _SignIn = () => {
   const dispatch = useDispatch();
@@ -51,23 +53,9 @@ const _SignIn = () => {
         <div>
           <FormikProvider value={formik}>
             <Form noValidate onSubmit={formik.handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                  Email address
-                </label>
-                <div className="mt-2">
-                  <input type="email" name="email" value={formik.values && formik.values.email} onChange={formik.handleChange} required className="block w-full rounded-md border-0 px-3 py-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                </div>
-              </div>
+              <TextField label="Email address" type="email" name="email" value={formik.values && formik.values.email} onChange={formik.handleChange} required />
 
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                  Password
-                </label>
-                <div className="mt-2">
-                  <input type="password" name="password" value={formik.values && formik.values.password} onChange={formik.handleChange} required className="block w-full rounded-md border-0 px-3 py-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                </div>
-              </div>
+              <TextField label="Password" type="password" name="password" value={formik.values && formik.values.password} onChange={formik.handleChange} required />
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -85,9 +73,9 @@ const _SignIn = () => {
               </div>
 
               <div>
-                <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                <Button type="submit" variant="contained" color="indigo" className="w-full">
                   Sign in
-                </button>
+                </Button>
               </div>
             </Form>
           </FormikProvider>

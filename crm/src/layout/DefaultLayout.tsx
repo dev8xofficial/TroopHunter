@@ -132,7 +132,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           )}
         </Disclosure>
 
-        <header className="">
+        <header>
           <div className="hidden w-full items-center justify-center space-x-8 bg-gray-800 xl:flex">
             {/* Advanced Search */}
             <div className="mx-auto max-w-7xl flex-1 px-4 py-4 sm:px-6 lg:px-8">
