@@ -1,6 +1,9 @@
-import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
+import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon, TrashIcon as TrashIconSolid } from '@heroicons/react/20/solid';
+import { TrashIcon } from '@heroicons/react/24/outline';
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
+import Button from '../components/Inputs/Button/Button';
+import IconButton from '../components/Inputs/IconButton/IconButton';
 
 const people = [
   {
@@ -108,6 +111,22 @@ const Lists = () => {
                   Save search
                 </button>
               </div> */}
+              <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>{' '}
+              <div>
+                <span className="hidden xl:inline-block">
+                  <Button variant="outlined" color="red">
+                    Delete
+                  </Button>
+                </span>
+                <span className="xl:flex">
+                  <IconButton className="xl:hidden" variant="contained" color="red" ringOffset="gray">
+                    <>
+                      <TrashIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
+                      <TrashIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
+                    </>
+                  </IconButton>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -130,15 +149,23 @@ const Lists = () => {
             <thead>
               <tr>
                 <th scope="col">
-                  <button className="flex w-full items-center py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                  <div className="relative flex w-full items-start py-3.5 pl-4 pr-3 sm:pl-6">
+                    <span className="sr-only">Select</span>
+                    <div className="flex h-6 items-center">
+                      <input id="select" name="select" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                    </div>
+                  </div>
+                </th>
+                <th scope="col">
+                  <button className="flex w-full items-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     Name
                     <ChevronUpDownIcon className="h-5 w-5" aria-hidden="true" />
                   </button>
                 </th>
-                <th scope="col" className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">
+                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                   Leads
                 </th>
-                <th scope="col" className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">
+                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                   Owner
                 </th>
                 <th scope="col">
@@ -148,7 +175,7 @@ const Lists = () => {
                   </button>
                 </th>
                 <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                  <span className="sr-only">Select</span>
+                  <span className="sr-only">Edit</span>
                 </th>
               </tr>
             </thead>
@@ -156,6 +183,14 @@ const Lists = () => {
               {people.map((person) => (
                 <tr key={person.email}>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                    <div className="relative flex w-full items-start">
+                      <span className="sr-only">Select</span>
+                      <div className="flex h-6 items-center">
+                        <input id="select" name="select" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                      </div>
+                    </div>
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-3.5 text-sm">
                     <div className="font-medium text-gray-900">{person.name}</div>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">

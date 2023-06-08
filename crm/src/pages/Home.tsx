@@ -1,9 +1,12 @@
 // import { useEffect } from 'react';
 // import { ToastContainer, toast } from 'react-toastify';
 // import axios from 'axios';
-import { XMarkIcon, PlusIcon, EllipsisVerticalIcon, MinusIcon, ListBulletIcon, MagnifyingGlassCircleIcon, AdjustmentsVerticalIcon, DocumentTextIcon } from '@heroicons/react/20/solid';
-import { Fragment, useState } from 'react';
+import { XMarkIcon, PlusIcon, EllipsisVerticalIcon, MinusIcon, ListBulletIcon, MagnifyingGlassCircleIcon, AdjustmentsVerticalIcon as AdjustmentsVerticalIconSolid, TrashIcon as TrashIconSolid, DocumentTextIcon as DocumentTextIconSolid } from '@heroicons/react/20/solid';
+import { TrashIcon, DocumentTextIcon, AdjustmentsVerticalIcon } from '@heroicons/react/24/outline';
+import { Fragment, useEffect, useState } from 'react';
 import { Menu, Transition, Dialog, Disclosure } from '@headlessui/react';
+import Button from '../components/Inputs/Button/Button';
+import IconButton from '../components/Inputs/IconButton/IconButton';
 
 const stats = [
   { name: 'Total Results', value: '248', changeType: 'positive', borderRight: true },
@@ -73,6 +76,7 @@ function classNames(...classes: any) {
 
 const Lead = () => {
   let [isOpen, setIsOpen] = useState(false);
+  let [isLoading, setIsLoading] = useState(true);
 
   function closeModal() {
     setIsOpen(false);
@@ -96,6 +100,11 @@ const Lead = () => {
   //       toast("User doesn't exit:");
   //     });
   // }, []);
+  useEffect(() => {
+    setInterval(() => {
+      setIsLoading(!isLoading);
+    }, 1000);
+  }, []);
   return (
     <>
       {/* Action tab */}
@@ -105,17 +114,46 @@ const Lead = () => {
             <div className="min-w-0 flex-1">
               <h2 className="text-lg leading-7 sm:truncate sm:text-xl sm:tracking-tight">Lead results</h2>
             </div>
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center">
               <div>
-                <button type="button" className="xl:hover-border-indigo-600 inline-flex items-center rounded-full border p-3 text-sm shadow-sm hover:border-indigo-600 hover:bg-indigo-600 hover:text-white xl:rounded-md xl:border-indigo-600 xl:px-3 xl:py-2 xl:text-indigo-600">
-                  <DocumentTextIcon className="h-5 w-5 xl:hidden" aria-hidden="true" />
-                  <span className="hidden xl:inline-block">Save search</span>
-                </button>
+                <span className="hidden xl:inline-block">
+                  <Button variant="contained" color="indigo">
+                    Save search
+                  </Button>
+                </span>
+                <span className="xl:flex">
+                  <IconButton className="xl:hidden" variant="contained" color="indigo" ringOffset="gray">
+                    <>
+                      <DocumentTextIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
+                      <DocumentTextIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
+                    </>
+                  </IconButton>
+                </span>
               </div>
+              <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
+              <div>
+                <span className="hidden xl:inline-block">
+                  <Button variant="outlined" color="red">
+                    Delete
+                  </Button>
+                </span>
+                <span className="xl:flex">
+                  <IconButton className="xl:hidden" variant="contained" color="red" ringOffset="gray">
+                    <>
+                      <TrashIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
+                      <TrashIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
+                    </>
+                  </IconButton>
+                </span>
+              </div>
+              <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r xl:hidden"></div>
               <div className="xl:hidden">
-                <button type="button" onClick={openModal} className="inline-flex items-center rounded-full border p-3 text-sm hover:border-indigo-500 hover:bg-indigo-600 hover:text-white">
-                  <AdjustmentsVerticalIcon className="mr-0.5 h-5 w-5" aria-hidden="true" />
-                </button>
+                <IconButton className="xl:hidden" variant="outlined" color="red" ringOffset="gray" onClick={openModal}>
+                  <>
+                    <AdjustmentsVerticalIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
+                    <AdjustmentsVerticalIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
+                  </>
+                </IconButton>
                 {/* Advanced search filters */}
                 <Transition appear show={isOpen} as={Fragment}>
                   <Dialog as="div" className="relative z-10" onClose={closeModal}>

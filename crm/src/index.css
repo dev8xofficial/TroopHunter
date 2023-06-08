@@ -1,3 +1,193 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+/***************** BUTTON *******************/
+
+/* ICON BUTTON */
+
+.icon-btn {
+  @apply relative inline-flex items-center justify-center rounded-full p-3 text-sm transition focus:outline-none;
+}
+
+.icon-btn:disabled {
+  @apply disabled:cursor-default disabled:opacity-50;
+}
+
+.icon-btn:focus {
+  @apply outline-none ring-2 ring-offset-4 dark:ring-slate-900 dark:ring-offset-slate-700;
+}
+
+.icon-btn.icon-btn-contained {
+  @apply border border-transparent text-white shadow-sm dark:bg-slate-900;
+}
+
+.icon-btn.icon-btn-outlined {
+  @apply border shadow-sm dark:border-slate-900 dark:bg-transparent;
+}
+
+.icon-btn.icon-btn-contained.icon-btn-ring-offset-white {
+  @apply hover:ring-offset-white focus:ring-offset-white;
+}
+
+.icon-btn.icon-btn-contained.icon-btn-ring-offset-gray {
+  @apply hover:ring-offset-gray-900 focus:ring-offset-gray-900;
+}
+
+.icon-btn.icon-btn-outlined.icon-btn-ring-offset-white {
+  @apply hover:ring-offset-white focus:ring-offset-white;
+}
+
+.icon-btn.icon-btn-outlined.icon-btn-ring-offset-gray {
+  @apply hover:ring-offset-gray-900 focus:ring-offset-gray-900;
+}
+
+/* BUTTON */
+
+.btn {
+  @apply relative inline-block h-auto min-h-0 rounded-md text-center text-sm font-medium transition duration-200;
+}
+
+.btn:disabled {
+  @apply disabled:cursor-default disabled:opacity-50;
+}
+
+.btn:focus {
+  @apply outline-none ring-2 ring-offset-2 dark:ring-slate-900 dark:ring-offset-slate-700;
+}
+
+.btn-rounded {
+  @apply rounded-full;
+}
+
+.btn.noRing:focus {
+  @apply ring-0 ring-transparent ring-offset-0 !important;
+}
+
+.btn.btn-contained {
+  @apply border border-transparent text-white shadow-sm dark:bg-slate-900;
+}
+
+.btn.btn-outlined {
+  @apply border shadow-sm dark:border-slate-900 dark:bg-transparent;
+}
+
+.btn.btn-outlined,
+.btn.btn-contained {
+  @apply px-2.5 py-2 sm:px-4 sm:py-2;
+}
+
+/*** Colors ***/
+
+/* variant text */
+
+.btn.btn-text.btn-red {
+  @apply text-red-600 hover:text-red-700;
+}
+
+.btn.btn-text.btn-red:focus {
+  @apply ring-red-600;
+}
+
+.btn.btn-text.btn-indigo {
+  @apply text-indigo-500 hover:text-indigo-600 dark:text-white;
+}
+
+.btn.btn-text.btn-indigo:focus {
+  @apply ring-indigo-500 dark:ring-white;
+}
+
+/* variant contained */
+
+.btn.btn-contained.btn-indigo {
+  @apply bg-indigo-600 hover:bg-indigo-700;
+}
+
+.btn.btn-contained.btn-indigo:focus {
+  @apply ring-indigo-600;
+}
+
+.btn.btn-contained.btn-red {
+  @apply bg-red-600 hover:bg-red-700;
+}
+
+.btn.btn-contained.btn-red:focus {
+  @apply ring-red-600;
+}
+
+/* icon variant contained */
+
+.icon-btn.icon-btn-contained.icon-btn-indigo {
+  @apply bg-indigo-600 hover:bg-indigo-700;
+}
+
+.icon-btn.icon-btn-contained.icon-btn-indigo:focus {
+  @apply ring-indigo-600;
+}
+
+.icon-btn.icon-btn-contained.icon-btn-red {
+  @apply bg-red-600 hover:bg-red-700;
+}
+
+.icon-btn.icon-btn-contained.icon-btn-red:focus {
+  @apply ring-red-600;
+}
+
+/* variant outlined */
+
+.btn.btn-outlined.btn-indigo {
+  @apply border-indigo-700 text-indigo-600;
+}
+
+.btn.btn-outlined.btn-indigo:focus {
+  @apply ring-indigo-600;
+}
+
+.btn.btn-outlined.btn-red {
+  @apply border-red-600 text-red-600 hover:bg-red-50 hover:bg-opacity-70;
+}
+
+.btn.btn-outlined.btn-red:focus {
+  @apply ring-red-600 focus:bg-red-50;
+}
+
+/* variant outlined */
+
+.icon-btn.icon-btn-outlined.icon-btn-indigo {
+  @apply border-indigo-700 text-indigo-600;
+}
+
+.icon-btn.icon-btn-outlined.icon-btn-indigo:focus {
+  @apply ring-indigo-600;
+}
+
+.icon-btn.icon-btn-outlined.icon-btn-red {
+  @apply border-red-600 text-red-600;
+}
+
+.icon-btn.icon-btn-outlined.icon-btn-red:focus {
+  @apply ring-red-600;
+}
+
+/* dark state */
+
+.dark .btn.btn-text:hover {
+  @apply text-white;
+}
+
+.dark .btn.btn-contained {
+  @apply bg-slate-900 hover:bg-slate-900 !important;
+}
+
+.dark .btn.btn-outlined {
+  @apply border-slate-900 text-white hover:bg-slate-900 !important;
+}
+
+.dark .btn.btn-contained,
+.dark .btn.btn-outlined {
+  @apply ring-slate-900 !important;
+}
