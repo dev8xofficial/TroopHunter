@@ -130,7 +130,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
             </div>
           </div>
         </header>
-        <main>{children}</main>
+        <main className="flex flex-col">{children}</main>
       </div>
     </>
   );
