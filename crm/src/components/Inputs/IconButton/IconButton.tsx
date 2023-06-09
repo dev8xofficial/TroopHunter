@@ -17,7 +17,7 @@ const ringOffsetClasses = {
   gray: 'icon-btn-ring-offset-gray',
 };
 
-const IconButton = ({ children, variant = 'contained', color, ringOffset, onClick, type = 'button', className, loading, disabled }: IIconButtonProps): JSX.Element => {
+const IconButton: React.FC<IIconButtonProps> = ({ children, variant = 'contained', color, ringOffset, onClick, type = 'button', className, loading, disabled }: IIconButtonProps): JSX.Element => {
   return (
     <button type={type} disabled={disabled || loading} onClick={onClick} className={`icon-btn-rounded icon-btn group ${variantClasses[variant as keyof typeof variantClasses]} ${colorClasses[color as keyof typeof colorClasses]} ${ringOffsetClasses[ringOffset as keyof typeof ringOffsetClasses]} ${className} icon-btn`}>
       {loading ? (

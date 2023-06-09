@@ -6,7 +6,7 @@ import Button from '../../Inputs/Button/Button';
 import IconButton from '../../Inputs/IconButton/IconButton';
 import { IActionBarProps } from './ActionBar.interfaces';
 
-const ActionBar = ({ title = 'lead' }: IActionBarProps): JSX.Element => {
+const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead' }: IActionBarProps): JSX.Element => {
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {

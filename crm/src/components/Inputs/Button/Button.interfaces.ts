@@ -1,4 +1,4 @@
-export interface IButtonProps {
+export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   type?: 'button' | 'submit' | 'reset' | undefined;
   rounded?: boolean;
   className?: string;

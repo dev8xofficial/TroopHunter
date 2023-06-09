@@ -12,7 +12,7 @@ const colorClasses = {
   red: 'btn-red',
 };
 
-const Button = ({ rounded, type = 'button', className, children, loading, variant = 'contained', color, disabled, onClick, style }: IButtonProps): JSX.Element => {
+const Button: React.FC<IButtonProps> = ({ rounded, type = 'button', className, children, loading, variant = 'contained', color, disabled, onClick, style }: IButtonProps): JSX.Element => {
   return (
     <button type={type} className={`btn${rounded ? ' btn-rounded' : ''} ${variantClasses[variant as keyof typeof variantClasses]} ${colorClasses[color as keyof typeof colorClasses]} ${className ? className : ''}`} disabled={disabled || loading} onClick={onClick} style={style}>
       {loading ? (

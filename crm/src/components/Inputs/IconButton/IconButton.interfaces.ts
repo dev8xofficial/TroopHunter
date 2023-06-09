@@ -1,4 +1,4 @@
-export interface IIconButtonProps {
+export interface IIconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: JSX.Element;
   type?: 'button' | 'submit' | 'reset' | undefined;
   onClick?: () => void;
