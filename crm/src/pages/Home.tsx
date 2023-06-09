@@ -416,7 +416,7 @@ const Lead = () => {
                               <CustomMenu>
                                 <Menu.Button className="flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-0.5 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white">Save</Menu.Button>
                               </CustomMenu>
-                              <_Menu options={leadItemMenu} className="focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
+                              <_Menu options={leadItemMenu} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
                                 <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
                               </_Menu>
                             </div>
