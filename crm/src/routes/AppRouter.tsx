@@ -14,7 +14,7 @@ export const PublicRoute = ({ userToken, children }: any) => {
 
 export const PrivateRoute = ({ userToken, children }: any) => {
   if (!userToken) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/signin" />;
   }
   return children;
 };

@@ -1,26 +1,22 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { ISignUpFormValues } from '../types/formik';
-import { register } from '../store/actions/authActions';
+import { login } from '../store/actions/authActions';
+import { ISignInFormmValues } from '../types/formik';
 import TextField from '../components/Inputs/TextField/TextField';
 import Button from '../components/Inputs/Button/Button';
 
-const _SignUp = () => {
+const _SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const formikSchema = Yup.object().shape({
-    firstName: Yup.string().required('Enter first name.'),
-    lastName: Yup.string().required('Enter last name.'),
     email: Yup.string().email('Enter valid email address.').required('Enter email address.'),
     password: Yup.string().required('Enter password.'),
   });
 
-  const initialValues: ISignUpFormValues = {
-    firstName: '',
-    lastName: '',
+  const initialValues: ISignInFormmValues = {
     email: '',
     password: '',
   };
@@ -31,9 +27,7 @@ const _SignUp = () => {
     validationSchema: formikSchema,
     onSubmit: async (values) => {
       await dispatch(
-        register({
-          firstName: values.firstName,
-          lastName: values.lastName,
+        login({
           email: values.email,
           password: values.password,
           navigate,
@@ -46,11 +40,11 @@ const _SignUp = () => {
     <>
       <div>
         <img className="h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
-        <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Create a new account</h2>
+        <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
         <p className="mt-2 text-sm leading-6 text-gray-500">
-          Already a member?{' '}
-          <Link to="/login" className="font-semibold text-indigo-600 hover:text-indigo-600">
-            Sign in now
+          Not a member?{' '}
+          <Link to="/signup" className="font-semibold text-indigo-600 hover:text-indigo-600">
+            Register now
           </Link>
         </p>
       </div>
@@ -59,10 +53,6 @@ const _SignUp = () => {
         <div>
           <FormikProvider value={formik}>
             <Form noValidate onSubmit={formik.handleSubmit} className="space-y-6">
-              <TextField label="First Name" type="text" name="firstName" value={formik.values && formik.values.firstName} onChange={formik.handleChange} required />
-
-              <TextField label="Last Name" type="text" name="lastName" value={formik.values && formik.values.lastName} onChange={formik.handleChange} required />
-
               <TextField label="Email address" type="email" name="email" value={formik.values && formik.values.email} onChange={formik.handleChange} required />
 
               <TextField label="Password" type="password" name="password" value={formik.values && formik.values.password} onChange={formik.handleChange} required />
@@ -84,7 +74,7 @@ const _SignUp = () => {
 
               <div>
                 <Button type="submit" variant="contained" color="indigo" className="w-full">
-                  Register
+                  Sign in
                 </Button>
               </div>
             </Form>
@@ -126,4 +116,4 @@ const _SignUp = () => {
   );
 };
 
-export default _SignUp;
+export default _SignIn;

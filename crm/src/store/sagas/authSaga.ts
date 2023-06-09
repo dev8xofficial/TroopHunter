@@ -6,7 +6,7 @@ import axios from 'axios';
 function* loginSaga({ payload }: any): any {
   try {
     const { email, password, navigate } = payload;
-    const response = yield axios.post(`${process.env.BACKEND_URL}/auth/login`, {
+    const response = yield axios.post(`${process.env.BACKEND_URL}/auth/signin`, {
       email,
       password,
     });
@@ -24,14 +24,14 @@ function* loginSaga({ payload }: any): any {
 function* registerSaga({ payload }: any): any {
   try {
     const { firstName, lastName, email, password, navigate } = payload;
-    const response = yield axios.post(`${process.env.BACKEND_URL}/auth/register`, {
+    const response = yield axios.post(`${process.env.BACKEND_URL}/auth/signup`, {
       firstName,
       lastName,
       email,
       password,
     });
 
-    navigate('/login');
+    navigate('/signin');
 
     debugger;
     toast(response.data.data.message);
@@ -43,9 +43,9 @@ function* registerSaga({ payload }: any): any {
 }
 
 export function* watchLoginSaga() {
-  yield takeLatest('auth/login', loginSaga);
+  yield takeLatest('auth/signin', loginSaga);
 }
 
 export function* watchRegisterSaga() {
-  yield takeLatest('auth/register', registerSaga);
+  yield takeLatest('auth/signup', registerSaga);
 }

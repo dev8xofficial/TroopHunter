@@ -1,19 +1,19 @@
-import _SignIn from '../pages/_SignIn';
-import _SignUp from '../pages/_SignUp';
+import SignIn from '../pages/SignIn';
+import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
 import Lists from '../pages/Lists';
-import _Settings from '../pages/_Settings';
+import Settings from '../pages/Settings';
 
 export const HOME_URL = '/';
-export const LOGIN_URL = '/login';
-export const SIGNUP_URL = '/register';
+export const LOGIN_URL = '/signin';
+export const SIGNUP_URL = '/signup';
 export const LISTS_URL = '/lists';
 export const SETTINGS_URL = '/settings';
 
 export const URLS = [
-  { path: LOGIN_URL, isPublic: true, component: _SignIn },
-  { path: SIGNUP_URL, isPublic: true, component: _SignUp },
+  { path: LOGIN_URL, isPublic: true, component: SignIn },
+  { path: SIGNUP_URL, isPublic: true, component: SignUp },
   { path: HOME_URL, isPublic: false, component: Home },
   { path: LISTS_URL, isPublic: false, component: Lists },
-  { path: SETTINGS_URL, isPublic: false, component: _Settings },
+  { path: SETTINGS_URL, isPublic: false, component: Settings },
 ];
