@@ -2,10 +2,11 @@
 // import { ToastContainer, toast } from 'react-toastify';
 // import axios from 'axios';
 import { XMarkIcon, PlusIcon, EllipsisVerticalIcon, MinusIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
-import { Fragment } from 'react';
-import { Menu, Transition, Disclosure } from '@headlessui/react';
+import { Menu, Disclosure } from '@headlessui/react';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import Avatar from '../components/DataDisplay/Avatar/Avatar';
+import _Menu from '../components/Navigation/Menu/Menu';
+import CustomMenu from '../components/Navigation/CustomMenu/CustomMenu';
 
 const stats = [
   { name: 'Total Results', value: '248', changeType: 'positive', borderRight: true },
@@ -69,9 +70,10 @@ const people = [
   },
 ];
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
+const leadItemMenu = [
+  { name: 'Settings', href: '#', onClick: () => console.log('Message') },
+  { name: 'Sign out', href: '#', onClick: () => console.log('Remove') },
+];
 
 const Lead = () => {
   // let [isLoading, setIsLoading] = useState(true);
@@ -360,62 +362,13 @@ const Lead = () => {
                           Select all
                         </label>
                       </div>
-                      <Menu as="div" className="relative inline-block text-left">
-                        <div>
-                          <Menu.Button className="inline-flex w-full justify-center whitespace-nowrap px-3 py-2 text-sm text-gray-500 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white" disabled={true}>
-                            <ListBulletIcon className="mr-0.5 h-5 w-5" aria-hidden="true" />
-                            Save to list
-                          </Menu.Button>
-                        </div>
 
-                        <Transition as={Fragment} enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale-100" leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95">
-                          <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div className="relative flex items-center justify-center px-4 py-3">
-                              <p className="text-sm">Save to a list</p>
-                              <button type="button" className="absolute right-2 rounded-full p-1 hover:bg-indigo-600 hover:text-white">
-                                <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                              </button>
-                            </div>
-                            <div className="py-1">
-                              <Menu.Item>
-                                <a href="#" className="block px-4 py-2 text-sm capitalize">
-                                  Recently Used
-                                </a>
-                              </Menu.Item>
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a href="#" className={classNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
-                                    Support
-                                  </a>
-                                )}
-                              </Menu.Item>
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a href="#" className={classNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
-                                    License
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            </div>
-                            <div className="py-1">
-                              <Menu.Item>
-                                <a href="#" className="block px-4 py-2 text-sm capitalize">
-                                  Your Custom Lists
-                                </a>
-                              </Menu.Item>
-                              <form method="POST" action="#">
-                                <Menu.Item>
-                                  {({ active }) => (
-                                    <button type="submit" className={classNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm')}>
-                                      Sign out
-                                    </button>
-                                  )}
-                                </Menu.Item>
-                              </form>
-                            </div>
-                          </Menu.Items>
-                        </Transition>
-                      </Menu>
+                      <CustomMenu>
+                        <Menu.Button disabled={true} className="inline-flex w-full justify-center whitespace-nowrap px-3 py-2 text-sm text-gray-500 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white">
+                          <ListBulletIcon className="mr-0.5 h-5 w-5" aria-hidden="true" />
+                          Save to list
+                        </Menu.Button>
+                      </CustomMenu>
                     </div>
                     <div className="h-full whitespace-nowrap px-6 py-3">365 results</div>
                   </div>
@@ -425,7 +378,7 @@ const Lead = () => {
                 {people.map((person) => (
                   <li key={person.email} className="hover:bg-gray-50 ">
                     <div className="relative flex w-full items-start px-6 py-5">
-                      <div className="mt-6 flex h-6 items-center">
+                      <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">
                         <input id={person.name} name={person.name} type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                       </div>
                       <div className="w-full text-sm leading-6">
@@ -460,83 +413,12 @@ const Lead = () => {
                           </div>
                           <div className="flex items-center gap-x-4">
                             <div className="flex flex-none items-center gap-x-4">
-                              <Menu as="div" className="relative inline-block text-left">
-                                <div>
-                                  <Menu.Button className="rounded-full px-2.5 py-1 text-xs font-semibold text-indigo-600 shadow-sm ring-1 ring-inset ring-indigo-600 hover:bg-indigo-600 hover:text-white">Save</Menu.Button>
-                                </div>
-
-                                <Transition as={Fragment} enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale-100" leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95">
-                                  <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                    <div className="relative flex items-center justify-center px-4 py-3">
-                                      <p className="text-sm">Save to a list</p>
-                                      <button type="button" className="absolute right-2 rounded-full p-1 hover:bg-indigo-600 hover:text-white">
-                                        <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                                      </button>
-                                    </div>
-                                    <div className="py-1">
-                                      <Menu.Item>
-                                        <a href="#" className="block px-4 py-2 text-sm capitalize">
-                                          Recently Used
-                                        </a>
-                                      </Menu.Item>
-                                      <Menu.Item>
-                                        {({ active }) => (
-                                          <a href="#" className={classNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
-                                            Support
-                                          </a>
-                                        )}
-                                      </Menu.Item>
-                                      <Menu.Item>
-                                        {({ active }) => (
-                                          <a href="#" className={classNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
-                                            License
-                                          </a>
-                                        )}
-                                      </Menu.Item>
-                                    </div>
-                                    <div className="py-1">
-                                      <Menu.Item>
-                                        <a href="#" className="block px-4 py-2 text-sm capitalize">
-                                          Your Custom Lists
-                                        </a>
-                                      </Menu.Item>
-                                      <form method="POST" action="#">
-                                        <Menu.Item>
-                                          {({ active }) => (
-                                            <button type="submit" className={classNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm')}>
-                                              Sign out
-                                            </button>
-                                          )}
-                                        </Menu.Item>
-                                      </form>
-                                    </div>
-                                  </Menu.Items>
-                                </Transition>
-                              </Menu>
-                              <Menu as="div" className="relative flex-none">
-                                <Menu.Button className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
-                                  <span className="sr-only">Open options</span>
-                                  <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
-                                </Menu.Button>
-                                <Transition as={Fragment} enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale-100" leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95">
-                                  <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                                    <Menu.Item>
-                                      {({ active }) => (
-                                        <a href="#" className={classNames(active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900')}>
-                                          Message<span className="sr-only">, {person.name}</span>
-                                        </a>
-                                      )}
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                      {({ active }) => (
-                                        <a href="#" className={classNames(active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900')}>
-                                          Remove<span className="sr-only">, {person.name}</span>
-                                        </a>
-                                      )}
-                                    </Menu.Item>
-                                  </Menu.Items>
-                                </Transition>
-                              </Menu>
+                              <CustomMenu>
+                                <Menu.Button className="flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-0.5 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white">Save</Menu.Button>
+                              </CustomMenu>
+                              <_Menu options={leadItemMenu} className="focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
+                                <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
+                              </_Menu>
                             </div>
                           </div>
                         </label>
