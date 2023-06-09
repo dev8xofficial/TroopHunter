@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import { ITableProps } from './Table.interfaces';
+import Avatar from '../Avatar/Avatar';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
@@ -76,7 +77,7 @@ const Table: React.FC<ITableProps> = ({ rows }: ITableProps): JSX.Element => {
                   <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
                     <div className="flex items-center">
                       <div className="h-8 w-8 flex-shrink-0">
-                        <img className="h-8 w-8 rounded-full" src={person.imageUrl} alt="" />
+                        <Avatar image={person.imageUrl} firstName={person.name} size="small" border="border border-gray-900" />
                       </div>
                       <div className="ml-4">
                         <div className="font-medium text-gray-900">{person.name}</div>

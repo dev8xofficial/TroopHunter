@@ -5,6 +5,68 @@ import { Transition, Dialog, Disclosure } from '@headlessui/react';
 import Button from '../../Inputs/Button/Button';
 import IconButton from '../../Inputs/IconButton/IconButton';
 import { IActionBarProps } from './ActionBar.interfaces';
+import Avatar from '../../DataDisplay/Avatar/Avatar';
+
+const people = [
+  {
+    name: 'Leslie Alexander',
+    email: 'leslie.alexander@example.com',
+    leads: 250,
+    updatedAt: '4/4/2022',
+    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    href: '#',
+    lastSeen: '3h ago',
+    lastSeenDateTime: '2023-01-23T13:23Z',
+  },
+  {
+    name: 'Michael Foster',
+    email: 'michael.foster@example.com',
+    leads: 250,
+    updatedAt: '4/4/2022',
+    imageUrl: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    href: '#',
+    lastSeen: '3h ago',
+    lastSeenDateTime: '2023-01-23T13:23Z',
+  },
+  {
+    name: 'Dries Vincent',
+    email: 'dries.vincent@example.com',
+    leads: 250,
+    updatedAt: '4/4/2022',
+    imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    href: '#',
+    lastSeen: null,
+  },
+  {
+    name: 'Lindsay Walton',
+    email: 'lindsay.walton@example.com',
+    leads: 250,
+    updatedAt: '4/4/2022',
+    imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    href: '#',
+    lastSeen: '3h ago',
+    lastSeenDateTime: '2023-01-23T13:23Z',
+  },
+  {
+    name: 'Courtney Henry',
+    email: 'courtney.henry@example.com',
+    leads: 250,
+    updatedAt: '4/4/2022',
+    imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    href: '#',
+    lastSeen: '3h ago',
+    lastSeenDateTime: '2023-01-23T13:23Z',
+  },
+  {
+    name: 'Tom Cook',
+    email: 'tom.cook@example.com',
+    leads: 250,
+    updatedAt: '4/4/2022',
+    imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    href: '#',
+    lastSeen: null,
+  },
+];
 
 const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead' }: IActionBarProps): JSX.Element => {
   let [isOpen, setIsOpen] = useState(false);
@@ -291,18 +353,9 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead' }: IActionBarProp
                   <>
                     <div className="flex items-center">
                       <div className="hidden -space-x-0.5 sm:flex">
-                        <div>
-                          <img className="h-6 w-6 rounded-full bg-gray-50 ring-2 ring-white" src="https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Emma Dorsey" />
-                        </div>
-                        <div>
-                          <img className="h-6 w-6 rounded-full bg-gray-50 ring-2 ring-white" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Tom Cook" />
-                        </div>
-                        <div>
-                          <img className="h-6 w-6 rounded-full bg-gray-50 ring-2 ring-white" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Lindsay Walton" />
-                        </div>
-                        <div>
-                          <img className="h-6 w-6 rounded-full bg-gray-50 ring-2 ring-white" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Benjamin Russel" />
-                        </div>
+                        {people.map((person: any) => (
+                          <Avatar image={person.imageUrl} firstName={person.name} size="xsmall" border="border border-gray-900" className="bg-gray-50 ring-2 ring-white" />
+                        ))}
                       </div>
                       <span className="ml-3 capitalize text-indigo-600">my saved leads(50)</span>
                     </div>

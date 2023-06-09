@@ -1,12 +1,14 @@
 import { ReactNode, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
-import { BellIcon, ClockIcon, PresentationChartLineIcon, QueueListIcon, UserIcon } from '@heroicons/react/24/outline';
+import { BellIcon } from '@heroicons/react/24/outline';
 import Search from '../components/Inputs/Search/Search';
+import BottomNavigation from '../components/Navigation/BottomNavigation/BottomNavigation';
+import Avatar from '../components/DataDisplay/Avatar/Avatar';
 
 const user = {
-  name: 'Tom Cook',
+  firstName: 'Tom',
+  lastName: 'Cook',
   email: 'tom@example.com',
   imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 };
@@ -59,11 +61,11 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                       </button>
 
                       {/* Profile dropdown */}
-                      <Menu as="div" className="relative ml-3">
+                      <Menu as="div" className="relative z-30 ml-3">
                         <div>
-                          <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm text-white transition duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-4 focus:ring-offset-gray-800">
                             <span className="sr-only">Open user menu</span>
-                            <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                            <Avatar image={user.imageUrl} firstName={user.firstName} size="small" border="border" />
                           </Menu.Button>
                         </div>
                         <Transition as={Fragment} enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale-100" leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95">
@@ -88,31 +90,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           )}
         </Disclosure>
 
-        {/* Mobile navigation */}
-        <div className="btm-nav z-20 h-16 bg-white text-sm shadow xl:hidden">
-          <Link to="/" className="active gap-1 border-t-2 border-indigo-600 pt-0.5 hover:border-indigo-600 hover:text-indigo-600">
-            <PresentationChartLineIcon className="h-5 w-5 text-indigo-600" aria-hidden="true" />
-            <span className="btm-nav-label text-indigo-600">Leads</span>
-          </Link>
-          <Link to="/lists" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900">
-            <QueueListIcon className="h-5 w-5" aria-hidden="true" />
-            <span className="btm-nav-label">Lists</span>
-          </Link>
-          <button className="group border-t-2 border-gray-100 pt-0.5">
-            <div className="inline-flex items-center rounded-full p-3 text-sm shadow-sm max-xl:bg-indigo-600 max-xl:text-white max-xl:group-hover:ring-2 max-xl:group-hover:ring-indigo-600 max-xl:group-hover:ring-offset-4 max-xl:group-hover:ring-offset-white xl:rounded-md xl:border xl:border-indigo-600 xl:px-3 xl:py-2 xl:text-indigo-600">
-              <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
-              <span className="sr-only">Search</span>
-            </div>
-          </button>
-          <Link to="/settings" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900">
-            <UserIcon className="h-5 w-5" aria-hidden="true" />
-            <span className="btm-nav-label">Profile</span>
-          </Link>
-          <Link to="#" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900">
-            <ClockIcon className="h-5 w-5" aria-hidden="true" />
-            <span className="btm-nav-label">History</span>
-          </Link>
-        </div>
+        <BottomNavigation />
 
         <header>
           <div className="hidden w-full items-center justify-center space-x-8 bg-gray-800 xl:flex">

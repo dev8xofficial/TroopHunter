@@ -6,12 +6,30 @@
   font-family: 'Noto Sans JP', sans-serif;
 }
 
+/***************** AVATAR *******************/
+
+.avatar-x-small {
+  @apply h-6 w-6 text-sm;
+}
+
+.avatar-small {
+  @apply h-8 w-8 text-lg;
+}
+
+.avatar-large {
+  @apply h-10 w-10 text-lg md:h-12 md:w-12 md:text-xl 2xl:h-16 2xl:w-16 2xl:text-3xl;
+}
+
+.avatar-x-large {
+  @apply h-20 w-20 md:h-24 md:w-24 2xl:h-28 2xl:w-28 text-3xl md:text-4xl 2xl:text-5xl;
+}
+
 /***************** BUTTON *******************/
 
 /* ICON BUTTON */
 
 .icon-btn {
-  @apply relative inline-flex items-center justify-center rounded-full p-2.5 text-sm transition focus:outline-none duration-200;
+  @apply relative inline-flex items-center justify-center rounded-full p-2.5 text-sm transition duration-200 focus:outline-none;
 }
 
 .icon-btn:disabled {

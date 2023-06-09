@@ -1,4 +1,4 @@
-import ActionBar from '../components/DataDisplay/ActionBar/ActionBar';
+import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import Table from '../components/DataDisplay/Table/Table';
 
 const people = [

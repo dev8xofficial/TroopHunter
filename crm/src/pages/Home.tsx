@@ -4,7 +4,8 @@
 import { XMarkIcon, PlusIcon, EllipsisVerticalIcon, MinusIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import { Fragment } from 'react';
 import { Menu, Transition, Disclosure } from '@headlessui/react';
-import ActionBar from '../components/DataDisplay/ActionBar/ActionBar';
+import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
+import Avatar from '../components/DataDisplay/Avatar/Avatar';
 
 const stats = [
   { name: 'Total Results', value: '248', changeType: 'positive', borderRight: true },
@@ -430,7 +431,7 @@ const Lead = () => {
                       <div className="w-full text-sm leading-6">
                         <label htmlFor={person.name} className="relative flex cursor-pointer justify-between gap-x-6 px-4 sm:px-6">
                           <div className="flex gap-x-4">
-                            <img className="h-16 w-16 flex-none rounded-full bg-gray-50" src={person.imageUrl} alt="" />
+                            <Avatar image={person.imageUrl} firstName={person.name} size="large" border="border border-gray-900" />
                             <div className="min-w-0 flex-auto">
                               <p className="text-lg font-semibold leading-6 text-gray-900">
                                 <a href={person.href}>{person.name}</a>
