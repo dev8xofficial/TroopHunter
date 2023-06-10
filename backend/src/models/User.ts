@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 import { UserAttributes } from '../types/user';
+import { v4 as uuidv4 } from 'uuid';
 
 class User extends Model<UserAttributes> implements UserAttributes {
   public id?: number;
@@ -8,7 +9,7 @@ class User extends Model<UserAttributes> implements UserAttributes {
   public lastName!: string;
   public email!: string;
   public password!: string;
-  public role?: string;
+  public role?: 'guest' | 'user' | 'admin';
 
   // Define associations, if any
 
@@ -18,9 +19,11 @@ class User extends Model<UserAttributes> implements UserAttributes {
 User.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      defaultValue: uuidv4,
       autoIncrement: true,
       primaryKey: true,
+      unique: true,
     },
     firstName: {
       type: DataTypes.STRING,
@@ -40,9 +43,9 @@ User.init(
       allowNull: false,
     },
     role: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('guest', 'user', 'admin'),
       allowNull: false,
-      defaultValue: 'user',
+      defaultValue: 'guest',
     },
   },
   {

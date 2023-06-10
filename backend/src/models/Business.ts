@@ -1,19 +1,30 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
+import { v4 as uuidv4 } from 'uuid';
 
 class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public id?: number;
   public name!: string;
-  public address!: string;
-  public phone!: string;
-  public openingTime!: string;
-  public closingTime!: string;
-  public dineIn!: boolean;
-  public takeaway!: boolean;
-  public website!: string;
-  public location!: string;
-  public delivery!: boolean;
+  public description?: string;
+  public category?: string;
+  public address?: string;
+  public city?: string;
+  public state?: string;
+  public country?: string;
+  public postalCode?: string;
+  public phone?: string;
+  public email?: string;
+  public website?: string;
+  public rating?: number;
+  public reviews?: number;
+  public timezone?: string;
+  public photos?: string[];
+  public source!: string;
+  public operatingStatus?: 'open' | 'closed' | 'temporarily closed';
+  public socialMedia?: string[];
+  public openingTime?: string;
+  public closingTime?: string;
 
   // Define associations, if any
 
@@ -23,7 +34,8 @@ class Business extends Model<BusinessAttributes> implements BusinessAttributes {
 Business.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      defaultValue: uuidv4,
       autoIncrement: true,
       primaryKey: true,
     },
@@ -31,44 +43,81 @@ Business.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     address: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    country: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    postalCode: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
-    openingTime: {
+    email: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    closingTime: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    dineIn: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true,
-    },
-    takeaway: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true,
+      allowNull: true,
     },
     website: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    location: {
+    rating: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+    },
+    reviews: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    timezone: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    photos: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true,
+    },
+    source: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    delivery: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
+    operatingStatus: {
+      type: DataTypes.ENUM('open', 'closed', 'temporarily closed'),
+      allowNull: true,
+    },
+    socialMedia: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true,
+    },
+    openingTime: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    closingTime: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {

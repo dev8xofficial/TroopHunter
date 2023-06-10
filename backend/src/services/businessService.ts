@@ -1,18 +1,50 @@
 import Business from '../models/Business';
 
-export const createBusiness = async (name: string, address: string, phone: string, openingTime: string, closingTime: string, dineIn: boolean, takeaway: boolean, website: string, location: string, delivery: boolean) => {
+export const createBusiness = async (
+  id: number,
+  name: string,
+  description: string,
+  category: string,
+  address: string,
+  city: string,
+  state: string,
+  country: string,
+  postalCode: string,
+  phone: string,
+  email: string,
+  website: string,
+  rating: number,
+  reviews: number,
+  timezone: string,
+  photos: string[],
+  source: string,
+  operatingStatus: 'open' | 'closed' | 'temporarily closed',
+  socialMedia: string[],
+  openingTime: string,
+  closingTime: string
+) => {
   const business = await Business.create({
-    id: 1,
+    id: id,
     name,
+    description,
+    category,
     address,
+    city,
+    state,
+    country,
+    postalCode,
     phone,
+    email,
+    website,
+    rating,
+    reviews,
+    timezone,
+    photos,
+    source,
+    operatingStatus,
+    socialMedia,
     openingTime,
     closingTime,
-    dineIn,
-    takeaway,
-    website,
-    location,
-    delivery,
   });
 
   return business;
@@ -24,20 +56,49 @@ export const getBusinessById = async (businessId: number) => {
   return business;
 };
 
-export const updateBusiness = async (businessId: number, name: string, address: string, phone: string, openingTime: string, closingTime: string, dineIn: boolean, takeaway: boolean, website: string, location: string, delivery: boolean) => {
-  const business = await Business.findByPk(businessId);
+export const updateBusiness = async (
+  id: number,
+  name: string,
+  description: string,
+  category: string,
+  address: string,
+  city: string,
+  state: string,
+  country: string,
+  postalCode: string,
+  phone: string,
+  email: string,
+  website: string,
+  rating: number,
+  reviews: number,
+  timezone: string,
+  photos: string[],
+  source: string,
+  operatingStatus: 'open' | 'closed' | 'temporarily closed',
+  socialMedia: string[],
+  openingTime: string,
+  closingTime: string
+) => {
+  const business = await Business.findByPk(id);
 
   if (business) {
+    business.id = id;
     business.name = name;
+    business.description = description;
+    business.category = category;
     business.address = address;
+    business.city = city;
+    business.state = state;
+    business.country = country;
+    business.postalCode = postalCode;
     business.phone = phone;
-    business.openingTime = openingTime;
-    business.closingTime = closingTime;
-    business.dineIn = dineIn;
-    business.takeaway = takeaway;
+    business.email = email;
     business.website = website;
-    business.location = location;
-    business.delivery = delivery;
+    business.rating = rating;
+    business.reviews = reviews;
+    business.timezone = timezone;
+    (business.photos = photos), (business.source = source), (business.operatingStatus = operatingStatus), (business.socialMedia = socialMedia), (business.openingTime = openingTime), (business.closingTime = closingTime);
+
     await business.save();
 
     return business;

@@ -3,19 +3,29 @@ import Business from '../models/Business';
 
 export const createBusiness = async (req: Request, res: Response) => {
   try {
-    const { name, address, phone, openingTime, closingTime, dineIn, takeaway, website, location, delivery } = req.body;
+    const { name, description, category, address, city, state, country, postalCode, phone, email, website, rating, reviews, timezone, photos, source, operatingStatus, socialMedia, openingTime, closingTime } = req.body;
 
     const business = await Business.create({
       name,
+      description,
+      category,
       address,
+      city,
+      state,
+      country,
+      postalCode,
       phone,
+      email,
+      website,
+      rating,
+      reviews,
+      timezone,
+      photos,
+      source,
+      operatingStatus,
+      socialMedia,
       openingTime,
       closingTime,
-      dineIn,
-      takeaway,
-      website,
-      location,
-      delivery,
     });
 
     res.status(201).json(business);
@@ -45,21 +55,32 @@ export const getBusiness = async (req: Request, res: Response) => {
 export const updateBusiness = async (req: Request, res: Response) => {
   try {
     const businessId = req.params.id;
-    const { name, address, phone, openingTime, closingTime, dineIn, takeaway, website, location, delivery } = req.body;
+    const { name, description, category, address, city, state, country, postalCode, phone, email, website, rating, reviews, timezone, photos, source, operatingStatus, socialMedia, openingTime, closingTime } = req.body;
 
     const business = await Business.findByPk(businessId);
 
     if (business) {
       business.name = name;
+      business.description = description;
+      business.category = category;
       business.address = address;
+      business.city = city;
+      business.state = state;
+      business.country = country;
+      business.postalCode = postalCode;
       business.phone = phone;
+      business.email = email;
+      business.website = website;
+      business.rating = rating;
+      business.reviews = reviews;
+      business.timezone = timezone;
+      business.photos = photos;
+      business.source = source;
+      business.operatingStatus = operatingStatus;
+      business.socialMedia = socialMedia;
       business.openingTime = openingTime;
       business.closingTime = closingTime;
-      business.dineIn = dineIn;
-      business.takeaway = takeaway;
-      business.website = website;
-      business.location = location;
-      business.delivery = delivery;
+
       await business.save();
 
       res.json(business);
