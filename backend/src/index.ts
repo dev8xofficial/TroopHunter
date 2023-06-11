@@ -7,6 +7,8 @@ import { formatResponse, sanitizeResponse } from './middlewares/responseMiddlewa
 import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
 import businessRoutes from './routes/businessRoutes';
+import leadRoutes from './routes/leadRoutes';
+import listsRoutes from './routes/listsRoutes';
 import dotenv from 'dotenv';
 
 const app: Application = express();
@@ -29,6 +31,8 @@ app.get('/', (req, res) => {
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/businesses', businessRoutes);
+app.use('/leads', leadRoutes);
+app.use('/lists', listsRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
