@@ -1,10 +1,11 @@
-import { DataTypes, Model } from 'sequelize';
+import { DataTypes, Model, HasManyCreateAssociationMixin } from 'sequelize';
 import sequelize from '../config/database';
 import { UserAttributes } from '../types/user';
-import { v4 as uuidv4 } from 'uuid';
+import Lead from './Lead';
+import Lists from './Lists';
 
 class User extends Model<UserAttributes> implements UserAttributes {
-  public id?: number;
+  public id?: string;
   public firstName!: string;
   public lastName!: string;
   public email!: string;
@@ -12,6 +13,8 @@ class User extends Model<UserAttributes> implements UserAttributes {
   public role?: 'guest' | 'user' | 'admin';
 
   // Define associations, if any
+  public createLead!: HasManyCreateAssociationMixin<Lead>;
+  public createList!: HasManyCreateAssociationMixin<Lists>;
 
   // Define scopes, if any
 }
@@ -20,8 +23,7 @@ User.init(
   {
     id: {
       type: DataTypes.UUID,
-      defaultValue: uuidv4,
-      autoIncrement: true,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
       unique: true,
     },
@@ -53,6 +55,14 @@ User.init(
     modelName: 'User',
   }
 );
+
+// Define associations
+User.hasMany(Lead, {
+  foreignKey: 'ownerId',
+});
+User.hasMany(Lists, {
+  foreignKey: 'ownerId',
+});
 
 User.sync();
 

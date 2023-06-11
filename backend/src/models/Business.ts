@@ -1,10 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
-import { v4 as uuidv4 } from 'uuid';
 
 class Business extends Model<BusinessAttributes> implements BusinessAttributes {
-  public id?: number;
+  public id?: string;
   public name!: string;
   public description?: string;
   public category?: string;
@@ -35,9 +34,9 @@ Business.init(
   {
     id: {
       type: DataTypes.UUID,
-      defaultValue: uuidv4,
-      autoIncrement: true,
+      defaultValue: DataTypes.UUID,
       primaryKey: true,
+      unique: true,
     },
     name: {
       type: DataTypes.STRING,
