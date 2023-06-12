@@ -42,6 +42,6 @@ app.use(errorHandler);
 app.use(notFoundHandler);
 
 // Seed fake data
-seedDatabase().catch((error) => console.error('Error while seeding the database:', error));
+// seedDatabase().catch((error) => console.error('Error while seeding the database:', error));
 
 export default app;

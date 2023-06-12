@@ -30,6 +30,11 @@ class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   // Define scopes, if any
 }
 
+const indexes = [
+  { name: 'indexBusinessName', fields: ['name'] },
+  { name: 'indexBusinessDescription', fields: ['description'] },
+];
+
 Business.init(
   {
     id: {
@@ -122,6 +127,7 @@ Business.init(
   {
     sequelize,
     modelName: 'Business',
+    indexes,
   }
 );
 
