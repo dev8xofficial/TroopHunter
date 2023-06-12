@@ -10,6 +10,7 @@ import businessRoutes from './routes/businessRoutes';
 import leadRoutes from './routes/leadRoutes';
 import listsRoutes from './routes/listsRoutes';
 import dotenv from 'dotenv';
+import seedDatabase from './examples/seeders/fakeData';
 
 const app: Application = express();
 
@@ -39,5 +40,8 @@ app.use(errorHandler);
 
 // Not found middleware
 app.use(notFoundHandler);
+
+// Seed fake data
+seedDatabase().catch((error) => console.error('Error while seeding the database:', error));
 
 export default app;

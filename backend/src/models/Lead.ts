@@ -100,11 +100,11 @@ Lead.init(
       allowNull: true,
     },
     openingTime: {
-      type: DataTypes.STRING,
+      type: DataTypes.TIME,
       allowNull: true,
     },
     closingTime: {
-      type: DataTypes.STRING,
+      type: DataTypes.TIME,
       allowNull: true,
     },
   },

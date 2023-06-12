@@ -2,20 +2,20 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Businesses', {
+    await queryInterface.createTable('Leads', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
       },
-      name: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      description: {
+      title: {
         allowNull: true,
         type: Sequelize.STRING,
+      },
+      ownerId: {
+        allowNull: false,
+        type: Sequelize.UUID,
       },
       category: {
         allowNull: true,
@@ -65,29 +65,17 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      photos: {
-        allowNull: true,
-        type: Sequelize.ARRAY(Sequelize.STRING),
-      },
-      source: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
       operatingStatus: {
         allowNull: true,
         type: Sequelize.ENUM('open', 'closed', 'temporarily closed'),
       },
-      socialMedia: {
-        allowNull: true,
-        type: Sequelize.ARRAY(Sequelize.STRING),
-      },
       openingTime: {
         allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.TIME,
       },
       closingTime: {
         allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.TIME,
       },
       createdAt: {
         allowNull: false,
@@ -100,9 +88,20 @@ module.exports = {
         defaultValue: Sequelize.literal('NOW()'),
       },
     });
+
+    await queryInterface.addConstraint('Leads', {
+      fields: ['ownerId'],
+      type: 'foreign key',
+      references: {
+        table: 'Users',
+        field: 'id',
+      },
+      onDelete: 'cascade',
+      onUpdate: 'cascade',
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Businesses');
+    await queryInterface.dropTable('Leads');
   },
 };

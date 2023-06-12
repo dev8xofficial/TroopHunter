@@ -83,11 +83,11 @@ module.exports = {
       },
       openingTime: {
         allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.TIME,
       },
       closingTime: {
         allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.TIME,
       },
       createdAt: {
         allowNull: false,
