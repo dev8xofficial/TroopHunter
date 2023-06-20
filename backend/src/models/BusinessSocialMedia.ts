@@ -24,23 +24,23 @@ BusinessSocialMedia.init(
     },
     facebookProfile: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
     twitterProfile: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
     instagramProfile: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
     linkedInProfile: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
     youTubeProfile: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
   },
   {

@@ -26,6 +26,7 @@ import BusinessRating from '../models/BusinessRating';
 import BusinessSource from '../models/BusinessSource';
 import BusinessOpeningHour from '../models/BusinessOpeningHour';
 import BusinessClosingHour from '../models/BusinessClosingHour';
+import { SocialMediaAttributes } from '../types/businessSocialMedia';
 
 export const getBusinesses = async (req: Request, res: Response) => {
   const { name, description, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
@@ -175,6 +176,13 @@ export const createBusinesses = async (req: Request, res: Response) => {
           countryCode: faker.location.countryCode(),
           notes: faker.lorem.sentence(),
         },
+        socialMedia: {
+          facebookProfile: faker.internet.url(),
+          twitterProfile: faker.internet.url(),
+          instagramProfile: faker.internet.url(),
+          linkedInProfile: faker.internet.url(),
+          youTubeProfile: faker.internet.url(),
+        },
         operatingStatus: {
           operatingStatus: opValues[Math.floor(Math.random() * 3)],
         },
@@ -318,6 +326,7 @@ async function createBulkBusinesses(businessData: any[]) {
     const ratings: Partial<RatingAttributes>[] = [];
     const sources: Partial<SourceAttributes>[] = [];
     const timezones: Partial<TimezoneAttributes>[] = [];
+    const socialMedias: Partial<SocialMediaAttributes>[] = [];
     const openingHours: Partial<OpeningTimeAttributes>[] = [];
     const closingHours: Partial<ClosingTimeAttributes>[] = [];
     const businesses: BusinessAttributes[] = [];
@@ -331,6 +340,7 @@ async function createBulkBusinesses(businessData: any[]) {
       ratings.push(data.rating);
       sources.push(data.source);
       timezones.push(data.timezone);
+      socialMedias.push(data.socialMedia);
       openingHours.push(data.openingHour);
       closingHours.push(data.closingHour);
 
@@ -345,6 +355,7 @@ async function createBulkBusinesses(businessData: any[]) {
     const businessRatingResponse = await BusinessRating.bulkCreate(ratings, { transaction });
     const businessSourceResponse = await BusinessSource.bulkCreate(sources, { transaction });
     const timezoneResponse = await Timezone.bulkCreate(timezones, { transaction });
+    const socialMediaResponse = await BusinessSocialMedia.bulkCreate(socialMedias, { transaction });
     const businessOpeningHourResponse = await BusinessOpeningHour.bulkCreate(openingHours, { transaction });
     const businessClosingHourResponse = await BusinessClosingHour.bulkCreate(closingHours, { transaction });
 
@@ -363,6 +374,7 @@ async function createBulkBusinesses(businessData: any[]) {
         phoneId: BusinessPhoneResponse[index].toJSON().id,
         ratingId: businessRatingResponse[index].toJSON().id,
         timezoneId: timezoneResponse[index].toJSON().id,
+        socialMediaId: socialMediaResponse[index].toJSON().id,
         operatingStatusId: businessOperatingStatusResponse[index].toJSON().id,
         openingHourId: businessOpeningHourResponse[index].toJSON().id,
         closingHourId: businessClosingHourResponse[index].toJSON().id,
@@ -373,8 +385,9 @@ async function createBulkBusinesses(businessData: any[]) {
 
     const uk = await Business.bulkCreate(businesses, { transaction });
 
-    await transaction.commit();
-    return uk;
+    await transaction.commit().then(() => {
+      return uk;
+    });
   } catch (error) {
     await transaction.rollback();
     throw error;

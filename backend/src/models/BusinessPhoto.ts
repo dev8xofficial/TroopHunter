@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
+import Business from './Business';
 
 class BusinessPhoto extends Model {
   public id!: string;
@@ -33,6 +34,8 @@ BusinessPhoto.init(
     modelName: 'BusinessPhoto',
   }
 );
+
+BusinessPhoto.belongsTo(Business, { foreignKey: 'businessId' });
 
 BusinessPhoto.sync();
 

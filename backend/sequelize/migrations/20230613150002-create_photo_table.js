@@ -11,6 +11,12 @@ module.exports = {
       businessId: {
         type: Sequelize.UUID,
         allowNull: false,
+        references: {
+          model: 'Businesses',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       photoUrl: {
         type: Sequelize.STRING(255),

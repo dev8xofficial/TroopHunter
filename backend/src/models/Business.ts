@@ -12,6 +12,8 @@ import BusinessOperatingStatus from './BusinessOperatingStatus';
 import BusinessSocialMedia from './BusinessSocialMedia';
 import BusinessOpeningHour from './BusinessOpeningHour';
 import BusinessClosingHour from './BusinessClosingHour';
+import BusinessPhoto from './BusinessPhoto';
+import { BusinessPhotoAttributes } from '../types/businessPhoto';
 
 class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public id?: string;
@@ -34,6 +36,7 @@ class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public closingHourId!: string;
 
   // Define associations, if any
+  public readonly photos?: BusinessPhotoAttributes[]; // Define the association with BusinessPhoto model
 
   // Define scopes, if any
 }
@@ -132,6 +135,7 @@ Business.belongsTo(BusinessOperatingStatus, { foreignKey: 'operatingStatusId' })
 Business.belongsTo(BusinessSocialMedia, { foreignKey: 'operatingStatusId' });
 Business.belongsTo(BusinessOpeningHour, { foreignKey: 'openingHourId' });
 Business.belongsTo(BusinessClosingHour, { foreignKey: 'closingHourId' });
+Business.hasMany(BusinessPhoto, { foreignKey: 'businessId' });
 
 Business.sync();
 

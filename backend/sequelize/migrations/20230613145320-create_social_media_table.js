@@ -14,23 +14,23 @@ module.exports = {
       },
       facebookProfile: {
         type: Sequelize.STRING(255),
-        allowNull: false,
+        allowNull: true,
       },
       twitterProfile: {
         type: Sequelize.STRING(255),
-        allowNull: false,
+        allowNull: true,
       },
       instagramProfile: {
         type: Sequelize.STRING(255),
-        allowNull: false,
+        allowNull: true,
       },
       linkedInProfile: {
         type: Sequelize.STRING(255),
-        allowNull: false,
+        allowNull: true,
       },
       youTubeProfile: {
         type: Sequelize.STRING(255),
-        allowNull: false,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,
