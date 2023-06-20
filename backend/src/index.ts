@@ -1,4 +1,4 @@
-import express, { Application, Request, Response, NextFunction } from 'express';
+import express, { Application } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import errorHandler from './middlewares/errorHandler';
@@ -10,7 +10,7 @@ import businessRoutes from './routes/businessRoutes';
 import leadRoutes from './routes/leadRoutes';
 import listsRoutes from './routes/listsRoutes';
 import dotenv from 'dotenv';
-import seedDatabase from './examples/seeders/fakeData';
+import seedDatabase from './examples/seeders/fakeData2';
 
 const app: Application = express();
 

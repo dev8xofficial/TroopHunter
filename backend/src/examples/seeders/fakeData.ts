@@ -1,12 +1,12 @@
 import casual from 'casual';
 import User from '../../models/User';
-import Business from '../../models/Business';
+import RBusiness from '../../models/RBusiness';
 import Lead from '../../models/Lead';
-import Lists from '../../models/Lists';
+import List from '../../models/List';
 import { UserAttributes } from '../../types/user';
-import { BusinessAttributes } from '../../types/business';
+import { RBusinessAttributes } from '../../types/rbusiness';
 import { LeadAttributes } from '../../types/lead';
-import { ListsAttributes } from '../../types/lists';
+import { ListAttributes } from '../../types/list';
 
 const seedUsers = async (count: number) => {
   const users: UserAttributes[] = [];
@@ -36,12 +36,12 @@ const seedBusinesses = async (count: number) => {
     { name: 'Sydney', state: 'New South Wales', country: 'Australia', postalCode: '2000' },
   ];
 
-  const businesses: BusinessAttributes[] = [];
+  const businesses: RBusinessAttributes[] = [];
 
   for (let i = 0; i < count; i++) {
     const city = casual.random_element(cities);
 
-    const business: BusinessAttributes = {
+    const business: RBusinessAttributes = {
       name: casual.company_name,
       description: casual.catch_phrase,
       category: casual.random_element([casual.word, casual.words(2)]),
@@ -60,14 +60,14 @@ const seedBusinesses = async (count: number) => {
       source: casual.random_element(['Google', 'Yelp', 'Facebook']),
       operatingStatus: casual.random_element(['open', 'closed', 'temporarily closed']),
       socialMedia: [casual.url, casual.url, casual.url],
-      openingTime: casual.time('HH:mm'),
-      closingTime: casual.time('HH:mm'),
+      openingHour: casual.time('HH:mm'),
+      closingHour: casual.time('HH:mm'),
     };
 
     businesses.push(business);
   }
 
-  await Business.bulkCreate(businesses);
+  await RBusiness.bulkCreate(businesses);
   console.log('Businesses:::::::::::::::::::::::::::::: ', businesses[0]);
 };
 
@@ -104,8 +104,8 @@ const seedLeads = async (count: number) => {
       reviews: casual.integer(0, 1000),
       timezone: casual.timezone,
       operatingStatus: casual.random_element(['open', 'closed', 'temporarily closed']),
-      openingTime: casual.time('HH:mm'),
-      closingTime: casual.time('HH:mm'),
+      openingHour: casual.time('HH:mm'),
+      closingHour: casual.time('HH:mm'),
     };
 
     leads.push(lead);
@@ -116,13 +116,13 @@ const seedLeads = async (count: number) => {
 };
 
 const seedLists = async (count: number) => {
-  const lists: ListsAttributes[] = [];
+  const lists: ListAttributes[] = [];
 
   const users = await User.findAll();
   const leads = await Lead.findAll();
 
   for (let i = 0; i < count; i++) {
-    const list: ListsAttributes = {
+    const list: ListAttributes = {
       titles: casual.words(2),
       ownerId: casual.random_element(users).id!,
       leads: Array.from({ length: casual.integer(1, 10) }, () => casual.random_element(leads.map((lead) => lead.id!))),
@@ -131,7 +131,7 @@ const seedLists = async (count: number) => {
     lists.push(list);
   }
 
-  await Lists.bulkCreate(lists);
+  await List.bulkCreate(lists);
   console.log('List:::::::::::::::::::::::::::::: ', lists[0]);
 };
 

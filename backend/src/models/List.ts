@@ -1,9 +1,9 @@
 import { BelongsToCreateAssociationMixin, DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { ListsAttributes } from '../types/lists';
+import { ListAttributes } from '../types/list';
 import User from './User';
 
-class Lists extends Model<ListsAttributes> implements ListsAttributes {
+class List extends Model<ListAttributes> implements ListAttributes {
   public id?: string;
   public titles?: string;
   public ownerId!: string;
@@ -15,7 +15,7 @@ class Lists extends Model<ListsAttributes> implements ListsAttributes {
   // Define scopes, if any
 }
 
-Lists.init(
+List.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -38,12 +38,12 @@ Lists.init(
   },
   {
     sequelize,
-    modelName: 'Lists',
+    modelName: 'List',
   }
 );
 
-// Lists.belongsTo(User, { foreignKey: 'ownerId' });
+// List.belongsTo(User, { foreignKey: 'ownerId' });
 
-Lists.sync();
+List.sync();
 
-export default Lists;
+export default List;

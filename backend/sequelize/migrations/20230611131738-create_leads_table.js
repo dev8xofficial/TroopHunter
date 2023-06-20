@@ -69,11 +69,11 @@ module.exports = {
         allowNull: true,
         type: Sequelize.ENUM('open', 'closed', 'temporarily closed'),
       },
-      openingTime: {
+      openingHour: {
         allowNull: true,
         type: Sequelize.TIME,
       },
-      closingTime: {
+      closingHour: {
         allowNull: true,
         type: Sequelize.TIME,
       },

@@ -1,4 +1,4 @@
-export interface BusinessAttributes {
+export interface RBusinessAttributes {
   id?: string;
   name: string;
   description?: string;
@@ -18,6 +18,6 @@ export interface BusinessAttributes {
   source: string;
   operatingStatus?: 'open' | 'closed' | 'temporarily closed';
   socialMedia?: string[];
-  openingTime?: string;
-  closingTime?: string;
+  openingHour?: string;
+  closingHour?: string;
 }

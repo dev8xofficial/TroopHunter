@@ -1,14 +1,11 @@
-import { DataTypes, Model, BelongsToCreateAssociationMixin } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { LeadAttributes } from '../types/lead';
-import User from './User';
+import { RBusinessAttributes } from '../types/rbusiness';
 
-class Lead extends Model<LeadAttributes> implements LeadAttributes {
+class RBusiness extends Model<RBusinessAttributes> implements RBusinessAttributes {
   public id?: string;
-  public title?: string;
-  public ownerId!: string;
-  public search?: string;
-  public keywords?: string;
+  public name!: string;
+  public description?: string;
   public category?: string;
   public address?: string;
   public city?: string;
@@ -21,17 +18,24 @@ class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public rating?: number;
   public reviews?: number;
   public timezone?: string;
+  public photos?: string[];
+  public source!: string;
   public operatingStatus?: 'open' | 'closed' | 'temporarily closed';
+  public socialMedia?: string[];
   public openingHour?: string;
   public closingHour?: string;
 
   // Define associations, if any
-  public createUser!: BelongsToCreateAssociationMixin<User>;
 
   // Define scopes, if any
 }
 
-Lead.init(
+const indexes = [
+  { name: 'indexBusinessName', fields: ['name'] },
+  { name: 'indexBusinessDescription', fields: ['description'] },
+];
+
+RBusiness.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -39,13 +43,13 @@ Lead.init(
       primaryKey: true,
       unique: true,
     },
-    title: {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
       type: DataTypes.STRING,
       allowNull: true,
-    },
-    ownerId: {
-      type: DataTypes.UUID,
-      allowNull: false,
     },
     category: {
       type: DataTypes.STRING,
@@ -95,8 +99,20 @@ Lead.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    photos: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true,
+    },
+    source: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     operatingStatus: {
       type: DataTypes.ENUM('open', 'closed', 'temporarily closed'),
+      allowNull: true,
+    },
+    socialMedia: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
     openingHour: {
@@ -110,12 +126,11 @@ Lead.init(
   },
   {
     sequelize,
-    modelName: 'Lead',
+    modelName: 'RBusiness',
+    indexes,
   }
 );
 
-// Lead.belongsTo(User, { foreignKey: 'ownerId' });
+RBusiness.sync();
 
-Lead.sync();
-
-export default Lead;
+export default RBusiness;

@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Businesses', {
+    await queryInterface.createTable('RBusinesses', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -81,11 +81,11 @@ module.exports = {
         allowNull: true,
         type: Sequelize.ARRAY(Sequelize.STRING),
       },
-      openingTime: {
+      openingHour: {
         allowNull: true,
         type: Sequelize.TIME,
       },
-      closingTime: {
+      closingHour: {
         allowNull: true,
         type: Sequelize.TIME,
       },
@@ -103,6 +103,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Businesses');
+    await queryInterface.dropTable('RBusinesses');
   },
 };

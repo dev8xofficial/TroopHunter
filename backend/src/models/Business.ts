@@ -1,39 +1,41 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { BusinessAttributes } from '../types/business';
+import { BusinessAttributes } from '../types/business/business';
+import BusinessCategory from './BusinessCategory';
+import Location from './Location';
+import PostalCode from './PostalCode';
+import BusinessPhone from './BusinessPhone';
+import BusinessRating from './BusinessRating';
+import Timezone from './Timezone';
+import BusinessSource from './BusinessSource';
+import BusinessOperatingStatus from './BusinessOperatingStatus';
+import BusinessSocialMedia from './BusinessSocialMedia';
+import BusinessOpeningHour from './BusinessOpeningHour';
+import BusinessClosingHour from './BusinessClosingHour';
 
 class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public id?: string;
   public name!: string;
   public description?: string;
-  public category?: string;
+  public categoryId!: string;
   public address?: string;
-  public city?: string;
-  public state?: string;
-  public country?: string;
-  public postalCode?: string;
-  public phone?: string;
+  public locationId!: string;
+  public phoneId?: string;
   public email?: string;
   public website?: string;
-  public rating?: number;
+  public ratingId?: string;
   public reviews?: number;
-  public timezone?: string;
-  public photos?: string[];
-  public source!: string;
-  public operatingStatus?: 'open' | 'closed' | 'temporarily closed';
-  public socialMedia?: string[];
-  public openingTime?: string;
-  public closingTime?: string;
+  public timezoneId?: string;
+  public sourceId!: string;
+  public operatingStatusId?: string;
+  public socialMediaId?: string;
+  public openingTimeId!: string;
+  public closingTimeId!: string;
 
   // Define associations, if any
 
   // Define scopes, if any
 }
-
-const indexes = [
-  { name: 'indexBusinessName', fields: ['name'] },
-  { name: 'indexBusinessDescription', fields: ['description'] },
-];
 
 Business.init(
   {
@@ -51,85 +53,84 @@ Business.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    category: {
-      type: DataTypes.STRING,
+    categoryId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
     address: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(500),
       allowNull: true,
     },
-    city: {
-      type: DataTypes.STRING,
+    locationId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
-    state: {
-      type: DataTypes.STRING,
+    postalCodeId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
-    country: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    postalCode: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    phone: {
-      type: DataTypes.STRING,
+    phoneId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(254),
       allowNull: true,
     },
     website: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: true,
     },
-    rating: {
-      type: DataTypes.FLOAT,
+    ratingId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
     reviews: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    timezone: {
-      type: DataTypes.STRING,
+    timezoneId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
-    photos: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: true,
-    },
-    source: {
-      type: DataTypes.STRING,
+    sourceId: {
+      type: DataTypes.UUID,
       allowNull: false,
     },
-    operatingStatus: {
-      type: DataTypes.ENUM('open', 'closed', 'temporarily closed'),
+    operatingStatusId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
-    socialMedia: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+    socialMediaId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
-    openingTime: {
-      type: DataTypes.TIME,
+    openingTimeId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
-    closingTime: {
-      type: DataTypes.TIME,
+    closingTimeId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
   },
   {
     sequelize,
     modelName: 'Business',
-    indexes,
   }
 );
+
+Business.belongsTo(BusinessCategory, { foreignKey: 'categoryId' });
+Business.belongsTo(Location, { foreignKey: 'locationId' });
+Business.belongsTo(PostalCode, { foreignKey: 'postalCodeId' });
+Business.belongsTo(BusinessPhone, { foreignKey: 'phoneId' });
+Business.belongsTo(BusinessRating, { foreignKey: 'ratingId' });
+Business.belongsTo(Timezone, { foreignKey: 'timezoneId' });
+Business.belongsTo(BusinessSource, { foreignKey: 'sourceId' });
+Business.belongsTo(BusinessOperatingStatus, { foreignKey: 'operatingStatusId' });
+Business.belongsTo(BusinessSocialMedia, { foreignKey: 'operatingStatusId' });
+Business.belongsTo(BusinessOpeningHour, { foreignKey: 'openingTimeId' });
+Business.belongsTo(BusinessClosingHour, { foreignKey: 'closingTimeId' });
 
 Business.sync();
 

@@ -1,4 +1,4 @@
-import Business from '../models/Business';
+import Business from '../models/RBusiness';
 
 export const createBusiness = async (
   id: number,
@@ -20,8 +20,8 @@ export const createBusiness = async (
   source: string,
   operatingStatus: 'open' | 'closed' | 'temporarily closed',
   socialMedia: string[],
-  openingTime: string,
-  closingTime: string
+  openingHour: string,
+  closingHour: string
 ) => {
   const business = await Business.create({
     id: id,
@@ -43,8 +43,8 @@ export const createBusiness = async (
     source,
     operatingStatus,
     socialMedia,
-    openingTime,
-    closingTime,
+    openingHour,
+    closingHour,
   });
 
   return business;
@@ -76,8 +76,8 @@ export const updateBusiness = async (
   source: string,
   operatingStatus: 'open' | 'closed' | 'temporarily closed',
   socialMedia: string[],
-  openingTime: string,
-  closingTime: string
+  openingHour: string,
+  closingHour: string
 ) => {
   const business = await Business.findByPk(id);
 
@@ -97,7 +97,7 @@ export const updateBusiness = async (
     business.rating = rating;
     business.reviews = reviews;
     business.timezone = timezone;
-    (business.photos = photos), (business.source = source), (business.operatingStatus = operatingStatus), (business.socialMedia = socialMedia), (business.openingTime = openingTime), (business.closingTime = closingTime);
+    (business.photos = photos), (business.source = source), (business.operatingStatus = operatingStatus), (business.socialMedia = socialMedia), (business.openingHour = openingHour), (business.closingHour = closingHour);
 
     await business.save();
 

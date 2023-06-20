@@ -1,0 +1,20 @@
+export interface BusinessAttributes {
+  id?: string;
+  name: string;
+  description?: string;
+  categoryId?: string;
+  address?: string;
+  locationId?: string;
+  postalCodeId?: string;
+  phoneId?: string;
+  email?: string;
+  website?: string;
+  ratingId?: string;
+  reviews?: number;
+  timezoneId?: string;
+  sourceId?: string;
+  operatingStatusId?: string;
+  socialMediaId?: string;
+  openingTimeId?: string;
+  closingTimeId?: string;
+}

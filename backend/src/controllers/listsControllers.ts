@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Lists from '../models/Lists';
+import Lists from '../models/List';
 import User from '../models/User';
 
 export const getLists = async (req: Request, res: Response) => {
