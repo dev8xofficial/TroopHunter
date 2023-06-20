@@ -9,21 +9,19 @@ class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public ownerId!: string;
   public search?: string;
   public keywords?: string;
-  public category?: string;
+  public categoryId?: string;
   public address?: string;
-  public city?: string;
-  public state?: string;
-  public country?: string;
-  public postalCode?: string;
-  public phone?: string;
+  public locationId?: string;
+  public postalCodeId?: string;
+  public phoneId?: string;
   public email?: string;
   public website?: string;
-  public rating?: number;
+  public ratingId?: string;
   public reviews?: number;
-  public timezone?: string;
-  public operatingStatus?: 'open' | 'closed' | 'temporarily closed';
-  public openingHour?: string;
-  public closingHour?: string;
+  public timezoneId?: string;
+  public operatingStatusId?: string;
+  public openingHourId?: string;
+  public closingHourId?: string;
 
   // Define associations, if any
   public createUser!: BelongsToCreateAssociationMixin<User>;
@@ -47,32 +45,24 @@ Lead.init(
       type: DataTypes.UUID,
       allowNull: false,
     },
-    category: {
-      type: DataTypes.STRING,
+    categoryId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
     address: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    city: {
-      type: DataTypes.STRING,
+    locationId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
-    state: {
-      type: DataTypes.STRING,
+    postalCodeId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
-    country: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    postalCode: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    phone: {
-      type: DataTypes.STRING,
+    phoneId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
     email: {
@@ -83,28 +73,28 @@ Lead.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    rating: {
-      type: DataTypes.FLOAT,
+    ratingId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
     reviews: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    timezone: {
-      type: DataTypes.STRING,
+    timezoneId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
-    operatingStatus: {
-      type: DataTypes.ENUM('open', 'closed', 'temporarily closed'),
+    operatingStatusId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
-    openingHour: {
-      type: DataTypes.TIME,
+    openingHourId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
-    closingHour: {
-      type: DataTypes.TIME,
+    closingHourId: {
+      type: DataTypes.UUID,
       allowNull: true,
     },
   },

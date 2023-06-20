@@ -17,33 +17,25 @@ module.exports = {
         allowNull: false,
         type: Sequelize.UUID,
       },
-      category: {
+      categoryId: {
         allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
       },
       address: {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      city: {
+      locationId: {
         allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
       },
-      state: {
+      postalCodeId: {
         allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
       },
-      country: {
+      phoneId: {
         allowNull: true,
-        type: Sequelize.STRING,
-      },
-      postalCode: {
-        allowNull: true,
-        type: Sequelize.STRING,
-      },
-      phone: {
-        allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
       },
       email: {
         allowNull: true,
@@ -53,29 +45,29 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      rating: {
+      ratingId: {
         allowNull: true,
-        type: Sequelize.FLOAT,
+        type: Sequelize.UUID,
       },
       reviews: {
         allowNull: true,
         type: Sequelize.INTEGER,
       },
-      timezone: {
+      timezoneId: {
         allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
       },
-      operatingStatus: {
+      operatingStatusId: {
         allowNull: true,
-        type: Sequelize.ENUM('open', 'closed', 'temporarily closed'),
+        type: Sequelize.UUID,
       },
-      openingHour: {
+      openingHourId: {
         allowNull: true,
-        type: Sequelize.TIME,
+        type: Sequelize.UUID,
       },
-      closingHour: {
+      closingHourId: {
         allowNull: true,
-        type: Sequelize.TIME,
+        type: Sequelize.UUID,
       },
       createdAt: {
         allowNull: false,

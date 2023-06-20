@@ -70,11 +70,11 @@ module.exports = {
         type: Sequelize.UUID,
         allowNull: true,
       },
-      openingTimeId: {
+      openingHourId: {
         type: Sequelize.UUID,
         allowNull: true,
       },
-      closingTimeId: {
+      closingHourId: {
         type: Sequelize.UUID,
         allowNull: true,
       },
@@ -200,7 +200,7 @@ module.exports = {
     });
 
     await queryInterface.addConstraint('Businesses', {
-      fields: ['openingTimeId'],
+      fields: ['openingHourId'],
       type: 'foreign key',
       name: 'fk_business_openingtime',
       references: {
@@ -212,7 +212,7 @@ module.exports = {
     });
 
     await queryInterface.addConstraint('Businesses', {
-      fields: ['closingTimeId'],
+      fields: ['closingHourId'],
       type: 'foreign key',
       name: 'fk_business_closingtime',
       references: {

@@ -15,6 +15,6 @@ export interface BusinessAttributes {
   sourceId?: string;
   operatingStatusId?: string;
   socialMediaId?: string;
-  openingTimeId?: string;
-  closingTimeId?: string;
+  openingHourId?: string;
+  closingHourId?: string;
 }

@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { PostalCodeAttributes } from '../types/business/postalCode';
+import { PostalCodeAttributes } from '../types/postalCode';
 
 class PostalCode extends Model<PostalCodeAttributes> implements PostalCodeAttributes {
   public id!: string;

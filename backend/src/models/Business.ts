@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { BusinessAttributes } from '../types/business/business';
+import { BusinessAttributes } from '../types/business';
 import BusinessCategory from './BusinessCategory';
 import Location from './Location';
 import PostalCode from './PostalCode';
@@ -20,6 +20,7 @@ class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public categoryId!: string;
   public address?: string;
   public locationId!: string;
+  public postalCodeId!: string;
   public phoneId?: string;
   public email?: string;
   public website?: string;
@@ -29,8 +30,8 @@ class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public sourceId!: string;
   public operatingStatusId?: string;
   public socialMediaId?: string;
-  public openingTimeId!: string;
-  public closingTimeId!: string;
+  public openingHourId!: string;
+  public closingHourId!: string;
 
   // Define associations, if any
 
@@ -105,11 +106,11 @@ Business.init(
       type: DataTypes.UUID,
       allowNull: true,
     },
-    openingTimeId: {
+    openingHourId: {
       type: DataTypes.UUID,
       allowNull: true,
     },
-    closingTimeId: {
+    closingHourId: {
       type: DataTypes.UUID,
       allowNull: true,
     },
@@ -129,8 +130,8 @@ Business.belongsTo(Timezone, { foreignKey: 'timezoneId' });
 Business.belongsTo(BusinessSource, { foreignKey: 'sourceId' });
 Business.belongsTo(BusinessOperatingStatus, { foreignKey: 'operatingStatusId' });
 Business.belongsTo(BusinessSocialMedia, { foreignKey: 'operatingStatusId' });
-Business.belongsTo(BusinessOpeningHour, { foreignKey: 'openingTimeId' });
-Business.belongsTo(BusinessClosingHour, { foreignKey: 'closingTimeId' });
+Business.belongsTo(BusinessOpeningHour, { foreignKey: 'openingHourId' });
+Business.belongsTo(BusinessClosingHour, { foreignKey: 'closingHourId' });
 
 Business.sync();
 

@@ -1,51 +1,8 @@
-import Business from '../models/RBusiness';
+import Business from '../models/Business';
+import { BusinessAttributes } from '../business';
 
-export const createBusiness = async (
-  id: number,
-  name: string,
-  description: string,
-  category: string,
-  address: string,
-  city: string,
-  state: string,
-  country: string,
-  postalCode: string,
-  phone: string,
-  email: string,
-  website: string,
-  rating: number,
-  reviews: number,
-  timezone: string,
-  photos: string[],
-  source: string,
-  operatingStatus: 'open' | 'closed' | 'temporarily closed',
-  socialMedia: string[],
-  openingHour: string,
-  closingHour: string
-) => {
-  const business = await Business.create({
-    id: id,
-    name,
-    description,
-    category,
-    address,
-    city,
-    state,
-    country,
-    postalCode,
-    phone,
-    email,
-    website,
-    rating,
-    reviews,
-    timezone,
-    photos,
-    source,
-    operatingStatus,
-    socialMedia,
-    openingHour,
-    closingHour,
-  });
+export const createBusiness = async ({ name, description, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId }: BusinessAttributes) => {
+  const business = await Business.create({ name, description, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId });
 
   return business;
 };
@@ -56,48 +13,27 @@ export const getBusinessById = async (businessId: number) => {
   return business;
 };
 
-export const updateBusiness = async (
-  id: number,
-  name: string,
-  description: string,
-  category: string,
-  address: string,
-  city: string,
-  state: string,
-  country: string,
-  postalCode: string,
-  phone: string,
-  email: string,
-  website: string,
-  rating: number,
-  reviews: number,
-  timezone: string,
-  photos: string[],
-  source: string,
-  operatingStatus: 'open' | 'closed' | 'temporarily closed',
-  socialMedia: string[],
-  openingHour: string,
-  closingHour: string
-) => {
+export const updateBusiness = async ({ id, name, description, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId }: BusinessAttributes) => {
   const business = await Business.findByPk(id);
 
   if (business) {
-    business.id = id;
     business.name = name;
     business.description = description;
-    business.category = category;
+    business.categoryId = categoryId || '';
     business.address = address;
-    business.city = city;
-    business.state = state;
-    business.country = country;
-    business.postalCode = postalCode;
-    business.phone = phone;
+    business.locationId = locationId || '';
+    business.postalCodeId = postalCodeId || '';
+    business.phoneId = phoneId;
     business.email = email;
     business.website = website;
-    business.rating = rating;
+    business.ratingId = ratingId;
     business.reviews = reviews;
-    business.timezone = timezone;
-    (business.photos = photos), (business.source = source), (business.operatingStatus = operatingStatus), (business.socialMedia = socialMedia), (business.openingHour = openingHour), (business.closingHour = closingHour);
+    business.timezoneId = timezoneId;
+    business.sourceId = sourceId || '';
+    business.operatingStatusId = operatingStatusId;
+    business.socialMediaId = socialMediaId;
+    business.openingHourId = openingHourId || '';
+    business.closingHourId = closingHourId || '';
 
     await business.save();
 
