@@ -35,8 +35,6 @@ BusinessPhoto.init(
   }
 );
 
-BusinessPhoto.belongsTo(Business, { foreignKey: 'businessId' });
-
 BusinessPhoto.sync();
 
 export default BusinessPhoto;

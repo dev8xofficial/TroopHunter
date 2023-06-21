@@ -137,6 +137,8 @@ Business.belongsTo(BusinessOpeningHour, { foreignKey: 'openingHourId' });
 Business.belongsTo(BusinessClosingHour, { foreignKey: 'closingHourId' });
 Business.hasMany(BusinessPhoto, { foreignKey: 'businessId' });
 
+BusinessPhoto.belongsTo(Business, { foreignKey: 'businessId' });
+
 Business.sync();
 
 export default Business;

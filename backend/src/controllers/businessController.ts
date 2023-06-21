@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import casual from 'casual';
 import { faker } from '@faker-js/faker';
 import { Op } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
 import sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
 import { BusinessCategoryAttributes } from '../types/businessCategory';
@@ -14,6 +15,8 @@ import { ClosingTimeAttributes } from '../types/businessClosingHour';
 import { PostalCodeAttributes } from '../types/postalCode';
 import { PhoneAttributes } from '../types/businessPhone';
 import { TimezoneAttributes } from '../types/timezone';
+import { SocialMediaAttributes } from '../types/businessSocialMedia';
+import { BusinessPhotoAttributes } from '../types/businessPhoto';
 import Business from '../models/Business';
 import BusinessCategory from '../models/BusinessCategory';
 import PostalCode from '../models/PostalCode';
@@ -26,7 +29,7 @@ import BusinessRating from '../models/BusinessRating';
 import BusinessSource from '../models/BusinessSource';
 import BusinessOpeningHour from '../models/BusinessOpeningHour';
 import BusinessClosingHour from '../models/BusinessClosingHour';
-import { SocialMediaAttributes } from '../types/businessSocialMedia';
+// import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinesses = async (req: Request, res: Response) => {
   const { name, description, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
@@ -135,19 +138,24 @@ export const createBusinesses = async (req: Request, res: Response) => {
 
     for (let i = 0; i < count; i++) {
       const city = cities[Math.floor(Math.random() * 5)];
+      const businessId = uuidv4();
 
       const businessData = {
+        id: businessId,
         name: 'Feest Ltd',
         description: 'Balanced context-sensitive adapter',
         category: {
+          id: uuidv4(),
           name: values[Math.floor(Math.random() * 21)],
         },
         location: {
+          id: uuidv4(),
           city: city.name,
           state: city.state,
           country: city.country,
         },
         postalCode: {
+          id: uuidv4(),
           code: city.postalCode,
         },
         address: '2137 Emmanuelle Inlet Apt. 679\nJovanstad, MT 11559',
@@ -155,9 +163,11 @@ export const createBusinesses = async (req: Request, res: Response) => {
         website: 'http://www.Jovani.biz/',
         reviews: 717,
         source: {
+          id: uuidv4(),
           sourceName: sValues[Math.floor(Math.random() * 3)],
         },
         phone: {
+          id: uuidv4(),
           countryCode: faker.location.countryCode(),
           areaCode: faker.phone.number().slice(0, 3),
           phoneNumber: faker.phone.number().split('(').join('').split(')').join('').split('-').join('').split(' ').join(''),
@@ -165,10 +175,12 @@ export const createBusinesses = async (req: Request, res: Response) => {
           notes: faker.lorem.sentence(),
         },
         rating: {
+          id: uuidv4(),
           ratingValue: faker.number.float({ min: 1, max: 5, precision: 1 }),
           description: faker.lorem.words(3),
         },
         timezone: {
+          id: uuidv4(),
           timezoneName: faker.location.timeZone(),
           utcOffset: faker.number.int({ min: -12, max: 12 }).toString(),
           dst: faker.datatype.boolean(),
@@ -177,19 +189,30 @@ export const createBusinesses = async (req: Request, res: Response) => {
           notes: faker.lorem.sentence(),
         },
         socialMedia: {
+          id: uuidv4(),
+          businessId: businessId,
           facebookProfile: faker.internet.url(),
           twitterProfile: faker.internet.url(),
           instagramProfile: faker.internet.url(),
           linkedInProfile: faker.internet.url(),
           youTubeProfile: faker.internet.url(),
         },
+        photos: Array.from({ length: faker.number.int({ min: 1, max: 5 }) }, () => ({
+          id: uuidv4(),
+          businessId: businessId,
+          photoUrl: faker.image.urlPicsumPhotos(),
+          description: faker.image.urlPlaceholder(),
+        })),
         operatingStatus: {
+          id: uuidv4(),
           operatingStatus: opValues[Math.floor(Math.random() * 3)],
         },
         openingHour: {
+          id: uuidv4(),
           time: casual.time('HH:mm'),
         },
         closingHour: {
+          id: uuidv4(),
           time: casual.time('HH:mm'),
         },
       };
@@ -327,6 +350,7 @@ async function createBulkBusinesses(businessData: any[]) {
     const sources: Partial<SourceAttributes>[] = [];
     const timezones: Partial<TimezoneAttributes>[] = [];
     const socialMedias: Partial<SocialMediaAttributes>[] = [];
+    const photos: Partial<BusinessPhotoAttributes>[][] = [];
     const openingHours: Partial<OpeningTimeAttributes>[] = [];
     const closingHours: Partial<ClosingTimeAttributes>[] = [];
     const businesses: BusinessAttributes[] = [];
@@ -341,49 +365,46 @@ async function createBulkBusinesses(businessData: any[]) {
       sources.push(data.source);
       timezones.push(data.timezone);
       socialMedias.push(data.socialMedia);
+      photos.push(data.photos);
       openingHours.push(data.openingHour);
       closingHours.push(data.closingHour);
 
-      return data;
-    });
-
-    const businessCategoryResponse = await BusinessCategory.bulkCreate(categories, { transaction });
-    const businessLocationResponse = await Location.bulkCreate(locations, { transaction });
-    const businessPostalCodeResponse = await PostalCode.bulkCreate(postalCodes, { transaction });
-    const businessOperatingStatusResponse = await BusinessOperatingStatus.bulkCreate(operatingStatuses, { transaction });
-    const BusinessPhoneResponse = await BusinessPhone.bulkCreate(phones, { transaction });
-    const businessRatingResponse = await BusinessRating.bulkCreate(ratings, { transaction });
-    const businessSourceResponse = await BusinessSource.bulkCreate(sources, { transaction });
-    const timezoneResponse = await Timezone.bulkCreate(timezones, { transaction });
-    const socialMediaResponse = await BusinessSocialMedia.bulkCreate(socialMedias, { transaction });
-    const businessOpeningHourResponse = await BusinessOpeningHour.bulkCreate(openingHours, { transaction });
-    const businessClosingHourResponse = await BusinessClosingHour.bulkCreate(closingHours, { transaction });
-
-    businessData.map(async (data: number, index: number) => {
-      const businessData = {
+      businesses.push({
         name: 'Feest Ltd',
         description: 'Balanced context-sensitive adapter',
-        categoryId: businessCategoryResponse[index].toJSON().id,
-        locationId: businessLocationResponse[index].toJSON().id,
-        postalCodeId: businessPostalCodeResponse[index].toJSON().id,
+        categoryId: data.category.id,
+        locationId: data.location.id,
+        postalCodeId: data.postalCode.id,
         address: '2137 Emmanuelle Inlet Apt. 679\nJovanstad, MT 11559',
         email: 'Destin_Heidenreich@hotmail.com',
         website: 'http://www.Jovani.biz/',
         reviews: 717,
-        sourceId: businessSourceResponse[index].toJSON().id,
-        phoneId: BusinessPhoneResponse[index].toJSON().id,
-        ratingId: businessRatingResponse[index].toJSON().id,
-        timezoneId: timezoneResponse[index].toJSON().id,
-        socialMediaId: socialMediaResponse[index].toJSON().id,
-        operatingStatusId: businessOperatingStatusResponse[index].toJSON().id,
-        openingHourId: businessOpeningHourResponse[index].toJSON().id,
-        closingHourId: businessClosingHourResponse[index].toJSON().id,
-      };
-      businesses.push(businessData);
-      return businesses;
+        sourceId: data.source.id,
+        phoneId: data.phone.id,
+        ratingId: data.rating.id,
+        timezoneId: data.timezone.id,
+        operatingStatusId: data.operatingStatus.id,
+        openingHourId: data.openingHour.id,
+        closingHourId: data.closingHour.id,
+      });
     });
 
+    // console.log('socialMedias before+++++++++++++++++++++++++++++++++++++++++++: ', categories);
+
+    await BusinessCategory.bulkCreate(categories, { transaction });
+    await Location.bulkCreate(locations, { transaction });
+    await PostalCode.bulkCreate(postalCodes, { transaction });
+    await BusinessOperatingStatus.bulkCreate(operatingStatuses, { transaction });
+    await BusinessPhone.bulkCreate(phones, { transaction });
+    await BusinessRating.bulkCreate(ratings, { transaction });
+    await BusinessSource.bulkCreate(sources, { transaction });
+    await Timezone.bulkCreate(timezones, { transaction });
+    await BusinessOpeningHour.bulkCreate(openingHours, { transaction });
+    await BusinessClosingHour.bulkCreate(closingHours, { transaction });
+
     const uk = await Business.bulkCreate(businesses, { transaction });
+    await BusinessSocialMedia.bulkCreate(socialMedias, { transaction });
+    // await BusinessPhoto.bulkCreate(photos.flat(), { transaction });
 
     await transaction.commit().then(() => {
       return uk;
