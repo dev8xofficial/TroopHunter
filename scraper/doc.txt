@@ -1,0 +1,93 @@
+# Software Requirements and Specifications (SRS) Document
+## 1. Introduction
+### 1.1 Purpose
+The purpose of this document is to provide a detailed description of the requirements and specifications for the development of the "Business Scraper" software. The software is intended to scrape data for businesses from Google Maps based on user-provided queries.
+
+### 1.2 Scope
+The "Business Scraper" software will automate the process of searching for businesses on Google Maps, scrolling through the search results, and extracting relevant data for each business. The extracted data will be saved in a CSV file for further analysis and use.
+
+### 1.3 Document Conventions
+- Any capitalized terms in this document refer to specific features or components of the software.
+- All requirements are stated in concise, clear language.
+
+### 1.4 Intended Audience
+The intended audience for this document includes the development team, stakeholders, and any individuals involved in the development, testing, and deployment of the "Business Scraper" software.
+
+### 1.5 References
+- Google Maps: https://maps.google.com
+
+## 2. Overall Description
+### 2.1 Product Perspective
+The "Business Scraper" software will be a standalone application developed using Python. It will interact with the Google Maps website to search for businesses, extract data, and save it to a CSV file.
+
+### 2.2 Product Features
+The main features of the "Business Scraper" software include:
+- Ability to accept a list of queries as input for searching businesses on Google Maps.
+- Automation of scrolling to load more businesses dynamically.
+- Extraction of relevant data for each business, such as name, address, phone number, website, and rating.
+- Saving the extracted data into a CSV file for further analysis and use.
+
+### 2.3 User Classes and Characteristics
+The primary user of the "Business Scraper" software is a data analyst or researcher who requires business data for analysis purposes. The user should have basic knowledge of operating a computer and running Python scripts.
+
+### 2.4 Operating Environment
+The "Business Scraper" software will operate on the following environment:
+- Operating System: Windows, macOS, or Linux
+- Python version: [Specify the required Python version]
+- Supported Browsers: Chrome or Firefox
+
+## 3. Functional Requirements
+### 3.1 User Input
+The "Business Scraper" software shall allow users to provide the following inputs:
+- A list of queries to search for businesses on Google Maps.
+
+### 3.2 Search and Scraping
+The "Business Scraper" software shall perform the following actions:
+- Navigate to Google Maps.
+- Search for each query provided by the user.
+- Scroll through the search results dynamically to load more businesses.
+- Extract relevant data for each business, such as name, address, phone number, website, and rating.
+
+### 3.3 Data Storage
+The "Business Scraper" software shall:
+- Store the extracted business data in memory or a temporary data structure during the scraping process.
+- Save the extracted data into a CSV file, including headers for each field, upon completion of the scraping process.
+
+### 3.4 Error Handling
+The "Business Scraper" software shall handle errors and exceptions gracefully, including:
+- Network errors during web scraping.
+- Element not found errors when locating specific elements on the Google Maps website.
+- Use try-except blocks to catch and handle exceptions during the scraping process.
+- Implement appropriate logging to track errors and identify any issues.
+
+### 3.5 Delay and Throttling
+The "Business Scraper" software shall introduce delays between requests to avoid overloading the website's server and minimize the chances of being detected as a bot. Throttling techniques shall be implemented
+
+ to maintain a reasonable pace and mimic human-like behavior.
+
+### 3.6 Utilize Selectors Effectively
+The "Business Scraper" software shall understand the structure of the website's HTML and use effective selectors, such as CSS selectors or XPath expressions, to locate and extract the desired data. Specific elements containing the business information shall be identified using selectors.
+
+## 4. Non-functional Requirements
+### 4.1 Performance
+The "Business Scraper" software shall be capable of handling a large number of queries and scraping a substantial amount of business data efficiently.
+
+### 4.2 Reliability
+The "Business Scraper" software shall be robust and handle unexpected scenarios, such as temporary network failures or intermittent website errors, without crashing or losing data.
+
+### 4.3 Security
+The "Business Scraper" software shall not perform any unauthorized activities or access any sensitive user information.
+
+### 4.4 Usability
+The "Business Scraper" software shall have a user-friendly command-line interface that allows users to easily provide input and view the progress and results of the scraping process.
+
+## 5. Constraints
+- The "Business Scraper" software shall comply with the terms of service and usage policies of Google Maps.
+- The software shall not overwhelm the Google Maps server with excessive requests, and appropriate delays shall be implemented between requests.
+
+## 6. Future Enhancements
+- Implement support for additional search parameters, such as location filters or specific categories.
+- Enhance error handling to cover a broader range of exceptions and provide more informative error messages.
+- Provide the ability to scrape additional data fields or customize the fields to be extracted.
+
+This completes the updated Software Requirements and Specifications (SRS) document for the "Business Scraper" project. The document covers the key aspects of the software, including its purpose, features, requirements, and constraints. Feel free to modify or add to this document based on your specific project needs.
