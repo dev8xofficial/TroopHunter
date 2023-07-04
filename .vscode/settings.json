@@ -4,5 +4,9 @@
     "**/public": true,
     "**/fonts": true,
     "**/images": true
-  }
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "black"
 }
