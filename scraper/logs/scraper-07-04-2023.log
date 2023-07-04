@@ -399,3 +399,104 @@
 2023-07-04 13:57:32,687 - INFO - Monday: 11 am–1 am
 2023-07-04 13:57:34,719 - INFO - ~~~~~~ Scrolling ~~~~~~
 2023-07-04 13:57:34,812 - INFO - ====== New Business ======
+2023-07-04 21:26:23,378 - INFO - Scraping process started.
+2023-07-04 21:26:23,379 - INFO - Initiating chrome web driver.
+2023-07-04 21:26:23,379 - INFO - ====== WebDriver manager ======
+2023-07-04 21:26:27,139 - INFO - Driver [/Users/abdulrehman/.wdm/drivers/chromedriver/mac_arm64/114.0.5735.90/chromedriver] found in cache
+2023-07-04 21:26:28,720 - INFO - Searching for query: restaurants
+2023-07-04 21:26:31,918 - INFO - Scrolling into feed.
+2023-07-04 21:26:32,028 - INFO - ====== New Business ======
+2023-07-04 21:26:33,732 - INFO - Title: DINE FINE
+2023-07-04 21:26:33,747 - INFO - Rating: 4.9(10)
+2023-07-04 21:26:33,890 - INFO - Place Info: House No 8، Street 2 Pir Makki Rd, Data Gunj Buksh Town, Lahore, Punjab, Pakistan
+2023-07-04 21:26:33,891 - INFO - Place Info: House No 8، Street 2 Pir Makki Rd، داتا گنج بخش ٹاؤن، لاہور, Lahore, پنجاب
+2023-07-04 21:26:33,892 - INFO - Phone Info: +92 300 4442032
+2023-07-04 21:26:33,893 - INFO - Plus Code Info: H8J4+X2 Lahore, Pakistan
+2023-07-04 21:26:33,894 - INFO - Send To Mobile Info: Send to your phone
+2023-07-04 21:26:33,895 - INFO - Other Info: Send to your phone
+2023-07-04 21:26:33,911 - INFO - Shipping Info: 
+2023-07-04 21:26:33,911 - INFO - Tuesday: Open 24 hours
+2023-07-04 21:26:33,912 - INFO - Wednesday: Open 24 hours
+2023-07-04 21:26:33,912 - INFO - Thursday: Open 24 hours
+2023-07-04 21:26:33,912 - INFO - Friday: Open 24 hours
+2023-07-04 21:26:33,912 - INFO - Saturday: Open 24 hours
+2023-07-04 21:26:33,912 - INFO - Sunday: Open 24 hours
+2023-07-04 21:26:33,913 - INFO - Monday: Open 24 hours
+2023-07-04 21:26:36,004 - INFO - ~~~~~~ Scrolling ~~~~~~
+2023-07-04 21:26:36,099 - INFO - ====== New Business ======
+2023-07-04 21:26:37,137 - INFO - Title: Andaaz Restaurant
+2023-07-04 21:26:37,148 - INFO - Rating: 4.1(1,545)
+2023-07-04 21:26:37,315 - INFO - Place Info: 2189 A Fort Rd, Shahi Mohallah Walled City of Lahore, Lahore, Punjab
+2023-07-04 21:26:37,317 - INFO - Place Info: 2189 A Fort Rd, ہیرا منڈی Shahi Mohallah اندرون لاہور، لاہور, ضلع لاہور, پنجاب
+2023-07-04 21:26:37,317 - INFO - Other Info: 2189 A Fort Rd, ہیرا منڈی Shahi Mohallah اندرون لاہور، لاہور, ضلع لاہور, پنجاب
+2023-07-04 21:26:37,318 - INFO - Website Info: andaazrestaurant.com
+2023-07-04 21:26:37,320 - INFO - Phone Info: 0300 0263229
+2023-07-04 21:26:37,320 - INFO - Send To Mobile Info: Send to your phone
+2023-07-04 21:26:37,321 - INFO - Place Info: Identifies as women-owned
+2023-07-04 21:26:37,332 - INFO - Shipping Info: 
+2023-07-04 21:26:37,332 - INFO - Tuesday: 5–11 pm
+2023-07-04 21:26:37,332 - INFO - Wednesday: 5–11 pm
+2023-07-04 21:26:37,332 - INFO - Thursday: 5–11 pm
+2023-07-04 21:26:37,332 - INFO - Friday: 5–11 pm
+2023-07-04 21:26:37,333 - INFO - Saturday: 5–11 pm
+2023-07-04 21:26:37,333 - INFO - Sunday: 5 pm–11 am
+2023-07-04 21:26:37,333 - INFO - Monday: Closed
+2023-07-04 21:26:39,377 - INFO - ~~~~~~ Scrolling ~~~~~~
+2023-07-04 21:26:39,442 - INFO - ====== New Business ======
+2023-07-04 21:26:40,454 - INFO - Title: Cooco's Den
+2023-07-04 21:26:40,465 - INFO - Rating: 3.9(2,641)
+2023-07-04 21:26:40,559 - INFO - Place Info: Roshnai Gate, 2168/A Food St Fort Rd, Shahi Mohallah Walled City of Lahore, Lahore, Punjab
+2023-07-04 21:26:40,560 - INFO - Place Info: Roshnai Gate, 2168/A Food St Fort Rd, ہیرا منڈی Shahi Mohallah اندرون لاہور، لاہور, ضلع لاہور, پنجاب
+2023-07-04 21:26:40,561 - INFO - Other Info: Roshnai Gate, 2168/A Food St Fort Rd, ہیرا منڈی Shahi Mohallah اندرون لاہور، لاہور, ضلع لاہور, پنجاب
+2023-07-04 21:26:40,561 - INFO - Shipping Info: Place an order|crispy.pk
+2023-07-04 21:26:40,562 - INFO - Website Info: crispy.pk
+2023-07-04 21:26:40,563 - INFO - Phone Info: 0300 9472407
+2023-07-04 21:26:40,564 - INFO - Send To Mobile Info: Send to your phone
+2023-07-04 21:26:40,575 - INFO - Shipping Info: 
+2023-07-04 21:26:40,575 - INFO - Tuesday: 12 pm–1 am
+2023-07-04 21:26:40,575 - INFO - Wednesday: 12 pm–1 am
+2023-07-04 21:26:40,575 - INFO - Thursday: 12 pm–1 am
+2023-07-04 21:26:40,575 - INFO - Friday: 12 pm–1 am
+2023-07-04 21:26:40,575 - INFO - Saturday: 12 pm–1 am
+2023-07-04 21:26:40,575 - INFO - Sunday: 12 pm–1 am
+2023-07-04 21:26:40,576 - INFO - Monday: 12 pm–1 am
+2023-07-04 21:26:42,614 - INFO - ~~~~~~ Scrolling ~~~~~~
+2023-07-04 21:26:42,714 - INFO - ====== New Business ======
+2023-07-04 21:26:43,773 - INFO - Title: Haveli Restaurant
+2023-07-04 21:26:43,794 - INFO - Rating: 4.2(11,901)
+2023-07-04 21:26:43,905 - INFO - Place Info: 2170-A Food St Fort Rd, opposite Badshahi Mosque, Shahi Mohallah Walled City of Lahore, Lahore, Punjab
+2023-07-04 21:26:43,906 - INFO - Place Info: 2170-A Food St Fort Rd, opposite Badshahi Mosque, Shahi Mohallah اندرون لاہور، لاہور, ضلع لاہور, پنجاب
+2023-07-04 21:26:43,908 - INFO - Other Info: 2170-A Food St Fort Rd, opposite Badshahi Mosque, Shahi Mohallah اندرون لاہور، لاہور, ضلع لاہور, پنجاب
+2023-07-04 21:26:43,913 - INFO - Other Info: 2170-A Food St Fort Rd, opposite Badshahi Mosque, Shahi Mohallah اندرون لاہور، لاہور, ضلع لاہور, پنجاب
+2023-07-04 21:26:43,917 - INFO - Website Info: haveli.com.pk
+2023-07-04 21:26:43,918 - INFO - Phone Info: 0300 8414899
+2023-07-04 21:26:43,919 - INFO - Plus Code Info: H8P6+PG Lahore, Pakistan
+2023-07-04 21:26:43,920 - INFO - Send To Mobile Info: Send to your phone
+2023-07-04 21:26:43,933 - INFO - Shipping Info: 
+2023-07-04 21:26:43,933 - INFO - Tuesday: 12 pm–12:30 am
+2023-07-04 21:26:43,934 - INFO - Wednesday: 12 pm–12:30 am
+2023-07-04 21:26:43,934 - INFO - Thursday: 12 pm–12:30 am
+2023-07-04 21:26:43,934 - INFO - Friday: 12 pm–12:30 am
+2023-07-04 21:26:43,934 - INFO - Saturday: 12 pm–1 am
+2023-07-04 21:26:43,934 - INFO - Sunday: 12 pm–12:30 am
+2023-07-04 21:26:43,934 - INFO - Monday: 12 pm–12:30 am
+2023-07-04 21:26:45,977 - INFO - ~~~~~~ Scrolling ~~~~~~
+2023-07-04 21:26:46,073 - INFO - ====== New Business ======
+2023-07-04 21:26:47,197 - INFO - Title: Bar-e-Sagheer Restaurant
+2023-07-04 21:26:47,216 - INFO - Rating: 4.0(51)
+2023-07-04 21:26:47,330 - INFO - Place Info: Near Ravi toll tax shahdrah, Lahore, 54000
+2023-07-04 21:26:47,331 - INFO - Place Info: Near Ravi toll tax shahdrah, لاہور, Lahore, 54000
+2023-07-04 21:26:47,332 - INFO - Shipping Info: Place an order|foodpanda.pk
+2023-07-04 21:26:47,334 - INFO - Phone Info: 0323 5210020
+2023-07-04 21:26:47,335 - INFO - Plus Code Info: J75V+X9 Lahore, Pakistan
+2023-07-04 21:26:47,336 - INFO - Send To Mobile Info: Send to your phone
+2023-07-04 21:26:47,351 - INFO - Shipping Info: 
+2023-07-04 21:26:47,351 - INFO - Tuesday: 5 pm–12 am
+2023-07-04 21:26:47,351 - INFO - Wednesday: 5 pm–12 am
+2023-07-04 21:26:47,351 - INFO - Thursday: 5 pm–12 am
+2023-07-04 21:26:47,352 - INFO - Friday: 5 pm–12 am
+2023-07-04 21:26:47,352 - INFO - Saturday: 5 pm–12 am
+2023-07-04 21:26:47,352 - INFO - Sunday: 5 pm–12 am
+2023-07-04 21:26:47,352 - INFO - Monday: 5 pm–12 am
+2023-07-04 21:26:49,415 - INFO - ~~~~~~ Scrolling ~~~~~~
+2023-07-04 21:26:49,509 - INFO - ====== New Business ======

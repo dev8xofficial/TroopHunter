@@ -25,12 +25,10 @@ def main():
     # Create an instance of the BusinessScraper
     scraper = BusinessScraper()
 
-    # Scrape data for each query
     for query in QUERIES:
         scraper.search(query)
         scraper.scroll_and_extract_data()
 
-    # Save the extracted data to a CSV file
     scraper.save_to_csv(output_file=OUTPUT_FILE)
 
 
@@ -40,4 +38,4 @@ if __name__ == "__main__":
         main()
         logging.info("Scraping process completed.")
     except Exception as e:
-        logging.exception("An error occurred during scraper execution: %s", e)
+        logging.exception("An unhandled error occurred during scraper execution: %s", e)

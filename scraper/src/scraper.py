@@ -42,22 +42,11 @@ root_logger.addHandler(console_handler)
 class BusinessScraper:
     def __init__(self):
         chrome_options = Options()
-
-        # Enable headless mode
         # chrome_options.add_argument("--headless")
-
-        # Configure network throttling
         chrome_options.add_argument("--disable-network")
         chrome_options.add_argument("--force-effective-connection-type=slow-3g")
-
-        # Set window size to full width
         chrome_options.add_argument("--start-maximized")
-
-        # Enable inspect mode and position DevTools at the bottom
         chrome_options.add_argument("--auto-open-devtools-for-tabs")
-
-        # Disable image loading
-        # chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 
         try:
             logging.info("Initiating chrome web driver.")
@@ -70,16 +59,14 @@ class BusinessScraper:
         self.driver.get(f"{BASE_URL}/{urllib.parse.quote_plus(query)}")
 
     def scroll_and_extract_data(self):
-        logging.info("Loading feed.")
+        logging.info("Scrolling into feed.")
         scrollable_div = self.driver.find_element(By.XPATH, "//div[@role='feed']")
-        loading_div = self.driver.find_elements(By.XPATH, "//div[@class='qjESne veYFef']")
         counter = 0
         short_wait = 2
         long_wait = 60
 
         while True:
             feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
-            # business_anchor_tags = self.driver.find_elements(By.XPATH, ".//div[@role='article']//a[@class='hfpxzc']")
             business_anchor_tags = scrollable_div.find_elements(By.XPATH, "./child::*")
             current_business_anchor = business_anchor_tags[counter]
             current_business_anchor_is_article_or_not = None
@@ -89,20 +76,16 @@ class BusinessScraper:
                 if current_business_anchor:
                     current_business_anchor_is_article_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@role='article']//a[@class='hfpxzc']")
             except NoSuchElementException:
-                # Handle the timeout exception here
                 pass
             except StaleElementReferenceException:
-                # Handle the timeout exception here
                 pass
 
             try:
                 if current_business_anchor:
                     current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
             except NoSuchElementException:
-                # Handle the timeout exception here
                 pass
             except StaleElementReferenceException:
-                # Handle the timeout exception here
                 pass
 
             if feed is None:
@@ -114,22 +97,18 @@ class BusinessScraper:
                 counter = counter + 1
                 continue
             if current_business_anchor_is_loader_or_not:
-                # wait = WebDriverWait(self.driver, long_wait)  # Adjust the timeout as needed
-                # wait.until(EC.invisibility_of_element_located((By.XPATH, "//div[@class='qjESne veYFef']")))
                 while True:
                     try:
                         business_anchor_tags = scrollable_div.find_elements(By.XPATH, "./child::*")
                         current_business_anchor = business_anchor_tags[counter]
                         current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
                     except NoSuchElementException:
-                        # Handle the timeout exception here
                         break
                     except StaleElementReferenceException:
-                        # Handle the timeout exception here
                         pass
 
                     if current_business_anchor_is_loader_or_not:
-                        wait = WebDriverWait(self.driver, 5)  # Adjust the timeout as needed
+                        wait = WebDriverWait(self.driver, 5)
                         try:
                             wait.until(EC.invisibility_of_element_located((By.XPATH, "//div[@class='qjESne veYFef']")))
                         except NoSuchElementException:
@@ -160,27 +139,24 @@ class BusinessScraper:
             ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
             counter = counter + 1
 
-            # Wait for the div element to appear on the view
-            wait = WebDriverWait(self.driver, long_wait)  # Wait for a maximum of 10 seconds
+            # Wait for the Heading element to appear on the view
+            wait = WebDriverWait(self.driver, long_wait)
             wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".tAiQdd")))
             wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".DUwDvf.fontHeadlineLarge")))
 
-            # Process the clicked anchor tag as needed
             soup = BeautifulSoup(self.driver.page_source, "html.parser")
 
-            # Extract text from the h1 element
+            # Heading
             h1_text = soup.find("h1", class_="DUwDvf fontHeadlineLarge").text
             logging.info(f"Title: {h1_text}")
 
-            # Extract text from the div element with class "F7nice"
+            # Rating
             rating_text = soup.find("div", class_="F7nice").text
             logging.info(f"Rating: {rating_text}")
 
-            # Extract text from the div element with class "RcCsl"
             merged_elements = self.driver.find_elements(By.CLASS_NAME, "RcCsl") + self.driver.find_elements(By.CLASS_NAME, "OqCZI")
             html_sources = [element.get_attribute("innerHTML") for element in merged_elements]
             soup_elements = [BeautifulSoup(html, "html.parser") for html in html_sources]
-            # business_quick_info = soup.find_all(class_="RcCsl") + soup.find_all(class_="OqCZI")
             for info in soup_elements:
                 img_with_place_src = info.find("img", {"src": lambda s: "place" in s})
                 img_with_schedule_src = info.find("img", {"src": lambda s: "schedule" in s})
@@ -197,12 +173,9 @@ class BusinessScraper:
                     tr_elements = soup.find_all("tr", class_="y0skZc")
                     logging.info("Shipping Info: ")
 
-                    # Iterate over each <tr> element
                     for tr in tr_elements:
-                        # Find the first and second <td> elements within the current <tr>
                         td_elements = tr.find_all("td")
 
-                        # Extract the text from the first and second <td> elements
                         if len(td_elements) >= 2:
                             first_td_text = td_elements[0].text.strip()
                             second_td_text = td_elements[1].text.strip()
@@ -228,56 +201,12 @@ class BusinessScraper:
             if has_scrolled:
                 close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
                 close_current_business_anchor.click()
-                time.sleep(short_wait)  # Adjust the timeout as needed
-                # logging.info(f"\nScrolling to {counter}...\n")
+                time.sleep(short_wait)
                 logging.info("~~~~~~ Scrolling ~~~~~~")
-            # else:
-            # locate_with(By.TAG_NAME, "input").above({By.ID: "password"})
-
-            # # Find the top-level parent div element of the anchor
-            # parent_div = current_business_anchor.find_element(By.XPATH, "./ancestor::div[1]").find_element(By.XPATH, "./ancestor::div[1]")
-
-            # # Find the next sibling div element of the parent
-            # next_sibling_div = parent_div.find_element(By.XPATH, "./following-sibling::div[1]").find_element(By.XPATH, "./following-sibling::div[1]")
-
-            # # Check if the next sibling div contains a div with class='qjESne veYFef'
-            # loading_is_next_div = next_sibling_div.find_elements(By.XPATH, ".//div[@class='qjESne veYFef']")
-
-            # # # Check if the div[role='loading'] element is visible on the screen
-            # # is_visible = self.driver.execute_script(
-            # #     """
-            # #     var rect = arguments[0].getBoundingClientRect();
-            # #     return (
-            # #         rect.top >= 0 &&
-            # #         rect.left >= 0 &&
-            # #         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            # #         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            # #     );
-            # # """,
-            # #     loading_div,
-            # # )
-
-            # if len(loading_is_next_div) > 0:
-            #     # Wait until the loading_div gets hidden
-            #     wait = WebDriverWait(self.driver, long_wait)  # Adjust the timeout as needed
-            #     try:
-            #         wait.until(EC.invisibility_of_element_located((By.XPATH, "//div[@class='qjESne veYFef']")))
-            #     except TimeoutException:
-            #         # Handle the timeout exception here
-            #         print("Loading div did not become invisible within the timeout period.")
-            #     print(f"\nScrolling to {counter}...\n", loading_is_next_div)
-            # else:
-            #     wait = WebDriverWait(self.driver, short_wait)  # Adjust the timeout as needed
-            #     print(f"\nScrolling to {counter}...\n", loading_is_next_div)
-
-        page_source = self.driver.page_source
-        soup = BeautifulSoup(page_source, "html.parser")
-        # Extract data from the soup object and store it in a suitable data structure
 
     def save_to_csv(self, data, output_file):
         with open(output_file, "w", newline="", encoding="utf-8") as csv_file:
             writer = csv.writer(csv_file)
-            # Write data to the CSV file
 
     def close(self):
         self.driver.quit()
