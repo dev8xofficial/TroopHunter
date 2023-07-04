@@ -123,7 +123,7 @@ class BusinessScraper:
                         current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
                     except NoSuchElementException:
                         # Handle the timeout exception here
-                        pass
+                        break
                     except StaleElementReferenceException:
                         # Handle the timeout exception here
                         pass
@@ -226,8 +226,8 @@ class BusinessScraper:
                     logging.info(f"Other Info: {tr_text}")
 
             if has_scrolled:
-                # close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
-                # close_current_business_anchor.click()
+                close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
+                close_current_business_anchor.click()
                 time.sleep(short_wait)  # Adjust the timeout as needed
                 # logging.info(f"\nScrolling to {counter}...\n")
                 logging.info("~~~~~~ Scrolling ~~~~~~")
