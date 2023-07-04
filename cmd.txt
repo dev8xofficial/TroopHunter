@@ -1,0 +1,3 @@
+# Run the following command to remove the already committed files/folders from the repository:
+
+git rm --cached -r logs __pycache__
