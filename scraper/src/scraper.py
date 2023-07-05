@@ -71,6 +71,7 @@ class BusinessScraper:
             current_business_anchor = business_anchor_tags[counter]
             current_business_anchor_is_article_or_not = None
             current_business_anchor_is_loader_or_not = None
+            current_business_anchor_is_end_of_list_or_not = None
 
             try:
                 if current_business_anchor:
@@ -88,12 +89,20 @@ class BusinessScraper:
             except StaleElementReferenceException:
                 pass
 
+            try:
+                if current_business_anchor:
+                    current_business_anchor_is_end_of_list_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='PbZDve ']")
+            except NoSuchElementException:
+                pass
+            except StaleElementReferenceException:
+                pass
+
             if feed is None:
                 break
             elif len(business_anchor_tags) <= counter:
                 break
 
-            if not current_business_anchor_is_article_or_not and not current_business_anchor_is_loader_or_not:
+            if not current_business_anchor_is_article_or_not and not current_business_anchor_is_loader_or_not and not current_business_anchor_is_end_of_list_or_not:
                 counter = counter + 1
                 continue
             if current_business_anchor_is_loader_or_not:
@@ -120,6 +129,9 @@ class BusinessScraper:
                         break
                 counter = counter + 1
                 continue
+            if current_business_anchor_is_end_of_list_or_not:
+                counter = counter + 1
+                break
 
             current_business_anchor = current_business_anchor_is_article_or_not
             has_scrolled = self.driver.execute_script(

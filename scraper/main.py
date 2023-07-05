@@ -1,5 +1,5 @@
 from src.scraper import BusinessScraper
-from config import QUERIES, OUTPUT_FILE
+from config import CITIES, QUERIES, OUTPUT_FILE
 import logging
 import datetime
 
@@ -25,9 +25,10 @@ def main():
     # Create an instance of the BusinessScraper
     scraper = BusinessScraper()
 
-    for query in QUERIES:
-        scraper.search(query)
-        scraper.scroll_and_extract_data()
+    for city in CITIES:
+        for query in QUERIES:
+            scraper.search(f"{query} in {city}")
+            scraper.scroll_and_extract_data()
 
     scraper.save_to_csv(output_file=OUTPUT_FILE)
 
