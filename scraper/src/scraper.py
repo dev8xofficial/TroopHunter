@@ -17,26 +17,7 @@ from bs4 import BeautifulSoup
 import csv
 import urllib
 from config import BASE_URL
-
 import logging
-import datetime
-
-# Get the current date
-current_date = datetime.datetime.now().strftime("%m-%d-%Y")
-
-# Set up logging with the current date in the log file name
-log_file = f"scraper/logs/scraper-{current_date}.log"
-logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
-# Create a stream handler for console output
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.INFO)
-console_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-console_handler.setFormatter(console_formatter)
-
-# Add the stream handler to the root logger
-root_logger = logging.getLogger()
-root_logger.addHandler(console_handler)
 
 
 class BusinessScraper:

@@ -1,5 +1,6 @@
 from src.scraper import BusinessScraper
-from config import CITIES, QUERIES, OUTPUT_FILE
+from config import CITIES, OUTPUT_FILE
+from queries.chatgpt import QUERIES_CHATGPT
 import logging
 import datetime
 
@@ -26,7 +27,7 @@ def main():
     scraper = BusinessScraper()
 
     for city in CITIES:
-        for query in QUERIES:
+        for query in QUERIES_CHATGPT:
             scraper.search(f"{query} in {city}")
             scraper.scroll_and_extract_data()
 
