@@ -1,3 +1,5 @@
+import { GeoPoint } from './geoPoint';
+
 export interface BusinessAttributes {
   id?: string;
   name: string;
@@ -5,6 +7,7 @@ export interface BusinessAttributes {
   categoryId?: string;
   address?: string;
   locationId?: string;
+  geoPoint: GeoPointAttributes;
   postalCodeId?: string;
   phoneId?: string;
   email?: string;

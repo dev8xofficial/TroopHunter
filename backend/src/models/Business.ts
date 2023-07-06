@@ -22,6 +22,7 @@ class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public categoryId!: string;
   public address?: string;
   public locationId!: string;
+  public geoPoint!: { type: string; coordinates: number[] }; // Add the geometry attribute
   public postalCodeId!: string;
   public phoneId?: string;
   public email?: string;
@@ -67,6 +68,10 @@ Business.init(
     },
     locationId: {
       type: DataTypes.UUID,
+      allowNull: true,
+    },
+    geoPoint: {
+      type: DataTypes.GEOMETRY('POINT'), // Define the geometry attribute
       allowNull: true,
     },
     postalCodeId: {
@@ -121,6 +126,13 @@ Business.init(
   {
     sequelize,
     modelName: 'Business',
+    indexes: [
+      // Create a composite index for faster searching
+      {
+        unique: true,
+        fields: ['geoPoint', 'website'],
+      },
+    ],
   }
 );
 

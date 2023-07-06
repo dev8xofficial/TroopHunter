@@ -32,7 +32,7 @@ import BusinessClosingHour from '../models/BusinessClosingHour';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinesses = async (req: Request, res: Response) => {
-  const { name, description, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
+  const { name, description, categoryId, address, locationId, latitude, longitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
 
   const whereClause: { [key: string]: any } = {};
 
@@ -56,6 +56,12 @@ export const getBusinesses = async (req: Request, res: Response) => {
     whereClause.locationId = locationId;
   }
 
+  if (latitude && longitude) {
+    whereClause.geoPoint = {
+      [Op.eq]: sequelize.literal(`ST_MakePoint(${parseFloat(`${latitude}`)}, ${parseFloat(`${longitude}`)})`),
+    };
+  }
+
   if (postalCodeId) {
     whereClause.postalCodeId = postalCodeId;
   }
@@ -69,7 +75,9 @@ export const getBusinesses = async (req: Request, res: Response) => {
   }
 
   if (website) {
-    whereClause.website = website;
+    whereClause.website = {
+      [Op.eq]: website,
+    };
   }
 
   if (timezoneId) {
@@ -142,8 +150,8 @@ export const createBusinesses = async (req: Request, res: Response) => {
 
       const businessData = {
         id: businessId,
-        name: 'Feest Ltd',
-        description: 'Balanced context-sensitive adapter',
+        name: faker.company.name(),
+        description: faker.company.catchPhrase(),
         category: {
           id: uuidv4(),
           name: values[Math.floor(Math.random() * 21)],
@@ -154,14 +162,16 @@ export const createBusinesses = async (req: Request, res: Response) => {
           state: city.state,
           country: city.country,
         },
+        latitude: faker.location.latitude(),
+        longitude: faker.location.longitude(),
         postalCode: {
           id: uuidv4(),
           code: city.postalCode,
         },
-        address: '2137 Emmanuelle Inlet Apt. 679\nJovanstad, MT 11559',
-        email: 'Destin_Heidenreich@hotmail.com',
-        website: 'http://www.Jovani.biz/',
-        reviews: 717,
+        address: faker.location.streetAddress(),
+        email: faker.internet.email(),
+        website: faker.internet.url(),
+        reviews: faker.number.float({ min: 1, max: 5000 }),
         source: {
           id: uuidv4(),
           sourceName: sValues[Math.floor(Math.random() * 3)],
@@ -235,7 +245,8 @@ export const createBusinesses = async (req: Request, res: Response) => {
 
 export const createBusiness = async (req: Request, res: Response) => {
   try {
-    const { name, description, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const { name, description, categoryId, address, locationId, latitude, longitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const geoPoint = { type: 'Point', coordinates: [latitude, longitude] };
 
     const business = await Business.create({
       name,
@@ -243,6 +254,7 @@ export const createBusiness = async (req: Request, res: Response) => {
       categoryId,
       address,
       locationId,
+      geoPoint,
       postalCodeId,
       phoneId,
       email,
@@ -284,7 +296,8 @@ export const getBusiness = async (req: Request, res: Response) => {
 export const updateBusiness = async (req: Request, res: Response) => {
   try {
     const businessId = req.params.id;
-    const { name, description, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const { name, description, categoryId, address, locationId, latitude, longitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const geoPoint = { type: 'Point', coordinates: [latitude, longitude] };
 
     const business = await Business.findByPk(businessId);
 
@@ -294,6 +307,7 @@ export const updateBusiness = async (req: Request, res: Response) => {
       business.categoryId = categoryId;
       business.address = address;
       business.locationId = locationId;
+      business.geoPoint = geoPoint;
       business.postalCodeId = postalCodeId;
       business.phoneId = phoneId;
       business.email = email;
@@ -354,10 +368,12 @@ async function createBulkBusinesses(businessData: any[]) {
     const openingHours: Partial<OpeningTimeAttributes>[] = [];
     const closingHours: Partial<ClosingTimeAttributes>[] = [];
     const businesses: BusinessAttributes[] = [];
+    const geoPoints: Partial<any>[] = [];
 
     businessData.map(async (data: any) => {
       categories.push(data.category);
       locations.push(data.location);
+      geoPoints.push({ type: 'Point', coordinates: [data.latitude, data.longitude], website: data.website });
       postalCodes.push(data.postalCode);
       operatingStatuses.push(data.operatingStatus);
       phones.push(data.phone);
@@ -370,15 +386,16 @@ async function createBulkBusinesses(businessData: any[]) {
       closingHours.push(data.closingHour);
 
       businesses.push({
-        name: 'Feest Ltd',
-        description: 'Balanced context-sensitive adapter',
+        name: data.name,
+        description: data.description,
         categoryId: data.category.id,
         locationId: data.location.id,
+        geoPoint: { type: 'Point', coordinates: [data.latitude, data.longitude] },
         postalCodeId: data.postalCode.id,
-        address: '2137 Emmanuelle Inlet Apt. 679\nJovanstad, MT 11559',
-        email: 'Destin_Heidenreich@hotmail.com',
-        website: 'http://www.Jovani.biz/',
-        reviews: 717,
+        address: data.address,
+        email: data.email,
+        website: data.website,
+        reviews: data.reviews,
         sourceId: data.source.id,
         phoneId: data.phone.id,
         ratingId: data.rating.id,
@@ -388,8 +405,6 @@ async function createBulkBusinesses(businessData: any[]) {
         closingHourId: data.closingHour.id,
       });
     });
-
-    // console.log('socialMedias before+++++++++++++++++++++++++++++++++++++++++++: ', categories);
 
     await BusinessCategory.bulkCreate(categories, { transaction });
     await Location.bulkCreate(locations, { transaction });
@@ -406,9 +421,14 @@ async function createBulkBusinesses(businessData: any[]) {
     await BusinessSocialMedia.bulkCreate(socialMedias, { transaction });
     // await BusinessPhoto.bulkCreate(photos.flat(), { transaction });
 
-    await transaction.commit().then(() => {
-      return uk;
-    });
+    await transaction
+      .commit()
+      .then(() => {
+        return uk;
+      })
+      .then(() => {
+        console.log('geoPoints +++++++++++++++++++++++++++++++++++++++++++: ', geoPoints);
+      });
   } catch (error) {
     await transaction.rollback();
     throw error;

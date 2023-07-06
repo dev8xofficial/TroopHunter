@@ -30,6 +30,10 @@ module.exports = {
         type: Sequelize.UUID,
         allowNull: true,
       },
+      geoPoint: {
+        type: Sequelize.GEOMETRY('POINT'),
+        allowNull: false,
+      },
       postalCodeId: {
         type: Sequelize.UUID,
         allowNull: true,
@@ -88,6 +92,10 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('NOW()'),
       },
+    });
+
+    await queryInterface.addIndex('Businesses', ['website', 'geoPoint'], {
+      unique: true,
     });
 
     // Define foreign key constraints
@@ -225,6 +233,8 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
+    // Drop indexes
+    await queryInterface.removeIndex('Businesses', ['website', 'geoPoint']);
     // Drop foreign key constraints
     await queryInterface.removeConstraint('Businesses', 'fk_business_category');
     await queryInterface.removeConstraint('Businesses', 'fk_business_location');
