@@ -18,6 +18,7 @@ import csv
 import urllib
 from config import BASE_URL
 import logging
+import urllib.parse
 
 
 class BusinessScraper:
@@ -41,14 +42,20 @@ class BusinessScraper:
 
     def scroll_and_extract_data(self):
         logging.info("Scrolling into feed.")
-        scrollable_div = self.driver.find_element(By.XPATH, "//div[@role='feed']")
         counter = 0
         short_wait = 2
+        medium_wait = 10
         long_wait = 60
 
-        while True:
+        try:
             feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
-            business_anchor_tags = scrollable_div.find_elements(By.XPATH, "./child::*")
+        except NoSuchElementException:
+            return
+        except StaleElementReferenceException:
+            return
+
+        while True:
+            business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
             current_business_anchor = business_anchor_tags[counter]
             current_business_anchor_is_article_or_not = None
             current_business_anchor_is_loader_or_not = None
@@ -89,7 +96,7 @@ class BusinessScraper:
             if current_business_anchor_is_loader_or_not:
                 while True:
                     try:
-                        business_anchor_tags = scrollable_div.find_elements(By.XPATH, "./child::*")
+                        business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
                         current_business_anchor = business_anchor_tags[counter]
                         current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
                     except NoSuchElementException:
@@ -112,6 +119,9 @@ class BusinessScraper:
                 continue
             if current_business_anchor_is_end_of_list_or_not:
                 counter = counter + 1
+                break
+
+            if counter >= 5:
                 break
 
             current_business_anchor = current_business_anchor_is_article_or_not
@@ -143,9 +153,19 @@ class BusinessScraper:
             h1_text = soup.find("h1", class_="DUwDvf fontHeadlineLarge").text
             logging.info(f"Title: {h1_text}")
 
+            # Wait until the URL contains the expected business name
+            wait = WebDriverWait(self.driver, medium_wait)  # Adjust the timeout as needed
+            wait.until(EC.url_contains(h1_text.split(" ")[0]))
+
             # Rating
             rating_text = soup.find("div", class_="F7nice").text
             logging.info(f"Rating: {rating_text}")
+
+            # Extract latitude and longitude from the URL
+            lat_lon = self.driver.current_url.split("/")[6].split("@")[1].split(",")[:2]
+            latitude = float(lat_lon[0])
+            longitude = float(lat_lon[1])
+            logging.info(f"Latitude & Longitude: {latitude}, {longitude}")
 
             merged_elements = self.driver.find_elements(By.CLASS_NAME, "RcCsl") + self.driver.find_elements(By.CLASS_NAME, "OqCZI")
             html_sources = [element.get_attribute("innerHTML") for element in merged_elements]
