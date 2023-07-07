@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import casual from 'casual';
 import { faker } from '@faker-js/faker';
-import { Op } from 'sequelize';
+import { Op, Sequelize } from 'sequelize';
 import { v4 as uuidv4 } from 'uuid';
 import sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
@@ -29,10 +29,11 @@ import BusinessRating from '../models/BusinessRating';
 import BusinessSource from '../models/BusinessSource';
 import BusinessOpeningHour from '../models/BusinessOpeningHour';
 import BusinessClosingHour from '../models/BusinessClosingHour';
+import { Point } from 'geojson';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinesses = async (req: Request, res: Response) => {
-  const { name, description, categoryId, address, locationId, latitude, longitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
+  const { name, description, categoryId, address, locationId, latitude, longitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
 
   const whereClause: { [key: string]: any } = {};
 
@@ -56,10 +57,14 @@ export const getBusinesses = async (req: Request, res: Response) => {
     whereClause.locationId = locationId;
   }
 
-  if (latitude && longitude) {
-    whereClause.geoPoint = {
-      [Op.eq]: sequelize.literal(`ST_MakePoint(${parseFloat(`${latitude}`)}, ${parseFloat(`${longitude}`)})`),
+  if (latitude && longitude && range) {
+    const point: Point = {
+      type: 'Point',
+      coordinates: [parseFloat(longitude as string), parseFloat(latitude as string)],
     };
+
+    whereClause.geoPoint = sequelize.literal(`ST_DWithin("Business"."geoPoint", ST_SetSRID(ST_MakePoint(${point.coordinates[0]}, ${point.coordinates[1]}), 4326), ${range})`);
+    // console.log('geoPoint: ', sequelize.literal(`ST_MakePoint(${parseFloat(`${latitude}`)}, ${parseFloat(`${longitude}`)})`));
   }
 
   if (postalCodeId) {
@@ -246,7 +251,7 @@ export const createBusinesses = async (req: Request, res: Response) => {
 export const createBusiness = async (req: Request, res: Response) => {
   try {
     const { name, description, categoryId, address, locationId, latitude, longitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
-    const geoPoint = { type: 'Point', coordinates: [latitude, longitude] };
+    const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
     const business = await Business.create({
       name,
@@ -297,7 +302,7 @@ export const updateBusiness = async (req: Request, res: Response) => {
   try {
     const businessId = req.params.id;
     const { name, description, categoryId, address, locationId, latitude, longitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
-    const geoPoint = { type: 'Point', coordinates: [latitude, longitude] };
+    const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
     const business = await Business.findByPk(businessId);
 
@@ -373,7 +378,7 @@ async function createBulkBusinesses(businessData: any[]) {
     businessData.map(async (data: any) => {
       categories.push(data.category);
       locations.push(data.location);
-      geoPoints.push({ type: 'Point', coordinates: [data.latitude, data.longitude], website: data.website });
+      geoPoints.push({ type: 'Point', coordinates: [data.longitude, data.latitude], website: data.website });
       postalCodes.push(data.postalCode);
       operatingStatuses.push(data.operatingStatus);
       phones.push(data.phone);
@@ -390,7 +395,7 @@ async function createBulkBusinesses(businessData: any[]) {
         description: data.description,
         categoryId: data.category.id,
         locationId: data.location.id,
-        geoPoint: { type: 'Point', coordinates: [data.latitude, data.longitude] },
+        geoPoint: { type: 'Point', coordinates: [data.longitude, data.latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } },
         postalCodeId: data.postalCode.id,
         address: data.address,
         email: data.email,

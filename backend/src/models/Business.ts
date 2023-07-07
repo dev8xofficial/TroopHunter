@@ -71,7 +71,7 @@ Business.init(
       allowNull: true,
     },
     geoPoint: {
-      type: DataTypes.GEOMETRY('POINT'), // Define the geometry attribute
+      type: DataTypes.GEOMETRY('POINT', 4326), // Define the geometry attribute
       allowNull: true,
     },
     postalCodeId: {
