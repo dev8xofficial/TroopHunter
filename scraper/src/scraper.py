@@ -170,7 +170,7 @@ class BusinessScraper:
 
             # ======================== BACKEND ======================== #
 
-            is_business_existence = check_business_existence(-148.4558, 75.774, 0)
+            is_business_existence = check_business_existence(latitude, longitude, 0)
             logging.info(f"Check Business Existence: {is_business_existence}")
 
             # ======================== BACKEND ======================== #

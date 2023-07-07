@@ -28,8 +28,11 @@ def check_business_existence(longitude, latitude, range):
 
         # Check the response status code
         if response.status_code == 200:
-            # Request successful
-            return True
+            if response.json()["totalRecords"] > 0:
+                # Request successful
+                return True
+            else:
+                return False
         else:
             # Request failed
             return False
