@@ -3,6 +3,10 @@ from config import CITIES, OUTPUT_FILE
 from queries.chatgpt import QUERIES_CHATGPT
 import logging
 import datetime
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Get the current date
 current_date = datetime.datetime.now().strftime("%m-%d-%Y")
