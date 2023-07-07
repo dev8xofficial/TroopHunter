@@ -7,6 +7,8 @@ export interface BusinessAttributes {
   categoryId?: string;
   address?: string;
   locationId?: string;
+  longitude: number;
+  latitude: number;
   geoPoint: GeoPointAttributes;
   postalCodeId?: string;
   phoneId?: string;

@@ -22,7 +22,9 @@ class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public categoryId!: string;
   public address?: string;
   public locationId!: string;
-  public geoPoint!: { type: string; coordinates: number[] }; // Add the geometry attribute
+  public geoPoint!: { type: string; coordinates: number[] };
+  public longitude!: number;
+  public latitude!: number;
   public postalCodeId!: string;
   public phoneId?: string;
   public email?: string;
@@ -72,6 +74,14 @@ Business.init(
     },
     geoPoint: {
       type: DataTypes.GEOMETRY('POINT', 4326), // Define the geometry attribute
+      allowNull: true,
+    },
+    longitude: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
+    },
+    latitude: {
+      type: DataTypes.DOUBLE,
       allowNull: true,
     },
     postalCodeId: {

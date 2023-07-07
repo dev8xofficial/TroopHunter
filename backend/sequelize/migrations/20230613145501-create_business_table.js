@@ -34,6 +34,14 @@ module.exports = {
         type: Sequelize.GEOMETRY('POINT', 4326),
         allowNull: false,
       },
+      longitude: {
+        type: Sequelize.DOUBLE,
+        allowNull: false,
+      },
+      latitude: {
+        type: Sequelize.DOUBLE,
+        allowNull: false,
+      },
       postalCodeId: {
         type: Sequelize.UUID,
         allowNull: true,

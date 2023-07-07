@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import casual from 'casual';
 import { faker } from '@faker-js/faker';
-import { Op, Sequelize } from 'sequelize';
+import { Op } from 'sequelize';
 import { v4 as uuidv4 } from 'uuid';
-import sequelize from '../config/database';
+import Sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
 import { BusinessCategoryAttributes } from '../types/businessCategory';
 import { LocationAttributes } from '../types/location';
@@ -33,7 +33,7 @@ import { Point } from 'geojson';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinesses = async (req: Request, res: Response) => {
-  const { name, description, categoryId, address, locationId, latitude, longitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
+  const { name, description, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
 
   const whereClause: { [key: string]: any } = {};
 
@@ -63,8 +63,9 @@ export const getBusinesses = async (req: Request, res: Response) => {
       coordinates: [parseFloat(longitude as string), parseFloat(latitude as string)],
     };
 
-    whereClause.geoPoint = sequelize.literal(`ST_DWithin("Business"."geoPoint", ST_SetSRID(ST_MakePoint(${point.coordinates[0]}, ${point.coordinates[1]}), 4326), ${range})`);
-    // console.log('geoPoint: ', sequelize.literal(`ST_MakePoint(${parseFloat(`${latitude}`)}, ${parseFloat(`${longitude}`)})`));
+    whereClause.geoPoint = Sequelize.literal(`ST_DWithin("Business"."geoPoint", ST_SetSRID(ST_MakePoint(${point.coordinates[0]}, ${point.coordinates[1]}), 4326), ${range})`);
+    whereClause.longitude = longitude;
+    whereClause.latitude = latitude;
   }
 
   if (postalCodeId) {
@@ -250,7 +251,7 @@ export const createBusinesses = async (req: Request, res: Response) => {
 
 export const createBusiness = async (req: Request, res: Response) => {
   try {
-    const { name, description, categoryId, address, locationId, latitude, longitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const { name, description, categoryId, address, locationId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
     const business = await Business.create({
@@ -260,6 +261,8 @@ export const createBusiness = async (req: Request, res: Response) => {
       address,
       locationId,
       geoPoint,
+      longitude,
+      latitude,
       postalCodeId,
       phoneId,
       email,
@@ -301,7 +304,7 @@ export const getBusiness = async (req: Request, res: Response) => {
 export const updateBusiness = async (req: Request, res: Response) => {
   try {
     const businessId = req.params.id;
-    const { name, description, categoryId, address, locationId, latitude, longitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const { name, description, categoryId, address, locationId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
     const business = await Business.findByPk(businessId);
@@ -312,6 +315,8 @@ export const updateBusiness = async (req: Request, res: Response) => {
       business.categoryId = categoryId;
       business.address = address;
       business.locationId = locationId;
+      business.longitude = longitude;
+      business.latitude = latitude;
       business.geoPoint = geoPoint;
       business.postalCodeId = postalCodeId;
       business.phoneId = phoneId;
@@ -357,7 +362,7 @@ export const deleteBusiness = async (req: Request, res: Response) => {
 };
 
 async function createBulkBusinesses(businessData: any[]) {
-  const transaction = await sequelize.transaction();
+  const transaction = await Sequelize.transaction();
 
   try {
     const categories: Partial<BusinessCategoryAttributes>[] = [];
@@ -373,12 +378,10 @@ async function createBulkBusinesses(businessData: any[]) {
     const openingHours: Partial<OpeningTimeAttributes>[] = [];
     const closingHours: Partial<ClosingTimeAttributes>[] = [];
     const businesses: BusinessAttributes[] = [];
-    const geoPoints: Partial<any>[] = [];
 
     businessData.map(async (data: any) => {
       categories.push(data.category);
       locations.push(data.location);
-      geoPoints.push({ type: 'Point', coordinates: [data.longitude, data.latitude], website: data.website });
       postalCodes.push(data.postalCode);
       operatingStatuses.push(data.operatingStatus);
       phones.push(data.phone);
@@ -396,6 +399,8 @@ async function createBulkBusinesses(businessData: any[]) {
         categoryId: data.category.id,
         locationId: data.location.id,
         geoPoint: { type: 'Point', coordinates: [data.longitude, data.latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } },
+        longitude: data.longitude,
+        latitude: data.latitude,
         postalCodeId: data.postalCode.id,
         address: data.address,
         email: data.email,
@@ -426,14 +431,9 @@ async function createBulkBusinesses(businessData: any[]) {
     await BusinessSocialMedia.bulkCreate(socialMedias, { transaction });
     // await BusinessPhoto.bulkCreate(photos.flat(), { transaction });
 
-    await transaction
-      .commit()
-      .then(() => {
-        return uk;
-      })
-      .then(() => {
-        console.log('geoPoints +++++++++++++++++++++++++++++++++++++++++++: ', geoPoints);
-      });
+    await transaction.commit().then(() => {
+      return uk;
+    });
   } catch (error) {
     await transaction.rollback();
     throw error;
