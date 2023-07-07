@@ -1,6 +1,7 @@
-// import { useEffect } from 'react';
-// import { ToastContainer, toast } from 'react-toastify';
+// import { useEffect, useState } from 'react';
+// import { toast } from 'react-toastify';
 // import axios from 'axios';
+// import { useSelector } from 'react-redux';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import _Menu from '../components/Navigation/Menu/Menu';
 import CustomTextField from '../components/Inputs/CustomTextField/CustomTextField';
@@ -18,12 +19,14 @@ const stats: IStats[] = [
 
 const Lead = () => {
   // let [isLoading, setIsLoading] = useState(true);
+  // const userToken = useSelector((state: any) => state.auth.token);
 
   // useEffect(() => {
+  //   debugger;
   //   axios
   //     .get(`${process.env.BACKEND_URL}/users`, {
   //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem('token')}`, // Attach the JWT token to the request
+  //         Authorization: `Bearer ${userToken}`, // Attach the JWT token to the request
   //       },
   //     })
   //     .then((response: any) => {
@@ -38,6 +41,7 @@ const Lead = () => {
   //     setIsLoading(!isLoading);
   //   }, 1000);
   // }, []);
+
   return (
     <>
       {/* Action tab */}
