@@ -9,7 +9,7 @@ export const authenticateUser = (req: AuthenticatedRequest, res: Response, next:
   const token = req.headers.authorization?.split(' ')[1];
 
   if (!token) {
-    return res.status(401).json({ error: 'Unauthorized' });
+    return res.status(401).json({ error: 'Access denied: Authentication token not found' });
   }
 
   try {
@@ -18,7 +18,7 @@ export const authenticateUser = (req: AuthenticatedRequest, res: Response, next:
     next();
   } catch (error) {
     console.error('Error authenticating user:', error);
-    return res.status(401).json({ error: 'Unauthorized' });
+    return res.status(401).json({ error: 'Access denied: You are not authorized to perform this action.' });
   }
 };
 

@@ -1,0 +1,5 @@
+{
+  "label": "envFile",
+  "type": "shell",
+  "command": "dotenv -e backend/.env"
+}

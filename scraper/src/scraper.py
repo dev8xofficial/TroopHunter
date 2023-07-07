@@ -19,8 +19,7 @@ import urllib
 from config import BASE_URL
 import logging
 import urllib.parse
-import os
-import requests
+from src.utils import check_business_existence
 
 
 class BusinessScraper:
@@ -167,47 +166,12 @@ class BusinessScraper:
             lat_lon = self.driver.current_url.split("/")[6].split("@")[1].split(",")[:2]
             latitude = float(lat_lon[0])
             longitude = float(lat_lon[1])
-            logging.info(f"Latitudehttps://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUndefinedVariable & Longitude: {latitude}, {longitude}")
+            logging.info(f"Latitude & Longitude: {latitude}, {longitude}")
 
             # ======================== BACKEND ======================== #
 
-            # Define the endpoint URL
-            backend_url = os.environ.get("BACKEND_URL")
-            url = f"{backend_url}/businesses"
-
-            # Set the request headers
-            token = os.environ.get("BACKEND_AUTHENTICATION")
-            headers = {
-                "Authorization": f"Bearer {token}",
-            }
-
-            # Set the request parameters
-            params = {
-                longitude: "-148.4558",
-                latitude: "75.774",
-                range: "0",
-            }
-
-            try:
-                # Send the GET request to the endpoint
-                response = requests.get(url, params=params)
-
-                # # Wait for the response to be received
-                # response.raise_for_status()
-
-                # # Convert the response to JSON
-                # data = response.json()
-
-                # Check the response status code
-                if response.status_code == 200:
-                    # Request successful
-                    print(response.text)
-                else:
-                    # Request failed
-                    print(response.text)
-            except requests.exceptions.RequestException as e:
-                # Request encountered an error
-                print(e)
+            is_business_existence = check_business_existence(-148.4558, 75.774, 0)
+            logging.info(f"Check Business Existence: {is_business_existence}")
 
             # ======================== BACKEND ======================== #
 
@@ -256,9 +220,9 @@ class BusinessScraper:
                     logging.info(f"Other Info: {tr_text}")
 
             if has_scrolled:
+                time.sleep(short_wait)
                 close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
                 close_current_business_anchor.click()
-                time.sleep(short_wait)
                 logging.info("~~~~~~ Scrolling ~~~~~~")
 
     def save_to_csv(self, data, output_file):

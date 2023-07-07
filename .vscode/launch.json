@@ -5,6 +5,23 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "backend",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/node_modules/ts-node/dist/bin.js", // Update with the path to your main server file
+      "runtimeArgs": [
+        "--inspect" // Add any additional runtime arguments if required
+      ],
+      "args": ["${workspaceFolder}/backend/src/index.ts"],
+      "env": {
+        "NODE_ENV": "development" // Set environment variables if needed
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "preLaunchTask": "envFile"
+    },
+    {
       "name": "Scraper",
       "type": "python",
       "request": "launch",
