@@ -20,7 +20,7 @@ import urllib
 from config import BASE_URL
 import logging
 import urllib.parse
-from src.utils import check_business_existence, get_postal_code
+from src.utils import check_business_existence, get_postal_code, get_timezone_info
 from config import sourceValues
 
 # from geopy.geocoders import Nominatim
@@ -187,7 +187,15 @@ class BusinessScraper:
 
             # ======================== BACKEND ======================== #
 
-            logging.info(f"Other Info: {sourceValues[0]}")
+            logging.info(f"Source: {sourceValues[0]}")
+
+            timezone = "America/Los_Angeles"
+            utc_offset, dst, dst_offset = get_timezone_info(timezone)
+
+            logging.info(f"Timezone: {timezone}")
+            logging.info(f"UTC Offset: {utc_offset}")
+            logging.info(f"DST: {dst}")
+            logging.info(f"DST Offset: {dst_offset}")
 
             # if not is_business_existence:
             #     location = get_location_details(latitude=latitude, longitude=longitude)

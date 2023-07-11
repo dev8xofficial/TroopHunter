@@ -9,6 +9,9 @@ from geopy.point import Point
 from geopy.exc import GeocoderTimedOut
 import re
 from pyzipcode import ZipCodeDatabase
+import pytz
+from geopy import exc
+from datetime import datetime, timedelta
 
 
 # Place any utility/helper functions here
@@ -143,3 +146,20 @@ def get_postal_code(address: str):
 
     # If no valid postal code is found
     return None
+
+
+def get_timezone_info(timezone):
+    try:
+        tz = pytz.timezone(timezone)
+        now = datetime.now(pytz.utc).replace(tzinfo=None)
+        now_localized = tz.localize(now)
+        offset = now_localized.utcoffset()
+        dst_info = now_localized.dst()
+
+        utc_offset = offset.total_seconds() / 3600
+        dst = dst_info != timedelta(0)
+        dst_offset = dst_info.total_seconds() / 3600
+
+        return {"utc_offset": utc_offset, "dst": dst, "dst_offset": dst_offset}
+    except pytz.UnknownTimeZoneError:
+        raise ValueError("Invalid timezone.")
