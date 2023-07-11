@@ -3,3 +3,4 @@ beautifulsoup4
 webdriver_manager
 geopy
 python-dotenv
+pyzipcode

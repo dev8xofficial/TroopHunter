@@ -33,7 +33,7 @@ def main():
     for city in CITIES:
         for query in QUERIES_CHATGPT:
             scraper.search(f"{query} in {city}")
-            scraper.scroll_and_extract_data()
+            scraper.scroll_and_extract_data(city)
 
     scraper.save_to_csv(output_file=OUTPUT_FILE)
 

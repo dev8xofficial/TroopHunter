@@ -13,13 +13,19 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import WebDriverException
 import time
+import re
 from bs4 import BeautifulSoup
 import csv
 import urllib
 from config import BASE_URL
 import logging
 import urllib.parse
-from src.utils import check_business_existence
+from src.utils import check_business_existence, get_postal_code
+from config import sourceValues
+
+# from geopy.geocoders import Nominatim
+
+# geolocator = Nominatim(user_agent="my_app")
 
 
 class BusinessScraper:
@@ -41,7 +47,7 @@ class BusinessScraper:
         logging.info(f"Searching for query: {query}")
         self.driver.get(f"{BASE_URL}/{urllib.parse.quote_plus(query)}")
 
-    def scroll_and_extract_data(self):
+    def scroll_and_extract_data(self, location: str):
         logging.info("Scrolling into feed.")
         counter = 0
         short_wait = 2
@@ -160,7 +166,13 @@ class BusinessScraper:
 
             # Rating
             rating_text = soup.find("div", class_="F7nice").text
-            logging.info(f"Rating: {rating_text}")
+            if rating_text:
+                rating_result = re.findall(r"([\d.]+)", rating_text)
+                logging.info(f"Rating: {rating_result[0]}")
+                logging.info(f"Review: {rating_result[1]}")
+            else:
+                logging.info(f"Rating: {0}")
+                logging.info(f"Review: {0}")
 
             # Extract latitude and longitude from the URL
             lat_lon = self.driver.current_url.split("/")[6].split("@")[1].split(",")[:2]
@@ -175,9 +187,20 @@ class BusinessScraper:
 
             # ======================== BACKEND ======================== #
 
+            logging.info(f"Other Info: {sourceValues[0]}")
+
+            # if not is_business_existence:
+            #     location = get_location_details(latitude=latitude, longitude=longitude)
+            #     logging.info("Location:")
+            #     logging.info(f"Postal Code: {location['postal_code']}")
+            #     logging.info(f"City: {location['city']}")
+            #     logging.info(f"State: {location['state']}")
+            #     logging.info(f"Country: {location['country']}")
+
             merged_elements = self.driver.find_elements(By.CLASS_NAME, "RcCsl") + self.driver.find_elements(By.CLASS_NAME, "OqCZI")
             html_sources = [element.get_attribute("innerHTML") for element in merged_elements]
             soup_elements = [BeautifulSoup(html, "html.parser") for html in html_sources]
+
             for info in soup_elements:
                 img_with_place_src = info.find("img", {"src": lambda s: "place" in s})
                 img_with_schedule_src = info.find("img", {"src": lambda s: "schedule" in s})
@@ -190,6 +213,13 @@ class BusinessScraper:
                 if img_with_place_src:
                     tr_text = info.get_text("|", strip=True)
                     logging.info(f"Place Info: {tr_text}")
+                    if not is_business_existence:
+                        zip = get_postal_code(address=tr_text)
+                        logging.info("Location:")
+                        logging.info(f"Postal Code: {zip}")
+                        logging.info(f"City: {location.split(', ')[0]}")
+                        logging.info(f"State: {location.split(', ')[1]}")
+                        logging.info(f"Country: {location.split(', ')[2]}")
                 elif img_with_schedule_src:
                     tr_elements = soup.find_all("tr", class_="y0skZc")
                     logging.info("Shipping Info: ")
