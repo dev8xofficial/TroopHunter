@@ -12,22 +12,30 @@ module.exports = {
         type: Sequelize.STRING(5),
         allowNull: false,
       },
-      areaCode: {
-        type: Sequelize.STRING(10),
+      regionCode: {
+        type: Sequelize.STRING(5),
         allowNull: false,
       },
-      phoneNumber: {
+      number: {
         type: Sequelize.STRING(30),
         allowNull: false,
       },
-      phoneNumberFormatted: {
+      numberNationalFormatted: {
         type: Sequelize.STRING(30),
         allowNull: false,
       },
-      notes: {
-        type: Sequelize.STRING(255),
+      numberInternationalFormatted: {
+        type: Sequelize.STRING(30),
         allowNull: false,
       },
+      numberType: {
+        type: Sequelize.STRING(30),
+        allowNull: false,
+      },
+      isValid: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      }, 
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

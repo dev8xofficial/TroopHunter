@@ -30,6 +30,7 @@ import BusinessSource from '../models/BusinessSource';
 import BusinessOpeningHour from '../models/BusinessOpeningHour';
 import BusinessClosingHour from '../models/BusinessClosingHour';
 import { Point } from 'geojson';
+import { getPhoneWithDetails } from '../utils/phone';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinesses = async (req: Request, res: Response) => {
@@ -149,6 +150,7 @@ export const createBusinesses = async (req: Request, res: Response) => {
     ];
     const opValues: string[] = ['open', 'close', 'temporarily-close'];
     const sValues: string[] = ['google-maps', 'google', 'facebook'];
+    const phone = getPhoneWithDetails('+14154005153');
 
     for (let i = 0; i < count; i++) {
       const city = cities[Math.floor(Math.random() * 5)];
@@ -184,11 +186,13 @@ export const createBusinesses = async (req: Request, res: Response) => {
         },
         phone: {
           id: uuidv4(),
-          countryCode: faker.location.countryCode(),
-          areaCode: faker.phone.number().slice(0, 3),
-          phoneNumber: faker.phone.number().split('(').join('').split(')').join('').split('-').join('').split(' ').join(''),
-          phoneNumberFormatted: faker.phone.number(),
-          notes: faker.lorem.sentence(),
+          countryCode: phone?.countryCode,
+          regionCode: phone?.regionCode,
+          number: phone?.number,
+          numberNationalFormatted: phone?.numberNationalFormatted,
+          numberInternationalFormatted: phone?.numberInternationalFormatted,
+          numberType: phone?.numberType,
+          isValid: phone?.isValid,
         },
         rating: {
           id: uuidv4(),

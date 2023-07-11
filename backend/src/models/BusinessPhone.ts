@@ -4,10 +4,12 @@ import sequelize from '../config/database';
 class BusinessPhone extends Model {
   public id!: string;
   public countryCode!: string;
-  public areaCode!: string;
-  public phoneNumber!: string;
-  public phoneNumberFormatted!: string;
-  public notes!: string;
+  public regionCode!: string;
+  public number!: string;
+  public numberNationalFormatted!: string;
+  public numberInternationalFormatted!: string;
+  public numberType!: string;
+  public isValid!: boolean;
 }
 
 BusinessPhone.init(
@@ -21,20 +23,28 @@ BusinessPhone.init(
       type: DataTypes.STRING(5),
       allowNull: false,
     },
-    areaCode: {
-      type: DataTypes.STRING(10),
+    regionCode: {
+      type: DataTypes.STRING(5),
       allowNull: false,
     },
-    phoneNumber: {
+    number: {
       type: DataTypes.STRING(30),
       allowNull: false,
     },
-    phoneNumberFormatted: {
+    numberNationalFormatted: {
       type: DataTypes.STRING(30),
       allowNull: false,
     },
-    notes: {
-      type: DataTypes.STRING(255),
+    numberInternationalFormatted: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    numberType: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    isValid: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   },

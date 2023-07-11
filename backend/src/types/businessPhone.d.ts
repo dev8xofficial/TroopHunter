@@ -1,8 +1,10 @@
 export interface PhoneAttributes {
   id?: string;
   countryCode: string;
-  areaCode: string;
-  phoneNumber: string;
-  phoneNumberFormatted: string;
-  notes: string;
+  regionCode: string;
+  number: string;
+  numberNationalFormatted: string;
+  numberInternationalFormatted: string;
+  numberType: string;
+  isValid: boolean;
 }
