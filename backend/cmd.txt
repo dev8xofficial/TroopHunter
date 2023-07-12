@@ -1,3 +1,6 @@
+Must to run commands:
+  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 Sequelize Commands:
   sequelize db:migrate                        Run pending migrations
   sequelize db:migrate:schema:timestamps:add  Update migration table to have timestamps

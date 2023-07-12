@@ -4,7 +4,7 @@ from geopy.exc import GeocoderTimedOut
 import re
 from pyzipcode import ZipCodeDatabase
 import pytz
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 
 
 def get_location_details(latitude: float, longitude: float, address: str):
@@ -118,3 +118,36 @@ def get_timezone_info(timezone):
         return {"utc_offset": utc_offset, "dst": dst, "dst_offset": dst_offset}
     except pytz.UnknownTimeZoneError:
         raise ValueError("Invalid timezone.")
+
+
+def convert_to_24h_format(time_str):
+    # Handle "Open 24 hours" case
+    if time_str.lower() == "open 24 hours":
+        return "00:00"
+
+    # Remove any non-alphanumeric characters except ":" and whitespace
+    time_str = re.sub(r"[^\w\s:]", "", time_str)
+
+    # Handle "AM" and "PM" cases
+    if "am" in time_str.lower() or "pm" in time_str.lower():
+        # Extract hour and minute values
+        match = re.search(r"(\d{1,2}):?(\d{2})?\s?(am|pm)", time_str.lower())
+        if match:
+            hour = int(match.group(1))
+            minute = int(match.group(2)) if match.group(2) else 0
+            period = match.group(3)
+            if period == "pm" and hour < 12:
+                hour += 12
+            elif period == "am" and hour == 12:
+                hour = 0
+            return datetime.strptime(f"{hour}:{minute:02}", "%H:%M").strftime("%H:%M")
+
+    # Handle 24-hour format
+    match = re.search(r"(\d{1,2}):?(\d{2})?", time_str)
+    if match:
+        hour = int(match.group(1))
+        minute = int(match.group(2)) if match.group(2) else 0
+        return datetime.strptime(f"{hour}:{minute:02}", "%H:%M").strftime("%H:%M")
+
+    # Return None if no valid time format is found
+    return None

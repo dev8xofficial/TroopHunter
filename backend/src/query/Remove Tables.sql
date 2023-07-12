@@ -14,4 +14,3 @@ DROP TABLE IF EXISTS "Locations";
 DROP TABLE IF EXISTS "PostalCodes";
 DROP TABLE IF EXISTS "SequelizeMeta";
 DROP TABLE IF EXISTS "Timezones";
-DROP TABLE IF EXISTS "SequelizeMeta";

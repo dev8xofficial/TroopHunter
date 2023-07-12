@@ -22,7 +22,7 @@ import urllib
 from config import BASE_URL
 import logging
 import urllib.parse
-from src.utils import get_postal_code, get_timezone_info
+from src.utils import get_postal_code, get_timezone_info, convert_to_24h_format
 from services.business import check_business_existence, create_business
 from config import sourceValues
 
@@ -276,12 +276,8 @@ class BusinessScraper:
                             string = string.replace("–", "-")  # Replace non-standard hyphen with regular hyphen
                             result = string.split("-")
                             if "Mon" in first_td_text or "Tue" in first_td_text or "Wed" in first_td_text:
-                                try:
-                                    current_business_data["openingHour"] = datetime.strptime(result[0], "%I%p").strftime("%H:%M")
-                                    current_business_data["closingHour"] = datetime.strptime(result[1], "%I%p").strftime("%H:%M")
-                                except ValueError:
-                                    current_business_data["openingHour"] = datetime.strptime(result[0], "%I:%M%p").strftime("%H:%M")
-                                    current_business_data["closingHour"] = datetime.strptime(result[1], "%I:%M%p").strftime("%H:%M")
+                                current_business_data["openingHour"] = convert_to_24h_format(result[0])
+                                current_business_data["closingHour"] = convert_to_24h_format(result[1])
                             logging.info(f"{first_td_text}: {second_td_text}")
                 elif img_with_shipping_src:
                     tr_text = info.get_text("|", strip=True)

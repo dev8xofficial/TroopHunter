@@ -1,9 +1,10 @@
 from src.scraper import BusinessScraper
-from config import LOCATIONS, OUTPUT_FILE
+from config import LOCATIONS, OUTPUT_FILE, LAPTOP_NAME
 from queries.chatgpt import QUERIES_CHATGPT
 import logging
 import datetime
 from dotenv import load_dotenv
+from services.queue import get_queue, update_queue
 
 # Load environment variables from .env file
 load_dotenv()
@@ -30,10 +31,19 @@ def main():
     # Create an instance of the BusinessScraper
     scraper = BusinessScraper()
 
+    QUEUES = get_queue()
+
     for location in LOCATIONS:
-        for query in QUERIES_CHATGPT:
-            scraper.search(f"{query} in {', '.join(dict((key,value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
-            scraper.scroll_and_extract_data(query, location)
+        for queue in QUEUES:
+            if (queue["laptopName"] == "" or queue["laptopName"] == LAPTOP_NAME) and queue["status"] == "Pending":
+                queue["laptopName"] = LAPTOP_NAME
+                update_queue(request=queue)
+
+                scraper.search(f"{queue['searchQuery']} in {', '.join(dict((key,value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
+                scraper.scroll_and_extract_data(queue["searchQuery"], location)
+
+                queue["status"] = "Completed"
+                update_queue(request=queue)
 
     scraper.save_to_csv(output_file=OUTPUT_FILE)
 
