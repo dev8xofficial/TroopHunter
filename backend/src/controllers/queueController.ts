@@ -3,7 +3,9 @@ import Queue from '../models/Queue';
 
 export const getQueues = async (req: Request, res: Response) => {
   try {
-    const queues = await Queue.findAll();
+    const queues = await Queue.findAll({
+      order: [['searchQuery', 'ASC']],
+    });
     res.json(queues);
   } catch (error) {
     console.error('Error while retrieving queues:', error);
