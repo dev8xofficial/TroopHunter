@@ -17,10 +17,11 @@ BusinessRating.init(
     ratingValue: {
       type: DataTypes.FLOAT(2, 1),
       allowNull: false,
+      unique: true,
     },
     description: {
       type: DataTypes.STRING(50),
-      allowNull: false,
+      allowNull: true,
     },
   },
   {

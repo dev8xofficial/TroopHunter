@@ -30,14 +30,17 @@ BusinessPhone.init(
     number: {
       type: DataTypes.STRING(30),
       allowNull: false,
+      unique: true,
     },
     numberNationalFormatted: {
       type: DataTypes.STRING(30),
       allowNull: false,
+      unique: true,
     },
     numberInternationalFormatted: {
       type: DataTypes.STRING(30),
       allowNull: false,
+      unique: true,
     },
     numberType: {
       type: DataTypes.STRING(30),

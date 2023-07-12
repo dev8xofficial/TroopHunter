@@ -11,6 +11,7 @@ module.exports = {
       code: {
         type: Sequelize.STRING(20),
         allowNull: false,
+        unique: true,
       },
       createdAt: {
         allowNull: false,
@@ -22,6 +23,13 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('NOW()'),
       },
+    });
+    
+    // Add a unique constraint to the 'code' column
+    await queryInterface.addConstraint('PostalCodes', {
+      fields: ['code'],
+      type: 'unique',
+      name: 'unique_code_constraint',
     });
   },
 

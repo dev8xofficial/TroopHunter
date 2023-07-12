@@ -14,7 +14,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      description: {
+      businessDomain: {
         type: Sequelize.STRING,
         allowNull: true,
       },

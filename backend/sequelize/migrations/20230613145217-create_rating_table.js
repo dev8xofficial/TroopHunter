@@ -12,9 +12,10 @@ module.exports = {
       ratingValue: {
         allowNull: false,
         type: Sequelize.FLOAT(2, 1),
+        unique: true
       },
       description: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(50),
       },
       createdAt: {
@@ -27,6 +28,13 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('NOW()'),
       },
+    });
+    
+    // Add a unique constraint to the 'ratingValue' column
+    await queryInterface.addConstraint('BusinessRatings', {
+      fields: ['ratingValue'],
+      type: 'unique',
+      name: 'unique_ratingValue_constraint',
     });
   },
 

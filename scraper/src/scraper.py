@@ -20,7 +20,8 @@ import urllib
 from config import BASE_URL
 import logging
 import urllib.parse
-from src.utils import check_business_existence, get_postal_code, get_timezone_info
+from src.utils import get_postal_code, get_timezone_info
+from services.business import check_business_existence, create_business
 from config import sourceValues
 
 # from geopy.geocoders import Nominatim
@@ -47,7 +48,7 @@ class BusinessScraper:
         logging.info(f"Searching for query: {query}")
         self.driver.get(f"{BASE_URL}/{urllib.parse.quote_plus(query)}")
 
-    def scroll_and_extract_data(self, location: str):
+    def scroll_and_extract_data(self, query: str, location: str):
         logging.info("Scrolling into feed.")
         counter = 0
         short_wait = 2
@@ -67,6 +68,7 @@ class BusinessScraper:
             current_business_anchor_is_article_or_not = None
             current_business_anchor_is_loader_or_not = None
             current_business_anchor_is_end_of_list_or_not = None
+            current_business_data = {}
 
             try:
                 if current_business_anchor:
@@ -158,7 +160,14 @@ class BusinessScraper:
 
             # Heading
             h1_text = soup.find("h1", class_="DUwDvf fontHeadlineLarge").text
+            current_business_data["name"] = h1_text
             logging.info(f"Title: {h1_text}")
+
+            # Business Domain
+            business_domain_button = soup.select_one(".fontBodyMedium button.DkEaL")
+            if business_domain_button:
+                current_business_data["businessDomain"] = business_domain_button.text
+            current_business_data["category"] = query
 
             # Wait until the URL contains the expected business name
             wait = WebDriverWait(self.driver, medium_wait)  # Adjust the timeout as needed
@@ -169,15 +178,21 @@ class BusinessScraper:
             if rating_text:
                 rating_result = re.findall(r"([\d.]+)", rating_text)
                 logging.info(f"Rating: {rating_result[0]}")
-                logging.info(f"Review: {rating_result[1]}")
+                logging.info(f"Reviews: {rating_result[1]}")
+                current_business_data["rating"] = float(rating_result[0])
+                current_business_data["reviews"] = int(rating_result[1])
             else:
                 logging.info(f"Rating: {0}")
-                logging.info(f"Review: {0}")
+                logging.info(f"Reviews: {0}")
+                current_business_data["rating"] = 0.0
+                current_business_data["reviews"] = 0
 
             # Extract latitude and longitude from the URL
             lat_lon = self.driver.current_url.split("/")[6].split("@")[1].split(",")[:2]
             latitude = float(lat_lon[0])
             longitude = float(lat_lon[1])
+            current_business_data["latitude"] = latitude
+            current_business_data["longitude"] = longitude
             logging.info(f"Latitude & Longitude: {latitude}, {longitude}")
 
             # ======================== BACKEND ======================== #
@@ -187,6 +202,7 @@ class BusinessScraper:
 
             # ======================== BACKEND ======================== #
 
+            current_business_data["source"] = sourceValues[0]
             logging.info(f"Source: {sourceValues[0]}")
 
             timezone = "America/Los_Angeles"
@@ -220,6 +236,7 @@ class BusinessScraper:
 
                 if img_with_place_src:
                     tr_text = info.get_text("|", strip=True)
+                    current_business_data["address"] = tr_text
                     logging.info(f"Place Info: {tr_text}")
                     if not is_business_existence:
                         zip = get_postal_code(address=tr_text)
@@ -228,9 +245,15 @@ class BusinessScraper:
                         logging.info(f"City: {location.split(', ')[0]}")
                         logging.info(f"State: {location.split(', ')[1]}")
                         logging.info(f"Country: {location.split(', ')[2]}")
+                        current_business_data["postalCode"] = zip
+                        current_business_data["location"] = {
+                            "city": location.split(", ")[0],
+                            "state": location.split(", ")[1],
+                            "country": location.split(", ")[2],
+                        }
                 elif img_with_schedule_src:
                     tr_elements = soup.find_all("tr", class_="y0skZc")
-                    logging.info("Shipping Info: ")
+                    logging.info("Schedule Info: ")
 
                     for tr in tr_elements:
                         td_elements = tr.find_all("td")
@@ -244,9 +267,11 @@ class BusinessScraper:
                     logging.info(f"Shipping Info: {tr_text}")
                 elif img_with_public_src:
                     tr_text = info.get_text("|", strip=True)
+                    current_business_data["website"] = tr_text
                     logging.info(f"Website Info: {tr_text}")
                 elif img_with_phone_src:
                     tr_text = info.get_text("|", strip=True)
+                    current_business_data["phone"] = tr_text
                     logging.info(f"Phone Info: {tr_text}")
                 elif img_with_plus_code_src:
                     tr_text = info.get_text("|", strip=True)
@@ -256,6 +281,9 @@ class BusinessScraper:
                     logging.info(f"Send To Mobile Info: {tr_text}")
                 else:
                     logging.info(f"Other Info: {tr_text}")
+
+            new_business_response = create_business(current_business_data)
+            logging.info("New Business Response: ", new_business_response)
 
             if has_scrolled:
                 time.sleep(short_wait)

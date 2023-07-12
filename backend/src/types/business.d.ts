@@ -3,7 +3,7 @@ import { GeoPoint } from './geoPoint';
 export interface BusinessAttributes {
   id?: string;
   name: string;
-  description?: string;
+  businessDomain?: string;
   categoryId?: string;
   address?: string;
   locationId?: string;

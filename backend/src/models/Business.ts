@@ -18,7 +18,7 @@ import { BusinessPhotoAttributes } from '../types/businessPhoto';
 class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public id?: string;
   public name!: string;
-  public description?: string;
+  public businessDomain?: string;
   public categoryId!: string;
   public address?: string;
   public locationId!: string;
@@ -56,7 +56,7 @@ Business.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    businessDomain: {
       type: DataTypes.STRING,
       allowNull: true,
     },

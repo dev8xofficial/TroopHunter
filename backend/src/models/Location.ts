@@ -17,15 +17,16 @@ Location.init(
     },
     city: {
       type: DataTypes.STRING(100),
-      allowNull: true,
+      allowNull: false,
+      unique: true,
     },
     state: {
       type: DataTypes.STRING(100),
-      allowNull: true,
+      allowNull: false,
     },
     country: {
       type: DataTypes.STRING(100),
-      allowNull: true,
+      allowNull: false,
     },
   },
   {

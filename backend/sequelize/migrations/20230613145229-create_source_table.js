@@ -11,6 +11,7 @@ module.exports = {
       sourceName: {
         type: Sequelize.STRING(20),
         allowNull: false,
+        unique: true,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -22,6 +23,13 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.literal('NOW()'),
       },
+    });
+    
+    // Add a unique constraint to the 'sourceName' column
+    await queryInterface.addConstraint('BusinessSources', {
+      fields: ['sourceName'],
+      type: 'unique',
+      name: 'unique_sourceName_constraint',
     });
   },
 

@@ -10,15 +10,16 @@ module.exports = {
       },
       city: {
         type: Sequelize.STRING(100),
-        allowNull: true,
+        allowNull: false,
+        unique: true,
       },
       state: {
         type: Sequelize.STRING(100),
-        allowNull: true,
+        allowNull: false,
       },
       country: {
         type: Sequelize.STRING(100),
-        allowNull: true,
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -30,6 +31,13 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.literal('NOW()'),
       },
+    });
+    
+    // Add a unique constraint to the 'city' column
+    await queryInterface.addConstraint('Locations', {
+      fields: ['city'],
+      type: 'unique',
+      name: 'unique_city_constraint',
     });
   },
 

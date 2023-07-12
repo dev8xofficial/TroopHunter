@@ -19,14 +19,17 @@ module.exports = {
       number: {
         type: Sequelize.STRING(30),
         allowNull: false,
+        unique: true,
       },
       numberNationalFormatted: {
         type: Sequelize.STRING(30),
         allowNull: false,
+        unique: true,
       },
       numberInternationalFormatted: {
         type: Sequelize.STRING(30),
         allowNull: false,
+        unique: true,
       },
       numberType: {
         type: Sequelize.STRING(30),
@@ -46,6 +49,13 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('NOW()'),
       },
+    });
+    
+    // Add a unique constraint to the 'number' column
+    await queryInterface.addConstraint('BusinessPhones', {
+      fields: ['number'],
+      type: 'unique',
+      name: 'unique_number_constraint',
     });
   },
 

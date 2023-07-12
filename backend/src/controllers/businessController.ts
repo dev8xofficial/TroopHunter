@@ -30,11 +30,16 @@ import BusinessSource from '../models/BusinessSource';
 import BusinessOpeningHour from '../models/BusinessOpeningHour';
 import BusinessClosingHour from '../models/BusinessClosingHour';
 import { Point } from 'geojson';
-import { getPhoneWithDetails } from '../utils/phone';
+import { findOrCreateBusinessPhone, getPhoneWithDetails } from '../utils/phone';
+import { findOrCreateBusinessSource } from '../utils/business';
+import { findOrCreateBusinessCategory } from '../utils/category';
+import { findOrCreateBusinessLocation } from '../utils/location';
+import { findOrCreateBusinessPostalCode } from '../utils/postalCode';
+import { findOrCreateBusinessRating } from '../utils/rating';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinesses = async (req: Request, res: Response) => {
-  const { name, description, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
+  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
 
   const whereClause: { [key: string]: any } = {};
 
@@ -42,8 +47,8 @@ export const getBusinesses = async (req: Request, res: Response) => {
     whereClause.name = { [Op.iLike]: `%${name}%` };
   }
 
-  if (description) {
-    whereClause.description = { [Op.iLike]: `%${description}%` };
+  if (businessDomain) {
+    whereClause.businessDomain = { [Op.iLike]: `%${businessDomain}%` };
   }
 
   if (categoryId) {
@@ -159,7 +164,7 @@ export const createBusinesses = async (req: Request, res: Response) => {
       const businessData = {
         id: businessId,
         name: faker.company.name(),
-        description: faker.company.catchPhrase(),
+        businessDomain: faker.company.catchPhrase(),
         category: {
           id: uuidv4(),
           name: values[Math.floor(Math.random() * 21)],
@@ -197,7 +202,7 @@ export const createBusinesses = async (req: Request, res: Response) => {
         rating: {
           id: uuidv4(),
           ratingValue: faker.number.float({ min: 1, max: 5, precision: 1 }),
-          description: faker.lorem.words(3),
+          businessDomain: faker.lorem.words(3),
         },
         timezone: {
           id: uuidv4(),
@@ -221,7 +226,7 @@ export const createBusinesses = async (req: Request, res: Response) => {
           id: uuidv4(),
           businessId: businessId,
           photoUrl: faker.image.urlPicsumPhotos(),
-          description: faker.image.urlPlaceholder(),
+          businessDomain: faker.image.urlPlaceholder(),
         })),
         operatingStatus: {
           id: uuidv4(),
@@ -255,31 +260,61 @@ export const createBusinesses = async (req: Request, res: Response) => {
 
 export const createBusiness = async (req: Request, res: Response) => {
   try {
-    const { name, description, categoryId, address, locationId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezoneId, source, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
-
-    const business = await Business.create({
+    let payload: BusinessAttributes = {
       name,
-      description,
-      categoryId,
+      businessDomain,
       address,
-      locationId,
       geoPoint,
       longitude,
       latitude,
-      postalCodeId,
-      phoneId,
       email,
       website,
-      ratingId,
       reviews,
       timezoneId,
-      sourceId,
       operatingStatusId,
       socialMediaId,
       openingHourId,
       closingHourId,
-    });
+    };
+
+    console.log('Required parameters: ', name, category, longitude, latitude, source);
+
+    // if (!name && !longitude && !latitude && !source) return;
+
+    if (category) {
+      const categoryFromDB: BusinessCategoryAttributes | undefined = await findOrCreateBusinessCategory(category);
+      payload.categoryId = categoryFromDB?.id;
+    }
+
+    if (location) {
+      const locationFromDB: LocationAttributes | undefined = await findOrCreateBusinessLocation(location);
+      payload.locationId = locationFromDB?.id;
+    }
+
+    if (postalCode) {
+      const postalCodeFromDB: PostalCodeAttributes | undefined = await findOrCreateBusinessPostalCode(postalCode);
+      payload.postalCodeId = postalCodeFromDB?.id;
+    }
+
+    if (phone) {
+      const phoneWithDetails = getPhoneWithDetails(phone);
+      const phoneFromDB: PhoneAttributes | undefined = await findOrCreateBusinessPhone(phoneWithDetails);
+      payload.phoneId = phoneFromDB?.id;
+    }
+
+    if (rating !== undefined || rating !== null) {
+      const ratingFromDB: RatingAttributes | undefined = await findOrCreateBusinessRating(rating);
+      payload.ratingId = ratingFromDB?.id;
+    }
+
+    if (source) {
+      const sourceFromDB: SourceAttributes | undefined = await findOrCreateBusinessSource(source);
+      payload.sourceId = sourceFromDB?.id;
+    }
+
+    const business = await Business.create(payload);
 
     res.status(201).json(business);
   } catch (error) {
@@ -308,14 +343,14 @@ export const getBusiness = async (req: Request, res: Response) => {
 export const updateBusiness = async (req: Request, res: Response) => {
   try {
     const businessId = req.params.id;
-    const { name, description, categoryId, address, locationId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const { name, businessDomain, categoryId, address, locationId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
     const business = await Business.findByPk(businessId);
 
     if (business) {
       business.name = name;
-      business.description = description;
+      business.businessDomain = businessDomain;
       business.categoryId = categoryId;
       business.address = address;
       business.locationId = locationId;
@@ -399,7 +434,7 @@ async function createBulkBusinesses(businessData: any[]) {
 
       businesses.push({
         name: data.name,
-        description: data.description,
+        businessDomain: data.businessDomain,
         categoryId: data.category.id,
         locationId: data.location.id,
         geoPoint: { type: 'Point', coordinates: [data.longitude, data.latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } },
