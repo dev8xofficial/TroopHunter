@@ -16,6 +16,7 @@ import time
 import re
 import json
 from bs4 import BeautifulSoup
+from datetime import datetime
 import csv
 import urllib
 from config import BASE_URL
@@ -131,8 +132,8 @@ class BusinessScraper:
                 counter = counter + 1
                 break
 
-            if counter >= 5:
-                break
+            # if counter >= 5:
+            #     break
 
             current_business_anchor = current_business_anchor_is_article_or_not
             has_scrolled = self.driver.execute_script(
@@ -198,8 +199,10 @@ class BusinessScraper:
 
             # ======================== BACKEND ======================== #
 
-            is_business_existence = check_business_existence(latitude, longitude, 0)
+            is_business_existence = check_business_existence(longitude, latitude, 0)
             logging.info(f"Check Business Existence: {is_business_existence}")
+            if is_business_existence:
+                continue
 
             # ======================== BACKEND ======================== #
 
@@ -234,7 +237,7 @@ class BusinessScraper:
             soup_elements = [BeautifulSoup(html, "html.parser") for html in html_sources]
 
             for info in soup_elements:
-                img_with_place_src = info.find("img", {"src": lambda s: "place" in s})
+                img_with_place_src = info.find("img", {"src": lambda s: "place_gm" in s})
                 img_with_schedule_src = info.find("img", {"src": lambda s: "schedule" in s})
                 img_with_shipping_src = info.find("img", {"src": lambda s: "shipping" in s})
                 img_with_public_src = info.find("img", {"src": lambda s: "public" in s})
@@ -269,6 +272,16 @@ class BusinessScraper:
                         if len(td_elements) >= 2:
                             first_td_text = td_elements[0].text.strip()
                             second_td_text = td_elements[1].text.strip()
+                            string = td_elements[1].text.replace("\u202f", "")  # Remove space
+                            string = string.replace("–", "-")  # Replace non-standard hyphen with regular hyphen
+                            result = string.split("-")
+                            if "Mon" in first_td_text or "Tue" in first_td_text or "Wed" in first_td_text:
+                                try:
+                                    current_business_data["openingHour"] = datetime.strptime(result[0], "%I%p").strftime("%H:%M")
+                                    current_business_data["closingHour"] = datetime.strptime(result[1], "%I%p").strftime("%H:%M")
+                                except ValueError:
+                                    current_business_data["openingHour"] = datetime.strptime(result[0], "%I:%M%p").strftime("%H:%M")
+                                    current_business_data["closingHour"] = datetime.strptime(result[1], "%I:%M%p").strftime("%H:%M")
                             logging.info(f"{first_td_text}: {second_td_text}")
                 elif img_with_shipping_src:
                     tr_text = info.get_text("|", strip=True)

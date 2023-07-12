@@ -16,6 +16,7 @@ BusinessClosingHour.init(
     time: {
       type: DataTypes.TIME,
       allowNull: true,
+      unique: true,
     },
   },
   {

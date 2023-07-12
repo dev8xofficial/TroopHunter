@@ -74,10 +74,6 @@ module.exports = {
         type: Sequelize.UUID,
         allowNull: false,
       },
-      operatingStatusId: {
-        type: Sequelize.UUID,
-        allowNull: true,
-      },
       socialMediaId: {
         type: Sequelize.UUID,
         allowNull: true,
@@ -188,18 +184,6 @@ module.exports = {
         field: 'id',
       },
       onDelete: 'CASCADE',
-      onUpdate: 'CASCADE',
-    });
-
-    await queryInterface.addConstraint('Businesses', {
-      fields: ['operatingStatusId'],
-      type: 'foreign key',
-      name: 'fk_business_operatingstatus',
-      references: {
-        table: 'BusinessOperatingStatuses',
-        field: 'id',
-      },
-      onDelete: 'SET NULL',
       onUpdate: 'CASCADE',
     });
 

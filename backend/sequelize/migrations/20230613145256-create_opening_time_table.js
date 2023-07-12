@@ -10,7 +10,8 @@ module.exports = {
       },
       time: {
         type: Sequelize.TIME,
-        allowNull: true,
+        allowNull: false,
+        unique: true
       },
       createdAt: {
         allowNull: false,
@@ -22,6 +23,13 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('NOW()'),
       },
+    });
+    
+    // Add a unique constraint to the 'time' column
+    await queryInterface.addConstraint('BusinessOpeningHours', {
+      fields: ['time'],
+      type: 'unique',
+      name: 'unique_opening_time_constraint',
     });
   },
 

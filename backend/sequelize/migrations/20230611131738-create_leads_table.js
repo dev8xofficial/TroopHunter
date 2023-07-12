@@ -57,10 +57,6 @@ module.exports = {
         allowNull: true,
         type: Sequelize.UUID,
       },
-      operatingStatusId: {
-        allowNull: true,
-        type: Sequelize.UUID,
-      },
       openingHourId: {
         allowNull: true,
         type: Sequelize.UUID,

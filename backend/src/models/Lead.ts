@@ -19,7 +19,6 @@ class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public ratingId?: string;
   public reviews?: number;
   public timezoneId?: string;
-  public operatingStatusId?: string;
   public openingHourId?: string;
   public closingHourId?: string;
 
@@ -82,10 +81,6 @@ Lead.init(
       allowNull: true,
     },
     timezoneId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-    },
-    operatingStatusId: {
       type: DataTypes.UUID,
       allowNull: true,
     },

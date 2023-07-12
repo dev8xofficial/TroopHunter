@@ -7,7 +7,6 @@ import Sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
 import { BusinessCategoryAttributes } from '../types/businessCategory';
 import { LocationAttributes } from '../types/location';
-import { OperatingStatusAttributes } from '../types/businessOperatingStatus';
 import { RatingAttributes } from '../types/businessRating';
 import { SourceAttributes } from '../types/businessSource';
 import { OpeningTimeAttributes } from '../types/businessOpeningHour';
@@ -24,7 +23,6 @@ import BusinessPhone from '../models/BusinessPhone';
 import BusinessSocialMedia from '../models/BusinessSocialMedia';
 import Timezone from '../models/Timezone';
 import Location from '../models/Location';
-import BusinessOperatingStatus from '../models/BusinessOperatingStatus';
 import BusinessRating from '../models/BusinessRating';
 import BusinessSource from '../models/BusinessSource';
 import BusinessOpeningHour from '../models/BusinessOpeningHour';
@@ -37,10 +35,12 @@ import { findOrCreateLocation } from '../utils/location';
 import { findOrCreatePostalCode } from '../utils/postalCode';
 import { findOrCreateBusinessRating } from '../utils/rating';
 import { findOrCreateTimezone } from '../utils/timezone';
+import { findOrCreateBusinessOpeningHour } from '../utils/openingHour';
+import { findOrCreateBusinessClosingHour } from '../utils/closingHour';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinesses = async (req: Request, res: Response) => {
-  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
+  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
 
   const whereClause: { [key: string]: any } = {};
 
@@ -95,10 +95,6 @@ export const getBusinesses = async (req: Request, res: Response) => {
 
   if (timezoneId) {
     whereClause.timezoneId = timezoneId;
-  }
-
-  if (operatingStatusId) {
-    whereClause.operatingStatusId = operatingStatusId;
   }
 
   if (openingHourId) {
@@ -228,10 +224,6 @@ export const createBusinesses = async (req: Request, res: Response) => {
           photoUrl: faker.image.urlPicsumPhotos(),
           businessDomain: faker.image.urlPlaceholder(),
         })),
-        operatingStatus: {
-          id: uuidv4(),
-          operatingStatus: opValues[Math.floor(Math.random() * 3)],
-        },
         openingHour: {
           id: uuidv4(),
           time: casual.time('HH:mm'),
@@ -260,7 +252,7 @@ export const createBusinesses = async (req: Request, res: Response) => {
 
 export const createBusiness = async (req: Request, res: Response) => {
   try {
-    const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, openingHour, closingHour } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
     let payload: BusinessAttributes = {
       name,
@@ -272,10 +264,7 @@ export const createBusiness = async (req: Request, res: Response) => {
       email,
       website,
       reviews,
-      operatingStatusId,
       socialMediaId,
-      openingHourId,
-      closingHourId,
     };
 
     console.log('Required parameters: ', name, category, longitude, latitude, source);
@@ -314,9 +303,18 @@ export const createBusiness = async (req: Request, res: Response) => {
     }
 
     if (timezone) {
-      // timezone.dst = timezone.dst === 'True' ? true : timezone.dst === 'False' ? false : false;
       const timezoneFromDB: TimezoneAttributes | undefined = await findOrCreateTimezone(timezone);
       payload.timezoneId = timezoneFromDB?.id;
+    }
+
+    if (openingHour) {
+      const openingHourFromDB: OpeningTimeAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour);
+      payload.openingHourId = openingHourFromDB?.id;
+    }
+
+    if (closingHour) {
+      const closingHourFromDB: ClosingTimeAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour);
+      payload.closingHourId = closingHourFromDB?.id;
     }
 
     const business = await Business.create(payload);
@@ -348,7 +346,7 @@ export const getBusiness = async (req: Request, res: Response) => {
 export const updateBusiness = async (req: Request, res: Response) => {
   try {
     const businessId = req.params.id;
-    const { name, businessDomain, categoryId, address, locationId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const { name, businessDomain, categoryId, address, locationId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
     const business = await Business.findByPk(businessId);
@@ -370,7 +368,6 @@ export const updateBusiness = async (req: Request, res: Response) => {
       business.reviews = reviews;
       business.timezoneId = timezoneId;
       business.sourceId = sourceId;
-      business.operatingStatusId = operatingStatusId;
       business.socialMediaId = socialMediaId;
       business.openingHourId = openingHourId;
       business.closingHourId = closingHourId;
@@ -412,7 +409,6 @@ async function createBulkBusinesses(businessData: any[]) {
     const categories: Partial<BusinessCategoryAttributes>[] = [];
     const locations: Partial<LocationAttributes>[] = [];
     const postalCodes: PostalCodeAttributes[] = [];
-    const operatingStatuses: Partial<OperatingStatusAttributes>[] = [];
     const phones: Partial<PhoneAttributes>[] = [];
     const ratings: Partial<RatingAttributes>[] = [];
     const sources: Partial<SourceAttributes>[] = [];
@@ -427,7 +423,6 @@ async function createBulkBusinesses(businessData: any[]) {
       categories.push(data.category);
       locations.push(data.location);
       postalCodes.push(data.postalCode);
-      operatingStatuses.push(data.operatingStatus);
       phones.push(data.phone);
       ratings.push(data.rating);
       sources.push(data.source);
@@ -454,7 +449,6 @@ async function createBulkBusinesses(businessData: any[]) {
         phoneId: data.phone.id,
         ratingId: data.rating.id,
         timezoneId: data.timezone.id,
-        operatingStatusId: data.operatingStatus.id,
         openingHourId: data.openingHour.id,
         closingHourId: data.closingHour.id,
       });
@@ -463,7 +457,6 @@ async function createBulkBusinesses(businessData: any[]) {
     await BusinessCategory.bulkCreate(categories, { transaction });
     await Location.bulkCreate(locations, { transaction });
     await PostalCode.bulkCreate(postalCodes, { transaction });
-    await BusinessOperatingStatus.bulkCreate(operatingStatuses, { transaction });
     await BusinessPhone.bulkCreate(phones, { transaction });
     await BusinessRating.bulkCreate(ratings, { transaction });
     await BusinessSource.bulkCreate(sources, { transaction });

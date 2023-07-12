@@ -8,7 +8,6 @@ import BusinessPhone from './BusinessPhone';
 import BusinessRating from './BusinessRating';
 import Timezone from './Timezone';
 import BusinessSource from './BusinessSource';
-import BusinessOperatingStatus from './BusinessOperatingStatus';
 import BusinessSocialMedia from './BusinessSocialMedia';
 import BusinessOpeningHour from './BusinessOpeningHour';
 import BusinessClosingHour from './BusinessClosingHour';
@@ -33,7 +32,6 @@ class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public reviews?: number;
   public timezoneId?: string;
   public sourceId!: string;
-  public operatingStatusId?: string;
   public socialMediaId?: string;
   public openingHourId!: string;
   public closingHourId!: string;
@@ -116,10 +114,6 @@ Business.init(
       type: DataTypes.UUID,
       allowNull: false,
     },
-    operatingStatusId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-    },
     socialMediaId: {
       type: DataTypes.UUID,
       allowNull: true,
@@ -153,8 +147,7 @@ Business.belongsTo(BusinessPhone, { foreignKey: 'phoneId' });
 Business.belongsTo(BusinessRating, { foreignKey: 'ratingId' });
 Business.belongsTo(Timezone, { foreignKey: 'timezoneId' });
 Business.belongsTo(BusinessSource, { foreignKey: 'sourceId' });
-Business.belongsTo(BusinessOperatingStatus, { foreignKey: 'operatingStatusId' });
-Business.belongsTo(BusinessSocialMedia, { foreignKey: 'operatingStatusId' });
+Business.belongsTo(BusinessSocialMedia, { foreignKey: 'socialMediaId' });
 Business.belongsTo(BusinessOpeningHour, { foreignKey: 'openingHourId' });
 Business.belongsTo(BusinessClosingHour, { foreignKey: 'closingHourId' });
 Business.hasMany(BusinessPhoto, { foreignKey: 'businessId' });

@@ -1,8 +1,8 @@
 import Business from '../models/Business';
 import { BusinessAttributes } from '../types/business';
 
-export const createBusiness = async ({ name, businessDomain, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId }: BusinessAttributes) => {
-  const business = await Business.create({ name, businessDomain, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId });
+export const createBusiness = async ({ name, businessDomain, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId }: BusinessAttributes) => {
+  const business = await Business.create({ name, businessDomain, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId });
 
   return business;
 };
@@ -13,7 +13,7 @@ export const getBusinessById = async (businessId: number) => {
   return business;
 };
 
-export const updateBusiness = async ({ id, name, businessDomain, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, operatingStatusId, socialMediaId, openingHourId, closingHourId }: BusinessAttributes) => {
+export const updateBusiness = async ({ id, name, businessDomain, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId }: BusinessAttributes) => {
   const business = await Business.findByPk(id);
 
   if (business) {
@@ -30,7 +30,6 @@ export const updateBusiness = async ({ id, name, businessDomain, categoryId, add
     business.reviews = reviews;
     business.timezoneId = timezoneId;
     business.sourceId = sourceId || '';
-    business.operatingStatusId = operatingStatusId;
     business.socialMediaId = socialMediaId;
     business.openingHourId = openingHourId || '';
     business.closingHourId = closingHourId || '';

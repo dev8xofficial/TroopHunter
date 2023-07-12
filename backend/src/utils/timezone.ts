@@ -17,6 +17,6 @@ export const findOrCreateTimezone = async (timezone: TimezoneAttributes): Promis
       return record.toJSON() as TimezoneAttributes;
     }
   } catch (error) {
-    console.error('Failed to find or create business:', error);
+    console.error('Failed to find or create business timezone:', error);
   }
 };

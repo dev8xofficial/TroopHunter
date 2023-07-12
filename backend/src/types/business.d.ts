@@ -18,7 +18,6 @@ export interface BusinessAttributes {
   reviews?: number;
   timezoneId?: string;
   sourceId?: string;
-  operatingStatusId?: string;
   socialMediaId?: string;
   openingHourId?: string;
   closingHourId?: string;
