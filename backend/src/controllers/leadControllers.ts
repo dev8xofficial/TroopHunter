@@ -3,9 +3,8 @@ import Lead from '../models/Lead';
 import User from '../models/User';
 
 export const getLeads = async (req: Request, res: Response) => {
-  const { userId } = req.query;
   try {
-    const leads = await Lead.findAll({ where: { ownerId: userId as string } });
+    const leads = await Lead.findAll();
     res.json(leads);
   } catch (error) {
     console.error('Error while retrieving leads:', error);

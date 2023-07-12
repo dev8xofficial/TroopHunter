@@ -1,5 +1,5 @@
 import express from 'express';
-import { getQueues, getQueue, updateQueue } from '../controllers/queueController';
+import { getQueues, getQueueById, updateQueue } from '../controllers/queueController';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
 const router = express.Router();
@@ -8,7 +8,7 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define business routes
-router.get('/:id', getQueue);
+router.get('/:id', getQueueById);
 router.get('/', getQueues);
 router.put('/:id', updateQueue);
 

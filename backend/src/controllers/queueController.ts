@@ -11,10 +11,13 @@ export const getQueues = async (req: Request, res: Response) => {
   }
 };
 
-export const getQueue = async (req: Request, res: Response) => {
+export const getQueueById = async (req: Request, res: Response) => {
+  const { id } = req.params;
   try {
-    const id = req.params.id;
-    const queue = await Queue.findAll({ where: { id } });
+    const queue = await Queue.findOne({ where: { id } });
+    if (!queue) {
+      return res.status(404).json({ error: 'Queue not found' });
+    }
     res.json(queue);
   } catch (error) {
     console.error('Error while retrieving queue:', error);

@@ -3,9 +3,8 @@ import Lists from '../models/List';
 import User from '../models/User';
 
 export const getLists = async (req: Request, res: Response) => {
-  const { userId } = req.query;
   try {
-    const lists = await Lists.findAll({ where: { ownerId: userId as string } });
+    const lists = await Lists.findAll();
     res.json(lists);
   } catch (error) {
     console.error('Error while retrieving lists:', error);

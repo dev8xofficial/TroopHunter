@@ -39,104 +39,6 @@ import { findOrCreateBusinessOpeningHour } from '../utils/openingHour';
 import { findOrCreateBusinessClosingHour } from '../utils/closingHour';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
-export const getBusinesses = async (req: Request, res: Response) => {
-  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
-
-  const whereClause: { [key: string]: any } = {};
-
-  if (name) {
-    whereClause.name = { [Op.iLike]: `%${name}%` };
-  }
-
-  if (businessDomain) {
-    whereClause.businessDomain = { [Op.iLike]: `%${businessDomain}%` };
-  }
-
-  if (categoryId) {
-    whereClause.categoryId = categoryId;
-  }
-
-  if (address) {
-    whereClause.address = address;
-  }
-
-  if (locationId) {
-    whereClause.locationId = locationId;
-  }
-
-  if (latitude && longitude && range) {
-    const point: Point = {
-      type: 'Point',
-      coordinates: [parseFloat(longitude as string), parseFloat(latitude as string)],
-    };
-
-    whereClause.geoPoint = Sequelize.literal(`ST_DWithin("Business"."geoPoint", ST_SetSRID(ST_MakePoint(${point.coordinates[0]}, ${point.coordinates[1]}), 4326), ${range})`);
-    whereClause.longitude = longitude;
-    whereClause.latitude = latitude;
-  }
-
-  if (postalCodeId) {
-    whereClause.postalCodeId = postalCodeId;
-  }
-
-  if (phoneId) {
-    whereClause.phoneId = phoneId;
-  }
-
-  if (email) {
-    whereClause.email = email;
-  }
-
-  if (website) {
-    whereClause.website = {
-      [Op.eq]: website,
-    };
-  }
-
-  if (timezoneId) {
-    whereClause.timezoneId = timezoneId;
-  }
-
-  if (openingHourId) {
-    whereClause.openingHourId = openingHourId;
-  }
-
-  if (closingHourId) {
-    whereClause.closingHourId = closingHourId;
-  }
-
-  const paginationOptions: { [key: string]: number } = {};
-
-  const pageNumber = parseInt(page as string, 10);
-  const limitNumber = parseInt(limit as string, 10);
-
-  if (!isNaN(pageNumber) && pageNumber > 0) {
-    paginationOptions.offset = (pageNumber - 1) * limitNumber;
-  }
-
-  if (!isNaN(limitNumber) && limitNumber > 0) {
-    paginationOptions.limit = limitNumber;
-  }
-
-  try {
-    const { count, rows: businesses } = await Business.findAndCountAll({
-      where: whereClause,
-      ...paginationOptions,
-    });
-
-    const totalPages = Math.ceil(count / limitNumber);
-
-    res.json({
-      totalRecords: count,
-      totalPages,
-      businesses,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'An error occurred while retrieving businesses.' });
-  }
-};
-
 export const createBusinesses = async (req: Request, res: Response) => {
   try {
     const count = parseInt(req.body.count);
@@ -326,17 +228,112 @@ export const createBusiness = async (req: Request, res: Response) => {
   }
 };
 
-export const getBusiness = async (req: Request, res: Response) => {
+export const getBusinesses = async (req: Request, res: Response) => {
+  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId, page, limit } = req.body;
+
+  const whereClause: { [key: string]: any } = {};
+
+  if (name) {
+    whereClause.name = { [Op.iLike]: `%${name}%` };
+  }
+
+  if (businessDomain) {
+    whereClause.businessDomain = { [Op.iLike]: `%${businessDomain}%` };
+  }
+
+  if (categoryId) {
+    whereClause.categoryId = categoryId;
+  }
+
+  if (address) {
+    whereClause.address = address;
+  }
+
+  if (locationId) {
+    whereClause.locationId = locationId;
+  }
+
+  if (latitude && longitude && range) {
+    const point: Point = {
+      type: 'Point',
+      coordinates: [parseFloat(longitude as string), parseFloat(latitude as string)],
+    };
+
+    whereClause.geoPoint = Sequelize.literal(`ST_DWithin("Business"."geoPoint", ST_SetSRID(ST_MakePoint(${point.coordinates[0]}, ${point.coordinates[1]}), 4326), ${range})`);
+    whereClause.longitude = longitude;
+    whereClause.latitude = latitude;
+  }
+
+  if (postalCodeId) {
+    whereClause.postalCodeId = postalCodeId;
+  }
+
+  if (phoneId) {
+    whereClause.phoneId = phoneId;
+  }
+
+  if (email) {
+    whereClause.email = email;
+  }
+
+  if (website) {
+    whereClause.website = {
+      [Op.eq]: website,
+    };
+  }
+
+  if (timezoneId) {
+    whereClause.timezoneId = timezoneId;
+  }
+
+  if (openingHourId) {
+    whereClause.openingHourId = openingHourId;
+  }
+
+  if (closingHourId) {
+    whereClause.closingHourId = closingHourId;
+  }
+
+  const paginationOptions: { [key: string]: number } = {};
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  if (!isNaN(pageNumber) && pageNumber > 0) {
+    paginationOptions.offset = (pageNumber - 1) * limitNumber;
+  }
+
+  if (!isNaN(limitNumber) && limitNumber > 0) {
+    paginationOptions.limit = limitNumber;
+  }
+
   try {
-    const businessId = req.params.id;
+    const { count, rows: businesses } = await Business.findAndCountAll({
+      where: whereClause,
+      ...paginationOptions,
+    });
 
-    const business = await Business.findByPk(businessId);
+    const totalPages = Math.ceil(count / limitNumber);
 
-    if (business) {
-      res.json(business);
-    } else {
-      res.status(404).json({ error: 'Business not found' });
+    res.json({
+      totalRecords: count,
+      totalPages,
+      businesses,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while retrieving businesses.' });
+  }
+};
+
+export const getBusinessById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const business = await Business.findOne({ where: { id } });
+    if (!business) {
+      return res.status(404).json({ error: 'Business not found' });
     }
+    res.json(business);
   } catch (error) {
     console.error('Error retrieving business:', error);
     res.status(500).json({ error: 'Failed to retrieve business' });
@@ -344,12 +341,12 @@ export const getBusiness = async (req: Request, res: Response) => {
 };
 
 export const updateBusiness = async (req: Request, res: Response) => {
+  const { id } = req.params;
   try {
-    const businessId = req.params.id;
     const { name, businessDomain, categoryId, address, locationId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
-    const business = await Business.findByPk(businessId);
+    const business = await Business.findByPk(id);
 
     if (business) {
       business.name = name;
@@ -385,17 +382,14 @@ export const updateBusiness = async (req: Request, res: Response) => {
 };
 
 export const deleteBusiness = async (req: Request, res: Response) => {
+  const { id } = req.params;
   try {
-    const businessId = req.params.id;
-
-    const business = await Business.findByPk(businessId);
-
-    if (business) {
-      await business.destroy();
-      res.status(204).end();
-    } else {
-      res.status(404).json({ error: 'RBusiness not found' });
+    const business = await Business.findByPk(id);
+    if (!business) {
+      return res.status(404).json({ error: 'Business not found' });
     }
+    await business.destroy();
+    res.status(204).json();
   } catch (error) {
     console.error('Error deleting business:', error);
     res.status(500).json({ error: 'Failed to delete business' });
