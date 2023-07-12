@@ -111,9 +111,9 @@ def get_timezone_info(timezone):
         offset = now_localized.utcoffset()
         dst_info = now_localized.dst()
 
-        utc_offset = offset.total_seconds() / 3600
+        utc_offset = str(offset.total_seconds() / 3600)
         dst = dst_info != timedelta(0)
-        dst_offset = dst_info.total_seconds() / 3600
+        dst_offset = str(dst_info.total_seconds() / 3600)
 
         return {"utc_offset": utc_offset, "dst": dst, "dst_offset": dst_offset}
     except pytz.UnknownTimeZoneError:

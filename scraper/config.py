@@ -2,5 +2,13 @@
 OUTPUT_FILE = "data/output.csv"  # Path to the output CSV file
 CHROME_DRIVER_PATH = ""
 BASE_URL = "https://www.google.com/maps/search"
-CITIES = ["San Francisco, California, United States"]
+LOCATIONS = [
+    {
+        "city": "San Francisco",
+        "timezone": "America/Los_Angeles",
+        "state": "California",
+        "country": "United States",
+        "countryCode": "US",
+    }
+]
 sourceValues = ["google-maps", "google", "facebook"]

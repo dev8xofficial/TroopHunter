@@ -5,5 +5,4 @@ export interface TimezoneAttributes {
   dst: boolean;
   dstOffset: string;
   countryCode: string;
-  notes: string;
 }

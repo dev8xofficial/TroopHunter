@@ -28,10 +28,6 @@ module.exports = {
         type: Sequelize.STRING(5),
         allowNull: false,
       },
-      notes: {
-        type: Sequelize.STRING(255),
-        allowNull: false,
-      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -42,6 +38,13 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.literal('NOW()'),
       },
+    });
+    
+    // Add a unique constraint to the 'timezoneName' column
+    await queryInterface.addConstraint('Timezones', {
+      fields: ['timezoneName'],
+      type: 'unique',
+      name: 'unique_timezoneName_constraint',
     });
   },
 

@@ -1,5 +1,5 @@
 from src.scraper import BusinessScraper
-from config import CITIES, OUTPUT_FILE
+from config import LOCATIONS, OUTPUT_FILE
 from queries.chatgpt import QUERIES_CHATGPT
 import logging
 import datetime
@@ -30,10 +30,10 @@ def main():
     # Create an instance of the BusinessScraper
     scraper = BusinessScraper()
 
-    for city in CITIES:
+    for location in LOCATIONS:
         for query in QUERIES_CHATGPT:
-            scraper.search(f"{query} in {city}")
-            scraper.scroll_and_extract_data(query, city)
+            scraper.search(f"{query} in {', '.join(dict((key,value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
+            scraper.scroll_and_extract_data(query, location)
 
     scraper.save_to_csv(output_file=OUTPUT_FILE)
 

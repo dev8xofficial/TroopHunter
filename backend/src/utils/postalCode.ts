@@ -2,7 +2,7 @@ import Location from '../models/Location';
 import PostalCode from '../models/PostalCode';
 import { PostalCodeAttributes } from '../types/postalCode';
 
-export const findOrCreateBusinessPostalCode = async (code: string): Promise<PostalCodeAttributes | undefined> => {
+export const findOrCreatePostalCode = async (code: string): Promise<PostalCodeAttributes | undefined> => {
   try {
     const [record, created] = await PostalCode.findOrCreate({
       where: { code },

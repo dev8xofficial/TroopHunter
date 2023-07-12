@@ -8,7 +8,6 @@ class Timezone extends Model {
   public dst!: boolean;
   public dstOffset!: string;
   public countryCode!: string;
-  public notes!: string;
 }
 
 Timezone.init(
@@ -21,6 +20,7 @@ Timezone.init(
     timezoneName: {
       type: DataTypes.STRING(100),
       allowNull: false,
+      unique: true,
     },
     utcOffset: {
       type: DataTypes.STRING(10),
@@ -36,10 +36,6 @@ Timezone.init(
     },
     countryCode: {
       type: DataTypes.STRING(5),
-      allowNull: false,
-    },
-    notes: {
-      type: DataTypes.STRING(255),
       allowNull: false,
     },
   },

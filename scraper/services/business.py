@@ -62,4 +62,4 @@ def create_business(request: dict):
             return None
     except requests.exceptions.RequestException as e:
         # Request encountered an error
-        logging.error("Business existence check failed.")
+        logging.error("Failed to create a business.")

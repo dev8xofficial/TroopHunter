@@ -14,6 +14,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import WebDriverException
 import time
 import re
+import json
 from bs4 import BeautifulSoup
 import csv
 import urllib
@@ -205,13 +206,20 @@ class BusinessScraper:
             current_business_data["source"] = sourceValues[0]
             logging.info(f"Source: {sourceValues[0]}")
 
-            timezone = "America/Los_Angeles"
-            utc_offset, dst, dst_offset = get_timezone_info(timezone)
+            timezone = get_timezone_info(location["timezone"])
+            logging.info(f"Timezone: {location['timezone']}")
+            logging.info(f"UTC Offset: {timezone['utc_offset']}")
+            logging.info(f"DST: {timezone['dst']}")
+            logging.info(f"DST Offset: {timezone['dst_offset']}")
+            logging.info(f"Country Code: {location['countryCode']}")
 
-            logging.info(f"Timezone: {timezone}")
-            logging.info(f"UTC Offset: {utc_offset}")
-            logging.info(f"DST: {dst}")
-            logging.info(f"DST Offset: {dst_offset}")
+            current_business_data["timezone"] = {
+                "timezoneName": location["timezone"],
+                "utcOffset": timezone["utc_offset"],
+                "dst": timezone["dst"],
+                "dstOffset": timezone["dst_offset"],
+                "countryCode": location["countryCode"],
+            }
 
             # if not is_business_existence:
             #     location = get_location_details(latitude=latitude, longitude=longitude)
@@ -242,14 +250,14 @@ class BusinessScraper:
                         zip = get_postal_code(address=tr_text)
                         logging.info("Location:")
                         logging.info(f"Postal Code: {zip}")
-                        logging.info(f"City: {location.split(', ')[0]}")
-                        logging.info(f"State: {location.split(', ')[1]}")
-                        logging.info(f"Country: {location.split(', ')[2]}")
+                        logging.info(f"City: {location['city']}")
+                        logging.info(f"State: {location['state']}")
+                        logging.info(f"Country: {location['country']}")
                         current_business_data["postalCode"] = zip
                         current_business_data["location"] = {
-                            "city": location.split(", ")[0],
-                            "state": location.split(", ")[1],
-                            "country": location.split(", ")[2],
+                            "city": location["city"],
+                            "state": location["state"],
+                            "country": location["country"],
                         }
                 elif img_with_schedule_src:
                     tr_elements = soup.find_all("tr", class_="y0skZc")

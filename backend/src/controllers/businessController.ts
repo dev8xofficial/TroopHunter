@@ -33,9 +33,10 @@ import { Point } from 'geojson';
 import { findOrCreateBusinessPhone, getPhoneWithDetails } from '../utils/phone';
 import { findOrCreateBusinessSource } from '../utils/business';
 import { findOrCreateBusinessCategory } from '../utils/category';
-import { findOrCreateBusinessLocation } from '../utils/location';
-import { findOrCreateBusinessPostalCode } from '../utils/postalCode';
+import { findOrCreateLocation } from '../utils/location';
+import { findOrCreatePostalCode } from '../utils/postalCode';
 import { findOrCreateBusinessRating } from '../utils/rating';
+import { findOrCreateTimezone } from '../utils/timezone';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinesses = async (req: Request, res: Response) => {
@@ -211,7 +212,6 @@ export const createBusinesses = async (req: Request, res: Response) => {
           dst: faker.datatype.boolean(),
           dstOffset: faker.number.int({ min: -12, max: 12 }).toString(),
           countryCode: faker.location.countryCode(),
-          notes: faker.lorem.sentence(),
         },
         socialMedia: {
           id: uuidv4(),
@@ -260,7 +260,7 @@ export const createBusinesses = async (req: Request, res: Response) => {
 
 export const createBusiness = async (req: Request, res: Response) => {
   try {
-    const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezoneId, source, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, operatingStatusId, socialMediaId, openingHourId, closingHourId } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
     let payload: BusinessAttributes = {
       name,
@@ -272,7 +272,6 @@ export const createBusiness = async (req: Request, res: Response) => {
       email,
       website,
       reviews,
-      timezoneId,
       operatingStatusId,
       socialMediaId,
       openingHourId,
@@ -289,12 +288,12 @@ export const createBusiness = async (req: Request, res: Response) => {
     }
 
     if (location) {
-      const locationFromDB: LocationAttributes | undefined = await findOrCreateBusinessLocation(location);
+      const locationFromDB: LocationAttributes | undefined = await findOrCreateLocation(location);
       payload.locationId = locationFromDB?.id;
     }
 
     if (postalCode) {
-      const postalCodeFromDB: PostalCodeAttributes | undefined = await findOrCreateBusinessPostalCode(postalCode);
+      const postalCodeFromDB: PostalCodeAttributes | undefined = await findOrCreatePostalCode(postalCode);
       payload.postalCodeId = postalCodeFromDB?.id;
     }
 
@@ -312,6 +311,12 @@ export const createBusiness = async (req: Request, res: Response) => {
     if (source) {
       const sourceFromDB: SourceAttributes | undefined = await findOrCreateBusinessSource(source);
       payload.sourceId = sourceFromDB?.id;
+    }
+
+    if (timezone) {
+      // timezone.dst = timezone.dst === 'True' ? true : timezone.dst === 'False' ? false : false;
+      const timezoneFromDB: TimezoneAttributes | undefined = await findOrCreateTimezone(timezone);
+      payload.timezoneId = timezoneFromDB?.id;
     }
 
     const business = await Business.create(payload);
