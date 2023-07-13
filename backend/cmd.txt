@@ -1,4 +1,5 @@
 Must to run commands:
+  CREATE EXTENSION postgis;
   CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 Sequelize Commands:
