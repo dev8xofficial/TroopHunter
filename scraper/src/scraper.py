@@ -34,10 +34,10 @@ class BusinessScraper:
     def __init__(self):
         chrome_options = Options()
         # chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--disable-network")
-        chrome_options.add_argument("--force-effective-connection-type=slow-3g")
+        # chrome_options.add_argument("--disable-network")
+        # chrome_options.add_argument("--force-effective-connection-type=slow-3g")
         chrome_options.add_argument("--start-maximized")
-        chrome_options.add_argument("--auto-open-devtools-for-tabs")
+        # chrome_options.add_argument("--auto-open-devtools-for-tabs")
 
         try:
             logging.info("Initiating chrome web driver.")
