@@ -4,6 +4,7 @@ import logging
 import datetime
 from dotenv import load_dotenv
 from services.queue import get_queue, update_queue
+from concurrent.futures import ThreadPoolExecutor
 
 # Load environment variables from .env file
 load_dotenv()
@@ -26,33 +27,43 @@ root_logger = logging.getLogger()
 root_logger.addHandler(console_handler)
 
 
+def process_queue(queue, location):
+    try:
+        scraper = BusinessScraper()
+        scraper.search(f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
+        scraper.scroll_and_extract_data(queue["searchQuery"], location)
+        scraper.save_to_csv(output_file=OUTPUT_FILE)
+
+        queue["status"] = "Completed"
+        update_queue(request=queue)
+        logging.info(f"Search for '{queue['searchQuery']}' in {location} completed.")
+    except Exception as e:
+        logging.exception(f"An error occurred during search execution for '{queue['searchQuery']}' in {location}: {e}")
+
+
 def main():
-    # Create an instance of the BusinessScraper
-    scraper = BusinessScraper()
+    logging.info("Scraping process started.")
 
     QUEUES = get_queue()
 
-    for location in LOCATIONS:
-        for queue in QUEUES:
-            if queue["laptopName"] == LAPTOP_NAME and queue["status"] == "Pending":
-                pass
-            elif queue["laptopName"] == "" and queue["status"] == "Pending":
-                queue["laptopName"] = LAPTOP_NAME
-                update_queue(request=queue)
+    # Create a ThreadPoolExecutor with a maximum of 5 threads
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        for location in LOCATIONS:
+            for queue in QUEUES:
+                if queue["laptopName"] == LAPTOP_NAME and queue["status"] == "Pending":
+                    pass
+                elif queue["laptopName"] == "" and queue["status"] == "Pending":
+                    queue["laptopName"] = LAPTOP_NAME
+                    update_queue(request=queue)
 
-            scraper.search(f"{queue['searchQuery']} in {', '.join(dict((key,value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
-            scraper.scroll_and_extract_data(queue["searchQuery"], location)
+                # Submit each search task to the ThreadPoolExecutor
+                executor.submit(process_queue, queue, location)
 
-            queue["status"] = "Completed"
-            update_queue(request=queue)
-
-    scraper.save_to_csv(output_file=OUTPUT_FILE)
+    logging.info("Scraping process completed.")
 
 
 if __name__ == "__main__":
     try:
-        logging.info("Scraping process started.")
         main()
-        logging.info("Scraping process completed.")
     except Exception as e:
         logging.exception("An unhandled error occurred during scraper execution: %s", e)
