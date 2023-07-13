@@ -229,7 +229,7 @@ export const createBusiness = async (req: Request, res: Response) => {
 };
 
 export const getBusinesses = async (req: Request, res: Response) => {
-  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId, page, limit } = req.body;
+  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId, page, limit } = req.query;
 
   const whereClause: { [key: string]: any } = {};
 
@@ -307,6 +307,7 @@ export const getBusinesses = async (req: Request, res: Response) => {
     paginationOptions.limit = limitNumber;
   }
 
+  console.log('getBusinesses: ', req.body, req.params, req.query, whereClause);
   try {
     const { count, rows: businesses } = await Business.findAndCountAll({
       where: whereClause,
@@ -327,6 +328,7 @@ export const getBusinesses = async (req: Request, res: Response) => {
 };
 
 export const getBusinessById = async (req: Request, res: Response) => {
+  console.log('getBusinessById: ');
   const { id } = req.params;
   try {
     const business = await Business.findOne({ where: { id } });

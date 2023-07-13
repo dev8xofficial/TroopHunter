@@ -64,7 +64,7 @@ Business.init(
     },
     address: {
       type: DataTypes.STRING(500),
-      allowNull: true,
+      allowNull: false,
     },
     locationId: {
       type: DataTypes.UUID,
@@ -134,7 +134,7 @@ Business.init(
       // Create a composite index for faster searching
       {
         unique: true,
-        fields: ['geoPoint', 'website'],
+        fields: ['address'],
       },
     ],
   }

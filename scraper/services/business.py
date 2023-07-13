@@ -4,7 +4,7 @@ import requests
 import logging
 
 
-def check_business_existence(longitude: float, latitude: float, range: int):
+def check_business_existence(address: str):
     # Define the endpoint URL
     backend_url = os.environ.get("BACKEND_URL")
     url = f"{backend_url}/businesses"
@@ -17,9 +17,7 @@ def check_business_existence(longitude: float, latitude: float, range: int):
 
     # Set the request parameters
     params = {
-        "longitude": longitude,
-        "latitude": latitude,
-        "range": range,
+        "address": address,
     }
 
     try:

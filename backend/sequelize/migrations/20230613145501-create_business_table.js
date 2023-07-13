@@ -24,7 +24,7 @@ module.exports = {
       },
       address: {
         type: Sequelize.STRING(500),
-        allowNull: true,
+        allowNull: false,
       },
       locationId: {
         type: Sequelize.UUID,
@@ -98,7 +98,7 @@ module.exports = {
       },
     });
 
-    await queryInterface.addIndex('Businesses', ['website', 'geoPoint'], {
+    await queryInterface.addIndex('Businesses', ['address'], {
       unique: true,
     });
 
@@ -226,7 +226,7 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     // Drop indexes
-    await queryInterface.removeIndex('Businesses', ['website', 'geoPoint']);
+    await queryInterface.removeIndex('Businesses', ['address']);
     // Drop foreign key constraints
     await queryInterface.removeConstraint('Businesses', 'fk_business_category');
     await queryInterface.removeConstraint('Businesses', 'fk_business_location');

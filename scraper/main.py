@@ -1,6 +1,5 @@
 from src.scraper import BusinessScraper
 from config import LOCATIONS, OUTPUT_FILE, LAPTOP_NAME
-from queries.chatgpt import QUERIES_CHATGPT
 import logging
 import datetime
 from dotenv import load_dotenv
@@ -35,15 +34,17 @@ def main():
 
     for location in LOCATIONS:
         for queue in QUEUES:
-            if (queue["laptopName"] == "" or queue["laptopName"] == LAPTOP_NAME) and queue["status"] == "Pending":
+            if queue["laptopName"] == LAPTOP_NAME and queue["status"] == "Pending":
+                pass
+            elif queue["laptopName"] == "" and queue["status"] == "Pending":
                 queue["laptopName"] = LAPTOP_NAME
                 update_queue(request=queue)
 
-                scraper.search(f"{queue['searchQuery']} in {', '.join(dict((key,value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
-                scraper.scroll_and_extract_data(queue["searchQuery"], location)
+            scraper.search(f"{queue['searchQuery']} in {', '.join(dict((key,value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
+            scraper.scroll_and_extract_data(queue["searchQuery"], location)
 
-                queue["status"] = "Completed"
-                update_queue(request=queue)
+            queue["status"] = "Completed"
+            update_queue(request=queue)
 
     scraper.save_to_csv(output_file=OUTPUT_FILE)
 

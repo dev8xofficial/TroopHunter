@@ -4,7 +4,7 @@ from geopy.exc import GeocoderTimedOut
 import re
 from pyzipcode import ZipCodeDatabase
 import pytz
-from datetime import datetime, timedelta, time
+from datetime import datetime, timedelta
 
 
 def get_location_details(latitude: float, longitude: float, address: str):

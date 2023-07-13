@@ -20,7 +20,7 @@ def get_queue():
         response = requests.get(url, headers=headers)
 
         # Check the response status code
-        if response.status_code == 200 or response.status_code == 201:
+        if response.status_code == 200:
             return response.json()
         else:
             # Request failed
@@ -44,7 +44,7 @@ def update_queue(request: dict):
         response = requests.put(url, headers=headers, data=json.dumps(request))
 
         # Check the response status code
-        if response.status_code == 200 or response.status_code == 201:
+        if response.status_code == 200:
             return response.json()
         else:
             # Request failed

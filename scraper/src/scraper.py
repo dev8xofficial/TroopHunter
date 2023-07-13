@@ -16,7 +16,6 @@ import time
 import re
 import json
 from bs4 import BeautifulSoup
-from datetime import datetime
 import csv
 import urllib
 from config import BASE_URL
@@ -149,9 +148,12 @@ class BusinessScraper:
                 current_business_anchor,
             )
 
-            logging.info("====== New Business ======")
+            logging.info("========================================================")
+            logging.info("================= New Business =========================")
+            logging.info("========================================================")
             ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
             counter = counter + 1
+            time.sleep(short_wait)
 
             # Wait for the Heading element to appear on the view
             wait = WebDriverWait(self.driver, long_wait)
@@ -160,6 +162,7 @@ class BusinessScraper:
 
             soup = BeautifulSoup(self.driver.page_source, "html.parser")
 
+            logging.info("~~~~~~~~ Basic Info ~~~~~~~~")
             # Heading
             h1_text = soup.find("h1", class_="DUwDvf fontHeadlineLarge").text
             current_business_data["name"] = h1_text
@@ -189,6 +192,7 @@ class BusinessScraper:
                 current_business_data["rating"] = 0.0
                 current_business_data["reviews"] = 0
 
+            logging.info("~~~~~~~~ Location Info ~~~~~~~~")
             # Extract latitude and longitude from the URL
             lat_lon = self.driver.current_url.split("/")[6].split("@")[1].split(",")[:2]
             latitude = float(lat_lon[0])
@@ -197,18 +201,10 @@ class BusinessScraper:
             current_business_data["longitude"] = longitude
             logging.info(f"Latitude & Longitude: {latitude}, {longitude}")
 
-            # ======================== BACKEND ======================== #
-
-            is_business_existence = check_business_existence(longitude, latitude, 0)
-            logging.info(f"Check Business Existence: {is_business_existence}")
-            if is_business_existence:
-                continue
-
-            # ======================== BACKEND ======================== #
-
             current_business_data["source"] = sourceValues[0]
             logging.info(f"Source: {sourceValues[0]}")
 
+            logging.info("~~~~~~~~ Timezone Info ~~~~~~~~")
             timezone = get_timezone_info(location["timezone"])
             logging.info(f"Timezone: {location['timezone']}")
             logging.info(f"UTC Offset: {timezone['utc_offset']}")
@@ -246,25 +242,26 @@ class BusinessScraper:
                 img_with_send_to_mobile_src = info.find("img", {"src": lambda s: "send_to_mobile" in s})
 
                 if img_with_place_src:
+                    logging.info("~~~~~~~~ Address Info ~~~~~~~~")
                     tr_text = info.get_text("|", strip=True)
                     current_business_data["address"] = tr_text
-                    logging.info(f"Place Info: {tr_text}")
-                    if not is_business_existence:
-                        zip = get_postal_code(address=tr_text)
-                        logging.info("Location:")
-                        logging.info(f"Postal Code: {zip}")
-                        logging.info(f"City: {location['city']}")
-                        logging.info(f"State: {location['state']}")
-                        logging.info(f"Country: {location['country']}")
-                        current_business_data["postalCode"] = zip
-                        current_business_data["location"] = {
-                            "city": location["city"],
-                            "state": location["state"],
-                            "country": location["country"],
-                        }
+                    logging.info(f"Place: {tr_text}")
+                    # if not is_business_existence:
+                    zip = get_postal_code(address=tr_text)
+                    logging.info("Location:")
+                    logging.info(f"Postal Code: {zip}")
+                    logging.info(f"City: {location['city']}")
+                    logging.info(f"State: {location['state']}")
+                    logging.info(f"Country: {location['country']}")
+                    current_business_data["postalCode"] = zip
+                    current_business_data["location"] = {
+                        "city": location["city"],
+                        "state": location["state"],
+                        "country": location["country"],
+                    }
                 elif img_with_schedule_src:
+                    logging.info("~~~~~~~~ Schedule Info ~~~~~~~~")
                     tr_elements = soup.find_all("tr", class_="y0skZc")
-                    logging.info("Schedule Info: ")
 
                     for tr in tr_elements:
                         td_elements = tr.find_all("td")
@@ -281,32 +278,37 @@ class BusinessScraper:
                             logging.info(f"{first_td_text}: {second_td_text}")
                 elif img_with_shipping_src:
                     tr_text = info.get_text("|", strip=True)
-                    logging.info(f"Shipping Info: {tr_text}")
+                    logging.info(f"Shipping: {tr_text}")
                 elif img_with_public_src:
                     tr_text = info.get_text("|", strip=True)
                     current_business_data["website"] = tr_text
-                    logging.info(f"Website Info: {tr_text}")
+                    logging.info(f"Website: {tr_text}")
                 elif img_with_phone_src:
                     tr_text = info.get_text("|", strip=True)
                     current_business_data["phone"] = tr_text
-                    logging.info(f"Phone Info: {tr_text}")
+                    logging.info(f"Phone: {tr_text}")
                 elif img_with_plus_code_src:
                     tr_text = info.get_text("|", strip=True)
-                    logging.info(f"Plus Code Info: {tr_text}")
+                    logging.info(f"Plus Code: {tr_text}")
                 elif img_with_send_to_mobile_src:
                     tr_text = info.get_text("|", strip=True)
-                    logging.info(f"Send To Mobile Info: {tr_text}")
+                    logging.info(f"Send To Mobile: {tr_text}")
                 else:
-                    logging.info(f"Other Info: {tr_text}")
-
-            new_business_response = create_business(current_business_data)
-            logging.info("New Business Response: ", new_business_response)
+                    logging.info(f"Other: {info.find('img')} {info.get_text('|', strip=True)}")
 
             if has_scrolled:
                 time.sleep(short_wait)
                 close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
                 close_current_business_anchor.click()
-                logging.info("~~~~~~ Scrolling ~~~~~~")
+
+            is_business_existence = check_business_existence(current_business_data["address"])
+            logging.info(f"New Business: {is_business_existence}")
+            logging.info("\n~~~~~~~ Scrolling ~~~~~~~")
+            if is_business_existence:
+                # time.sleep(short_wait)
+                continue
+            else:
+                create_business(current_business_data)
 
     def save_to_csv(self, data, output_file):
         with open(output_file, "w", newline="", encoding="utf-8") as csv_file:
