@@ -70,6 +70,7 @@ class BusinessScraper:
             current_business_anchor_is_loader_or_not = None
             current_business_anchor_is_end_of_list_or_not = None
             current_business_data = {}
+            logging.info("Selected new business.")
 
             try:
                 if current_business_anchor:
@@ -148,6 +149,7 @@ class BusinessScraper:
                 current_business_anchor,
             )
 
+            logging.info("About to open new business profile .")
             logging.info("========================================================")
             logging.info("================= New Business =========================")
             logging.info("========================================================")
@@ -302,8 +304,8 @@ class BusinessScraper:
                 close_current_business_anchor.click()
 
             is_business_existence = check_business_existence(current_business_data["address"])
-            logging.info(f"New Business: {is_business_existence}")
-            logging.info("\n~~~~~~~ Scrolling ~~~~~~~")
+            logging.info(f"Does the business exist?: {not is_business_existence}")
+            logging.info("~~~~~~~ Scrolling ~~~~~~~")
             if is_business_existence:
                 # time.sleep(short_wait)
                 continue
