@@ -306,8 +306,7 @@ export const getBusinesses = async (req: Request, res: Response) => {
   if (!isNaN(limitNumber) && limitNumber > 0) {
     paginationOptions.limit = limitNumber;
   }
-
-  console.log('getBusinesses: ', req.body, req.params, req.query, whereClause);
+  
   try {
     const { count, rows: businesses } = await Business.findAndCountAll({
       where: whereClause,
