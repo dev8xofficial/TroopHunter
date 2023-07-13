@@ -153,6 +153,7 @@ class BusinessScraper:
             logging.info("========================================================")
             logging.info("================= New Business =========================")
             logging.info("========================================================")
+            time.sleep(short_wait)
             ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
             counter = counter + 1
             time.sleep(short_wait)
@@ -275,8 +276,12 @@ class BusinessScraper:
                             string = string.replace("–", "-")  # Replace non-standard hyphen with regular hyphen
                             result = string.split("-")
                             if "Mon" in first_td_text or "Tue" in first_td_text or "Wed" in first_td_text:
-                                current_business_data["openingHour"] = convert_to_24h_format(result[0])
-                                current_business_data["closingHour"] = convert_to_24h_format(result[1])
+                                try:
+                                    current_business_data["openingHour"] = convert_to_24h_format(result[0])
+                                    current_business_data["closingHour"] = convert_to_24h_format(result[1])
+                                except IndexError:
+                                    logging.error(f"Open/Close Hours: {result}")
+                                    pass
                             logging.info(f"{first_td_text}: {second_td_text}")
                 elif img_with_shipping_src:
                     tr_text = info.get_text("|", strip=True)
