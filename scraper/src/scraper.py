@@ -70,7 +70,6 @@ class BusinessScraper:
             current_business_anchor_is_loader_or_not = None
             current_business_anchor_is_end_of_list_or_not = None
             current_business_data = {}
-            logging.info("Selected new business.")
 
             try:
                 if current_business_anchor:
@@ -153,7 +152,6 @@ class BusinessScraper:
             logging.info("========================================================")
             logging.info("================= New Business =========================")
             logging.info("========================================================")
-            time.sleep(short_wait)
             ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
             counter = counter + 1
             time.sleep(short_wait)
@@ -309,10 +307,9 @@ class BusinessScraper:
                 close_current_business_anchor.click()
 
             is_business_existence = check_business_existence(current_business_data["address"])
-            logging.info(f"Does the business exist?: {not is_business_existence}")
-            logging.info("~~~~~~~ Scrolling ~~~~~~~")
+            logging.info(f"Does the business exist?: {is_business_existence}")
+            logging.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
             if is_business_existence:
-                # time.sleep(short_wait)
                 continue
             else:
                 create_business(current_business_data)
