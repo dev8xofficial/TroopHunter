@@ -54,6 +54,8 @@ def main():
                 elif queue["laptopName"] == "" and queue["status"] == "Pending":
                     queue["laptopName"] = LAPTOP_NAME
                     update_queue(request=queue)
+                else:
+                    continue
 
                 # Submit each search task to the ThreadPoolExecutor
                 executor.submit(process_queue, queue, location)
