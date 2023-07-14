@@ -2,9 +2,10 @@ import json
 import os
 import requests
 import logging
+import re
 
 
-def check_business_existence(address: str):
+def check_business_existence(name: str = None, category: str = None, address: str = None, phone: str = None, includes: list[str] = []):
     # Define the endpoint URL
     backend_url = os.environ.get("BACKEND_URL")
     url = f"{backend_url}/businesses"
@@ -17,23 +18,34 @@ def check_business_existence(address: str):
 
     # Set the request parameters
     params = {
-        "address": address,
+        "name": name,
+        "includes": includes,
     }
 
     try:
         # Send the GET request to the endpoint
         response = requests.get(url, headers=headers, params=params)
+        result = False
 
         # Check the response status code
         if response.status_code == 200:
             if response.json()["totalRecords"] > 0:
-                # Request successful
-                return True
-            else:
-                return False
-        else:
-            # Request failed
-            return False
+                for business in response.json()["businesses"]:
+                    if name == None:
+                        result = False
+                        break
+                    elif business["name"] == name:
+                        result = True
+
+                    if category != None and business["businessDomain"] == category:
+                        result = True
+
+                    if address != None and address.replace("· ", "") in business["address"]:
+                        result = True
+
+                    if phone != None and business["BusinessPhone"]["number"] == phone:
+                        result = True
+        return result
     except requests.exceptions.RequestException as e:
         # Request encountered an error
         logging.error("Business existence check failed.")

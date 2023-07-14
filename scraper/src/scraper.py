@@ -14,14 +14,13 @@ from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import WebDriverException
 import time
 import re
-import json
 from bs4 import BeautifulSoup
 import csv
 import urllib
 from config import BASE_URL
 import logging
 import urllib.parse
-from src.utils import get_postal_code, get_timezone_info, convert_to_24h_format
+from src.utils import get_postal_code, get_timezone_info, convert_to_24h_format, get_cleaned_phone
 from services.business import check_business_existence, create_business
 from config import sourceValues
 
@@ -32,6 +31,11 @@ from config import sourceValues
 
 class BusinessScraper:
     def __init__(self):
+        self.short_wait = 2
+        self.medium_wait = 10
+        self.long_wait = 60
+
+        # Chrome Options
         chrome_options = Options()
         # chrome_options.add_argument("--headless")
         # chrome_options.add_argument("--disable-network")
@@ -48,13 +52,13 @@ class BusinessScraper:
     def search(self, query):
         logging.info(f"Searching for query: {query}")
         self.driver.get(f"{BASE_URL}/{urllib.parse.quote_plus(query)}")
+        wait = WebDriverWait(self.driver, self.long_wait)
+        wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
+        wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
 
     def scroll_and_extract_data(self, query: str, location: str):
         logging.info("Scrolling into feed.")
         counter = 0
-        short_wait = 2
-        medium_wait = 10
-        long_wait = 60
 
         try:
             feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
@@ -63,17 +67,21 @@ class BusinessScraper:
         except StaleElementReferenceException:
             return
 
+        print("while loop: \n")
         while True:
             business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
-            current_business_anchor = business_anchor_tags[counter]
+            current_business_anchor = None
             current_business_anchor_is_article_or_not = None
             current_business_anchor_is_loader_or_not = None
             current_business_anchor_is_end_of_list_or_not = None
             current_business_data = {}
 
+            current_business_anchor = business_anchor_tags[counter]
+
             try:
                 if current_business_anchor:
-                    current_business_anchor_is_article_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@role='article']//a[@class='hfpxzc']")
+                    print("1: \n")
+                    current_business_anchor_is_article_or_not = current_business_anchor.find_element(By.XPATH, ".//div[contains(@class, 'Nv2PK')]//a[contains(@class, 'hfpxzc')]")
             except NoSuchElementException:
                 pass
             except StaleElementReferenceException:
@@ -81,6 +89,7 @@ class BusinessScraper:
 
             try:
                 if current_business_anchor:
+                    print("2: \n")
                     current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
             except NoSuchElementException:
                 pass
@@ -89,6 +98,7 @@ class BusinessScraper:
 
             try:
                 if current_business_anchor:
+                    print("3: \n")
                     current_business_anchor_is_end_of_list_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='PbZDve ']")
             except NoSuchElementException:
                 pass
@@ -96,16 +106,21 @@ class BusinessScraper:
                 pass
 
             if feed is None:
+                print("4: \n")
                 break
             elif len(business_anchor_tags) <= counter:
+                print("5: \n")
                 break
 
             if not current_business_anchor_is_article_or_not and not current_business_anchor_is_loader_or_not and not current_business_anchor_is_end_of_list_or_not:
+                print("6: \n")
                 counter = counter + 1
                 continue
             if current_business_anchor_is_loader_or_not:
+                print("7: \n")
                 while True:
                     try:
+                        print("8: \n")
                         business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
                         current_business_anchor = business_anchor_tags[counter]
                         current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
@@ -115,6 +130,7 @@ class BusinessScraper:
                         pass
 
                     if current_business_anchor_is_loader_or_not:
+                        print("9: \n")
                         wait = WebDriverWait(self.driver, 5)
                         try:
                             wait.until(EC.invisibility_of_element_located((By.XPATH, "//div[@class='qjESne veYFef']")))
@@ -128,13 +144,14 @@ class BusinessScraper:
                 counter = counter + 1
                 continue
             if current_business_anchor_is_end_of_list_or_not:
+                print("10: \n")
                 counter = counter + 1
                 break
 
             # if counter >= 5:
             #     break
 
-            current_business_anchor = current_business_anchor_is_article_or_not
+            # current_business_anchor = current_business_anchor_is_article_or_not
             has_scrolled = self.driver.execute_script(
                 """
                     try {
@@ -145,19 +162,51 @@ class BusinessScraper:
                         return false;
                     }
                 """,
-                current_business_anchor,
+                current_business_anchor_is_article_or_not,
             )
+
+            current_business_feed_heading = current_business_anchor.find_element(By.XPATH, ".//div[@class='qBF1Pd fontHeadlineSmall ']")
+            current_business_anchor_card_info = current_business_anchor.find_elements(By.XPATH, ".//div[@class='UaQhfb fontBodyMedium']/div[@class='W4Efsd']/div[@class='W4Efsd']/span")
+            current_business_feed_category = None
+            current_business_feed_address = None
+            current_business_feed_phone = None
+
+            try:
+                current_business_feed_category = current_business_anchor_card_info[0]
+                current_business_feed_address = current_business_anchor_card_info[1]
+                current_business_feed_phone = current_business_anchor_card_info[3]
+            except IndexError:
+                logging.error(f"Business card has less info")
+                pass
+
+            if not current_business_feed_heading:
+                logging.warning("Failed to find the business name on the feed.")
+
+            if not current_business_feed_category:
+                logging.warning("Failed to find the business category on the feed.")
+
+            if not current_business_feed_address:
+                logging.warning("Failed to find the business address on the feed.")
+
+            if not current_business_feed_phone:
+                logging.warning("Failed to find the business phone on the feed.")
+
+            does_business_exist = check_business_existence(name=getattr(current_business_feed_heading, "text", None), category=getattr(current_business_feed_category, "text", None), address=getattr(current_business_feed_address, "text", None), phone=get_cleaned_phone(getattr(current_business_feed_phone, "text", None)), includes=["BusinessPhone"])
+            logging.info(f"The business named '{getattr(current_business_feed_heading, 'text', None)}' exists?: {does_business_exist}")
+            counter = counter + 1
+            if does_business_exist:
+                time.sleep(1)
+                continue
 
             logging.info("About to open new business profile .")
             logging.info("========================================================")
             logging.info("================= New Business =========================")
             logging.info("========================================================")
             ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
-            counter = counter + 1
-            time.sleep(short_wait)
+            time.sleep(self.short_wait)
 
             # Wait for the Heading element to appear on the view
-            wait = WebDriverWait(self.driver, long_wait)
+            wait = WebDriverWait(self.driver, self.long_wait)
             wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".tAiQdd")))
             wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".DUwDvf.fontHeadlineLarge")))
 
@@ -176,7 +225,7 @@ class BusinessScraper:
             current_business_data["category"] = query
 
             # Wait until the URL contains the expected business name
-            wait = WebDriverWait(self.driver, medium_wait)  # Adjust the timeout as needed
+            wait = WebDriverWait(self.driver, self.medium_wait)  # Adjust the timeout as needed
             wait.until(EC.url_contains(h1_text.split(" ")[0]))
 
             # Rating
@@ -290,7 +339,7 @@ class BusinessScraper:
                     logging.info(f"Website: {tr_text}")
                 elif img_with_phone_src:
                     tr_text = info.get_text("|", strip=True)
-                    current_business_data["phone"] = tr_text
+                    current_business_data["phone"] = get_cleaned_phone(phone=tr_text)
                     logging.info(f"Phone: {tr_text}")
                 elif img_with_plus_code_src:
                     tr_text = info.get_text("|", strip=True)
@@ -302,21 +351,12 @@ class BusinessScraper:
                     logging.info(f"Other: {info.find('img')} {info.get_text('|', strip=True)}")
 
             if has_scrolled:
-                time.sleep(short_wait)
+                time.sleep(self.short_wait)
                 close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
                 close_current_business_anchor.click()
 
-            is_business_existence = check_business_existence(current_business_data["address"])
-            logging.info(f"Does the business exist?: {is_business_existence}")
+            create_business(current_business_data)
             logging.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
-            if is_business_existence:
-                continue
-            else:
-                create_business(current_business_data)
-
-    def save_to_csv(self, data, output_file):
-        with open(output_file, "w", newline="", encoding="utf-8") as csv_file:
-            writer = csv.writer(csv_file)
 
     def close(self):
         self.driver.quit()

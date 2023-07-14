@@ -32,7 +32,6 @@ def process_queue(queue, location):
         scraper = BusinessScraper()
         scraper.search(f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
         scraper.scroll_and_extract_data(queue["searchQuery"], location)
-        scraper.save_to_csv(output_file=OUTPUT_FILE)
 
         queue["status"] = "Completed"
         update_queue(request=queue)
@@ -47,7 +46,7 @@ def main():
     QUEUES = get_queue()
 
     # Create a ThreadPoolExecutor with a maximum of 5 threads
-    with ThreadPoolExecutor(max_workers=3) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:
         for location in LOCATIONS:
             for queue in QUEUES:
                 if queue["laptopName"] == LAPTOP_NAME and queue["status"] == "Pending":

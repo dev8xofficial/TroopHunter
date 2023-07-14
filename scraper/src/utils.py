@@ -5,6 +5,7 @@ import re
 from pyzipcode import ZipCodeDatabase
 import pytz
 from datetime import datetime, timedelta
+import phonenumbers
 
 
 def get_location_details(latitude: float, longitude: float, address: str):
@@ -151,3 +152,14 @@ def convert_to_24h_format(time_str):
 
     # Return None if no valid time format is found
     return None
+
+
+def get_cleaned_phone(phone: str):
+    cleaned_phone = None
+    if phone:
+        cleaned_phone = re.sub(r"[^0-9+]", "", phone.replace("· ", ""))
+        phone_obj = phonenumbers.parse(cleaned_phone, None)
+        is_phone_valid = phonenumbers.is_valid_number(phone_obj)
+        if is_phone_valid == False:
+            cleaned_phone = None
+    return cleaned_phone
