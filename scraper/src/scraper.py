@@ -4,28 +4,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, WebDriverException, TimeoutException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import StaleElementReferenceException
-from selenium.common.exceptions import WebDriverException
 import time
 import re
 from bs4 import BeautifulSoup
-import urllib
+import urllib.parse
 from config import BASE_URL
 import logging
-import urllib.parse
 from src.utils import get_postal_code, get_timezone_info, convert_to_24h_format, get_cleaned_phone, is_internet_available
 from services.business import check_business_existence, create_business
 from config import sourceValues
-import time
-
-# from geopy.geocoders import Nominatim
-
-# geolocator = Nominatim(user_agent="my_app")
 
 
 class BusinessScraper:
@@ -190,172 +180,170 @@ class BusinessScraper:
             if not current_business_feed_phone:
                 logging.warning("Failed to find the business phone on the feed.")
 
-            does_business_exist = check_business_existence(name=getattr(current_business_feed_heading, "text", None), category=getattr(current_business_feed_category, "text", None), address=getattr(current_business_feed_address, "text", None), phone=get_cleaned_phone(getattr(current_business_feed_phone, "text", None)), includes=["BusinessPhone"])
-            logging.info(f"The business named '{getattr(current_business_feed_heading, 'text', None)}' exists?: {does_business_exist}")
+            try:
+                does_business_exist = check_business_existence(name=getattr(current_business_feed_heading, "text", None), category=getattr(current_business_feed_category, "text", None), address=getattr(current_business_feed_address, "text", None), phone=get_cleaned_phone(getattr(current_business_feed_phone, "text", None)), includes=["BusinessPhone"])
+                logging.info(f"The business named '{getattr(current_business_feed_heading, 'text', None)}' exists?: {does_business_exist}")
+            except Exception as e:
+                logging.exception("An error occurred while checking business existence: %s", e)
+
             counter = counter + 1
             if does_business_exist:
                 time.sleep(1)
                 continue
 
-            logging.info("About to open new business profile .")
-            logging.info("========================================================")
-            logging.info("================= New Business =========================")
-            logging.info("========================================================")
-            ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
-            time.sleep(self.short_wait)
-
-            # Wait for the Heading element to appear on the view
-            wait = WebDriverWait(self.driver, self.long_wait)
-            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".tAiQdd")))
-            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".DUwDvf.fontHeadlineLarge")))
-
-            soup = BeautifulSoup(self.driver.page_source, "html.parser")
-
-            logging.info("~~~~~~~~ Basic Info ~~~~~~~~")
-            # Heading
-            h1_text = soup.find("h1", class_="DUwDvf fontHeadlineLarge").text
-            current_business_data["name"] = h1_text
-            logging.info(f"Title: {h1_text}")
-
-            # Business Domain
-            business_domain_button = soup.select_one(".fontBodyMedium button.DkEaL")
-            if business_domain_button:
-                current_business_data["businessDomain"] = business_domain_button.text
-            current_business_data["category"] = query
-
-            # Wait until the URL contains the expected business name
-            wait = WebDriverWait(self.driver, self.medium_wait)  # Adjust the timeout as needed
-            wait.until(EC.url_contains(h1_text.split(" ")[0]))
-
-            # Rating
-            rating_text = soup.find("div", class_="F7nice").text
-            if rating_text:
-                rating_result = re.findall(r"([\d.]+)", rating_text)
-                logging.info(f"Rating: {rating_result[0]}")
-                logging.info(f"Reviews: {rating_result[1]}")
-                current_business_data["rating"] = float(rating_result[0])
-                current_business_data["reviews"] = int(rating_result[1])
-            else:
-                logging.info(f"Rating: {0}")
-                logging.info(f"Reviews: {0}")
-                current_business_data["rating"] = 0.0
-                current_business_data["reviews"] = 0
-
-            logging.info("~~~~~~~~ Location Info ~~~~~~~~")
-            # Extract latitude and longitude from the URL
-            lat_lon = self.driver.current_url.split("/")[6].split("@")[1].split(",")[:2]
-            latitude = float(lat_lon[0])
-            longitude = float(lat_lon[1])
-            current_business_data["latitude"] = latitude
-            current_business_data["longitude"] = longitude
-            logging.info(f"Latitude & Longitude: {latitude}, {longitude}")
-
-            current_business_data["source"] = sourceValues[0]
-            logging.info(f"Source: {sourceValues[0]}")
-
-            logging.info("~~~~~~~~ Timezone Info ~~~~~~~~")
-            timezone = get_timezone_info(location["timezone"])
-            logging.info(f"Timezone: {location['timezone']}")
-            logging.info(f"UTC Offset: {timezone['utc_offset']}")
-            logging.info(f"DST: {timezone['dst']}")
-            logging.info(f"DST Offset: {timezone['dst_offset']}")
-            logging.info(f"Country Code: {location['countryCode']}")
-
-            current_business_data["timezone"] = {
-                "timezoneName": location["timezone"],
-                "utcOffset": timezone["utc_offset"],
-                "dst": timezone["dst"],
-                "dstOffset": timezone["dst_offset"],
-                "countryCode": location["countryCode"],
-            }
-
-            # if not is_business_existence:
-            #     location = get_location_details(latitude=latitude, longitude=longitude)
-            #     logging.info("Location:")
-            #     logging.info(f"Postal Code: {location['postal_code']}")
-            #     logging.info(f"City: {location['city']}")
-            #     logging.info(f"State: {location['state']}")
-            #     logging.info(f"Country: {location['country']}")
-
-            merged_elements = self.driver.find_elements(By.CLASS_NAME, "RcCsl") + self.driver.find_elements(By.CLASS_NAME, "OqCZI")
-            html_sources = [element.get_attribute("innerHTML") for element in merged_elements]
-            soup_elements = [BeautifulSoup(html, "html.parser") for html in html_sources]
-
-            for info in soup_elements:
-                img_with_place_src = info.find("img", {"src": lambda s: "place_gm" in s})
-                img_with_schedule_src = info.find("img", {"src": lambda s: "schedule" in s})
-                img_with_shipping_src = info.find("img", {"src": lambda s: "shipping" in s})
-                img_with_public_src = info.find("img", {"src": lambda s: "public" in s})
-                img_with_phone_src = info.find("img", {"src": lambda s: "phone" in s})
-                img_with_plus_code_src = info.find("img", {"src": lambda s: "plus_code" in s})
-                img_with_send_to_mobile_src = info.find("img", {"src": lambda s: "send_to_mobile" in s})
-
-                if img_with_place_src:
-                    logging.info("~~~~~~~~ Address Info ~~~~~~~~")
-                    tr_text = info.get_text("|", strip=True)
-                    current_business_data["address"] = tr_text
-                    logging.info(f"Place: {tr_text}")
-                    # if not is_business_existence:
-                    zip = get_postal_code(address=tr_text)
-                    logging.info("Location:")
-                    logging.info(f"Postal Code: {zip}")
-                    logging.info(f"City: {location['city']}")
-                    logging.info(f"State: {location['state']}")
-                    logging.info(f"Country: {location['country']}")
-                    current_business_data["postalCode"] = zip
-                    current_business_data["location"] = {
-                        "city": location["city"],
-                        "state": location["state"],
-                        "country": location["country"],
-                    }
-                elif img_with_schedule_src:
-                    logging.info("~~~~~~~~ Schedule Info ~~~~~~~~")
-                    tr_elements = soup.find_all("tr", class_="y0skZc")
-
-                    for tr in tr_elements:
-                        td_elements = tr.find_all("td")
-
-                        if len(td_elements) >= 2:
-                            first_td_text = td_elements[0].text.strip()
-                            second_td_text = td_elements[1].text.strip()
-                            string = td_elements[1].text.replace("\u202f", "")  # Remove space
-                            string = string.replace("–", "-")  # Replace non-standard hyphen with regular hyphen
-                            result = string.split("-")
-                            if "Mon" in first_td_text or "Tue" in first_td_text or "Wed" in first_td_text:
-                                try:
-                                    current_business_data["openingHour"] = convert_to_24h_format(result[0])
-                                    current_business_data["closingHour"] = convert_to_24h_format(result[1])
-                                except IndexError:
-                                    logging.error(f"Open/Close Hours: {result}")
-                                    pass
-                            logging.info(f"{first_td_text}: {second_td_text}")
-                elif img_with_shipping_src:
-                    tr_text = info.get_text("|", strip=True)
-                    logging.info(f"Shipping: {tr_text}")
-                elif img_with_public_src:
-                    tr_text = info.get_text("|", strip=True)
-                    current_business_data["website"] = tr_text
-                    logging.info(f"Website: {tr_text}")
-                elif img_with_phone_src:
-                    tr_text = info.get_text("|", strip=True)
-                    current_business_data["phone"] = get_cleaned_phone(phone=tr_text)
-                    logging.info(f"Phone: {tr_text}")
-                elif img_with_plus_code_src:
-                    tr_text = info.get_text("|", strip=True)
-                    logging.info(f"Plus Code: {tr_text}")
-                elif img_with_send_to_mobile_src:
-                    tr_text = info.get_text("|", strip=True)
-                    logging.info(f"Send To Mobile: {tr_text}")
-                else:
-                    logging.info(f"Other: {info.find('img')} {info.get_text('|', strip=True)}")
-
-            if has_scrolled:
+            try:
+                logging.info("About to open new business profile.")
+                logging.info("========================================================")
+                logging.info("================= New Business =========================")
+                logging.info("========================================================")
+                ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
                 time.sleep(self.short_wait)
-                close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
-                close_current_business_anchor.click()
 
-            create_business(current_business_data)
-            logging.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
+                # Wait for the Heading element to appear on the view
+                wait = WebDriverWait(self.driver, self.long_wait)
+                wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".tAiQdd")))
+                wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".DUwDvf.fontHeadlineLarge")))
+
+                soup = BeautifulSoup(self.driver.page_source, "html.parser")
+
+                logging.info("~~~~~~~~ Basic Info ~~~~~~~~")
+                # Heading
+                h1_text = soup.find("h1", class_="DUwDvf fontHeadlineLarge").text
+                current_business_data["name"] = h1_text
+                logging.info(f"Title: {h1_text}")
+
+                # Business Domain
+                business_domain_button = soup.select_one(".fontBodyMedium button.DkEaL")
+                if business_domain_button:
+                    current_business_data["businessDomain"] = business_domain_button.text
+                current_business_data["category"] = query
+
+                # Wait until the URL contains the expected business name
+                wait = WebDriverWait(self.driver, self.medium_wait)  # Adjust the timeout as needed
+                wait.until(EC.url_contains(h1_text.split(" ")[0]))
+
+                # Rating
+                rating_text = soup.find("div", class_="F7nice").text
+                if rating_text:
+                    rating_result = re.findall(r"([\d.]+)", rating_text)
+                    logging.info(f"Rating: {rating_result[0]}")
+                    logging.info(f"Reviews: {rating_result[1]}")
+                    current_business_data["rating"] = float(rating_result[0])
+                    current_business_data["reviews"] = int(rating_result[1])
+                else:
+                    logging.info(f"Rating: {0}")
+                    logging.info(f"Reviews: {0}")
+                    current_business_data["rating"] = 0.0
+                    current_business_data["reviews"] = 0
+
+                logging.info("~~~~~~~~ Location Info ~~~~~~~~")
+                # Extract latitude and longitude from the URL
+                lat_lon = self.driver.current_url.split("/")[6].split("@")[1].split(",")[:2]
+                latitude = float(lat_lon[0])
+                longitude = float(lat_lon[1])
+                current_business_data["latitude"] = latitude
+                current_business_data["longitude"] = longitude
+                logging.info(f"Latitude & Longitude: {latitude}, {longitude}")
+
+                current_business_data["source"] = sourceValues[0]
+                logging.info(f"Source: {sourceValues[0]}")
+
+                logging.info("~~~~~~~~ Timezone Info ~~~~~~~~")
+                timezone = get_timezone_info(location["timezone"])
+                logging.info(f"Timezone: {location['timezone']}")
+                logging.info(f"UTC Offset: {timezone['utc_offset']}")
+                logging.info(f"DST: {timezone['dst']}")
+                logging.info(f"DST Offset: {timezone['dst_offset']}")
+                logging.info(f"Country Code: {location['countryCode']}")
+
+                current_business_data["timezone"] = {
+                    "timezoneName": location["timezone"],
+                    "utcOffset": timezone["utc_offset"],
+                    "dst": timezone["dst"],
+                    "dstOffset": timezone["dst_offset"],
+                    "countryCode": location["countryCode"],
+                }
+
+                merged_elements = self.driver.find_elements(By.CLASS_NAME, "RcCsl") + self.driver.find_elements(By.CLASS_NAME, "OqCZI")
+                html_sources = [element.get_attribute("innerHTML") for element in merged_elements]
+                soup_elements = [BeautifulSoup(html, "html.parser") for html in html_sources]
+
+                for info in soup_elements:
+                    img_with_place_src = info.find("img", {"src": lambda s: "place_gm" in s})
+                    img_with_schedule_src = info.find("img", {"src": lambda s: "schedule" in s})
+                    img_with_shipping_src = info.find("img", {"src": lambda s: "shipping" in s})
+                    img_with_public_src = info.find("img", {"src": lambda s: "public" in s})
+                    img_with_phone_src = info.find("img", {"src": lambda s: "phone" in s})
+                    img_with_plus_code_src = info.find("img", {"src": lambda s: "plus_code" in s})
+                    img_with_send_to_mobile_src = info.find("img", {"src": lambda s: "send_to_mobile" in s})
+
+                    if img_with_place_src:
+                        logging.info("~~~~~~~~ Address Info ~~~~~~~~")
+                        tr_text = info.get_text("|", strip=True)
+                        current_business_data["address"] = tr_text
+                        logging.info(f"Place: {tr_text}")
+                        zip = get_postal_code(address=tr_text)
+                        logging.info("Location:")
+                        logging.info(f"Postal Code: {zip}")
+                        logging.info(f"City: {location['city']}")
+                        logging.info(f"State: {location['state']}")
+                        logging.info(f"Country: {location['country']}")
+                        current_business_data["postalCode"] = zip
+                        current_business_data["location"] = {
+                            "city": location["city"],
+                            "state": location["state"],
+                            "country": location["country"],
+                        }
+                    elif img_with_schedule_src:
+                        logging.info("~~~~~~~~ Schedule Info ~~~~~~~~")
+                        tr_elements = soup.find_all("tr", class_="y0skZc")
+
+                        for tr in tr_elements:
+                            td_elements = tr.find_all("td")
+
+                            if len(td_elements) >= 2:
+                                first_td_text = td_elements[0].text.strip()
+                                second_td_text = td_elements[1].text.strip()
+                                string = td_elements[1].text.replace("\u202f", "")  # Remove space
+                                string = string.replace("–", "-")  # Replace non-standard hyphen with regular hyphen
+                                result = string.split("-")
+                                if "Mon" in first_td_text or "Tue" in first_td_text or "Wed" in first_td_text:
+                                    try:
+                                        current_business_data["openingHour"] = convert_to_24h_format(result[0])
+                                        current_business_data["closingHour"] = convert_to_24h_format(result[1])
+                                    except IndexError:
+                                        logging.error(f"Open/Close Hours: {result}")
+                                        pass
+                                logging.info(f"{first_td_text}: {second_td_text}")
+                    elif img_with_shipping_src:
+                        tr_text = info.get_text("|", strip=True)
+                        logging.info(f"Shipping: {tr_text}")
+                    elif img_with_public_src:
+                        tr_text = info.get_text("|", strip=True)
+                        current_business_data["website"] = tr_text
+                        logging.info(f"Website: {tr_text}")
+                    elif img_with_phone_src:
+                        tr_text = info.get_text("|", strip=True)
+                        current_business_data["phone"] = get_cleaned_phone(phone=tr_text)
+                        logging.info(f"Phone: {tr_text}")
+                    elif img_with_plus_code_src:
+                        tr_text = info.get_text("|", strip=True)
+                        logging.info(f"Plus Code: {tr_text}")
+                    elif img_with_send_to_mobile_src:
+                        tr_text = info.get_text("|", strip=True)
+                        logging.info(f"Send To Mobile: {tr_text}")
+                    else:
+                        logging.info(f"Other: {info.find('img')} {info.get_text('|', strip=True)}")
+
+                if has_scrolled:
+                    time.sleep(self.short_wait)
+                    close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
+                    close_current_business_anchor.click()
+
+                create_business(current_business_data)
+                logging.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
+            except Exception as e:
+                logging.exception("An error occurred while scrolling and extracting data: %s", e)
 
     def close(self):
         self.driver.quit()

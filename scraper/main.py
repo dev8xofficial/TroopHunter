@@ -9,7 +9,6 @@ import time
 from src.utils import is_internet_available
 import requests
 from requests.exceptions import Timeout
-import time
 
 # Load environment variables from .env file
 load_dotenv()

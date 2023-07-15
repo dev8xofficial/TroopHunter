@@ -5,32 +5,33 @@ import logging
 
 
 def check_business_existence(name: str = None, category: str = None, address: str = None, phone: str = None, includes: list[str] = []):
-    # Define the endpoint URL
-    backend_url = os.environ.get("BACKEND_URL")
-    url = f"{backend_url}/businesses"
-
-    # Set the request headers
-    token = os.environ.get("BACKEND_AUTHENTICATION")
-    headers = {
-        "Authorization": f"Bearer {token}",
-    }
-
-    # Set the request parameters
-    params = {
-        "name": name,
-        "includes": includes,
-    }
-
     try:
+        # Define the endpoint URL
+        backend_url = os.environ.get("BACKEND_URL")
+        url = f"{backend_url}/businesses"
+
+        # Set the request headers
+        token = os.environ.get("BACKEND_AUTHENTICATION")
+        headers = {
+            "Authorization": f"Bearer {token}",
+        }
+
+        # Set the request parameters
+        params = {
+            "name": name,
+            "includes": includes,
+        }
+
         # Send the GET request to the endpoint
         response = requests.get(url, headers=headers, params=params)
         result = False
 
         # Check the response status code
         if response.status_code == 200:
-            if response.json()["totalRecords"] > 0:
-                for business in response.json()["businesses"]:
-                    if name == None:
+            data = response.json()
+            if data["totalRecords"] > 0:
+                for business in data["businesses"]:
+                    if name is None:
                         result = False
                         break
                     elif business is not None and business.get("name") == name:
@@ -47,20 +48,20 @@ def check_business_existence(name: str = None, category: str = None, address: st
         return result
     except requests.exceptions.RequestException as e:
         # Request encountered an error
-        logging.error("Business existence check failed.")
+        logging.error("An error occurred while checking business existence: %s", e)
 
 
 def create_business(request: dict):
-    # Define the endpoint URL
-    backend_url = os.environ.get("BACKEND_URL")
-    url = f"{backend_url}/businesses"
-
-    # Set the request headers
-    token = os.environ.get("BACKEND_AUTHENTICATION")
-    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-
     try:
-        # Send the GET request to the endpoint
+        # Define the endpoint URL
+        backend_url = os.environ.get("BACKEND_URL")
+        url = f"{backend_url}/businesses"
+
+        # Set the request headers
+        token = os.environ.get("BACKEND_AUTHENTICATION")
+        headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+
+        # Send the POST request to the endpoint
         response = requests.post(url, headers=headers, data=json.dumps(request))
 
         # Check the response status code
@@ -68,7 +69,8 @@ def create_business(request: dict):
             return response.json()
         else:
             # Request failed
+            logging.error("Failed to create a business. Status code: %s, Response: %s", response.status_code, response.text)
             return None
     except requests.exceptions.RequestException as e:
         # Request encountered an error
-        logging.error("Failed to create a business.")
+        logging.error("An error occurred while creating a business: %s", e)

@@ -1,12 +1,13 @@
+import re
+import pytz
+import phonenumbers
+import requests
 from geopy.geocoders import Nominatim
 from geopy.point import Point
 from geopy.exc import GeocoderTimedOut
-import re
 from pyzipcode import ZipCodeDatabase
-import pytz
 from datetime import datetime, timedelta
-import phonenumbers
-import requests
+import logging
 
 
 def get_location_details(latitude: float, longitude: float, address: str):
@@ -29,77 +30,68 @@ def get_location_details(latitude: float, longitude: float, address: str):
             return geocode(address)  # Retry in case of timeout
         return location
 
-    # # Step 1: Reverse geocoding to obtain address or place name
-    # reverse_location = reverse_geocode(latitude, longitude)
+    try:
+        # Reverse geocoding to obtain address or place name
+        reverse_location = reverse_geocode(latitude, longitude)
 
-    # if reverse_location is not None:
-    #     geocode_address = reverse_location.address
+        if reverse_location is not None:
+            postal_code = reverse_location.raw["address"].get("postcode")
+            city = reverse_location.raw["address"].get("city")
+            state = reverse_location.raw["address"].get("state")
+            country = reverse_location.raw["address"].get("country")
 
-    #     # Step 2: Forward geocoding with obtained address or place name for accurate location details
-    #     location = geocode(geocode_address, language="en")
-
-    #     if location is not None:
-    #         postal_code = location.raw["address"].get("postcode")
-    #         city = location.raw["address"].get("city")
-    #         state = location.raw["address"].get("state")
-    #         country = location.raw["address"].get("country")
-
-    #         return {
-    #             "postal_code": postal_code,
-    #             "city": city,
-    #             "state": state,
-    #             "country": country,
-    #         }
-
-    reverse_location = reverse_geocode(latitude, longitude)
-
-    if reverse_location is not None:
-        postal_code = reverse_location.raw["address"].get("postcode")
-        city = reverse_location.raw["address"].get("city")
-        state = reverse_location.raw["address"].get("state")
-        country = reverse_location.raw["address"].get("country")
-
-        return {
-            "postal_code": postal_code,
-            "city": city,
-            "state": state,
-            "country": country,
-        }
+            return {
+                "postal_code": postal_code,
+                "city": city,
+                "state": state,
+                "country": country,
+            }
+    except Exception as e:
+        logging.exception("An error occurred during reverse geocoding: %s", e)
 
     return None
 
 
 def get_location_details_from_zip(zip_code: str):
     geolocator = Nominatim(user_agent="my_app")
-    location = geolocator.geocode(zip_code, exactly_one=True)
 
-    if location is not None:
-        city = location.raw["address"].get("city")
-        state = location.raw["address"].get("state")
-        country = location.raw["address"].get("country")
+    try:
+        # Geocode the zip code to obtain location details
+        location = geolocator.geocode(zip_code, exactly_one=True)
 
-        return {"city": city, "state": state, "country": country}
-    else:
-        return None
+        if location is not None:
+            city = location.raw["address"].get("city")
+            state = location.raw["address"].get("state")
+            country = location.raw["address"].get("country")
+
+            return {"city": city, "state": state, "country": country}
+    except Exception as e:
+        logging.exception("An error occurred during geocoding from zip code: %s", e)
+
+    return None
 
 
 def get_postal_code(address: str):
-    # Remove special characters from the address
-    address_cleaned = re.sub(r"[^\w\s]", "", address)
+    try:
+        # Remove special characters from the address
+        address_cleaned = re.sub(r"[^\w\s]", "", address)
 
-    # Extract numbers from the cleaned address
-    numbers = re.findall(r"\d+", address_cleaned)
+        # Extract numbers from the cleaned address
+        numbers = re.findall(r"\d+", address_cleaned)
 
-    # Initialize the ZipCodeDatabase object
-    zip_db = ZipCodeDatabase()
+        # Initialize the ZipCodeDatabase object
+        zip_db = ZipCodeDatabase()
 
-    # Check if each number is a valid postal code
-    for number in numbers:
-        try:
-            zip_info = zip_db[number]
-            return zip_info.zip
-        except KeyError:
-            pass
+        # Check if each number is a valid postal code
+        for number in numbers:
+            try:
+                zip_info = zip_db[number]
+                return zip_info.zip
+            except KeyError:
+                pass
+
+    except Exception as e:
+        logging.exception("An error occurred while extracting postal code from address: %s", e)
 
     # If no valid postal code is found
     return None
@@ -118,38 +110,43 @@ def get_timezone_info(timezone):
         dst_offset = str(dst_info.total_seconds() / 3600)
 
         return {"utc_offset": utc_offset, "dst": dst, "dst_offset": dst_offset}
-    except pytz.UnknownTimeZoneError:
+    except pytz.UnknownTimeZoneError as e:
+        logging.exception("An error occurred while getting timezone info: %s", e)
         raise ValueError("Invalid timezone.")
 
 
 def convert_to_24h_format(time_str):
-    # Handle "Open 24 hours" case
-    if time_str.lower() == "open 24 hours":
-        return "00:00"
+    try:
+        # Handle "Open 24 hours" case
+        if time_str.lower() == "open 24 hours":
+            return "00:00"
 
-    # Remove any non-alphanumeric characters except ":" and whitespace
-    time_str = re.sub(r"[^\w\s:]", "", time_str)
+        # Remove any non-alphanumeric characters except ":" and whitespace
+        time_str = re.sub(r"[^\w\s:]", "", time_str)
 
-    # Handle "AM" and "PM" cases
-    if "am" in time_str.lower() or "pm" in time_str.lower():
-        # Extract hour and minute values
-        match = re.search(r"(\d{1,2}):?(\d{2})?\s?(am|pm)", time_str.lower())
+        # Handle "AM" and "PM" cases
+        if "am" in time_str.lower() or "pm" in time_str.lower():
+            # Extract hour and minute values
+            match = re.search(r"(\d{1,2}):?(\d{2})?\s?(am|pm)", time_str.lower())
+            if match:
+                hour = int(match.group(1))
+                minute = int(match.group(2)) if match.group(2) else 0
+                period = match.group(3)
+                if period == "pm" and hour < 12:
+                    hour += 12
+                elif period == "am" and hour == 12:
+                    hour = 0
+                return datetime.strptime(f"{hour}:{minute:02}", "%H:%M").strftime("%H:%M")
+
+        # Handle 24-hour format
+        match = re.search(r"(\d{1,2}):?(\d{2})?", time_str)
         if match:
             hour = int(match.group(1))
             minute = int(match.group(2)) if match.group(2) else 0
-            period = match.group(3)
-            if period == "pm" and hour < 12:
-                hour += 12
-            elif period == "am" and hour == 12:
-                hour = 0
             return datetime.strptime(f"{hour}:{minute:02}", "%H:%M").strftime("%H:%M")
 
-    # Handle 24-hour format
-    match = re.search(r"(\d{1,2}):?(\d{2})?", time_str)
-    if match:
-        hour = int(match.group(1))
-        minute = int(match.group(2)) if match.group(2) else 0
-        return datetime.strptime(f"{hour}:{minute:02}", "%H:%M").strftime("%H:%M")
+    except Exception as e:
+        logging.exception("An error occurred while converting to 24-hour format: %s", e)
 
     # Return None if no valid time format is found
     return None
@@ -157,17 +154,22 @@ def convert_to_24h_format(time_str):
 
 def get_cleaned_phone(phone: str):
     cleaned_phone = None
-    if phone:
-        cleaned_phone = re.sub(r"[^0-9+]", "", phone.replace("· ", ""))
-        phone_obj = phonenumbers.parse(cleaned_phone, None)
-        is_phone_valid = phonenumbers.is_valid_number(phone_obj)
-        if is_phone_valid == False:
-            cleaned_phone = None
+    try:
+        if phone:
+            cleaned_phone = re.sub(r"[^0-9+]", "", phone.replace("· ", ""))
+            phone_obj = phonenumbers.parse(cleaned_phone, None)
+            is_phone_valid = phonenumbers.is_valid_number(phone_obj)
+            if not is_phone_valid:
+                cleaned_phone = None
+    except Exception as e:
+        logging.exception("An error occurred while cleaning phone number: %s", e)
+
     return cleaned_phone
 
 
 def is_internet_available():
     try:
+        # Send a request to Google to check internet availability
         requests.get("https://www.google.com")
         return True
     except requests.exceptions.RequestException:
