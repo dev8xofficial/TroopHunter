@@ -6,6 +6,7 @@ from pyzipcode import ZipCodeDatabase
 import pytz
 from datetime import datetime, timedelta
 import phonenumbers
+import requests
 
 
 def get_location_details(latitude: float, longitude: float, address: str):
@@ -163,3 +164,11 @@ def get_cleaned_phone(phone: str):
         if is_phone_valid == False:
             cleaned_phone = None
     return cleaned_phone
+
+
+def is_internet_available():
+    try:
+        requests.get("https://www.google.com")
+        return True
+    except requests.exceptions.RequestException:
+        return False

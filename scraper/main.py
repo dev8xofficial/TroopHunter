@@ -1,10 +1,15 @@
 from src.scraper import BusinessScraper
-from config import LOCATIONS, OUTPUT_FILE, LAPTOP_NAME
+from config import LOCATIONS, LAPTOP_NAME
 import logging
 import datetime
 from dotenv import load_dotenv
 from services.queue import get_queue, update_queue
 from concurrent.futures import ThreadPoolExecutor
+import time
+from src.utils import is_internet_available
+import requests
+from requests.exceptions import Timeout
+import time
 
 # Load environment variables from .env file
 load_dotenv()
@@ -28,16 +33,26 @@ root_logger.addHandler(console_handler)
 
 
 def process_queue(queue, location):
-    try:
-        scraper = BusinessScraper()
-        scraper.search(f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
-        scraper.scroll_and_extract_data(queue["searchQuery"], location)
+    while True:
+        try:
+            scraper = BusinessScraper()
+            scraper.search(f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
+            scraper.scroll_and_extract_data(queue["searchQuery"], location)
 
-        queue["status"] = "Completed"
-        update_queue(request=queue)
-        logging.info(f"Search for '{queue['searchQuery']}' in {location} completed.")
-    except Exception as e:
-        logging.exception(f"An error occurred during search execution for '{queue['searchQuery']}' in {location}: {e}")
+            queue["status"] = "Completed"
+            update_queue(request=queue)
+            logging.info(f"Search for '{queue['searchQuery']}' in {location} completed.")
+            scraper.close()
+            break
+        except (Timeout, requests.exceptions.RequestException, Exception) as e:
+            while True:
+                if is_internet_available():
+                    logging.info("Internet connection issue resolved. Retrying...")
+                    scraper.close()
+                    break
+                else:
+                    logging.info("Internet connection is not available. Retrying in 5 seconds...")
+                    time.sleep(5)
 
 
 def main():
@@ -45,7 +60,7 @@ def main():
 
     QUEUES = get_queue()
 
-    # Create a ThreadPoolExecutor with a maximum of 5 threads
+    # Create a ThreadPoolExecutor with a maximum of 1 thread
     with ThreadPoolExecutor(max_workers=1) as executor:
         for location in LOCATIONS:
             for queue in QUEUES:
@@ -58,7 +73,10 @@ def main():
                     continue
 
                 # Submit each search task to the ThreadPoolExecutor
-                executor.submit(process_queue, queue, location)
+                future = executor.submit(process_queue, queue, location)
+
+                # Wait for the task to finish
+                future.result()
 
     logging.info("Scraping process completed.")
 

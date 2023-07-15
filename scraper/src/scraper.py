@@ -1,6 +1,5 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
@@ -15,14 +14,14 @@ from selenium.common.exceptions import WebDriverException
 import time
 import re
 from bs4 import BeautifulSoup
-import csv
 import urllib
 from config import BASE_URL
 import logging
 import urllib.parse
-from src.utils import get_postal_code, get_timezone_info, convert_to_24h_format, get_cleaned_phone
+from src.utils import get_postal_code, get_timezone_info, convert_to_24h_format, get_cleaned_phone, is_internet_available
 from services.business import check_business_existence, create_business
 from config import sourceValues
+import time
 
 # from geopy.geocoders import Nominatim
 

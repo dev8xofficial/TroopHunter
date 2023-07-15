@@ -2,7 +2,6 @@ import json
 import os
 import requests
 import logging
-import re
 
 
 def check_business_existence(name: str = None, category: str = None, address: str = None, phone: str = None, includes: list[str] = []):
@@ -34,16 +33,16 @@ def check_business_existence(name: str = None, category: str = None, address: st
                     if name == None:
                         result = False
                         break
-                    elif business["name"] == name:
+                    elif business is not None and business.get("name") == name:
                         result = True
 
-                    if category != None and business["businessDomain"] == category:
+                    if category is not None and business is not None and business.get("businessDomain") == category:
                         result = True
 
-                    if address != None and address.replace("· ", "") in business["address"]:
+                    if address is not None and business is not None and address.replace("· ", "") in business.get("address", ""):
                         result = True
 
-                    if phone != None and business["BusinessPhone"]["number"] == phone:
+                    if phone is not None and business is not None and business.get("BusinessPhone") is not None and business["BusinessPhone"].get("number") is not None and business["BusinessPhone"]["number"] == phone:
                         result = True
         return result
     except requests.exceptions.RequestException as e:
