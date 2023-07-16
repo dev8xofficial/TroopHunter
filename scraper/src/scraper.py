@@ -12,14 +12,13 @@ import re
 from bs4 import BeautifulSoup
 import urllib.parse
 from config import BASE_URL
-import logging
 from src.utils import get_postal_code, get_timezone_info, convert_to_24h_format, get_cleaned_phone, is_internet_available
 from services.business import check_business_existence, create_business
 from config import sourceValues
 
 
 class BusinessScraper:
-    def __init__(self):
+    def __init__(self, logger=None):
         self.short_wait = 2
         self.medium_wait = 10
         self.long_wait = 60
@@ -33,20 +32,22 @@ class BusinessScraper:
         # chrome_options.add_argument("--auto-open-devtools-for-tabs")
 
         try:
-            logging.info("Initiating chrome web driver.")
+            logger.info("Initiating chrome web driver.")
             self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
         except WebDriverException:
-            logging.error("Service chromedriver unexpectedly exited.")
+            logger.error("Service chromedriver unexpectedly exited.")
+
+        self.logger = logger
 
     def search(self, query):
-        logging.info(f"Searching for query: {query}")
+        self.logger.info(f"Searching for query: {query}")
         self.driver.get(f"{BASE_URL}/{urllib.parse.quote_plus(query)}")
         wait = WebDriverWait(self.driver, self.long_wait)
         wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
         wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
 
     def scroll_and_extract_data(self, query: str, location: str):
-        logging.info("Scrolling into feed.")
+        self.logger.info("Scrolling into feed.")
         counter = 0
 
         try:
@@ -56,7 +57,7 @@ class BusinessScraper:
         except StaleElementReferenceException:
             return
 
-        print("while loop: \n")
+        print(f"{query} - while loop: \n")
         while True:
             business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
             current_business_anchor = None
@@ -69,7 +70,7 @@ class BusinessScraper:
 
             try:
                 if current_business_anchor:
-                    print("1: \n")
+                    print(f"{query} - 1: \n")
                     current_business_anchor_is_article_or_not = current_business_anchor.find_element(By.XPATH, ".//div[contains(@class, 'Nv2PK')]//a[contains(@class, 'hfpxzc')]")
             except NoSuchElementException:
                 pass
@@ -78,7 +79,7 @@ class BusinessScraper:
 
             try:
                 if current_business_anchor:
-                    print("2: \n")
+                    print(f"{query} - 2: \n")
                     current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
             except NoSuchElementException:
                 pass
@@ -87,7 +88,7 @@ class BusinessScraper:
 
             try:
                 if current_business_anchor:
-                    print("3: \n")
+                    print(f"{query} - 3: \n")
                     current_business_anchor_is_end_of_list_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='PbZDve ']")
             except NoSuchElementException:
                 pass
@@ -95,21 +96,21 @@ class BusinessScraper:
                 pass
 
             if feed is None:
-                print("4: \n")
+                print(f"{query} - 4: \n")
                 break
             elif len(business_anchor_tags) <= counter:
-                print("5: \n")
+                print(f"{query} - 5: \n")
                 break
 
             if not current_business_anchor_is_article_or_not and not current_business_anchor_is_loader_or_not and not current_business_anchor_is_end_of_list_or_not:
-                print("6: \n")
+                print(f"{query} - 6: \n")
                 counter = counter + 1
                 continue
             if current_business_anchor_is_loader_or_not:
-                print("7: \n")
+                print(f"{query} - 7: \n")
                 while True:
                     try:
-                        print("8: \n")
+                        print(f"{query} - 8: \n")
                         business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
                         current_business_anchor = business_anchor_tags[counter]
                         current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
@@ -119,7 +120,7 @@ class BusinessScraper:
                         pass
 
                     if current_business_anchor_is_loader_or_not:
-                        print("9: \n")
+                        print(f"{query} - 9: \n")
                         wait = WebDriverWait(self.driver, 5)
                         try:
                             wait.until(EC.invisibility_of_element_located((By.XPATH, "//div[@class='qjESne veYFef']")))
@@ -133,7 +134,7 @@ class BusinessScraper:
                 counter = counter + 1
                 continue
             if current_business_anchor_is_end_of_list_or_not:
-                print("10: \n")
+                print(f"{query} - 10: \n")
                 counter = counter + 1
                 break
 
@@ -165,26 +166,26 @@ class BusinessScraper:
                 current_business_feed_address = current_business_anchor_card_info[1]
                 current_business_feed_phone = current_business_anchor_card_info[3]
             except IndexError:
-                logging.error(f"Business card has less info")
+                self.logger.warning(f"Business card has less info")
                 pass
 
             if not current_business_feed_heading:
-                logging.warning("Failed to find the business name on the feed.")
+                self.logger.warning("Failed to find the business name on the feed.")
 
             if not current_business_feed_category:
-                logging.warning("Failed to find the business category on the feed.")
+                self.logger.warning("Failed to find the business category on the feed.")
 
             if not current_business_feed_address:
-                logging.warning("Failed to find the business address on the feed.")
+                self.logger.warning("Failed to find the business address on the feed.")
 
             if not current_business_feed_phone:
-                logging.warning("Failed to find the business phone on the feed.")
+                self.logger.warning("Failed to find the business phone on the feed.")
 
             try:
                 does_business_exist = check_business_existence(name=getattr(current_business_feed_heading, "text", None), category=getattr(current_business_feed_category, "text", None), address=getattr(current_business_feed_address, "text", None), phone=get_cleaned_phone(getattr(current_business_feed_phone, "text", None)), includes=["BusinessPhone"])
-                logging.info(f"The business named '{getattr(current_business_feed_heading, 'text', None)}' exists?: {does_business_exist}")
+                self.logger.info(f"The business named '{getattr(current_business_feed_heading, 'text', None)}' exists?: {does_business_exist}")
             except Exception as e:
-                logging.exception("An error occurred while checking business existence: %s", e)
+                self.logger.exception("An error occurred while checking business existence: %s", e)
 
             counter = counter + 1
             if does_business_exist:
@@ -192,10 +193,10 @@ class BusinessScraper:
                 continue
 
             try:
-                logging.info("About to open new business profile.")
-                logging.info("========================================================")
-                logging.info("================= New Business =========================")
-                logging.info("========================================================")
+                self.logger.info("About to open new business profile.")
+                self.logger.info("========================================================")
+                self.logger.info("================= New Business =========================")
+                self.logger.info("========================================================")
                 ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
                 time.sleep(self.short_wait)
 
@@ -206,11 +207,11 @@ class BusinessScraper:
 
                 soup = BeautifulSoup(self.driver.page_source, "html.parser")
 
-                logging.info("~~~~~~~~ Basic Info ~~~~~~~~")
+                self.logger.info("~~~~~~~~ Basic Info ~~~~~~~~")
                 # Heading
                 h1_text = soup.find("h1", class_="DUwDvf fontHeadlineLarge").text
                 current_business_data["name"] = h1_text
-                logging.info(f"Title: {h1_text}")
+                self.logger.info(f"Title: {h1_text}")
 
                 # Business Domain
                 business_domain_button = soup.select_one(".fontBodyMedium button.DkEaL")
@@ -226,35 +227,35 @@ class BusinessScraper:
                 rating_text = soup.find("div", class_="F7nice").text
                 if rating_text:
                     rating_result = re.findall(r"([\d.]+)", rating_text)
-                    logging.info(f"Rating: {rating_result[0]}")
-                    logging.info(f"Reviews: {rating_result[1]}")
+                    self.logger.info(f"Rating: {rating_result[0]}")
+                    self.logger.info(f"Reviews: {rating_result[1]}")
                     current_business_data["rating"] = float(rating_result[0])
                     current_business_data["reviews"] = int(rating_result[1])
                 else:
-                    logging.info(f"Rating: {0}")
-                    logging.info(f"Reviews: {0}")
+                    self.logger.info(f"Rating: {0}")
+                    self.logger.info(f"Reviews: {0}")
                     current_business_data["rating"] = 0.0
                     current_business_data["reviews"] = 0
 
-                logging.info("~~~~~~~~ Location Info ~~~~~~~~")
+                self.logger.info("~~~~~~~~ Location Info ~~~~~~~~")
                 # Extract latitude and longitude from the URL
                 lat_lon = self.driver.current_url.split("/")[6].split("@")[1].split(",")[:2]
                 latitude = float(lat_lon[0])
                 longitude = float(lat_lon[1])
                 current_business_data["latitude"] = latitude
                 current_business_data["longitude"] = longitude
-                logging.info(f"Latitude & Longitude: {latitude}, {longitude}")
+                self.logger.info(f"Latitude & Longitude: {latitude}, {longitude}")
 
                 current_business_data["source"] = sourceValues[0]
-                logging.info(f"Source: {sourceValues[0]}")
+                self.logger.info(f"Source: {sourceValues[0]}")
 
-                logging.info("~~~~~~~~ Timezone Info ~~~~~~~~")
+                self.logger.info("~~~~~~~~ Timezone Info ~~~~~~~~")
                 timezone = get_timezone_info(location["timezone"])
-                logging.info(f"Timezone: {location['timezone']}")
-                logging.info(f"UTC Offset: {timezone['utc_offset']}")
-                logging.info(f"DST: {timezone['dst']}")
-                logging.info(f"DST Offset: {timezone['dst_offset']}")
-                logging.info(f"Country Code: {location['countryCode']}")
+                self.logger.info(f"Timezone: {location['timezone']}")
+                self.logger.info(f"UTC Offset: {timezone['utc_offset']}")
+                self.logger.info(f"DST: {timezone['dst']}")
+                self.logger.info(f"DST Offset: {timezone['dst_offset']}")
+                self.logger.info(f"Country Code: {location['countryCode']}")
 
                 current_business_data["timezone"] = {
                     "timezoneName": location["timezone"],
@@ -278,16 +279,16 @@ class BusinessScraper:
                     img_with_send_to_mobile_src = info.find("img", {"src": lambda s: "send_to_mobile" in s})
 
                     if img_with_place_src:
-                        logging.info("~~~~~~~~ Address Info ~~~~~~~~")
+                        self.logger.info("~~~~~~~~ Address Info ~~~~~~~~")
                         tr_text = info.get_text("|", strip=True)
                         current_business_data["address"] = tr_text
-                        logging.info(f"Place: {tr_text}")
+                        self.logger.info(f"Place: {tr_text}")
                         zip = get_postal_code(address=tr_text)
-                        logging.info("Location:")
-                        logging.info(f"Postal Code: {zip}")
-                        logging.info(f"City: {location['city']}")
-                        logging.info(f"State: {location['state']}")
-                        logging.info(f"Country: {location['country']}")
+                        self.logger.info("Location:")
+                        self.logger.info(f"Postal Code: {zip}")
+                        self.logger.info(f"City: {location['city']}")
+                        self.logger.info(f"State: {location['state']}")
+                        self.logger.info(f"Country: {location['country']}")
                         current_business_data["postalCode"] = zip
                         current_business_data["location"] = {
                             "city": location["city"],
@@ -295,7 +296,7 @@ class BusinessScraper:
                             "country": location["country"],
                         }
                     elif img_with_schedule_src:
-                        logging.info("~~~~~~~~ Schedule Info ~~~~~~~~")
+                        self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
                         tr_elements = soup.find_all("tr", class_="y0skZc")
 
                         for tr in tr_elements:
@@ -312,28 +313,28 @@ class BusinessScraper:
                                         current_business_data["openingHour"] = convert_to_24h_format(result[0])
                                         current_business_data["closingHour"] = convert_to_24h_format(result[1])
                                     except IndexError:
-                                        logging.error(f"Open/Close Hours: {result}")
+                                        self.logger.warning(f"Open/Close Hours: {result}")
                                         pass
-                                logging.info(f"{first_td_text}: {second_td_text}")
+                                self.logger.info(f"{first_td_text}: {second_td_text}")
                     elif img_with_shipping_src:
                         tr_text = info.get_text("|", strip=True)
-                        logging.info(f"Shipping: {tr_text}")
+                        self.logger.info(f"Shipping: {tr_text}")
                     elif img_with_public_src:
                         tr_text = info.get_text("|", strip=True)
                         current_business_data["website"] = tr_text
-                        logging.info(f"Website: {tr_text}")
+                        self.logger.info(f"Website: {tr_text}")
                     elif img_with_phone_src:
                         tr_text = info.get_text("|", strip=True)
                         current_business_data["phone"] = get_cleaned_phone(phone=tr_text)
-                        logging.info(f"Phone: {tr_text}")
+                        self.logger.info(f"Phone: {tr_text}")
                     elif img_with_plus_code_src:
                         tr_text = info.get_text("|", strip=True)
-                        logging.info(f"Plus Code: {tr_text}")
+                        self.logger.info(f"Plus Code: {tr_text}")
                     elif img_with_send_to_mobile_src:
                         tr_text = info.get_text("|", strip=True)
-                        logging.info(f"Send To Mobile: {tr_text}")
+                        self.logger.info(f"Send To Mobile: {tr_text}")
                     else:
-                        logging.info(f"Other: {info.find('img')} {info.get_text('|', strip=True)}")
+                        self.logger.info(f"Other: {info.find('img')} {info.get_text('|', strip=True)}")
 
                 if has_scrolled:
                     time.sleep(self.short_wait)
@@ -341,9 +342,9 @@ class BusinessScraper:
                     close_current_business_anchor.click()
 
                 create_business(current_business_data)
-                logging.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
+                self.logger.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
             except Exception as e:
-                logging.exception("An error occurred while scrolling and extracting data: %s", e)
+                self.logger.exception("An error occurred while scrolling and extracting data: %s", e)
 
     def close(self):
         self.driver.quit()
