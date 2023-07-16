@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from services.queue import get_queue, update_queue
 from concurrent.futures import ThreadPoolExecutor, wait
 import time
-from src.utils import handle_timeout_with_retry
+from src.utils import handle_timeout_with_retry, is_internet_available
 import requests
 from requests.exceptions import Timeout
 
@@ -32,21 +32,26 @@ def process_queue(queue, location):
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
 
-    scraper = BusinessScraper(logger=logger)
+    while True:
+        try:
+            searchQuery = f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}"
+            scraper = BusinessScraper(searchQuery=searchQuery, logger=logger)
+            scraper.search(searchQuery)
+            scraper.scroll_and_extract_data(queue["searchQuery"], location)
 
-    def search():
-        scraper.search(f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
-        scraper.scroll_and_extract_data(queue["searchQuery"], location)
-
-        queue["status"] = "Completed"
-        update_queue(request=queue)
-        logger.info(f"Search for '{queue['searchQuery']}' in {location} completed.")
-        scraper.close()
-
-    def close_scraper():
-        scraper.close()
-
-    handle_timeout_with_retry(dynamic_code_for_try=search, dynamic_code_for_catch=close_scraper, logger=logger)
+            queue["status"] = "Completed"
+            update_queue(request=queue)
+            logger.info(f"Search for '{queue['searchQuery']}' in {location} completed.")
+            scraper.close()
+            break
+        except (Timeout, requests.exceptions.RequestException, Exception) as e:
+            while True:
+                if is_internet_available():
+                    scraper.close()
+                    logger.info("Internet connection issue resolved. Retrying...")
+                    break
+                else:
+                    logger.info("Internet connection is not available. Retrying in 5 seconds...")
 
 
 def main():

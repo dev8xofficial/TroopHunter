@@ -11,6 +11,7 @@ import time
 import re
 from bs4 import BeautifulSoup
 import urllib.parse
+from urllib.parse import quote_plus
 from config import BASE_URL
 from src.utils import get_postal_code, get_timezone_info, convert_to_24h_format, get_cleaned_phone, handle_timeout_with_retry
 from services.business import check_business_existence, create_business
@@ -18,7 +19,7 @@ from config import sourceValues
 
 
 class BusinessScraper:
-    def __init__(self, logger=None):
+    def __init__(self, searchQuery=None, logger=None):
         self.short_wait = 2
         self.medium_wait = 10
         self.long_wait = 60
@@ -38,6 +39,7 @@ class BusinessScraper:
             logger.error("Service chromedriver unexpectedly exited.")
 
         self.logger = logger
+        self.searchQuery = searchQuery
 
     def search(self, query):
         self.logger.info(f"Searching for query: {query}")
@@ -211,7 +213,7 @@ class BusinessScraper:
                     close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
                     close_current_business_anchor.click()
 
-                handle_timeout_with_retry(dynamic_code_for_try=click_feed_article, dynamic_code_for_catch=close_feed_article, logger=self.logger)
+                handle_timeout_with_retry(dynamic_code_for_try=click_feed_article, dynamic_code_for_catch=close_feed_article, self=self, logger=self.logger)
 
                 soup = BeautifulSoup(self.driver.page_source, "html.parser")
 
@@ -230,7 +232,9 @@ class BusinessScraper:
                 def wait_for_url():
                     # Wait until the URL contains the expected business name
                     wait = WebDriverWait(self.driver, self.medium_wait)  # Adjust the timeout as needed
-                    wait.until(EC.url_contains(h1_text.split(" ")[0]))
+                    encoded_text = quote_plus(h1_text)
+                    encoded_text = encoded_text.replace("%2C", ",")
+                    wait.until(EC.url_contains(encoded_text))
 
                 handle_timeout_with_retry(dynamic_code_for_try=wait_for_url, logger=self.logger)
 
@@ -349,7 +353,8 @@ class BusinessScraper:
 
                 if has_scrolled:
                     time.sleep(self.short_wait)
-                    close_feed_article
+                    close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
+                    close_current_business_anchor.click()
 
                 create_business(current_business_data)
                 self.logger.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
