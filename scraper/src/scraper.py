@@ -12,7 +12,7 @@ import re
 from bs4 import BeautifulSoup
 import urllib.parse
 from config import BASE_URL
-from src.utils import get_postal_code, get_timezone_info, convert_to_24h_format, get_cleaned_phone, is_internet_available
+from src.utils import get_postal_code, get_timezone_info, convert_to_24h_format, get_cleaned_phone, handle_timeout_with_retry
 from services.business import check_business_existence, create_business
 from config import sourceValues
 
@@ -197,13 +197,21 @@ class BusinessScraper:
                 self.logger.info("========================================================")
                 self.logger.info("================= New Business =========================")
                 self.logger.info("========================================================")
-                ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
-                time.sleep(self.short_wait)
 
-                # Wait for the Heading element to appear on the view
-                wait = WebDriverWait(self.driver, self.long_wait)
-                wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".tAiQdd")))
-                wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".DUwDvf.fontHeadlineLarge")))
+                def click_feed_article():
+                    ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
+                    time.sleep(self.short_wait)
+
+                    # Wait for the Heading element to appear on the view
+                    wait = WebDriverWait(self.driver, self.long_wait)
+                    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".tAiQdd")))
+                    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".DUwDvf.fontHeadlineLarge")))
+
+                def close_feed_article():
+                    close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
+                    close_current_business_anchor.click()
+
+                handle_timeout_with_retry(dynamic_code_for_try=click_feed_article, dynamic_code_for_catch=close_feed_article, logger=self.logger)
 
                 soup = BeautifulSoup(self.driver.page_source, "html.parser")
 
@@ -219,9 +227,12 @@ class BusinessScraper:
                     current_business_data["businessDomain"] = business_domain_button.text
                 current_business_data["category"] = query
 
-                # Wait until the URL contains the expected business name
-                wait = WebDriverWait(self.driver, self.medium_wait)  # Adjust the timeout as needed
-                wait.until(EC.url_contains(h1_text.split(" ")[0]))
+                def wait_for_url():
+                    # Wait until the URL contains the expected business name
+                    wait = WebDriverWait(self.driver, self.medium_wait)  # Adjust the timeout as needed
+                    wait.until(EC.url_contains(h1_text.split(" ")[0]))
+
+                handle_timeout_with_retry(dynamic_code_for_try=wait_for_url, logger=self.logger)
 
                 # Rating
                 rating_text = soup.find("div", class_="F7nice").text
@@ -338,8 +349,7 @@ class BusinessScraper:
 
                 if has_scrolled:
                     time.sleep(self.short_wait)
-                    close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
-                    close_current_business_anchor.click()
+                    close_feed_article
 
                 create_business(current_business_data)
                 self.logger.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")

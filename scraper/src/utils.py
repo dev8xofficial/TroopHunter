@@ -8,6 +8,8 @@ from geopy.exc import GeocoderTimedOut
 from pyzipcode import ZipCodeDatabase
 from datetime import datetime, timedelta
 import logging
+from requests.exceptions import Timeout
+import time
 
 
 def get_location_details(latitude: float, longitude: float, address: str):
@@ -174,3 +176,20 @@ def is_internet_available():
         return True
     except requests.exceptions.RequestException:
         return False
+
+
+def handle_timeout_with_retry(dynamic_code_for_try, dynamic_code_for_catch=None, logger=None):
+    while True:
+        try:
+            dynamic_code_for_try()
+            break
+        except (Timeout, requests.exceptions.RequestException, Exception) as e:
+            while True:
+                if is_internet_available():
+                    if dynamic_code_for_catch:
+                        dynamic_code_for_catch()
+                    logger.info("Internet connection issue resolved. Retrying...")
+                    break
+                else:
+                    logger.info("Internet connection is not available. Retrying in 5 seconds...")
+                    time.sleep(5)

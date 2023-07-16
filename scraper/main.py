@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from services.queue import get_queue, update_queue
 from concurrent.futures import ThreadPoolExecutor, wait
 import time
-from src.utils import is_internet_available
+from src.utils import handle_timeout_with_retry
 import requests
 from requests.exceptions import Timeout
 
@@ -32,26 +32,21 @@ def process_queue(queue, location):
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
 
-    while True:
-        try:
-            scraper = BusinessScraper(logger=logger)
-            scraper.search(f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
-            scraper.scroll_and_extract_data(queue["searchQuery"], location)
+    scraper = BusinessScraper(logger=logger)
 
-            queue["status"] = "Completed"
-            update_queue(request=queue)
-            logger.info(f"Search for '{queue['searchQuery']}' in {location} completed.")
-            scraper.close()
-            break
-        except (Timeout, requests.exceptions.RequestException, Exception) as e:
-            while True:
-                if is_internet_available():
-                    logger.info("Internet connection issue resolved. Retrying...")
-                    scraper.close()
-                    break
-                else:
-                    logger.info("Internet connection is not available. Retrying in 5 seconds...")
-                    time.sleep(5)
+    def search():
+        scraper.search(f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}")
+        scraper.scroll_and_extract_data(queue["searchQuery"], location)
+
+        queue["status"] = "Completed"
+        update_queue(request=queue)
+        logger.info(f"Search for '{queue['searchQuery']}' in {location} completed.")
+        scraper.close()
+
+    def close_scraper():
+        scraper.close()
+
+    handle_timeout_with_retry(dynamic_code_for_try=search, dynamic_code_for_catch=close_scraper, logger=logger)
 
 
 def main():
