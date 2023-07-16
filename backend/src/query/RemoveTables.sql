@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS "BusinessPhotos";
 DROP TABLE IF EXISTS "Businesses";
 DROP TABLE IF EXISTS "BusinessCategories";
 DROP TABLE IF EXISTS "BusinessClosingHours";
-DROP TABLE IF EXISTS "BusinessOperatingStatuses";
 DROP TABLE IF EXISTS "BusinessOpeningHours";
 DROP TABLE IF EXISTS "BusinessPhones";
 DROP TABLE IF EXISTS "BusinessRatings";
