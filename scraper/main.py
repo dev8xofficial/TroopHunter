@@ -23,7 +23,7 @@ def process_queue(queue, location):
 
     # Add a file handler with the specific log file name
     file_handler = logging.FileHandler(log_file)
-    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(module)s - %(message)s")
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
@@ -55,7 +55,7 @@ def main():
     QUEUES = get_queue()
 
     # Create a ThreadPoolExecutor with a maximum of 3 threads
-    with ThreadPoolExecutor(max_workers=3) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:
         futures = []
         for location in LOCATIONS:
             for queue in QUEUES:
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         # Set up logging for the main script
         current_date = datetime.datetime.now().strftime("%m-%d-%Y")
         log_file = f"scraper/logs/main__{current_date}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
-        logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+        logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(module)s - %(message)s")
         main()
     except Exception as e:
         logging.exception("An unhandled error occurred during scraper execution: %s", e)
