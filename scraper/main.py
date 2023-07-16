@@ -27,6 +27,11 @@ def process_queue(queue, location):
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
+    # Add a stream handler to display logs on the console
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
+
     while True:
         try:
             scraper = BusinessScraper(logger=logger)
@@ -55,7 +60,7 @@ def main():
     QUEUES = get_queue()
 
     # Create a ThreadPoolExecutor with a maximum of 3 threads
-    with ThreadPoolExecutor(max_workers=1) as executor:
+    with ThreadPoolExecutor(max_workers=3) as executor:
         futures = []
         for location in LOCATIONS:
             for queue in QUEUES:
