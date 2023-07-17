@@ -1,0 +1,16 @@
+DELETE FROM "BusinessPhotos";
+DELETE FROM "Businesses";
+DELETE FROM "BusinessCategories";
+DELETE FROM "BusinessClosingHours";
+DELETE FROM "BusinessOpeningHours";
+DELETE FROM "BusinessPhones";
+DELETE FROM "BusinessRatings";
+DELETE FROM "BusinessSocialMedia";
+DELETE FROM "BusinessSources";
+DELETE FROM "Leads";
+DELETE FROM "Lists";
+DELETE FROM "Locations";
+DELETE FROM "PostalCodes";
+DELETE FROM "SequelizeMeta";
+DELETE FROM "Timezones";
+DELETE FROM "Queues";

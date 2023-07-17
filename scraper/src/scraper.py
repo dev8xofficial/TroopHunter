@@ -1,7 +1,6 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, WebDriverException, TimeoutException
@@ -10,10 +9,12 @@ from selenium.webdriver.chrome.service import Service
 import time
 import re
 from bs4 import BeautifulSoup
-import urllib.parse
 from urllib.parse import quote_plus
 from config import BASE_URL
-from src.utils import get_postal_code, get_timezone_info, convert_to_24h_format, get_cleaned_phone, handle_timeout_with_retry
+
+from utils.location import get_postal_code, get_timezone_info, extract_lat_lon
+from utils.business import convert_to_24h_format, get_cleaned_phone, click_feed_article, close_feed_article, wait_for_url
+from utils.general import handle_timeout_with_retry
 from services.business import check_business_existence, create_business
 from config import sourceValues
 
@@ -43,7 +44,7 @@ class BusinessScraper:
 
     def search(self, query):
         self.logger.info(f"Searching for query: {query}")
-        self.driver.get(f"{BASE_URL}/{urllib.parse.quote_plus(query)}")
+        self.driver.get(f"{BASE_URL}/{quote_plus(query)}")
         wait = WebDriverWait(self.driver, self.long_wait)
         wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
         wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
@@ -200,20 +201,7 @@ class BusinessScraper:
                 self.logger.info("================= New Business =========================")
                 self.logger.info("========================================================")
 
-                def click_feed_article():
-                    ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
-                    time.sleep(self.short_wait)
-
-                    # Wait for the Heading element to appear on the view
-                    wait = WebDriverWait(self.driver, self.long_wait)
-                    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".tAiQdd")))
-                    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".DUwDvf.fontHeadlineLarge")))
-
-                def close_feed_article():
-                    close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
-                    close_current_business_anchor.click()
-
-                handle_timeout_with_retry(dynamic_code_for_try=click_feed_article, dynamic_code_for_catch=close_feed_article, self=self, logger=self.logger)
+                handle_timeout_with_retry(dynamic_code_for_try=lambda: click_feed_article(self=self, current_business_anchor=current_business_anchor), dynamic_code_for_catch=lambda: close_feed_article(self=self), self=self, logger=self.logger)
 
                 soup = BeautifulSoup(self.driver.page_source, "html.parser")
 
@@ -229,14 +217,7 @@ class BusinessScraper:
                     current_business_data["businessDomain"] = business_domain_button.text
                 current_business_data["category"] = query
 
-                def wait_for_url():
-                    # Wait until the URL contains the expected business name
-                    wait = WebDriverWait(self.driver, self.medium_wait)  # Adjust the timeout as needed
-                    encoded_text = quote_plus(h1_text)
-                    encoded_text = encoded_text.replace("%2C", ",")
-                    wait.until(EC.url_contains(encoded_text))
-
-                handle_timeout_with_retry(dynamic_code_for_try=wait_for_url, logger=self.logger)
+                handle_timeout_with_retry(dynamic_code_for_try=lambda: wait_for_url(self=self, h1_text=h1_text), logger=self.logger)
 
                 # Rating
                 rating_text = soup.find("div", class_="F7nice").text
@@ -253,10 +234,8 @@ class BusinessScraper:
                     current_business_data["reviews"] = 0
 
                 self.logger.info("~~~~~~~~ Location Info ~~~~~~~~")
-                # Extract latitude and longitude from the URL
-                lat_lon = self.driver.current_url.split("/")[6].split("@")[1].split(",")[:2]
-                latitude = float(lat_lon[0])
-                longitude = float(lat_lon[1])
+
+                latitude, longitude = extract_lat_lon(self.driver.current_url)
                 current_business_data["latitude"] = latitude
                 current_business_data["longitude"] = longitude
                 self.logger.info(f"Latitude & Longitude: {latitude}, {longitude}")
