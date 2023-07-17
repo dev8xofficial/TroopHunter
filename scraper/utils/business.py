@@ -2,12 +2,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-import time
 import re
 import phonenumbers
 from datetime import datetime
 import logging
-import time
 
 
 def convert_to_24h_format(time_str):
@@ -64,7 +62,6 @@ def get_cleaned_phone(phone: str):
 
 def click_feed_article(self, current_business_anchor):
     ActionChains(self.driver).move_to_element(current_business_anchor).click().perform()
-    time.sleep(self.short_wait)
 
     # Wait for the Heading element to appear on the view
     wait = WebDriverWait(self.driver, self.long_wait)
@@ -101,17 +98,7 @@ def wait_for_url(self, h1_text):
     wait = WebDriverWait(self.driver, self.medium_wait)  # Adjust the timeout as needed
 
     splitted_text = split_string(h1_text)
-    # name = extract_name(self.driver.current_url)
 
     # if name:
     exists = check_words(wait, self.driver.current_url, splitted_text)
     self.logger.info(f"Does name exist in URL?: {exists}")
-    # else:
-    #     print("No name found in the URL.")
-    #     self.logger.info(f"No name found in the URL: {exists}")
-
-    # encoded_text = uri_reference(h1_text)
-    # self.logger.info(f"Does name exist in url?: {(encoded_text in self.driver.current_url)}")
-    # self.logger.info(f"Current URL?: {self.driver.current_url}")
-    # self.logger.info(f"Encoded text?: {encoded_text}")
-    # wait.until(EC.url_contains(encoded_text))

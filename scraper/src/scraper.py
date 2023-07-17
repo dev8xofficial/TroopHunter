@@ -332,8 +332,11 @@ class BusinessScraper:
 
                 if has_scrolled:
                     time.sleep(self.short_wait)
-                    close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
-                    close_current_business_anchor.click()
+                    try:
+                        close_feed_article(self=self)
+                    except NoSuchElementException as e:
+                        self.logger.error("close_feed_article - No such element found")
+                        pass
 
                 create_business(current_business_data)
                 self.logger.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")

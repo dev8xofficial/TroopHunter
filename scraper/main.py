@@ -47,7 +47,7 @@ def process_queue(queue, location):
             while True:
                 if is_internet_available():
                     scraper.close()
-                    logger.info("Internet connection issue resolved. Retrying...")
+                    logger.info("Internet connection is working. Retrying...")
                     break
                 else:
                     logger.info("Internet connection is not available. Retrying in 5 seconds...")
