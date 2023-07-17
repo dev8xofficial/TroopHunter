@@ -5,7 +5,7 @@ import datetime
 from dotenv import load_dotenv
 from services.queue import get_queue, update_queue
 from concurrent.futures import ThreadPoolExecutor, wait
-from utils.general import handle_timeout_with_retry, is_internet_available
+from utils.general import is_internet_available
 import requests
 from requests.exceptions import Timeout
 
