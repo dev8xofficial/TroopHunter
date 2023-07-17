@@ -1,11 +1,13 @@
+import { Transaction } from 'sequelize';
 import Location from '../models/Location';
 import PostalCode from '../models/PostalCode';
 import { PostalCodeAttributes } from '../types/postalCode';
 
-export const findOrCreatePostalCode = async (code: string): Promise<PostalCodeAttributes | undefined> => {
+export const findOrCreatePostalCode = async (code: string, transaction: Transaction): Promise<PostalCodeAttributes | undefined> => {
   try {
     const [record, created] = await PostalCode.findOrCreate({
       where: { code },
+      transaction,
     });
 
     if (created) {

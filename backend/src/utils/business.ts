@@ -1,11 +1,13 @@
+import { Transaction } from 'sequelize';
 import BusinessSource from '../models/BusinessSource';
 import { SourceAttributes } from '../types/businessSource';
 
-export const findOrCreateBusinessSource = async (sourceName: string): Promise<SourceAttributes | undefined> => {
+export const findOrCreateBusinessSource = async (sourceName: string, transaction: Transaction): Promise<SourceAttributes | undefined> => {
   try {
     const [record, created] = await BusinessSource.findOrCreate({
       where: { sourceName },
       defaults: { createdAt: new Date(), updatedAt: new Date() },
+      transaction,
     });
 
     if (created) {

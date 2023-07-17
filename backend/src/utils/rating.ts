@@ -1,10 +1,12 @@
+import { Transaction } from 'sequelize';
 import BusinessRating from '../models/BusinessRating';
 import { RatingAttributes } from '../types/businessRating';
 
-export const findOrCreateBusinessRating = async (ratingValue: number): Promise<RatingAttributes | undefined> => {
+export const findOrCreateBusinessRating = async (ratingValue: number, transaction: Transaction): Promise<RatingAttributes | undefined> => {
   try {
     const [record, created] = await BusinessRating.findOrCreate({
       where: { ratingValue },
+      transaction,
     });
 
     if (created) {

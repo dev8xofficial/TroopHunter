@@ -1,6 +1,7 @@
 import libphonenumber from 'google-libphonenumber';
 import { PhoneAttributes } from '../types/businessPhone';
 import BusinessPhone from '../models/BusinessPhone';
+import { Transaction } from 'sequelize';
 
 export const getPhoneWithDetails = (phone: string): PhoneAttributes => {
   const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
@@ -42,11 +43,12 @@ export const getPhoneWithDetails = (phone: string): PhoneAttributes => {
   return { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid };
 };
 
-export const findOrCreateBusinessPhone = async (phone: PhoneAttributes): Promise<PhoneAttributes | undefined> => {
+export const findOrCreateBusinessPhone = async (phone: PhoneAttributes, transaction: Transaction): Promise<PhoneAttributes | undefined> => {
   try {
     const { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid } = phone;
     const [record, created] = await BusinessPhone.findOrCreate({
       where: { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid },
+      transaction,
     });
 
     if (created) {

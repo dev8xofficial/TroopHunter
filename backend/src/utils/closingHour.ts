@@ -1,10 +1,12 @@
+import { Transaction } from 'sequelize';
 import BusinessClosingHour from '../models/BusinessClosingHour';
 import { ClosingTimeAttributes } from '../types/businessClosingHour';
 
-export const findOrCreateBusinessClosingHour = async (time: string): Promise<ClosingTimeAttributes | undefined> => {
+export const findOrCreateBusinessClosingHour = async (time: string, transaction: Transaction): Promise<ClosingTimeAttributes | undefined> => {
   try {
     const [record, created] = await BusinessClosingHour.findOrCreate({
       where: { time },
+      transaction,
     });
 
     if (created) {

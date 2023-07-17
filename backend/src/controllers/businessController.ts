@@ -153,6 +153,8 @@ export const createBusinesses = async (req: Request, res: Response) => {
 };
 
 export const createBusiness = async (req: Request, res: Response) => {
+  const transaction = await Sequelize.transaction(); // Start a transaction
+
   try {
     const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, openingHour, closingHour } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
@@ -169,61 +171,69 @@ export const createBusiness = async (req: Request, res: Response) => {
       socialMediaId,
     };
 
-    console.log('Required parameters: ', name, category, longitude, latitude, source);
+    console.log('Required parameters:', name, category, longitude, latitude, source);
 
     // if (!name && !longitude && !latitude && !source) return;
 
     if (category) {
-      const categoryFromDB: BusinessCategoryAttributes | undefined = await findOrCreateBusinessCategory(category);
+      const categoryFromDB: BusinessCategoryAttributes | undefined = await findOrCreateBusinessCategory(category, transaction);
       payload.categoryId = categoryFromDB?.id;
     }
 
     if (location) {
-      const locationFromDB: LocationAttributes | undefined = await findOrCreateLocation(location);
+      const locationFromDB: LocationAttributes | undefined = await findOrCreateLocation(location, transaction);
       payload.locationId = locationFromDB?.id;
     }
 
     if (postalCode) {
-      const postalCodeFromDB: PostalCodeAttributes | undefined = await findOrCreatePostalCode(postalCode);
+      const postalCodeFromDB: PostalCodeAttributes | undefined = await findOrCreatePostalCode(postalCode, transaction);
       payload.postalCodeId = postalCodeFromDB?.id;
     }
 
     if (phone) {
       const phoneWithDetails = getPhoneWithDetails(phone);
-      const phoneFromDB: PhoneAttributes | undefined = await findOrCreateBusinessPhone(phoneWithDetails);
+      const phoneFromDB: PhoneAttributes | undefined = await findOrCreateBusinessPhone(phoneWithDetails, transaction);
       payload.phoneId = phoneFromDB?.id;
     }
 
     if (rating !== undefined || rating !== null) {
-      const ratingFromDB: RatingAttributes | undefined = await findOrCreateBusinessRating(rating);
+      const ratingFromDB: RatingAttributes | undefined = await findOrCreateBusinessRating(rating, transaction);
       payload.ratingId = ratingFromDB?.id;
     }
 
     if (source) {
-      const sourceFromDB: SourceAttributes | undefined = await findOrCreateBusinessSource(source);
+      const sourceFromDB: SourceAttributes | undefined = await findOrCreateBusinessSource(source, transaction);
       payload.sourceId = sourceFromDB?.id;
     }
 
     if (timezone) {
-      const timezoneFromDB: TimezoneAttributes | undefined = await findOrCreateTimezone(timezone);
+      const timezoneFromDB: TimezoneAttributes | undefined = await findOrCreateTimezone(timezone, transaction);
       payload.timezoneId = timezoneFromDB?.id;
     }
 
     if (openingHour) {
-      const openingHourFromDB: OpeningTimeAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour);
+      const openingHourFromDB: OpeningTimeAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour, transaction);
       payload.openingHourId = openingHourFromDB?.id;
     }
 
     if (closingHour) {
-      const closingHourFromDB: ClosingTimeAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour);
+      const closingHourFromDB: ClosingTimeAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour, transaction);
       payload.closingHourId = closingHourFromDB?.id;
     }
 
-    const business = await Business.create(payload);
+    const business = await Business.create(payload, { transaction });
+
+    await transaction.commit().then(() => {
+      return business;
+    });
 
     res.status(201).json(business);
   } catch (error) {
     console.error('Error creating business:', error);
+
+    // Rollback the transaction if an error occurred
+    await transaction.rollback();
+
     res.status(500).json({ error: 'Failed to create business' });
   }
 };
