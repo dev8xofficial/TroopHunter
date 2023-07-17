@@ -14,7 +14,7 @@ const sequelize = new Sequelize({
   dialect: 'postgres',
 
   // other configuration options
-  // logging: false, // disable logging
+  logging: false, // disable logging
 });
 
 export default sequelize;

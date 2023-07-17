@@ -22,13 +22,15 @@ import { findOrCreateBusinessRating } from '../utils/rating';
 import { findOrCreateTimezone } from '../utils/timezone';
 import { findOrCreateBusinessOpeningHour } from '../utils/openingHour';
 import { findOrCreateBusinessClosingHour } from '../utils/closingHour';
+import logger from '../utils/logger';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const createBusiness = async (req: Request, res: Response) => {
   const transaction = await Sequelize.transaction(); // Start a transaction
 
+  const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, openingHour, closingHour } = req.body;
+
   try {
-    const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, openingHour, closingHour } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
     let payload: BusinessAttributes = {
       name,
@@ -43,9 +45,13 @@ export const createBusiness = async (req: Request, res: Response) => {
       socialMediaId,
     };
 
-    console.log('Required parameters:', name, category, longitude, latitude, source);
+    logger.debug('Creating a new business:', payload);
 
-    // if (!name && !longitude && !latitude && !source) return;
+    // Check if required fields are missing
+    if (!name || !longitude || !latitude || !source) {
+      logger.error('Failed to create business. Missing required fields.');
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
 
     if (category) {
       const categoryFromDB: BusinessCategoryAttributes | undefined = await findOrCreateBusinessCategory(category, transaction);
@@ -68,7 +74,7 @@ export const createBusiness = async (req: Request, res: Response) => {
       payload.phoneId = phoneFromDB?.id;
     }
 
-    if (rating !== undefined || rating !== null) {
+    if (rating !== undefined && rating !== null) {
       const ratingFromDB: RatingAttributes | undefined = await findOrCreateBusinessRating(rating, transaction);
       payload.ratingId = ratingFromDB?.id;
     }
@@ -96,12 +102,14 @@ export const createBusiness = async (req: Request, res: Response) => {
     const business = await Business.create(payload, { transaction });
 
     await transaction.commit().then(() => {
+      logger.info(`Business named ${name} created successfully.`);
       return business;
     });
 
     res.status(201).json(business);
   } catch (error) {
-    console.error('Error creating business:', error);
+    logger.error(`Failed to create ${name}`);
+    logger.error('Error creating business:', error);
 
     // Rollback the transaction if an error occurred
     await transaction.rollback();
@@ -204,22 +212,22 @@ export const getBusinesses = async (req: Request, res: Response) => {
       businesses,
     });
   } catch (error) {
-    console.error(error);
+    logger.error('Error retrieving businesses:', error);
     res.status(500).json({ error: 'An error occurred while retrieving businesses.' });
   }
 };
 
 export const getBusinessById = async (req: Request, res: Response) => {
-  console.log('getBusinessById: ');
   const { id } = req.params;
   try {
     const business = await Business.findOne({ where: { id } });
     if (!business) {
+      logger.warn(`Business with ID ${id} not found.`);
       return res.status(404).json({ error: 'Business not found' });
     }
     res.json(business);
   } catch (error) {
-    console.error('Error retrieving business:', error);
+    logger.error(`Error retrieving business with ID ${id}:`, error);
     res.status(500).json({ error: 'Failed to retrieve business' });
   }
 };
@@ -255,12 +263,14 @@ export const updateBusiness = async (req: Request, res: Response) => {
 
       await business.save();
 
+      logger.info(`Business with ID ${id} updated successfully.`);
       res.json(business);
     } else {
+      logger.warn(`Business with ID ${id} not found.`);
       res.status(404).json({ error: 'Business not found' });
     }
   } catch (error) {
-    console.error('Error updating business:', error);
+    logger.error(`Error updating business with ID ${id}:`, error);
     res.status(500).json({ error: 'Failed to update business' });
   }
 };
@@ -270,12 +280,14 @@ export const deleteBusiness = async (req: Request, res: Response) => {
   try {
     const business = await Business.findByPk(id);
     if (!business) {
+      logger.warn(`Business with ID ${id} not found.`);
       return res.status(404).json({ error: 'Business not found' });
     }
     await business.destroy();
+    logger.info(`Business with ID ${id} deleted successfully.`);
     res.status(204).json();
   } catch (error) {
-    console.error('Error deleting business:', error);
+    logger.error(`Error deleting business with ID ${id}:`, error);
     res.status(500).json({ error: 'Failed to delete business' });
   }
 };

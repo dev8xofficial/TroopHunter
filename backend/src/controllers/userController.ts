@@ -1,8 +1,21 @@
 import { Request, Response } from 'express';
 import User from '../models/User';
+import logger from '../utils/logger';
 
 export const getUsers = async (req: Request, res: Response) => {
-  res.send('Hello, World!');
+  try {
+    // Log a success message
+    logger.info('Getting users.');
+
+    // Your code logic here
+
+    res.send('Hello, World!');
+  } catch (error) {
+    // Log an error message
+    logger.error('Failed to get users:', error);
+
+    res.status(500).json({ error: 'Failed to get users' });
+  }
 };
 
 export const getUser = async (req: Request, res: Response) => {
@@ -12,12 +25,20 @@ export const getUser = async (req: Request, res: Response) => {
     const user = await User.findByPk(userId);
 
     if (user) {
+      // Log a success message
+      logger.info(`Retrieved user with ID ${userId}.`);
+
       res.json(user);
     } else {
+      // Log a warning message
+      logger.warn(`User with ID ${userId} not found.`);
+
       res.status(404).json({ error: 'User not found' });
     }
   } catch (error) {
-    console.error('Error retrieving user:', error);
+    // Log an error message
+    logger.error('Failed to retrieve user:', error);
+
     res.status(500).json({ error: 'Failed to retrieve user' });
   }
 };
@@ -35,12 +56,20 @@ export const updateUser = async (req: Request, res: Response) => {
       user.email = email;
       await user.save();
 
+      // Log a success message
+      logger.info(`Updated user with ID ${userId}.`);
+
       res.json(user);
     } else {
+      // Log a warning message
+      logger.warn(`User with ID ${userId} not found.`);
+
       res.status(404).json({ error: 'User not found' });
     }
   } catch (error) {
-    console.error('Error updating user:', error);
+    // Log an error message
+    logger.error('Failed to update user:', error);
+
     res.status(500).json({ error: 'Failed to update user' });
   }
 };
@@ -53,12 +82,21 @@ export const deleteUser = async (req: Request, res: Response) => {
 
     if (user) {
       await user.destroy();
+
+      // Log a success message
+      logger.info(`Deleted user with ID ${userId}.`);
+
       res.status(204).end();
     } else {
+      // Log a warning message
+      logger.warn(`User with ID ${userId} not found.`);
+
       res.status(404).json({ error: 'User not found' });
     }
   } catch (error) {
-    console.error('Error deleting user:', error);
+    // Log an error message
+    logger.error('Failed to delete user:', error);
+
     res.status(500).json({ error: 'Failed to delete user' });
   }
 };

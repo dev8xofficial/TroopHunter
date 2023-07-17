@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import BusinessPhone from '../models/BusinessPhone';
+import logger from '../utils/logger';
 
 const router = express.Router();
 
@@ -18,9 +19,11 @@ router.post('/phone', async (req: Request, res: Response) => {
       isValid,
     });
 
+    logger.info('Phone number created successfully:', phone);
+
     res.status(201).json({ phone });
   } catch (error) {
-    console.error('Error creating phone number:', error);
+    logger.error('Failed to create phone number:', error);
     res.status(500).json({ error: 'Failed to create phone number' });
   }
 });
@@ -30,9 +33,11 @@ router.get('/phones', async (_req: Request, res: Response) => {
   try {
     const phones = await BusinessPhone.findAll();
 
+    logger.info('Fetched all phone numbers:', phones);
+
     res.status(200).json({ phones });
   } catch (error) {
-    console.error('Error fetching phone numbers:', error);
+    logger.error('Failed to fetch phone numbers:', error);
     res.status(500).json({ error: 'Failed to fetch phone numbers' });
   }
 });
@@ -45,12 +50,15 @@ router.get('/phone/:id', async (req: Request, res: Response) => {
     const phone = await BusinessPhone.findByPk(id);
 
     if (!phone) {
+      logger.warn(`Phone number with ID ${id} not found.`);
       return res.status(404).json({ error: 'Phone number not found' });
     }
 
+    logger.info(`Fetched phone number with ID ${id}:`, phone);
+
     res.status(200).json({ phone });
   } catch (error) {
-    console.error('Error fetching phone number:', error);
+    logger.error('Failed to fetch phone number:', error);
     res.status(500).json({ error: 'Failed to fetch phone number' });
   }
 });
@@ -64,6 +72,7 @@ router.put('/phone/:id', async (req: Request, res: Response) => {
     const phone = await BusinessPhone.findByPk(id);
 
     if (!phone) {
+      logger.warn(`Phone number with ID ${id} not found.`);
       return res.status(404).json({ error: 'Phone number not found' });
     }
 
@@ -77,9 +86,11 @@ router.put('/phone/:id', async (req: Request, res: Response) => {
       isValid,
     });
 
+    logger.info(`Phone number with ID ${id} updated successfully.`, phone);
+
     res.status(200).json({ phone });
   } catch (error) {
-    console.error('Error updating phone number:', error);
+    logger.error('Failed to update phone number:', error);
     res.status(500).json({ error: 'Failed to update phone number' });
   }
 });
@@ -92,14 +103,17 @@ router.delete('/phone/:id', async (req: Request, res: Response) => {
     const phone = await BusinessPhone.findByPk(id);
 
     if (!phone) {
+      logger.warn(`Phone number with ID ${id} not found.`);
       return res.status(404).json({ error: 'Phone number not found' });
     }
 
     await phone.destroy();
 
+    logger.info(`Phone number with ID ${id} deleted successfully.`);
+
     res.status(204).end();
   } catch (error) {
-    console.error('Error deleting phone number:', error);
+    logger.error('Failed to delete phone number:', error);
     res.status(500).json({ error: 'Failed to delete phone number' });
   }
 });
