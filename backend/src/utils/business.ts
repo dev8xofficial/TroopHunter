@@ -1,6 +1,6 @@
 import { Transaction } from 'sequelize';
-import BusinessSource from '../models/BusinessSource';
 import { SourceAttributes } from '../types/businessSource';
+import BusinessSource from '../models/BusinessSource';
 
 export const findOrCreateBusinessSource = async (sourceName: string, transaction: Transaction): Promise<SourceAttributes | undefined> => {
   try {

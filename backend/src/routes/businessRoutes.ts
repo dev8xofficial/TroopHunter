@@ -1,5 +1,5 @@
 import express from 'express';
-import { getBusinesses, getBusinessById, createBusiness, createBusinesses, updateBusiness, deleteBusiness } from '../controllers/businessController';
+import { getBusinesses, getBusinessById, createBusiness, updateBusiness, deleteBusiness } from '../controllers/businessController';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
 const router = express.Router();
@@ -11,7 +11,6 @@ router.use(authenticateUser);
 router.get('/', getBusinesses);
 router.get('/:id', getBusinessById);
 router.post('/', createBusiness);
-// router.post('/', createBusinesses);
 router.put('/:id', updateBusiness);
 router.delete('/:id', deleteBusiness);
 

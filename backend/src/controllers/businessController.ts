@@ -1,8 +1,5 @@
 import { Request, Response } from 'express';
-import casual from 'casual';
-import { faker } from '@faker-js/faker';
 import { Op } from 'sequelize';
-import { v4 as uuidv4 } from 'uuid';
 import Sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
 import { BusinessCategoryAttributes } from '../types/businessCategory';
@@ -14,19 +11,7 @@ import { ClosingTimeAttributes } from '../types/businessClosingHour';
 import { PostalCodeAttributes } from '../types/postalCode';
 import { PhoneAttributes } from '../types/businessPhone';
 import { TimezoneAttributes } from '../types/timezone';
-import { SocialMediaAttributes } from '../types/businessSocialMedia';
-import { BusinessPhotoAttributes } from '../types/businessPhoto';
 import Business from '../models/Business';
-import BusinessCategory from '../models/BusinessCategory';
-import PostalCode from '../models/PostalCode';
-import BusinessPhone from '../models/BusinessPhone';
-import BusinessSocialMedia from '../models/BusinessSocialMedia';
-import Timezone from '../models/Timezone';
-import Location from '../models/Location';
-import BusinessRating from '../models/BusinessRating';
-import BusinessSource from '../models/BusinessSource';
-import BusinessOpeningHour from '../models/BusinessOpeningHour';
-import BusinessClosingHour from '../models/BusinessClosingHour';
 import { Point } from 'geojson';
 import { findOrCreateBusinessPhone, getPhoneWithDetails } from '../utils/phone';
 import { findOrCreateBusinessSource } from '../utils/business';
@@ -38,119 +23,6 @@ import { findOrCreateTimezone } from '../utils/timezone';
 import { findOrCreateBusinessOpeningHour } from '../utils/openingHour';
 import { findOrCreateBusinessClosingHour } from '../utils/closingHour';
 // import BusinessPhoto from '../models/BusinessPhoto';
-
-export const createBusinesses = async (req: Request, res: Response) => {
-  try {
-    const count = parseInt(req.body.count);
-    const businessesArray: any[] = [];
-
-    const values: string[] = ['Corporation', 'Limited liability company', 'Retail', 'Retail Estate', 'Cooperative', 'Marketing', 'Advertising', 'Finance', 'Nonprofit Organization', 'Agriculture', 'S corporation', 'C corporation', 'Construction', 'Manufacturing', 'Restaurant', 'Investing', 'Limited Company', 'Financial Services', 'Bank', 'Food Service', 'Convenience Store', 'Bakery'];
-    const cities = [
-      { name: 'New York', state: 'New York', country: 'United States', postalCode: '10001' },
-      { name: 'San Francisco', state: 'California', country: 'United States', postalCode: '94101' },
-      { name: 'London', state: 'London', country: 'United Kingdom', postalCode: 'SW1A 1AA' },
-      { name: 'Berlin', state: 'Berlin', country: 'Germany', postalCode: '10115' },
-      { name: 'Sydney', state: 'New South Wales', country: 'Australia', postalCode: '2000' },
-    ];
-    const opValues: string[] = ['open', 'close', 'temporarily-close'];
-    const sValues: string[] = ['google-maps', 'google', 'facebook'];
-    const phone = getPhoneWithDetails('+14154005153');
-
-    for (let i = 0; i < count; i++) {
-      const city = cities[Math.floor(Math.random() * 5)];
-      const businessId = uuidv4();
-
-      const businessData = {
-        id: businessId,
-        name: faker.company.name(),
-        businessDomain: faker.company.catchPhrase(),
-        category: {
-          id: uuidv4(),
-          name: values[Math.floor(Math.random() * 21)],
-        },
-        location: {
-          id: uuidv4(),
-          city: city.name,
-          state: city.state,
-          country: city.country,
-        },
-        latitude: faker.location.latitude(),
-        longitude: faker.location.longitude(),
-        postalCode: {
-          id: uuidv4(),
-          code: city.postalCode,
-        },
-        address: faker.location.streetAddress(),
-        email: faker.internet.email(),
-        website: faker.internet.url(),
-        reviews: faker.number.float({ min: 1, max: 5000 }),
-        source: {
-          id: uuidv4(),
-          sourceName: sValues[Math.floor(Math.random() * 3)],
-        },
-        phone: {
-          id: uuidv4(),
-          countryCode: phone?.countryCode,
-          regionCode: phone?.regionCode,
-          number: phone?.number,
-          numberNationalFormatted: phone?.numberNationalFormatted,
-          numberInternationalFormatted: phone?.numberInternationalFormatted,
-          numberType: phone?.numberType,
-          isValid: phone?.isValid,
-        },
-        rating: {
-          id: uuidv4(),
-          ratingValue: faker.number.float({ min: 1, max: 5, precision: 1 }),
-          businessDomain: faker.lorem.words(3),
-        },
-        timezone: {
-          id: uuidv4(),
-          timezoneName: faker.location.timeZone(),
-          utcOffset: faker.number.int({ min: -12, max: 12 }).toString(),
-          dst: faker.datatype.boolean(),
-          dstOffset: faker.number.int({ min: -12, max: 12 }).toString(),
-          countryCode: faker.location.countryCode(),
-        },
-        socialMedia: {
-          id: uuidv4(),
-          businessId: businessId,
-          facebookProfile: faker.internet.url(),
-          twitterProfile: faker.internet.url(),
-          instagramProfile: faker.internet.url(),
-          linkedInProfile: faker.internet.url(),
-          youTubeProfile: faker.internet.url(),
-        },
-        photos: Array.from({ length: faker.number.int({ min: 1, max: 5 }) }, () => ({
-          id: uuidv4(),
-          businessId: businessId,
-          photoUrl: faker.image.urlPicsumPhotos(),
-          businessDomain: faker.image.urlPlaceholder(),
-        })),
-        openingHour: {
-          id: uuidv4(),
-          time: casual.time('HH:mm'),
-        },
-        closingHour: {
-          id: uuidv4(),
-          time: casual.time('HH:mm'),
-        },
-      };
-
-      businessesArray.push(businessData);
-    }
-
-    const businesses = createBulkBusinesses(businessesArray);
-
-    if (businesses) {
-      res.json(businesses);
-    } else {
-      res.status(404).json({ error: 'RBusinesses failed to create' });
-    }
-  } catch (error) {
-    console.error('Error retrieving business:', error);
-    res.status(500).json({ error: 'Failed to create RBusinesses' });
-  }
-};
 
 export const createBusiness = async (req: Request, res: Response) => {
   const transaction = await Sequelize.transaction(); // Start a transaction
@@ -407,78 +279,3 @@ export const deleteBusiness = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Failed to delete business' });
   }
 };
-
-async function createBulkBusinesses(businessData: any[]) {
-  const transaction = await Sequelize.transaction();
-
-  try {
-    const categories: Partial<BusinessCategoryAttributes>[] = [];
-    const locations: Partial<LocationAttributes>[] = [];
-    const postalCodes: PostalCodeAttributes[] = [];
-    const phones: Partial<PhoneAttributes>[] = [];
-    const ratings: Partial<RatingAttributes>[] = [];
-    const sources: Partial<SourceAttributes>[] = [];
-    const timezones: Partial<TimezoneAttributes>[] = [];
-    const socialMedias: Partial<SocialMediaAttributes>[] = [];
-    const photos: Partial<BusinessPhotoAttributes>[][] = [];
-    const openingHours: Partial<OpeningTimeAttributes>[] = [];
-    const closingHours: Partial<ClosingTimeAttributes>[] = [];
-    const businesses: BusinessAttributes[] = [];
-
-    businessData.map(async (data: any) => {
-      categories.push(data.category);
-      locations.push(data.location);
-      postalCodes.push(data.postalCode);
-      phones.push(data.phone);
-      ratings.push(data.rating);
-      sources.push(data.source);
-      timezones.push(data.timezone);
-      socialMedias.push(data.socialMedia);
-      photos.push(data.photos);
-      openingHours.push(data.openingHour);
-      closingHours.push(data.closingHour);
-
-      businesses.push({
-        name: data.name,
-        businessDomain: data.businessDomain,
-        categoryId: data.category.id,
-        locationId: data.location.id,
-        geoPoint: { type: 'Point', coordinates: [data.longitude, data.latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } },
-        longitude: data.longitude,
-        latitude: data.latitude,
-        postalCodeId: data.postalCode.id,
-        address: data.address,
-        email: data.email,
-        website: data.website,
-        reviews: data.reviews,
-        sourceId: data.source.id,
-        phoneId: data.phone.id,
-        ratingId: data.rating.id,
-        timezoneId: data.timezone.id,
-        openingHourId: data.openingHour.id,
-        closingHourId: data.closingHour.id,
-      });
-    });
-
-    await BusinessCategory.bulkCreate(categories, { transaction });
-    await Location.bulkCreate(locations, { transaction });
-    await PostalCode.bulkCreate(postalCodes, { transaction });
-    await BusinessPhone.bulkCreate(phones, { transaction });
-    await BusinessRating.bulkCreate(ratings, { transaction });
-    await BusinessSource.bulkCreate(sources, { transaction });
-    await Timezone.bulkCreate(timezones, { transaction });
-    await BusinessOpeningHour.bulkCreate(openingHours, { transaction });
-    await BusinessClosingHour.bulkCreate(closingHours, { transaction });
-
-    const uk = await Business.bulkCreate(businesses, { transaction });
-    await BusinessSocialMedia.bulkCreate(socialMedias, { transaction });
-    // await BusinessPhoto.bulkCreate(photos.flat(), { transaction });
-
-    await transaction.commit().then(() => {
-      return uk;
-    });
-  } catch (error) {
-    await transaction.rollback();
-    throw error;
-  }
-}
