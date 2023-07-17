@@ -1,7 +1,7 @@
 import { Transaction } from 'sequelize';
-import Location from '../models/Location';
 import PostalCode from '../models/PostalCode';
 import { PostalCodeAttributes } from '../types/postalCode';
+import logger from '../utils/logger';
 
 export const findOrCreatePostalCode = async (code: string, transaction: Transaction): Promise<PostalCodeAttributes | undefined> => {
   try {
@@ -11,11 +11,13 @@ export const findOrCreatePostalCode = async (code: string, transaction: Transact
     });
 
     if (created) {
+      logger.info(`Business postal code ${code} created successfully.`);
       return record.toJSON() as PostalCodeAttributes;
     } else {
+      logger.info(`Business postal code ${code} already exists.`);
       return record.toJSON() as PostalCodeAttributes;
     }
   } catch (error) {
-    console.error('Failed to find or create business postal code:', error);
+    logger.error('Failed to find or create business postal code:', error);
   }
 };

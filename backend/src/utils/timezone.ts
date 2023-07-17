@@ -1,8 +1,7 @@
 import { Transaction } from 'sequelize';
-import BusinessSource from '../models/BusinessSource';
 import Timezone from '../models/Timezone';
-import { SourceAttributes } from '../types/businessSource';
 import { TimezoneAttributes } from '../types/timezone';
+import logger from '../utils/logger';
 
 export const findOrCreateTimezone = async (timezone: TimezoneAttributes, transaction: Transaction): Promise<TimezoneAttributes | undefined> => {
   try {
@@ -14,11 +13,15 @@ export const findOrCreateTimezone = async (timezone: TimezoneAttributes, transac
     });
 
     if (created) {
+      logger.info(`Timezone ${timezoneName} created successfully.`);
       return record.toJSON() as TimezoneAttributes;
     } else {
+      logger.info(`Timezone ${timezoneName} already exists.`);
       return record.toJSON() as TimezoneAttributes;
     }
   } catch (error) {
-    console.error('Failed to find or create business timezone:', error);
+    logger.error('Failed to find or create business timezone:', error);
+    // Handle the error gracefully
+    throw new Error('Failed to find or create business timezone');
   }
 };

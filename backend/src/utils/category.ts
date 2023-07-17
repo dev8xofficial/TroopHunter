@@ -1,6 +1,7 @@
 import { Transaction } from 'sequelize';
 import BusinessCategory from '../models/BusinessCategory';
 import { BusinessCategoryAttributes } from '../types/businessCategory';
+import logger from '../utils/logger';
 
 export const findOrCreateBusinessCategory = async (name: string, transaction: Transaction): Promise<BusinessCategoryAttributes | undefined> => {
   try {
@@ -11,11 +12,13 @@ export const findOrCreateBusinessCategory = async (name: string, transaction: Tr
     });
 
     if (created) {
+      logger.info(`Business category ${name} created successfully.`);
       return record.toJSON() as BusinessCategoryAttributes;
     } else {
+      logger.info(`Business category ${name} already exists.`);
       return record.toJSON() as BusinessCategoryAttributes;
     }
   } catch (error) {
-    console.error('Failed to find or create business category:', error);
+    logger.error('Failed to find or create business category:', error);
   }
 };

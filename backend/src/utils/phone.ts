@@ -2,6 +2,7 @@ import libphonenumber from 'google-libphonenumber';
 import { PhoneAttributes } from '../types/businessPhone';
 import BusinessPhone from '../models/BusinessPhone';
 import { Transaction } from 'sequelize';
+import logger from '../utils/logger';
 
 export const getPhoneWithDetails = (phone: string): PhoneAttributes => {
   const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
@@ -32,13 +33,14 @@ export const getPhoneWithDetails = (phone: string): PhoneAttributes => {
 
   const isValid = phoneUtil.isValidNumber(parsedNumber);
 
-  console.log('Country Code: ', countryCode);
-  console.log('Region Code: ', regionCode);
-  console.log('Number: ', number);
-  console.log('Number National: ', numberNationalFormatted);
-  console.log('Number International: ', numberInternationalFormatted);
-  console.log('Number Type: ', numberType);
-  console.log('Is Number Valid: ', isValid);
+  logger.info('Phone details:');
+  logger.info('Country Code:', countryCode);
+  logger.info('Region Code:', regionCode);
+  logger.info('Number:', number);
+  logger.info('Number National:', numberNationalFormatted);
+  logger.info('Number International:', numberInternationalFormatted);
+  logger.info('Number Type:', numberType);
+  logger.info('Is Number Valid:', isValid);
 
   return { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid };
 };
@@ -52,11 +54,13 @@ export const findOrCreateBusinessPhone = async (phone: PhoneAttributes, transact
     });
 
     if (created) {
+      logger.info('Business phone created successfully.');
       return record.toJSON() as PhoneAttributes;
     } else {
+      logger.info('Business phone already exists.');
       return record.toJSON() as PhoneAttributes;
     }
   } catch (error) {
-    console.error('Failed to find or create business phone:', error);
+    logger.error('Failed to find or create business phone:', error);
   }
 };

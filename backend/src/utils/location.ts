@@ -1,6 +1,7 @@
 import { Transaction } from 'sequelize';
 import Location from '../models/Location';
 import { LocationAttributes } from '../types/location';
+import logger from '../utils/logger';
 
 export const findOrCreateLocation = async (location: LocationAttributes, transaction: Transaction): Promise<LocationAttributes | undefined> => {
   try {
@@ -11,11 +12,13 @@ export const findOrCreateLocation = async (location: LocationAttributes, transac
     });
 
     if (created) {
+      logger.info(`Business location ${location.city}, ${location.state}, ${location.country} created successfully.`);
       return record.toJSON() as LocationAttributes;
     } else {
+      logger.info(`Business location ${location.city}, ${location.state}, ${location.country} already exists.`);
       return record.toJSON() as LocationAttributes;
     }
   } catch (error) {
-    console.error('Failed to find or create business location:', error);
+    logger.error('Failed to find or create business location:', error);
   }
 };
