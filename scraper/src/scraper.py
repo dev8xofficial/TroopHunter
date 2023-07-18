@@ -217,6 +217,12 @@ class BusinessScraper:
                     current_business_data["businessDomain"] = business_domain_button.text
                 current_business_data["category"] = query
 
+                # Find the element by its CSS selector
+                element = current_business_anchor.find_element(By.XPATH, ".//div[@class='hHbUWd']//h1")
+                text = element.text
+                if "sponsor" in text.lower():
+                    current_business_data["sponsoredAd"] = True
+
                 handle_timeout_with_retry(dynamic_code_for_try=lambda: wait_for_url(self=self, h1_text=h1_text), logger=self.logger)
 
                 # Rating
