@@ -1,7 +1,10 @@
-# local env files
+# Logs
+logs
+*.log
 .package-lock.json
+
+node_modules
 
 # Docker files
 docker-compose*
-
-node_modules
+Dockerfile*

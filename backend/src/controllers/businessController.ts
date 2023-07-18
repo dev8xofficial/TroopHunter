@@ -28,7 +28,7 @@ import logger from '../utils/logger';
 export const createBusiness = async (req: Request, res: Response) => {
   const transaction = await Sequelize.transaction(); // Start a transaction
 
-  const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, openingHour, closingHour } = req.body;
+  const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour } = req.body;
 
   try {
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
@@ -43,13 +43,19 @@ export const createBusiness = async (req: Request, res: Response) => {
       website,
       reviews,
       socialMediaId,
+      sponsoredAd,
     };
 
     logger.debug('Creating a new business:', payload);
 
     // Check if required fields are missing
-    if (!name || !longitude || !latitude || !source) {
-      logger.error('Failed to create business. Missing required fields.');
+    if (!name || !address || !longitude || !latitude || !source) {
+      logger.error(`Failed to create business named ${name}. Missing required fields.`);
+      logger.error(`Name: ${name}`);
+      logger.error(`Address: ${address}`);
+      logger.error(`Latitude: ${latitude}`);
+      logger.error(`Longitude: ${longitude}`);
+      logger.error(`Source: ${source}`);
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
@@ -119,7 +125,7 @@ export const createBusiness = async (req: Request, res: Response) => {
 };
 
 export const getBusinesses = async (req: Request, res: Response) => {
-  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId, page, limit, includes } = req.query;
+  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, includes } = req.query;
 
   const whereClause: { [key: string]: any } = {};
 
@@ -174,6 +180,10 @@ export const getBusinesses = async (req: Request, res: Response) => {
 
   if (timezoneId) {
     whereClause.timezoneId = timezoneId;
+  }
+
+  if (sponsoredAd) {
+    whereClause.sponsoredAd = sponsoredAd;
   }
 
   if (openingHourId) {
@@ -235,7 +245,7 @@ export const getBusinessById = async (req: Request, res: Response) => {
 export const updateBusiness = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const { name, businessDomain, categoryId, address, locationId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId } = req.body;
+    const { name, businessDomain, categoryId, address, locationId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
     const business = await Business.findByPk(id);
@@ -257,6 +267,7 @@ export const updateBusiness = async (req: Request, res: Response) => {
       business.reviews = reviews;
       business.timezoneId = timezoneId;
       business.sourceId = sourceId;
+      business.sponsoredAd = sponsoredAd;
       business.socialMediaId = socialMediaId;
       business.openingHourId = openingHourId;
       business.closingHourId = closingHourId;

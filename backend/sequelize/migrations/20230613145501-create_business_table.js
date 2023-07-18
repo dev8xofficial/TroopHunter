@@ -13,6 +13,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       businessDomain: {
         type: Sequelize.STRING,
@@ -78,6 +79,10 @@ module.exports = {
         type: Sequelize.UUID,
         allowNull: true,
       },
+      sponsoredAd: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+      },
       openingHourId: {
         type: Sequelize.UUID,
         allowNull: true,
@@ -98,7 +103,7 @@ module.exports = {
       },
     });
 
-    await queryInterface.addIndex('Businesses', ['address'], {
+    await queryInterface.addIndex('Businesses', ['name', 'address'], {
       unique: true,
     });
 
@@ -226,7 +231,7 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     // Drop indexes
-    await queryInterface.removeIndex('Businesses', ['address']);
+    await queryInterface.removeIndex('Businesses', ['name', 'address']);
     // Drop foreign key constraints
     await queryInterface.removeConstraint('Businesses', 'fk_business_category');
     await queryInterface.removeConstraint('Businesses', 'fk_business_location');

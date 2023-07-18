@@ -19,6 +19,7 @@ export interface BusinessAttributes {
   timezoneId?: string;
   sourceId?: string;
   socialMediaId?: string;
+  sponsoredAd?: boolean;
   openingHourId?: string;
   closingHourId?: string;
 }

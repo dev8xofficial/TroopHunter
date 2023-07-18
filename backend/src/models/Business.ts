@@ -33,6 +33,7 @@ class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public timezoneId?: string;
   public sourceId!: string;
   public socialMediaId?: string;
+  public sponsoredAd?: boolean;
   public openingHourId!: string;
   public closingHourId!: string;
 
@@ -53,6 +54,7 @@ Business.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true, // Make the name field unique
     },
     businessDomain: {
       type: DataTypes.STRING,
@@ -118,6 +120,10 @@ Business.init(
       type: DataTypes.UUID,
       allowNull: true,
     },
+    sponsoredAd: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
     openingHourId: {
       type: DataTypes.UUID,
       allowNull: true,
@@ -134,7 +140,7 @@ Business.init(
       // Create a composite index for faster searching
       {
         unique: true,
-        fields: ['address'],
+        fields: ['name', 'address'], // Add the name and address fields to the composite index
       },
     ],
   }
