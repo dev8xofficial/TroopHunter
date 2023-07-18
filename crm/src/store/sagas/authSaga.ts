@@ -33,7 +33,6 @@ function* registerSaga({ payload }: any): any {
 
     navigate('/signin');
 
-    debugger;
     toast(response.data.data.message);
     yield put(registerSuccess(response.data.data.user));
   } catch (error) {

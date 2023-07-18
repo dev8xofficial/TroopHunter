@@ -1,7 +1,6 @@
-// import { useEffect, useState } from 'react';
-// import { toast } from 'react-toastify';
-// import axios from 'axios';
-// import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchBusinesses } from '../store/actions/businessActions';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import _Menu from '../components/Navigation/Menu/Menu';
 import CustomTextField from '../components/Inputs/CustomTextField/CustomTextField';
@@ -18,29 +17,16 @@ const stats: IStats[] = [
 ];
 
 const Lead = () => {
-  // let [isLoading, setIsLoading] = useState(true);
-  // const userToken = useSelector((state: any) => state.auth.token);
+  const dispatch = useDispatch();
+  const token = useSelector((state: any) => state.auth.token);
 
-  // useEffect(() => {
-  //   debugger;
-  //   axios
-  //     .get(`${process.env.BACKEND_URL}/users`, {
-  //       headers: {
-  //         Authorization: `Bearer ${userToken}`, // Attach the JWT token to the request
-  //       },
-  //     })
-  //     .then((response: any) => {
-  //       toast('User exits');
-  //     })
-  //     .catch((error: any) => {
-  //       toast("User doesn't exit:");
-  //     });
-  // }, []);
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     setIsLoading(!isLoading);
-  //   }, 1000);
-  // }, []);
+  useEffect(() => {
+    dispatch(
+      fetchBusinesses({
+        token,
+      })
+    );
+  }, []);
 
   return (
     <>

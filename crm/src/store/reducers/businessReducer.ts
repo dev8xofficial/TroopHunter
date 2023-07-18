@@ -3,23 +3,23 @@ import { fetchBusinessesSuccess, fetchBusinessesFailure } from '../actions/busin
 import { IBusiness } from '../../types/business';
 
 export interface BusinessState {
-  businesses: IBusiness[];
+  data: { businesses: IBusiness[]; totalPages: number | null; totalRecords: number | null };
   error: string | null;
 }
 
 const initialState: BusinessState = {
-  businesses: [],
+  data: { businesses: [], totalPages: null, totalRecords: null },
   error: null,
 };
 
 const businessReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchBusinessesSuccess, (state, action) => {
-      state.businesses = action.payload;
+      state.data = action.payload.data;
       state.error = null;
     })
     .addCase(fetchBusinessesFailure, (state, action) => {
-      state.businesses = [];
+      state.data = { businesses: [], totalPages: null, totalRecords: null };
       state.error = action.payload;
     });
 });
