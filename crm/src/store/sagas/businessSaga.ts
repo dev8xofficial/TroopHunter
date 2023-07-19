@@ -10,7 +10,6 @@ function* fetchBusinessesSaga({ payload }: any): any {
     const params = {
       businessDomain,
       address,
-      location,
       phone,
       email,
       website,
@@ -22,7 +21,21 @@ function* fetchBusinessesSaga({ payload }: any): any {
       params['sponsoredAd'] = sponsoredAd === 'true';
     }
 
-    const response = yield axios.get(`${process.env.BACKEND_URL}/businesses`, {
+    if (location) {
+      const locationResponse = yield axios.get(`${process.env.BACKEND_URL}/locations/search`, {
+        params: {
+          city: location.split(', ')[0],
+          state: location.split(', ')[1],
+          country: location.split(', ')[2],
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      params['locationId'] = locationResponse.data[0].id;
+    }
+
+    const response = yield axios.get(`${process.env.BACKEND_URL}/businesses/search`, {
       params,
       headers: {
         Authorization: `Bearer ${token}`,
