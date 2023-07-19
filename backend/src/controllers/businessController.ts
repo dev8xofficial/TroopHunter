@@ -25,106 +25,7 @@ import { findOrCreateBusinessClosingHour } from '../utils/closingHour';
 import logger from '../utils/logger';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
-export const createBusiness = async (req: Request, res: Response) => {
-  const transaction = await Sequelize.transaction(); // Start a transaction
-
-  const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour } = req.body;
-
-  try {
-    const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
-    let payload: BusinessAttributes = {
-      name,
-      businessDomain,
-      address,
-      geoPoint,
-      longitude,
-      latitude,
-      email,
-      website,
-      reviews,
-      socialMediaId,
-      sponsoredAd,
-    };
-
-    logger.debug('Creating a new business:', payload);
-
-    // Check if required fields are missing
-    if (!name || !address || !longitude || !latitude || !source) {
-      logger.error(`Failed to create business named ${name}. Missing required fields.`);
-      logger.error(`Name: ${name}`);
-      logger.error(`Address: ${address}`);
-      logger.error(`Latitude: ${latitude}`);
-      logger.error(`Longitude: ${longitude}`);
-      logger.error(`Source: ${source}`);
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
-
-    if (category) {
-      const categoryFromDB: BusinessCategoryAttributes | undefined = await findOrCreateBusinessCategory(category, transaction);
-      payload.categoryId = categoryFromDB?.id;
-    }
-
-    if (location) {
-      const locationFromDB: LocationAttributes | undefined = await findOrCreateLocation(location, transaction);
-      payload.locationId = locationFromDB?.id;
-    }
-
-    if (postalCode) {
-      const postalCodeFromDB: PostalCodeAttributes | undefined = await findOrCreatePostalCode(postalCode, transaction);
-      payload.postalCodeId = postalCodeFromDB?.id;
-    }
-
-    if (phone) {
-      const phoneWithDetails = getPhoneWithDetails(phone);
-      const phoneFromDB: PhoneAttributes | undefined = await findOrCreateBusinessPhone(phoneWithDetails, transaction);
-      payload.phoneId = phoneFromDB?.id;
-    }
-
-    if (rating !== undefined && rating !== null) {
-      const ratingFromDB: RatingAttributes | undefined = await findOrCreateBusinessRating(rating, transaction);
-      payload.ratingId = ratingFromDB?.id;
-    }
-
-    if (source) {
-      const sourceFromDB: SourceAttributes | undefined = await findOrCreateBusinessSource(source, transaction);
-      payload.sourceId = sourceFromDB?.id;
-    }
-
-    if (timezone) {
-      const timezoneFromDB: TimezoneAttributes | undefined = await findOrCreateTimezone(timezone, transaction);
-      payload.timezoneId = timezoneFromDB?.id;
-    }
-
-    if (openingHour) {
-      const openingHourFromDB: OpeningTimeAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour, transaction);
-      payload.openingHourId = openingHourFromDB?.id;
-    }
-
-    if (closingHour) {
-      const closingHourFromDB: ClosingTimeAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour, transaction);
-      payload.closingHourId = closingHourFromDB?.id;
-    }
-
-    const business = await Business.create(payload, { transaction });
-
-    await transaction.commit().then(() => {
-      logger.info(`Business named ${name} created successfully.`);
-      return business;
-    });
-
-    res.status(201).json(business);
-  } catch (error) {
-    logger.error(`Failed to create ${name}`);
-    logger.error('Error creating business:', error);
-
-    // Rollback the transaction if an error occurred
-    await transaction.rollback();
-
-    res.status(500).json({ error: 'Failed to create business' });
-  }
-};
-
-export const getBusinesses = async (req: Request, res: Response) => {
+export const getBusinessesByQuery = async (req: Request, res: Response) => {
   const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, includes } = req.query;
 
   const whereClause: { [key: string]: any } = {};
@@ -227,6 +128,17 @@ export const getBusinesses = async (req: Request, res: Response) => {
   }
 };
 
+export const getBusinesses = async (req: Request, res: Response) => {
+  try {
+    const businesses = await Business.findAll();
+    logger.info('Successfully retrieved businesses');
+    res.json(businesses);
+  } catch (error) {
+    logger.error('Error while retrieving businesses:', error);
+    res.status(500).json({ error: 'An error occurred while retrieving businesses' });
+  }
+};
+
 export const getBusinessById = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
@@ -239,6 +151,105 @@ export const getBusinessById = async (req: Request, res: Response) => {
   } catch (error) {
     logger.error(`Error retrieving business with ID ${id}:`, error);
     res.status(500).json({ error: 'Failed to retrieve business' });
+  }
+};
+
+export const createBusiness = async (req: Request, res: Response) => {
+  const transaction = await Sequelize.transaction(); // Start a transaction
+
+  const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour } = req.body;
+
+  try {
+    const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
+    let payload: BusinessAttributes = {
+      name,
+      businessDomain,
+      address,
+      geoPoint,
+      longitude,
+      latitude,
+      email,
+      website,
+      reviews,
+      socialMediaId,
+      sponsoredAd,
+    };
+
+    logger.debug('Creating a new business:', payload);
+
+    // Check if required fields are missing
+    if (!name || !address || !longitude || !latitude || !source) {
+      logger.error(`Failed to create business named ${name}. Missing required fields.`);
+      logger.error(`Name: ${name}`);
+      logger.error(`Address: ${address}`);
+      logger.error(`Latitude: ${latitude}`);
+      logger.error(`Longitude: ${longitude}`);
+      logger.error(`Source: ${source}`);
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    if (category) {
+      const categoryFromDB: BusinessCategoryAttributes | undefined = await findOrCreateBusinessCategory(category, transaction);
+      payload.categoryId = categoryFromDB?.id;
+    }
+
+    if (location) {
+      const locationFromDB: LocationAttributes | undefined = await findOrCreateLocation(location, transaction);
+      payload.locationId = locationFromDB?.id;
+    }
+
+    if (postalCode) {
+      const postalCodeFromDB: PostalCodeAttributes | undefined = await findOrCreatePostalCode(postalCode, transaction);
+      payload.postalCodeId = postalCodeFromDB?.id;
+    }
+
+    if (phone) {
+      const phoneWithDetails = getPhoneWithDetails(phone);
+      const phoneFromDB: PhoneAttributes | undefined = await findOrCreateBusinessPhone(phoneWithDetails, transaction);
+      payload.phoneId = phoneFromDB?.id;
+    }
+
+    if (rating !== undefined && rating !== null) {
+      const ratingFromDB: RatingAttributes | undefined = await findOrCreateBusinessRating(rating, transaction);
+      payload.ratingId = ratingFromDB?.id;
+    }
+
+    if (source) {
+      const sourceFromDB: SourceAttributes | undefined = await findOrCreateBusinessSource(source, transaction);
+      payload.sourceId = sourceFromDB?.id;
+    }
+
+    if (timezone) {
+      const timezoneFromDB: TimezoneAttributes | undefined = await findOrCreateTimezone(timezone, transaction);
+      payload.timezoneId = timezoneFromDB?.id;
+    }
+
+    if (openingHour) {
+      const openingHourFromDB: OpeningTimeAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour, transaction);
+      payload.openingHourId = openingHourFromDB?.id;
+    }
+
+    if (closingHour) {
+      const closingHourFromDB: ClosingTimeAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour, transaction);
+      payload.closingHourId = closingHourFromDB?.id;
+    }
+
+    const business = await Business.create(payload, { transaction });
+
+    await transaction.commit().then(() => {
+      logger.info(`Business named ${name} created successfully.`);
+      return business;
+    });
+
+    res.status(201).json(business);
+  } catch (error) {
+    logger.error(`Failed to create ${name}`);
+    logger.error('Error creating business:', error);
+
+    // Rollback the transaction if an error occurred
+    await transaction.rollback();
+
+    res.status(500).json({ error: 'Failed to create business' });
   }
 };
 
