@@ -7,8 +7,9 @@ import { getLocationsBySearch } from '../../services/locationService';
 
 function* fetchBusinessesSaga({ payload }: any): any {
   try {
-    const { businessDomain, address, location, phone, email, website, sponsoredAd, token } = payload;
+    const { name, businessDomain, address, location, phone, email, website, sponsoredAd, token } = payload;
     const params = {
+      name,
       businessDomain,
       address,
       phone,
