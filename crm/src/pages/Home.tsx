@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchBusinesses } from '../store/actions/businessActions';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
@@ -8,6 +8,13 @@ import Accordion from '../components/Surfaces/Accordion/Accordion';
 import { IStats } from '../components/DataDisplay/Statistics/Statistics.interfaces';
 import StatisticsMobile from '../components/DataDisplay/Statistics/StatisticsMobile';
 import TableLead from '../components/DataDisplay/Table/TableLead';
+
+interface IFilterAttributes {
+  label: string;
+  name: string;
+  value: string;
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 
 const stats: IStats[] = [
   { name: 'Total Results', amount: 248 },
@@ -19,13 +26,48 @@ const stats: IStats[] = [
 const Lead = () => {
   const dispatch = useDispatch();
   const token = useSelector((state: any) => state.auth.token);
+  const [filters, setFilters] = useState<IFilterAttributes[]>([]);
 
-  useEffect(() => {
-    dispatch(
-      fetchBusinesses({
-        token,
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    debugger;
+    const name = event.target.name;
+    const newValue = event.target.value;
+    // Handle the value change
+    setFilters((prevFilters) =>
+      prevFilters.map((filter) => {
+        if (filter.name === name) {
+          return { ...filter, value: newValue };
+        }
+        return filter;
       })
     );
+  };
+
+  useEffect(() => {
+    const filtersObject: Record<string, string> = {};
+    for (const filter of filters) {
+      filtersObject[filter.name] = filter.value;
+    }
+
+    const requestData = {
+      token,
+      ...filtersObject,
+    };
+
+    dispatch(fetchBusinesses(requestData));
+  }, [filters]);
+
+  useEffect(() => {
+    const initialFilters: IFilterAttributes[] = [
+      { label: 'Business Domain', name: 'businessDomain', value: '', handleChange: handleChange },
+      { label: 'Address', name: 'address', value: '', handleChange: handleChange },
+      { label: 'Location', name: 'location', value: '', handleChange: handleChange },
+      { label: 'Phone', name: 'phone', value: '', handleChange: handleChange },
+      { label: 'Email', name: 'email', value: '', handleChange: handleChange },
+      { label: 'Website', name: 'website', value: '', handleChange: handleChange },
+      { label: 'Sponsored', name: 'sponsoredAd', value: 'false', handleChange: handleChange },
+    ];
+    setFilters(initialFilters);
   }, []);
 
   return (
@@ -51,24 +93,11 @@ const Lead = () => {
             <div className="mr-6 mt-6 overflow-hidden border shadow sm:rounded-md">
               <ul role="list" className="divide-y">
                 <li className="bg-gray-50 px-4 py-3 sm:px-6">Filters</li>
-                <li>
-                  <Accordion label="Your leads & accounts" />
-                </li>
-                <li>
-                  <Accordion label="Relationship" />
-                </li>
-                <li>
-                  <Accordion label="Company" />
-                </li>
-                <li>
-                  <Accordion label="Industry" />
-                </li>
-                <li>
-                  <Accordion label="Company headcount" />
-                </li>
-                <li>
-                  <Accordion label="Function" />
-                </li>
+                {filters.map((filter) => (
+                  <li key={filter.name}>
+                    <Accordion label={filter.label} name={filter.name} value={filter.value} handleChange={filter.handleChange} />
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

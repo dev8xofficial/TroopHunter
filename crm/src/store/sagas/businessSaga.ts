@@ -6,14 +6,26 @@ import axios from 'axios';
 
 function* fetchBusinessesSaga({ payload }: any): any {
   try {
-    const { name, token } = payload;
+    const { businessDomain, address, location, phone, email, website, sponsoredAd, token } = payload;
+    const params = {
+      businessDomain,
+      address,
+      location,
+      phone,
+      email,
+      website,
+      includes: ['BusinessPhone'],
+    };
+
+    // Check if sponsoredAd is not an empty string or 'false', then include it in the params object
+    if (sponsoredAd !== 'false') {
+      params['sponsoredAd'] = sponsoredAd === 'true';
+    }
+
     const response = yield axios.get(`${process.env.BACKEND_URL}/businesses`, {
-      params: {
-        name,
-        includes: ['BusinessPhone'],
-      },
+      params,
       headers: {
-        Authorization: `Bearer ${token}`, // Attach the JWT token to the request
+        Authorization: `Bearer ${token}`,
       },
     });
 
