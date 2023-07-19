@@ -142,7 +142,7 @@ export const getBusinesses = async (req: Request, res: Response) => {
   }
 
   if (address) {
-    whereClause.address = address;
+    whereClause.address = { [Op.iLike]: `%${address}%` };
   }
 
   if (locationId) {
@@ -169,12 +169,12 @@ export const getBusinesses = async (req: Request, res: Response) => {
   }
 
   if (email) {
-    whereClause.email = email;
+    whereClause.email = { [Op.iLike]: `%${email}%` };
   }
 
   if (website) {
     whereClause.website = {
-      [Op.eq]: website,
+      [Op.iLike]: `%${website}%`,
     };
   }
 
