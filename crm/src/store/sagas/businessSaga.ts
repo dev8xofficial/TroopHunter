@@ -1,8 +1,9 @@
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import { takeLatest, put } from 'redux-saga/effects';
 import { fetchBusinessesSuccess, fetchBusinessesFailure } from '../actions/businessActions';
-// import { getBusinesses } from '../../services/businessService';
-import { toast } from 'react-toastify';
-import axios from 'axios';
+import { getBusinessesBySearch } from '../../services/businessService';
+import { getLocationsBySearch } from '../../services/locationService';
 
 function* fetchBusinessesSaga({ payload }: any): any {
   try {
@@ -13,36 +14,27 @@ function* fetchBusinessesSaga({ payload }: any): any {
       phone,
       email,
       website,
-      includes: ['BusinessPhone'],
+      // includes: ['BusinessPhone'],
     };
 
     // Check if sponsoredAd is not an empty string or 'false', then include it in the params object
     if (sponsoredAd !== 'false') {
-      params['sponsoredAd'] = sponsoredAd === 'true';
+      params['sponsoredAd'] = sponsoredAd && sponsoredAd === 'true';
     }
 
     if (location) {
-      const locationResponse = yield axios.get(`${process.env.BACKEND_URL}/locations/search`, {
-        params: {
-          city: location.split(', ')[0],
-          state: location.split(', ')[1],
-          country: location.split(', ')[2],
-        },
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      params['locationId'] = locationResponse.data[0].id;
+      const locationParams = {
+        city: location.split(', ')[0],
+        state: location.split(', ')[1],
+        country: location.split(', ')[2],
+      };
+      const locationResponse = yield getLocationsBySearch(locationParams, token);
+      params['locationId'] = locationResponse[0].id;
     }
 
-    const response = yield axios.get(`${process.env.BACKEND_URL}/businesses/search`, {
-      params,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = yield getBusinessesBySearch(params, token);
 
-    yield put(fetchBusinessesSuccess({ data: response.data }));
+    yield put(fetchBusinessesSuccess({ data: response }));
   } catch (error) {
     toast(error.message);
     yield put(fetchBusinessesFailure(error.message));
