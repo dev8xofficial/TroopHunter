@@ -29,7 +29,6 @@ const Lead = () => {
   const [filters, setFilters] = useState<IFilterAttributes[]>([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    debugger;
     const name = event.target.name;
     const newValue = event.target.value;
     // Handle the value change
@@ -44,17 +43,19 @@ const Lead = () => {
   };
 
   useEffect(() => {
-    const filtersObject: Record<string, string> = {};
-    for (const filter of filters) {
-      filtersObject[filter.name] = filter.value;
+    if (filters.length > 0) {
+      const filtersObject: Record<string, string> = {};
+      for (const filter of filters) {
+        filtersObject[filter.name] = filter.value;
+      }
+
+      const requestData = {
+        token,
+        ...filtersObject,
+      };
+
+      dispatch(fetchBusinesses(requestData));
     }
-
-    const requestData = {
-      token,
-      ...filtersObject,
-    };
-
-    dispatch(fetchBusinesses(requestData));
   }, [filters]);
 
   useEffect(() => {
