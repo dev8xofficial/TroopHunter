@@ -1,5 +1,5 @@
 import express from 'express';
-import { getLists, getListById, createList, updateList, deleteList } from '../controllers/listsControllers';
+import { getLists, getListById, createList, updateList, deleteList } from '../controllers/listsController';
 
 const router = express.Router();
 
