@@ -1,4 +1,5 @@
 -- Drop BusinessPhoto table
+DROP TABLE IF EXISTS "LeadBusinesses";
 DROP TABLE IF EXISTS "BusinessPhotos";
 DROP TABLE IF EXISTS "Businesses";
 DROP TABLE IF EXISTS "BusinessCategories";

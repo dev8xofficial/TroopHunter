@@ -11,6 +11,7 @@ import leadRoutes from './routes/leadRoutes';
 import listsRoutes from './routes/listsRoutes';
 import queueRoutes from './routes/queueRoutes';
 import locationRoutes from './routes/locationRoutes';
+import leadBusinessesRoutes from './routes/leadBusinessesRoutes';
 import dotenv from 'dotenv';
 
 const app: Application = express();
@@ -37,6 +38,7 @@ app.use('/leads', leadRoutes);
 app.use('/lists', listsRoutes);
 app.use('/queues', queueRoutes);
 app.use('/locations', locationRoutes);
+app.use('/lead-businesses', leadBusinessesRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
