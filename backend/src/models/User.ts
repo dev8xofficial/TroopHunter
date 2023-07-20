@@ -57,12 +57,8 @@ User.init(
 );
 
 // Define associations
-User.hasMany(Lead, {
-  foreignKey: 'ownerId',
-});
-User.hasMany(List, {
-  foreignKey: 'ownerId',
-});
+User.hasMany(Lead, { foreignKey: 'userId' });
+User.hasMany(List, { foreignKey: 'userId' });
 
 User.sync();
 

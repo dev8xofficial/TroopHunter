@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import User from '../models/User';
 import logger from '../utils/logger';
+import { isValidJSON } from '../utils/helper';
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
@@ -18,20 +19,50 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
-export const getUser = async (req: Request, res: Response) => {
+export const getUserWithInclude = async (req: Request, res: Response) => {
   try {
-    const userId = req.params.id;
+    const { id } = req.params;
+    const include = req.query.include as string; // Cast 'include' to a string
 
-    const user = await User.findByPk(userId);
+    if (!include || !isValidJSON(include)) {
+      return res.status(400).json({ error: 'Invalid include parameter. Please provide valid JSON.' });
+    }
+
+    const user = await User.findOne({ where: { id }, include: JSON.parse(include) });
 
     if (user) {
       // Log a success message
-      logger.info(`Retrieved user with ID ${userId}.`);
+      logger.info(`Retrieved user with ID ${id} and included data.`);
 
       res.json(user);
     } else {
       // Log a warning message
-      logger.warn(`User with ID ${userId} not found.`);
+      logger.warn(`User with ID ${id} not found.`);
+
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    // Log an error message
+    logger.error('Failed to retrieve user:', error);
+
+    res.status(500).json({ error: 'Failed to retrieve user' });
+  }
+};
+
+export const getUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findByPk(id);
+
+    if (user) {
+      // Log a success message
+      logger.info(`Retrieved user with ID ${id}.`);
+
+      res.json(user);
+    } else {
+      // Log a warning message
+      logger.warn(`User with ID ${id} not found.`);
 
       res.status(404).json({ error: 'User not found' });
     }

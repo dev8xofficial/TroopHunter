@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers, getUser, updateUser, deleteUser } from '../controllers/userController';
+import { getUsers, getUserWithInclude, getUser, updateUser, deleteUser } from '../controllers/userController';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
 const router = express.Router();
@@ -8,9 +8,10 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define user routes
-router.get('/', getUsers);
+router.get('/:id/include', getUserWithInclude);
 router.get('/:id', getUser);
 router.put('/:id', updateUser);
 router.delete('/:id', deleteUser);
+router.get('/', getUsers);
 
 export default router;
