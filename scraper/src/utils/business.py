@@ -66,7 +66,7 @@ def click_feed_article(self, current_business_anchor):
     # Wait for the Heading element to appear on the view
     wait = WebDriverWait(self.driver, self.long_wait)
     wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".tAiQdd")))
-    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".DUwDvf.fontHeadlineLarge")))
+    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".DUwDvf")))
 
 
 def close_feed_article(self):

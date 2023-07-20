@@ -1,8 +1,0 @@
-python3 -m pip install -r requirements.txt
-python3 -m pip install --upgrade -r requirements.txt
-python3 -m pip list
-python3 -m pip uninstall package_name
-
-
-git rm -r --cached folder_name
-git rm -r --cached \*\*/__pycache__/\*

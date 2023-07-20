@@ -35,9 +35,9 @@ class BusinessScraper:
 
         try:
             logger.info("Initiating chrome web driver.")
-            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-        except WebDriverException:
-            logger.error("Service chromedriver unexpectedly exited.")
+            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager("114.0.5735.16").install()), options=chrome_options)
+        except Exception as e:
+            logger.error("Service chromedriver unexpectedly exited: ", e)
 
         self.logger = logger
         self.searchQuery = searchQuery
@@ -207,7 +207,7 @@ class BusinessScraper:
 
                 self.logger.info("~~~~~~~~ Basic Info ~~~~~~~~")
                 # Heading
-                h1_text = soup.find("h1", class_="DUwDvf fontHeadlineLarge").text
+                h1_text = soup.find("h1", class_="DUwDvf").text
                 current_business_data["name"] = h1_text
                 self.logger.info(f"Title: {h1_text}")
 

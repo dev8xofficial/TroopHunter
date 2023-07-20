@@ -1,4 +1,5 @@
 selenium==4.5.0
+pip
 beautifulsoup4
 webdriver_manager
 geopy
@@ -6,3 +7,4 @@ python-dotenv
 pyzipcode
 pytz
 phonenumbers
+requests

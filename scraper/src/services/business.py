@@ -8,7 +8,7 @@ def check_business_existence(name: str = None, category: str = None, address: st
     try:
         # Define the endpoint URL
         backend_url = os.environ.get("BACKEND_URL")
-        url = f"{backend_url}/businesses"
+        url = f"{backend_url}/businesses/search"
 
         # Set the request headers
         token = os.environ.get("BACKEND_AUTHENTICATION")
