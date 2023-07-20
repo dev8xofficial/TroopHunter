@@ -1,9 +1,7 @@
 import { BusinessAttributes } from './rbusiness';
 
-export interface LeadAttributes extends Omit<BusinessAttributes, 'name' | 'businessDomain' | 'photos' | 'source' | 'socialMedia'> {
+export interface LeadAttributes extends Omit<BusinessAttributes, 'name' | 'photos' | 'source' | 'socialMedia'> {
   id?: string;
-  title?: string;
-  ownerId: string;
+  userId: string;
   search?: string;
-  keywords?: string;
 }

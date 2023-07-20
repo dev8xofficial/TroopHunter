@@ -5,10 +5,8 @@ import User from './User';
 
 class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public id?: string;
-  public title?: string;
-  public ownerId!: string;
+  public userId!: string;
   public search?: string;
-  public keywords?: string;
   public categoryId?: string;
   public address?: string;
   public locationId?: string;
@@ -36,13 +34,13 @@ Lead.init(
       primaryKey: true,
       unique: true,
     },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    ownerId: {
+    userId: {
       type: DataTypes.UUID,
       allowNull: false,
+    },
+    search: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     categoryId: {
       type: DataTypes.UUID,
@@ -98,8 +96,6 @@ Lead.init(
     modelName: 'Lead',
   }
 );
-
-// Lead.belongsTo(User, { foreignKey: 'ownerId' });
 
 Lead.sync();
 

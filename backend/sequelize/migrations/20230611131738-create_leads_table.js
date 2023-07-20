@@ -4,18 +4,17 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Leads', {
       id: {
-        allowNull: false,
-        primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
       },
-      title: {
-        allowNull: true,
-        type: Sequelize.STRING,
-      },
-      ownerId: {
+      userId: {
         allowNull: false,
         type: Sequelize.UUID,
+      },
+      search: {
+        allowNull: true,
+        type: Sequelize.STRING,
       },
       categoryId: {
         allowNull: true,
@@ -78,8 +77,9 @@ module.exports = {
     });
 
     await queryInterface.addConstraint('Leads', {
-      fields: ['ownerId'],
+      fields: ['userId'],
       type: 'foreign key',
+      name: 'fk_lead_user',
       references: {
         table: 'Users',
         field: 'id',
@@ -90,6 +90,10 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
+    // Drop foreign key constraints
+    await queryInterface.removeConstraint('Leads', 'fk_lead_user');
+    
+    // Drop the table
     await queryInterface.dropTable('Leads');
   },
 };
