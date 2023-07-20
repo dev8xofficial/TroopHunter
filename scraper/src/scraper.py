@@ -12,10 +12,10 @@ from bs4 import BeautifulSoup
 from urllib.parse import quote_plus
 from config import BASE_URL
 
-from utils.location import get_postal_code, get_timezone_info, extract_lat_lon
-from utils.business import convert_to_24h_format, get_cleaned_phone, click_feed_article, close_feed_article, wait_for_url
-from utils.general import handle_timeout_with_retry
-from services.business import check_business_existence, create_business
+from src.utils.location import get_postal_code, get_timezone_info, extract_lat_lon
+from src.utils.business import convert_to_24h_format, get_cleaned_phone, click_feed_article, close_feed_article, wait_for_url
+from src.utils.general import handle_timeout_with_retry
+from src.services.business import check_business_existence, create_business
 from config import sourceValues
 
 
@@ -217,11 +217,14 @@ class BusinessScraper:
                     current_business_data["businessDomain"] = business_domain_button.text
                 current_business_data["category"] = query
 
-                # Find the element by its CSS selector
-                element = current_business_anchor.find_element(By.XPATH, ".//div[@class='hHbUWd']//h1")
-                text = element.text
-                if "sponsor" in text.lower():
-                    current_business_data["sponsoredAd"] = True
+                try:
+                    # Find the element by its CSS selector
+                    element = current_business_anchor.find_element(By.XPATH, ".//div[@class='hHbUWd']//h1")
+                    text = element.text
+                    if "sponsor" in text.lower():
+                        current_business_data["sponsoredAd"] = True
+                except NoSuchElementException as e:
+                    pass
 
                 handle_timeout_with_retry(dynamic_code_for_try=lambda: wait_for_url(self=self, h1_text=h1_text), logger=self.logger)
 
