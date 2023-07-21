@@ -6,6 +6,7 @@ import Button from '../../Inputs/Button/Button';
 import IconButton from '../../Inputs/IconButton/IconButton';
 import { IActionBarProps } from './ActionBar.interfaces';
 import Avatar from '../../DataDisplay/Avatar/Avatar';
+import LeadDialog from '../../Feedback/LeadDialog/LeadDialog';
 
 const people = [
   {
@@ -70,6 +71,7 @@ const people = [
 
 const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead' }: IActionBarProps): JSX.Element => {
   let [isOpen, setIsOpen] = useState(false);
+  let [isOpenSaveSearchModal, setIsOpenSaveSearchModal] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
@@ -93,9 +95,10 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead' }: IActionBarProp
                   <>
                     <div>
                       <span className="hidden xl:inline-block">
-                        <Button variant="contained" color="indigo">
+                        <Button variant="contained" color="indigo" onClick={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)}>
                           Save search
                         </Button>
+                        <LeadDialog isOpen={isOpenSaveSearchModal} closeModal={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)} />
                       </span>
                       <span className="xl:flex">
                         <IconButton className="xl:hidden" variant="contained" color="indigo" ringOffset="white">
