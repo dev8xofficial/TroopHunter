@@ -17,6 +17,5 @@ export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElem
   style?: React.CSSProperties;
   name?: string;
   noShadow?: boolean;
-  error?: boolean;
   helperText?: string;
 }
