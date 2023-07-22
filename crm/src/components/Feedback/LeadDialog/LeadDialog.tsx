@@ -1,4 +1,6 @@
 import { Fragment } from 'react';
+import * as Yup from 'yup';
+import { Form, FormikProvider, useFormik } from 'formik';
 import { AdjustmentsVerticalIcon } from '@heroicons/react/20/solid';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react';
@@ -6,7 +8,27 @@ import { CustomDialogAttributes } from './LeadDialog.interfaces';
 import TextField from '../../Inputs/TextField/TextField';
 import Button from '../../Inputs/Button/Button';
 
-const CustomDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: CustomDialogAttributes): JSX.Element => {
+const CustomDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal, submit }: CustomDialogAttributes): JSX.Element => {
+  const formikSchema = Yup.object().shape({
+    title: Yup.string().required('Kindly Enter Title For Lead Information.'),
+  });
+
+  interface ILeadFormmValues {
+    title: string;
+  }
+
+  const initialValues: ILeadFormmValues = {
+    title: '',
+  };
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    enableReinitialize: true,
+    validationSchema: formikSchema,
+    onSubmit: async (values) => {
+      if (submit) submit(values.title);
+    },
+  });
   return (
     <>
       {/* Advanced search filters */}
@@ -36,11 +58,15 @@ const CustomDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: 
                   </Dialog.Title>
                   <div className="p-6">
                     <div className="space-y-8">
-                      <TextField label="Enter Title for Lead Information" type="email" name="email" required />
+                      <FormikProvider value={formik}>
+                        <Form noValidate onSubmit={formik.handleSubmit} className="space-y-6">
+                          <TextField label="Enter Title for Lead Information" type="text" name="title" value={formik.values && formik.values.title} helperText={formik.errors && formik.errors.title} onChange={formik.handleChange} required />
 
-                      <Button type="button" variant="contained" color="indigo" className="w-full">
-                        Save
-                      </Button>
+                          <Button type="submit" variant="contained" color="indigo" className="w-full">
+                            Save
+                          </Button>
+                        </Form>
+                      </FormikProvider>
                     </div>
                   </div>
                 </Dialog.Panel>

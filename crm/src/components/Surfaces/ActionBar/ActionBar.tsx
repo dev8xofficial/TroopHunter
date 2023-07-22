@@ -69,7 +69,7 @@ const people = [
   },
 ];
 
-const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead' }: IActionBarProps): JSX.Element => {
+const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', submit }: IActionBarProps): JSX.Element => {
   let [isOpen, setIsOpen] = useState(false);
   let [isOpenSaveSearchModal, setIsOpenSaveSearchModal] = useState(false);
 
@@ -98,7 +98,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead' }: IActionBarProp
                         <Button variant="contained" color="indigo" onClick={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)}>
                           Save search
                         </Button>
-                        <LeadDialog isOpen={isOpenSaveSearchModal} closeModal={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)} />
+                        <LeadDialog isOpen={isOpenSaveSearchModal} closeModal={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)} submit={submit} />
                       </span>
                       <span className="xl:flex">
                         <IconButton className="xl:hidden" variant="contained" color="indigo" ringOffset="white">
@@ -126,6 +126,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead' }: IActionBarProp
                       </span>
                     </div>
                     <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r xl:hidden"></div>
+                    {/* Mobile advanced search filters */}
                     <div className="xl:hidden">
                       <IconButton className="xl:hidden" variant="outlined" color="red" ringOffset="white" onClick={openModal}>
                         <>
@@ -134,7 +135,6 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead' }: IActionBarProp
                         </>
                       </IconButton>
 
-                      {/* Advanced search filters */}
                       <Transition appear show={isOpen} as={Fragment}>
                         <Dialog as="div" className="relative z-10" onClose={closeModal}>
                           <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">

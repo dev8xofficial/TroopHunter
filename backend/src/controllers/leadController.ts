@@ -33,32 +33,15 @@ export const getLeadById = async (req: Request, res: Response) => {
   }
 };
 
-// export const createLead = async (req: Request, res: Response) => {
-//   const { userId, ...leadData } = req.body;
-//   try {
-//     const user = await User.findByPk(userId);
-//     if (!user) {
-//       logger.warn(`User with ID ${userId} not found`);
-//       return res.status(404).json({ error: 'User not found' });
-//     }
-//     const lead = await Lead.create({ ownerId: userId, ...leadData });
-//     logger.info(`Lead created successfully with ID ${lead.id}`);
-//     res.status(201).json(lead);
-//   } catch (error) {
-//     logger.error('Error while creating lead:', error);
-//     res.status(500).json({ error: 'An error occurred while creating the lead' });
-//   }
-// };
-
 export const createLead = async (req: Request, res: Response) => {
-  const { userId, search, address } = req.body;
+  const { userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, openingHourId, closingHourId } = req.body;
   try {
     if (!userId) {
       logger.warn(`User ID ${userId} not found`);
       return res.status(404).json({ error: 'User ID not found' });
     }
 
-    const lead = await Lead.create({ userId, search, address });
+    const lead = await Lead.create({ userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, openingHourId, closingHourId });
 
     const businesses = await getBusinessesByQuery(search, address);
 

@@ -8,6 +8,8 @@ import Accordion from '../components/Surfaces/Accordion/Accordion';
 import { IStats } from '../components/DataDisplay/Statistics/Statistics.interfaces';
 import StatisticsMobile from '../components/DataDisplay/Statistics/StatisticsMobile';
 import TableLead from '../components/DataDisplay/Table/TableLead';
+import { createLead } from '../store/actions/leadActions';
+import { toast } from 'react-toastify';
 
 interface IFilterAttributes {
   label: string;
@@ -25,7 +27,7 @@ const stats: IStats[] = [
 
 const Lead = () => {
   const dispatch = useDispatch();
-  const token = useSelector((state: any) => state.auth.token);
+  const auth = useSelector((state: any) => state.auth);
   const [filters, setFilters] = useState<IFilterAttributes[]>([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +44,27 @@ const Lead = () => {
     );
   };
 
+  const submitLead = (title: string) => {
+    if (filters.length > 0 && filters.some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {
+      console.log('Submit Lead: ', title);
+      const filtersObject: Record<string, string> = {};
+      for (const filter of filters) {
+        filtersObject[filter.name] = filter.value;
+      }
+
+      const requestData = {
+        token: auth.token,
+        userId: auth.userId,
+        title, // Spread the properties of 'title' object into 'requestData'
+        search: filtersObject.name,
+        ...filtersObject, // Spread the properties of 'filtersObject' object into 'requestData'
+      };
+      dispatch(createLead(requestData));
+    } else {
+      toast.info('You have searched nothing.');
+    }
+  };
+
   useEffect(() => {
     if (filters.length > 0) {
       const filtersObject: Record<string, string> = {};
@@ -50,7 +73,7 @@ const Lead = () => {
       }
 
       const requestData = {
-        token,
+        token: auth.token,
         ...filtersObject,
       };
 
@@ -75,7 +98,7 @@ const Lead = () => {
   return (
     <>
       {/* Action tab */}
-      <ActionBar title="Lead" />
+      <ActionBar title="Lead" submit={submitLead} />
 
       {/* Statistics */}
       <StatisticsMobile statistics={stats} />
