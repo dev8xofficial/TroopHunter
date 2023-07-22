@@ -16,9 +16,7 @@ export default defineConfig(({ command, mode }) => {
     },
     define: {
       __APP_ENV__: env.APP_ENV,
-      'process.env': {
-        BACKEND_URL: 'http://localhost:50001',
-      },
+      'process.env': env,
     },
   };
 });
