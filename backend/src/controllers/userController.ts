@@ -5,17 +5,24 @@ import { isValidJSON } from '../utils/helper';
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
-    // Log a success message
-    logger.info('Getting users.');
+    const users = await User.findAll();
 
-    // Your code logic here
+    if (users && users.length > 0) {
+      // Log a success message
+      logger.info(`Retrieved all users.`);
 
-    res.send('Hello, World!');
+      res.json(users);
+    } else {
+      // Log a warning message
+      logger.warn(`Users not found.`);
+
+      res.status(404).json({ error: 'Users not found' });
+    }
   } catch (error) {
     // Log an error message
-    logger.error('Failed to get users:', error);
+    logger.error('Failed to retrieve users:', error);
 
-    res.status(500).json({ error: 'Failed to get users' });
+    res.status(500).json({ error: 'Failed to retrieve users' });
   }
 };
 
@@ -57,7 +64,7 @@ export const getUser = async (req: Request, res: Response) => {
 
     if (user) {
       // Log a success message
-      logger.info(`Retrieved user with ID ${id}.`);
+      logger.info(`Retrieved user with ID ${id}.`, user);
 
       res.json(user);
     } else {
