@@ -1,6 +1,6 @@
+// store/index.ts
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import { persistStore, persistReducer } from 'redux-persist';
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 import localforage from 'localforage';
@@ -14,19 +14,23 @@ localforage.config({
   storeName: 'data_store',
 });
 
-const persistConfig = {
-  key: 'root', // Key to define the root of your state object in localforage
-  storage: localforage,
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: [sagaMiddleware],
 });
 
 sagaMiddleware.run(rootSaga);
 
-const persistor = persistStore(store);
-export { store, persistor };
+// Function to persist specific parts of the state to localforage
+const persistStateToStorage = () => {
+  const state = store.getState();
+  // Save the required parts of the state to localforage
+  localforage.setItem('auth', state.auth);
+  localforage.setItem('users', state.users);
+  localforage.setItem('businesses', state.businesses);
+};
+
+// Subscribe to store changes and persist state to localforage
+store.subscribe(persistStateToStorage);
+
+export default store;
