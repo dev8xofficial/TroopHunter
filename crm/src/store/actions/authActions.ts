@@ -1,6 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
 import { NavigateFunction } from 'react-router-dom';
-import { IUser } from '../../types/user';
 
 export interface ILoginPayload {
   email: string;
@@ -10,7 +9,7 @@ export interface ILoginPayload {
 
 export interface ILoginSuccessPayload {
   token: string | null;
-  user: IUser | null;
+  userId: string | null;
 }
 
 export interface IRegisterPayload {

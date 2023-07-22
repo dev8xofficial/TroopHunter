@@ -29,7 +29,7 @@ export const login = async (req: Request, res: Response) => {
     logger.info(`User with email ${email} logged in successfully.`);
 
     // Send the token in the response
-    res.sendSuccess({ user, token, message: getMessage('LOGGED_IN').message });
+    res.sendSuccess({ userId: user.id, token, message: getMessage('LOGGED_IN').message });
   } catch (error) {
     logger.error('Login failed:', error);
     return res.status(getMessage('LOGIN_FAILED').code).json({ error: getMessage('LOGIN_FAILED').message });

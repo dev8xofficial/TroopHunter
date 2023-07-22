@@ -17,7 +17,6 @@ localforage.config({
 
 // Get the encryption key from the environment variable
 const encryptionKey = process.env.ENCRYPTION_KEY;
-debugger;
 
 const encryptTransform: Transform<any, any, any, any> = {
   // Encrypt data before saving it to IndexedDB

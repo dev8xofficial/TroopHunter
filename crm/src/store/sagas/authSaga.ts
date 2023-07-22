@@ -1,7 +1,6 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { loginSuccess, loginFailure, registerSuccess, registerFailure } from '../actions/authActions';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 import { login, register } from '../../services/authService';
 
 function* loginSaga({ payload }: any): any {
