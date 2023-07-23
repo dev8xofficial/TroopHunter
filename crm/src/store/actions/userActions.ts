@@ -13,3 +13,7 @@ export interface IfetchUserPayload {
 export const fetchUser = createAction<IfetchUserPayload>('user/fetchUser');
 export const fetchUserSuccess = createAction<IUser>('user/fetchUserSuccess');
 export const fetchUserFailure = createAction('user/fetchUserFailure');
+
+export const updateUserLocally = createAction<IUser>('user/updateUserLocally');
+export const addUserLocally = createAction<IUser>('user/addUserLocally');
+export const deleteUserLocally = createAction<string>('user/deleteUserLocally');

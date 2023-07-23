@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { fetchUsersSuccess, fetchUsersFailure, fetchUserSuccess, fetchUserFailure } from '../actions/userActions';
+import { fetchUsersSuccess, fetchUsersFailure, fetchUserSuccess, fetchUserFailure, addUserLocally, updateUserLocally, deleteUserLocally } from '../actions/userActions';
 import { IUser } from '../../types/user';
 
 export interface UserState {
@@ -28,6 +28,25 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(fetchUserFailure, (state, action) => {
       state.data = {};
       state.error = action.payload;
+    })
+    // Handling local updates
+    .addCase(updateUserLocally, (state, action) => {
+      const user = action.payload;
+      // Update the user in the data object by ID
+      state.data[user.id] = { ...user };
+      state.error = null;
+    })
+    .addCase(addUserLocally, (state, action) => {
+      const user = action.payload;
+      // Add a new user to the data object
+      state.data[user.id] = { ...user };
+      state.error = null;
+    })
+    .addCase(deleteUserLocally, (state, action) => {
+      const userId = action.payload;
+      // Remove the user from the data object by ID
+      delete state.data[userId];
+      state.error = null;
     });
 });
 
