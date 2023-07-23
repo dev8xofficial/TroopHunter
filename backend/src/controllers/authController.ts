@@ -72,7 +72,7 @@ export const register = async (req: Request, res: Response) => {
 
     logger.info(`User with email ${email} registered successfully.`);
 
-    const response: ApiResponse<{ user: User }> = createApiResponse({ success: true, data: { user: user }, message: getMessage('ACCOUNT_CREATED').message, status: getMessage('ACCOUNT_CREATED').code });
+    const response: ApiResponse<{ user: User }> = createApiResponse({ success: true, data: { user: user }, message: getMessage('USER_CREATED').message, status: getMessage('USER_CREATED').code });
     res.json(response);
   } catch (error) {
     logger.error('Failed to create user:', error);
