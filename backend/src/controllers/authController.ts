@@ -5,28 +5,32 @@ import jwt from 'jsonwebtoken';
 import { getMessage } from '../utils/message';
 import logger from '../utils/logger';
 import { isValidJSON } from '../utils/helper';
+import { ApiResponse } from '../types/response';
+import { createApiResponse } from '../utils/response';
 
 export const login = async (req: Request, res: Response) => {
   try {
     const { email, password, include } = req.body;
-    // const include = req.query.include as string; // Cast 'include' to a string
 
     if (!include || !isValidJSON(include)) {
-      return res.status(400).json({ error: 'Invalid include parameter. Please provide valid JSON.' });
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_INCLUDE_PARAMETER').message, status: getMessage('INVALID_INCLUDE_PARAMETER').code });
+      return res.json(response);
     }
 
     // Check if the user exists
     const user = await User.findOne({ where: { email }, include: JSON.parse(include) });
     if (!user) {
       logger.error(`User with email ${email} does not exist.`);
-      return res.status(getMessage('INVALID_EMAIL').code).json({ error: getMessage('INVALID_EMAIL').message });
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_EMAIL').message, status: getMessage('INVALID_EMAIL').code });
+      return res.json(response);
     }
 
     // Compare the provided password with the stored hashed password
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
       logger.error(`Invalid password provided for user with email ${email}.`);
-      return res.status(getMessage('INVALID_PASSWORD').code).json({ error: getMessage('INVALID_PASSWORD').message });
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_PASSWORD').message, status: getMessage('INVALID_PASSWORD').code });
+      return res.json(response);
     }
 
     // Generate a JWT token
@@ -34,11 +38,12 @@ export const login = async (req: Request, res: Response) => {
 
     logger.info(`User with email ${email} logged in successfully.`);
 
-    // Send the token in the response
-    res.sendSuccess({ user: user, token, message: getMessage('LOGGED_IN').message });
+    const response: ApiResponse<{ user: User; token: string }> = createApiResponse({ success: true, data: { user: user, token }, message: getMessage('LOGGED_IN').message, status: getMessage('LOGGED_IN').code });
+    res.json(response);
   } catch (error) {
     logger.error('Login failed:', error);
-    return res.status(getMessage('LOGIN_FAILED').code).json({ error: getMessage('LOGIN_FAILED').message });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('LOGIN_FAILED').message, status: getMessage('LOGIN_FAILED').code });
+    return res.json(response);
   }
 };
 
@@ -50,7 +55,8 @@ export const register = async (req: Request, res: Response) => {
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       logger.error(`User with email ${email} already exists.`);
-      return res.status(getMessage('DUPLICATE_USER').code).json({ error: getMessage('DUPLICATE_USER').message });
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('DUPLICATE_USER').message, status: getMessage('DUPLICATE_USER').code });
+      return res.json(response);
     }
 
     // Hash the password
@@ -66,9 +72,12 @@ export const register = async (req: Request, res: Response) => {
 
     logger.info(`User with email ${email} registered successfully.`);
 
-    res.sendSuccess({ user, message: getMessage('ACCOUNT_CREATED').message });
+    const response: ApiResponse<{ user: User }> = createApiResponse({ success: true, data: { user: user }, message: getMessage('ACCOUNT_CREATED').message, status: getMessage('ACCOUNT_CREATED').code });
+    res.json(response);
   } catch (error) {
     logger.error('Failed to create user:', error);
-    return res.status(getMessage('FAILED_TO_CREATE_USER').code).json({ error: getMessage('FAILED_TO_CREATE_USER').message });
+
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_CREATE_USER').message, status: getMessage('FAILED_TO_CREATE_USER').code });
+    return res.json(response);
   }
 };

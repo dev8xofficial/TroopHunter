@@ -14,6 +14,10 @@ const messages: Record<string, Message> = {
     message: 'Logged in successfully.',
   },
   // Error messages
+  INVALID_INCLUDE_PARAMETER: {
+    code: 400,
+    message: "Invalid include parameter. The correct include parameter should be in the format '['Leads']'.",
+  },
   INVALID_EMAIL: {
     code: 400,
     message: 'Invalid email address.',
