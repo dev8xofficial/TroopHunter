@@ -9,14 +9,18 @@ function* loginSaga({ payload }: any): any {
     const { email, password, navigate } = payload;
     const response = yield login({ email, password, include: '["Leads"]' });
 
-    if (response && response.data && response.data.user) yield put(addUserLocally(response.data.user));
+    if (response.success) {
+      yield put(addUserLocally(response.data.user));
 
-    navigate('/');
+      navigate('/');
 
-    toast(response.data.message);
-    yield put(loginSuccess(response.data));
+      toast.success(response.message);
+      yield put(loginSuccess(response.data));
+    } else {
+      toast.error(response.error);
+    }
   } catch (error) {
-    toast(error.response.data.error);
+    toast.error(error.response.error);
     yield put(loginFailure(error.message));
   }
 }
@@ -26,12 +30,16 @@ function* registerSaga({ payload }: any): any {
     const { firstName, lastName, email, password, navigate } = payload;
     const response = yield register({ firstName, lastName, email, password });
 
-    navigate('/signin');
+    if (response.success) {
+      navigate('/signin');
 
-    toast(response.data.message);
-    yield put(registerSuccess(response.data.user));
+      toast.success(response.message);
+      yield put(registerSuccess(response.data.user));
+    } else {
+      toast.error(response.error);
+    }
   } catch (error) {
-    toast(error.response.data.error);
+    toast.error(error.response.error);
     yield put(registerFailure(error.message));
   }
 }
