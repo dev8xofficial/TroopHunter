@@ -1,6 +1,9 @@
 import { Request, Response } from 'express';
 import Queue from '../models/Queue';
 import logger from '../utils/logger';
+import { getMessage } from '../utils/message';
+import { ApiResponse } from '../types/response';
+import { createApiResponse } from '../utils/response';
 
 export const getQueues = async (req: Request, res: Response) => {
   try {
@@ -8,12 +11,13 @@ export const getQueues = async (req: Request, res: Response) => {
       order: [['searchQuery', 'ASC']],
     });
 
-    logger.info('Retrieved queues successfully.');
-
-    res.json(queues);
+    const response: ApiResponse<Queue[]> = createApiResponse({ success: true, data: queues, message: getMessage('QUEUES_RETRIEVED').message, status: getMessage('QUEUES_RETRIEVED').code });
+    logger.info(getMessage('QUEUES_RETRIEVED').message);
+    res.json(response);
   } catch (error) {
     logger.error('Error while retrieving queues:', error);
-    res.status(500).json({ error: 'An error occurred while retrieving queues' });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_RETRIEVE_QUEUES').message, status: getMessage('FAILED_TO_RETRIEVE_QUEUES').code });
+    res.json(response);
   }
 };
 
@@ -25,15 +29,17 @@ export const getQueueById = async (req: Request, res: Response) => {
 
     if (!queue) {
       logger.warn(`Queue with ID ${id} not found.`);
-      return res.status(404).json({ error: 'Queue not found' });
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('QUEUE_NOT_FOUND').message, status: getMessage('QUEUE_NOT_FOUND').code });
+      return res.json(response);
     }
 
-    logger.info(`Retrieved queue with ID ${id} successfully.`);
-
-    res.json(queue);
+    const response: ApiResponse<Queue> = createApiResponse({ success: true, data: queue, message: getMessage('QUEUE_UPDATED').message, status: getMessage('QUEUE_UPDATED').code });
+    logger.info(getMessage('QUEUE_UPDATED').message);
+    res.json(response);
   } catch (error) {
     logger.error(`Error while retrieving queue with ID ${id}:`, error);
-    res.status(500).json({ error: 'An error occurred while retrieving queue' });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_RETRIEVE_QUEUE').message, status: getMessage('FAILED_TO_RETRIEVE_QUEUE').code });
+    res.json(response);
   }
 };
 
@@ -49,15 +55,17 @@ export const updateQueue = async (req: Request, res: Response) => {
       queue.status = status;
       await queue.save();
 
-      logger.info(`Updated queue with ID ${id} successfully.`);
-
-      res.json(queue);
+      const response: ApiResponse<Queue> = createApiResponse({ success: true, data: queue, message: getMessage('QUEUE_UPDATED').message, status: getMessage('QUEUE_UPDATED').code });
+      logger.info(getMessage('QUEUE_UPDATED').message);
+      res.json(response);
     } else {
       logger.warn(`Queue with ID ${id} not found.`);
-      res.status(404).json({ error: 'Queue not found' });
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('QUEUE_NOT_FOUND').message, status: getMessage('QUEUE_NOT_FOUND').code });
+      res.json(response);
     }
   } catch (error) {
     logger.error('Error updating queue:', error);
-    res.status(500).json({ error: 'Failed to update queue' });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_UPDATE_QUEUE').message, status: getMessage('FAILED_TO_UPDATE_QUEUE').code });
+    res.json(response);
   }
 };
