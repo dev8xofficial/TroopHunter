@@ -1,22 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
+import { ILead } from '../../types/lead';
 
-export interface ILeadPayload {
-  id?: string;
-  userId: string;
-  title: string;
-  search?: string;
-  categoryId?: string;
-  address?: string;
-  locationId?: string;
-  postalCodeId?: string;
-  phoneId?: string;
-  email?: string;
-  website?: string;
-  ratingId?: string;
-  reviews?: number;
-  timezoneId?: string;
-  openingHourId?: string;
-  closingHourId?: string;
+export interface ILeadPayload extends ILead {
+  token: string;
 }
 
-export const createLead = createAction<ILeadPayload>('lead/createLead');
+export const createLeadAction = createAction<ILeadPayload>('lead/createLead');

@@ -356,8 +356,10 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', submit }: IActio
                   <>
                     <div className="flex items-center">
                       <div className="hidden -space-x-0.5 sm:flex">
-                        {people.map((person: any) => (
-                          <Avatar image={person.imageUrl} firstName={person.name} size="xsmall" border="border border-gray-900" className="bg-gray-50 ring-2 ring-white" />
+                        {people.map((person: any, index: number) => (
+                          <span key={index}>
+                            <Avatar image={person.imageUrl} firstName={person.name} size="xsmall" border="border border-gray-900" className="bg-gray-50 ring-2 ring-white" />
+                          </span>
                         ))}
                       </div>
                       <span className="ml-3 capitalize text-indigo-600">my saved leads(50)</span>
