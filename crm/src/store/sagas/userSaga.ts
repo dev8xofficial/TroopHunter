@@ -1,12 +1,12 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import { fetchUsersSuccess, fetchUsersFailure, fetchUserSuccess, fetchUserFailure } from '../actions/userActions';
-import { getUsers, getUserWithInclude } from '../../services/userService';
+import { fetchUsersSuccess, fetchUsersFailure, fetchUserSuccessAction, fetchUserFailureAction } from '../actions/userActions';
+import { getUsersService, getUserWithIncludeService } from '../../services/userService';
 
 function* fetchUsersSaga({ payload }: any): any {
   try {
     const { token } = payload;
-    const response = yield getUsers(token);
+    const response = yield getUsersService(token);
 
     if (response.success) {
       yield put(fetchUsersSuccess(response.data));
@@ -26,17 +26,17 @@ function* fetchUserSaga({ payload }: any): any {
     const params = {
       include: '["Leads"]',
     };
-    const response = yield getUserWithInclude(userId, token, params);
+    const response = yield getUserWithIncludeService(userId, token, params);
 
     if (response.success) {
-      yield put(fetchUserSuccess(response.data));
+      yield put(fetchUserSuccessAction(response.data));
     } else {
       toast.error(response.error);
-      yield put(fetchUserFailure(response.message));
+      yield put(fetchUserFailureAction(response.message));
     }
   } catch (error) {
     toast.error(error.message);
-    yield put(fetchUserFailure(error.message));
+    yield put(fetchUserFailureAction(error.message));
   }
 }
 

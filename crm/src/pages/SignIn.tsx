@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
-import { login } from '../store/actions/authActions';
+import { loginAction } from '../store/actions/authActions';
 import { ISignInFormmValues } from '../types/formik';
 import TextField from '../components/Inputs/TextField/TextField';
 import Button from '../components/Inputs/Button/Button';
@@ -27,7 +27,7 @@ const _SignIn = () => {
     validationSchema: formikSchema,
     onSubmit: async (values) => {
       await dispatch(
-        login({
+        loginAction({
           email: values.email,
           password: values.password,
           navigate,

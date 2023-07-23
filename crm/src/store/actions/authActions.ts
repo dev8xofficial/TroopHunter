@@ -21,10 +21,10 @@ export interface IRegisterPayload {
   navigate: NavigateFunction;
 }
 
-export const login = createAction<ILoginPayload>('auth/signin');
-export const loginSuccess = createAction<ILoginSuccessPayload>('auth/loginSuccess');
-export const loginFailure = createAction('auth/loginFailure');
+export const loginAction = createAction<ILoginPayload>('auth/signin');
+export const loginSuccessAction = createAction<ILoginSuccessPayload>('auth/loginSuccess');
+export const loginFailureAction = createAction('auth/loginFailure');
 
-export const register = createAction<IRegisterPayload>('auth/signup');
-export const registerSuccess = createAction('auth/registerSuccess');
-export const registerFailure = createAction('auth/registerFailure');
+export const registerAction = createAction<IRegisterPayload>('auth/signup');
+export const registerSuccessAction = createAction('auth/registerSuccess');
+export const registerFailureAction = createAction('auth/registerFailure');

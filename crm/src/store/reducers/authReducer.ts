@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { loginSuccess, loginFailure, registerSuccess, registerFailure } from '../actions/authActions';
+import { loginSuccessAction, loginFailureAction, registerSuccessAction, registerFailureAction } from '../actions/authActions';
 import { IUser } from '../../types/user';
 
 export interface AuthState {
@@ -16,21 +16,21 @@ const initialState: AuthState = {
 
 const authReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(loginSuccess, (state, action) => {
+    .addCase(loginSuccessAction, (state, action) => {
       state.token = action.payload.token;
       state.userId = action.payload?.user?.id;
       state.error = null;
     })
-    .addCase(loginFailure, (state, action) => {
+    .addCase(loginFailureAction, (state, action) => {
       state.token = null;
       state.userId = null;
       state.error = action.payload;
     })
-    .addCase(registerSuccess, (state, action) => {
+    .addCase(registerSuccessAction, (state, action) => {
       state.userId = action.payload;
       state.error = null;
     })
-    .addCase(registerFailure, (state, action) => {
+    .addCase(registerFailureAction, (state, action) => {
       state.userId = null;
       state.error = action.payload;
     });

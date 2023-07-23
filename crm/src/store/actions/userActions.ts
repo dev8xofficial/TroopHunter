@@ -10,10 +10,10 @@ export interface IfetchUserPayload {
   userId: string;
 }
 
-export const fetchUser = createAction<IfetchUserPayload>('user/fetchUser');
-export const fetchUserSuccess = createAction<IUser>('user/fetchUserSuccess');
-export const fetchUserFailure = createAction('user/fetchUserFailure');
+export const fetchUserAction = createAction<IfetchUserPayload>('user/fetchUser');
+export const fetchUserSuccessAction = createAction<IUser>('user/fetchUserSuccess');
+export const fetchUserFailureAction = createAction('user/fetchUserFailure');
 
-export const updateUserLocally = createAction<IUser>('user/updateUserLocally');
-export const addUserLocally = createAction<IUser>('user/addUserLocally');
-export const deleteUserLocally = createAction<string>('user/deleteUserLocally');
+export const updateUserLocallyAction = createAction<IUser>('user/updateUserLocally');
+export const addUserLocallyAction = createAction<IUser>('user/addUserLocally');
+export const deleteUserLocallyAction = createAction<string>('user/deleteUserLocally');

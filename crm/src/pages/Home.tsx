@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchBusinesses } from '../store/actions/businessActions';
+import { fetchBusinessesAction } from '../store/actions/businessActions';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import _Menu from '../components/Navigation/Menu/Menu';
 import CustomTextField from '../components/Inputs/CustomTextField/CustomTextField';
@@ -8,7 +8,7 @@ import Accordion from '../components/Surfaces/Accordion/Accordion';
 import { IStats } from '../components/DataDisplay/Statistics/Statistics.interfaces';
 import StatisticsMobile from '../components/DataDisplay/Statistics/StatisticsMobile';
 import TableLead from '../components/DataDisplay/Table/TableLead';
-import { createLead } from '../store/actions/leadActions';
+import { createLeadAction } from '../store/actions/leadActions';
 import { toast } from 'react-toastify';
 
 interface IFilterAttributes {
@@ -59,7 +59,7 @@ const Lead = () => {
         search: filtersObject.name,
         ...filtersObject, // Spread the properties of 'filtersObject' object into 'requestData'
       };
-      dispatch(createLead(requestData));
+      dispatch(createLeadAction(requestData));
     } else {
       toast.info('You have searched nothing.');
     }
@@ -77,7 +77,7 @@ const Lead = () => {
         ...filtersObject,
       };
 
-      dispatch(fetchBusinesses(requestData));
+      dispatch(fetchBusinessesAction(requestData));
     }
   }, [filters]);
 

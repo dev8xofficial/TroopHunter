@@ -10,6 +10,6 @@ export interface IBusinessSuccessPayload {
   data: { businesses: { [key: string]: IBusiness }; totalPages: number | null; totalRecords: number | null };
 }
 
-export const fetchBusinesses = createAction<IBusinessPayload>('business/fetchBusinesses');
-export const fetchBusinessesSuccess = createAction<IBusinessSuccessPayload>('business/fetchBusinessesSuccess');
-export const fetchBusinessesFailure = createAction('business/fetchBusinessesFailure');
+export const fetchBusinessesAction = createAction<IBusinessPayload>('business/fetchBusinesses');
+export const fetchBusinessesSuccessAction = createAction<IBusinessSuccessPayload>('business/fetchBusinessesSuccess');
+export const fetchBusinessesFailureAction = createAction('business/fetchBusinessesFailure');

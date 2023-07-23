@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { fetchBusinessesSuccess, fetchBusinessesFailure } from '../actions/businessActions';
+import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction } from '../actions/businessActions';
 import { IBusiness } from '../../types/business';
 
 export interface BusinessState {
@@ -14,11 +14,11 @@ const initialState: BusinessState = {
 
 const businessReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchBusinessesSuccess, (state, action) => {
+    .addCase(fetchBusinessesSuccessAction, (state, action) => {
       state.data = { ...state.data, ...action.payload.data };
       state.error = null;
     })
-    .addCase(fetchBusinessesFailure, (state, action) => {
+    .addCase(fetchBusinessesFailureAction, (state, action) => {
       state.data = { businesses: {}, totalPages: null, totalRecords: null };
       state.error = action.payload;
     });

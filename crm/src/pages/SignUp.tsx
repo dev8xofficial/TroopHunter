@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { ISignUpFormValues } from '../types/formik';
-import { register } from '../store/actions/authActions';
+import { registerAction } from '../store/actions/authActions';
 import TextField from '../components/Inputs/TextField/TextField';
 import Button from '../components/Inputs/Button/Button';
 
@@ -31,7 +31,7 @@ const _SignUp = () => {
     validationSchema: formikSchema,
     onSubmit: async (values) => {
       await dispatch(
-        register({
+        registerAction({
           firstName: values.firstName,
           lastName: values.lastName,
           email: values.email,

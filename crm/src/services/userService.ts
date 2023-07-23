@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = process.env.BACKEND_URL;
 
-export const getUsers = async (token: string) => {
+export const getUsersService = async (token: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/users`, { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
@@ -11,7 +11,7 @@ export const getUsers = async (token: string) => {
   }
 };
 
-export const getUserWithInclude = async (id: string, token: string, params: any) => {
+export const getUserWithIncludeService = async (id: string, token: string, params: any) => {
   try {
     const response = await axios.get(`${BASE_URL}/users/${id}/include`, { params, headers: { Authorization: `Bearer ${token}` } });
     return response.data;
@@ -20,7 +20,7 @@ export const getUserWithInclude = async (id: string, token: string, params: any)
   }
 };
 
-export const getUserById = async (id: string, token: string) => {
+export const getUserByIdService = async (id: string, token: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/users/${id}`, { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
@@ -29,7 +29,7 @@ export const getUserById = async (id: string, token: string) => {
   }
 };
 
-export const createUser = async (data: any, token: string) => {
+export const createUserService = async (data: any, token: string) => {
   try {
     const response = await axios.post(`${BASE_URL}/users`, data, { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
@@ -38,7 +38,7 @@ export const createUser = async (data: any, token: string) => {
   }
 };
 
-export const updateUser = async (id: string, data: any, token: string) => {
+export const updateUserService = async (id: string, data: any, token: string) => {
   try {
     const response = await axios.put(`${BASE_URL}/users/${id}`, data, { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
@@ -47,7 +47,7 @@ export const updateUser = async (id: string, data: any, token: string) => {
   }
 };
 
-export const deleteUser = async (id: string, token: string) => {
+export const deleteUserService = async (id: string, token: string) => {
   try {
     await axios.delete(`${BASE_URL}/users/${id}`, { headers: { Authorization: `Bearer ${token}` } });
   } catch (error) {

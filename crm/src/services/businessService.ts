@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = process.env.BACKEND_URL;
 
-export const getBusinessesBySearch = async (params: any, token: string) => {
+export const getBusinessesBySearchService = async (params: any, token: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/businesses/search`, {
       params,
@@ -16,7 +16,7 @@ export const getBusinessesBySearch = async (params: any, token: string) => {
   }
 };
 
-export const getBusinesses = async (token: string) => {
+export const getBusinessesService = async (token: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/businesses`, {
       headers: {
@@ -29,7 +29,7 @@ export const getBusinesses = async (token: string) => {
   }
 };
 
-export const getBusinessById = async (id: string, token: string) => {
+export const getBusinessByIdService = async (id: string, token: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/businesses/${id}`, {
       headers: {
@@ -42,7 +42,7 @@ export const getBusinessById = async (id: string, token: string) => {
   }
 };
 
-export const createBusiness = async (data: any, token: string) => {
+export const createBusinessService = async (data: any, token: string) => {
   try {
     const response = await axios.post(`${BASE_URL}/businesses`, data, {
       headers: {
@@ -55,7 +55,7 @@ export const createBusiness = async (data: any, token: string) => {
   }
 };
 
-export const updateBusiness = async (id: string, data: any, token: string) => {
+export const updateBusinessService = async (id: string, data: any, token: string) => {
   try {
     const response = await axios.put(`${BASE_URL}/businesses/${id}`, data, {
       headers: {
@@ -68,7 +68,7 @@ export const updateBusiness = async (id: string, data: any, token: string) => {
   }
 };
 
-export const deleteBusiness = async (id: string, token: string) => {
+export const deleteBusinessService = async (id: string, token: string) => {
   try {
     await axios.delete(`${BASE_URL}/businesses/${id}`, {
       headers: {

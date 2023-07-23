@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = process.env.BACKEND_URL;
 
-export const getLeadsBySearch = async (params: any, token: string) => {
+export const getLeadsBySearchService = async (params: any, token: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/leads/search`, { params, headers: { Authorization: `Bearer ${token}` } });
     return response.data;
@@ -11,7 +11,7 @@ export const getLeadsBySearch = async (params: any, token: string) => {
   }
 };
 
-export const getLeads = async (token: string) => {
+export const getLeadsService = async (token: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/leads`, { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
@@ -20,7 +20,7 @@ export const getLeads = async (token: string) => {
   }
 };
 
-export const getLeadById = async (id: string, token: string) => {
+export const getLeadByIdService = async (id: string, token: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/leads/${id}`, { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
@@ -29,7 +29,7 @@ export const getLeadById = async (id: string, token: string) => {
   }
 };
 
-export const createLead = async (data: any, token: string) => {
+export const createLeadService = async (data: any, token: string) => {
   try {
     const response = await axios.post(`${BASE_URL}/leads`, data, { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
@@ -38,7 +38,7 @@ export const createLead = async (data: any, token: string) => {
   }
 };
 
-export const updateLead = async (id: string, data: any, token: string) => {
+export const updateLeadService = async (id: string, data: any, token: string) => {
   try {
     const response = await axios.put(`${BASE_URL}/leads/${id}`, data, { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
@@ -47,7 +47,7 @@ export const updateLead = async (id: string, data: any, token: string) => {
   }
 };
 
-export const deleteLead = async (id: string, token: string) => {
+export const deleteLeadService = async (id: string, token: string) => {
   try {
     await axios.delete(`${BASE_URL}/leads/${id}`, { headers: { Authorization: `Bearer ${token}` } });
   } catch (error) {

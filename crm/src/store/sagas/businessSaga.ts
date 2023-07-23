@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { takeLatest, put } from 'redux-saga/effects';
-import { fetchBusinessesSuccess, fetchBusinessesFailure } from '../actions/businessActions';
-import { getBusinessesBySearch } from '../../services/businessService';
-import { getLocationsBySearch } from '../../services/locationService';
+import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction } from '../actions/businessActions';
+import { getBusinessesBySearchService } from '../../services/businessService';
+import { getLocationsBySearchService } from '../../services/locationService';
 
 function* fetchBusinessesSaga({ payload }: any): any {
   try {
@@ -29,23 +29,23 @@ function* fetchBusinessesSaga({ payload }: any): any {
         state: location.split(', ')[1],
         country: location.split(', ')[2],
       };
-      const locationResponse = yield getLocationsBySearch(locationParams, token);
+      const locationResponse = yield getLocationsBySearchService(locationParams, token);
       params['locationId'] = locationResponse[0].id;
     }
 
-    const response = yield getBusinessesBySearch(params, token);
+    const response = yield getBusinessesBySearchService(params, token);
 
     // Check if the response contains the 'success' property
     if (response.success) {
-      yield put(fetchBusinessesSuccess({ data: response.data }));
+      yield put(fetchBusinessesSuccessAction({ data: response.data }));
     } else {
       toast.error(response.error);
-      yield put(fetchBusinessesFailure(response.error));
+      yield put(fetchBusinessesFailureAction(response.error));
     }
   } catch (error) {
     // Display toast message for error
     toast.error(error.message);
-    yield put(fetchBusinessesFailure(error.message));
+    yield put(fetchBusinessesFailureAction(error.message));
   }
 }
 

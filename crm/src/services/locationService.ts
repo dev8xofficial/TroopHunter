@@ -3,7 +3,7 @@ import axios from 'axios';
 const BASE_URL = process.env.BACKEND_URL;
 
 // Get locations by search query
-export const getLocationsBySearch = async (params: any, token: string) => {
+export const getLocationsBySearchService = async (params: any, token: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/locations/search`, {
       params,
@@ -18,7 +18,7 @@ export const getLocationsBySearch = async (params: any, token: string) => {
 };
 
 // Get a location by ID
-export const getLocationById = async (id: string, token: string) => {
+export const getLocationByIdService = async (id: string, token: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/locations/${id}`, {
       headers: {
@@ -32,7 +32,7 @@ export const getLocationById = async (id: string, token: string) => {
 };
 
 // Create a new location
-export const createLocation = async (locationData: any, token: string) => {
+export const createLocationService = async (locationData: any, token: string) => {
   try {
     const response = await axios.post(`${BASE_URL}/locations`, locationData, {
       headers: {
@@ -46,7 +46,7 @@ export const createLocation = async (locationData: any, token: string) => {
 };
 
 // Update a location by ID
-export const updateLocation = async (id: string, locationData: any, token: string) => {
+export const updateLocationService = async (id: string, locationData: any, token: string) => {
   try {
     const response = await axios.put(`${BASE_URL}/locations/${id}`, locationData, {
       headers: {
@@ -60,7 +60,7 @@ export const updateLocation = async (id: string, locationData: any, token: strin
 };
 
 // Delete a location by ID
-export const deleteLocation = async (id: string, token: string) => {
+export const deleteLocationService = async (id: string, token: string) => {
   try {
     const response = await axios.delete(`${BASE_URL}/locations/${id}`, {
       headers: {

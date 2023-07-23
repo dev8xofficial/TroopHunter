@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { fetchUsersSuccess, fetchUsersFailure, fetchUserSuccess, fetchUserFailure, addUserLocally, updateUserLocally, deleteUserLocally } from '../actions/userActions';
+import { fetchUsersSuccess, fetchUsersFailure, fetchUserSuccessAction, fetchUserFailureAction, addUserLocallyAction, updateUserLocallyAction, deleteUserLocallyAction } from '../actions/userActions';
 import { IUser } from '../../types/user';
 
 export interface UserState {
@@ -19,30 +19,30 @@ const userReducer = createReducer(initialState, (builder) => {
       state.data = {};
       state.error = action.payload;
     })
-    .addCase(fetchUserSuccess, (state, action) => {
+    .addCase(fetchUserSuccessAction, (state, action) => {
       const user = action.payload;
       const mergedUsers: { [key: string]: IUser } = { ...state.data, [user.id]: { ...user } };
       state.data = mergedUsers;
       state.error = null;
     })
-    .addCase(fetchUserFailure, (state, action) => {
+    .addCase(fetchUserFailureAction, (state, action) => {
       state.data = {};
       state.error = action.payload;
     })
     // Handling local updates
-    .addCase(updateUserLocally, (state, action) => {
+    .addCase(updateUserLocallyAction, (state, action) => {
       const user = action.payload;
       // Update the user in the data object by ID
       state.data[user.id] = { ...user };
       state.error = null;
     })
-    .addCase(addUserLocally, (state, action) => {
+    .addCase(addUserLocallyAction, (state, action) => {
       const user = action.payload;
       // Add a new user to the data object
       state.data[user.id] = { ...user };
       state.error = null;
     })
-    .addCase(deleteUserLocally, (state, action) => {
+    .addCase(deleteUserLocallyAction, (state, action) => {
       const userId = action.payload;
       // Remove the user from the data object by ID
       delete state.data[userId];

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = process.env.BACKEND_URL;
 
-export const login = async (userData: any) => {
+export const loginService = async (userData: any) => {
   try {
     const response = await axios.post(`${BASE_URL}/auth/signin`, userData);
     return response.data;
@@ -11,7 +11,7 @@ export const login = async (userData: any) => {
   }
 };
 
-export const register = async (userData: any) => {
+export const registerService = async (userData: any) => {
   try {
     const response = await axios.post(`${BASE_URL}/auth/signup`, userData);
     return response.data;
