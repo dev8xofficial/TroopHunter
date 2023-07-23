@@ -12,6 +12,10 @@ import listsRoutes from './routes/listsRoutes';
 import queueRoutes from './routes/queueRoutes';
 import locationRoutes from './routes/locationRoutes';
 import leadBusinessesRoutes from './routes/leadBusinessesRoutes';
+// ... Other route imports
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './swagger';
+
 import dotenv from 'dotenv';
 
 const app: Application = express();
@@ -26,6 +30,9 @@ app.use(morgan('dev'));
 // Response Handler
 app.use(formatResponse); // Apply the formatResponse middleware
 app.use(sanitizeResponse); // Apply the sanitizeResponse middleware
+
+// Serve Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec)); // Mount Swagger UI on /api-docs endpoint
 
 // Routes
 app.get('/', (req, res) => {
