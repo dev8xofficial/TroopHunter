@@ -41,8 +41,24 @@ const messages: Record<string, Message> = {
     code: 200,
     message: 'Updated LeadBusiness with specified leadId and businessId.',
   },
+  LEAD_CREATED: {
+    code: 201,
+    message: 'Lead created successfully.',
+  },
+  LEAD_RETRIEVED: {
+    code: 200,
+    message: 'Lead retrieved successfully.',
+  },
+  LEAD_UPDATED: {
+    code: 200,
+    message: 'Lead updated successfully.',
+  },
 
   // Required fields messages
+  MISSING_USER_ID: {
+    code: 400,
+    message: 'User ID is required to create a lead.',
+  },
   MISSING_NAME: {
     code: 400,
     message: 'Failed to create/update business. Missing required field: name.',
@@ -85,6 +101,14 @@ const messages: Record<string, Message> = {
     code: 404,
     message: 'User not found. Please check your credentials or sign up for a new account.',
   },
+  BUSINESS_NOT_FOUND: {
+    code: 404,
+    message: 'Business not found. The specified business ID does not exist.',
+  },
+  LEAD_NOT_FOUND: {
+    code: 404,
+    message: 'Lead not found.',
+  },
 
   // Failure messages
   LOGIN_FAILED: {
@@ -99,10 +123,6 @@ const messages: Record<string, Message> = {
     code: 500,
     message: 'Failed to retrieve businesses. An internal server error occurred.',
   },
-  BUSINESS_NOT_FOUND: {
-    code: 404,
-    message: 'Business not found. The specified business ID does not exist.',
-  },
   FAILED_TO_CREATE_BUSINESS: {
     code: 500,
     message: 'Failed to create business. An internal server error occurred.',
@@ -114,6 +134,14 @@ const messages: Record<string, Message> = {
   FAILED_TO_DELETE_BUSINESS: {
     code: 500,
     message: 'Failed to delete business. An internal server error occurred.',
+  },
+  FAILED_TO_CREATE_LEAD: {
+    code: 500,
+    message: 'Failed to create lead. An internal server error occurred.',
+  },
+  FAILED_TO_RETRIEVE_LEADS: {
+    code: 500,
+    message: 'Failed to retrieve leads. An internal server error occurred.',
   },
 
   // Internal Server Error
