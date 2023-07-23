@@ -1,8 +1,9 @@
-// locationController.ts
-import { Op } from 'sequelize'; // Import the Op operator for complex queries
 import { Request, Response } from 'express';
 import Location from '../models/Location';
 import logger from '../utils/logger';
+import { ApiResponse } from '../types/response';
+import { createApiResponse } from '../utils/response';
+import { getMessage } from '../utils/message';
 
 // Get a location by city, state, and country
 export const getLocationsByQuery = async (req: Request, res: Response) => {
@@ -10,7 +11,8 @@ export const getLocationsByQuery = async (req: Request, res: Response) => {
 
   try {
     if (!city || !state || !country) {
-      return res.status(400).json({ error: 'Please provide city, state, and country parameters.' });
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_CITY_STATE_COUNTRY').message, status: getMessage('MISSING_CITY_STATE_COUNTRY').code });
+      return res.json(response);
     }
 
     const locations = await Location.findAll({
@@ -23,14 +25,17 @@ export const getLocationsByQuery = async (req: Request, res: Response) => {
 
     if (locations.length === 0) {
       logger.warn(`No locations found for city: ${city}, state: ${state}, country: ${country}`);
-      return res.status(404).json({ error: 'No locations found.' });
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('LOCATION_NOT_FOUND').message, status: getMessage('LOCATION_NOT_FOUND').code });
+      return res.json(response);
     }
 
     logger.info(`Successfully retrieved locations for city: ${city}, state: ${state}, country: ${country}`);
-    res.json(locations);
+    const response: ApiResponse<Location[]> = createApiResponse({ success: true, data: locations, message: getMessage('LOCATIONS_RETRIEVED').message, status: getMessage('LOCATIONS_RETRIEVED').code });
+    res.json(response);
   } catch (error) {
     logger.error('Error while retrieving locations:', error);
-    res.status(500).json({ error: 'An error occurred while retrieving locations' });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_RETRIEVE_LOCATIONS').message, status: getMessage('FAILED_TO_RETRIEVE_LOCATIONS').code });
+    res.json(response);
   }
 };
 
@@ -39,10 +44,12 @@ export const getLocations = async (req: Request, res: Response) => {
   try {
     const locations = await Location.findAll();
     logger.info('Successfully retrieved locations');
-    res.json(locations);
+    const response: ApiResponse<Location[]> = createApiResponse({ success: true, data: locations, message: getMessage('LOCATIONS_RETRIEVED').message, status: getMessage('LOCATIONS_RETRIEVED').code });
+    res.json(response);
   } catch (error) {
     logger.error('Error while retrieving locations:', error);
-    res.status(500).json({ error: 'An error occurred while retrieving locations' });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_RETRIEVE_LOCATIONS').message, status: getMessage('FAILED_TO_RETRIEVE_LOCATIONS').code });
+    res.json(response);
   }
 };
 
@@ -53,13 +60,16 @@ export const getLocationById = async (req: Request, res: Response) => {
     const location = await Location.findOne({ where: { id } });
     if (!location) {
       logger.warn(`Location with ID ${id} not found`);
-      return res.status(404).json({ error: 'Location not found' });
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('LOCATION_NOT_FOUND').message, status: getMessage('LOCATION_NOT_FOUND').code });
+      return res.json(response);
     }
     logger.info(`Successfully retrieved location with ID ${id}`);
-    res.json(location);
+    const response: ApiResponse<Location> = createApiResponse({ success: true, data: location, message: getMessage('LOCATIONS_RETRIEVED').message, status: getMessage('LOCATIONS_RETRIEVED').code });
+    res.json(response);
   } catch (error) {
     logger.error(`Error while retrieving location with ID ${id}:`, error);
-    res.status(500).json({ error: 'An error occurred while retrieving the location' });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_RETRIEVE_LOCATIONS').message, status: getMessage('FAILED_TO_RETRIEVE_LOCATIONS').code });
+    res.json(response);
   }
 };
 
@@ -69,10 +79,12 @@ export const createLocation = async (req: Request, res: Response) => {
   try {
     const location = await Location.create({ city, state, country });
     logger.info(`Location created successfully with ID ${location.id}`);
-    res.status(201).json(location);
+    const response: ApiResponse<Location> = createApiResponse({ success: true, data: location, message: getMessage('LOCATION_CREATED').message, status: getMessage('LOCATION_CREATED').code });
+    res.json(response);
   } catch (error) {
     logger.error('Error while creating location:', error);
-    res.status(500).json({ error: 'An error occurred while creating the location' });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_CREATE_LOCATION').message, status: getMessage('FAILED_TO_CREATE_LOCATION').code });
+    res.json(response);
   }
 };
 
@@ -84,14 +96,17 @@ export const updateLocation = async (req: Request, res: Response) => {
     const location = await Location.findOne({ where: { id } });
     if (!location) {
       logger.warn(`Location with ID ${id} not found`);
-      return res.status(404).json({ error: 'Location not found' });
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('LOCATION_NOT_FOUND').message, status: getMessage('LOCATION_NOT_FOUND').code });
+      return res.json(response);
     }
     await location.update({ city, state, country });
     logger.info(`Location with ID ${id} updated successfully`);
-    res.json(location);
+    const response: ApiResponse<Location> = createApiResponse({ success: true, data: location, message: getMessage('LOCATION_UPDATED').message, status: getMessage('LOCATION_UPDATED').code });
+    res.json(response);
   } catch (error) {
     logger.error(`Error while updating location with ID ${id}:`, error);
-    res.status(500).json({ error: 'An error occurred while updating the location' });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_UPDATE_LOCATION').message, status: getMessage('FAILED_TO_UPDATE_LOCATION').code });
+    res.json(response);
   }
 };
 
@@ -102,13 +117,16 @@ export const deleteLocation = async (req: Request, res: Response) => {
     const location = await Location.findOne({ where: { id } });
     if (!location) {
       logger.warn(`Location with ID ${id} not found`);
-      return res.status(404).json({ error: 'Location not found' });
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('LOCATION_NOT_FOUND').message, status: getMessage('LOCATION_NOT_FOUND').code });
+      return res.json(response);
     }
     await location.destroy();
     logger.info(`Location with ID ${id} deleted successfully`);
-    res.status(204).json();
+    const response: ApiResponse<null> = createApiResponse({ success: true, message: getMessage('LOCATION_DELETED').message, status: getMessage('LOCATION_DELETED').code });
+    res.json(response);
   } catch (error) {
     logger.error(`Error while deleting location with ID ${id}:`, error);
-    res.status(500).json({ error: 'An error occurred while deleting the location' });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_DELETE_LOCATION').message, status: getMessage('FAILED_TO_DELETE_LOCATION').code });
+    res.json(response);
   }
 };
