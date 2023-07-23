@@ -7,7 +7,7 @@ export interface IBusinessPayload extends Omit<IBusiness, 'name'> {
 }
 
 export interface IBusinessSuccessPayload {
-  data: { businesses: IBusiness[]; totalPages: number | null; totalRecords: number | null };
+  data: { businesses: { [key: string]: IBusiness }; totalPages: number | null; totalRecords: number | null };
 }
 
 export const fetchBusinesses = createAction<IBusinessPayload>('business/fetchBusinesses');

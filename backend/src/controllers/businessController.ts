@@ -120,7 +120,12 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
 
     const totalPages = Math.ceil(count / limitNumber);
 
-    const response: ApiResponse<{ totalRecords: number; totalPages: number; businesses: Business[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businesses }, message: getMessage('BUSINESSES_RETRIEVED').message, status: getMessage('BUSINESSES_RETRIEVED').code });
+    const objectOfBusinesses: { [key: string]: Business } = {};
+    businesses.forEach((business: Business) => {
+      if (business.id) objectOfBusinesses[business.id] = business;
+    });
+
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; businesses: { [key: string]: Business } }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businesses: objectOfBusinesses }, message: getMessage('BUSINESSES_RETRIEVED').message, status: getMessage('BUSINESSES_RETRIEVED').code });
     res.json(response);
   } catch (error) {
     logger.error('Error retrieving businesses:', error);
@@ -132,8 +137,13 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
 export const getBusinesses = async (req: Request, res: Response) => {
   try {
     const businesses = await Business.findAll();
+    const objectOfBusinesses: { [key: string]: Business } = {};
+    businesses.forEach((business: Business) => {
+      if (business.id) objectOfBusinesses[business.id] = business;
+    });
+
     logger.info('Successfully retrieved businesses');
-    const response: ApiResponse<{ businesses: Business[] }> = createApiResponse({ success: true, data: { businesses }, message: getMessage('BUSINESSES_RETRIEVED').message, status: getMessage('BUSINESSES_RETRIEVED').code });
+    const response: ApiResponse<{ businesses: { [key: string]: Business } }> = createApiResponse({ success: true, data: { businesses: objectOfBusinesses }, message: getMessage('BUSINESSES_RETRIEVED').message, status: getMessage('BUSINESSES_RETRIEVED').code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving businesses:', error);

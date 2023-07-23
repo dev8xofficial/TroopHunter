@@ -32,7 +32,7 @@ const leadItemMenu = [
 ];
 
 const TableLead: React.FC = () => {
-  const businesses: IBusiness[] = useSelector((state: any) => state.businesses.data.businesses);
+  const businesses: { [key: string]: IBusiness } = useSelector((state: any) => state.businesses.data.businesses);
   const totalRecords: number | null = useSelector((state: any) => state.businesses.data.totalRecords);
 
   return (
@@ -78,7 +78,7 @@ const TableLead: React.FC = () => {
             </li>
 
             {/* Table Body */}
-            {businesses.map((business, index) => (
+            {Object.values(businesses).map((business, index) => (
               <li key={index} className="hover:bg-gray-50 ">
                 <div className="relative flex w-full items-start px-6 py-5">
                   <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">
