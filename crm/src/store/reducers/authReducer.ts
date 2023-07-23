@@ -1,5 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { loginSuccess, loginFailure, registerSuccess, registerFailure } from '../actions/authActions';
+import { IUser } from '../../types/user';
 
 export interface AuthState {
   token: string | null;
@@ -17,7 +18,7 @@ const authReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loginSuccess, (state, action) => {
       state.token = action.payload.token;
-      state.userId = action.payload.userId;
+      state.userId = action.payload?.user?.id;
       state.error = null;
     })
     .addCase(loginFailure, (state, action) => {

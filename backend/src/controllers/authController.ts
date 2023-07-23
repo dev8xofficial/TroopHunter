@@ -4,13 +4,19 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { getMessage } from '../utils/message';
 import logger from '../utils/logger';
+import { isValidJSON } from '../utils/helper';
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, include } = req.body;
+    // const include = req.query.include as string; // Cast 'include' to a string
+
+    if (!include || !isValidJSON(include)) {
+      return res.status(400).json({ error: 'Invalid include parameter. Please provide valid JSON.' });
+    }
 
     // Check if the user exists
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { email }, include: JSON.parse(include) });
     if (!user) {
       logger.error(`User with email ${email} does not exist.`);
       return res.status(getMessage('INVALID_EMAIL').code).json({ error: getMessage('INVALID_EMAIL').message });
@@ -29,7 +35,7 @@ export const login = async (req: Request, res: Response) => {
     logger.info(`User with email ${email} logged in successfully.`);
 
     // Send the token in the response
-    res.sendSuccess({ userId: user.id, token, message: getMessage('LOGGED_IN').message });
+    res.sendSuccess({ user: user, token, message: getMessage('LOGGED_IN').message });
   } catch (error) {
     logger.error('Login failed:', error);
     return res.status(getMessage('LOGIN_FAILED').code).json({ error: getMessage('LOGIN_FAILED').message });

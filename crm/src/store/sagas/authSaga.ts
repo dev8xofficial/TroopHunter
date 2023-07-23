@@ -2,11 +2,14 @@ import { takeLatest, put } from 'redux-saga/effects';
 import { loginSuccess, loginFailure, registerSuccess, registerFailure } from '../actions/authActions';
 import { toast } from 'react-toastify';
 import { login, register } from '../../services/authService';
+import { addUserLocally } from '../actions/userActions';
 
 function* loginSaga({ payload }: any): any {
   try {
     const { email, password, navigate } = payload;
-    const response = yield login({ email, password });
+    const response = yield login({ email, password, include: '["Leads"]' });
+
+    if (response && response.data && response.data.user) yield put(addUserLocally(response.data.user));
 
     navigate('/');
 
