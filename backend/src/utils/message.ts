@@ -17,7 +17,7 @@ const messages: Record<string, Message> = {
     code: 200,
     message: 'Businesses retrieved successfully.',
   },
-  BUSINESS_RETRIEVED_SUCCESSFULLY: {
+  BUSINESS_RETRIEVED: {
     code: 200,
     message: 'Business retrieved successfully.',
   },
@@ -29,7 +29,7 @@ const messages: Record<string, Message> = {
     code: 200,
     message: 'Business updated successfully.',
   },
-  BUSINESS_DELETED_SUCCESSFULLY: {
+  BUSINESS_DELETED: {
     code: 204,
     message: 'Business deleted successfully.',
   },
@@ -52,6 +52,26 @@ const messages: Record<string, Message> = {
   LEAD_UPDATED: {
     code: 200,
     message: 'Lead updated successfully.',
+  },
+  LISTS_RETRIEVED: {
+    code: 200,
+    message: 'Lists retrieved successfully.',
+  },
+  LIST_RETRIEVED: {
+    code: 200,
+    message: 'List retrieved successfully.',
+  },
+  LIST_CREATED: {
+    code: 201,
+    message: 'List created successfully.',
+  },
+  LIST_UPDATED: {
+    code: 200,
+    message: 'List updated successfully.',
+  },
+  LIST_DELETED: {
+    code: 204,
+    message: 'List deleted successfully.',
   },
 
   // Required fields messages
@@ -78,6 +98,10 @@ const messages: Record<string, Message> = {
   MISSING_SOURCE: {
     code: 400,
     message: 'Failed to create/update business. Missing required field: source.',
+  },
+  MISSING_LIST_NAME: {
+    code: 400,
+    message: 'Failed to create/update list. Missing required field: name.',
   },
 
   // Error messages
@@ -108,6 +132,10 @@ const messages: Record<string, Message> = {
   LEAD_NOT_FOUND: {
     code: 404,
     message: 'Lead not found.',
+  },
+  LIST_NOT_FOUND: {
+    code: 404,
+    message: 'List not found.',
   },
 
   // Failure messages
@@ -142,6 +170,22 @@ const messages: Record<string, Message> = {
   FAILED_TO_RETRIEVE_LEADS: {
     code: 500,
     message: 'Failed to retrieve leads. An internal server error occurred.',
+  },
+  FAILED_TO_RETRIEVE_LISTS: {
+    code: 500,
+    message: 'Failed to retrieve lists. An internal server error occurred.',
+  },
+  FAILED_TO_CREATE_LIST: {
+    code: 500,
+    message: 'Failed to create list. An internal server error occurred.',
+  },
+  FAILED_TO_UPDATE_LIST: {
+    code: 500,
+    message: 'Failed to update list. An internal server error occurred.',
+  },
+  FAILED_TO_DELETE_LIST: {
+    code: 500,
+    message: 'Failed to delete list. An internal server error occurred.',
   },
 
   // Internal Server Error

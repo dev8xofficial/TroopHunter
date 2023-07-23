@@ -151,7 +151,7 @@ export const getBusinessById = async (req: Request, res: Response) => {
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('BUSINESS_NOT_FOUND').message, status: getMessage('BUSINESS_NOT_FOUND').code });
       return res.json(response);
     }
-    const response: ApiResponse<{ business: Business }> = createApiResponse({ success: true, data: { business }, message: getMessage('BUSINESS_RETRIEVED_SUCCESSFULLY').message, status: getMessage('BUSINESS_RETRIEVED_SUCCESSFULLY').code });
+    const response: ApiResponse<{ business: Business }> = createApiResponse({ success: true, data: { business }, message: getMessage('BUSINESS_RETRIEVED').message, status: getMessage('BUSINESS_RETRIEVED').code });
     res.json(response);
   } catch (error) {
     logger.error(`Error retrieving business with ID ${id}:`, error);
@@ -378,7 +378,7 @@ export const deleteBusiness = async (req: Request, res: Response) => {
     }
     await business.destroy();
     logger.info(`Business with ID ${id} deleted successfully.`);
-    const response: ApiResponse<null> = createApiResponse({ success: true, message: getMessage('BUSINESS_DELETED_SUCCESSFULLY').message, status: getMessage('BUSINESS_DELETED_SUCCESSFULLY').code });
+    const response: ApiResponse<null> = createApiResponse({ success: true, message: getMessage('BUSINESS_DELETED').message, status: getMessage('BUSINESS_DELETED').code });
     res.json(response);
   } catch (error) {
     logger.error(`Error deleting business with ID ${id}:`, error);
