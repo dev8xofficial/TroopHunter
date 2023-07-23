@@ -8,9 +8,14 @@ function* fetchUsersSaga({ payload }: any): any {
     const { token } = payload;
     const response = yield getUsers(token);
 
-    yield put(fetchUsersSuccess(response));
+    if (response.success) {
+      yield put(fetchUsersSuccess(response.data));
+    } else {
+      toast.error(response.error);
+      yield put(fetchUsersFailure(response.message));
+    }
   } catch (error) {
-    toast(error.response.data.error);
+    toast.error(error.message);
     yield put(fetchUsersFailure(error.message));
   }
 }
@@ -23,9 +28,14 @@ function* fetchUserSaga({ payload }: any): any {
     };
     const response = yield getUserWithInclude(userId, token, params);
 
-    yield put(fetchUserSuccess(response));
+    if (response.success) {
+      yield put(fetchUserSuccess(response.data));
+    } else {
+      toast.error(response.error);
+      yield put(fetchUserFailure(response.message));
+    }
   } catch (error) {
-    toast(error.message);
+    toast.error(error.message);
     yield put(fetchUserFailure(error.message));
   }
 }

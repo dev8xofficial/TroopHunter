@@ -35,9 +35,16 @@ function* fetchBusinessesSaga({ payload }: any): any {
 
     const response = yield getBusinessesBySearch(params, token);
 
-    yield put(fetchBusinessesSuccess({ data: response }));
+    // Check if the response contains the 'success' property
+    if (response.success) {
+      yield put(fetchBusinessesSuccess({ data: response.data }));
+    } else {
+      toast.error(response.error);
+      yield put(fetchBusinessesFailure(response.error));
+    }
   } catch (error) {
-    toast(error.message);
+    // Display toast message for error
+    toast.error(error.message);
     yield put(fetchBusinessesFailure(error.message));
   }
 }
