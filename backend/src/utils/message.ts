@@ -33,6 +33,14 @@ const messages: Record<string, Message> = {
     code: 204,
     message: 'Business deleted successfully.',
   },
+  LEADBUSINESS_RETRIEVED: {
+    code: 200,
+    message: 'Retrieved LeadBusiness with specified leadId and businessId.',
+  },
+  LEADBUSINESS_UPDATED: {
+    code: 200,
+    message: 'Updated LeadBusiness with specified leadId and businessId.',
+  },
 
   // Required fields messages
   MISSING_NAME: {
