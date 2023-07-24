@@ -5,20 +5,18 @@ import Avatar from '../Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
 import { ILead } from '../../../types/lead';
 import { IUser } from '../../../types/user';
-import { setSelectedLeadIds } from '../../../store/actions/listsPageActions';
+import { deleteLeadsAction, setSelectedLeadIds } from '../../../store/actions/listsPageActions';
 import moment from 'moment';
-
-const listsItemMenu = [
-  { name: 'Edit', href: '#', onClick: () => console.log('Message') },
-  { name: 'Delete', href: '#', onClick: () => console.log('Remove') },
-];
+import { IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
+import { toast } from 'react-toastify';
 
 const Table: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
-  const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>([]);
+  const token: string = useSelector((state: any) => state.auth.token);
   const userId: string = useSelector((state: any) => state.auth.userId);
   const user: IUser = useSelector((state: any) => state.users.data[userId]);
   const leads: ILead[] | undefined = user.Leads;
+  const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>([]);
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, leadId: string) => {
     const isChecked = e.target.checked;
@@ -37,6 +35,31 @@ const Table: React.FC = (): JSX.Element => {
     } else {
       setLocalSelectedLeadIds([]);
     }
+  };
+
+  const handleEdit = (index: number) => {
+    // setSelectedLeadId(leadId);
+    // setIsEditing(true);
+    // Start the editing process here
+    console.log('Editing lead with ID:', index);
+  };
+
+  const handleDelete = (index: number) => {
+    if (leads) {
+      const lead = leads[parseInt(index.toString())];
+      const leadId: string = lead && lead.id ? lead.id : '';
+      if (leadId) dispatch(deleteLeadsAction({ token, user, selectedLeadIds: [leadId] }));
+      else toast.error('Failed to delete lead. Lead not found.');
+    }
+    console.log('Deleting lead with ID:', index);
+  };
+
+  const getListsItemMenuOptions = (index: number): IMenuOption[] => {
+    const options: IMenuOption[] = [
+      { name: 'Edit', href: '#', onClick: () => handleEdit(index) },
+      { name: 'Delete', href: '#', onClick: () => handleDelete(index) },
+    ];
+    return options;
   };
 
   useEffect(() => {
@@ -135,7 +158,7 @@ const Table: React.FC = (): JSX.Element => {
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">{moment(lead.updatedAt).format('YYYY-MM-DD')}</td>
                     <td className="relative flex justify-end whitespace-nowrap py-3.5 pl-3 pr-4 text-sm font-medium sm:pr-6">
-                      <_Menu options={listsItemMenu} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
+                      <_Menu options={getListsItemMenuOptions(index)} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
                         <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
                       </_Menu>
                     </td>
