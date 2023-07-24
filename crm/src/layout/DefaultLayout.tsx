@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Disclosure } from '@headlessui/react';
 import { BellIcon } from '@heroicons/react/24/outline';
 import Search from '../components/Inputs/Search/Search';
@@ -33,6 +33,15 @@ interface DefaultLayoutProps {
 }
 
 const DefaultLayout = ({ children }: DefaultLayoutProps) => {
+  // Use the useLocation hook to get the current URL pathname
+  const location = useLocation();
+
+  // Update the navigation array based on the current URL
+  const updatedNavigation = navigation.map((item) => ({
+    ...item,
+    current: item.href === location.pathname,
+  }));
+
   return (
     <>
       <div className="min-h-full">
@@ -49,7 +58,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                   </div>
                   <div>
                     <div className="ml-20 flex items-baseline space-x-4">
-                      {navigation.map((item) => (
+                      {updatedNavigation.map((item) => (
                         <Link key={item.name} to={item.href} className={classNames(item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium')} aria-current={item.current ? 'page' : undefined}>
                           {item.name}
                         </Link>
