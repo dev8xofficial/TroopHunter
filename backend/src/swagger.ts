@@ -1,24 +1,16 @@
-import swaggerJSDoc, { Options } from 'swagger-jsdoc';
+import swaggerJSDoc from 'swagger-jsdoc';
 import path from 'path';
+import fs from 'fs';
+import YAML from 'yamljs'; // Import the yamljs library
 
-const options: Options = {
-  definition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'Backend',
-      version: '1.0.0',
-      description: 'API documentation for Your Backend',
-    },
-    servers: [
-      {
-        url: 'http://localhost:50001',
-      },
-    ],
-  },
-  apis: [path.join(__dirname, 'routes', '*.ts')],
+// Load the YAML file
+const swaggerYAML = fs.readFileSync(path.join(__dirname, '../doc', 'swagger.yaml'), 'utf8'); // Update the path to load the YAML file from the root 'doc' folder
+
+const options = {
+  swaggerDefinition: YAML.parse(swaggerYAML), // Use YAML.parse to parse the YAML content
+  apis: [path.join(__dirname, '../routes', '*.ts')], // Update the path to load the route files from the root 'routes' folder
 };
 
 const swaggerSpec = swaggerJSDoc(options);
-console.log('swaggerSpec: ', swaggerSpec);
 
 export default swaggerSpec;

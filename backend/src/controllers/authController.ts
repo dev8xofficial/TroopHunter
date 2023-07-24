@@ -18,7 +18,7 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // Check if the user exists
-    const user = await User.findOne({ where: { email }, include: JSON.parse(include) });
+    const user: User | null = await User.findOne({ where: { email }, include: JSON.parse(include) });
     if (!user) {
       logger.error(`User with email ${email} does not exist.`);
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_EMAIL').message, status: getMessage('INVALID_EMAIL').code });
@@ -38,7 +38,7 @@ export const login = async (req: Request, res: Response) => {
 
     logger.info(`User with email ${email} logged in successfully.`);
 
-    const response: ApiResponse<{ user: User; token: string }> = createApiResponse({ success: true, data: { user: user, token }, message: getMessage('LOGGED_IN').message, status: getMessage('LOGGED_IN').code });
+    const response: ApiResponse<{ user: User | null; token: string }> = createApiResponse({ success: true, data: { user: user, token }, message: getMessage('LOGGED_IN').message, status: getMessage('LOGGED_IN').code });
     res.json(response);
   } catch (error) {
     logger.error('Login failed:', error);
