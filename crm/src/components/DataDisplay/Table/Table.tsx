@@ -1,7 +1,8 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import Avatar from '../Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
-import { useSelector } from 'react-redux';
 import { ILead } from '../../../types/lead';
 import { IUser } from '../../../types/user';
 import moment from 'moment';
@@ -12,9 +13,29 @@ const listsItemMenu = [
 ];
 
 const Table: React.FC = (): JSX.Element => {
+  const [selectedLeadIds, setSelectedLeadIds] = useState<string[]>([]);
   const userId: string = useSelector((state: any) => state.auth.userId);
   const user: IUser = useSelector((state: any) => state.users.data[userId]);
   const leads: ILead[] | undefined = user.Leads;
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, leadId: string) => {
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setSelectedLeadIds((prevSelected) => [...prevSelected, leadId]);
+    } else {
+      setSelectedLeadIds((prevSelected) => prevSelected.filter((id) => id !== leadId));
+    }
+  };
+
+  const handleSelectAllCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      const leadIds = leads?.map((_, index) => index.toString()) || [];
+      setSelectedLeadIds(leadIds);
+    } else {
+      setSelectedLeadIds([]);
+    }
+  };
 
   return (
     <>
@@ -37,7 +58,7 @@ const Table: React.FC = (): JSX.Element => {
                   <div className="relative flex w-full items-start py-3.5 pl-4 pr-3 sm:pl-6">
                     <span className="sr-only">Select</span>
                     <div className="flex h-6 items-center">
-                      <input id="select" name="select" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                      <input id="select-all" name="select-all" type="checkbox" checked={selectedLeadIds.length === (leads?.length || 0)} onChange={handleSelectAllCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                     </div>
                   </div>
                 </th>
@@ -72,7 +93,14 @@ const Table: React.FC = (): JSX.Element => {
                       <div className="relative flex w-full items-start">
                         <span className="sr-only">Select</span>
                         <div className="flex h-6 items-center">
-                          <input id="select" name="select" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                          <input
+                            type="checkbox"
+                            id={`select-${index}`} // Use index as the unique identifier
+                            name={`select-${index}`} // Use index as the unique identifier
+                            checked={selectedLeadIds.includes(index.toString())} // Convert index to string and check if it exists in selectedLeadIds
+                            onChange={(e) => handleCheckboxChange(e, index.toString())}
+                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          />
                         </div>
                       </div>
                     </td>
