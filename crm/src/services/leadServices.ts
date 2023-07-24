@@ -49,7 +49,17 @@ export const updateLeadService = async (id: string, data: any, token: string) =>
 
 export const deleteLeadService = async (id: string, token: string) => {
   try {
-    await axios.delete(`${BASE_URL}/leads/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+    const response = await axios.delete(`${BASE_URL}/leads/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+    return response.data;
+  } catch (error) {
+    throw new Error('An error occurred while deleting a lead.');
+  }
+};
+
+export const deleteLeadsService = async (data: any, token: string) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/leads/bulk`, { data, headers: { Authorization: `Bearer ${token}` } });
+    return response.data;
   } catch (error) {
     throw new Error('An error occurred while deleting a lead.');
   }
