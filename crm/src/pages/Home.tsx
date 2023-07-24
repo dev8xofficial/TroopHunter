@@ -98,7 +98,7 @@ const Lead = () => {
   return (
     <>
       {/* Action tab */}
-      <ActionBar title="Lead" submit={submitLead} />
+      <ActionBar title="Lead" leadSubmit={submitLead} />
 
       {/* Statistics */}
       <StatisticsMobile statistics={stats} />

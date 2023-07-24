@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import Avatar from '../Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
 import { ILead } from '../../../types/lead';
 import { IUser } from '../../../types/user';
+import { setSelectedLeadIds } from '../../../store/actions/listsPageActions';
 import moment from 'moment';
 
 const listsItemMenu = [
@@ -13,7 +14,8 @@ const listsItemMenu = [
 ];
 
 const Table: React.FC = (): JSX.Element => {
-  const [selectedLeadIds, setSelectedLeadIds] = useState<string[]>([]);
+  const dispatch = useDispatch();
+  const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>([]);
   const userId: string = useSelector((state: any) => state.auth.userId);
   const user: IUser = useSelector((state: any) => state.users.data[userId]);
   const leads: ILead[] | undefined = user.Leads;
@@ -21,9 +23,9 @@ const Table: React.FC = (): JSX.Element => {
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, leadId: string) => {
     const isChecked = e.target.checked;
     if (isChecked) {
-      setSelectedLeadIds((prevSelected) => [...prevSelected, leadId]);
+      setLocalSelectedLeadIds((prevSelected) => [...prevSelected, leadId]);
     } else {
-      setSelectedLeadIds((prevSelected) => prevSelected.filter((id) => id !== leadId));
+      setLocalSelectedLeadIds((prevSelected) => prevSelected.filter((id) => id !== leadId));
     }
   };
 
@@ -31,11 +33,21 @@ const Table: React.FC = (): JSX.Element => {
     const isChecked = e.target.checked;
     if (isChecked) {
       const leadIds = leads?.map((_, index) => index.toString()) || [];
-      setSelectedLeadIds(leadIds);
+      setLocalSelectedLeadIds(leadIds);
     } else {
-      setSelectedLeadIds([]);
+      setLocalSelectedLeadIds([]);
     }
   };
+
+  useEffect(() => {
+    if (leads) {
+      const ids: string[] = localSelectedLeadIds.map((index: string) => {
+        const lead = leads[parseInt(index)];
+        return lead && lead.id ? lead.id : '';
+      });
+      dispatch(setSelectedLeadIds(ids));
+    }
+  }, [localSelectedLeadIds, leads]);
 
   return (
     <>
@@ -58,7 +70,7 @@ const Table: React.FC = (): JSX.Element => {
                   <div className="relative flex w-full items-start py-3.5 pl-4 pr-3 sm:pl-6">
                     <span className="sr-only">Select</span>
                     <div className="flex h-6 items-center">
-                      <input id="select-all" name="select-all" type="checkbox" checked={selectedLeadIds.length === (leads?.length || 0)} onChange={handleSelectAllCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                      <input id="select-all" name="select-all" type="checkbox" checked={localSelectedLeadIds.length === (leads?.length || 0)} onChange={handleSelectAllCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                     </div>
                   </div>
                 </th>
@@ -97,7 +109,7 @@ const Table: React.FC = (): JSX.Element => {
                             type="checkbox"
                             id={`select-${index}`} // Use index as the unique identifier
                             name={`select-${index}`} // Use index as the unique identifier
-                            checked={selectedLeadIds.includes(index.toString())} // Convert index to string and check if it exists in selectedLeadIds
+                            checked={localSelectedLeadIds.includes(index.toString())} // Convert index to string and check if it exists in localSelectedLeadIds
                             onChange={(e) => handleCheckboxChange(e, index.toString())}
                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                           />

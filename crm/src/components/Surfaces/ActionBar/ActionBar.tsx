@@ -7,6 +7,9 @@ import IconButton from '../../Inputs/IconButton/IconButton';
 import { IActionBarProps } from './ActionBar.interfaces';
 import Avatar from '../../DataDisplay/Avatar/Avatar';
 import LeadDialog from '../../Feedback/LeadDialog/LeadDialog';
+import { useSelector } from 'react-redux';
+import { IUser } from '../../../types/user';
+import ListsDialog from '../../Feedback/ListsDialog/ListsDialog';
 
 const people = [
   {
@@ -69,9 +72,13 @@ const people = [
   },
 ];
 
-const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', submit }: IActionBarProps): JSX.Element => {
+const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', leadSubmit }: IActionBarProps): JSX.Element => {
+  const selectedLeadIds = useSelector((state: any) => state.lists.selectedLeadIds);
+  const userId: string = useSelector((state: any) => state.auth.userId);
+  const user: IUser = useSelector((state: any) => state.users.data[userId]);
   let [isOpen, setIsOpen] = useState(false);
   let [isOpenSaveSearchModal, setIsOpenSaveSearchModal] = useState(false);
+  let [isOpenDeleteListsModal, setIsOpenDeleteListsModal] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
@@ -98,7 +105,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', submit }: IActio
                         <Button variant="contained" color="indigo" onClick={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)}>
                           Save search
                         </Button>
-                        <LeadDialog isOpen={isOpenSaveSearchModal} closeModal={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)} submit={submit} />
+                        <LeadDialog isOpen={isOpenSaveSearchModal} closeModal={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)} submit={leadSubmit} />
                       </span>
                       <span className="xl:flex">
                         <IconButton className="xl:hidden" variant="contained" color="indigo" ringOffset="white">
@@ -362,24 +369,29 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', submit }: IActio
                           </span>
                         ))}
                       </div>
-                      <span className="ml-3 capitalize text-indigo-600">my saved leads(50)</span>
+                      <span className="ml-3 capitalize text-indigo-600">my saved leads({user.Leads?.length})</span>
                     </div>
-                    <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>{' '}
-                    <div>
-                      <span className="hidden xl:inline-block">
-                        <Button variant="outlined" color="red">
-                          Delete
-                        </Button>
-                      </span>
-                      <span className="xl:flex">
-                        <IconButton className="xl:hidden" variant="contained" color="red" ringOffset="white">
-                          <>
-                            <TrashIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
-                            <TrashIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
-                          </>
-                        </IconButton>
-                      </span>
-                    </div>
+                    {selectedLeadIds.length > 0 && (
+                      <>
+                        <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>{' '}
+                        <div>
+                          <span className="hidden xl:inline-block">
+                            <Button variant="outlined" color="red" onClick={() => setIsOpenDeleteListsModal(!isOpenSaveSearchModal)}>
+                              Delete
+                            </Button>
+                            <ListsDialog isOpen={isOpenDeleteListsModal} closeModal={() => setIsOpenDeleteListsModal(!isOpenDeleteListsModal)} />
+                          </span>
+                          <span className="xl:flex">
+                            <IconButton className="xl:hidden" variant="contained" color="red" ringOffset="white">
+                              <>
+                                <TrashIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
+                                <TrashIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
+                              </>
+                            </IconButton>
+                          </span>
+                        </div>
+                      </>
+                    )}
                   </>
                 )}
               </div>
