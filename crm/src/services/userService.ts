@@ -49,7 +49,8 @@ export const updateUserService = async (id: string, data: any, token: string) =>
 
 export const deleteUserService = async (id: string, token: string) => {
   try {
-    await axios.delete(`${BASE_URL}/users/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+    const response = await axios.delete(`${BASE_URL}/users/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+    return response.data;
   } catch (error) {
     throw new Error('An error occurred while deleting a user.');
   }
