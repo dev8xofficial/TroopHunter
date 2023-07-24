@@ -1,5 +1,5 @@
 import express from 'express';
-import { createLeadBusiness, getBusinessesByLeadId, getLeadBusinesses, getLeadBusiness, updateLeadBusiness, deleteLeadBusiness } from '../controllers/leadBusinessesController';
+import { createLeadBusiness, createLeadBusinesses, getBusinessesByLeadId, getLeadBusinesses, getLeadBusiness, updateLeadBusiness, deleteLeadBusiness } from '../controllers/leadBusinessesController';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
 const router = express.Router();
@@ -12,6 +12,7 @@ router.get('/:leadId/businesses', getBusinessesByLeadId);
 router.get('/:leadId/:businessId', getLeadBusiness);
 router.put('/:leadId/:businessId', updateLeadBusiness);
 router.delete('/:leadId/:businessId', deleteLeadBusiness);
+router.post('/bulk', createLeadBusinesses);
 router.get('/', getLeadBusinesses);
 router.post('/', createLeadBusiness);
 

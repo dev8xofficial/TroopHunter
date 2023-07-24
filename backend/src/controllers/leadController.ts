@@ -132,11 +132,36 @@ export const deleteLead = async (req: Request, res: Response) => {
     }
     await lead.destroy();
 
-    const response: ApiResponse<null> = createApiResponse({ success: true, message: getMessage('LEAD_DELETED_SUCCESS').message, status: getMessage('LEAD_DELETED_SUCCESS').code });
+    const response: ApiResponse<null> = createApiResponse({ success: true, message: getMessage('LEAD_DELETED').message, status: getMessage('LEAD_DELETED').code });
     res.json(response);
   } catch (error) {
     logger.error(`Error while deleting lead with ID ${id}:`, error);
     const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_DELETE_LEAD').message, status: getMessage('FAILED_TO_DELETE_LEAD').code });
+    res.json(response);
+  }
+};
+
+export const deleteLeads = async (req: Request, res: Response) => {
+  const { ids } = req.body; // Assuming that the array of lead IDs is sent in the request body
+
+  try {
+    const leads = await Lead.findAll({ where: { id: ids } });
+
+    if (!leads || leads.length === 0) {
+      logger.warn('No leads found with the given IDs');
+      const response: ApiResponse<null> = createApiResponse({ error: getMessage('LEADS_NOT_FOUND').message, status: getMessage('LEADS_NOT_FOUND').code });
+      return res.json(response);
+    }
+
+    // Deleting leads one by one
+    const deletePromises = leads.map((lead) => lead.destroy());
+    await Promise.all(deletePromises);
+
+    const response: ApiResponse<null> = createApiResponse({ success: true, message: getMessage('LEADS_DELETED').message, status: getMessage('LEADS_DELETED').code });
+    res.json(response);
+  } catch (error) {
+    logger.error('Error while deleting leads:', error);
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_DELETE_LEADS').message, status: getMessage('FAILED_TO_DELETE_LEADS').code });
     res.json(response);
   }
 };

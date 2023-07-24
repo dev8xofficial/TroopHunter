@@ -69,6 +69,14 @@ const messages: Record<string, Message> = {
     code: 200,
     message: 'Lead updated successfully.',
   },
+  LEADS_DELETED: {
+    code: 200,
+    message: 'Leads deleted successfully.',
+  },
+  LEAD_DELETED: {
+    code: 200,
+    message: 'Lead deleted successfully.',
+  },
   LISTS_RETRIEVED: {
     code: 200,
     message: 'Lists retrieved successfully.',
@@ -201,6 +209,10 @@ const messages: Record<string, Message> = {
     code: 404,
     message: 'Business not found. The specified business ID does not exist.',
   },
+  LEADS_NOT_FOUND: {
+    code: 404,
+    message: 'Leads not found.',
+  },
   LEAD_NOT_FOUND: {
     code: 404,
     message: 'Lead not found.',
@@ -263,9 +275,25 @@ const messages: Record<string, Message> = {
     code: 500,
     message: 'Failed to create lead. An internal server error occurred.',
   },
+  FAILED_TO_CREATE_LEADS: {
+    code: 500,
+    message: 'Failed to create leads. An internal server error occurred.',
+  },
+  FAILED_TO_RETRIEVE_LEAD: {
+    code: 500,
+    message: 'Failed to retrieve lead. An internal server error occurred.',
+  },
   FAILED_TO_RETRIEVE_LEADS: {
     code: 500,
     message: 'Failed to retrieve leads. An internal server error occurred.',
+  },
+  FAILED_TO_DELETE_LEAD: {
+    code: 500,
+    message: 'Failed to delete lead. An internal server error occurred.',
+  },
+  FAILED_TO_DELETE_LEADS: {
+    code: 500,
+    message: 'Failed to delete leads. An internal server error occurred.',
   },
   FAILED_TO_RETRIEVE_LISTS: {
     code: 500,
