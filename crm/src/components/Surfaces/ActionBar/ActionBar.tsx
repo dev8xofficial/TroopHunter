@@ -10,6 +10,7 @@ import LeadDialog from '../../Feedback/LeadDialog/LeadDialog';
 import { useSelector } from 'react-redux';
 import { IUser } from '../../../types/user';
 import ListsDialog from '../../Feedback/ListsDialog/ListsDialog';
+import Progress from '../../Feedback/Progress/Progress';
 
 const people = [
   {
@@ -72,7 +73,7 @@ const people = [
   },
 ];
 
-const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', leadSubmit }: IActionBarProps): JSX.Element => {
+const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = false }: IActionBarProps): JSX.Element => {
   const selectedLeadIds = useSelector((state: any) => state.lists.selectedLeadIds);
   const userId: string = useSelector((state: any) => state.auth.userId);
   const user: IUser = useSelector((state: any) => state.users.data[userId]);
@@ -105,7 +106,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', leadSubmit }: IA
                         <Button variant="contained" color="indigo" onClick={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)}>
                           Save search
                         </Button>
-                        <LeadDialog isOpen={isOpenSaveSearchModal} closeModal={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)} submit={leadSubmit} />
+                        <LeadDialog isOpen={isOpenSaveSearchModal} closeModal={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)} />
                       </span>
                       <span className="xl:flex">
                         <IconButton className="xl:hidden" variant="contained" color="indigo" ringOffset="white">
@@ -399,6 +400,9 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', leadSubmit }: IA
           </div>
         </div>
       </div>
+
+      {/* Progress Bar */}
+      <Progress isLoading={isLoading} />
     </>
   );
 };

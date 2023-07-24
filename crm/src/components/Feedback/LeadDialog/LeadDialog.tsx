@@ -7,8 +7,16 @@ import { Transition, Dialog } from '@headlessui/react';
 import { CustomDialogAttributes } from './LeadDialog.interfaces';
 import TextField from '../../Inputs/TextField/TextField';
 import Button from '../../Inputs/Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { IFilterAttributes } from '../../../store/reducers/leadPageReducer';
+import { createLeadAction } from '../../../store/actions/leadActions';
+import { toast } from 'react-toastify';
 
-const CustomDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal, submit }: CustomDialogAttributes): JSX.Element => {
+const LeadDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal, submit }: CustomDialogAttributes): JSX.Element => {
+  const dispatch = useDispatch();
+  const auth = useSelector((state: any) => state.auth);
+  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.lead.leadFilters);
+
   const formikSchema = Yup.object().shape({
     title: Yup.string().required('Kindly Enter Title For Lead Information.'),
   });
@@ -26,7 +34,26 @@ const CustomDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal, su
     enableReinitialize: true,
     validationSchema: formikSchema,
     onSubmit: async (values) => {
-      if (submit) submit(values.title);
+      const { title } = values;
+      if (submit) {
+        if (leadFilters.length > 0 && leadFilters.some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {
+          const filtersObject: Record<string, string> = {};
+          for (const filter of leadFilters) {
+            filtersObject[filter.name] = filter.value;
+          }
+
+          const requestData = {
+            token: auth.token,
+            userId: auth.userId,
+            title, // Spread the properties of 'title' object into 'requestData'
+            search: filtersObject.name,
+            ...filtersObject, // Spread the properties of 'filtersObject' object into 'requestData'
+          };
+          dispatch(createLeadAction(requestData));
+        } else {
+          toast.info('You have searched nothing.');
+        }
+      }
     },
   });
   return (
@@ -79,4 +106,4 @@ const CustomDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal, su
   );
 };
 
-export default CustomDialog;
+export default LeadDialog;

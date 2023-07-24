@@ -2,21 +2,13 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchBusinessesAction } from '../store/actions/businessActions';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
-import _Menu from '../components/Navigation/Menu/Menu';
 import CustomTextField from '../components/Inputs/CustomTextField/CustomTextField';
 import Accordion from '../components/Surfaces/Accordion/Accordion';
 import { IStats } from '../components/DataDisplay/Statistics/Statistics.interfaces';
 import StatisticsMobile from '../components/DataDisplay/Statistics/StatisticsMobile';
 import TableLead from '../components/DataDisplay/Table/TableLead';
-import { createLeadAction } from '../store/actions/leadActions';
-import { toast } from 'react-toastify';
-
-interface IFilterAttributes {
-  label: string;
-  name: string;
-  value: string;
-  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
-}
+import { setLeadFiltersAction } from '../store/actions/leadPageActions';
+import { IFilterAttributes } from '../store/reducers/leadPageReducer';
 
 const stats: IStats[] = [
   { name: 'Total Results', amount: 248 },
@@ -28,47 +20,34 @@ const stats: IStats[] = [
 const Lead = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state: any) => state.auth);
-  const [filters, setFilters] = useState<IFilterAttributes[]>([]);
+  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.lead.leadFilters);
+  const [debouncedFilters, setDebouncedFilters] = useState<IFilterAttributes[]>(leadFilters);
+  const isLoading = useSelector((state: any) => state.lead.isLoading);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const name = event.target.name;
     const newValue = event.target.value;
-    // Handle the value change
-    setFilters((prevFilters) =>
-      prevFilters.map((filter) => {
-        if (filter.name === name) {
-          return { ...filter, value: newValue };
-        }
-        return filter;
-      })
-    );
-  };
 
-  const submitLead = (title: string) => {
-    if (filters.length > 0 && filters.some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {
-      console.log('Submit Lead: ', title);
-      const filtersObject: Record<string, string> = {};
-      for (const filter of filters) {
-        filtersObject[filter.name] = filter.value;
-      }
-
-      const requestData = {
-        token: auth.token,
-        userId: auth.userId,
-        title, // Spread the properties of 'title' object into 'requestData'
-        search: filtersObject.name,
-        ...filtersObject, // Spread the properties of 'filtersObject' object into 'requestData'
-      };
-      dispatch(createLeadAction(requestData));
-    } else {
-      toast.info('You have searched nothing.');
-    }
+    dispatch(setLeadFiltersAction(leadFilters.map((filter) => (filter.name === name ? { ...filter, value: newValue } : filter))));
   };
 
   useEffect(() => {
-    if (filters.length > 0) {
+    // Set a timeout to update the debouncedFilters after 500ms
+    const delay = 500;
+    const timeoutId = setTimeout(() => {
+      setDebouncedFilters(leadFilters);
+    }, delay);
+
+    // Clear the timeout if the component is unmounted or if leadFilters change before the timeout is reached
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [leadFilters]);
+
+  useEffect(() => {
+    if (debouncedFilters.length > 0) {
       const filtersObject: Record<string, string> = {};
-      for (const filter of filters) {
+      for (const filter of debouncedFilters) {
         filtersObject[filter.name] = filter.value;
       }
 
@@ -79,26 +58,12 @@ const Lead = () => {
 
       dispatch(fetchBusinessesAction(requestData));
     }
-  }, [filters]);
-
-  useEffect(() => {
-    const initialFilters: IFilterAttributes[] = [
-      { label: 'Business', name: 'name', value: '', handleChange: handleChange },
-      { label: 'Business Domain', name: 'businessDomain', value: '', handleChange: handleChange },
-      { label: 'Address', name: 'address', value: '', handleChange: handleChange },
-      { label: 'Location', name: 'location', value: '', handleChange: handleChange },
-      { label: 'Phone', name: 'phone', value: '', handleChange: handleChange },
-      { label: 'Email', name: 'email', value: '', handleChange: handleChange },
-      { label: 'Website', name: 'website', value: '', handleChange: handleChange },
-      { label: 'Sponsored', name: 'sponsoredAd', value: 'false', handleChange: handleChange },
-    ];
-    setFilters(initialFilters);
-  }, []);
+  }, [debouncedFilters]);
 
   return (
     <>
       {/* Action tab */}
-      <ActionBar title="Lead" leadSubmit={submitLead} />
+      <ActionBar title="Lead" isLoading={isLoading} />
 
       {/* Statistics */}
       <StatisticsMobile statistics={stats} />
@@ -108,7 +73,7 @@ const Lead = () => {
         <div className="sticky top-20 h-fit w-full max-w-sm">
           {/* Keywords Filter */}
           <ul role="list" className="mr-6 hidden space-y-3 border shadow sm:rounded-md xl:col-span-4 xl:block">
-            <li className="h-full overflow-hidden px-4 py-6 sm:px-6">{filters[0] && <CustomTextField label={filters[0]?.label} name={filters[0]?.name} value={filters[0]?.value} onChange={filters[0]?.handleChange} placeholder={`Search ${filters[0].label.toLowerCase()} title...`} />}</li>
+            <li className="h-full overflow-hidden px-4 py-6 sm:px-6">{leadFilters[0] && <CustomTextField label={leadFilters[0]?.label} name={leadFilters[0]?.name} value={leadFilters[0]?.value} onChange={handleChange} placeholder={`Search ${leadFilters[0].label.toLowerCase()} title...`} />}</li>
           </ul>
 
           {/* Filters */}
@@ -116,10 +81,10 @@ const Lead = () => {
             <div className="mr-6 mt-6 overflow-hidden border shadow sm:rounded-md">
               <ul role="list" className="divide-y">
                 <li className="bg-gray-50 px-4 py-3 sm:px-6">Filters</li>
-                {filters.map((filter) =>
+                {leadFilters.map((filter) =>
                   filter.name !== 'name' ? (
                     <li key={filter.name}>
-                      <Accordion label={filter.label} name={filter.name} value={filter.value} handleChange={filter.handleChange} />
+                      <Accordion label={filter.label} name={filter.name} value={filter.value} handleChange={handleChange} />
                     </li>
                   ) : (
                     <React.Fragment key={filter.name} />

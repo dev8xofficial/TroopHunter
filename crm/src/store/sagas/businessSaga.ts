@@ -4,6 +4,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction } from '../actions/businessActions';
 import { getBusinessesBySearchService } from '../../services/businessService';
 import { getLocationsBySearchService } from '../../services/locationService';
+import { setLeadFilterLoadingFailureAction, setLeadFilterLoadingSuccessAction } from '../actions/leadPageActions';
 
 function* fetchBusinessesSaga({ payload }: any): any {
   try {
@@ -38,9 +39,11 @@ function* fetchBusinessesSaga({ payload }: any): any {
     // Check if the response contains the 'success' property
     if (response.success) {
       yield put(fetchBusinessesSuccessAction({ data: response.data }));
+      yield put(setLeadFilterLoadingSuccessAction());
     } else {
       toast.error(response.error);
       yield put(fetchBusinessesFailureAction(response.error));
+      yield put(setLeadFilterLoadingFailureAction());
     }
   } catch (error) {
     // Display toast message for error
