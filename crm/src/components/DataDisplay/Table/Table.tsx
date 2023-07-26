@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import Avatar from '../Avatar/Avatar';
@@ -9,15 +10,21 @@ import { deleteLeadsAction, setSelectedLeadIds } from '../../../store/actions/li
 import moment from 'moment';
 import { IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
 import { toast } from 'react-toastify';
+import { IFilterAttributes } from '../../../store/reducers/leadPageReducer';
+import { setLeadFiltersAction } from '../../../store/actions/leadPageActions';
+
+// Create a custom type to define valid filter keys
+type ValidFilterKeys = keyof Omit<ILead, 'userId' | 'title' | 'id' | 'categoryId' | 'postalCodeId' | 'ratingId' | 'reviews' | 'timezoneId' | 'openingHourId' | 'closingHourId'>;
 
 const Table: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const token: string = useSelector((state: any) => state.auth.token);
+  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.lead.leadFilters);
   const userId: string = useSelector((state: any) => state.auth.userId);
   const user: IUser = useSelector((state: any) => state.users.data[userId]);
-  const leads: ILead[] | undefined = user.Leads;
+  const userLeads: ILead[] | undefined = user.Leads;
   const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>([]);
-
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, leadId: string) => {
     const isChecked = e.target.checked;
     if (isChecked) {
@@ -30,23 +37,45 @@ const Table: React.FC = (): JSX.Element => {
   const handleSelectAllCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
     if (isChecked) {
-      const leadIds = leads?.map((_, index) => index.toString()) || [];
+      const leadIds = userLeads?.map((_, index) => index.toString()) || [];
       setLocalSelectedLeadIds(leadIds);
     } else {
       setLocalSelectedLeadIds([]);
     }
   };
 
-  const handleEdit = (index: number) => {
-    // setSelectedLeadId(leadId);
-    // setIsEditing(true);
-    // Start the editing process here
-    console.log('Editing lead with ID:', index);
+  const handleEdit = async (index: number) => {
+    try {
+      if (!Array.isArray(userLeads)) return;
+
+      const lead: ILead = userLeads[index];
+      const updatedFilters: IFilterAttributes[] = leadFilters.map((filter) => {
+        if (filter.name === 'name' && lead?.hasOwnProperty('search')) {
+          return { ...filter, value: `${lead['search']}` }; // Create a new object with updated value
+        } else if (lead?.hasOwnProperty(filter.name)) {
+          const validFilterName = filter.name as ValidFilterKeys;
+          const { userId, title, id, categoryId, postalCodeId, ratingId, reviews, timezoneId, openingHourId, closingHourId, ...rest } = lead;
+          return { ...filter, value: `${rest[validFilterName]}` }; // Create a new object with updated value
+        }
+        return filter;
+      });
+
+      const dispatchActionPromise = new Promise<void>((resolve) => {
+        dispatch(setLeadFiltersAction(updatedFilters));
+        resolve();
+      });
+
+      dispatchActionPromise.then(() => {
+        navigate('/');
+      });
+    } catch (error) {
+      console.error('Error during dispatch:', error);
+    }
   };
 
   const handleDelete = (index: number) => {
-    if (leads) {
-      const lead = leads[parseInt(index.toString())];
+    if (userLeads) {
+      const lead = userLeads[index]; // Specify index as number here
       const leadId: string = lead && lead.id ? lead.id : '';
       if (leadId) dispatch(deleteLeadsAction({ token, user, selectedLeadIds: [leadId] }));
       else toast.error('Failed to delete lead. Lead not found.');
@@ -63,14 +92,14 @@ const Table: React.FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (leads) {
+    if (userLeads) {
       const ids: string[] = localSelectedLeadIds.map((index: string) => {
-        const lead = leads[parseInt(index)];
+        const lead = userLeads[parseInt(index)];
         return lead && lead.id ? lead.id : '';
       });
       dispatch(setSelectedLeadIds(ids));
     }
-  }, [localSelectedLeadIds, leads]);
+  }, [localSelectedLeadIds]);
 
   return (
     <>
@@ -93,7 +122,7 @@ const Table: React.FC = (): JSX.Element => {
                   <div className="relative flex w-full items-start py-3.5 pl-4 pr-3 sm:pl-6">
                     <span className="sr-only">Select</span>
                     <div className="flex h-6 items-center">
-                      <input id="select-all" name="select-all" type="checkbox" checked={localSelectedLeadIds.length === (leads?.length || 0)} onChange={handleSelectAllCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                      <input id="select-all" name="select-all" type="checkbox" checked={localSelectedLeadIds.length === (userLeads?.length || 0)} onChange={handleSelectAllCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                     </div>
                   </div>
                 </th>
@@ -121,8 +150,8 @@ const Table: React.FC = (): JSX.Element => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {leads &&
-                leads.map((lead: any, index: number) => (
+              {userLeads &&
+                userLeads.map((lead: any, index: number) => (
                   <tr key={index}>
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                       <div className="relative flex w-full items-start">
@@ -144,7 +173,7 @@ const Table: React.FC = (): JSX.Element => {
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
                       {/* This tells how many businesses are in this lead. */}
-                      <div className="text-gray-900">{lead.leads}</div>
+                      <div className="text-gray-900">0</div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
                       <div className="flex items-center">
