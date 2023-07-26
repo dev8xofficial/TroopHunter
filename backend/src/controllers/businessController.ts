@@ -31,24 +31,17 @@ import { getMessage } from '../utils/message';
 export const getBusinessesByQuery = async (req: Request, res: Response) => {
   const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, include } = req.query;
 
-  // Check if pagination parameters are provided
+  // Pagination
   if (!page || !limit) {
-    const response: ApiResponse<null> = createApiResponse({
-      error: 'Pagination parameters (page and limit) are required.',
-      status: 400,
-    });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_PAGE_LIMIT').message, status: getMessage('MISSING_PAGE_LIMIT').code });
     return res.json(response);
   }
 
   const pageNumber = parseInt(page as string, 10);
   const limitNumber = parseInt(limit as string, 10);
 
-  // Validate the page and limit values
   if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
-    const response: ApiResponse<null> = createApiResponse({
-      error: 'Invalid pagination parameters. Both page and limit should be positive integers.',
-      status: 400,
-    });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_PAGE_LIMIT').message, status: getMessage('INVALID_PAGE_LIMIT').code });
     return res.json(response);
   }
 
@@ -149,24 +142,17 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
 export const getBusinesses = async (req: Request, res: Response) => {
   const { page, limit, include } = req.query;
 
-  // Check if pagination parameters are provided
+  // Pagination
   if (!page || !limit) {
-    const response: ApiResponse<null> = createApiResponse({
-      error: 'Pagination parameters (page and limit) are required.',
-      status: 400,
-    });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_PAGE_LIMIT').message, status: getMessage('MISSING_PAGE_LIMIT').code });
     return res.json(response);
   }
 
   const pageNumber = parseInt(page as string, 10);
   const limitNumber = parseInt(limit as string, 10);
 
-  // Validate the page and limit values
   if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
-    const response: ApiResponse<null> = createApiResponse({
-      error: 'Invalid pagination parameters. Both page and limit should be positive integers.',
-      status: 400,
-    });
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_PAGE_LIMIT').message, status: getMessage('INVALID_PAGE_LIMIT').code });
     return res.json(response);
   }
 

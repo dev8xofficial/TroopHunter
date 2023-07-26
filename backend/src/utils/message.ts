@@ -183,6 +183,14 @@ const messages: Record<string, Message> = {
     code: 400,
     message: 'Failed to update queue. Missing required field: status.',
   },
+  MISSING_PAGE_LIMIT: {
+    code: 400,
+    message: 'Pagination parameters (page and limit) are required.',
+  },
+  MISSING_LIMIT: {
+    code: 400,
+    message: 'Failed to update queue. Missing required field: status.',
+  },
 
   // Error messages
   INVALID_INCLUDE_PARAMETER: {
@@ -196,6 +204,10 @@ const messages: Record<string, Message> = {
   INVALID_PASSWORD: {
     code: 400,
     message: 'Invalid password. Password should be at least 8 characters long and contain letters, numbers, and special characters.',
+  },
+  INVALID_PAGE_LIMIT: {
+    code: 400,
+    message: 'Invalid pagination parameters. Both page and limit should be positive integers.',
   },
   DUPLICATE_USER: {
     code: 409,
