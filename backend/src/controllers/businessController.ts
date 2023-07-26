@@ -29,8 +29,32 @@ import { getMessage } from '../utils/message';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinessesByQuery = async (req: Request, res: Response) => {
-  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, includes } = req.query;
+  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, include } = req.query;
 
+  // Check if pagination parameters are provided
+  if (!page || !limit) {
+    const response: ApiResponse<null> = createApiResponse({
+      error: 'Pagination parameters (page and limit) are required.',
+      status: 400,
+    });
+    return res.json(response);
+  }
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  // Validate the page and limit values
+  if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
+    const response: ApiResponse<null> = createApiResponse({
+      error: 'Invalid pagination parameters. Both page and limit should be positive integers.',
+      status: 400,
+    });
+    return res.json(response);
+  }
+
+  const offset = (pageNumber - 1) * limitNumber;
+
+  // Where clause
   const whereClause: { [key: string]: any } = {};
 
   if (name) {
@@ -98,24 +122,12 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
     whereClause.closingHourId = closingHourId;
   }
 
-  const paginationOptions: { [key: string]: number } = {};
-
-  const pageNumber = parseInt(page as string, 10);
-  const limitNumber = parseInt(limit as string, 10);
-
-  if (!isNaN(pageNumber) && pageNumber > 0) {
-    paginationOptions.offset = (pageNumber - 1) * limitNumber;
-  }
-
-  if (!isNaN(limitNumber) && limitNumber > 0) {
-    paginationOptions.limit = limitNumber;
-  }
-
   try {
     const { count, rows: businesses } = await Business.findAndCountAll({
       where: whereClause,
-      include: includes,
-      ...paginationOptions,
+      include: include,
+      offset,
+      limit: limitNumber,
     });
 
     const totalPages = Math.ceil(count / limitNumber);
@@ -135,19 +147,54 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
 };
 
 export const getBusinesses = async (req: Request, res: Response) => {
+  const { page, limit, include } = req.query;
+
+  // Check if pagination parameters are provided
+  if (!page || !limit) {
+    const response: ApiResponse<null> = createApiResponse({
+      error: 'Pagination parameters (page and limit) are required.',
+      status: 400,
+    });
+    return res.json(response);
+  }
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  // Validate the page and limit values
+  if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
+    const response: ApiResponse<null> = createApiResponse({
+      error: 'Invalid pagination parameters. Both page and limit should be positive integers.',
+      status: 400,
+    });
+    return res.json(response);
+  }
+
+  const offset = (pageNumber - 1) * limitNumber;
+
   try {
-    const businesses = await Business.findAll();
+    const { count, rows: businesses } = await Business.findAndCountAll({
+      include,
+      offset,
+      limit: limitNumber,
+    });
+
+    const totalPages = Math.ceil(count / limitNumber);
+
     const objectOfBusinesses: { [key: string]: Business } = {};
     businesses.forEach((business: Business) => {
       if (business.id) objectOfBusinesses[business.id] = business;
     });
 
     logger.info('Successfully retrieved businesses');
-    const response: ApiResponse<{ businesses: { [key: string]: Business } }> = createApiResponse({ success: true, data: { businesses: objectOfBusinesses }, message: getMessage('BUSINESSES_RETRIEVED').message, status: getMessage('BUSINESSES_RETRIEVED').code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; businesses: { [key: string]: Business } }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businesses: objectOfBusinesses }, message: getMessage('BUSINESSES_RETRIEVED').message, status: getMessage('BUSINESSES_RETRIEVED').code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving businesses:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_RETRIEVE_BUSINESSES').message, status: getMessage('FAILED_TO_RETRIEVE_BUSINESSES').code });
+    const response: ApiResponse<null> = createApiResponse({
+      error: getMessage('FAILED_TO_RETRIEVE_BUSINESSES').message,
+      status: getMessage('FAILED_TO_RETRIEVE_BUSINESSES').code,
+    });
     res.json(response);
   }
 };

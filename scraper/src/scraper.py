@@ -185,7 +185,7 @@ class BusinessScraper:
                 self.logger.warning("Failed to find the business phone on the feed.")
 
             try:
-                does_business_exist = check_business_existence(name=getattr(current_business_feed_heading, "text", None), category=getattr(current_business_feed_category, "text", None), address=getattr(current_business_feed_address, "text", None), phone=get_cleaned_phone(getattr(current_business_feed_phone, "text", None)), includes=["BusinessPhone"])
+                does_business_exist = check_business_existence(name=getattr(current_business_feed_heading, "text", None), category=getattr(current_business_feed_category, "text", None), address=getattr(current_business_feed_address, "text", None), phone=get_cleaned_phone(getattr(current_business_feed_phone, "text", None)), include=["BusinessPhone"])
                 self.logger.info(f"The business named '{getattr(current_business_feed_heading, 'text', None)}' exists?: {does_business_exist}")
             except Exception as e:
                 self.logger.exception("An error occurred while checking business existence: %s", e)

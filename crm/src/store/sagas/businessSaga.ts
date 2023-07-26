@@ -16,7 +16,7 @@ function* fetchBusinessesSaga({ payload }: any): any {
       phone,
       email,
       website,
-      includes: ['BusinessPhone'],
+      include: ['BusinessPhone'],
     };
 
     // Check if sponsoredAd is not an empty string or 'false', then include it in the params object

@@ -4,7 +4,7 @@ import requests
 import logging
 
 
-def check_business_existence(name: str = None, category: str = None, address: str = None, phone: str = None, includes: list[str] = []):
+def check_business_existence(name: str = None, category: str = None, address: str = None, phone: str = None, include: list[str] = []):
     try:
         # Define the endpoint URL
         backend_url = os.environ.get("BACKEND_URL")
@@ -19,7 +19,7 @@ def check_business_existence(name: str = None, category: str = None, address: st
         # Set the request parameters
         params = {
             "name": name,
-            "includes": includes,
+            "include": include,
         }
 
         # Send the GET request to the endpoint
