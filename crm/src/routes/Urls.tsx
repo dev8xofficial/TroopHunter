@@ -3,7 +3,9 @@ import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
 import Lists from '../pages/Lists';
 import Settings from '../pages/Settings';
+import PageNotFound from '../pages/PageNotFound';
 
+export const PAGENOTFOUND_URL = '*'; // Wildcard route for PageNotFound
 export const HOME_URL = '/';
 export const LOGIN_URL = '/signin';
 export const SIGNUP_URL = '/signup';
@@ -16,4 +18,5 @@ export const URLS = [
   { path: HOME_URL, isPublic: false, component: Home },
   { path: LISTS_URL, isPublic: false, component: Lists },
   { path: SETTINGS_URL, isPublic: false, component: Settings },
+  { path: PAGENOTFOUND_URL, isPublic: true, component: PageNotFound }, // Add PageNotFound route
 ];
