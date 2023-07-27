@@ -5,4 +5,5 @@ export interface ICheckboxProps extends React.InputHTMLAttributes<HTMLInputEleme
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   checked?: boolean;
   defaultChecked?: boolean;
+  className?: string;
 }
