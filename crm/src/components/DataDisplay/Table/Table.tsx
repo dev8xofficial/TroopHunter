@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import moment from 'moment';
 import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import Avatar from '../Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
 import { ILead } from '../../../types/lead';
 import { IUser } from '../../../types/user';
-import { deleteLeadsAction, setSelectedLeadIds } from '../../../store/actions/listsPageActions';
-import moment from 'moment';
-import { IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
-import { toast } from 'react-toastify';
 import { IFilterAttributes } from '../../../store/reducers/leadPageReducer';
 import { setLeadFiltersAction } from '../../../store/actions/leadPageActions';
+import { deleteLeadsAction, setSelectedLeadIds } from '../../../store/actions/listsPageActions';
+import { IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
+import CryptoJS from 'crypto-js';
 
 // Create a custom type to define valid filter keys
 type ValidFilterKeys = keyof Omit<ILead, 'userId' | 'title' | 'id' | 'categoryId' | 'postalCodeId' | 'ratingId' | 'reviews' | 'timezoneId' | 'openingHourId' | 'closingHourId'>;
+// Get the encryption key from the environment variable
+const encryptionKey = process.env.ENCRYPTION_KEY ? process.env.ENCRYPTION_KEY : 'AgE34bNmLB9wOThIJ2WR79/cmtMdjqCbpk61w/ucZnviE1Te0IY7c1e2G5qi42h+';
 
 const Table: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -23,14 +26,19 @@ const Table: React.FC = (): JSX.Element => {
   const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.lead.leadFilters);
   const userId: string = useSelector((state: any) => state.auth.userId);
   const user: IUser = useSelector((state: any) => state.users.data[userId]);
+  const selectedLeadIds: string[] = useSelector((state: any) => state.lists.selectedLeadIds);
+  const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>(selectedLeadIds);
   const userLeads: ILead[] | undefined = user.Leads;
-  const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>([]);
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, leadId: string) => {
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
+    const id = e.target.id;
+    const bytes = CryptoJS.AES.decrypt(id, encryptionKey);
+    const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     if (isChecked) {
-      setLocalSelectedLeadIds((prevSelected) => [...prevSelected, leadId]);
+      setLocalSelectedLeadIds((prevSelected) => [...prevSelected, decryptedData]);
     } else {
-      setLocalSelectedLeadIds((prevSelected) => prevSelected.filter((id) => id !== leadId));
+      setLocalSelectedLeadIds((prevSelected) => prevSelected.filter((id) => id !== decryptedData));
     }
   };
 
@@ -92,13 +100,9 @@ const Table: React.FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (userLeads) {
-      const ids: string[] = localSelectedLeadIds.map((index: string) => {
-        const lead = userLeads[parseInt(index)];
-        return lead && lead.id ? lead.id : '';
-      });
-      dispatch(setSelectedLeadIds(ids));
-    }
+    if (!Array.isArray(userLeads)) return;
+
+    dispatch(setSelectedLeadIds(localSelectedLeadIds));
   }, [localSelectedLeadIds]);
 
   return (
@@ -157,19 +161,12 @@ const Table: React.FC = (): JSX.Element => {
                       <div className="relative flex w-full items-start">
                         <span className="sr-only">Select</span>
                         <div className="flex h-6 items-center">
-                          <input
-                            type="checkbox"
-                            id={`select-${index}`} // Use index as the unique identifier
-                            name={`select-${index}`} // Use index as the unique identifier
-                            checked={localSelectedLeadIds.includes(index.toString())} // Convert index to string and check if it exists in localSelectedLeadIds
-                            onChange={(e) => handleCheckboxChange(e, index.toString())}
-                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                          />
+                          <input type="checkbox" id={CryptoJS.AES.encrypt(JSON.stringify(lead.id), encryptionKey).toString()} checked={localSelectedLeadIds.includes(lead.id)} onChange={handleCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                         </div>
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm">
-                      <div className="font-medium text-gray-900">{`${user.firstName} ${user.lastName}`}</div>
+                      <div className="font-medium text-gray-900">{`${lead.title}`}</div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
                       {/* This tells how many businesses are in this lead. */}
