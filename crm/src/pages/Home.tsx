@@ -32,8 +32,10 @@ const Lead = () => {
   const [debouncedFilters, setDebouncedFilters] = useState<IFilterAttributes[]>(leadFilters);
   const [filtersPanelWidth, setFiltersPanelWidth] = useState<boolean>(true);
   let [isOpenSaveSearchModal, setIsOpenSaveSearchModal] = useState(false);
-  const prevLeadFilters = usePrevious(leadFilters);
   let [isOpen, setIsOpen] = useState(false);
+  const mainRef = useRef<HTMLDivElement>(null);
+  const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
+  const prevLeadFilters = usePrevious(leadFilters);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const name = event.target.name;
@@ -59,14 +61,6 @@ const Lead = () => {
     dispatch(fetchBusinessesAction(requestData));
   };
 
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
   useEffect(() => {
     // Set a timeout to update the debouncedFilters after 500ms
     const delay = 500;
@@ -85,9 +79,6 @@ const Lead = () => {
       loadMoreBusinesses({ leadPage, leadPageLimit });
     }
   }, [debouncedFilters]);
-
-  const mainRef = useRef<HTMLDivElement>(null);
-  const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     const resizeHandler = () => {
@@ -143,7 +134,7 @@ const Lead = () => {
                 </div>
                 {/* Mobile advanced search filters */}
                 <div className="xl:hidden">
-                  <IconButton className="xl:hidden" variant="outlined" color="red" ringOffset="white" onClick={openModal}>
+                  <IconButton className="xl:hidden" variant="outlined" color="red" ringOffset="white" onClick={() => setIsOpen(true)}>
                     <>
                       <AdjustmentsVerticalIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
                       <AdjustmentsVerticalIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
@@ -151,7 +142,7 @@ const Lead = () => {
                   </IconButton>
 
                   <Transition appear show={isOpen} as={Fragment}>
-                    <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                    <Dialog as="div" className="relative z-10" onClose={() => setIsOpen(false)}>
                       <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                         <div className="fixed inset-0 bg-black bg-opacity-25" />
                       </Transition.Child>
@@ -171,7 +162,7 @@ const Lead = () => {
                                     <button type="button" className="ml-3 inline-flex items-center rounded bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                       Search
                                     </button>
-                                    <button onClick={closeModal} type="button" className="rounded-full p-2 shadow-sm hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    <button onClick={() => setIsOpen(false)} type="button" className="rounded-full p-2 shadow-sm hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                       <XMarkIcon className="h-5 w-5" aria-hidden="true" />
                                     </button>
                                   </div>
@@ -372,13 +363,13 @@ const Lead = () => {
         {/* Filters Body */}
         <div className="mb-3 justify-between divide-x pb-20 xl:mb-0 xl:flex">
           {/* Filters Menu */}
-          <div className={classNames(filtersPanelWidth && 'xl:max-w-lg 2xl:max-w-xl', 'relative hidden w-full max-w-sm overflow-y-scroll bg-white xl:block', 'transition-all duration-500 ease-in-out')} ref={mainRef} style={{ height: mainHeight }}>
+          <div className={classNames(filtersPanelWidth && 'xl:max-w-lg 2xl:max-w-xl', 'relative hidden w-full max-w-sm bg-white xl:block', 'transition-all duration-500 ease-in-out')}>
             <div className="flex w-full items-center justify-between border-b bg-white px-4 py-4 text-sm shadow">
               <label htmlFor="selectAll" className="leading-6 text-gray-900">
                 0 filters applied
               </label>
             </div>
-            <div className="hidden p-4 xl:col-span-4 xl:block">
+            <div className="mb-2 hidden overflow-y-scroll p-4 pb-24 xl:col-span-4 xl:block" ref={mainRef} style={{ height: mainHeight }}>
               <div>
                 <ul role="list" className="divide-y rounded border bg-gray-100 shadow">
                   {leadFilters.map((filter) =>
@@ -394,7 +385,7 @@ const Lead = () => {
               </div>
             </div>
             {/* Action buttons */}
-            <div className="absolute bottom-0 w-full flex-shrink-0 border-t border-gray-200 px-4 py-5 sm:px-6">
+            <div className={classNames(filtersPanelWidth && 'xl:max-w-lg 2xl:max-w-xl', 'fixed bottom-0 w-full flex-shrink-0 border-t border-gray-200 bg-white px-4 py-5 sm:px-6')}>
               <div className="flex items-center justify-between">
                 <Button variant="outlined" color="red">
                   Delete
