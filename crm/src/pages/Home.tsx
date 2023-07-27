@@ -159,7 +159,7 @@ const Lead = () => {
                       <div className="fixed inset-0 overflow-y-auto">
                         <div className="flex min-h-full items-center justify-center p-4 text-center">
                           <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
-                            <Dialog.Panel className="w-full max-w-5xl transform divide-y overflow-hidden rounded-md bg-white text-left align-middle shadow-xl transition-all">
+                            <Dialog.Panel className="w-full max-w-5xl transform divide-y overflow-hidden rounded bg-white text-left align-middle shadow-xl transition-all">
                               <Dialog.Title as="h3" className="px-6 py-4 text-lg font-medium leading-6 text-indigo-600">
                                 <div className="flex items-center justify-between">
                                   <AdjustmentsVerticalIcon className="mr-3 h-5 w-5" aria-hidden="true" />
@@ -168,7 +168,7 @@ const Lead = () => {
                                   </div>
                                   <div className="flex items-center space-x-3 md:ml-4">
                                     <p className="hidden text-sm sm:block">0 results</p>
-                                    <button type="button" className="ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    <button type="button" className="ml-3 inline-flex items-center rounded bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                       Search
                                     </button>
                                     <button onClick={closeModal} type="button" className="rounded-full p-2 shadow-sm hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
@@ -179,7 +179,7 @@ const Lead = () => {
                               </Dialog.Title>
                               <div className="p-6">
                                 <h3>Top Filters</h3>
-                                <div className="mr-6 mt-6 border shadow sm:rounded-md">
+                                <div className="mr-6 mt-6 border shadow sm:rounded">
                                   <ul role="list" className="grid grid-cols-1 divide-x divide-y md:grid-cols-2">
                                     <li>
                                       <Disclosure as="div">
@@ -191,9 +191,9 @@ const Lead = () => {
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
                                                     <span className="sr-only">Remove</span>
                                                     <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
@@ -203,7 +203,7 @@ const Lead = () => {
                                                 </span>
                                               </div>
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
@@ -220,9 +220,9 @@ const Lead = () => {
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
                                                     <span className="sr-only">Remove</span>
                                                     <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
@@ -232,7 +232,7 @@ const Lead = () => {
                                                 </span>
                                               </div>
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
@@ -249,9 +249,9 @@ const Lead = () => {
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
                                                     <span className="sr-only">Remove</span>
                                                     <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
@@ -261,7 +261,7 @@ const Lead = () => {
                                                 </span>
                                               </div>
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
@@ -278,9 +278,9 @@ const Lead = () => {
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
                                                     <span className="sr-only">Remove</span>
                                                     <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
@@ -290,7 +290,7 @@ const Lead = () => {
                                                 </span>
                                               </div>
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
@@ -307,9 +307,9 @@ const Lead = () => {
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
                                                     <span className="sr-only">Remove</span>
                                                     <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
@@ -319,7 +319,7 @@ const Lead = () => {
                                                 </span>
                                               </div>
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
@@ -336,9 +336,9 @@ const Lead = () => {
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
                                                     <span className="sr-only">Remove</span>
                                                     <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
@@ -348,7 +348,7 @@ const Lead = () => {
                                                 </span>
                                               </div>
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
@@ -380,7 +380,7 @@ const Lead = () => {
             </div>
             <div className="hidden p-4 xl:col-span-4 xl:block">
               <div>
-                <ul role="list" className="divide-y rounded-sm border bg-gray-100 shadow">
+                <ul role="list" className="divide-y rounded border bg-gray-100 shadow">
                   {leadFilters.map((filter) =>
                     filter.name !== 'name' ? (
                       <li key={filter.name}>

@@ -105,7 +105,7 @@ const Table: React.FC = (): JSX.Element => {
     <>
       <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Empty State */}
-        <div className="col-span-12 hidden flex-col items-center justify-center rounded-md border py-20 shadow xl:col-span-8">
+        <div className="col-span-12 hidden flex-col items-center justify-center rounded-sm border py-20 shadow xl:col-span-8">
           <MagnifyingGlassCircleIcon className="-ml-0.5 h-20 w-20 text-indigo-600" aria-hidden="true" />
           <div className="text-center">
             <h3 className="mt-2 text-sm font-semibold text-gray-900">No results</h3>
@@ -114,7 +114,7 @@ const Table: React.FC = (): JSX.Element => {
         </div>
 
         {/* Table */}
-        <div className="overflow-auto rounded-md border shadow sm:mx-0">
+        <div className="overflow-auto rounded-sm border shadow sm:mx-0">
           <table className="min-w-full divide-y divide-gray-300">
             <thead>
               <tr>

@@ -93,7 +93,7 @@ a {
 /* BUTTON */
 
 .btn {
-  @apply relative inline-block h-auto min-h-0 rounded-md text-center text-sm font-medium transition duration-200;
+  @apply relative inline-block h-auto min-h-0 rounded text-center text-sm font-medium transition duration-200;
 }
 
 .btn:disabled {
@@ -184,7 +184,7 @@ a {
 /* variant outlined */
 
 .btn.btn-outlined.btn-indigo {
-  @apply border-indigo-700 text-indigo-600;
+  @apply border-indigo-600 text-indigo-600;
 }
 
 .btn.btn-outlined.btn-indigo:focus {
@@ -197,6 +197,14 @@ a {
 
 .btn.btn-outlined.btn-red:focus {
   @apply ring-red-600 focus:bg-red-50;
+}
+
+.btn.btn-outlined.btn-gray {
+  @apply border-gray-600 text-gray-600;
+}
+
+.btn.btn-outlined.btn-gray:focus {
+  @apply ring-gray-600 focus:bg-gray-50;
 }
 
 /* variant outlined */
@@ -215,6 +223,14 @@ a {
 
 .icon-btn.icon-btn-outlined.icon-btn-red:focus {
   @apply ring-red-600;
+}
+
+.icon-btn.icon-btn-outlined.icon-btn-gray {
+  @apply border-gray-600 text-gray-600;
+}
+
+.icon-btn.icon-btn-outlined.icon-btn-gray:focus {
+  @apply ring-gray-600;
 }
 
 /* dark state */

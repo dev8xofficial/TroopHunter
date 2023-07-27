@@ -10,11 +10,12 @@ const colorClasses = {
   primary: 'btn-primary',
   indigo: 'btn-indigo',
   red: 'btn-red',
+  gray: 'btn-gray',
 };
 
-const Button: React.FC<IButtonProps> = ({ rounded, type = 'button', className, children, loading, variant = 'contained', color, disabled, onClick, style }: IButtonProps): JSX.Element => {
+const Button: React.FC<IButtonProps> = ({ ref, rounded, type = 'button', className, children, loading, variant = 'contained', color, disabled, onClick, style }: IButtonProps): JSX.Element => {
   return (
-    <button type={type} className={`btn${rounded ? ' btn-rounded' : ''} ${variantClasses[variant as keyof typeof variantClasses]} ${colorClasses[color as keyof typeof colorClasses]} ${className ? className : ''}`} disabled={disabled || loading} onClick={onClick} style={style}>
+    <button ref={ref} type={type} className={`btn${rounded ? ' btn-rounded' : ''} ${variantClasses[variant as keyof typeof variantClasses]} ${colorClasses[color as keyof typeof colorClasses]} ${className ? className : ''}`} disabled={disabled || loading} onClick={onClick} style={style}>
       {loading ? (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform" id="button-loader">
           <svg className={`h-5 w-5 animate-spin text-${colorClasses[color as keyof typeof colorClasses]}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

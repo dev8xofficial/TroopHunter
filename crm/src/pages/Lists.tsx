@@ -17,7 +17,7 @@ const Lists = () => {
                 <button type="button" className="px-3.5 py-2.5 text-sm capitalize hover:text-indigo-600">
                   saved searches
                 </button>
-                <span className="absolute -right-4 top-0 rounded-md bg-red-600 px-1 text-xs">66+</span>
+                <span className="absolute -right-4 top-0 rounded bg-red-600 px-1 text-xs">66+</span>
               </span>
             </div>
           </div>

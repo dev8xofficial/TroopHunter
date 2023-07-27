@@ -58,7 +58,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                   <div>
                     <div className="ml-20 flex items-baseline space-x-4">
                       {updatedNavigation.map((item) => (
-                        <Link key={item.name} to={item.href} className={classNames(item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium')} aria-current={item.current ? 'page' : undefined}>
+                        <Link key={item.name} to={item.href} className={classNames(item.current ? 'text-white' : 'text-gray-400 hover:text-white', 'px-3 py-2 text-sm font-medium')} aria-current={item.current ? 'page' : undefined}>
                           {item.name}
                         </Link>
                       ))}
@@ -86,7 +86,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
         <BottomNavigation />
 
         {/* Content */}
-        <main className="flex flex-col overflow-y-auto">{children}</main>
+        <main className="flex flex-col">{children}</main>
       </div>
     </>
   );

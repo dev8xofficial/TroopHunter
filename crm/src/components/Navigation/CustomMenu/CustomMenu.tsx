@@ -14,7 +14,7 @@ const CustomMenu: React.FC<ICustomMenuProps> = ({ children }: ICustomMenuProps):
         <div>{children}</div>
 
         <Transition as={Fragment} enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale-100" leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95">
-          <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="relative flex items-center justify-center px-4 py-3">
               <p className="text-sm">Save to a list</p>
               <button type="button" className="absolute right-2 rounded-full p-1 hover:bg-indigo-600 hover:text-white">
