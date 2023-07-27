@@ -9,9 +9,8 @@ import { fetchBusinessesAction } from '../store/actions/businessActions';
 import CustomTextField from '../components/Inputs/CustomTextField/CustomTextField';
 import Accordion from '../components/Surfaces/Accordion/Accordion';
 import TableLead from '../components/DataDisplay/Table/TableLead';
-import { setLeadFiltersAction } from '../store/actions/leadPageActions';
+import { setLeadFiltersAction, setLeadPageAction } from '../store/actions/leadPageActions';
 import { IFilterAttributes } from '../store/reducers/leadPageReducer';
-import usePrevious from '../hooks/usePrevious';
 import Button from '../components/Inputs/Button/Button';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import LeadDialog from '../components/Feedback/LeadDialog/LeadDialog';
@@ -35,11 +34,14 @@ const Lead = () => {
   let [isOpen, setIsOpen] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
   const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
-  const prevLeadFilters = usePrevious(leadFilters);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const name = event.target.name;
     const newValue = event.target.value;
+
+    if (name === 'name' && leadPage !== 1) {
+      dispatch(setLeadPageAction(1));
+    }
 
     dispatch(setLeadFiltersAction(leadFilters.map((filter) => (filter.name === name ? { ...filter, value: newValue } : filter))));
   };
@@ -54,8 +56,6 @@ const Lead = () => {
       token: auth.token,
       page: leadPage,
       limit: leadPageLimit,
-      prevLeadFilters,
-      filtersObject,
       ...filtersObject,
     };
     dispatch(fetchBusinessesAction(requestData));

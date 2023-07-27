@@ -8,7 +8,7 @@ import { IBusiness } from '../../types/business';
 
 function* fetchBusinessesSaga({ payload }: any): any {
   try {
-    const { name, businessDomain, address, location, phone, email, website, sponsoredAd, token, page, limit, prevLeadFilters, filtersObject } = payload;
+    const { name, businessDomain, address, location, phone, email, website, sponsoredAd, token, page, limit } = payload;
     const params = { name, businessDomain, address, phone, email, website, page, limit, include: ['BusinessPhone'] };
 
     // Check if sponsoredAd is not an empty string or 'false', then include it in the params object
@@ -28,9 +28,8 @@ function* fetchBusinessesSaga({ payload }: any): any {
 
     const response = yield getBusinessesBySearchService(params, token);
 
-    // Check if the response contains the 'success' property
     if (response.success) {
-      if (JSON.stringify(prevLeadFilters) !== JSON.stringify(payload.leadFilters)) {
+      if (page === 1) {
         const data = response.data;
         yield put(fetchBusinessesSuccessAction({ data }));
         yield put(setLeadFilterLoadingSuccessAction());
