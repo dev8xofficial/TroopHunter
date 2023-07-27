@@ -9,10 +9,10 @@ function* createLeadSaga({ payload }: any): any {
     const response = yield createLeadService({ userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, openingHourId, closingHourId }, token);
 
     if (response.success) {
-      toast.success('Successfully create lead.');
+      toast.success(response.message);
       yield put(fetchUserAction({ token, userId })); // Assuming fetchUserAction is another saga to fetch user data after creating a lead.
     } else {
-      toast.error(`Failed to create lead: ${title}`);
+      toast.error(response.error);
     }
   } catch (error) {
     toast.error(error.message);
