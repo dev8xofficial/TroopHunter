@@ -12,7 +12,7 @@ import { IFilterAttributes } from '../../../store/reducers/leadPageReducer';
 import { createLeadAction } from '../../../store/actions/leadActions';
 import { toast } from 'react-toastify';
 
-const LeadDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal, submit }: CustomDialogAttributes): JSX.Element => {
+const LeadDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: CustomDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
   const auth = useSelector((state: any) => state.auth);
   const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.lead.leadFilters);
@@ -33,26 +33,26 @@ const LeadDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal, subm
     initialValues: initialValues,
     enableReinitialize: true,
     validationSchema: formikSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       const { title } = values;
-      if (submit) {
-        if (leadFilters.length > 0 && leadFilters.some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {
-          const filtersObject: Record<string, string> = {};
-          for (const filter of leadFilters) {
-            filtersObject[filter.name] = filter.value;
-          }
-
-          const requestData = {
-            token: auth.token,
-            userId: auth.userId,
-            title, // Spread the properties of 'title' object into 'requestData'
-            search: filtersObject.name,
-            ...filtersObject, // Spread the properties of 'filtersObject' object into 'requestData'
-          };
-          dispatch(createLeadAction(requestData));
-        } else {
-          toast.info('You have searched nothing.');
+      if (leadFilters.length > 0 && leadFilters.some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {
+        const filtersObject: Record<string, string> = {};
+        for (const filter of leadFilters) {
+          filtersObject[filter.name] = filter.value;
         }
+
+        const requestData = {
+          token: auth.token,
+          userId: auth.userId,
+          title, // Spread the properties of 'title' object into 'requestData'
+          search: filtersObject.name,
+          ...filtersObject, // Spread the properties of 'filtersObject' object into 'requestData'
+        };
+        dispatch(createLeadAction(requestData));
+        resetForm();
+        closeModal();
+      } else {
+        toast.info('You have searched nothing.');
       }
     },
   });
