@@ -1,23 +1,15 @@
-import axios from 'axios';
 import { toast } from 'react-toastify';
-import { takeLatest, put } from 'redux-saga/effects';
+import { takeLatest, put, select } from 'redux-saga/effects';
 import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction } from '../actions/businessActions';
 import { getBusinessesBySearchService } from '../../services/businessService';
 import { getLocationsBySearchService } from '../../services/locationService';
 import { setLeadFilterLoadingFailureAction, setLeadFilterLoadingSuccessAction } from '../actions/leadPageActions';
+import { IBusiness } from '../../types/business';
 
 function* fetchBusinessesSaga({ payload }: any): any {
   try {
-    const { name, businessDomain, address, location, phone, email, website, sponsoredAd, token } = payload;
-    const params = {
-      name,
-      businessDomain,
-      address,
-      phone,
-      email,
-      website,
-      include: ['BusinessPhone'],
-    };
+    const { name, businessDomain, address, location, phone, email, website, sponsoredAd, token, page, limit, prevLeadFilters, filtersObject } = payload;
+    const params = { name, businessDomain, address, phone, email, website, page, limit, include: ['BusinessPhone'] };
 
     // Check if sponsoredAd is not an empty string or 'false', then include it in the params object
     if (sponsoredAd !== 'false') {
@@ -38,8 +30,19 @@ function* fetchBusinessesSaga({ payload }: any): any {
 
     // Check if the response contains the 'success' property
     if (response.success) {
-      yield put(fetchBusinessesSuccessAction({ data: response.data }));
-      yield put(setLeadFilterLoadingSuccessAction());
+      if (JSON.stringify(prevLeadFilters) !== JSON.stringify(payload.leadFilters)) {
+        const data = response.data;
+        yield put(fetchBusinessesSuccessAction({ data }));
+        yield put(setLeadFilterLoadingSuccessAction());
+      } else {
+        const currentBusinesses: { [key: string]: IBusiness } = yield select((state) => state.businesses.data.businesses);
+        const totalRecords = response.data.totalRecords;
+        const totalPages = response.data.totalPages;
+        const mergedBusinesses = { ...currentBusinesses, ...response.data.businesses };
+
+        yield put(fetchBusinessesSuccessAction({ data: { totalRecords, totalPages, businesses: mergedBusinesses } }));
+        yield put(setLeadFilterLoadingSuccessAction());
+      }
     } else {
       toast.error(response.error);
       yield put(fetchBusinessesFailureAction(response.error));

@@ -1,5 +1,5 @@
 import { PayloadAction, createReducer } from '@reduxjs/toolkit';
-import { setLeadFiltersAction, setLeadFilterLoadingSuccessAction, setLeadFilterLoadingFailureAction } from '../actions/leadPageActions';
+import { setLeadFiltersAction, setLeadFilterLoadingSuccessAction, setLeadFilterLoadingFailureAction, setLeadPageAction, setLeadPageLimitAction } from '../actions/leadPageActions';
 
 export interface IFilterAttributes {
   label: string;
@@ -10,6 +10,8 @@ export interface IFilterAttributes {
 
 export interface LeadPageState {
   leadFilters: IFilterAttributes[];
+  leadPage: number;
+  leadPageLimit: number;
   isLoading: boolean;
 }
 
@@ -24,6 +26,8 @@ const initialState: LeadPageState = {
     { label: 'Website', name: 'website', value: '' },
     { label: 'Sponsored', name: 'sponsoredAd', value: 'false' },
   ],
+  leadPage: 1,
+  leadPageLimit: 10,
   isLoading: false,
 };
 
@@ -39,6 +43,12 @@ const leadPageReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setLeadFilterLoadingFailureAction, (state) => {
       state.isLoading = false; // Set isLoading to false when businesses fetching fails
+    })
+    .addCase(setLeadPageAction, (state, action: PayloadAction<number>) => {
+      state.leadPage = action.payload; // Set isLoading to false when businesses are successfully fetched
+    })
+    .addCase(setLeadPageLimitAction, (state, action: PayloadAction<number>) => {
+      state.leadPageLimit = action.payload; // Set isLoading to false when businesses fetching fails
     });
 });
 

@@ -15,7 +15,7 @@ const initialState: BusinessState = {
 const businessReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchBusinessesSuccessAction, (state, action) => {
-      state.data = { ...state.data, ...action.payload.data };
+      state.data = action.payload.data;
       state.error = null;
     })
     .addCase(fetchBusinessesFailureAction, (state, action) => {

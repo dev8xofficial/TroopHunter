@@ -6,6 +6,14 @@
   font-family: 'Noto Sans JP', sans-serif;
 }
 
+html {
+  overflow: hidden;
+}
+
+a {
+  @apply cursor-pointer;
+}
+
 /***************** AVATAR *******************/
 
 .avatar-x-small {
@@ -22,6 +30,24 @@
 
 .avatar-x-large {
   @apply h-20 w-20 text-3xl md:h-24 md:w-24 md:text-4xl xl:h-28 xl:w-28 xl:text-5xl;
+}
+
+/***************** TABLE ROW ANIMATION *******************/
+
+.group .group-invisible {
+  @apply invisible;
+}
+
+.group .group-bg-gray-100 {
+  @apply bg-black;
+}
+
+.group .group-hidden {
+  @apply hidden;
+}
+
+.group .group-block {
+  @apply block;
 }
 
 /***************** BUTTON *******************/
