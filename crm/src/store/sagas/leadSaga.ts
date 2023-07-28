@@ -1,10 +1,11 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import { createLeadService, updateLeadService, deleteLeadService } from '../../services/leadServices';
+import { createLeadService, updateLeadService, deleteLeadService, deleteLeadsService } from '../../services/leadServices';
 import { fetchUserAction, updateUserLocallyAction } from '../actions/userActions';
 import { resetLeadFiltersAction, setDraftLeadIdAction } from '../actions/leadPageActions';
 import { IUser } from '../../types/user';
 import { ILead } from '../../types/lead';
+import { deleteLeadsFailureAction, deleteLeadsSuccessAction } from '../actions/leadActions';
 
 function* createLeadSaga({ payload }: any): any {
   try {
@@ -64,6 +65,31 @@ function* deleteLeadSaga({ payload }: any): any {
   }
 }
 
+function* deleteLeadsSaga({ payload }: any): any {
+  try {
+    let { user } = payload as { user: IUser };
+    const { selectedLeadIds, token } = payload;
+    const response = yield deleteLeadsService({ ids: selectedLeadIds }, token);
+
+    if (response.success) {
+      // Create a new object with the updated Leads array
+      const updatedUser: IUser = {
+        ...user,
+        Leads: user.Leads.filter((lead: ILead) => !selectedLeadIds.includes(lead.id)),
+      };
+
+      yield put(updateUserLocallyAction(updatedUser));
+      yield put(deleteLeadsSuccessAction(response.data));
+    } else {
+      toast.error(response.error);
+      yield put(deleteLeadsFailureAction(response.message));
+    }
+  } catch (error) {
+    toast.error(error.message);
+    yield put(deleteLeadsFailureAction(error.message));
+  }
+}
+
 export function* watchCreateLeadSaga() {
   yield takeLatest('lead/createLeadAction', createLeadSaga);
 }
@@ -74,4 +100,8 @@ export function* watchUpdateLeadSaga() {
 
 export function* watchDeleteLeadSaga() {
   yield takeLatest('lead/deleteLeadAction', deleteLeadSaga);
+}
+
+export function* watchDeleteLeadsSaga() {
+  yield takeLatest('lead/deleteLeadsAction', deleteLeadsSaga);
 }

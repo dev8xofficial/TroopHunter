@@ -17,8 +17,8 @@ import { ILead } from '../../../types/lead';
 const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: CustomDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
   const auth = useSelector((state: any) => state.auth);
-  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.lead.leadFilters);
-  const draftLeadId: string = useSelector((state: any) => state.lead?.draftLeadId);
+  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.leadPage.leadFilters);
+  const draftLeadId: string = useSelector((state: any) => state.leadPage?.draftLeadId);
   const userId: string = useSelector((state: any) => state.auth.userId);
   const user: IUser = useSelector((state: any) => state.users.data[userId]);
   const draftLead = user?.Leads?.find((lead: ILead) => lead.id === draftLeadId);

@@ -2,6 +2,8 @@ import { createAction } from '@reduxjs/toolkit';
 import { ILead } from '../../types/lead';
 import { IUser } from '../../types/user';
 
+export const setSelectedLeadIds = createAction<string[]>('lead/setSelectedLeadIds');
+
 export interface ICreateLeadPayload extends ILead {
   token: string;
 }
@@ -21,3 +23,13 @@ export interface IDeleteLeadPayload {
 }
 
 export const deleteLeadAction = createAction<IDeleteLeadPayload>('lead/deleteLeadAction');
+
+interface IDeleteLeadsPayload {
+  token: string;
+  user: IUser;
+  selectedLeadIds: string[];
+}
+
+export const deleteLeadsAction = createAction<IDeleteLeadsPayload>('lead/deleteLeadsAction');
+export const deleteLeadsSuccessAction = createAction('lead/deleteLeadsSuccessAction');
+export const deleteLeadsFailureAction = createAction('lead/deleteLeadsFailureAction');

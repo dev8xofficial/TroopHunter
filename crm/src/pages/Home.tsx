@@ -24,12 +24,12 @@ function classNames(...classes: any) {
 
 const Lead = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state: any) => state.lead.isLoading);
+  const isLoading = useSelector((state: any) => state.leadPage.isLoading);
   const auth = useSelector((state: any) => state.auth);
-  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.lead.leadFilters);
-  const leadPage: number = useSelector((state: any) => state.lead.leadPage);
-  const leadPageLimit: number = useSelector((state: any) => state.lead.leadPageLimit);
-  const draftLeadId: string = useSelector((state: any) => state.lead?.draftLeadId);
+  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.leadPage.leadFilters);
+  const leadPage: number = useSelector((state: any) => state.leadPage.leadPage);
+  const leadPageLimit: number = useSelector((state: any) => state.leadPage.leadPageLimit);
+  const draftLeadId: string = useSelector((state: any) => state.leadPage?.draftLeadId);
   const [debouncedFilters, setDebouncedFilters] = useState<IFilterAttributes[]>(leadFilters);
   const [filtersPanelWidth, setFiltersPanelWidth] = useState<boolean>(true);
   let [isOpenLeadSaveDialog, setIsOpenLeadSaveDialog] = useState(false);

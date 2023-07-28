@@ -32,11 +32,11 @@ interface ITable {
 
 const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state: any) => state.lead.isLoading);
+  const isLoading = useSelector((state: any) => state.leadPage.isLoading);
   const businesses: { [key: string]: IBusiness } = useSelector((state: any) => state.businesses.data.businesses);
   const totalRecords: number | null = useSelector((state: any) => state.businesses.data.totalRecords);
-  const leadPage: number = useSelector((state: any) => state.lead.leadPage);
-  const leadPageLimit: number = useSelector((state: any) => state.lead.leadPageLimit);
+  const leadPage: number = useSelector((state: any) => state.leadPage.leadPage);
+  const leadPageLimit: number = useSelector((state: any) => state.leadPage.leadPageLimit);
 
   // State to store the calculated table height
   const [tableHeight, setTableHeight] = useState<number | undefined>(undefined);

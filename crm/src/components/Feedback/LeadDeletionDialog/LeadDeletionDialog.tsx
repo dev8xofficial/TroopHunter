@@ -2,17 +2,17 @@ import { Fragment, useRef } from 'react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react';
-import { ListsDialogAttributes } from './LeadDeletionDialog.interfaces';
+import { LeadDeletionDialogAttributes } from './LeadDeletionDialog.interfaces';
 import { useDispatch, useSelector } from 'react-redux';
-// import { deleteLeadsAction } from '../../../store/actions/listsPageActions';
+// import { deleteLeadsAction } from '../../../store/actions/leadActions';
 import { IUser } from '../../../types/user';
 import Button from '../../Inputs/Button/Button';
 import { deleteLeadAction } from '../../../store/actions/leadActions';
 
-const LeadDeletionDialog: React.FC<ListsDialogAttributes> = ({ isOpen, closeModal }: ListsDialogAttributes): JSX.Element => {
+const LeadDeletionDialog: React.FC<LeadDeletionDialogAttributes> = ({ isOpen, closeModal }: LeadDeletionDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
   const token: string = useSelector((state: any) => state.auth.token);
-  const draftLeadId: string = useSelector((state: any) => state.lead.draftLeadId);
+  const draftLeadId: string = useSelector((state: any) => state.leadPage.draftLeadId);
   const userId: string = useSelector((state: any) => state.auth.userId);
   const user: IUser = useSelector((state: any) => state.users.data[userId]);
 

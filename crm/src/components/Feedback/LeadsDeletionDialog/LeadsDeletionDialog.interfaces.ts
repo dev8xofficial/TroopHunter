@@ -1,4 +1,4 @@
-export interface ListsDialogAttributes {
+export interface LeadsDeletionDialogAttributes {
   isOpen: boolean;
   closeModal: () => void;
 }

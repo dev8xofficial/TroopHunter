@@ -3,8 +3,8 @@ import Table from '../components/DataDisplay/Table/Table';
 import Search from '../components/Inputs/Search/Search';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 
-const Lists = () => {
-  const isLoading = useSelector((state: any) => state.lead.isLoading);
+const Leads = () => {
+  const isLoading = useSelector((state: any) => state.leadPage.isLoading);
   return (
     <>
       <header>
@@ -25,7 +25,7 @@ const Lists = () => {
       </header>
 
       {/* Action tab */}
-      <ActionBar title="Lists" isLoading={isLoading} />
+      <ActionBar title="Leads" isLoading={isLoading} />
 
       {/* Content */}
       <Table />
@@ -33,4 +33,4 @@ const Lists = () => {
   );
 };
 
-export default Lists;
+export default Leads;

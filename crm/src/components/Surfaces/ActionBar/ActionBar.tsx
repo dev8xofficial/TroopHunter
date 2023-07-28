@@ -72,10 +72,10 @@ const people = [
 ];
 
 const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = false }: IActionBarProps): JSX.Element => {
-  const selectedLeadIds = useSelector((state: any) => state.lists.selectedLeadIds);
+  const selectedLeadIds = useSelector((state: any) => state.lead.selectedLeadIds);
   const userId: string = useSelector((state: any) => state.auth.userId);
   const user: IUser = useSelector((state: any) => state.users.data[userId]);
-  let [isOpenDeleteListsModal, setIsOpenDeleteListsModal] = useState(false);
+  let [isOpenDeleteLeadsModal, setIsOpenDeleteLeadsModal] = useState(false);
   return (
     <>
       {/* Action tab */}
@@ -118,7 +118,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
                     </div>
                   </>
                 )}
-                {title.toLowerCase() === 'lists' && (
+                {title.toLowerCase() === 'leads' && (
                   <>
                     <div className="flex items-center">
                       <div className="hidden -space-x-0.5 sm:flex">
@@ -135,10 +135,10 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
                         <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>{' '}
                         <div>
                           <span className="hidden xl:inline-block">
-                            <Button variant="outlined" color="red" onClick={() => setIsOpenDeleteListsModal(!isOpenDeleteListsModal)}>
+                            <Button variant="outlined" color="red" onClick={() => setIsOpenDeleteLeadsModal(!isOpenDeleteLeadsModal)}>
                               Delete
                             </Button>
-                            <LeadsDeletionDialog isOpen={isOpenDeleteListsModal} closeModal={() => setIsOpenDeleteListsModal(!isOpenDeleteListsModal)} />
+                            <LeadsDeletionDialog isOpen={isOpenDeleteLeadsModal} closeModal={() => setIsOpenDeleteLeadsModal(!isOpenDeleteLeadsModal)} />
                           </span>
                           <span className="xl:flex">
                             <IconButton className="xl:hidden" variant="contained" color="red" ringOffset="white">

@@ -1,13 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setSelectedLeadIds, deleteLeadsSuccessAction, deleteLeadsFailureAction } from '../actions/listsPageActions';
+import { setSelectedLeadIds, deleteLeadsSuccessAction, deleteLeadsFailureAction } from '../actions/leadActions';
 
-export interface ListsPageState {
+export interface LeadsPageState {
   selectedLeadIds: string[];
 }
 
-const initialState: ListsPageState = { selectedLeadIds: [] };
+const initialState: LeadsPageState = { selectedLeadIds: [] };
 
-const listsPageReducer = createReducer(initialState, (builder) => {
+const leadReducer = createReducer(initialState, (builder) => {
   builder
     // Handling local updates
     .addCase(setSelectedLeadIds, (state, action) => {
@@ -22,4 +22,4 @@ const listsPageReducer = createReducer(initialState, (builder) => {
     });
 });
 
-export default listsPageReducer;
+export default leadReducer;

@@ -6,7 +6,7 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Lists = () => {
+const Settings = () => {
   const [secondaryNavigation, setSecondaryNavigation] = useState([
     { name: 'Profile', href: '#', icon: UserCircleIcon, current: true },
     { name: 'Security', href: '#', icon: FingerPrintIcon, current: false },
@@ -151,4 +151,4 @@ const Lists = () => {
   );
 };
 
-export default Lists;
+export default Settings;

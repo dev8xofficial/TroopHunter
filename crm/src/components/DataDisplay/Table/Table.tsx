@@ -10,7 +10,7 @@ import { ILead } from '../../../types/lead';
 import { IUser } from '../../../types/user';
 import { IFilterAttributes } from '../../../store/reducers/leadPageReducer';
 import { setDraftLeadIdAction, setLeadFiltersAction } from '../../../store/actions/leadPageActions';
-import { deleteLeadsAction, setSelectedLeadIds } from '../../../store/actions/listsPageActions';
+import { deleteLeadsAction, setSelectedLeadIds } from '../../../store/actions/leadActions';
 import { IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
 import CryptoJS from 'crypto-js';
 
@@ -23,10 +23,10 @@ const Table: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token: string = useSelector((state: any) => state.auth.token);
-  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.lead.leadFilters);
+  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.leadPage.leadFilters);
   const userId: string = useSelector((state: any) => state.auth.userId);
   const user: IUser = useSelector((state: any) => state.users.data[userId]);
-  const selectedLeadIds: string[] = useSelector((state: any) => state.lists.selectedLeadIds);
+  const selectedLeadIds: string[] = useSelector((state: any) => state.lead.selectedLeadIds);
   const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>(selectedLeadIds);
   const userLeads: ILead[] | undefined = user.Leads;
 
@@ -92,7 +92,7 @@ const Table: React.FC = (): JSX.Element => {
     console.log('Deleting lead with ID:', index);
   };
 
-  const getListsItemMenuOptions = (index: number): IMenuOption[] => {
+  const getLeadsItemMenuOptions = (index: number): IMenuOption[] => {
     const options: IMenuOption[] = [
       { name: 'Edit', href: '#', onClick: () => handleEdit(index) },
       { name: 'Delete', href: '#', onClick: () => handleDelete(index) },
@@ -185,7 +185,7 @@ const Table: React.FC = (): JSX.Element => {
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">{moment(lead.updatedAt).format('YYYY-MM-DD')}</td>
                     <td className="relative flex justify-end whitespace-nowrap py-3.5 pl-3 pr-4 text-sm font-medium sm:pr-6">
-                      <_Menu options={getListsItemMenuOptions(index)} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
+                      <_Menu options={getLeadsItemMenuOptions(index)} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
                         <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
                       </_Menu>
                     </td>
