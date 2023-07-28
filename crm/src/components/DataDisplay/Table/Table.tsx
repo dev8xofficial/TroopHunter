@@ -9,7 +9,7 @@ import _Menu from '../../Navigation/Menu/Menu';
 import { ILead } from '../../../types/lead';
 import { IUser } from '../../../types/user';
 import { IFilterAttributes } from '../../../store/reducers/leadPageReducer';
-import { setLeadFiltersAction } from '../../../store/actions/leadPageActions';
+import { setDraftLeadIdAction, setLeadFiltersAction } from '../../../store/actions/leadPageActions';
 import { deleteLeadsAction, setSelectedLeadIds } from '../../../store/actions/listsPageActions';
 import { IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
 import CryptoJS from 'crypto-js';
@@ -70,6 +70,7 @@ const Table: React.FC = (): JSX.Element => {
 
       const dispatchActionPromise = new Promise<void>((resolve) => {
         dispatch(setLeadFiltersAction(updatedFilters));
+        dispatch(setDraftLeadIdAction(`${lead.id}`));
         resolve();
       });
 

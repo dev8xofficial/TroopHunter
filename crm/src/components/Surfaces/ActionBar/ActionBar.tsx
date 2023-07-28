@@ -7,7 +7,7 @@ import { IActionBarProps } from './ActionBar.interfaces';
 import Avatar from '../../DataDisplay/Avatar/Avatar';
 import { useSelector } from 'react-redux';
 import { IUser } from '../../../types/user';
-import ListsDialog from '../../Feedback/ListsDialog/ListsDialog';
+import LeadsDeletionDialog from '../../Feedback/LeadsDeletionDialog/LeadsDeletionDialog';
 import Progress from '../../Feedback/Progress/Progress';
 
 const people = [
@@ -138,7 +138,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
                             <Button variant="outlined" color="red" onClick={() => setIsOpenDeleteListsModal(!isOpenDeleteListsModal)}>
                               Delete
                             </Button>
-                            <ListsDialog isOpen={isOpenDeleteListsModal} closeModal={() => setIsOpenDeleteListsModal(!isOpenDeleteListsModal)} />
+                            <LeadsDeletionDialog isOpen={isOpenDeleteListsModal} closeModal={() => setIsOpenDeleteListsModal(!isOpenDeleteListsModal)} />
                           </span>
                           <span className="xl:flex">
                             <IconButton className="xl:hidden" variant="contained" color="red" ringOffset="white">

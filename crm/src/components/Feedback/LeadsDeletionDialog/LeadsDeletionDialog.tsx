@@ -2,13 +2,13 @@ import { Fragment, useRef } from 'react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react';
-import { ListsDialogAttributes } from './ListsDialog.interfaces';
+import { ListsDialogAttributes } from './LeadsDeletionDialog.interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteLeadsAction } from '../../../store/actions/listsPageActions';
 import { IUser } from '../../../types/user';
 import Button from '../../Inputs/Button/Button';
 
-const ListsDialog: React.FC<ListsDialogAttributes> = ({ isOpen, closeModal }: ListsDialogAttributes): JSX.Element => {
+const LeadsDeletionDialog: React.FC<ListsDialogAttributes> = ({ isOpen, closeModal }: ListsDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
   const token: string = useSelector((state: any) => state.auth.token);
   const selectedLeadIds: string[] = useSelector((state: any) => state.lists.selectedLeadIds);
@@ -80,4 +80,4 @@ const ListsDialog: React.FC<ListsDialogAttributes> = ({ isOpen, closeModal }: Li
   );
 };
 
-export default ListsDialog;
+export default LeadsDeletionDialog;

@@ -4,18 +4,24 @@ import { Form, FormikProvider, useFormik } from 'formik';
 import { AdjustmentsVerticalIcon } from '@heroicons/react/20/solid';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react';
-import { CustomDialogAttributes } from './LeadDialog.interfaces';
+import { CustomDialogAttributes } from './LeadSaveDialog.interfaces';
 import TextField from '../../Inputs/TextField/TextField';
 import Button from '../../Inputs/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { IFilterAttributes } from '../../../store/reducers/leadPageReducer';
-import { createLeadAction } from '../../../store/actions/leadActions';
+import { createLeadAction, updateLeadAction } from '../../../store/actions/leadActions';
 import { toast } from 'react-toastify';
+import { IUser } from '../../../types/user';
+import { ILead } from '../../../types/lead';
 
-const LeadDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: CustomDialogAttributes): JSX.Element => {
+const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: CustomDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
   const auth = useSelector((state: any) => state.auth);
   const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.lead.leadFilters);
+  const draftLeadId: string = useSelector((state: any) => state.lead?.draftLeadId);
+  const userId: string = useSelector((state: any) => state.auth.userId);
+  const user: IUser = useSelector((state: any) => state.users.data[userId]);
+  const draftLead = user?.Leads?.find((lead: ILead) => lead.id === draftLeadId);
 
   const formikSchema = Yup.object().shape({
     title: Yup.string().required('Kindly Enter Title For Lead Information.'),
@@ -26,7 +32,7 @@ const LeadDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: Cu
   }
 
   const initialValues: ILeadFormmValues = {
-    title: '',
+    title: draftLead?.title ? draftLead?.title : '',
   };
 
   const formik = useFormik({
@@ -42,13 +48,16 @@ const LeadDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: Cu
         }
 
         const requestData = {
+          id: draftLeadId,
           token: auth.token,
           userId: auth.userId,
-          title, // Spread the properties of 'title' object into 'requestData'
+          title,
           search: filtersObject.name,
-          ...filtersObject, // Spread the properties of 'filtersObject' object into 'requestData'
+          ...filtersObject,
         };
-        dispatch(createLeadAction(requestData));
+        if (draftLeadId) dispatch(updateLeadAction(requestData));
+        else dispatch(createLeadAction(requestData));
+
         resetForm();
         closeModal();
       } else {
@@ -106,4 +115,4 @@ const LeadDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: Cu
   );
 };
 
-export default LeadDialog;
+export default LeadSaveDialog;

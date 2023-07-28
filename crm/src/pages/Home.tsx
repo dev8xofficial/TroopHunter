@@ -13,7 +13,8 @@ import { setLeadFiltersAction, setLeadPageAction } from '../store/actions/leadPa
 import { IFilterAttributes } from '../store/reducers/leadPageReducer';
 import Button from '../components/Inputs/Button/Button';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
-import LeadDialog from '../components/Feedback/LeadDialog/LeadDialog';
+import LeadSaveDialog from '../components/Feedback/LeadSaveDialog/LeadSaveDialog';
+import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDeletionDialog';
 
 const tabs = [{ name: 'Filters', href: '#', current: true }];
 
@@ -28,10 +29,12 @@ const Lead = () => {
   const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.lead.leadFilters);
   const leadPage: number = useSelector((state: any) => state.lead.leadPage);
   const leadPageLimit: number = useSelector((state: any) => state.lead.leadPageLimit);
+  const draftLeadId: string = useSelector((state: any) => state.lead?.draftLeadId);
   const [debouncedFilters, setDebouncedFilters] = useState<IFilterAttributes[]>(leadFilters);
   const [filtersPanelWidth, setFiltersPanelWidth] = useState<boolean>(true);
-  let [isOpenSaveSearchModal, setIsOpenSaveSearchModal] = useState(false);
-  let [isOpen, setIsOpen] = useState(false);
+  let [isOpenLeadSaveDialog, setIsOpenLeadSaveDialog] = useState(false);
+  let [isOpenLeadLeadDeletionDialog, setIsOpenLeadDeletionDialog] = useState(false);
+  let [isOpenMobileFiltersDialog, setIsOpenMobileFiltersDialog] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
   const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
 
@@ -134,15 +137,15 @@ const Lead = () => {
                 </div>
                 {/* Mobile advanced search filters */}
                 <div className="xl:hidden">
-                  <IconButton className="xl:hidden" variant="outlined" color="red" ringOffset="white" onClick={() => setIsOpen(true)}>
+                  <IconButton className="xl:hidden" variant="outlined" color="red" ringOffset="white" onClick={() => setIsOpenMobileFiltersDialog(true)}>
                     <>
                       <AdjustmentsVerticalIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
                       <AdjustmentsVerticalIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
                     </>
                   </IconButton>
 
-                  <Transition appear show={isOpen} as={Fragment}>
-                    <Dialog as="div" className="relative z-10" onClose={() => setIsOpen(false)}>
+                  <Transition appear show={isOpenMobileFiltersDialog} as={Fragment}>
+                    <Dialog as="div" className="relative z-10" onClose={() => setIsOpenMobileFiltersDialog(false)}>
                       <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                         <div className="fixed inset-0 bg-black bg-opacity-25" />
                       </Transition.Child>
@@ -162,7 +165,7 @@ const Lead = () => {
                                     <button type="button" className="ml-3 inline-flex items-center rounded bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                       Search
                                     </button>
-                                    <button onClick={() => setIsOpen(false)} type="button" className="rounded-full p-2 shadow-sm hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    <button onClick={() => setIsOpenMobileFiltersDialog(false)} type="button" className="rounded-full p-2 shadow-sm hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                       <XMarkIcon className="h-5 w-5" aria-hidden="true" />
                                     </button>
                                   </div>
@@ -387,15 +390,23 @@ const Lead = () => {
             {/* Action buttons */}
             <div className={classNames(filtersPanelWidth && 'xl:max-w-lg 2xl:max-w-xl', 'fixed bottom-0 w-full flex-shrink-0 border-t border-gray-200 bg-white px-4 py-5 sm:px-6')}>
               <div className="flex items-center justify-between">
-                <Button variant="outlined" color="red">
-                  Delete
-                </Button>
-                <div className="flex justify-end space-x-3">
-                  <a className="inline-flex cursor-pointer items-center text-sm font-semibold">Clear all</a>
-                  <Button variant="contained" color="indigo" onClick={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)}>
-                    Save search
-                  </Button>
-                  <LeadDialog isOpen={isOpenSaveSearchModal} closeModal={() => setIsOpenSaveSearchModal(!isOpenSaveSearchModal)} />
+                {draftLeadId && (
+                  <>
+                    <Button variant="outlined" color="red" onClick={() => setIsOpenLeadDeletionDialog(!isOpenLeadLeadDeletionDialog)}>
+                      Delete
+                    </Button>
+                    <LeadDeletionDialog isOpen={isOpenLeadLeadDeletionDialog} closeModal={() => setIsOpenLeadDeletionDialog(!isOpenLeadLeadDeletionDialog)} />
+                  </>
+                )}
+                <div className="ml-auto flex justify-end space-x-3">
+                  {/* {!draftLeadId && <a className="inline-flex cursor-pointer items-center text-sm font-semibold">Clear all</a>}
+                  {draftLeadId && <a className="inline-flex cursor-pointer items-center text-sm font-semibold">Go back</a>} */}
+                  <>
+                    <Button variant="contained" color="indigo" onClick={() => setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog)}>
+                      {draftLeadId ? 'Update' : 'Save'} search
+                    </Button>
+                    <LeadSaveDialog isOpen={isOpenLeadSaveDialog} closeModal={() => setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog)} />
+                  </>
                 </div>
               </div>
             </div>
