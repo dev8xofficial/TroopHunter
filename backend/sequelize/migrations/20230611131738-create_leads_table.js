@@ -12,8 +12,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.UUID,
       },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       search: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       categoryId: {
@@ -55,6 +59,14 @@ module.exports = {
       timezoneId: {
         allowNull: true,
         type: Sequelize.UUID,
+      },
+      sponsoredAd: {
+        allowNull: true,
+        type: Sequelize.BOOLEAN,
+      },
+      businessCount: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
       openingHourId: {
         allowNull: true,

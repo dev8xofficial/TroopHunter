@@ -6,7 +6,8 @@ import User from './User';
 class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public id?: string;
   public userId!: string;
-  public search?: string;
+  public title!: string;
+  public search!: string;
   public categoryId?: string;
   public address?: string;
   public locationId?: string;
@@ -17,6 +18,8 @@ class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public ratingId?: string;
   public reviews?: number;
   public timezoneId?: string;
+  public sponsoredAd?: boolean;
+  public businessCount!: number;
   public openingHourId?: string;
   public closingHourId?: string;
 
@@ -38,9 +41,13 @@ Lead.init(
       type: DataTypes.UUID,
       allowNull: false,
     },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     search: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     categoryId: {
       type: DataTypes.UUID,
@@ -81,6 +88,14 @@ Lead.init(
     timezoneId: {
       type: DataTypes.UUID,
       allowNull: true,
+    },
+    sponsoredAd: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    businessCount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     openingHourId: {
       type: DataTypes.UUID,

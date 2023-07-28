@@ -44,7 +44,7 @@ export const getLeadById = async (req: Request, res: Response) => {
 };
 
 export const createLead = async (req: Request, res: Response) => {
-  const { userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, openingHourId, closingHourId } = req.body;
+  const { userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = req.body;
   try {
     if (!userId) {
       logger.warn(`User ID ${userId} not found`);
@@ -52,7 +52,7 @@ export const createLead = async (req: Request, res: Response) => {
       return res.json(response);
     }
 
-    const lead = await Lead.create({ userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, openingHourId, closingHourId });
+    const lead = await Lead.create({ userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId });
 
     const businesses = await getBusinessesByQuery(search, address);
 
