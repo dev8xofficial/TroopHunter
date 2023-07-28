@@ -35,7 +35,7 @@ class BusinessScraper:
 
         try:
             logger.info("Initiating chrome web driver.")
-            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager("114.0.5735.16").install()), options=chrome_options)
+            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager("114.0.5735.90").install()), options=chrome_options)
         except Exception as e:
             logger.error("Service chromedriver unexpectedly exited: ", e)
 

@@ -61,10 +61,10 @@ def main():
     QUEUES = get_queue()
 
     # Create a ThreadPoolExecutor with a maximum of 3 threads
-    with ThreadPoolExecutor(max_workers=3) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:
         futures = []
         for location in LOCATIONS:
-            for queue in QUEUES:
+            for queue in QUEUES["data"]:
                 if queue["laptopName"] == LAPTOP_NAME and queue["status"] == "Pending":
                     pass
                 elif queue["laptopName"] == "" and queue["status"] == "Pending":

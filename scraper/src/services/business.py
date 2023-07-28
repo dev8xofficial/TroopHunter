@@ -18,6 +18,8 @@ def check_business_existence(name: str = None, category: str = None, address: st
 
         # Set the request parameters
         params = {
+            "page": 1,
+            "limit": 10,
             "name": name,
             "include": include,
         }
@@ -28,9 +30,10 @@ def check_business_existence(name: str = None, category: str = None, address: st
 
         # Check the response status code
         if response.status_code == 200:
-            data = response.json()
+            data = response.json()["data"]
             if data["totalRecords"] > 0:
-                for business in data["businesses"]:
+                for businessId in data["businesses"]:
+                    business = data["businesses"][businessId]
                     if name is None:
                         result = False
                         break

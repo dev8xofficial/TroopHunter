@@ -16,8 +16,14 @@ def get_queue():
             "Authorization": f"Bearer {token}",
         }
 
+        # Set the request parameters
+        params = {
+            "page": 1,
+            "limit": 10,
+        }
+
         # Send the GET request to the endpoint
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, params=params)
 
         # Check the response status code
         if response.status_code == 200:
