@@ -76,3 +76,14 @@ export const getBusinessesByQuery = async ({ name, businessDomain, categoryId, a
     return undefined;
   }
 };
+
+export const getBusinessesByQueryingIds = async ({ ids }: { ids: string[] }) => {
+  try {
+    const businesses = await Business.findAll({ where: { id: ids } });
+
+    return businesses;
+  } catch (error) {
+    logger.error('Error retrieving businesses:', error);
+    return undefined;
+  }
+};

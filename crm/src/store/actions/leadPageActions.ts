@@ -10,3 +10,6 @@ export const setLeadFilterLoadingFailureAction = createAction('lead/setLeadFilte
 export const setLeadPageAction = createAction<number>('lead/setLeadPageAction');
 export const setLeadPageLimitAction = createAction<number>('lead/setLeadPageLimitAction');
 export const setDraftLeadIdAction = createAction<string>('lead/setDraftLeadIdAction');
+
+export const setLeadBusinessIdsAction = createAction<string[]>('lead/setLeadBusinessIdsAction');
+export const resetLeadBusinessIdsAction = createAction('lead/resetLeadBusinessIdsAction');

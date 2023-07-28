@@ -8,7 +8,7 @@ import _Menu from '../../Navigation/Menu/Menu';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
 import Checkbox from '../../Inputs/Checkbox/Checkbox';
 import { IBusiness } from '../../../types/business';
-import { setLeadPageAction } from '../../../store/actions/leadPageActions';
+import { setLeadBusinessIdsAction, setLeadPageAction } from '../../../store/actions/leadPageActions';
 import { classNames } from '../../../utils/helpers';
 
 const images = [
@@ -35,11 +35,51 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
   const isLoading = useSelector((state: any) => state.leadPage.isLoading);
   const businesses: { [key: string]: IBusiness } = useSelector((state: any) => state.businesses.data.businesses);
   const totalRecords: number | null = useSelector((state: any) => state.businesses.data.totalRecords);
+  const leadBusinessIds: string[] = useSelector((state: any) => state.leadPage.leadBusinessIds);
   const leadPage: number = useSelector((state: any) => state.leadPage.leadPage);
   const leadPageLimit: number = useSelector((state: any) => state.leadPage.leadPageLimit);
 
   // State to store the calculated table height
   const [tableHeight, setTableHeight] = useState<number | undefined>(undefined);
+  const [selectedBusinessIds, setSelectedBusinessIds] = useState<string[]>([]);
+
+  const handleCheckboxChange = (businessId: string) => {
+    setSelectedBusinessIds((prevSelectedIds) => {
+      if (prevSelectedIds.includes(businessId)) {
+        // Remove the business ID from the array if already selected
+        return prevSelectedIds.filter((id) => id !== businessId);
+      } else {
+        // Add the business ID to the array if not selected
+        return [...prevSelectedIds, businessId];
+      }
+    });
+  };
+
+  // Function to check if a business ID is selected
+  const isBusinessSelected = (businessId: string) => {
+    return selectedBusinessIds.includes(businessId);
+  };
+
+  // Function to check if all businesses are selected
+  const isAllBusinessesSelected = () => {
+    return Object.keys(businesses).every((businessId) => selectedBusinessIds.includes(businessId));
+  };
+
+  // Function to handle the "Select All" checkbox change
+  const handleSelectAllChange = () => {
+    if (isAllBusinessesSelected()) {
+      // If all businesses are selected, unselect all
+      setSelectedBusinessIds([]);
+    } else {
+      // If not all businesses are selected, select all
+      setSelectedBusinessIds(Object.keys(businesses));
+    }
+  };
+
+  useEffect(() => {
+    // Dispatch the action to save the updated leadBusinessIds in the Redux store
+    dispatch(setLeadBusinessIdsAction(selectedBusinessIds));
+  }, [selectedBusinessIds]);
 
   useEffect(() => {
     const calculateTableHeight = () => {
@@ -79,7 +119,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
         <div className="mr-auto flex items-center">
           <div className="relative flex w-full items-start py-4 pl-10">
             <div className="flex h-6 items-center">
-              <Checkbox id="selectAll" name="selectAll" />
+              <Checkbox id="selectAll" name="selectAll" checked={isAllBusinessesSelected()} onChange={handleSelectAllChange} />
             </div>
             <label htmlFor="selectAll" className="px-4 leading-6 text-gray-900 sm:px-6">
               Select all
@@ -96,7 +136,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
         {totalRecords !== 0 && (
           <>
             <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
-            <div className="h-full whitespace-nowrap pr-14">{`${totalRecords} results`}</div>
+            <div className="h-full whitespace-nowrap pr-14">{`Selected: ${leadBusinessIds.length} | Total: ${totalRecords}`}</div>
           </>
         )}
       </div>
@@ -123,12 +163,12 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
         >
           {/* Existing code for TableLead */}
           <ul role="list" className={classNames(isLoading && 'group animate-pulse', 'divide-y rounded border bg-white shadow')}>
-            {Object.values(businesses).map((business, index) => (
-              <li key={index} className="hover:bg-gray-100 ">
+            {Object.values(businesses).map((business: IBusiness, index) => (
+              <li key={index} className={classNames(index === 0 && 'hover:rounded-t', index === Object.values(businesses).length - 1 && 'hover:rounded-b', 'hover:bg-gray-100')}>
                 <div className="relative flex w-full items-start px-6 py-5">
                   <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">
                     <div className="group-block hidden h-5 w-5 rounded bg-slate-300"></div>
-                    <Checkbox id={business.name} name={business.name} className="group-hidden" />
+                    <Checkbox id={business.name} name={business.name} checked={isBusinessSelected(`${business.id}`)} onChange={() => handleCheckboxChange(`${business.id}`)} className="group-hidden" />
                   </div>
                   <div className="w-full text-sm leading-6">
                     <label htmlFor={business.name} className="relative flex cursor-pointer justify-between gap-x-6 px-4 sm:px-6">

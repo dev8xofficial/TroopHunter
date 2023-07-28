@@ -22,6 +22,7 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
   const userId: string = useSelector((state: any) => state.auth.userId);
   const user: IUser = useSelector((state: any) => state.users.data[userId]);
   const totalRecords: number = useSelector((state: any) => state.businesses?.data?.totalRecords);
+  const leadBusinessIds: string[] = useSelector((state: any) => state.leadPage.leadBusinessIds);
   const draftLead = user?.Leads?.find((lead: ILead) => lead.id === draftLeadId);
 
   const formikSchema = Yup.object().shape({
@@ -54,7 +55,8 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
           userId: auth.userId,
           title,
           search: filtersObject.name,
-          businessCount: totalRecords ? totalRecords : 0,
+          businessCount: Array.isArray(leadBusinessIds) && leadBusinessIds.length > 0 ? leadBusinessIds.length : totalRecords ? totalRecords : 0,
+          leadBusinessIds,
           ...filtersObject,
         };
         if (draftLeadId) dispatch(updateLeadAction(requestData));

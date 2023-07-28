@@ -1,5 +1,5 @@
 import { PayloadAction, createReducer } from '@reduxjs/toolkit';
-import { setLeadFiltersAction, resetLeadFiltersAction, setLeadFilterLoadingSuccessAction, setLeadFilterLoadingFailureAction, setLeadPageAction, setLeadPageLimitAction, setDraftLeadIdAction } from '../actions/leadPageActions';
+import { setLeadFiltersAction, resetLeadFiltersAction, setLeadFilterLoadingSuccessAction, setLeadFilterLoadingFailureAction, setLeadPageAction, setLeadPageLimitAction, setDraftLeadIdAction, setLeadBusinessIdsAction, resetLeadBusinessIdsAction } from '../actions/leadPageActions';
 
 export interface IFilterAttributes {
   label: string;
@@ -12,8 +12,9 @@ export interface LeadPageState {
   leadFilters: IFilterAttributes[];
   leadPage: number;
   leadPageLimit: number;
-  isLoading: boolean;
   draftLeadId?: string;
+  leadBusinessIds: string[];
+  isLoading: boolean;
 }
 
 const initialValue = [
@@ -31,6 +32,7 @@ const initialState: LeadPageState = {
   leadFilters: initialValue,
   leadPage: 1,
   leadPageLimit: 10,
+  leadBusinessIds: [],
   isLoading: false,
 };
 
@@ -45,19 +47,25 @@ const leadPageReducer = createReducer(initialState, (builder) => {
       state.leadFilters = initialValue;
     })
     .addCase(setLeadFilterLoadingSuccessAction, (state) => {
-      state.isLoading = false; // Set isLoading to false when businesses are successfully fetched
+      state.isLoading = false;
     })
     .addCase(setLeadFilterLoadingFailureAction, (state) => {
-      state.isLoading = false; // Set isLoading to false when businesses fetching fails
+      state.isLoading = false;
     })
     .addCase(setLeadPageAction, (state, action: PayloadAction<number>) => {
-      state.leadPage = action.payload; // Set isLoading to false when businesses are successfully fetched
+      state.leadPage = action.payload;
     })
     .addCase(setLeadPageLimitAction, (state, action: PayloadAction<number>) => {
-      state.leadPageLimit = action.payload; // Set isLoading to false when businesses fetching fails
+      state.leadPageLimit = action.payload;
     })
     .addCase(setDraftLeadIdAction, (state, action: PayloadAction<string>) => {
-      state.draftLeadId = action.payload; // Set isLoading to false when businesses fetching fails
+      state.draftLeadId = action.payload;
+    })
+    .addCase(setLeadBusinessIdsAction, (state, action: PayloadAction<string[]>) => {
+      state.leadBusinessIds = action.payload;
+    })
+    .addCase(resetLeadBusinessIdsAction, (state) => {
+      state.leadBusinessIds = [];
     });
 });
 

@@ -7,7 +7,7 @@ import LeadBusiness from '../models/LeadBusiness';
 import { createApiResponse } from '../utils/response';
 import { getMessage } from '../utils/message';
 import { ApiResponse } from '../types/response';
-import { getBusinessesByQuery } from '../utils/business';
+import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../utils/business';
 
 export const getLeads = async (req: Request, res: Response) => {
   try {
@@ -44,7 +44,7 @@ export const getLeadById = async (req: Request, res: Response) => {
 };
 
 export const createLead = async (req: Request, res: Response) => {
-  const { userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = req.body;
+  const { userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, leadBusinessIds } = req.body;
   try {
     if (!userId) {
       logger.warn(`User ID ${userId} not found`);
@@ -54,15 +54,20 @@ export const createLead = async (req: Request, res: Response) => {
 
     const lead = await Lead.create({ userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId });
 
-    const businesses = await getBusinessesByQuery({ name: search, categoryId, address, locationId, phoneId, email, website, sponsoredAd });
+    let businesses: Business[] | undefined = [];
 
-    if (businesses && businesses.length > 0) {
+    if (leadBusinessIds.length > 0) businesses = await getBusinessesByQueryingIds({ ids: leadBusinessIds });
+    else businesses = await getBusinessesByQuery({ name: search, categoryId, address, locationId, phoneId, email, website, sponsoredAd });
+
+    if (Array.isArray(businesses) && businesses.length > 0) {
       const associations = businesses.map((business) => ({
         leadId: lead.id,
         businessId: business.id,
       }));
 
       await LeadBusiness.bulkCreate(associations);
+    } else {
+      // Implement the exception
     }
 
     const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getMessage('LEAD_CREATED').message, status: getMessage('LEAD_CREATED').code });
