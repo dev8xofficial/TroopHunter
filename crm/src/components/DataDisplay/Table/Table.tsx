@@ -119,7 +119,7 @@ const Table: React.FC = (): JSX.Element => {
         </div>
 
         {/* Table */}
-        <div className="overflow-auto rounded-sm border shadow sm:mx-0">
+        <div className="rounded-sm border shadow sm:mx-0">
           <table className="min-w-full divide-y divide-gray-300">
             <thead>
               <tr>
