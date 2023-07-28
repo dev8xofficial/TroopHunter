@@ -388,7 +388,7 @@ const Lead = () => {
               </div>
             </div>
             {/* Action buttons */}
-            <div className={classNames(filtersPanelWidth && 'xl:max-w-lg 2xl:max-w-xl', 'fixed bottom-0 w-full flex-shrink-0 border-t border-gray-200 bg-white px-4 py-5 sm:px-6')}>
+            <div className={classNames(filtersPanelWidth && 'xl:max-w-lg 2xl:max-w-xl', 'fixed bottom-0 w-full max-w-sm flex-shrink-0 border-t border-gray-200 bg-white px-4 py-5 sm:px-6', 'transition-all duration-500 ease-in-out')}>
               <div className="flex items-center justify-between">
                 {draftLeadId && (
                   <>
