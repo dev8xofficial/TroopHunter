@@ -171,7 +171,7 @@ const Table: React.FC = (): JSX.Element => {
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
                       {/* This tells how many businesses are in this lead. */}
-                      <div className="text-gray-900">0</div>
+                      <div className="text-gray-900">{lead.businessCount}</div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
                       <div className="flex items-center">
