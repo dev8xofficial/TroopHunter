@@ -54,7 +54,7 @@ export const createLead = async (req: Request, res: Response) => {
 
     const lead = await Lead.create({ userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId });
 
-    const businesses = await getBusinessesByQuery(search, address);
+    const businesses = await getBusinessesByQuery({ name: search, categoryId, address, locationId, phoneId, email, website, sponsoredAd });
 
     if (businesses && businesses.length > 0) {
       const associations = businesses.map((business) => ({

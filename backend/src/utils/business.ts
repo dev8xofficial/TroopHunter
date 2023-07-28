@@ -25,21 +25,50 @@ export const findOrCreateBusinessSource = async (sourceName: string, transaction
   }
 };
 
-export const getBusinessesByQuery = async (name: string, address: string) => {
+export const getBusinessesByQuery = async ({ name, businessDomain, categoryId, address, locationId, phoneId, email, website, sponsoredAd }: any) => {
+  // Where clause
   const whereClause: { [key: string]: any } = {};
 
   if (name) {
     whereClause.name = { [Op.iLike]: `%${name}%` };
   }
 
+  if (businessDomain) {
+    whereClause.businessDomain = { [Op.iLike]: `%${businessDomain}%` };
+  }
+
+  if (categoryId) {
+    whereClause.categoryId = categoryId;
+  }
+
   if (address) {
     whereClause.address = { [Op.iLike]: `%${address}%` };
   }
 
+  if (locationId) {
+    whereClause.locationId = locationId;
+  }
+
+  if (phoneId) {
+    whereClause.phoneId = phoneId;
+  }
+
+  if (email) {
+    whereClause.email = { [Op.iLike]: `%${email}%` };
+  }
+
+  if (website) {
+    whereClause.website = {
+      [Op.iLike]: `%${website}%`,
+    };
+  }
+
+  if (sponsoredAd) {
+    whereClause.sponsoredAd = sponsoredAd;
+  }
+
   try {
-    const businesses = await Business.findAll({
-      where: whereClause,
-    });
+    const businesses = await Business.findAll({ where: whereClause });
 
     return businesses;
   } catch (error) {
