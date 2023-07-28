@@ -80,6 +80,7 @@ function* deleteLeadsSaga({ payload }: any): any {
 
       yield put(updateUserLocallyAction(updatedUser));
       yield put(deleteLeadsSuccessAction(response.data));
+      toast.success(response.message);
     } else {
       toast.error(response.error);
       yield put(deleteLeadsFailureAction(response.message));
