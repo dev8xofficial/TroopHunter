@@ -54,7 +54,7 @@ const Table: React.FC = (): JSX.Element => {
   const handleSelectAllCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
     if (isChecked) {
-      const leadIds = userLeads?.map((_, index) => index.toString()) || [];
+      const leadIds = userLeads?.map((currentLead) => currentLead.id) || [];
       setLocalSelectedLeadIds(leadIds);
     } else {
       setLocalSelectedLeadIds([]);
@@ -140,7 +140,7 @@ const Table: React.FC = (): JSX.Element => {
                   <div className="relative flex w-full items-start py-3.5 pl-4 pr-3 sm:pl-6">
                     <span className="sr-only">Select</span>
                     <div className="flex h-6 items-center">
-                      <input id="select-all" name="select-all" type="checkbox" checked={localSelectedLeadIds.length === (userLeads?.length || 0)} onChange={handleSelectAllCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                      <input id="select-all" name="select-all" type="checkbox" checked={localSelectedLeadIds.length > 0 && localSelectedLeadIds.length === userLeads?.length} onChange={handleSelectAllCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                     </div>
                   </div>
                 </th>
