@@ -1,18 +1,28 @@
 import { toast } from 'react-toastify';
 import { takeLatest, put, select } from 'redux-saga/effects';
-import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction } from '../actions/businessActions';
+import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction, fetchBusinessesAction } from '../actions/businessActions';
 import { getBusinessesBySearchService } from '../../services/businessService';
 import { getLocationsBySearchService } from '../../services/locationService';
 import { setHomePageLoadingFailureAction, setHomePageLoadingSuccessAction } from '../actions/homePageActions';
-import { IBusiness } from '../../types/business';
-import { BusinessState } from '../reducers/businessReducer';
+import { IBusinessCreationRequestAttributes, IBusinessCreationResponseAttributes } from '../../types/business';
+import { IBusinessState } from '../reducers/businessReducer';
 
-function* fetchBusinessesSaga({ payload }: any): any {
+export interface IBusinessesFetchPayload extends Omit<IBusinessCreationRequestAttributes, 'name' | 'sponsoredAd'> {
+  name?: string; // converting name property from required to optional
+  token: string;
+  location?: string;
+  phone?: string;
+  sponsoredAd?: string;
+  page: number;
+  limit: number;
+}
+
+function* fetchBusinessesSaga({ payload }: { payload: IBusinessesFetchPayload }): any {
   try {
     const { name, businessDomain, address, location, phone, email, website, sponsoredAd, token, page, limit } = payload;
     const params = { name, businessDomain, address, phone, email, website, page, limit, include: ['BusinessPhone'] };
-    const { businesses }: { businesses: BusinessState } = yield select((state: { businesses: BusinessState }) => state);
-    const businessesDataBusinesses: { [key: string]: IBusiness } = businesses.data.businesses;
+    const { businesses }: { businesses: IBusinessState } = yield select((state: { businesses: IBusinessState }) => state);
+    const businessesDataBusinesses: { [key: string]: IBusinessCreationResponseAttributes } = businesses.data.businesses;
 
     // Check if sponsoredAd is not an empty string or 'false', then include it in the params object
     if (sponsoredAd !== 'false') {
@@ -33,15 +43,18 @@ function* fetchBusinessesSaga({ payload }: any): any {
 
     if (response.success) {
       if (page === 1) {
-        const data = response.data;
+        const { data }: IBusinessState = response as IBusinessState;
         yield put(fetchBusinessesSuccessAction({ data }));
         yield put(setHomePageLoadingSuccessAction());
       } else {
         const totalRecords = response.data.totalRecords;
         const totalPages = response.data.totalPages;
         const mergedBusinesses = { ...businessesDataBusinesses, ...response.data.businesses };
+        const state: IBusinessState = {
+          data: { businesses: mergedBusinesses, totalPages, totalRecords },
+        };
 
-        yield put(fetchBusinessesSuccessAction({ data: { totalRecords, totalPages, businesses: mergedBusinesses } }));
+        yield put(fetchBusinessesSuccessAction(state));
         yield put(setHomePageLoadingSuccessAction());
       }
     } else {
@@ -57,5 +70,5 @@ function* fetchBusinessesSaga({ payload }: any): any {
 }
 
 export function* watchBusinessSaga() {
-  yield takeLatest('business/fetchBusinesses', fetchBusinessesSaga);
+  yield takeLatest(fetchBusinessesAction, fetchBusinessesSaga);
 }

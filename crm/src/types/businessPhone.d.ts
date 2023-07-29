@@ -1,5 +1,4 @@
-export interface BusinessPhoneAttributes {
-  id?: string;
+export interface IBusinessPhoneCreationRequestAttributes {
   countryCode: string;
   regionCode: string;
   number: string;
@@ -7,4 +6,8 @@ export interface BusinessPhoneAttributes {
   numberInternationalFormatted: string;
   numberType: string;
   isValid: boolean;
+}
+
+export interface IBusinessPhoneCreationResponseAttributes extends IBusinessPhoneCreationRequestAttributes {
+  id: string;
 }

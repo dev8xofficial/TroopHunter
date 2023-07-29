@@ -8,29 +8,29 @@ import { CustomDialogAttributes } from './LeadSaveDialog.interfaces';
 import TextField from '../../Inputs/TextField/TextField';
 import Button from '../../Inputs/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { IFilterAttributes, HomePageState } from '../../../store/reducers/homePageReducer';
+import { IFilterAttributes, IHomePageState } from '../../../store/reducers/homePageReducer';
 import { createLeadAction, updateLeadAction } from '../../../store/actions/leadActions';
 import { toast } from 'react-toastify';
-import { IUser } from '../../../types/user';
-import { ILead } from '../../../types/lead';
-import { AuthState } from '../../../store/reducers/authReducer';
-import { BusinessState } from '../../../store/reducers/businessReducer';
-import { UserState } from '../../../store/reducers/userReducer';
+import { IUserCreationResponseAttributes } from '../../../types/user';
+import { ILeadCreationResponseAttributes } from '../../../types/lead';
+import { IAuthState } from '../../../store/reducers/authReducer';
+import { IBusinessState } from '../../../store/reducers/businessReducer';
+import { IUserState } from '../../../store/reducers/userReducer';
 
 const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: CustomDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
-  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
-  const { home }: { home: HomePageState } = useSelector((state: { home: HomePageState }) => state);
-  const { users }: { users: UserState } = useSelector((state: { users: UserState }) => state);
-  const { businesses }: { businesses: BusinessState } = useSelector((state: { businesses: BusinessState }) => state);
+  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
+  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
+  const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
+  const { businesses }: { businesses: IBusinessState } = useSelector((state: { businesses: IBusinessState }) => state);
 
   const leadPageFilters: IFilterAttributes[] = home.filters;
   const leadPageDraftLeadId: string = home.draftLeadId;
   const leadPageBusinessIds: string[] = home.businessIds;
-  const usersLoggedIn: IUser = users.data[auth.userId];
-  const businessesTotalRecords: number | null = businesses.data.totalRecords;
+  const usersLoggedIn: IUserCreationResponseAttributes = users.data[auth.userId];
+  const businessesTotalRecords: number = businesses.data.totalRecords;
 
-  const draftLead = usersLoggedIn?.Leads?.find((lead: ILead) => lead.id === leadPageDraftLeadId);
+  const draftLead = usersLoggedIn?.Leads?.find((lead: ILeadCreationResponseAttributes) => lead.id === leadPageDraftLeadId);
 
   const formikSchema = Yup.object().shape({
     title: Yup.string().required('Kindly Enter Title For Lead Information.'),
@@ -63,7 +63,7 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
           title,
           search: filtersObject.name,
           businessCount: Array.isArray(leadPageBusinessIds) && leadPageBusinessIds.length > 0 ? leadPageBusinessIds.length : businessesTotalRecords ? businessesTotalRecords : 0,
-          leadPageBusinessIds,
+          leadBusinessIds: leadPageBusinessIds,
           ...filtersObject,
         };
         if (leadPageDraftLeadId) dispatch(updateLeadAction(requestData));

@@ -1,7 +1,6 @@
-import { BusinessPhoneAttributes } from './businessPhone';
+import { IBusinessPhoneCreationResponseAttributes } from './businessPhone';
 
-export interface IBusiness {
-  id?: string;
+export interface IBusinessCreationRequestAttributes {
   name: string;
   businessDomain?: string;
   categoryId?: string;
@@ -22,5 +21,9 @@ export interface IBusiness {
   sponsoredAd?: boolean;
   openingHourId?: string;
   closingHourId?: string;
-  BusinessPhone?: BusinessPhoneAttributes;
+  BusinessPhone?: IBusinessPhoneCreationResponseAttributes;
+}
+
+export interface IBusinessCreationResponseAttributes extends IBusinessCreationRequestAttributes {
+  id: string;
 }

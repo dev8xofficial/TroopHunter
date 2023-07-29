@@ -1,5 +1,4 @@
-export interface ILead {
-  id?: string;
+export interface ILeadCreationRequestAttributes {
   userId: string;
   title: string;
   search?: string;
@@ -13,6 +12,12 @@ export interface ILead {
   ratingId?: string;
   reviews?: number;
   timezoneId?: string;
+  sponsoredAd?: boolean;
+  businessCount: number;
   openingHourId?: string;
   closingHourId?: string;
+}
+
+export interface ILeadCreationResponseAttributes extends ILeadCreationRequestAttributes {
+  id: string;
 }

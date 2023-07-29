@@ -10,12 +10,12 @@ import CustomTextField from '../components/Inputs/CustomTextField/CustomTextFiel
 import Accordion from '../components/Surfaces/Accordion/Accordion';
 import TableLead from '../components/DataDisplay/Table/TableLead';
 import { setHomePageFiltersAction, setHomePagePaginationPageAction } from '../store/actions/homePageActions';
-import { IFilterAttributes, HomePageState } from '../store/reducers/homePageReducer';
+import { IFilterAttributes, IHomePageState } from '../store/reducers/homePageReducer';
 import Button from '../components/Inputs/Button/Button';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import LeadSaveDialog from '../components/Feedback/LeadSaveDialog/LeadSaveDialog';
 import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDeletionDialog';
-import { AuthState } from '../store/reducers/authReducer';
+import { IAuthState } from '../store/reducers/authReducer';
 
 const tabs = [{ name: 'Filters', href: '#', current: true }];
 
@@ -25,8 +25,8 @@ function classNames(...classes: any) {
 
 const Lead = () => {
   const dispatch = useDispatch();
-  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
-  const { home }: { home: HomePageState } = useSelector((state: { home: HomePageState }) => state);
+  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
+  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
 
   const isLeadLoading = home.isLoading;
   const leadPageFilters: IFilterAttributes[] = home.filters;

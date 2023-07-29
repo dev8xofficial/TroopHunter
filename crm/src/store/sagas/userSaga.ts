@@ -1,26 +1,39 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import { fetchUsersSuccess, fetchUsersFailure, fetchUserSuccessAction, fetchUserFailureAction } from '../actions/userActions';
+import { fetchUsersSuccessAction, fetchUsersFailureAction, fetchUserSuccessAction, fetchUsersAction, fetchUserAction } from '../actions/userActions';
 import { getUsersService, getUserWithIncludeService } from '../../services/userService';
+import { IUserCreationResponseAttributes } from '../../types/user';
+import { IUserState } from '../reducers/userReducer';
 
-function* fetchUsersSaga({ payload }: any): any {
+export interface IUsersFetchPayload {
+  token: string;
+}
+
+function* fetchUsersSaga({ payload }: { payload: IUsersFetchPayload }): any {
   try {
     const { token } = payload;
     const response = yield getUsersService(token);
 
     if (response.success) {
-      yield put(fetchUsersSuccess(response.data));
+      // Perform type check using type assertion
+      const loginSuccessPayload = response.data as IUserState;
+      yield put(fetchUsersSuccessAction(loginSuccessPayload));
     } else {
       toast.error(response.error);
-      yield put(fetchUsersFailure(response.message));
+      yield put(fetchUsersFailureAction(response.message));
     }
   } catch (error) {
     toast.error(error.message);
-    yield put(fetchUsersFailure(error.message));
+    yield put(fetchUsersFailureAction(error.message));
   }
 }
 
-function* fetchUserSaga({ payload }: any): any {
+export interface IUsersFetchUserPayload {
+  token: string;
+  userId: string;
+}
+
+function* fetchUserSaga({ payload }: { payload: IUsersFetchUserPayload }): any {
   try {
     const { userId, token } = payload;
     const params = {
@@ -29,21 +42,21 @@ function* fetchUserSaga({ payload }: any): any {
     const response = yield getUserWithIncludeService(userId, token, params);
 
     if (response.success) {
-      yield put(fetchUserSuccessAction(response.data));
+      // Perform type check using type assertion
+      const loginSuccessPayload = response.data as IUserCreationResponseAttributes;
+      yield put(fetchUserSuccessAction(loginSuccessPayload));
     } else {
       toast.error(response.error);
-      yield put(fetchUserFailureAction(response.message));
     }
   } catch (error) {
     toast.error(error.message);
-    yield put(fetchUserFailureAction(error.message));
   }
 }
 
 export function* watchGetUsersSaga() {
-  yield takeLatest('user/fetchUsers', fetchUsersSaga);
+  yield takeLatest(fetchUsersAction, fetchUsersSaga);
 }
 
 export function* watchGetUserSaga() {
-  yield takeLatest('user/fetchUser', fetchUserSaga);
+  yield takeLatest(fetchUserAction, fetchUserSaga);
 }

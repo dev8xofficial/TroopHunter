@@ -6,36 +6,36 @@ import moment from 'moment';
 import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import Avatar from '../Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
-import { ILead } from '../../../types/lead';
-import { IUser } from '../../../types/user';
-import { IFilterAttributes, HomePageState } from '../../../store/reducers/homePageReducer';
+import { ILeadCreationResponseAttributes } from '../../../types/lead';
+import { IUserCreationResponseAttributes } from '../../../types/user';
+import { IFilterAttributes, IHomePageState } from '../../../store/reducers/homePageReducer';
 import { setHomePageDraftLeadIdAction, setHomePageFiltersAction } from '../../../store/actions/homePageActions';
-import { setSelectedLeadIds } from '../../../store/actions/leadsPageActions';
+import { setLeadsPageSelectedLeadIds } from '../../../store/actions/leadsPageActions';
 import { deleteLeadsAction } from '../../../store/actions/leadActions';
 import { IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
 import CryptoJS from 'crypto-js';
-import { AuthState } from '../../../store/reducers/authReducer';
-import { UserState } from '../../../store/reducers/userReducer';
-import { LeadsState } from '../../../store/reducers/leadsPageReducer';
+import { IAuthState } from '../../../store/reducers/authReducer';
+import { IUserState } from '../../../store/reducers/userReducer';
+import { ILeadsState } from '../../../store/reducers/leadsPageReducer';
 
 // Create a custom type to define valid filter keys
-type ValidFilterKeys = keyof Omit<ILead, 'userId' | 'title' | 'id' | 'categoryId' | 'postalCodeId' | 'ratingId' | 'reviews' | 'timezoneId' | 'openingHourId' | 'closingHourId'>;
+type ValidFilterKeys = keyof Omit<ILeadCreationResponseAttributes, 'userId' | 'title' | 'id' | 'categoryId' | 'postalCodeId' | 'ratingId' | 'reviews' | 'timezoneId' | 'openingHourId' | 'closingHourId'>;
 // Get the encryption key from the environment variable
 const encryptionKey = process.env.ENCRYPTION_KEY ? process.env.ENCRYPTION_KEY : 'AgE34bNmLB9wOThIJ2WR79/cmtMdjqCbpk61w/ucZnviE1Te0IY7c1e2G5qi42h+';
 
 const Table: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
-  const { users }: { users: UserState } = useSelector((state: { users: UserState }) => state);
-  const { leads }: { leads: LeadsState } = useSelector((state: { leads: LeadsState }) => state);
-  const { home }: { home: HomePageState } = useSelector((state: { home: HomePageState }) => state);
+  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
+  const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
+  const { leads }: { leads: ILeadsState } = useSelector((state: { leads: ILeadsState }) => state);
+  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
 
   const leadPageFilters: IFilterAttributes[] = home.filters;
   const authUserId: string = auth.userId;
-  const usersLoggedIn: IUser = users.data[authUserId];
+  const usersLoggedIn: IUserCreationResponseAttributes = users.data[authUserId];
   const selectedLeadIds: string[] = leads.selectedLeadIds;
-  const userLeads: ILead[] | undefined = usersLoggedIn.Leads;
+  const userLeads: ILeadCreationResponseAttributes[] | undefined = usersLoggedIn.Leads;
 
   const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>(selectedLeadIds);
 
@@ -65,27 +65,31 @@ const Table: React.FC = (): JSX.Element => {
     try {
       if (!Array.isArray(userLeads)) return;
 
-      const selectedLead: ILead = userLeads[index];
-      const updatedFilters: IFilterAttributes[] = leadPageFilters.map((filter) => {
-        if (filter.name === 'name' && selectedLead?.hasOwnProperty('search')) {
-          return { ...filter, value: `${selectedLead['search']}` }; // Create a new object with updated value
-        } else if (selectedLead?.hasOwnProperty(filter.name)) {
-          const validFilterName = filter.name as ValidFilterKeys;
-          const { userId: authUserId, title, id, categoryId, postalCodeId, ratingId, reviews, timezoneId, openingHourId, closingHourId, ...rest } = selectedLead;
-          return { ...filter, value: `${rest[validFilterName]}` }; // Create a new object with updated value
-        }
-        return filter;
-      });
+      const selectedLead: ILeadCreationResponseAttributes = userLeads[index];
+      if (selectedLead) {
+        const updatedFilters: IFilterAttributes[] = leadPageFilters.map((filter) => {
+          if (filter.name === 'name' && selectedLead?.hasOwnProperty('search')) {
+            return { ...filter, value: `${selectedLead['search']}` }; // Create a new object with updated value
+          } else if (selectedLead?.hasOwnProperty(filter.name)) {
+            const validFilterName = filter.name as ValidFilterKeys;
+            const { userId: authUserId, title, id, categoryId, postalCodeId, ratingId, reviews, timezoneId, openingHourId, closingHourId, ...rest } = selectedLead;
+            return { ...filter, value: `${rest[validFilterName]}` }; // Create a new object with updated value
+          }
+          return filter;
+        });
 
-      const dispatchActionPromise = new Promise<void>((resolve) => {
-        dispatch(setHomePageFiltersAction(updatedFilters));
-        dispatch(setHomePageDraftLeadIdAction(`${selectedLead.id}`));
-        resolve();
-      });
+        const dispatchActionPromise = new Promise<void>((resolve) => {
+          dispatch(setHomePageFiltersAction(updatedFilters));
+          dispatch(setHomePageDraftLeadIdAction(selectedLead.id));
+          resolve();
+        });
 
-      dispatchActionPromise.then(() => {
-        navigate('/');
-      });
+        dispatchActionPromise.then(() => {
+          navigate('/');
+        });
+      } else {
+        toast.error('Lead not found.');
+      }
     } catch (error) {
       console.error('Error during dispatch:', error);
     }
@@ -112,7 +116,7 @@ const Table: React.FC = (): JSX.Element => {
   useEffect(() => {
     if (!Array.isArray(userLeads)) return;
 
-    dispatch(setSelectedLeadIds(localSelectedLeadIds));
+    dispatch(setLeadsPageSelectedLeadIds(localSelectedLeadIds));
   }, [localSelectedLeadIds]);
 
   return (
@@ -176,7 +180,7 @@ const Table: React.FC = (): JSX.Element => {
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm">
-                      <div className="font-medium text-gray-900">{`${lead.title}`}</div>
+                      <div className="font-medium text-gray-900">{lead.title}</div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
                       <div className="text-gray-900">{lead.businessCount}</div>

@@ -1,18 +1,18 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction } from '../actions/businessActions';
-import { IBusiness } from '../../types/business';
+import { IBusinessCreationResponseAttributes } from '../../types/business';
 
-export interface BusinessState {
-  data: { businesses: { [key: string]: IBusiness }; totalPages: number | null; totalRecords: number | null };
+export interface IBusinessState {
+  data: { businesses: { [key: string]: IBusinessCreationResponseAttributes }; totalPages: number; totalRecords: number };
 }
 
-const initialState: BusinessState = {
-  data: { businesses: {}, totalPages: null, totalRecords: null },
+const initialState: IBusinessState = {
+  data: { businesses: {}, totalPages: 0, totalRecords: 0 },
 };
 
 const businessReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchBusinessesSuccessAction, (state, action) => {
+    .addCase(fetchBusinessesSuccessAction, (state, action: PayloadAction<IBusinessState>) => {
       state.data = action.payload.data;
     })
     .addCase(fetchBusinessesFailureAction, (state, action) => {

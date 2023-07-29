@@ -2,12 +2,18 @@ import { takeLatest, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import { createLeadService, updateLeadService, deleteLeadService, deleteLeadsService } from '../../services/leadServices';
 import { fetchUserAction, updateUserLocallyAction } from '../actions/userActions';
-import { resetHomePageFiltersAction, setHomePageDraftLeadIdAction } from '../actions/homePageActions';
-import { IUser } from '../../types/user';
-import { ILead } from '../../types/lead';
-import { resetSelectedLeadIds } from '../actions/leadsPageActions';
+import { resetHomePageFiltersAction, resetHomePageDraftLeadIdAction } from '../actions/homePageActions';
+import { IUserCreationResponseAttributes } from '../../types/user';
+import { ILeadCreationRequestAttributes, ILeadCreationResponseAttributes } from '../../types/lead';
+import { resetLeadsPageSelectedLeadIds } from '../actions/leadsPageActions';
+import { createLeadAction, deleteLeadAction, deleteLeadsAction, updateLeadAction } from '../actions/leadActions';
 
-function* createLeadSaga({ payload }: any): any {
+export interface ICreateLeadPayload extends ILeadCreationRequestAttributes {
+  token: string;
+  leadBusinessIds: string[];
+}
+
+function* createLeadSaga({ payload }: { payload: ICreateLeadPayload }): any {
   try {
     const { userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, token, leadBusinessIds } = payload;
     const response = yield createLeadService({ userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, leadBusinessIds }, token);
@@ -23,7 +29,12 @@ function* createLeadSaga({ payload }: any): any {
   }
 }
 
-function* updateLeadSaga({ payload }: any): any {
+export interface IUpdateLeadPayload extends ILeadCreationResponseAttributes {
+  token: string;
+  leadBusinessIds: string[];
+}
+
+function* updateLeadSaga({ payload }: { payload: IUpdateLeadPayload }): any {
   try {
     const { id, userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, token, leadBusinessIds } = payload;
     const response = yield updateLeadService(id, { userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, leadBusinessIds }, token);
@@ -39,20 +50,26 @@ function* updateLeadSaga({ payload }: any): any {
   }
 }
 
-function* deleteLeadSaga({ payload }: any): any {
+export interface IDeleteLeadPayload {
+  token: string;
+  id: string;
+  user: IUserCreationResponseAttributes;
+}
+
+function* deleteLeadSaga({ payload }: { payload: IDeleteLeadPayload }): any {
   try {
     const { id, token, user } = payload;
     const response = yield deleteLeadService(id, token);
 
     if (response.success) {
       // Create a new object with the updated Leads array
-      const updatedUser: IUser = {
+      const updatedUser: IUserCreationResponseAttributes = {
         ...user,
-        Leads: user.Leads.filter((lead: ILead) => lead.id !== id),
+        Leads: user.Leads.filter((lead: ILeadCreationResponseAttributes) => lead.id !== id),
       };
 
       yield put(updateUserLocallyAction(updatedUser));
-      yield put(setHomePageDraftLeadIdAction(''));
+      yield put(resetHomePageDraftLeadIdAction(''));
       yield put(resetHomePageFiltersAction());
       toast.success(response.message);
     } else {
@@ -63,44 +80,50 @@ function* deleteLeadSaga({ payload }: any): any {
   }
 }
 
-function* deleteLeadsSaga({ payload }: any): any {
+export interface IDeleteLeadsPayload {
+  token: string;
+  user: IUserCreationResponseAttributes;
+  selectedLeadIds: string[];
+}
+
+function* deleteLeadsSaga({ payload }: { payload: IDeleteLeadsPayload }): any {
   try {
-    let { user } = payload as { user: IUser };
+    let { user } = payload as { user: IUserCreationResponseAttributes };
     const { selectedLeadIds, token } = payload;
     const response = yield deleteLeadsService({ ids: selectedLeadIds }, token);
 
     if (response.success) {
       // Create a new object with the updated Leads array
-      const updatedUser: IUser = {
+      const updatedUser: IUserCreationResponseAttributes = {
         ...user,
-        Leads: user.Leads.filter((lead: ILead) => !selectedLeadIds.includes(lead.id)),
+        Leads: user.Leads.filter((lead: ILeadCreationResponseAttributes) => !selectedLeadIds.includes(lead.id)),
       };
 
       yield put(updateUserLocallyAction(updatedUser));
-      yield put(resetSelectedLeadIds());
+      yield put(resetLeadsPageSelectedLeadIds());
       toast.success(response.message);
     } else {
       toast.error(response.error);
-      yield put(resetSelectedLeadIds());
+      yield put(resetLeadsPageSelectedLeadIds());
     }
   } catch (error) {
     toast.error(error.message);
-    yield put(resetSelectedLeadIds());
+    yield put(resetLeadsPageSelectedLeadIds());
   }
 }
 
 export function* watchCreateLeadSaga() {
-  yield takeLatest('lead/createLeadAction', createLeadSaga);
+  yield takeLatest(createLeadAction, createLeadSaga);
 }
 
 export function* watchUpdateLeadSaga() {
-  yield takeLatest('lead/updateLeadAction', updateLeadSaga);
+  yield takeLatest(updateLeadAction, updateLeadSaga);
 }
 
 export function* watchDeleteLeadSaga() {
-  yield takeLatest('lead/deleteLeadAction', deleteLeadSaga);
+  yield takeLatest(deleteLeadAction, deleteLeadSaga);
 }
 
 export function* watchDeleteLeadsSaga() {
-  yield takeLatest('lead/deleteLeadsAction', deleteLeadsSaga);
+  yield takeLatest(deleteLeadsAction, deleteLeadsSaga);
 }

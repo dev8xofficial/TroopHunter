@@ -1,43 +1,37 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { fetchUsersSuccess, fetchUsersFailure, fetchUserSuccessAction, fetchUserFailureAction, addUserLocallyAction, updateUserLocallyAction, deleteUserLocallyAction } from '../actions/userActions';
-import { IUser } from '../../types/user';
+import { PayloadAction, createReducer } from '@reduxjs/toolkit';
+import { fetchUsersSuccessAction, fetchUsersFailureAction, fetchUserSuccessAction, addUserLocallyAction, updateUserLocallyAction, deleteUserLocallyAction } from '../actions/userActions';
+import { IUserCreationResponseAttributes } from '../../types/user';
 
-export interface UserState {
-  data: { [key: string]: IUser };
+export interface IUserState {
+  data: { [key: string]: IUserCreationResponseAttributes };
 }
 
-const initialState: UserState = { data: {} };
+const initialState: IUserState = { data: {} };
 
 const userReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchUsersSuccess, (state, action) => {
-      state.data = { ...state.data, ...action.payload };
+    .addCase(fetchUsersSuccessAction, (state, action: PayloadAction<IUserState>) => {
+      state.data = { ...state.data, ...action.payload.data };
     })
-    .addCase(fetchUsersFailure, (state, action) => {
+    .addCase(fetchUsersFailureAction, (state) => {
       state.data = {};
     })
-    .addCase(fetchUserSuccessAction, (state, action) => {
+    .addCase(fetchUserSuccessAction, (state, action: PayloadAction<IUserCreationResponseAttributes>) => {
       const user = action.payload;
-      const mergedUsers: { [key: string]: IUser } = { ...state.data, [user.id]: { ...user } };
+      const mergedUsers: { [key: string]: IUserCreationResponseAttributes } = { ...state.data, [user.id]: { ...user } };
       state.data = mergedUsers;
     })
-    .addCase(fetchUserFailureAction, (state, action) => {
-      state.data = {};
-    })
     // Handling local updates
-    .addCase(updateUserLocallyAction, (state, action) => {
+    .addCase(updateUserLocallyAction, (state, action: PayloadAction<IUserCreationResponseAttributes>) => {
       const user = action.payload;
-      // Update the user in the data object by ID
       state.data[user.id] = { ...user };
     })
-    .addCase(addUserLocallyAction, (state, action) => {
+    .addCase(addUserLocallyAction, (state, action: PayloadAction<IUserCreationResponseAttributes>) => {
       const user = action.payload;
-      // Add a new user to the data object
       state.data[user.id] = { ...user };
     })
-    .addCase(deleteUserLocallyAction, (state, action) => {
+    .addCase(deleteUserLocallyAction, (state, action: PayloadAction<string>) => {
       const userId = action.payload;
-      // Remove the user from the data object by ID
       delete state.data[userId];
     });
 });

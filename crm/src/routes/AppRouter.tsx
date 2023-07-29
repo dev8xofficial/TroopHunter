@@ -4,7 +4,7 @@ import { URLS } from './Urls';
 import AuthLayout from '../layout/AuthLayout';
 import DefaultLayout from '../layout/DefaultLayout';
 import { useSelector } from 'react-redux';
-import { AuthState } from '../store/reducers/authReducer';
+import { IAuthState } from '../store/reducers/authReducer';
 
 const PublicRoute = ({ userToken, children }: any) => {
   if (userToken) {
@@ -21,7 +21,7 @@ const PrivateRoute = ({ userToken, children }: any) => {
 };
 
 const AppRouter: FC = () => {
-  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
+  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
 
   return (
     <>

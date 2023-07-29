@@ -10,6 +10,7 @@ export const setHomePageLoadingFailureAction = createAction('homePage/setHomePag
 export const setHomePagePaginationPageAction = createAction<number>('homePage/setHomePagePaginationPageAction');
 export const setHomePagePaginationLimitAction = createAction<number>('homePage/setHomePagePaginationLimitAction');
 export const setHomePageDraftLeadIdAction = createAction<string>('homePage/setHomePageDraftLeadIdAction');
+export const resetHomePageDraftLeadIdAction = createAction<string>('homePage/resetHomePageDraftLeadIdAction');
 
 export const setHomePageBusinessIdsAction = createAction<string[]>('homePage/setHomePageBusinessIdsAction');
 export const resetHomePageBusinessIdsAction = createAction('homePage/resetHomePageBusinessIdsAction');

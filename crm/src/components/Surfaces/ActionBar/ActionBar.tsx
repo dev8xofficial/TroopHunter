@@ -6,12 +6,12 @@ import IconButton from '../../Inputs/IconButton/IconButton';
 import { IActionBarProps } from './ActionBar.interfaces';
 import Avatar from '../../DataDisplay/Avatar/Avatar';
 import { useSelector } from 'react-redux';
-import { IUser } from '../../../types/user';
+import { IUserCreationResponseAttributes } from '../../../types/user';
 import LeadsDeletionDialog from '../../Feedback/LeadsDeletionDialog/LeadsDeletionDialog';
 import Progress from '../../Feedback/Progress/Progress';
-import { AuthState } from '../../../store/reducers/authReducer';
-import { UserState } from '../../../store/reducers/userReducer';
-import { LeadsState } from '../../../store/reducers/leadsPageReducer';
+import { IAuthState } from '../../../store/reducers/authReducer';
+import { IUserState } from '../../../store/reducers/userReducer';
+import { ILeadsState } from '../../../store/reducers/leadsPageReducer';
 
 const people = [
   {
@@ -75,12 +75,12 @@ const people = [
 ];
 
 const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = false }: IActionBarProps): JSX.Element => {
-  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
-  const { users }: { users: UserState } = useSelector((state: { users: UserState }) => state);
-  const { leads }: { leads: LeadsState } = useSelector((state: { leads: LeadsState }) => state);
+  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
+  const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
+  const { leads }: { leads: ILeadsState } = useSelector((state: { leads: ILeadsState }) => state);
 
   const selectedLeadIds = leads.selectedLeadIds;
-  const usersLoggedIn: IUser = users.data[auth.userId];
+  const usersLoggedIn: IUserCreationResponseAttributes = users.data[auth.userId];
 
   let [isOpenDeleteLeadsModal, setIsOpenDeleteLeadsModal] = useState(false);
 

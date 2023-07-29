@@ -1,19 +1,15 @@
 import { createAction } from '@reduxjs/toolkit';
-import { IUser } from '../../types/user';
+import { IUsersFetchPayload, IUsersFetchUserPayload } from '../sagas/userSaga';
+import { IUserCreationResponseAttributes } from '../../types/user';
+import { IUserState } from '../reducers/userReducer';
 
-export const fetchUsers = createAction('user/fetchUsers');
-export const fetchUsersSuccess = createAction<{ [key: string]: IUser }>('user/fetchUsersSuccess');
-export const fetchUsersFailure = createAction('user/fetchUsersFailure');
+export const fetchUsersAction = createAction<IUsersFetchPayload>('user/fetchUsersAction');
+export const fetchUsersSuccessAction = createAction<IUserState>('user/fetchUsersSuccessAction');
+export const fetchUsersFailureAction = createAction('user/fetchUsersFailureAction');
 
-export interface IUsersFetchUserPayload {
-  token: string;
-  userId: string;
-}
+export const fetchUserAction = createAction<IUsersFetchUserPayload>('user/fetchUserAction');
+export const fetchUserSuccessAction = createAction<IUserCreationResponseAttributes>('user/fetchUserSuccessAction');
 
-export const fetchUserAction = createAction<IUsersFetchUserPayload>('user/fetchUser');
-export const fetchUserSuccessAction = createAction<IUser>('user/fetchUserSuccess');
-export const fetchUserFailureAction = createAction('user/fetchUserFailure');
-
-export const updateUserLocallyAction = createAction<IUser>('user/updateUserLocally');
-export const addUserLocallyAction = createAction<IUser>('user/addUserLocally');
-export const deleteUserLocallyAction = createAction<string>('user/deleteUserLocally');
+export const updateUserLocallyAction = createAction<IUserCreationResponseAttributes>('user/updateUserLocallyAction');
+export const addUserLocallyAction = createAction<IUserCreationResponseAttributes>('user/addUserLocallyAction');
+export const deleteUserLocallyAction = createAction<string>('user/deleteUserLocallyAction');

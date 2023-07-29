@@ -1,22 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
-import { NavigateFunction } from 'react-router-dom';
+import { IAuthLoginSuccessPayload } from '../reducers/authReducer';
+import { IAuthLoginPayload, IAuthRegisterPayload } from '../sagas/authSaga';
 
-export interface IAuthLoginPayload {
-  email: string;
-  password: string;
-  navigate: NavigateFunction;
-}
+export const authLoginAction = createAction<IAuthLoginPayload>('auth/authLoginAction');
+export const authLoginSuccessAction = createAction<IAuthLoginSuccessPayload>('auth/authLoginSuccessAction');
+export const authLoginFailureAction = createAction('auth/authLoginFailureAction');
 
-export interface IAuthRegisterPayload {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  navigate: NavigateFunction;
-}
-
-export const loginAction = createAction<IAuthLoginPayload>('auth/signin');
-export const loginSuccessAction = createAction('auth/loginSuccess');
-export const loginFailureAction = createAction('auth/loginFailure');
-
-export const registerAction = createAction<IAuthRegisterPayload>('auth/signup');
+export const authRegisterAction = createAction<IAuthRegisterPayload>('auth/authRegisterAction');

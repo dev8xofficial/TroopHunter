@@ -1,10 +1,19 @@
 import { takeLatest, put } from 'redux-saga/effects';
-import { loginSuccessAction, loginFailureAction } from '../actions/authActions';
+import { authLoginSuccessAction, authLoginFailureAction, authLoginAction, authRegisterAction } from '../actions/authActions';
 import { toast } from 'react-toastify';
 import { loginService, registerService } from '../../services/authService';
 import { addUserLocallyAction } from '../actions/userActions';
+import { NavigateFunction } from 'react-router-dom';
+import { IUserCreationRequestAttributes } from '../../types/user';
+import { IAuthLoginSuccessPayload } from '../reducers/authReducer';
 
-function* loginSaga({ payload }: any): any {
+export interface IAuthLoginPayload {
+  email: string;
+  password: string;
+  navigate: NavigateFunction;
+}
+
+function* loginSaga({ payload }: { payload: IAuthLoginPayload }): any {
   try {
     const { email, password, navigate } = payload;
     const response = yield loginService({ email, password, include: '["Leads"]' });
@@ -15,17 +24,24 @@ function* loginSaga({ payload }: any): any {
       navigate('/');
 
       toast.success(response.message);
-      yield put(loginSuccessAction(response.data));
+
+      // Perform type check using type assertion
+      const loginSuccessPayload = response.data as IAuthLoginSuccessPayload;
+      yield put(authLoginSuccessAction(loginSuccessPayload));
     } else {
       toast.error(response.error);
     }
   } catch (error) {
     toast.error(error.response.error);
-    yield put(loginFailureAction(error.message));
+    yield put(authLoginFailureAction(error.message));
   }
 }
 
-function* registerSaga({ payload }: any): any {
+export interface IAuthRegisterPayload extends IUserCreationRequestAttributes {
+  navigate: NavigateFunction;
+}
+
+function* registerSaga({ payload }: { payload: IAuthRegisterPayload }): any {
   try {
     const { firstName, lastName, email, password, navigate } = payload;
     const response = yield registerService({ firstName, lastName, email, password });
@@ -43,9 +59,9 @@ function* registerSaga({ payload }: any): any {
 }
 
 export function* watchLoginSaga() {
-  yield takeLatest('auth/signin', loginSaga);
+  yield takeLatest(authLoginAction, loginSaga);
 }
 
 export function* watchRegisterSaga() {
-  yield takeLatest('auth/signup', registerSaga);
+  yield takeLatest(authRegisterAction, registerSaga);
 }

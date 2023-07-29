@@ -7,11 +7,11 @@ import Avatar from '../../DataDisplay/Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
 import Checkbox from '../../Inputs/Checkbox/Checkbox';
-import { IBusiness } from '../../../types/business';
+import { IBusinessCreationResponseAttributes } from '../../../types/business';
 import { setHomePageBusinessIdsAction, setHomePagePaginationPageAction } from '../../../store/actions/homePageActions';
 import { classNames } from '../../../utils/helpers';
-import { BusinessState } from '../../../store/reducers/businessReducer';
-import { HomePageState } from '../../../store/reducers/homePageReducer';
+import { IBusinessState } from '../../../store/reducers/businessReducer';
+import { IHomePageState } from '../../../store/reducers/homePageReducer';
 
 const images = [
   'https://plus.unsplash.com/premium_photo-1673408622902-8c1126555f29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -34,11 +34,11 @@ interface ITable {
 
 const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
   const dispatch = useDispatch();
-  const { businesses }: { businesses: BusinessState } = useSelector((state: { businesses: BusinessState }) => state);
-  const { home }: { home: HomePageState } = useSelector((state: { home: HomePageState }) => state);
+  const { businesses }: { businesses: IBusinessState } = useSelector((state: { businesses: IBusinessState }) => state);
+  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
 
-  const businessesDataBusinesses: { [key: string]: IBusiness } = businesses.data.businesses;
-  const businessesTotalRecords: number | null = businesses.data.totalRecords;
+  const businessesDataBusinesses: { [key: string]: IBusinessCreationResponseAttributes } = businesses.data.businesses;
+  const businessesTotalRecords: number = businesses.data.totalRecords;
   const isLeadPageLoading = home.isLoading;
   const leadPageBusinessIds: string[] = home.businessIds;
   const leadPagePaginationPage: number = home.page;
@@ -127,7 +127,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
             </Menu.Button>
           </CustomMenu>
         </div>
-        {businessesTotalRecords !== 0 && (
+        {businessesTotalRecords !== null && (
           <>
             <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
             <div className="h-full whitespace-nowrap pr-14">{`Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div>
@@ -150,12 +150,12 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
         <InfiniteScroll dataLength={Object.keys(businessesDataBusinesses).length} next={onNext} hasMore={Object.keys(businessesDataBusinesses).length < (businessesTotalRecords || 0)} loader={<></>} scrollableTarget="table-lead-container">
           {/* Existing code for TableLead */}
           <ul role="list" className={classNames(isLeadPageLoading && 'group animate-pulse', 'divide-y rounded border bg-white shadow')}>
-            {Object.values(businessesDataBusinesses).map((business: IBusiness, index) => (
+            {Object.values(businessesDataBusinesses).map((business: IBusinessCreationResponseAttributes, index) => (
               <li key={index} className={classNames(index === 0 && 'hover:rounded-t', index === Object.values(businessesDataBusinesses).length - 1 && 'hover:rounded-b', 'hover:bg-gray-100')}>
                 <div className="relative flex w-full items-start px-6 py-5">
                   <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">
                     <div className="group-block hidden h-5 w-5 rounded bg-slate-300"></div>
-                    <Checkbox id={business.name} name={business.name} checked={isBusinessSelected(`${business.id}`)} onChange={() => handleCheckboxChange(`${business.id}`)} className="group-hidden" />
+                    <Checkbox id={business.name} name={business.name} checked={isBusinessSelected(business.id)} onChange={() => handleCheckboxChange(`${business.id}`)} className="group-hidden" />
                   </div>
                   <div className="w-full text-sm leading-6">
                     <label htmlFor={business.name} className="relative flex cursor-pointer justify-between gap-x-6 px-4 sm:px-6">

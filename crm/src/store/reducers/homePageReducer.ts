@@ -1,5 +1,5 @@
 import { PayloadAction, createReducer } from '@reduxjs/toolkit';
-import { setHomePageFiltersAction, resetHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePageLoadingFailureAction, setHomePagePaginationPageAction, setHomePagePaginationLimitAction, setHomePageDraftLeadIdAction, setHomePageBusinessIdsAction, resetHomePageBusinessIdsAction } from '../actions/homePageActions';
+import { setHomePageFiltersAction, resetHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePageLoadingFailureAction, setHomePagePaginationPageAction, setHomePagePaginationLimitAction, setHomePageDraftLeadIdAction, resetHomePageDraftLeadIdAction, setHomePageBusinessIdsAction, resetHomePageBusinessIdsAction } from '../actions/homePageActions';
 
 export interface IFilterAttributes {
   label: string;
@@ -8,7 +8,7 @@ export interface IFilterAttributes {
   // handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface HomePageState {
+export interface IHomePageState {
   filters: IFilterAttributes[];
   page: number;
   pageLimit: number;
@@ -28,11 +28,11 @@ const initialValue = [
   { label: 'Sponsored', name: 'sponsoredAd', value: 'false' },
 ];
 
-const initialState: HomePageState = {
+const initialState: IHomePageState = {
   filters: initialValue,
   page: 1,
   pageLimit: 10,
-  draftLeadId: null,
+  draftLeadId: '',
   businessIds: [],
   isLoading: false,
 };
@@ -61,6 +61,9 @@ const leadPageReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setHomePageDraftLeadIdAction, (state, action: PayloadAction<string>) => {
       state.draftLeadId = action.payload;
+    })
+    .addCase(resetHomePageDraftLeadIdAction, (state, action: PayloadAction<string>) => {
+      state.draftLeadId = '';
     })
     .addCase(setHomePageBusinessIdsAction, (state, action: PayloadAction<string[]>) => {
       state.businessIds = action.payload;

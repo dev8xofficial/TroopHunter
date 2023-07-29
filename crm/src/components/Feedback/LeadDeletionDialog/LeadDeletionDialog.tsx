@@ -1,27 +1,24 @@
-import { Fragment, useRef } from 'react';
+import { Fragment } from 'react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react';
 import { LeadDeletionDialogAttributes } from './LeadDeletionDialog.interfaces';
 import { useDispatch, useSelector } from 'react-redux';
-// import { deleteLeadsAction } from '../../../store/actions/leadActions';
-import { IUser } from '../../../types/user';
+import { IUserCreationResponseAttributes } from '../../../types/user';
 import Button from '../../Inputs/Button/Button';
 import { deleteLeadAction } from '../../../store/actions/leadActions';
-import { AuthState } from '../../../store/reducers/authReducer';
-import { UserState } from '../../../store/reducers/userReducer';
-import { HomePageState } from '../../../store/reducers/homePageReducer';
+import { IAuthState } from '../../../store/reducers/authReducer';
+import { IUserState } from '../../../store/reducers/userReducer';
+import { IHomePageState } from '../../../store/reducers/homePageReducer';
 
 const LeadDeletionDialog: React.FC<LeadDeletionDialogAttributes> = ({ isOpen, closeModal }: LeadDeletionDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
-  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
-  const { users }: { users: UserState } = useSelector((state: { users: UserState }) => state);
-  const { home }: { home: HomePageState } = useSelector((state: { home: HomePageState }) => state);
+  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
+  const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
+  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
 
   const leadPageDraftLeadId: string = home.draftLeadId;
-  const usersLoggedIn: IUser = users.data[auth.userId];
-
-  const cancelButtonRef: React.RefObject<HTMLButtonElement> = useRef<HTMLButtonElement>(null);
+  const usersLoggedIn: IUserCreationResponseAttributes = users.data[auth.userId];
 
   const handleDelete = () => {
     closeModal();
@@ -72,7 +69,7 @@ const LeadDeletionDialog: React.FC<LeadDeletionDialogAttributes> = ({ isOpen, cl
                     <Button variant="contained" color="red" onClick={handleDelete}>
                       Delete
                     </Button>
-                    <Button ref={cancelButtonRef} variant="outlined" color="gray" className="mr-4">
+                    <Button onClick={closeModal} variant="outlined" color="gray" className="mr-4">
                       Cancel
                     </Button>
                   </div>

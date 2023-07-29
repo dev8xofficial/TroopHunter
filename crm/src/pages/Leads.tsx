@@ -2,10 +2,10 @@ import { useSelector } from 'react-redux';
 import Table from '../components/DataDisplay/Table/Table';
 import Search from '../components/Inputs/Search/Search';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
-import { HomePageState } from '../store/reducers/homePageReducer';
+import { IHomePageState } from '../store/reducers/homePageReducer';
 
 const Leads = () => {
-  const { home }: { home: HomePageState } = useSelector((state: { home: HomePageState }) => state);
+  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
   const isLeadPageLoading = home.isLoading;
   return (
     <>

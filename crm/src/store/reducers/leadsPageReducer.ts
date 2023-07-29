@@ -1,20 +1,20 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { setSelectedLeadIds, resetSelectedLeadIds } from '../actions/leadsPageActions';
+import { PayloadAction, createReducer } from '@reduxjs/toolkit';
+import { setLeadsPageSelectedLeadIds, resetLeadsPageSelectedLeadIds } from '../actions/leadsPageActions';
 
-export interface LeadsState {
+export interface ILeadsState {
   selectedLeadIds: string[];
 }
 
-const initialState: LeadsState = { selectedLeadIds: [] };
+const initialState: ILeadsState = { selectedLeadIds: [] };
 
 const leadReducer = createReducer(initialState, (builder) => {
   builder
     // Handling local updates
-    .addCase(setSelectedLeadIds, (state, action) => {
+    .addCase(setLeadsPageSelectedLeadIds, (state, action: PayloadAction<string[]>) => {
       const ids = action.payload;
       state.selectedLeadIds = ids;
     })
-    .addCase(resetSelectedLeadIds, (state, action) => {
+    .addCase(resetLeadsPageSelectedLeadIds, (state) => {
       state.selectedLeadIds = [];
     });
 });
