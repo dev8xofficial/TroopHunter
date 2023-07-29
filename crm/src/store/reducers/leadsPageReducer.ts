@@ -1,11 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setSelectedLeadIds, deleteLeadsSuccessAction, deleteLeadsFailureAction } from '../actions/leadActions';
+import { setSelectedLeadIds, resetSelectedLeadIds } from '../actions/leadsPageActions';
 
-export interface LeadsPageState {
+export interface LeadsState {
   selectedLeadIds: string[];
 }
 
-const initialState: LeadsPageState = { selectedLeadIds: [] };
+const initialState: LeadsState = { selectedLeadIds: [] };
 
 const leadReducer = createReducer(initialState, (builder) => {
   builder
@@ -14,11 +14,8 @@ const leadReducer = createReducer(initialState, (builder) => {
       const ids = action.payload;
       state.selectedLeadIds = ids;
     })
-    .addCase(deleteLeadsSuccessAction, (state, action) => {
+    .addCase(resetSelectedLeadIds, (state, action) => {
       state.selectedLeadIds = [];
-    })
-    .addCase(deleteLeadsFailureAction, (state, action) => {
-      state.selectedLeadIds = state.selectedLeadIds;
     });
 });
 

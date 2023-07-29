@@ -2,10 +2,10 @@ import { takeLatest, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import { createLeadService, updateLeadService, deleteLeadService, deleteLeadsService } from '../../services/leadServices';
 import { fetchUserAction, updateUserLocallyAction } from '../actions/userActions';
-import { resetLeadFiltersAction, setDraftLeadIdAction } from '../actions/leadPageActions';
+import { resetHomePageFiltersAction, setHomePageDraftLeadIdAction } from '../actions/homePageActions';
 import { IUser } from '../../types/user';
 import { ILead } from '../../types/lead';
-import { deleteLeadsFailureAction, deleteLeadsSuccessAction } from '../actions/leadActions';
+import { resetSelectedLeadIds } from '../actions/leadsPageActions';
 
 function* createLeadSaga({ payload }: any): any {
   try {
@@ -25,7 +25,6 @@ function* createLeadSaga({ payload }: any): any {
 
 function* updateLeadSaga({ payload }: any): any {
   try {
-    debugger;
     const { id, userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, token, leadBusinessIds } = payload;
     const response = yield updateLeadService(id, { userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, leadBusinessIds }, token);
 
@@ -42,7 +41,6 @@ function* updateLeadSaga({ payload }: any): any {
 
 function* deleteLeadSaga({ payload }: any): any {
   try {
-    debugger;
     const { id, token, user } = payload;
     const response = yield deleteLeadService(id, token);
 
@@ -54,8 +52,8 @@ function* deleteLeadSaga({ payload }: any): any {
       };
 
       yield put(updateUserLocallyAction(updatedUser));
-      yield put(setDraftLeadIdAction(''));
-      yield put(resetLeadFiltersAction());
+      yield put(setHomePageDraftLeadIdAction(''));
+      yield put(resetHomePageFiltersAction());
       toast.success(response.message);
     } else {
       toast.error(response.error);
@@ -79,15 +77,15 @@ function* deleteLeadsSaga({ payload }: any): any {
       };
 
       yield put(updateUserLocallyAction(updatedUser));
-      yield put(deleteLeadsSuccessAction(response.data));
+      yield put(resetSelectedLeadIds());
       toast.success(response.message);
     } else {
       toast.error(response.error);
-      yield put(deleteLeadsFailureAction(response.message));
+      yield put(resetSelectedLeadIds());
     }
   } catch (error) {
     toast.error(error.message);
-    yield put(deleteLeadsFailureAction(error.message));
+    yield put(resetSelectedLeadIds());
   }
 }
 

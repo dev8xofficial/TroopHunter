@@ -1,5 +1,5 @@
 import { takeLatest, put } from 'redux-saga/effects';
-import { loginSuccessAction, loginFailureAction, registerSuccessAction, registerFailureAction } from '../actions/authActions';
+import { loginSuccessAction, loginFailureAction } from '../actions/authActions';
 import { toast } from 'react-toastify';
 import { loginService, registerService } from '../../services/authService';
 import { addUserLocallyAction } from '../actions/userActions';
@@ -34,13 +34,11 @@ function* registerSaga({ payload }: any): any {
       navigate('/signin');
 
       toast.success(response.message);
-      yield put(registerSuccessAction(response.data.user));
     } else {
       toast.error(response.error);
     }
   } catch (error) {
     toast.error(error.response.error);
-    yield put(registerFailureAction(error.message));
   }
 }
 

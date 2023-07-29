@@ -9,12 +9,13 @@ import { fetchBusinessesAction } from '../store/actions/businessActions';
 import CustomTextField from '../components/Inputs/CustomTextField/CustomTextField';
 import Accordion from '../components/Surfaces/Accordion/Accordion';
 import TableLead from '../components/DataDisplay/Table/TableLead';
-import { setLeadFiltersAction, setLeadPageAction } from '../store/actions/leadPageActions';
-import { IFilterAttributes } from '../store/reducers/leadPageReducer';
+import { setHomePageFiltersAction, setHomePagePaginationPageAction } from '../store/actions/homePageActions';
+import { IFilterAttributes, HomePageState } from '../store/reducers/homePageReducer';
 import Button from '../components/Inputs/Button/Button';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import LeadSaveDialog from '../components/Feedback/LeadSaveDialog/LeadSaveDialog';
 import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDeletionDialog';
+import { AuthState } from '../store/reducers/authReducer';
 
 const tabs = [{ name: 'Filters', href: '#', current: true }];
 
@@ -24,17 +25,20 @@ function classNames(...classes: any) {
 
 const Lead = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state: any) => state.leadPage.isLoading);
-  const auth = useSelector((state: any) => state.auth);
-  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.leadPage.leadFilters);
-  const leadPage: number = useSelector((state: any) => state.leadPage.leadPage);
-  const leadPageLimit: number = useSelector((state: any) => state.leadPage.leadPageLimit);
-  const draftLeadId: string = useSelector((state: any) => state.leadPage?.draftLeadId);
-  const [debouncedFilters, setDebouncedFilters] = useState<IFilterAttributes[]>(leadFilters);
+  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
+  const { home }: { home: HomePageState } = useSelector((state: { home: HomePageState }) => state);
+
+  const isLeadLoading = home.isLoading;
+  const leadPageFilters: IFilterAttributes[] = home.filters;
+  const leadPagePaginationPage: number = home.page;
+  const leadPagePaginationLimit: number = home.pageLimit;
+  const leadPageDraftLeadId: string = home.draftLeadId;
+
+  const [debouncedFilters, setDebouncedFilters] = useState<IFilterAttributes[]>(leadPageFilters);
   const [filtersPanelWidth, setFiltersPanelWidth] = useState<boolean>(true);
-  let [isOpenLeadSaveDialog, setIsOpenLeadSaveDialog] = useState(false);
-  let [isOpenLeadLeadDeletionDialog, setIsOpenLeadDeletionDialog] = useState(false);
-  let [isOpenMobileFiltersDialog, setIsOpenMobileFiltersDialog] = useState(false);
+  const [isOpenLeadSaveDialog, setIsOpenLeadSaveDialog] = useState(false);
+  const [isOpenLeadLeadDeletionDialog, setIsOpenLeadDeletionDialog] = useState(false);
+  const [isOpenMobileFiltersDialog, setIsOpenMobileFiltersDialog] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
   const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
 
@@ -42,14 +46,14 @@ const Lead = () => {
     const name = event.target.name;
     const newValue = event.target.value;
 
-    if (name === 'name' && leadPage !== 1) {
-      dispatch(setLeadPageAction(1));
+    if (name === 'name' && leadPagePaginationPage !== 1) {
+      dispatch(setHomePagePaginationPageAction(1));
     }
 
-    dispatch(setLeadFiltersAction(leadFilters.map((filter) => (filter.name === name ? { ...filter, value: newValue } : filter))));
+    dispatch(setHomePageFiltersAction(leadPageFilters.map((filter) => (filter.name === name ? { ...filter, value: newValue } : filter))));
   };
 
-  const loadMoreBusinesses = ({ leadPage, leadPageLimit }: { leadPage: number; leadPageLimit: number }) => {
+  const loadMoreBusinesses = ({ page, limit }: { page: number; limit: number }) => {
     const filtersObject: Record<string, string> = {};
     for (const filter of debouncedFilters) {
       filtersObject[filter.name] = filter.value;
@@ -57,8 +61,8 @@ const Lead = () => {
 
     const requestData = {
       token: auth.token,
-      page: leadPage,
-      limit: leadPageLimit,
+      page: page,
+      limit: limit,
       ...filtersObject,
     };
     dispatch(fetchBusinessesAction(requestData));
@@ -68,18 +72,18 @@ const Lead = () => {
     // Set a timeout to update the debouncedFilters after 500ms
     const delay = 500;
     const timeoutId = setTimeout(() => {
-      setDebouncedFilters(leadFilters);
+      setDebouncedFilters(leadPageFilters);
     }, delay);
 
-    // Clear the timeout if the component is unmounted or if leadFilters change before the timeout is reached
+    // Clear the timeout if the component is unmounted or if leadPageFilters change before the timeout is reached
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [leadFilters]);
+  }, [leadPageFilters]);
 
   useEffect(() => {
     if (debouncedFilters.length > 0) {
-      loadMoreBusinesses({ leadPage, leadPageLimit });
+      loadMoreBusinesses({ page: leadPagePaginationPage, limit: leadPagePaginationLimit });
     }
   }, [debouncedFilters]);
 
@@ -102,7 +106,7 @@ const Lead = () => {
     <>
       {/* Action tab */}
       <div className="xl:hidden">
-        <ActionBar title="Lead" isLoading={isLoading} />
+        <ActionBar title="Lead" isLoading={isLeadLoading} />
       </div>
 
       <div className="bg-gray-100">
@@ -131,7 +135,7 @@ const Lead = () => {
             <div>
               <div className="flex items-center justify-between space-x-6 pl-4 pr-4 sm:pr-6 lg:pr-8">
                 <div className="flex flex-grow items-center space-x-6">
-                  <div className="max-w-md flex-grow">{leadFilters[0] && <CustomTextField label={leadFilters[0]?.label} name={leadFilters[0]?.name} value={leadFilters[0]?.value} onChange={handleChange} placeholder={`Search ${leadFilters[0].label.toLowerCase()} title...`} />}</div>
+                  <div className="max-w-md flex-grow">{leadPageFilters[0] && <CustomTextField label={leadPageFilters[0]?.label} name={leadPageFilters[0]?.name} value={leadPageFilters[0]?.value} onChange={handleChange} placeholder={`Search ${leadPageFilters[0].label.toLowerCase()} title...`} />}</div>
 
                   <a className="inline-flex items-center whitespace-nowrap text-sm font-semibold">Saved searches</a>
                 </div>
@@ -375,7 +379,7 @@ const Lead = () => {
             <div className="mb-2 hidden overflow-y-scroll p-4 pb-24 xl:col-span-4 xl:block" ref={mainRef} style={{ height: mainHeight }}>
               <div>
                 <ul role="list" className="divide-y rounded border bg-gray-100 shadow">
-                  {leadFilters.map((filter) =>
+                  {leadPageFilters.map((filter) =>
                     filter.name !== 'name' ? (
                       <li key={filter.name}>
                         <Accordion label={filter.label} name={filter.name} value={filter.value} handleChange={handleChange} />
@@ -390,7 +394,7 @@ const Lead = () => {
             {/* Action buttons */}
             <div className={classNames(filtersPanelWidth && 'xl:max-w-lg 2xl:max-w-xl', 'fixed bottom-0 w-full max-w-sm flex-shrink-0 border-t border-gray-200 bg-white px-4 py-5 sm:px-6', 'transition-all duration-500 ease-in-out')}>
               <div className="flex items-center justify-between">
-                {draftLeadId && (
+                {leadPageDraftLeadId && (
                   <>
                     <Button variant="outlined" color="red" onClick={() => setIsOpenLeadDeletionDialog(!isOpenLeadLeadDeletionDialog)}>
                       Delete
@@ -399,11 +403,11 @@ const Lead = () => {
                   </>
                 )}
                 <div className="ml-auto flex justify-end space-x-3">
-                  {/* {!draftLeadId && <a className="inline-flex cursor-pointer items-center text-sm font-semibold">Clear all</a>}
-                  {draftLeadId && <a className="inline-flex cursor-pointer items-center text-sm font-semibold">Go back</a>} */}
+                  {/* {!leadPageDraftLeadId && <a className="inline-flex cursor-pointer items-center text-sm font-semibold">Clear all</a>}
+                  {leadPageDraftLeadId && <a className="inline-flex cursor-pointer items-center text-sm font-semibold">Go back</a>} */}
                   <>
                     <Button variant="contained" color="indigo" onClick={() => setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog)}>
-                      {draftLeadId ? 'Update' : 'Save'} search
+                      {leadPageDraftLeadId ? 'Update' : 'Save'} search
                     </Button>
                     <LeadSaveDialog isOpen={isOpenLeadSaveDialog} closeModal={() => setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog)} />
                   </>

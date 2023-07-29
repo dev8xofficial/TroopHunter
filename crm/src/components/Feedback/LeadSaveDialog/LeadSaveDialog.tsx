@@ -8,22 +8,29 @@ import { CustomDialogAttributes } from './LeadSaveDialog.interfaces';
 import TextField from '../../Inputs/TextField/TextField';
 import Button from '../../Inputs/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { IFilterAttributes } from '../../../store/reducers/leadPageReducer';
+import { IFilterAttributes, HomePageState } from '../../../store/reducers/homePageReducer';
 import { createLeadAction, updateLeadAction } from '../../../store/actions/leadActions';
 import { toast } from 'react-toastify';
 import { IUser } from '../../../types/user';
 import { ILead } from '../../../types/lead';
+import { AuthState } from '../../../store/reducers/authReducer';
+import { BusinessState } from '../../../store/reducers/businessReducer';
+import { UserState } from '../../../store/reducers/userReducer';
 
 const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: CustomDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
-  const auth = useSelector((state: any) => state.auth);
-  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.leadPage.leadFilters);
-  const draftLeadId: string = useSelector((state: any) => state.leadPage?.draftLeadId);
-  const userId: string = useSelector((state: any) => state.auth.userId);
-  const user: IUser = useSelector((state: any) => state.users.data[userId]);
-  const totalRecords: number = useSelector((state: any) => state.businesses?.data?.totalRecords);
-  const leadBusinessIds: string[] = useSelector((state: any) => state.leadPage.leadBusinessIds);
-  const draftLead = user?.Leads?.find((lead: ILead) => lead.id === draftLeadId);
+  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
+  const { home }: { home: HomePageState } = useSelector((state: { home: HomePageState }) => state);
+  const { users }: { users: UserState } = useSelector((state: { users: UserState }) => state);
+  const { businesses }: { businesses: BusinessState } = useSelector((state: { businesses: BusinessState }) => state);
+
+  const leadPageFilters: IFilterAttributes[] = home.filters;
+  const leadPageDraftLeadId: string = home.draftLeadId;
+  const leadPageBusinessIds: string[] = home.businessIds;
+  const usersLoggedIn: IUser = users.data[auth.userId];
+  const businessesTotalRecords: number | null = businesses.data.totalRecords;
+
+  const draftLead = usersLoggedIn?.Leads?.find((lead: ILead) => lead.id === leadPageDraftLeadId);
 
   const formikSchema = Yup.object().shape({
     title: Yup.string().required('Kindly Enter Title For Lead Information.'),
@@ -43,23 +50,23 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
     validationSchema: formikSchema,
     onSubmit: async (values, { resetForm }) => {
       const { title } = values;
-      if (leadFilters.length > 0 && leadFilters.some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {
+      if (leadPageFilters.length > 0 && leadPageFilters.some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {
         const filtersObject: Record<string, string> = {};
-        for (const filter of leadFilters) {
+        for (const filter of leadPageFilters) {
           filtersObject[filter.name] = filter.value;
         }
 
         const requestData = {
-          id: draftLeadId,
+          id: leadPageDraftLeadId,
           token: auth.token,
           userId: auth.userId,
           title,
           search: filtersObject.name,
-          businessCount: Array.isArray(leadBusinessIds) && leadBusinessIds.length > 0 ? leadBusinessIds.length : totalRecords ? totalRecords : 0,
-          leadBusinessIds,
+          businessCount: Array.isArray(leadPageBusinessIds) && leadPageBusinessIds.length > 0 ? leadPageBusinessIds.length : businessesTotalRecords ? businessesTotalRecords : 0,
+          leadPageBusinessIds,
           ...filtersObject,
         };
-        if (draftLeadId) dispatch(updateLeadAction(requestData));
+        if (leadPageDraftLeadId) dispatch(updateLeadAction(requestData));
         else dispatch(createLeadAction(requestData));
 
         resetForm();

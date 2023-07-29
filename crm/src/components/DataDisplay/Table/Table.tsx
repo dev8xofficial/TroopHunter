@@ -8,11 +8,15 @@ import Avatar from '../Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
 import { ILead } from '../../../types/lead';
 import { IUser } from '../../../types/user';
-import { IFilterAttributes } from '../../../store/reducers/leadPageReducer';
-import { setDraftLeadIdAction, setLeadFiltersAction } from '../../../store/actions/leadPageActions';
-import { deleteLeadsAction, setSelectedLeadIds } from '../../../store/actions/leadActions';
+import { IFilterAttributes, HomePageState } from '../../../store/reducers/homePageReducer';
+import { setHomePageDraftLeadIdAction, setHomePageFiltersAction } from '../../../store/actions/homePageActions';
+import { setSelectedLeadIds } from '../../../store/actions/leadsPageActions';
+import { deleteLeadsAction } from '../../../store/actions/leadActions';
 import { IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
 import CryptoJS from 'crypto-js';
+import { AuthState } from '../../../store/reducers/authReducer';
+import { UserState } from '../../../store/reducers/userReducer';
+import { LeadsState } from '../../../store/reducers/leadsPageReducer';
 
 // Create a custom type to define valid filter keys
 type ValidFilterKeys = keyof Omit<ILead, 'userId' | 'title' | 'id' | 'categoryId' | 'postalCodeId' | 'ratingId' | 'reviews' | 'timezoneId' | 'openingHourId' | 'closingHourId'>;
@@ -22,13 +26,18 @@ const encryptionKey = process.env.ENCRYPTION_KEY ? process.env.ENCRYPTION_KEY : 
 const Table: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token: string = useSelector((state: any) => state.auth.token);
-  const leadFilters: IFilterAttributes[] = useSelector((state: any) => state.leadPage.leadFilters);
-  const userId: string = useSelector((state: any) => state.auth.userId);
-  const user: IUser = useSelector((state: any) => state.users.data[userId]);
-  const selectedLeadIds: string[] = useSelector((state: any) => state.lead.selectedLeadIds);
+  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
+  const { users }: { users: UserState } = useSelector((state: { users: UserState }) => state);
+  const { leads }: { leads: LeadsState } = useSelector((state: { leads: LeadsState }) => state);
+  const { home }: { home: HomePageState } = useSelector((state: { home: HomePageState }) => state);
+
+  const leadPageFilters: IFilterAttributes[] = home.filters;
+  const authUserId: string = auth.userId;
+  const usersLoggedIn: IUser = users.data[authUserId];
+  const selectedLeadIds: string[] = leads.selectedLeadIds;
+  const userLeads: ILead[] | undefined = usersLoggedIn.Leads;
+
   const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>(selectedLeadIds);
-  const userLeads: ILead[] | undefined = user.Leads;
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
@@ -56,21 +65,21 @@ const Table: React.FC = (): JSX.Element => {
     try {
       if (!Array.isArray(userLeads)) return;
 
-      const lead: ILead = userLeads[index];
-      const updatedFilters: IFilterAttributes[] = leadFilters.map((filter) => {
-        if (filter.name === 'name' && lead?.hasOwnProperty('search')) {
-          return { ...filter, value: `${lead['search']}` }; // Create a new object with updated value
-        } else if (lead?.hasOwnProperty(filter.name)) {
+      const selectedLead: ILead = userLeads[index];
+      const updatedFilters: IFilterAttributes[] = leadPageFilters.map((filter) => {
+        if (filter.name === 'name' && selectedLead?.hasOwnProperty('search')) {
+          return { ...filter, value: `${selectedLead['search']}` }; // Create a new object with updated value
+        } else if (selectedLead?.hasOwnProperty(filter.name)) {
           const validFilterName = filter.name as ValidFilterKeys;
-          const { userId, title, id, categoryId, postalCodeId, ratingId, reviews, timezoneId, openingHourId, closingHourId, ...rest } = lead;
+          const { userId: authUserId, title, id, categoryId, postalCodeId, ratingId, reviews, timezoneId, openingHourId, closingHourId, ...rest } = selectedLead;
           return { ...filter, value: `${rest[validFilterName]}` }; // Create a new object with updated value
         }
         return filter;
       });
 
       const dispatchActionPromise = new Promise<void>((resolve) => {
-        dispatch(setLeadFiltersAction(updatedFilters));
-        dispatch(setDraftLeadIdAction(`${lead.id}`));
+        dispatch(setHomePageFiltersAction(updatedFilters));
+        dispatch(setHomePageDraftLeadIdAction(`${selectedLead.id}`));
         resolve();
       });
 
@@ -84,9 +93,9 @@ const Table: React.FC = (): JSX.Element => {
 
   const handleDelete = (index: number) => {
     if (userLeads) {
-      const lead = userLeads[index]; // Specify index as number here
-      const leadId: string = lead && lead.id ? lead.id : '';
-      if (leadId) dispatch(deleteLeadsAction({ token, user, selectedLeadIds: [leadId] }));
+      const selectedLead = userLeads[index]; // Specify index as number here
+      const leadId: string = selectedLead && selectedLead.id ? selectedLead.id : '';
+      if (leadId) dispatch(deleteLeadsAction({ token: auth.token, user: usersLoggedIn, selectedLeadIds: [leadId] }));
       else toast.error('Failed to delete lead. Lead not found.');
     }
     console.log('Deleting lead with ID:', index);
@@ -170,16 +179,15 @@ const Table: React.FC = (): JSX.Element => {
                       <div className="font-medium text-gray-900">{`${lead.title}`}</div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
-                      {/* This tells how many businesses are in this lead. */}
                       <div className="text-gray-900">{lead.businessCount}</div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
                       <div className="flex items-center">
                         <div className="h-8 w-8 flex-shrink-0">
-                          <Avatar image="" firstName={user.firstName} size="small" border="border border-gray-900" />
+                          <Avatar image="" firstName={usersLoggedIn.firstName} size="small" border="border border-gray-900" />
                         </div>
                         <div className="ml-4">
-                          <div className="font-medium text-gray-900">{`${user.firstName} ${user.lastName}`}</div>
+                          <div className="font-medium text-gray-900">{`${usersLoggedIn.firstName} ${usersLoggedIn.lastName}`}</div>
                         </div>
                       </div>
                     </td>

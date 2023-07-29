@@ -4,6 +4,7 @@ import { URLS } from './Urls';
 import AuthLayout from '../layout/AuthLayout';
 import DefaultLayout from '../layout/DefaultLayout';
 import { useSelector } from 'react-redux';
+import { AuthState } from '../store/reducers/authReducer';
 
 const PublicRoute = ({ userToken, children }: any) => {
   if (userToken) {
@@ -20,7 +21,7 @@ const PrivateRoute = ({ userToken, children }: any) => {
 };
 
 const AppRouter: FC = () => {
-  const userToken = useSelector((state: any) => state.auth.token);
+  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
 
   return (
     <>
@@ -32,7 +33,7 @@ const AppRouter: FC = () => {
                 key={obj.path}
                 path={obj.path}
                 element={
-                  <PublicRoute userToken={userToken}>
+                  <PublicRoute userToken={auth.token}>
                     <AuthLayout>
                       <obj.component />
                     </AuthLayout>
@@ -44,7 +45,7 @@ const AppRouter: FC = () => {
                 key={obj.path}
                 path={obj.path}
                 element={
-                  <PrivateRoute userToken={userToken}>
+                  <PrivateRoute userToken={auth.token}>
                     <DefaultLayout>
                       <obj.component />
                     </DefaultLayout>

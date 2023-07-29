@@ -9,6 +9,9 @@ import { useSelector } from 'react-redux';
 import { IUser } from '../../../types/user';
 import LeadsDeletionDialog from '../../Feedback/LeadsDeletionDialog/LeadsDeletionDialog';
 import Progress from '../../Feedback/Progress/Progress';
+import { AuthState } from '../../../store/reducers/authReducer';
+import { UserState } from '../../../store/reducers/userReducer';
+import { LeadsState } from '../../../store/reducers/leadsPageReducer';
 
 const people = [
   {
@@ -72,10 +75,15 @@ const people = [
 ];
 
 const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = false }: IActionBarProps): JSX.Element => {
-  const selectedLeadIds = useSelector((state: any) => state.lead.selectedLeadIds);
-  const userId: string = useSelector((state: any) => state.auth.userId);
-  const user: IUser = useSelector((state: any) => state.users.data[userId]);
+  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
+  const { users }: { users: UserState } = useSelector((state: { users: UserState }) => state);
+  const { leads }: { leads: LeadsState } = useSelector((state: { leads: LeadsState }) => state);
+
+  const selectedLeadIds = leads.selectedLeadIds;
+  const usersLoggedIn: IUser = users.data[auth.userId];
+
   let [isOpenDeleteLeadsModal, setIsOpenDeleteLeadsModal] = useState(false);
+
   return (
     <>
       {/* Action tab */}
@@ -128,7 +136,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
                           </span>
                         ))}
                       </div>
-                      <span className="ml-3 capitalize text-indigo-600">my saved leads({user.Leads?.length})</span>
+                      <span className="ml-3 capitalize text-indigo-600">my saved leads({usersLoggedIn.Leads?.length})</span>
                     </div>
                     {selectedLeadIds.length > 0 && (
                       <>

@@ -8,8 +8,10 @@ import _Menu from '../../Navigation/Menu/Menu';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
 import Checkbox from '../../Inputs/Checkbox/Checkbox';
 import { IBusiness } from '../../../types/business';
-import { setLeadBusinessIdsAction, setLeadPageAction } from '../../../store/actions/leadPageActions';
+import { setHomePageBusinessIdsAction, setHomePagePaginationPageAction } from '../../../store/actions/homePageActions';
 import { classNames } from '../../../utils/helpers';
+import { BusinessState } from '../../../store/reducers/businessReducer';
+import { HomePageState } from '../../../store/reducers/homePageReducer';
 
 const images = [
   'https://plus.unsplash.com/premium_photo-1673408622902-8c1126555f29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -27,58 +29,52 @@ const leadItemMenu = [
 ];
 
 interface ITable {
-  loadMoreBusinesses: ({ leadPage, leadPageLimit }: { leadPage: number; leadPageLimit: number }) => void;
+  loadMoreBusinesses: ({ page, limit }: { page: number; limit: number }) => void;
 }
 
 const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state: any) => state.leadPage.isLoading);
-  const businesses: { [key: string]: IBusiness } = useSelector((state: any) => state.businesses.data.businesses);
-  const totalRecords: number | null = useSelector((state: any) => state.businesses.data.totalRecords);
-  const leadBusinessIds: string[] = useSelector((state: any) => state.leadPage.leadBusinessIds);
-  const leadPage: number = useSelector((state: any) => state.leadPage.leadPage);
-  const leadPageLimit: number = useSelector((state: any) => state.leadPage.leadPageLimit);
+  const { businesses }: { businesses: BusinessState } = useSelector((state: { businesses: BusinessState }) => state);
+  const { home }: { home: HomePageState } = useSelector((state: { home: HomePageState }) => state);
 
-  // State to store the calculated table height
+  const businessesDataBusinesses: { [key: string]: IBusiness } = businesses.data.businesses;
+  const businessesTotalRecords: number | null = businesses.data.totalRecords;
+  const isLeadPageLoading = home.isLoading;
+  const leadPageBusinessIds: string[] = home.businessIds;
+  const leadPagePaginationPage: number = home.page;
+  const leadPagePaginationLimit: number = home.pageLimit;
+
   const [tableHeight, setTableHeight] = useState<number | undefined>(undefined);
   const [selectedBusinessIds, setSelectedBusinessIds] = useState<string[]>([]);
 
   const handleCheckboxChange = (businessId: string) => {
     setSelectedBusinessIds((prevSelectedIds) => {
       if (prevSelectedIds.includes(businessId)) {
-        // Remove the business ID from the array if already selected
         return prevSelectedIds.filter((id) => id !== businessId);
       } else {
-        // Add the business ID to the array if not selected
         return [...prevSelectedIds, businessId];
       }
     });
   };
 
-  // Function to check if a business ID is selected
   const isBusinessSelected = (businessId: string) => {
     return selectedBusinessIds.includes(businessId);
   };
 
-  // Function to check if all businesses are selected
   const isAllBusinessesSelected = () => {
-    return Object.keys(businesses).every((businessId) => selectedBusinessIds.includes(businessId));
+    return Object.keys(businessesDataBusinesses).every((businessId) => selectedBusinessIds.includes(businessId));
   };
 
-  // Function to handle the "Select All" checkbox change
   const handleSelectAllChange = () => {
     if (isAllBusinessesSelected()) {
-      // If all businesses are selected, unselect all
       setSelectedBusinessIds([]);
     } else {
-      // If not all businesses are selected, select all
-      setSelectedBusinessIds(Object.keys(businesses));
+      setSelectedBusinessIds(Object.keys(businessesDataBusinesses));
     }
   };
 
   useEffect(() => {
-    // Dispatch the action to save the updated leadBusinessIds in the Redux store
-    dispatch(setLeadBusinessIdsAction(selectedBusinessIds));
+    dispatch(setHomePageBusinessIdsAction(selectedBusinessIds));
   }, [selectedBusinessIds]);
 
   useEffect(() => {
@@ -86,7 +82,6 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
       const container = document.getElementById('table-lead-container');
 
       if (container) {
-        // Calculate the remaining space by subtracting the container's top position and height from the window's inner height
         const remainingSpace = window.innerHeight - container.getBoundingClientRect().top;
         setTableHeight(remainingSpace);
       }
@@ -100,16 +95,15 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   const onNext = () => {
-    const nextPage = leadPage + 1;
-    dispatch(setLeadPageAction(nextPage));
-    loadMoreBusinesses({ leadPage: nextPage, leadPageLimit });
+    const nextPage = leadPagePaginationPage + 1;
+    dispatch(setHomePagePaginationPageAction(nextPage));
+    loadMoreBusinesses({ page: nextPage, limit: leadPagePaginationLimit });
   };
 
   return (
@@ -133,15 +127,15 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
             </Menu.Button>
           </CustomMenu>
         </div>
-        {totalRecords !== 0 && (
+        {businessesTotalRecords !== 0 && (
           <>
             <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
-            <div className="h-full whitespace-nowrap pr-14">{`Selected: ${leadBusinessIds.length} | Total: ${totalRecords}`}</div>
+            <div className="h-full whitespace-nowrap pr-14">{`Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div>
           </>
         )}
       </div>
       {/* Empty State */}
-      <div className={classNames(Object.values(businesses).length > 0 && 'hidden', 'h-full rounded p-4')}>
+      <div className={classNames(Object.values(businessesDataBusinesses).length > 0 && 'hidden', 'h-full rounded p-4')}>
         <div className="flex h-full flex-col items-center justify-center bg-white">
           <MagnifyingGlassCircleIcon className="-ml-0.5 h-32 w-32 text-indigo-600" aria-hidden="true" />
           <div className="text-center">
@@ -152,19 +146,12 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
       </div>
 
       {/* Table Body */}
-      <div id="table-lead-container" style={{ height: tableHeight, overflowY: 'auto' }} className={classNames(Object.values(businesses).length < 1 && 'hidden', 'p-4')}>
-        {/* InfiniteScroll component for infinite scrolling */}
-        <InfiniteScroll
-          dataLength={Object.keys(businesses).length} // This is important to track the loaded businesses
-          next={onNext} // Callback to load more businesses
-          hasMore={Object.keys(businesses).length < (totalRecords || 0)} // Check if there are more businesses to load
-          loader={<></>} // Loader element to display while loading more businesses
-          scrollableTarget="table-lead-container" // Set the scrollable target to the container element
-        >
+      <div id="table-lead-container" style={{ height: tableHeight, overflowY: 'auto' }} className={classNames(Object.values(businessesDataBusinesses).length < 1 && 'hidden', 'p-4')}>
+        <InfiniteScroll dataLength={Object.keys(businessesDataBusinesses).length} next={onNext} hasMore={Object.keys(businessesDataBusinesses).length < (businessesTotalRecords || 0)} loader={<></>} scrollableTarget="table-lead-container">
           {/* Existing code for TableLead */}
-          <ul role="list" className={classNames(isLoading && 'group animate-pulse', 'divide-y rounded border bg-white shadow')}>
-            {Object.values(businesses).map((business: IBusiness, index) => (
-              <li key={index} className={classNames(index === 0 && 'hover:rounded-t', index === Object.values(businesses).length - 1 && 'hover:rounded-b', 'hover:bg-gray-100')}>
+          <ul role="list" className={classNames(isLeadPageLoading && 'group animate-pulse', 'divide-y rounded border bg-white shadow')}>
+            {Object.values(businessesDataBusinesses).map((business: IBusiness, index) => (
+              <li key={index} className={classNames(index === 0 && 'hover:rounded-t', index === Object.values(businessesDataBusinesses).length - 1 && 'hover:rounded-b', 'hover:bg-gray-100')}>
                 <div className="relative flex w-full items-start px-6 py-5">
                   <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">
                     <div className="group-block hidden h-5 w-5 rounded bg-slate-300"></div>

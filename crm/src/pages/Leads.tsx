@@ -2,9 +2,11 @@ import { useSelector } from 'react-redux';
 import Table from '../components/DataDisplay/Table/Table';
 import Search from '../components/Inputs/Search/Search';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
+import { HomePageState } from '../store/reducers/homePageReducer';
 
 const Leads = () => {
-  const isLoading = useSelector((state: any) => state.leadPage.isLoading);
+  const { home }: { home: HomePageState } = useSelector((state: { home: HomePageState }) => state);
+  const isLeadPageLoading = home.isLoading;
   return (
     <>
       <header>
@@ -25,7 +27,7 @@ const Leads = () => {
       </header>
 
       {/* Action tab */}
-      <ActionBar title="Leads" isLoading={isLoading} />
+      <ActionBar title="Leads" isLoading={isLeadPageLoading} />
 
       {/* Content */}
       <Table />

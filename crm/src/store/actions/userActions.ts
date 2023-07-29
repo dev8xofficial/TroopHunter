@@ -5,12 +5,12 @@ export const fetchUsers = createAction('user/fetchUsers');
 export const fetchUsersSuccess = createAction<{ [key: string]: IUser }>('user/fetchUsersSuccess');
 export const fetchUsersFailure = createAction('user/fetchUsersFailure');
 
-export interface IfetchUserPayload {
+export interface IUsersFetchUserPayload {
   token: string;
   userId: string;
 }
 
-export const fetchUserAction = createAction<IfetchUserPayload>('user/fetchUser');
+export const fetchUserAction = createAction<IUsersFetchUserPayload>('user/fetchUser');
 export const fetchUserSuccessAction = createAction<IUser>('user/fetchUserSuccess');
 export const fetchUserFailureAction = createAction('user/fetchUserFailure');
 

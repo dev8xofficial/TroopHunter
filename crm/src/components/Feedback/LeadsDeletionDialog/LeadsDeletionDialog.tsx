@@ -7,13 +7,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteLeadsAction } from '../../../store/actions/leadActions';
 import { IUser } from '../../../types/user';
 import Button from '../../Inputs/Button/Button';
+import { AuthState } from '../../../store/reducers/authReducer';
+import { UserState } from '../../../store/reducers/userReducer';
+import { LeadsState } from '../../../store/reducers/leadsPageReducer';
 
 const LeadsDeletionDialog: React.FC<LeadsDeletionDialogAttributes> = ({ isOpen, closeModal }: LeadsDeletionDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
-  const token: string = useSelector((state: any) => state.auth.token);
-  const selectedLeadIds: string[] = useSelector((state: any) => state.lead.selectedLeadIds);
-  const userId: string = useSelector((state: any) => state.auth.userId);
-  const user: IUser = useSelector((state: any) => state.users.data[userId]);
+  const { auth }: { auth: AuthState } = useSelector((state: { auth: AuthState }) => state);
+  const { users }: { users: UserState } = useSelector((state: { users: UserState }) => state);
+  const { leads }: { leads: LeadsState } = useSelector((state: { leads: LeadsState }) => state);
+
+  const selectedLeadIds: string[] = leads.selectedLeadIds;
+  const usersLoggedIn: IUser = users.data[auth.userId];
 
   const cancelButtonRef: React.RefObject<HTMLButtonElement> = useRef<HTMLButtonElement>(null);
 
@@ -21,8 +26,8 @@ const LeadsDeletionDialog: React.FC<LeadsDeletionDialogAttributes> = ({ isOpen, 
     closeModal();
     dispatch(
       deleteLeadsAction({
-        token,
-        user,
+        token: auth.token,
+        user: usersLoggedIn,
         selectedLeadIds,
       })
     );
