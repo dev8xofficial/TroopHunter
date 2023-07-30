@@ -1,4 +1,9 @@
 export interface CountryAttributes {
   id?: string;
-  country: string;
+  name: string;
+  code: string;
+  phoneCode: string;
+  currency: string;
+  longitude: number;
+  latitude: number;
 }

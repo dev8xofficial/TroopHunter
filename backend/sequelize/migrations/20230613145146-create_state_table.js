@@ -9,10 +9,25 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      state: {
+      name: {
         type: Sequelize.STRING(100),
         allowNull: false,
-        unique: true,
+      },
+      code: {
+        type: Sequelize.STRING(5),
+        allowNull: false,
+      },
+      countryCode: {
+        type: Sequelize.STRING(5),
+        allowNull: false,
+      },
+      longitude: {
+        type: Sequelize.DOUBLE,
+        allowNull: true,
+      },
+      latitude: {
+        type: Sequelize.DOUBLE,
+        allowNull: true,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -26,24 +41,24 @@ module.exports = {
       },
     });
 
-    await queryInterface.addIndex('States', ['state'], {
+    await queryInterface.addIndex('States', ['name', 'code', 'countryCode'], {
       unique: true,
     });
 
-    // Add a composite key constraint to the 'city' and 'state' columns
     await queryInterface.addConstraint('States', {
-      fields: ['state'],
+      fields: ['name', 'code', 'countryCode'],
       type: 'unique',
-      name: 'unique_state_constraint',
+      name: 'unique_state_name_code_country_code_constraint',
     });
 
     const allStates = State.getAllStates();
     let locationData = [];
 
     allStates.map((state) => {
-      const existingLocation = locationData.find((loc) => loc.state === state.name);
+      const { name, isoCode, countryCode, longitude, latitude } = state;
+      const existingLocation = locationData.find((loc) => loc.name === name && loc.code === isoCode && loc.countryCode === countryCode);
       if (!existingLocation) {
-        locationData.push({ id: uuidv4(), state: state.name });
+        locationData.push({ id: uuidv4(), name, code: isoCode, countryCode, longitude, latitude });
       }
     });
 
@@ -52,9 +67,9 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     // Drop indexes
-    await queryInterface.removeIndex('States', ['state']);
+    await queryInterface.removeIndex('States', ['name', 'code', 'countryCode']);
     // Drop foreign key constraints
-    await queryInterface.removeConstraint('States', 'unique_state_constraint');
+    await queryInterface.removeConstraint('States', 'unique_state_name_code_country_code_constraint');
 
     // Drop the table
     await queryInterface.dropTable('States');

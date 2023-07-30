@@ -1,4 +1,8 @@
 export interface StateAttributes {
   id?: string;
-  state: string;
+  name: string;
+  code: string;
+  countryCode: string;
+  longitude: number;
+  latitude: number;
 }

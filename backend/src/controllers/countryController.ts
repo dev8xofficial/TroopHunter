@@ -7,27 +7,27 @@ import { getMessage } from '../utils/message';
 
 // Get countries by name and country
 export const getCountriesByQuery = async (req: Request, res: Response) => {
-  const { country } = req.query;
+  const { name } = req.query;
 
   try {
-    if (!country) {
+    if (!name) {
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_COUNTRY').message, status: getMessage('MISSING_COUNTRY').code });
       return res.json(response);
     }
 
     const countries = await Country.findAll({
       where: {
-        country: country as string,
+        name: name as string,
       },
     });
 
     if (countries.length === 0) {
-      logger.warn(`No countries found for country: ${country}`);
+      logger.warn(`No countries found for country: ${name}`);
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('COUNTRY_NOT_FOUND').message, status: getMessage('COUNTRY_NOT_FOUND').code });
       return res.json(response);
     }
 
-    logger.info(`Successfully retrieved countries for country: ${country}`);
+    logger.info(`Successfully retrieved countries for country: ${name}`);
     const response: ApiResponse<Country[]> = createApiResponse({ success: true, data: countries, message: getMessage('COUNTRIES_RETRIEVED').message, status: getMessage('COUNTRIES_RETRIEVED').code });
     res.json(response);
   } catch (error) {
@@ -73,9 +73,9 @@ export const getCountryById = async (req: Request, res: Response) => {
 
 // Create a new country
 export const createCountry = async (req: Request, res: Response) => {
-  const { country } = req.body;
+  const { name, code, phoneCode, currency, longitude, latitude } = req.body;
   try {
-    const newCountry = await Country.create({ country });
+    const newCountry = await Country.create({ name, code, phoneCode, currency, longitude, latitude });
     logger.info(`Country created successfully with ID ${newCountry.id}`);
     const response: ApiResponse<Country> = createApiResponse({ success: true, data: newCountry, message: getMessage('COUNTRY_CREATED').message, status: getMessage('COUNTRY_CREATED').code });
     res.json(response);
@@ -89,7 +89,7 @@ export const createCountry = async (req: Request, res: Response) => {
 // Update a country by ID
 export const updateCountry = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { country } = req.body;
+  const { name, code, phoneCode, currency, longitude, latitude } = req.body;
   try {
     const existingCountry = await Country.findOne({ where: { id } });
     if (!existingCountry) {
@@ -97,7 +97,7 @@ export const updateCountry = async (req: Request, res: Response) => {
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('COUNTRY_NOT_FOUND').message, status: getMessage('COUNTRY_NOT_FOUND').code });
       return res.json(response);
     }
-    await existingCountry.update({ country });
+    await existingCountry.update({ name, code, phoneCode, currency, longitude, latitude });
     logger.info(`Country with ID ${id} updated successfully`);
     const response: ApiResponse<Country> = createApiResponse({ success: true, data: existingCountry, message: getMessage('COUNTRY_UPDATED').message, status: getMessage('COUNTRY_UPDATED').code });
     res.json(response);

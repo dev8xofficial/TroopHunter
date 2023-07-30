@@ -7,27 +7,27 @@ import { getMessage } from '../utils/message';
 
 // Get states by name and state
 export const getStatesByQuery = async (req: Request, res: Response) => {
-  const { state } = req.query;
+  const { name } = req.query;
 
   try {
-    if (!state) {
+    if (!name) {
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_STATE').message, status: getMessage('MISSING_STATE').code });
       return res.json(response);
     }
 
     const states = await State.findAll({
       where: {
-        state: state as string,
+        name: name as string,
       },
     });
 
     if (states.length === 0) {
-      logger.warn(`No states found for state: ${state}`);
+      logger.warn(`No states found for state: ${name}`);
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('STATE_NOT_FOUND').message, status: getMessage('STATE_NOT_FOUND').code });
       return res.json(response);
     }
 
-    logger.info(`Successfully retrieved states for state: ${state}`);
+    logger.info(`Successfully retrieved states for state: ${name}`);
     const response: ApiResponse<State[]> = createApiResponse({ success: true, data: states, message: getMessage('STATES_RETRIEVED').message, status: getMessage('STATES_RETRIEVED').code });
     res.json(response);
   } catch (error) {
@@ -73,9 +73,9 @@ export const getStateById = async (req: Request, res: Response) => {
 
 // Create a new state
 export const createState = async (req: Request, res: Response) => {
-  const { state } = req.body;
+  const { name, code, countryCode, longitude, latitude } = req.body;
   try {
-    const newState = await State.create({ state });
+    const newState = await State.create({ name, code, countryCode, longitude, latitude });
     logger.info(`State created successfully with ID ${newState.id}`);
     const response: ApiResponse<State> = createApiResponse({ success: true, data: newState, message: getMessage('STATE_CREATED').message, status: getMessage('STATE_CREATED').code });
     res.json(response);
@@ -89,7 +89,7 @@ export const createState = async (req: Request, res: Response) => {
 // Update a state by ID
 export const updateState = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { state } = req.body;
+  const { name, code, countryCode, longitude, latitude } = req.body;
   try {
     const existingState = await State.findOne({ where: { id } });
     if (!existingState) {
@@ -97,7 +97,7 @@ export const updateState = async (req: Request, res: Response) => {
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('STATE_NOT_FOUND').message, status: getMessage('STATE_NOT_FOUND').code });
       return res.json(response);
     }
-    await existingState.update({ state });
+    await existingState.update({ name, code, countryCode, longitude, latitude });
     logger.info(`State with ID ${id} updated successfully`);
     const response: ApiResponse<State> = createApiResponse({ success: true, data: existingState, message: getMessage('STATE_UPDATED').message, status: getMessage('STATE_UPDATED').code });
     res.json(response);

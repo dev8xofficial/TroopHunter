@@ -9,9 +9,29 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      country: {
+      name: {
         type: Sequelize.STRING(100),
         allowNull: false,
+      },
+      code: {
+        type: Sequelize.STRING(10),
+        allowNull: false,
+      },
+      phoneCode: {
+        type: Sequelize.STRING(50),
+        allowNull: false,
+      },
+      currency: {
+        type: Sequelize.STRING(10),
+        allowNull: false,
+      },
+      longitude: {
+        type: Sequelize.DOUBLE,
+        allowNull: true,
+      },
+      latitude: {
+        type: Sequelize.DOUBLE,
+        allowNull: true,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -25,24 +45,24 @@ module.exports = {
       },
     });
 
-    await queryInterface.addIndex('Countries', ['country'], {
+    await queryInterface.addIndex('Countries', ['name', 'code'], {
       unique: true,
     });
 
-    // Add a composite key constraint to the 'city' and 'state' columns with a custom name
     await queryInterface.addConstraint('Countries', {
-      fields: ['country'],
+      fields: ['name', 'code'],
       type: 'unique',
-      name: 'unique_country_constraint', // Provide a custom name for the constraint
+      name: 'unique_country_name_code_constraint', 
     });
 
     const allCountries = Country.getAllCountries();
     let locationData = [];
 
     allCountries.map((country) => {
-      const existingLocation = locationData.find((loc) => loc.country === country.name);
+      const { name, isoCode, phonecode, currency, longitude, latitude } = country;
+      const existingLocation = locationData.find((loc) => loc.name === name && loc.code === isoCode && loc.phoneCode === phonecode && loc.currency === currency);
       if (!existingLocation) {
-        locationData.push({ id: uuidv4(), country: country.name });
+        locationData.push({ id: uuidv4(), name, code: isoCode, phoneCode: phonecode, currency, longitude, latitude });
       }
     });
 
@@ -51,9 +71,9 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     // Drop indexes
-    await queryInterface.removeIndex('Countries', ['country']);
+    await queryInterface.removeIndex('Countries', ['name', 'code']);
     // Drop foreign key constraints with custom name
-    await queryInterface.removeConstraint('Countries', 'unique_country_constraint');
+    await queryInterface.removeConstraint('Countries', 'unique_country_name_code_constraint');
 
     // Drop the table
     await queryInterface.dropTable('Countries');

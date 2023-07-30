@@ -1,4 +1,8 @@
 export interface CityAttributes {
   id?: string;
-  city: string;
+  name: string;
+  stateCode: string;
+  countryCode: string;
+  longitude: number;
+  latitude: number;
 }

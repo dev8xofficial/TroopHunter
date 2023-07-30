@@ -4,7 +4,11 @@ import { StateAttributes } from '../types/state';
 
 class State extends Model<StateAttributes> implements StateAttributes {
   public id!: string;
-  public state!: string;
+  public name!: string;
+  public code!: string;
+  public countryCode!: string;
+  public longitude!: number;
+  public latitude!: number;
 }
 
 State.init(
@@ -14,9 +18,25 @@ State.init(
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    state: {
+    name: {
       type: DataTypes.STRING(100),
       allowNull: false,
+    },
+    code: {
+      type: DataTypes.STRING(5),
+      allowNull: false,
+    },
+    countryCode: {
+      type: DataTypes.STRING(5),
+      allowNull: false,
+    },
+    longitude: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
+    },
+    latitude: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
     },
   },
   {

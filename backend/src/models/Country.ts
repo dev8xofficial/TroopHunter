@@ -4,7 +4,12 @@ import { CountryAttributes } from '../types/country';
 
 class Country extends Model<CountryAttributes> implements CountryAttributes {
   public id!: string;
-  public country!: string;
+  public code!: string;
+  public name!: string;
+  public phoneCode!: string;
+  public currency!: string;
+  public longitude!: number;
+  public latitude!: number;
 }
 
 Country.init(
@@ -14,9 +19,29 @@ Country.init(
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    country: {
+    name: {
       type: DataTypes.STRING(100),
       allowNull: false,
+    },
+    code: {
+      type: DataTypes.STRING(5),
+      allowNull: false,
+    },
+    phoneCode: {
+      type: DataTypes.STRING(5),
+      allowNull: false,
+    },
+    currency: {
+      type: DataTypes.STRING(5),
+      allowNull: false,
+    },
+    longitude: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
+    },
+    latitude: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
     },
   },
   {

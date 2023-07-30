@@ -7,27 +7,27 @@ import { getMessage } from '../utils/message';
 
 // Get cities by name and state
 export const getCitiesByQuery = async (req: Request, res: Response) => {
-  const { city } = req.query;
+  const { name } = req.query;
 
   try {
-    if (!city) {
+    if (!name) {
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_CITY').message, status: getMessage('MISSING_CITY').code });
       return res.json(response);
     }
 
     const cities = await City.findAll({
       where: {
-        city: city as string,
+        name: name as string,
       },
     });
 
     if (cities.length === 0) {
-      logger.warn(`No cities found for city: ${city}`);
+      logger.warn(`No cities found for city: ${name}`);
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('CITY_NOT_FOUND').message, status: getMessage('CITY_NOT_FOUND').code });
       return res.json(response);
     }
 
-    logger.info(`Successfully retrieved cities for city: ${city}`);
+    logger.info(`Successfully retrieved cities for city: ${name}`);
     const response: ApiResponse<City[]> = createApiResponse({ success: true, data: cities, message: getMessage('CITIES_RETRIEVED').message, status: getMessage('CITIES_RETRIEVED').code });
     res.json(response);
   } catch (error) {
@@ -73,9 +73,9 @@ export const getCityById = async (req: Request, res: Response) => {
 
 // Create a new city
 export const createCity = async (req: Request, res: Response) => {
-  const { city } = req.body;
+  const { name, stateCode, countryCode, longitude, latitude } = req.body;
   try {
-    const newCity = await City.create({ city });
+    const newCity = await City.create({ name, stateCode, countryCode, longitude, latitude });
     logger.info(`City created successfully with ID ${newCity.id}`);
     const response: ApiResponse<City> = createApiResponse({ success: true, data: newCity, message: getMessage('CITY_CREATED').message, status: getMessage('CITY_CREATED').code });
     res.json(response);
@@ -89,7 +89,7 @@ export const createCity = async (req: Request, res: Response) => {
 // Update a city by ID
 export const updateCity = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { city } = req.body;
+  const { name, stateCode, countryCode, longitude, latitude } = req.body;
   try {
     const existingCity = await City.findOne({ where: { id } });
     if (!existingCity) {
@@ -97,7 +97,7 @@ export const updateCity = async (req: Request, res: Response) => {
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('CITY_NOT_FOUND').message, status: getMessage('CITY_NOT_FOUND').code });
       return res.json(response);
     }
-    await existingCity.update({ city });
+    await existingCity.update({ name, stateCode, countryCode, longitude, latitude });
     logger.info(`City with ID ${id} updated successfully`);
     const response: ApiResponse<City> = createApiResponse({ success: true, data: existingCity, message: getMessage('CITY_UPDATED').message, status: getMessage('CITY_UPDATED').code });
     res.json(response);

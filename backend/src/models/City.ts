@@ -4,7 +4,11 @@ import { CityAttributes } from '../types/city';
 
 class City extends Model<CityAttributes> implements CityAttributes {
   public id!: string;
-  public city!: string;
+  public name!: string;
+  public stateCode!: string;
+  public countryCode!: string;
+  public longitude!: number;
+  public latitude!: number;
 }
 
 City.init(
@@ -14,9 +18,25 @@ City.init(
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    city: {
+    name: {
       type: DataTypes.STRING(100),
       allowNull: false,
+    },
+    stateCode: {
+      type: DataTypes.STRING(5),
+      allowNull: false,
+    },
+    countryCode: {
+      type: DataTypes.STRING(5),
+      allowNull: false,
+    },
+    longitude: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
+    },
+    latitude: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
     },
   },
   {

@@ -9,10 +9,25 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      city: {
+      name: {
         type: Sequelize.STRING(100),
         allowNull: false,
-        unique: true,
+      },
+      stateCode: {
+        type: Sequelize.STRING(5),
+        allowNull: false,
+      },
+      countryCode: {
+        type: Sequelize.STRING(5),
+        allowNull: false,
+      },
+      longitude: {
+        type: Sequelize.DOUBLE,
+        allowNull: true,
+      },
+      latitude: {
+        type: Sequelize.DOUBLE,
+        allowNull: true,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -26,24 +41,24 @@ module.exports = {
       },
     });
 
-    await queryInterface.addIndex('Cities', ['city'], {
+    await queryInterface.addIndex('Cities', ['name', 'stateCode', 'countryCode'], {
       unique: true,
     });
 
-    // Add a composite key constraint to the 'city' and 'state' columns
     await queryInterface.addConstraint('Cities', {
-      fields: ['city'],
+      fields: ['name', 'stateCode', 'countryCode'],
       type: 'unique',
-      name: 'unique_city_constraint',
+      name: 'unique_city_name_state_code_country_code_constraint',
     });
 
     const allCities = City.getAllCities();
     let locationData = [];
 
     allCities.map((city) => {
-      const existingLocation = locationData.find((loc) => loc.city === city.name);
+      const { name, stateCode, countryCode, longitude, latitude } = city;
+      const existingLocation = locationData.find((loc) => loc.name === name && loc.stateCode === stateCode && loc.countryCode === countryCode);
       if (!existingLocation) {
-        locationData.push({ id: uuidv4(), city: city.name });
+        locationData.push({ id: uuidv4(), name, stateCode, countryCode, longitude, latitude });
       }
     });
 
@@ -52,9 +67,9 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     // Drop indexes
-    await queryInterface.removeIndex('Cities', ['city']);
+    await queryInterface.removeIndex('Cities', ['name', 'stateCode', 'countryCode']);
     // Drop foreign key constraints
-    await queryInterface.removeConstraint('Cities', 'unique_city_constraint');
+    await queryInterface.removeConstraint('Cities', 'unique_city_name_state_code_country_code_constraint');
 
     // Drop the table
     await queryInterface.dropTable('Cities');
