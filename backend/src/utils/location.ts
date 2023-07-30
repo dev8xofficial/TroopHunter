@@ -6,8 +6,7 @@ import logger from '../utils/logger';
 export const findOrCreateLocation = async (location: LocationAttributes, transaction: Transaction): Promise<LocationAttributes | undefined> => {
   try {
     const [record, created] = await Location.findOrCreate({
-      where: { city: location.city, state: location.state, country: location.country },
-      defaults: { createdAt: new Date(), updatedAt: new Date() },
+      where: { city: location.city, state: location.state, country: location.country, importance: location.importance },
       transaction,
     });
 

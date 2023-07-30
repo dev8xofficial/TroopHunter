@@ -3,4 +3,5 @@ export interface LocationAttributes {
   city: string;
   state: string;
   country: string;
+  importance: 'Low' | 'Medium' | 'High';
 }

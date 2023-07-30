@@ -1,11 +1,13 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
+import { LocationAttributes } from '../types/location';
 
-class Location extends Model {
+class Location extends Model<LocationAttributes> implements LocationAttributes {
   public id!: string;
   public city!: string;
   public state!: string;
   public country!: string;
+  public importance!: 'Low' | 'Medium' | 'High';
 }
 
 Location.init(
@@ -18,7 +20,6 @@ Location.init(
     city: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      unique: true,
     },
     state: {
       type: DataTypes.STRING(100),
@@ -27,6 +28,11 @@ Location.init(
     country: {
       type: DataTypes.STRING(100),
       allowNull: false,
+    },
+    importance: {
+      type: DataTypes.ENUM('Low', 'Medium', 'High'),
+      allowNull: false,
+      defaultValue: 'Low',
     },
   },
   {

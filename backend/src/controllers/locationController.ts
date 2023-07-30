@@ -75,9 +75,9 @@ export const getLocationById = async (req: Request, res: Response) => {
 
 // Create a new location
 export const createLocation = async (req: Request, res: Response) => {
-  const { city, state, country } = req.body;
+  const { city, state, country, importance } = req.body;
   try {
-    const location = await Location.create({ city, state, country });
+    const location = await Location.create({ city, state, country, importance });
     logger.info(`Location created successfully with ID ${location.id}`);
     const response: ApiResponse<Location> = createApiResponse({ success: true, data: location, message: getMessage('LOCATION_CREATED').message, status: getMessage('LOCATION_CREATED').code });
     res.json(response);

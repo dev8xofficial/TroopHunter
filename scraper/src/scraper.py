@@ -297,6 +297,7 @@ class BusinessScraper:
                             "city": location["city"],
                             "state": location["state"],
                             "country": location["country"],
+                            "importance": "Low",
                         }
                     elif img_with_schedule_src:
                         self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
