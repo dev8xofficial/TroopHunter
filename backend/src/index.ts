@@ -9,6 +9,9 @@ import userRoutes from './routes/userRoutes';
 import businessRoutes from './routes/businessRoutes';
 import leadRoutes from './routes/leadRoutes';
 import queueRoutes from './routes/queueRoutes';
+import countryRoutes from './routes/countryRoutes';
+import stateRoutes from './routes/stateRoutes';
+import cityRoutes from './routes/cityRoutes';
 import locationRoutes from './routes/locationRoutes';
 import leadBusinessesRoutes from './routes/leadBusinessesRoutes';
 // ... Other route imports
@@ -42,6 +45,9 @@ app.use('/users', userRoutes);
 app.use('/businesses', businessRoutes);
 app.use('/leads', leadRoutes);
 app.use('/queues', queueRoutes);
+app.use('/countries', countryRoutes);
+app.use('/states', stateRoutes);
+app.use('/cities', cityRoutes);
 app.use('/locations', locationRoutes);
 app.use('/lead-businesses', leadBusinessesRoutes);
 
