@@ -7,18 +7,16 @@ import logger from '../utils/logger';
 import { isValidJSON } from '../utils/helper';
 import { ApiResponse } from '../types/response';
 import { createApiResponse } from '../utils/response';
+import Location from '../models/Location';
+import Lead from '../models/Lead';
+import BusinessPhone from '../models/BusinessPhone';
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password, include } = req.body;
-
-    if (!include || !isValidJSON(include)) {
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_INCLUDE_PARAMETER').message, status: getMessage('INVALID_INCLUDE_PARAMETER').code });
-      return res.json(response);
-    }
+    const { email, password } = req.body;
 
     // Check if the user exists
-    const user: User | null = await User.findOne({ where: { email }, include: JSON.parse(include) });
+    const user: User | null = await User.findOne({ where: { email }, include: [{ model: Lead }, { model: Location }, { model: BusinessPhone }] });
     if (!user) {
       logger.error(`User with email ${email} does not exist.`);
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_EMAIL').message, status: getMessage('INVALID_EMAIL').code });
