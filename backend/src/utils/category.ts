@@ -7,7 +7,6 @@ export const findOrCreateBusinessCategory = async (name: string, transaction: Tr
   try {
     const [record, created] = await BusinessCategory.findOrCreate({
       where: { name },
-      defaults: { createdAt: new Date(), updatedAt: new Date() },
       transaction,
     });
 

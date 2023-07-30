@@ -2,7 +2,6 @@ import { DataTypes, Model, HasManyCreateAssociationMixin } from 'sequelize';
 import sequelize from '../config/database';
 import { UserAttributes } from '../types/user';
 import Lead from './Lead';
-import List from './List';
 
 class User extends Model<UserAttributes> implements UserAttributes {
   public id?: string;
@@ -14,7 +13,6 @@ class User extends Model<UserAttributes> implements UserAttributes {
 
   // Define associations, if any
   public createLead!: HasManyCreateAssociationMixin<Lead>;
-  public createList!: HasManyCreateAssociationMixin<List>;
 
   // Define scopes, if any
 }
@@ -58,7 +56,6 @@ User.init(
 
 // Define associations
 User.hasMany(Lead, { foreignKey: 'userId' });
-User.hasMany(List, { foreignKey: 'userId' });
 
 User.sync();
 

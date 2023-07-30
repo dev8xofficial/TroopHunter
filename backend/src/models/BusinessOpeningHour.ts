@@ -1,9 +1,10 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
+import { OpeningTimeAttributes } from '../types/businessOpeningHour';
 
-class BusinessOpeningHour extends Model {
+class BusinessOpeningHour extends Model<OpeningTimeAttributes> implements OpeningTimeAttributes {
   public id!: string;
-  public time!: string;
+  public time?: string;
 }
 
 BusinessOpeningHour.init(

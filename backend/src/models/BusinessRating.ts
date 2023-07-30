@@ -1,10 +1,11 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
+import { RatingAttributes } from '../types/businessRating';
 
-class BusinessRating extends Model {
+class BusinessRating extends Model<RatingAttributes> implements RatingAttributes {
   public id!: string;
   public ratingValue!: number;
-  public description!: string;
+  public description?: string;
 }
 
 BusinessRating.init(

@@ -1,14 +1,14 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-
-class BusinessSocialMedia extends Model {
+import { SocialMediaAttributes } from '../types/businessSocialMedia';
+class BusinessSocialMedia extends Model<SocialMediaAttributes> implements SocialMediaAttributes {
   public id!: string;
   public businessId!: string;
-  public facebookProfile!: string;
-  public twitterProfile!: string;
-  public instagramProfile!: string;
-  public linkedInProfile!: string;
-  public youTubeProfile!: string;
+  public facebookProfile?: string;
+  public twitterProfile?: string;
+  public instagramProfile?: string;
+  public linkedInProfile?: string;
+  public youTubeProfile?: string;
 }
 
 BusinessSocialMedia.init(

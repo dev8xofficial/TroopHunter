@@ -8,6 +8,7 @@ import { createApiResponse } from '../utils/response';
 import { getMessage } from '../utils/message';
 import { ApiResponse } from '../types/response';
 import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../utils/business';
+import { LeadAttributes } from '../types/lead';
 
 export const getLeads = async (req: Request, res: Response) => {
   try {
@@ -61,8 +62,8 @@ export const createLead = async (req: Request, res: Response) => {
 
     if (Array.isArray(businesses) && businesses.length > 0) {
       const associations = businesses.map((business) => ({
-        leadId: lead.id,
-        businessId: business.id,
+        leadId: `${lead.id}`,
+        businessId: `${business.id}`,
       }));
 
       await LeadBusiness.bulkCreate(associations);

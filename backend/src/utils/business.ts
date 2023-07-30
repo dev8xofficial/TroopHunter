@@ -9,7 +9,6 @@ export const findOrCreateBusinessSource = async (sourceName: string, transaction
   try {
     const [record, created] = await BusinessSource.findOrCreate({
       where: { sourceName },
-      defaults: { createdAt: new Date(), updatedAt: new Date() },
       transaction,
     });
 

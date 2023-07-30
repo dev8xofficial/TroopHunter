@@ -1,7 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
+import { PhoneAttributes } from '../types/businessPhone';
 
-class BusinessPhone extends Model {
+class BusinessPhone extends Model<PhoneAttributes> implements PhoneAttributes {
   public id!: string;
   public countryCode!: string;
   public regionCode!: string;

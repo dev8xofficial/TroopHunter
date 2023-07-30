@@ -2,8 +2,9 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 import Lead from './Lead';
 import Business from './Business';
+import { LeadBusinessAttributes } from '../types/leadBusiness';
 
-class LeadBusiness extends Model {
+class LeadBusiness extends Model<LeadBusinessAttributes> implements LeadBusinessAttributes {
   public leadId!: string;
   public businessId!: string;
 }

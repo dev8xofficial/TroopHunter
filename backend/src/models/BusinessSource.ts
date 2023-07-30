@@ -1,7 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
+import { SourceAttributes } from '../types/businessSource';
 
-class BusinessSource extends Model {
+class BusinessSource extends Model<SourceAttributes> implements SourceAttributes {
   public id!: string;
   public sourceName!: string;
 }
