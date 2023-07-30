@@ -2,7 +2,9 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
 import BusinessCategory from './BusinessCategory';
-import Location from './Location';
+import City from './City';
+import Country from './Country';
+import State from './State';
 import PostalCode from './PostalCode';
 import BusinessPhone from './BusinessPhone';
 import BusinessRating from './BusinessRating';
@@ -20,7 +22,9 @@ class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public businessDomain?: string;
   public categoryId!: string;
   public address?: string;
-  public locationId!: string;
+  public cityId!: string;
+  public stateId!: string;
+  public countryId!: string;
   public geoPoint!: { type: string; coordinates: number[] };
   public longitude!: number;
   public latitude!: number;
@@ -68,7 +72,15 @@ Business.init(
       type: DataTypes.STRING(500),
       allowNull: false,
     },
-    locationId: {
+    cityId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+    },
+    stateId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+    },
+    countryId: {
       type: DataTypes.UUID,
       allowNull: true,
     },
@@ -147,7 +159,9 @@ Business.init(
 );
 
 Business.belongsTo(BusinessCategory, { foreignKey: 'categoryId' });
-Business.belongsTo(Location, { foreignKey: 'locationId' });
+Business.belongsTo(City, { foreignKey: 'cityId' });
+Business.belongsTo(State, { foreignKey: 'stateId' });
+Business.belongsTo(Country, { foreignKey: 'countryId' });
 Business.belongsTo(PostalCode, { foreignKey: 'postalCodeId' });
 Business.belongsTo(BusinessPhone, { foreignKey: 'phoneId' });
 Business.belongsTo(BusinessRating, { foreignKey: 'ratingId' });

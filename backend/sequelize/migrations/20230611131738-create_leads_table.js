@@ -28,9 +28,17 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      locationId: {
-        allowNull: true,
+      cityId: {
         type: Sequelize.UUID,
+        allowNull: true,
+      },
+      stateId: {
+        type: Sequelize.UUID,
+        allowNull: true,
+      },
+      countryId: {
+        type: Sequelize.UUID,
+        allowNull: true,
       },
       postalCodeId: {
         allowNull: true,

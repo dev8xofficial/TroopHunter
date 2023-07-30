@@ -10,7 +10,9 @@ class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public search!: string;
   public categoryId?: string;
   public address?: string;
-  public locationId?: string;
+  public cityId!: string;
+  public stateId!: string;
+  public countryId!: string;
   public postalCodeId?: string;
   public phoneId?: string;
   public email?: string;
@@ -57,7 +59,15 @@ Lead.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    locationId: {
+    cityId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+    },
+    stateId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+    },
+    countryId: {
       type: DataTypes.UUID,
       allowNull: true,
     },

@@ -8,7 +8,7 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define state routes
-router.get('/search', getStatesByQuery); // New endpoint for location search
+router.get('/search', getStatesByQuery);
 router.get('/', getStates);
 router.get('/:id', getStateById);
 router.post('/', createState);

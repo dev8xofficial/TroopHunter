@@ -6,7 +6,9 @@ export interface BusinessAttributes {
   businessDomain?: string;
   categoryId?: string;
   address?: string;
-  locationId?: string;
+  cityId?: string;
+  stateId?: string;
+  countryId?: string;
   longitude: number;
   latitude: number;
   geoPoint: GeoPointAttributes;

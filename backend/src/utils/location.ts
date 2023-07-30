@@ -1,23 +1,59 @@
 import { Transaction } from 'sequelize';
-import Location from '../models/Location';
-import { LocationAttributes } from '../types/location';
 import logger from '../utils/logger';
+import { CityAttributes } from '../types/city';
+import City from '../models/City';
+import { StateAttributes } from '../types/state';
+import { CountryAttributes } from '../types/country';
+import Country from '../models/Country';
+import State from '../models/State';
 
-export const findOrCreateLocation = async (location: LocationAttributes, transaction: Transaction): Promise<LocationAttributes | undefined> => {
+export const findCityByName = async (cityName: string, transaction: Transaction): Promise<CityAttributes | undefined> => {
   try {
-    const [record, created] = await Location.findOrCreate({
-      where: { city: location.city, state: location.state, country: location.country, importance: location.importance },
-      transaction,
-    });
+    const city = await City.findOne({ where: { name: cityName }, transaction });
 
-    if (created) {
-      logger.info(`Business location ${location.city}, ${location.state}, ${location.country} created successfully.`);
-      return record.toJSON() as LocationAttributes;
+    if (city) {
+      logger.info(`City ${city.name} found.`);
+      return city.toJSON() as CityAttributes;
     } else {
-      logger.info(`Business location ${location.city}, ${location.state}, ${location.country} already exists.`);
-      return record.toJSON() as LocationAttributes;
+      logger.info(`City ${cityName} not found.`);
+      return undefined;
     }
   } catch (error) {
-    logger.error('Failed to find or create business location:', error);
+    logger.error('Failed to find city by name:', error);
+    return undefined;
+  }
+};
+
+export const findStateByName = async (stateName: string, transaction: Transaction): Promise<StateAttributes | undefined> => {
+  try {
+    const state = await State.findOne({ where: { name: stateName }, transaction });
+
+    if (state) {
+      logger.info(`State ${state.name} found.`);
+      return state.toJSON() as StateAttributes;
+    } else {
+      logger.info(`State ${stateName} not found.`);
+      return undefined;
+    }
+  } catch (error) {
+    logger.error('Failed to find state by name:', error);
+    return undefined;
+  }
+};
+
+export const findCountryByName = async (countryName: string, transaction: Transaction): Promise<CountryAttributes | undefined> => {
+  try {
+    const country = await Country.findOne({ where: { name: countryName }, transaction });
+
+    if (country) {
+      logger.info(`Country ${country.name} found.`);
+      return country.toJSON() as CountryAttributes;
+    } else {
+      logger.info(`Country ${countryName} not found.`);
+      return undefined;
+    }
+  } catch (error) {
+    logger.error('Failed to find country by name:', error);
+    return undefined;
   }
 };

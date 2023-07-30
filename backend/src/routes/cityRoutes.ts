@@ -8,7 +8,7 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define city routes
-router.get('/search', getCitiesByQuery); // New endpoint for location search
+router.get('/search', getCitiesByQuery);
 router.get('/', getCities);
 router.get('/:id', getCityById);
 router.post('/', createCity);

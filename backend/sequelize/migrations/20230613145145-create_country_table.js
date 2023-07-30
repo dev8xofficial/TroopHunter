@@ -56,17 +56,17 @@ module.exports = {
     });
 
     const allCountries = Country.getAllCountries();
-    let locationData = [];
+    let countryData = [];
 
     allCountries.map((country) => {
       const { name, isoCode, phonecode, currency, longitude, latitude } = country;
-      const existingLocation = locationData.find((loc) => loc.name === name && loc.code === isoCode && loc.phoneCode === phonecode && loc.currency === currency);
-      if (!existingLocation) {
-        locationData.push({ id: uuidv4(), name, code: isoCode, phoneCode: phonecode, currency, longitude, latitude });
+      const existingCountry = countryData.find((loc) => loc.name === name && loc.code === isoCode && loc.phoneCode === phonecode && loc.currency === currency);
+      if (!existingCountry) {
+        countryData.push({ id: uuidv4(), name, code: isoCode, phoneCode: phonecode, currency, longitude, latitude });
       }
     });
 
-    await queryInterface.bulkInsert('Countries', locationData);
+    await queryInterface.bulkInsert('Countries', countryData);
   },
 
   down: async (queryInterface, Sequelize) => {

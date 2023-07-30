@@ -9,7 +9,6 @@ DELETE FROM "BusinessSocialMedia";
 DELETE FROM "BusinessSources";
 DELETE FROM "Leads";
 DELETE FROM "Lists";
-DELETE FROM "Locations";
 DELETE FROM "PostalCodes";
 DELETE FROM "SequelizeMeta";
 DELETE FROM "Timezones";

@@ -12,7 +12,6 @@ import queueRoutes from './routes/queueRoutes';
 import countryRoutes from './routes/countryRoutes';
 import stateRoutes from './routes/stateRoutes';
 import cityRoutes from './routes/cityRoutes';
-import locationRoutes from './routes/locationRoutes';
 import leadBusinessesRoutes from './routes/leadBusinessesRoutes';
 // ... Other route imports
 import swaggerUi from 'swagger-ui-express';
@@ -48,7 +47,6 @@ app.use('/queues', queueRoutes);
 app.use('/countries', countryRoutes);
 app.use('/states', stateRoutes);
 app.use('/cities', cityRoutes);
-app.use('/locations', locationRoutes);
 app.use('/lead-businesses', leadBusinessesRoutes);
 
 // Error handling middleware

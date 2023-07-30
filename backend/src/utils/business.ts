@@ -24,7 +24,7 @@ export const findOrCreateBusinessSource = async (sourceName: string, transaction
   }
 };
 
-export const getBusinessesByQuery = async ({ name, businessDomain, categoryId, address, locationId, phoneId, email, website, sponsoredAd }: any) => {
+export const getBusinessesByQuery = async ({ name, businessDomain, categoryId, address, cityId, stateId, countryId, phoneId, email, website, sponsoredAd }: any) => {
   // Where clause
   const whereClause: { [key: string]: any } = {};
 
@@ -44,8 +44,16 @@ export const getBusinessesByQuery = async ({ name, businessDomain, categoryId, a
     whereClause.address = { [Op.iLike]: `%${address}%` };
   }
 
-  if (locationId) {
-    whereClause.locationId = locationId;
+  if (cityId) {
+    whereClause.cityId = cityId;
+  }
+
+  if (stateId) {
+    whereClause.stateId = stateId;
+  }
+
+  if (countryId) {
+    whereClause.countryId = countryId;
   }
 
   if (phoneId) {

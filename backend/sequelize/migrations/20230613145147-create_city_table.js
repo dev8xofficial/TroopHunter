@@ -52,17 +52,17 @@ module.exports = {
     });
 
     const allCities = City.getAllCities();
-    let locationData = [];
+    let cityData = [];
 
     allCities.map((city) => {
       const { name, stateCode, countryCode, longitude, latitude } = city;
-      const existingLocation = locationData.find((loc) => loc.name === name && loc.stateCode === stateCode && loc.countryCode === countryCode);
-      if (!existingLocation) {
-        locationData.push({ id: uuidv4(), name, stateCode, countryCode, longitude, latitude });
+      const existingCity = cityData.find((loc) => loc.name === name && loc.stateCode === stateCode && loc.countryCode === countryCode);
+      if (!existingCity) {
+        cityData.push({ id: uuidv4(), name, stateCode, countryCode, longitude, latitude });
       }
     });
 
-    await queryInterface.bulkInsert('Cities', locationData);
+    await queryInterface.bulkInsert('Cities', cityData);
   },
 
   down: async (queryInterface, Sequelize) => {

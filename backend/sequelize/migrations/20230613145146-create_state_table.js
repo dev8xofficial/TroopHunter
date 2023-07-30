@@ -52,17 +52,17 @@ module.exports = {
     });
 
     const allStates = State.getAllStates();
-    let locationData = [];
+    let stateData = [];
 
     allStates.map((state) => {
       const { name, isoCode, countryCode, longitude, latitude } = state;
-      const existingLocation = locationData.find((loc) => loc.name === name && loc.code === isoCode && loc.countryCode === countryCode);
-      if (!existingLocation) {
-        locationData.push({ id: uuidv4(), name, code: isoCode, countryCode, longitude, latitude });
+      const existingState = stateData.find((loc) => loc.name === name && loc.code === isoCode && loc.countryCode === countryCode);
+      if (!existingState) {
+        stateData.push({ id: uuidv4(), name, code: isoCode, countryCode, longitude, latitude });
       }
     });
 
-    await queryInterface.bulkInsert('States', locationData);
+    await queryInterface.bulkInsert('States', stateData);
   },
 
   down: async (queryInterface, Sequelize) => {

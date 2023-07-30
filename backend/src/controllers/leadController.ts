@@ -45,7 +45,7 @@ export const getLeadById = async (req: Request, res: Response) => {
 };
 
 export const createLead = async (req: Request, res: Response) => {
-  const { userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, leadBusinessIds } = req.body;
+  const { userId, title, search, categoryId, address, cityId, stateId, countryId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, leadBusinessIds } = req.body;
   try {
     if (!userId) {
       logger.warn(`User ID ${userId} not found`);
@@ -53,12 +53,12 @@ export const createLead = async (req: Request, res: Response) => {
       return res.json(response);
     }
 
-    const lead = await Lead.create({ userId, title, search, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId });
+    const lead = await Lead.create({ userId, title, search, categoryId, address, cityId, stateId, countryId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId });
 
     let businesses: Business[] | undefined = [];
 
     if (leadBusinessIds.length > 0) businesses = await getBusinessesByQueryingIds({ ids: leadBusinessIds });
-    else businesses = await getBusinessesByQuery({ name: search, categoryId, address, locationId, phoneId, email, website, sponsoredAd });
+    else businesses = await getBusinessesByQuery({ name: search, categoryId, address, cityId, stateId, countryId, phoneId, email, website, sponsoredAd });
 
     if (Array.isArray(businesses) && businesses.length > 0) {
       const associations = businesses.map((business) => ({

@@ -97,22 +97,6 @@ const messages: Record<string, Message> = {
     code: 204,
     message: 'List deleted successfully.',
   },
-  LOCATIONS_RETRIEVED: {
-    code: 200,
-    message: 'Locations retrieved successfully.',
-  },
-  LOCATION_CREATED: {
-    code: 201,
-    message: 'Location created successfully.',
-  },
-  LOCATION_UPDATED: {
-    code: 200,
-    message: 'Location updated successfully.',
-  },
-  LOCATION_DELETED: {
-    code: 204,
-    message: 'Location deleted successfully.',
-  },
   QUEUES_RETRIEVED: {
     code: 200,
     message: 'Queues retrieved successfully.',
@@ -231,10 +215,6 @@ const messages: Record<string, Message> = {
     code: 400,
     message: 'Please provide city, state, and country parameters.',
   },
-  MISSING_LOCATION_FIELDS: {
-    code: 400,
-    message: 'Failed to create/update location. Missing required fields: city, state, and country.',
-  },
   MISSING_LAPTOP_NAME: {
     code: 400,
     message: 'Failed to update queue. Missing required field: laptopName.',
@@ -304,10 +284,6 @@ const messages: Record<string, Message> = {
   LIST_NOT_FOUND: {
     code: 404,
     message: 'List not found.',
-  },
-  LOCATION_NOT_FOUND: {
-    code: 404,
-    message: 'Location not found.',
   },
   QUEUE_NOT_FOUND: {
     code: 404,
@@ -466,22 +442,6 @@ const messages: Record<string, Message> = {
   FAILED_TO_DELETE_LIST: {
     code: 500,
     message: 'Failed to delete list. An internal server error occurred.',
-  },
-  FAILED_TO_RETRIEVE_LOCATIONS: {
-    code: 500,
-    message: 'Failed to retrieve locations. An internal server error occurred.',
-  },
-  FAILED_TO_CREATE_LOCATION: {
-    code: 500,
-    message: 'Failed to create location. An internal server error occurred.',
-  },
-  FAILED_TO_UPDATE_LOCATION: {
-    code: 500,
-    message: 'Failed to update location. An internal server error occurred.',
-  },
-  FAILED_TO_DELETE_LOCATION: {
-    code: 500,
-    message: 'Failed to delete location. An internal server error occurred.',
   },
   FAILED_TO_RETRIEVE_QUEUES: {
     code: 500,

@@ -27,7 +27,15 @@ module.exports = {
         type: Sequelize.STRING(500),
         allowNull: false,
       },
-      locationId: {
+      cityId: {
+        type: Sequelize.UUID,
+        allowNull: true,
+      },
+      stateId: {
+        type: Sequelize.UUID,
+        allowNull: true,
+      },
+      countryId: {
         type: Sequelize.UUID,
         allowNull: true,
       },
@@ -121,11 +129,35 @@ module.exports = {
     });
 
     await queryInterface.addConstraint('Businesses', {
-      fields: ['locationId'],
+      fields: ['cityId'],
       type: 'foreign key',
-      name: 'fk_business_location',
+      name: 'fk_business_city',
       references: {
-        table: 'Locations',
+        table: 'Cities',
+        field: 'id',
+      },
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE',
+    });
+
+    await queryInterface.addConstraint('Businesses', {
+      fields: ['stateId'],
+      type: 'foreign key',
+      name: 'fk_business_state',
+      references: {
+        table: 'States',
+        field: 'id',
+      },
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE',
+    });
+
+    await queryInterface.addConstraint('Businesses', {
+      fields: ['countryId'],
+      type: 'foreign key',
+      name: 'fk_business_country',
+      references: {
+        table: 'Countries',
         field: 'id',
       },
       onDelete: 'SET NULL',
@@ -234,7 +266,9 @@ module.exports = {
     await queryInterface.removeIndex('Businesses', ['name', 'address']);
     // Drop foreign key constraints
     await queryInterface.removeConstraint('Businesses', 'fk_business_category');
-    await queryInterface.removeConstraint('Businesses', 'fk_business_location');
+    await queryInterface.removeConstraint('Businesses', 'fk_business_city');
+    await queryInterface.removeConstraint('Businesses', 'fk_business_state');
+    await queryInterface.removeConstraint('Businesses', 'fk_business_country');
     await queryInterface.removeConstraint('Businesses', 'fk_business_postalcode');
     await queryInterface.removeConstraint('Businesses', 'fk_business_phone');
     await queryInterface.removeConstraint('Businesses', 'fk_business_rating');

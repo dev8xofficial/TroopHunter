@@ -3,7 +3,6 @@ import { Op } from 'sequelize';
 import Sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
 import { BusinessCategoryAttributes } from '../types/businessCategory';
-import { LocationAttributes } from '../types/location';
 import { RatingAttributes } from '../types/businessRating';
 import { SourceAttributes } from '../types/businessSource';
 import { OpeningTimeAttributes } from '../types/businessOpeningHour';
@@ -16,7 +15,7 @@ import { Point } from 'geojson';
 import { findOrCreateBusinessPhone, getPhoneWithDetails } from '../utils/phone';
 import { findOrCreateBusinessSource } from '../utils/business';
 import { findOrCreateBusinessCategory } from '../utils/category';
-import { findOrCreateLocation } from '../utils/location';
+import { findCityByName, findCountryByName, findStateByName } from '../utils/location';
 import { findOrCreatePostalCode } from '../utils/postalCode';
 import { findOrCreateBusinessRating } from '../utils/rating';
 import { findOrCreateTimezone } from '../utils/timezone';
@@ -26,10 +25,13 @@ import logger from '../utils/logger';
 import { createApiResponse } from '../utils/response';
 import { ApiResponse } from '../types/response';
 import { getMessage } from '../utils/message';
+import { CityAttributes } from '../types/city';
+import { StateAttributes } from '../types/state';
+import { CountryAttributes } from '../types/country';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinessesByQuery = async (req: Request, res: Response) => {
-  const { name, businessDomain, categoryId, address, locationId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, include } = req.query;
+  const { name, businessDomain, categoryId, address, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, include } = req.query;
 
   // Pagination
   if (!page || !limit) {
@@ -64,10 +66,6 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
 
   if (address) {
     whereClause.address = { [Op.iLike]: `%${address}%` };
-  }
-
-  if (locationId) {
-    whereClause.locationId = locationId;
   }
 
   if (latitude && longitude && range) {
@@ -206,7 +204,7 @@ export const getBusinessById = async (req: Request, res: Response) => {
 export const createBusiness = async (req: Request, res: Response) => {
   const transaction = await Sequelize.transaction(); // Start a transaction
 
-  const { name, businessDomain, category, address, location, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour } = req.body;
+  const { name, businessDomain, category, address, city, state, country, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour } = req.body;
 
   try {
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
@@ -266,9 +264,19 @@ export const createBusiness = async (req: Request, res: Response) => {
       payload.categoryId = categoryFromDB?.id;
     }
 
-    if (location) {
-      const locationFromDB: LocationAttributes | undefined = await findOrCreateLocation(location, transaction);
-      payload.locationId = locationFromDB?.id;
+    if (city) {
+      const cityFromDB: CityAttributes | undefined = await findCityByName(city, transaction);
+      payload.cityId = cityFromDB?.id;
+    }
+
+    if (state) {
+      const stateFromDB: StateAttributes | undefined = await findStateByName(state, transaction);
+      payload.stateId = stateFromDB?.id;
+    }
+
+    if (country) {
+      const countryFromDB: CountryAttributes | undefined = await findCountryByName(country, transaction);
+      payload.countryId = countryFromDB?.id;
     }
 
     if (postalCode) {
@@ -331,7 +339,7 @@ export const createBusiness = async (req: Request, res: Response) => {
 export const updateBusiness = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const { name, businessDomain, categoryId, address, locationId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId } = req.body;
+    const { name, businessDomain, categoryId, address, cityId, stateId, countryId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId } = req.body;
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
     const business = await Business.findByPk(id);
@@ -376,7 +384,9 @@ export const updateBusiness = async (req: Request, res: Response) => {
       business.businessDomain = businessDomain;
       business.categoryId = categoryId;
       business.address = address;
-      business.locationId = locationId;
+      business.cityId = cityId;
+      business.stateId = stateId;
+      business.countryId = countryId;
       business.longitude = longitude;
       business.latitude = latitude;
       business.geoPoint = geoPoint;
