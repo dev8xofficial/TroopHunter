@@ -293,12 +293,9 @@ class BusinessScraper:
                         self.logger.info(f"State: {location['state']}")
                         self.logger.info(f"Country: {location['country']}")
                         current_business_data["postalCode"] = zip
-                        current_business_data["location"] = {
-                            "city": location["city"],
-                            "state": location["state"],
-                            "country": location["country"],
-                            "importance": "Low",
-                        }
+                        current_business_data["city"] = location["city"]
+                        current_business_data["state"] = location["state"]
+                        current_business_data["country"] = location["country"]
                     elif img_with_schedule_src:
                         self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
                         tr_elements = soup.find_all("tr", class_="y0skZc")
