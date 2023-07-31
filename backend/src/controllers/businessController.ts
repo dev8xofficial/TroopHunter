@@ -31,7 +31,7 @@ import { CountryAttributes } from '../types/country';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinessesByQuery = async (req: Request, res: Response) => {
-  const { name, businessDomain, categoryId, address, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, include } = req.query;
+  const { name, businessDomain, categoryId, address, cityId, stateId, countryId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, include } = req.query;
 
   // Pagination
   if (!page || !limit) {
@@ -66,6 +66,18 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
 
   if (address) {
     whereClause.address = { [Op.iLike]: `%${address}%` };
+  }
+
+  if (cityId) {
+    whereClause.cityId = cityId;
+  }
+
+  if (stateId) {
+    whereClause.stateId = stateId;
+  }
+
+  if (countryId) {
+    whereClause.countryId = countryId;
   }
 
   if (latitude && longitude && range) {
