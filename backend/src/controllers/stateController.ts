@@ -8,20 +8,41 @@ import { Op } from 'sequelize';
 
 // Get states by name and state
 export const getStatesByQuery = async (req: Request, res: Response) => {
-  const { name } = req.query;
+  const { name, page, limit } = req.query;
+
+  // Pagination
+  if (!page || !limit) {
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_PAGE_LIMIT').message, status: getMessage('MISSING_PAGE_LIMIT').code });
+    return res.json(response);
+  }
+
+  if (!name) {
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_STATE').message, status: getMessage('MISSING_STATE').code });
+    return res.json(response);
+  }
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_PAGE_LIMIT').message, status: getMessage('INVALID_PAGE_LIMIT').code });
+    return res.json(response);
+  }
+
+  const offset = (pageNumber - 1) * limitNumber;
+
+  // Where clause
+  const whereClause: { [key: string]: any } = {};
+
+  if (name) {
+    whereClause.name = { [Op.iLike]: `%${name}%` };
+  }
 
   try {
-    if (!name) {
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_STATE').message, status: getMessage('MISSING_STATE').code });
-      return res.json(response);
-    }
-
-    const states = await State.findAll({
-      where: {
-        name: {
-          [Op.iLike]: `%${name}%`, // Use the "iLike" operator for case-insensitive matching
-        },
-      },
+    const { count, rows: states } = await State.findAndCountAll({
+      where: whereClause,
+      offset,
+      limit: limitNumber,
     });
 
     if (states.length === 0) {
@@ -30,8 +51,10 @@ export const getStatesByQuery = async (req: Request, res: Response) => {
       return res.json(response);
     }
 
+    const totalPages = Math.ceil(count / limitNumber);
+
     logger.info(`Successfully retrieved states for state: ${name}`);
-    const response: ApiResponse<State[]> = createApiResponse({ success: true, data: states, message: getMessage('STATES_RETRIEVED').message, status: getMessage('STATES_RETRIEVED').code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; states: State[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, states }, message: getMessage('STATES_RETRIEVED').message, status: getMessage('STATES_RETRIEVED').code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving states:', error);

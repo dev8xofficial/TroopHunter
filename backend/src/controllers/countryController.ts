@@ -8,20 +8,41 @@ import { Op } from 'sequelize';
 
 // Get countries by name and country
 export const getCountriesByQuery = async (req: Request, res: Response) => {
-  const { name } = req.query;
+  const { name, page, limit } = req.query;
+
+  // Pagination
+  if (!page || !limit) {
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_PAGE_LIMIT').message, status: getMessage('MISSING_PAGE_LIMIT').code });
+    return res.json(response);
+  }
+
+  if (!name) {
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_COUNTRY').message, status: getMessage('MISSING_COUNTRY').code });
+    return res.json(response);
+  }
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_PAGE_LIMIT').message, status: getMessage('INVALID_PAGE_LIMIT').code });
+    return res.json(response);
+  }
+
+  const offset = (pageNumber - 1) * limitNumber;
+
+  // Where clause
+  const whereClause: { [key: string]: any } = {};
+
+  if (name) {
+    whereClause.name = { [Op.iLike]: `%${name}%` };
+  }
 
   try {
-    if (!name) {
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_COUNTRY').message, status: getMessage('MISSING_COUNTRY').code });
-      return res.json(response);
-    }
-
-    const countries = await Country.findAll({
-      where: {
-        name: {
-          [Op.iLike]: `%${name}%`, // Use the "iLike" operator for case-insensitive matching
-        },
-      },
+    const { count, rows: countries } = await Country.findAndCountAll({
+      where: whereClause,
+      offset,
+      limit: limitNumber,
     });
 
     if (countries.length === 0) {
@@ -30,8 +51,10 @@ export const getCountriesByQuery = async (req: Request, res: Response) => {
       return res.json(response);
     }
 
+    const totalPages = Math.ceil(count / limitNumber);
+
     logger.info(`Successfully retrieved countries for country: ${name}`);
-    const response: ApiResponse<Country[]> = createApiResponse({ success: true, data: countries, message: getMessage('COUNTRIES_RETRIEVED').message, status: getMessage('COUNTRIES_RETRIEVED').code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; countries: Country[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, countries }, message: getMessage('COUNTRIES_RETRIEVED').message, status: getMessage('COUNTRIES_RETRIEVED').code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving countries:', error);

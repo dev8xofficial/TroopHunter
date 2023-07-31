@@ -8,20 +8,41 @@ import { Op } from 'sequelize';
 
 // Get cities by name and state
 export const getCitiesByQuery = async (req: Request, res: Response) => {
-  const { name } = req.query;
+  const { name, page, limit } = req.query;
+
+  // Pagination
+  if (!page || !limit) {
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_PAGE_LIMIT').message, status: getMessage('MISSING_PAGE_LIMIT').code });
+    return res.json(response);
+  }
+
+  if (!name) {
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_CITY').message, status: getMessage('MISSING_CITY').code });
+    return res.json(response);
+  }
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
+    const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_PAGE_LIMIT').message, status: getMessage('INVALID_PAGE_LIMIT').code });
+    return res.json(response);
+  }
+
+  const offset = (pageNumber - 1) * limitNumber;
+
+  // Where clause
+  const whereClause: { [key: string]: any } = {};
+
+  if (name) {
+    whereClause.name = { [Op.iLike]: `%${name}%` };
+  }
 
   try {
-    if (!name) {
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_CITY').message, status: getMessage('MISSING_CITY').code });
-      return res.json(response);
-    }
-
-    const cities = await City.findAll({
-      where: {
-        name: {
-          [Op.iLike]: `%${name}%`, // Use the "iLike" operator for case-insensitive matching
-        },
-      },
+    const { count, rows: cities } = await City.findAndCountAll({
+      where: whereClause,
+      offset,
+      limit: limitNumber,
     });
 
     if (cities.length === 0) {
@@ -30,8 +51,10 @@ export const getCitiesByQuery = async (req: Request, res: Response) => {
       return res.json(response);
     }
 
+    const totalPages = Math.ceil(count / limitNumber);
+
     logger.info(`Successfully retrieved cities for city: ${name}`);
-    const response: ApiResponse<City[]> = createApiResponse({ success: true, data: cities, message: getMessage('CITIES_RETRIEVED').message, status: getMessage('CITIES_RETRIEVED').code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; cities: City[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, cities }, message: getMessage('CITIES_RETRIEVED').message, status: getMessage('CITIES_RETRIEVED').code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving cities:', error);
