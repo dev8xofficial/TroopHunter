@@ -4,6 +4,7 @@ import logger from '../utils/logger';
 import { ApiResponse } from '../types/response';
 import { createApiResponse } from '../utils/response';
 import { getMessage } from '../utils/message';
+import { Op } from 'sequelize';
 
 // Get cities by name and state
 export const getCitiesByQuery = async (req: Request, res: Response) => {
@@ -17,7 +18,9 @@ export const getCitiesByQuery = async (req: Request, res: Response) => {
 
     const cities = await City.findAll({
       where: {
-        name: name as string,
+        name: {
+          [Op.iLike]: `%${name}%`, // Use the "iLike" operator for case-insensitive matching
+        },
       },
     });
 
