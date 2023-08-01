@@ -20,6 +20,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      businessDomain: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
       categoryId: {
         allowNull: true,
         type: Sequelize.UUID,
