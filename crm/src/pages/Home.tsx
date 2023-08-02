@@ -9,13 +9,17 @@ import { fetchBusinessesAction } from '../store/actions/businessActions';
 import CustomTextField from '../components/Inputs/CustomTextField/CustomTextField';
 import Accordion from '../components/Surfaces/Accordion/Accordion';
 import TableLead from '../components/DataDisplay/Table/TableLead';
-import { setHomePageFiltersAction, setHomePagePaginationPageAction } from '../store/actions/homePageActions';
-import { IFilterAttributes, IHomePageState } from '../store/reducers/homePageReducer';
+import { resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageFiltersAction, setHomePagePaginationPageAction } from '../store/actions/homePageActions';
+import { IFilterAttributes, IHomePageState, initialValue } from '../store/reducers/homePageReducer';
 import Button from '../components/Inputs/Button/Button';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import LeadSaveDialog from '../components/Feedback/LeadSaveDialog/LeadSaveDialog';
 import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDeletionDialog';
 import { IAuthState } from '../store/reducers/authReducer';
+import { compareFiltersAndLead, isFiltersChanged } from '../utils/helpers';
+import { IUserCreationResponseAttributes } from '../types/user';
+import { IUserState } from '../store/reducers/userReducer';
+import { ILeadCreationResponseAttributes } from '../types/lead';
 
 const tabs = [{ name: 'Filters', href: '#', current: true }];
 
@@ -27,15 +31,20 @@ const Lead = () => {
   const dispatch = useDispatch();
   const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
   const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
+  const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
 
   const isLeadLoading = home.isLoading;
-  const leadPageFilters: IFilterAttributes[] = home.filters;
+  const leadPageFilters: IFilterAttributes = home.filters;
   const leadPagePaginationPage: number = home.page;
   const leadPagePaginationLimit: number = home.pageLimit;
   const leadPageDraftLeadId: string = home.draftLeadId;
+  const usersLoggedIn: IUserCreationResponseAttributes = users.data[auth.userId];
+  const userLeads: ILeadCreationResponseAttributes[] = usersLoggedIn.Leads;
+  const draftLeadIndex: number = userLeads.findIndex((lead) => lead.id === leadPageDraftLeadId);
+  const draftLead: ILeadCreationResponseAttributes = userLeads[draftLeadIndex];
 
-  const [debouncedFilters, setDebouncedFilters] = useState<IFilterAttributes[]>(leadPageFilters);
-  const [filtersPanelWidth, setFiltersPanelWidth] = useState<boolean>(true);
+  const [debouncedFilters, setDebouncedFilters] = useState<IFilterAttributes>(leadPageFilters);
+  const [filtersPanelWidth, setFiltersPanelWidth] = useState<boolean>(false);
   const [isOpenLeadSaveDialog, setIsOpenLeadSaveDialog] = useState(false);
   const [isOpenLeadLeadDeletionDialog, setIsOpenLeadDeletionDialog] = useState(false);
   const [isOpenMobileFiltersDialog, setIsOpenMobileFiltersDialog] = useState(false);
@@ -50,20 +59,34 @@ const Lead = () => {
       dispatch(setHomePagePaginationPageAction(1));
     }
 
-    dispatch(setHomePageFiltersAction(leadPageFilters.map((filter) => (filter.name === name ? { ...filter, value: newValue } : filter))));
+    const newFilters: IFilterAttributes = Object.fromEntries(
+      Object.entries(leadPageFilters).map(([key, filter]) => {
+        return [key, filter.name === name ? { ...filter, value: newValue } : filter];
+      })
+    ) as IFilterAttributes;
+    dispatch(setHomePageFiltersAction(newFilters));
+  };
+
+  const handleReset = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    event.preventDefault();
+    dispatch(resetHomePageFiltersAction());
   };
 
   const loadMoreBusinesses = ({ page, limit }: { page: number; limit: number }) => {
-    const filtersObject: Record<string, string> = {};
-    for (const filter of debouncedFilters) {
-      filtersObject[filter.name] = filter.value;
-    }
-
     const requestData = {
       token: auth.token,
       page: page,
       limit: limit,
-      ...filtersObject,
+      name: leadPageFilters['name'].value,
+      businessDomain: leadPageFilters['businessDomain'].value,
+      address: leadPageFilters['address'].value,
+      cityId: leadPageFilters['cityId'].value,
+      stateId: leadPageFilters['stateId'].value,
+      countryId: leadPageFilters['countryId'].value,
+      phone: leadPageFilters['phone'].value,
+      email: leadPageFilters['email'].value,
+      website: leadPageFilters['website'].value,
+      sponsoredAd: leadPageFilters['sponsoredAd'].value,
     };
     dispatch(fetchBusinessesAction(requestData));
   };
@@ -82,7 +105,7 @@ const Lead = () => {
   }, [leadPageFilters]);
 
   useEffect(() => {
-    if (debouncedFilters.length > 0) {
+    if (Object.keys(debouncedFilters).length > 0) {
       loadMoreBusinesses({ page: leadPagePaginationPage, limit: leadPagePaginationLimit });
     }
   }, [debouncedFilters]);
@@ -135,7 +158,7 @@ const Lead = () => {
             <div>
               <div className="flex items-center justify-between space-x-6 pl-4 pr-4 sm:pr-6 lg:pr-8">
                 <div className="flex flex-grow items-center space-x-6">
-                  <div className="max-w-md flex-grow">{leadPageFilters[0] && <CustomTextField label={leadPageFilters[0]?.label} name={leadPageFilters[0]?.name} value={leadPageFilters[0]?.value} onChange={handleChange} placeholder={`Search ${leadPageFilters[0].label.toLowerCase()} title...`} />}</div>
+                  <div className="max-w-md flex-grow">{leadPageFilters['name'] && <CustomTextField label={leadPageFilters['name']?.label} name={leadPageFilters['name']?.name} value={leadPageFilters['name']?.value !== null ? leadPageFilters['name']?.value : ''} onChange={handleChange} placeholder={`Search ${leadPageFilters['name'].label.toLowerCase()} title...`} />}</div>
 
                   <a className="inline-flex items-center whitespace-nowrap text-sm font-semibold">Saved searches</a>
                 </div>
@@ -379,15 +402,15 @@ const Lead = () => {
             <div className="mb-2 hidden overflow-y-scroll p-4 pb-24 xl:col-span-4 xl:block" ref={mainRef} style={{ height: mainHeight }}>
               <div>
                 <ul role="list" className="divide-y rounded border bg-gray-100 shadow">
-                  {leadPageFilters.map((filter) =>
-                    filter.name !== 'name' ? (
+                  {Object.entries(leadPageFilters).map(([_, filter]) => {
+                    return filter.name !== 'name' ? (
                       <li key={filter.name}>
                         <Accordion label={filter.label} name={filter.name} value={filter.value} handleChange={handleChange} />
                       </li>
                     ) : (
                       <React.Fragment key={filter.name} />
-                    )
-                  )}
+                    );
+                  })}
                 </ul>
               </div>
             </div>
@@ -403,8 +426,16 @@ const Lead = () => {
                   </>
                 )}
                 <div className="ml-auto flex justify-end space-x-3">
-                  {/* {!leadPageDraftLeadId && <a className="inline-flex cursor-pointer items-center text-sm font-semibold">Clear all</a>}
-                  {leadPageDraftLeadId && <a className="inline-flex cursor-pointer items-center text-sm font-semibold">Go back</a>} */}
+                  {!leadPageDraftLeadId && isFiltersChanged(leadPageFilters, initialValue) && (
+                    <a className="inline-flex cursor-pointer items-center text-sm font-semibold" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handleReset(event)}>
+                      Clear all
+                    </a>
+                  )}
+                  {leadPageDraftLeadId && !compareFiltersAndLead(leadPageFilters, draftLead) && (
+                    <a className="inline-flex cursor-pointer items-center text-sm font-semibold" onClick={() => dispatch(restoreHomePageFiltersAction(draftLead))}>
+                      Restore
+                    </a>
+                  )}
                   <>
                     <Button variant="contained" color="indigo" onClick={() => setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog)}>
                       {leadPageDraftLeadId ? 'Update' : 'Save'} search

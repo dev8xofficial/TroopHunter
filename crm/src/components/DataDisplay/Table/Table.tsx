@@ -18,8 +18,6 @@ import { IAuthState } from '../../../store/reducers/authReducer';
 import { IUserState } from '../../../store/reducers/userReducer';
 import { ILeadsState } from '../../../store/reducers/leadsPageReducer';
 
-// Create a custom type to define valid filter keys
-type ValidFilterKeys = keyof Omit<ILeadCreationResponseAttributes, 'userId' | 'title' | 'id' | 'categoryId' | 'postalCodeId' | 'ratingId' | 'reviews' | 'timezoneId' | 'openingHourId' | 'closingHourId'>;
 // Get the encryption key from the environment variable
 const encryptionKey = process.env.ENCRYPTION_KEY ? process.env.ENCRYPTION_KEY : 'AgE34bNmLB9wOThIJ2WR79/cmtMdjqCbpk61w/ucZnviE1Te0IY7c1e2G5qi42h+';
 
@@ -31,7 +29,7 @@ const Table: React.FC = (): JSX.Element => {
   const { leads }: { leads: ILeadsState } = useSelector((state: { leads: ILeadsState }) => state);
   const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
 
-  const leadPageFilters: IFilterAttributes[] = home.filters;
+  const leadPageLFilters: IFilterAttributes = home.filters;
   const authUserId: string = auth.userId;
   const usersLoggedIn: IUserCreationResponseAttributes = users.data[authUserId];
   const selectedLeadIds: string[] = leads.selectedLeadIds;
@@ -66,17 +64,23 @@ const Table: React.FC = (): JSX.Element => {
       if (!Array.isArray(userLeads)) return;
 
       const selectedLead: ILeadCreationResponseAttributes = userLeads[index];
+      console.log(leadPageLFilters);
       if (selectedLead) {
-        const updatedFilters: IFilterAttributes[] = leadPageFilters.map((filter) => {
-          if (filter.name === 'name' && selectedLead?.hasOwnProperty('search')) {
-            return { ...filter, value: `${selectedLead['search']}` }; // Create a new object with updated value
-          } else if (selectedLead?.hasOwnProperty(filter.name)) {
-            const validFilterName = filter.name as ValidFilterKeys;
-            const { userId: authUserId, title, id, categoryId, postalCodeId, ratingId, reviews, timezoneId, openingHourId, closingHourId, ...rest } = selectedLead;
-            return { ...filter, value: `${rest[validFilterName]}` }; // Create a new object with updated value
-          }
-          return filter;
-        });
+        let updatedFilters: IFilterAttributes = {} as IFilterAttributes; // Type assertion
+
+        updatedFilters = {
+          name: { label: 'Business', name: 'name', value: selectedLead.search },
+          businessDomain: { label: 'Business Domain', name: 'businessDomain', value: selectedLead.businessDomain },
+          address: { label: 'Address', name: 'address', value: selectedLead.address },
+          cityId: { label: 'City', name: 'cityId', value: selectedLead.cityId },
+          stateId: { label: 'State', name: 'stateId', value: selectedLead.stateId },
+          countryId: { label: 'Country', name: 'countryId', value: selectedLead.countryId },
+          phone: { label: 'Phone', name: 'phone', value: selectedLead.phone },
+          email: { label: 'Email', name: 'email', value: selectedLead.email },
+          website: { label: 'Website', name: 'website', value: selectedLead.website },
+          sponsoredAd: { label: 'Sponsored', name: 'sponsoredAd', value: selectedLead.sponsoredAd },
+        };
+        console.log('Editing: ', updatedFilters);
 
         const dispatchActionPromise = new Promise<void>((resolve) => {
           dispatch(setHomePageFiltersAction(updatedFilters));

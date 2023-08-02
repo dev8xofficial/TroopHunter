@@ -2,6 +2,9 @@ import { DataTypes, Model, BelongsToCreateAssociationMixin } from 'sequelize';
 import sequelize from '../config/database';
 import { LeadAttributes } from '../types/lead';
 import User from './User';
+import City from './City';
+import State from './State';
+import Country from './Country';
 
 class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public id?: string;
@@ -15,7 +18,7 @@ class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public stateId!: string;
   public countryId!: string;
   public postalCodeId?: string;
-  public phoneId?: string;
+  public phone?: string;
   public email?: string;
   public website?: string;
   public ratingId?: string;
@@ -80,7 +83,7 @@ Lead.init(
       type: DataTypes.UUID,
       allowNull: true,
     },
-    phoneId: {
+    phone: {
       type: DataTypes.UUID,
       allowNull: true,
     },
@@ -126,6 +129,10 @@ Lead.init(
     modelName: 'Lead',
   }
 );
+
+Lead.belongsTo(City, { foreignKey: 'cityId' });
+Lead.belongsTo(State, { foreignKey: 'stateId' });
+Lead.belongsTo(Country, { foreignKey: 'countryId' });
 
 Lead.sync();
 

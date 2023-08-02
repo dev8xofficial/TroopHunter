@@ -7,7 +7,14 @@ module.exports = {
   plugins: [require('daisyui')],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      fontSize: {
+        xxs: '0.6rem',
+      },
+      width: {
+        '26': '6.76rem',
+      }
+    },
   },
   // daisyUI config (optional - here are the default values)
   daisyui: {

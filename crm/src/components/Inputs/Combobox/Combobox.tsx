@@ -24,7 +24,7 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
 
   const handleOptionChange = (selectedOption: any) => {
     setSelectedOption(selectedOption);
-    onChange({ target: { id: selectedOption.id, name: type + 'Id', value: selectedOption.value } } as React.ChangeEvent<HTMLInputElement>);
+    onChange({ target: { id: selectedOption.id, name: type + 'Id', value: selectedOption?.value ? selectedOption?.value : '' } } as React.ChangeEvent<HTMLInputElement>);
   };
 
   const handleDisplayValue = (selectedOption: any) => {
@@ -113,6 +113,14 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
       return () => clearTimeout(typingTimeout);
     }
   }, [searchTerm, type, token]);
+
+  useEffect(() => {
+    if (value === '') {
+      setSearchTerm('');
+      setSearchResults([]);
+      setSelectedOption(initalValue);
+    }
+  }, [value, onChange]);
 
   const mapCountryData = (country: ICountryCreationResponseAttributes): ILocationComboboxOption => {
     return {

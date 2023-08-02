@@ -24,7 +24,7 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
   const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
   const { businesses }: { businesses: IBusinessState } = useSelector((state: { businesses: IBusinessState }) => state);
 
-  const leadPageFilters: IFilterAttributes[] = home.filters;
+  const leadPageFilters: IFilterAttributes = home.filters;
   const leadPageDraftLeadId: string = home.draftLeadId;
   const leadPageBusinessIds: string[] = home.businessIds;
   const usersLoggedIn: IUserCreationResponseAttributes = users.data[auth.userId];
@@ -50,24 +50,27 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
     validationSchema: formikSchema,
     onSubmit: async (values, { resetForm }) => {
       const { title } = values;
-      if (leadPageFilters.length > 0 && leadPageFilters.some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {
-        const filtersObject: Record<string, string> = {};
-        for (const filter of leadPageFilters) {
-          filtersObject[filter.name] = filter.value;
-        }
-
-        const requestData = {
+      if (Object.keys(leadPageFilters).length > 0 && Object.values(leadPageFilters).some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {
+        const requestData2 = {
           id: leadPageDraftLeadId,
           token: auth.token,
           userId: auth.userId,
-          title,
-          search: filtersObject.name,
           businessCount: Array.isArray(leadPageBusinessIds) && leadPageBusinessIds.length > 0 ? leadPageBusinessIds.length : businessesTotalRecords ? businessesTotalRecords : 0,
           leadBusinessIds: leadPageBusinessIds,
-          ...filtersObject,
+          title,
+          search: leadPageFilters['name'].value,
+          businessDomain: leadPageFilters['businessDomain'].value,
+          address: leadPageFilters['address'].value,
+          cityId: leadPageFilters['cityId'].value,
+          stateId: leadPageFilters['stateId'].value,
+          countryId: leadPageFilters['countryId'].value,
+          phone: leadPageFilters['phone'].value,
+          email: leadPageFilters['email'].value,
+          website: leadPageFilters['website'].value,
+          sponsoredAd: leadPageFilters['sponsoredAd'].value,
         };
-        if (leadPageDraftLeadId) dispatch(updateLeadAction(requestData));
-        else dispatch(createLeadAction(requestData));
+        if (leadPageDraftLeadId) dispatch(updateLeadAction(requestData2));
+        else dispatch(createLeadAction(requestData2));
 
         resetForm();
         closeModal();

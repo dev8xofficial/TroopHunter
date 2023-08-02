@@ -1,4 +1,4 @@
-import { IBusinessPhoneCreationResponseAttributes } from './lead';
+import { IBusinessPhoneCreationResponseAttributes, ILeadCreationResponseAttributes } from './lead';
 
 export interface IUserCreationRequestAttributes {
   firstName: string;
@@ -6,7 +6,7 @@ export interface IUserCreationRequestAttributes {
   email: string;
   password: string;
   role?: string;
-  Leads?: IBusinessPhoneCreationResponseAttributes[];
+  Leads: ILeadCreationResponseAttributes[];
 }
 
 export interface IUserCreationResponseAttributes extends IUserCreationRequestAttributes {

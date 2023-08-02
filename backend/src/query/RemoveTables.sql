@@ -1,6 +1,7 @@
 -- Drop BusinessPhoto table
 DROP TABLE IF EXISTS "LeadBusinesses";
 DROP TABLE IF EXISTS "BusinessPhotos";
+DROP TABLE IF EXISTS "Leads";
 DROP TABLE IF EXISTS "Businesses";
 DROP TABLE IF EXISTS "BusinessCategories";
 DROP TABLE IF EXISTS "BusinessClosingHours";
@@ -9,8 +10,6 @@ DROP TABLE IF EXISTS "BusinessPhones";
 DROP TABLE IF EXISTS "BusinessRatings";
 DROP TABLE IF EXISTS "BusinessSocialMedia";
 DROP TABLE IF EXISTS "BusinessSources";
-DROP TABLE IF EXISTS "Leads";
-DROP TABLE IF EXISTS "Lists";
 DROP TABLE IF EXISTS "Countries";
 DROP TABLE IF EXISTS "States";
 DROP TABLE IF EXISTS "Cities";

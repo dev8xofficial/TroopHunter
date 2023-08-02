@@ -1,21 +1,12 @@
-export interface ILeadCreationRequestAttributes {
+import { IBusinessCreationResponseAttributes } from './business';
+
+export interface ILeadCreationRequestAttributes extends Omit<IBusinessCreationResponseAttributes, 'name' | 'longitude' | 'latitude' | 'geoPoint' | 'phoneId' | 'photos' | 'sourceId' | 'socialMedia'> {
   userId: string;
   title: string;
-  search?: string;
-  categoryId?: string;
-  address?: string;
-  locationId?: string;
-  postalCodeId?: string;
-  phoneId?: string;
-  email?: string;
-  website?: string;
-  ratingId?: string;
-  reviews?: number;
-  timezoneId?: string;
+  search: string;
+  phone?: string;
   sponsoredAd?: boolean;
   businessCount: number;
-  openingHourId?: string;
-  closingHourId?: string;
 }
 
 export interface ILeadCreationResponseAttributes extends ILeadCreationRequestAttributes {

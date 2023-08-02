@@ -16,7 +16,7 @@ export interface IAuthLoginPayload {
 function* loginSaga({ payload }: { payload: IAuthLoginPayload }): any {
   try {
     const { email, password, navigate } = payload;
-    const response = yield loginService({ email, password, include: '["Leads"]' });
+    const response = yield loginService({ email, password });
 
     if (response.success) {
       yield put(addUserLocallyAction(response.data.user));

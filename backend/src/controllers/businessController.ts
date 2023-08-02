@@ -28,10 +28,14 @@ import { getMessage } from '../utils/message';
 import { CityAttributes } from '../types/city';
 import { StateAttributes } from '../types/state';
 import { CountryAttributes } from '../types/country';
+import BusinessPhone from '../models/BusinessPhone';
+import Country from '../models/Country';
+import State from '../models/State';
+import City from '../models/City';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinessesByQuery = async (req: Request, res: Response) => {
-  const { name, businessDomain, categoryId, address, cityId, stateId, countryId, longitude, latitude, range, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, include } = req.query;
+  const { name, businessDomain, categoryId, address, cityId, cityName, stateId, stateName, countryId, countryName, longitude, latitude, range, postalCodeId, phoneId, phone, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, include } = req.query;
 
   // Pagination
   if (!page || !limit) {
@@ -51,6 +55,10 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
 
   // Where clause
   const whereClause: { [key: string]: any } = {};
+  const whereClauseCountry: { [key: string]: any } = {};
+  const whereClauseState: { [key: string]: any } = {};
+  const whereClauseCity: { [key: string]: any } = {};
+  const whereClauseBusinessPhone: { [key: string]: any } = {};
 
   if (name) {
     whereClause.name = { [Op.iLike]: `%${name}%` };
@@ -125,10 +133,56 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
     whereClause.closingHourId = closingHourId;
   }
 
+  if (countryName) {
+    whereClauseCountry.name = { [Op.iLike]: `%${countryName}%` };
+  }
+
+  if (stateName) {
+    whereClauseState.name = { [Op.iLike]: `%${stateName}%` };
+  }
+
+  if (cityName) {
+    whereClauseCity.name = { [Op.iLike]: `%${cityName}%` };
+  }
+
+  if (phone && typeof phone === 'string') {
+    const phoneNumberSearch = phone.replace(/\D/g, '');
+    whereClauseBusinessPhone.number = { [Op.iLike]: `%${phoneNumberSearch}%` };
+  }
+
+  // Include clauses for country, state, and city search
+  const includeClauseCountry: any[] = [
+    {
+      model: Country,
+      where: whereClauseCountry,
+    },
+  ];
+
+  const includeClauseState: any[] = [
+    {
+      model: State,
+      where: whereClauseState,
+    },
+  ];
+
+  const includeClauseCity: any[] = [
+    {
+      model: City,
+      where: whereClauseCity,
+    },
+  ];
+
+  const includeClauseBusinessPhone: any[] = [
+    {
+      model: BusinessPhone,
+      where: whereClauseBusinessPhone,
+    },
+  ];
+
   try {
     const { count, rows: businesses } = await Business.findAndCountAll({
       where: whereClause,
-      include: include,
+      include: [...includeClauseCountry, ...includeClauseState, ...includeClauseCity, ...includeClauseBusinessPhone],
       offset,
       limit: limitNumber,
     });
@@ -331,6 +385,9 @@ export const createBusiness = async (req: Request, res: Response) => {
 
     await transaction.commit().then(() => {
       logger.info(`Business named ${name} created successfully.`);
+
+      // updateBusinessPhone(payload.phoneId, business.id);
+
       return business;
     });
 

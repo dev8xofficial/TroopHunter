@@ -3,48 +3,27 @@ import { Switch } from '@headlessui/react';
 import { PlusIcon, MinusIcon } from '@heroicons/react/20/solid';
 import { IAccordionProps } from './Accordion.interfaces';
 import TextField from '../../Inputs/TextField/TextField';
-import Select from '../../Inputs/Select/Select';
-import { IOption } from '../../Inputs/Select/Select.interfaces';
-import { useEffect, useState } from 'react';
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
-
-const cityOptions: IOption[] = [
-  { id: '1', name: 'Select', value: '' },
-  { id: '2', name: 'San Francisco', value: 'San Francisco' },
-  { id: '3', name: 'Houston', value: 'Houston' },
-];
-const stateOptions: IOption[] = [
-  { id: '1', name: 'Select', value: '' },
-  { id: '2', name: 'California', value: 'California' },
-  { id: '3', name: 'Texas', value: 'Texas' },
-];
-const countryOptions: IOption[] = [
-  { id: '1', name: 'Select', value: '' },
-  { id: '2', name: 'United States', value: 'United States' },
-  { id: '3', name: 'United Kingdom', value: 'United Kingdom' },
-];
+import _Combobox from '../../Inputs/Combobox/Combobox';
+import { classNames } from '../../../utils/helpers';
 
 const Accordion: React.FC<IAccordionProps> = ({ label, name, value, handleChange }: IAccordionProps): JSX.Element => {
-  // Split the initial value into city, state, and country
-  const initialValue = value ? value.split(', ') : ['', '', ''];
-  const [locationValues, setLocationValues] = useState<{ city: string; state: string; country: string }>({
-    city: initialValue[0],
-    state: initialValue[1],
-    country: initialValue[2],
-  });
-
   const getField = (name: string): JSX.Element => {
-    if (name === 'location')
+    if (name === 'cityId')
       return (
         <>
-          <div className="space-y-2">
-            <Select label="City" options={cityOptions} onChange={(selectedOption: IOption) => handleSelectChange(selectedOption, 'city')} />
-            <Select label="State" options={stateOptions} onChange={(selectedOption: IOption) => handleSelectChange(selectedOption, 'state')} />
-            <Select label="Country" options={countryOptions} onChange={(selectedOption: IOption) => handleSelectChange(selectedOption, 'country')} />
-          </div>
+          <_Combobox type="city" value={value} onChange={handleChange} />
+        </>
+      );
+    if (name === 'stateId')
+      return (
+        <>
+          <_Combobox type="state" value={value} onChange={handleChange} />
+        </>
+      );
+    if (name === 'countryId')
+      return (
+        <>
+          <_Combobox type="country" value={value} onChange={handleChange} />
         </>
       );
     if (name === 'phone') return <TextField type="tel" name={name} value={value} onChange={handleChange} placeholder={`Search ${label.toLowerCase()}...`} />;
@@ -77,24 +56,8 @@ const Accordion: React.FC<IAccordionProps> = ({ label, name, value, handleChange
           </Switch>
         </Switch.Group>
       );
-    return <TextField type="text" name={name} value={value} onChange={handleChange} placeholder={`Search ${label.toLowerCase()}...`} />;
+    return <TextField type="text" name={name} value={value !== null ? value : ''} onChange={handleChange} placeholder={`Search ${label.toLowerCase()}...`} />;
   };
-
-  const handleSelectChange = (selectedOption: IOption, field: 'city' | 'state' | 'country') => {
-    setLocationValues((prevValues) => ({ ...prevValues, [field]: selectedOption.value }));
-  };
-
-  useEffect(() => {
-    // This effect will be triggered whenever locationValues change
-    // You can perform the concatenation and handleChange here
-    const { city, state, country } = locationValues;
-    if (city && state && country) {
-      const concatenatedValue = `${city}, ${state}, ${country}`;
-      if (handleChange) {
-        handleChange({ target: { name, value: concatenatedValue } } as React.ChangeEvent<HTMLInputElement>);
-      }
-    }
-  }, [locationValues]);
 
   return (
     <Disclosure as="div">
