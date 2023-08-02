@@ -50,6 +50,8 @@ module.exports = {
         defaultValue: Sequelize.literal('NOW()'),
       },
     });
+
+    await queryInterface.addIndex('BusinessPhones', ['number']);
     
     // Add a unique constraint to the 'number' column
     await queryInterface.addConstraint('BusinessPhones', {
@@ -60,6 +62,10 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
+    // Drop indexes
+    await queryInterface.removeIndex('BusinessPhones', ['number']);
+
+    // Drop the table
     await queryInterface.dropTable('BusinessPhones');
   },
 };
