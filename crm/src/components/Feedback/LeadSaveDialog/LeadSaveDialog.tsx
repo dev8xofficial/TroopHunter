@@ -56,7 +56,7 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
           token: auth.token,
           userId: auth.userId,
           businessCount: Array.isArray(leadPageBusinessIds) && leadPageBusinessIds.length > 0 ? leadPageBusinessIds.length : businessesTotalRecords ? businessesTotalRecords : 0,
-          leadBusinessIds: leadPageBusinessIds,
+          businessIds: leadPageBusinessIds,
           title,
           search: leadPageFilters['name'].value,
           businessDomain: leadPageFilters['businessDomain'].value,

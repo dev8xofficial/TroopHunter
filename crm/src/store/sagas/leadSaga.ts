@@ -10,13 +10,13 @@ import { createLeadAction, deleteLeadAction, deleteLeadsAction, updateLeadAction
 
 export interface ICreateLeadPayload extends ILeadCreationRequestAttributes {
   token: string;
-  leadBusinessIds: string[];
+  businessIds: string[];
 }
 
 function* createLeadSaga({ payload }: { payload: ICreateLeadPayload }): any {
   try {
-    const { userId, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, token, leadBusinessIds } = payload;
-    const response = yield createLeadService({ userId, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, leadBusinessIds }, token);
+    const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, token } = payload;
+    const response = yield createLeadService({ userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }, token);
 
     if (response.success) {
       toast.success(response.message);
@@ -31,13 +31,13 @@ function* createLeadSaga({ payload }: { payload: ICreateLeadPayload }): any {
 
 export interface IUpdateLeadPayload extends ILeadCreationResponseAttributes {
   token: string;
-  leadBusinessIds: string[];
+  businessIds: string[];
 }
 
 function* updateLeadSaga({ payload }: { payload: IUpdateLeadPayload }): any {
   try {
-    const { id, userId, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, token, leadBusinessIds } = payload;
-    const response = yield updateLeadService(id, { userId, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, leadBusinessIds }, token);
+    const { id, userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, token } = payload;
+    const response = yield updateLeadService(id, { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }, token);
 
     if (response.success) {
       toast.success(response.message);
