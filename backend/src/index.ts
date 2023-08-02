@@ -6,6 +6,7 @@ import notFoundHandler from './middlewares/notFoundHandler';
 import { formatResponse, sanitizeResponse } from './middlewares/responseMiddleware';
 import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
+import businessPhoneRoutes from './routes/businessPhoneRoutes';
 import businessRoutes from './routes/businessRoutes';
 import leadRoutes from './routes/leadRoutes';
 import queueRoutes from './routes/queueRoutes';
@@ -41,6 +42,7 @@ app.get('/', (req, res) => {
 });
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
+app.use('/business-phones', businessPhoneRoutes);
 app.use('/businesses', businessRoutes);
 app.use('/leads', leadRoutes);
 app.use('/queues', queueRoutes);
