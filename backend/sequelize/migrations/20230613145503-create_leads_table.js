@@ -18,6 +18,10 @@ module.exports = {
         onDelete: 'CASCADE', // Choose the appropriate action for onDelete
         onUpdate: 'CASCADE', // Choose the appropriate action for onUpdate
       },
+      businessIds: {
+        type: Sequelize.ARRAY(Sequelize.UUID),
+        allowNull: true,
+      },
       title: {
         type: Sequelize.STRING,
         allowNull: false,

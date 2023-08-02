@@ -9,6 +9,7 @@ import Country from './Country';
 class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public id?: string;
   public userId!: string;
+  public businessIds?: string[];
   public title!: string;
   public search!: string;
   public businessDomain?: string;
@@ -46,6 +47,10 @@ Lead.init(
     userId: {
       type: DataTypes.UUID,
       allowNull: false,
+    },
+    businessIds: {
+      type: DataTypes.ARRAY(DataTypes.UUID),
+      allowNull: true,
     },
     title: {
       type: DataTypes.STRING,
