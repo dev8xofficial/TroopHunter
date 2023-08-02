@@ -4,21 +4,16 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { getMessage } from '../utils/message';
 import logger from '../utils/logger';
-import { isValidJSON } from '../utils/helper';
 import { ApiResponse } from '../types/response';
 import { createApiResponse } from '../utils/response';
 import Lead from '../models/Lead';
-import BusinessPhone from '../models/BusinessPhone';
-import City from '../models/City';
-import State from '../models/State';
-import Country from '../models/Country';
 
 export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
     // Check if the user exists
-    const user: User | null = await User.findOne({ where: { email }, include: [{ model: Lead }, { model: City }, { model: State }, { model: Country }, { model: BusinessPhone }] });
+    const user: User | null = await User.findOne({ where: { email }, include: [{ model: Lead }] });
     if (!user) {
       logger.error(`User with email ${email} does not exist.`);
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_EMAIL').message, status: getMessage('INVALID_EMAIL').code });
