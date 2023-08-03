@@ -4,7 +4,7 @@ import Sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
 import { RatingAttributes } from '../types/businessRating';
 import { SourceAttributes } from '../types/businessSource';
-import { OpeningTimeAttributes } from '../types/businessOpeningHour';
+import { BusinessOpeningHourAttributes } from '../models/BusinessOpeningHour/BusinessOpeningHour.interface';
 import { ClosingTimeAttributes } from '../types/businessClosingHour';
 import { PostalCodeAttributes } from '../types/postalCode';
 import { PhoneAttributes } from '../types/businessPhone';
@@ -372,7 +372,7 @@ export const createBusiness = async (req: Request, res: Response) => {
     }
 
     if (openingHour) {
-      const openingHourFromDB: OpeningTimeAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour, transaction);
+      const openingHourFromDB: BusinessOpeningHourAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour, transaction);
       payload.openingHourId = openingHourFromDB?.id;
     }
 

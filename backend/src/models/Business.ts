@@ -11,7 +11,7 @@ import BusinessRating from './BusinessRating';
 import Timezone from './Timezone';
 import BusinessSource from './BusinessSource';
 import BusinessSocialMedia from './BusinessSocialMedia';
-import BusinessOpeningHour from './BusinessOpeningHour';
+import BusinessOpeningHour from './BusinessOpeningHour/BusinessOpeningHour';
 import BusinessClosingHour from './BusinessClosingHour';
 import BusinessPhoto from './BusinessPhoto';
 import { BusinessPhotoAttributes } from '../types/businessPhoto';
