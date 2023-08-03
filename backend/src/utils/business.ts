@@ -1,11 +1,11 @@
 import { Transaction } from 'sequelize';
-import { SourceAttributes } from '../types/businessSource';
-import BusinessSource from '../models/BusinessSource';
+import { BusinessSourceAttributes } from '../models/BusinessSource/BusinessSource.interface';
+import BusinessSource from '../models/BusinessSource/BusinessSource';
 import logger from '../utils/logger';
 import { Op } from 'sequelize';
 import Business from '../models/Business';
 
-export const findOrCreateBusinessSource = async (sourceName: string, transaction: Transaction): Promise<SourceAttributes | undefined> => {
+export const findOrCreateBusinessSource = async (sourceName: string, transaction: Transaction): Promise<BusinessSourceAttributes | undefined> => {
   try {
     const [record, created] = await BusinessSource.findOrCreate({
       where: { sourceName },
@@ -14,10 +14,10 @@ export const findOrCreateBusinessSource = async (sourceName: string, transaction
 
     if (created) {
       logger.info(`Business source ${sourceName} created successfully.`);
-      return record.toJSON() as SourceAttributes;
+      return record.toJSON() as BusinessSourceAttributes;
     } else {
       logger.info(`Business source ${sourceName} already exists.`);
-      return record.toJSON() as SourceAttributes;
+      return record.toJSON() as BusinessSourceAttributes;
     }
   } catch (error) {
     logger.error('Failed to find or create business source:', error);

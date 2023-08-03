@@ -3,7 +3,7 @@ import { Op } from 'sequelize';
 import Sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
 import { BusinessRatingAttributes } from '../models/BusinessRating/BusinessRating.interface';
-import { SourceAttributes } from '../types/businessSource';
+import { BusinessSourceAttributes } from '../models/BusinessSource/BusinessSource.interface';
 import { BusinessOpeningHourAttributes } from '../models/BusinessOpeningHour/BusinessOpeningHour.interface';
 import { BusinessClosingHourAttributes } from '../models/BusinessClosingHour/BusinessClosingHour.interface';
 import { PostalCodeAttributes } from '../types/postalCode';
@@ -362,7 +362,7 @@ export const createBusiness = async (req: Request, res: Response) => {
     }
 
     if (source) {
-      const sourceFromDB: SourceAttributes | undefined = await findOrCreateBusinessSource(source, transaction);
+      const sourceFromDB: BusinessSourceAttributes | undefined = await findOrCreateBusinessSource(source, transaction);
       payload.sourceId = sourceFromDB?.id;
     }
 
