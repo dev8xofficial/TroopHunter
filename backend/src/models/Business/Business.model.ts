@@ -5,7 +5,7 @@ import { BusinessPhotoAttributes } from '../BusinessPhoto/BusinessPhoto.interfac
 import BusinessCategory from '../BusinessCategory/BusinessCategory.model';
 import City from '../City/City.model';
 import Country from '../Country/Country.model';
-import State from '../State/State';
+import State from '../State/State.model';
 import PostalCode from '../PostalCode/PostalCode.model';
 import BusinessPhone from '../BusinessPhone/BusinessPhone.model';
 import BusinessRating from '../BusinessRating/BusinessRating.model';

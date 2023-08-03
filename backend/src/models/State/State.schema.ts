@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { StateAttributes } from './State.interface';
 
-export const stateSchema = Joi.object<StateAttributes>({
+export const StateSchema = Joi.object<StateAttributes>({
   id: Joi.string(),
   name: Joi.string().required(),
   code: Joi.string().required(),

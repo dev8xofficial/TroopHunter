@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import State from '../models/State/State';
+import State from '../models/State/State.model';
 import logger from '../utils/logger';
 import { ApiResponse } from '../types/response';
 import { createApiResponse } from '../utils/response';

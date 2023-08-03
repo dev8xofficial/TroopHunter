@@ -29,7 +29,7 @@ import { StateAttributes } from '../models/State/State.interface';
 import { CountryAttributes } from '../models/Country/Country.interface';
 import BusinessPhone from '../models/BusinessPhone/BusinessPhone.model';
 import Country from '../models/Country/Country.model';
-import State from '../models/State/State';
+import State from '../models/State/State.model';
 import City from '../models/City/City.model';
 import { BusinessCategoryAttributes } from '../models/BusinessCategory/BusinessCategory.interface';
 // import BusinessPhoto from '../models/BusinessPhoto';
