@@ -1,4 +1,4 @@
-export interface SocialMediaAttributes {
+export interface BusinessSocialMediaAttributes {
   id?: string;
   businessId: string;
   facebookProfile?: string;

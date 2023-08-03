@@ -10,7 +10,7 @@ import BusinessPhone from './BusinessPhone/BusinessPhone';
 import BusinessRating from './BusinessRating/BusinessRating';
 import Timezone from './Timezone';
 import BusinessSource from './BusinessSource';
-import BusinessSocialMedia from './BusinessSocialMedia';
+import BusinessSocialMedia from './BusinessSocialMedia/BusinessSocialMedia';
 import BusinessOpeningHour from './BusinessOpeningHour/BusinessOpeningHour';
 import BusinessClosingHour from './BusinessClosingHour/BusinessClosingHour';
 import BusinessPhoto from './BusinessPhoto/BusinessPhoto';
