@@ -3,7 +3,7 @@ import sequelize from '../../config/database';
 import User from '../User/User';
 import City from '../City/City.model';
 import State from '../State/State';
-import Country from '../Country/Country';
+import Country from '../Country/Country.model';
 import { LeadAttributes } from './Lead.interface';
 
 class Lead extends Model<LeadAttributes> implements LeadAttributes {
