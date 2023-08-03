@@ -4,7 +4,7 @@ import { LeadAttributes } from '../../types/lead';
 import User from '../User';
 import City from '../City/City';
 import State from '../State';
-import Country from '../Country';
+import Country from '../Country/Country';
 
 class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public id?: string;

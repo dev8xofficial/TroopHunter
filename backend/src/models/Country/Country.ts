@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
-import { CountryAttributes } from '../types/country';
+import sequelize from '../../config/database';
+import { CountryAttributes } from './Country.interface';
 
 class Country extends Model<CountryAttributes> implements CountryAttributes {
   public id!: string;

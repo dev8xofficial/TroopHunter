@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Country from '../models/Country';
+import Country from '../models/Country/Country';
 import logger from '../utils/logger';
 import { ApiResponse } from '../types/response';
 import { createApiResponse } from '../utils/response';

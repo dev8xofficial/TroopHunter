@@ -3,7 +3,7 @@ import sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
 import BusinessCategory from './BusinessCategory/BusinessCategory';
 import City from './City/City';
-import Country from './Country';
+import Country from './Country/Country';
 import State from './State';
 import PostalCode from './PostalCode';
 import BusinessPhone from './BusinessPhone/BusinessPhone';
