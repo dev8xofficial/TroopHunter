@@ -1,5 +1,5 @@
 import { Transaction } from 'sequelize';
-import BusinessCategory from '../models/BusinessCategory/BusinessCategory';
+import BusinessCategory from '../models/BusinessCategory/BusinessCategory.model';
 import logger from '../utils/logger';
 import { BusinessCategoryAttributes } from '../models/BusinessCategory/BusinessCategory.interface';
 

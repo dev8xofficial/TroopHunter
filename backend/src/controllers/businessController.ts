@@ -9,7 +9,7 @@ import { BusinessClosingHourAttributes } from '../models/BusinessClosingHour/Bus
 import { PostalCodeAttributes } from '../models/PostalCode/PostalCode.interface';
 import { BusinessPhoneAttributes } from '../models/BusinessPhone/BusinessPhone.interface';
 import { TimezoneAttributes } from '../models/Timezone/Timezone.interface';
-import Business from '../models/Business/Business';
+import Business from '../models/Business/Business.model';
 import { Point } from 'geojson';
 import { findOrCreateBusinessPhone, getPhoneWithDetails } from '../utils/phone';
 import { findOrCreateBusinessSource } from '../utils/business';

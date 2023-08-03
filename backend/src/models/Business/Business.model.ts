@@ -2,7 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/database';
 import { BusinessAttributes } from './Business.interface';
 import { BusinessPhotoAttributes } from '../BusinessPhoto/BusinessPhoto.interface';
-import BusinessCategory from '../BusinessCategory/BusinessCategory';
+import BusinessCategory from '../BusinessCategory/BusinessCategory.model';
 import City from '../City/City';
 import Country from '../Country/Country';
 import State from '../State/State';

@@ -3,7 +3,7 @@ import { BusinessSourceAttributes } from '../models/BusinessSource/BusinessSourc
 import BusinessSource from '../models/BusinessSource/BusinessSource';
 import logger from '../utils/logger';
 import { Op } from 'sequelize';
-import Business from '../models/Business/Business';
+import Business from '../models/Business/Business.model';
 
 export const findOrCreateBusinessSource = async (sourceName: string, transaction: Transaction): Promise<BusinessSourceAttributes | undefined> => {
   try {

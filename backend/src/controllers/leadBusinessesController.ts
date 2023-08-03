@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import LeadBusiness from '../models/LeadBusiness/LeadBusiness';
 import logger from '../utils/logger';
-import Business from '../models/Business/Business';
+import Business from '../models/Business/Business.model';
 import { createApiResponse } from '../utils/response';
 import { ApiResponse } from '../types/response';
 import { getMessage } from '../utils/message';

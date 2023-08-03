@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../index';
-import Business from '../models/Business/Business';
+import Business from '../models/Business/Business.model';
 
 describe('Business Controller', () => {
   beforeEach(async () => {

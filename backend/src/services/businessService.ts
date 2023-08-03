@@ -1,4 +1,4 @@
-import Business from '../models/Business/Business';
+import Business from '../models/Business/Business.model';
 import { BusinessAttributes } from '../models/Business/Business.interface';
 
 export const createBusiness = async ({ name, businessDomain, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId }: BusinessAttributes) => {
