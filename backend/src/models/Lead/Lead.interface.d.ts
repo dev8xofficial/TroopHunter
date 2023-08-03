@@ -1,4 +1,4 @@
-import { BusinessAttributes } from './business';
+import { BusinessAttributes } from '../../types/business';
 
 export interface LeadAttributes extends Omit<BusinessAttributes, 'name' | 'longitude' | 'latitude' | 'geoPoint' | 'phoneId' | 'photos' | 'sourceId' | 'socialMedia'> {
   id?: string;

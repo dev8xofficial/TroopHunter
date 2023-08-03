@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import Lead from './Lead';
+import Lead from './Lead/Lead.model';
 import Business from './Business';
 import { LeadBusinessAttributes } from '../types/leadBusiness';
 

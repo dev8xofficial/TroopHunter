@@ -6,7 +6,7 @@ import { getMessage } from '../utils/message';
 import logger from '../utils/logger';
 import { ApiResponse } from '../types/response';
 import { createApiResponse } from '../utils/response';
-import Lead from '../models/Lead';
+import Lead from '../models/Lead/Lead.model';
 
 export const login = async (req: Request, res: Response) => {
   try {

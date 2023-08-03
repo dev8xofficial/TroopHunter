@@ -1,10 +1,10 @@
 import { DataTypes, Model, BelongsToCreateAssociationMixin } from 'sequelize';
-import sequelize from '../config/database';
-import { LeadAttributes } from '../types/lead';
-import User from './User';
-import City from './City';
-import State from './State';
-import Country from './Country';
+import sequelize from '../../config/database';
+import { LeadAttributes } from '../../types/lead';
+import User from '../User';
+import City from '../City';
+import State from '../State';
+import Country from '../Country';
 
 class Lead extends Model<LeadAttributes> implements LeadAttributes {
   public id?: string;

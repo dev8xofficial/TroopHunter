@@ -1,7 +1,7 @@
 import { DataTypes, Model, HasManyCreateAssociationMixin } from 'sequelize';
 import sequelize from '../config/database';
 import { UserAttributes } from '../types/user';
-import Lead from './Lead';
+import Lead from './Lead/Lead.model';
 
 class User extends Model<UserAttributes> implements UserAttributes {
   public id?: string;
