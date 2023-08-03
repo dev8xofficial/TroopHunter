@@ -27,7 +27,7 @@ import { getMessage } from '../utils/message';
 import { CityAttributes } from '../models/City/City.interface';
 import { StateAttributes } from '../models/State/State.interface';
 import { CountryAttributes } from '../models/Country/Country.interface';
-import BusinessPhone from '../models/BusinessPhone/BusinessPhone';
+import BusinessPhone from '../models/BusinessPhone/BusinessPhone.model';
 import Country from '../models/Country/Country';
 import State from '../models/State/State';
 import City from '../models/City/City';

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import BusinessPhone from '../models/BusinessPhone/BusinessPhone';
+import BusinessPhone from '../models/BusinessPhone/BusinessPhone.model';
 import logger from '../utils/logger';
 import { ApiResponse } from '../types/response';
 import { createApiResponse } from '../utils/response';
