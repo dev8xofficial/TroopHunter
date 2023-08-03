@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
-import { CityAttributes } from '../types/city';
+import sequelize from '../../config/database';
+import { CityAttributes } from './City.interface';
 
 class City extends Model<CityAttributes> implements CityAttributes {
   public id!: string;

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import City from '../models/City';
+import City from '../models/City/City';
 import logger from '../utils/logger';
 import { ApiResponse } from '../types/response';
 import { createApiResponse } from '../utils/response';

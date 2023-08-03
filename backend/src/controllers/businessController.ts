@@ -24,13 +24,13 @@ import logger from '../utils/logger';
 import { createApiResponse } from '../utils/response';
 import { ApiResponse } from '../types/response';
 import { getMessage } from '../utils/message';
-import { CityAttributes } from '../types/city';
+import { CityAttributes } from '../models/City/City.interface';
 import { StateAttributes } from '../types/state';
 import { CountryAttributes } from '../types/country';
 import BusinessPhone from '../models/BusinessPhone/BusinessPhone';
 import Country from '../models/Country';
 import State from '../models/State';
-import City from '../models/City';
+import City from '../models/City/City';
 import { BusinessCategoryAttributes } from '../models/BusinessCategory/BusinessCategory.interface';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
