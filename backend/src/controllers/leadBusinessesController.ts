@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import LeadBusiness from '../models/LeadBusiness/LeadBusiness';
+import LeadBusiness from '../models/LeadBusiness/LeadBusiness.model';
 import logger from '../utils/logger';
 import Business from '../models/Business/Business.model';
 import { createApiResponse } from '../utils/response';

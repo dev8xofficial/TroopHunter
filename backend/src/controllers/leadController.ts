@@ -3,7 +3,7 @@ import Lead from '../models/Lead/Lead.model';
 import User from '../models/User/User';
 import logger from '../utils/logger';
 import Business from '../models/Business/Business.model';
-import LeadBusiness from '../models/LeadBusiness/LeadBusiness';
+import LeadBusiness from '../models/LeadBusiness/LeadBusiness.model';
 import { createApiResponse } from '../utils/response';
 import { ApiResponse } from '../types/response';
 import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../utils/business';
