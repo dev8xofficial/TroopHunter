@@ -5,26 +5,6 @@ interface Message {
 
 const messages: Record<string, Message> = {
   // Success messages
-  LISTS_RETRIEVED: {
-    code: 200,
-    message: 'Lists retrieved successfully.',
-  },
-  LIST_RETRIEVED: {
-    code: 200,
-    message: 'List retrieved successfully.',
-  },
-  LIST_CREATED: {
-    code: 201,
-    message: 'List created successfully.',
-  },
-  LIST_UPDATED: {
-    code: 200,
-    message: 'List updated successfully.',
-  },
-  LIST_DELETED: {
-    code: 204,
-    message: 'List deleted successfully.',
-  },
   QUEUES_RETRIEVED: {
     code: 200,
     message: 'Queues retrieved successfully.',
@@ -33,32 +13,8 @@ const messages: Record<string, Message> = {
     code: 200,
     message: 'Queue updated successfully.',
   },
-  BUSINESS_PHONES_RETRIEVED: {
-    code: 200,
-    message: 'Business phones retrieved successfully.',
-  },
-  BUSINESS_PHONE_RETRIEVED: {
-    code: 200,
-    message: 'Business phone retrieved successfully.',
-  },
-  BUSINESS_PHONE_CREATED: {
-    code: 200,
-    message: 'Business phone created successfully.',
-  },
-  BUSINESS_PHONE_UPDATED: {
-    code: 200,
-    message: 'Business phone updated successfully.',
-  },
-  BUSINESS_PHONE_DELETED: {
-    code: 200,
-    message: 'Business phone deleted successfully.',
-  },
 
   // Required fields messages
-  MISSING_LIST_NAME: {
-    code: 400,
-    message: 'Failed to create/update list. Missing required field: name.',
-  },
   MISSING_CITY_STATE_COUNTRY: {
     code: 400,
     message: 'Please provide city, state, and country parameters.',
@@ -79,10 +35,6 @@ const messages: Record<string, Message> = {
     code: 400,
     message: 'Failed to update queue. Missing required field: status.',
   },
-  MISSING_BUSINESS_PHONE_NUMBER: {
-    code: 400,
-    message: 'Failed to retrieve business phones. Missing required field: number.',
-  },
 
   // Error messages
   INVALID_INCLUDE_PARAMETER: {
@@ -93,56 +45,12 @@ const messages: Record<string, Message> = {
     code: 400,
     message: 'Invalid pagination parameters. Both page and limit should be positive integers.',
   },
-  LIST_NOT_FOUND: {
-    code: 404,
-    message: 'List not found.',
-  },
   QUEUE_NOT_FOUND: {
     code: 404,
     message: 'Queue not found.',
   },
-  BUSINESS_PHONE_NOT_FOUND: {
-    code: 404,
-    message: 'Business phone not found. The specified business phone ID does not exist.',
-  },
-  FAILED_TO_RETRIEVE_BUSINESS_PHONES: {
-    code: 500,
-    message: 'Failed to retrieve business phones. An internal server error occurred.',
-  },
-  FAILED_TO_RETRIEVE_BUSINESS_PHONE: {
-    code: 500,
-    message: 'Failed to retrieve business phone. An internal server error occurred.',
-  },
-  FAILED_TO_CREATE_BUSINESS_PHONE: {
-    code: 500,
-    message: 'Failed to create business phone. An internal server error occurred.',
-  },
-  FAILED_TO_UPDATE_BUSINESS_PHONE: {
-    code: 500,
-    message: 'Failed to update business phone. An internal server error occurred.',
-  },
-  FAILED_TO_DELETE_BUSINESS_PHONE: {
-    code: 500,
-    message: 'Failed to delete business phone. An internal server error occurred.',
-  },
 
   // Failure messages
-  FAILED_TO_RETRIEVE_LISTS: {
-    code: 500,
-    message: 'Failed to retrieve lists. An internal server error occurred.',
-  },
-  FAILED_TO_CREATE_LIST: {
-    code: 500,
-    message: 'Failed to create list. An internal server error occurred.',
-  },
-  FAILED_TO_UPDATE_LIST: {
-    code: 500,
-    message: 'Failed to update list. An internal server error occurred.',
-  },
-  FAILED_TO_DELETE_LIST: {
-    code: 500,
-    message: 'Failed to delete list. An internal server error occurred.',
-  },
   FAILED_TO_RETRIEVE_QUEUES: {
     code: 500,
     message: 'Failed to retrieve queues. An internal server error occurred.',
