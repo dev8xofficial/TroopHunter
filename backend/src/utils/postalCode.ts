@@ -1,5 +1,5 @@
 import { Transaction } from 'sequelize';
-import PostalCode from '../models/PostalCode/PostalCode';
+import PostalCode from '../models/PostalCode/PostalCode.model';
 import { PostalCodeAttributes } from '../models/PostalCode/PostalCode.interface';
 import logger from '../utils/logger';
 
