@@ -8,7 +8,7 @@ import State from './State/State';
 import PostalCode from './PostalCode/PostalCode';
 import BusinessPhone from './BusinessPhone/BusinessPhone';
 import BusinessRating from './BusinessRating/BusinessRating';
-import Timezone from './Timezone';
+import Timezone from './Timezone/Timezone';
 import BusinessSource from './BusinessSource/BusinessSource';
 import BusinessSocialMedia from './BusinessSocialMedia/BusinessSocialMedia';
 import BusinessOpeningHour from './BusinessOpeningHour/BusinessOpeningHour';
