@@ -32,6 +32,7 @@ import Country from '../models/Country/Country.model';
 import State from '../models/State/State.model';
 import City from '../models/City/City.model';
 import { BusinessCategoryAttributes } from '../models/BusinessCategory/BusinessCategory.interface';
+import { getBusinessMessage } from '../models/Business/Business.messages';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinessesByQuery = async (req: Request, res: Response) => {
@@ -194,11 +195,11 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
       if (business.id) objectOfBusinesses[business.id] = business;
     });
 
-    const response: ApiResponse<{ totalRecords: number; totalPages: number; businesses: { [key: string]: Business } }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businesses: objectOfBusinesses }, message: getMessage('BUSINESSES_RETRIEVED').message, status: getMessage('BUSINESSES_RETRIEVED').code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; businesses: { [key: string]: Business } }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businesses: objectOfBusinesses }, message: getBusinessMessage('BUSINESSES_RETRIEVED').message, status: getBusinessMessage('BUSINESSES_RETRIEVED').code });
     res.json(response);
   } catch (error) {
     logger.error('Error retrieving businesses:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_RETRIEVE_BUSINESSES').message, status: getMessage('FAILED_TO_RETRIEVE_BUSINESSES').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('FAILED_TO_RETRIEVE_BUSINESSES').message, status: getBusinessMessage('FAILED_TO_RETRIEVE_BUSINESSES').code });
     res.json(response);
   }
 };
@@ -237,14 +238,11 @@ export const getBusinesses = async (req: Request, res: Response) => {
     });
 
     logger.info('Successfully retrieved businesses');
-    const response: ApiResponse<{ totalRecords: number; totalPages: number; businesses: { [key: string]: Business } }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businesses: objectOfBusinesses }, message: getMessage('BUSINESSES_RETRIEVED').message, status: getMessage('BUSINESSES_RETRIEVED').code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; businesses: { [key: string]: Business } }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businesses: objectOfBusinesses }, message: getBusinessMessage('BUSINESSES_RETRIEVED').message, status: getBusinessMessage('BUSINESSES_RETRIEVED').code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving businesses:', error);
-    const response: ApiResponse<null> = createApiResponse({
-      error: getMessage('FAILED_TO_RETRIEVE_BUSINESSES').message,
-      status: getMessage('FAILED_TO_RETRIEVE_BUSINESSES').code,
-    });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('FAILED_TO_RETRIEVE_BUSINESSES').message, status: getBusinessMessage('FAILED_TO_RETRIEVE_BUSINESSES').code });
     res.json(response);
   }
 };
@@ -255,14 +253,14 @@ export const getBusinessById = async (req: Request, res: Response) => {
     const business = await Business.findOne({ where: { id } });
     if (!business) {
       logger.warn(`Business with ID ${id} not found.`);
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('BUSINESS_NOT_FOUND').message, status: getMessage('BUSINESS_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('BUSINESS_NOT_FOUND').message, status: getBusinessMessage('BUSINESS_NOT_FOUND').code });
       return res.json(response);
     }
-    const response: ApiResponse<{ business: Business }> = createApiResponse({ success: true, data: { business }, message: getMessage('BUSINESS_RETRIEVED').message, status: getMessage('BUSINESS_RETRIEVED').code });
+    const response: ApiResponse<{ business: Business }> = createApiResponse({ success: true, data: { business }, message: getBusinessMessage('BUSINESS_RETRIEVED').message, status: getBusinessMessage('BUSINESS_RETRIEVED').code });
     res.json(response);
   } catch (error) {
     logger.error(`Error retrieving business with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getMessage('BUSINESS_NOT_FOUND').message, status: getMessage('BUSINESS_NOT_FOUND').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('BUSINESS_NOT_FOUND').message, status: getBusinessMessage('BUSINESS_NOT_FOUND').code });
     res.json(response);
   }
 };
@@ -292,36 +290,36 @@ export const createBusiness = async (req: Request, res: Response) => {
 
     // Check if name is missing
     if (!name) {
-      logger.error(getMessage('MISSING_NAME').message);
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_NAME').message, status: getMessage('MISSING_NAME').code });
+      logger.error(getBusinessMessage('MISSING_NAME').message);
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('MISSING_NAME').message, status: getBusinessMessage('MISSING_NAME').code });
       return res.json(response);
     }
 
     // Check if address is missing
     if (!address) {
-      logger.error(getMessage('MISSING_ADDRESS').message);
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_ADDRESS').message, status: getMessage('MISSING_ADDRESS').code });
+      logger.error(getBusinessMessage('MISSING_ADDRESS').message);
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('MISSING_ADDRESS').message, status: getBusinessMessage('MISSING_ADDRESS').code });
       return res.json(response);
     }
 
     // Check if longitude is missing
     if (!longitude) {
-      logger.error(getMessage('MISSING_LONGITUDE').message);
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_LONGITUDE').message, status: getMessage('MISSING_LONGITUDE').code });
+      logger.error(getBusinessMessage('MISSING_LONGITUDE').message);
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('MISSING_LONGITUDE').message, status: getBusinessMessage('MISSING_LONGITUDE').code });
       return res.json(response);
     }
 
     // Check if latitude is missing
     if (!latitude) {
-      logger.error(getMessage('MISSING_LATITUDE').message);
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_LATITUDE').message, status: getMessage('MISSING_LATITUDE').code });
+      logger.error(getBusinessMessage('MISSING_LATITUDE').message);
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('MISSING_LATITUDE').message, status: getBusinessMessage('MISSING_LATITUDE').code });
       return res.json(response);
     }
 
     // Check if source is missing
     if (!source) {
-      logger.error(getMessage('MISSING_SOURCE').message);
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_SOURCE').message, status: getMessage('MISSING_SOURCE').code });
+      logger.error(getBusinessMessage('MISSING_SOURCE').message);
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('MISSING_SOURCE').message, status: getBusinessMessage('MISSING_SOURCE').code });
       return res.json(response);
     }
 
@@ -391,7 +389,7 @@ export const createBusiness = async (req: Request, res: Response) => {
       return business;
     });
 
-    const response: ApiResponse<{ business: Business }> = createApiResponse({ success: true, data: { business }, message: getMessage('BUSINESS_CREATED').message, status: getMessage('BUSINESS_CREATED').code });
+    const response: ApiResponse<{ business: Business }> = createApiResponse({ success: true, data: { business }, message: getBusinessMessage('BUSINESS_CREATED').message, status: getBusinessMessage('BUSINESS_CREATED').code });
     res.json(response);
   } catch (error) {
     logger.error(`Failed to create ${name}`);
@@ -400,7 +398,7 @@ export const createBusiness = async (req: Request, res: Response) => {
     // Rollback the transaction if an error occurred
     await transaction.rollback();
 
-    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_CREATE_BUSINESS').message, status: getMessage('FAILED_TO_CREATE_BUSINESS').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('FAILED_TO_CREATE_BUSINESS').message, status: getBusinessMessage('FAILED_TO_CREATE_BUSINESS').code });
     res.json(response);
   }
 };
@@ -416,36 +414,36 @@ export const updateBusiness = async (req: Request, res: Response) => {
     if (business) {
       // Check if name is missing
       if (!name) {
-        logger.error(getMessage('MISSING_NAME').message);
-        const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_NAME').message, status: getMessage('MISSING_NAME').code });
+        logger.error(getBusinessMessage('MISSING_NAME').message);
+        const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('MISSING_NAME').message, status: getBusinessMessage('MISSING_NAME').code });
         return res.json(response);
       }
 
       // Check if address is missing
       if (!address) {
-        logger.error(getMessage('MISSING_ADDRESS').message);
-        const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_ADDRESS').message, status: getMessage('MISSING_ADDRESS').code });
+        logger.error(getBusinessMessage('MISSING_ADDRESS').message);
+        const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('MISSING_ADDRESS').message, status: getBusinessMessage('MISSING_ADDRESS').code });
         return res.json(response);
       }
 
       // Check if longitude is missing
       if (!longitude) {
-        logger.error(getMessage('MISSING_LONGITUDE').message);
-        const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_LONGITUDE').message, status: getMessage('MISSING_LONGITUDE').code });
+        logger.error(getBusinessMessage('MISSING_LONGITUDE').message);
+        const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('MISSING_LONGITUDE').message, status: getBusinessMessage('MISSING_LONGITUDE').code });
         return res.json(response);
       }
 
       // Check if latitude is missing
       if (!latitude) {
-        logger.error(getMessage('MISSING_LATITUDE').message);
-        const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_LATITUDE').message, status: getMessage('MISSING_LATITUDE').code });
+        logger.error(getBusinessMessage('MISSING_LATITUDE').message);
+        const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('MISSING_LATITUDE').message, status: getBusinessMessage('MISSING_LATITUDE').code });
         return res.json(response);
       }
 
       // Check if source is missing
       if (!sourceId) {
-        logger.error(getMessage('MISSING_SOURCE').message);
-        const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_SOURCE').message, status: getMessage('MISSING_SOURCE').code });
+        logger.error(getBusinessMessage('MISSING_SOURCE').message);
+        const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('MISSING_SOURCE').message, status: getBusinessMessage('MISSING_SOURCE').code });
         return res.json(response);
       }
 
@@ -475,16 +473,16 @@ export const updateBusiness = async (req: Request, res: Response) => {
       await business.save();
 
       logger.info(`Business with ID ${id} updated successfully.`);
-      const response: ApiResponse<{ business: Business }> = createApiResponse({ success: true, data: { business }, message: getMessage('BUSINESS_UPDATED').message, status: getMessage('BUSINESS_UPDATED').code });
+      const response: ApiResponse<{ business: Business }> = createApiResponse({ success: true, data: { business }, message: getBusinessMessage('BUSINESS_UPDATED').message, status: getBusinessMessage('BUSINESS_UPDATED').code });
       res.json(response);
     } else {
       logger.warn(`Business with ID ${id} not found.`);
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('BUSINESS_NOT_FOUND').message, status: getMessage('BUSINESS_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('BUSINESS_NOT_FOUND').message, status: getBusinessMessage('BUSINESS_NOT_FOUND').code });
       res.json(response);
     }
   } catch (error) {
     logger.error(`Error updating business with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_UPDATE_BUSINESS').message, status: getMessage('FAILED_TO_UPDATE_BUSINESS').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('FAILED_TO_UPDATE_BUSINESS').message, status: getBusinessMessage('FAILED_TO_UPDATE_BUSINESS').code });
     res.json(response);
   }
 };
@@ -495,16 +493,16 @@ export const deleteBusiness = async (req: Request, res: Response) => {
     const business = await Business.findByPk(id);
     if (!business) {
       logger.warn(`Business with ID ${id} not found.`);
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('BUSINESS_NOT_FOUND').message, status: getMessage('BUSINESS_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('BUSINESS_NOT_FOUND').message, status: getBusinessMessage('BUSINESS_NOT_FOUND').code });
       return res.json(response);
     }
     await business.destroy();
     logger.info(`Business with ID ${id} deleted successfully.`);
-    const response: ApiResponse<null> = createApiResponse({ success: true, message: getMessage('BUSINESS_DELETED').message, status: getMessage('BUSINESS_DELETED').code });
+    const response: ApiResponse<null> = createApiResponse({ success: true, message: getBusinessMessage('BUSINESS_DELETED').message, status: getBusinessMessage('BUSINESS_DELETED').code });
     res.json(response);
   } catch (error) {
     logger.error(`Error deleting business with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getMessage('FAILED_TO_DELETE_BUSINESS').message, status: getMessage('FAILED_TO_DELETE_BUSINESS').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage('FAILED_TO_DELETE_BUSINESS').message, status: getBusinessMessage('FAILED_TO_DELETE_BUSINESS').code });
     res.json(response);
   }
 };

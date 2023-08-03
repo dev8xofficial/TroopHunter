@@ -5,26 +5,6 @@ interface Message {
 
 const messages: Record<string, Message> = {
   // Success messages
-  BUSINESSES_RETRIEVED: {
-    code: 200,
-    message: 'Businesses retrieved successfully.',
-  },
-  BUSINESS_RETRIEVED: {
-    code: 200,
-    message: 'Business retrieved successfully.',
-  },
-  BUSINESS_CREATED: {
-    code: 201,
-    message: 'Business created successfully.',
-  },
-  BUSINESS_UPDATED: {
-    code: 200,
-    message: 'Business updated successfully.',
-  },
-  BUSINESS_DELETED: {
-    code: 204,
-    message: 'Business deleted successfully.',
-  },
   LISTS_RETRIEVED: {
     code: 200,
     message: 'Lists retrieved successfully.',
@@ -135,26 +115,6 @@ const messages: Record<string, Message> = {
   },
 
   // Required fields messages
-  MISSING_NAME: {
-    code: 400,
-    message: 'Failed to create/update business. Missing required field: name.',
-  },
-  MISSING_ADDRESS: {
-    code: 400,
-    message: 'Failed to create/update business. Missing required field: address.',
-  },
-  MISSING_LONGITUDE: {
-    code: 400,
-    message: 'Failed to create/update business. Missing required field: longitude.',
-  },
-  MISSING_LATITUDE: {
-    code: 400,
-    message: 'Failed to create/update business. Missing required field: latitude.',
-  },
-  MISSING_SOURCE: {
-    code: 400,
-    message: 'Failed to create/update business. Missing required field: source.',
-  },
   MISSING_LIST_NAME: {
     code: 400,
     message: 'Failed to create/update list. Missing required field: name.',
@@ -204,10 +164,6 @@ const messages: Record<string, Message> = {
   INVALID_PAGE_LIMIT: {
     code: 400,
     message: 'Invalid pagination parameters. Both page and limit should be positive integers.',
-  },
-  BUSINESS_NOT_FOUND: {
-    code: 404,
-    message: 'Business not found. The specified business ID does not exist.',
   },
   LIST_NOT_FOUND: {
     code: 404,
@@ -315,22 +271,6 @@ const messages: Record<string, Message> = {
   },
 
   // Failure messages
-  FAILED_TO_RETRIEVE_BUSINESSES: {
-    code: 500,
-    message: 'Failed to retrieve businesses. An internal server error occurred.',
-  },
-  FAILED_TO_CREATE_BUSINESS: {
-    code: 500,
-    message: 'Failed to create business. An internal server error occurred.',
-  },
-  FAILED_TO_UPDATE_BUSINESS: {
-    code: 500,
-    message: 'Failed to update business. An internal server error occurred.',
-  },
-  FAILED_TO_DELETE_BUSINESS: {
-    code: 500,
-    message: 'Failed to delete business. An internal server error occurred.',
-  },
   FAILED_TO_RETRIEVE_LISTS: {
     code: 500,
     message: 'Failed to retrieve lists. An internal server error occurred.',
