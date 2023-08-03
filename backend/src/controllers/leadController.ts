@@ -9,7 +9,7 @@ import { ApiResponse } from '../types/Response.interface';
 import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../utils/business';
 import { LeadAttributes } from '../models/Lead/Lead.interface';
 import { getLeadMessage } from '../models/Lead/Lead.messages';
-import { getMessage } from '../utils/message';
+import { getUserMessage } from '../models/User/User.messages';
 
 export const getLeads = async (req: Request, res: Response) => {
   try {
@@ -51,7 +51,7 @@ export const createLead = async (req: Request, res: Response) => {
   try {
     if (!userId) {
       logger.warn(`User ID ${userId} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_USER_ID').message, status: getMessage('MISSING_USER_ID').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('MISSING_USER_ID').message, status: getUserMessage('MISSING_USER_ID').code });
       return res.json(response);
     }
 
@@ -109,7 +109,7 @@ export const updateLead = async (req: Request, res: Response) => {
     const user = await User.findByPk(userId);
     if (!user) {
       logger.warn(`User with ID ${userId} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getMessage('USER_NOT_FOUND').message, status: getMessage('USER_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('USER_NOT_FOUND').message, status: getUserMessage('USER_NOT_FOUND').code });
       return res.json(response);
     }
     const lead = await Lead.findOne({ where: { id } });
