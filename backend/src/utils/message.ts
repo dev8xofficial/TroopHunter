@@ -73,26 +73,6 @@ const messages: Record<string, Message> = {
     code: 204,
     message: 'State deleted successfully.',
   },
-  CITIES_RETRIEVED: {
-    code: 200,
-    message: 'Cities retrieved successfully.',
-  },
-  CITY_RETRIEVED: {
-    code: 200,
-    message: 'City retrieved successfully.',
-  },
-  CITY_CREATED: {
-    code: 201,
-    message: 'City created successfully.',
-  },
-  CITY_UPDATED: {
-    code: 200,
-    message: 'City updated successfully.',
-  },
-  CITY_DELETED: {
-    code: 204,
-    message: 'City deleted successfully.',
-  },
   BUSINESS_PHONES_RETRIEVED: {
     code: 200,
     message: 'Business phones retrieved successfully.',
@@ -138,10 +118,6 @@ const messages: Record<string, Message> = {
   MISSING_LIMIT: {
     code: 400,
     message: 'Failed to update queue. Missing required field: status.',
-  },
-  MISSING_CITY: {
-    code: 400,
-    message: 'Please provide city parameter.',
   },
   MISSING_STATE: {
     code: 400,
@@ -224,30 +200,6 @@ const messages: Record<string, Message> = {
   FAILED_TO_DELETE_STATE: {
     code: 500,
     message: 'Failed to delete state. An internal server error occurred.',
-  },
-  CITY_NOT_FOUND: {
-    code: 404,
-    message: 'City not found.',
-  },
-  FAILED_TO_RETRIEVE_CITIES: {
-    code: 500,
-    message: 'Failed to retrieve cities. An internal server error occurred.',
-  },
-  FAILED_TO_RETRIEVE_CITY: {
-    code: 500,
-    message: 'Failed to retrieve city. An internal server error occurred.',
-  },
-  FAILED_TO_CREATE_CITY: {
-    code: 500,
-    message: 'Failed to create city. An internal server error occurred.',
-  },
-  FAILED_TO_UPDATE_CITY: {
-    code: 500,
-    message: 'Failed to update city. An internal server error occurred.',
-  },
-  FAILED_TO_DELETE_CITY: {
-    code: 500,
-    message: 'Failed to delete city. An internal server error occurred.',
   },
   FAILED_TO_RETRIEVE_BUSINESS_PHONES: {
     code: 500,
