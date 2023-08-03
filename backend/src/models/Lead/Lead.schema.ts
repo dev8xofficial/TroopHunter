@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { LeadAttributes } from '../../types/lead';
+import { LeadAttributes } from './Lead.interface';
 
 // Define the Joi schema for LeadAttributes
 export const LeadSchema = Joi.object<LeadAttributes>({
