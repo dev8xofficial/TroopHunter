@@ -15,8 +15,16 @@ const messages: Record<string, Message> = {
   },
 
   // Missing fields messages
+  MISSING_LAPTOP_NAME: {
+    code: 400,
+    message: 'Failed to update queue. Missing required field: laptopName.',
+  },
+  MISSING_STATUS: {
+    code: 400,
+    message: 'Failed to update queue. Missing required field: status.',
+  },
 
-  // Missing fields messages
+  // Invalid fields messages
 
   // Duplicate messages
 

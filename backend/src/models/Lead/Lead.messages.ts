@@ -5,14 +5,6 @@ interface Message {
 
 const messages: Record<string, Message> = {
   // Success messages
-  LEADBUSINESS_RETRIEVED: {
-    code: 200,
-    message: 'Retrieved LeadBusiness with specified leadId and businessId.',
-  },
-  LEADBUSINESS_UPDATED: {
-    code: 200,
-    message: 'Updated LeadBusiness with specified leadId and businessId.',
-  },
   LEAD_CREATED: {
     code: 201,
     message: 'Lead created successfully.',
@@ -34,7 +26,13 @@ const messages: Record<string, Message> = {
     message: 'Lead deleted successfully.',
   },
 
-  // Error messages
+  // Missing fields messages
+
+  // Invalid fields messages
+
+  // Duplicate messages
+
+  // Not found messages
   LEADS_NOT_FOUND: {
     code: 404,
     message: 'Leads not found.',

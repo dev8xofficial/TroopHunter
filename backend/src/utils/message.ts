@@ -4,20 +4,10 @@ interface Message {
 }
 
 const messages: Record<string, Message> = {
-  // Success messages
-
   // Required fields messages
   MISSING_CITY_STATE_COUNTRY: {
     code: 400,
     message: 'Please provide city, state, and country parameters.',
-  },
-  MISSING_LAPTOP_NAME: {
-    code: 400,
-    message: 'Failed to update queue. Missing required field: laptopName.',
-  },
-  MISSING_STATUS: {
-    code: 400,
-    message: 'Failed to update queue. Missing required field: status.',
   },
   MISSING_PAGE_LIMIT: {
     code: 400,
@@ -38,14 +28,11 @@ const messages: Record<string, Message> = {
     message: 'Invalid pagination parameters. Both page and limit should be positive integers.',
   },
 
-  // Failure messages
-
   // Internal Server Error
   INTERNAL_SERVER_ERROR: {
     code: 500,
     message: 'Internal server error.',
   },
-  // Add more messages as needed
 };
 
 export const getMessage = (key: string): Message => {

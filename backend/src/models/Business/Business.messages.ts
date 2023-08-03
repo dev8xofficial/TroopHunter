@@ -48,7 +48,7 @@ const messages: Record<string, Message> = {
     message: 'Failed to create/update business. Missing required field: source.',
   },
 
-  // Missing fields messages
+  // Invalid fields messages
 
   // Duplicate messages
 

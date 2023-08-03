@@ -32,7 +32,7 @@ const messages: Record<string, Message> = {
     message: 'Please provide city parameter.',
   },
 
-  // Missing fields messages
+  // Invalid fields messages
 
   // Duplicate messages
 

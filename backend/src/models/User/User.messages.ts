@@ -52,7 +52,7 @@ const messages: Record<string, Message> = {
     message: 'Failed to update user. Missing required field: email.',
   },
 
-  // Missing fields messages
+  // Invalid fields messages
   INVALID_EMAIL: {
     code: 400,
     message: 'Invalid email address.',

@@ -5,6 +5,7 @@ import Business from '../models/Business/Business.model';
 import { createApiResponse } from '../utils/response';
 import { ApiResponse } from '../types/Response.interface';
 import { getMessage } from '../utils/message';
+import { getLeadBusinessMessage } from '../models/LeadBusiness/LeadBusiness.messages';
 
 export const createLeadBusinesses = async (req: Request, res: Response) => {
   try {
@@ -101,7 +102,7 @@ export const getLeadBusiness = async (req: Request, res: Response) => {
     const leadBusiness = await LeadBusiness.findOne({ where: { leadId, businessId } });
 
     if (leadBusiness) {
-      const response: ApiResponse<LeadBusiness> = createApiResponse({ success: true, data: leadBusiness, message: getMessage('LEADBUSINESS_RETRIEVED').message, status: getMessage('LEADBUSINESS_RETRIEVED').code });
+      const response: ApiResponse<LeadBusiness> = createApiResponse({ success: true, data: leadBusiness, message: getLeadBusinessMessage('LEADBUSINESS_RETRIEVED').message, status: getLeadBusinessMessage('LEADBUSINESS_RETRIEVED').code });
       res.json(response);
       logger.info(`Retrieved LeadBusiness with leadId ${leadId} and businessId ${businessId}.`);
     } else {
@@ -125,7 +126,7 @@ export const updateLeadBusiness = async (req: Request, res: Response) => {
     if (leadBusiness) {
       const updatedLeadBusiness = await leadBusiness.update({ leadId: newLeadId, businessId: newBusinessId });
 
-      const response: ApiResponse<LeadBusiness> = createApiResponse({ success: true, data: updatedLeadBusiness, message: getMessage('LEADBUSINESS_UPDATED').message, status: getMessage('LEADBUSINESS_UPDATED').code });
+      const response: ApiResponse<LeadBusiness> = createApiResponse({ success: true, data: updatedLeadBusiness, message: getLeadBusinessMessage('LEADBUSINESS_UPDATED').message, status: getLeadBusinessMessage('LEADBUSINESS_UPDATED').code });
       res.json(response);
       logger.info(`Updated LeadBusiness with leadId ${leadId} and businessId ${businessId}.`);
     } else {

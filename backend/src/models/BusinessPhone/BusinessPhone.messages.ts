@@ -32,7 +32,7 @@ const messages: Record<string, Message> = {
     message: 'Failed to retrieve business phones. Missing required field: number.',
   },
 
-  // Missing fields messages
+  // Invalid fields messages
 
   // Duplicate messages
 
