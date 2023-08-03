@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { Op } from 'sequelize';
 import Sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
-import { BusinessCategoryAttributes } from '../types/businessCategory';
 import { RatingAttributes } from '../types/businessRating';
 import { SourceAttributes } from '../types/businessSource';
 import { OpeningTimeAttributes } from '../types/businessOpeningHour';
@@ -32,6 +31,7 @@ import BusinessPhone from '../models/BusinessPhone';
 import Country from '../models/Country';
 import State from '../models/State';
 import City from '../models/City';
+import { BusinessCategoryAttributes } from '../models/BusinessCategory/BusinessCategory.interface';
 // import BusinessPhoto from '../models/BusinessPhoto';
 
 export const getBusinessesByQuery = async (req: Request, res: Response) => {
