@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
-import { QueueAttributes } from '../types/queue';
+import sequelize from '../../config/database';
+import { QueueAttributes } from './Queue.interface';
 
 class Queue extends Model<QueueAttributes> implements QueueAttributes {
   public id!: number;

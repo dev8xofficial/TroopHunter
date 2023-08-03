@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Queue from '../models/Queue';
+import Queue from '../models/Queue/Queue';
 import logger from '../utils/logger';
 import { getMessage } from '../utils/message';
 import { ApiResponse } from '../types/response';
