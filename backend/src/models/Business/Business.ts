@@ -1,20 +1,20 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
-import { BusinessAttributes } from '../types/business';
-import BusinessCategory from './BusinessCategory/BusinessCategory';
-import City from './City/City';
-import Country from './Country/Country';
-import State from './State/State';
-import PostalCode from './PostalCode/PostalCode';
-import BusinessPhone from './BusinessPhone/BusinessPhone';
-import BusinessRating from './BusinessRating/BusinessRating';
-import Timezone from './Timezone/Timezone';
-import BusinessSource from './BusinessSource/BusinessSource';
-import BusinessSocialMedia from './BusinessSocialMedia/BusinessSocialMedia';
-import BusinessOpeningHour from './BusinessOpeningHour/BusinessOpeningHour';
-import BusinessClosingHour from './BusinessClosingHour/BusinessClosingHour';
-import BusinessPhoto from './BusinessPhoto/BusinessPhoto';
-import { BusinessPhotoAttributes } from './BusinessPhoto/BusinessPhoto.interface';
+import sequelize from '../../config/database';
+import { BusinessAttributes } from './Business.interface';
+import { BusinessPhotoAttributes } from '../BusinessPhoto/BusinessPhoto.interface';
+import BusinessCategory from '../BusinessCategory/BusinessCategory';
+import City from '../City/City';
+import Country from '../Country/Country';
+import State from '../State/State';
+import PostalCode from '../PostalCode/PostalCode';
+import BusinessPhone from '../BusinessPhone/BusinessPhone';
+import BusinessRating from '../BusinessRating/BusinessRating';
+import Timezone from '../Timezone/Timezone';
+import BusinessSource from '../BusinessSource/BusinessSource';
+import BusinessSocialMedia from '../BusinessSocialMedia/BusinessSocialMedia';
+import BusinessOpeningHour from '../BusinessOpeningHour/BusinessOpeningHour';
+import BusinessClosingHour from '../BusinessClosingHour/BusinessClosingHour';
+import BusinessPhoto from '../BusinessPhoto/BusinessPhoto';
 
 class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public id?: string;

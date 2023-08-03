@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
 import Sequelize from '../config/database';
-import { BusinessAttributes } from '../types/business';
+import { BusinessAttributes } from '../models/Business/Business.interface';
 import { BusinessRatingAttributes } from '../models/BusinessRating/BusinessRating.interface';
 import { BusinessSourceAttributes } from '../models/BusinessSource/BusinessSource.interface';
 import { BusinessOpeningHourAttributes } from '../models/BusinessOpeningHour/BusinessOpeningHour.interface';
@@ -9,7 +9,7 @@ import { BusinessClosingHourAttributes } from '../models/BusinessClosingHour/Bus
 import { PostalCodeAttributes } from '../models/PostalCode/PostalCode.interface';
 import { BusinessPhoneAttributes } from '../models/BusinessPhone/BusinessPhone.interface';
 import { TimezoneAttributes } from '../models/Timezone/Timezone.interface';
-import Business from '../models/Business';
+import Business from '../models/Business/Business';
 import { Point } from 'geojson';
 import { findOrCreateBusinessPhone, getPhoneWithDetails } from '../utils/phone';
 import { findOrCreateBusinessSource } from '../utils/business';

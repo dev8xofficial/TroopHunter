@@ -1,5 +1,5 @@
-import Business from '../models/Business';
-import { BusinessAttributes } from '../types/business';
+import Business from '../models/Business/Business';
+import { BusinessAttributes } from '../models/Business/Business.interface';
 
 export const createBusiness = async ({ name, businessDomain, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId }: BusinessAttributes) => {
   const business = await Business.create({ name, businessDomain, categoryId, address, locationId, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, openingHourId, closingHourId });
