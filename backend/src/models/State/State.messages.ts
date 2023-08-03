@@ -31,6 +31,22 @@ const messages: Record<string, Message> = {
     code: 400,
     message: 'Please provide state parameter.',
   },
+  MISSING_STATE_CODE: {
+    code: 400,
+    message: 'Failed to create/update state. Missing required field: code.',
+  },
+  MISSING_STATE_COUNTRY_CODE: {
+    code: 400,
+    message: 'Failed to create/update state. Missing required field: countryCode.',
+  },
+  MISSING_STATE_LONGITUDE: {
+    code: 400,
+    message: 'Failed to create/update state. Missing required field: longitude.',
+  },
+  MISSING_STATE_LATITUDE: {
+    code: 400,
+    message: 'Failed to create/update state. Missing required field: latitude.',
+  },
 
   // Invalid fields messages
 

@@ -15,6 +15,14 @@ const messages: Record<string, Message> = {
   },
 
   // Missing fields messages
+  MISSING_LEAD_ID: {
+    code: 400,
+    message: 'Lead ID is required for LeadBusiness.',
+  },
+  MISSING_BUSINESS_ID: {
+    code: 400,
+    message: 'Business ID is required for LeadBusiness.',
+  },
 
   // Invalid fields messages
 

@@ -27,9 +27,29 @@ const messages: Record<string, Message> = {
   },
 
   // Missing fields messages
-  MISSING_COUNTRY: {
+  MISSING_COUNTRY_NAME: {
     code: 400,
-    message: 'Please provide country parameter.',
+    message: 'Please provide country name.',
+  },
+  MISSING_COUNTRY_CODE: {
+    code: 400,
+    message: 'Please provide country code.',
+  },
+  MISSING_COUNTRY_PHONE_CODE: {
+    code: 400,
+    message: 'Please provide country phone code.',
+  },
+  MISSING_COUNTRY_CURRENCY: {
+    code: 400,
+    message: 'Please provide country currency.',
+  },
+  MISSING_COUNTRY_LONGITUDE: {
+    code: 400,
+    message: 'Please provide country longitude.',
+  },
+  MISSING_COUNTRY_LATITUDE: {
+    code: 400,
+    message: 'Please provide country latitude.',
   },
 
   // Invalid fields messages

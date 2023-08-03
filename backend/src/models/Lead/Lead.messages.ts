@@ -27,8 +27,32 @@ const messages: Record<string, Message> = {
   },
 
   // Missing fields messages
+  MISSING_USER_ID: {
+    code: 400,
+    message: 'User ID is required to create a lead.',
+  },
+  MISSING_LEAD_TITLE: {
+    code: 400,
+    message: 'Lead title is required.',
+  },
+  MISSING_LEAD_SEARCH: {
+    code: 400,
+    message: 'Lead search is required.',
+  },
+  MISSING_LEAD_BUSINESS_COUNT: {
+    code: 400,
+    message: 'Lead business count is required.',
+  },
 
   // Invalid fields messages
+  INVALID_USER_ID: {
+    code: 400,
+    message: 'Invalid user ID. Please provide a valid UUID.',
+  },
+  INVALID_SEARCH: {
+    code: 400,
+    message: 'Invalid search. Search must be a string not null.',
+  },
 
   // Duplicate messages
 

@@ -27,9 +27,33 @@ const messages: Record<string, Message> = {
   },
 
   // Missing fields messages
+  MISSING_BUSINESS_PHONE_COUNTRY_CODE: {
+    code: 400,
+    message: 'Failed to create/update business phone. Missing required field: countryCode.',
+  },
+  MISSING_BUSINESS_PHONE_REGION_CODE: {
+    code: 400,
+    message: 'Failed to create/update business phone. Missing required field: regionCode.',
+  },
   MISSING_BUSINESS_PHONE_NUMBER: {
     code: 400,
-    message: 'Failed to retrieve business phones. Missing required field: number.',
+    message: 'Failed to create/update business phone. Missing required field: number.',
+  },
+  MISSING_BUSINESS_PHONE_NATIONAL_FORMATTED: {
+    code: 400,
+    message: 'Failed to create/update business phone. Missing required field: numberNationalFormatted.',
+  },
+  MISSING_BUSINESS_PHONE_INTERNATIONAL_FORMATTED: {
+    code: 400,
+    message: 'Failed to create/update business phone. Missing required field: numberInternationalFormatted.',
+  },
+  MISSING_BUSINESS_PHONE_TYPE: {
+    code: 400,
+    message: 'Failed to create/update business phone. Missing required field: numberType.',
+  },
+  MISSING_BUSINESS_PHONE_VALIDITY: {
+    code: 400,
+    message: 'Failed to create/update business phone. Missing required field: isValid.',
   },
 
   // Invalid fields messages

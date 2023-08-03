@@ -51,6 +51,10 @@ const messages: Record<string, Message> = {
     code: 400,
     message: 'Failed to update user. Missing required field: email.',
   },
+  MISSING_PASSWORD: {
+    code: 400,
+    message: 'Failed to update user. Missing required field: password.',
+  },
 
   // Invalid fields messages
   INVALID_EMAIL: {
