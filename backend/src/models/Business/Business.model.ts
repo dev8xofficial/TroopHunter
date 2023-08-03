@@ -14,7 +14,7 @@ import BusinessSource from '../BusinessSource/BusinessSource';
 import BusinessSocialMedia from '../BusinessSocialMedia/BusinessSocialMedia';
 import BusinessOpeningHour from '../BusinessOpeningHour/BusinessOpeningHour.model';
 import BusinessClosingHour from '../BusinessClosingHour/BusinessClosingHour.model';
-import BusinessPhoto from '../BusinessPhoto/BusinessPhoto';
+import BusinessPhoto from '../BusinessPhoto/BusinessPhoto.model';
 
 class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public id?: string;
