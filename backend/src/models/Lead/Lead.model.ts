@@ -1,6 +1,6 @@
 import { DataTypes, Model, BelongsToCreateAssociationMixin } from 'sequelize';
 import sequelize from '../../config/database';
-import User from '../User/User';
+import User from '../User/User.model';
 import City from '../City/City.model';
 import State from '../State/State.model';
 import Country from '../Country/Country.model';
