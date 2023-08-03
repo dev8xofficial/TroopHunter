@@ -7,7 +7,7 @@ import { SourceAttributes } from '../types/businessSource';
 import { BusinessOpeningHourAttributes } from '../models/BusinessOpeningHour/BusinessOpeningHour.interface';
 import { BusinessClosingHourAttributes } from '../models/BusinessClosingHour/BusinessClosingHour.interface';
 import { PostalCodeAttributes } from '../types/postalCode';
-import { PhoneAttributes } from '../types/businessPhone';
+import { BusinessPhoneAttributes } from '../models/BusinessPhone/BusinessPhone.interface';
 import { TimezoneAttributes } from '../types/timezone';
 import Business from '../models/Business';
 import { Point } from 'geojson';
@@ -27,7 +27,7 @@ import { getMessage } from '../utils/message';
 import { CityAttributes } from '../types/city';
 import { StateAttributes } from '../types/state';
 import { CountryAttributes } from '../types/country';
-import BusinessPhone from '../models/BusinessPhone';
+import BusinessPhone from '../models/BusinessPhone/BusinessPhone';
 import Country from '../models/Country';
 import State from '../models/State';
 import City from '../models/City';
@@ -352,7 +352,7 @@ export const createBusiness = async (req: Request, res: Response) => {
 
     if (phone) {
       const phoneWithDetails = getPhoneWithDetails(phone);
-      const phoneFromDB: PhoneAttributes | undefined = await findOrCreateBusinessPhone(phoneWithDetails, transaction);
+      const phoneFromDB: BusinessPhoneAttributes | undefined = await findOrCreateBusinessPhone(phoneWithDetails, transaction);
       payload.phoneId = phoneFromDB?.id;
     }
 

@@ -1,10 +1,10 @@
 import libphonenumber from 'google-libphonenumber';
-import { PhoneAttributes } from '../types/businessPhone';
-import BusinessPhone from '../models/BusinessPhone';
+import { BusinessPhoneAttributes } from '../models/BusinessPhone/BusinessPhone.interface';
+import BusinessPhone from '../models/BusinessPhone/BusinessPhone';
 import { Transaction } from 'sequelize';
 import logger from '../utils/logger';
 
-export const getPhoneWithDetails = (phone: string): PhoneAttributes => {
+export const getPhoneWithDetails = (phone: string): BusinessPhoneAttributes => {
   const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
   const parsedNumber = phoneUtil.parse(phone);
   const countryCode = parsedNumber.getCountryCode() ? `${parsedNumber.getCountryCode()?.toString()}` : '';
@@ -45,7 +45,7 @@ export const getPhoneWithDetails = (phone: string): PhoneAttributes => {
   return { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid };
 };
 
-export const findOrCreateBusinessPhone = async (phone: PhoneAttributes, transaction: Transaction): Promise<PhoneAttributes | undefined> => {
+export const findOrCreateBusinessPhone = async (phone: BusinessPhoneAttributes, transaction: Transaction): Promise<BusinessPhoneAttributes | undefined> => {
   try {
     const { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid } = phone;
     const [record, created] = await BusinessPhone.findOrCreate({
@@ -55,10 +55,10 @@ export const findOrCreateBusinessPhone = async (phone: PhoneAttributes, transact
 
     if (created) {
       logger.info('Business phone created successfully.');
-      return record.toJSON() as PhoneAttributes;
+      return record.toJSON() as BusinessPhoneAttributes;
     } else {
       logger.info('Business phone already exists.');
-      return record.toJSON() as PhoneAttributes;
+      return record.toJSON() as BusinessPhoneAttributes;
     }
   } catch (error) {
     logger.error('Failed to find or create business phone:', error);

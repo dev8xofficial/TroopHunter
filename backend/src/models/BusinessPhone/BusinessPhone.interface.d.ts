@@ -1,4 +1,4 @@
-export interface PhoneAttributes {
+export interface BusinessPhoneAttributes {
   id?: string;
   countryCode: string;
   regionCode: string;

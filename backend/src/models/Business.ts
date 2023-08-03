@@ -6,7 +6,7 @@ import City from './City';
 import Country from './Country';
 import State from './State';
 import PostalCode from './PostalCode';
-import BusinessPhone from './BusinessPhone';
+import BusinessPhone from './BusinessPhone/BusinessPhone';
 import BusinessRating from './BusinessRating';
 import Timezone from './Timezone';
 import BusinessSource from './BusinessSource';
