@@ -12,7 +12,7 @@ import Timezone from './Timezone';
 import BusinessSource from './BusinessSource';
 import BusinessSocialMedia from './BusinessSocialMedia';
 import BusinessOpeningHour from './BusinessOpeningHour/BusinessOpeningHour';
-import BusinessClosingHour from './BusinessClosingHour';
+import BusinessClosingHour from './BusinessClosingHour/BusinessClosingHour';
 import BusinessPhoto from './BusinessPhoto';
 import { BusinessPhotoAttributes } from '../types/businessPhoto';
 

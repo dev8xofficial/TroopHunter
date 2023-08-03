@@ -5,7 +5,7 @@ import { BusinessAttributes } from '../types/business';
 import { RatingAttributes } from '../types/businessRating';
 import { SourceAttributes } from '../types/businessSource';
 import { BusinessOpeningHourAttributes } from '../models/BusinessOpeningHour/BusinessOpeningHour.interface';
-import { ClosingTimeAttributes } from '../types/businessClosingHour';
+import { BusinessClosingHourAttributes } from '../models/BusinessClosingHour/BusinessClosingHour.interface';
 import { PostalCodeAttributes } from '../types/postalCode';
 import { PhoneAttributes } from '../types/businessPhone';
 import { TimezoneAttributes } from '../types/timezone';
@@ -377,7 +377,7 @@ export const createBusiness = async (req: Request, res: Response) => {
     }
 
     if (closingHour) {
-      const closingHourFromDB: ClosingTimeAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour, transaction);
+      const closingHourFromDB: BusinessClosingHourAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour, transaction);
       payload.closingHourId = closingHourFromDB?.id;
     }
 
