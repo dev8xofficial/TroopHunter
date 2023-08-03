@@ -1,5 +1,5 @@
 import { Transaction } from 'sequelize';
-import BusinessRating from '../models/BusinessRating/BusinessRating';
+import BusinessRating from '../models/BusinessRating/BusinessRating.model';
 import { BusinessRatingAttributes } from '../models/BusinessRating/BusinessRating.interface';
 import logger from '../utils/logger';
 

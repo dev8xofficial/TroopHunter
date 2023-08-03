@@ -8,7 +8,7 @@ import Country from '../Country/Country';
 import State from '../State/State';
 import PostalCode from '../PostalCode/PostalCode';
 import BusinessPhone from '../BusinessPhone/BusinessPhone.model';
-import BusinessRating from '../BusinessRating/BusinessRating';
+import BusinessRating from '../BusinessRating/BusinessRating.model';
 import Timezone from '../Timezone/Timezone';
 import BusinessSource from '../BusinessSource/BusinessSource';
 import BusinessSocialMedia from '../BusinessSocialMedia/BusinessSocialMedia';
