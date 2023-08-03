@@ -1,5 +1,5 @@
 import { Transaction } from 'sequelize';
-import BusinessOpeningHour from '../models/BusinessOpeningHour/BusinessOpeningHour';
+import BusinessOpeningHour from '../models/BusinessOpeningHour/BusinessOpeningHour.model';
 import { BusinessOpeningHourAttributes } from '../models/BusinessOpeningHour/BusinessOpeningHour.interface';
 import logger from '../utils/logger';
 
