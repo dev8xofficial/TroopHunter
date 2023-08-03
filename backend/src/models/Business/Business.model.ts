@@ -11,7 +11,7 @@ import BusinessPhone from '../BusinessPhone/BusinessPhone.model';
 import BusinessRating from '../BusinessRating/BusinessRating.model';
 import Timezone from '../Timezone/Timezone';
 import BusinessSource from '../BusinessSource/BusinessSource';
-import BusinessSocialMedia from '../BusinessSocialMedia/BusinessSocialMedia';
+import BusinessSocialMedia from '../BusinessSocialMedia/BusinessSocialMedia.model';
 import BusinessOpeningHour from '../BusinessOpeningHour/BusinessOpeningHour.model';
 import BusinessClosingHour from '../BusinessClosingHour/BusinessClosingHour.model';
 import BusinessPhoto from '../BusinessPhoto/BusinessPhoto.model';
