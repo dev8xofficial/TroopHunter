@@ -9,7 +9,7 @@ import State from '../State/State.model';
 import PostalCode from '../PostalCode/PostalCode.model';
 import BusinessPhone from '../BusinessPhone/BusinessPhone.model';
 import BusinessRating from '../BusinessRating/BusinessRating.model';
-import Timezone from '../Timezone/Timezone';
+import Timezone from '../Timezone/Timezone.model';
 import BusinessSource from '../BusinessSource/BusinessSource.model';
 import BusinessSocialMedia from '../BusinessSocialMedia/BusinessSocialMedia.model';
 import BusinessOpeningHour from '../BusinessOpeningHour/BusinessOpeningHour.model';

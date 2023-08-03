@@ -1,5 +1,5 @@
 import { Transaction } from 'sequelize';
-import Timezone from '../models/Timezone/Timezone';
+import Timezone from '../models/Timezone/Timezone.model';
 import { TimezoneAttributes } from '../models/Timezone/Timezone.interface';
 import logger from '../utils/logger';
 
