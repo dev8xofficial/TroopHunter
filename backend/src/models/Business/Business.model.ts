@@ -10,7 +10,7 @@ import PostalCode from '../PostalCode/PostalCode';
 import BusinessPhone from '../BusinessPhone/BusinessPhone.model';
 import BusinessRating from '../BusinessRating/BusinessRating.model';
 import Timezone from '../Timezone/Timezone';
-import BusinessSource from '../BusinessSource/BusinessSource';
+import BusinessSource from '../BusinessSource/BusinessSource.model';
 import BusinessSocialMedia from '../BusinessSocialMedia/BusinessSocialMedia.model';
 import BusinessOpeningHour from '../BusinessOpeningHour/BusinessOpeningHour.model';
 import BusinessClosingHour from '../BusinessClosingHour/BusinessClosingHour.model';

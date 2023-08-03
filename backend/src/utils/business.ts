@@ -1,6 +1,6 @@
 import { Transaction } from 'sequelize';
 import { BusinessSourceAttributes } from '../models/BusinessSource/BusinessSource.interface';
-import BusinessSource from '../models/BusinessSource/BusinessSource';
+import BusinessSource from '../models/BusinessSource/BusinessSource.model';
 import logger from '../utils/logger';
 import { Op } from 'sequelize';
 import Business from '../models/Business/Business.model';
