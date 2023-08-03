@@ -6,7 +6,7 @@ import { BusinessRatingAttributes } from '../models/BusinessRating/BusinessRatin
 import { BusinessSourceAttributes } from '../models/BusinessSource/BusinessSource.interface';
 import { BusinessOpeningHourAttributes } from '../models/BusinessOpeningHour/BusinessOpeningHour.interface';
 import { BusinessClosingHourAttributes } from '../models/BusinessClosingHour/BusinessClosingHour.interface';
-import { PostalCodeAttributes } from '../types/postalCode';
+import { PostalCodeAttributes } from '../models/PostalCode/PostalCode.interface';
 import { BusinessPhoneAttributes } from '../models/BusinessPhone/BusinessPhone.interface';
 import { TimezoneAttributes } from '../types/timezone';
 import Business from '../models/Business';
