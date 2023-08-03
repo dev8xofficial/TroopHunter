@@ -1,7 +1,7 @@
 import { Transaction } from 'sequelize';
 import logger from '../utils/logger';
 import { CityAttributes } from '../models/City/City.interface';
-import City from '../models/City/City';
+import City from '../models/City/City.model';
 import { StateAttributes } from '../models/State/State.interface';
 import { CountryAttributes } from '../models/Country/Country.interface';
 import Country from '../models/Country/Country';
