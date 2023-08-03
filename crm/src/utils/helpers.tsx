@@ -28,3 +28,13 @@ export const isFiltersChanged = (filters: IFilterAttributes, initialValues: IFil
 
   return true;
 };
+
+export const removeNullValues = <T extends Record<string, any>>(obj: T): T => {
+  const newObj: Partial<T> = {};
+  for (const key in obj) {
+    if (obj[key] !== null) {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj as T;
+};

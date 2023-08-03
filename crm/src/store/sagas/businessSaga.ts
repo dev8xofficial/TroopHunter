@@ -5,7 +5,6 @@ import { getBusinessesBySearchService } from '../../services/businessService';
 import { setHomePageLoadingFailureAction, setHomePageLoadingSuccessAction } from '../actions/homePageActions';
 import { IBusinessCreationRequestAttributes, IBusinessCreationResponseAttributes } from '../../types/business';
 import { IBusinessState } from '../reducers/businessReducer';
-
 export interface IBusinessesFetchPayload extends Omit<IBusinessCreationRequestAttributes, 'name' | 'sponsoredAd'> {
   name?: string; // converting name property from required to optional
   token: string;
