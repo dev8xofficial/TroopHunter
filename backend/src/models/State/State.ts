@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
-import { StateAttributes } from '../types/state';
+import sequelize from '../../config/database';
+import { StateAttributes } from './State.interface';
 
 class State extends Model<StateAttributes> implements StateAttributes {
   public id!: string;

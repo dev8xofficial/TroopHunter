@@ -4,7 +4,7 @@ import { BusinessAttributes } from '../types/business';
 import BusinessCategory from './BusinessCategory/BusinessCategory';
 import City from './City/City';
 import Country from './Country/Country';
-import State from './State';
+import State from './State/State';
 import PostalCode from './PostalCode/PostalCode';
 import BusinessPhone from './BusinessPhone/BusinessPhone';
 import BusinessRating from './BusinessRating/BusinessRating';
