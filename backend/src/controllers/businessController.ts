@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { Op } from 'sequelize';
 import Sequelize from '../config/database';
 import { BusinessAttributes } from '../types/business';
-import { RatingAttributes } from '../types/businessRating';
+import { BusinessRatingAttributes } from '../models/BusinessRating/BusinessRating.interface';
 import { SourceAttributes } from '../types/businessSource';
 import { BusinessOpeningHourAttributes } from '../models/BusinessOpeningHour/BusinessOpeningHour.interface';
 import { BusinessClosingHourAttributes } from '../models/BusinessClosingHour/BusinessClosingHour.interface';
@@ -357,7 +357,7 @@ export const createBusiness = async (req: Request, res: Response) => {
     }
 
     if (rating !== undefined && rating !== null) {
-      const ratingFromDB: RatingAttributes | undefined = await findOrCreateBusinessRating(rating, transaction);
+      const ratingFromDB: BusinessRatingAttributes | undefined = await findOrCreateBusinessRating(rating, transaction);
       payload.ratingId = ratingFromDB?.id;
     }
 
