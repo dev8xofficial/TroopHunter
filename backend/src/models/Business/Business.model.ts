@@ -13,7 +13,7 @@ import Timezone from '../Timezone/Timezone';
 import BusinessSource from '../BusinessSource/BusinessSource';
 import BusinessSocialMedia from '../BusinessSocialMedia/BusinessSocialMedia';
 import BusinessOpeningHour from '../BusinessOpeningHour/BusinessOpeningHour';
-import BusinessClosingHour from '../BusinessClosingHour/BusinessClosingHour';
+import BusinessClosingHour from '../BusinessClosingHour/BusinessClosingHour.model';
 import BusinessPhoto from '../BusinessPhoto/BusinessPhoto';
 
 class Business extends Model<BusinessAttributes> implements BusinessAttributes {
