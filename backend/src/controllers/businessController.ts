@@ -22,7 +22,7 @@ import { findOrCreateBusinessOpeningHour } from '../utils/openingHour';
 import { findOrCreateBusinessClosingHour } from '../utils/closingHour';
 import logger from '../utils/logger';
 import { createApiResponse } from '../utils/response';
-import { ApiResponse } from '../types/response';
+import { ApiResponse } from '../types/Response.interface';
 import { getMessage } from '../utils/message';
 import { CityAttributes } from '../models/City/City.interface';
 import { StateAttributes } from '../models/State/State.interface';

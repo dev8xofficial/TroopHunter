@@ -3,7 +3,7 @@ import LeadBusiness from '../models/LeadBusiness/LeadBusiness.model';
 import logger from '../utils/logger';
 import Business from '../models/Business/Business.model';
 import { createApiResponse } from '../utils/response';
-import { ApiResponse } from '../types/response';
+import { ApiResponse } from '../types/Response.interface';
 import { getMessage } from '../utils/message';
 
 export const createLeadBusinesses = async (req: Request, res: Response) => {

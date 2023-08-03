@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { getMessage } from '../utils/message';
 import logger from '../utils/logger';
-import { ApiResponse } from '../types/response';
+import { ApiResponse } from '../types/Response.interface';
 import { createApiResponse } from '../utils/response';
 import Lead from '../models/Lead/Lead.model';
 

@@ -5,7 +5,7 @@ import logger from '../utils/logger';
 import Business from '../models/Business/Business.model';
 import LeadBusiness from '../models/LeadBusiness/LeadBusiness.model';
 import { createApiResponse } from '../utils/response';
-import { ApiResponse } from '../types/response';
+import { ApiResponse } from '../types/Response.interface';
 import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../utils/business';
 import { LeadAttributes } from '../models/Lead/Lead.interface';
 import { getLeadMessage } from '../models/Lead/Lead.messages';

@@ -3,7 +3,7 @@ import User from '../models/User/User.model';
 import logger from '../utils/logger';
 import { isValidJSON } from '../utils/helper';
 import { getMessage } from '../utils/message';
-import { ApiResponse } from '../types/response';
+import { ApiResponse } from '../types/Response.interface';
 import { createApiResponse } from '../utils/response';
 
 export const getUsers = async (req: Request, res: Response) => {

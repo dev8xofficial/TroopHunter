@@ -1,4 +1,4 @@
-import { GeoPointAttributes } from '../../types/GeoPoint';
+import { GeoPointAttributes } from '../../types/GeoPoint.interface';
 
 export interface BusinessAttributes {
   id?: string;

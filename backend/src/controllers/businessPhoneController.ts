@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import BusinessPhone from '../models/BusinessPhone/BusinessPhone.model';
 import logger from '../utils/logger';
-import { ApiResponse } from '../types/response';
+import { ApiResponse } from '../types/Response.interface';
 import { createApiResponse } from '../utils/response';
 import { getMessage } from '../utils/message';
 import { Op } from 'sequelize';

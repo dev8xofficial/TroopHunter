@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import Queue from '../models/Queue/Queue.model';
 import logger from '../utils/logger';
 import { getMessage } from '../utils/message';
-import { ApiResponse } from '../types/response';
+import { ApiResponse } from '../types/Response.interface';
 import { createApiResponse } from '../utils/response';
 
 export const getQueues = async (req: Request, res: Response) => {
