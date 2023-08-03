@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Lead from '../models/Lead/Lead.model';
-import User from '../models/User';
+import User from '../models/User/User';
 import logger from '../utils/logger';
 import Business from '../models/Business';
 import LeadBusiness from '../models/LeadBusiness/LeadBusiness';
