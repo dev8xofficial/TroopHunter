@@ -57,6 +57,18 @@ const messages: Record<string, Message> = {
   },
 
   // Invalid fields messages
+  INVALID_USER_ID: {
+    code: 400,
+    message: 'Invalid user ID. Please provide a valid UUID.',
+  },
+  INVALID_FIRST_NAME: {
+    code: 400,
+    message: 'Invalid first name. The first name must be a non-empty string.',
+  },
+  INVALID_LAST_NAME: {
+    code: 400,
+    message: 'Invalid last name. The last name must be a non-empty string.',
+  },
   INVALID_EMAIL: {
     code: 400,
     message: 'Invalid email address.',
@@ -64,6 +76,10 @@ const messages: Record<string, Message> = {
   INVALID_PASSWORD: {
     code: 400,
     message: 'Invalid password. Password should be at least 8 characters long and contain letters, numbers, and special characters.',
+  },
+  INVALID_ROLE: {
+    code: 400,
+    message: 'Invalid role. The role must be one of the following: guest, user, admin.',
   },
 
   // Duplicate messages
