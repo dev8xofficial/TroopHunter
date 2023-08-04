@@ -5,6 +5,8 @@ import { getMessage } from '../utils/message';
 import { ApiResponse } from '../types/Response.interface';
 import { createApiResponse } from '../utils/response';
 import { getQueueMessage } from '../models/Queue/Queue.messages';
+import { QueueAttributes } from '../models/Queue/Queue.interface';
+import { QueueSchema, createQueueErrorResponse } from '../models/Queue/Queue.schema';
 
 export const getQueues = async (req: Request, res: Response) => {
   try {
@@ -23,7 +25,7 @@ export const getQueues = async (req: Request, res: Response) => {
 };
 
 export const getQueueById = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = req.params as { id: string };
 
   try {
     const queue = await Queue.findOne({ where: { id } });
@@ -45,13 +47,24 @@ export const getQueueById = async (req: Request, res: Response) => {
 };
 
 export const updateQueue = async (req: Request, res: Response) => {
+  const { id } = req.params as { id: string };
+  const { error, value: validatedData } = QueueSchema.validate(req.body, { abortEarly: false });
+  const { searchQuery, laptopName, status } = validatedData as QueueAttributes;
+
   try {
-    const id = req.params.id;
-    const { laptopName, status } = req.body;
+    if (error) {
+      const errorResponse = createQueueErrorResponse(error);
+      const response: ApiResponse<null> = createApiResponse({
+        error: errorResponse.error,
+        status: errorResponse.status,
+      });
+      return res.json(response);
+    }
 
     const queue = await Queue.findByPk(id);
 
     if (queue) {
+      queue.searchQuery = searchQuery;
       queue.laptopName = laptopName;
       queue.status = status;
       await queue.save();
@@ -65,7 +78,7 @@ export const updateQueue = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    logger.error('Error updating queue:', error);
+    logger.error(`Error updating queue with ID ${id}:`, error);
     const response: ApiResponse<null> = createApiResponse({ error: getQueueMessage('FAILED_TO_UPDATE_QUEUE').message, status: getQueueMessage('FAILED_TO_UPDATE_QUEUE').code });
     res.json(response);
   }

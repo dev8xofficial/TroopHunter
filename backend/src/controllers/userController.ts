@@ -137,16 +137,16 @@ export const deleteUser = async (req: Request, res: Response) => {
   try {
     const user = await User.findByPk(userId);
 
-    if (!user) {
+    if (user) {
+      await user.destroy();
+      logger.info(`Deleted user with ID ${userId}.`);
+      const response: ApiResponse<null> = createApiResponse({ success: true, message: getUserMessage('USER_DELETED').message, status: getUserMessage('USER_DELETED').code });
+      res.json(response);
+    } else {
       logger.warn(`User with ID ${userId} not found.`);
       const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('FAILED_TO_DELETE_USER').message, status: getUserMessage('FAILED_TO_DELETE_USER').code });
       res.json(response);
     }
-
-    await user?.destroy();
-    logger.info(`Deleted user with ID ${userId}.`);
-    const response: ApiResponse<null> = createApiResponse({ success: true, message: getUserMessage('USER_DELETED').message, status: getUserMessage('USER_DELETED').code });
-    res.json(response);
   } catch (error) {
     logger.error(`Failed to delete user with ID ${userId}:`, error);
     const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('FAILED_TO_DELETE_USER').message, status: getUserMessage('FAILED_TO_DELETE_USER').code });

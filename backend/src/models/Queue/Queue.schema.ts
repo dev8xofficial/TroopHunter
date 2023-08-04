@@ -9,7 +9,7 @@ export const QueueSchema = Joi.object<QueueAttributes>({
   status: Joi.string().valid('Pending', 'Completed').required(),
 });
 
-export const createUserErrorResponse = (error: Joi.ValidationError) => {
+export const createQueueErrorResponse = (error: Joi.ValidationError) => {
   const errorResponse: any = {};
 
   error.details.forEach((errorDetail) => {
