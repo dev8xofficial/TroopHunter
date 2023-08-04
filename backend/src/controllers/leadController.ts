@@ -10,6 +10,7 @@ import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../utils/busin
 import { LeadAttributes } from '../models/Lead/Lead.interface';
 import { getLeadMessage } from '../models/Lead/Lead.messages';
 import { getUserMessage } from '../models/User/User.messages';
+import { LeadSchema, createLeadErrorResponse } from '../models/Lead/Lead.schema';
 
 export const getLeads = async (req: Request, res: Response) => {
   try {
@@ -46,12 +47,16 @@ export const getLeadById = async (req: Request, res: Response) => {
 };
 
 export const createLead = async (req: Request, res: Response) => {
-  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = req.body as LeadAttributes;
-
   try {
-    if (!userId) {
-      logger.warn(`User ID ${userId} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('MISSING_USER_ID').message, status: getUserMessage('MISSING_USER_ID').code });
+    const { error, value: validatedData } = LeadSchema.validate(req.body, { abortEarly: false });
+    const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = validatedData as LeadAttributes;
+
+    if (error) {
+      const errorResponse = createLeadErrorResponse(error);
+      const response: ApiResponse<null> = createApiResponse({
+        error: errorResponse.error,
+        status: errorResponse.status,
+      });
       return res.json(response);
     }
 

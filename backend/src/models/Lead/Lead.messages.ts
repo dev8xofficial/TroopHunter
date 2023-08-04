@@ -29,29 +29,53 @@ const messages: Record<string, Message> = {
   // Missing fields messages
   MISSING_USER_ID: {
     code: 400,
-    message: 'User ID is required to create a lead.',
+    message: 'Failed to create/update lead. Missing required field: user ID.',
   },
   MISSING_LEAD_TITLE: {
     code: 400,
-    message: 'Lead title is required.',
+    message: 'Failed to create/update lead. Missing required field: title.',
   },
   MISSING_LEAD_SEARCH: {
     code: 400,
-    message: 'Lead search is required.',
+    message: 'Failed to create/update lead. Missing required field: search.',
   },
   MISSING_LEAD_BUSINESS_COUNT: {
     code: 400,
-    message: 'Lead business count is required.',
+    message: 'Failed to create/update lead. Missing required field: business count.',
   },
 
   // Invalid fields messages
+  INVALID_LEAD_ID: {
+    code: 400,
+    message: 'Invalid lead ID. The lead ID provided is not in a valid format. Please provide a valid UUID for the lead ID.',
+  },
   INVALID_USER_ID: {
     code: 400,
     message: 'Invalid user ID. Please provide a valid UUID.',
   },
-  INVALID_SEARCH: {
+  INVALID_BUSINESS_IDS: {
     code: 400,
-    message: 'Invalid search. Search must be a string not null.',
+    message: 'Invalid business IDs. The business IDs in the array must be valid UUIDs.',
+  },
+  INVALID_LEAD_TITLE: {
+    code: 400,
+    message: 'Invalid lead title. The lead title must be a non-empty string.',
+  },
+  INVALID_LEAD_SEARCH: {
+    code: 400,
+    message: 'Invalid lead search. The search field must be a non-null string.',
+  },
+  INVALID_LEAD_PHONE: {
+    code: 400,
+    message: 'Invalid lead phone. The phone must be a string value.',
+  },
+  INVALID_LEAD_SPONSORED_AD: {
+    code: 400,
+    message: 'Invalid value for sponsoredAd. The sponsoredAd field must be a boolean (true or false).',
+  },
+  INVALID_LEAD_BUSINESS_COUNT: {
+    code: 400,
+    message: 'Invalid lead business count. The lead business count must be a valid number greater than or equal to zero.',
   },
 
   // Duplicate messages
