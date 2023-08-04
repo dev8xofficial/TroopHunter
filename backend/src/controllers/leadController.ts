@@ -27,7 +27,8 @@ export const getLeads = async (req: Request, res: Response) => {
 };
 
 export const getLeadById = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = req.params as { id: string };
+
   try {
     const lead = await Lead.findOne({ where: { id } });
     if (!lead) {
@@ -46,11 +47,31 @@ export const getLeadById = async (req: Request, res: Response) => {
   }
 };
 
-export const createLead = async (req: Request, res: Response) => {
-  try {
-    const { error, value: validatedData } = LeadSchema.validate(req.body, { abortEarly: false });
-    const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = validatedData as LeadAttributes;
+export const getLeadWithBusinesses = async (req: Request, res: Response) => {
+  const { id } = req.params as { id: string };
 
+  try {
+    const lead = await Lead.findByPk(id, { include: Business });
+
+    if (!lead) {
+      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('LEAD_NOT_FOUND').message, status: getLeadMessage('LEAD_NOT_FOUND').code });
+      return res.json(response);
+    }
+
+    const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage('LEAD_RETRIEVED').message, status: getLeadMessage('LEAD_RETRIEVED').code });
+    res.json(response);
+  } catch (error) {
+    console.error('Error while retrieving lead:', error);
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('FAILED_TO_RETRIEVE_LEAD').message, status: getLeadMessage('FAILED_TO_RETRIEVE_LEAD').code });
+    res.json(response);
+  }
+};
+
+export const createLead = async (req: Request, res: Response) => {
+  const { error, value: validatedData } = LeadSchema.validate(req.body, { abortEarly: false });
+  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = validatedData as LeadAttributes;
+
+  try {
     if (error) {
       const errorResponse = createLeadErrorResponse(error);
       const response: ApiResponse<null> = createApiResponse({
@@ -87,30 +108,21 @@ export const createLead = async (req: Request, res: Response) => {
   }
 };
 
-export const getLeadWithBusinesses = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  try {
-    // Retrieve the lead with associated businesses
-    const lead = await Lead.findByPk(id, { include: Business });
+export const updateLead = async (req: Request, res: Response) => {
+  const { id } = req.params as { id: string };
+  const { error, value: validatedData } = LeadSchema.validate(req.body, { abortEarly: false });
+  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = validatedData as LeadAttributes;
 
-    if (!lead) {
-      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('LEAD_NOT_FOUND').message, status: getLeadMessage('LEAD_NOT_FOUND').code });
+  try {
+    if (error) {
+      const errorResponse = createLeadErrorResponse(error);
+      const response: ApiResponse<null> = createApiResponse({
+        error: errorResponse.error,
+        status: errorResponse.status,
+      });
       return res.json(response);
     }
 
-    const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage('LEAD_RETRIEVED').message, status: getLeadMessage('LEAD_RETRIEVED').code });
-    res.json(response);
-  } catch (error) {
-    console.error('Error while retrieving lead:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('FAILED_TO_RETRIEVE_LEAD').message, status: getLeadMessage('FAILED_TO_RETRIEVE_LEAD').code });
-    res.json(response);
-  }
-};
-
-export const updateLead = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = req.body as LeadAttributes;
-  try {
     const user = await User.findByPk(userId);
     if (!user) {
       logger.warn(`User with ID ${userId} not found`);
@@ -123,6 +135,7 @@ export const updateLead = async (req: Request, res: Response) => {
       const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('LEAD_NOT_FOUND').message, status: getLeadMessage('LEAD_NOT_FOUND').code });
       return res.json(response);
     }
+
     await lead.update({ userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId });
 
     const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage('LEAD_UPDATED').message, status: getLeadMessage('LEAD_UPDATED').code });
@@ -135,7 +148,8 @@ export const updateLead = async (req: Request, res: Response) => {
 };
 
 export const deleteLead = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = req.params as { id: string };
+
   try {
     const lead = await Lead.findOne({ where: { id } });
     if (!lead) {
@@ -155,7 +169,7 @@ export const deleteLead = async (req: Request, res: Response) => {
 };
 
 export const deleteLeads = async (req: Request, res: Response) => {
-  const { ids } = req.body; // Assuming that the array of lead IDs is sent in the request body
+  const { ids } = req.body as { ids: string[] };
 
   try {
     const leads = await Lead.findAll({ where: { id: ids } });

@@ -17,7 +17,6 @@ export const login = async (req: Request, res: Response) => {
     const { email, password } = validatedData as UserAttributes;
 
     if (error) {
-      console.log('Error: ', error);
       const errorResponse = createAuthErrorResponse(error);
       const response: ApiResponse<null> = createApiResponse({
         error: errorResponse.error,
@@ -62,7 +61,6 @@ export const register = async (req: Request, res: Response) => {
     const { firstName, lastName, email, password } = validatedData as UserAttributes;
 
     if (error) {
-      console.log('Error: ', error);
       const errorResponse = createUserErrorResponse(error);
       const response: ApiResponse<null> = createApiResponse({
         error: errorResponse.error,
