@@ -31,6 +31,10 @@ const messages: Record<string, Message> = {
     code: 400,
     message: 'Please provide state parameter.',
   },
+  MISSING_STATE_NAME: {
+    code: 400,
+    message: 'Failed to create/update state. Missing required field: state name.',
+  },
   MISSING_STATE_CODE: {
     code: 400,
     message: 'Failed to create/update state. Missing required field: code.',
@@ -49,6 +53,26 @@ const messages: Record<string, Message> = {
   },
 
   // Invalid fields messages
+  INVALID_STATE_ID: {
+    code: 400,
+    message: 'Invalid state ID. The state ID provided is not in a valid format.',
+  },
+  INVALID_STATE_NAME: {
+    code: 400,
+    message: 'Invalid state name. The state name must be a non-empty string.',
+  },
+  INVALID_STATE_CODE: {
+    code: 400,
+    message: 'Invalid state code. The state code must be a non-empty string.',
+  },
+  INVALID_STATE_LONGITUDE: {
+    code: 400,
+    message: 'Invalid state longitude. The longitude must be a valid number.',
+  },
+  INVALID_STATE_LATITUDE: {
+    code: 400,
+    message: 'Invalid state latitude. The latitude must be a valid number.',
+  },
 
   // Duplicate messages
 
