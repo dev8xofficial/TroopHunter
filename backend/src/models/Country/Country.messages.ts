@@ -29,30 +29,58 @@ const messages: Record<string, Message> = {
   // Missing fields messages
   MISSING_COUNTRY_NAME: {
     code: 400,
-    message: 'Please provide country name.',
+    message: 'Failed to create/update country. Missing required field: name.',
   },
   MISSING_COUNTRY_CODE: {
     code: 400,
-    message: 'Please provide country code.',
+    message: 'Failed to create/update country. Missing required field: country code.',
   },
   MISSING_COUNTRY_PHONE_CODE: {
     code: 400,
-    message: 'Please provide country phone code.',
+    message: 'Failed to create/update country. Missing required field: phone code.',
   },
   MISSING_COUNTRY_CURRENCY: {
     code: 400,
-    message: 'Please provide country currency.',
+    message: 'Failed to create/update country. Missing required field: currency.',
   },
   MISSING_COUNTRY_LONGITUDE: {
     code: 400,
-    message: 'Please provide country longitude.',
+    message: 'Failed to create/update country. Missing required field: longitude.',
   },
   MISSING_COUNTRY_LATITUDE: {
     code: 400,
-    message: 'Please provide country latitude.',
+    message: 'Failed to create/update country. Missing required field: latitude.',
   },
 
   // Invalid fields messages
+  INVALID_COUNTRY_ID: {
+    code: 400,
+    message: 'Invalid country ID. The country ID provided is not in a valid format. Please provide a valid UUID for the country ID.',
+  },
+  INVALID_COUNTRY_NAME: {
+    code: 400,
+    message: 'Invalid country name. The country name must be a non-empty string.',
+  },
+  INVALID_COUNTRY_CODE: {
+    code: 400,
+    message: 'Invalid country code. The country code must be a non-empty string.',
+  },
+  INVALID_COUNTRY_PHONE_CODE: {
+    code: 400,
+    message: 'Invalid country phone code. The country phone code must be a non-empty string.',
+  },
+  INVALID_COUNTRY_CURRENCY: {
+    code: 400,
+    message: 'Invalid country currency. The country currency must be a non-empty string.',
+  },
+  INVALID_COUNTRY_LONGITUDE: {
+    code: 400,
+    message: 'Invalid country longitude. The country longitude must be a valid number.',
+  },
+  INVALID_COUNTRY_LATITUDE: {
+    code: 400,
+    message: 'Invalid country latitude. The country latitude must be a valid number.',
+  },
 
   // Duplicate messages
 

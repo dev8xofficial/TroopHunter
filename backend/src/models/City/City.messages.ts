@@ -29,7 +29,7 @@ const messages: Record<string, Message> = {
   // Missing fields messages
   MISSING_CITY: {
     code: 400,
-    message: 'Please provide city name.',
+    message: 'Failed to create/update city. Missing required field: name.',
   },
   MISSING_STATE_CODE: {
     code: 400,
