@@ -57,6 +57,38 @@ const messages: Record<string, Message> = {
   },
 
   // Invalid fields messages
+  INVALID_BUSINESS_PHONE_ID: {
+    code: 400,
+    message: 'Invalid business phone ID. The business phone ID provided is not in a valid format. Please provide a valid UUID for the business phone ID.',
+  },
+  INVALID_BUSINESS_PHONE_COUNTRY_CODE: {
+    code: 400,
+    message: 'Invalid business phone country code. The country code must be a non-empty string.',
+  },
+  INVALID_BUSINESS_PHONE_REGION_CODE: {
+    code: 400,
+    message: 'Invalid business phone region code. The region code must be a non-empty string.',
+  },
+  INVALID_BUSINESS_PHONE_NUMBER: {
+    code: 400,
+    message: 'Invalid business phone number. The business phone number must be a string value.',
+  },
+  INVALID_BUSINESS_PHONE_NATIONAL_FORMATTED: {
+    code: 400,
+    message: 'Invalid business phone number in national formatted. The phone number must be in a valid national format.',
+  },
+  INVALID_BUSINESS_PHONE_INTERNATIONAL_FORMATTED: {
+    code: 400,
+    message: 'Invalid business phone number in international formatted. The phone number must be in a valid international format.',
+  },
+  INVALID_BUSINESS_PHONE_NUMBER_TYPE: {
+    code: 400,
+    message: 'Invalid business phone number type. The phone number type must be a valid value.',
+  },
+  INVALID_BUSINESS_PHONE_IS_VALID: {
+    code: 400,
+    message: 'Invalid business phone validity. The phone validity must be a boolean (true or false).',
+  },
 
   // Duplicate messages
 
