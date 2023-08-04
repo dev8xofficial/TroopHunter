@@ -6,6 +6,8 @@ import { getMessage } from '../utils/message';
 import { ApiResponse } from '../types/Response.interface';
 import { createApiResponse } from '../utils/response';
 import { getUserMessage } from '../models/User/User.messages';
+import { UserAttributes } from '../models/User/User.interface';
+import { UserSchema, createUserErrorResponse } from '../models/User/User.schema';
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
@@ -31,10 +33,10 @@ export const getUsers = async (req: Request, res: Response) => {
 };
 
 export const getUserWithInclude = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const include = req.query.include as string; // Cast 'include' to a string
+  const { id } = req.params;
+  const include = req.query.include as string;
 
+  try {
     if (!include || !isValidJSON(include)) {
       const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_INCLUDE_PARAMETER').message, status: getMessage('INVALID_INCLUDE_PARAMETER').code });
       return res.json(response);
@@ -55,16 +57,16 @@ export const getUserWithInclude = async (req: Request, res: Response) => {
     }
   } catch (error) {
     // Log an error message
-    logger.error('Failed to retrieve user:', error);
+    logger.error(`Failed to retrieve user with ID ${id}:`, error);
     const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('FAILED_TO_RETRIEVE_USER').message, status: getUserMessage('FAILED_TO_RETRIEVE_USER').code });
     res.json(response);
   }
 };
 
 export const getUser = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
+  const { id } = req.params;
 
+  try {
     const user = await User.findByPk(id);
 
     if (user) {
@@ -80,16 +82,26 @@ export const getUser = async (req: Request, res: Response) => {
     }
   } catch (error) {
     // Log an error message
-    logger.error('Failed to retrieve user:', error);
+    logger.error(`Failed to retrieve user with ID ${id}:`, error);
     const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('FAILED_TO_RETRIEVE_USER').message, status: getUserMessage('FAILED_TO_RETRIEVE_USER').code });
     res.json(response);
   }
 };
 
 export const updateUser = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+  const { error, value: validatedData } = UserSchema.validate(req.body, { abortEarly: false });
+  const { firstName, lastName, email, password, role } = validatedData as UserAttributes;
+
   try {
-    const userId = req.params.id;
-    const { firstName, lastName, email } = req.body;
+    if (error) {
+      const errorResponse = createUserErrorResponse(error);
+      const response: ApiResponse<null> = createApiResponse({
+        error: errorResponse.error,
+        status: errorResponse.status,
+      });
+      return res.json(response);
+    }
 
     const user = await User.findByPk(userId);
 
@@ -97,6 +109,8 @@ export const updateUser = async (req: Request, res: Response) => {
       user.firstName = firstName;
       user.lastName = lastName;
       user.email = email;
+      user.password = password;
+      user.role = role;
       await user.save();
 
       // Log a success message
@@ -111,34 +125,30 @@ export const updateUser = async (req: Request, res: Response) => {
     }
   } catch (error) {
     // Log an error message
-    logger.error('Failed to update user:', error);
+    logger.error(`Failed to update user with ID ${userId}:`, error);
     const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('FAILED_TO_UPDATE_USER').message, status: getUserMessage('FAILED_TO_UPDATE_USER').code });
     res.json(response);
   }
 };
 
 export const deleteUser = async (req: Request, res: Response) => {
-  try {
-    const userId = req.params.id;
+  const userId = req.params.id;
 
+  try {
     const user = await User.findByPk(userId);
 
-    if (user) {
-      await user.destroy();
-
-      // Log a success message
-      logger.info(`Deleted user with ID ${userId}.`);
-      const response: ApiResponse<null> = createApiResponse({ success: true, message: getUserMessage('USER_DELETED').message, status: getUserMessage('USER_DELETED').code });
-      res.json(response);
-    } else {
-      // Log a warning message
+    if (!user) {
       logger.warn(`User with ID ${userId} not found.`);
       const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('FAILED_TO_DELETE_USER').message, status: getUserMessage('FAILED_TO_DELETE_USER').code });
       res.json(response);
     }
+
+    await user?.destroy();
+    logger.info(`Deleted user with ID ${userId}.`);
+    const response: ApiResponse<null> = createApiResponse({ success: true, message: getUserMessage('USER_DELETED').message, status: getUserMessage('USER_DELETED').code });
+    res.json(response);
   } catch (error) {
-    // Log an error message
-    logger.error('Failed to delete user:', error);
+    logger.error(`Failed to delete user with ID ${userId}:`, error);
     const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('FAILED_TO_DELETE_USER').message, status: getUserMessage('FAILED_TO_DELETE_USER').code });
     res.json(response);
   }
