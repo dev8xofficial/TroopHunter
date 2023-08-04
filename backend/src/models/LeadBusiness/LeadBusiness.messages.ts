@@ -15,16 +15,24 @@ const messages: Record<string, Message> = {
   },
 
   // Missing fields messages
-  MISSING_LEAD_ID: {
+  MISSING_LEAD_BUSINESS_LEAD_ID: {
     code: 400,
-    message: 'Lead ID is required for LeadBusiness.',
+    message: 'Failed to create/update LeadBusiness. Missing required field: Lead ID.',
   },
-  MISSING_BUSINESS_ID: {
+  MISSING_LEAD_BUSINESS_BUSINESS_ID: {
     code: 400,
-    message: 'Business ID is required for LeadBusiness.',
+    message: 'Failed to create/update LeadBusiness. Missing required field: Business ID.',
   },
 
   // Invalid fields messages
+  INVALID_LEAD_BUSINESS_LEAD_ID: {
+    code: 400,
+    message: 'Invalid lead business lead ID. The lead ID provided is not in a valid format. Please provide a valid UUID for the lead ID.',
+  },
+  INVALID_LEAD_BUSINESS_BUSINESS_ID: {
+    code: 400,
+    message: 'Invalid lead business business ID. The business ID provided is not in a valid format. Please provide a valid UUID for the business ID.',
+  },
 
   // Duplicate messages
 
