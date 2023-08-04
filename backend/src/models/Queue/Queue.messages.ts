@@ -15,16 +15,40 @@ const messages: Record<string, Message> = {
   },
 
   // Missing fields messages
-  MISSING_LAPTOP_NAME: {
+  MISSING_QUEUE_ID: {
     code: 400,
-    message: 'Failed to update queue. Missing required field: laptopName.',
+    message: 'Failed to process queue. Missing required field: queue ID.',
   },
-  MISSING_STATUS: {
+  MISSING_QUEUE_SEARCH: {
     code: 400,
-    message: 'Failed to update queue. Missing required field: status.',
+    message: 'Failed to process queue. Missing required field: search.',
+  },
+  MISSING_QUEUE_LAPTOP_NAME: {
+    code: 400,
+    message: 'Failed to process queue. Missing required field: laptop name.',
+  },
+  MISSING_QUEUE_STATUS: {
+    code: 400,
+    message: 'Failed to process queue. Missing required field: queue status.',
   },
 
   // Invalid fields messages
+  INVALID_QUEUE_ID: {
+    code: 400,
+    message: 'Invalid queue ID. The queue ID provided is not in a valid format. Please provide a valid UUID for the queue ID.',
+  },
+  INVALID_QUEUE_SEARCH: {
+    code: 400,
+    message: 'Invalid queue search. The search field must be a non-null string.',
+  },
+  INVALID_QUEUE_LAPTOP_NAME: {
+    code: 400,
+    message: 'Invalid queue laptop name. The laptop name must be a non-empty string.',
+  },
+  INVALID_QUEUE_STATUS: {
+    code: 400,
+    message: 'Invalid queue status. The queue status must be one of the allowed values.',
+  },
 
   // Duplicate messages
 
