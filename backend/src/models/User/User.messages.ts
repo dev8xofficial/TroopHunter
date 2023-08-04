@@ -3,120 +3,159 @@ interface Message {
   message: string;
 }
 
-const messages: Record<string, Message> = {
+export enum UserMessageKey {
   // Success messages
-  USERS_RETRIEVED: {
+  USERS_RETRIEVED = 'USERS_RETRIEVED',
+  USER_RETRIEVED = 'USER_RETRIEVED',
+  USER_CREATED = 'USER_CREATED',
+  USER_UPDATED = 'USER_UPDATED',
+  USER_DELETED = 'USER_DELETED',
+  LOGGED_IN = 'LOGGED_IN',
+
+  // Missing fields messages
+  MISSING_USER_ID = 'MISSING_USER_ID',
+  MISSING_FIRST_NAME = 'MISSING_FIRST_NAME',
+  MISSING_LAST_NAME = 'MISSING_LAST_NAME',
+  MISSING_EMAIL = 'MISSING_EMAIL',
+  MISSING_PASSWORD = 'MISSING_PASSWORD',
+
+  // Invalid fields messages
+  INVALID_USER_ID = 'INVALID_USER_ID',
+  INVALID_FIRST_NAME = 'INVALID_FIRST_NAME',
+  INVALID_LAST_NAME = 'INVALID_LAST_NAME',
+  INVALID_EMAIL = 'INVALID_EMAIL',
+  INVALID_PASSWORD = 'INVALID_PASSWORD',
+  INVALID_ROLE = 'INVALID_ROLE',
+
+  // Duplicate messages
+  DUPLICATE_USER = 'DUPLICATE_USER',
+
+  // Not found messages
+  USER_NOT_FOUND = 'USER_NOT_FOUND',
+
+  // Failure messages
+  FAILED_TO_RETRIEVE_USERS = 'FAILED_TO_RETRIEVE_USERS',
+  FAILED_TO_RETRIEVE_USER = 'FAILED_TO_RETRIEVE_USER',
+  FAILED_TO_CREATE_USER = 'FAILED_TO_CREATE_USER',
+  FAILED_TO_UPDATE_USER = 'FAILED_TO_UPDATE_USER',
+  FAILED_TO_DELETE_USER = 'FAILED_TO_DELETE_USER',
+  LOGIN_FAILED = 'LOGIN_FAILED',
+}
+
+const messages: Record<UserMessageKey, Message> = {
+  // Success messages
+  [UserMessageKey.USERS_RETRIEVED]: {
     code: 200,
     message: 'Users retrieved successfully.',
   },
-  USER_RETRIEVED: {
+  [UserMessageKey.USER_RETRIEVED]: {
     code: 200,
     message: 'User retrieved successfully.',
   },
-  USER_CREATED: {
+  [UserMessageKey.USER_CREATED]: {
     code: 200,
     message: 'User created successfully.',
   },
-  USER_UPDATED: {
+  [UserMessageKey.USER_UPDATED]: {
     code: 200,
     message: 'User updated successfully.',
   },
-  USER_DELETED: {
+  [UserMessageKey.USER_DELETED]: {
     code: 204,
     message: 'User deleted successfully.',
   },
-  LOGGED_IN: {
+  [UserMessageKey.LOGGED_IN]: {
     code: 200,
     message: 'Logged in successfully.',
   },
 
   // Missing fields messages
-  MISSING_USER_ID: {
+  [UserMessageKey.MISSING_USER_ID]: {
     code: 400,
     message: 'User ID is required to create/update a lead.',
   },
-  MISSING_FIRST_NAME: {
+  [UserMessageKey.MISSING_FIRST_NAME]: {
     code: 400,
     message: 'Failed to create/update user. Missing required field: firstName.',
   },
-  MISSING_LAST_NAME: {
+  [UserMessageKey.MISSING_LAST_NAME]: {
     code: 400,
     message: 'Failed to create/update user. Missing required field: lastName.',
   },
-  MISSING_EMAIL: {
+  [UserMessageKey.MISSING_EMAIL]: {
     code: 400,
     message: 'Failed to create/update user. Missing required field: email.',
   },
-  MISSING_PASSWORD: {
+  [UserMessageKey.MISSING_PASSWORD]: {
     code: 400,
     message: 'Failed to create/update user. Missing required field: password.',
   },
 
   // Invalid fields messages
-  INVALID_USER_ID: {
+  [UserMessageKey.INVALID_USER_ID]: {
     code: 400,
     message: 'Invalid user ID. Please provide a valid UUID.',
   },
-  INVALID_FIRST_NAME: {
+  [UserMessageKey.INVALID_FIRST_NAME]: {
     code: 400,
     message: 'Invalid first name. The first name must be a non-empty string.',
   },
-  INVALID_LAST_NAME: {
+  [UserMessageKey.INVALID_LAST_NAME]: {
     code: 400,
     message: 'Invalid last name. The last name must be a non-empty string.',
   },
-  INVALID_EMAIL: {
+  [UserMessageKey.INVALID_EMAIL]: {
     code: 400,
     message: 'Invalid email address.',
   },
-  INVALID_PASSWORD: {
+  [UserMessageKey.INVALID_PASSWORD]: {
     code: 400,
     message: 'Invalid password. Password should be at least 8 characters long and contain letters, numbers, and special characters.',
   },
-  INVALID_ROLE: {
+  [UserMessageKey.INVALID_ROLE]: {
     code: 400,
     message: 'Invalid role. The role must be one of the following: guest, user, admin.',
   },
 
   // Duplicate messages
-  DUPLICATE_USER: {
+  [UserMessageKey.DUPLICATE_USER]: {
     code: 409,
     message: 'Email already exists. Please log in or use a different email.',
   },
 
   // Not found messages
-  USER_NOT_FOUND: {
+  [UserMessageKey.USER_NOT_FOUND]: {
     code: 404,
     message: 'User not found. Please check your credentials or sign up for a new account.',
   },
 
   // Failure messages
-  FAILED_TO_RETRIEVE_USERS: {
+  [UserMessageKey.FAILED_TO_RETRIEVE_USERS]: {
     code: 500,
     message: 'Failed to retrieve users. An internal server error occurred.',
   },
-  FAILED_TO_RETRIEVE_USER: {
+  [UserMessageKey.FAILED_TO_RETRIEVE_USER]: {
     code: 500,
     message: 'Failed to retrieve user. An internal server error occurred.',
   },
-  FAILED_TO_CREATE_USER: {
+  [UserMessageKey.FAILED_TO_CREATE_USER]: {
     code: 500,
     message: 'Failed to create user. Please try again later or contact support.',
   },
-  FAILED_TO_UPDATE_USER: {
+  [UserMessageKey.FAILED_TO_UPDATE_USER]: {
     code: 500,
     message: 'Failed to update user. An internal server error occurred.',
   },
-  FAILED_TO_DELETE_USER: {
+  [UserMessageKey.FAILED_TO_DELETE_USER]: {
     code: 500,
     message: 'Failed to delete user. An internal server error occurred.',
   },
-  LOGIN_FAILED: {
+  [UserMessageKey.LOGIN_FAILED]: {
     code: 500,
     message: 'Failed to login. Please try again later or contact support.',
   },
 };
 
-export const getUserMessage = (key: string): Message => {
+export const getUserMessage = (key: UserMessageKey): Message => {
   return messages[key];
 };

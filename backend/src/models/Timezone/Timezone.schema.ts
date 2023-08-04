@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { TimezoneAttributes } from './Timezone.interface';
-import { getTimezoneMessage } from './Timezone.messages';
+import { TimezoneMessageKey, getTimezoneMessage } from './Timezone.messages';
 
 export const TimezoneSchema = Joi.object<TimezoneAttributes>({
   id: Joi.string(),
@@ -19,68 +19,68 @@ export const createTimezoneErrorResponse = (error: Joi.ValidationError) => {
       case 'id':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getTimezoneMessage('INVALID_TIMEZONE_ID').message;
-            errorResponse.status = getTimezoneMessage('INVALID_TIMEZONE_ID').code;
+            errorResponse.error = getTimezoneMessage(TimezoneMessageKey.INVALID_TIMEZONE_ID).message;
+            errorResponse.status = getTimezoneMessage(TimezoneMessageKey.INVALID_TIMEZONE_ID).code;
             break;
         }
         break;
       case 'timezoneName':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getTimezoneMessage('INVALID_TIMEZONE_NAME').message;
-            errorResponse.status = getTimezoneMessage('INVALID_TIMEZONE_NAME').code;
+            errorResponse.error = getTimezoneMessage(TimezoneMessageKey.INVALID_TIMEZONE_NAME).message;
+            errorResponse.status = getTimezoneMessage(TimezoneMessageKey.INVALID_TIMEZONE_NAME).code;
             break;
           case 'any.required':
-            errorResponse.error = getTimezoneMessage('MISSING_TIMEZONE_NAME').message;
-            errorResponse.status = getTimezoneMessage('MISSING_TIMEZONE_NAME').code;
+            errorResponse.error = getTimezoneMessage(TimezoneMessageKey.MISSING_TIMEZONE_NAME).message;
+            errorResponse.status = getTimezoneMessage(TimezoneMessageKey.MISSING_TIMEZONE_NAME).code;
             break;
         }
         break;
       case 'utcOffset':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getTimezoneMessage('INVALID_UTC_OFFSET').message;
-            errorResponse.status = getTimezoneMessage('INVALID_UTC_OFFSET').code;
+            errorResponse.error = getTimezoneMessage(TimezoneMessageKey.INVALID_UTC_OFFSET).message;
+            errorResponse.status = getTimezoneMessage(TimezoneMessageKey.INVALID_UTC_OFFSET).code;
             break;
           case 'any.required':
-            errorResponse.error = getTimezoneMessage('MISSING_UTC_OFFSET').message;
-            errorResponse.status = getTimezoneMessage('MISSING_UTC_OFFSET').code;
+            errorResponse.error = getTimezoneMessage(TimezoneMessageKey.MISSING_UTC_OFFSET).message;
+            errorResponse.status = getTimezoneMessage(TimezoneMessageKey.MISSING_UTC_OFFSET).code;
             break;
         }
         break;
       case 'dst':
         switch (errorDetail.type) {
           case 'boolean.base':
-            errorResponse.error = getTimezoneMessage('INVALID_DST').message;
-            errorResponse.status = getTimezoneMessage('INVALID_DST').code;
+            errorResponse.error = getTimezoneMessage(TimezoneMessageKey.INVALID_DST).message;
+            errorResponse.status = getTimezoneMessage(TimezoneMessageKey.INVALID_DST).code;
             break;
           case 'any.required':
-            errorResponse.error = getTimezoneMessage('MISSING_DST').message;
-            errorResponse.status = getTimezoneMessage('MISSING_DST').code;
+            errorResponse.error = getTimezoneMessage(TimezoneMessageKey.MISSING_DST).message;
+            errorResponse.status = getTimezoneMessage(TimezoneMessageKey.MISSING_DST).code;
             break;
         }
         break;
       case 'dstOffset':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getTimezoneMessage('INVALID_DST_OFFSET').message;
-            errorResponse.status = getTimezoneMessage('INVALID_DST_OFFSET').code;
+            errorResponse.error = getTimezoneMessage(TimezoneMessageKey.INVALID_DST_OFFSET).message;
+            errorResponse.status = getTimezoneMessage(TimezoneMessageKey.INVALID_DST_OFFSET).code;
             break;
           case 'any.required':
-            errorResponse.error = getTimezoneMessage('MISSING_DST_OFFSET').message;
-            errorResponse.status = getTimezoneMessage('MISSING_DST_OFFSET').code;
+            errorResponse.error = getTimezoneMessage(TimezoneMessageKey.MISSING_DST_OFFSET).message;
+            errorResponse.status = getTimezoneMessage(TimezoneMessageKey.MISSING_DST_OFFSET).code;
             break;
         }
         break;
       case 'countryCode':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getTimezoneMessage('INVALID_COUNTRY_CODE').message;
-            errorResponse.status = getTimezoneMessage('INVALID_COUNTRY_CODE').code;
+            errorResponse.error = getTimezoneMessage(TimezoneMessageKey.INVALID_COUNTRY_CODE).message;
+            errorResponse.status = getTimezoneMessage(TimezoneMessageKey.INVALID_COUNTRY_CODE).code;
             break;
           case 'any.required':
-            errorResponse.error = getTimezoneMessage('MISSING_COUNTRY_CODE').message;
-            errorResponse.status = getTimezoneMessage('MISSING_COUNTRY_CODE').code;
+            errorResponse.error = getTimezoneMessage(TimezoneMessageKey.MISSING_COUNTRY_CODE).message;
+            errorResponse.status = getTimezoneMessage(TimezoneMessageKey.MISSING_COUNTRY_CODE).code;
             break;
         }
         break;

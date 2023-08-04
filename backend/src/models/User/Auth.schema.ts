@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { UserAttributes } from './User.interface';
-import { getAuthMessage } from './Auth.messages';
+import { AuthMessageKey, getAuthMessage } from './Auth.messages';
 
 export const AuthSchema = Joi.object<UserAttributes>({
   email: Joi.string().email().required(),
@@ -15,32 +15,32 @@ export const createAuthErrorResponse = (error: Joi.ValidationError) => {
       case 'email':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getAuthMessage('MISSING_AUTH_EMAIL').message;
-            errorResponse.status = getAuthMessage('MISSING_AUTH_EMAIL').code;
+            errorResponse.error = getAuthMessage(AuthMessageKey.MISSING_AUTH_EMAIL).message;
+            errorResponse.status = getAuthMessage(AuthMessageKey.MISSING_AUTH_EMAIL).code;
             break;
           case 'string.empty':
-            errorResponse.error = getAuthMessage('MISSING_AUTH_EMAIL').message;
-            errorResponse.status = getAuthMessage('MISSING_AUTH_EMAIL').code;
+            errorResponse.error = getAuthMessage(AuthMessageKey.MISSING_AUTH_EMAIL).message;
+            errorResponse.status = getAuthMessage(AuthMessageKey.MISSING_AUTH_EMAIL).code;
             break;
           case 'string.email':
-            errorResponse.error = getAuthMessage('INVALID_AUTH_EMAIL').message;
-            errorResponse.status = getAuthMessage('INVALID_AUTH_EMAIL').code;
+            errorResponse.error = getAuthMessage(AuthMessageKey.INVALID_AUTH_EMAIL).message;
+            errorResponse.status = getAuthMessage(AuthMessageKey.INVALID_AUTH_EMAIL).code;
             break;
         }
         break;
       case 'password':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getAuthMessage('MISSING_AUTH_PASSWORD').message;
-            errorResponse.status = getAuthMessage('MISSING_AUTH_PASSWORD').code;
+            errorResponse.error = getAuthMessage(AuthMessageKey.MISSING_AUTH_PASSWORD).message;
+            errorResponse.status = getAuthMessage(AuthMessageKey.MISSING_AUTH_PASSWORD).code;
             break;
           case 'string.empty':
-            errorResponse.error = getAuthMessage('MISSING_AUTH_PASSWORD').message;
-            errorResponse.status = getAuthMessage('MISSING_AUTH_PASSWORD').code;
+            errorResponse.error = getAuthMessage(AuthMessageKey.MISSING_AUTH_PASSWORD).message;
+            errorResponse.status = getAuthMessage(AuthMessageKey.MISSING_AUTH_PASSWORD).code;
             break;
           case 'string.min':
-            errorResponse.error = getAuthMessage('INVALID_AUTH_PASSWORD').message;
-            errorResponse.status = getAuthMessage('INVALID_AUTH_PASSWORD').code;
+            errorResponse.error = getAuthMessage(AuthMessageKey.INVALID_AUTH_PASSWORD).message;
+            errorResponse.status = getAuthMessage(AuthMessageKey.INVALID_AUTH_PASSWORD).code;
             break;
         }
         break;

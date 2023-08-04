@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { CountryAttributes } from './Country.interface';
-import { getCountryMessage } from './Country.messages';
+import { CountryMessageKey, getCountryMessage } from './Country.messages';
 
 export const CountrySchema = Joi.object<CountryAttributes>({
   id: Joi.string(),
@@ -20,80 +20,80 @@ export const createCountryErrorResponse = (error: Joi.ValidationError) => {
       case 'id':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getCountryMessage('INVALID_COUNTRY_ID').message;
-            errorResponse.status = getCountryMessage('INVALID_COUNTRY_ID').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_ID).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_ID).code;
             break;
         }
         break;
       case 'name':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getCountryMessage('MISSING_COUNTRY_NAME').message;
-            errorResponse.status = getCountryMessage('MISSING_COUNTRY_NAME').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_NAME).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_NAME).code;
             break;
           case 'string.base':
-            errorResponse.error = getCountryMessage('INVALID_COUNTRY_NAME').message;
-            errorResponse.status = getCountryMessage('INVALID_COUNTRY_NAME').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_NAME).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_NAME).code;
             break;
         }
         break;
       case 'code':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getCountryMessage('MISSING_COUNTRY_CODE').message;
-            errorResponse.status = getCountryMessage('MISSING_COUNTRY_CODE').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_CODE).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_CODE).code;
             break;
           case 'string.base':
-            errorResponse.error = getCountryMessage('INVALID_COUNTRY_CODE').message;
-            errorResponse.status = getCountryMessage('INVALID_COUNTRY_CODE').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_CODE).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_CODE).code;
             break;
         }
         break;
       case 'phoneCode':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getCountryMessage('INVALID_COUNTRY_PHONE_CODE').message;
-            errorResponse.status = getCountryMessage('INVALID_COUNTRY_PHONE_CODE').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_PHONE_CODE).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_PHONE_CODE).code;
             break;
           case 'any.required':
-            errorResponse.error = getCountryMessage('MISSING_COUNTRY_PHONE_CODE').message;
-            errorResponse.status = getCountryMessage('MISSING_COUNTRY_PHONE_CODE').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_PHONE_CODE).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_PHONE_CODE).code;
             break;
         }
         break;
       case 'currency':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getCountryMessage('INVALID_COUNTRY_CURRENCY').message;
-            errorResponse.status = getCountryMessage('INVALID_COUNTRY_CURRENCY').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_CURRENCY).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_CURRENCY).code;
             break;
           case 'any.required':
-            errorResponse.error = getCountryMessage('MISSING_COUNTRY_CURRENCY').message;
-            errorResponse.status = getCountryMessage('MISSING_COUNTRY_CURRENCY').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_CURRENCY).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_CURRENCY).code;
             break;
         }
         break;
       case 'longitude':
         switch (errorDetail.type) {
           case 'number.base':
-            errorResponse.error = getCountryMessage('INVALID_COUNTRY_LONGITUDE').message;
-            errorResponse.status = getCountryMessage('INVALID_COUNTRY_LONGITUDE').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_LONGITUDE).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_LONGITUDE).code;
             break;
           case 'any.required':
-            errorResponse.error = getCountryMessage('MISSING_COUNTRY_LONGITUDE').message;
-            errorResponse.status = getCountryMessage('MISSING_COUNTRY_LONGITUDE').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_LONGITUDE).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_LONGITUDE).code;
             break;
         }
         break;
       case 'latitude':
         switch (errorDetail.type) {
           case 'number.base':
-            errorResponse.error = getCountryMessage('INVALID_COUNTRY_LATITUDE').message;
-            errorResponse.status = getCountryMessage('INVALID_COUNTRY_LATITUDE').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_LATITUDE).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.INVALID_COUNTRY_LATITUDE).code;
             break;
           case 'any.required':
-            errorResponse.error = getCountryMessage('MISSING_COUNTRY_LATITUDE').message;
-            errorResponse.status = getCountryMessage('MISSING_COUNTRY_LATITUDE').code;
+            errorResponse.error = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_LATITUDE).message;
+            errorResponse.status = getCountryMessage(CountryMessageKey.MISSING_COUNTRY_LATITUDE).code;
             break;
         }
         break;

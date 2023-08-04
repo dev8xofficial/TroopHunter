@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { getRequestMessage } from '../messages/Request.messages';
+import { RequestMessageKey, getRequestMessage } from '../messages/Request.messages';
 
 export interface RequestAttributes {
   page: string;
@@ -19,30 +19,30 @@ export const createRequestErrorResponse = (error: Joi.ValidationError) => {
       case 'page':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getRequestMessage('MISSING_REQUEST_PAGE').message;
-            errorResponse.status = getRequestMessage('MISSING_REQUEST_PAGE').code;
+            errorResponse.error = getRequestMessage(RequestMessageKey.MISSING_REQUEST_PAGE).message;
+            errorResponse.status = getRequestMessage(RequestMessageKey.MISSING_REQUEST_PAGE).code;
             break;
           case 'string.empty':
-            errorResponse.error = getRequestMessage('MISSING_REQUEST_PAGE').message;
-            errorResponse.status = getRequestMessage('MISSING_REQUEST_PAGE').code;
+            errorResponse.error = getRequestMessage(RequestMessageKey.MISSING_REQUEST_PAGE).message;
+            errorResponse.status = getRequestMessage(RequestMessageKey.MISSING_REQUEST_PAGE).code;
           case 'string.base':
-            errorResponse.error = getRequestMessage('INVALID_REQUEST_PAGE').message;
-            errorResponse.status = getRequestMessage('INVALID_REQUEST_PAGE').code;
+            errorResponse.error = getRequestMessage(RequestMessageKey.INVALID_REQUEST_PAGE).message;
+            errorResponse.status = getRequestMessage(RequestMessageKey.INVALID_REQUEST_PAGE).code;
             break;
         }
         break;
       case 'limit':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getRequestMessage('MISSING_REQUEST_LIMIT').message;
-            errorResponse.status = getRequestMessage('MISSING_REQUEST_LIMIT').code;
+            errorResponse.error = getRequestMessage(RequestMessageKey.MISSING_REQUEST_LIMIT).message;
+            errorResponse.status = getRequestMessage(RequestMessageKey.MISSING_REQUEST_LIMIT).code;
             break;
           case 'string.empty':
-            errorResponse.error = getRequestMessage('MISSING_REQUEST_LIMIT').message;
-            errorResponse.status = getRequestMessage('MISSING_REQUEST_LIMIT').code;
+            errorResponse.error = getRequestMessage(RequestMessageKey.MISSING_REQUEST_LIMIT).message;
+            errorResponse.status = getRequestMessage(RequestMessageKey.MISSING_REQUEST_LIMIT).code;
           case 'string.base':
-            errorResponse.error = getRequestMessage('INVALID_REQUEST_LIMIT').message;
-            errorResponse.status = getRequestMessage('INVALID_REQUEST_LIMIT').code;
+            errorResponse.error = getRequestMessage(RequestMessageKey.INVALID_REQUEST_LIMIT).message;
+            errorResponse.status = getRequestMessage(RequestMessageKey.INVALID_REQUEST_LIMIT).code;
             break;
         }
         break;

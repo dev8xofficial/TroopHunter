@@ -4,7 +4,7 @@ import logger from '../utils/logger';
 import Business from '../models/Business/Business.model';
 import { createApiResponse } from '../utils/response';
 import { ApiResponse } from '../types/Response.interface';
-import { MessageKey, getLeadBusinessMessage } from '../models/LeadBusiness/LeadBusiness.messages';
+import { LeadBusinessMessageKey, getLeadBusinessMessage } from '../models/LeadBusiness/LeadBusiness.messages';
 import { LeadBusinessSchema, createLeadBusinessErrorResponse } from '../models/LeadBusiness/LeadBusiness.schema';
 import { LeadBusinessAttributes } from '../models/LeadBusiness/LeadBusiness.interface';
 import { RequestAttributes, RequestSchema, createRequestErrorResponse } from '../schema/Request.schema';
@@ -37,7 +37,7 @@ export const getBusinessesByLeadId = async (req: Request, res: Response) => {
     const leadBusinesses = await LeadBusiness.findAll({ where: { leadId } });
 
     if (leadBusinesses.length === 0) {
-      const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.LEAD_BUSINESSES_NOT_FOUND).message, status: getLeadBusinessMessage(MessageKey.LEAD_BUSINESSES_NOT_FOUND).code });
+      const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESSES_NOT_FOUND).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESSES_NOT_FOUND).code });
       return res.json(response);
     }
 
@@ -60,16 +60,16 @@ export const getBusinessesByLeadId = async (req: Request, res: Response) => {
 
       const totalPages = Math.ceil(count / limitNumber);
 
-      const response: ApiResponse<{ totalRecords: number; totalPages: number; businesses: Business[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businesses }, message: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_RETRIEVED).message, status: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_RETRIEVED).code });
+      const response: ApiResponse<{ totalRecords: number; totalPages: number; businesses: Business[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businesses }, message: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_RETRIEVED).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_RETRIEVED).code });
       res.json(response);
     } catch (error) {
       logger.error('Error retrieving lead associated businesses:', error);
-      const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).message, status: getLeadBusinessMessage(MessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).code });
+      const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).code });
       res.json(response);
     }
   } catch (error) {
     logger.error('Error while retrieving businesses by leadId:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).message, status: getLeadBusinessMessage(MessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).code });
     res.json(response);
   }
 };
@@ -78,12 +78,12 @@ export const getLeadBusinesses = async (req: Request, res: Response) => {
   try {
     const leadBusinesses = await LeadBusiness.findAll();
 
-    const response: ApiResponse<LeadBusiness[]> = createApiResponse({ success: true, data: leadBusinesses, message: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_RETRIEVED).message, status: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_RETRIEVED).code });
+    const response: ApiResponse<LeadBusiness[]> = createApiResponse({ success: true, data: leadBusinesses, message: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_RETRIEVED).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_RETRIEVED).code });
     res.json(response);
     logger.info('Retrieved all LeadBusinesses.');
   } catch (error) {
     logger.error('Error while retrieving LeadBusinesses:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).message, status: getLeadBusinessMessage(MessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).code });
     res.json(response);
   }
 };
@@ -104,17 +104,17 @@ export const getLeadBusiness = async (req: Request, res: Response) => {
     const leadBusiness = await LeadBusiness.findOne({ where: { leadId, businessId } });
 
     if (leadBusiness) {
-      const response: ApiResponse<LeadBusiness> = createApiResponse({ success: true, data: leadBusiness, message: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_RETRIEVED).message, status: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_RETRIEVED).code });
+      const response: ApiResponse<LeadBusiness> = createApiResponse({ success: true, data: leadBusiness, message: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_RETRIEVED).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_RETRIEVED).code });
       res.json(response);
       logger.info(`Retrieved LeadBusiness with leadId ${leadId} and businessId ${businessId}.`);
     } else {
-      const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_NOT_FOUND).message, status: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_NOT_FOUND).code });
+      const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_NOT_FOUND).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_NOT_FOUND).code });
       res.json(response);
       logger.warn(`LeadBusiness with leadId ${leadId} and businessId ${businessId} not found.`);
     }
   } catch (error) {
     logger.error(`Error while retrieving LeadBusiness with lead id ${leadId} and business id ${businessId}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESS).message, status: getLeadBusinessMessage(MessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESS).code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESS).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESS).code });
     res.json(response);
   }
 };
@@ -124,12 +124,12 @@ export const createLeadBusinesses = async (req: Request, res: Response) => {
     const leadBusinessData = req.body; // Array of objects, each containing leadId and businessId
     const leadBusinesses = await LeadBusiness.bulkCreate(leadBusinessData);
 
-    const response: ApiResponse<LeadBusiness[]> = createApiResponse({ success: true, data: leadBusinesses, message: getLeadBusinessMessage(MessageKey.LEAD_BUSINESSES_CREATED).message, status: getLeadBusinessMessage(MessageKey.LEAD_BUSINESSES_CREATED).code });
+    const response: ApiResponse<LeadBusiness[]> = createApiResponse({ success: true, data: leadBusinesses, message: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESSES_CREATED).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESSES_CREATED).code });
     res.json(response);
     logger.info('LeadBusinesses created successfully.');
   } catch (error) {
     logger.error('Error while bulk creating LeadBusinesses:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.FAILED_TO_CREATE_LEAD_BUSINESSES).message, status: getLeadBusinessMessage(MessageKey.FAILED_TO_CREATE_LEAD_BUSINESSES).code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_CREATE_LEAD_BUSINESSES).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_CREATE_LEAD_BUSINESSES).code });
     res.json(response);
   }
 };
@@ -150,12 +150,12 @@ export const createLeadBusiness = async (req: Request, res: Response) => {
 
     const leadBusiness = await LeadBusiness.create({ leadId, businessId });
 
-    const response: ApiResponse<LeadBusiness> = createApiResponse({ success: true, data: leadBusiness, message: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_CREATED).message, status: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_CREATED).code });
+    const response: ApiResponse<LeadBusiness> = createApiResponse({ success: true, data: leadBusiness, message: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_CREATED).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_CREATED).code });
     res.json(response);
     logger.info('LeadBusiness created successfully.');
   } catch (error) {
     logger.error('Error while creating LeadBusiness:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.FAILED_TO_CREATE_LEAD_BUSINESS).message, status: getLeadBusinessMessage(MessageKey.FAILED_TO_CREATE_LEAD_BUSINESS).code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_CREATE_LEAD_BUSINESS).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_CREATE_LEAD_BUSINESS).code });
     res.json(response);
   }
 };
@@ -189,17 +189,17 @@ export const updateLeadBusiness = async (req: Request, res: Response) => {
     if (leadBusiness) {
       const updatedLeadBusiness = await leadBusiness.update({ leadId: newLeadId, businessId: newBusinessId });
 
-      const response: ApiResponse<LeadBusiness> = createApiResponse({ success: true, data: updatedLeadBusiness, message: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_UPDATED).message, status: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_UPDATED).code });
+      const response: ApiResponse<LeadBusiness> = createApiResponse({ success: true, data: updatedLeadBusiness, message: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_UPDATED).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_UPDATED).code });
       res.json(response);
       logger.info(`Updated LeadBusiness with leadId ${leadId} and businessId ${businessId}.`);
     } else {
-      const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_NOT_FOUND).message, status: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_NOT_FOUND).code });
+      const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_NOT_FOUND).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_NOT_FOUND).code });
       res.json(response);
       logger.warn(`LeadBusiness with leadId ${leadId} and businessId ${businessId} not found.`);
     }
   } catch (error) {
     logger.error('Error while updating LeadBusiness:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.FAILED_TO_UPDATE_LEAD_BUSINESS).message, status: getLeadBusinessMessage(MessageKey.FAILED_TO_UPDATE_LEAD_BUSINESS).code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_UPDATE_LEAD_BUSINESS).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_UPDATE_LEAD_BUSINESS).code });
     res.json(response);
   }
 };
@@ -226,13 +226,13 @@ export const deleteLeadBusiness = async (req: Request, res: Response) => {
       res.json(response);
       logger.info(`Deleted LeadBusiness with leadId ${leadId} and businessId ${businessId}.`);
     } else {
-      const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_NOT_FOUND).message, status: getLeadBusinessMessage(MessageKey.LEAD_BUSINESS_NOT_FOUND).code });
+      const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_NOT_FOUND).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_NOT_FOUND).code });
       res.json(response);
       logger.warn(`LeadBusiness with leadId ${leadId} and businessId ${businessId} not found.`);
     }
   } catch (error) {
     logger.error('Error while deleting LeadBusiness:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(MessageKey.FAILED_TO_DELETE_LEAD_BUSINESS).message, status: getLeadBusinessMessage(MessageKey.FAILED_TO_DELETE_LEAD_BUSINESS).code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_DELETE_LEAD_BUSINESS).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_DELETE_LEAD_BUSINESS).code });
     res.json(response);
   }
 };

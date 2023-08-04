@@ -1,51 +1,79 @@
-interface Message {
+export interface Message {
   code: number;
   message: string;
 }
 
-const messages: Record<string, Message> = {
+export enum QueueMessageKey {
   // Success messages
-  QUEUES_RETRIEVED: {
+  QUEUES_RETRIEVED = 'QUEUES_RETRIEVED',
+  QUEUE_UPDATED = 'QUEUE_UPDATED',
+
+  // Missing fields messages
+  MISSING_QUEUE_ID = 'MISSING_QUEUE_ID',
+  MISSING_QUEUE_SEARCH = 'MISSING_QUEUE_SEARCH',
+  MISSING_QUEUE_LAPTOP_NAME = 'MISSING_QUEUE_LAPTOP_NAME',
+  MISSING_QUEUE_STATUS = 'MISSING_QUEUE_STATUS',
+
+  // Invalid fields messages
+  INVALID_QUEUE_ID = 'INVALID_QUEUE_ID',
+  INVALID_QUEUE_SEARCH = 'INVALID_QUEUE_SEARCH',
+  INVALID_QUEUE_LAPTOP_NAME = 'INVALID_QUEUE_LAPTOP_NAME',
+  INVALID_QUEUE_STATUS = 'INVALID_QUEUE_STATUS',
+
+  // Duplicate messages
+
+  // Not found messages
+  QUEUE_NOT_FOUND = 'QUEUE_NOT_FOUND',
+
+  // Failure messages
+  FAILED_TO_RETRIEVE_QUEUES = 'FAILED_TO_RETRIEVE_QUEUES',
+  FAILED_TO_RETRIEVE_QUEUE = 'FAILED_TO_RETRIEVE_QUEUE',
+  FAILED_TO_UPDATE_QUEUE = 'FAILED_TO_UPDATE_QUEUE',
+}
+
+const messages: Record<QueueMessageKey, Message> = {
+  // Success messages
+  [QueueMessageKey.QUEUES_RETRIEVED]: {
     code: 200,
     message: 'Queues retrieved successfully.',
   },
-  QUEUE_UPDATED: {
+  [QueueMessageKey.QUEUE_UPDATED]: {
     code: 200,
     message: 'Queue updated successfully.',
   },
 
   // Missing fields messages
-  MISSING_QUEUE_ID: {
+  [QueueMessageKey.MISSING_QUEUE_ID]: {
     code: 400,
     message: 'Failed to process queue. Missing required field: queue ID.',
   },
-  MISSING_QUEUE_SEARCH: {
+  [QueueMessageKey.MISSING_QUEUE_SEARCH]: {
     code: 400,
     message: 'Failed to process queue. Missing required field: search.',
   },
-  MISSING_QUEUE_LAPTOP_NAME: {
+  [QueueMessageKey.MISSING_QUEUE_LAPTOP_NAME]: {
     code: 400,
     message: 'Failed to process queue. Missing required field: laptop name.',
   },
-  MISSING_QUEUE_STATUS: {
+  [QueueMessageKey.MISSING_QUEUE_STATUS]: {
     code: 400,
     message: 'Failed to process queue. Missing required field: queue status.',
   },
 
   // Invalid fields messages
-  INVALID_QUEUE_ID: {
+  [QueueMessageKey.INVALID_QUEUE_ID]: {
     code: 400,
     message: 'Invalid queue ID. The queue ID provided is not in a valid format. Please provide a valid UUID for the queue ID.',
   },
-  INVALID_QUEUE_SEARCH: {
+  [QueueMessageKey.INVALID_QUEUE_SEARCH]: {
     code: 400,
     message: 'Invalid queue search. The search field must be a non-null string.',
   },
-  INVALID_QUEUE_LAPTOP_NAME: {
+  [QueueMessageKey.INVALID_QUEUE_LAPTOP_NAME]: {
     code: 400,
     message: 'Invalid queue laptop name. The laptop name must be a non-empty string.',
   },
-  INVALID_QUEUE_STATUS: {
+  [QueueMessageKey.INVALID_QUEUE_STATUS]: {
     code: 400,
     message: 'Invalid queue status. The queue status must be one of the allowed values.',
   },
@@ -53,22 +81,26 @@ const messages: Record<string, Message> = {
   // Duplicate messages
 
   // Not found messages
-  QUEUE_NOT_FOUND: {
+  [QueueMessageKey.QUEUE_NOT_FOUND]: {
     code: 404,
     message: 'Queue not found.',
   },
 
   // Failure messages
-  FAILED_TO_RETRIEVE_QUEUES: {
+  [QueueMessageKey.FAILED_TO_RETRIEVE_QUEUES]: {
     code: 500,
     message: 'Failed to retrieve queues. An internal server error occurred.',
   },
-  FAILED_TO_UPDATE_QUEUE: {
+  [QueueMessageKey.FAILED_TO_RETRIEVE_QUEUE]: {
+    code: 500,
+    message: 'Failed to retrieve queue. An internal server error occurred.',
+  },
+  [QueueMessageKey.FAILED_TO_UPDATE_QUEUE]: {
     code: 500,
     message: 'Failed to update queue. An internal server error occurred.',
   },
 };
 
-export const getQueueMessage = (key: string): Message => {
+export const getQueueMessage = (key: QueueMessageKey): Message => {
   return messages[key];
 };

@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { QueueAttributes } from './Queue.interface';
-import { getQueueMessage } from './Queue.messages';
+import { QueueMessageKey, getQueueMessage } from './Queue.messages';
 
 export const QueueSchema = Joi.object<QueueAttributes>({
   id: Joi.number().integer().required(),
@@ -17,48 +17,48 @@ export const createQueueErrorResponse = (error: Joi.ValidationError) => {
       case 'id':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getQueueMessage('MISSING_QUEUE_ID').message;
-            errorResponse.status = getQueueMessage('MISSING_QUEUE_ID').code;
+            errorResponse.error = getQueueMessage(QueueMessageKey.MISSING_QUEUE_ID).message;
+            errorResponse.status = getQueueMessage(QueueMessageKey.MISSING_QUEUE_ID).code;
             break;
           case 'number.base':
-            errorResponse.error = getQueueMessage('INVALID_QUEUE_ID').message;
-            errorResponse.status = getQueueMessage('INVALID_QUEUE_ID').code;
+            errorResponse.error = getQueueMessage(QueueMessageKey.INVALID_QUEUE_ID).message;
+            errorResponse.status = getQueueMessage(QueueMessageKey.INVALID_QUEUE_ID).code;
             break;
         }
         break;
       case 'searchQuery':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getQueueMessage('MISSING_QUEUE_SEARCH').message;
-            errorResponse.status = getQueueMessage('MISSING_QUEUE_SEARCH').code;
+            errorResponse.error = getQueueMessage(QueueMessageKey.MISSING_QUEUE_SEARCH).message;
+            errorResponse.status = getQueueMessage(QueueMessageKey.MISSING_QUEUE_SEARCH).code;
             break;
           case 'string.base':
-            errorResponse.error = getQueueMessage('INVALID_QUEUE_SEARCH').message;
-            errorResponse.status = getQueueMessage('INVALID_QUEUE_SEARCH').code;
+            errorResponse.error = getQueueMessage(QueueMessageKey.INVALID_QUEUE_SEARCH).message;
+            errorResponse.status = getQueueMessage(QueueMessageKey.INVALID_QUEUE_SEARCH).code;
             break;
         }
         break;
       case 'laptopName':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getQueueMessage('MISSING_QUEUE_LAPTOP_NAME').message;
-            errorResponse.status = getQueueMessage('MISSING_QUEUE_LAPTOP_NAME').code;
+            errorResponse.error = getQueueMessage(QueueMessageKey.MISSING_QUEUE_LAPTOP_NAME).message;
+            errorResponse.status = getQueueMessage(QueueMessageKey.MISSING_QUEUE_LAPTOP_NAME).code;
             break;
           case 'string.base':
-            errorResponse.error = getQueueMessage('INVALID_QUEUE_LAPTOP_NAME').message;
-            errorResponse.status = getQueueMessage('INVALID_QUEUE_LAPTOP_NAME').code;
+            errorResponse.error = getQueueMessage(QueueMessageKey.INVALID_QUEUE_LAPTOP_NAME).message;
+            errorResponse.status = getQueueMessage(QueueMessageKey.INVALID_QUEUE_LAPTOP_NAME).code;
             break;
         }
         break;
       case 'status':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getQueueMessage('MISSING_QUEUE_STATUS').message;
-            errorResponse.status = getQueueMessage('MISSING_QUEUE_STATUS').code;
+            errorResponse.error = getQueueMessage(QueueMessageKey.MISSING_QUEUE_STATUS).message;
+            errorResponse.status = getQueueMessage(QueueMessageKey.MISSING_QUEUE_STATUS).code;
             break;
           case 'string.valid':
-            errorResponse.error = getQueueMessage('INVALID_QUEUE_STATUS').message;
-            errorResponse.status = getQueueMessage('INVALID_QUEUE_STATUS').code;
+            errorResponse.error = getQueueMessage(QueueMessageKey.INVALID_QUEUE_STATUS).message;
+            errorResponse.status = getQueueMessage(QueueMessageKey.INVALID_QUEUE_STATUS).code;
             break;
         }
         break;

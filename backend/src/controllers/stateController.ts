@@ -3,9 +3,9 @@ import State from '../models/State/State.model';
 import logger from '../utils/logger';
 import { ApiResponse } from '../types/Response.interface';
 import { createApiResponse } from '../utils/response';
-import { getMessage } from '../utils/message';
 import { Op } from 'sequelize';
-import { getStateMessage } from '../models/State/State.messages';
+import { StateMessageKey, getStateMessage } from '../models/State/State.messages';
+import { RequestMessageKey, getRequestMessage } from '../messages/Request.messages';
 
 // Get states by name and state
 export const getStatesByQuery = async (req: Request, res: Response) => {
@@ -13,12 +13,12 @@ export const getStatesByQuery = async (req: Request, res: Response) => {
 
   // Pagination
   if (!page || !limit) {
-    const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_PAGE_LIMIT').message, status: getMessage('MISSING_PAGE_LIMIT').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getRequestMessage(RequestMessageKey.MISSING_REQUEST_LIMIT).message, status: getRequestMessage(RequestMessageKey.MISSING_REQUEST_LIMIT).code });
     return res.json(response);
   }
 
   if (!name) {
-    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage('MISSING_STATE').message, status: getStateMessage('MISSING_STATE').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.MISSING_STATE).message, status: getStateMessage(StateMessageKey.MISSING_STATE).code });
     return res.json(response);
   }
 
@@ -26,7 +26,7 @@ export const getStatesByQuery = async (req: Request, res: Response) => {
   const limitNumber = parseInt(limit as string, 10);
 
   if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
-    const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_PAGE_LIMIT').message, status: getMessage('INVALID_PAGE_LIMIT').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getRequestMessage(RequestMessageKey.INVALID_REQUEST_LIMIT).message, status: getRequestMessage(RequestMessageKey.INVALID_REQUEST_LIMIT).code });
     return res.json(response);
   }
 
@@ -48,18 +48,18 @@ export const getStatesByQuery = async (req: Request, res: Response) => {
 
     if (states.length === 0) {
       logger.warn(`No states found for state: ${name}`);
-      const response: ApiResponse<null> = createApiResponse({ error: getStateMessage('STATE_NOT_FOUND').message, status: getStateMessage('STATE_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.STATE_NOT_FOUND).message, status: getStateMessage(StateMessageKey.STATE_NOT_FOUND).code });
       return res.json(response);
     }
 
     const totalPages = Math.ceil(count / limitNumber);
 
     logger.info(`Successfully retrieved states for state: ${name}`);
-    const response: ApiResponse<{ totalRecords: number; totalPages: number; states: State[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, states }, message: getStateMessage('STATES_RETRIEVED').message, status: getStateMessage('STATES_RETRIEVED').code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; states: State[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, states }, message: getStateMessage(StateMessageKey.STATES_RETRIEVED).message, status: getStateMessage(StateMessageKey.STATES_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving states:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage('FAILED_TO_RETRIEVE_STATES').message, status: getStateMessage('FAILED_TO_RETRIEVE_STATES').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.FAILED_TO_RETRIEVE_STATES).message, status: getStateMessage(StateMessageKey.FAILED_TO_RETRIEVE_STATES).code });
     res.json(response);
   }
 };
@@ -69,11 +69,11 @@ export const getStates = async (req: Request, res: Response) => {
   try {
     const states = await State.findAll();
     logger.info('Successfully retrieved states');
-    const response: ApiResponse<State[]> = createApiResponse({ success: true, data: states, message: getStateMessage('STATES_RETRIEVED').message, status: getStateMessage('STATES_RETRIEVED').code });
+    const response: ApiResponse<State[]> = createApiResponse({ success: true, data: states, message: getStateMessage(StateMessageKey.STATES_RETRIEVED).message, status: getStateMessage(StateMessageKey.STATES_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving states:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage('FAILED_TO_RETRIEVE_STATES').message, status: getStateMessage('FAILED_TO_RETRIEVE_STATES').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.FAILED_TO_RETRIEVE_STATES).message, status: getStateMessage(StateMessageKey.FAILED_TO_RETRIEVE_STATES).code });
     res.json(response);
   }
 };
@@ -85,15 +85,15 @@ export const getStateById = async (req: Request, res: Response) => {
     const state = await State.findOne({ where: { id } });
     if (!state) {
       logger.warn(`State with ID ${id} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getStateMessage('STATE_NOT_FOUND').message, status: getStateMessage('STATE_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.STATE_NOT_FOUND).message, status: getStateMessage(StateMessageKey.STATE_NOT_FOUND).code });
       return res.json(response);
     }
     logger.info(`Successfully retrieved state with ID ${id}`);
-    const response: ApiResponse<State> = createApiResponse({ success: true, data: state, message: getStateMessage('STATE_RETRIEVED').message, status: getStateMessage('STATE_RETRIEVED').code });
+    const response: ApiResponse<State> = createApiResponse({ success: true, data: state, message: getStateMessage(StateMessageKey.STATE_RETRIEVED).message, status: getStateMessage(StateMessageKey.STATE_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error(`Error while retrieving state with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage('FAILED_TO_RETRIEVE_STATE').message, status: getStateMessage('FAILED_TO_RETRIEVE_STATE').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.FAILED_TO_RETRIEVE_STATE).message, status: getStateMessage(StateMessageKey.FAILED_TO_RETRIEVE_STATE).code });
     res.json(response);
   }
 };
@@ -104,11 +104,11 @@ export const createState = async (req: Request, res: Response) => {
   try {
     const newState = await State.create({ name, code, countryCode, longitude, latitude });
     logger.info(`State created successfully with ID ${newState.id}`);
-    const response: ApiResponse<State> = createApiResponse({ success: true, data: newState, message: getStateMessage('STATE_CREATED').message, status: getStateMessage('STATE_CREATED').code });
+    const response: ApiResponse<State> = createApiResponse({ success: true, data: newState, message: getStateMessage(StateMessageKey.STATE_CREATED).message, status: getStateMessage(StateMessageKey.STATE_CREATED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while creating state:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage('FAILED_TO_CREATE_STATE').message, status: getStateMessage('FAILED_TO_CREATE_STATE').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.FAILED_TO_CREATE_STATE).message, status: getStateMessage(StateMessageKey.FAILED_TO_CREATE_STATE).code });
     res.json(response);
   }
 };
@@ -121,16 +121,16 @@ export const updateState = async (req: Request, res: Response) => {
     const existingState = await State.findOne({ where: { id } });
     if (!existingState) {
       logger.warn(`State with ID ${id} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getStateMessage('STATE_NOT_FOUND').message, status: getStateMessage('STATE_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.STATE_NOT_FOUND).message, status: getStateMessage(StateMessageKey.STATE_NOT_FOUND).code });
       return res.json(response);
     }
     await existingState.update({ name, code, countryCode, longitude, latitude });
     logger.info(`State with ID ${id} updated successfully`);
-    const response: ApiResponse<State> = createApiResponse({ success: true, data: existingState, message: getStateMessage('STATE_UPDATED').message, status: getStateMessage('STATE_UPDATED').code });
+    const response: ApiResponse<State> = createApiResponse({ success: true, data: existingState, message: getStateMessage(StateMessageKey.STATE_UPDATED).message, status: getStateMessage(StateMessageKey.STATE_UPDATED).code });
     res.json(response);
   } catch (error) {
     logger.error(`Error while updating state with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage('FAILED_TO_UPDATE_STATE').message, status: getStateMessage('FAILED_TO_UPDATE_STATE').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.FAILED_TO_UPDATE_STATE).message, status: getStateMessage(StateMessageKey.FAILED_TO_UPDATE_STATE).code });
     res.json(response);
   }
 };
@@ -142,16 +142,16 @@ export const deleteState = async (req: Request, res: Response) => {
     const state = await State.findOne({ where: { id } });
     if (!state) {
       logger.warn(`State with ID ${id} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getStateMessage('STATE_NOT_FOUND').message, status: getStateMessage('STATE_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.STATE_NOT_FOUND).message, status: getStateMessage(StateMessageKey.STATE_NOT_FOUND).code });
       return res.json(response);
     }
     await state.destroy();
     logger.info(`State with ID ${id} deleted successfully`);
-    const response: ApiResponse<null> = createApiResponse({ success: true, message: getStateMessage('STATE_DELETED').message, status: getStateMessage('STATE_DELETED').code });
+    const response: ApiResponse<null> = createApiResponse({ success: true, message: getStateMessage(StateMessageKey.STATE_DELETED).message, status: getStateMessage(StateMessageKey.STATE_DELETED).code });
     res.json(response);
   } catch (error) {
     logger.error(`Error while deleting state with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage('FAILED_TO_DELETE_STATE').message, status: getStateMessage('FAILED_TO_DELETE_STATE').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.FAILED_TO_DELETE_STATE).message, status: getStateMessage(StateMessageKey.FAILED_TO_DELETE_STATE).code });
     res.json(response);
   }
 };

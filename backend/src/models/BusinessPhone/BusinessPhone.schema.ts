@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { BusinessPhoneAttributes } from './BusinessPhone.interface';
-import { getBusinessPhoneMessage } from './BusinessPhone.messages';
+import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from './BusinessPhone.messages';
 
 export const BusinessPhoneSchema = Joi.object<BusinessPhoneAttributes>({
   id: Joi.string(),
@@ -21,92 +21,92 @@ export const createBusinessPhoneErrorResponse = (error: Joi.ValidationError) => 
       case 'id':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_ID').message;
-            errorResponse.status = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_ID').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_ID).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_ID).code;
             break;
         }
         break;
       case 'countryCode':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_COUNTRY_CODE').message;
-            errorResponse.status = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_COUNTRY_CODE').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_COUNTRY_CODE).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_COUNTRY_CODE).code;
             break;
           case 'any.required':
-            errorResponse.error = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_COUNTRY_CODE').message;
-            errorResponse.status = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_COUNTRY_CODE').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_COUNTRY_CODE).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_COUNTRY_CODE).code;
             break;
         }
         break;
       case 'regionCode':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_REGION_CODE').message;
-            errorResponse.status = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_REGION_CODE').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_REGION_CODE).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_REGION_CODE).code;
             break;
           case 'any.required':
-            errorResponse.error = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_REGION_CODE').message;
-            errorResponse.status = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_REGION_CODE').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_REGION_CODE).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_REGION_CODE).code;
             break;
         }
         break;
       case 'number':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_NUMBER').message;
-            errorResponse.status = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_NUMBER').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_NUMBER).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_NUMBER).code;
             break;
           case 'any.required':
-            errorResponse.error = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_NUMBER').message;
-            errorResponse.status = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_NUMBER').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_NUMBER).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_NUMBER).code;
             break;
         }
         break;
       case 'numberNationalFormatted':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_NATIONAL_FORMATTED').message;
-            errorResponse.status = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_NATIONAL_FORMATTED').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_NATIONAL_FORMATTED).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_NATIONAL_FORMATTED).code;
             break;
           case 'any.required':
-            errorResponse.error = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_NATIONAL_FORMATTED').message;
-            errorResponse.status = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_NATIONAL_FORMATTED').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_NATIONAL_FORMATTED).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_NATIONAL_FORMATTED).code;
             break;
         }
         break;
       case 'numberInternationalFormatted':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_INTERNATIONAL_FORMATTED').message;
-            errorResponse.status = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_INTERNATIONAL_FORMATTED').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_INTERNATIONAL_FORMATTED).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_INTERNATIONAL_FORMATTED).code;
             break;
           case 'any.required':
-            errorResponse.error = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_INTERNATIONAL_FORMATTED').message;
-            errorResponse.status = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_INTERNATIONAL_FORMATTED').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_INTERNATIONAL_FORMATTED).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_INTERNATIONAL_FORMATTED).code;
             break;
         }
         break;
       case 'numberType':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_TYPE').message;
-            errorResponse.status = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_TYPE').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_TYPE).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_TYPE).code;
             break;
           case 'string.base':
-            errorResponse.error = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_NUMBER_TYPE').message;
-            errorResponse.status = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_NUMBER_TYPE').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_NUMBER_TYPE).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_NUMBER_TYPE).code;
             break;
         }
         break;
       case 'isValid':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_VALIDITY').message;
-            errorResponse.status = getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_VALIDITY').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_VALIDITY).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_VALIDITY).code;
             break;
           case 'boolean.base':
-            errorResponse.error = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_IS_VALID').message;
-            errorResponse.status = getBusinessPhoneMessage('INVALID_BUSINESS_PHONE_IS_VALID').code;
+            errorResponse.error = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_IS_VALID).message;
+            errorResponse.status = getBusinessPhoneMessage(BusinessPhoneMessageKey.INVALID_BUSINESS_PHONE_IS_VALID).code;
             break;
         }
         break;

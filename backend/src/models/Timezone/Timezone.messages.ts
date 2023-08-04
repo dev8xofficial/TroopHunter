@@ -3,77 +3,114 @@ interface Message {
   message: string;
 }
 
-const messages: Record<string, Message> = {
+export enum TimezoneMessageKey {
   // Success messages
-  TIMEZONES_RETRIEVED: {
+  TIMEZONES_RETRIEVED = 'TIMEZONES_RETRIEVED',
+  TIMEZONE_RETRIEVED = 'TIMEZONE_RETRIEVED',
+  TIMEZONE_CREATED = 'TIMEZONE_CREATED',
+  TIMEZONE_UPDATED = 'TIMEZONE_UPDATED',
+  TIMEZONE_DELETED = 'TIMEZONE_DELETED',
+
+  // Missing fields messages
+  MISSING_TIMEZONE_ID = 'MISSING_TIMEZONE_ID',
+  MISSING_TIMEZONE_NAME = 'MISSING_TIMEZONE_NAME',
+  MISSING_UTC_OFFSET = 'MISSING_UTC_OFFSET',
+  MISSING_DST = 'MISSING_DST',
+  MISSING_DST_OFFSET = 'MISSING_DST_OFFSET',
+  MISSING_COUNTRY_CODE = 'MISSING_COUNTRY_CODE',
+
+  // Invalid fields messages
+  INVALID_TIMEZONE_ID = 'INVALID_TIMEZONE_ID',
+  INVALID_TIMEZONE_NAME = 'INVALID_TIMEZONE_NAME',
+  INVALID_UTC_OFFSET = 'INVALID_UTC_OFFSET',
+  INVALID_DST = 'INVALID_DST',
+  INVALID_DST_OFFSET = 'INVALID_DST_OFFSET',
+  INVALID_COUNTRY_CODE = 'INVALID_COUNTRY_CODE',
+
+  // Duplicate messages
+
+  // Not found messages
+
+  // Failure messages
+  FAILED_TO_RETRIEVE_TIMEZONES = 'FAILED_TO_RETRIEVE_TIMEZONES',
+  FAILED_TO_RETRIEVE_TIMEZONE = 'FAILED_TO_RETRIEVE_TIMEZONE',
+  FAILED_TO_CREATE_TIMEZONE = 'FAILED_TO_CREATE_TIMEZONE',
+  FAILED_TO_UPDATE_TIMEZONE = 'FAILED_TO_UPDATE_TIMEZONE',
+  FAILED_TO_DELETE_TIMEZONE = 'FAILED_TO_DELETE_TIMEZONE',
+  LOGIN_FAILED = 'LOGIN_FAILED',
+}
+
+const messages: Record<TimezoneMessageKey, Message> = {
+  // Success messages
+  [TimezoneMessageKey.TIMEZONES_RETRIEVED]: {
     code: 200,
     message: 'Timezones retrieved successfully.',
   },
-  TIMEZONE_RETRIEVED: {
+  [TimezoneMessageKey.TIMEZONE_RETRIEVED]: {
     code: 200,
     message: 'Timezone retrieved successfully.',
   },
-  TIMEZONE_CREATED: {
+  [TimezoneMessageKey.TIMEZONE_CREATED]: {
     code: 200,
     message: 'Timezone created successfully.',
   },
-  TIMEZONE_UPDATED: {
+  [TimezoneMessageKey.TIMEZONE_UPDATED]: {
     code: 200,
     message: 'Timezone updated successfully.',
   },
-  TIMEZONE_DELETED: {
+  [TimezoneMessageKey.TIMEZONE_DELETED]: {
     code: 204,
     message: 'Timezone deleted successfully.',
   },
 
   // Missing fields messages
-  MISSING_TIMEZONE_ID: {
+  [TimezoneMessageKey.MISSING_TIMEZONE_ID]: {
     code: 400,
     message: 'Timezone ID is required to create a timezone.',
   },
-  MISSING_TIMEZONE_NAME: {
+  [TimezoneMessageKey.MISSING_TIMEZONE_NAME]: {
     code: 400,
     message: 'Timezone name is required.',
   },
-  MISSING_UTC_OFFSET: {
+  [TimezoneMessageKey.MISSING_UTC_OFFSET]: {
     code: 400,
     message: 'UTC offset is required.',
   },
-  MISSING_DST: {
+  [TimezoneMessageKey.MISSING_DST]: {
     code: 400,
     message: 'Missing required field: DST.',
   },
-  MISSING_DST_OFFSET: {
+  [TimezoneMessageKey.MISSING_DST_OFFSET]: {
     code: 400,
     message: 'Missing required field: DST offset.',
   },
-  MISSING_COUNTRY_CODE: {
+  [TimezoneMessageKey.MISSING_COUNTRY_CODE]: {
     code: 400,
     message: 'Missing required field: country code.',
   },
 
   // Invalid fields messages
-  INVALID_TIMEZONE_ID: {
+  [TimezoneMessageKey.INVALID_TIMEZONE_ID]: {
     code: 400,
     message: 'Invalid timezone ID. The timezone ID provided is not in a valid format. Please provide a valid string for the timezone ID.',
   },
-  INVALID_TIMEZONE_NAME: {
+  [TimezoneMessageKey.INVALID_TIMEZONE_NAME]: {
     code: 400,
     message: 'Invalid timezone name. The timezone name must be a non-empty string.',
   },
-  INVALID_UTC_OFFSET: {
+  [TimezoneMessageKey.INVALID_UTC_OFFSET]: {
     code: 400,
     message: 'Invalid UTC offset. The UTC offset must be a non-empty string.',
   },
-  INVALID_DST: {
+  [TimezoneMessageKey.INVALID_DST]: {
     code: 400,
     message: 'Invalid DST value. The DST field must be a boolean (true or false).',
   },
-  INVALID_DST_OFFSET: {
+  [TimezoneMessageKey.INVALID_DST_OFFSET]: {
     code: 400,
     message: 'Invalid DST offset. The DST offset must be a string.',
   },
-  INVALID_COUNTRY_CODE: {
+  [TimezoneMessageKey.INVALID_COUNTRY_CODE]: {
     code: 400,
     message: 'Invalid country code. The country code must be a string.',
   },
@@ -83,32 +120,32 @@ const messages: Record<string, Message> = {
   // Not found messages
 
   // Failure messages
-  FAILED_TO_RETRIEVE_TIMEZONES: {
+  [TimezoneMessageKey.FAILED_TO_RETRIEVE_TIMEZONES]: {
     code: 500,
     message: 'Failed to retrieve timezones. An internal server error occurred.',
   },
-  FAILED_TO_RETRIEVE_TIMEZONE: {
+  [TimezoneMessageKey.FAILED_TO_RETRIEVE_TIMEZONE]: {
     code: 500,
     message: 'Failed to retrieve timezone. An internal server error occurred.',
   },
-  FAILED_TO_CREATE_TIMEZONE: {
+  [TimezoneMessageKey.FAILED_TO_CREATE_TIMEZONE]: {
     code: 500,
     message: 'Failed to create timezone. Please try again later or contact support.',
   },
-  FAILED_TO_UPDATE_TIMEZONE: {
+  [TimezoneMessageKey.FAILED_TO_UPDATE_TIMEZONE]: {
     code: 500,
     message: 'Failed to update timezone. An internal server error occurred.',
   },
-  FAILED_TO_DELETE_TIMEZONE: {
+  [TimezoneMessageKey.FAILED_TO_DELETE_TIMEZONE]: {
     code: 500,
     message: 'Failed to delete timezone. An internal server error occurred.',
   },
-  LOGIN_FAILED: {
+  [TimezoneMessageKey.LOGIN_FAILED]: {
     code: 500,
     message: 'Failed to login. Please try again later or contact support.',
   },
 };
 
-export const getTimezoneMessage = (key: string): Message => {
+export const getTimezoneMessage = (key: TimezoneMessageKey): Message => {
   return messages[key];
 };

@@ -8,8 +8,8 @@ import { createApiResponse } from '../utils/response';
 import { ApiResponse } from '../types/Response.interface';
 import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../utils/business';
 import { LeadAttributes } from '../models/Lead/Lead.interface';
-import { getLeadMessage } from '../models/Lead/Lead.messages';
-import { getUserMessage } from '../models/User/User.messages';
+import { LeadMessageKey, getLeadMessage } from '../models/Lead/Lead.messages';
+import { UserMessageKey, getUserMessage } from '../models/User/User.messages';
 import { LeadSchema, createLeadErrorResponse } from '../models/Lead/Lead.schema';
 
 export const getLeads = async (req: Request, res: Response) => {
@@ -17,11 +17,11 @@ export const getLeads = async (req: Request, res: Response) => {
     const leads = await Lead.findAll();
     logger.info('Successfully retrieved leads');
 
-    const response: ApiResponse<Lead[]> = createApiResponse({ success: true, data: leads, message: getLeadMessage('LEAD_RETRIEVED').message, status: getLeadMessage('LEAD_RETRIEVED').code });
+    const response: ApiResponse<Lead[]> = createApiResponse({ success: true, data: leads, message: getLeadMessage(LeadMessageKey.LEAD_RETRIEVED).message, status: getLeadMessage(LeadMessageKey.LEAD_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving leads:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('FAILED_TO_RETRIEVE_LEADS').message, status: getLeadMessage('FAILED_TO_RETRIEVE_LEADS').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.FAILED_TO_RETRIEVE_LEADS).message, status: getLeadMessage(LeadMessageKey.FAILED_TO_RETRIEVE_LEADS).code });
     res.json(response);
   }
 };
@@ -33,16 +33,16 @@ export const getLeadById = async (req: Request, res: Response) => {
     const lead = await Lead.findOne({ where: { id } });
     if (!lead) {
       logger.warn(`Lead with ID ${id} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('LEAD_NOT_FOUND').message, status: getLeadMessage('LEAD_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.LEAD_NOT_FOUND).message, status: getLeadMessage(LeadMessageKey.LEAD_NOT_FOUND).code });
       return res.json(response);
     }
 
     logger.info(`Successfully retrieved lead with ID ${id}`);
-    const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage('LEAD_RETRIEVED').message, status: getLeadMessage('LEAD_RETRIEVED').code });
+    const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage(LeadMessageKey.LEAD_RETRIEVED).message, status: getLeadMessage(LeadMessageKey.LEAD_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error(`Error while retrieving lead with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('FAILED_TO_RETRIEVE_LEAD').message, status: getLeadMessage('FAILED_TO_RETRIEVE_LEAD').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.FAILED_TO_RETRIEVE_LEAD).message, status: getLeadMessage(LeadMessageKey.FAILED_TO_RETRIEVE_LEAD).code });
     res.json(response);
   }
 };
@@ -54,15 +54,15 @@ export const getLeadWithBusinesses = async (req: Request, res: Response) => {
     const lead = await Lead.findByPk(id, { include: Business });
 
     if (!lead) {
-      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('LEAD_NOT_FOUND').message, status: getLeadMessage('LEAD_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.LEAD_NOT_FOUND).message, status: getLeadMessage(LeadMessageKey.LEAD_NOT_FOUND).code });
       return res.json(response);
     }
 
-    const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage('LEAD_RETRIEVED').message, status: getLeadMessage('LEAD_RETRIEVED').code });
+    const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage(LeadMessageKey.LEAD_RETRIEVED).message, status: getLeadMessage(LeadMessageKey.LEAD_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     console.error('Error while retrieving lead:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('FAILED_TO_RETRIEVE_LEAD').message, status: getLeadMessage('FAILED_TO_RETRIEVE_LEAD').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.FAILED_TO_RETRIEVE_LEAD).message, status: getLeadMessage(LeadMessageKey.FAILED_TO_RETRIEVE_LEAD).code });
     res.json(response);
   }
 };
@@ -99,11 +99,11 @@ export const createLead = async (req: Request, res: Response) => {
       // Implement the exception
     }
 
-    const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage('LEAD_CREATED').message, status: getLeadMessage('LEAD_CREATED').code });
+    const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage(LeadMessageKey.LEAD_CREATED).message, status: getLeadMessage(LeadMessageKey.LEAD_CREATED).code });
     res.json(response);
   } catch (error) {
     console.error('Error while creating lead:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('FAILED_TO_CREATE_LEAD').message, status: getLeadMessage('FAILED_TO_CREATE_LEAD').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.FAILED_TO_CREATE_LEAD).message, status: getLeadMessage(LeadMessageKey.FAILED_TO_CREATE_LEAD).code });
     res.json(response);
   }
 };
@@ -126,23 +126,23 @@ export const updateLead = async (req: Request, res: Response) => {
     const user = await User.findByPk(userId);
     if (!user) {
       logger.warn(`User with ID ${userId} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('USER_NOT_FOUND').message, status: getUserMessage('USER_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage(UserMessageKey.USER_NOT_FOUND).message, status: getUserMessage(UserMessageKey.USER_NOT_FOUND).code });
       return res.json(response);
     }
     const lead = await Lead.findOne({ where: { id } });
     if (!lead) {
       logger.warn(`Lead with ID ${id} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('LEAD_NOT_FOUND').message, status: getLeadMessage('LEAD_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.LEAD_NOT_FOUND).message, status: getLeadMessage(LeadMessageKey.LEAD_NOT_FOUND).code });
       return res.json(response);
     }
 
     await lead.update({ userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId });
 
-    const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage('LEAD_UPDATED').message, status: getLeadMessage('LEAD_UPDATED').code });
+    const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage(LeadMessageKey.LEAD_UPDATED).message, status: getLeadMessage(LeadMessageKey.LEAD_UPDATED).code });
     res.json(response);
   } catch (error) {
     logger.error(`Error while updating lead with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('FAILED_TO_UPDATE_LEAD').message, status: getLeadMessage('FAILED_TO_UPDATE_LEAD').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.FAILED_TO_UPDATE_LEAD).message, status: getLeadMessage(LeadMessageKey.FAILED_TO_UPDATE_LEAD).code });
     res.json(response);
   }
 };
@@ -154,16 +154,16 @@ export const deleteLead = async (req: Request, res: Response) => {
     const lead = await Lead.findOne({ where: { id } });
     if (!lead) {
       logger.warn(`Lead with ID ${id} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('LEAD_NOT_FOUND').message, status: getLeadMessage('LEAD_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.LEAD_NOT_FOUND).message, status: getLeadMessage(LeadMessageKey.LEAD_NOT_FOUND).code });
       return res.json(response);
     }
     await lead.destroy();
 
-    const response: ApiResponse<null> = createApiResponse({ success: true, message: getLeadMessage('LEAD_DELETED').message, status: getLeadMessage('LEAD_DELETED').code });
+    const response: ApiResponse<null> = createApiResponse({ success: true, message: getLeadMessage(LeadMessageKey.LEAD_DELETED).message, status: getLeadMessage(LeadMessageKey.LEAD_DELETED).code });
     res.json(response);
   } catch (error) {
     logger.error(`Error while deleting lead with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('FAILED_TO_DELETE_LEAD').message, status: getLeadMessage('FAILED_TO_DELETE_LEAD').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.FAILED_TO_DELETE_LEAD).message, status: getLeadMessage(LeadMessageKey.FAILED_TO_DELETE_LEAD).code });
     res.json(response);
   }
 };
@@ -176,7 +176,7 @@ export const deleteLeads = async (req: Request, res: Response) => {
 
     if (!leads || leads.length === 0) {
       logger.warn('No leads found with the given IDs');
-      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('LEADS_NOT_FOUND').message, status: getLeadMessage('LEADS_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.LEADS_NOT_FOUND).message, status: getLeadMessage(LeadMessageKey.LEADS_NOT_FOUND).code });
       return res.json(response);
     }
 
@@ -184,11 +184,11 @@ export const deleteLeads = async (req: Request, res: Response) => {
     const deletePromises = leads.map((lead) => lead.destroy());
     await Promise.all(deletePromises);
 
-    const response: ApiResponse<null> = createApiResponse({ success: true, message: getLeadMessage('LEADS_DELETED').message, status: getLeadMessage('LEADS_DELETED').code });
+    const response: ApiResponse<null> = createApiResponse({ success: true, message: getLeadMessage(LeadMessageKey.LEADS_DELETED).message, status: getLeadMessage(LeadMessageKey.LEADS_DELETED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while deleting leads:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage('FAILED_TO_DELETE_LEADS').message, status: getLeadMessage('FAILED_TO_DELETE_LEADS').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadMessage(LeadMessageKey.FAILED_TO_DELETE_LEADS).message, status: getLeadMessage(LeadMessageKey.FAILED_TO_DELETE_LEADS).code });
     res.json(response);
   }
 };

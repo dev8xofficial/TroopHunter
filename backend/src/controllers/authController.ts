@@ -6,10 +6,11 @@ import logger from '../utils/logger';
 import { ApiResponse } from '../types/Response.interface';
 import { createApiResponse } from '../utils/response';
 import Lead from '../models/Lead/Lead.model';
-import { getUserMessage } from '../models/User/User.messages';
+import { UserMessageKey, getUserMessage } from '../models/User/User.messages';
 import { UserAttributes } from '../models/User/User.interface';
 import { AuthSchema, createAuthErrorResponse } from '../models/User/Auth.schema';
 import { UserSchema, createUserErrorResponse } from '../models/User/User.schema';
+import { AuthMessageKey, getAuthMessage } from '../models/User/Auth.messages';
 
 export const login = async (req: Request, res: Response) => {
   try {
@@ -29,7 +30,7 @@ export const login = async (req: Request, res: Response) => {
     const user: User | null = await User.findOne({ where: { email }, include: [{ model: Lead }] });
     if (!user) {
       logger.error(`User with email ${email} does not exist.`);
-      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('INVALID_EMAIL').message, status: getUserMessage('INVALID_EMAIL').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getAuthMessage(AuthMessageKey.INVALID_AUTH_EMAIL).message, status: getAuthMessage(AuthMessageKey.INVALID_AUTH_EMAIL).code });
       return res.json(response);
     }
 
@@ -37,7 +38,7 @@ export const login = async (req: Request, res: Response) => {
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
       logger.error(`Invalid password provided for user with email ${email}.`);
-      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('INVALID_PASSWORD').message, status: getUserMessage('INVALID_PASSWORD').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getAuthMessage(AuthMessageKey.INVALID_AUTH_PASSWORD).message, status: getAuthMessage(AuthMessageKey.INVALID_AUTH_PASSWORD).code });
       return res.json(response);
     }
 
@@ -46,11 +47,11 @@ export const login = async (req: Request, res: Response) => {
 
     logger.info(`User with email ${email} logged in successfully.`);
 
-    const response: ApiResponse<{ user: User | null; token: string }> = createApiResponse({ success: true, data: { user: user, token }, message: getUserMessage('LOGGED_IN').message, status: getUserMessage('LOGGED_IN').code });
+    const response: ApiResponse<{ user: User | null; token: string }> = createApiResponse({ success: true, data: { user: user, token }, message: getUserMessage(UserMessageKey.LOGGED_IN).message, status: getUserMessage(UserMessageKey.LOGGED_IN).code });
     res.json(response);
   } catch (error) {
     logger.error('Login failed:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('LOGIN_FAILED').message, status: getUserMessage('LOGIN_FAILED').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getUserMessage(UserMessageKey.LOGIN_FAILED).message, status: getUserMessage(UserMessageKey.LOGIN_FAILED).code });
     return res.json(response);
   }
 };
@@ -73,7 +74,7 @@ export const register = async (req: Request, res: Response) => {
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       logger.error(`User with email ${email} already exists.`);
-      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('DUPLICATE_USER').message, status: getUserMessage('DUPLICATE_USER').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage(UserMessageKey.DUPLICATE_USER).message, status: getUserMessage(UserMessageKey.DUPLICATE_USER).code });
       return res.json(response);
     }
 
@@ -90,12 +91,12 @@ export const register = async (req: Request, res: Response) => {
 
     logger.info(`User with email ${email} registered successfully.`);
 
-    const response: ApiResponse<{ user: User }> = createApiResponse({ success: true, data: { user: user }, message: getUserMessage('USER_CREATED').message, status: getUserMessage('USER_CREATED').code });
+    const response: ApiResponse<{ user: User }> = createApiResponse({ success: true, data: { user: user }, message: getUserMessage(UserMessageKey.USER_CREATED).message, status: getUserMessage(UserMessageKey.USER_CREATED).code });
     res.json(response);
   } catch (error) {
     logger.error('Failed to create user:', error);
 
-    const response: ApiResponse<null> = createApiResponse({ error: getUserMessage('FAILED_TO_CREATE_USER').message, status: getUserMessage('FAILED_TO_CREATE_USER').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getUserMessage(UserMessageKey.FAILED_TO_CREATE_USER).message, status: getUserMessage(UserMessageKey.FAILED_TO_CREATE_USER).code });
     return res.json(response);
   }
 };

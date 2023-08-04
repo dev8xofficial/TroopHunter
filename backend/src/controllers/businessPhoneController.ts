@@ -3,9 +3,9 @@ import BusinessPhone from '../models/BusinessPhone/BusinessPhone.model';
 import logger from '../utils/logger';
 import { ApiResponse } from '../types/Response.interface';
 import { createApiResponse } from '../utils/response';
-import { getMessage } from '../utils/message';
 import { Op } from 'sequelize';
-import { getBusinessPhoneMessage } from '../models/BusinessPhone/BusinessPhone.messages';
+import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../models/BusinessPhone/BusinessPhone.messages';
+import { RequestMessageKey, getRequestMessage } from '../messages/Request.messages';
 
 // Get business phones by number
 export const getBusinessPhonesByNumber = async (req: Request, res: Response) => {
@@ -13,12 +13,12 @@ export const getBusinessPhonesByNumber = async (req: Request, res: Response) => 
 
   // Pagination
   if (!page || !limit) {
-    const response: ApiResponse<null> = createApiResponse({ error: getMessage('MISSING_PAGE_LIMIT').message, status: getMessage('MISSING_PAGE_LIMIT').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getRequestMessage(RequestMessageKey.MISSING_REQUEST_LIMIT).message, status: getRequestMessage(RequestMessageKey.MISSING_REQUEST_LIMIT).code });
     return res.json(response);
   }
 
   if (!number) {
-    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_NUMBER').message, status: getBusinessPhoneMessage('MISSING_BUSINESS_PHONE_NUMBER').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_NUMBER).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.MISSING_BUSINESS_PHONE_NUMBER).code });
     return res.json(response);
   }
 
@@ -26,7 +26,7 @@ export const getBusinessPhonesByNumber = async (req: Request, res: Response) => 
   const limitNumber = parseInt(limit as string, 10);
 
   if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
-    const response: ApiResponse<null> = createApiResponse({ error: getMessage('INVALID_PAGE_LIMIT').message, status: getMessage('INVALID_PAGE_LIMIT').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getRequestMessage(RequestMessageKey.INVALID_REQUEST_LIMIT).message, status: getRequestMessage(RequestMessageKey.INVALID_REQUEST_LIMIT).code });
     return res.json(response);
   }
 
@@ -48,18 +48,18 @@ export const getBusinessPhonesByNumber = async (req: Request, res: Response) => 
 
     if (businessPhones.length === 0) {
       logger.warn(`No business phones found for number: ${number}`);
-      const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage('BUSINESS_PHONE_NOT_FOUND').message, status: getBusinessPhoneMessage('BUSINESS_PHONE_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).code });
       return res.json(response);
     }
 
     const totalPages = Math.ceil(count / limitNumber);
 
     logger.info(`Successfully retrieved business phones for number: ${number}`);
-    const response: ApiResponse<{ totalRecords: number; totalPages: number; businessPhones: BusinessPhone[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businessPhones }, message: getBusinessPhoneMessage('BUSINESS_PHONES_RETRIEVED').message, status: getBusinessPhoneMessage('BUSINESS_PHONES_RETRIEVED').code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; businessPhones: BusinessPhone[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businessPhones }, message: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONES_RETRIEVED).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONES_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving business phones:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage('FAILED_TO_RETRIEVE_BUSINESS_PHONES').message, status: getBusinessPhoneMessage('FAILED_TO_RETRIEVE_BUSINESS_PHONES').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONES).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONES).code });
     res.json(response);
   }
 };
@@ -69,11 +69,11 @@ export const getBusinessPhones = async (req: Request, res: Response) => {
   try {
     const businessPhones = await BusinessPhone.findAll();
     logger.info('Successfully retrieved business phones');
-    const response: ApiResponse<BusinessPhone[]> = createApiResponse({ success: true, data: businessPhones, message: getBusinessPhoneMessage('BUSINESS_PHONES_RETRIEVED').message, status: getBusinessPhoneMessage('BUSINESS_PHONES_RETRIEVED').code });
+    const response: ApiResponse<BusinessPhone[]> = createApiResponse({ success: true, data: businessPhones, message: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONES_RETRIEVED).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONES_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving business phones:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage('FAILED_TO_RETRIEVE_BUSINESS_PHONES').message, status: getBusinessPhoneMessage('FAILED_TO_RETRIEVE_BUSINESS_PHONES').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONES).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONES).code });
     res.json(response);
   }
 };
@@ -85,15 +85,15 @@ export const getBusinessPhoneById = async (req: Request, res: Response) => {
     const businessPhone = await BusinessPhone.findOne({ where: { id } });
     if (!businessPhone) {
       logger.warn(`Business phone with ID ${id} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage('BUSINESS_PHONE_NOT_FOUND').message, status: getBusinessPhoneMessage('BUSINESS_PHONE_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).code });
       return res.json(response);
     }
     logger.info(`Successfully retrieved business phone with ID ${id}`);
-    const response: ApiResponse<BusinessPhone> = createApiResponse({ success: true, data: businessPhone, message: getBusinessPhoneMessage('BUSINESS_PHONE_RETRIEVED').message, status: getBusinessPhoneMessage('BUSINESS_PHONE_RETRIEVED').code });
+    const response: ApiResponse<BusinessPhone> = createApiResponse({ success: true, data: businessPhone, message: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_RETRIEVED).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error(`Error while retrieving business phone with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage('FAILED_TO_RETRIEVE_BUSINESS_PHONE').message, status: getBusinessPhoneMessage('FAILED_TO_RETRIEVE_BUSINESS_PHONE').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONE).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONE).code });
     res.json(response);
   }
 };
@@ -104,11 +104,11 @@ export const createBusinessPhone = async (req: Request, res: Response) => {
   try {
     const newBusinessPhone = await BusinessPhone.create({ countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid });
     logger.info(`Business phone created successfully with ID ${newBusinessPhone.id}`);
-    const response: ApiResponse<BusinessPhone> = createApiResponse({ success: true, data: newBusinessPhone, message: getBusinessPhoneMessage('BUSINESS_PHONE_CREATED').message, status: getBusinessPhoneMessage('BUSINESS_PHONE_CREATED').code });
+    const response: ApiResponse<BusinessPhone> = createApiResponse({ success: true, data: newBusinessPhone, message: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_CREATED).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_CREATED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while creating business phone:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage('FAILED_TO_CREATE_BUSINESS_PHONE').message, status: getBusinessPhoneMessage('FAILED_TO_CREATE_BUSINESS_PHONE').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_CREATE_BUSINESS_PHONE).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_CREATE_BUSINESS_PHONE).code });
     res.json(response);
   }
 };
@@ -121,16 +121,16 @@ export const updateBusinessPhone = async (req: Request, res: Response) => {
     const existingBusinessPhone = await BusinessPhone.findOne({ where: { id } });
     if (!existingBusinessPhone) {
       logger.warn(`Business phone with ID ${id} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage('BUSINESS_PHONE_NOT_FOUND').message, status: getBusinessPhoneMessage('BUSINESS_PHONE_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).code });
       return res.json(response);
     }
     await existingBusinessPhone.update({ countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid });
     logger.info(`Business phone with ID ${id} updated successfully`);
-    const response: ApiResponse<BusinessPhone> = createApiResponse({ success: true, data: existingBusinessPhone, message: getBusinessPhoneMessage('BUSINESS_PHONE_UPDATED').message, status: getBusinessPhoneMessage('BUSINESS_PHONE_UPDATED').code });
+    const response: ApiResponse<BusinessPhone> = createApiResponse({ success: true, data: existingBusinessPhone, message: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_UPDATED).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_UPDATED).code });
     res.json(response);
   } catch (error) {
     logger.error(`Error while updating business phone with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage('FAILED_TO_UPDATE_BUSINESS_PHONE').message, status: getBusinessPhoneMessage('FAILED_TO_UPDATE_BUSINESS_PHONE').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_UPDATE_BUSINESS_PHONE).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_UPDATE_BUSINESS_PHONE).code });
     res.json(response);
   }
 };
@@ -142,16 +142,16 @@ export const deleteBusinessPhone = async (req: Request, res: Response) => {
     const businessPhone = await BusinessPhone.findOne({ where: { id } });
     if (!businessPhone) {
       logger.warn(`Business phone with ID ${id} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage('BUSINESS_PHONE_NOT_FOUND').message, status: getBusinessPhoneMessage('BUSINESS_PHONE_NOT_FOUND').code });
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).code });
       return res.json(response);
     }
     await businessPhone.destroy();
     logger.info(`Business phone with ID ${id} deleted successfully`);
-    const response: ApiResponse<null> = createApiResponse({ success: true, message: getBusinessPhoneMessage('BUSINESS_PHONE_DELETED').message, status: getBusinessPhoneMessage('BUSINESS_PHONE_DELETED').code });
+    const response: ApiResponse<null> = createApiResponse({ success: true, message: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_DELETED).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_DELETED).code });
     res.json(response);
   } catch (error) {
     logger.error(`Error while deleting business phone with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage('FAILED_TO_DELETE_BUSINESS_PHONE').message, status: getBusinessPhoneMessage('FAILED_TO_DELETE_BUSINESS_PHONE').code });
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_DELETE_BUSINESS_PHONE).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_DELETE_BUSINESS_PHONE).code });
     res.json(response);
   }
 };

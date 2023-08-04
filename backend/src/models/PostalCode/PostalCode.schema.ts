@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { PostalCodeAttributes } from './PostalCode.interface';
-import { getPostalCodeMessage } from './PostalCode.messages';
+import { PostalCodeMessageKey, getPostalCodeMessage } from './PostalCode.messages';
 
 export const PostalCodeSchema = Joi.object<PostalCodeAttributes>({
   id: Joi.string(),
@@ -15,20 +15,20 @@ export const createCountryErrorResponse = (error: Joi.ValidationError) => {
       case 'id':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getPostalCodeMessage('INVALID_POSTAL_CODE_ID').message;
-            errorResponse.status = getPostalCodeMessage('INVALID_POSTAL_CODE_ID').code;
+            errorResponse.error = getPostalCodeMessage(PostalCodeMessageKey.INVALID_POSTAL_CODE_ID).message;
+            errorResponse.status = getPostalCodeMessage(PostalCodeMessageKey.INVALID_POSTAL_CODE_ID).code;
             break;
         }
         break;
       case 'code':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getPostalCodeMessage('MISSING_POSTAL_CODE').message;
-            errorResponse.status = getPostalCodeMessage('MISSING_POSTAL_CODE').code;
+            errorResponse.error = getPostalCodeMessage(PostalCodeMessageKey.MISSING_POSTAL_CODE).message;
+            errorResponse.status = getPostalCodeMessage(PostalCodeMessageKey.MISSING_POSTAL_CODE).code;
             break;
           case 'string.base':
-            errorResponse.error = getPostalCodeMessage('INVALID_POSTAL_CODE').message;
-            errorResponse.status = getPostalCodeMessage('INVALID_POSTAL_CODE').code;
+            errorResponse.error = getPostalCodeMessage(PostalCodeMessageKey.INVALID_POSTAL_CODE).message;
+            errorResponse.status = getPostalCodeMessage(PostalCodeMessageKey.INVALID_POSTAL_CODE).code;
             break;
         }
         break;

@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { UserAttributes } from './User.interface';
-import { getUserMessage } from './User.messages';
+import { UserMessageKey, getUserMessage } from './User.messages';
 
 export const UserSchema = Joi.object<UserAttributes>({
   id: Joi.string(),
@@ -19,80 +19,80 @@ export const createUserErrorResponse = (error: Joi.ValidationError) => {
       case 'id':
         switch (errorDetail.type) {
           case 'string.base':
-            errorResponse.error = getUserMessage('INVALID_USER_ID').message;
-            errorResponse.status = getUserMessage('INVALID_USER_ID').code;
+            errorResponse.error = getUserMessage(UserMessageKey.INVALID_USER_ID).message;
+            errorResponse.status = getUserMessage(UserMessageKey.INVALID_USER_ID).code;
             break;
         }
         break;
       case 'firstName':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getUserMessage('MISSING_FIRST_NAME').message;
-            errorResponse.status = getUserMessage('MISSING_FIRST_NAME').code;
+            errorResponse.error = getUserMessage(UserMessageKey.MISSING_FIRST_NAME).message;
+            errorResponse.status = getUserMessage(UserMessageKey.MISSING_FIRST_NAME).code;
             break;
           case 'string.empty':
-            errorResponse.error = getUserMessage('MISSING_FIRST_NAME').message;
-            errorResponse.status = getUserMessage('MISSING_FIRST_NAME').code;
+            errorResponse.error = getUserMessage(UserMessageKey.MISSING_FIRST_NAME).message;
+            errorResponse.status = getUserMessage(UserMessageKey.MISSING_FIRST_NAME).code;
             break;
           case 'string.base':
-            errorResponse.error = getUserMessage('INVALID_FIRST_NAME').message;
-            errorResponse.status = getUserMessage('INVALID_FIRST_NAME').code;
+            errorResponse.error = getUserMessage(UserMessageKey.INVALID_FIRST_NAME).message;
+            errorResponse.status = getUserMessage(UserMessageKey.INVALID_FIRST_NAME).code;
             break;
         }
         break;
       case 'lastName':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getUserMessage('MISSING_LAST_NAME').message;
-            errorResponse.status = getUserMessage('MISSING_LAST_NAME').code;
+            errorResponse.error = getUserMessage(UserMessageKey.MISSING_LAST_NAME).message;
+            errorResponse.status = getUserMessage(UserMessageKey.MISSING_LAST_NAME).code;
             break;
           case 'string.empty':
-            errorResponse.error = getUserMessage('MISSING_LAST_NAME').message;
-            errorResponse.status = getUserMessage('MISSING_LAST_NAME').code;
+            errorResponse.error = getUserMessage(UserMessageKey.MISSING_LAST_NAME).message;
+            errorResponse.status = getUserMessage(UserMessageKey.MISSING_LAST_NAME).code;
             break;
           case 'string.base':
-            errorResponse.error = getUserMessage('INVALID_LAST_NAME').message;
-            errorResponse.status = getUserMessage('INVALID_LAST_NAME').code;
+            errorResponse.error = getUserMessage(UserMessageKey.INVALID_LAST_NAME).message;
+            errorResponse.status = getUserMessage(UserMessageKey.INVALID_LAST_NAME).code;
             break;
         }
         break;
       case 'email':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getUserMessage('MISSING_EMAIL').message;
-            errorResponse.status = getUserMessage('MISSING_EMAIL').code;
+            errorResponse.error = getUserMessage(UserMessageKey.MISSING_EMAIL).message;
+            errorResponse.status = getUserMessage(UserMessageKey.MISSING_EMAIL).code;
             break;
           case 'string.empty':
-            errorResponse.error = getUserMessage('MISSING_EMAIL').message;
-            errorResponse.status = getUserMessage('MISSING_EMAIL').code;
+            errorResponse.error = getUserMessage(UserMessageKey.MISSING_EMAIL).message;
+            errorResponse.status = getUserMessage(UserMessageKey.MISSING_EMAIL).code;
             break;
           case 'string.email':
-            errorResponse.error = getUserMessage('INVALID_EMAIL').message;
-            errorResponse.status = getUserMessage('INVALID_EMAIL').code;
+            errorResponse.error = getUserMessage(UserMessageKey.INVALID_EMAIL).message;
+            errorResponse.status = getUserMessage(UserMessageKey.INVALID_EMAIL).code;
             break;
         }
         break;
       case 'password':
         switch (errorDetail.type) {
           case 'any.required':
-            errorResponse.error = getUserMessage('MISSING_PASSWORD').message;
-            errorResponse.status = getUserMessage('MISSING_PASSWORD').code;
+            errorResponse.error = getUserMessage(UserMessageKey.MISSING_PASSWORD).message;
+            errorResponse.status = getUserMessage(UserMessageKey.MISSING_PASSWORD).code;
             break;
           case 'string.empty':
-            errorResponse.error = getUserMessage('MISSING_PASSWORD').message;
-            errorResponse.status = getUserMessage('MISSING_PASSWORD').code;
+            errorResponse.error = getUserMessage(UserMessageKey.MISSING_PASSWORD).message;
+            errorResponse.status = getUserMessage(UserMessageKey.MISSING_PASSWORD).code;
             break;
           case 'string.min':
-            errorResponse.error = getUserMessage('INVALID_PASSWORD').message;
-            errorResponse.status = getUserMessage('INVALID_PASSWORD').code;
+            errorResponse.error = getUserMessage(UserMessageKey.INVALID_PASSWORD).message;
+            errorResponse.status = getUserMessage(UserMessageKey.INVALID_PASSWORD).code;
             break;
         }
         break;
       case 'role':
         switch (errorDetail.type) {
           case 'string.valid':
-            errorResponse.error = getUserMessage('INVALID_ROLE').message;
-            errorResponse.status = getUserMessage('INVALID_ROLE').code;
+            errorResponse.error = getUserMessage(UserMessageKey.INVALID_ROLE).message;
+            errorResponse.status = getUserMessage(UserMessageKey.INVALID_ROLE).code;
             break;
         }
         break;

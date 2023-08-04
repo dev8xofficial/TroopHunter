@@ -3,27 +3,50 @@ interface Message {
   message: string;
 }
 
-const messages: Record<string, Message> = {
+export enum RequestMessageKey {
   // Success messages
 
   // Missing fields messages
-  MISSING_REQUEST_PAGE: {
+  MISSING_REQUEST_PAGE = 'MISSING_REQUEST_PAGE',
+  MISSING_REQUEST_LIMIT = 'MISSING_REQUEST_LIMIT',
+
+  // Invalid fields messages
+  INVALID_REQUEST_PAGE = 'INVALID_REQUEST_PAGE',
+  INVALID_REQUEST_LIMIT = 'INVALID_REQUEST_LIMIT',
+  INVALID_REQUEST_INCLUDE = 'INVALID_REQUEST_INCLUDE',
+
+  // Duplicate messages
+
+  // Not found messages
+
+  // Failure messages
+}
+
+const messages: Record<RequestMessageKey, Message> = {
+  // Success messages
+
+  // Missing fields messages
+  [RequestMessageKey.MISSING_REQUEST_PAGE]: {
     code: 400,
     message: 'Invalid request. The page number is missing or invalid.',
   },
-  MISSING_REQUEST_LIMIT: {
+  [RequestMessageKey.MISSING_REQUEST_LIMIT]: {
     code: 400,
     message: 'Invalid request. The limit parameter is missing or invalid.',
   },
 
   // Invalid fields messages
-  INVALID_REQUEST_PAGE: {
+  [RequestMessageKey.INVALID_REQUEST_PAGE]: {
     code: 400,
     message: 'Invalid request. The page number must be a positive integer.',
   },
-  INVALID_REQUEST_LIMIT: {
+  [RequestMessageKey.INVALID_REQUEST_LIMIT]: {
     code: 400,
     message: 'Invalid request. The limit parameter must be a positive integer.',
+  },
+  [RequestMessageKey.INVALID_REQUEST_INCLUDE]: {
+    code: 400,
+    message: "Invalid include parameter. The correct include parameter should be in the format '['Leads']'.",
   },
 
   // Duplicate messages
@@ -33,6 +56,6 @@ const messages: Record<string, Message> = {
   // Failure messages
 };
 
-export const getRequestMessage = (key: string): Message => {
+export const getRequestMessage = (key: RequestMessageKey): Message => {
   return messages[key];
 };

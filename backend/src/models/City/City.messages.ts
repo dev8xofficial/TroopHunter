@@ -3,73 +3,109 @@ interface Message {
   message: string;
 }
 
-const messages: Record<string, Message> = {
+export enum CityMessageKey {
   // Success messages
-  CITIES_RETRIEVED: {
+  CITIES_RETRIEVED = 'CITIES_RETRIEVED',
+  CITY_RETRIEVED = 'CITY_RETRIEVED',
+  CITY_CREATED = 'CITY_CREATED',
+  CITY_UPDATED = 'CITY_UPDATED',
+  CITY_DELETED = 'CITY_DELETED',
+
+  // Missing fields messages
+  MISSING_CITY = 'MISSING_CITY',
+  MISSING_STATE_CODE = 'MISSING_STATE_CODE',
+  MISSING_COUNTRY_CODE = 'MISSING_COUNTRY_CODE',
+  MISSING_CITY_LONGITUDE = 'MISSING_CITY_LONGITUDE',
+  MISSING_CITY_LATITUDE = 'MISSING_CITY_LATITUDE',
+
+  // Invalid fields messages
+  INVALID_CITY_ID = 'INVALID_CITY_ID',
+  INVALID_CITY_NAME = 'INVALID_CITY_NAME',
+  INVALID_STATE_CODE = 'INVALID_STATE_CODE',
+  INVALID_COUNTRY_CODE = 'INVALID_COUNTRY_CODE',
+  INVALID_CITY_LONGITUDE = 'INVALID_CITY_LONGITUDE',
+  INVALID_CITY_LATITUDE = 'INVALID_CITY_LATITUDE',
+
+  // Duplicate messages
+
+  // Not found messages
+  CITY_NOT_FOUND = 'CITY_NOT_FOUND',
+
+  // Failure messages
+  FAILED_TO_RETRIEVE_CITIES = 'FAILED_TO_RETRIEVE_CITIES',
+  FAILED_TO_RETRIEVE_CITY = 'FAILED_TO_RETRIEVE_CITY',
+  FAILED_TO_CREATE_CITY = 'FAILED_TO_CREATE_CITY',
+  FAILED_TO_UPDATE_CITY = 'FAILED_TO_UPDATE_CITY',
+  FAILED_TO_DELETE_CITY = 'FAILED_TO_DELETE_CITY',
+}
+
+const messages: Record<CityMessageKey, Message> = {
+  // Success messages
+  [CityMessageKey.CITIES_RETRIEVED]: {
     code: 200,
     message: 'Cities retrieved successfully.',
   },
-  CITY_RETRIEVED: {
+  [CityMessageKey.CITY_RETRIEVED]: {
     code: 200,
     message: 'City retrieved successfully.',
   },
-  CITY_CREATED: {
+  [CityMessageKey.CITY_CREATED]: {
     code: 201,
     message: 'City created successfully.',
   },
-  CITY_UPDATED: {
+  [CityMessageKey.CITY_UPDATED]: {
     code: 200,
     message: 'City updated successfully.',
   },
-  CITY_DELETED: {
+  [CityMessageKey.CITY_DELETED]: {
     code: 204,
     message: 'City deleted successfully.',
   },
 
   // Missing fields messages
-  MISSING_CITY: {
+  [CityMessageKey.MISSING_CITY]: {
     code: 400,
     message: 'Failed to create/update city. Missing required field: name.',
   },
-  MISSING_STATE_CODE: {
+  [CityMessageKey.MISSING_STATE_CODE]: {
     code: 400,
     message: 'Failed to create/update city. Missing required field: state code.',
   },
-  MISSING_COUNTRY_CODE: {
+  [CityMessageKey.MISSING_COUNTRY_CODE]: {
     code: 400,
     message: 'Failed to create/update city. Missing required field: country code.',
   },
-  MISSING_CITY_LONGITUDE: {
+  [CityMessageKey.MISSING_CITY_LONGITUDE]: {
     code: 400,
     message: 'Failed to create/update city. Missing required field: longitude.',
   },
-  MISSING_CITY_LATITUDE: {
+  [CityMessageKey.MISSING_CITY_LATITUDE]: {
     code: 400,
     message: 'Failed to create/update city. Missing required field: latitude.',
   },
 
   // Invalid fields messages
-  INVALID_CITY_ID: {
+  [CityMessageKey.INVALID_CITY_ID]: {
     code: 400,
     message: 'Invalid city ID. The city ID provided is not in a valid format. Please provide a valid UUID for the city ID.',
   },
-  INVALID_CITY_NAME: {
+  [CityMessageKey.INVALID_CITY_NAME]: {
     code: 400,
     message: 'Invalid city name. The city name must be a non-empty string.',
   },
-  INVALID_STATE_CODE: {
+  [CityMessageKey.INVALID_STATE_CODE]: {
     code: 400,
     message: 'Invalid state code. Please provide a valid state code.',
   },
-  INVALID_COUNTRY_CODE: {
+  [CityMessageKey.INVALID_COUNTRY_CODE]: {
     code: 400,
     message: 'Invalid country code. Please provide a valid country code.',
   },
-  INVALID_CITY_LONGITUDE: {
+  [CityMessageKey.INVALID_CITY_LONGITUDE]: {
     code: 400,
     message: 'Invalid city longitude. The longitude must be a valid number.',
   },
-  INVALID_CITY_LATITUDE: {
+  [CityMessageKey.INVALID_CITY_LATITUDE]: {
     code: 400,
     message: 'Invalid city latitude. The latitude must be a valid number.',
   },
@@ -77,34 +113,34 @@ const messages: Record<string, Message> = {
   // Duplicate messages
 
   // Not found messages
-  CITY_NOT_FOUND: {
+  [CityMessageKey.CITY_NOT_FOUND]: {
     code: 404,
     message: 'City not found.',
   },
 
   // Failure messages
-  FAILED_TO_RETRIEVE_CITIES: {
+  [CityMessageKey.FAILED_TO_RETRIEVE_CITIES]: {
     code: 500,
     message: 'Failed to retrieve cities. An internal server error occurred.',
   },
-  FAILED_TO_RETRIEVE_CITY: {
+  [CityMessageKey.FAILED_TO_RETRIEVE_CITY]: {
     code: 500,
     message: 'Failed to retrieve city. An internal server error occurred.',
   },
-  FAILED_TO_CREATE_CITY: {
+  [CityMessageKey.FAILED_TO_CREATE_CITY]: {
     code: 500,
     message: 'Failed to create city. An internal server error occurred.',
   },
-  FAILED_TO_UPDATE_CITY: {
+  [CityMessageKey.FAILED_TO_UPDATE_CITY]: {
     code: 500,
     message: 'Failed to update city. An internal server error occurred.',
   },
-  FAILED_TO_DELETE_CITY: {
+  [CityMessageKey.FAILED_TO_DELETE_CITY]: {
     code: 500,
     message: 'Failed to delete city. An internal server error occurred.',
   },
 };
 
-export const getCityMessage = (key: string): Message => {
+export const getCityMessage = (key: CityMessageKey): Message => {
   return messages[key];
 };
