@@ -33,27 +33,23 @@ const messages: Record<string, Message> = {
   // Missing fields messages
   MISSING_USER_ID: {
     code: 400,
-    message: 'User ID is required to create a lead.',
-  },
-  MISSING_USER_ID_UPDATE: {
-    code: 400,
-    message: 'User ID is required to update a user.',
+    message: 'User ID is required to create/update a lead.',
   },
   MISSING_FIRST_NAME: {
     code: 400,
-    message: 'Failed to update user. Missing required field: firstName.',
+    message: 'Failed to create/update user. Missing required field: firstName.',
   },
   MISSING_LAST_NAME: {
     code: 400,
-    message: 'Failed to update user. Missing required field: lastName.',
+    message: 'Failed to create/update user. Missing required field: lastName.',
   },
   MISSING_EMAIL: {
     code: 400,
-    message: 'Failed to update user. Missing required field: email.',
+    message: 'Failed to create/update user. Missing required field: email.',
   },
   MISSING_PASSWORD: {
     code: 400,
-    message: 'Failed to update user. Missing required field: password.',
+    message: 'Failed to create/update user. Missing required field: password.',
   },
 
   // Invalid fields messages

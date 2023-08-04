@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { authLoginAction } from '../store/actions/authActions';
 import { ISignInFormmValues } from '../types/formik';
@@ -11,11 +10,6 @@ const _SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const formikSchema = Yup.object().shape({
-    email: Yup.string().email('Enter valid email address.').required('Enter email address.'),
-    password: Yup.string().required('Enter password.'),
-  });
-
   const initialValues: ISignInFormmValues = {
     email: '',
     password: '',
@@ -24,7 +18,6 @@ const _SignIn = () => {
   const formik = useFormik({
     initialValues: initialValues,
     enableReinitialize: true,
-    validationSchema: formikSchema,
     onSubmit: async (values) => {
       await dispatch(
         authLoginAction({

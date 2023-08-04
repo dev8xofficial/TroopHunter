@@ -30,6 +30,10 @@ export const createUserErrorResponse = (error: Joi.ValidationError) => {
             errorResponse.error = getUserMessage('MISSING_FIRST_NAME').message;
             errorResponse.status = getUserMessage('MISSING_FIRST_NAME').code;
             break;
+          case 'string.empty':
+            errorResponse.error = getUserMessage('MISSING_FIRST_NAME').message;
+            errorResponse.status = getUserMessage('MISSING_FIRST_NAME').code;
+            break;
           case 'string.base':
             errorResponse.error = getUserMessage('INVALID_FIRST_NAME').message;
             errorResponse.status = getUserMessage('INVALID_FIRST_NAME').code;
@@ -39,6 +43,10 @@ export const createUserErrorResponse = (error: Joi.ValidationError) => {
       case 'lastName':
         switch (errorDetail.type) {
           case 'any.required':
+            errorResponse.error = getUserMessage('MISSING_LAST_NAME').message;
+            errorResponse.status = getUserMessage('MISSING_LAST_NAME').code;
+            break;
+          case 'string.empty':
             errorResponse.error = getUserMessage('MISSING_LAST_NAME').message;
             errorResponse.status = getUserMessage('MISSING_LAST_NAME').code;
             break;
@@ -54,6 +62,10 @@ export const createUserErrorResponse = (error: Joi.ValidationError) => {
             errorResponse.error = getUserMessage('MISSING_EMAIL').message;
             errorResponse.status = getUserMessage('MISSING_EMAIL').code;
             break;
+          case 'string.empty':
+            errorResponse.error = getUserMessage('MISSING_EMAIL').message;
+            errorResponse.status = getUserMessage('MISSING_EMAIL').code;
+            break;
           case 'string.email':
             errorResponse.error = getUserMessage('INVALID_EMAIL').message;
             errorResponse.status = getUserMessage('INVALID_EMAIL').code;
@@ -63,6 +75,10 @@ export const createUserErrorResponse = (error: Joi.ValidationError) => {
       case 'password':
         switch (errorDetail.type) {
           case 'any.required':
+            errorResponse.error = getUserMessage('MISSING_PASSWORD').message;
+            errorResponse.status = getUserMessage('MISSING_PASSWORD').code;
+            break;
+          case 'string.empty':
             errorResponse.error = getUserMessage('MISSING_PASSWORD').message;
             errorResponse.status = getUserMessage('MISSING_PASSWORD').code;
             break;

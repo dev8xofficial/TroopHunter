@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { ISignUpFormValues } from '../types/formik';
@@ -11,13 +10,6 @@ const _SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const formikSchema = Yup.object().shape({
-    firstName: Yup.string().required('Enter first name.'),
-    lastName: Yup.string().required('Enter last name.'),
-    email: Yup.string().email('Enter valid email address.').required('Enter email address.'),
-    password: Yup.string().required('Enter password.'),
-  });
-
   const initialValues: ISignUpFormValues = {
     firstName: '',
     lastName: '',
@@ -28,7 +20,6 @@ const _SignUp = () => {
   const formik = useFormik({
     initialValues: initialValues,
     enableReinitialize: true,
-    validationSchema: formikSchema,
     onSubmit: async (values) => {
       await dispatch(
         authRegisterAction({
