@@ -31,8 +31,48 @@ const messages: Record<string, Message> = {
     code: 400,
     message: 'Please provide city name.',
   },
+  MISSING_STATE_CODE: {
+    code: 400,
+    message: 'Failed to create/update city. Missing required field: state code.',
+  },
+  MISSING_COUNTRY_CODE: {
+    code: 400,
+    message: 'Failed to create/update city. Missing required field: country code.',
+  },
+  MISSING_CITY_LONGITUDE: {
+    code: 400,
+    message: 'Failed to create/update city. Missing required field: longitude.',
+  },
+  MISSING_CITY_LATITUDE: {
+    code: 400,
+    message: 'Failed to create/update city. Missing required field: latitude.',
+  },
 
   // Invalid fields messages
+  INVALID_CITY_ID: {
+    code: 400,
+    message: 'Invalid city ID. The city ID provided is not in a valid format. Please provide a valid UUID for the city ID.',
+  },
+  INVALID_CITY_NAME: {
+    code: 400,
+    message: 'Invalid city name. The city name must be a non-empty string.',
+  },
+  INVALID_STATE_CODE: {
+    code: 400,
+    message: 'Invalid state code. Please provide a valid state code.',
+  },
+  INVALID_COUNTRY_CODE: {
+    code: 400,
+    message: 'Invalid country code. Please provide a valid country code.',
+  },
+  INVALID_CITY_LONGITUDE: {
+    code: 400,
+    message: 'Invalid city longitude. The longitude must be a valid number.',
+  },
+  INVALID_CITY_LATITUDE: {
+    code: 400,
+    message: 'Invalid city latitude. The latitude must be a valid number.',
+  },
 
   // Duplicate messages
 
