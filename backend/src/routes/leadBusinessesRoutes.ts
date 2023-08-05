@@ -1,5 +1,8 @@
 import express from 'express';
-import { createLeadBusiness, createLeadBusinesses, getBusinessesByLeadId, getLeadBusinesses, getLeadBusiness, updateLeadBusiness, deleteLeadBusiness } from '../controllers/leadBusinessesController';
+import { getBusinessesByLeadId, getLeadBusinesses, getLeadBusiness } from '../controllers/LeadBusinessesController/LeadBusinessesController.fetch';
+import { createLeadBusiness, createLeadBusinesses } from '../controllers/LeadBusinessesController/LeadBusinessesController.create';
+import { updateLeadBusiness } from '../controllers/LeadBusinessesController/LeadBusinessesController.update';
+import { deleteLeadBusiness } from '../controllers/LeadBusinessesController/LeadBusinessesController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
 const router = express.Router();
