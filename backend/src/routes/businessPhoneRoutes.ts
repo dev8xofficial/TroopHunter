@@ -1,5 +1,8 @@
 import express from 'express';
-import { getBusinessPhonesByNumber, getBusinessPhones, getBusinessPhoneById, createBusinessPhone, updateBusinessPhone, deleteBusinessPhone } from '../controllers/businessPhoneController';
+import { getBusinessPhonesByNumber, getBusinessPhones, getBusinessPhoneById } from '../controllers/BusinessPhoneController/BusinessController.fetch';
+import { createBusinessPhone } from '../controllers/BusinessPhoneController/BusinessController.create';
+import { updateBusinessPhone } from '../controllers/BusinessPhoneController/BusinessController.update';
+import { deleteBusinessPhone } from '../controllers/BusinessPhoneController/BusinessController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
 const router = express.Router();

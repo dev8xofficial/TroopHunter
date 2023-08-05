@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import BusinessPhone from '../models/BusinessPhone/BusinessPhone.model';
-import logger from '../utils/logger';
-import { ApiResponse } from '../types/Response.interface';
-import { IBusinessPhoneResponseAttributes } from '../models/BusinessPhone/BusinessPhone.interface';
-import { createApiResponse } from '../utils/response';
+import BusinessPhone from '../../models/BusinessPhone/BusinessPhone.model';
+import logger from '../../utils/logger';
+import { ApiResponse } from '../../types/Response.interface';
+import { IBusinessPhoneResponseAttributes } from '../../models/BusinessPhone/BusinessPhone.interface';
+import { createApiResponse } from '../../utils/response';
 import { Op } from 'sequelize';
-import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../models/BusinessPhone/BusinessPhone.messages';
-import { RequestMessageKey, getRequestMessage } from '../messages/Request.messages';
+import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../models/BusinessPhone/BusinessPhone.messages';
+import { RequestMessageKey, getRequestMessage } from '../../messages/Request.messages';
 import { v4 as uuidv4 } from 'uuid';
 
 // Get business phones by number
