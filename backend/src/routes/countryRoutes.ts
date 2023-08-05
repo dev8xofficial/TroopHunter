@@ -1,5 +1,8 @@
 import express from 'express';
-import { getCountries, getCountryById, createCountry, updateCountry, deleteCountry, getCountriesByQuery } from '../controllers/countryController';
+import { getCountries, getCountryById, getCountriesByQuery } from '../controllers/CountryController/CountryController.fetch';
+import { createCountry } from '../controllers/CountryController/CountryController.create';
+import { updateCountry } from '../controllers/CountryController/CountryController.update';
+import { deleteCountry } from '../controllers/CountryController/CountryController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
 const router = express.Router();

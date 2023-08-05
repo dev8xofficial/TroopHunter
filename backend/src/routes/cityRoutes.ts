@@ -1,5 +1,8 @@
 import express from 'express';
-import { getCities, getCityById, createCity, updateCity, deleteCity, getCitiesByQuery } from '../controllers/cityController';
+import { getCities, getCityById, getCitiesByQuery } from '../controllers/CityController/CityController.fetch';
+import { createCity } from '../controllers/CityController/CityController.create';
+import { updateCity } from '../controllers/CityController/CityController.update';
+import { deleteCity } from '../controllers/CityController/CityController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
 const router = express.Router();

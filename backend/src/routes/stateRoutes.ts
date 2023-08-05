@@ -1,5 +1,8 @@
 import express from 'express';
-import { getStates, getStateById, createState, updateState, deleteState, getStatesByQuery } from '../controllers/stateController';
+import { getStates, getStateById, getStatesByQuery } from '../controllers/StateController/StateController.fetch';
+import { createState } from '../controllers/StateController/StateController.create';
+import { updateState } from '../controllers/StateController/StateController.update';
+import { deleteState } from '../controllers/StateController/StateController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
 const router = express.Router();

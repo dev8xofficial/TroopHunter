@@ -1,13 +1,11 @@
 import { Request, Response } from 'express';
-import City from '../models/City/City.model';
-import logger from '../utils/logger';
-import { ApiResponse } from '../types/Response.interface';
-import { ICityResponseAttributes } from '../models/City/City.interface';
-import { createApiResponse } from '../utils/response';
+import City from '../../models/City/City.model';
+import logger from '../../utils/logger';
+import { ApiResponse } from '../../types/Response.interface';
+import { createApiResponse } from '../../utils/response';
 import { Op } from 'sequelize';
-import { CityMessageKey, getCityMessage } from '../models/City/City.messages';
-import { RequestMessageKey, getRequestMessage } from '../messages/Request.messages';
-import { v4 as uuidv4 } from 'uuid';
+import { CityMessageKey, getCityMessage } from '../../models/City/City.messages';
+import { RequestMessageKey, getRequestMessage } from '../../messages/Request.messages';
 
 // Get cities by name and state
 export const getCitiesByQuery = async (req: Request, res: Response) => {
@@ -96,65 +94,6 @@ export const getCityById = async (req: Request, res: Response) => {
   } catch (error) {
     logger.error(`Error while retrieving city with ID ${id}:`, error);
     const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.FAILED_TO_RETRIEVE_CITY).message, status: getCityMessage(CityMessageKey.FAILED_TO_RETRIEVE_CITY).code });
-    res.json(response);
-  }
-};
-
-// Create a new city
-export const createCity = async (req: Request, res: Response) => {
-  const { name, stateCode, countryCode, longitude, latitude } = req.body;
-  try {
-    const requestData: ICityResponseAttributes = { id: uuidv4(), name, stateCode, countryCode, longitude, latitude };
-    const newCity = await City.create(requestData);
-    logger.info(`City created successfully with ID ${newCity.id}`);
-    const response: ApiResponse<City> = createApiResponse({ success: true, data: newCity, message: getCityMessage(CityMessageKey.CITY_CREATED).message, status: getCityMessage(CityMessageKey.CITY_CREATED).code });
-    res.json(response);
-  } catch (error) {
-    logger.error('Error while creating city:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.FAILED_TO_CREATE_CITY).message, status: getCityMessage(CityMessageKey.FAILED_TO_CREATE_CITY).code });
-    res.json(response);
-  }
-};
-
-// Update a city by ID
-export const updateCity = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const { name, stateCode, countryCode, longitude, latitude } = req.body;
-  try {
-    const existingCity = await City.findOne({ where: { id } });
-    if (!existingCity) {
-      logger.warn(`City with ID ${id} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.CITY_NOT_FOUND).message, status: getCityMessage(CityMessageKey.CITY_NOT_FOUND).code });
-      return res.json(response);
-    }
-    await existingCity.update({ name, stateCode, countryCode, longitude, latitude });
-    logger.info(`City with ID ${id} updated successfully`);
-    const response: ApiResponse<City> = createApiResponse({ success: true, data: existingCity, message: getCityMessage(CityMessageKey.CITY_UPDATED).message, status: getCityMessage(CityMessageKey.CITY_UPDATED).code });
-    res.json(response);
-  } catch (error) {
-    logger.error(`Error while updating city with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.FAILED_TO_UPDATE_CITY).message, status: getCityMessage(CityMessageKey.FAILED_TO_UPDATE_CITY).code });
-    res.json(response);
-  }
-};
-
-// Delete a city by ID
-export const deleteCity = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  try {
-    const city = await City.findOne({ where: { id } });
-    if (!city) {
-      logger.warn(`City with ID ${id} not found`);
-      const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.CITY_NOT_FOUND).message, status: getCityMessage(CityMessageKey.CITY_NOT_FOUND).code });
-      return res.json(response);
-    }
-    await city.destroy();
-    logger.info(`City with ID ${id} deleted successfully`);
-    const response: ApiResponse<null> = createApiResponse({ success: true, message: getCityMessage(CityMessageKey.CITY_DELETED).message, status: getCityMessage(CityMessageKey.CITY_DELETED).code });
-    res.json(response);
-  } catch (error) {
-    logger.error(`Error while deleting city with ID ${id}:`, error);
-    const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.FAILED_TO_DELETE_CITY).message, status: getCityMessage(CityMessageKey.FAILED_TO_DELETE_CITY).code });
     res.json(response);
   }
 };
