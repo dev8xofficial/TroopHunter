@@ -1,5 +1,8 @@
 import express from 'express';
-import { getBusinessesByQuery, getBusinesses, getBusinessById, createBusiness, updateBusiness, deleteBusiness } from '../controllers/businessController';
+import { getBusinessesByQuery, getBusinesses, getBusinessById } from '../controllers/BusinessController/BusinessController.fetch';
+import { createBusiness } from '../controllers/BusinessController/BusinessController.create';
+import { updateBusiness } from '../controllers/BusinessController/BusinessController.update';
+import { deleteBusiness } from '../controllers/BusinessController/BusinessController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
 const router = express.Router();
