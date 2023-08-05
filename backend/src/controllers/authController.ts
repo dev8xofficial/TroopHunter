@@ -16,8 +16,6 @@ import { v4 as uuidv4 } from 'uuid';
 export const login = async (req: Request, res: Response) => {
   try {
     const { error, value: validatedData } = AuthSchema.validate(req.body, { abortEarly: false });
-    const { email, password } = validatedData as IUserRequestAttributes;
-
     if (error) {
       const errorResponse = createAuthErrorResponse(error);
       const response: ApiResponse<null> = createApiResponse({
@@ -26,6 +24,8 @@ export const login = async (req: Request, res: Response) => {
       });
       return res.json(response);
     }
+
+    const { email, password }: IUserRequestAttributes = validatedData;
 
     // Check if the user exists
     const user: User | null = await User.findOne({ where: { email }, include: [{ model: Lead }] });
@@ -60,8 +60,6 @@ export const login = async (req: Request, res: Response) => {
 export const register = async (req: Request, res: Response) => {
   try {
     const { error, value: validatedData } = UserSchema.validate(req.body, { abortEarly: false });
-    const { firstName, lastName, email, password } = validatedData as IUserRequestAttributes;
-
     if (error) {
       const errorResponse = createUserErrorResponse(error);
       const response: ApiResponse<null> = createApiResponse({
@@ -70,6 +68,8 @@ export const register = async (req: Request, res: Response) => {
       });
       return res.json(response);
     }
+
+    const { firstName, lastName, email, password }: IUserRequestAttributes = validatedData;
 
     // Check if the user already exists
     const existingUser = await User.findOne({ where: { email } });
