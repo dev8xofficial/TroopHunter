@@ -1,5 +1,8 @@
 import express from 'express';
-import { getLeads, getLeadById, createLead, updateLead, deleteLead, deleteLeads } from '../controllers/leadController';
+import { getLeads, getLeadById } from '../controllers/LeadController/LeadController.fetch';
+import { createLead } from '../controllers/LeadController/LeadController.create';
+import { updateLead } from '../controllers/LeadController/LeadController.update';
+import { deleteLead, deleteLeads } from '../controllers/LeadController/LeadController.delete';
 
 const router = express.Router();
 

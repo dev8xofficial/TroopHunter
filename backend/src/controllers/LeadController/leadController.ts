@@ -1,16 +1,16 @@
 import { Request, Response } from 'express';
-import Lead from '../models/Lead/Lead.model';
-import User from '../models/User/User.model';
-import logger from '../utils/logger';
-import Business from '../models/Business/Business.model';
-import LeadBusiness from '../models/LeadBusiness/LeadBusiness.model';
-import { createApiResponse } from '../utils/response';
-import { ApiResponse } from '../types/Response.interface';
-import { ILeadAttributesRequestAttributes, ILeadAttributesResponseAttributes } from '../models/Lead/Lead.interface';
-import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../utils/business';
-import { LeadMessageKey, getLeadMessage } from '../models/Lead/Lead.messages';
-import { UserMessageKey, getUserMessage } from '../models/User/User.messages';
-import { LeadSchema, createLeadErrorResponse } from '../models/Lead/Lead.schema';
+import Lead from '../../models/Lead/Lead.model';
+import User from '../../models/User/User.model';
+import logger from '../../utils/logger';
+import Business from '../../models/Business/Business.model';
+import LeadBusiness from '../../models/LeadBusiness/LeadBusiness.model';
+import { createApiResponse } from '../../utils/response';
+import { ApiResponse } from '../../types/Response.interface';
+import { ILeadAttributesRequestAttributes, ILeadAttributesResponseAttributes } from '../../models/Lead/Lead.interface';
+import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../../utils/business';
+import { LeadMessageKey, getLeadMessage } from '../../models/Lead/Lead.messages';
+import { UserMessageKey, getUserMessage } from '../../models/User/User.messages';
+import { LeadSchema, createLeadErrorResponse } from '../../models/Lead/Lead.schema';
 import { v4 as uuidv4 } from 'uuid';
 
 export const getLeads = async (req: Request, res: Response) => {
