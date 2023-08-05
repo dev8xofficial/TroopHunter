@@ -1,5 +1,6 @@
 import express from 'express';
-import { getQueues, getQueueById, updateQueue } from '../controllers/queueController';
+import { getQueues, getQueueById } from '../controllers/QueueController/QueueController.fetch';
+import { updateQueue } from '../controllers/QueueController/QueueController.update';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
 const router = express.Router();

@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
-import User from '../models/User/User.model';
-import logger from '../utils/logger';
-import { isValidJSON } from '../utils/helper';
-import { ApiResponse } from '../types/Response.interface';
-import { IUserRequestAttributes, IUserResponseAttributes } from '../models/User/User.interface';
-import { createApiResponse } from '../utils/response';
-import { UserMessageKey, getUserMessage } from '../models/User/User.messages';
-import { UserSchema, createUserErrorResponse } from '../models/User/User.schema';
-import { RequestMessageKey, getRequestMessage } from '../messages/Request.messages';
+import User from '../../models/User/User.model';
+import logger from '../../utils/logger';
+import { isValidJSON } from '../../utils/helper';
+import { ApiResponse } from '../../types/Response.interface';
+import { IUserRequestAttributes, IUserResponseAttributes } from '../../models/User/User.interface';
+import { createApiResponse } from '../../utils/response';
+import { UserMessageKey, getUserMessage } from '../../models/User/User.messages';
+import { UserSchema, createUserErrorResponse } from '../../models/User/User.schema';
+import { RequestMessageKey, getRequestMessage } from '../../messages/Request.messages';
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
