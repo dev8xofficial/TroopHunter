@@ -4,18 +4,19 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import logger from '../utils/logger';
 import { ApiResponse } from '../types/Response.interface';
+import { IUserRequestAttributes, IUserResponseAttributes } from '../models/User/User.interface';
 import { createApiResponse } from '../utils/response';
 import Lead from '../models/Lead/Lead.model';
 import { UserMessageKey, getUserMessage } from '../models/User/User.messages';
-import { UserAttributes } from '../models/User/User.interface';
 import { AuthSchema, createAuthErrorResponse } from '../models/User/Auth.schema';
 import { UserSchema, createUserErrorResponse } from '../models/User/User.schema';
 import { AuthMessageKey, getAuthMessage } from '../models/User/Auth.messages';
+import { v4 as uuidv4 } from 'uuid';
 
 export const login = async (req: Request, res: Response) => {
   try {
     const { error, value: validatedData } = AuthSchema.validate(req.body, { abortEarly: false });
-    const { email, password } = validatedData as UserAttributes;
+    const { email, password } = validatedData as IUserRequestAttributes;
 
     if (error) {
       const errorResponse = createAuthErrorResponse(error);
@@ -59,7 +60,7 @@ export const login = async (req: Request, res: Response) => {
 export const register = async (req: Request, res: Response) => {
   try {
     const { error, value: validatedData } = UserSchema.validate(req.body, { abortEarly: false });
-    const { firstName, lastName, email, password } = validatedData as UserAttributes;
+    const { firstName, lastName, email, password } = validatedData as IUserRequestAttributes;
 
     if (error) {
       const errorResponse = createUserErrorResponse(error);
@@ -82,12 +83,8 @@ export const register = async (req: Request, res: Response) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create the user
-    const user = await User.create({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
-    });
+    const requestData: IUserResponseAttributes = { id: uuidv4(), firstName, lastName, email, password: hashedPassword };
+    const user = await User.create(requestData);
 
     logger.info(`User with email ${email} registered successfully.`);
 

@@ -2,10 +2,12 @@ import { Request, Response } from 'express';
 import State from '../models/State/State.model';
 import logger from '../utils/logger';
 import { ApiResponse } from '../types/Response.interface';
+import { IStateResponseAttributes } from '../models/State/State.interface';
 import { createApiResponse } from '../utils/response';
 import { Op } from 'sequelize';
 import { StateMessageKey, getStateMessage } from '../models/State/State.messages';
 import { RequestMessageKey, getRequestMessage } from '../messages/Request.messages';
+import { v4 as uuidv4 } from 'uuid';
 
 // Get states by name and state
 export const getStatesByQuery = async (req: Request, res: Response) => {
@@ -102,7 +104,8 @@ export const getStateById = async (req: Request, res: Response) => {
 export const createState = async (req: Request, res: Response) => {
   const { name, code, countryCode, longitude, latitude } = req.body;
   try {
-    const newState = await State.create({ name, code, countryCode, longitude, latitude });
+    const requestData: IStateResponseAttributes = { id: uuidv4(), name, code, countryCode, longitude, latitude };
+    const newState = await State.create(requestData);
     logger.info(`State created successfully with ID ${newState.id}`);
     const response: ApiResponse<State> = createApiResponse({ success: true, data: newState, message: getStateMessage(StateMessageKey.STATE_CREATED).message, status: getStateMessage(StateMessageKey.STATE_CREATED).code });
     res.json(response);

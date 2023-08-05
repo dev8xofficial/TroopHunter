@@ -6,11 +6,12 @@ import Business from '../models/Business/Business.model';
 import LeadBusiness from '../models/LeadBusiness/LeadBusiness.model';
 import { createApiResponse } from '../utils/response';
 import { ApiResponse } from '../types/Response.interface';
+import { ILeadAttributesRequestAttributes, ILeadAttributesResponseAttributes } from '../models/Lead/Lead.interface';
 import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../utils/business';
-import { LeadAttributes } from '../models/Lead/Lead.interface';
 import { LeadMessageKey, getLeadMessage } from '../models/Lead/Lead.messages';
 import { UserMessageKey, getUserMessage } from '../models/User/User.messages';
 import { LeadSchema, createLeadErrorResponse } from '../models/Lead/Lead.schema';
+import { v4 as uuidv4 } from 'uuid';
 
 export const getLeads = async (req: Request, res: Response) => {
   try {
@@ -69,7 +70,7 @@ export const getLeadWithBusinesses = async (req: Request, res: Response) => {
 
 export const createLead = async (req: Request, res: Response) => {
   const { error, value: validatedData } = LeadSchema.validate(req.body, { abortEarly: false });
-  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = validatedData as LeadAttributes;
+  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = validatedData as ILeadAttributesRequestAttributes;
 
   try {
     if (error) {
@@ -81,7 +82,8 @@ export const createLead = async (req: Request, res: Response) => {
       return res.json(response);
     }
 
-    const lead = await Lead.create({ userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId });
+    const requestData: ILeadAttributesResponseAttributes = { id: uuidv4(), userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId };
+    const lead = await Lead.create(requestData);
 
     let businesses: Business[] | undefined = [];
 
@@ -111,7 +113,7 @@ export const createLead = async (req: Request, res: Response) => {
 export const updateLead = async (req: Request, res: Response) => {
   const { id } = req.params as { id: string };
   const { error, value: validatedData } = LeadSchema.validate(req.body, { abortEarly: false });
-  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = validatedData as LeadAttributes;
+  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = validatedData as ILeadAttributesRequestAttributes;
 
   try {
     if (error) {

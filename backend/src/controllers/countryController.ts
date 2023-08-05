@@ -6,6 +6,7 @@ import { createApiResponse } from '../utils/response';
 import { Op } from 'sequelize';
 import { CountryMessageKey, getCountryMessage } from '../models/Country/Country.messages';
 import { RequestMessageKey, getRequestMessage } from '../messages/Request.messages';
+import { v4 as uuidv4 } from 'uuid';
 
 // Get countries by name and country
 export const getCountriesByQuery = async (req: Request, res: Response) => {
@@ -102,7 +103,8 @@ export const getCountryById = async (req: Request, res: Response) => {
 export const createCountry = async (req: Request, res: Response) => {
   const { name, code, phoneCode, currency, longitude, latitude } = req.body;
   try {
-    const newCountry = await Country.create({ name, code, phoneCode, currency, longitude, latitude });
+    const requestData = { id: uuidv4(), name, code, phoneCode, currency, longitude, latitude };
+    const newCountry = await Country.create(requestData);
     logger.info(`Country created successfully with ID ${newCountry.id}`);
     const response: ApiResponse<Country> = createApiResponse({ success: true, data: newCountry, message: getCountryMessage(CountryMessageKey.COUNTRY_CREATED).message, status: getCountryMessage(CountryMessageKey.COUNTRY_CREATED).code });
     res.json(response);

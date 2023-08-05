@@ -1,7 +1,7 @@
 import Joi from 'joi';
-import { BusinessCategoryAttributes } from './BusinessCategory.interface';
+import { IBusinessCategoryResponseAttributes } from './BusinessCategory.interface';
 
-export const BusinessCategorySchema = Joi.object<BusinessCategoryAttributes>({
+export const BusinessCategorySchema = Joi.object<IBusinessCategoryResponseAttributes>({
   id: Joi.string(),
   name: Joi.string().required(),
 });

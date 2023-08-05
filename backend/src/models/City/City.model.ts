@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/database';
-import { CityAttributes } from './City.interface';
+import { ICityResponseAttributes } from './City.interface';
 
-class City extends Model<CityAttributes> implements CityAttributes {
+class City extends Model<ICityResponseAttributes> implements ICityResponseAttributes {
   public id!: string;
   public name!: string;
   public stateCode!: string;

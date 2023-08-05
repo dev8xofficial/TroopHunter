@@ -1,4 +1,7 @@
-export interface BusinessSourceAttributes {
-  id?: string;
+export interface IBusinessSourceRequestAttributes {
   sourceName: string;
+}
+
+export interface IBusinessSourceResponseAttributes extends IBusinessSourceRequestAttributes {
+  id: string;
 }

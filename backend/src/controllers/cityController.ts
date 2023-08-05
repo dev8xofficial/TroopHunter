@@ -2,10 +2,12 @@ import { Request, Response } from 'express';
 import City from '../models/City/City.model';
 import logger from '../utils/logger';
 import { ApiResponse } from '../types/Response.interface';
+import { ICityResponseAttributes } from '../models/City/City.interface';
 import { createApiResponse } from '../utils/response';
 import { Op } from 'sequelize';
 import { CityMessageKey, getCityMessage } from '../models/City/City.messages';
 import { RequestMessageKey, getRequestMessage } from '../messages/Request.messages';
+import { v4 as uuidv4 } from 'uuid';
 
 // Get cities by name and state
 export const getCitiesByQuery = async (req: Request, res: Response) => {
@@ -102,7 +104,8 @@ export const getCityById = async (req: Request, res: Response) => {
 export const createCity = async (req: Request, res: Response) => {
   const { name, stateCode, countryCode, longitude, latitude } = req.body;
   try {
-    const newCity = await City.create({ name, stateCode, countryCode, longitude, latitude });
+    const requestData: ICityResponseAttributes = { id: uuidv4(), name, stateCode, countryCode, longitude, latitude };
+    const newCity = await City.create(requestData);
     logger.info(`City created successfully with ID ${newCity.id}`);
     const response: ApiResponse<City> = createApiResponse({ success: true, data: newCity, message: getCityMessage(CityMessageKey.CITY_CREATED).message, status: getCityMessage(CityMessageKey.CITY_CREATED).code });
     res.json(response);

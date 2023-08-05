@@ -1,4 +1,7 @@
-export interface PostalCodeAttributes {
-  id?: string;
+export interface IPostalCodeRequestAttributes {
   code: string;
+}
+
+export interface IPostalCodeResponseAttributes extends IPostalCodeRequestAttributes {
+  id: string;
 }

@@ -1,8 +1,8 @@
 import Joi from 'joi';
-import { CityAttributes } from './City.interface';
+import { ICityResponseAttributes } from './City.interface';
 import { CityMessageKey, getCityMessage } from './City.messages';
 
-export const CitySchema = Joi.object<CityAttributes>({
+export const CitySchema = Joi.object<ICityResponseAttributes>({
   id: Joi.string(),
   name: Joi.string().required(),
   stateCode: Joi.string().required(),

@@ -1,7 +1,6 @@
-import { BusinessAttributes } from '../Business/Business.interface';
+import { IBusinessResponseAttributes } from '../Business/Business.interface';
 
-export interface LeadAttributes extends Omit<BusinessAttributes, 'name' | 'longitude' | 'latitude' | 'geoPoint' | 'phoneId' | 'sourceId'> {
-  id?: string;
+export interface ILeadAttributesRequestAttributes extends Omit<IBusinessResponseAttributes, 'name' | 'longitude' | 'latitude' | 'geoPoint' | 'phoneId' | 'sourceId'> {
   userId: string;
   businessIds?: string[];
   title: string;
@@ -9,4 +8,8 @@ export interface LeadAttributes extends Omit<BusinessAttributes, 'name' | 'longi
   phone?: string;
   sponsoredAd?: boolean;
   businessCount: number;
+}
+
+export interface ILeadAttributesResponseAttributes extends ILeadAttributesRequestAttributes {
+  id: string;
 }

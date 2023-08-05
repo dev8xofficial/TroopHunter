@@ -1,9 +1,9 @@
 import { Transaction } from 'sequelize';
 import BusinessRating from '../models/BusinessRating/BusinessRating.model';
-import { BusinessRatingAttributes } from '../models/BusinessRating/BusinessRating.interface';
+import { IBusinessRatingResponseAttributes } from '../models/BusinessRating/BusinessRating.interface';
 import logger from '../utils/logger';
 
-export const findOrCreateBusinessRating = async (ratingValue: number, transaction: Transaction): Promise<BusinessRatingAttributes | undefined> => {
+export const findOrCreateBusinessRating = async (ratingValue: number, transaction: Transaction): Promise<IBusinessRatingResponseAttributes | undefined> => {
   try {
     const [record, created] = await BusinessRating.findOrCreate({
       where: { ratingValue },
@@ -12,10 +12,10 @@ export const findOrCreateBusinessRating = async (ratingValue: number, transactio
 
     if (created) {
       logger.info(`Business rating ${ratingValue} created successfully.`);
-      return record.toJSON() as BusinessRatingAttributes;
+      return record.toJSON() as IBusinessRatingResponseAttributes;
     } else {
       logger.info(`Business rating ${ratingValue} already exists.`);
-      return record.toJSON() as BusinessRatingAttributes;
+      return record.toJSON() as IBusinessRatingResponseAttributes;
     }
   } catch (error) {
     logger.error('Failed to find or create business rating:', error);

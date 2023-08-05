@@ -1,8 +1,8 @@
 import Joi from 'joi';
-import { UserAttributes } from './User.interface';
+import { IUserResponseAttributes } from './User.interface';
 import { UserMessageKey, getUserMessage } from './User.messages';
 
-export const UserSchema = Joi.object<UserAttributes>({
+export const UserSchema = Joi.object<IUserResponseAttributes>({
   id: Joi.string(),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),

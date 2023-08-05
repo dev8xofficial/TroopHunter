@@ -1,14 +1,19 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
 import Sequelize from '../config/database';
-import { BusinessAttributes } from '../models/Business/Business.interface';
-import { BusinessRatingAttributes } from '../models/BusinessRating/BusinessRating.interface';
-import { BusinessSourceAttributes } from '../models/BusinessSource/BusinessSource.interface';
-import { BusinessOpeningHourAttributes } from '../models/BusinessOpeningHour/BusinessOpeningHour.interface';
-import { BusinessClosingHourAttributes } from '../models/BusinessClosingHour/BusinessClosingHour.interface';
-import { PostalCodeAttributes } from '../models/PostalCode/PostalCode.interface';
-import { BusinessPhoneAttributes } from '../models/BusinessPhone/BusinessPhone.interface';
-import { TimezoneAttributes } from '../models/Timezone/Timezone.interface';
+import { IBusinessResponseAttributes } from '../models/Business/Business.interface';
+import { IBusinessRatingResponseAttributes } from '../models/BusinessRating/BusinessRating.interface';
+import { IBusinessSourceResponseAttributes } from '../models/BusinessSource/BusinessSource.interface';
+import { IBusinessOpeningHourResponseAttributes } from '../models/BusinessOpeningHour/BusinessOpeningHour.interface';
+import { IBusinessClosingHourResponseAttributes } from '../models/BusinessClosingHour/BusinessClosingHour.interface';
+import { IPostalCodeResponseAttributes } from '../models/PostalCode/PostalCode.interface';
+import { IBusinessPhoneResponseAttributes } from '../models/BusinessPhone/BusinessPhone.interface';
+import { ITimezoneResponseAttributes } from '../models/Timezone/Timezone.interface';
+import { ApiResponse } from '../types/Response.interface';
+import { ICityResponseAttributes } from '../models/City/City.interface';
+import { IStateResponseAttributes } from '../models/State/State.interface';
+import { ICountryResponseAttributes } from '../models/Country/Country.interface';
+import { IBusinessCategoryResponseAttributes } from '../models/BusinessCategory/BusinessCategory.interface';
 import Business from '../models/Business/Business.model';
 import { Point } from 'geojson';
 import { findOrCreateBusinessPhone, getPhoneWithDetails } from '../utils/phone';
@@ -22,18 +27,14 @@ import { findOrCreateBusinessOpeningHour } from '../utils/openingHour';
 import { findOrCreateBusinessClosingHour } from '../utils/closingHour';
 import logger from '../utils/logger';
 import { createApiResponse } from '../utils/response';
-import { ApiResponse } from '../types/Response.interface';
-import { CityAttributes } from '../models/City/City.interface';
-import { StateAttributes } from '../models/State/State.interface';
-import { CountryAttributes } from '../models/Country/Country.interface';
 import BusinessPhone from '../models/BusinessPhone/BusinessPhone.model';
 import Country from '../models/Country/Country.model';
 import State from '../models/State/State.model';
 import City from '../models/City/City.model';
-import { BusinessCategoryAttributes } from '../models/BusinessCategory/BusinessCategory.interface';
 import { BusinessMessageKey, getBusinessMessage } from '../models/Business/Business.messages';
 import { RequestMessageKey, getRequestMessage } from '../messages/Request.messages';
 // import BusinessPhoto from '../models/BusinessPhoto';
+import { v4 as uuidv4 } from 'uuid';
 
 export const getBusinessesByQuery = async (req: Request, res: Response) => {
   const { name, businessDomain, categoryId, address, cityId, cityName, stateId, stateName, countryId, countryName, longitude, latitude, range, postalCodeId, phoneId, phone, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId, page, limit, include } = req.query;
@@ -272,7 +273,8 @@ export const createBusiness = async (req: Request, res: Response) => {
 
   try {
     const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
-    let payload: BusinessAttributes = {
+    let payload: IBusinessResponseAttributes = {
+      id: uuidv4(),
       name,
       businessDomain,
       address,
@@ -324,58 +326,58 @@ export const createBusiness = async (req: Request, res: Response) => {
     }
 
     if (category) {
-      const categoryFromDB: BusinessCategoryAttributes | undefined = await findOrCreateBusinessCategory(category, transaction);
+      const categoryFromDB: IBusinessCategoryResponseAttributes | undefined = await findOrCreateBusinessCategory(category, transaction);
       payload.categoryId = categoryFromDB?.id;
     }
 
     if (city) {
-      const cityFromDB: CityAttributes | undefined = await findCityByName(city, transaction);
+      const cityFromDB: ICityResponseAttributes | undefined = await findCityByName(city, transaction);
       payload.cityId = cityFromDB?.id;
     }
 
     if (state) {
-      const stateFromDB: StateAttributes | undefined = await findStateByName(state, transaction);
+      const stateFromDB: IStateResponseAttributes | undefined = await findStateByName(state, transaction);
       payload.stateId = stateFromDB?.id;
     }
 
     if (country) {
-      const countryFromDB: CountryAttributes | undefined = await findCountryByName(country, transaction);
+      const countryFromDB: ICountryResponseAttributes | undefined = await findCountryByName(country, transaction);
       payload.countryId = countryFromDB?.id;
     }
 
     if (postalCode) {
-      const postalCodeFromDB: PostalCodeAttributes | undefined = await findOrCreatePostalCode(postalCode, transaction);
+      const postalCodeFromDB: IPostalCodeResponseAttributes | undefined = await findOrCreatePostalCode(postalCode, transaction);
       payload.postalCodeId = postalCodeFromDB?.id;
     }
 
     if (phone) {
       const phoneWithDetails = getPhoneWithDetails(phone);
-      const phoneFromDB: BusinessPhoneAttributes | undefined = await findOrCreateBusinessPhone(phoneWithDetails, transaction);
+      const phoneFromDB: IBusinessPhoneResponseAttributes | undefined = await findOrCreateBusinessPhone(phoneWithDetails, transaction);
       payload.phoneId = phoneFromDB?.id;
     }
 
     if (rating !== undefined && rating !== null) {
-      const ratingFromDB: BusinessRatingAttributes | undefined = await findOrCreateBusinessRating(rating, transaction);
+      const ratingFromDB: IBusinessRatingResponseAttributes | undefined = await findOrCreateBusinessRating(rating, transaction);
       payload.ratingId = ratingFromDB?.id;
     }
 
     if (source) {
-      const sourceFromDB: BusinessSourceAttributes | undefined = await findOrCreateBusinessSource(source, transaction);
+      const sourceFromDB: IBusinessSourceResponseAttributes | undefined = await findOrCreateBusinessSource(source, transaction);
       payload.sourceId = sourceFromDB?.id;
     }
 
     if (timezone) {
-      const timezoneFromDB: TimezoneAttributes | undefined = await findOrCreateTimezone(timezone, transaction);
+      const timezoneFromDB: ITimezoneResponseAttributes | undefined = await findOrCreateTimezone(timezone, transaction);
       payload.timezoneId = timezoneFromDB?.id;
     }
 
     if (openingHour) {
-      const openingHourFromDB: BusinessOpeningHourAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour, transaction);
+      const openingHourFromDB: IBusinessOpeningHourResponseAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour, transaction);
       payload.openingHourId = openingHourFromDB?.id;
     }
 
     if (closingHour) {
-      const closingHourFromDB: BusinessClosingHourAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour, transaction);
+      const closingHourFromDB: IBusinessClosingHourResponseAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour, transaction);
       payload.closingHourId = closingHourFromDB?.id;
     }
 

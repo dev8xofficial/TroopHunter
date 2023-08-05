@@ -1,7 +1,6 @@
 import { GeoPointAttributes } from '../../types/GeoPoint.interface';
 
-export interface BusinessAttributes {
-  id?: string;
+export interface IBusinessRequestAttributes {
   name: string;
   businessDomain?: string;
   categoryId?: string;
@@ -24,4 +23,8 @@ export interface BusinessAttributes {
   sponsoredAd?: boolean;
   openingHourId?: string;
   closingHourId?: string;
+}
+
+export interface IBusinessResponseAttributes extends IBusinessRequestAttributes {
+  id: string;
 }

@@ -1,8 +1,8 @@
 import Joi from 'joi';
-import { UserAttributes } from './User.interface';
+import { IUserRequestAttributes } from './User.interface';
 import { AuthMessageKey, getAuthMessage } from './Auth.messages';
 
-export const AuthSchema = Joi.object<UserAttributes>({
+export const AuthSchema = Joi.object<IUserRequestAttributes>({
   email: Joi.string().email().required(),
   password: Joi.string().required().min(8),
 });

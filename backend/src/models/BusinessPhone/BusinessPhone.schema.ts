@@ -1,8 +1,8 @@
 import Joi from 'joi';
-import { BusinessPhoneAttributes } from './BusinessPhone.interface';
+import { IBusinessPhoneResponseAttributes } from './BusinessPhone.interface';
 import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from './BusinessPhone.messages';
 
-export const BusinessPhoneSchema = Joi.object<BusinessPhoneAttributes>({
+export const BusinessPhoneSchema = Joi.object<IBusinessPhoneResponseAttributes>({
   id: Joi.string(),
   countryCode: Joi.string().required(),
   regionCode: Joi.string().required(),

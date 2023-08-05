@@ -1,8 +1,8 @@
 import Joi from 'joi';
-import { StateAttributes } from './State.interface';
+import { IStateResponseAttributes } from './State.interface';
 import { StateMessageKey, getStateMessage } from './State.messages';
 
-export const StateSchema = Joi.object<StateAttributes>({
+export const StateSchema = Joi.object<IStateResponseAttributes>({
   id: Joi.string(),
   name: Joi.string().required(),
   code: Joi.string().required(),

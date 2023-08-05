@@ -1,10 +1,10 @@
 import { DataTypes, Model, HasManyCreateAssociationMixin } from 'sequelize';
 import sequelize from '../../config/database';
-import { UserAttributes } from './User.interface';
+import { IUserResponseAttributes } from './User.interface';
 import Lead from '../Lead/Lead.model';
 
-class User extends Model<UserAttributes> implements UserAttributes {
-  public id?: string;
+class User extends Model<IUserResponseAttributes> implements IUserResponseAttributes {
+  public id!: string;
   public firstName!: string;
   public lastName!: string;
   public email!: string;

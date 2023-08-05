@@ -1,8 +1,8 @@
 import Joi from 'joi';
-import { CountryAttributes } from './Country.interface';
+import { ICountryResponseAttributes } from './Country.interface';
 import { CountryMessageKey, getCountryMessage } from './Country.messages';
 
-export const CountrySchema = Joi.object<CountryAttributes>({
+export const CountrySchema = Joi.object<ICountryResponseAttributes>({
   id: Joi.string(),
   name: Joi.string().required(),
   code: Joi.string().required(),

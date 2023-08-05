@@ -1,9 +1,9 @@
 import Joi from 'joi';
-import { LeadAttributes } from './Lead.interface';
+import { ILeadAttributesResponseAttributes } from './Lead.interface';
 import { LeadMessageKey, getLeadMessage } from './Lead.messages';
 import { BusinessSchema } from '../Business/Business.schema';
 
-export const LeadSchema = BusinessSchema.append<LeadAttributes>({
+export const LeadSchema = BusinessSchema.append<ILeadAttributesResponseAttributes>({
   id: Joi.string(),
   userId: Joi.string().uuid().required(),
   businessIds: Joi.array().items(Joi.string().uuid()).optional(),

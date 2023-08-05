@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/database';
-import { QueueAttributes } from './Queue.interface';
+import { IQueueResponseAttributes } from './Queue.interface';
 
-class Queue extends Model<QueueAttributes> implements QueueAttributes {
+class Queue extends Model<IQueueResponseAttributes> implements IQueueResponseAttributes {
   public id!: number;
   public searchQuery!: string;
   public laptopName!: string;

@@ -1,8 +1,8 @@
 import Joi from 'joi';
-import { QueueAttributes } from './Queue.interface';
+import { IQueueResponseAttributes } from './Queue.interface';
 import { QueueMessageKey, getQueueMessage } from './Queue.messages';
 
-export const QueueSchema = Joi.object<QueueAttributes>({
+export const QueueSchema = Joi.object<IQueueResponseAttributes>({
   id: Joi.number().integer().required(),
   searchQuery: Joi.string().required(),
   laptopName: Joi.string().required(),

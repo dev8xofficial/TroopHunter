@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/database';
-import { BusinessAttributes } from './Business.interface';
-import { BusinessPhotoAttributes } from '../BusinessPhoto/BusinessPhoto.interface';
+import { IBusinessResponseAttributes } from './Business.interface';
+import { IBusinessPhotoResponseAttributes } from '../BusinessPhoto/BusinessPhoto.interface';
 import BusinessCategory from '../BusinessCategory/BusinessCategory.model';
 import City from '../City/City.model';
 import Country from '../Country/Country.model';
@@ -16,8 +16,8 @@ import BusinessOpeningHour from '../BusinessOpeningHour/BusinessOpeningHour.mode
 import BusinessClosingHour from '../BusinessClosingHour/BusinessClosingHour.model';
 import BusinessPhoto from '../BusinessPhoto/BusinessPhoto.model';
 
-class Business extends Model<BusinessAttributes> implements BusinessAttributes {
-  public id?: string;
+class Business extends Model<IBusinessResponseAttributes> implements IBusinessResponseAttributes {
+  public id!: string;
   public name!: string;
   public businessDomain?: string;
   public categoryId!: string;
@@ -42,7 +42,7 @@ class Business extends Model<BusinessAttributes> implements BusinessAttributes {
   public closingHourId!: string;
 
   // Define associations, if any
-  public readonly photos?: BusinessPhotoAttributes[]; // Define the association with BusinessPhoto model
+  public readonly photos?: IBusinessPhotoResponseAttributes[]; // Define the association with BusinessPhoto model
 
   // Define scopes, if any
 }

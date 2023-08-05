@@ -1,7 +1,7 @@
 import Joi from 'joi';
-import { BusinessClosingHourAttributes } from './BusinessClosingHour.interface';
+import { IBusinessClosingHourResponseAttributes } from './BusinessClosingHour.interface';
 
-export const BusinessClosingHourSchema = Joi.object<BusinessClosingHourAttributes>({
+export const BusinessClosingHourSchema = Joi.object<IBusinessClosingHourResponseAttributes>({
   id: Joi.string(),
   time: Joi.string().optional(),
 });

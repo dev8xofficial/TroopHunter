@@ -1,7 +1,7 @@
 import Joi from 'joi';
-import { BusinessSourceAttributes } from './BusinessSource.interface';
+import { IBusinessSourceResponseAttributes } from './BusinessSource.interface';
 
-export const BusinessSourceSchema = Joi.object<BusinessSourceAttributes>({
+export const BusinessSourceSchema = Joi.object<IBusinessSourceResponseAttributes>({
   id: Joi.string(),
   sourceName: Joi.string().required(),
 });

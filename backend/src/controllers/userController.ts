@@ -3,9 +3,9 @@ import User from '../models/User/User.model';
 import logger from '../utils/logger';
 import { isValidJSON } from '../utils/helper';
 import { ApiResponse } from '../types/Response.interface';
+import { IUserRequestAttributes, IUserResponseAttributes } from '../models/User/User.interface';
 import { createApiResponse } from '../utils/response';
 import { UserMessageKey, getUserMessage } from '../models/User/User.messages';
-import { UserAttributes } from '../models/User/User.interface';
 import { UserSchema, createUserErrorResponse } from '../models/User/User.schema';
 import { RequestMessageKey, getRequestMessage } from '../messages/Request.messages';
 
@@ -33,10 +33,21 @@ export const getUsers = async (req: Request, res: Response) => {
 };
 
 export const getUserWithInclude = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const include = req.query.include as string;
+  const { error: paramsError, value: validatedParamsData } = UserSchema.validate(req.params, { abortEarly: false });
+  const { id } = validatedParamsData as IUserResponseAttributes;
+
+  const { include } = req.query as { include: string };
 
   try {
+    if (paramsError) {
+      const errorResponse = createUserErrorResponse(paramsError);
+      const response: ApiResponse<null> = createApiResponse({
+        error: errorResponse.error,
+        status: errorResponse.status,
+      });
+      return res.json(response);
+    }
+
     if (!include || !isValidJSON(include)) {
       const response: ApiResponse<null> = createApiResponse({ error: getRequestMessage(RequestMessageKey.INVALID_REQUEST_INCLUDE).message, status: getRequestMessage(RequestMessageKey.INVALID_REQUEST_INCLUDE).code });
       return res.json(response);
@@ -64,7 +75,7 @@ export const getUserWithInclude = async (req: Request, res: Response) => {
 };
 
 export const getUser = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = req.params as { id: string };
 
   try {
     const user = await User.findByPk(id);
@@ -90,12 +101,12 @@ export const getUser = async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
   const userId = req.params.id;
-  const { error, value: validatedData } = UserSchema.validate(req.body, { abortEarly: false });
-  const { firstName, lastName, email, password, role } = validatedData as UserAttributes;
+  const { error: bodyError, value: validatedBodyData } = UserSchema.validate(req.body, { abortEarly: false });
+  const { firstName, lastName, email, password, role } = validatedBodyData as IUserRequestAttributes;
 
   try {
-    if (error) {
-      const errorResponse = createUserErrorResponse(error);
+    if (bodyError) {
+      const errorResponse = createUserErrorResponse(bodyError);
       const response: ApiResponse<null> = createApiResponse({
         error: errorResponse.error,
         status: errorResponse.status,
@@ -132,7 +143,7 @@ export const updateUser = async (req: Request, res: Response) => {
 };
 
 export const deleteUser = async (req: Request, res: Response) => {
-  const userId = req.params.id;
+  const userId = req.params.id as string;
 
   try {
     const user = await User.findByPk(userId);

@@ -2,9 +2,9 @@ import { Request, Response } from 'express';
 import Queue from '../models/Queue/Queue.model';
 import logger from '../utils/logger';
 import { ApiResponse } from '../types/Response.interface';
+import { IQueueRequestAttributes, IQueueResponseAttributes } from '../models/Queue/Queue.interface';
 import { createApiResponse } from '../utils/response';
 import { QueueMessageKey, getQueueMessage } from '../models/Queue/Queue.messages';
-import { QueueAttributes } from '../models/Queue/Queue.interface';
 import { QueueSchema, createQueueErrorResponse } from '../models/Queue/Queue.schema';
 
 export const getQueues = async (req: Request, res: Response) => {
@@ -24,9 +24,19 @@ export const getQueues = async (req: Request, res: Response) => {
 };
 
 export const getQueueById = async (req: Request, res: Response) => {
-  const { id } = req.params as { id: string };
+  const { error, value: validatedData } = QueueSchema.validate(req.params, { abortEarly: false });
+  const { id } = validatedData as IQueueResponseAttributes;
 
   try {
+    if (error) {
+      const errorResponse = createQueueErrorResponse(error);
+      const response: ApiResponse<null> = createApiResponse({
+        error: errorResponse.error,
+        status: errorResponse.status,
+      });
+      return res.json(response);
+    }
+
     const queue = await Queue.findOne({ where: { id } });
 
     if (!queue) {
@@ -46,11 +56,21 @@ export const getQueueById = async (req: Request, res: Response) => {
 };
 
 export const updateQueue = async (req: Request, res: Response) => {
-  const { id } = req.params as { id: string };
+  const { error: paramsError, value: validatedParamsData } = QueueSchema.validate(req.params, { abortEarly: false });
+  const { id } = validatedParamsData as IQueueResponseAttributes;
+
   const { error, value: validatedData } = QueueSchema.validate(req.body, { abortEarly: false });
-  const { searchQuery, laptopName, status } = validatedData as QueueAttributes;
+  const { searchQuery, laptopName, status } = validatedData as IQueueRequestAttributes;
 
   try {
+    if (paramsError) {
+      const errorResponse = createQueueErrorResponse(paramsError);
+      const response: ApiResponse<null> = createApiResponse({
+        error: errorResponse.error,
+        status: errorResponse.status,
+      });
+      return res.json(response);
+    }
     if (error) {
       const errorResponse = createQueueErrorResponse(error);
       const response: ApiResponse<null> = createApiResponse({

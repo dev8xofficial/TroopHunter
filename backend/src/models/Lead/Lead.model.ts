@@ -4,10 +4,10 @@ import User from '../User/User.model';
 import City from '../City/City.model';
 import State from '../State/State.model';
 import Country from '../Country/Country.model';
-import { LeadAttributes } from './Lead.interface';
+import { ILeadAttributesResponseAttributes } from './Lead.interface';
 
-class Lead extends Model<LeadAttributes> implements LeadAttributes {
-  public id?: string;
+class Lead extends Model<ILeadAttributesResponseAttributes> implements ILeadAttributesResponseAttributes {
+  public id!: string;
   public userId!: string;
   public businessIds?: string[];
   public title!: string;

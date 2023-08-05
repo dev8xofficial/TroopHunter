@@ -1,9 +1,9 @@
 import Joi from 'joi';
-import { BusinessAttributes } from './Business.interface';
+import { IBusinessResponseAttributes } from './Business.interface';
 import { GeoPointSchema } from '../../schema/GeoPoint.schema';
 import { BusinessMessageKey, getBusinessMessage } from './Business.messages';
 
-export const BusinessSchema = Joi.object<BusinessAttributes>({
+export const BusinessSchema = Joi.object<IBusinessResponseAttributes>({
   id: Joi.string(),
   name: Joi.string().required(),
   businessDomain: Joi.string(),

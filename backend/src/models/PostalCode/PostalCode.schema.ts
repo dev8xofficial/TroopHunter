@@ -1,8 +1,8 @@
 import Joi from 'joi';
-import { PostalCodeAttributes } from './PostalCode.interface';
+import { IPostalCodeResponseAttributes } from './PostalCode.interface';
 import { PostalCodeMessageKey, getPostalCodeMessage } from './PostalCode.messages';
 
-export const PostalCodeSchema = Joi.object<PostalCodeAttributes>({
+export const PostalCodeSchema = Joi.object<IPostalCodeResponseAttributes>({
   id: Joi.string(),
   code: Joi.string().required(),
 });
