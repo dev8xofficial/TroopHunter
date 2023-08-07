@@ -4,34 +4,16 @@ import logger from '../../utils/logger';
 import { createApiResponse } from '../../utils/response';
 import { ApiResponse } from '../../types/Response.interface';
 import { LeadBusinessMessageKey, getLeadBusinessMessage } from '../../models/LeadBusiness/LeadBusiness.messages';
-import { LeadBusinessSchema, createLeadBusinessErrorResponse } from '../../models/LeadBusiness/LeadBusiness.schema';
+import { LeadBusinessSchema } from '../../models/LeadBusiness/LeadBusiness.validator';
 import { LeadBusinessAttributes } from '../../models/LeadBusiness/LeadBusiness.interface';
-import { createRequestErrorResponse } from '../../schema/Request.schema';
 
 export const updateLeadBusiness = async (req: Request, res: Response) => {
-  const { error: errorOld, value: validatedOldData } = LeadBusinessSchema.validate(req.params, { abortEarly: false });
+  const { value: validatedOldData } = LeadBusinessSchema.validate(req.params, { abortEarly: false });
   const { leadId, businessId } = validatedOldData as LeadBusinessAttributes;
 
-  const { error: errorNew, value: validatedNewData } = LeadBusinessSchema.validate(req.body, { abortEarly: false });
+  const { value: validatedNewData } = LeadBusinessSchema.validate(req.body, { abortEarly: false });
   const { leadId: newLeadId, businessId: newBusinessId } = validatedNewData as LeadBusinessAttributes;
   try {
-    if (errorOld) {
-      const errorResponse = createRequestErrorResponse(errorOld);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-    if (errorNew) {
-      const errorResponse = createLeadBusinessErrorResponse(errorNew);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-
     const leadBusiness = await LeadBusiness.findOne({ where: { leadId, businessId } });
 
     if (leadBusiness) {

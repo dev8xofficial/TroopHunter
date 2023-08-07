@@ -7,7 +7,7 @@ import { ApiResponse } from '../../types/Response.interface';
 import { ILeadAttributesRequestAttributes } from '../../models/Lead/Lead.interface';
 import { LeadMessageKey, getLeadMessage } from '../../models/Lead/Lead.messages';
 import { UserMessageKey, getUserMessage } from '../../models/User/User.messages';
-import { LeadSchema, createLeadErrorResponse } from '../../models/Lead/Lead.schema';
+import { LeadSchema, createLeadErrorResponse } from '../../models/Lead/Lead.validator';
 
 export const updateLead = async (req: Request, res: Response) => {
   const { id } = req.params as { id: string };

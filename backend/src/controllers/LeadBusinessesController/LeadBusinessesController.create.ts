@@ -4,12 +4,11 @@ import logger from '../../utils/logger';
 import { createApiResponse } from '../../utils/response';
 import { ApiResponse } from '../../types/Response.interface';
 import { LeadBusinessMessageKey, getLeadBusinessMessage } from '../../models/LeadBusiness/LeadBusiness.messages';
-import { LeadBusinessSchema, createLeadBusinessErrorResponse } from '../../models/LeadBusiness/LeadBusiness.schema';
 import { LeadBusinessAttributes } from '../../models/LeadBusiness/LeadBusiness.interface';
 
 export const createLeadBusinesses = async (req: Request, res: Response) => {
   try {
-    const leadBusinessData = req.body; // Array of objects, each containing leadId and businessId
+    const leadBusinessData: LeadBusinessAttributes[] = req.body; // Array of objects, each containing leadId and businessId
     const leadBusinesses = await LeadBusiness.bulkCreate(leadBusinessData);
 
     const response: ApiResponse<LeadBusiness[]> = createApiResponse({ success: true, data: leadBusinesses, message: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESSES_CREATED).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESSES_CREATED).code });
@@ -23,19 +22,9 @@ export const createLeadBusinesses = async (req: Request, res: Response) => {
 };
 
 export const createLeadBusiness = async (req: Request, res: Response) => {
-  const { error, value: validatedData } = LeadBusinessSchema.validate(req.body, { abortEarly: false });
-  const { leadId, businessId } = validatedData as LeadBusinessAttributes;
+  const { leadId, businessId }: LeadBusinessAttributes = req.body;
 
   try {
-    if (error) {
-      const errorResponse = createLeadBusinessErrorResponse(error);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-
     const leadBusiness = await LeadBusiness.create({ leadId, businessId });
 
     const response: ApiResponse<LeadBusiness> = createApiResponse({ success: true, data: leadBusiness, message: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_CREATED).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_CREATED).code });

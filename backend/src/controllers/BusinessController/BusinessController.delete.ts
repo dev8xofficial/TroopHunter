@@ -7,6 +7,7 @@ import { BusinessMessageKey, getBusinessMessage } from '../../models/Business/Bu
 
 export const deleteBusiness = async (req: Request, res: Response) => {
   const { id } = req.params;
+
   try {
     const business = await Business.findByPk(id);
     if (!business) {
@@ -14,8 +15,10 @@ export const deleteBusiness = async (req: Request, res: Response) => {
       const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage(BusinessMessageKey.BUSINESS_NOT_FOUND).message, status: getBusinessMessage(BusinessMessageKey.BUSINESS_NOT_FOUND).code });
       return res.json(response);
     }
+
     await business.destroy();
     logger.info(`Business with ID ${id} deleted successfully.`);
+
     const response: ApiResponse<null> = createApiResponse({ success: true, message: getBusinessMessage(BusinessMessageKey.BUSINESS_DELETED).message, status: getBusinessMessage(BusinessMessageKey.BUSINESS_DELETED).code });
     res.json(response);
   } catch (error) {

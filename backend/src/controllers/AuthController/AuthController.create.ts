@@ -6,22 +6,11 @@ import { ApiResponse } from '../../types/Response.interface';
 import { IUserRequestAttributes, IUserResponseAttributes } from '../../models/User/User.interface';
 import { createApiResponse } from '../../utils/response';
 import { UserMessageKey, getUserMessage } from '../../models/User/User.messages';
-import { UserSchema, createUserErrorResponse } from '../../models/User/User.schema';
 import { v4 as uuidv4 } from 'uuid';
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const { error, value: validatedData } = UserSchema.validate(req.body, { abortEarly: false });
-    if (error) {
-      const errorResponse = createUserErrorResponse(error);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-
-    const { firstName, lastName, email, password }: IUserRequestAttributes = validatedData;
+    const { firstName, lastName, email, password }: IUserRequestAttributes = req.body;
 
     // Check if the user already exists
     const existingUser = await User.findOne({ where: { email } });

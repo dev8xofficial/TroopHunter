@@ -3,7 +3,7 @@ interface Message {
   message: string;
 }
 
-export enum RequestMessageKey {
+export enum PaginationMessageKey {
   // Success messages
 
   // Missing fields messages
@@ -22,29 +22,29 @@ export enum RequestMessageKey {
   // Failure messages
 }
 
-const messages: Record<RequestMessageKey, Message> = {
+const messages: Record<PaginationMessageKey, Message> = {
   // Success messages
 
   // Missing fields messages
-  [RequestMessageKey.MISSING_REQUEST_PAGE]: {
+  [PaginationMessageKey.MISSING_REQUEST_PAGE]: {
     code: 400,
     message: 'Invalid request. The page number is missing or invalid.',
   },
-  [RequestMessageKey.MISSING_REQUEST_LIMIT]: {
+  [PaginationMessageKey.MISSING_REQUEST_LIMIT]: {
     code: 400,
     message: 'Invalid request. The limit parameter is missing or invalid.',
   },
 
   // Invalid fields messages
-  [RequestMessageKey.INVALID_REQUEST_PAGE]: {
+  [PaginationMessageKey.INVALID_REQUEST_PAGE]: {
     code: 400,
     message: 'Invalid request. The page number must be a positive integer.',
   },
-  [RequestMessageKey.INVALID_REQUEST_LIMIT]: {
+  [PaginationMessageKey.INVALID_REQUEST_LIMIT]: {
     code: 400,
     message: 'Invalid request. The limit parameter must be a positive integer.',
   },
-  [RequestMessageKey.INVALID_REQUEST_INCLUDE]: {
+  [PaginationMessageKey.INVALID_REQUEST_INCLUDE]: {
     code: 400,
     message: "Invalid include parameter. The correct include parameter should be in the format '['Leads']'.",
   },
@@ -56,6 +56,6 @@ const messages: Record<RequestMessageKey, Message> = {
   // Failure messages
 };
 
-export const getRequestMessage = (key: RequestMessageKey): Message => {
+export const getPaginationMessage = (key: PaginationMessageKey): Message => {
   return messages[key];
 };

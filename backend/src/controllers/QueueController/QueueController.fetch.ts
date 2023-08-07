@@ -5,7 +5,7 @@ import { ApiResponse } from '../../types/Response.interface';
 import { IQueueResponseAttributes } from '../../models/Queue/Queue.interface';
 import { createApiResponse } from '../../utils/response';
 import { QueueMessageKey, getQueueMessage } from '../../models/Queue/Queue.messages';
-import { QueueSchema, createQueueErrorResponse } from '../../models/Queue/Queue.schema';
+import { QueueSchema, createQueueErrorResponse } from '../../models/Queue/Queue.validator';
 
 export const getQueues = async (req: Request, res: Response) => {
   try {

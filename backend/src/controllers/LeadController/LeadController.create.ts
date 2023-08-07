@@ -7,7 +7,7 @@ import { ApiResponse } from '../../types/Response.interface';
 import { ILeadAttributesRequestAttributes, ILeadAttributesResponseAttributes } from '../../models/Lead/Lead.interface';
 import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../../utils/business';
 import { LeadMessageKey, getLeadMessage } from '../../models/Lead/Lead.messages';
-import { LeadSchema, createLeadErrorResponse } from '../../models/Lead/Lead.schema';
+import { LeadSchema, createLeadErrorResponse } from '../../models/Lead/Lead.validator';
 import { v4 as uuidv4 } from 'uuid';
 
 export const createLead = async (req: Request, res: Response) => {

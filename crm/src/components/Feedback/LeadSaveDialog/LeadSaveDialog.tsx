@@ -16,7 +16,7 @@ import { ILeadCreationResponseAttributes } from '../../../types/lead';
 import { IAuthState } from '../../../store/reducers/authReducer';
 import { IBusinessState } from '../../../store/reducers/businessReducer';
 import { IUserState } from '../../../store/reducers/userReducer';
-import { removeNullValues } from '../../../utils/helpers';
+// import { removeNullValues } from '../../../utils/helpers';
 
 const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: CustomDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
@@ -71,9 +71,8 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
           sponsoredAd: leadPageFilters['sponsoredAd'].value,
         };
 
-        const requestWithoutNull = removeNullValues(requestData);
-        if (leadPageDraftLeadId) dispatch(updateLeadAction(requestWithoutNull));
-        else dispatch(createLeadAction(requestWithoutNull));
+        if (leadPageDraftLeadId) dispatch(updateLeadAction(requestData));
+        else dispatch(createLeadAction(requestData));
 
         resetForm();
         closeModal();

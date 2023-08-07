@@ -5,7 +5,7 @@ import { ApiResponse } from '../../types/Response.interface';
 import { createApiResponse } from '../../utils/response';
 import { Op } from 'sequelize';
 import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../models/BusinessPhone/BusinessPhone.messages';
-import { RequestMessageKey, getRequestMessage } from '../../messages/Request.messages';
+import { PaginationMessageKey, getPaginationMessage } from '../../messages/Pagination.messages';
 
 // Get business phones by number
 export const getBusinessPhonesByNumber = async (req: Request, res: Response) => {
@@ -13,7 +13,7 @@ export const getBusinessPhonesByNumber = async (req: Request, res: Response) => 
 
   // Pagination
   if (!page || !limit) {
-    const response: ApiResponse<null> = createApiResponse({ error: getRequestMessage(RequestMessageKey.MISSING_REQUEST_LIMIT).message, status: getRequestMessage(RequestMessageKey.MISSING_REQUEST_LIMIT).code });
+    const response: ApiResponse<null> = createApiResponse({ error: getPaginationMessage(PaginationMessageKey.MISSING_REQUEST_LIMIT).message, status: getPaginationMessage(PaginationMessageKey.MISSING_REQUEST_LIMIT).code });
     return res.json(response);
   }
 
@@ -26,7 +26,7 @@ export const getBusinessPhonesByNumber = async (req: Request, res: Response) => 
   const limitNumber = parseInt(limit as string, 10);
 
   if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
-    const response: ApiResponse<null> = createApiResponse({ error: getRequestMessage(RequestMessageKey.INVALID_REQUEST_LIMIT).message, status: getRequestMessage(RequestMessageKey.INVALID_REQUEST_LIMIT).code });
+    const response: ApiResponse<null> = createApiResponse({ error: getPaginationMessage(PaginationMessageKey.INVALID_REQUEST_LIMIT).message, status: getPaginationMessage(PaginationMessageKey.INVALID_REQUEST_LIMIT).code });
     return res.json(response);
   }
 

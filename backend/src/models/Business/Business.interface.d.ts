@@ -28,3 +28,25 @@ export interface IBusinessRequestAttributes {
 export interface IBusinessResponseAttributes extends IBusinessRequestAttributes {
   id: string;
 }
+
+export interface IBusinessCreationRequestAttributes extends Omit<IBusinessRequestAttributes, 'categoryId' | 'cityId' | 'stateId' | 'countryId' | 'postalCodeId' | 'phoneId' | 'ratingId' | 'timezoneId' | 'sourceId' | 'openingHourId' | 'closingHourId'> {
+  category?: string;
+  city?: string;
+  state?: string;
+  country?: string;
+  postalCode?: string;
+  phone?: string;
+  rating?: number;
+  timezone?: ITimezoneRequestAttributes;
+  source?: string;
+  openingHour?: string;
+  closingHour?: string;
+}
+
+export interface IBusinessFetchRequestAttributes extends IBusinessRequestAttributes {
+  cityName?: string;
+  stateName?: string;
+  countryName?: string;
+  range?: string;
+  phone?: string;
+}

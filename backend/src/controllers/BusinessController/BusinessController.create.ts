@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Sequelize from '../../config/database';
-import { IBusinessResponseAttributes } from '../../models/Business/Business.interface';
+import { IBusinessCreationRequestAttributes, IBusinessResponseAttributes } from '../../models/Business/Business.interface';
 import { IBusinessRatingResponseAttributes } from '../../models/BusinessRating/BusinessRating.interface';
 import { IBusinessSourceResponseAttributes } from '../../models/BusinessSource/BusinessSource.interface';
 import { IBusinessOpeningHourResponseAttributes } from '../../models/BusinessOpeningHour/BusinessOpeningHour.interface';
@@ -23,70 +23,34 @@ import { findOrCreateBusinessRating } from '../../utils/rating';
 import { findOrCreateTimezone } from '../../utils/timezone';
 import { findOrCreateBusinessOpeningHour } from '../../utils/openingHour';
 import { findOrCreateBusinessClosingHour } from '../../utils/closingHour';
-import logger from '../../utils/logger';
 import { createApiResponse } from '../../utils/response';
 import { BusinessMessageKey, getBusinessMessage } from '../../models/Business/Business.messages';
-// import BusinessPhoto from '../models/BusinessPhoto';
 import { v4 as uuidv4 } from 'uuid';
+import logger from '../../utils/logger';
 
 export const createBusiness = async (req: Request, res: Response) => {
-  const transaction = await Sequelize.transaction(); // Start a transaction
+  const transaction = await Sequelize.transaction();
 
-  const { name, businessDomain, category, address, city, state, country, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour } = req.body;
+  const { name, businessDomain, category, address, city, state, country, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour }: IBusinessCreationRequestAttributes = req.body;
+
+  const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
+  let payload: IBusinessResponseAttributes = {
+    id: uuidv4(),
+    name,
+    businessDomain,
+    address,
+    geoPoint,
+    longitude,
+    latitude,
+    email,
+    website,
+    reviews,
+    socialMediaId,
+    sponsoredAd,
+  };
 
   try {
-    const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
-    let payload: IBusinessResponseAttributes = {
-      id: uuidv4(),
-      name,
-      businessDomain,
-      address,
-      geoPoint,
-      longitude,
-      latitude,
-      email,
-      website,
-      reviews,
-      socialMediaId,
-      sponsoredAd,
-    };
-
     logger.debug('Creating a new business:', payload);
-
-    // Check if name is missing
-    if (!name) {
-      logger.error(getBusinessMessage(BusinessMessageKey.MISSING_NAME).message);
-      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage(BusinessMessageKey.MISSING_NAME).message, status: getBusinessMessage(BusinessMessageKey.MISSING_NAME).code });
-      return res.json(response);
-    }
-
-    // Check if address is missing
-    if (!address) {
-      logger.error(getBusinessMessage(BusinessMessageKey.MISSING_ADDRESS).message);
-      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage(BusinessMessageKey.MISSING_ADDRESS).message, status: getBusinessMessage(BusinessMessageKey.MISSING_ADDRESS).code });
-      return res.json(response);
-    }
-
-    // Check if longitude is missing
-    if (!longitude) {
-      logger.error(getBusinessMessage(BusinessMessageKey.MISSING_LONGITUDE).message);
-      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage(BusinessMessageKey.MISSING_LONGITUDE).message, status: getBusinessMessage(BusinessMessageKey.MISSING_LONGITUDE).code });
-      return res.json(response);
-    }
-
-    // Check if latitude is missing
-    if (!latitude) {
-      logger.error(getBusinessMessage(BusinessMessageKey.MISSING_LATITUDE).message);
-      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage(BusinessMessageKey.MISSING_LATITUDE).message, status: getBusinessMessage(BusinessMessageKey.MISSING_LATITUDE).code });
-      return res.json(response);
-    }
-
-    // Check if source is missing
-    if (!source) {
-      logger.error(getBusinessMessage(BusinessMessageKey.MISSING_SOURCE).message);
-      const response: ApiResponse<null> = createApiResponse({ error: getBusinessMessage(BusinessMessageKey.MISSING_SOURCE).message, status: getBusinessMessage(BusinessMessageKey.MISSING_SOURCE).code });
-      return res.json(response);
-    }
 
     if (category) {
       const categoryFromDB: IBusinessCategoryResponseAttributes | undefined = await findOrCreateBusinessCategory(category, transaction);
@@ -148,9 +112,6 @@ export const createBusiness = async (req: Request, res: Response) => {
 
     await transaction.commit().then(() => {
       logger.info(`Business named ${name} created successfully.`);
-
-      // updateBusinessPhone(payload.phoneId, business.id);
-
       return business;
     });
 

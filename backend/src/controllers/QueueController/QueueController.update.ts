@@ -5,7 +5,7 @@ import { ApiResponse } from '../../types/Response.interface';
 import { IQueueRequestAttributes, IQueueResponseAttributes } from '../../models/Queue/Queue.interface';
 import { createApiResponse } from '../../utils/response';
 import { QueueMessageKey, getQueueMessage } from '../../models/Queue/Queue.messages';
-import { QueueSchema, createQueueErrorResponse } from '../../models/Queue/Queue.schema';
+import { QueueSchema, createQueueErrorResponse } from '../../models/Queue/Queue.validator';
 
 export const updateQueue = async (req: Request, res: Response) => {
   const { error: paramsError, value: validatedParamsData } = QueueSchema.validate(req.params, { abortEarly: false });

@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { ILeadAttributesResponseAttributes } from './Lead.interface';
 import { LeadMessageKey, getLeadMessage } from './Lead.messages';
-import { BusinessSchema } from '../Business/Business.schema';
+import { BusinessSchema } from '../Business/Business.validator';
 
 export const LeadSchema = BusinessSchema.append<ILeadAttributesResponseAttributes>({
   id: Joi.string(),

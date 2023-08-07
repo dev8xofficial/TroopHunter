@@ -13,19 +13,8 @@ export enum UserMessageKey {
   LOGGED_IN = 'LOGGED_IN',
 
   // Missing fields messages
-  MISSING_USER_ID = 'MISSING_USER_ID',
-  MISSING_FIRST_NAME = 'MISSING_FIRST_NAME',
-  MISSING_LAST_NAME = 'MISSING_LAST_NAME',
-  MISSING_EMAIL = 'MISSING_EMAIL',
-  MISSING_PASSWORD = 'MISSING_PASSWORD',
 
   // Invalid fields messages
-  INVALID_USER_ID = 'INVALID_USER_ID',
-  INVALID_FIRST_NAME = 'INVALID_FIRST_NAME',
-  INVALID_LAST_NAME = 'INVALID_LAST_NAME',
-  INVALID_EMAIL = 'INVALID_EMAIL',
-  INVALID_PASSWORD = 'INVALID_PASSWORD',
-  INVALID_ROLE = 'INVALID_ROLE',
 
   // Duplicate messages
   DUPLICATE_USER = 'DUPLICATE_USER',
@@ -70,52 +59,8 @@ const messages: Record<UserMessageKey, Message> = {
   },
 
   // Missing fields messages
-  [UserMessageKey.MISSING_USER_ID]: {
-    code: 400,
-    message: 'User ID is required to create/update a lead.',
-  },
-  [UserMessageKey.MISSING_FIRST_NAME]: {
-    code: 400,
-    message: 'Failed to create/update user. Missing required field: firstName.',
-  },
-  [UserMessageKey.MISSING_LAST_NAME]: {
-    code: 400,
-    message: 'Failed to create/update user. Missing required field: lastName.',
-  },
-  [UserMessageKey.MISSING_EMAIL]: {
-    code: 400,
-    message: 'Failed to create/update user. Missing required field: email.',
-  },
-  [UserMessageKey.MISSING_PASSWORD]: {
-    code: 400,
-    message: 'Failed to create/update user. Missing required field: password.',
-  },
 
   // Invalid fields messages
-  [UserMessageKey.INVALID_USER_ID]: {
-    code: 400,
-    message: 'Invalid user ID. Please provide a valid UUID.',
-  },
-  [UserMessageKey.INVALID_FIRST_NAME]: {
-    code: 400,
-    message: 'Invalid first name. The first name must be a non-empty string.',
-  },
-  [UserMessageKey.INVALID_LAST_NAME]: {
-    code: 400,
-    message: 'Invalid last name. The last name must be a non-empty string.',
-  },
-  [UserMessageKey.INVALID_EMAIL]: {
-    code: 400,
-    message: 'Invalid email address.',
-  },
-  [UserMessageKey.INVALID_PASSWORD]: {
-    code: 400,
-    message: 'Invalid password. Password should be at least 8 characters long and contain letters, numbers, and special characters.',
-  },
-  [UserMessageKey.INVALID_ROLE]: {
-    code: 400,
-    message: 'Invalid role. The role must be one of the following: guest, user, admin.',
-  },
 
   // Duplicate messages
   [UserMessageKey.DUPLICATE_USER]: {

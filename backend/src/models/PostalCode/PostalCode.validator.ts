@@ -7,7 +7,7 @@ export const PostalCodeSchema = Joi.object<IPostalCodeResponseAttributes>({
   code: Joi.string().required(),
 });
 
-export const createCountryErrorResponse = (error: Joi.ValidationError) => {
+export const createPostalCodeErrorResponse = (error: Joi.ValidationError) => {
   const errorResponse: any = {};
 
   error.details.forEach((errorDetail) => {

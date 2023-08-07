@@ -5,34 +5,26 @@ import Business from '../../models/Business/Business.model';
 import { createApiResponse } from '../../utils/response';
 import { ApiResponse } from '../../types/Response.interface';
 import { LeadBusinessMessageKey, getLeadBusinessMessage } from '../../models/LeadBusiness/LeadBusiness.messages';
-import { LeadBusinessSchema, createLeadBusinessErrorResponse } from '../../models/LeadBusiness/LeadBusiness.schema';
-import { LeadBusinessAttributes } from '../../models/LeadBusiness/LeadBusiness.interface';
-import { RequestAttributes, RequestSchema, createRequestErrorResponse } from '../../schema/Request.schema';
+
+export const getLeadBusinesses = async (req: Request, res: Response) => {
+  try {
+    const leadBusinesses = await LeadBusiness.findAll();
+
+    const response: ApiResponse<LeadBusiness[]> = createApiResponse({ success: true, data: leadBusinesses, message: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_RETRIEVED).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_RETRIEVED).code });
+    res.json(response);
+    logger.info('Retrieved all LeadBusinesses.');
+  } catch (error) {
+    logger.error('Error while retrieving LeadBusinesses:', error);
+    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).code });
+    res.json(response);
+  }
+};
 
 export const getBusinessesByLeadId = async (req: Request, res: Response) => {
-  const { error: requestError, value: validatedRequestData } = RequestSchema.validate(req.params, { abortEarly: false });
-  const { page, limit } = validatedRequestData as RequestAttributes;
+  const { page, limit } = req.params;
+  const { leadId } = req.params;
 
-  const { error, value: validatedData } = LeadBusinessSchema.validate(req.params, { abortEarly: false });
-  const { leadId } = validatedData as LeadBusinessAttributes;
   try {
-    if (requestError) {
-      const errorResponse = createRequestErrorResponse(requestError);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-    if (error) {
-      const errorResponse = createLeadBusinessErrorResponse(error);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-
     // Find all businesses associated with the given leadId and include the Business model
     const leadBusinesses = await LeadBusiness.findAll({ where: { leadId } });
 
@@ -74,33 +66,10 @@ export const getBusinessesByLeadId = async (req: Request, res: Response) => {
   }
 };
 
-export const getLeadBusinesses = async (req: Request, res: Response) => {
-  try {
-    const leadBusinesses = await LeadBusiness.findAll();
-
-    const response: ApiResponse<LeadBusiness[]> = createApiResponse({ success: true, data: leadBusinesses, message: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_RETRIEVED).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.LEAD_BUSINESS_RETRIEVED).code });
-    res.json(response);
-    logger.info('Retrieved all LeadBusinesses.');
-  } catch (error) {
-    logger.error('Error while retrieving LeadBusinesses:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).message, status: getLeadBusinessMessage(LeadBusinessMessageKey.FAILED_TO_RETRIEVE_LEAD_BUSINESSES).code });
-    res.json(response);
-  }
-};
-
 export const getLeadBusiness = async (req: Request, res: Response) => {
-  const { error, value: validatedData } = LeadBusinessSchema.validate(req.params, { abortEarly: false });
-  const { leadId, businessId } = validatedData as LeadBusinessAttributes;
-  try {
-    if (error) {
-      const errorResponse = createLeadBusinessErrorResponse(error);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
+  const { leadId, businessId } = req.params;
 
+  try {
     const leadBusiness = await LeadBusiness.findOne({ where: { leadId, businessId } });
 
     if (leadBusiness) {

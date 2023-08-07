@@ -8,22 +8,11 @@ import { IUserRequestAttributes } from '../../models/User/User.interface';
 import { createApiResponse } from '../../utils/response';
 import Lead from '../../models/Lead/Lead.model';
 import { UserMessageKey, getUserMessage } from '../../models/User/User.messages';
-import { AuthSchema, createAuthErrorResponse } from '../../models/User/Auth.schema';
-import { AuthMessageKey, getAuthMessage } from '../../models/User/Auth.messages';
+import { AuthMessageKey, getAuthMessage } from '../../messages/Auth.messages';
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { error, value: validatedData } = AuthSchema.validate(req.body, { abortEarly: false });
-    if (error) {
-      const errorResponse = createAuthErrorResponse(error);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-
-    const { email, password }: IUserRequestAttributes = validatedData;
+    const { email, password }: IUserRequestAttributes = req.body;
 
     // Check if the user exists
     const user: User | null = await User.findOne({ where: { email }, include: [{ model: Lead }] });
