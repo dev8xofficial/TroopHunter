@@ -7,23 +7,12 @@ import { ApiResponse } from '../../types/Response.interface';
 import { ILeadAttributesRequestAttributes, ILeadAttributesResponseAttributes } from '../../models/Lead/Lead.interface';
 import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../../utils/business';
 import { LeadMessageKey, getLeadMessage } from '../../models/Lead/Lead.messages';
-import { LeadSchema, createLeadErrorResponse } from '../../models/Lead/Lead.validator';
 import { v4 as uuidv4 } from 'uuid';
 
 export const createLead = async (req: Request, res: Response) => {
-  const { error, value: validatedData } = LeadSchema.validate(req.body, { abortEarly: false });
-  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = validatedData as ILeadAttributesRequestAttributes;
+  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }: ILeadAttributesRequestAttributes = req.body;
 
   try {
-    if (error) {
-      const errorResponse = createLeadErrorResponse(error);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-
     const requestData: ILeadAttributesResponseAttributes = { id: uuidv4(), userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId };
     const lead = await Lead.create(requestData);
 

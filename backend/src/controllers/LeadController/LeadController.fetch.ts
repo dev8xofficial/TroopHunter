@@ -7,11 +7,24 @@ import { ApiResponse } from '../../types/Response.interface';
 import { LeadMessageKey, getLeadMessage } from '../../models/Lead/Lead.messages';
 
 export const getLeads = async (req: Request, res: Response) => {
+  const { page, limit } = req.query;
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  const offset = (pageNumber - 1) * limitNumber;
+
   try {
-    const leads = await Lead.findAll();
+    const { count, rows: leads } = await Lead.findAndCountAll({
+      offset,
+      limit: limitNumber,
+    });
+
+    const totalPages = Math.ceil(count / limitNumber);
+
     logger.info('Successfully retrieved leads');
 
-    const response: ApiResponse<Lead[]> = createApiResponse({ success: true, data: leads, message: getLeadMessage(LeadMessageKey.LEAD_RETRIEVED).message, status: getLeadMessage(LeadMessageKey.LEAD_RETRIEVED).code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; leads: Lead[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, leads }, message: getLeadMessage(LeadMessageKey.LEAD_RETRIEVED).message, status: getLeadMessage(LeadMessageKey.LEAD_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving leads:', error);
@@ -21,7 +34,7 @@ export const getLeads = async (req: Request, res: Response) => {
 };
 
 export const getLeadById = async (req: Request, res: Response) => {
-  const { id } = req.params as { id: string };
+  const { id } = req.params;
 
   try {
     const lead = await Lead.findOne({ where: { id } });

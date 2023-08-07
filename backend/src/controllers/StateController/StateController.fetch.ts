@@ -12,23 +12,8 @@ export const getStatesByQuery = async (req: Request, res: Response) => {
   const { name, page, limit } = req.query;
 
   // Pagination
-  if (!page || !limit) {
-    const response: ApiResponse<null> = createApiResponse({ error: getPaginationMessage(PaginationMessageKey.MISSING_REQUEST_LIMIT).message, status: getPaginationMessage(PaginationMessageKey.MISSING_REQUEST_LIMIT).code });
-    return res.json(response);
-  }
-
-  if (!name) {
-    const response: ApiResponse<null> = createApiResponse({ error: getStateMessage(StateMessageKey.MISSING_STATE).message, status: getStateMessage(StateMessageKey.MISSING_STATE).code });
-    return res.json(response);
-  }
-
   const pageNumber = parseInt(page as string, 10);
   const limitNumber = parseInt(limit as string, 10);
-
-  if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
-    const response: ApiResponse<null> = createApiResponse({ error: getPaginationMessage(PaginationMessageKey.INVALID_REQUEST_LIMIT).message, status: getPaginationMessage(PaginationMessageKey.INVALID_REQUEST_LIMIT).code });
-    return res.json(response);
-  }
 
   const offset = (pageNumber - 1) * limitNumber;
 
@@ -66,10 +51,23 @@ export const getStatesByQuery = async (req: Request, res: Response) => {
 
 // Get all states
 export const getStates = async (req: Request, res: Response) => {
+  const { page, limit } = req.query;
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  const offset = (pageNumber - 1) * limitNumber;
+
   try {
-    const states = await State.findAll();
+    const { count, rows: states } = await State.findAndCountAll({
+      offset,
+      limit: limitNumber,
+    });
+
+    const totalPages = Math.ceil(count / limitNumber);
+
     logger.info('Successfully retrieved states');
-    const response: ApiResponse<State[]> = createApiResponse({ success: true, data: states, message: getStateMessage(StateMessageKey.STATES_RETRIEVED).message, status: getStateMessage(StateMessageKey.STATES_RETRIEVED).code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; states: State[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, states }, message: getStateMessage(StateMessageKey.STATES_RETRIEVED).message, status: getStateMessage(StateMessageKey.STATES_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving states:', error);

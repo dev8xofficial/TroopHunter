@@ -12,23 +12,8 @@ export const getCountriesByQuery = async (req: Request, res: Response) => {
   const { name, page, limit } = req.query;
 
   // Pagination
-  if (!page || !limit) {
-    const response: ApiResponse<null> = createApiResponse({ error: getPaginationMessage(PaginationMessageKey.MISSING_REQUEST_PAGE).message, status: getPaginationMessage(PaginationMessageKey.MISSING_REQUEST_PAGE).code });
-    return res.json(response);
-  }
-
-  if (!name) {
-    const response: ApiResponse<null> = createApiResponse({ error: getCountryMessage(CountryMessageKey.MISSING_COUNTRY_NAME).message, status: getCountryMessage(CountryMessageKey.MISSING_COUNTRY_NAME).code });
-    return res.json(response);
-  }
-
   const pageNumber = parseInt(page as string, 10);
   const limitNumber = parseInt(limit as string, 10);
-
-  if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
-    const response: ApiResponse<null> = createApiResponse({ error: getPaginationMessage(PaginationMessageKey.INVALID_REQUEST_LIMIT).message, status: getPaginationMessage(PaginationMessageKey.INVALID_REQUEST_LIMIT).code });
-    return res.json(response);
-  }
 
   const offset = (pageNumber - 1) * limitNumber;
 
@@ -66,10 +51,23 @@ export const getCountriesByQuery = async (req: Request, res: Response) => {
 
 // Get all countries
 export const getCountries = async (req: Request, res: Response) => {
+  const { page, limit } = req.query;
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  const offset = (pageNumber - 1) * limitNumber;
+
   try {
-    const countries = await Country.findAll();
+    const { count, rows: countries } = await Country.findAndCountAll({
+      offset,
+      limit: limitNumber,
+    });
+
+    const totalPages = Math.ceil(count / limitNumber);
+
     logger.info('Successfully retrieved countries');
-    const response: ApiResponse<Country[]> = createApiResponse({ success: true, data: countries, message: getCountryMessage(CountryMessageKey.COUNTRIES_RETRIEVED).message, status: getCountryMessage(CountryMessageKey.COUNTRIES_RETRIEVED).code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; countries: Country[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, countries }, message: getCountryMessage(CountryMessageKey.COUNTRIES_RETRIEVED).message, status: getCountryMessage(CountryMessageKey.COUNTRIES_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving countries:', error);

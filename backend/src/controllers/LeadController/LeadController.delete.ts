@@ -6,7 +6,7 @@ import { ApiResponse } from '../../types/Response.interface';
 import { LeadMessageKey, getLeadMessage } from '../../models/Lead/Lead.messages';
 
 export const deleteLead = async (req: Request, res: Response) => {
-  const { id } = req.params as { id: string };
+  const { id } = req.params;
 
   try {
     const lead = await Lead.findOne({ where: { id } });
@@ -27,7 +27,7 @@ export const deleteLead = async (req: Request, res: Response) => {
 };
 
 export const deleteLeads = async (req: Request, res: Response) => {
-  const { ids } = req.body as { ids: string[] };
+  const { ids } = req.body;
 
   try {
     const leads = await Lead.findAll({ where: { id: ids } });

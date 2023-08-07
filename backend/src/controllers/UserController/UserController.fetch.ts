@@ -8,13 +8,25 @@ import { UserMessageKey, getUserMessage } from '../../models/User/User.messages'
 import { PaginationMessageKey, getPaginationMessage } from '../../messages/Pagination.messages';
 
 export const getUsers = async (req: Request, res: Response) => {
+  const { page, limit } = req.query;
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  const offset = (pageNumber - 1) * limitNumber;
+
   try {
-    const users = await User.findAll();
+    const { count, rows: users } = await User.findAndCountAll({
+      offset,
+      limit: limitNumber,
+    });
+
+    const totalPages = Math.ceil(count / limitNumber);
 
     if (users && users.length > 0) {
       // Log a success message
       logger.info(`Retrieved all users.`);
-      const response: ApiResponse<User[]> = createApiResponse({ success: true, data: users, message: getUserMessage(UserMessageKey.USERS_RETRIEVED).message, status: getUserMessage(UserMessageKey.USERS_RETRIEVED).code });
+      const response: ApiResponse<{ totalRecords: number; totalPages: number; users: User[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, users }, message: getUserMessage(UserMessageKey.USERS_RETRIEVED).message, status: getUserMessage(UserMessageKey.USERS_RETRIEVED).code });
       res.json(response);
     } else {
       // Log a warning message
@@ -61,7 +73,7 @@ export const getUserWithInclude = async (req: Request, res: Response) => {
   }
 };
 
-export const getUser = async (req: Request, res: Response) => {
+export const getUserById = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {

@@ -15,7 +15,7 @@ export const deleteBusinessPhone = async (req: Request, res: Response) => {
       const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).code });
       return res.json(response);
     }
-    await businessPhone.destroy();
+    // await businessPhone.destroy();
     logger.info(`Business phone with ID ${id} deleted successfully`);
     const response: ApiResponse<null> = createApiResponse({ success: true, message: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_DELETED).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_DELETED).code });
     res.json(response);

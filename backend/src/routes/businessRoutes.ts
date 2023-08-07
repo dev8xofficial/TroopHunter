@@ -4,7 +4,7 @@ import { createBusiness } from '../controllers/BusinessController/BusinessContro
 import { updateBusiness } from '../controllers/BusinessController/BusinessController.update';
 import { deleteBusiness } from '../controllers/BusinessController/BusinessController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { businessCreationRequestValidationMiddleware, businessFetchRequestValidationMiddleware, businessRequestValidationMiddleware } from '../models/Business/Business.validator';
+import { businessCreateRequestValidationMiddleware, businessFetchByIdRequestValidationMiddleware, businessFetchRequestValidationMiddleware, businessUpdateRequestValidationMiddleware } from '../models/Business/Business.validator';
 import { paginationRequestValidationMiddleware } from '../validators/Pagination.validator';
 
 const router = express.Router();
@@ -14,10 +14,10 @@ router.use(authenticateUser);
 
 // Define business routes
 router.get('/search', businessFetchRequestValidationMiddleware, paginationRequestValidationMiddleware, getBusinessesByQuery);
-router.get('/', businessFetchRequestValidationMiddleware, paginationRequestValidationMiddleware, getBusinesses);
-router.get('/:id', businessFetchRequestValidationMiddleware, getBusinessById);
-router.post('/', businessCreationRequestValidationMiddleware, createBusiness);
-router.put('/:id', businessRequestValidationMiddleware, updateBusiness);
-router.delete('/:id', businessFetchRequestValidationMiddleware, deleteBusiness);
+router.get('/', paginationRequestValidationMiddleware, getBusinesses);
+router.get('/:id', businessFetchByIdRequestValidationMiddleware, getBusinessById);
+router.post('/', businessCreateRequestValidationMiddleware, createBusiness);
+router.put('/:id', businessFetchByIdRequestValidationMiddleware, businessUpdateRequestValidationMiddleware, updateBusiness);
+router.delete('/:id', businessFetchByIdRequestValidationMiddleware, deleteBusiness);
 
 export default router;

@@ -1,9 +1,9 @@
 import Joi from 'joi';
 import { IStateResponseAttributes } from './State.interface';
-import { StateMessageKey, getStateMessage } from './State.messages';
+import validationMiddleware from '../../middlewares/validationMiddleware';
 
 export const StateSchema = Joi.object<IStateResponseAttributes>({
-  id: Joi.string(),
+  id: Joi.string().guid().required(),
   name: Joi.string().required(),
   code: Joi.string().required(),
   countryCode: Joi.string().required(),
@@ -11,82 +11,28 @@ export const StateSchema = Joi.object<IStateResponseAttributes>({
   latitude: Joi.number().required(),
 });
 
-export const createStateErrorResponse = (error: Joi.ValidationError) => {
-  const errorResponse: any = {};
+export const StateFetchOrUpdateRequestSchema = StateSchema.keys({
+  id: Joi.optional(),
+  name: Joi.optional(),
+  code: Joi.optional(),
+  countryCode: Joi.optional(),
+  longitude: Joi.optional(),
+  latitude: Joi.optional(),
+});
 
-  error.details.forEach((errorDetail) => {
-    switch (errorDetail.context?.key) {
-      case 'id':
-        switch (errorDetail.type) {
-          case 'string.base':
-            errorResponse.error = getStateMessage(StateMessageKey.INVALID_STATE_ID).message;
-            errorResponse.status = getStateMessage(StateMessageKey.INVALID_STATE_ID).code;
-            break;
-        }
-        break;
-      case 'name':
-        switch (errorDetail.type) {
-          case 'string.base':
-            errorResponse.error = getStateMessage(StateMessageKey.INVALID_STATE_NAME).message;
-            errorResponse.status = getStateMessage(StateMessageKey.INVALID_STATE_NAME).code;
-            break;
-          case 'any.required':
-            errorResponse.error = getStateMessage(StateMessageKey.MISSING_STATE_NAME).message;
-            errorResponse.status = getStateMessage(StateMessageKey.MISSING_STATE_NAME).code;
-            break;
-        }
-        break;
-      case 'code':
-        switch (errorDetail.type) {
-          case 'string.base':
-            errorResponse.error = getStateMessage(StateMessageKey.INVALID_STATE_CODE).message;
-            errorResponse.status = getStateMessage(StateMessageKey.INVALID_STATE_CODE).code;
-            break;
-          case 'any.required':
-            errorResponse.error = getStateMessage(StateMessageKey.MISSING_STATE_CODE).message;
-            errorResponse.status = getStateMessage(StateMessageKey.MISSING_STATE_CODE).code;
-            break;
-        }
-        break;
-      case 'countryCode':
-        switch (errorDetail.type) {
-          case 'any.required':
-            errorResponse.error = getStateMessage(StateMessageKey.MISSING_STATE_COUNTRY_CODE).message;
-            errorResponse.status = getStateMessage(StateMessageKey.MISSING_STATE_COUNTRY_CODE).code;
-            break;
-          case 'string.base':
-            errorResponse.error = getStateMessage(StateMessageKey.INVALID_STATE_COUNTRY_CODE).message;
-            errorResponse.status = getStateMessage(StateMessageKey.INVALID_STATE_COUNTRY_CODE).code;
-            break;
-        }
-        break;
-      case 'longitude':
-        switch (errorDetail.type) {
-          case 'number.base':
-            errorResponse.error = getStateMessage(StateMessageKey.INVALID_STATE_LONGITUDE).message;
-            errorResponse.status = getStateMessage(StateMessageKey.INVALID_STATE_LONGITUDE).code;
-            break;
-          case 'any.required':
-            errorResponse.error = getStateMessage(StateMessageKey.MISSING_STATE_LONGITUDE).message;
-            errorResponse.status = getStateMessage(StateMessageKey.MISSING_STATE_LONGITUDE).code;
-            break;
-        }
-        break;
-      case 'latitude':
-        switch (errorDetail.type) {
-          case 'number.base':
-            errorResponse.error = getStateMessage(StateMessageKey.INVALID_STATE_LATITUDE).message;
-            errorResponse.status = getStateMessage(StateMessageKey.INVALID_STATE_LATITUDE).code;
-            break;
-          case 'any.required':
-            errorResponse.error = getStateMessage(StateMessageKey.MISSING_STATE_LATITUDE).message;
-            errorResponse.status = getStateMessage(StateMessageKey.MISSING_STATE_LATITUDE).code;
-            break;
-        }
-        break;
-      default:
-        break;
-    }
-  });
-  return errorResponse;
-};
+export const StateFetchByIdRequestSchema = StateSchema.keys({
+  name: Joi.optional(),
+  code: Joi.optional(),
+  countryCode: Joi.optional(),
+  longitude: Joi.optional(),
+  latitude: Joi.optional(),
+});
+
+export const StateCreateRequestSchema = StateSchema.keys({
+  id: Joi.optional(),
+});
+
+export const stateFetchRequestValidationMiddleware = validationMiddleware(StateFetchOrUpdateRequestSchema, 'query');
+export const stateFetchByIdRequestValidationMiddleware = validationMiddleware(StateFetchByIdRequestSchema, 'params');
+export const stateCreateRequestValidationMiddleware = validationMiddleware(StateCreateRequestSchema, 'body');
+export const stateUpdateRequestValidationMiddleware = validationMiddleware(StateFetchOrUpdateRequestSchema, 'body');

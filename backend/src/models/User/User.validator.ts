@@ -1,8 +1,6 @@
 import Joi from 'joi';
 import { IUserResponseAttributes } from './User.interface';
-import { NextFunction, Request, Response } from 'express';
-import { createApiResponse } from '../../utils/response';
-import { ApiResponse } from '../../types/Response.interface';
+import validationMiddleware from '../../middlewares/validationMiddleware';
 
 export const UserSchema = Joi.object<IUserResponseAttributes>({
   id: Joi.string().guid().required(),
@@ -13,28 +11,28 @@ export const UserSchema = Joi.object<IUserResponseAttributes>({
   role: Joi.string().valid('guest', 'user', 'admin').optional(),
 });
 
-export const userFetchRequestValidationMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const { error } = UserSchema.validate(req.params, { abortEarly: false, allowUnknown: true, stripUnknown: true, errors: { escapeHtml: true } });
-  if (error) {
-    const response: ApiResponse<null> = createApiResponse({
-      error: error.details[0].message,
-      status: 400,
-    });
-    return res.json(response);
-  }
+export const UserFetchOrUpdateRequestSchema = UserSchema.keys({
+  id: Joi.optional(),
+  firstName: Joi.optional(),
+  lastName: Joi.optional(),
+  email: Joi.optional(),
+  password: Joi.optional(),
+  role: Joi.optional(),
+});
 
-  next();
-};
+export const UserFetchByIdRequestSchema = UserSchema.keys({
+  firstName: Joi.optional(),
+  lastName: Joi.optional(),
+  email: Joi.optional(),
+  password: Joi.optional(),
+  role: Joi.optional(),
+});
 
-export const userCreationRequestValidationMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const { error } = UserSchema.validate(req.body, { abortEarly: false, allowUnknown: true, stripUnknown: true, errors: { escapeHtml: true } });
-  if (error) {
-    const response: ApiResponse<null> = createApiResponse({
-      error: error.details[0].message,
-      status: 400,
-    });
-    return res.json(response);
-  }
+export const UserCreateRequestSchema = UserSchema.keys({
+  id: Joi.optional(),
+});
 
-  next();
-};
+export const userFetchRequestValidationMiddleware = validationMiddleware(UserFetchOrUpdateRequestSchema, 'query');
+export const userFetchByIdRequestValidationMiddleware = validationMiddleware(UserFetchByIdRequestSchema, 'params');
+export const userCreateRequestValidationMiddleware = validationMiddleware(UserCreateRequestSchema, 'body');
+export const userUpdateRequestValidationMiddleware = validationMiddleware(UserFetchOrUpdateRequestSchema, 'body');

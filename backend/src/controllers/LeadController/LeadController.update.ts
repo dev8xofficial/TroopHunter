@@ -7,23 +7,12 @@ import { ApiResponse } from '../../types/Response.interface';
 import { ILeadAttributesRequestAttributes } from '../../models/Lead/Lead.interface';
 import { LeadMessageKey, getLeadMessage } from '../../models/Lead/Lead.messages';
 import { UserMessageKey, getUserMessage } from '../../models/User/User.messages';
-import { LeadSchema, createLeadErrorResponse } from '../../models/Lead/Lead.validator';
 
 export const updateLead = async (req: Request, res: Response) => {
-  const { id } = req.params as { id: string };
-  const { error, value: validatedData } = LeadSchema.validate(req.body, { abortEarly: false });
-  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId } = validatedData as ILeadAttributesRequestAttributes;
+  const { id } = req.params;
+  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }: ILeadAttributesRequestAttributes = req.body;
 
   try {
-    if (error) {
-      const errorResponse = createLeadErrorResponse(error);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-
     const user = await User.findByPk(userId);
     if (!user) {
       logger.warn(`User with ID ${userId} not found`);

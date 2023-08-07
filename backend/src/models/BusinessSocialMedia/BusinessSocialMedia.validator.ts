@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { IBusinessSocialMediaResponseAttributes } from './BusinessSocialMedia.interface';
 
 export const BusinessSocialMediaSchema = Joi.object<IBusinessSocialMediaResponseAttributes>({
-  id: Joi.string(),
+  id: Joi.string().guid().required(),
   businessId: Joi.string().uuid().required(),
   facebookProfile: Joi.string().allow(null).optional(),
   twitterProfile: Joi.string().allow(null).optional(),

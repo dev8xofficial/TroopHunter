@@ -3,7 +3,7 @@ import { IPostalCodeResponseAttributes } from './PostalCode.interface';
 import { PostalCodeMessageKey, getPostalCodeMessage } from './PostalCode.messages';
 
 export const PostalCodeSchema = Joi.object<IPostalCodeResponseAttributes>({
-  id: Joi.string(),
+  id: Joi.string().guid().required(),
   code: Joi.string().required(),
 });
 

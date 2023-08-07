@@ -2,34 +2,32 @@ import Joi from 'joi';
 import { IBusinessResponseAttributes, IBusinessCreationRequestAttributes, IBusinessFetchRequestAttributes } from './Business.interface';
 import { GeoPointSchema } from '../../validators/GeoPoint.validator';
 import { TimezoneSchema } from '../Timezone/Timezone.validator';
-import { NextFunction, Request, Response } from 'express';
-import { createApiResponse } from '../../utils/response';
-import { ApiResponse } from '../../types/Response.interface';
+import validationMiddleware from '../../middlewares/validationMiddleware';
 
 export const BusinessSchema = Joi.object<IBusinessResponseAttributes>({
-  id: Joi.string().guid({ version: ['uuidv4'] }),
+  id: Joi.string().guid().required(),
   name: Joi.string().required(),
   businessDomain: Joi.string(),
-  categoryId: Joi.string(),
+  categoryId: Joi.string().guid(),
   address: Joi.string().required(),
-  cityId: Joi.string(),
-  stateId: Joi.string(),
-  countryId: Joi.string(),
+  cityId: Joi.string().guid(),
+  stateId: Joi.string().guid(),
+  countryId: Joi.string().guid(),
   longitude: Joi.number().required(),
   latitude: Joi.number().required(),
   geoPoint: GeoPointSchema.required(),
-  postalCodeId: Joi.string().optional(),
-  phoneId: Joi.string(),
+  postalCodeId: Joi.string().guid(),
+  phoneId: Joi.string().guid(),
   email: Joi.string(),
   website: Joi.string(),
-  ratingId: Joi.string(),
+  ratingId: Joi.string().guid(),
   reviews: Joi.number(),
-  timezoneId: Joi.string(),
-  sourceId: Joi.string(),
-  socialMediaId: Joi.string(),
+  timezoneId: Joi.string().guid(),
+  sourceId: Joi.string().guid(),
+  socialMediaId: Joi.string().guid(),
   sponsoredAd: Joi.boolean(),
-  openingHourId: Joi.string(),
-  closingHourId: Joi.string(),
+  openingHourId: Joi.string().guid(),
+  closingHourId: Joi.string().guid(),
 });
 
 export const BusinessCreateRequestSchema = BusinessSchema.append<IBusinessCreationRequestAttributes>({
@@ -46,7 +44,7 @@ export const BusinessCreateRequestSchema = BusinessSchema.append<IBusinessCreati
   closingHour: Joi.string(),
 }).fork(['id', 'categoryId', 'cityId', 'stateId', 'countryId', 'postalCodeId', 'phoneId', 'ratingId', 'timezoneId', 'sourceId', 'openingHourId', 'closingHourId'], (schema) => schema.optional());
 
-export const BusinessFetchRequestSchema = BusinessSchema.append<IBusinessFetchRequestAttributes>({
+export const BusinessFetchOrUpdateRequestSchema = BusinessSchema.append<IBusinessFetchRequestAttributes>({
   cityName: Joi.string(),
   stateName: Joi.string(),
   countryName: Joi.string(),
@@ -54,41 +52,9 @@ export const BusinessFetchRequestSchema = BusinessSchema.append<IBusinessFetchRe
   phone: Joi.string(),
 }).fork(['id', 'name', 'businessDomain', 'categoryId', 'address', 'cityId', 'stateId', 'countryId', 'longitude', 'latitude', 'geoPoint', 'postalCodeId', 'phoneId', 'email', 'website', 'ratingId', 'reviews', 'timezoneId', 'sourceId', 'socialMediaId', 'sponsoredAd', 'openingHourId', 'closingHourId'], (schema) => schema.optional());
 
-export const businessRequestValidationMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const { error } = BusinessSchema.validate(req.body, { abortEarly: false, allowUnknown: true, stripUnknown: true, errors: { escapeHtml: true } });
-  if (error) {
-    const response: ApiResponse<null> = createApiResponse({
-      error: error.details[0].message,
-      status: 400,
-    });
-    return res.json(response);
-  }
+export const BusinessFetchByIdRequestSchema = BusinessSchema.fork(['name', 'businessDomain', 'categoryId', 'address', 'cityId', 'stateId', 'countryId', 'longitude', 'latitude', 'geoPoint', 'postalCodeId', 'phoneId', 'email', 'website', 'ratingId', 'reviews', 'timezoneId', 'sourceId', 'socialMediaId', 'sponsoredAd', 'openingHourId', 'closingHourId'], (schema) => schema.optional());
 
-  next();
-};
-
-export const businessCreationRequestValidationMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const { error } = BusinessCreateRequestSchema.validate(req.body, { abortEarly: false, allowUnknown: true, stripUnknown: true, errors: { escapeHtml: true } });
-  if (error) {
-    const response: ApiResponse<null> = createApiResponse({
-      error: error.details[0].message,
-      status: 400,
-    });
-    return res.json(response);
-  }
-
-  next();
-};
-
-export const businessFetchRequestValidationMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const { error: requestError } = BusinessFetchRequestSchema.validate(req.query, { abortEarly: false, allowUnknown: true, stripUnknown: true, errors: { escapeHtml: true } });
-  if (requestError) {
-    const response: ApiResponse<null> = createApiResponse({
-      error: requestError.details[0].message,
-      status: 400,
-    });
-    return res.json(response);
-  }
-
-  next();
-};
+export const businessFetchRequestValidationMiddleware = validationMiddleware(BusinessFetchOrUpdateRequestSchema, 'query');
+export const businessFetchByIdRequestValidationMiddleware = validationMiddleware(BusinessFetchByIdRequestSchema, 'params');
+export const businessCreateRequestValidationMiddleware = validationMiddleware(BusinessCreateRequestSchema, 'body');
+export const businessUpdateRequestValidationMiddleware = validationMiddleware(BusinessFetchOrUpdateRequestSchema, 'body');

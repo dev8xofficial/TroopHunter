@@ -2,19 +2,28 @@ import { Request, Response } from 'express';
 import Queue from '../../models/Queue/Queue.model';
 import logger from '../../utils/logger';
 import { ApiResponse } from '../../types/Response.interface';
-import { IQueueResponseAttributes } from '../../models/Queue/Queue.interface';
 import { createApiResponse } from '../../utils/response';
 import { QueueMessageKey, getQueueMessage } from '../../models/Queue/Queue.messages';
-import { QueueSchema, createQueueErrorResponse } from '../../models/Queue/Queue.validator';
 
 export const getQueues = async (req: Request, res: Response) => {
+  const { page, limit } = req.query;
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  const offset = (pageNumber - 1) * limitNumber;
+
   try {
-    const queues = await Queue.findAll({
+    const { count, rows: queues } = await Queue.findAndCountAll({
+      offset,
+      limit: limitNumber,
       order: [['searchQuery', 'ASC']],
     });
 
-    const response: ApiResponse<Queue[]> = createApiResponse({ success: true, data: queues, message: getQueueMessage(QueueMessageKey.QUEUES_RETRIEVED).message, status: getQueueMessage(QueueMessageKey.QUEUES_RETRIEVED).code });
+    const totalPages = Math.ceil(count / limitNumber);
+
     logger.info(getQueueMessage(QueueMessageKey.QUEUES_RETRIEVED).message);
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; queues: Queue[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, queues }, message: getQueueMessage(QueueMessageKey.QUEUES_RETRIEVED).message, status: getQueueMessage(QueueMessageKey.QUEUES_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving queues:', error);
@@ -24,19 +33,9 @@ export const getQueues = async (req: Request, res: Response) => {
 };
 
 export const getQueueById = async (req: Request, res: Response) => {
-  const { error, value: validatedData } = QueueSchema.validate(req.params, { abortEarly: false });
-  const { id } = validatedData as IQueueResponseAttributes;
+  const { id } = req.params;
 
   try {
-    if (error) {
-      const errorResponse = createQueueErrorResponse(error);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-
     const queue = await Queue.findOne({ where: { id } });
 
     if (!queue) {

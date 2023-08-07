@@ -3,7 +3,9 @@ import { getStates, getStateById, getStatesByQuery } from '../controllers/StateC
 import { createState } from '../controllers/StateController/StateController.create';
 import { updateState } from '../controllers/StateController/StateController.update';
 import { deleteState } from '../controllers/StateController/StateController.delete';
+import { stateFetchByIdRequestValidationMiddleware, stateFetchRequestValidationMiddleware, stateCreateRequestValidationMiddleware, stateUpdateRequestValidationMiddleware } from '../models/State/State.validator';
 import { authenticateUser } from '../middlewares/authMiddleware';
+import { paginationRequestValidationMiddleware } from '../validators/Pagination.validator';
 
 const router = express.Router();
 
@@ -11,11 +13,11 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define state routes
-router.get('/search', getStatesByQuery);
-router.get('/', getStates);
-router.get('/:id', getStateById);
-router.post('/', createState);
-router.put('/:id', updateState);
-router.delete('/:id', deleteState);
+router.get('/search', stateFetchRequestValidationMiddleware, paginationRequestValidationMiddleware, getStatesByQuery);
+router.get('/', paginationRequestValidationMiddleware, getStates);
+router.get('/:id', stateFetchByIdRequestValidationMiddleware, getStateById);
+router.post('/', stateCreateRequestValidationMiddleware, createState);
+router.put('/:id', stateFetchByIdRequestValidationMiddleware, stateUpdateRequestValidationMiddleware, updateState);
+router.delete('/:id', stateFetchByIdRequestValidationMiddleware, deleteState);
 
 export default router;

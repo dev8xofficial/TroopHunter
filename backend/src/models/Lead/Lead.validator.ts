@@ -1,10 +1,10 @@
 import Joi from 'joi';
 import { ILeadAttributesResponseAttributes } from './Lead.interface';
-import { LeadMessageKey, getLeadMessage } from './Lead.messages';
 import { BusinessSchema } from '../Business/Business.validator';
+import validationMiddleware from '../../middlewares/validationMiddleware';
 
 export const LeadSchema = BusinessSchema.append<ILeadAttributesResponseAttributes>({
-  id: Joi.string(),
+  id: Joi.string().guid().required(),
   userId: Joi.string().uuid().required(),
   businessIds: Joi.array().items(Joi.string().uuid()).optional(),
   title: Joi.string().required(),
@@ -14,94 +14,41 @@ export const LeadSchema = BusinessSchema.append<ILeadAttributesResponseAttribute
   businessCount: Joi.number().required(),
 }).fork(['name', 'address', 'longitude', 'latitude', 'geoPoint', 'phoneId', 'sourceId'], (schema) => schema.optional());
 
-export const createLeadErrorResponse = (error: Joi.ValidationError) => {
-  const errorResponse: any = {};
+export const LeadFetchOrUpdateRequestSchema = LeadSchema.keys({
+  id: Joi.optional(),
+  userId: Joi.optional(),
+  businessIds: Joi.optional(),
+  title: Joi.optional(),
+  search: Joi.optional(),
+  phone: Joi.optional(),
+  sponsoredAd: Joi.optional(),
+  businessCount: Joi.optional(),
+});
 
-  error.details.forEach((errorDetail) => {
-    switch (errorDetail.context?.key) {
-      case 'id':
-        switch (errorDetail.type) {
-          case 'string.base':
-            errorResponse.error = getLeadMessage(LeadMessageKey.INVALID_LEAD_ID).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.INVALID_LEAD_ID).code;
-            break;
-        }
-        break;
-      case 'userId':
-        switch (errorDetail.type) {
-          case 'string.uuid':
-            errorResponse.error = getLeadMessage(LeadMessageKey.INVALID_USER_ID).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.INVALID_USER_ID).code;
-            break;
-          case 'any.required':
-            errorResponse.error = getLeadMessage(LeadMessageKey.MISSING_USER_ID).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.MISSING_USER_ID).code;
-            break;
-        }
-        break;
-      case 'businessIds':
-        switch (errorDetail.type) {
-          case 'array.base':
-            errorResponse.error = getLeadMessage(LeadMessageKey.INVALID_BUSINESS_IDS).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.INVALID_BUSINESS_IDS).code;
-            break;
-        }
-        break;
-      case 'title':
-        switch (errorDetail.type) {
-          case 'string.base':
-            errorResponse.error = getLeadMessage(LeadMessageKey.INVALID_LEAD_TITLE).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.INVALID_LEAD_TITLE).code;
-            break;
-          case 'any.required':
-            errorResponse.error = getLeadMessage(LeadMessageKey.MISSING_LEAD_TITLE).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.MISSING_LEAD_TITLE).code;
-            break;
-        }
-        break;
-      case 'search':
-        switch (errorDetail.type) {
-          case 'string.base':
-            errorResponse.error = getLeadMessage(LeadMessageKey.INVALID_LEAD_SEARCH).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.INVALID_LEAD_SEARCH).code;
-            break;
-          case 'any.required':
-            errorResponse.error = getLeadMessage(LeadMessageKey.MISSING_LEAD_SEARCH).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.MISSING_LEAD_SEARCH).code;
-            break;
-        }
-        break;
-      case 'phone':
-        switch (errorDetail.type) {
-          case 'string.base':
-            errorResponse.error = getLeadMessage(LeadMessageKey.INVALID_LEAD_PHONE).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.INVALID_LEAD_PHONE).code;
-            break;
-        }
-        break;
-      case 'sponsoredAd':
-        switch (errorDetail.type) {
-          case 'boolean.base':
-            errorResponse.error = getLeadMessage(LeadMessageKey.INVALID_LEAD_SPONSORED_AD).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.INVALID_LEAD_SPONSORED_AD).code;
-            break;
-        }
-        break;
-      case 'businessCount':
-        switch (errorDetail.type) {
-          case 'number.base':
-            errorResponse.error = getLeadMessage(LeadMessageKey.INVALID_LEAD_BUSINESS_COUNT).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.INVALID_LEAD_BUSINESS_COUNT).code;
-            break;
-          case 'any.required':
-            errorResponse.error = getLeadMessage(LeadMessageKey.MISSING_LEAD_BUSINESS_COUNT).message;
-            errorResponse.status = getLeadMessage(LeadMessageKey.MISSING_LEAD_BUSINESS_COUNT).code;
-            break;
-        }
-        break;
-      default:
-        break;
-    }
-  });
-  return errorResponse;
-};
+export const LeadFetchByIdRequestSchema = LeadSchema.keys({
+  userId: Joi.optional(),
+  businessIds: Joi.optional(),
+  title: Joi.optional(),
+  search: Joi.optional(),
+  phone: Joi.optional(),
+  sponsoredAd: Joi.optional(),
+  businessCount: Joi.optional(),
+});
+
+export const LeadCreateRequestSchema = LeadSchema.keys({
+  id: Joi.optional(),
+});
+
+interface ILeadBulkDeleteAttributes {
+  ids: string[];
+}
+
+export const LeadBuldDeleteRequestSchema = LeadSchema.append<ILeadBulkDeleteAttributes>({
+  ids: Joi.array().items(Joi.string().guid().required()).required(),
+}).fork(['id', 'userId', 'businessIds', 'title', 'search', 'phone', 'sponsoredAd', 'businessCount'], (schema) => schema.optional());
+
+export const leadFetchRequestValidationMiddleware = validationMiddleware(LeadFetchOrUpdateRequestSchema, 'query');
+export const leadFetchByIdRequestValidationMiddleware = validationMiddleware(LeadFetchByIdRequestSchema, 'params');
+export const leadCreateRequestValidationMiddleware = validationMiddleware(LeadCreateRequestSchema, 'body');
+export const leadUpdateRequestValidationMiddleware = validationMiddleware(LeadFetchOrUpdateRequestSchema, 'body');
+export const leadBulkDeleteRequestValidationMiddleware = validationMiddleware(LeadBuldDeleteRequestSchema, 'body');

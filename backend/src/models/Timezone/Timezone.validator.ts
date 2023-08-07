@@ -3,7 +3,7 @@ import { ITimezoneResponseAttributes } from './Timezone.interface';
 import { TimezoneMessageKey, getTimezoneMessage } from './Timezone.messages';
 
 export const TimezoneSchema = Joi.object<ITimezoneResponseAttributes>({
-  id: Joi.string(),
+  id: Joi.string().guid().required(),
   timezoneName: Joi.string().required(),
   utcOffset: Joi.string().required(),
   dst: Joi.boolean().required(),

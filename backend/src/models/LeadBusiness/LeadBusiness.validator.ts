@@ -1,23 +1,21 @@
 import Joi from 'joi';
 import { LeadBusinessAttributes } from './LeadBusiness.interface';
-import { NextFunction, Request, Response } from 'express';
-import { createApiResponse } from '../../utils/response';
-import { ApiResponse } from '../../types/Response.interface';
+import validationMiddleware from '../../middlewares/validationMiddleware';
 
 export const LeadBusinessSchema = Joi.object<LeadBusinessAttributes>({
   leadId: Joi.string().guid().required(),
   businessId: Joi.string().guid().required(),
 });
 
-export const leadBusinessesRequestValidationMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const { error } = LeadBusinessSchema.validate(req.params, { abortEarly: false, allowUnknown: true, stripUnknown: true, errors: { escapeHtml: true } });
-  if (error) {
-    const response: ApiResponse<null> = createApiResponse({
-      error: error.details[0].message,
-      status: 400,
-    });
-    return res.json(response);
-  }
+export const LeadBusinessFetchOrUpdateRequestSchema = LeadBusinessSchema.keys({
+  leadId: Joi.optional(),
+  businessId: Joi.optional(),
+});
 
-  next();
-};
+export const LeadBusinessFetchByIdRequestSchema = LeadBusinessSchema.keys({
+  businessId: Joi.optional(),
+});
+
+export const leadBusinessFetchRequestValidationMiddleware = validationMiddleware(LeadBusinessFetchOrUpdateRequestSchema, 'query');
+export const leadBusinessFetchByIdRequestValidationMiddleware = validationMiddleware(LeadBusinessSchema, 'params');
+export const leadBusinessUpdateRequestValidationMiddleware = validationMiddleware(LeadBusinessFetchOrUpdateRequestSchema, 'body');

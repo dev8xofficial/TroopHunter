@@ -4,6 +4,8 @@ import { createCity } from '../controllers/CityController/CityController.create'
 import { updateCity } from '../controllers/CityController/CityController.update';
 import { deleteCity } from '../controllers/CityController/CityController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
+import { cityCreateRequestValidationMiddleware, cityFetchByIdRequestValidationMiddleware, cityFetchRequestValidationMiddleware, cityUpdateRequestValidationMiddleware } from '../models/City/City.validator';
+import { paginationRequestValidationMiddleware } from '../validators/Pagination.validator';
 
 const router = express.Router();
 
@@ -11,11 +13,11 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define city routes
-router.get('/search', getCitiesByQuery);
-router.get('/', getCities);
-router.get('/:id', getCityById);
-router.post('/', createCity);
-router.put('/:id', updateCity);
-router.delete('/:id', deleteCity);
+router.get('/search', cityFetchRequestValidationMiddleware, paginationRequestValidationMiddleware, getCitiesByQuery);
+router.get('/', paginationRequestValidationMiddleware, getCities);
+router.get('/:id', cityFetchByIdRequestValidationMiddleware, getCityById);
+router.post('/', cityCreateRequestValidationMiddleware, createCity);
+router.put('/:id', cityFetchByIdRequestValidationMiddleware, cityUpdateRequestValidationMiddleware, updateCity);
+router.delete('/:id', cityFetchByIdRequestValidationMiddleware, deleteCity);
 
 export default router;

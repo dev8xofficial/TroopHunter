@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { IQueueResponseAttributes } from './Queue.interface';
-import { QueueMessageKey, getQueueMessage } from './Queue.messages';
+import validationMiddleware from '../../middlewares/validationMiddleware';
 
 export const QueueSchema = Joi.object<IQueueResponseAttributes>({
   id: Joi.number().integer().required(),
@@ -9,62 +9,24 @@ export const QueueSchema = Joi.object<IQueueResponseAttributes>({
   status: Joi.string().valid('Pending', 'Completed').required(),
 });
 
-export const createQueueErrorResponse = (error: Joi.ValidationError) => {
-  const errorResponse: any = {};
+export const QueueFetchOrUpdateRequestSchema = QueueSchema.keys({
+  id: Joi.optional(),
+  searchQuery: Joi.optional(),
+  laptopName: Joi.optional(),
+  status: Joi.optional(),
+});
 
-  error.details.forEach((errorDetail) => {
-    switch (errorDetail.context?.key) {
-      case 'id':
-        switch (errorDetail.type) {
-          case 'any.required':
-            errorResponse.error = getQueueMessage(QueueMessageKey.MISSING_QUEUE_ID).message;
-            errorResponse.status = getQueueMessage(QueueMessageKey.MISSING_QUEUE_ID).code;
-            break;
-          case 'number.base':
-            errorResponse.error = getQueueMessage(QueueMessageKey.INVALID_QUEUE_ID).message;
-            errorResponse.status = getQueueMessage(QueueMessageKey.INVALID_QUEUE_ID).code;
-            break;
-        }
-        break;
-      case 'searchQuery':
-        switch (errorDetail.type) {
-          case 'any.required':
-            errorResponse.error = getQueueMessage(QueueMessageKey.MISSING_QUEUE_SEARCH).message;
-            errorResponse.status = getQueueMessage(QueueMessageKey.MISSING_QUEUE_SEARCH).code;
-            break;
-          case 'string.base':
-            errorResponse.error = getQueueMessage(QueueMessageKey.INVALID_QUEUE_SEARCH).message;
-            errorResponse.status = getQueueMessage(QueueMessageKey.INVALID_QUEUE_SEARCH).code;
-            break;
-        }
-        break;
-      case 'laptopName':
-        switch (errorDetail.type) {
-          case 'any.required':
-            errorResponse.error = getQueueMessage(QueueMessageKey.MISSING_QUEUE_LAPTOP_NAME).message;
-            errorResponse.status = getQueueMessage(QueueMessageKey.MISSING_QUEUE_LAPTOP_NAME).code;
-            break;
-          case 'string.base':
-            errorResponse.error = getQueueMessage(QueueMessageKey.INVALID_QUEUE_LAPTOP_NAME).message;
-            errorResponse.status = getQueueMessage(QueueMessageKey.INVALID_QUEUE_LAPTOP_NAME).code;
-            break;
-        }
-        break;
-      case 'status':
-        switch (errorDetail.type) {
-          case 'any.required':
-            errorResponse.error = getQueueMessage(QueueMessageKey.MISSING_QUEUE_STATUS).message;
-            errorResponse.status = getQueueMessage(QueueMessageKey.MISSING_QUEUE_STATUS).code;
-            break;
-          case 'string.valid':
-            errorResponse.error = getQueueMessage(QueueMessageKey.INVALID_QUEUE_STATUS).message;
-            errorResponse.status = getQueueMessage(QueueMessageKey.INVALID_QUEUE_STATUS).code;
-            break;
-        }
-        break;
-      default:
-        break;
-    }
-  });
-  return errorResponse;
-};
+export const QueueFetchByIdRequestSchema = QueueSchema.keys({
+  searchQuery: Joi.optional(),
+  laptopName: Joi.optional(),
+  status: Joi.optional(),
+});
+
+export const QueueCreateRequestSchema = QueueSchema.keys({
+  id: Joi.optional(),
+});
+
+export const queueFetchRequestValidationMiddleware = validationMiddleware(QueueFetchOrUpdateRequestSchema, 'query');
+export const queueFetchByIdRequestValidationMiddleware = validationMiddleware(QueueFetchByIdRequestSchema, 'params');
+export const queueCreateRequestValidationMiddleware = validationMiddleware(QueueCreateRequestSchema, 'body');
+export const queueUpdateRequestValidationMiddleware = validationMiddleware(QueueFetchOrUpdateRequestSchema, 'body');

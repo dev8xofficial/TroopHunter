@@ -2,36 +2,14 @@ import { Request, Response } from 'express';
 import Queue from '../../models/Queue/Queue.model';
 import logger from '../../utils/logger';
 import { ApiResponse } from '../../types/Response.interface';
-import { IQueueRequestAttributes, IQueueResponseAttributes } from '../../models/Queue/Queue.interface';
 import { createApiResponse } from '../../utils/response';
 import { QueueMessageKey, getQueueMessage } from '../../models/Queue/Queue.messages';
-import { QueueSchema, createQueueErrorResponse } from '../../models/Queue/Queue.validator';
 
 export const updateQueue = async (req: Request, res: Response) => {
-  const { error: paramsError, value: validatedParamsData } = QueueSchema.validate(req.params, { abortEarly: false });
-  const { id } = validatedParamsData as IQueueResponseAttributes;
-
-  const { error, value: validatedData } = QueueSchema.validate(req.body, { abortEarly: false });
-  const { searchQuery, laptopName, status } = validatedData as IQueueRequestAttributes;
+  const { id } = req.params;
+  const { searchQuery, laptopName, status } = req.body;
 
   try {
-    if (paramsError) {
-      const errorResponse = createQueueErrorResponse(paramsError);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-    if (error) {
-      const errorResponse = createQueueErrorResponse(error);
-      const response: ApiResponse<null> = createApiResponse({
-        error: errorResponse.error,
-        status: errorResponse.status,
-      });
-      return res.json(response);
-    }
-
     const queue = await Queue.findByPk(id);
 
     if (queue) {

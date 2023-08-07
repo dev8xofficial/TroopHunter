@@ -3,7 +3,9 @@ import { getCountries, getCountryById, getCountriesByQuery } from '../controller
 import { createCountry } from '../controllers/CountryController/CountryController.create';
 import { updateCountry } from '../controllers/CountryController/CountryController.update';
 import { deleteCountry } from '../controllers/CountryController/CountryController.delete';
+import { countryFetchByIdRequestValidationMiddleware, countryFetchRequestValidationMiddleware, countryCreateRequestValidationMiddleware, countryUpdateRequestValidationMiddleware } from '../models/Country/Country.validator';
 import { authenticateUser } from '../middlewares/authMiddleware';
+import { paginationRequestValidationMiddleware } from '../validators/Pagination.validator';
 
 const router = express.Router();
 
@@ -11,11 +13,11 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define country routes
-router.get('/search', getCountriesByQuery);
-router.get('/', getCountries);
-router.get('/:id', getCountryById);
-router.post('/', createCountry);
-router.put('/:id', updateCountry);
-router.delete('/:id', deleteCountry);
+router.get('/search', countryFetchRequestValidationMiddleware, paginationRequestValidationMiddleware, getCountriesByQuery);
+router.get('/', paginationRequestValidationMiddleware, getCountries);
+router.get('/:id', countryFetchByIdRequestValidationMiddleware, getCountryById);
+router.post('/', countryCreateRequestValidationMiddleware, createCountry);
+router.put('/:id', countryFetchByIdRequestValidationMiddleware, countryUpdateRequestValidationMiddleware, updateCountry);
+router.delete('/:id', countryFetchByIdRequestValidationMiddleware, deleteCountry);
 
 export default router;

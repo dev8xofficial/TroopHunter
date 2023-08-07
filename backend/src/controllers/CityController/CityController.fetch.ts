@@ -12,23 +12,8 @@ export const getCitiesByQuery = async (req: Request, res: Response) => {
   const { name, page, limit } = req.query;
 
   // Pagination
-  if (!page || !limit) {
-    const response: ApiResponse<null> = createApiResponse({ error: getPaginationMessage(PaginationMessageKey.MISSING_REQUEST_LIMIT).message, status: getPaginationMessage(PaginationMessageKey.MISSING_REQUEST_LIMIT).code });
-    return res.json(response);
-  }
-
-  if (!name) {
-    const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.MISSING_CITY).message, status: getCityMessage(CityMessageKey.MISSING_CITY).code });
-    return res.json(response);
-  }
-
   const pageNumber = parseInt(page as string, 10);
   const limitNumber = parseInt(limit as string, 10);
-
-  if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
-    const response: ApiResponse<null> = createApiResponse({ error: getPaginationMessage(PaginationMessageKey.INVALID_REQUEST_LIMIT).message, status: getPaginationMessage(PaginationMessageKey.INVALID_REQUEST_LIMIT).code });
-    return res.json(response);
-  }
 
   const offset = (pageNumber - 1) * limitNumber;
 
@@ -66,10 +51,23 @@ export const getCitiesByQuery = async (req: Request, res: Response) => {
 
 // Get all cities
 export const getCities = async (req: Request, res: Response) => {
+  const { page, limit } = req.query;
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+
+  const offset = (pageNumber - 1) * limitNumber;
+
   try {
-    const cities = await City.findAll();
+    const { count, rows: cities } = await City.findAndCountAll({
+      offset,
+      limit: limitNumber,
+    });
+
+    const totalPages = Math.ceil(count / limitNumber);
+
     logger.info('Successfully retrieved cities');
-    const response: ApiResponse<City[]> = createApiResponse({ success: true, data: cities, message: getCityMessage(CityMessageKey.CITIES_RETRIEVED).message, status: getCityMessage(CityMessageKey.CITIES_RETRIEVED).code });
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; cities: City[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, cities }, message: getCityMessage(CityMessageKey.CITIES_RETRIEVED).message, status: getCityMessage(CityMessageKey.CITIES_RETRIEVED).code });
     res.json(response);
   } catch (error) {
     logger.error('Error while retrieving cities:', error);
