@@ -9,6 +9,8 @@ LOCATIONS = [
         "state": "California",
         "country": "United States",
         "countryCode": "US",
+        "longitude": -122.41942,
+        "latitude": 37.77493,
     }
 ]
 sourceValues = ["google-maps", "google", "facebook"]

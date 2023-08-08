@@ -4,7 +4,7 @@ import requests
 import logging
 
 
-def get_queue():
+def get_queue(page=1, limit=5):
     try:
         # Define the endpoint URL
         backend_url = os.environ.get("BACKEND_URL")
@@ -18,19 +18,20 @@ def get_queue():
 
         # Set the request parameters
         params = {
-            "page": 1,
-            "limit": 10,
+            "page": page,
+            "limit": limit,
         }
 
         # Send the GET request to the endpoint
         response = requests.get(url, headers=headers, params=params)
+        jsonResponse = response.json()
 
         # Check the response status code
-        if response.status_code == 200:
-            return response.json()
+        if jsonResponse["success"]:
+            return response.json()["data"]
         else:
             # Request failed
-            logging.error("Failed to retrieve queue. Status code: %s, Response: %s", response.status_code, response.text)
+            logging.error("Failed to retrieve queue. Status code: %s, Response: %s", jsonResponse["status"], jsonResponse["error"])
             return None
     except requests.exceptions.RequestException as e:
         # Request encountered an error
@@ -49,13 +50,14 @@ def update_queue(request: dict):
 
         # Send the PUT request to the endpoint
         response = requests.put(url, headers=headers, data=json.dumps(request))
+        jsonResponse = response.json()
 
         # Check the response status code
-        if response.status_code == 200:
+        if jsonResponse["success"]:
             return response.json()
         else:
             # Request failed
-            logging.error("Failed to update the queue. Status code: %s, Response: %s", response.status_code, response.text)
+            logging.error("Failed to update the queue. Status code: %s, Response: %s", jsonResponse["status"], jsonResponse["error"])
             return None
     except requests.exceptions.RequestException as e:
         # Request encountered an error

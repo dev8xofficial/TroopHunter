@@ -27,9 +27,10 @@ def check_business_existence(name: str = None, category: str = None, address: st
         # Send the GET request to the endpoint
         response = requests.get(url, headers=headers, params=params)
         result = False
+        jsonResponse = response.json()
 
         # Check the response status code
-        if response.status_code == 200:
+        if jsonResponse["success"]:
             data = response.json()["data"]
             if data["totalRecords"] > 0:
                 for businessId in data["businesses"]:
@@ -66,13 +67,14 @@ def create_business(request: dict):
 
         # Send the POST request to the endpoint
         response = requests.post(url, headers=headers, data=json.dumps(request))
+        jsonResponse = response.json()
 
         # Check the response status code
-        if response.status_code == 201:
+        if jsonResponse["success"]:
             return response.json()
         else:
             # Request failed
-            logging.error("Failed to create a business. Status code: %s, Response: %s", response.status_code, response.text)
+            logging.error("Failed to create a business. Status code: %s, Response: %s", jsonResponse["status"], jsonResponse["error"])
             return None
     except requests.exceptions.RequestException as e:
         # Request encountered an error

@@ -115,7 +115,7 @@ def get_timezone_info(timezone):
 
 
 # Extract latitude and longitude from the URL
-def extract_lat_lon(url):
+def extract_lat_lon(city, url):
     # Extract the latitude and longitude using regular expression
     pattern = r"@([-+]?\d+\.\d+),([-+]?\d+\.\d+)"
     match = re.search(pattern, url)
@@ -123,4 +123,4 @@ def extract_lat_lon(url):
         lat = match.group(1)
         lon = match.group(2)
         return lat, lon
-    return None, None
+    return city["latitude"], city["longitude"]

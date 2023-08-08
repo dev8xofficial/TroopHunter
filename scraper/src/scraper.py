@@ -16,6 +16,8 @@ from src.utils.location import get_postal_code, get_timezone_info, extract_lat_l
 from src.utils.business import convert_to_24h_format, get_cleaned_phone, click_feed_article, close_feed_article, wait_for_url
 from src.utils.general import handle_timeout_with_retry
 from src.services.business import check_business_existence, create_business
+from src.services.state import get_states
+from src.services.country import get_countries
 from config import sourceValues
 
 
@@ -49,7 +51,7 @@ class BusinessScraper:
         wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
         wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
 
-    def scroll_and_extract_data(self, query: str, location: str):
+    def scroll_and_extract_data(self, query: str, city: str):
         self.logger.info("Scrolling into feed.")
         counter = 0
 
@@ -214,7 +216,7 @@ class BusinessScraper:
                 # Business Domain
                 business_domain_button = soup.select_one(".fontBodyMedium button.DkEaL")
                 if business_domain_button:
-                    current_business_data["businessDomain"] = business_domain_button.text
+                    current_business_data["businessDomain"] = business_domain_button.text.lower()
                 current_business_data["category"] = query
 
                 try:
@@ -244,7 +246,7 @@ class BusinessScraper:
 
                 self.logger.info("~~~~~~~~ Location Info ~~~~~~~~")
 
-                latitude, longitude = extract_lat_lon(self.driver.current_url)
+                latitude, longitude = extract_lat_lon(city, self.driver.current_url)
                 current_business_data["latitude"] = latitude
                 current_business_data["longitude"] = longitude
                 self.logger.info(f"Latitude & Longitude: {latitude}, {longitude}")
@@ -252,21 +254,21 @@ class BusinessScraper:
                 current_business_data["source"] = sourceValues[0]
                 self.logger.info(f"Source: {sourceValues[0]}")
 
-                self.logger.info("~~~~~~~~ Timezone Info ~~~~~~~~")
-                timezone = get_timezone_info(location["timezone"])
-                self.logger.info(f"Timezone: {location['timezone']}")
-                self.logger.info(f"UTC Offset: {timezone['utc_offset']}")
-                self.logger.info(f"DST: {timezone['dst']}")
-                self.logger.info(f"DST Offset: {timezone['dst_offset']}")
-                self.logger.info(f"Country Code: {location['countryCode']}")
+                # self.logger.info("~~~~~~~~ Timezone Info ~~~~~~~~")
+                # timezone = get_timezone_info(city["timezone"])
+                # self.logger.info(f"Timezone: {city['timezone']}")
+                # self.logger.info(f"UTC Offset: {timezone['utc_offset']}")
+                # self.logger.info(f"DST: {timezone['dst']}")
+                # self.logger.info(f"DST Offset: {timezone['dst_offset']}")
+                # self.logger.info(f"Country Code: {city['countryCode']}")
 
-                current_business_data["timezone"] = {
-                    "timezoneName": location["timezone"],
-                    "utcOffset": timezone["utc_offset"],
-                    "dst": timezone["dst"],
-                    "dstOffset": timezone["dst_offset"],
-                    "countryCode": location["countryCode"],
-                }
+                # current_business_data["timezone"] = {
+                #     "timezoneName": city["timezone"],
+                #     "utcOffset": timezone["utc_offset"],
+                #     "dst": timezone["dst"],
+                #     "dstOffset": timezone["dst_offset"],
+                #     "countryCode": city["countryCode"],
+                # }
 
                 merged_elements = self.driver.find_elements(By.CLASS_NAME, "RcCsl") + self.driver.find_elements(By.CLASS_NAME, "OqCZI")
                 html_sources = [element.get_attribute("innerHTML") for element in merged_elements]
@@ -289,13 +291,15 @@ class BusinessScraper:
                         zip = get_postal_code(address=tr_text)
                         self.logger.info("Location:")
                         self.logger.info(f"Postal Code: {zip}")
-                        self.logger.info(f"City: {location['city']}")
-                        self.logger.info(f"State: {location['state']}")
-                        self.logger.info(f"Country: {location['country']}")
+                        state = get_states(code=city['stateCode'], country_code=city['countryCode'])['states'][0]
+                        country = get_countries(code=city['countryCode'])['countries'][0]
+                        self.logger.info(f"CityId: {city['id']}")
+                        self.logger.info(f"StateId: {state['id']}")
+                        self.logger.info(f"CountryId: {country['id']}")
                         current_business_data["postalCode"] = zip
-                        current_business_data["city"] = location["city"]
-                        current_business_data["state"] = location["state"]
-                        current_business_data["country"] = location["country"]
+                        current_business_data["cityId"] = city['id']
+                        current_business_data["stateId"] = state['id']
+                        current_business_data["countryId"] = country['id']
                     elif img_with_schedule_src:
                         self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
                         tr_elements = soup.find_all("tr", class_="y0skZc")

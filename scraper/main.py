@@ -6,6 +6,7 @@ import logging
 import datetime
 from dotenv import load_dotenv
 from src.services.queue import get_queue, update_queue
+from src.services.city import get_cities
 from concurrent.futures import ThreadPoolExecutor, wait
 from src.utils.general import is_internet_available
 import requests
@@ -15,7 +16,7 @@ from requests.exceptions import Timeout
 load_dotenv()
 
 
-def process_queue(queue, location):
+def process_queue(queue, city):
     # Set up logging for the current search query and laptop name
     current_date = datetime.datetime.now().strftime("%m-%d-%Y")
     log_file = f"scraper/logs/scraper__{current_date}__{queue['searchQuery'].replace(' ', '-')}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
@@ -24,7 +25,9 @@ def process_queue(queue, location):
 
     # Add a file handler with the specific log file name
     file_handler = logging.FileHandler(log_file)
-    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(module)s - %(message)s")
+    formatter = logging.Formatter(
+        "%(asctime)s - %(levelname)s - %(module)s - %(message)s"
+    )
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
@@ -35,50 +38,71 @@ def process_queue(queue, location):
 
     while True:
         try:
-            searchQuery = f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in location.items() if key != 'timezone' and key != 'countryCode').values())}"
+            searchQuery = f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())}"
             scraper = BusinessScraper(searchQuery=searchQuery, logger=logger)
             scraper.search(searchQuery)
-            scraper.scroll_and_extract_data(queue["searchQuery"], location)
+            scraper.scroll_and_extract_data(queue["searchQuery"], city)
 
             queue["status"] = "Completed"
             update_queue(request=queue)
-            logger.info(f"Search for '{queue['searchQuery']}' in {location} completed.")
+            logger.info(
+                f"Search for '{queue['searchQuery']}' in {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())} completed."
+            )
             scraper.close()
             break
         except (Timeout, requests.exceptions.RequestException, Exception) as e:
             while True:
                 if is_internet_available():
-                    scraper.close()
                     logger.info("Internet connection is working. Retrying...")
+                    scraper.close()
                     break
                 else:
-                    logger.info("Internet connection is not available. Retrying in 5 seconds...")
+                    logger.info(
+                        "Internet connection is not available. Retrying in 5 seconds..."
+                    )
 
 
 def main():
     logging.info("Scraping process started.")
 
-    QUEUES = get_queue()
+    LIMIT = 1  # Number of queues to process per page
+    total_pages_queues = get_queue(limit=LIMIT)["totalPages"]
+    total_pages_cities = get_cities(limit=LIMIT)["totalPages"]
 
-    # Create a ThreadPoolExecutor with a maximum of 3 threads
-    with ThreadPoolExecutor(max_workers=1) as executor:
-        futures = []
-        for location in LOCATIONS:
-            for queue in QUEUES["data"]:
-                if queue["laptopName"] == LAPTOP_NAME and queue["status"] == "Pending":
-                    pass
-                elif queue["laptopName"] == "" and queue["status"] == "Pending":
-                    queue["laptopName"] = LAPTOP_NAME
-                    update_queue(request=queue)
-                else:
-                    continue
+    for city_page in range(1, total_pages_cities + 1):
+        cities_response = get_cities(page=city_page, limit=LIMIT)
+        if not cities_response["totalRecords"] > 0:
+            logging.error("Failed to retrieve cities for city page %d.", city_page)
+            continue
+        for queue_page in range(1, total_pages_queues + 1):
+            queues_response = get_queue(page=queue_page, limit=LIMIT)
+            if not queues_response["totalRecords"] > 0:
+                logging.error(
+                    "Failed to retrieve queues for queue page %d.", queue_page
+                )
+                continue
 
-                # Submit each search task to the ThreadPoolExecutor
-                future = executor.submit(process_queue, queue, location)
-                futures.append(future)
+            with ThreadPoolExecutor(max_workers=LIMIT) as executor:
+                futures = []
+                for city in cities_response["cities"]:
+                    for queue in queues_response["queues"]:
+                        if (
+                            queue["laptopName"] == LAPTOP_NAME
+                            and queue["status"] == "Pending"
+                        ):
+                            pass
+                        elif queue["laptopName"] == "" and queue["status"] == "Pending":
+                            queue["laptopName"] = LAPTOP_NAME
+                            update_queue(request=queue)
+                        else:
+                            continue
 
-        # Wait for all tasks to complete
-        wait(futures)
+                        # Submit each search task to the ThreadPoolExecutor
+                        future = executor.submit(process_queue, queue, city)
+                        futures.append(future)
+
+                # Wait for all tasks on this page to complete
+                wait(futures)
 
     logging.info("Scraping process completed.")
 
@@ -88,7 +112,11 @@ if __name__ == "__main__":
         # Set up logging for the main script
         current_date = datetime.datetime.now().strftime("%m-%d-%Y")
         log_file = f"scraper/logs/main__{current_date}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
-        logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(module)s - %(message)s")
+        logging.basicConfig(
+            filename=log_file,
+            level=logging.INFO,
+            format="%(asctime)s - %(levelname)s - %(module)s - %(message)s",
+        )
         main()
     except Exception as e:
         logging.exception("An unhandled error occurred during scraper execution: %s", e)
