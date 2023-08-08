@@ -14,6 +14,7 @@ BusinessRating.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
     ratingValue: {
       type: DataTypes.FLOAT(2, 1),

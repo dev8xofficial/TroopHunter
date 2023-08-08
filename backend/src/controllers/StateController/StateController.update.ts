@@ -4,11 +4,12 @@ import logger from '../../utils/logger';
 import { ApiResponse } from '../../types/Response.interface';
 import { createApiResponse } from '../../utils/response';
 import { StateMessageKey, getStateMessage } from '../../models/State/State.messages';
+import { IStateRequestAttributes } from '../../models/State/State.interface';
 
 // Update a state by ID
 export const updateState = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { name, code, countryCode, longitude, latitude } = req.body;
+  const { name, code, countryCode, longitude, latitude }: IStateRequestAttributes = req.body;
   try {
     const existingState = await State.findOne({ where: { id } });
     if (!existingState) {

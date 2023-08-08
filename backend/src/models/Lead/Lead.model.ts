@@ -5,6 +5,12 @@ import City from '../City/City.model';
 import State from '../State/State.model';
 import Country from '../Country/Country.model';
 import { ILeadAttributesResponseAttributes } from './Lead.interface';
+import BusinessCategory from '../BusinessCategory/BusinessCategory.model';
+import PostalCode from '../PostalCode/PostalCode.model';
+import BusinessRating from '../BusinessRating/BusinessRating.model';
+import Timezone from '../Timezone/Timezone.model';
+import BusinessOpeningHour from '../BusinessOpeningHour/BusinessOpeningHour.model';
+import BusinessClosingHour from '../BusinessClosingHour/BusinessClosingHour.model';
 
 class Lead extends Model<ILeadAttributesResponseAttributes> implements ILeadAttributesResponseAttributes {
   public id!: string;
@@ -135,9 +141,15 @@ Lead.init(
   }
 );
 
+Lead.belongsTo(BusinessCategory, { foreignKey: 'categoryId' });
 Lead.belongsTo(City, { foreignKey: 'cityId' });
 Lead.belongsTo(State, { foreignKey: 'stateId' });
 Lead.belongsTo(Country, { foreignKey: 'countryId' });
+Lead.belongsTo(PostalCode, { foreignKey: 'postalCodeId' });
+Lead.belongsTo(BusinessRating, { foreignKey: 'ratingId' });
+Lead.belongsTo(Timezone, { foreignKey: 'timezoneId' });
+Lead.belongsTo(BusinessOpeningHour, { foreignKey: 'openingHourId' });
+Lead.belongsTo(BusinessClosingHour, { foreignKey: 'closingHourId' });
 
 Lead.sync();
 

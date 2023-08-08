@@ -9,7 +9,7 @@ import { PaginationMessageKey, getPaginationMessage } from '../../messages/Pagin
 
 // Get cities by name and state
 export const getCitiesByQuery = async (req: Request, res: Response) => {
-  const { name, page, limit } = req.query;
+  const { name, stateCode, countryCode, page, limit } = req.query;
 
   // Pagination
   const pageNumber = parseInt(page as string, 10);
@@ -22,6 +22,14 @@ export const getCitiesByQuery = async (req: Request, res: Response) => {
 
   if (name) {
     whereClause.name = { [Op.iLike]: `%${name}%` };
+  }
+
+  if (stateCode) {
+    whereClause.stateCode = { [Op.iLike]: `%${stateCode}%` };
+  }
+
+  if (countryCode) {
+    whereClause.countryCode = { [Op.iLike]: `%${countryCode}%` };
   }
 
   try {

@@ -51,6 +51,15 @@ User.init(
   {
     sequelize,
     modelName: 'User',
+    indexes: [
+      {
+        fields: ['email'],
+      },
+      {
+        unique: true,
+        fields: ['firstName', 'lastName', 'email'],
+      },
+    ],
   }
 );
 

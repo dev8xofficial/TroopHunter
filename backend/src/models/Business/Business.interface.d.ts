@@ -1,16 +1,17 @@
 import { GeoPointAttributes } from '../../types/GeoPoint.interface';
+import { ITimezoneRequestAttributes } from '../Timezone/Timezone.interface';
 
 export interface IBusinessRequestAttributes {
   name: string;
   businessDomain?: string;
   categoryId?: string;
   address?: string;
-  cityId?: string;
-  stateId?: string;
-  countryId?: string;
+  cityId: string;
+  stateId: string;
+  countryId: string;
   longitude: number;
   latitude: number;
-  geoPoint: GeoPointAttributes;
+  geoPoint?: GeoPointAttributes;
   postalCodeId?: string;
   phoneId?: string;
   email?: string;
@@ -29,11 +30,8 @@ export interface IBusinessResponseAttributes extends IBusinessRequestAttributes 
   id: string;
 }
 
-export interface IBusinessCreationRequestAttributes extends Omit<IBusinessRequestAttributes, 'categoryId' | 'cityId' | 'stateId' | 'countryId' | 'postalCodeId' | 'phoneId' | 'ratingId' | 'timezoneId' | 'sourceId' | 'openingHourId' | 'closingHourId'> {
+export interface IBusinessCreationRequestAttributes extends Omit<IBusinessRequestAttributes, 'categoryId' | 'postalCodeId' | 'phoneId' | 'ratingId' | 'timezoneId' | 'sourceId' | 'openingHourId' | 'closingHourId'> {
   category?: string;
-  city?: string;
-  state?: string;
-  country?: string;
   postalCode?: string;
   phone?: string;
   rating?: number;
@@ -44,9 +42,6 @@ export interface IBusinessCreationRequestAttributes extends Omit<IBusinessReques
 }
 
 export interface IBusinessFetchRequestAttributes extends IBusinessRequestAttributes {
-  cityName?: string;
-  stateName?: string;
-  countryName?: string;
   range?: string;
   phone?: string;
 }

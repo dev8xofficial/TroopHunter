@@ -1,4 +1,4 @@
-const { City } = require('country-state-city');
+const { City, State, Country } = require('country-state-city');
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
@@ -8,13 +8,22 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
+        unique: true,
       },
       name: {
         type: Sequelize.STRING(100),
         allowNull: false,
       },
+      state: {
+        type: Sequelize.STRING(100),
+        allowNull: false,
+      },
       stateCode: {
         type: Sequelize.STRING(5),
+        allowNull: false,
+      },
+      country: {
+        type: Sequelize.STRING(100),
         allowNull: false,
       },
       countryCode: {
@@ -56,9 +65,22 @@ module.exports = {
 
     allCities.map((city) => {
       const { name, stateCode, countryCode, longitude, latitude } = city;
-      const existingCity = cityData.find((loc) => loc.name === name && loc.stateCode === stateCode && loc.countryCode === countryCode);
-      if (!existingCity) {
-        cityData.push({ id: uuidv4(), name, stateCode, countryCode, longitude, latitude });
+      const state = State.getStateByCodeAndCountry(stateCode, countryCode);
+      const country = Country.getCountryByCode(countryCode);
+      if (country) {
+        const existingCity = cityData.find((loc) => loc.name === name && loc.stateCode === stateCode && loc.countryCode === countryCode);
+        if (!existingCity) {
+          cityData.push({
+            id: uuidv4(),
+            name,
+            state: state.name,
+            stateCode,
+            country: country.name,
+            countryCode,
+            longitude,
+            latitude,
+          });
+        }
       }
     });
 

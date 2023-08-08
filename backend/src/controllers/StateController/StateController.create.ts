@@ -2,14 +2,14 @@ import { Request, Response } from 'express';
 import State from '../../models/State/State.model';
 import logger from '../../utils/logger';
 import { ApiResponse } from '../../types/Response.interface';
-import { IStateResponseAttributes } from '../../models/State/State.interface';
+import { IStateRequestAttributes, IStateResponseAttributes } from '../../models/State/State.interface';
 import { createApiResponse } from '../../utils/response';
 import { StateMessageKey, getStateMessage } from '../../models/State/State.messages';
 import { v4 as uuidv4 } from 'uuid';
 
 // Create a new state
 export const createState = async (req: Request, res: Response) => {
-  const { name, code, countryCode, longitude, latitude } = req.body;
+  const { name, code, countryCode, longitude, latitude }: IStateRequestAttributes = req.body;
   try {
     const requestData: IStateResponseAttributes = { id: uuidv4(), name, code, countryCode, longitude, latitude };
     const newState = await State.create(requestData);

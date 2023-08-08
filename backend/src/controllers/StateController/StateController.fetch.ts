@@ -5,11 +5,10 @@ import { ApiResponse } from '../../types/Response.interface';
 import { createApiResponse } from '../../utils/response';
 import { Op } from 'sequelize';
 import { StateMessageKey, getStateMessage } from '../../models/State/State.messages';
-import { PaginationMessageKey, getPaginationMessage } from '../../messages/Pagination.messages';
 
 // Get states by name and state
 export const getStatesByQuery = async (req: Request, res: Response) => {
-  const { name, page, limit } = req.query;
+  const { name, code, countryCode, page, limit } = req.query;
 
   // Pagination
   const pageNumber = parseInt(page as string, 10);
@@ -22,6 +21,14 @@ export const getStatesByQuery = async (req: Request, res: Response) => {
 
   if (name) {
     whereClause.name = { [Op.iLike]: `%${name}%` };
+  }
+
+  if (code) {
+    whereClause.code = { [Op.iLike]: `%${code}%` };
+  }
+
+  if (countryCode) {
+    whereClause.countryCode = { [Op.iLike]: `%${countryCode}%` };
   }
 
   try {

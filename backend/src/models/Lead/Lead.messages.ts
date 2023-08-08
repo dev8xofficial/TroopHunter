@@ -12,20 +12,8 @@ export enum LeadMessageKey {
   LEAD_DELETED = 'LEAD_DELETED',
 
   // Missing fields messages
-  MISSING_USER_ID = 'MISSING_USER_ID',
-  MISSING_LEAD_TITLE = 'MISSING_LEAD_TITLE',
-  MISSING_LEAD_SEARCH = 'MISSING_LEAD_SEARCH',
-  MISSING_LEAD_BUSINESS_COUNT = 'MISSING_LEAD_BUSINESS_COUNT',
 
   // Invalid fields messages
-  INVALID_LEAD_ID = 'INVALID_LEAD_ID',
-  INVALID_USER_ID = 'INVALID_USER_ID',
-  INVALID_BUSINESS_IDS = 'INVALID_BUSINESS_IDS',
-  INVALID_LEAD_TITLE = 'INVALID_LEAD_TITLE',
-  INVALID_LEAD_SEARCH = 'INVALID_LEAD_SEARCH',
-  INVALID_LEAD_PHONE = 'INVALID_LEAD_PHONE',
-  INVALID_LEAD_SPONSORED_AD = 'INVALID_LEAD_SPONSORED_AD',
-  INVALID_LEAD_BUSINESS_COUNT = 'INVALID_LEAD_BUSINESS_COUNT',
 
   // Duplicate messages
 
@@ -67,56 +55,8 @@ const messages: Record<LeadMessageKey, Message> = {
   },
 
   // Missing fields messages
-  [LeadMessageKey.MISSING_USER_ID]: {
-    code: 400,
-    message: 'Failed to create/update lead. Missing required field: user ID.',
-  },
-  [LeadMessageKey.MISSING_LEAD_TITLE]: {
-    code: 400,
-    message: 'Failed to create/update lead. Missing required field: title.',
-  },
-  [LeadMessageKey.MISSING_LEAD_SEARCH]: {
-    code: 400,
-    message: 'Failed to create/update lead. Missing required field: search.',
-  },
-  [LeadMessageKey.MISSING_LEAD_BUSINESS_COUNT]: {
-    code: 400,
-    message: 'Failed to create/update lead. Missing required field: business count.',
-  },
 
   // Invalid fields messages
-  [LeadMessageKey.INVALID_LEAD_ID]: {
-    code: 400,
-    message: 'Invalid lead ID. The lead ID provided is not in a valid format. Please provide a valid UUID for the lead ID.',
-  },
-  [LeadMessageKey.INVALID_USER_ID]: {
-    code: 400,
-    message: 'Invalid user ID. Please provide a valid UUID.',
-  },
-  [LeadMessageKey.INVALID_BUSINESS_IDS]: {
-    code: 400,
-    message: 'Invalid business IDs. The business IDs in the array must be valid UUIDs.',
-  },
-  [LeadMessageKey.INVALID_LEAD_TITLE]: {
-    code: 400,
-    message: 'Invalid lead title. The lead title must be a non-empty string.',
-  },
-  [LeadMessageKey.INVALID_LEAD_SEARCH]: {
-    code: 400,
-    message: 'Invalid lead search. The search field must be a non-null string.',
-  },
-  [LeadMessageKey.INVALID_LEAD_PHONE]: {
-    code: 400,
-    message: 'Invalid lead phone. The phone must be a string value.',
-  },
-  [LeadMessageKey.INVALID_LEAD_SPONSORED_AD]: {
-    code: 400,
-    message: 'Invalid value for sponsoredAd. The sponsoredAd field must be a boolean (true or false).',
-  },
-  [LeadMessageKey.INVALID_LEAD_BUSINESS_COUNT]: {
-    code: 400,
-    message: 'Invalid lead business count. The lead business count must be a valid number greater than or equal to zero.',
-  },
 
   // Duplicate messages
 

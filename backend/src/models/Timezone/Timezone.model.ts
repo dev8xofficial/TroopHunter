@@ -17,6 +17,7 @@ Timezone.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
     timezoneName: {
       type: DataTypes.STRING(100),
@@ -43,6 +44,11 @@ Timezone.init(
   {
     sequelize,
     modelName: 'Timezone',
+    indexes: [
+      {
+        fields: ['timezoneName'],
+      },
+    ],
   }
 );
 

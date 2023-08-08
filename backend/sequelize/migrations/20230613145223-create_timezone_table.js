@@ -7,10 +7,12 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
+        unique: true,
       },
       timezoneName: {
         type: Sequelize.STRING(100),
         allowNull: false,
+        unique: true,
       },
       utcOffset: {
         type: Sequelize.STRING(10),
@@ -39,16 +41,26 @@ module.exports = {
         defaultValue: Sequelize.literal('NOW()'),
       },
     });
-    
+
+    await queryInterface.addIndex('Timezones', ['timezoneName'], {
+      unique: true,
+    });
+
     // Add a unique constraint to the 'timezoneName' column
     await queryInterface.addConstraint('Timezones', {
       fields: ['timezoneName'],
       type: 'unique',
-      name: 'unique_timezoneName_constraint',
+      name: 'unique_timezone_name_constraint',
     });
   },
 
   down: async (queryInterface, Sequelize) => {
+    // Drop indexes
+    await queryInterface.removeIndex('Timezones', ['timezoneName']);
+    // Drop foreign key constraints
+    await queryInterface.removeConstraint('Timezones', 'unique_timezone_name_constraint');
+
+    // Drop the table
     await queryInterface.dropTable('Timezones');
-  }
+  },
 };

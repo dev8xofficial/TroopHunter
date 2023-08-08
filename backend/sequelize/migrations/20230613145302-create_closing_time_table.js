@@ -7,11 +7,12 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
+        unique: true,
       },
       time: {
         type: Sequelize.TIME,
         allowNull: false,
-        unique: true
+        unique: true,
       },
       createdAt: {
         allowNull: false,
@@ -24,16 +25,26 @@ module.exports = {
         defaultValue: Sequelize.literal('NOW()'),
       },
     });
-    
+
+    await queryInterface.addIndex('BusinessClosingHours', ['time'], {
+      unique: true,
+    });
+
     // Add a unique constraint to the 'time' column
     await queryInterface.addConstraint('BusinessClosingHours', {
       fields: ['time'],
       type: 'unique',
-      name: 'unique_closing_time_constraint',
+      name: 'unique_business_closing_time_constraint',
     });
   },
 
   down: async (queryInterface, Sequelize) => {
+    // Drop indexes
+    await queryInterface.removeIndex('BusinessClosingHours', ['time']);
+    // Drop foreign key constraints with custom name
+    await queryInterface.removeConstraint('BusinessClosingHours', 'unique_business_closing_time_constraint');
+
+    // Drop the table
     await queryInterface.dropTable('BusinessClosingHours');
   },
 };

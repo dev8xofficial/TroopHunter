@@ -7,6 +7,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
+        unique: true,
       },
       sourceName: {
         type: Sequelize.STRING(20),
@@ -24,7 +25,7 @@ module.exports = {
         defaultValue: Sequelize.literal('NOW()'),
       },
     });
-    
+
     // Add a unique constraint to the 'sourceName' column
     await queryInterface.addConstraint('BusinessSources', {
       fields: ['sourceName'],

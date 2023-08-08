@@ -9,16 +9,8 @@ export enum QueueMessageKey {
   QUEUE_UPDATED = 'QUEUE_UPDATED',
 
   // Missing fields messages
-  MISSING_QUEUE_ID = 'MISSING_QUEUE_ID',
-  MISSING_QUEUE_SEARCH = 'MISSING_QUEUE_SEARCH',
-  MISSING_QUEUE_LAPTOP_NAME = 'MISSING_QUEUE_LAPTOP_NAME',
-  MISSING_QUEUE_STATUS = 'MISSING_QUEUE_STATUS',
 
   // Invalid fields messages
-  INVALID_QUEUE_ID = 'INVALID_QUEUE_ID',
-  INVALID_QUEUE_SEARCH = 'INVALID_QUEUE_SEARCH',
-  INVALID_QUEUE_LAPTOP_NAME = 'INVALID_QUEUE_LAPTOP_NAME',
-  INVALID_QUEUE_STATUS = 'INVALID_QUEUE_STATUS',
 
   // Duplicate messages
 
@@ -43,40 +35,8 @@ const messages: Record<QueueMessageKey, Message> = {
   },
 
   // Missing fields messages
-  [QueueMessageKey.MISSING_QUEUE_ID]: {
-    code: 400,
-    message: 'Failed to process queue. Missing required field: queue ID.',
-  },
-  [QueueMessageKey.MISSING_QUEUE_SEARCH]: {
-    code: 400,
-    message: 'Failed to process queue. Missing required field: search.',
-  },
-  [QueueMessageKey.MISSING_QUEUE_LAPTOP_NAME]: {
-    code: 400,
-    message: 'Failed to process queue. Missing required field: laptop name.',
-  },
-  [QueueMessageKey.MISSING_QUEUE_STATUS]: {
-    code: 400,
-    message: 'Failed to process queue. Missing required field: queue status.',
-  },
 
   // Invalid fields messages
-  [QueueMessageKey.INVALID_QUEUE_ID]: {
-    code: 400,
-    message: 'Invalid queue ID. The queue ID provided is not in a valid format. Please provide a valid UUID for the queue ID.',
-  },
-  [QueueMessageKey.INVALID_QUEUE_SEARCH]: {
-    code: 400,
-    message: 'Invalid queue search. The search field must be a non-null string.',
-  },
-  [QueueMessageKey.INVALID_QUEUE_LAPTOP_NAME]: {
-    code: 400,
-    message: 'Invalid queue laptop name. The laptop name must be a non-empty string.',
-  },
-  [QueueMessageKey.INVALID_QUEUE_STATUS]: {
-    code: 400,
-    message: 'Invalid queue status. The queue status must be one of the allowed values.',
-  },
 
   // Duplicate messages
 

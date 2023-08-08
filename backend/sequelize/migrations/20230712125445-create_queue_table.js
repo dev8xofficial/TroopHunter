@@ -7,10 +7,12 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.literal('uuid_generate_v4()'), // Generate UUIDs automatically
         primaryKey: true,
+        unique: true,
       },
       searchQuery: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       laptopName: {
         type: Sequelize.STRING,
@@ -31,6 +33,15 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.literal('NOW()'),
       },
+    });
+
+    await queryInterface.addIndex('Queues', ['searchQuery']);
+
+    // Add a unique constraint to the 'code' column
+    await queryInterface.addConstraint('Queues', {
+      fields: ['searchQuery'],
+      type: 'unique',
+      name: 'unique_queue_search_constraint',
     });
 
     // Insert rows into the Queue table
@@ -4036,11 +4047,6 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Garage Door Supplier',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Garage Door Repair Service',
         laptopName: '',
         status: 'Pending',
@@ -7666,16 +7672,6 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'RV Park',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'RV Rental Agency',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Racecourse',
         laptopName: '',
         status: 'Pending',
@@ -7716,11 +7712,6 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Real Estate Agency',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Real Estate Agents',
         laptopName: '',
         status: 'Pending',
@@ -7742,11 +7733,6 @@ module.exports = {
       },
       {
         searchQuery: 'Recording Studio',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Recreational Vehicle Rental Agency',
         laptopName: '',
         status: 'Pending',
       },
@@ -7871,11 +7857,6 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'RV Park',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'RV Storage Facility',
         laptopName: '',
         status: 'Pending',
@@ -7891,11 +7872,6 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Racing Car Parts Store',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Racing Car Dealer',
         laptopName: '',
         status: 'Pending',
@@ -7906,37 +7882,7 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Radiator Repair Service',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Radiologist',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Raft Trip Outfitter',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Railroad Company',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Railway Equipment Supplier',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Railway Station',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Ranch',
         laptopName: '',
         status: 'Pending',
       },
@@ -7951,37 +7897,12 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Real Estate Agents',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Real Estate Appraiser',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Real Estate Attorney',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Real Estate Consultant',
         laptopName: '',
         status: 'Pending',
       },
       {
         searchQuery: 'Real Estate Developer',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Real Estate Rental Agency',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Recording Studio',
         laptopName: '',
         status: 'Pending',
       },
@@ -8001,42 +7922,7 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Recycling Center',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Reflexologist',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Refrigerator Repair Service',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Rehabilitation Center',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Religious Bookstore',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Religious Goods Store',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Religious Institution',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Religious Organization',
         laptopName: '',
         status: 'Pending',
       },
@@ -8061,17 +7947,7 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Rental Service',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Repo Auction',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Research Foundation',
         laptopName: '',
         status: 'Pending',
       },
@@ -8096,16 +7972,6 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Residential Construction Company',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Residential Designer',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Residential Estate',
         laptopName: '',
         status: 'Pending',
@@ -8121,32 +7987,7 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Resort',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Respiratory Therapist',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Restaurant',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Retirement Community',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Retirement Home',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Rheumatologist',
         laptopName: '',
         status: 'Pending',
       },
@@ -8171,16 +8012,6 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Roadside Assistance Service',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Rock Climbing Gym',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Rock Climbing Instructor',
         laptopName: '',
         status: 'Pending',
@@ -8192,21 +8023,6 @@ module.exports = {
       },
       {
         searchQuery: 'Roller Skating Rink',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Roofing Contractor',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Roofing Supply Store',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'Roommate Referral Service',
         laptopName: '',
         status: 'Pending',
       },
@@ -8231,11 +8047,6 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Rubbish Removal Service',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Rugby Club',
         laptopName: '',
         status: 'Pending',
@@ -8247,11 +8058,6 @@ module.exports = {
       },
       {
         searchQuery: 'Russian Orthodox Church',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
-        searchQuery: 'RV Dealer',
         laptopName: '',
         status: 'Pending',
       },
@@ -9896,11 +9702,6 @@ module.exports = {
         status: 'Pending',
       },
       {
-        searchQuery: 'Veterinary Pharmacy',
-        laptopName: '',
-        status: 'Pending',
-      },
-      {
         searchQuery: 'Veterinary Radiologist',
         laptopName: '',
         status: 'Pending',
@@ -10311,6 +10112,12 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
+    // Drop indexes
+    await queryInterface.removeIndex('Queues', ['searchQuery']);
+    // Drop foreign key constraints with custom name
+    await queryInterface.removeConstraint('Queues', 'unique_queue_search_constraint');
+
+    // Drop the table
     await queryInterface.dropTable('Queues');
   },
 };

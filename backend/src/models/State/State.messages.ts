@@ -12,20 +12,8 @@ export enum StateMessageKey {
   STATE_DELETED = 'STATE_DELETED',
 
   // Missing fields messages
-  MISSING_STATE = 'MISSING_STATE',
-  MISSING_STATE_NAME = 'MISSING_STATE_NAME',
-  MISSING_STATE_CODE = 'MISSING_STATE_CODE',
-  MISSING_STATE_COUNTRY_CODE = 'MISSING_STATE_COUNTRY_CODE',
-  MISSING_STATE_LONGITUDE = 'MISSING_STATE_LONGITUDE',
-  MISSING_STATE_LATITUDE = 'MISSING_STATE_LATITUDE',
 
   // Invalid fields messages
-  INVALID_STATE_ID = 'INVALID_STATE_ID',
-  INVALID_STATE_NAME = 'INVALID_STATE_NAME',
-  INVALID_STATE_CODE = 'INVALID_STATE_CODE',
-  INVALID_STATE_COUNTRY_CODE = 'INVALID_STATE_COUNTRY_CODE',
-  INVALID_STATE_LONGITUDE = 'INVALID_STATE_LONGITUDE',
-  INVALID_STATE_LATITUDE = 'INVALID_STATE_LATITUDE',
 
   // Duplicate messages
 
@@ -64,56 +52,8 @@ const messages: Record<StateMessageKey, Message> = {
   },
 
   // Missing fields messages
-  [StateMessageKey.MISSING_STATE]: {
-    code: 400,
-    message: 'Please provide state parameter.',
-  },
-  [StateMessageKey.MISSING_STATE_NAME]: {
-    code: 400,
-    message: 'Failed to create/update state. Missing required field: state name.',
-  },
-  [StateMessageKey.MISSING_STATE_CODE]: {
-    code: 400,
-    message: 'Failed to create/update state. Missing required field: code.',
-  },
-  [StateMessageKey.INVALID_STATE_COUNTRY_CODE]: {
-    code: 400,
-    message: 'Invalid state country code. The provided country code for the state is not valid. Please provide a valid country code in ISO format.',
-  },
-  [StateMessageKey.MISSING_STATE_COUNTRY_CODE]: {
-    code: 400,
-    message: 'Failed to create/update state. Missing required field: countryCode.',
-  },
-  [StateMessageKey.MISSING_STATE_LONGITUDE]: {
-    code: 400,
-    message: 'Failed to create/update state. Missing required field: longitude.',
-  },
-  [StateMessageKey.MISSING_STATE_LATITUDE]: {
-    code: 400,
-    message: 'Failed to create/update state. Missing required field: latitude.',
-  },
 
   // Invalid fields messages
-  [StateMessageKey.INVALID_STATE_ID]: {
-    code: 400,
-    message: 'Invalid state ID. The state ID provided is not in a valid format.',
-  },
-  [StateMessageKey.INVALID_STATE_NAME]: {
-    code: 400,
-    message: 'Invalid state name. The state name must be a non-empty string.',
-  },
-  [StateMessageKey.INVALID_STATE_CODE]: {
-    code: 400,
-    message: 'Invalid state code. The state code must be a non-empty string.',
-  },
-  [StateMessageKey.INVALID_STATE_LONGITUDE]: {
-    code: 400,
-    message: 'Invalid state longitude. The longitude must be a valid number.',
-  },
-  [StateMessageKey.INVALID_STATE_LATITUDE]: {
-    code: 400,
-    message: 'Invalid state latitude. The latitude must be a valid number.',
-  },
 
   // Duplicate messages
 

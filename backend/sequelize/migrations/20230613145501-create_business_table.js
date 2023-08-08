@@ -13,15 +13,21 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       businessDomain: {
         type: Sequelize.STRING,
         allowNull: true,
+        lowercase: true,
       },
       categoryId: {
         type: Sequelize.UUID,
         allowNull: true,
+        references: {
+          model: 'BusinessCategories',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       address: {
         type: Sequelize.STRING(500),
@@ -29,15 +35,33 @@ module.exports = {
       },
       cityId: {
         type: Sequelize.UUID,
-        allowNull: true,
+        allowNull: false,
+        references: {
+          model: 'Cities',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       stateId: {
         type: Sequelize.UUID,
-        allowNull: true,
+        allowNull: false,
+        references: {
+          model: 'States',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       countryId: {
         type: Sequelize.UUID,
-        allowNull: true,
+        allowNull: false,
+        references: {
+          model: 'Countries',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       geoPoint: {
         type: Sequelize.GEOMETRY('POINT', 4326),
@@ -54,10 +78,22 @@ module.exports = {
       postalCodeId: {
         type: Sequelize.UUID,
         allowNull: true,
+        references: {
+          model: 'PostalCodes',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       phoneId: {
         type: Sequelize.UUID,
         allowNull: true,
+        references: {
+          model: 'BusinessPhones',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       email: {
         type: Sequelize.STRING(254),
@@ -70,6 +106,12 @@ module.exports = {
       ratingId: {
         type: Sequelize.UUID,
         allowNull: true,
+        references: {
+          model: 'BusinessRatings',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       reviews: {
         type: Sequelize.INTEGER,
@@ -78,14 +120,32 @@ module.exports = {
       timezoneId: {
         type: Sequelize.UUID,
         allowNull: true,
+        references: {
+          model: 'Timezones',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       sourceId: {
         type: Sequelize.UUID,
         allowNull: false,
+        references: {
+          model: 'BusinessSources',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       socialMediaId: {
         type: Sequelize.UUID,
         allowNull: true,
+        references: {
+          model: 'BusinessSocialMedia',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       sponsoredAd: {
         type: Sequelize.BOOLEAN,
@@ -94,10 +154,22 @@ module.exports = {
       openingHourId: {
         type: Sequelize.UUID,
         allowNull: true,
+        references: {
+          model: 'BusinessOpeningHours',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       closingHourId: {
         type: Sequelize.UUID,
         allowNull: true,
+        references: {
+          model: 'BusinessClosingHours',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -111,6 +183,7 @@ module.exports = {
       },
     });
 
+    await queryInterface.addIndex('Businesses', ['businessDomain', 'email', 'website', 'sponsoredAd']);
     await queryInterface.addIndex('Businesses', ['name', 'address'], {
       unique: true,
     });
@@ -263,6 +336,7 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     // Drop indexes
+    await queryInterface.removeIndex('Businesses', ['businessDomain', 'email', 'website', 'sponsoredAd']);
     await queryInterface.removeIndex('Businesses', ['name', 'address']);
     // Drop foreign key constraints
     await queryInterface.removeConstraint('Businesses', 'fk_business_category');

@@ -18,6 +18,7 @@ Country.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
     name: {
       type: DataTypes.STRING(100),
@@ -47,6 +48,12 @@ Country.init(
   {
     sequelize,
     modelName: 'Country',
+    indexes: [
+      {
+        unique: true,
+        fields: ['name', 'code'],
+      },
+    ],
   }
 );
 

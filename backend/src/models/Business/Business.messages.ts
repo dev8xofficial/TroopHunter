@@ -12,11 +12,6 @@ export enum BusinessMessageKey {
   BUSINESS_DELETED = 'BUSINESS_DELETED',
 
   // Missing fields messages
-  MISSING_NAME = 'MISSING_NAME',
-  MISSING_ADDRESS = 'MISSING_ADDRESS',
-  MISSING_LONGITUDE = 'MISSING_LONGITUDE',
-  MISSING_LATITUDE = 'MISSING_LATITUDE',
-  MISSING_SOURCE = 'MISSING_SOURCE',
 
   // Invalid fields messages
 
@@ -56,26 +51,6 @@ const messages: Record<BusinessMessageKey, Message> = {
   },
 
   // Missing fields messages
-  [BusinessMessageKey.MISSING_NAME]: {
-    code: 400,
-    message: 'Failed to create/update business. Missing required field: name.',
-  },
-  [BusinessMessageKey.MISSING_ADDRESS]: {
-    code: 400,
-    message: 'Failed to create/update business. Missing required field: address.',
-  },
-  [BusinessMessageKey.MISSING_LONGITUDE]: {
-    code: 400,
-    message: 'Failed to create/update business. Missing required field: longitude.',
-  },
-  [BusinessMessageKey.MISSING_LATITUDE]: {
-    code: 400,
-    message: 'Failed to create/update business. Missing required field: latitude.',
-  },
-  [BusinessMessageKey.MISSING_SOURCE]: {
-    code: 400,
-    message: 'Failed to create/update business. Missing required field: source.',
-  },
 
   // Invalid fields messages
 

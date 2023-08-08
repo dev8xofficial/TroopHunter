@@ -8,6 +8,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
+        unique: true,
       },
       name: {
         type: Sequelize.STRING(100),
@@ -52,7 +53,7 @@ module.exports = {
     await queryInterface.addConstraint('Countries', {
       fields: ['name', 'code'],
       type: 'unique',
-      name: 'unique_country_name_code_constraint', 
+      name: 'unique_country_name_code_constraint',
     });
 
     const allCountries = Country.getAllCountries();

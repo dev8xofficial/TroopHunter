@@ -11,6 +11,10 @@ export const TimezoneSchema = Joi.object<ITimezoneResponseAttributes>({
   countryCode: Joi.string().required(),
 });
 
+export const TimezoneCreateRequestSchema = TimezoneSchema.keys({
+  id: Joi.optional(),
+});
+
 export const createTimezoneErrorResponse = (error: Joi.ValidationError) => {
   const errorResponse: any = {};
 

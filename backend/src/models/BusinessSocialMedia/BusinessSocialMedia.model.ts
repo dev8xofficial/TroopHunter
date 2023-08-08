@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/database';
 import { IBusinessSocialMediaResponseAttributes } from './BusinessSocialMedia.interface';
+import Business from '../Business/Business.model';
 
 class BusinessSocialMedia extends Model<IBusinessSocialMediaResponseAttributes> implements IBusinessSocialMediaResponseAttributes {
   public id!: string;
@@ -18,6 +19,7 @@ BusinessSocialMedia.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
     businessId: {
       type: DataTypes.UUID,

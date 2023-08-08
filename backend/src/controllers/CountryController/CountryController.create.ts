@@ -5,10 +5,11 @@ import { ApiResponse } from '../../types/Response.interface';
 import { createApiResponse } from '../../utils/response';
 import { CountryMessageKey, getCountryMessage } from '../../models/Country/Country.messages';
 import { v4 as uuidv4 } from 'uuid';
+import { ICountryRequestAttributes } from '../../models/Country/Country.interface';
 
 // Create a new country
 export const createCountry = async (req: Request, res: Response) => {
-  const { name, code, phoneCode, currency, longitude, latitude } = req.body;
+  const { name, code, phoneCode, currency, longitude, latitude }: ICountryRequestAttributes = req.body;
   try {
     const requestData = { id: uuidv4(), name, code, phoneCode, currency, longitude, latitude };
     const newCountry = await Country.create(requestData);

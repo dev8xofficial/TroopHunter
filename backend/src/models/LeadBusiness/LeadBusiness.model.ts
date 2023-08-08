@@ -26,6 +26,12 @@ LeadBusiness.init(
     sequelize,
     modelName: 'LeadBusiness',
     timestamps: false,
+    indexes: [
+      {
+        unique: true,
+        fields: ['leadId', 'businessId'],
+      },
+    ],
   }
 );
 

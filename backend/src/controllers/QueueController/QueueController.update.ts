@@ -4,10 +4,11 @@ import logger from '../../utils/logger';
 import { ApiResponse } from '../../types/Response.interface';
 import { createApiResponse } from '../../utils/response';
 import { QueueMessageKey, getQueueMessage } from '../../models/Queue/Queue.messages';
+import { IQueueRequestAttributes } from '../../models/Queue/Queue.interface';
 
 export const updateQueue = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { searchQuery, laptopName, status } = req.body;
+  const { searchQuery, laptopName, status }: IQueueRequestAttributes = req.body;
 
   try {
     const queue = await Queue.findByPk(id);

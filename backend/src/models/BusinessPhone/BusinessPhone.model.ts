@@ -19,6 +19,7 @@ BusinessPhone.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
     countryCode: {
       type: DataTypes.STRING(5),
@@ -55,6 +56,20 @@ BusinessPhone.init(
   {
     sequelize,
     modelName: 'BusinessPhone',
+    indexes: [
+      {
+        unique: true,
+        fields: ['number'],
+      },
+      {
+        unique: true,
+        fields: ['numberNationalFormatted'],
+      },
+      {
+        unique: true,
+        fields: ['numberInternationalFormatted'],
+      },
+    ],
   }
 );
 

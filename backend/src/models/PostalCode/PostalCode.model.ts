@@ -13,6 +13,7 @@ PostalCode.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
     code: {
       type: DataTypes.STRING(20),
@@ -23,6 +24,12 @@ PostalCode.init(
   {
     sequelize,
     modelName: 'PostalCode',
+    indexes: [
+      {
+        unique: true,
+        fields: ['code'],
+      },
+    ],
   }
 );
 

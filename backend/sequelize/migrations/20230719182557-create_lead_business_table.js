@@ -7,11 +7,23 @@ module.exports = {
         type: Sequelize.UUID,
         allowNull: false,
         primaryKey: true,
+        references: {
+          model: 'Leads',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
       businessId: {
         type: Sequelize.UUID,
         allowNull: false,
         primaryKey: true,
+        references: {
+          model: 'Businesses',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       },
     });
 

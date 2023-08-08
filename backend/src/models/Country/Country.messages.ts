@@ -12,21 +12,8 @@ export enum CountryMessageKey {
   COUNTRY_DELETED = 'COUNTRY_DELETED',
 
   // Missing fields messages
-  MISSING_COUNTRY_NAME = 'MISSING_COUNTRY_NAME',
-  MISSING_COUNTRY_CODE = 'MISSING_COUNTRY_CODE',
-  MISSING_COUNTRY_PHONE_CODE = 'MISSING_COUNTRY_PHONE_CODE',
-  MISSING_COUNTRY_CURRENCY = 'MISSING_COUNTRY_CURRENCY',
-  MISSING_COUNTRY_LONGITUDE = 'MISSING_COUNTRY_LONGITUDE',
-  MISSING_COUNTRY_LATITUDE = 'MISSING_COUNTRY_LATITUDE',
 
   // Invalid fields messages
-  INVALID_COUNTRY_ID = 'INVALID_COUNTRY_ID',
-  INVALID_COUNTRY_NAME = 'INVALID_COUNTRY_NAME',
-  INVALID_COUNTRY_CODE = 'INVALID_COUNTRY_CODE',
-  INVALID_COUNTRY_PHONE_CODE = 'INVALID_COUNTRY_PHONE_CODE',
-  INVALID_COUNTRY_CURRENCY = 'INVALID_COUNTRY_CURRENCY',
-  INVALID_COUNTRY_LONGITUDE = 'INVALID_COUNTRY_LONGITUDE',
-  INVALID_COUNTRY_LATITUDE = 'INVALID_COUNTRY_LATITUDE',
 
   // Duplicate messages
 
@@ -65,60 +52,8 @@ const messages: Record<CountryMessageKey, Message> = {
   },
 
   // Missing fields messages
-  [CountryMessageKey.MISSING_COUNTRY_NAME]: {
-    code: 400,
-    message: 'Failed to create/update country. Missing required field: name.',
-  },
-  [CountryMessageKey.MISSING_COUNTRY_CODE]: {
-    code: 400,
-    message: 'Failed to create/update country. Missing required field: country code.',
-  },
-  [CountryMessageKey.MISSING_COUNTRY_PHONE_CODE]: {
-    code: 400,
-    message: 'Failed to create/update country. Missing required field: phone code.',
-  },
-  [CountryMessageKey.MISSING_COUNTRY_CURRENCY]: {
-    code: 400,
-    message: 'Failed to create/update country. Missing required field: currency.',
-  },
-  [CountryMessageKey.MISSING_COUNTRY_LONGITUDE]: {
-    code: 400,
-    message: 'Failed to create/update country. Missing required field: longitude.',
-  },
-  [CountryMessageKey.MISSING_COUNTRY_LATITUDE]: {
-    code: 400,
-    message: 'Failed to create/update country. Missing required field: latitude.',
-  },
 
   // Invalid fields messages
-  [CountryMessageKey.INVALID_COUNTRY_ID]: {
-    code: 400,
-    message: 'Invalid country ID. The country ID provided is not in a valid format. Please provide a valid UUID for the country ID.',
-  },
-  [CountryMessageKey.INVALID_COUNTRY_NAME]: {
-    code: 400,
-    message: 'Invalid country name. The country name must be a non-empty string.',
-  },
-  [CountryMessageKey.INVALID_COUNTRY_CODE]: {
-    code: 400,
-    message: 'Invalid country code. The country code must be a non-empty string.',
-  },
-  [CountryMessageKey.INVALID_COUNTRY_PHONE_CODE]: {
-    code: 400,
-    message: 'Invalid country phone code. The country phone code must be a non-empty string.',
-  },
-  [CountryMessageKey.INVALID_COUNTRY_CURRENCY]: {
-    code: 400,
-    message: 'Invalid country currency. The country currency must be a non-empty string.',
-  },
-  [CountryMessageKey.INVALID_COUNTRY_LONGITUDE]: {
-    code: 400,
-    message: 'Invalid country longitude. The country longitude must be a valid number.',
-  },
-  [CountryMessageKey.INVALID_COUNTRY_LATITUDE]: {
-    code: 400,
-    message: 'Invalid country latitude. The country latitude must be a valid number.',
-  },
 
   // Duplicate messages
 

@@ -13,15 +13,23 @@ BusinessCategory.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
     name: {
       type: DataTypes.STRING(100),
       allowNull: false,
+      unique: true,
     },
   },
   {
     sequelize,
     modelName: 'BusinessCategory',
+    indexes: [
+      {
+        unique: true,
+        fields: ['name'],
+      },
+    ],
   }
 );
 

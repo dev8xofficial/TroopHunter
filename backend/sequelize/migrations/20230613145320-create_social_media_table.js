@@ -7,6 +7,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
+        unique: true,
       },
       businessId: {
         type: Sequelize.UUID,
@@ -46,6 +47,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
+    // Drop the table
     await queryInterface.dropTable('BusinessSocialMedia');
   },
 };

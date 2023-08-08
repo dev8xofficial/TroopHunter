@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/database';
 import { IBusinessPhotoResponseAttributes } from './BusinessPhoto.interface';
+import Business from '../Business/Business.model';
 
 class BusinessPhoto extends Model<IBusinessPhotoResponseAttributes> implements IBusinessPhotoResponseAttributes {
   public id!: string;
@@ -15,6 +16,7 @@ BusinessPhoto.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
     businessId: {
       type: DataTypes.UUID,

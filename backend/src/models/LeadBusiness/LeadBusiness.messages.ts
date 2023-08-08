@@ -11,12 +11,8 @@ export enum LeadBusinessMessageKey {
   LEAD_BUSINESS_UPDATED = 'LEAD_BUSINESS_UPDATED',
 
   // Missing fields messages
-  MISSING_LEAD_BUSINESS_LEAD_ID = 'MISSING_LEAD_BUSINESS_LEAD_ID',
-  MISSING_LEAD_BUSINESS_BUSINESS_ID = 'MISSING_LEAD_BUSINESS_BUSINESS_ID',
 
   // Invalid fields messages
-  INVALID_LEAD_BUSINESS_LEAD_ID = 'INVALID_LEAD_BUSINESS_LEAD_ID',
-  INVALID_LEAD_BUSINESS_BUSINESS_ID = 'INVALID_LEAD_BUSINESS_BUSINESS_ID',
 
   // Duplicate messages
 
@@ -53,24 +49,8 @@ const messages: Record<LeadBusinessMessageKey, Message> = {
   },
 
   // Missing fields messages
-  [LeadBusinessMessageKey.MISSING_LEAD_BUSINESS_LEAD_ID]: {
-    code: 400,
-    message: 'Failed to create/update Lead Business. Missing required field: Lead ID.',
-  },
-  [LeadBusinessMessageKey.MISSING_LEAD_BUSINESS_BUSINESS_ID]: {
-    code: 400,
-    message: 'Failed to create/update Lead Business. Missing required field: Business ID.',
-  },
 
   // Invalid fields messages
-  [LeadBusinessMessageKey.INVALID_LEAD_BUSINESS_LEAD_ID]: {
-    code: 400,
-    message: 'Invalid lead business lead ID. The lead ID provided is not in a valid format. Please provide a valid UUID for the lead ID.',
-  },
-  [LeadBusinessMessageKey.INVALID_LEAD_BUSINESS_BUSINESS_ID]: {
-    code: 400,
-    message: 'Invalid lead business business ID. The business ID provided is not in a valid format. Please provide a valid UUID for the business ID.',
-  },
 
   // Duplicate messages
 

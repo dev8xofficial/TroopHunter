@@ -9,15 +9,11 @@ import { IPostalCodeResponseAttributes } from '../../models/PostalCode/PostalCod
 import { IBusinessPhoneResponseAttributes } from '../../models/BusinessPhone/BusinessPhone.interface';
 import { ITimezoneResponseAttributes } from '../../models/Timezone/Timezone.interface';
 import { ApiResponse } from '../../types/Response.interface';
-import { ICityResponseAttributes } from '../../models/City/City.interface';
-import { IStateResponseAttributes } from '../../models/State/State.interface';
-import { ICountryResponseAttributes } from '../../models/Country/Country.interface';
 import { IBusinessCategoryResponseAttributes } from '../../models/BusinessCategory/BusinessCategory.interface';
 import Business from '../../models/Business/Business.model';
 import { findOrCreateBusinessPhone, getPhoneWithDetails } from '../../utils/phone';
 import { findOrCreateBusinessSource } from '../../utils/business';
 import { findOrCreateBusinessCategory } from '../../utils/category';
-import { findCityByName, findCountryByName, findStateByName } from '../../utils/location';
 import { findOrCreatePostalCode } from '../../utils/postalCode';
 import { findOrCreateBusinessRating } from '../../utils/rating';
 import { findOrCreateTimezone } from '../../utils/timezone';
@@ -31,14 +27,18 @@ import logger from '../../utils/logger';
 export const createBusiness = async (req: Request, res: Response) => {
   const transaction = await Sequelize.transaction();
 
-  const { name, businessDomain, category, address, city, state, country, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour }: IBusinessCreationRequestAttributes = req.body;
+  const { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour }: IBusinessCreationRequestAttributes = req.body;
 
+  console.log('createBusiness: ', { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour });
   const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
   let payload: IBusinessResponseAttributes = {
     id: uuidv4(),
     name,
-    businessDomain,
+    businessDomain: businessDomain?.toLocaleLowerCase(),
     address,
+    cityId,
+    stateId,
+    countryId,
     geoPoint,
     longitude,
     latitude,
@@ -55,21 +55,6 @@ export const createBusiness = async (req: Request, res: Response) => {
     if (category) {
       const categoryFromDB: IBusinessCategoryResponseAttributes | undefined = await findOrCreateBusinessCategory(category, transaction);
       payload.categoryId = categoryFromDB?.id;
-    }
-
-    if (city) {
-      const cityFromDB: ICityResponseAttributes | undefined = await findCityByName(city, transaction);
-      payload.cityId = cityFromDB?.id;
-    }
-
-    if (state) {
-      const stateFromDB: IStateResponseAttributes | undefined = await findStateByName(state, transaction);
-      payload.stateId = stateFromDB?.id;
-    }
-
-    if (country) {
-      const countryFromDB: ICountryResponseAttributes | undefined = await findCountryByName(country, transaction);
-      payload.countryId = countryFromDB?.id;
     }
 
     if (postalCode) {

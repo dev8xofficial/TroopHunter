@@ -10,7 +10,7 @@ export interface PaginationAttributes {
 
 export const PaginationSchema = Joi.object<PaginationAttributes>({
   page: Joi.number().integer().min(1).required(),
-  limit: Joi.number().integer().min(10).required(),
+  limit: Joi.number().integer().min(1).max(100).required(),
 });
 
 export const paginationRequestValidationMiddleware = (req: Request, res: Response, next: NextFunction) => {

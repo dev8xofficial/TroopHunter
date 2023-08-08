@@ -13,6 +13,7 @@ BusinessOpeningHour.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
     time: {
       type: DataTypes.TIME,
@@ -23,6 +24,12 @@ BusinessOpeningHour.init(
   {
     sequelize,
     modelName: 'BusinessOpeningHour',
+    indexes: [
+      {
+        unique: true,
+        fields: ['time'],
+      },
+    ],
   }
 );
 

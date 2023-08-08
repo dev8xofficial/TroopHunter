@@ -58,7 +58,6 @@ Business.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true, // Make the name field unique
     },
     businessDomain: {
       type: DataTypes.STRING,
@@ -74,15 +73,15 @@ Business.init(
     },
     cityId: {
       type: DataTypes.UUID,
-      allowNull: true,
+      allowNull: false,
     },
     stateId: {
       type: DataTypes.UUID,
-      allowNull: true,
+      allowNull: false,
     },
     countryId: {
       type: DataTypes.UUID,
-      allowNull: true,
+      allowNull: false,
     },
     geoPoint: {
       type: DataTypes.GEOMETRY('POINT', 4326), // Define the geometry attribute
@@ -153,6 +152,9 @@ Business.init(
       {
         unique: true,
         fields: ['name', 'address'], // Add the name and address fields to the composite index
+      },
+      {
+        fields: ['businessDomain', 'email', 'website', 'sponsoredAd'],
       },
     ],
   }

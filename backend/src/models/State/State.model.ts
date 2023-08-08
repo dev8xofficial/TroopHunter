@@ -17,6 +17,7 @@ State.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
     name: {
       type: DataTypes.STRING(100),
@@ -42,6 +43,12 @@ State.init(
   {
     sequelize,
     modelName: 'State',
+    indexes: [
+      {
+        unique: true,
+        fields: ['name', 'code', 'countryCode'],
+      },
+    ],
   }
 );
 

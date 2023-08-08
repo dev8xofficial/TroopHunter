@@ -8,6 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
+        unique: true,
       },
       firstName: {
         allowNull: false,
@@ -41,9 +42,35 @@ module.exports = {
         defaultValue: Sequelize.literal('NOW()'),
       },
     });
+
+    await queryInterface.addIndex('Users', ['email'], {
+      unique: true,
+    });
+    await queryInterface.addIndex('Users', ['firstName', 'lastName', 'email'], {
+      unique: true,
+    });
+
+    await queryInterface.addConstraint('Users', {
+      fields: ['email'],
+      type: 'unique',
+      name: 'unique_user_email_constraint',
+    });
+    await queryInterface.addConstraint('Users', {
+      fields: ['firstName', 'lastName', 'email'],
+      type: 'unique',
+      name: 'unique_user_first_name_last_name_email_constraint',
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
+    // Drop indexes
+    await queryInterface.removeIndex('Users', ['email']);
+    await queryInterface.removeIndex('Users', ['firstName', 'lastName', 'email']);
+    // Drop foreign key constraints with custom name
+    await queryInterface.removeConstraint('Users', 'unique_user_email_constraint');
+    await queryInterface.removeConstraint('Users', 'unique_user_first_name_last_name_email_constraint');
+
+    // Drop the table
     await queryInterface.dropTable('Users');
   },
 };

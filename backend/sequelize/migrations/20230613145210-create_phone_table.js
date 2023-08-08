@@ -7,6 +7,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
+        unique: true,
       },
       countryCode: {
         type: Sequelize.STRING(5),
@@ -38,7 +39,7 @@ module.exports = {
       isValid: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-      }, 
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -51,19 +52,35 @@ module.exports = {
       },
     });
 
-    await queryInterface.addIndex('BusinessPhones', ['number']);
-    
+    await queryInterface.addIndex('BusinessPhones', ['number', 'numberNationalFormatted', 'numberInternationalFormatted'], {
+      unique: true,
+    });
+
     // Add a unique constraint to the 'number' column
     await queryInterface.addConstraint('BusinessPhones', {
       fields: ['number'],
       type: 'unique',
-      name: 'unique_number_constraint',
+      name: 'unique_business_number_constraint',
+    });
+    await queryInterface.addConstraint('BusinessPhones', {
+      fields: ['numberNationalFormatted'],
+      type: 'unique',
+      name: 'unique_business_number_national_formatted_constraint',
+    });
+    await queryInterface.addConstraint('BusinessPhones', {
+      fields: ['numberInternationalFormatted'],
+      type: 'unique',
+      name: 'unique_business_number_international_formatted_constraint',
     });
   },
 
   down: async (queryInterface, Sequelize) => {
     // Drop indexes
-    await queryInterface.removeIndex('BusinessPhones', ['number']);
+    await queryInterface.removeIndex('BusinessPhones', ['number', 'numberNationalFormatted', 'numberInternationalFormatted']);
+    // Drop foreign key constraints with custom name
+    await queryInterface.removeConstraint('BusinessPhones', 'unique_business_number_constraint');
+    await queryInterface.removeConstraint('BusinessPhones', 'unique_business_number_national_formatted_constraint');
+    await queryInterface.removeConstraint('BusinessPhones', 'unique_business_number_international_formatted_constraint');
 
     // Drop the table
     await queryInterface.dropTable('BusinessPhones');

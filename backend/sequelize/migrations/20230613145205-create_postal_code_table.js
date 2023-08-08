@@ -7,6 +7,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
+        unique: true,
       },
       code: {
         type: Sequelize.STRING(20),
@@ -24,16 +25,26 @@ module.exports = {
         defaultValue: Sequelize.literal('NOW()'),
       },
     });
-    
+
+    await queryInterface.addIndex('PostalCodes', ['code'], {
+      unique: true,
+    });
+
     // Add a unique constraint to the 'code' column
     await queryInterface.addConstraint('PostalCodes', {
       fields: ['code'],
       type: 'unique',
-      name: 'unique_code_constraint',
+      name: 'unique_postal_code_constraint',
     });
   },
 
   down: async (queryInterface, Sequelize) => {
+    // Drop indexes
+    await queryInterface.removeIndex('PostalCodes', ['code']);
+    // Drop foreign key constraints with custom name
+    await queryInterface.removeConstraint('PostalCodes', 'unique_postal_code_constraint');
+
+    // Drop the table
     await queryInterface.dropTable('PostalCodes');
-  }
+  },
 };

@@ -15,6 +15,7 @@ Queue.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
     searchQuery: {
       type: DataTypes.STRING,
@@ -34,6 +35,12 @@ Queue.init(
   {
     sequelize,
     modelName: 'Queue',
+    indexes: [
+      {
+        unique: true,
+        fields: ['searchQuery', 'laptopName', 'status'],
+      },
+    ],
   }
 );
 

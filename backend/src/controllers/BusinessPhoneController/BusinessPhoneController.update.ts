@@ -4,11 +4,12 @@ import logger from '../../utils/logger';
 import { ApiResponse } from '../../types/Response.interface';
 import { createApiResponse } from '../../utils/response';
 import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../models/BusinessPhone/BusinessPhone.messages';
+import { IBusinessPhoneRequestAttributes } from '../../models/BusinessPhone/BusinessPhone.interface';
 
 // Update a business phone by ID
 export const updateBusinessPhone = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid } = req.body;
+  const { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid }: IBusinessPhoneRequestAttributes = req.body;
   try {
     const existingBusinessPhone = await BusinessPhone.findOne({ where: { id } });
     if (!existingBusinessPhone) {

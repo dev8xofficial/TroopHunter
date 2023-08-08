@@ -6,7 +6,10 @@ import logger from '../utils/logger';
 export const findOrCreateTimezone = async (timezone: ITimezoneRequestAttributes, transaction: Transaction): Promise<ITimezoneResponseAttributes | undefined> => {
   try {
     const { timezoneName, utcOffset, dst, dstOffset, countryCode } = timezone;
-    const [record, created] = await Timezone.findOrCreate({ transaction });
+    const [record, created] = await Timezone.findOrCreate({
+      where: { timezoneName, utcOffset, dst, dstOffset, countryCode },
+      transaction,
+    });
 
     if (created) {
       logger.info(`Timezone ${timezoneName} created successfully.`);
