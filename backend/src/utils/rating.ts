@@ -1,6 +1,6 @@
 import { Transaction } from 'sequelize';
-import BusinessRating from '../models/BusinessRating/BusinessRating.model';
-import { IBusinessRatingResponseAttributes } from '../models/BusinessRating/BusinessRating.interface';
+import BusinessRating from '../models/BusinessRating';
+import { IBusinessRatingResponseAttributes } from 'common/interfaces/BusinessRating';
 import logger from '../utils/logger';
 
 export const findOrCreateBusinessRating = async (ratingValue: number, transaction: Transaction): Promise<IBusinessRatingResponseAttributes | undefined> => {

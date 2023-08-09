@@ -3,8 +3,8 @@ import { getBusinessesByLeadId, getLeadBusinesses } from '../controllers/LeadBus
 import { updateLeadBusiness } from '../controllers/LeadBusinessesController/LeadBusinessesController.update';
 import { deleteLeadBusiness } from '../controllers/LeadBusinessesController/LeadBusinessesController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { paginationRequestValidationMiddleware } from '../validators/Pagination.validator';
-import { leadBusinessFetchByIdRequestValidationMiddleware, leadBusinessFetchRequestValidationMiddleware } from '../models/LeadBusiness/LeadBusiness.validator';
+import { paginationRequestValidationMiddleware } from 'common/validators/Pagination';
+import { leadBusinessFetchByIdRequestValidationMiddleware, leadBusinessFetchRequestValidationMiddleware } from 'common/validators/LeadBusiness';
 
 const router = express.Router();
 

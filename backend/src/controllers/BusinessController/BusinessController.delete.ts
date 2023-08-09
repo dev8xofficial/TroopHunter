@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { ApiResponse } from '../../types/Response.interface';
-import Business from '../../models/Business/Business.model';
+import { ApiResponse } from 'common/interfaces/Response';
+import Business from '../../models/Business';
 import logger from '../../utils/logger';
-import { createApiResponse } from '../../utils/response';
-import { BusinessMessageKey, getBusinessMessage } from '../../models/Business/Business.messages';
+import { createApiResponse } from 'common/utils/response';
+import { BusinessMessageKey, getBusinessMessage } from '../../messages/Business';
 
 export const deleteBusiness = async (req: Request, res: Response) => {
   const { id } = req.params;

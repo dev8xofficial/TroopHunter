@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import BusinessPhone from '../../models/BusinessPhone/BusinessPhone.model';
+import BusinessPhone from '../../models/BusinessPhone';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { createApiResponse } from '../../utils/response';
-import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../models/BusinessPhone/BusinessPhone.messages';
+import { ApiResponse } from 'common/interfaces/Response';
+import { createApiResponse } from 'common/utils/response';
+import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../messages/BusinessPhone';
 
 // Delete a business phone by ID
 export const deleteBusinessPhone = async (req: Request, res: Response) => {

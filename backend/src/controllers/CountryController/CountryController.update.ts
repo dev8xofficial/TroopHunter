@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import Country from '../../models/Country/Country.model';
+import Country from '../../models/Country';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { createApiResponse } from '../../utils/response';
-import { CountryMessageKey, getCountryMessage } from '../../models/Country/Country.messages';
-import { ICountryRequestAttributes } from '../../models/Country/Country.interface';
+import { ApiResponse } from 'common/interfaces/Response';
+import { createApiResponse } from 'common/utils/response';
+import { CountryMessageKey, getCountryMessage } from '../../messages/Country';
+import { ICountryRequestAttributes } from 'common/interfaces/Country';
 
 // Update a country by ID
 export const updateCountry = async (req: Request, res: Response) => {

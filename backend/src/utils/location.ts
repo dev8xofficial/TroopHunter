@@ -1,11 +1,11 @@
 import { Transaction } from 'sequelize';
 import logger from '../utils/logger';
-import { ICityResponseAttributes } from '../models/City/City.interface';
-import City from '../models/City/City.model';
-import { IStateResponseAttributes } from '../models/State/State.interface';
-import { ICountryResponseAttributes } from '../models/Country/Country.interface';
-import Country from '../models/Country/Country.model';
-import State from '../models/State/State.model';
+import { ICityResponseAttributes } from '../models/City/City';
+import City from '../models/City';
+import { IStateResponseAttributes } from '../models/State/State';
+import { ICountryResponseAttributes } from '../models/Country/Country';
+import Country from '../models/Country';
+import State from '../models/State';
 
 export const findCityByName = async (cityName: string, transaction: Transaction): Promise<ICityResponseAttributes | undefined> => {
   try {

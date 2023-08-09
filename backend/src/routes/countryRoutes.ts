@@ -3,9 +3,9 @@ import { getCountries, getCountryById, getCountriesByQuery } from '../controller
 import { createCountry } from '../controllers/CountryController/CountryController.create';
 import { updateCountry } from '../controllers/CountryController/CountryController.update';
 import { deleteCountry } from '../controllers/CountryController/CountryController.delete';
-import { countryFetchByIdRequestValidationMiddleware, countryFetchRequestValidationMiddleware, countryCreateRequestValidationMiddleware, countryUpdateRequestValidationMiddleware } from '../models/Country/Country.validator';
+import { countryFetchByIdRequestValidationMiddleware, countryFetchRequestValidationMiddleware, countryCreateRequestValidationMiddleware, countryUpdateRequestValidationMiddleware } from 'common/validators/Country';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { paginationRequestValidationMiddleware } from '../validators/Pagination.validator';
+import { paginationRequestValidationMiddleware } from 'common/validators/Pagination';
 
 const router = express.Router();
 

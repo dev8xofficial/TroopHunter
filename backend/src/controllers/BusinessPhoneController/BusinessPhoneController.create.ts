@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import BusinessPhone from '../../models/BusinessPhone/BusinessPhone.model';
+import BusinessPhone from '../../models/BusinessPhone';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { IBusinessPhoneRequestAttributes, IBusinessPhoneResponseAttributes } from '../../models/BusinessPhone/BusinessPhone.interface';
-import { createApiResponse } from '../../utils/response';
-import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../models/BusinessPhone/BusinessPhone.messages';
+import { ApiResponse } from 'common/interfaces/Response';
+import { IBusinessPhoneRequestAttributes, IBusinessPhoneResponseAttributes } from 'common/interfaces/BusinessPhone';
+import { createApiResponse } from 'common/utils/response';
+import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../messages/BusinessPhone';
 import { v4 as uuidv4 } from 'uuid';
 
 // Create a new business phone

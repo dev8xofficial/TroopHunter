@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import BusinessPhone from '../../models/BusinessPhone/BusinessPhone.model';
+import BusinessPhone from '../../models/BusinessPhone';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { createApiResponse } from '../../utils/response';
-import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../models/BusinessPhone/BusinessPhone.messages';
-import { IBusinessPhoneRequestAttributes } from '../../models/BusinessPhone/BusinessPhone.interface';
+import { ApiResponse } from 'common/interfaces/Response';
+import { createApiResponse } from 'common/utils/response';
+import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../messages/BusinessPhone';
+import { IBusinessPhoneRequestAttributes } from 'common/interfaces/BusinessPhone';
 
 // Update a business phone by ID
 export const updateBusinessPhone = async (req: Request, res: Response) => {

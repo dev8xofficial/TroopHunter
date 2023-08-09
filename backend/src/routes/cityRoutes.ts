@@ -4,8 +4,8 @@ import { createCity } from '../controllers/CityController/CityController.create'
 import { updateCity } from '../controllers/CityController/CityController.update';
 import { deleteCity } from '../controllers/CityController/CityController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { cityCreateRequestValidationMiddleware, cityFetchByIdRequestValidationMiddleware, cityFetchRequestValidationMiddleware, cityUpdateRequestValidationMiddleware } from '../models/City/City.validator';
-import { paginationRequestValidationMiddleware } from '../validators/Pagination.validator';
+import { cityCreateRequestValidationMiddleware, cityFetchByIdRequestValidationMiddleware, cityFetchRequestValidationMiddleware, cityUpdateRequestValidationMiddleware } from 'common/validators/City';
+import { paginationRequestValidationMiddleware } from 'common/validators/Pagination';
 
 const router = express.Router();
 

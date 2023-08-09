@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import State from '../../models/State/State.model';
+import State from '../../models/State';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { IStateRequestAttributes, IStateResponseAttributes } from '../../models/State/State.interface';
-import { createApiResponse } from '../../utils/response';
-import { StateMessageKey, getStateMessage } from '../../models/State/State.messages';
+import { ApiResponse } from 'common/interfaces/Response';
+import { IStateRequestAttributes, IStateResponseAttributes } from 'common/interfaces/State';
+import { createApiResponse } from 'common/utils/response';
+import { StateMessageKey, getStateMessage } from '../../messages/State';
 import { v4 as uuidv4 } from 'uuid';
 
 // Create a new state

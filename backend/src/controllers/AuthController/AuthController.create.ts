@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import User from '../../models/User/User.model';
+import User from '../../models/User';
 import bcrypt from 'bcrypt';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { IUserRequestAttributes, IUserResponseAttributes } from '../../models/User/User.interface';
-import { createApiResponse } from '../../utils/response';
-import { UserMessageKey, getUserMessage } from '../../models/User/User.messages';
+import { ApiResponse } from 'common/interfaces/Response';
+import { IUserRequestAttributes, IUserResponseAttributes } from 'common/interfaces/User';
+import { createApiResponse } from 'common/utils/response';
+import { UserMessageKey, getUserMessage } from '../../messages/User';
 import { v4 as uuidv4 } from 'uuid';
 
 export const register = async (req: Request, res: Response) => {

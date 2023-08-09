@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import Country from '../../models/Country/Country.model';
+import Country from '../../models/Country';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { createApiResponse } from '../../utils/response';
-import { CountryMessageKey, getCountryMessage } from '../../models/Country/Country.messages';
+import { ApiResponse } from 'common/interfaces/Response';
+import { createApiResponse } from 'common/utils/response';
+import { CountryMessageKey, getCountryMessage } from '../../messages/Country';
 
 // Delete a country by ID
 export const deleteCountry = async (req: Request, res: Response) => {

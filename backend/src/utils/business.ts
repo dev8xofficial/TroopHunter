@@ -1,9 +1,9 @@
 import { Transaction } from 'sequelize';
-import { IBusinessSourceResponseAttributes } from '../models/BusinessSource/BusinessSource.interface';
-import BusinessSource from '../models/BusinessSource/BusinessSource.model';
+import { IBusinessSourceResponseAttributes } from 'common/interfaces/BusinessSource';
+import BusinessSource from '../models/BusinessSource';
 import logger from '../utils/logger';
 import { Op } from 'sequelize';
-import Business from '../models/Business/Business.model';
+import Business from '../models/Business';
 
 export const findOrCreateBusinessSource = async (sourceName: string, transaction: Transaction): Promise<IBusinessSourceResponseAttributes | undefined> => {
   try {

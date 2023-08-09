@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import Queue from '../../models/Queue/Queue.model';
+import Queue from '../../models/Queue';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { createApiResponse } from '../../utils/response';
-import { QueueMessageKey, getQueueMessage } from '../../models/Queue/Queue.messages';
-import { IQueueRequestAttributes } from '../../models/Queue/Queue.interface';
+import { ApiResponse } from 'common/interfaces/Response';
+import { createApiResponse } from 'common/utils/response';
+import { QueueMessageKey, getQueueMessage } from '../../messages/Queue';
+import { IQueueRequestAttributes } from 'common/interfaces/Queue';
 
 export const updateQueue = async (req: Request, res: Response) => {
   const { id } = req.params;

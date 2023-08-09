@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import Lead from '../../models/Lead/Lead.model';
-import Business from '../../models/Business/Business.model';
-import LeadBusiness from '../../models/LeadBusiness/LeadBusiness.model';
-import { createApiResponse } from '../../utils/response';
-import { ApiResponse } from '../../types/Response.interface';
-import { ILeadAttributesRequestAttributes, ILeadAttributesResponseAttributes } from '../../models/Lead/Lead.interface';
+import Lead from '../../models/Lead';
+import Business from '../../models/Business';
+import LeadBusiness from '../../models/LeadBusiness';
+import { createApiResponse } from 'common/utils/response';
+import { ApiResponse } from 'common/interfaces/Response';
+import { ILeadAttributesRequestAttributes, ILeadAttributesResponseAttributes } from 'common/interfaces/Lead';
 import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../../utils/business';
-import { LeadMessageKey, getLeadMessage } from '../../models/Lead/Lead.messages';
+import { LeadMessageKey, getLeadMessage } from '../../messages/Lead';
 import { v4 as uuidv4 } from 'uuid';
 
 export const createLead = async (req: Request, res: Response) => {

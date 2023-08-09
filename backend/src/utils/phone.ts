@@ -1,6 +1,6 @@
 import libphonenumber from 'google-libphonenumber';
-import { IBusinessPhoneRequestAttributes, IBusinessPhoneResponseAttributes } from '../models/BusinessPhone/BusinessPhone.interface';
-import BusinessPhone from '../models/BusinessPhone/BusinessPhone.model';
+import { IBusinessPhoneRequestAttributes, IBusinessPhoneResponseAttributes } from 'common/interfaces/BusinessPhone';
+import BusinessPhone from '../models/BusinessPhone';
 import { Transaction } from 'sequelize';
 import logger from '../utils/logger';
 

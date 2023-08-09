@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
 import Sequelize from '../../config/database';
-import { ApiResponse } from '../../types/Response.interface';
-import Business from '../../models/Business/Business.model';
+import { ApiResponse } from 'common/interfaces/Response';
+import Business from '../../models/Business';
 import { Point } from 'geojson';
 import logger from '../../utils/logger';
-import { createApiResponse } from '../../utils/response';
-import BusinessPhone from '../../models/BusinessPhone/BusinessPhone.model';
-import { BusinessMessageKey, getBusinessMessage } from '../../models/Business/Business.messages';
+import { createApiResponse } from 'common/utils/response';
+import BusinessPhone from '../../models/BusinessPhone';
+import { BusinessMessageKey, getBusinessMessage } from '../../messages/Business';
 
 export const getBusinessesByQuery = async (req: Request, res: Response) => {
   const { name, businessDomain, categoryId, address, cityId, stateId, countryId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId } = req.query;

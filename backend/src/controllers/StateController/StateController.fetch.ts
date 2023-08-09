@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import State from '../../models/State/State.model';
+import State from '../../models/State';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { createApiResponse } from '../../utils/response';
+import { ApiResponse } from 'common/interfaces/Response';
+import { createApiResponse } from 'common/utils/response';
 import { Op } from 'sequelize';
-import { StateMessageKey, getStateMessage } from '../../models/State/State.messages';
+import { StateMessageKey, getStateMessage } from '../../messages/State';
 
 // Get states by name and state
 export const getStatesByQuery = async (req: Request, res: Response) => {

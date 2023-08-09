@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import LeadBusiness from '../../models/LeadBusiness/LeadBusiness.model';
+import LeadBusiness from '../../models/LeadBusiness';
 import logger from '../../utils/logger';
-import { createApiResponse } from '../../utils/response';
-import { ApiResponse } from '../../types/Response.interface';
-import { LeadBusinessMessageKey, getLeadBusinessMessage } from '../../models/LeadBusiness/LeadBusiness.messages';
+import { createApiResponse } from 'common/utils/response';
+import { ApiResponse } from 'common/interfaces/Response';
+import { LeadBusinessMessageKey, getLeadBusinessMessage } from '../../messages/LeadBusiness';
 
 export const deleteLeadBusiness = async (req: Request, res: Response) => {
   const { leadId, businessId } = req.params;

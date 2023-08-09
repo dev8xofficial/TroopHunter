@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { ApiResponse } from '../../types/Response.interface';
-import Business from '../../models/Business/Business.model';
+import { ApiResponse } from 'common/interfaces/Response';
+import Business from '../../models/Business';
 import logger from '../../utils/logger';
-import { createApiResponse } from '../../utils/response';
-import { BusinessMessageKey, getBusinessMessage } from '../../models/Business/Business.messages';
-import { IBusinessRequestAttributes } from '../../models/Business/Business.interface';
+import { createApiResponse } from 'common/utils/response';
+import { BusinessMessageKey, getBusinessMessage } from '../../messages/Business';
+import { IBusinessRequestAttributes } from 'common/interfaces/Business';
 
 export const updateBusiness = async (req: Request, res: Response) => {
   const { id } = req.params;

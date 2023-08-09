@@ -4,8 +4,8 @@ import { createBusinessPhone } from '../controllers/BusinessPhoneController/Busi
 import { updateBusinessPhone } from '../controllers/BusinessPhoneController/BusinessPhoneController.update';
 import { deleteBusinessPhone } from '../controllers/BusinessPhoneController/BusinessPhoneController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { businessPhoneFetchByIdRequestValidationMiddleware, businessPhoneFetchRequestValidationMiddleware, businessPhoneCreateRequestValidationMiddleware, businessPhoneUpdateRequestValidationMiddleware } from '../models/BusinessPhone/BusinessPhone.validator';
-import { paginationRequestValidationMiddleware } from '../validators/Pagination.validator';
+import { businessPhoneFetchByIdRequestValidationMiddleware, businessPhoneFetchRequestValidationMiddleware, businessPhoneCreateRequestValidationMiddleware, businessPhoneUpdateRequestValidationMiddleware } from 'common/validators/BusinessPhone';
+import { paginationRequestValidationMiddleware } from 'common/validators/Pagination';
 
 const router = express.Router();
 

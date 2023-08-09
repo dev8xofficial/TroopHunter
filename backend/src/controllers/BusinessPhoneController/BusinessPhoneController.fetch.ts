@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import BusinessPhone from '../../models/BusinessPhone/BusinessPhone.model';
+import BusinessPhone from '../../models/BusinessPhone';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { createApiResponse } from '../../utils/response';
+import { ApiResponse } from 'common/interfaces/Response';
+import { createApiResponse } from 'common/utils/response';
 import { Op } from 'sequelize';
-import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../models/BusinessPhone/BusinessPhone.messages';
+import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../messages/BusinessPhone';
 
 // Get all business phones
 export const getBusinessPhones = async (req: Request, res: Response) => {

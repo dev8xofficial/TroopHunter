@@ -1,9 +1,9 @@
 import express from 'express';
 import { getQueues, getQueueById } from '../controllers/QueueController/QueueController.fetch';
 import { updateQueue } from '../controllers/QueueController/QueueController.update';
-import { queueFetchByIdRequestValidationMiddleware, queueUpdateRequestValidationMiddleware } from '../models/Queue/Queue.validator';
+import { queueFetchByIdRequestValidationMiddleware, queueUpdateRequestValidationMiddleware } from 'common/validators/Queue';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { paginationRequestValidationMiddleware } from '../validators/Pagination.validator';
+import { paginationRequestValidationMiddleware } from 'common/validators/Pagination';
 
 const router = express.Router();
 

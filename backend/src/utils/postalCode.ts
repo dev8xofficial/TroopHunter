@@ -1,6 +1,6 @@
 import { Transaction } from 'sequelize';
-import PostalCode from '../models/PostalCode/PostalCode.model';
-import { IPostalCodeResponseAttributes } from '../models/PostalCode/PostalCode.interface';
+import PostalCode from '../models/PostalCode';
+import { IPostalCodeResponseAttributes } from 'common/interfaces/PostalCode';
 import logger from '../utils/logger';
 
 export const findOrCreatePostalCode = async (code: string, transaction: Transaction): Promise<IPostalCodeResponseAttributes | undefined> => {

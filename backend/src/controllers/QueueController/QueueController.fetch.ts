@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import Queue from '../../models/Queue/Queue.model';
+import Queue from '../../models/Queue';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { createApiResponse } from '../../utils/response';
-import { QueueMessageKey, getQueueMessage } from '../../models/Queue/Queue.messages';
+import { ApiResponse } from 'common/interfaces/Response';
+import { createApiResponse } from 'common/utils/response';
+import { QueueMessageKey, getQueueMessage } from '../../messages/Queue';
 
 export const getQueues = async (req: Request, res: Response) => {
   const { page, limit } = req.query;

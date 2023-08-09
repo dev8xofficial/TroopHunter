@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import City from '../../models/City/City.model';
+import City from '../../models/City';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { createApiResponse } from '../../utils/response';
-import { CityMessageKey, getCityMessage } from '../../models/City/City.messages';
+import { ApiResponse } from 'common/interfaces/Response';
+import { createApiResponse } from 'common/utils/response';
+import { CityMessageKey, getCityMessage } from '../../messages/City';
 
 // Delete a city by ID
 export const deleteCity = async (req: Request, res: Response) => {

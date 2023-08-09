@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
-import User from '../../models/User/User.model';
+import User from '../../models/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { IUserRequestAttributes } from '../../models/User/User.interface';
-import { createApiResponse } from '../../utils/response';
-import Lead from '../../models/Lead/Lead.model';
-import { UserMessageKey, getUserMessage } from '../../models/User/User.messages';
-import { AuthMessageKey, getAuthMessage } from '../../messages/Auth.messages';
+import { ApiResponse } from 'common/interfaces/Response';
+import { IUserRequestAttributes } from 'common/interfaces/User';
+import { createApiResponse } from 'common/utils/response';
+import Lead from '../../models/Lead';
+import { UserMessageKey, getUserMessage } from '../../messages/User';
+import { AuthMessageKey, getAuthMessage } from '../../messages/Auth';
 
 export const login = async (req: Request, res: Response) => {
   try {

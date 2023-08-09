@@ -4,8 +4,8 @@ import { createBusiness } from '../controllers/BusinessController/BusinessContro
 import { updateBusiness } from '../controllers/BusinessController/BusinessController.update';
 import { deleteBusiness } from '../controllers/BusinessController/BusinessController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { businessCreateRequestValidationMiddleware, businessFetchByIdRequestValidationMiddleware, businessFetchRequestValidationMiddleware, businessUpdateRequestValidationMiddleware } from '../models/Business/Business.validator';
-import { paginationRequestValidationMiddleware } from '../validators/Pagination.validator';
+import { businessCreateRequestValidationMiddleware, businessFetchByIdRequestValidationMiddleware, businessFetchRequestValidationMiddleware, businessUpdateRequestValidationMiddleware } from 'common/validators/Business';
+import { paginationRequestValidationMiddleware } from 'common/validators/Pagination';
 
 const router = express.Router();
 

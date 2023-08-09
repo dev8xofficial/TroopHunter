@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import Lead from '../../models/Lead/Lead.model';
-import User from '../../models/User/User.model';
+import Lead from '../../models/Lead';
+import User from '../../models/User';
 import logger from '../../utils/logger';
-import { createApiResponse } from '../../utils/response';
-import { ApiResponse } from '../../types/Response.interface';
-import { ILeadAttributesRequestAttributes } from '../../models/Lead/Lead.interface';
-import { LeadMessageKey, getLeadMessage } from '../../models/Lead/Lead.messages';
-import { UserMessageKey, getUserMessage } from '../../models/User/User.messages';
+import { createApiResponse } from 'common/utils/response';
+import { ApiResponse } from 'common/interfaces/Response';
+import { ILeadAttributesRequestAttributes } from 'common/interfaces/Lead';
+import { LeadMessageKey, getLeadMessage } from '../../messages/Lead';
+import { UserMessageKey, getUserMessage } from '../../messages/User';
 
 export const updateLead = async (req: Request, res: Response) => {
   const { id } = req.params;

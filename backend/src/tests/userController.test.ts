@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../index';
-import User from '../models/User/User.model';
+import User from '../models/User';
 
 describe('User Controller', () => {
   beforeEach(async () => {

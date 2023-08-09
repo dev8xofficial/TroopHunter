@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import City from '../../models/City/City.model';
+import City from '../../models/City';
 import logger from '../../utils/logger';
-import { ApiResponse } from '../../types/Response.interface';
-import { createApiResponse } from '../../utils/response';
+import { ApiResponse } from 'common/interfaces/Response';
+import { createApiResponse } from 'common/utils/response';
 import { Op } from 'sequelize';
-import { CityMessageKey, getCityMessage } from '../../models/City/City.messages';
-import { PaginationMessageKey, getPaginationMessage } from '../../messages/Pagination.messages';
+import { CityMessageKey, getCityMessage } from '../../messages/City';
+import { PaginationMessageKey, getPaginationMessage } from '../../messages/Pagination';
 
 // Get cities by name and state
 export const getCitiesByQuery = async (req: Request, res: Response) => {
