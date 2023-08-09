@@ -30,7 +30,6 @@
     "google-libphonenumber": "^3.2.32",
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.0",
-    "module-alias": "^2.2.3",
     "morgan": "^1.10.0",
     "pg-hstore": "^2.3.4",
     "pg-pool": "^3.6.0",

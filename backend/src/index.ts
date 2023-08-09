@@ -17,7 +17,6 @@ import leadBusinessesRoutes from './routes/leadBusinessesRoutes';
 // ... Other route imports
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './swagger';
-require('module-alias/register');
 
 import dotenv from 'dotenv';
 
