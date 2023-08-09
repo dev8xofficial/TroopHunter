@@ -1,6 +1,6 @@
 import { PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { setHomePageFiltersAction, resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePageLoadingFailureAction, setHomePagePaginationPageAction, setHomePagePaginationLimitAction, setHomePageDraftLeadIdAction, resetHomePageDraftLeadIdAction, setHomePageBusinessIdsAction, resetHomePageBusinessIdsAction } from '../actions/homePageActions';
-import { ILeadCreationResponseAttributes } from '../../types/lead';
+import { ILeadResponseAttributes } from 'common/interfaces/Lead';
 
 export interface IFilterAttributes {
   name: { label: string; name: string; value: string };
@@ -56,7 +56,7 @@ const leadPageReducer = createReducer(initialState, (builder) => {
     .addCase(resetHomePageFiltersAction, (state) => {
       state.filters = initialValue;
     })
-    .addCase(restoreHomePageFiltersAction, (state, action: PayloadAction<ILeadCreationResponseAttributes>) => {
+    .addCase(restoreHomePageFiltersAction, (state, action: PayloadAction<ILeadResponseAttributes>) => {
       const lead = action.payload;
       const filterValues = {
         name: { label: 'Business', name: 'name', value: lead.search },

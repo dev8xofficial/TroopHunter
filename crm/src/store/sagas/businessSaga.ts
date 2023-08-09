@@ -3,26 +3,23 @@ import { takeLatest, put, select } from 'redux-saga/effects';
 import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction, fetchBusinessesAction } from '../actions/businessActions';
 import { getBusinessesBySearchService } from '../../services/businessService';
 import { setHomePageLoadingFailureAction, setHomePageLoadingSuccessAction } from '../actions/homePageActions';
-import { IBusinessCreationRequestAttributes, IBusinessCreationResponseAttributes } from '../../types/business';
+import { IBusinessFetchRequestAttributes } from 'common/interfaces/Business';
+import { PaginationAttributes } from 'common/interfaces/Pagination';
+import { IBusinessResponseAttributes } from 'common/interfaces/Business';
 import { IBusinessState } from '../reducers/businessReducer';
-export interface IBusinessesFetchPayload extends Omit<IBusinessCreationRequestAttributes, 'name' | 'sponsoredAd'> {
-  name?: string; // converting name property from required to optional
+
+export interface IBusinessesFetchPayload extends IBusinessFetchRequestAttributes, PaginationAttributes {
   token: string;
-  cityId?: string;
-  stateId?: string;
-  countryId?: string;
-  phone?: string;
-  sponsoredAd?: boolean;
-  page: number;
-  limit: number;
 }
 
 function* fetchBusinessesSaga({ payload }: { payload: IBusinessesFetchPayload }): any {
   try {
-    const { name, businessDomain, address, cityId, stateId, countryId, phone, email, website, sponsoredAd, token, page, limit } = payload;
+    const { name, businessDomain, address, cityId, stateId, countryId, phone, email, website, sponsoredAd } = payload;
+    const { page, limit } = payload;
+    const { token } = payload;
     const params = { name, businessDomain, address, cityId, stateId, countryId, phone, email, website, page, limit };
     const { businesses }: { businesses: IBusinessState } = yield select((state: { businesses: IBusinessState }) => state);
-    const businessesDataBusinesses: { [key: string]: IBusinessCreationResponseAttributes } = businesses.data.businesses;
+    const businessesDataBusinesses: { [key: string]: IBusinessResponseAttributes } = businesses.data.businesses;
 
     if (sponsoredAd) {
       params['sponsoredAd'] = sponsoredAd;

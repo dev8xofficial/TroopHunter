@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react';
 import { LeadDeletionDialogAttributes } from './LeadDeletionDialog.interfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { IUserCreationResponseAttributes } from '../../../types/user';
+import { IUserResponseAttributes } from 'common/interfaces/User';
 import Button from '../../Inputs/Button/Button';
 import { deleteLeadAction } from '../../../store/actions/leadActions';
 import { IAuthState } from '../../../store/reducers/authReducer';
@@ -18,7 +18,7 @@ const LeadDeletionDialog: React.FC<LeadDeletionDialogAttributes> = ({ isOpen, cl
   const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
 
   const leadPageDraftLeadId: string = home.draftLeadId;
-  const usersLoggedIn: IUserCreationResponseAttributes = users.data[auth.userId];
+  const usersLoggedIn: IUserResponseAttributes = users.data[auth.userId];
 
   const handleDelete = () => {
     closeModal();

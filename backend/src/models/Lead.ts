@@ -4,7 +4,7 @@ import User from './User';
 import City from './City';
 import State from './State';
 import Country from './Country';
-import { ILeadAttributesResponseAttributes } from 'common/interfaces/Lead';
+import { ILeadResponseAttributes } from 'common/interfaces/Lead';
 import BusinessCategory from './BusinessCategory';
 import PostalCode from './PostalCode';
 import BusinessRating from './BusinessRating';
@@ -12,7 +12,7 @@ import Timezone from './Timezone';
 import BusinessOpeningHour from './BusinessOpeningHour';
 import BusinessClosingHour from './BusinessClosingHour';
 
-class Lead extends Model<ILeadAttributesResponseAttributes> implements ILeadAttributesResponseAttributes {
+class Lead extends Model<ILeadResponseAttributes> implements ILeadResponseAttributes {
   public id!: string;
   public userId!: string;
   public businessIds?: string[];

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { loginService, registerService } from '../../services/authService';
 import { addUserLocallyAction } from '../actions/userActions';
 import { NavigateFunction } from 'react-router-dom';
-import { IUserCreationRequestAttributes } from '../../types/user';
+import { IUserRequestAttributes, IUserResponseAttributes } from 'common/interfaces/User';
 import { IAuthLoginSuccessPayload } from '../reducers/authReducer';
 
 export interface IAuthLoginPayload {
@@ -37,7 +37,7 @@ function* loginSaga({ payload }: { payload: IAuthLoginPayload }): any {
   }
 }
 
-export interface IAuthRegisterPayload extends IUserCreationRequestAttributes {
+export interface IAuthRegisterPayload extends Omit<IUserRequestAttributes, 'Leads'> {
   navigate: NavigateFunction;
 }
 

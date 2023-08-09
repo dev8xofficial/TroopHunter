@@ -2,11 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import Joi from 'joi';
 import { createApiResponse } from '../utils/response';
 import { ApiResponse } from '../interfaces/Response';
-
-export interface PaginationAttributes {
-  page: number;
-  limit: number;
-}
+import { PaginationAttributes } from '../interfaces/Pagination';
 
 export const PaginationSchema = Joi.object<PaginationAttributes>({
   page: Joi.number().integer().min(1).required(),

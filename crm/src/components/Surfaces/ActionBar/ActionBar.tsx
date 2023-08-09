@@ -6,7 +6,7 @@ import IconButton from '../../Inputs/IconButton/IconButton';
 import { IActionBarProps } from './ActionBar.interfaces';
 import Avatar from '../../DataDisplay/Avatar/Avatar';
 import { useSelector } from 'react-redux';
-import { IUserCreationResponseAttributes } from '../../../types/user';
+import { IUserResponseAttributes } from 'common/interfaces/User';
 import LeadsDeletionDialog from '../../Feedback/LeadsDeletionDialog/LeadsDeletionDialog';
 import Progress from '../../Feedback/Progress/Progress';
 import { IAuthState } from '../../../store/reducers/authReducer';
@@ -80,7 +80,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
   const { leads }: { leads: ILeadsState } = useSelector((state: { leads: ILeadsState }) => state);
 
   const selectedLeadIds = leads.selectedLeadIds;
-  const usersLoggedIn: IUserCreationResponseAttributes = users.data[auth.userId];
+  const usersLoggedIn: IUserResponseAttributes = users.data[auth.userId];
 
   let [isOpenDeleteLeadsModal, setIsOpenDeleteLeadsModal] = useState(false);
 

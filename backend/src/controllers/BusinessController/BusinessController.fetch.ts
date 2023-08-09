@@ -10,7 +10,7 @@ import BusinessPhone from '../../models/BusinessPhone';
 import { BusinessMessageKey, getBusinessMessage } from '../../messages/Business';
 
 export const getBusinessesByQuery = async (req: Request, res: Response) => {
-  const { name, businessDomain, categoryId, address, cityId, stateId, countryId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId } = req.query;
+  const { name, businessDomain, address, cityId, stateId, countryId, longitude, latitude, email, website, sponsoredAd } = req.query;
   const { range, phone } = req.query;
   const { page, limit } = req.query;
   const pageNumber = parseInt(page as string, 10);
@@ -24,7 +24,6 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
 
   if (name) whereClause.name = { [Op.iLike]: `%${name}%` };
   if (businessDomain) whereClause.businessDomain = { [Op.iLike]: `%${businessDomain}%` };
-  if (categoryId) whereClause.categoryId = categoryId;
   if (address) whereClause.address = { [Op.iLike]: `%${address}%` };
   if (cityId) whereClause.cityId = cityId;
   if (stateId) whereClause.stateId = stateId;
@@ -41,14 +40,9 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
     whereClause.latitude = latitude;
   }
 
-  if (postalCodeId) whereClause.postalCodeId = postalCodeId;
-  if (phoneId) whereClause.phoneId = phoneId;
   if (email) whereClause.email = { [Op.iLike]: `%${email}%` };
   if (website) whereClause.website = { [Op.iLike]: `%${website}%` };
-  if (timezoneId) whereClause.timezoneId = timezoneId;
   if (sponsoredAd) whereClause.sponsoredAd = sponsoredAd;
-  if (openingHourId) whereClause.openingHourId = openingHourId;
-  if (closingHourId) whereClause.closingHourId = closingHourId;
 
   if (phone && typeof phone === 'string') {
     const phoneNumberSearch = phone.replace(/\D/g, '');
@@ -70,7 +64,6 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
       offset,
       limit: limitNumber,
     });
-    console.log('include: ', [...includeClauseBusinessPhone]);
 
     const totalPages = Math.ceil(count / limitNumber);
 

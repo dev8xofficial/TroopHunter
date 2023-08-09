@@ -1,9 +1,9 @@
 import { PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { fetchUsersSuccessAction, fetchUsersFailureAction, fetchUserSuccessAction, addUserLocallyAction, updateUserLocallyAction, deleteUserLocallyAction } from '../actions/userActions';
-import { IUserCreationResponseAttributes } from '../../types/user';
+import { IUserResponseAttributes } from 'common/interfaces/User';
 
 export interface IUserState {
-  data: { [key: string]: IUserCreationResponseAttributes };
+  data: { [key: string]: IUserResponseAttributes };
 }
 
 const initialState: IUserState = { data: {} };
@@ -16,17 +16,17 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(fetchUsersFailureAction, (state) => {
       state.data = {};
     })
-    .addCase(fetchUserSuccessAction, (state, action: PayloadAction<IUserCreationResponseAttributes>) => {
+    .addCase(fetchUserSuccessAction, (state, action: PayloadAction<IUserResponseAttributes>) => {
       const user = action.payload;
-      const mergedUsers: { [key: string]: IUserCreationResponseAttributes } = { ...state.data, [user.id]: { ...user } };
+      const mergedUsers: { [key: string]: IUserResponseAttributes } = { ...state.data, [user.id]: { ...user } };
       state.data = mergedUsers;
     })
     // Handling local updates
-    .addCase(updateUserLocallyAction, (state, action: PayloadAction<IUserCreationResponseAttributes>) => {
+    .addCase(updateUserLocallyAction, (state, action: PayloadAction<IUserResponseAttributes>) => {
       const user = action.payload;
       state.data[user.id] = { ...user };
     })
-    .addCase(addUserLocallyAction, (state, action: PayloadAction<IUserCreationResponseAttributes>) => {
+    .addCase(addUserLocallyAction, (state, action: PayloadAction<IUserResponseAttributes>) => {
       const user = action.payload;
       state.data[user.id] = { ...user };
     })

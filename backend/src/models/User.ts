@@ -3,7 +3,7 @@ import sequelize from '../config/database';
 import { IUserResponseAttributes } from 'common/interfaces/User';
 import Lead from './Lead';
 
-class User extends Model<IUserResponseAttributes> implements IUserResponseAttributes {
+class User extends Model<Omit<IUserResponseAttributes, 'Leads'>> implements Omit<IUserResponseAttributes, 'Leads'> {
   public id!: string;
   public firstName!: string;
   public lastName!: string;

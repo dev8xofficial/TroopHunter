@@ -1,9 +1,9 @@
 import { PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction } from '../actions/businessActions';
-import { IBusinessCreationResponseAttributes } from '../../types/business';
+import { IBusinessResponseAttributes } from 'common/interfaces/Business';
 
 export interface IBusinessState {
-  data: { businesses: { [key: string]: IBusinessCreationResponseAttributes }; totalPages: number; totalRecords: number };
+  data: { businesses: { [key: string]: IBusinessResponseAttributes }; totalPages: number; totalRecords: number };
 }
 
 const initialState: IBusinessState = {

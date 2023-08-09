@@ -6,9 +6,9 @@ import moment from 'moment';
 import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import Avatar from '../Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
-import { ILeadCreationResponseAttributes } from '../../../types/lead';
-import { IUserCreationResponseAttributes } from '../../../types/user';
-import { IFilterAttributes, IHomePageState } from '../../../store/reducers/homePageReducer';
+import { ILeadResponseAttributes } from 'common/interfaces/Lead';
+import { IUserResponseAttributes } from 'common/interfaces/User';
+import { IFilterAttributes } from '../../../store/reducers/homePageReducer';
 import { setHomePageDraftLeadIdAction, setHomePageFiltersAction } from '../../../store/actions/homePageActions';
 import { setLeadsPageSelectedLeadIds } from '../../../store/actions/leadsPageActions';
 import { deleteLeadsAction } from '../../../store/actions/leadActions';
@@ -27,13 +27,11 @@ const Table: React.FC = (): JSX.Element => {
   const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
   const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
   const { leads }: { leads: ILeadsState } = useSelector((state: { leads: ILeadsState }) => state);
-  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
 
-  const leadPageLFilters: IFilterAttributes = home.filters;
   const authUserId: string = auth.userId;
-  const usersLoggedIn: IUserCreationResponseAttributes = users.data[authUserId];
+  const usersLoggedIn: IUserResponseAttributes = users.data[authUserId];
   const selectedLeadIds: string[] = leads.selectedLeadIds;
-  const userLeads: ILeadCreationResponseAttributes[] | undefined = usersLoggedIn.Leads;
+  const userLeads: ILeadResponseAttributes[] | undefined = usersLoggedIn.Leads;
 
   const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>(selectedLeadIds);
 
@@ -63,8 +61,7 @@ const Table: React.FC = (): JSX.Element => {
     try {
       if (!Array.isArray(userLeads)) return;
 
-      const selectedLead: ILeadCreationResponseAttributes = userLeads[index];
-      console.log(leadPageLFilters);
+      const selectedLead: ILeadResponseAttributes = userLeads[index];
       if (selectedLead) {
         let updatedFilters: IFilterAttributes = {} as IFilterAttributes; // Type assertion
 
@@ -80,7 +77,6 @@ const Table: React.FC = (): JSX.Element => {
           website: { label: 'Website', name: 'website', value: selectedLead.website },
           sponsoredAd: { label: 'Sponsored', name: 'sponsoredAd', value: selectedLead.sponsoredAd },
         };
-        console.log('Editing: ', updatedFilters);
 
         const dispatchActionPromise = new Promise<void>((resolve) => {
           dispatch(setHomePageFiltersAction(updatedFilters));
@@ -106,7 +102,6 @@ const Table: React.FC = (): JSX.Element => {
       if (leadId) dispatch(deleteLeadsAction({ token: auth.token, user: usersLoggedIn, selectedLeadIds: [leadId] }));
       else toast.error('Failed to delete lead. Lead not found.');
     }
-    console.log('Deleting lead with ID:', index);
   };
 
   const getLeadsItemMenuOptions = (index: number): IMenuOption[] => {

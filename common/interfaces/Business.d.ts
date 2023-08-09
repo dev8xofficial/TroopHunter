@@ -1,3 +1,4 @@
+import { IBusinessPhoneResponseAttributes } from './BusinessPhone';
 import { GeoPointAttributes } from './GeoPoint';
 import { ITimezoneRequestAttributes } from './Timezone';
 
@@ -24,6 +25,7 @@ export interface IBusinessRequestAttributes {
   sponsoredAd?: boolean;
   openingHourId?: string;
   closingHourId?: string;
+  BusinessPhone?: IBusinessPhoneResponseAttributes;
 }
 
 export interface IBusinessResponseAttributes extends IBusinessRequestAttributes {
@@ -41,7 +43,13 @@ export interface IBusinessCreationRequestAttributes extends Omit<IBusinessReques
   closingHour?: string;
 }
 
-export interface IBusinessFetchRequestAttributes extends IBusinessRequestAttributes {
+export interface IBusinessFetchRequestAttributes extends Omit<IBusinessRequestAttributes, 'name' | 'cityId' | 'stateId' | 'countryId' | 'longitude' | 'latitude' | 'sourceId' | 'openingHourId' | 'closingHourId'> {
+  name?: string;
+  cityId?: string;
+  stateId?: string;
+  countryId?: string;
+  longitude?: number;
+  latitude?: number;
   range?: string;
   phone?: string;
 }

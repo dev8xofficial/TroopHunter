@@ -1,12 +1,12 @@
 import { IFilterAttributes } from '../store/reducers/homePageReducer';
-import { ILeadCreationResponseAttributes } from '../types/lead';
+import { ILeadResponseAttributes } from 'common/interfaces/Lead';
 
 export function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
 // Function to compare filters and lead properties
-export const compareFiltersAndLead = (filters: IFilterAttributes, lead: ILeadCreationResponseAttributes): boolean => {
+export const compareFiltersAndLead = (filters: IFilterAttributes, lead: ILeadResponseAttributes): boolean => {
   // Create a new object to hold the filtered properties from the filters object
   const filteredProperties: any = {};
 

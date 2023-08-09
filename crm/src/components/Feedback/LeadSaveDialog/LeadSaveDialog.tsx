@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { AdjustmentsVerticalIcon } from '@heroicons/react/20/solid';
 import { XMarkIcon } from '@heroicons/react/24/outline';
@@ -11,8 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IFilterAttributes, IHomePageState } from '../../../store/reducers/homePageReducer';
 import { createLeadAction, updateLeadAction } from '../../../store/actions/leadActions';
 import { toast } from 'react-toastify';
-import { IUserCreationResponseAttributes } from '../../../types/user';
-import { ILeadCreationResponseAttributes } from '../../../types/lead';
+import { IUserResponseAttributes } from 'common/interfaces/User';
+import { ILeadResponseAttributes } from 'common/interfaces/Lead';
 import { IAuthState } from '../../../store/reducers/authReducer';
 import { IBusinessState } from '../../../store/reducers/businessReducer';
 import { IUserState } from '../../../store/reducers/userReducer';
@@ -28,14 +27,10 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
   const leadPageFilters: IFilterAttributes = home.filters;
   const leadPageDraftLeadId: string = home.draftLeadId;
   const leadPageBusinessIds: string[] = home.businessIds;
-  const usersLoggedIn: IUserCreationResponseAttributes = users.data[auth.userId];
+  const usersLoggedIn: IUserResponseAttributes = users.data[auth.userId];
   const businessesTotalRecords: number = businesses.data.totalRecords;
 
-  const draftLead = usersLoggedIn?.Leads?.find((lead: ILeadCreationResponseAttributes) => lead.id === leadPageDraftLeadId);
-
-  const formikSchema = Yup.object().shape({
-    title: Yup.string().required('Kindly Enter Title For Lead Information.'),
-  });
+  const draftLead = usersLoggedIn?.Leads?.find((lead: ILeadResponseAttributes) => lead.id === leadPageDraftLeadId);
 
   interface ILeadFormmValues {
     title: string;
@@ -48,7 +43,6 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
   const formik = useFormik({
     initialValues: initialValues,
     enableReinitialize: true,
-    validationSchema: formikSchema,
     onSubmit: async (values, { resetForm }) => {
       const { title } = values;
       if (Object.keys(leadPageFilters).length > 0 && Object.values(leadPageFilters).some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {

@@ -4,13 +4,13 @@ import User from '../../models/User';
 import logger from '../../utils/logger';
 import { createApiResponse } from 'common/utils/response';
 import { ApiResponse } from 'common/interfaces/Response';
-import { ILeadAttributesRequestAttributes } from 'common/interfaces/Lead';
+import { ILeadRequestAttributes } from 'common/interfaces/Lead';
 import { LeadMessageKey, getLeadMessage } from '../../messages/Lead';
 import { UserMessageKey, getUserMessage } from '../../messages/User';
 
 export const updateLead = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }: ILeadAttributesRequestAttributes = req.body;
+  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }: ILeadRequestAttributes = req.body;
 
   try {
     const user = await User.findByPk(userId);

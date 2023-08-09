@@ -29,7 +29,6 @@ export const createBusiness = async (req: Request, res: Response) => {
 
   const { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour }: IBusinessCreationRequestAttributes = req.body;
 
-  console.log('createBusiness: ', { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour });
   const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
   let payload: IBusinessResponseAttributes = {
     id: uuidv4(),

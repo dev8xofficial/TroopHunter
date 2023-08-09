@@ -5,7 +5,7 @@ import { Transition, Dialog } from '@headlessui/react';
 import { LeadsDeletionDialogAttributes } from './LeadsDeletionDialog.interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteLeadsAction } from '../../../store/actions/leadActions';
-import { IUserCreationResponseAttributes } from '../../../types/user';
+import { IUserResponseAttributes } from 'common/interfaces/User';
 import Button from '../../Inputs/Button/Button';
 import { IAuthState } from '../../../store/reducers/authReducer';
 import { IUserState } from '../../../store/reducers/userReducer';
@@ -18,7 +18,7 @@ const LeadsDeletionDialog: React.FC<LeadsDeletionDialogAttributes> = ({ isOpen, 
   const { leads }: { leads: ILeadsState } = useSelector((state: { leads: ILeadsState }) => state);
 
   const selectedLeadIds: string[] = leads.selectedLeadIds;
-  const usersLoggedIn: IUserCreationResponseAttributes = users.data[auth.userId];
+  const usersLoggedIn: IUserResponseAttributes = users.data[auth.userId];
 
   const handleDelete = () => {
     closeModal();

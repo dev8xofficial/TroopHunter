@@ -24,7 +24,7 @@ export const register = async (req: Request, res: Response) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create the user
-    const requestData: IUserResponseAttributes = { id: uuidv4(), firstName, lastName, email, password: hashedPassword };
+    const requestData: Omit<IUserResponseAttributes, 'Leads'> = { id: uuidv4(), firstName, lastName, email, password: hashedPassword };
     const user = await User.create(requestData);
 
     logger.info(`User with email ${email} registered successfully.`);

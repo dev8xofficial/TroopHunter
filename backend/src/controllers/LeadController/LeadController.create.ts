@@ -4,16 +4,16 @@ import Business from '../../models/Business';
 import LeadBusiness from '../../models/LeadBusiness';
 import { createApiResponse } from 'common/utils/response';
 import { ApiResponse } from 'common/interfaces/Response';
-import { ILeadAttributesRequestAttributes, ILeadAttributesResponseAttributes } from 'common/interfaces/Lead';
+import { ILeadRequestAttributes, ILeadResponseAttributes } from 'common/interfaces/Lead';
 import { getBusinessesByQuery, getBusinessesByQueryingIds } from '../../utils/business';
 import { LeadMessageKey, getLeadMessage } from '../../messages/Lead';
 import { v4 as uuidv4 } from 'uuid';
 
 export const createLead = async (req: Request, res: Response) => {
-  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }: ILeadAttributesRequestAttributes = req.body;
+  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }: ILeadRequestAttributes = req.body;
 
   try {
-    const requestData: ILeadAttributesResponseAttributes = { id: uuidv4(), userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId };
+    const requestData: ILeadResponseAttributes = { id: uuidv4(), userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId };
     const lead = await Lead.create(requestData);
 
     let businesses: Business[] | undefined = [];

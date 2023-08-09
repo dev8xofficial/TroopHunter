@@ -1,10 +1,10 @@
 import { createAction } from '@reduxjs/toolkit';
 import { IFilterAttributes } from '../reducers/homePageReducer';
-import { ILeadCreationResponseAttributes } from '../../types/lead';
+import { ILeadResponseAttributes } from 'common/interfaces/Lead';
 
 export const setHomePageFiltersAction = createAction<IFilterAttributes>('homePage/setHomePageLFiltersAction');
 export const resetHomePageFiltersAction = createAction('homePage/resetHomePageFiltersAction');
-export const restoreHomePageFiltersAction = createAction<ILeadCreationResponseAttributes>('homePage/restoreHomePageFiltersAction');
+export const restoreHomePageFiltersAction = createAction<ILeadResponseAttributes>('homePage/restoreHomePageFiltersAction');
 
 export const setHomePageLoadingSuccessAction = createAction('homePage/setHomePageLoadingSuccessAction');
 export const setHomePageLoadingFailureAction = createAction('homePage/setHomePageLoadingFailureAction');
