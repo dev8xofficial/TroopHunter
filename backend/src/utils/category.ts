@@ -1,7 +1,7 @@
 import { Transaction } from 'sequelize';
 import BusinessCategory from '../models/BusinessCategory';
 import logger from '../utils/logger';
-import { IBusinessCategoryResponseAttributes } from 'common/interfaces/BusinessCategory';
+import { IBusinessCategoryResponseAttributes } from 'validator/interfaces/BusinessCategory';
 
 export const findOrCreateBusinessCategory = async (name: string, transaction: Transaction): Promise<IBusinessCategoryResponseAttributes | undefined> => {
   try {

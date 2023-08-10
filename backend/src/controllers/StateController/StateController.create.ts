@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import State from '../../models/State';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'common/interfaces/Response';
-import { IStateRequestAttributes, IStateResponseAttributes } from 'common/interfaces/State';
-import { createApiResponse } from 'common/utils/response';
+import { ApiResponse } from 'validator/interfaces/Response';
+import { IStateRequestAttributes, IStateResponseAttributes } from 'validator/interfaces/State';
+import { createApiResponse } from 'validator/utils/response';
 import { StateMessageKey, getStateMessage } from '../../messages/State';
 import { v4 as uuidv4 } from 'uuid';
 

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import BusinessPhone from '../../models/BusinessPhone';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'common/interfaces/Response';
-import { createApiResponse } from 'common/utils/response';
+import { ApiResponse } from 'validator/interfaces/Response';
+import { createApiResponse } from 'validator/utils/response';
 import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../messages/BusinessPhone';
-import { IBusinessPhoneRequestAttributes } from 'common/interfaces/BusinessPhone';
+import { IBusinessPhoneRequestAttributes } from 'validator/interfaces/BusinessPhone';
 
 // Update a business phone by ID
 export const updateBusinessPhone = async (req: Request, res: Response) => {

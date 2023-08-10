@@ -2,9 +2,9 @@ import { Request, Response } from 'express';
 import User from '../../models/User';
 import bcrypt from 'bcrypt';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'common/interfaces/Response';
-import { IUserRequestAttributes, IUserResponseAttributes } from 'common/interfaces/User';
-import { createApiResponse } from 'common/utils/response';
+import { ApiResponse } from 'validator/interfaces/Response';
+import { IUserRequestAttributes, IUserResponseAttributes } from 'validator/interfaces/User';
+import { createApiResponse } from 'validator/utils/response';
 import { UserMessageKey, getUserMessage } from '../../messages/User';
 import { v4 as uuidv4 } from 'uuid';
 

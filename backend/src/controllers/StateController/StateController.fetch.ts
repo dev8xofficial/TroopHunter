@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import State from '../../models/State';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'common/interfaces/Response';
-import { createApiResponse } from 'common/utils/response';
+import { ApiResponse } from 'validator/interfaces/Response';
+import { createApiResponse } from 'validator/utils/response';
 import { Op } from 'sequelize';
 import { StateMessageKey, getStateMessage } from '../../messages/State';
 

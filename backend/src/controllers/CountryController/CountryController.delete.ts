@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import Country from '../../models/Country';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'common/interfaces/Response';
-import { createApiResponse } from 'common/utils/response';
+import { ApiResponse } from 'validator/interfaces/Response';
+import { createApiResponse } from 'validator/utils/response';
 import { CountryMessageKey, getCountryMessage } from '../../messages/Country';
 
 // Delete a country by ID

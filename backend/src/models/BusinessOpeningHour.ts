@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IBusinessOpeningHourResponseAttributes } from 'common/interfaces/BusinessOpeningHour';
+import { IBusinessOpeningHourResponseAttributes } from 'validator/interfaces/BusinessOpeningHour';
 
 class BusinessOpeningHour extends Model<IBusinessOpeningHourResponseAttributes> implements IBusinessOpeningHourResponseAttributes {
   public id!: string;

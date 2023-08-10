@@ -3,9 +3,9 @@ import { getUsers, getUserWithInclude, getUserById } from '../controllers/UserCo
 import { updateUser } from '../controllers/UserController/UserController.update';
 import { deleteUser } from '../controllers/UserController/UserController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { userFetchRequestValidationMiddleware, userFetchByIdRequestValidationMiddleware, userUpdateRequestValidationMiddleware } from 'common/validators/User';
-import { requestValidationMiddleware } from 'common/validators/Request';
-import { paginationRequestValidationMiddleware } from 'common/validators/Pagination';
+import { userFetchRequestValidationMiddleware, userFetchByIdRequestValidationMiddleware, userUpdateRequestValidationMiddleware } from 'validator/validators/User';
+import { requestValidationMiddleware } from 'validator/validators/Request';
+import { paginationRequestValidationMiddleware } from 'validator/validators/Pagination';
 
 const router = express.Router();
 

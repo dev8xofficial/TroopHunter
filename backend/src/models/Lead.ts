@@ -4,7 +4,7 @@ import User from './User';
 import City from './City';
 import State from './State';
 import Country from './Country';
-import { ILeadResponseAttributes } from 'common/interfaces/Lead';
+import { ILeadResponseAttributes } from 'validator/interfaces/Lead';
 import BusinessCategory from './BusinessCategory';
 import PostalCode from './PostalCode';
 import BusinessRating from './BusinessRating';

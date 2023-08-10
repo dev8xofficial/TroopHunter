@@ -1,6 +1,6 @@
 import { Transaction } from 'sequelize';
 import BusinessClosingHour from '../models/BusinessClosingHour';
-import { IBusinessClosingHourResponseAttributes } from 'common/interfaces/BusinessClosingHour';
+import { IBusinessClosingHourResponseAttributes } from 'validator/interfaces/BusinessClosingHour';
 import logger from '../utils/logger';
 
 export const findOrCreateBusinessClosingHour = async (time: string, transaction: Transaction): Promise<IBusinessClosingHourResponseAttributes | undefined> => {

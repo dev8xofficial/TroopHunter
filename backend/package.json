@@ -39,6 +39,7 @@
     "swagger-ui-express": "^5.0.0",
     "typescript": "^5.1.3",
     "uuid": "^9.0.0",
+    "validator": "file:../packages/validator",
     "winston": "^3.10.0",
     "yamljs": "^0.3.0"
   },

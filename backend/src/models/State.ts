@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IStateResponseAttributes } from 'common/interfaces/State';
+import { IStateResponseAttributes } from 'validator/interfaces/State';
 
 class State extends Model<IStateResponseAttributes> implements IStateResponseAttributes {
   public id!: string;

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import City from '../../models/City';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'common/interfaces/Response';
-import { createApiResponse } from 'common/utils/response';
+import { ApiResponse } from 'validator/interfaces/Response';
+import { createApiResponse } from 'validator/utils/response';
 import { Op } from 'sequelize';
 import { CityMessageKey, getCityMessage } from '../../messages/City';
 import { PaginationMessageKey, getPaginationMessage } from '../../messages/Pagination';

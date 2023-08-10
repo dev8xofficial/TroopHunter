@@ -2,7 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 import Lead from './Lead';
 import Business from './Business';
-import { LeadBusinessAttributes } from 'common/interfaces/LeadBusiness';
+import { LeadBusinessAttributes } from 'validator/interfaces/LeadBusiness';
 
 class LeadBusiness extends Model<LeadBusinessAttributes> implements LeadBusinessAttributes {
   public leadId!: string;

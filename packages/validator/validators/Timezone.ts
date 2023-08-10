@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { ITimezoneResponseAttributes } from '../interfaces/Timezone';
-import { TimezoneMessageKey, getTimezoneMessage } from '../../backend/src/messages/Timezone';
+import { TimezoneMessageKey, getTimezoneMessage } from '../messages/Timezone';
 
 export const TimezoneSchema = Joi.object<ITimezoneResponseAttributes>({
   id: Joi.string().guid().required(),

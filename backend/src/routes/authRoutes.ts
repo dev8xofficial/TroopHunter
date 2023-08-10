@@ -1,8 +1,8 @@
 import express from 'express';
 import { login } from '../controllers/AuthController/AuthController.fetch';
 import { register } from '../controllers/AuthController/AuthController.create';
-import { userCreateRequestValidationMiddleware } from 'common/validators/User';
-import { authUserFetchRequestValidationMiddleware } from 'common/validators/Auth';
+import { userCreateRequestValidationMiddleware } from 'validator/validators/User';
+import { authUserFetchRequestValidationMiddleware } from 'validator/validators/Auth';
 
 const router = express.Router();
 

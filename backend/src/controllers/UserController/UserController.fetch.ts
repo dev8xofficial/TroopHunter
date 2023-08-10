@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import User from '../../models/User';
 import logger from '../../utils/logger';
 import { isValidJSON } from '../../utils/helper';
-import { ApiResponse } from 'common/interfaces/Response';
-import { createApiResponse } from 'common/utils/response';
+import { ApiResponse } from 'validator/interfaces/Response';
+import { createApiResponse } from 'validator/utils/response';
 import { UserMessageKey, getUserMessage } from '../../messages/User';
 import { PaginationMessageKey, getPaginationMessage } from '../../messages/Pagination';
 

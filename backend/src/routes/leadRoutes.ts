@@ -3,9 +3,9 @@ import { getLeads, getLeadById } from '../controllers/LeadController/LeadControl
 import { createLead } from '../controllers/LeadController/LeadController.create';
 import { updateLead } from '../controllers/LeadController/LeadController.update';
 import { deleteLead, deleteLeads } from '../controllers/LeadController/LeadController.delete';
-import { leadFetchByIdRequestValidationMiddleware, leadFetchRequestValidationMiddleware, leadCreateRequestValidationMiddleware, leadUpdateRequestValidationMiddleware, leadBulkDeleteRequestValidationMiddleware } from 'common/validators/Lead';
+import { leadFetchByIdRequestValidationMiddleware, leadFetchRequestValidationMiddleware, leadCreateRequestValidationMiddleware, leadUpdateRequestValidationMiddleware, leadBulkDeleteRequestValidationMiddleware } from 'validator/validators/Lead';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { paginationRequestValidationMiddleware } from 'common/validators/Pagination';
+import { paginationRequestValidationMiddleware } from 'validator/validators/Pagination';
 
 const router = express.Router();
 

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import State from '../../models/State';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'common/interfaces/Response';
-import { createApiResponse } from 'common/utils/response';
+import { ApiResponse } from 'validator/interfaces/Response';
+import { createApiResponse } from 'validator/utils/response';
 import { StateMessageKey, getStateMessage } from '../../messages/State';
-import { IStateRequestAttributes } from 'common/interfaces/State';
+import { IStateRequestAttributes } from 'validator/interfaces/State';
 
 // Update a state by ID
 export const updateState = async (req: Request, res: Response) => {

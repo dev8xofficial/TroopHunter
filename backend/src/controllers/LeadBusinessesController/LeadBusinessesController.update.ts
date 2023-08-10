@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import LeadBusiness from '../../models/LeadBusiness';
 import logger from '../../utils/logger';
-import { createApiResponse } from 'common/utils/response';
-import { ApiResponse } from 'common/interfaces/Response';
+import { createApiResponse } from 'validator/utils/response';
+import { ApiResponse } from 'validator/interfaces/Response';
 import { LeadBusinessMessageKey, getLeadBusinessMessage } from '../../messages/LeadBusiness';
-import { LeadBusinessSchema } from 'common/validators/LeadBusiness';
-import { LeadBusinessAttributes } from 'common/interfaces/LeadBusiness';
+import { LeadBusinessSchema } from 'validator/validators/LeadBusiness';
+import { LeadBusinessAttributes } from 'validator/interfaces/LeadBusiness';
 
 export const updateLeadBusiness = async (req: Request, res: Response) => {
   const { value: validatedOldData } = LeadBusinessSchema.validate(req.params, { abortEarly: false });

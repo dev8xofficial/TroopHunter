@@ -1,6 +1,10 @@
 {
   "name": "helloabdul",
   "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "install": "npm install --prefix website && npm install --prefix crm && npm install --prefix backend",
     "start": "docker-compose -f docker-compose.dev.yml up",
@@ -17,6 +21,11 @@
     "remove:logs": "rimraf backend/logs/* scraper/logs/*"
   },
   "devDependencies": {
+    "lerna": "^7.1.4",
     "rimraf": "^5.0.1"
-  }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

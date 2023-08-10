@@ -3,9 +3,9 @@ import { getStates, getStateById, getStatesByQuery } from '../controllers/StateC
 import { createState } from '../controllers/StateController/StateController.create';
 import { updateState } from '../controllers/StateController/StateController.update';
 import { deleteState } from '../controllers/StateController/StateController.delete';
-import { stateFetchByIdRequestValidationMiddleware, stateFetchRequestValidationMiddleware, stateCreateRequestValidationMiddleware, stateUpdateRequestValidationMiddleware } from 'common/validators/State';
+import { stateFetchByIdRequestValidationMiddleware, stateFetchRequestValidationMiddleware, stateCreateRequestValidationMiddleware, stateUpdateRequestValidationMiddleware } from 'validator/validators/State';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { paginationRequestValidationMiddleware } from 'common/validators/Pagination';
+import { paginationRequestValidationMiddleware } from 'validator/validators/Pagination';
 
 const router = express.Router();
 

@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IQueueResponseAttributes } from 'common/interfaces/Queue';
+import { IQueueResponseAttributes } from 'validator/interfaces/Queue';
 
 class Queue extends Model<IQueueResponseAttributes> implements IQueueResponseAttributes {
   public id!: number;
