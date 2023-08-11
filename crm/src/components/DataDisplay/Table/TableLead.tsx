@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
-import { Menu, Switch } from '@headlessui/react';
+import { Menu } from '@headlessui/react';
+// import { Switch } from '@headlessui/react';
 import Avatar from '../../DataDisplay/Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
@@ -11,9 +12,8 @@ import { IBusinessAttributes } from 'validator/interfaces';
 import { setHomePageBusinessIdsAction, setHomePagePaginationPageAction } from '../../../store/actions/homePageActions';
 import { classNames } from '../../../utils/helpers';
 import { IBusinessState } from '../../../store/reducers/businessReducer';
-import { IHomePageState } from '../../../store/reducers/homePageReducer';
-import { IOption } from '../../Inputs/Select/Select.interfaces';
-import Select from '../../Inputs/Select/Select';
+import { IFilterAttributes, IHomePageState } from '../../../store/reducers/homePageReducer';
+import TableSortingMenu from '../Menu/TableSortingMenu';
 
 const images = [
   'https://plus.unsplash.com/premium_photo-1673408622902-8c1126555f29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -30,24 +30,32 @@ const leadItemMenu = [
   { name: 'Sign out', href: '#', onClick: () => console.log('Remove') },
 ];
 
-const cityOptions: IOption[] = [
-  { id: '1', name: 'Relevance', value: '' },
-  { id: '2', name: 'Alphabetical', value: 'San Francisco' },
-  { id: '3', name: 'New First', value: 'Houston' },
-  { id: '3', name: 'New Last', value: 'Houston' },
+const viewOptions = [
+  { title: 'All', description: 'This job posting can be viewed by anyone who has the link.', current: true, value: 'all', name: 'view' },
+  { title: 'Selected', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'selected', name: 'view' },
+  { title: 'Saved', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'saved', name: 'view' },
+];
+
+const sortOptions = [
+  { title: 'Relevance', description: 'This job posting can be viewed by anyone who has the link.', current: true, value: 'relevance', name: 'sort' },
+  { title: 'Alphabetical', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'alphabetical', name: 'sort' },
+  { title: 'New First', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'newFirst', name: 'sort' },
+  { title: 'New Last', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'newLast', name: 'sort' },
 ];
 
 interface ITable {
   loadMoreBusinesses: ({ page, limit }: { page: number; limit: number }) => void;
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
+const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   const dispatch = useDispatch();
   const businesses = useSelector((state: { businesses: IBusinessState }) => state.businesses);
   const home = useSelector((state: { home: IHomePageState }) => state.home);
 
   const businessesDataBusinesses: { [key: string]: IBusinessAttributes } = businesses.data.businesses;
   const businessesTotalRecords: number = businesses.data.totalRecords;
+  const leadPageFilters: IFilterAttributes = home.filters;
   const isLeadPageLoading = home.isLoading;
   const leadPageBusinessIds: string[] = home.businessIds;
   const leadPagePaginationPage: number = home.page;
@@ -55,7 +63,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
 
   const [tableHeight, setTableHeight] = useState<number | undefined>(undefined);
   const [selectedBusinessIds, setSelectedBusinessIds] = useState<string[]>([]);
-  const [isSwitch, setIsSwitch] = useState<boolean>(false);
+  // const [isSwitch, setIsSwitch] = useState<boolean>(false);
 
   const handleCheckboxChange = (businessId: string) => {
     setSelectedBusinessIds((prevSelectedIds) => {
@@ -140,7 +148,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
           </CustomMenu>
         </div>
         <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
-        <div className="inline-flex items-center space-x-2">
+        {/* <div className="inline-flex items-center space-x-2">
           <label>Business:</label>
           <Switch checked={isSwitch} onChange={(checked: boolean) => setIsSwitch(checked)} className={classNames(isSwitch ? 'bg-indigo-600' : 'bg-gray-200', 'relative inline-flex h-6 w-26 flex-shrink-0 cursor-pointer rounded border-2 border-transparent transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2')}>
             <span className="sr-only">Use setting</span>
@@ -153,11 +161,15 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
               </span>
             </span>
           </Switch>
+        </div> */}
+        <div className="inline-flex items-center space-x-2">
+          <label>Business: </label>
+          <TableSortingMenu options={viewOptions} value={viewOptions.find((option) => option.value === leadPageFilters['view'].value)} handleChange={handleChange} />
         </div>
         <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
         <div className="inline-flex items-center space-x-2">
           <label>Sort: </label>
-          <Select options={cityOptions} />
+          <TableSortingMenu options={sortOptions} value={sortOptions.find((option) => option.value === leadPageFilters['sort'].value)} handleChange={handleChange} />
         </div>
         {businessesTotalRecords !== null && (
           <>

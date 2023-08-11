@@ -403,7 +403,7 @@ const Lead = () => {
               <div>
                 <ul role="list" className="divide-y rounded border bg-gray-100 shadow">
                   {Object.entries(leadPageFilters).map(([_, filter]) => {
-                    return filter.name !== 'name' ? (
+                    return filter.name !== 'name' && filter.name !== 'view' && filter.name !== 'sort' ? (
                       <li key={filter.name}>
                         <Accordion label={filter.label} name={filter.name} value={filter.value} handleChange={handleChange} />
                       </li>
@@ -448,7 +448,7 @@ const Lead = () => {
           </div>
           {/* Filters Table */}
           <div className="flex-grow">
-            <TableLead loadMoreBusinesses={loadMoreBusinesses} />
+            <TableLead loadMoreBusinesses={loadMoreBusinesses} handleChange={handleChange} />
           </div>
         </div>
       </div>

@@ -4,6 +4,8 @@ import { ILeadAttributes } from 'validator/interfaces';
 
 export interface IFilterAttributes {
   name: { label: string; name: string; value: string };
+  view: { label: string; name: string; value: string };
+  sort: { label: string; name: string; value: string };
   businessDomain: { label: string; name: string; value?: string };
   address: { label: string; name: string; value?: string };
   cityId: { label: string; name: string; value?: string };
@@ -26,6 +28,8 @@ export interface IHomePageState {
 
 export const initialValue: IFilterAttributes = {
   name: { label: 'Business', name: 'name', value: null },
+  view: { label: 'Business', name: 'view', value: 'all' },
+  sort: { label: 'Sort', name: 'sort', value: 'relevance' },
   businessDomain: { label: 'Business Domain', name: 'businessDomain', value: null },
   address: { label: 'Address', name: 'address', value: null },
   cityId: { label: 'City', name: 'cityId', value: null },
@@ -61,6 +65,8 @@ const leadPageReducer = createReducer(initialState, (builder) => {
       const lead = action.payload;
       const filterValues = {
         name: { label: 'Business', name: 'name', value: lead.search },
+        view: { label: 'Business', name: 'view', value: initialValue['view'].value },
+        sort: { label: 'Sort', name: 'sort', value: initialValue['sort'].value },
         businessDomain: { label: 'Business Domain', name: 'businessDomain', value: lead.businessDomain },
         address: { label: 'Address', name: 'address', value: lead.address },
         cityId: { label: 'City', name: 'cityId', value: lead.cityId },

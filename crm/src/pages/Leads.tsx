@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import Table from '../components/DataDisplay/Table/Table';
+import Table from '../components/DataDisplay/Table/TableLeads';
 import Search from '../components/Inputs/Search/Search';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import { IHomePageState } from '../store/reducers/homePageReducer';
