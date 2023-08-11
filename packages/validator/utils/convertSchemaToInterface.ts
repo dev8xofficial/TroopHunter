@@ -1,7 +1,7 @@
 import * as z from 'zod';
 
 type InterfaceType =
-  | 'IAuthSchemaAttributes'
+  | 'ILoginRequestAttributes'
   | 'IBusinessAttributes'
   | 'IBusinessCategoryAttributes'
   | 'IBusinessClosingHourAttributes'

@@ -1,5 +1,4 @@
 // Import BusinessSchema from the original file
-import { AuthSchema } from '../validators/Auth';
 import { BusinessSchema } from '../validators/Business';
 import { BusinessCategorySchema } from '../validators/BusinessCategory';
 import { BusinessClosingHourSchema } from '../validators/BusinessClosingHour';
@@ -19,12 +18,12 @@ import { PostalCodeSchema } from '../validators/PostalCode';
 import { QueueSchema } from '../validators/Queue';
 import { RequestSchema } from '../validators/Request';
 import { StateSchema } from '../validators/State';
-import { UserSchema } from '../validators/User';
+import { UserSchema, LoginSchema } from '../validators/User';
 import { TimezoneSchema } from '../validators/Timezone';
 
 import convertSchemaToInterface from './convertSchemaToInterface';
 
-const IAuthSchemaInterface = convertSchemaToInterface(AuthSchema, 'IAuthSchemaAttributes');
+const ILoginRequestInterface = convertSchemaToInterface(LoginSchema, 'ILoginRequestAttributes');
 const IBusinessInterface = convertSchemaToInterface(BusinessSchema, 'IBusinessAttributes');
 const IBusinessCategoryInterface = convertSchemaToInterface(BusinessCategorySchema, 'IBusinessCategoryAttributes');
 const IBusinessClosingHourInterface = convertSchemaToInterface(BusinessClosingHourSchema, 'IBusinessClosingHourAttributes');
@@ -49,7 +48,6 @@ const ITimezoneInterface = convertSchemaToInterface(TimezoneSchema, 'ITimezoneAt
 
 // Write the generated interface to the file
 const fs = require('fs');
-fs.writeFileSync('interface/IAuthSchemaInterface.ts', IAuthSchemaInterface);
 fs.writeFileSync('interface/IBusinessInterface.ts', IBusinessInterface);
 fs.writeFileSync('interface/IBusinessCategoryInterface.ts', IBusinessCategoryInterface);
 fs.writeFileSync('interface/IBusinessClosingHourInterface.ts', IBusinessClosingHourInterface);
@@ -70,4 +68,5 @@ fs.writeFileSync('interface/IQueueInterface.ts', IQueueInterface);
 fs.writeFileSync('interface/IRequestInterface.ts', IRequestInterface);
 fs.writeFileSync('interface/IStateInterface.ts', IStateInterface);
 fs.writeFileSync('interface/IUserInterface.ts', IUserInterface);
+fs.writeFileSync('interface/ILoginRequestAttributes.ts', ILoginRequestInterface);
 fs.writeFileSync('interface/ITimezoneInterface.ts', ITimezoneInterface);

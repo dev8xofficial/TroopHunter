@@ -13,14 +13,10 @@ export const LeadSchema = BusinessSchema.partial().extend({
 });
 
 export const LeadFetchRequestSchema = LeadSchema.omit({ id: true }).partial();
-
 export const LeadFetchByIdRequestSchema = LeadSchema.pick({ id: true });
-
 export const LeadCreateRequestSchema = LeadSchema.omit({ id: true });
-
 export const LeadUpdateRequestSchema = LeadSchema.omit({ id: true }).partial();
-
-export const LeadBuldDeleteRequestSchema = LeadSchema.extend({ ids: z.array(z.string().uuid()) }).pick({ ids: true });
+export const LeadBuldDeleteRequestSchema = LeadSchema.extend({ selectedLeadIds: z.array(z.string().uuid()).min(1) }).pick({ selectedLeadIds: true });
 
 export const LeadFetchRequestValidationMiddleware = validationMiddleware(LeadFetchRequestSchema, 'query');
 export const LeadFetchByIdRequestValidationMiddleware = validationMiddleware(LeadFetchByIdRequestSchema, 'params');

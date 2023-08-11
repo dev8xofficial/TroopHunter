@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { createLeadService, updateLeadService, deleteLeadService, deleteLeadsService } from '../../services/leadServices';
 import { fetchUserAction, updateUserLocallyAction } from '../actions/userActions';
 import { resetHomePageFiltersAction, resetHomePageDraftLeadIdAction } from '../actions/homePageActions';
-import { IUserAttributes } from 'validator/interfaces';
+import { ILeadBuldDeleteRequestAttributes, ILeadFetchByIdRequestAttributes, IUserAttributes } from 'validator/interfaces';
 import { ILeadCreateRequestAttributes, ILeadAttributes } from 'validator/interfaces';
 import { resetLeadsPageSelectedLeadIds } from '../actions/leadsPageActions';
 import { createLeadAction, deleteLeadAction, deleteLeadsAction, updateLeadAction } from '../actions/leadActions';
@@ -50,9 +50,8 @@ function* updateLeadSaga({ payload }: { payload: IUpdateLeadPayload }): any {
   }
 }
 
-export interface IDeleteLeadPayload {
+export interface IDeleteLeadPayload extends ILeadFetchByIdRequestAttributes {
   token: string;
-  id: string;
   user: IUserAttributes;
 }
 
@@ -80,17 +79,16 @@ function* deleteLeadSaga({ payload }: { payload: IDeleteLeadPayload }): any {
   }
 }
 
-export interface IDeleteLeadsPayload {
+export interface IDeleteLeadsPayload extends ILeadBuldDeleteRequestAttributes {
   token: string;
   user: IUserAttributes;
-  selectedLeadIds: string[];
 }
 
 function* deleteLeadsSaga({ payload }: { payload: IDeleteLeadsPayload }): any {
   try {
     let { user } = payload as { user: IUserAttributes };
     const { selectedLeadIds, token } = payload;
-    const response = yield deleteLeadsService({ ids: selectedLeadIds }, token);
+    const response = yield deleteLeadsService({ selectedLeadIds: selectedLeadIds }, token);
 
     if (response.success) {
       // Create a new object with the updated Leads array

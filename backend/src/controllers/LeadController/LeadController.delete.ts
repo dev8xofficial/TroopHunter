@@ -27,11 +27,11 @@ export const deleteLead = async (req: Request, res: Response) => {
 };
 
 export const deleteLeads = async (req: Request, res: Response) => {
-  const { ids } = req.body;
-  console.log('selectedLeadIds: ', ids);
+  const { selectedLeadIds } = req.body;
+  console.log('selectedLeadIds: ', selectedLeadIds);
 
   try {
-    const leads = await Lead.findAll({ where: { id: ids } });
+    const leads = await Lead.findAll({ where: { id: selectedLeadIds } });
 
     if (!leads || leads.length === 0) {
       logger.warn('No leads found with the given IDs');

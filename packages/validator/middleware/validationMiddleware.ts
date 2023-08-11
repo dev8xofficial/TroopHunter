@@ -10,11 +10,7 @@ const booleanRegex = /^(true|false)$/i;
 
 const generateDescriptiveErrorMessages = (error: any) => {
   const firstError = error.errors[0];
-  const expectedType = firstError.expected.toString();
-  const receivedType = firstError.received.toString();
-  const path = firstError.path.join('.');
-
-  return `Invalid value at '${path}': Expected ${expectedType}, but received ${receivedType}`;
+  return firstError.message;
 };
 
 const processQueryParams = (queryParams: Record<string, string | any>) => {

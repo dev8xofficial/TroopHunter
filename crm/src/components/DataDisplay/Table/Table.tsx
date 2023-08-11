@@ -31,7 +31,7 @@ const Table: React.FC = (): JSX.Element => {
   const authUserId: string = auth.userId;
   const usersLoggedIn: IUserAttributes = users.data[authUserId];
   const selectedLeadIds: string[] = leads.selectedLeadIds;
-  const userLeads: ILeadAttributes[] | undefined = usersLoggedIn.Leads;
+  const userLeads: ILeadAttributes[] = usersLoggedIn.Leads;
 
   const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>(selectedLeadIds);
 

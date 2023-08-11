@@ -4,12 +4,10 @@ import { toast } from 'react-toastify';
 import { loginService, registerService } from '../../services/authService';
 import { addUserLocallyAction } from '../actions/userActions';
 import { NavigateFunction } from 'react-router-dom';
-import { IUserCreateRequestAttributes } from 'validator/interfaces';
+import { ILoginRequestAttributes, IUserCreateRequestAttributes } from 'validator/interfaces';
 import { IAuthLoginSuccessPayload } from '../reducers/authReducer';
 
-export interface IAuthLoginPayload {
-  email: string;
-  password: string;
+export interface IAuthLoginPayload extends ILoginRequestAttributes {
   navigate: NavigateFunction;
 }
 
