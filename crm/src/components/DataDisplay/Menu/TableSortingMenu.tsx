@@ -2,12 +2,12 @@ import { ChangeEvent, Fragment, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
 import { classNames } from '../../../utils/helpers';
-import { TableSortingMenu, TableSortingMenuOption } from './TableSortingMenu.interfaces';
+import { ITableSortingMenuAttributes, ITableSortingMenuOptionAttributes } from './TableSortingMenu.interfaces';
 
-const TableSortingMenu: React.FC<TableSortingMenu> = ({ options, value, handleChange }: TableSortingMenu): JSX.Element => {
+const TableSortingMenu: React.FC<ITableSortingMenuAttributes> = ({ options, value, handleChange }: ITableSortingMenuAttributes): JSX.Element => {
   const [selected, setSelected] = useState(value ? value : options[0]);
 
-  const onChange = (value: TableSortingMenuOption) => {
+  const onChange = (value: ITableSortingMenuOptionAttributes) => {
     let selectedOptionEvent: ChangeEvent<HTMLInputElement> = {
       target: { value: '', name: '' },
     } as ChangeEvent<HTMLInputElement>;
