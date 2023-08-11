@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { removeNullValues } from '../utils/helpers';
 
 const BASE_URL = process.env.BACKEND_URL;
 
@@ -13,7 +14,7 @@ export const getUsersService = async (token: string) => {
 
 export const getUserWithIncludeService = async (id: string, token: string, params: any) => {
   try {
-    const response = await axios.get(`${BASE_URL}/users/${id}/include`, { params, headers: { Authorization: `Bearer ${token}` } });
+    const response = await axios.get(`${BASE_URL}/users/${id}/include`, { params: removeNullValues(params), headers: { Authorization: `Bearer ${token}` } });
     return response.data;
   } catch (error) {
     throw new Error('An error occurred while fetching user by ID.');
@@ -31,7 +32,7 @@ export const getUserByIdService = async (id: string, token: string) => {
 
 export const createUserService = async (data: any, token: string) => {
   try {
-    const response = await axios.post(`${BASE_URL}/users`, data, { headers: { Authorization: `Bearer ${token}` } });
+    const response = await axios.post(`${BASE_URL}/users`, removeNullValues(data), { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
   } catch (error) {
     throw new Error('An error occurred while creating a user.');
@@ -40,7 +41,7 @@ export const createUserService = async (data: any, token: string) => {
 
 export const updateUserService = async (id: string, data: any, token: string) => {
   try {
-    const response = await axios.put(`${BASE_URL}/users/${id}`, data, { headers: { Authorization: `Bearer ${token}` } });
+    const response = await axios.put(`${BASE_URL}/users/${id}`, removeNullValues(data), { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
   } catch (error) {
     throw new Error('An error occurred while updating a user.');

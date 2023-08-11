@@ -4,12 +4,12 @@ import logger from '../../utils/logger';
 import { ApiResponse } from 'validator/interfaces/Response';
 import { createApiResponse } from 'validator/utils/response';
 import { CityMessageKey, getCityMessage } from '../../messages/City';
-import { ICityRequestAttributes } from 'validator/interfaces/City';
+import { ICityAttributes } from 'validator/interfaces/City';
 
 // Update a city by ID
 export const updateCity = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { name, stateCode, countryCode, longitude, latitude }: ICityRequestAttributes = req.body;
+  const { name, stateCode, countryCode, longitude, latitude }: ICityAttributes = req.body;
   try {
     const existingCity = await City.findOne({ where: { id } });
     if (!existingCity) {

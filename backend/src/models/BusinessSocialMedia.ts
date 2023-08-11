@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IBusinessSocialMediaResponseAttributes } from 'validator/interfaces/BusinessSocialMedia';
+import { IBusinessSocialMediaAttributes } from 'validator/interfaces/BusinessSocialMedia';
 
-class BusinessSocialMedia extends Model<IBusinessSocialMediaResponseAttributes> implements IBusinessSocialMediaResponseAttributes {
+class BusinessSocialMedia extends Model<IBusinessSocialMediaAttributes> implements IBusinessSocialMediaAttributes {
   public id!: string;
   public businessId!: string;
   public facebookProfile?: string;

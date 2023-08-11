@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import logger from '../../utils/logger';
 import { ApiResponse } from 'validator/interfaces/Response';
-import { IUserRequestAttributes } from 'validator/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces/User';
 import { createApiResponse } from 'validator/utils/response';
 import Lead from '../../models/Lead';
 import { UserMessageKey, getUserMessage } from '../../messages/User';
@@ -12,7 +12,7 @@ import { AuthMessageKey, getAuthMessage } from '../../messages/Auth';
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password }: IUserRequestAttributes = req.body;
+    const { email, password }: IUserAttributes = req.body;
 
     // Check if the user exists
     const user: User | null = await User.findOne({ where: { email }, include: [{ model: Lead }] });

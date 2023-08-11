@@ -3,14 +3,14 @@ import User from '../../models/User';
 import bcrypt from 'bcrypt';
 import logger from '../../utils/logger';
 import { ApiResponse } from 'validator/interfaces/Response';
-import { IUserRequestAttributes, IUserResponseAttributes } from 'validator/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces/User';
 import { createApiResponse } from 'validator/utils/response';
 import { UserMessageKey, getUserMessage } from '../../messages/User';
 import { v4 as uuidv4 } from 'uuid';
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const { firstName, lastName, email, password }: IUserRequestAttributes = req.body;
+    const { firstName, lastName, email, password }: IUserAttributes = req.body;
 
     // Check if the user already exists
     const existingUser = await User.findOne({ where: { email } });
@@ -24,7 +24,7 @@ export const register = async (req: Request, res: Response) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create the user
-    const requestData: Omit<IUserResponseAttributes, 'Leads'> = { id: uuidv4(), firstName, lastName, email, password: hashedPassword };
+    const requestData: Omit<IUserAttributes, 'Leads'> = { id: uuidv4(), firstName, lastName, email, password: hashedPassword };
     const user = await User.create(requestData);
 
     logger.info(`User with email ${email} registered successfully.`);

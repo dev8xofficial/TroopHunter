@@ -1,10 +1,9 @@
-import Joi from 'joi';
-import { IUserRequestAttributes } from '../interfaces/User';
 import validationMiddleware from '../middleware/validationMiddleware';
+import { UserSchema } from './User';
 
-export const AuthSchema = Joi.object<IUserRequestAttributes>({
-  email: Joi.string().email().required(),
-  password: Joi.string().required().min(8),
-});
+export const AuthSchema = UserSchema.pick({
+  email: true,
+  password: true,
+}).strict();
 
-export const authUserFetchRequestValidationMiddleware = validationMiddleware(AuthSchema, 'body');
+export const LoginRequestValidationMiddleware = validationMiddleware(AuthSchema, 'body');

@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IBusinessRatingResponseAttributes } from 'validator/interfaces/BusinessRating';
+import { IBusinessRatingAttributes } from 'validator/interfaces/BusinessRating';
 
-class BusinessRating extends Model<IBusinessRatingResponseAttributes> implements IBusinessRatingResponseAttributes {
+class BusinessRating extends Model<IBusinessRatingAttributes> implements IBusinessRatingAttributes {
   public id!: string;
   public ratingValue!: number;
   public description?: string;

@@ -4,13 +4,13 @@ import Business from '../../models/Business';
 import logger from '../../utils/logger';
 import { createApiResponse } from 'validator/utils/response';
 import { BusinessMessageKey, getBusinessMessage } from '../../messages/Business';
-import { IBusinessRequestAttributes } from 'validator/interfaces/Business';
+import { IBusinessAttributes } from 'validator/interfaces/Business';
 
 export const updateBusiness = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const { name, businessDomain, categoryId, address, cityId, stateId, countryId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId }: IBusinessRequestAttributes = req.body;
-    const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
+    const { name, businessDomain, categoryId, address, cityId, stateId, countryId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId }: IBusinessAttributes = req.body;
+    // const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
     const business = await Business.findByPk(id);
 
@@ -24,7 +24,7 @@ export const updateBusiness = async (req: Request, res: Response) => {
       if (countryId) business.countryId = countryId;
       if (longitude) business.longitude = longitude;
       if (latitude) business.latitude = latitude;
-      if (geoPoint) business.geoPoint = geoPoint;
+      // if (geoPoint) business.geoPoint = geoPoint;
       if (postalCodeId) business.postalCodeId = postalCodeId;
       if (phoneId) business.phoneId = phoneId;
       if (email) business.email = email;

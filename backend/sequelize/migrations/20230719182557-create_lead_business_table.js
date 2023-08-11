@@ -11,7 +11,7 @@ module.exports = {
           model: 'Leads',
           key: 'id',
         },
-        onDelete: 'SET NULL',
+        onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       },
       businessId: {
@@ -22,7 +22,7 @@ module.exports = {
           model: 'Businesses',
           key: 'id',
         },
-        onDelete: 'SET NULL',
+        onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       },
     });

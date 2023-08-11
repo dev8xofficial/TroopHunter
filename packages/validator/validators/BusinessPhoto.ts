@@ -1,9 +1,8 @@
-import Joi from 'joi';
-import { IBusinessPhotoResponseAttributes } from '../interfaces/BusinessPhoto';
+import { z } from 'zod';
 
-export const BusinessPhotoSchema = Joi.object<IBusinessPhotoResponseAttributes>({
-  id: Joi.string().guid().required(),
-  businessId: Joi.string().uuid().required(),
-  photoUrl: Joi.string().required(),
-  description: Joi.string().required(),
+export const BusinessPhotoSchema = z.object({
+  id: z.string().uuid(),
+  businessId: z.string().uuid(),
+  photoUrl: z.string(),
+  description: z.string(),
 });

@@ -1,44 +1,23 @@
-import Joi from 'joi';
-import { IBusinessPhoneResponseAttributes } from '../interfaces/BusinessPhone';
+import { z } from 'zod';
 import validationMiddleware from '../middleware/validationMiddleware';
 
-export const BusinessPhoneSchema = Joi.object<IBusinessPhoneResponseAttributes>({
-  id: Joi.string().guid().required(),
-  countryCode: Joi.string().required(),
-  regionCode: Joi.string().required(),
-  number: Joi.string().required(),
-  numberNationalFormatted: Joi.string().required(),
-  numberInternationalFormatted: Joi.string().required(),
-  numberType: Joi.string().required(),
-  isValid: Joi.boolean().required(),
+export const BusinessPhoneSchema = z.object({
+  id: z.string().uuid(),
+  countryCode: z.string(),
+  regionCode: z.string(),
+  number: z.string(),
+  numberNationalFormatted: z.string(),
+  numberInternationalFormatted: z.string(),
+  numberType: z.string(),
+  isValid: z.boolean(),
 });
 
-export const BusinessPhoneFetchOrUpdateRequestSchema = BusinessPhoneSchema.keys({
-  id: Joi.optional(),
-  countryCode: Joi.optional(),
-  regionCode: Joi.optional(),
-  number: Joi.optional(),
-  numberNationalFormatted: Joi.optional(),
-  numberInternationalFormatted: Joi.optional(),
-  numberType: Joi.optional(),
-  isValid: Joi.optional(),
-});
+export const BusinessPhoneFetchRequestSchema = BusinessPhoneSchema.omit({ id: true }).partial();
+export const BusinessPhoneFetchByIdRequestSchema = BusinessPhoneSchema.pick({ id: true });
+export const BusinessPhoneCreateRequestSchema = BusinessPhoneSchema.omit({ id: true });
+export const BusinessPhoneUpdateRequestSchema = BusinessPhoneSchema.omit({ id: true }).partial();
 
-export const BusinessPhoneFetchByIdRequestSchema = BusinessPhoneSchema.keys({
-  countryCode: Joi.optional(),
-  regionCode: Joi.optional(),
-  number: Joi.optional(),
-  numberNationalFormatted: Joi.optional(),
-  numberInternationalFormatted: Joi.optional(),
-  numberType: Joi.optional(),
-  isValid: Joi.optional(),
-});
-
-export const BusinessPhoneCreateRequestSchema = BusinessPhoneSchema.keys({
-  id: Joi.optional(),
-});
-
-export const businessPhoneFetchRequestValidationMiddleware = validationMiddleware(BusinessPhoneFetchOrUpdateRequestSchema, 'query');
-export const businessPhoneFetchByIdRequestValidationMiddleware = validationMiddleware(BusinessPhoneFetchByIdRequestSchema, 'params');
-export const businessPhoneCreateRequestValidationMiddleware = validationMiddleware(BusinessPhoneCreateRequestSchema, 'body');
-export const businessPhoneUpdateRequestValidationMiddleware = validationMiddleware(BusinessPhoneFetchOrUpdateRequestSchema, 'body');
+export const BusinessPhoneFetchRequestValidationMiddleware = validationMiddleware(BusinessPhoneFetchRequestSchema, 'query');
+export const BusinessPhoneFetchByIdRequestValidationMiddleware = validationMiddleware(BusinessPhoneFetchByIdRequestSchema, 'params');
+export const BusinessPhoneCreateRequestValidationMiddleware = validationMiddleware(BusinessPhoneCreateRequestSchema, 'body');
+export const BusinessPhoneUpdateRequestValidationMiddleware = validationMiddleware(BusinessPhoneUpdateRequestSchema, 'body');

@@ -1,54 +1,55 @@
-import Joi from 'joi';
-import { IBusinessResponseAttributes, IBusinessCreationRequestAttributes, IBusinessFetchRequestAttributes } from '../interfaces/Business';
+import * as z from 'zod';
 import { GeoPointSchema } from './GeoPoint';
-import { TimezoneCreateRequestSchema } from './Timezone';
+import { TimezoneSchema } from './Timezone';
 import validationMiddleware from '../middleware/validationMiddleware';
 
-export const BusinessSchema = Joi.object<IBusinessResponseAttributes>({
-  id: Joi.string().guid().required(),
-  name: Joi.string().required(),
-  businessDomain: Joi.string().lowercase(),
-  categoryId: Joi.string().guid(),
-  address: Joi.string().required(),
-  cityId: Joi.string().guid().required(),
-  stateId: Joi.string().guid().required(),
-  countryId: Joi.string().guid().required(),
-  longitude: Joi.number().required(),
-  latitude: Joi.number().required(),
-  geoPoint: GeoPointSchema,
-  postalCodeId: Joi.string().guid(),
-  phoneId: Joi.string().guid(),
-  email: Joi.string(),
-  website: Joi.string(),
-  ratingId: Joi.string().guid(),
-  reviews: Joi.number(),
-  timezoneId: Joi.string().guid(),
-  sourceId: Joi.string().guid(),
-  socialMediaId: Joi.string().guid(),
-  sponsoredAd: Joi.boolean(),
-  openingHourId: Joi.string().guid(),
-  closingHourId: Joi.string().guid(),
+export const BusinessSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  businessDomain: z
+    .string()
+    .transform((val) => val.toLowerCase())
+    .optional(),
+  categoryId: z.string().uuid().optional(),
+  address: z.string().optional(),
+  cityId: z.string().uuid(),
+  stateId: z.string().uuid(),
+  countryId: z.string().uuid(),
+  longitude: z.number(),
+  latitude: z.number(),
+  geoPoint: GeoPointSchema.optional(),
+  postalCodeId: z.string().uuid().optional(),
+  phoneId: z.string().uuid().optional(),
+  email: z.string().optional().optional(),
+  website: z.string().optional().optional(),
+  ratingId: z.string().uuid().optional(),
+  reviews: z.number().optional().optional(),
+  timezoneId: z.string().uuid().optional(),
+  sourceId: z.string().uuid().optional(),
+  socialMediaId: z.string().uuid().optional(),
+  sponsoredAd: z.boolean().optional(),
+  openingHourId: z.string().uuid().optional(),
+  closingHourId: z.string().uuid().optional(),
 });
 
-export const BusinessCreateRequestSchema = BusinessSchema.append<IBusinessCreationRequestAttributes>({
-  category: Joi.string(),
-  postalCode: Joi.string(),
-  phone: Joi.string(),
-  rating: Joi.number(),
-  timezone: TimezoneCreateRequestSchema,
-  source: Joi.string(),
-  openingHour: Joi.string(),
-  closingHour: Joi.string(),
-}).fork(['id', 'categoryId', 'postalCodeId', 'phoneId', 'ratingId', 'timezoneId', 'sourceId', 'openingHourId', 'closingHourId'], (schema) => schema.optional());
+export const BusinessFetchRequestSchema = BusinessSchema.extend({ range: z.string().optional(), phone: z.string().optional() }).omit({ id: true }).partial();
 
-export const BusinessFetchOrUpdateRequestSchema = BusinessSchema.append<IBusinessFetchRequestAttributes>({
-  range: Joi.string(),
-  phone: Joi.string(),
-}).fork(['id', 'name', 'businessDomain', 'categoryId', 'address', 'cityId', 'stateId', 'countryId', 'longitude', 'latitude', 'geoPoint', 'postalCodeId', 'phoneId', 'email', 'website', 'ratingId', 'reviews', 'timezoneId', 'sourceId', 'socialMediaId', 'sponsoredAd', 'openingHourId', 'closingHourId'], (schema) => schema.optional());
+export const BusinessFetchByIdRequestSchema = BusinessSchema.pick({ id: true });
 
-export const BusinessFetchByIdRequestSchema = BusinessSchema.fork(['name', 'businessDomain', 'categoryId', 'address', 'cityId', 'stateId', 'countryId', 'longitude', 'latitude', 'geoPoint', 'postalCodeId', 'phoneId', 'email', 'website', 'ratingId', 'reviews', 'timezoneId', 'sourceId', 'socialMediaId', 'sponsoredAd', 'openingHourId', 'closingHourId'], (schema) => schema.optional());
+export const BusinessCreateRequestSchema = BusinessSchema.extend({
+  category: z.string().optional(),
+  postalCode: z.string().optional(),
+  phone: z.string().optional(),
+  rating: z.number().optional(),
+  timezone: TimezoneSchema.optional(),
+  source: z.string().optional(),
+  openingHour: z.string().optional(),
+  closingHour: z.string().optional(),
+}).omit({ categoryId: true, postalCodeId: true, phoneId: true, ratingId: true, timezoneId: true, sourceId: true, openingHourId: true, closingHourId: true });
 
-export const businessFetchRequestValidationMiddleware = validationMiddleware(BusinessFetchOrUpdateRequestSchema, 'query');
-export const businessFetchByIdRequestValidationMiddleware = validationMiddleware(BusinessFetchByIdRequestSchema, 'params');
-export const businessCreateRequestValidationMiddleware = validationMiddleware(BusinessCreateRequestSchema, 'body');
-export const businessUpdateRequestValidationMiddleware = validationMiddleware(BusinessFetchOrUpdateRequestSchema, 'body');
+export const BusinessUpdateRequestSchema = BusinessSchema.omit({ id: true }).partial();
+
+export const BusinessFetchRequestValidationMiddleware = validationMiddleware(BusinessFetchRequestSchema, 'query');
+export const BusinessFetchByIdRequestValidationMiddleware = validationMiddleware(BusinessFetchByIdRequestSchema, 'params');
+export const BusinessCreateRequestValidationMiddleware = validationMiddleware(BusinessCreateRequestSchema, 'body');
+export const BusinessUpdateRequestValidationMiddleware = validationMiddleware(BusinessUpdateRequestSchema, 'body');

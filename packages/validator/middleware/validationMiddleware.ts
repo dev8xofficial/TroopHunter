@@ -1,29 +1,78 @@
 import { Request, Response, NextFunction } from 'express';
-import { Schema } from 'joi';
+import { ZodSchema, ZodError } from 'zod';
 import { createApiResponse } from '../utils/response';
 import { ApiResponse } from '../interfaces/Response';
 
 type RequestData = 'body' | 'params' | 'query';
 
-const validationMiddleware = <T>(schema: Schema<T>, requestData: RequestData) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    const requestDataObject = req[requestData];
-    const { error } = schema.validate(requestDataObject, {
-      abortEarly: false,
-      allowUnknown: true,
-      stripUnknown: true,
-      errors: { escapeHtml: true },
-    });
+const numberRegex = /^[+-]?\d+(\.\d+)?$/;
+const booleanRegex = /^(true|false)$/i;
 
-    if (error) {
-      const response: ApiResponse<null> = createApiResponse({
-        error: error.details[0].message,
-        status: 400,
-      });
-      return res.json(response);
+const generateDescriptiveErrorMessages = (error: any) => {
+  const firstError = error.errors[0];
+  const expectedType = firstError.expected.toString();
+  const receivedType = firstError.received.toString();
+  const path = firstError.path.join('.');
+
+  return `Invalid value at '${path}': Expected ${expectedType}, but received ${receivedType}`;
+};
+
+const processQueryParams = (queryParams: Record<string, string | any>) => {
+  const processedQuery: Record<string, any> = {};
+
+  for (const key in queryParams) {
+    const value = Array.isArray(queryParams[key]) ? queryParams[key][0] : queryParams[key];
+
+    if (numberRegex.test(value)) {
+      processedQuery[key] = parseFloat(value);
+    } else if (booleanRegex.test(value)) {
+      processedQuery[key] = value.toLowerCase() === 'true';
+    } else {
+      processedQuery[key] = value;
     }
+  }
 
-    next();
+  return processedQuery;
+};
+
+const processParams = (params: Record<string, string>) => {
+  const processedParams: Record<string, any> = {};
+
+  for (const key in params) {
+    const value = params[key];
+
+    if (numberRegex.test(value)) {
+      processedParams[key] = parseFloat(value);
+    } else if (booleanRegex.test(value)) {
+      processedParams[key] = value.toLowerCase() === 'true';
+    } else {
+      processedParams[key] = value;
+    }
+  }
+
+  return processedParams;
+};
+
+const validationMiddleware = <T>(schema: ZodSchema<T>, requestData: RequestData) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
+    const requestDataObject = requestData === 'query' ? processQueryParams(req.query) : requestData === 'params' ? processParams(req.params) : req[requestData];
+
+    try {
+      await schema.parseAsync(requestDataObject);
+      next();
+    } catch (error) {
+      if (error instanceof ZodError) {
+        const descriptiveErrorMessage = generateDescriptiveErrorMessages(error);
+
+        const response: ApiResponse<null> = createApiResponse({
+          error: descriptiveErrorMessage,
+          status: 400,
+        });
+
+        return res.json(response);
+      }
+      next(error);
+    }
   };
 };
 

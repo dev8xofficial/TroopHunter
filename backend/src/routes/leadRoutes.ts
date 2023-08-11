@@ -3,9 +3,9 @@ import { getLeads, getLeadById } from '../controllers/LeadController/LeadControl
 import { createLead } from '../controllers/LeadController/LeadController.create';
 import { updateLead } from '../controllers/LeadController/LeadController.update';
 import { deleteLead, deleteLeads } from '../controllers/LeadController/LeadController.delete';
-import { leadFetchByIdRequestValidationMiddleware, leadFetchRequestValidationMiddleware, leadCreateRequestValidationMiddleware, leadUpdateRequestValidationMiddleware, leadBulkDeleteRequestValidationMiddleware } from 'validator/validators/Lead';
+import { LeadFetchByIdRequestValidationMiddleware, LeadCreateRequestValidationMiddleware, LeadUpdateRequestValidationMiddleware, LeadBulkDeleteRequestValidationMiddleware } from 'validator/validators/Lead';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { paginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
 
 const router = express.Router();
 
@@ -13,11 +13,11 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define leads routes
-router.delete('/bulk', leadBulkDeleteRequestValidationMiddleware, deleteLeads);
-router.get('/', paginationRequestValidationMiddleware, getLeads);
-router.get('/:id', leadFetchByIdRequestValidationMiddleware, getLeadById);
-router.post('/', leadCreateRequestValidationMiddleware, createLead);
-router.put('/:id', leadFetchByIdRequestValidationMiddleware, leadUpdateRequestValidationMiddleware, updateLead);
-router.delete('/:id', leadFetchByIdRequestValidationMiddleware, deleteLead);
+router.delete('/bulk', LeadBulkDeleteRequestValidationMiddleware, deleteLeads);
+router.get('/', PaginationRequestValidationMiddleware, getLeads);
+router.get('/:id', LeadFetchByIdRequestValidationMiddleware, getLeadById);
+router.post('/', LeadCreateRequestValidationMiddleware, createLead);
+router.put('/:id', LeadFetchByIdRequestValidationMiddleware, LeadUpdateRequestValidationMiddleware, updateLead);
+router.delete('/:id', LeadFetchByIdRequestValidationMiddleware, deleteLead);
 
 export default router;

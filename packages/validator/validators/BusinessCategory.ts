@@ -1,7 +1,6 @@
-import Joi from 'joi';
-import { IBusinessCategoryResponseAttributes } from '../interfaces/BusinessCategory';
+import { z } from 'zod';
 
-export const BusinessCategorySchema = Joi.object<IBusinessCategoryResponseAttributes>({
-  id: Joi.string().guid().required(),
-  name: Joi.string().required(),
+export const BusinessCategorySchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
 });

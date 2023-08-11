@@ -4,8 +4,8 @@ import { createBusinessPhone } from '../controllers/BusinessPhoneController/Busi
 import { updateBusinessPhone } from '../controllers/BusinessPhoneController/BusinessPhoneController.update';
 import { deleteBusinessPhone } from '../controllers/BusinessPhoneController/BusinessPhoneController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { businessPhoneFetchByIdRequestValidationMiddleware, businessPhoneFetchRequestValidationMiddleware, businessPhoneCreateRequestValidationMiddleware, businessPhoneUpdateRequestValidationMiddleware } from 'validator/validators/BusinessPhone';
-import { paginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { BusinessPhoneFetchByIdRequestValidationMiddleware, BusinessPhoneFetchRequestValidationMiddleware, BusinessPhoneCreateRequestValidationMiddleware, BusinessPhoneUpdateRequestValidationMiddleware } from 'validator/validators/BusinessPhone';
+import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
 
 const router = express.Router();
 
@@ -13,11 +13,11 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define businessPhone routes
-router.get('/search', businessPhoneFetchRequestValidationMiddleware, paginationRequestValidationMiddleware, getBusinessPhonesByNumber);
-router.get('/', paginationRequestValidationMiddleware, getBusinessPhones);
-router.get('/:id', businessPhoneFetchByIdRequestValidationMiddleware, getBusinessPhoneById);
-router.post('/', businessPhoneCreateRequestValidationMiddleware, createBusinessPhone);
-router.put('/:id', businessPhoneFetchByIdRequestValidationMiddleware, businessPhoneUpdateRequestValidationMiddleware, updateBusinessPhone);
-router.delete('/:id', businessPhoneFetchByIdRequestValidationMiddleware, deleteBusinessPhone);
+router.get('/search', BusinessPhoneFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getBusinessPhonesByNumber);
+router.get('/', PaginationRequestValidationMiddleware, getBusinessPhones);
+router.get('/:id', BusinessPhoneFetchByIdRequestValidationMiddleware, getBusinessPhoneById);
+router.post('/', BusinessPhoneCreateRequestValidationMiddleware, createBusinessPhone);
+router.put('/:id', BusinessPhoneFetchByIdRequestValidationMiddleware, BusinessPhoneUpdateRequestValidationMiddleware, updateBusinessPhone);
+router.delete('/:id', BusinessPhoneFetchByIdRequestValidationMiddleware, deleteBusinessPhone);
 
 export default router;

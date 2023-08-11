@@ -4,11 +4,11 @@ import logger from '../../utils/logger';
 import { ApiResponse } from 'validator/interfaces/Response';
 import { createApiResponse } from 'validator/utils/response';
 import { QueueMessageKey, getQueueMessage } from '../../messages/Queue';
-import { IQueueRequestAttributes } from 'validator/interfaces/Queue';
+import { IQueueAttributes } from 'validator/interfaces/Queue';
 
 export const updateQueue = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { searchQuery, laptopName, status }: IQueueRequestAttributes = req.body;
+  const { searchQuery, laptopName, status }: IQueueAttributes = req.body;
 
   try {
     const queue = await Queue.findByPk(id);

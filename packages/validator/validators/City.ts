@@ -1,44 +1,26 @@
-import Joi from 'joi';
-import { ICityResponseAttributes } from '../interfaces/City';
+import { z } from 'zod';
 import validationMiddleware from '../middleware/validationMiddleware';
 
-export const CitySchema = Joi.object<ICityResponseAttributes>({
-  id: Joi.string().guid().required(),
-  name: Joi.string().required(),
-  state: Joi.string().required(),
-  stateCode: Joi.string().required(),
-  country: Joi.string().required(),
-  countryCode: Joi.string().required(),
-  longitude: Joi.number().required(),
-  latitude: Joi.number().required(),
+export const CitySchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  state: z.string(),
+  stateCode: z.string(),
+  country: z.string(),
+  countryCode: z.string(),
+  longitude: z.number(),
+  latitude: z.number(),
 });
 
-export const CityFetchOrUpdateRequestSchema = CitySchema.keys({
-  id: Joi.optional(),
-  name: Joi.optional(),
-  state: Joi.optional(),
-  stateCode: Joi.optional(),
-  country: Joi.optional(),
-  countryCode: Joi.optional(),
-  longitude: Joi.optional(),
-  latitude: Joi.optional(),
-});
+export const CityFetchRequestSchema = CitySchema.omit({ id: true }).partial();
 
-export const CityFetchByIdRequestSchema = CitySchema.keys({
-  name: Joi.optional(),
-  state: Joi.optional(),
-  stateCode: Joi.optional(),
-  country: Joi.optional(),
-  countryCode: Joi.optional(),
-  longitude: Joi.optional(),
-  latitude: Joi.optional(),
-});
+export const CityFetchByIdRequestSchema = CitySchema.pick({ id: true });
 
-export const CityCreateRequestSchema = CitySchema.keys({
-  id: Joi.optional(),
-});
+export const CityCreateRequestSchema = CitySchema.omit({ id: true });
 
-export const cityFetchRequestValidationMiddleware = validationMiddleware(CityFetchOrUpdateRequestSchema, 'query');
-export const cityFetchByIdRequestValidationMiddleware = validationMiddleware(CityFetchByIdRequestSchema, 'params');
-export const cityCreateRequestValidationMiddleware = validationMiddleware(CityCreateRequestSchema, 'body');
-export const cityUpdateRequestValidationMiddleware = validationMiddleware(CityFetchOrUpdateRequestSchema, 'body');
+export const CityUpdateRequestSchema = CitySchema.omit({ id: true }).partial();
+
+export const CityFetchRequestValidationMiddleware = validationMiddleware(CityFetchRequestSchema, 'query');
+export const CityFetchByIdRequestValidationMiddleware = validationMiddleware(CityFetchByIdRequestSchema, 'params');
+export const CityCreateRequestValidationMiddleware = validationMiddleware(CityCreateRequestSchema, 'body');
+export const CityUpdateRequestValidationMiddleware = validationMiddleware(CityUpdateRequestSchema, 'body');

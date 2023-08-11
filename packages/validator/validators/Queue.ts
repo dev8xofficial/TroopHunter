@@ -1,32 +1,22 @@
-import Joi from 'joi';
-import { IQueueResponseAttributes } from '../interfaces/Queue';
+import { z } from 'zod';
 import validationMiddleware from '../middleware/validationMiddleware';
 
-export const QueueSchema = Joi.object<IQueueResponseAttributes>({
-  id: Joi.number().integer().required(),
-  searchQuery: Joi.string().required(),
-  laptopName: Joi.string().required(),
-  status: Joi.string().valid('Pending', 'Completed').required(),
+export const QueueSchema = z.object({
+  id: z.number().int(),
+  searchQuery: z.string(),
+  laptopName: z.string(),
+  status: z.enum(['Pending', 'Completed']),
 });
 
-export const QueueFetchOrUpdateRequestSchema = QueueSchema.keys({
-  id: Joi.optional(),
-  searchQuery: Joi.optional(),
-  laptopName: Joi.optional(),
-  status: Joi.optional(),
-});
+export const QueueFetchRequestSchema = QueueSchema.omit({ id: true }).partial();
 
-export const QueueFetchByIdRequestSchema = QueueSchema.keys({
-  searchQuery: Joi.optional(),
-  laptopName: Joi.optional(),
-  status: Joi.optional(),
-});
+export const QueueFetchByIdRequestSchema = QueueSchema.pick({ id: true });
 
-export const QueueCreateRequestSchema = QueueSchema.keys({
-  id: Joi.optional(),
-});
+export const QueueCreateRequestSchema = QueueSchema.omit({ id: true });
 
-export const queueFetchRequestValidationMiddleware = validationMiddleware(QueueFetchOrUpdateRequestSchema, 'query');
-export const queueFetchByIdRequestValidationMiddleware = validationMiddleware(QueueFetchByIdRequestSchema, 'params');
-export const queueCreateRequestValidationMiddleware = validationMiddleware(QueueCreateRequestSchema, 'body');
-export const queueUpdateRequestValidationMiddleware = validationMiddleware(QueueFetchOrUpdateRequestSchema, 'body');
+export const QueueUpdateRequestSchema = QueueSchema.omit({ id: true }).partial();
+
+export const QueueFetchRequestValidationMiddleware = validationMiddleware(QueueFetchRequestSchema, 'query');
+export const QueueFetchByIdRequestValidationMiddleware = validationMiddleware(QueueFetchByIdRequestSchema, 'params');
+export const QueueCreateRequestValidationMiddleware = validationMiddleware(QueueCreateRequestSchema, 'body');
+export const QueueUpdateRequestValidationMiddleware = validationMiddleware(QueueUpdateRequestSchema, 'body');

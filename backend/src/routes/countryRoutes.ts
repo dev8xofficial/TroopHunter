@@ -3,9 +3,9 @@ import { getCountries, getCountryById, getCountriesByQuery } from '../controller
 import { createCountry } from '../controllers/CountryController/CountryController.create';
 import { updateCountry } from '../controllers/CountryController/CountryController.update';
 import { deleteCountry } from '../controllers/CountryController/CountryController.delete';
-import { countryFetchByIdRequestValidationMiddleware, countryFetchRequestValidationMiddleware, countryCreateRequestValidationMiddleware, countryUpdateRequestValidationMiddleware } from 'validator/validators/Country';
+import { CountryFetchByIdRequestValidationMiddleware, CountryFetchRequestValidationMiddleware, CountryCreateRequestValidationMiddleware, CountryUpdateRequestValidationMiddleware } from 'validator/validators/Country';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { paginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
 
 const router = express.Router();
 
@@ -13,11 +13,11 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define country routes
-router.get('/search', countryFetchRequestValidationMiddleware, paginationRequestValidationMiddleware, getCountriesByQuery);
-router.get('/', paginationRequestValidationMiddleware, getCountries);
-router.get('/:id', countryFetchByIdRequestValidationMiddleware, getCountryById);
-router.post('/', countryCreateRequestValidationMiddleware, createCountry);
-router.put('/:id', countryFetchByIdRequestValidationMiddleware, countryUpdateRequestValidationMiddleware, updateCountry);
-router.delete('/:id', countryFetchByIdRequestValidationMiddleware, deleteCountry);
+router.get('/search', CountryFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getCountriesByQuery);
+router.get('/', PaginationRequestValidationMiddleware, getCountries);
+router.get('/:id', CountryFetchByIdRequestValidationMiddleware, getCountryById);
+router.post('/', CountryCreateRequestValidationMiddleware, createCountry);
+router.put('/:id', CountryFetchByIdRequestValidationMiddleware, CountryUpdateRequestValidationMiddleware, updateCountry);
+router.delete('/:id', CountryFetchByIdRequestValidationMiddleware, deleteCountry);
 
 export default router;

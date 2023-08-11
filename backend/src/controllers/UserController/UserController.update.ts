@@ -2,13 +2,13 @@ import { Request, Response } from 'express';
 import User from '../../models/User';
 import logger from '../../utils/logger';
 import { ApiResponse } from 'validator/interfaces/Response';
-import { IUserRequestAttributes } from 'validator/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces/User';
 import { createApiResponse } from 'validator/utils/response';
 import { UserMessageKey, getUserMessage } from '../../messages/User';
 
 export const updateUser = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { firstName, lastName, email, password, role }: IUserRequestAttributes = req.body;
+  const { firstName, lastName, email, password, role }: IUserAttributes = req.body;
 
   try {
     const user = await User.findByPk(id);

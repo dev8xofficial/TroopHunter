@@ -5,11 +5,11 @@ import { ApiResponse } from 'validator/interfaces/Response';
 import { createApiResponse } from 'validator/utils/response';
 import { CountryMessageKey, getCountryMessage } from '../../messages/Country';
 import { v4 as uuidv4 } from 'uuid';
-import { ICountryRequestAttributes } from 'validator/interfaces/Country';
+import { ICountryAttributes } from 'validator/interfaces/Country';
 
 // Create a new country
 export const createCountry = async (req: Request, res: Response) => {
-  const { name, code, phoneCode, currency, longitude, latitude }: ICountryRequestAttributes = req.body;
+  const { name, code, phoneCode, currency, longitude, latitude }: ICountryAttributes = req.body;
   try {
     const requestData = { id: uuidv4(), name, code, phoneCode, currency, longitude, latitude };
     const newCountry = await Country.create(requestData);

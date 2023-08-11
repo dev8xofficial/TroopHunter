@@ -8,9 +8,9 @@ import { getCountriesByQuery, getCountryByIdService } from '../../../services/co
 import { getStateByIdService, getStatesByQuery } from '../../../services/stateService';
 import { getCitiesByQuery, getCityByIdService } from '../../../services/cityService';
 import { IAuthState } from '../../../store/reducers/authReducer';
-import { ICountryResponseAttributes } from 'common/interfaces/Country';
-import { IStateResponseAttributes } from 'common/interfaces/State';
-import { ICityResponseAttributes } from 'common/interfaces/City';
+import { ICountryAttributes } from 'validator/interfaces/Country';
+import { IStateAttributes } from 'validator/interfaces/State';
+import { ICityAttributes } from 'validator/interfaces/City';
 
 const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value, onChange }: ILocationComboboxProps): JSX.Element => {
   const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
@@ -122,7 +122,7 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
     }
   }, [value, onChange]);
 
-  const mapCountryData = (country: ICountryResponseAttributes): ILocationComboboxOption => {
+  const mapCountryData = (country: ICountryAttributes): ILocationComboboxOption => {
     return {
       id: country.id,
       name: country.name,
@@ -131,7 +131,7 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
     };
   };
 
-  const mapStateData = (state: IStateResponseAttributes): ILocationComboboxOption => {
+  const mapStateData = (state: IStateAttributes): ILocationComboboxOption => {
     return {
       id: state.id,
       name: state.name,
@@ -140,7 +140,7 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
     };
   };
 
-  const mapCityData = (city: ICityResponseAttributes): ILocationComboboxOption => {
+  const mapCityData = (city: ICityAttributes): ILocationComboboxOption => {
     return {
       id: city.id,
       name: city.name,

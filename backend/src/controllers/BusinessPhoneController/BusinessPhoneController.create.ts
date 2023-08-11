@@ -2,17 +2,17 @@ import { Request, Response } from 'express';
 import BusinessPhone from '../../models/BusinessPhone';
 import logger from '../../utils/logger';
 import { ApiResponse } from 'validator/interfaces/Response';
-import { IBusinessPhoneRequestAttributes, IBusinessPhoneResponseAttributes } from 'validator/interfaces/BusinessPhone';
+import { IBusinessPhoneAttributes } from 'validator/interfaces/BusinessPhone';
 import { createApiResponse } from 'validator/utils/response';
 import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../messages/BusinessPhone';
 import { v4 as uuidv4 } from 'uuid';
 
 // Create a new business phone
 export const createBusinessPhone = async (req: Request, res: Response) => {
-  const { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid }: IBusinessPhoneRequestAttributes = req.body;
+  const { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid }: IBusinessPhoneAttributes = req.body;
 
   try {
-    const requestData: IBusinessPhoneResponseAttributes = { id: uuidv4(), countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid };
+    const requestData: IBusinessPhoneAttributes = { id: uuidv4(), countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid };
     const newBusinessPhone = await BusinessPhone.create(requestData);
 
     logger.info(`Business phone created successfully with ID ${newBusinessPhone.id}`);

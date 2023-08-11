@@ -10,12 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IFilterAttributes, IHomePageState } from '../../../store/reducers/homePageReducer';
 import { createLeadAction, updateLeadAction } from '../../../store/actions/leadActions';
 import { toast } from 'react-toastify';
-import { IUserResponseAttributes } from 'common/interfaces/User';
-import { ILeadResponseAttributes } from 'common/interfaces/Lead';
+import { IUserAttributes } from 'validator/interfaces/User';
+import { ILeadAttributes } from 'validator/interfaces/Lead'
 import { IAuthState } from '../../../store/reducers/authReducer';
 import { IBusinessState } from '../../../store/reducers/businessReducer';
 import { IUserState } from '../../../store/reducers/userReducer';
-// import { removeNullValues } from '../../../utils/helpers';
 
 const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: CustomDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
@@ -27,10 +26,10 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
   const leadPageFilters: IFilterAttributes = home.filters;
   const leadPageDraftLeadId: string = home.draftLeadId;
   const leadPageBusinessIds: string[] = home.businessIds;
-  const usersLoggedIn: IUserResponseAttributes = users.data[auth.userId];
+  const usersLoggedIn: IUserAttributes = users.data[auth.userId];
   const businessesTotalRecords: number = businesses.data.totalRecords;
 
-  const draftLead = usersLoggedIn?.Leads?.find((lead: ILeadResponseAttributes) => lead.id === leadPageDraftLeadId);
+  const draftLead = usersLoggedIn?.Leads?.find((lead: ILeadAttributes) => lead.id === leadPageDraftLeadId);
 
   interface ILeadFormmValues {
     title: string;

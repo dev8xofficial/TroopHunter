@@ -1,6 +1,6 @@
 import { PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { authLoginSuccessAction, authLoginFailureAction } from '../actions/authActions';
-import { IUserResponseAttributes } from 'common/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces/User';
 
 export interface IAuthState {
   token: string;
@@ -9,7 +9,7 @@ export interface IAuthState {
 
 export interface IAuthLoginSuccessPayload {
   token: string;
-  user: IUserResponseAttributes;
+  user: IUserAttributes;
 }
 
 const initialState: IAuthState = {

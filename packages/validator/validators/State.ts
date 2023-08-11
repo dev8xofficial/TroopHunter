@@ -1,38 +1,24 @@
-import Joi from 'joi';
-import { IStateResponseAttributes } from '../interfaces/State';
+import { z } from 'zod';
 import validationMiddleware from '../middleware/validationMiddleware';
 
-export const StateSchema = Joi.object<IStateResponseAttributes>({
-  id: Joi.string().guid().required(),
-  name: Joi.string().required(),
-  code: Joi.string().required(),
-  countryCode: Joi.string().required(),
-  longitude: Joi.number().required(),
-  latitude: Joi.number().required(),
+export const StateSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  code: z.string(),
+  countryCode: z.string(),
+  longitude: z.number(),
+  latitude: z.number(),
 });
 
-export const StateFetchOrUpdateRequestSchema = StateSchema.keys({
-  id: Joi.optional(),
-  name: Joi.optional(),
-  code: Joi.optional(),
-  countryCode: Joi.optional(),
-  longitude: Joi.optional(),
-  latitude: Joi.optional(),
-});
+export const StateFetchRequestSchema = StateSchema.omit({ id: true }).partial();
 
-export const StateFetchByIdRequestSchema = StateSchema.keys({
-  name: Joi.optional(),
-  code: Joi.optional(),
-  countryCode: Joi.optional(),
-  longitude: Joi.optional(),
-  latitude: Joi.optional(),
-});
+export const StateFetchByIdRequestSchema = StateSchema.pick({ id: true });
 
-export const StateCreateRequestSchema = StateSchema.keys({
-  id: Joi.optional(),
-});
+export const StateCreateRequestSchema = StateSchema.omit({ id: true });
 
-export const stateFetchRequestValidationMiddleware = validationMiddleware(StateFetchOrUpdateRequestSchema, 'query');
-export const stateFetchByIdRequestValidationMiddleware = validationMiddleware(StateFetchByIdRequestSchema, 'params');
-export const stateCreateRequestValidationMiddleware = validationMiddleware(StateCreateRequestSchema, 'body');
-export const stateUpdateRequestValidationMiddleware = validationMiddleware(StateFetchOrUpdateRequestSchema, 'body');
+export const StateUpdateRequestSchema = StateSchema.omit({ id: true }).partial();
+
+export const StateFetchRequestValidationMiddleware = validationMiddleware(StateFetchRequestSchema, 'query');
+export const StateFetchByIdRequestValidationMiddleware = validationMiddleware(StateFetchByIdRequestSchema, 'params');
+export const StateCreateRequestValidationMiddleware = validationMiddleware(StateCreateRequestSchema, 'body');
+export const StateUpdateRequestValidationMiddleware = validationMiddleware(StateUpdateRequestSchema, 'body');

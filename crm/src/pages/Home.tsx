@@ -17,9 +17,9 @@ import LeadSaveDialog from '../components/Feedback/LeadSaveDialog/LeadSaveDialog
 import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDeletionDialog';
 import { IAuthState } from '../store/reducers/authReducer';
 import { compareFiltersAndLead, isFiltersChanged } from '../utils/helpers';
-import { IUserResponseAttributes } from 'common/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces/User';
+import { ILeadAttributes } from 'validator/interfaces/Lead'
 import { IUserState } from '../store/reducers/userReducer';
-import { ILeadResponseAttributes } from 'common/interfaces/Lead';
 
 const tabs = [{ name: 'Filters', href: '#', current: true }];
 
@@ -38,10 +38,10 @@ const Lead = () => {
   const leadPagePaginationPage: number = home.page;
   const leadPagePaginationLimit: number = home.pageLimit;
   const leadPageDraftLeadId: string = home.draftLeadId;
-  const usersLoggedIn: IUserResponseAttributes = users.data[auth.userId];
-  const userLeads: ILeadResponseAttributes[] = usersLoggedIn.Leads;
+  const usersLoggedIn: IUserAttributes = users.data[auth.userId];
+  const userLeads: ILeadAttributes[] = usersLoggedIn.Leads;
   const draftLeadIndex: number = userLeads.findIndex((lead) => lead.id === leadPageDraftLeadId);
-  const draftLead: ILeadResponseAttributes = userLeads[draftLeadIndex];
+  const draftLead: ILeadAttributes = userLeads[draftLeadIndex];
 
   const [debouncedFilters, setDebouncedFilters] = useState<IFilterAttributes>(leadPageFilters);
   const [filtersPanelWidth, setFiltersPanelWidth] = useState<boolean>(false);

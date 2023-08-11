@@ -3,12 +3,12 @@ import { takeLatest, put, select } from 'redux-saga/effects';
 import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction, fetchBusinessesAction } from '../actions/businessActions';
 import { getBusinessesBySearchService } from '../../services/businessService';
 import { setHomePageLoadingFailureAction, setHomePageLoadingSuccessAction } from '../actions/homePageActions';
-import { IBusinessFetchRequestAttributes } from 'common/interfaces/Business';
-import { PaginationAttributes } from 'common/interfaces/Pagination';
-import { IBusinessResponseAttributes } from 'common/interfaces/Business';
+import { IBusinessFetchRequestAttributes } from 'validator/interfaces/Business';
+import { IPaginationAttributes } from 'validator/interfaces/Pagination';
+import { IBusinessAttributes } from 'validator/interfaces/Business';
 import { IBusinessState } from '../reducers/businessReducer';
 
-export interface IBusinessesFetchPayload extends IBusinessFetchRequestAttributes, PaginationAttributes {
+export interface IBusinessesFetchPayload extends IBusinessFetchRequestAttributes, IPaginationAttributes {
   token: string;
 }
 
@@ -19,7 +19,7 @@ function* fetchBusinessesSaga({ payload }: { payload: IBusinessesFetchPayload })
     const { token } = payload;
     const params = { name, businessDomain, address, cityId, stateId, countryId, phone, email, website, page, limit };
     const { businesses }: { businesses: IBusinessState } = yield select((state: { businesses: IBusinessState }) => state);
-    const businessesDataBusinesses: { [key: string]: IBusinessResponseAttributes } = businesses.data.businesses;
+    const businessesDataBusinesses: { [key: string]: IBusinessAttributes } = businesses.data.businesses;
 
     if (sponsoredAd) {
       params['sponsoredAd'] = sponsoredAd;

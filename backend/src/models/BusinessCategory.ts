@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IBusinessCategoryResponseAttributes } from 'validator/interfaces/BusinessCategory';
+import { IBusinessCategoryAttributes } from 'validator/interfaces/BusinessCategory';
 
-class BusinessCategory extends Model<IBusinessCategoryResponseAttributes> implements IBusinessCategoryResponseAttributes {
+class BusinessCategory extends Model<IBusinessCategoryAttributes> implements IBusinessCategoryAttributes {
   public id!: string;
   public name!: string;
 }

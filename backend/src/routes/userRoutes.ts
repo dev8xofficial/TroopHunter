@@ -3,9 +3,9 @@ import { getUsers, getUserWithInclude, getUserById } from '../controllers/UserCo
 import { updateUser } from '../controllers/UserController/UserController.update';
 import { deleteUser } from '../controllers/UserController/UserController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { userFetchRequestValidationMiddleware, userFetchByIdRequestValidationMiddleware, userUpdateRequestValidationMiddleware } from 'validator/validators/User';
-import { requestValidationMiddleware } from 'validator/validators/Request';
-import { paginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { UserFetchRequestValidationMiddleware, UserFetchByIdRequestValidationMiddleware, UserUpdateRequestValidationMiddleware } from 'validator/validators/User';
+import { RequestValidationMiddleware } from 'validator/validators/Request';
+import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
 
 const router = express.Router();
 
@@ -13,10 +13,10 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define user routes
-router.get('/:id/include', userFetchRequestValidationMiddleware, requestValidationMiddleware, getUserWithInclude);
-router.get('/:id', userFetchByIdRequestValidationMiddleware, getUserById);
-router.put('/:id', userFetchByIdRequestValidationMiddleware, userUpdateRequestValidationMiddleware, updateUser);
-router.delete('/:id', userFetchByIdRequestValidationMiddleware, deleteUser);
-router.get('/', paginationRequestValidationMiddleware, getUsers);
+router.get('/:id/include', UserFetchRequestValidationMiddleware, RequestValidationMiddleware, getUserWithInclude);
+router.get('/:id', UserFetchByIdRequestValidationMiddleware, getUserById);
+router.put('/:id', UserFetchByIdRequestValidationMiddleware, UserUpdateRequestValidationMiddleware, updateUser);
+router.delete('/:id', UserFetchByIdRequestValidationMiddleware, deleteUser);
+router.get('/', PaginationRequestValidationMiddleware, getUsers);
 
 export default router;

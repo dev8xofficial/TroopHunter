@@ -1,10 +1,10 @@
 import libphonenumber from 'google-libphonenumber';
-import { IBusinessPhoneRequestAttributes, IBusinessPhoneResponseAttributes } from 'validator/interfaces/BusinessPhone';
+import { IBusinessPhoneAttributes } from 'validator/interfaces/BusinessPhone';
 import BusinessPhone from '../models/BusinessPhone';
 import { Transaction } from 'sequelize';
 import logger from '../utils/logger';
 
-export const getPhoneWithDetails = (phone: string): IBusinessPhoneRequestAttributes => {
+export const getPhoneWithDetails = (phone: string): Omit<IBusinessPhoneAttributes, 'id'> => {
   const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
   const parsedNumber = phoneUtil.parse(phone);
   const countryCode = parsedNumber.getCountryCode() ? `${parsedNumber.getCountryCode()?.toString()}` : '';
@@ -45,7 +45,7 @@ export const getPhoneWithDetails = (phone: string): IBusinessPhoneRequestAttribu
   return { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid };
 };
 
-export const findOrCreateBusinessPhone = async (phone: IBusinessPhoneRequestAttributes, transaction: Transaction): Promise<IBusinessPhoneResponseAttributes | undefined> => {
+export const findOrCreateBusinessPhone = async (phone: Omit<IBusinessPhoneAttributes, 'id'>, transaction: Transaction): Promise<IBusinessPhoneAttributes | undefined> => {
   try {
     const { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid } = phone;
     const [record, created] = await BusinessPhone.findOrCreate({
@@ -55,10 +55,10 @@ export const findOrCreateBusinessPhone = async (phone: IBusinessPhoneRequestAttr
 
     if (created) {
       logger.info('Business phone created successfully.');
-      return record.toJSON() as IBusinessPhoneResponseAttributes;
+      return record.toJSON() as IBusinessPhoneAttributes;
     } else {
       logger.info('Business phone already exists.');
-      return record.toJSON() as IBusinessPhoneResponseAttributes;
+      return record.toJSON() as IBusinessPhoneAttributes;
     }
   } catch (error) {
     logger.error('Failed to find or create business phone:', error);

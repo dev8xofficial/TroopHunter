@@ -1,7 +1,6 @@
-import Joi from 'joi';
-import { IBusinessOpeningHourResponseAttributes } from '../interfaces/BusinessOpeningHour';
+import { z } from 'zod';
 
-export const BusinessOpeningHourSchema = Joi.object<IBusinessOpeningHourResponseAttributes>({
-  id: Joi.string().guid().required(),
-  time: Joi.string().optional(),
+export const BusinessOpeningHourSchema = z.object({
+  id: z.string().uuid(),
+  time: z.string().optional(),
 });

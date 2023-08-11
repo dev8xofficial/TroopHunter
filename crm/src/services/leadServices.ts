@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { removeNullValues } from '../utils/helpers';
 
 const BASE_URL = process.env.BACKEND_URL;
 
 export const getLeadsBySearchService = async (params: any, token: string) => {
   try {
-    const response = await axios.get(`${BASE_URL}/leads/search`, { params, headers: { Authorization: `Bearer ${token}` } });
+    const response = await axios.get(`${BASE_URL}/leads/search`, { params: removeNullValues(params), headers: { Authorization: `Bearer ${token}` } });
     return response.data;
   } catch (error) {
     throw new Error('An error occurred while fetching leads.');
@@ -31,7 +32,7 @@ export const getLeadByIdService = async (id: string, token: string) => {
 
 export const createLeadService = async (data: any, token: string) => {
   try {
-    const response = await axios.post(`${BASE_URL}/leads`, data, { headers: { Authorization: `Bearer ${token}` } });
+    const response = await axios.post(`${BASE_URL}/leads`, removeNullValues(data), { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
   } catch (error) {
     throw new Error('An error occurred while creating a lead.');
@@ -40,7 +41,7 @@ export const createLeadService = async (data: any, token: string) => {
 
 export const updateLeadService = async (id: string, data: any, token: string) => {
   try {
-    const response = await axios.put(`${BASE_URL}/leads/${id}`, data, { headers: { Authorization: `Bearer ${token}` } });
+    const response = await axios.put(`${BASE_URL}/leads/${id}`, removeNullValues(data), { headers: { Authorization: `Bearer ${token}` } });
     return response.data;
   } catch (error) {
     throw new Error('An error occurred while updating a lead.');
@@ -58,7 +59,7 @@ export const deleteLeadService = async (id: string, token: string) => {
 
 export const deleteLeadsService = async (data: any, token: string) => {
   try {
-    const response = await axios.delete(`${BASE_URL}/leads/bulk`, { data, headers: { Authorization: `Bearer ${token}` } });
+    const response = await axios.delete(`${BASE_URL}/leads/bulk`, { data: removeNullValues(data), headers: { Authorization: `Bearer ${token}` } });
     return response.data;
   } catch (error) {
     throw new Error('An error occurred while deleting a lead.');

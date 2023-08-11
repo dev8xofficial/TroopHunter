@@ -3,9 +3,9 @@ import { getStates, getStateById, getStatesByQuery } from '../controllers/StateC
 import { createState } from '../controllers/StateController/StateController.create';
 import { updateState } from '../controllers/StateController/StateController.update';
 import { deleteState } from '../controllers/StateController/StateController.delete';
-import { stateFetchByIdRequestValidationMiddleware, stateFetchRequestValidationMiddleware, stateCreateRequestValidationMiddleware, stateUpdateRequestValidationMiddleware } from 'validator/validators/State';
+import { StateFetchByIdRequestValidationMiddleware, StateFetchRequestValidationMiddleware, StateCreateRequestValidationMiddleware, StateUpdateRequestValidationMiddleware } from 'validator/validators/State';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { paginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
 
 const router = express.Router();
 
@@ -13,11 +13,11 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define state routes
-router.get('/search', stateFetchRequestValidationMiddleware, paginationRequestValidationMiddleware, getStatesByQuery);
-router.get('/', paginationRequestValidationMiddleware, getStates);
-router.get('/:id', stateFetchByIdRequestValidationMiddleware, getStateById);
-router.post('/', stateCreateRequestValidationMiddleware, createState);
-router.put('/:id', stateFetchByIdRequestValidationMiddleware, stateUpdateRequestValidationMiddleware, updateState);
-router.delete('/:id', stateFetchByIdRequestValidationMiddleware, deleteState);
+router.get('/search', StateFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getStatesByQuery);
+router.get('/', PaginationRequestValidationMiddleware, getStates);
+router.get('/:id', StateFetchByIdRequestValidationMiddleware, getStateById);
+router.post('/', StateCreateRequestValidationMiddleware, createState);
+router.put('/:id', StateFetchByIdRequestValidationMiddleware, StateUpdateRequestValidationMiddleware, updateState);
+router.delete('/:id', StateFetchByIdRequestValidationMiddleware, deleteState);
 
 export default router;

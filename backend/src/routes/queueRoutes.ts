@@ -1,9 +1,9 @@
 import express from 'express';
 import { getQueues, getQueueById } from '../controllers/QueueController/QueueController.fetch';
 import { updateQueue } from '../controllers/QueueController/QueueController.update';
-import { queueFetchByIdRequestValidationMiddleware, queueUpdateRequestValidationMiddleware } from 'validator/validators/Queue';
+import { QueueFetchByIdRequestValidationMiddleware, QueueUpdateRequestValidationMiddleware } from 'validator/validators/Queue';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { paginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
 
 const router = express.Router();
 
@@ -11,8 +11,8 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define business routes
-router.get('/:id', queueFetchByIdRequestValidationMiddleware, getQueueById);
-router.get('/', paginationRequestValidationMiddleware, getQueues);
-router.put('/:id', queueFetchByIdRequestValidationMiddleware, queueUpdateRequestValidationMiddleware, updateQueue);
+router.get('/:id', QueueFetchByIdRequestValidationMiddleware, getQueueById);
+router.get('/', PaginationRequestValidationMiddleware, getQueues);
+router.put('/:id', QueueFetchByIdRequestValidationMiddleware, QueueUpdateRequestValidationMiddleware, updateQueue);
 
 export default router;

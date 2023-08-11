@@ -2,7 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import { fetchUsersSuccessAction, fetchUsersFailureAction, fetchUserSuccessAction, fetchUsersAction, fetchUserAction } from '../actions/userActions';
 import { getUsersService, getUserWithIncludeService } from '../../services/userService';
-import { IUserResponseAttributes } from 'common/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces/User';
 import { IUserState } from '../reducers/userReducer';
 
 export interface IUsersFetchPayload {
@@ -43,7 +43,7 @@ function* fetchUserSaga({ payload }: { payload: IUsersFetchUserPayload }): any {
 
     if (response.success) {
       // Perform type check using type assertion
-      const loginSuccessPayload = response.data as IUserResponseAttributes;
+      const loginSuccessPayload = response.data as IUserAttributes;
       yield put(fetchUserSuccessAction(loginSuccessPayload));
     } else {
       toast.error(response.error);

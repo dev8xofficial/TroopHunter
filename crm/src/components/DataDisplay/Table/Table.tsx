@@ -6,8 +6,8 @@ import moment from 'moment';
 import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import Avatar from '../Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
-import { ILeadResponseAttributes } from 'common/interfaces/Lead';
-import { IUserResponseAttributes } from 'common/interfaces/User';
+import { ILeadAttributes } from 'validator/interfaces/Lead';
+import { IUserAttributes } from 'validator/interfaces/User'
 import { IFilterAttributes } from '../../../store/reducers/homePageReducer';
 import { setHomePageDraftLeadIdAction, setHomePageFiltersAction } from '../../../store/actions/homePageActions';
 import { setLeadsPageSelectedLeadIds } from '../../../store/actions/leadsPageActions';
@@ -29,9 +29,9 @@ const Table: React.FC = (): JSX.Element => {
   const { leads }: { leads: ILeadsState } = useSelector((state: { leads: ILeadsState }) => state);
 
   const authUserId: string = auth.userId;
-  const usersLoggedIn: IUserResponseAttributes = users.data[authUserId];
+  const usersLoggedIn: IUserAttributes = users.data[authUserId];
   const selectedLeadIds: string[] = leads.selectedLeadIds;
-  const userLeads: ILeadResponseAttributes[] | undefined = usersLoggedIn.Leads;
+  const userLeads: ILeadAttributes[] | undefined = usersLoggedIn.Leads;
 
   const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>(selectedLeadIds);
 
@@ -61,7 +61,7 @@ const Table: React.FC = (): JSX.Element => {
     try {
       if (!Array.isArray(userLeads)) return;
 
-      const selectedLead: ILeadResponseAttributes = userLeads[index];
+      const selectedLead: ILeadAttributes = userLeads[index];
       if (selectedLead) {
         let updatedFilters: IFilterAttributes = {} as IFilterAttributes; // Type assertion
 

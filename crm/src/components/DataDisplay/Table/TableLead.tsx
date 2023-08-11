@@ -7,7 +7,7 @@ import Avatar from '../../DataDisplay/Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
 import Checkbox from '../../Inputs/Checkbox/Checkbox';
-import { IBusinessResponseAttributes } from 'common/interfaces/Business';
+import { IBusinessAttributes } from 'validator/interfaces/Business'
 import { setHomePageBusinessIdsAction, setHomePagePaginationPageAction } from '../../../store/actions/homePageActions';
 import { classNames } from '../../../utils/helpers';
 import { IBusinessState } from '../../../store/reducers/businessReducer';
@@ -46,7 +46,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
   const { businesses }: { businesses: IBusinessState } = useSelector((state: { businesses: IBusinessState }) => state);
   const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
 
-  const businessesDataBusinesses: { [key: string]: IBusinessResponseAttributes } = businesses.data.businesses;
+  const businessesDataBusinesses: { [key: string]: IBusinessAttributes } = businesses.data.businesses;
   const businessesTotalRecords: number = businesses.data.totalRecords;
   const isLeadPageLoading = home.isLoading;
   const leadPageBusinessIds: string[] = home.businessIds;
@@ -182,7 +182,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
         <InfiniteScroll dataLength={Object.keys(businessesDataBusinesses).length} next={onNext} hasMore={Object.keys(businessesDataBusinesses).length < (businessesTotalRecords || 0)} loader={<></>} scrollableTarget="table-lead-container">
           {/* Existing code for TableLead */}
           <ul role="list" className={classNames(isLeadPageLoading && 'group animate-pulse', 'divide-y rounded border bg-white shadow')}>
-            {Object.values(businessesDataBusinesses).map((business: IBusinessResponseAttributes, index) => (
+            {Object.values(businessesDataBusinesses).map((business: IBusinessAttributes, index) => (
               <li key={index} className={classNames(index === 0 && 'hover:rounded-t', index === Object.values(businessesDataBusinesses).length - 1 && 'hover:rounded-b', 'hover:bg-gray-100')}>
                 <div className="relative flex w-full items-start px-6 py-5">
                   <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">

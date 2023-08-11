@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { ICityResponseAttributes } from 'validator/interfaces/City';
+import { ICityAttributes } from 'validator/interfaces/City';
 
-class City extends Model<ICityResponseAttributes> implements ICityResponseAttributes {
+class City extends Model<ICityAttributes> implements ICityAttributes {
   public id!: string;
   public name!: string;
   public state!: string;

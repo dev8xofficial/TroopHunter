@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IBusinessSourceResponseAttributes } from 'validator/interfaces/BusinessSource';
+import { IBusinessSourceAttributes } from 'validator/interfaces/BusinessSource';
 
-class BusinessSource extends Model<IBusinessSourceResponseAttributes> implements IBusinessSourceResponseAttributes {
+class BusinessSource extends Model<IBusinessSourceAttributes> implements IBusinessSourceAttributes {
   public id!: string;
   public sourceName!: string;
 }

@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { ITimezoneResponseAttributes } from 'validator/interfaces/Timezone';
+import { ITimezoneAttributes } from 'validator/interfaces/Timezone';
 
-class Timezone extends Model<ITimezoneResponseAttributes> implements ITimezoneResponseAttributes {
+class Timezone extends Model<ITimezoneAttributes> implements ITimezoneAttributes {
   public id!: string;
   public timezoneName!: string;
   public utcOffset!: string;

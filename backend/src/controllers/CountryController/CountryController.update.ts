@@ -4,12 +4,12 @@ import logger from '../../utils/logger';
 import { ApiResponse } from 'validator/interfaces/Response';
 import { createApiResponse } from 'validator/utils/response';
 import { CountryMessageKey, getCountryMessage } from '../../messages/Country';
-import { ICountryRequestAttributes } from 'validator/interfaces/Country';
+import { ICountryAttributes } from 'validator/interfaces/Country';
 
 // Update a country by ID
 export const updateCountry = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { name, code, phoneCode, currency, longitude, latitude }: ICountryRequestAttributes = req.body;
+  const { name, code, phoneCode, currency, longitude, latitude }: ICountryAttributes = req.body;
   try {
     const existingCountry = await Country.findOne({ where: { id } });
     if (!existingCountry) {

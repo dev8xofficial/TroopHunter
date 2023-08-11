@@ -4,8 +4,8 @@ import { createCity } from '../controllers/CityController/CityController.create'
 import { updateCity } from '../controllers/CityController/CityController.update';
 import { deleteCity } from '../controllers/CityController/CityController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { cityCreateRequestValidationMiddleware, cityFetchByIdRequestValidationMiddleware, cityFetchRequestValidationMiddleware, cityUpdateRequestValidationMiddleware } from 'validator/validators/City';
-import { paginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { CityCreateRequestValidationMiddleware, CityFetchByIdRequestValidationMiddleware, CityFetchRequestValidationMiddleware, CityUpdateRequestValidationMiddleware } from 'validator/validators/City';
+import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
 
 const router = express.Router();
 
@@ -13,11 +13,11 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define city routes
-router.get('/search', cityFetchRequestValidationMiddleware, paginationRequestValidationMiddleware, getCitiesByQuery);
-router.get('/', paginationRequestValidationMiddleware, getCities);
-router.get('/:id', cityFetchByIdRequestValidationMiddleware, getCityById);
-router.post('/', cityCreateRequestValidationMiddleware, createCity);
-router.put('/:id', cityFetchByIdRequestValidationMiddleware, cityUpdateRequestValidationMiddleware, updateCity);
-router.delete('/:id', cityFetchByIdRequestValidationMiddleware, deleteCity);
+router.get('/search', CityFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getCitiesByQuery);
+router.get('/', PaginationRequestValidationMiddleware, getCities);
+router.get('/:id', CityFetchByIdRequestValidationMiddleware, getCityById);
+router.post('/', CityCreateRequestValidationMiddleware, createCity);
+router.put('/:id', CityFetchByIdRequestValidationMiddleware, CityUpdateRequestValidationMiddleware, updateCity);
+router.delete('/:id', CityFetchByIdRequestValidationMiddleware, deleteCity);
 
 export default router;

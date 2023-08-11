@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { IUsersFetchPayload, IUsersFetchUserPayload } from '../sagas/userSaga';
-import { IUserResponseAttributes } from 'common/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces/User';
 import { IUserState } from '../reducers/userReducer';
 
 export const fetchUsersAction = createAction<IUsersFetchPayload>('user/fetchUsersAction');
@@ -8,8 +8,8 @@ export const fetchUsersSuccessAction = createAction<IUserState>('user/fetchUsers
 export const fetchUsersFailureAction = createAction('user/fetchUsersFailureAction');
 
 export const fetchUserAction = createAction<IUsersFetchUserPayload>('user/fetchUserAction');
-export const fetchUserSuccessAction = createAction<IUserResponseAttributes>('user/fetchUserSuccessAction');
+export const fetchUserSuccessAction = createAction<IUserAttributes>('user/fetchUserSuccessAction');
 
-export const updateUserLocallyAction = createAction<IUserResponseAttributes>('user/updateUserLocallyAction');
-export const addUserLocallyAction = createAction<IUserResponseAttributes>('user/addUserLocallyAction');
+export const updateUserLocallyAction = createAction<IUserAttributes>('user/updateUserLocallyAction');
+export const addUserLocallyAction = createAction<IUserAttributes>('user/addUserLocallyAction');
 export const deleteUserLocallyAction = createAction<string>('user/deleteUserLocallyAction');

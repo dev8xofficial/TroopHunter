@@ -41,7 +41,8 @@
     "uuid": "^9.0.0",
     "validator": "file:../packages/validator",
     "winston": "^3.10.0",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "zod-to-ts": "^1.1.4"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",

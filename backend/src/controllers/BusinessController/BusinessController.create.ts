@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import Sequelize from '../../config/database';
-import { IBusinessCreationRequestAttributes, IBusinessResponseAttributes } from 'validator/interfaces/Business';
-import { IBusinessRatingResponseAttributes } from 'validator/interfaces/BusinessRating';
-import { IBusinessSourceResponseAttributes } from 'validator/interfaces/BusinessSource';
-import { IBusinessOpeningHourResponseAttributes } from 'validator/interfaces/BusinessOpeningHour';
-import { IBusinessClosingHourResponseAttributes } from 'validator/interfaces/BusinessClosingHour';
-import { IPostalCodeResponseAttributes } from 'validator/interfaces/PostalCode';
-import { IBusinessPhoneResponseAttributes } from 'validator/interfaces/BusinessPhone';
-import { ITimezoneResponseAttributes } from 'validator/interfaces/Timezone';
+import { IBusinessCreateRequestAttributes, IBusinessAttributes } from 'validator/interfaces/Business';
+import { IBusinessRatingAttributes } from 'validator/interfaces/BusinessRating';
+import { IBusinessSourceAttributes } from 'validator/interfaces/BusinessSource';
+import { IBusinessOpeningHourAttributes } from 'validator/interfaces/BusinessOpeningHour';
+import { IBusinessClosingHourAttributes } from 'validator/interfaces/BusinessClosingHour';
+import { IPostalCodeAttributes } from 'validator/interfaces/PostalCode';
+import { IBusinessPhoneAttributes } from 'validator/interfaces/BusinessPhone';
+import { ITimezoneAttributes } from 'validator/interfaces/Timezone';
 import { ApiResponse } from 'validator/interfaces/Response';
-import { IBusinessCategoryResponseAttributes } from 'validator/interfaces/BusinessCategory';
+import { IBusinessCategoryAttributes } from 'validator/interfaces/BusinessCategory';
 import Business from '../../models/Business';
 import { findOrCreateBusinessPhone, getPhoneWithDetails } from '../../utils/phone';
 import { findOrCreateBusinessSource } from '../../utils/business';
@@ -27,10 +27,10 @@ import logger from '../../utils/logger';
 export const createBusiness = async (req: Request, res: Response) => {
   const transaction = await Sequelize.transaction();
 
-  const { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour }: IBusinessCreationRequestAttributes = req.body;
+  const { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour }: IBusinessCreateRequestAttributes = req.body;
 
   const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
-  let payload: IBusinessResponseAttributes = {
+  let payload: IBusinessAttributes = {
     id: uuidv4(),
     name,
     businessDomain: businessDomain?.toLocaleLowerCase(),
@@ -52,43 +52,43 @@ export const createBusiness = async (req: Request, res: Response) => {
     logger.debug('Creating a new business:', payload);
 
     if (category) {
-      const categoryFromDB: IBusinessCategoryResponseAttributes | undefined = await findOrCreateBusinessCategory(category, transaction);
+      const categoryFromDB: IBusinessCategoryAttributes | undefined = await findOrCreateBusinessCategory(category, transaction);
       payload.categoryId = categoryFromDB?.id;
     }
 
     if (postalCode) {
-      const postalCodeFromDB: IPostalCodeResponseAttributes | undefined = await findOrCreatePostalCode(postalCode, transaction);
+      const postalCodeFromDB: IPostalCodeAttributes | undefined = await findOrCreatePostalCode(postalCode, transaction);
       payload.postalCodeId = postalCodeFromDB?.id;
     }
 
     if (phone) {
       const phoneWithDetails = getPhoneWithDetails(phone);
-      const phoneFromDB: IBusinessPhoneResponseAttributes | undefined = await findOrCreateBusinessPhone(phoneWithDetails, transaction);
+      const phoneFromDB: IBusinessPhoneAttributes | undefined = await findOrCreateBusinessPhone(phoneWithDetails, transaction);
       payload.phoneId = phoneFromDB?.id;
     }
 
     if (rating !== undefined && rating !== null) {
-      const ratingFromDB: IBusinessRatingResponseAttributes | undefined = await findOrCreateBusinessRating(rating, transaction);
+      const ratingFromDB: IBusinessRatingAttributes | undefined = await findOrCreateBusinessRating(rating, transaction);
       payload.ratingId = ratingFromDB?.id;
     }
 
     if (source) {
-      const sourceFromDB: IBusinessSourceResponseAttributes | undefined = await findOrCreateBusinessSource(source, transaction);
+      const sourceFromDB: IBusinessSourceAttributes | undefined = await findOrCreateBusinessSource(source, transaction);
       payload.sourceId = sourceFromDB?.id;
     }
 
     if (timezone) {
-      const timezoneFromDB: ITimezoneResponseAttributes | undefined = await findOrCreateTimezone(timezone, transaction);
+      const timezoneFromDB: ITimezoneAttributes | undefined = await findOrCreateTimezone(timezone, transaction);
       payload.timezoneId = timezoneFromDB?.id;
     }
 
     if (openingHour) {
-      const openingHourFromDB: IBusinessOpeningHourResponseAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour, transaction);
+      const openingHourFromDB: IBusinessOpeningHourAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour, transaction);
       payload.openingHourId = openingHourFromDB?.id;
     }
 
     if (closingHour) {
-      const closingHourFromDB: IBusinessClosingHourResponseAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour, transaction);
+      const closingHourFromDB: IBusinessClosingHourAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour, transaction);
       payload.closingHourId = closingHourFromDB?.id;
     }
 

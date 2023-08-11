@@ -1,8 +1,7 @@
-import Joi from 'joi';
-import { IBusinessRatingResponseAttributes } from '../interfaces/BusinessRating';
+import { z } from 'zod';
 
-export const BusinessRatingSchema = Joi.object<IBusinessRatingResponseAttributes>({
-  id: Joi.string().guid().required(),
-  ratingValue: Joi.number().required(),
-  description: Joi.string().optional(),
+export const BusinessRatingSchema = z.object({
+  id: z.string().uuid(),
+  ratingValue: z.number(),
+  description: z.string().optional(),
 });

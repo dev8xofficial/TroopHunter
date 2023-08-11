@@ -39,6 +39,7 @@
     "redux-saga": "^1.2.3",
     "slick-carousel": "^1.8.1",
     "sort-by": "^0.0.2",
+    "validator": "file:../packages/validator",
     "yup": "^1.2.0"
   },
   "devDependencies": {

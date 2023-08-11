@@ -1,21 +1,20 @@
-import Joi from 'joi';
-import { LeadBusinessAttributes } from '../interfaces/LeadBusiness';
+import { z } from 'zod';
 import validationMiddleware from '../middleware/validationMiddleware';
 
-export const LeadBusinessSchema = Joi.object<LeadBusinessAttributes>({
-  leadId: Joi.string().guid().required(),
-  businessId: Joi.string().guid().required(),
+export const LeadBusinessSchema = z.object({
+  leadId: z.string().uuid(),
+  businessId: z.string().uuid(),
 });
 
-export const LeadBusinessFetchOrUpdateRequestSchema = LeadBusinessSchema.keys({
-  leadId: Joi.optional(),
-  businessId: Joi.optional(),
-});
+export const LeadBusinessFetchRequestSchema = LeadBusinessSchema.omit({ leadId: true }).partial();
 
-export const LeadBusinessFetchByIdRequestSchema = LeadBusinessSchema.keys({
-  businessId: Joi.optional(),
-});
+export const LeadBusinessFetchByIdRequestSchema = LeadBusinessSchema.pick({ leadId: true });
 
-export const leadBusinessFetchRequestValidationMiddleware = validationMiddleware(LeadBusinessFetchOrUpdateRequestSchema, 'query');
-export const leadBusinessFetchByIdRequestValidationMiddleware = validationMiddleware(LeadBusinessSchema, 'params');
-export const leadBusinessUpdateRequestValidationMiddleware = validationMiddleware(LeadBusinessFetchOrUpdateRequestSchema, 'body');
+export const LeadBusinessCreateRequestSchema = LeadBusinessSchema.omit({ leadId: true });
+
+export const LeadBusinessUpdateRequestSchema = LeadBusinessSchema.omit({ leadId: true }).partial();
+
+export const LeadBusinessFetchRequestValidationMiddleware = validationMiddleware(LeadBusinessFetchRequestSchema, 'query');
+export const LeadBusinessFetchByIdRequestValidationMiddleware = validationMiddleware(LeadBusinessFetchByIdRequestSchema, 'params');
+export const LeadBusinessCreateRequestValidationMiddleware = validationMiddleware(LeadBusinessCreateRequestSchema, 'body');
+export const LeadBusinessUpdateRequestValidationMiddleware = validationMiddleware(LeadBusinessUpdateRequestSchema, 'body');

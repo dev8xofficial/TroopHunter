@@ -1,7 +1,6 @@
-import Joi from 'joi';
-import { IBusinessSourceResponseAttributes } from '../interfaces/BusinessSource';
+import { z } from 'zod';
 
-export const BusinessSourceSchema = Joi.object<IBusinessSourceResponseAttributes>({
-  id: Joi.string().guid().required(),
-  sourceName: Joi.string().required(),
+export const BusinessSourceSchema = z.object({
+  id: z.string().uuid(),
+  sourceName: z.string(),
 });

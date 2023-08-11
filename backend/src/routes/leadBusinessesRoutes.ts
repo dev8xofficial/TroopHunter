@@ -3,8 +3,8 @@ import { getBusinessesByLeadId, getLeadBusinesses } from '../controllers/LeadBus
 import { updateLeadBusiness } from '../controllers/LeadBusinessesController/LeadBusinessesController.update';
 import { deleteLeadBusiness } from '../controllers/LeadBusinessesController/LeadBusinessesController.delete';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { paginationRequestValidationMiddleware } from 'validator/validators/Pagination';
-import { leadBusinessFetchByIdRequestValidationMiddleware, leadBusinessFetchRequestValidationMiddleware } from 'validator/validators/LeadBusiness';
+import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { LeadBusinessFetchByIdRequestValidationMiddleware, LeadBusinessFetchRequestValidationMiddleware } from 'validator/validators/LeadBusiness';
 
 const router = express.Router();
 
@@ -12,9 +12,9 @@ const router = express.Router();
 router.use(authenticateUser);
 
 // Define user routes
-router.get('/search', leadBusinessFetchRequestValidationMiddleware, paginationRequestValidationMiddleware, getBusinessesByLeadId);
-router.get('/', paginationRequestValidationMiddleware, getLeadBusinesses);
+router.get('/search', LeadBusinessFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getBusinessesByLeadId);
+router.get('/', PaginationRequestValidationMiddleware, getLeadBusinesses);
 router.put('/:leadId', updateLeadBusiness);
-router.delete('/:leadId', leadBusinessFetchByIdRequestValidationMiddleware, deleteLeadBusiness);
+router.delete('/:leadId', LeadBusinessFetchByIdRequestValidationMiddleware, deleteLeadBusiness);
 
 export default router;
