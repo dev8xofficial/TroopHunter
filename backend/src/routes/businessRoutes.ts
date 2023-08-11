@@ -1,8 +1,8 @@
 import express from 'express';
 import { getBusinessesByQuery, getBusinesses, getBusinessById, createBusiness, updateBusiness, deleteBusiness } from '../controllers/BusinessController';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { BusinessCreateRequestValidationMiddleware, BusinessFetchByIdRequestValidationMiddleware, BusinessFetchRequestValidationMiddleware, BusinessUpdateRequestValidationMiddleware } from 'validator/validators/Business';
-import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { BusinessCreateRequestValidationMiddleware, BusinessFetchByIdRequestValidationMiddleware, BusinessFetchRequestValidationMiddleware, BusinessUpdateRequestValidationMiddleware } from 'validator/validators';
+import { PaginationRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 

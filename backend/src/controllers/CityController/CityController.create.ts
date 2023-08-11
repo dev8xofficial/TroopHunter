@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import City from '../../models/City';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'validator/interfaces/Response';
-import { ICityAttributes } from 'validator/interfaces/City';
-import { createApiResponse } from 'validator/utils/response';
+import { ApiResponse } from 'validator/interfaces';
+import { ICityAttributes } from 'validator/interfaces';
+import { createApiResponse } from 'validator/utils';
 import { CityMessageKey, getCityMessage } from '../../messages/City';
 import { v4 as uuidv4 } from 'uuid';
 

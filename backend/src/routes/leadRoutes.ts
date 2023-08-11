@@ -1,8 +1,8 @@
 import express from 'express';
 import { getLeads, getLeadById, createLead, updateLead, deleteLead, deleteLeads } from '../controllers/LeadController';
-import { LeadFetchByIdRequestValidationMiddleware, LeadCreateRequestValidationMiddleware, LeadUpdateRequestValidationMiddleware, LeadBulkDeleteRequestValidationMiddleware } from 'validator/validators/Lead';
+import { LeadFetchByIdRequestValidationMiddleware, LeadCreateRequestValidationMiddleware, LeadUpdateRequestValidationMiddleware, LeadBulkDeleteRequestValidationMiddleware } from 'validator/validators';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { PaginationRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 

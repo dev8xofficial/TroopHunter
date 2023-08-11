@@ -1,8 +1,8 @@
 import express from 'express';
 import { getBusinessesByLeadId, getLeadBusinesses, updateLeadBusiness, deleteLeadBusiness } from '../controllers/LeadBusinessesController';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
-import { LeadBusinessFetchByIdRequestValidationMiddleware, LeadBusinessFetchRequestValidationMiddleware } from 'validator/validators/LeadBusiness';
+import { PaginationRequestValidationMiddleware } from 'validator/validators';
+import { LeadBusinessFetchByIdRequestValidationMiddleware, LeadBusinessFetchRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 

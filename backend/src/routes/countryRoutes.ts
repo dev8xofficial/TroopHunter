@@ -1,8 +1,8 @@
 import express from 'express';
 import { getCountries, getCountryById, getCountriesByQuery, createCountry, updateCountry, deleteCountry } from '../controllers/CountryController';
-import { CountryFetchByIdRequestValidationMiddleware, CountryFetchRequestValidationMiddleware, CountryCreateRequestValidationMiddleware, CountryUpdateRequestValidationMiddleware } from 'validator/validators/Country';
+import { CountryFetchByIdRequestValidationMiddleware, CountryFetchRequestValidationMiddleware, CountryCreateRequestValidationMiddleware, CountryUpdateRequestValidationMiddleware } from 'validator/validators';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { PaginationRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 

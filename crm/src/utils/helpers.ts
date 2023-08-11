@@ -1,5 +1,5 @@
 import { IFilterAttributes } from '../store/reducers/homePageReducer';
-import { ILeadAttributes } from 'validator/interfaces/Lead';
+import { ILeadAttributes } from 'validator/interfaces';
 
 export function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');

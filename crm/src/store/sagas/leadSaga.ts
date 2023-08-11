@@ -3,8 +3,8 @@ import { toast } from 'react-toastify';
 import { createLeadService, updateLeadService, deleteLeadService, deleteLeadsService } from '../../services/leadServices';
 import { fetchUserAction, updateUserLocallyAction } from '../actions/userActions';
 import { resetHomePageFiltersAction, resetHomePageDraftLeadIdAction } from '../actions/homePageActions';
-import { IUserAttributes } from 'validator/interfaces/User';
-import { ILeadCreateRequestAttributes, ILeadAttributes } from 'validator/interfaces/Lead';
+import { IUserAttributes } from 'validator/interfaces';
+import { ILeadCreateRequestAttributes, ILeadAttributes } from 'validator/interfaces';
 import { resetLeadsPageSelectedLeadIds } from '../actions/leadsPageActions';
 import { createLeadAction, deleteLeadAction, deleteLeadsAction, updateLeadAction } from '../actions/leadActions';
 

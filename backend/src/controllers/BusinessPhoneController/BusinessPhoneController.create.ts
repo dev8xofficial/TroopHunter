@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import BusinessPhone from '../../models/BusinessPhone';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'validator/interfaces/Response';
-import { IBusinessPhoneAttributes } from 'validator/interfaces/BusinessPhone';
-import { createApiResponse } from 'validator/utils/response';
+import { ApiResponse } from 'validator/interfaces';
+import { IBusinessPhoneAttributes } from 'validator/interfaces';
+import { createApiResponse } from 'validator/utils';
 import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '../../messages/BusinessPhone';
 import { v4 as uuidv4 } from 'uuid';
 

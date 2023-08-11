@@ -2,9 +2,9 @@ import { Request, Response } from 'express';
 import Lead from '../../models/Lead';
 import User from '../../models/User';
 import logger from '../../utils/logger';
-import { createApiResponse } from 'validator/utils/response';
-import { ApiResponse } from 'validator/interfaces/Response';
-import { ILeadAttributes } from 'validator/interfaces/Lead';
+import { createApiResponse } from 'validator/utils';
+import { ApiResponse } from 'validator/interfaces';
+import { ILeadAttributes } from 'validator/interfaces';
 import { LeadMessageKey, getLeadMessage } from '../../messages/Lead';
 import { UserMessageKey, getUserMessage } from '../../messages/User';
 

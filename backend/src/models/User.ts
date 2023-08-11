@@ -1,6 +1,6 @@
 import { DataTypes, Model, HasManyCreateAssociationMixin } from 'sequelize';
 import sequelize from '../config/database';
-import { IUserAttributes } from 'validator/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces';
 import Lead from './Lead';
 
 class User extends Model<Omit<IUserAttributes, 'Leads'>> implements Omit<IUserAttributes, 'Leads'> {

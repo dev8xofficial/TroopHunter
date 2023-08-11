@@ -7,7 +7,7 @@ import Avatar from '../../DataDisplay/Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
 import Checkbox from '../../Inputs/Checkbox/Checkbox';
-import { IBusinessAttributes } from 'validator/interfaces/Business';
+import { IBusinessAttributes } from 'validator/interfaces';
 import { setHomePageBusinessIdsAction, setHomePagePaginationPageAction } from '../../../store/actions/homePageActions';
 import { classNames } from '../../../utils/helpers';
 import { IBusinessState } from '../../../store/reducers/businessReducer';

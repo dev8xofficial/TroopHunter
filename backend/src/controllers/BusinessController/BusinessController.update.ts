@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { ApiResponse } from 'validator/interfaces/Response';
+import { ApiResponse } from 'validator/interfaces';
 import Business from '../../models/Business';
 import logger from '../../utils/logger';
-import { createApiResponse } from 'validator/utils/response';
+import { createApiResponse } from 'validator/utils';
 import { BusinessMessageKey, getBusinessMessage } from '../../messages/Business';
-import { IBusinessAttributes } from 'validator/interfaces/Business';
+import { IBusinessAttributes } from 'validator/interfaces';
 
 export const updateBusiness = async (req: Request, res: Response) => {
   const { id } = req.params;

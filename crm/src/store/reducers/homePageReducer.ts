@@ -1,6 +1,6 @@
 import { PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { setHomePageFiltersAction, resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePageLoadingFailureAction, setHomePagePaginationPageAction, setHomePagePaginationLimitAction, setHomePageDraftLeadIdAction, resetHomePageDraftLeadIdAction, setHomePageBusinessIdsAction, resetHomePageBusinessIdsAction } from '../actions/homePageActions';
-import { ILeadAttributes } from 'validator/interfaces/Lead';
+import { ILeadAttributes } from 'validator/interfaces';
 
 export interface IFilterAttributes {
   name: { label: string; name: string; value: string };

@@ -1,5 +1,5 @@
 import { Transaction } from 'sequelize';
-import { IBusinessSourceAttributes } from 'validator/interfaces/BusinessSource';
+import { IBusinessSourceAttributes } from 'validator/interfaces';
 import BusinessSource from '../models/BusinessSource';
 import logger from '../utils/logger';
 import { Op } from 'sequelize';

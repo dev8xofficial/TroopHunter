@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import Country from '../../models/Country';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'validator/interfaces/Response';
-import { createApiResponse } from 'validator/utils/response';
+import { ApiResponse } from 'validator/interfaces';
+import { createApiResponse } from 'validator/utils';
 import { CountryMessageKey, getCountryMessage } from '../../messages/Country';
 import { v4 as uuidv4 } from 'uuid';
-import { ICountryAttributes } from 'validator/interfaces/Country';
+import { ICountryAttributes } from 'validator/interfaces';
 
 // Create a new country
 export const createCountry = async (req: Request, res: Response) => {

@@ -1,9 +1,9 @@
 import express from 'express';
 import { getUsers, getUserWithInclude, getUserById, updateUser, deleteUser } from '../controllers/UserController';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { UserFetchRequestValidationMiddleware, UserFetchByIdRequestValidationMiddleware, UserUpdateRequestValidationMiddleware } from 'validator/validators/User';
-import { RequestValidationMiddleware } from 'validator/validators/Request';
-import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { UserFetchRequestValidationMiddleware, UserFetchByIdRequestValidationMiddleware, UserUpdateRequestValidationMiddleware } from 'validator/validators';
+import { RequestValidationMiddleware } from 'validator/validators';
+import { PaginationRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 

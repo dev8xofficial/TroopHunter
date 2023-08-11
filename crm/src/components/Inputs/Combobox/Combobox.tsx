@@ -8,9 +8,9 @@ import { getCountriesByQuery, getCountryByIdService } from '../../../services/co
 import { getStateByIdService, getStatesByQuery } from '../../../services/stateService';
 import { getCitiesByQuery, getCityByIdService } from '../../../services/cityService';
 import { IAuthState } from '../../../store/reducers/authReducer';
-import { ICountryAttributes } from 'validator/interfaces/Country';
-import { IStateAttributes } from 'validator/interfaces/State';
-import { ICityAttributes } from 'validator/interfaces/City';
+import { ICountryAttributes } from 'validator/interfaces';
+import { IStateAttributes } from 'validator/interfaces';
+import { ICityAttributes } from 'validator/interfaces';
 
 const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value, onChange }: ILocationComboboxProps): JSX.Element => {
   const auth = useSelector((state: { auth: IAuthState }) => state.auth);

@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IPostalCodeAttributes } from 'validator/interfaces/PostalCode';
+import { IPostalCodeAttributes } from 'validator/interfaces';
 
 class PostalCode extends Model<IPostalCodeAttributes> implements IPostalCodeAttributes {
   public id!: string;

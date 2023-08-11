@@ -17,8 +17,8 @@ import LeadSaveDialog from '../components/Feedback/LeadSaveDialog/LeadSaveDialog
 import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDeletionDialog';
 import { IAuthState } from '../store/reducers/authReducer';
 import { compareFiltersAndLead, isFiltersChanged } from '../utils/helpers';
-import { IUserAttributes } from 'validator/interfaces/User';
-import { ILeadAttributes } from 'validator/interfaces/Lead';
+import { IUserAttributes } from 'validator/interfaces';
+import { ILeadAttributes } from 'validator/interfaces';
 import { IUserState } from '../store/reducers/userReducer';
 
 const tabs = [{ name: 'Filters', href: '#', current: true }];

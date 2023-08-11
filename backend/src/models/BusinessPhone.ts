@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IBusinessPhoneAttributes } from 'validator/interfaces/BusinessPhone';
+import { IBusinessPhoneAttributes } from 'validator/interfaces';
 
 class BusinessPhone extends Model<IBusinessPhoneAttributes> implements IBusinessPhoneAttributes {
   public id!: string;

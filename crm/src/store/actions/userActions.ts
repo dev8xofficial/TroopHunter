@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { IUsersFetchPayload, IUsersFetchUserPayload } from '../sagas/userSaga';
-import { IUserAttributes } from 'validator/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces';
 import { IUserState } from '../reducers/userReducer';
 
 export const fetchUsersAction = createAction<IUsersFetchPayload>('user/fetchUsersAction');

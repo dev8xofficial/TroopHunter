@@ -1,6 +1,6 @@
 import { PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction } from '../actions/businessActions';
-import { IBusinessAttributes } from 'validator/interfaces/Business';
+import { IBusinessAttributes } from 'validator/interfaces';
 
 export interface IBusinessState {
   data: { businesses: { [key: string]: IBusinessAttributes }; totalPages: number; totalRecords: number };

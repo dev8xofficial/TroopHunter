@@ -1,5 +1,5 @@
 import libphonenumber from 'google-libphonenumber';
-import { IBusinessPhoneAttributes } from 'validator/interfaces/BusinessPhone';
+import { IBusinessPhoneAttributes } from 'validator/interfaces';
 import BusinessPhone from '../models/BusinessPhone';
 import { Transaction } from 'sequelize';
 import logger from '../utils/logger';

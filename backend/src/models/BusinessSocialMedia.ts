@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IBusinessSocialMediaAttributes } from 'validator/interfaces/BusinessSocialMedia';
+import { IBusinessSocialMediaAttributes } from 'validator/interfaces';
 
 class BusinessSocialMedia extends Model<IBusinessSocialMediaAttributes> implements IBusinessSocialMediaAttributes {
   public id!: string;

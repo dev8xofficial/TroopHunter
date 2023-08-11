@@ -1,8 +1,8 @@
 import express from 'express';
 import { getBusinessPhonesByNumber, getBusinessPhones, getBusinessPhoneById, createBusinessPhone, updateBusinessPhone, deleteBusinessPhone } from '../controllers/BusinessPhoneController';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { BusinessPhoneFetchByIdRequestValidationMiddleware, BusinessPhoneFetchRequestValidationMiddleware, BusinessPhoneCreateRequestValidationMiddleware, BusinessPhoneUpdateRequestValidationMiddleware } from 'validator/validators/BusinessPhone';
-import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { BusinessPhoneFetchByIdRequestValidationMiddleware, BusinessPhoneFetchRequestValidationMiddleware, BusinessPhoneCreateRequestValidationMiddleware, BusinessPhoneUpdateRequestValidationMiddleware } from 'validator/validators';
+import { PaginationRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 

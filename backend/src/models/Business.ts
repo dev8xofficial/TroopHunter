@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IBusinessAttributes } from 'validator/interfaces/Business';
-import { IBusinessPhotoAttributes } from 'validator/interfaces/BusinessPhoto';
+import { IBusinessAttributes } from 'validator/interfaces';
+import { IBusinessPhotoAttributes } from 'validator/interfaces';
 import BusinessCategory from './BusinessCategory';
 import City from './City';
 import Country from './Country';

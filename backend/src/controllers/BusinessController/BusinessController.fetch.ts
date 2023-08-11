@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
 import Sequelize from '../../config/database';
-import { ApiResponse } from 'validator/interfaces/Response';
+import { ApiResponse } from 'validator/interfaces';
+import { createApiResponse } from 'validator/utils';
 import Business from '../../models/Business';
 import { Point } from 'geojson';
 import logger from '../../utils/logger';
-import { createApiResponse } from 'validator/utils/response';
 import BusinessPhone from '../../models/BusinessPhone';
 import { BusinessMessageKey, getBusinessMessage } from '../../messages/Business';
 

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import City from '../../models/City';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'validator/interfaces/Response';
-import { createApiResponse } from 'validator/utils/response';
+import { ApiResponse } from 'validator/interfaces';
+import { createApiResponse } from 'validator/utils';
 import { CityMessageKey, getCityMessage } from '../../messages/City';
-import { ICityAttributes } from 'validator/interfaces/City';
+import { ICityAttributes } from 'validator/interfaces';
 
 // Update a city by ID
 export const updateCity = async (req: Request, res: Response) => {

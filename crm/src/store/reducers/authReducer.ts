@@ -1,6 +1,6 @@
 import { PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { authLoginSuccessAction, authLoginFailureAction } from '../actions/authActions';
-import { IUserAttributes } from 'validator/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces';
 
 export interface IAuthState {
   token: string;

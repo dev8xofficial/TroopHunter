@@ -2,7 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import { fetchUsersSuccessAction, fetchUsersFailureAction, fetchUserSuccessAction, fetchUsersAction, fetchUserAction } from '../actions/userActions';
 import { getUsersService, getUserWithIncludeService } from '../../services/userService';
-import { IUserAttributes } from 'validator/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces';
 import { IUserState } from '../reducers/userReducer';
 
 export interface IUsersFetchPayload {

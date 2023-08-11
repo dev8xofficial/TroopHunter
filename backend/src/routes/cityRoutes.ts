@@ -1,8 +1,8 @@
 import express from 'express';
 import { getCities, getCityById, getCitiesByQuery, createCity, updateCity, deleteCity } from '../controllers/CityController';
 import { authenticateUser } from '../middlewares/authMiddleware';
-import { CityCreateRequestValidationMiddleware, CityFetchByIdRequestValidationMiddleware, CityFetchRequestValidationMiddleware, CityUpdateRequestValidationMiddleware } from 'validator/validators/City';
-import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
+import { CityCreateRequestValidationMiddleware, CityFetchByIdRequestValidationMiddleware, CityFetchRequestValidationMiddleware, CityUpdateRequestValidationMiddleware } from 'validator/validators';
+import { PaginationRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 

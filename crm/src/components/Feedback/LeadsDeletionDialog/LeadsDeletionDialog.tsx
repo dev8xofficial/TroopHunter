@@ -5,7 +5,7 @@ import { Transition, Dialog } from '@headlessui/react';
 import { LeadsDeletionDialogAttributes } from './LeadsDeletionDialog.interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteLeadsAction } from '../../../store/actions/leadActions';
-import { IUserAttributes } from 'validator/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces';
 import Button from '../../Inputs/Button/Button';
 import { IAuthState } from '../../../store/reducers/authReducer';
 import { IUserState } from '../../../store/reducers/userReducer';

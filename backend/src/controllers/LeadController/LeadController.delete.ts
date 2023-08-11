@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import Lead from '../../models/Lead';
 import logger from '../../utils/logger';
-import { createApiResponse } from 'validator/utils/response';
-import { ApiResponse } from 'validator/interfaces/Response';
+import { createApiResponse } from 'validator/utils';
+import { ApiResponse } from 'validator/interfaces';
 import { LeadMessageKey, getLeadMessage } from '../../messages/Lead';
 
 export const deleteLead = async (req: Request, res: Response) => {

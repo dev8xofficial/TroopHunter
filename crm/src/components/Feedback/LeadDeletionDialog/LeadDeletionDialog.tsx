@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react';
 import { LeadDeletionDialogAttributes } from './LeadDeletionDialog.interfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { IUserAttributes } from 'validator/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces';
 import Button from '../../Inputs/Button/Button';
 import { deleteLeadAction } from '../../../store/actions/leadActions';
 import { IAuthState } from '../../../store/reducers/authReducer';

@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IBusinessPhotoAttributes } from 'validator/interfaces/BusinessPhoto';
+import { IBusinessPhotoAttributes } from 'validator/interfaces';
 
 class BusinessPhoto extends Model<IBusinessPhotoAttributes> implements IBusinessPhotoAttributes {
   public id!: string;

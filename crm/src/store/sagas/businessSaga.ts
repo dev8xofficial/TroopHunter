@@ -3,9 +3,9 @@ import { takeLatest, put, select } from 'redux-saga/effects';
 import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction, fetchBusinessesAction } from '../actions/businessActions';
 import { getBusinessesBySearchService } from '../../services/businessService';
 import { setHomePageLoadingFailureAction, setHomePageLoadingSuccessAction } from '../actions/homePageActions';
-import { IBusinessFetchRequestAttributes } from 'validator/interfaces/Business';
-import { IPaginationAttributes } from 'validator/interfaces/Pagination';
-import { IBusinessAttributes } from 'validator/interfaces/Business';
+import { IBusinessFetchRequestAttributes } from 'validator/interfaces';
+import { IPaginationAttributes } from 'validator/interfaces';
+import { IBusinessAttributes } from 'validator/interfaces';
 import { IBusinessState } from '../reducers/businessReducer';
 
 export interface IBusinessesFetchPayload extends IBusinessFetchRequestAttributes, IPaginationAttributes {

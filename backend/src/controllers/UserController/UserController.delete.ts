@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import User from '../../models/User';
 import logger from '../../utils/logger';
-import { ApiResponse } from 'validator/interfaces/Response';
-import { createApiResponse } from 'validator/utils/response';
+import { ApiResponse } from 'validator/interfaces';
+import { createApiResponse } from 'validator/utils';
 import { UserMessageKey, getUserMessage } from '../../messages/User';
 
 export const deleteUser = async (req: Request, res: Response) => {

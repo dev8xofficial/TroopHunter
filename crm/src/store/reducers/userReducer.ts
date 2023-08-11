@@ -1,6 +1,6 @@
 import { PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { fetchUsersSuccessAction, fetchUsersFailureAction, fetchUserSuccessAction, addUserLocallyAction, updateUserLocallyAction, deleteUserLocallyAction } from '../actions/userActions';
-import { IUserAttributes } from 'validator/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces';
 
 export interface IUserState {
   data: { [key: string]: IUserAttributes };

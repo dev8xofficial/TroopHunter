@@ -6,7 +6,7 @@ import IconButton from '../../Inputs/IconButton/IconButton';
 import { IActionBarProps } from './ActionBar.interfaces';
 import Avatar from '../../DataDisplay/Avatar/Avatar';
 import { useSelector } from 'react-redux';
-import { IUserAttributes } from 'validator/interfaces/User';
+import { IUserAttributes } from 'validator/interfaces';
 import LeadsDeletionDialog from '../../Feedback/LeadsDeletionDialog/LeadsDeletionDialog';
 import Progress from '../../Feedback/Progress/Progress';
 import { IAuthState } from '../../../store/reducers/authReducer';

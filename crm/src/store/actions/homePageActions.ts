@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { IFilterAttributes } from '../reducers/homePageReducer';
-import { ILeadAttributes } from 'validator/interfaces/Lead';
+import { ILeadAttributes } from 'validator/interfaces';
 
 export const setHomePageFiltersAction = createAction<IFilterAttributes>('homePage/setHomePageLFiltersAction');
 export const resetHomePageFiltersAction = createAction('homePage/resetHomePageFiltersAction');

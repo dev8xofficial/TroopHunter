@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import LeadBusiness from '../../models/LeadBusiness';
 import logger from '../../utils/logger';
-import { createApiResponse } from 'validator/utils/response';
-import { ApiResponse } from 'validator/interfaces/Response';
+import { createApiResponse } from 'validator/utils';
+import { ApiResponse } from 'validator/interfaces';
 import { LeadBusinessMessageKey, getLeadBusinessMessage } from '../../messages/LeadBusiness';
 
 export const deleteLeadBusiness = async (req: Request, res: Response) => {

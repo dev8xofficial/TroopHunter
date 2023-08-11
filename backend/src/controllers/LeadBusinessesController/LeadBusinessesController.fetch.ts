@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import LeadBusiness from '../../models/LeadBusiness';
 import logger from '../../utils/logger';
 import Business from '../../models/Business';
-import { createApiResponse } from 'validator/utils/response';
-import { ApiResponse } from 'validator/interfaces/Response';
+import { createApiResponse } from 'validator/utils';
+import { ApiResponse } from 'validator/interfaces';
 import { LeadBusinessMessageKey, getLeadBusinessMessage } from '../../messages/LeadBusiness';
 import { Op } from 'sequelize';
 
