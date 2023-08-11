@@ -51,6 +51,7 @@ const leadPageReducer = createReducer(initialState, (builder) => {
     // Handling local updates
     .addCase(setHomePageFiltersAction, (state, action: PayloadAction<IFilterAttributes>) => {
       state.filters = action.payload;
+      state.page = 1;
       state.isLoading = true;
     })
     .addCase(resetHomePageFiltersAction, (state) => {
