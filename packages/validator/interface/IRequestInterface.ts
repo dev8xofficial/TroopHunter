@@ -1,3 +1,0 @@
-interface IRequestAttributes {
-  include?: any;
-}
