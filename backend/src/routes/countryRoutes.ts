@@ -1,8 +1,5 @@
 import express from 'express';
-import { getCountries, getCountryById, getCountriesByQuery } from '../controllers/CountryController/CountryController.fetch';
-import { createCountry } from '../controllers/CountryController/CountryController.create';
-import { updateCountry } from '../controllers/CountryController/CountryController.update';
-import { deleteCountry } from '../controllers/CountryController/CountryController.delete';
+import { getCountries, getCountryById, getCountriesByQuery, createCountry, updateCountry, deleteCountry } from '../controllers/CountryController';
 import { CountryFetchByIdRequestValidationMiddleware, CountryFetchRequestValidationMiddleware, CountryCreateRequestValidationMiddleware, CountryUpdateRequestValidationMiddleware } from 'validator/validators/Country';
 import { authenticateUser } from '../middlewares/authMiddleware';
 import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';

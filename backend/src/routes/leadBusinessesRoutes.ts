@@ -1,7 +1,5 @@
 import express from 'express';
-import { getBusinessesByLeadId, getLeadBusinesses } from '../controllers/LeadBusinessesController/LeadBusinessesController.fetch';
-import { updateLeadBusiness } from '../controllers/LeadBusinessesController/LeadBusinessesController.update';
-import { deleteLeadBusiness } from '../controllers/LeadBusinessesController/LeadBusinessesController.delete';
+import { getBusinessesByLeadId, getLeadBusinesses, updateLeadBusiness, deleteLeadBusiness } from '../controllers/LeadBusinessesController';
 import { authenticateUser } from '../middlewares/authMiddleware';
 import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
 import { LeadBusinessFetchByIdRequestValidationMiddleware, LeadBusinessFetchRequestValidationMiddleware } from 'validator/validators/LeadBusiness';

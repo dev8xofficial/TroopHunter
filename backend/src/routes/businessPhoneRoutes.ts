@@ -1,8 +1,5 @@
 import express from 'express';
-import { getBusinessPhonesByNumber, getBusinessPhones, getBusinessPhoneById } from '../controllers/BusinessPhoneController/BusinessPhoneController.fetch';
-import { createBusinessPhone } from '../controllers/BusinessPhoneController/BusinessPhoneController.create';
-import { updateBusinessPhone } from '../controllers/BusinessPhoneController/BusinessPhoneController.update';
-import { deleteBusinessPhone } from '../controllers/BusinessPhoneController/BusinessPhoneController.delete';
+import { getBusinessPhonesByNumber, getBusinessPhones, getBusinessPhoneById, createBusinessPhone, updateBusinessPhone, deleteBusinessPhone } from '../controllers/BusinessPhoneController';
 import { authenticateUser } from '../middlewares/authMiddleware';
 import { BusinessPhoneFetchByIdRequestValidationMiddleware, BusinessPhoneFetchRequestValidationMiddleware, BusinessPhoneCreateRequestValidationMiddleware, BusinessPhoneUpdateRequestValidationMiddleware } from 'validator/validators/BusinessPhone';
 import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';

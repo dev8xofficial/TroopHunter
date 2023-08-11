@@ -1,8 +1,5 @@
 import express from 'express';
-import { getStates, getStateById, getStatesByQuery } from '../controllers/StateController/StateController.fetch';
-import { createState } from '../controllers/StateController/StateController.create';
-import { updateState } from '../controllers/StateController/StateController.update';
-import { deleteState } from '../controllers/StateController/StateController.delete';
+import { getStates, getStateById, getStatesByQuery, createState, updateState, deleteState } from '../controllers/StateController';
 import { StateFetchByIdRequestValidationMiddleware, StateFetchRequestValidationMiddleware, StateCreateRequestValidationMiddleware, StateUpdateRequestValidationMiddleware } from 'validator/validators/State';
 import { authenticateUser } from '../middlewares/authMiddleware';
 import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';

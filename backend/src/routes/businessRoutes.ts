@@ -1,8 +1,5 @@
 import express from 'express';
-import { getBusinessesByQuery, getBusinesses, getBusinessById } from '../controllers/BusinessController/BusinessController.fetch';
-import { createBusiness } from '../controllers/BusinessController/BusinessController.create';
-import { updateBusiness } from '../controllers/BusinessController/BusinessController.update';
-import { deleteBusiness } from '../controllers/BusinessController/BusinessController.delete';
+import { getBusinessesByQuery, getBusinesses, getBusinessById, createBusiness, updateBusiness, deleteBusiness } from '../controllers/BusinessController';
 import { authenticateUser } from '../middlewares/authMiddleware';
 import { BusinessCreateRequestValidationMiddleware, BusinessFetchByIdRequestValidationMiddleware, BusinessFetchRequestValidationMiddleware, BusinessUpdateRequestValidationMiddleware } from 'validator/validators/Business';
 import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';

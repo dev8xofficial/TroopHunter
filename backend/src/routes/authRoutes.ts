@@ -1,6 +1,5 @@
 import express from 'express';
-import { login } from '../controllers/AuthController/AuthController.fetch';
-import { register } from '../controllers/AuthController/AuthController.create';
+import { login, register } from '../controllers/AuthController';
 import { UserCreateRequestValidationMiddleware } from 'validator/validators/User';
 import { LoginRequestValidationMiddleware } from 'validator/validators/Auth';
 

@@ -1,8 +1,5 @@
 import express from 'express';
-import { getCities, getCityById, getCitiesByQuery } from '../controllers/CityController/CityController.fetch';
-import { createCity } from '../controllers/CityController/CityController.create';
-import { updateCity } from '../controllers/CityController/CityController.update';
-import { deleteCity } from '../controllers/CityController/CityController.delete';
+import { getCities, getCityById, getCitiesByQuery, createCity, updateCity, deleteCity } from '../controllers/CityController';
 import { authenticateUser } from '../middlewares/authMiddleware';
 import { CityCreateRequestValidationMiddleware, CityFetchByIdRequestValidationMiddleware, CityFetchRequestValidationMiddleware, CityUpdateRequestValidationMiddleware } from 'validator/validators/City';
 import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';

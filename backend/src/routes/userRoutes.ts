@@ -1,7 +1,5 @@
 import express from 'express';
-import { getUsers, getUserWithInclude, getUserById } from '../controllers/UserController/UserController.fetch';
-import { updateUser } from '../controllers/UserController/UserController.update';
-import { deleteUser } from '../controllers/UserController/UserController.delete';
+import { getUsers, getUserWithInclude, getUserById, updateUser, deleteUser } from '../controllers/UserController';
 import { authenticateUser } from '../middlewares/authMiddleware';
 import { UserFetchRequestValidationMiddleware, UserFetchByIdRequestValidationMiddleware, UserUpdateRequestValidationMiddleware } from 'validator/validators/User';
 import { RequestValidationMiddleware } from 'validator/validators/Request';

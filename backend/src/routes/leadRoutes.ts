@@ -1,8 +1,5 @@
 import express from 'express';
-import { getLeads, getLeadById } from '../controllers/LeadController/LeadController.fetch';
-import { createLead } from '../controllers/LeadController/LeadController.create';
-import { updateLead } from '../controllers/LeadController/LeadController.update';
-import { deleteLead, deleteLeads } from '../controllers/LeadController/LeadController.delete';
+import { getLeads, getLeadById, createLead, updateLead, deleteLead, deleteLeads } from '../controllers/LeadController';
 import { LeadFetchByIdRequestValidationMiddleware, LeadCreateRequestValidationMiddleware, LeadUpdateRequestValidationMiddleware, LeadBulkDeleteRequestValidationMiddleware } from 'validator/validators/Lead';
 import { authenticateUser } from '../middlewares/authMiddleware';
 import { PaginationRequestValidationMiddleware } from 'validator/validators/Pagination';
