@@ -13,7 +13,7 @@ import { IStateAttributes } from 'validator/interfaces/State';
 import { ICityAttributes } from 'validator/interfaces/City';
 
 const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value, onChange }: ILocationComboboxProps): JSX.Element => {
-  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
+  const auth = useSelector((state: { auth: IAuthState }) => state.auth);
 
   const token: string = auth.token;
 

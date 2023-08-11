@@ -34,7 +34,7 @@
     "pg-hstore": "^2.3.4",
     "pg-pool": "^3.6.0",
     "pg-promise": "^11.5.0",
-    "sequelize": "^6.32.0",
+    "sequelize": "^6.32.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "typescript": "^5.1.3",

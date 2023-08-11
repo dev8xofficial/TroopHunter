@@ -30,7 +30,7 @@ export const createBusiness = async (req: Request, res: Response) => {
   const { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour }: IBusinessCreateRequestAttributes = req.body;
 
   const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
-  let payload: IBusinessAttributes = {
+  let payload: Omit<IBusinessAttributes, 'BusinessPhone'> = {
     id: uuidv4(),
     name,
     businessDomain: businessDomain?.toLocaleLowerCase(),

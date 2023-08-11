@@ -18,7 +18,7 @@ import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDe
 import { IAuthState } from '../store/reducers/authReducer';
 import { compareFiltersAndLead, isFiltersChanged } from '../utils/helpers';
 import { IUserAttributes } from 'validator/interfaces/User';
-import { ILeadAttributes } from 'validator/interfaces/Lead'
+import { ILeadAttributes } from 'validator/interfaces/Lead';
 import { IUserState } from '../store/reducers/userReducer';
 
 const tabs = [{ name: 'Filters', href: '#', current: true }];
@@ -29,9 +29,9 @@ function classNames(...classes: any) {
 
 const Lead = () => {
   const dispatch = useDispatch();
-  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
-  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
-  const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
+  const auth = useSelector((state: { auth: IAuthState }) => state.auth);
+  const home = useSelector((state: { home: IHomePageState }) => state.home);
+  const users = useSelector((state: { users: IUserState }) => state.users);
 
   const isLeadLoading = home.isLoading;
   const leadPageFilters: IFilterAttributes = home.filters;

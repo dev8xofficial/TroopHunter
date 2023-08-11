@@ -16,7 +16,7 @@ import BusinessOpeningHour from './BusinessOpeningHour';
 import BusinessClosingHour from './BusinessClosingHour';
 import BusinessPhoto from './BusinessPhoto';
 
-class Business extends Model<IBusinessAttributes> implements IBusinessAttributes {
+class Business extends Model<Omit<IBusinessAttributes, 'BusinessPhone'>> implements Omit<IBusinessAttributes, 'BusinessPhone'> {
   public id!: string;
   public name!: string;
   public businessDomain?: string;

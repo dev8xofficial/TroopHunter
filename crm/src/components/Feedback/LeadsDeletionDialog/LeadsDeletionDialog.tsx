@@ -5,7 +5,7 @@ import { Transition, Dialog } from '@headlessui/react';
 import { LeadsDeletionDialogAttributes } from './LeadsDeletionDialog.interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteLeadsAction } from '../../../store/actions/leadActions';
-import { IUserAttributes } from 'validator/interfaces/User'
+import { IUserAttributes } from 'validator/interfaces/User';
 import Button from '../../Inputs/Button/Button';
 import { IAuthState } from '../../../store/reducers/authReducer';
 import { IUserState } from '../../../store/reducers/userReducer';
@@ -13,9 +13,9 @@ import { ILeadsState } from '../../../store/reducers/leadsPageReducer';
 
 const LeadsDeletionDialog: React.FC<LeadsDeletionDialogAttributes> = ({ isOpen, closeModal }: LeadsDeletionDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
-  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
-  const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
-  const { leads }: { leads: ILeadsState } = useSelector((state: { leads: ILeadsState }) => state);
+  const auth = useSelector((state: { auth: IAuthState }) => state.auth);
+  const users = useSelector((state: { users: IUserState }) => state.users);
+  const leads = useSelector((state: { leads: ILeadsState }) => state.leads);
 
   const selectedLeadIds: string[] = leads.selectedLeadIds;
   const usersLoggedIn: IUserAttributes = users.data[auth.userId];

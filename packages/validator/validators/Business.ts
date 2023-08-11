@@ -2,6 +2,7 @@ import * as z from 'zod';
 import { GeoPointSchema } from './GeoPoint';
 import { TimezoneSchema } from './Timezone';
 import validationMiddleware from '../middleware/validationMiddleware';
+import { BusinessPhoneSchema } from './BusinessPhone';
 
 export const BusinessSchema = z.object({
   id: z.string().uuid(),
@@ -30,6 +31,7 @@ export const BusinessSchema = z.object({
   sponsoredAd: z.boolean().optional(),
   openingHourId: z.string().uuid().optional(),
   closingHourId: z.string().uuid().optional(),
+  BusinessPhone: BusinessPhoneSchema,
 });
 
 export const BusinessFetchRequestSchema = BusinessSchema.extend({ range: z.string().optional(), phone: z.string().optional() }).omit({ id: true }).partial();

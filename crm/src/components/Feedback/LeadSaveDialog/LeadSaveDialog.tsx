@@ -11,17 +11,17 @@ import { IFilterAttributes, IHomePageState } from '../../../store/reducers/homeP
 import { createLeadAction, updateLeadAction } from '../../../store/actions/leadActions';
 import { toast } from 'react-toastify';
 import { IUserAttributes } from 'validator/interfaces/User';
-import { ILeadAttributes } from 'validator/interfaces/Lead'
+import { ILeadAttributes } from 'validator/interfaces/Lead';
 import { IAuthState } from '../../../store/reducers/authReducer';
 import { IBusinessState } from '../../../store/reducers/businessReducer';
 import { IUserState } from '../../../store/reducers/userReducer';
 
 const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: CustomDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
-  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
-  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
-  const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
-  const { businesses }: { businesses: IBusinessState } = useSelector((state: { businesses: IBusinessState }) => state);
+  const auth = useSelector((state: { auth: IAuthState }) => state.auth);
+  const home = useSelector((state: { home: IHomePageState }) => state.home);
+  const users = useSelector((state: { users: IUserState }) => state.users);
+  const businesses = useSelector((state: { businesses: IBusinessState }) => state.businesses);
 
   const leadPageFilters: IFilterAttributes = home.filters;
   const leadPageDraftLeadId: string = home.draftLeadId;

@@ -75,9 +75,9 @@ const people = [
 ];
 
 const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = false }: IActionBarProps): JSX.Element => {
-  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
-  const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
-  const { leads }: { leads: ILeadsState } = useSelector((state: { leads: ILeadsState }) => state);
+  const auth = useSelector((state: { auth: IAuthState }) => state.auth);
+  const users = useSelector((state: { users: IUserState }) => state.users);
+  const leads = useSelector((state: { leads: ILeadsState }) => state.leads);
 
   const selectedLeadIds = leads.selectedLeadIds;
   const usersLoggedIn: IUserAttributes = users.data[auth.userId];

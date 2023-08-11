@@ -7,7 +7,7 @@ import Avatar from '../../DataDisplay/Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
 import Checkbox from '../../Inputs/Checkbox/Checkbox';
-import { IBusinessAttributes } from 'validator/interfaces/Business'
+import { IBusinessAttributes } from 'validator/interfaces/Business';
 import { setHomePageBusinessIdsAction, setHomePagePaginationPageAction } from '../../../store/actions/homePageActions';
 import { classNames } from '../../../utils/helpers';
 import { IBusinessState } from '../../../store/reducers/businessReducer';
@@ -43,8 +43,8 @@ interface ITable {
 
 const TableLead: React.FC<ITable> = ({ loadMoreBusinesses }) => {
   const dispatch = useDispatch();
-  const { businesses }: { businesses: IBusinessState } = useSelector((state: { businesses: IBusinessState }) => state);
-  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
+  const businesses = useSelector((state: { businesses: IBusinessState }) => state.businesses);
+  const home = useSelector((state: { home: IHomePageState }) => state.home);
 
   const businessesDataBusinesses: { [key: string]: IBusinessAttributes } = businesses.data.businesses;
   const businessesTotalRecords: number = businesses.data.totalRecords;

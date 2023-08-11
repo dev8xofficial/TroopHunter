@@ -21,7 +21,7 @@ const PrivateRoute = ({ userToken, children }: any) => {
 };
 
 const AppRouter: FC = () => {
-  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
+  const auth = useSelector((state: { auth: IAuthState }) => state.auth);
 
   return (
     <>

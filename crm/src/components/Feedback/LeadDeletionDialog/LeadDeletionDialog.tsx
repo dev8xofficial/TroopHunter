@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react';
 import { LeadDeletionDialogAttributes } from './LeadDeletionDialog.interfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { IUserAttributes } from 'validator/interfaces/User'
+import { IUserAttributes } from 'validator/interfaces/User';
 import Button from '../../Inputs/Button/Button';
 import { deleteLeadAction } from '../../../store/actions/leadActions';
 import { IAuthState } from '../../../store/reducers/authReducer';
@@ -13,9 +13,9 @@ import { IHomePageState } from '../../../store/reducers/homePageReducer';
 
 const LeadDeletionDialog: React.FC<LeadDeletionDialogAttributes> = ({ isOpen, closeModal }: LeadDeletionDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
-  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
-  const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
-  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
+  const auth = useSelector((state: { auth: IAuthState }) => state.auth);
+  const users = useSelector((state: { users: IUserState }) => state.users);
+  const home = useSelector((state: { home: IHomePageState }) => state.home);
 
   const leadPageDraftLeadId: string = home.draftLeadId;
   const usersLoggedIn: IUserAttributes = users.data[auth.userId];

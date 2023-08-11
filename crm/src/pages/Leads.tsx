@@ -5,7 +5,7 @@ import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import { IHomePageState } from '../store/reducers/homePageReducer';
 
 const Leads = () => {
-  const { home }: { home: IHomePageState } = useSelector((state: { home: IHomePageState }) => state);
+  const home = useSelector((state: { home: IHomePageState }) => state.home);
   const isLeadPageLoading = home.isLoading;
   return (
     <>

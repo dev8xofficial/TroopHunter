@@ -7,7 +7,7 @@ import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } 
 import Avatar from '../Avatar/Avatar';
 import _Menu from '../../Navigation/Menu/Menu';
 import { ILeadAttributes } from 'validator/interfaces/Lead';
-import { IUserAttributes } from 'validator/interfaces/User'
+import { IUserAttributes } from 'validator/interfaces/User';
 import { IFilterAttributes } from '../../../store/reducers/homePageReducer';
 import { setHomePageDraftLeadIdAction, setHomePageFiltersAction } from '../../../store/actions/homePageActions';
 import { setLeadsPageSelectedLeadIds } from '../../../store/actions/leadsPageActions';
@@ -24,9 +24,9 @@ const encryptionKey = process.env.ENCRYPTION_KEY ? process.env.ENCRYPTION_KEY : 
 const Table: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { auth }: { auth: IAuthState } = useSelector((state: { auth: IAuthState }) => state);
-  const { users }: { users: IUserState } = useSelector((state: { users: IUserState }) => state);
-  const { leads }: { leads: ILeadsState } = useSelector((state: { leads: ILeadsState }) => state);
+  const auth = useSelector((state: { auth: IAuthState }) => state.auth);
+  const users = useSelector((state: { users: IUserState }) => state.users);
+  const leads = useSelector((state: { leads: ILeadsState }) => state.leads);
 
   const authUserId: string = auth.userId;
   const usersLoggedIn: IUserAttributes = users.data[authUserId];
