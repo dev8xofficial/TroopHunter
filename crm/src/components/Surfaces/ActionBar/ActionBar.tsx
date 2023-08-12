@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { TrashIcon as TrashIconSolid, DocumentTextIcon as DocumentTextIconSolid } from '@heroicons/react/20/solid';
 import { TrashIcon, DocumentTextIcon } from '@heroicons/react/24/outline';

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { type ICheckboxProps } from './Checkbox.interfaces';
 import { classNames } from '../../../utils/helpers';
 

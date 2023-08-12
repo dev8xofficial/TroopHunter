@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { type IFieldErrorProps } from './FieldError.interfaces';
 
 const FieldError: React.FC<IFieldErrorProps> = ({ children, className = '' }: IFieldErrorProps): JSX.Element => {

@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { Combobox, Disclosure, Transition, Dialog } from '@headlessui/react';
 import { ChevronDownIcon, MagnifyingGlassIcon, MinusIcon, PlusIcon, AdjustmentsVerticalIcon, ChevronRightIcon } from '@heroicons/react/20/solid';

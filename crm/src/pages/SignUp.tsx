@@ -1,12 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+
 import { Form, FormikProvider, useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { ISignUpFormValues } from '../types/formik';
-import { authRegisterAction } from '../store/actions/authActions';
-import TextField from '../components/Inputs/TextField/TextField';
-import Button from '../components/Inputs/Button/Button';
+import { Link, useNavigate } from 'react-router-dom';
 
-const _SignUp = () => {
+import Button from '../components/Inputs/Button/Button';
+import TextField from '../components/Inputs/TextField/TextField';
+import { authRegisterAction } from '../store/actions/authActions';
+import { type ISignUpFormValues } from '../types/formik';
+
+const _SignUp: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -14,23 +17,23 @@ const _SignUp = () => {
     firstName: '',
     lastName: '',
     email: '',
-    password: '',
+    password: ''
   };
 
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues,
     enableReinitialize: true,
-    onSubmit: async (values) => {
-      await dispatch(
+    onSubmit: (values) => {
+      dispatch(
         authRegisterAction({
           firstName: values.firstName,
           lastName: values.lastName,
           email: values.email,
           password: values.password,
-          navigate,
+          navigate
         })
       );
-    },
+    }
   });
 
   return (
@@ -50,13 +53,13 @@ const _SignUp = () => {
         <div>
           <FormikProvider value={formik}>
             <Form noValidate onSubmit={formik.handleSubmit} className="space-y-6">
-              <TextField label="First Name" type="text" name="firstName" value={formik.values && formik.values.firstName} onChange={formik.handleChange} required />
+              <TextField label="First Name" type="text" name="firstName" value={formik.values?.firstName} onChange={formik.handleChange} required />
 
-              <TextField label="Last Name" type="text" name="lastName" value={formik.values && formik.values.lastName} onChange={formik.handleChange} required />
+              <TextField label="Last Name" type="text" name="lastName" value={formik.values?.lastName} onChange={formik.handleChange} required />
 
-              <TextField label="Email address" type="email" name="email" value={formik.values && formik.values.email} onChange={formik.handleChange} required />
+              <TextField label="Email address" type="email" name="email" value={formik.values?.email} onChange={formik.handleChange} required />
 
-              <TextField label="Password" type="password" name="password" value={formik.values && formik.values.password} onChange={formik.handleChange} required />
+              <TextField label="Password" type="password" name="password" value={formik.values?.password} onChange={formik.handleChange} required />
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center">

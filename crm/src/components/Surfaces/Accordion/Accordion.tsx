@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Disclosure, Transition, Switch } from '@headlessui/react';
 import { PlusIcon, MinusIcon } from '@heroicons/react/20/solid';
 

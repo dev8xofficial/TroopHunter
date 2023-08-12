@@ -4,6 +4,11 @@ module.exports = {
     es2021: true
   },
   extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'standard-with-typescript',
     'plugin:import/recommended',
     'plugin:prettier/recommended', // Add this line
@@ -26,7 +31,7 @@ module.exports = {
     sourceType: 'module',
     project: './crm/tsconfig.json' // Path to your tsconfig.json file
   },
-  plugins: ['react'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   rules: {
     'import/order': [
       'error',

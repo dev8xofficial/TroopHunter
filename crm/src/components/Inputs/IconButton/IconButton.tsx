@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { type IIconButtonProps } from './IconButton.interfaces';
 
 const variantClasses = {

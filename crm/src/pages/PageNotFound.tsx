@@ -1,4 +1,6 @@
-const PageNotFound = () => {
+import React from 'react';
+
+const PageNotFound: React.FC = (): JSX.Element => {
   return (
     <>
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useSelector } from 'react-redux';
 
 import Table from '../components/DataDisplay/Table/TableLeads';

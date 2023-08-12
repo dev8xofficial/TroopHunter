@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 
 import { Transition, Dialog } from '@headlessui/react';
 import { XMarkIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';

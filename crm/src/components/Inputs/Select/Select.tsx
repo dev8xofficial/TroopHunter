@@ -1,23 +1,22 @@
-import { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
-import { IOption, ISelectProps } from './Select.interfaces';
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
+import { type IOption, type ISelectProps } from './Select.interfaces';
+import { classNames } from '../../../utils/helpers';
 
 const Select: React.FC<ISelectProps> = ({ label, options, value, onChange, disabled }: ISelectProps): JSX.Element => {
-  const initialValue = value || options[0];
+  const initialValue = value != null || options[0];
   const [selectedOption, setSelectedOption] = useState<IOption>(initialValue);
 
   const handleChange = (selectedOption: IOption) => {
     setSelectedOption(selectedOption);
-    if (onChange) onChange(selectedOption);
+    if (onChange != null) onChange(selectedOption);
   };
 
   useEffect(() => {
-    if (value) setSelectedOption(value);
+    if (value != null) setSelectedOption(value);
   }, [value]);
 
   return (

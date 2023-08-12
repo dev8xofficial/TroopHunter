@@ -1,3 +1,4 @@
+import React from 'react';
 import { type ChangeEvent, useEffect, useState } from 'react';
 
 import { Menu } from '@headlessui/react';
@@ -145,7 +146,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
 
   useEffect(() => {
     dispatch(setHomePageBusinessIdsAction(selectedBusinessIds));
-  }, [selectedBusinessIds]);
+  }, [dispatch, selectedBusinessIds]);
 
   useEffect(() => {
     const calculateTableHeight = (): void => {

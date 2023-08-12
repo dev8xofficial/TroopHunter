@@ -1,4 +1,6 @@
-import { IStatisticsProps, IStats } from './Statistics.interfaces';
+import React from 'react';
+
+import { type IStatisticsProps, type IStats } from './Statistics.interfaces';
 
 const Statistics: React.FC<IStatisticsProps> = ({ statistics }: IStatisticsProps): JSX.Element => {
   return (

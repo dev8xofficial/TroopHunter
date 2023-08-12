@@ -1,19 +1,18 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 import { FingerPrintIcon, UserCircleIcon } from '@heroicons/react/24/outline';
+
 import Avatar from '../components/DataDisplay/Avatar/Avatar';
+import { classNames } from '../utils/helpers';
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
-
-const Settings = () => {
+const Settings: React.FC = (): JSX.Element => {
   const [secondaryNavigation, setSecondaryNavigation] = useState([
     { name: 'Profile', href: '#', icon: UserCircleIcon, current: true },
-    { name: 'Security', href: '#', icon: FingerPrintIcon, current: false },
+    { name: 'Security', href: '#', icon: FingerPrintIcon, current: false }
   ]);
 
-  const handleSecondaryNavigation = (active: any) => {
-    let array: any = secondaryNavigation;
+  const handleSecondaryNavigation = (active: any): void => {
+    const array: any = secondaryNavigation;
     array.map((nav: any) => {
       if (nav.name === active.name) {
         nav.current = true;
@@ -34,7 +33,12 @@ const Settings = () => {
               <ul role="list" className="flex gap-x-3 gap-y-1 whitespace-nowrap lg:flex-col">
                 {secondaryNavigation.map((item) => (
                   <li key={item.name}>
-                    <button onClick={() => handleSecondaryNavigation(item)} className={classNames(item.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex w-full gap-x-3 rounded py-2 pl-2 pr-3 text-sm font-semibold leading-6')}>
+                    <button
+                      onClick={() => {
+                        handleSecondaryNavigation(item);
+                      }}
+                      className={classNames(item.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600', 'group flex w-full gap-x-3 rounded py-2 pl-2 pr-3 text-sm font-semibold leading-6')}
+                    >
                       <item.icon className={classNames(item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600', 'h-6 w-6 shrink-0')} aria-hidden="true" />
                       {item.name}
                     </button>

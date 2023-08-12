@@ -1,32 +1,35 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { Form, FormikProvider, useFormik } from 'formik';
-import { authLoginAction } from '../store/actions/authActions';
-import { ISignInFormmValues } from '../types/formik';
-import TextField from '../components/Inputs/TextField/TextField';
-import Button from '../components/Inputs/Button/Button';
+import React from 'react';
 
-const _SignIn = () => {
+import { Form, FormikProvider, useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+
+import Button from '../components/Inputs/Button/Button';
+import TextField from '../components/Inputs/TextField/TextField';
+import { authLoginAction } from '../store/actions/authActions';
+import { type ISignInFormmValues } from '../types/formik';
+
+const _SignIn: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const initialValues: ISignInFormmValues = {
     email: '',
-    password: '',
+    password: ''
   };
 
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues,
     enableReinitialize: true,
-    onSubmit: async (values) => {
-      await dispatch(
+    onSubmit: (values) => {
+      dispatch(
         authLoginAction({
           email: values.email,
           password: values.password,
-          navigate,
+          navigate
         })
       );
-    },
+    }
   });
 
   return (
@@ -46,9 +49,9 @@ const _SignIn = () => {
         <div>
           <FormikProvider value={formik}>
             <Form noValidate onSubmit={formik.handleSubmit} className="space-y-6">
-              <TextField label="Email address" type="email" name="email" value={formik.values && formik.values.email} onChange={formik.handleChange} required />
+              <TextField label="Email address" type="email" name="email" value={formik.values?.email} onChange={formik.handleChange} required />
 
-              <TextField label="Password" type="password" name="password" value={formik.values && formik.values.password} onChange={formik.handleChange} required />
+              <TextField label="Password" type="password" name="password" value={formik.values?.password} onChange={formik.handleChange} required />
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center">

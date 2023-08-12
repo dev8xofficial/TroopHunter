@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 
 import { Transition, Dialog } from '@headlessui/react';
 import { AdjustmentsVerticalIcon } from '@heroicons/react/20/solid';
@@ -43,7 +43,7 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
   const formik = useFormik({
     initialValues,
     enableReinitialize: true,
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: (values, { resetForm }) => {
       const { title } = values;
       if (Object.keys(leadPageFilters).length > 0 && Object.values(leadPageFilters).some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {
         const requestData = {

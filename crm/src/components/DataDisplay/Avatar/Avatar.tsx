@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { type IAvatarProps } from './Avatar.interfaces';
 
 const sizeClasses = {
@@ -7,7 +9,7 @@ const sizeClasses = {
   xlarge: 'avatar-x-large'
 };
 
-const Avatar = ({ image, firstName, size = 'avatar-small', border = '', className = '' }: IAvatarProps): JSX.Element => {
+const Avatar: React.FC<IAvatarProps> = ({ image, firstName, size = 'avatar-small', border = '', className = '' }: IAvatarProps): JSX.Element => {
   return image.length > 0 ? (
     <>
       <img className={`${sizeClasses[size as keyof typeof sizeClasses]} rounded-full ${className}`} src={image} alt={firstName} />
