@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import moment from 'moment';
+
 import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
-import Avatar from '../Avatar/Avatar';
-import _Menu from '../../Navigation/Menu/Menu';
-import { ILeadAttributes } from 'validator/interfaces';
-import { IUserAttributes } from 'validator/interfaces';
-import { IFilterAttributes } from '../../../store/reducers/homePageReducer';
-import { setHomePageDraftLeadIdAction, setHomePageFiltersAction } from '../../../store/actions/homePageActions';
-import { setLeadsPageSelectedLeadIds } from '../../../store/actions/leadsPageActions';
-import { deleteLeadsAction } from '../../../store/actions/leadActions';
-import { IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
 import CryptoJS from 'crypto-js';
-import { IAuthState } from '../../../store/reducers/authReducer';
-import { IUserState } from '../../../store/reducers/userReducer';
-import { ILeadsState } from '../../../store/reducers/leadsPageReducer';
+import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { type ILeadAttributes, type IUserAttributes } from 'validator/interfaces';
+
+import { setHomePageDraftLeadIdAction, setHomePageFiltersAction } from '../../../store/actions/homePageActions';
+import { deleteLeadsAction } from '../../../store/actions/leadActions';
+import { setLeadsPageSelectedLeadIds } from '../../../store/actions/leadsPageActions';
+import { type IAuthState } from '../../../store/reducers/authReducer';
+import { type IFilterAttributes, type IHomePageState } from '../../../store/reducers/homePageReducer';
+import { type ILeadsState } from '../../../store/reducers/leadsPageReducer';
+import { type IUserState } from '../../../store/reducers/userReducer';
+import _Menu from '../../Navigation/Menu/Menu';
+import { type IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
+import Avatar from '../Avatar/Avatar';
 
 // Get the encryption key from the environment variable
 const encryptionKey = process.env.ENCRYPTION_KEY ? process.env.ENCRYPTION_KEY : 'AgE34bNmLB9wOThIJ2WR79/cmtMdjqCbpk61w/ucZnviE1Te0IY7c1e2G5qi42h+';
@@ -26,12 +27,14 @@ const Table: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
   const auth = useSelector((state: { auth: IAuthState }) => state.auth);
   const users = useSelector((state: { users: IUserState }) => state.users);
+  const home = useSelector((state: { home: IHomePageState }) => state.home);
   const leads = useSelector((state: { leads: ILeadsState }) => state.leads);
 
   const authUserId: string = auth.userId;
   const usersLoggedIn: IUserAttributes = users.data[authUserId];
   const selectedLeadIds: string[] = leads.selectedLeadIds;
   const userLeads: ILeadAttributes[] = usersLoggedIn.Leads;
+  const leadPageFilters: IFilterAttributes = home.filters;
 
   const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>(selectedLeadIds);
 
@@ -67,6 +70,8 @@ const Table: React.FC = (): JSX.Element => {
 
         updatedFilters = {
           name: { label: 'Business', name: 'name', value: selectedLead.search },
+          view: { label: 'Business', name: 'view', value: leadPageFilters.view.value },
+          sort: { label: 'Sort', name: 'sort', value: leadPageFilters.sort.value },
           businessDomain: { label: 'Business Domain', name: 'businessDomain', value: selectedLead.businessDomain },
           address: { label: 'Address', name: 'address', value: selectedLead.address },
           cityId: { label: 'City', name: 'cityId', value: selectedLead.cityId },
@@ -75,7 +80,7 @@ const Table: React.FC = (): JSX.Element => {
           phone: { label: 'Phone', name: 'phone', value: selectedLead.phone },
           email: { label: 'Email', name: 'email', value: selectedLead.email },
           website: { label: 'Website', name: 'website', value: selectedLead.website },
-          sponsoredAd: { label: 'Sponsored', name: 'sponsoredAd', value: selectedLead.sponsoredAd },
+          sponsoredAd: { label: 'Sponsored', name: 'sponsoredAd', value: selectedLead.sponsoredAd }
         };
 
         const dispatchActionPromise = new Promise<void>((resolve) => {
@@ -106,8 +111,20 @@ const Table: React.FC = (): JSX.Element => {
 
   const getLeadsItemMenuOptions = (index: number): IMenuOption[] => {
     const options: IMenuOption[] = [
-      { name: 'Edit', href: '#', onClick: () => handleEdit(index) },
-      { name: 'Delete', href: '#', onClick: () => handleDelete(index) },
+      {
+        name: 'Edit',
+        href: '#',
+        onClick: async () => {
+          await handleEdit(index);
+        }
+      },
+      {
+        name: 'Delete',
+        href: '#',
+        onClick: () => {
+          handleDelete(index);
+        }
+      }
     ];
     return options;
   };

@@ -1,20 +1,21 @@
 import { Fragment } from 'react';
-import { Form, FormikProvider, useFormik } from 'formik';
+
+import { Transition, Dialog } from '@headlessui/react';
 import { AdjustmentsVerticalIcon } from '@heroicons/react/20/solid';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { Transition, Dialog } from '@headlessui/react';
-import { CustomDialogAttributes } from './LeadSaveDialog.interfaces';
-import TextField from '../../Inputs/TextField/TextField';
-import Button from '../../Inputs/Button/Button';
+import { Form, FormikProvider, useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { IFilterAttributes, IHomePageState } from '../../../store/reducers/homePageReducer';
-import { createLeadAction, updateLeadAction } from '../../../store/actions/leadActions';
 import { toast } from 'react-toastify';
-import { IUserAttributes } from 'validator/interfaces';
-import { ILeadAttributes } from 'validator/interfaces';
-import { IAuthState } from '../../../store/reducers/authReducer';
-import { IBusinessState } from '../../../store/reducers/businessReducer';
-import { IUserState } from '../../../store/reducers/userReducer';
+import { type IUserAttributes, type ILeadAttributes } from 'validator/interfaces';
+
+import { type CustomDialogAttributes } from './LeadSaveDialog.interfaces';
+import { createLeadAction, updateLeadAction } from '../../../store/actions/leadActions';
+import { type IAuthState } from '../../../store/reducers/authReducer';
+import { type IBusinessState } from '../../../store/reducers/businessReducer';
+import { type IFilterAttributes, type IHomePageState } from '../../../store/reducers/homePageReducer';
+import { type IUserState } from '../../../store/reducers/userReducer';
+import Button from '../../Inputs/Button/Button';
+import TextField from '../../Inputs/TextField/TextField';
 
 const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }: CustomDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
@@ -36,11 +37,11 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
   }
 
   const initialValues: ILeadFormmValues = {
-    title: draftLead?.title ? draftLead?.title : '',
+    title: draftLead?.title ?? ''
   };
 
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues,
     enableReinitialize: true,
     onSubmit: async (values, { resetForm }) => {
       const { title } = values;
@@ -49,22 +50,22 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
           id: leadPageDraftLeadId,
           token: auth.token,
           userId: auth.userId,
-          businessCount: Array.isArray(leadPageBusinessIds) && leadPageBusinessIds.length > 0 ? leadPageBusinessIds.length : businessesTotalRecords ? businessesTotalRecords : 0,
+          businessCount: Array.isArray(leadPageBusinessIds) && leadPageBusinessIds.length > 0 ? leadPageBusinessIds.length : businessesTotalRecords !== undefined ? businessesTotalRecords : 0,
           businessIds: leadPageBusinessIds,
           title,
-          search: leadPageFilters['name'].value,
-          businessDomain: leadPageFilters['businessDomain'].value,
-          address: leadPageFilters['address'].value,
-          cityId: leadPageFilters['cityId'].value,
-          stateId: leadPageFilters['stateId'].value,
-          countryId: leadPageFilters['countryId'].value,
-          phone: leadPageFilters['phone'].value,
-          email: leadPageFilters['email'].value,
-          website: leadPageFilters['website'].value,
-          sponsoredAd: leadPageFilters['sponsoredAd'].value,
+          search: leadPageFilters.name.value,
+          businessDomain: leadPageFilters.businessDomain.value,
+          address: leadPageFilters.address.value,
+          cityId: leadPageFilters.cityId.value,
+          stateId: leadPageFilters.stateId.value,
+          countryId: leadPageFilters.countryId.value,
+          phone: leadPageFilters.phone.value,
+          email: leadPageFilters.email.value,
+          website: leadPageFilters.website.value,
+          sponsoredAd: leadPageFilters.sponsoredAd.value
         };
 
-        if (leadPageDraftLeadId) dispatch(updateLeadAction(requestData));
+        if (leadPageDraftLeadId.length > 0) dispatch(updateLeadAction(requestData));
         else dispatch(createLeadAction(requestData));
 
         resetForm();
@@ -72,7 +73,7 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
       } else {
         toast.info('You have searched nothing.');
       }
-    },
+    }
   });
   return (
     <>
@@ -105,7 +106,7 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
                     <div className="space-y-8">
                       <FormikProvider value={formik}>
                         <Form noValidate onSubmit={formik.handleSubmit} className="space-y-6">
-                          <TextField label="Enter Title for Lead Information" type="text" name="title" value={formik.values && formik.values.title} helperText={formik.errors && formik.errors.title} onChange={formik.handleChange} required />
+                          <TextField label="Enter Title for Lead Information" type="text" name="title" value={formik.values?.title} helperText={formik.errors?.title} onChange={formik.handleChange} required />
 
                           <Button type="submit" variant="contained" color="indigo" className="w-full">
                             Save

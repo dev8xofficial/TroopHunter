@@ -1,18 +1,22 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
+import { type ChangeEvent, useEffect, useState } from 'react';
+
 import { Menu } from '@headlessui/react';
+import { EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useSelector, useDispatch } from 'react-redux';
 // import { Switch } from '@headlessui/react';
-import Avatar from '../../DataDisplay/Avatar/Avatar';
-import _Menu from '../../Navigation/Menu/Menu';
-import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
-import Checkbox from '../../Inputs/Checkbox/Checkbox';
-import { IBusinessAttributes } from 'validator/interfaces';
+import { type IBusinessAttributes, type ILeadAttributes, type IUserAttributes } from 'validator/interfaces';
+
 import { setHomePageBusinessIdsAction, setHomePagePaginationPageAction } from '../../../store/actions/homePageActions';
+import { type IAuthState } from '../../../store/reducers/authReducer';
+import { type IBusinessState } from '../../../store/reducers/businessReducer';
+import { type IFilterAttributes, type IHomePageState } from '../../../store/reducers/homePageReducer';
+import { type IUserState } from '../../../store/reducers/userReducer';
 import { classNames } from '../../../utils/helpers';
-import { IBusinessState } from '../../../store/reducers/businessReducer';
-import { IFilterAttributes, IHomePageState } from '../../../store/reducers/homePageReducer';
+import Avatar from '../../DataDisplay/Avatar/Avatar';
+import Checkbox from '../../Inputs/Checkbox/Checkbox';
+import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
+import _Menu from '../../Navigation/Menu/Menu';
 import TableSortingMenu from '../Menu/TableSortingMenu';
 
 const images = [
@@ -22,25 +26,37 @@ const images = [
   'https://images.unsplash.com/photo-1595633013926-15dd888ef02d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJlc3RhdXJhbnQlMjBsb2dvfGVufDB8fDB8fHww&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
   'https://images.unsplash.com/photo-1612222869049-d8ec83637a3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YWNjb3VudGFudCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
   'https://images.unsplash.com/photo-1615915468538-0fbd857888ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YWNjb3VudGFudCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  'https://images.unsplash.com/photo-1560311225-6a3038e96820?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  'https://images.unsplash.com/photo-1560311225-6a3038e96820?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
 ];
 
 const leadItemMenu = [
-  { name: 'Settings', href: '#', onClick: () => console.log('Message') },
-  { name: 'Sign out', href: '#', onClick: () => console.log('Remove') },
+  {
+    name: 'Settings',
+    href: '#',
+    onClick: () => {
+      console.log('Message');
+    }
+  },
+  {
+    name: 'Sign out',
+    href: '#',
+    onClick: () => {
+      console.log('Remove');
+    }
+  }
 ];
 
 const viewOptions = [
   { title: 'All', description: 'This job posting can be viewed by anyone who has the link.', current: true, value: 'all', name: 'view' },
   { title: 'Selected', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'selected', name: 'view' },
-  { title: 'Saved', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'saved', name: 'view' },
+  { title: 'Saved', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'saved', name: 'view' }
 ];
 
 const sortOptions = [
   { title: 'Relevance', description: 'This job posting can be viewed by anyone who has the link.', current: true, value: 'relevance', name: 'sort' },
   { title: 'Alphabetical', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'alphabetical', name: 'sort' },
   { title: 'New First', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'newFirst', name: 'sort' },
-  { title: 'New Last', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'newLast', name: 'sort' },
+  { title: 'New Last', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'newLast', name: 'sort' }
 ];
 
 interface ITable {
@@ -48,24 +64,60 @@ interface ITable {
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
+const renderRows = (businessesDataBusinesses: Record<string, IBusinessAttributes>, leadPageFilters: IFilterAttributes, leadPageBusinessIds: string[], draftLeadBusinessIds: string[] | undefined): Record<string, IBusinessAttributes> => {
+  const updatedBusinessesData: Record<string, IBusinessAttributes> = {};
+
+  switch (leadPageFilters.view.value) {
+    case 'selected':
+      for (const businessId of Object.keys(businessesDataBusinesses)) {
+        if (leadPageBusinessIds.includes(businessId)) {
+          updatedBusinessesData[businessId] = businessesDataBusinesses[businessId];
+        }
+      }
+      break;
+    case 'saved':
+      for (const businessId of Object.keys(businessesDataBusinesses)) {
+        if (draftLeadBusinessIds?.includes(businessId) === true) {
+          updatedBusinessesData[businessId] = businessesDataBusinesses[businessId];
+        }
+      }
+      break;
+    default:
+      // If the default case, keep all businesses
+      return businessesDataBusinesses;
+  }
+
+  return updatedBusinessesData;
+};
+
 const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   const dispatch = useDispatch();
   const businesses = useSelector((state: { businesses: IBusinessState }) => state.businesses);
   const home = useSelector((state: { home: IHomePageState }) => state.home);
+  const auth = useSelector((state: { auth: IAuthState }) => state.auth);
+  const users = useSelector((state: { users: IUserState }) => state.users);
 
-  const businessesDataBusinesses: { [key: string]: IBusinessAttributes } = businesses.data.businesses;
+  const businessesDataBusinesses: Record<string, IBusinessAttributes> = businesses.data.businesses;
   const businessesTotalRecords: number = businesses.data.totalRecords;
   const leadPageFilters: IFilterAttributes = home.filters;
   const isLeadPageLoading = home.isLoading;
   const leadPageBusinessIds: string[] = home.businessIds;
   const leadPagePaginationPage: number = home.page;
   const leadPagePaginationLimit: number = home.pageLimit;
+  const leadPageDraftLeadId: string = home.draftLeadId;
+  const authUserId: string = auth.userId;
+  const usersLoggedIn: IUserAttributes = users.data[authUserId];
+  const userLeads: ILeadAttributes[] = usersLoggedIn.Leads;
+  const draftLeadIndex: number = userLeads.findIndex((lead) => lead.id === leadPageDraftLeadId);
+  const draftLead: ILeadAttributes = userLeads[draftLeadIndex];
+  const draftLeadBusinessIds: string[] | undefined = draftLead?.businessIds;
 
   const [tableHeight, setTableHeight] = useState<number | undefined>(undefined);
   const [selectedBusinessIds, setSelectedBusinessIds] = useState<string[]>([]);
+  const tableRowsData = renderRows(businessesDataBusinesses, leadPageFilters, leadPageBusinessIds, draftLeadBusinessIds);
   // const [isSwitch, setIsSwitch] = useState<boolean>(false);
 
-  const handleCheckboxChange = (businessId: string) => {
+  const handleCheckboxChange = (businessId: string): void => {
     setSelectedBusinessIds((prevSelectedIds) => {
       if (prevSelectedIds.includes(businessId)) {
         return prevSelectedIds.filter((id) => id !== businessId);
@@ -75,15 +127,15 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
     });
   };
 
-  const isBusinessSelected = (businessId: string) => {
+  const isBusinessSelected = (businessId: string): boolean => {
     return selectedBusinessIds.includes(businessId);
   };
 
-  const isAllBusinessesSelected = () => {
+  const isAllBusinessesSelected = (): boolean => {
     return Object.keys(businessesDataBusinesses).every((businessId) => selectedBusinessIds.includes(businessId));
   };
 
-  const handleSelectAllChange = () => {
+  const handleSelectAllChange = (): void => {
     if (isAllBusinessesSelected()) {
       setSelectedBusinessIds([]);
     } else {
@@ -96,10 +148,10 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   }, [selectedBusinessIds]);
 
   useEffect(() => {
-    const calculateTableHeight = () => {
+    const calculateTableHeight = (): void => {
       const container = document.getElementById('table-lead-container');
 
-      if (container) {
+      if (container != null) {
         const remainingSpace = window.innerHeight - container.getBoundingClientRect().top;
         setTableHeight(remainingSpace);
       }
@@ -107,7 +159,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
 
     calculateTableHeight();
 
-    const handleResize = () => {
+    const handleResize = (): void => {
       calculateTableHeight();
     };
 
@@ -118,7 +170,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
     };
   }, []);
 
-  const onNext = () => {
+  const onNext = (): void => {
     const nextPage = leadPagePaginationPage + 1;
     dispatch(setHomePagePaginationPageAction(nextPage));
     loadMoreBusinesses({ page: nextPage, limit: leadPagePaginationLimit });
@@ -164,12 +216,12 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
         </div> */}
         <div className="inline-flex items-center space-x-2">
           <label>Business: </label>
-          <TableSortingMenu options={viewOptions} value={viewOptions.find((option) => option.value === leadPageFilters['view'].value)} handleChange={handleChange} />
+          <TableSortingMenu options={viewOptions} value={viewOptions.find((option) => option.value === leadPageFilters.view.value)} handleChange={handleChange} />
         </div>
         <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
         <div className="inline-flex items-center space-x-2">
           <label>Sort: </label>
-          <TableSortingMenu options={sortOptions} value={sortOptions.find((option) => option.value === leadPageFilters['sort'].value)} handleChange={handleChange} />
+          <TableSortingMenu options={sortOptions} value={sortOptions.find((option) => option.value === leadPageFilters.sort.value)} handleChange={handleChange} />
         </div>
         {businessesTotalRecords !== null && (
           <>
@@ -179,7 +231,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
         )}
       </div>
       {/* Empty State */}
-      <div className={classNames(Object.values(businessesDataBusinesses).length > 0 && 'hidden', 'h-full rounded p-4')}>
+      <div className={classNames(Object.values(tableRowsData).length > 0 ? 'hidden' : '', 'h-full rounded p-4')}>
         <div className="flex h-full flex-col items-center justify-center bg-white">
           <MagnifyingGlassCircleIcon className="-ml-0.5 h-32 w-32 text-indigo-600" aria-hidden="true" />
           <div className="text-center">
@@ -190,16 +242,24 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
       </div>
 
       {/* Table Body */}
-      <div id="table-lead-container" style={{ height: tableHeight, overflowY: 'auto' }} className={classNames(Object.values(businessesDataBusinesses).length < 1 && 'hidden', 'p-4')}>
-        <InfiniteScroll dataLength={Object.keys(businessesDataBusinesses).length} next={onNext} hasMore={Object.keys(businessesDataBusinesses).length < (businessesTotalRecords || 0)} loader={<></>} scrollableTarget="table-lead-container">
+      <div id="table-lead-container" style={{ height: tableHeight, overflowY: 'auto' }} className={classNames(Object.values(tableRowsData).length < 1 ? 'hidden' : '', 'p-4')}>
+        <InfiniteScroll dataLength={Object.keys(tableRowsData).length} next={onNext} hasMore={businessesTotalRecords !== undefined && Object.keys(tableRowsData).length < businessesTotalRecords} loader={<></>} scrollableTarget="table-lead-container">
           {/* Existing code for TableLead */}
-          <ul role="list" className={classNames(isLeadPageLoading && 'group animate-pulse', 'divide-y rounded border bg-white shadow')}>
-            {Object.values(businessesDataBusinesses).map((business: IBusinessAttributes, index) => (
-              <li key={index} className={classNames(index === 0 && 'hover:rounded-t', index === Object.values(businessesDataBusinesses).length - 1 && 'hover:rounded-b', 'hover:bg-gray-100')}>
+          <ul role="list" className={classNames(isLeadPageLoading ? 'group animate-pulse' : '', 'divide-y rounded border bg-white shadow')}>
+            {Object.values(tableRowsData).map((business: IBusinessAttributes, index) => (
+              <li key={index} className={classNames(index === 0 ? 'hover:rounded-t' : '', index === Object.values(tableRowsData).length - 1 ? 'hover:rounded-b' : '', 'hover:bg-gray-100')}>
                 <div className="relative flex w-full items-start px-6 py-5">
                   <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">
                     <div className="group-block hidden h-5 w-5 rounded bg-slate-300"></div>
-                    <Checkbox id={business.name} name={business.name} checked={isBusinessSelected(business.id)} onChange={() => handleCheckboxChange(`${business.id}`)} className="group-hidden" />
+                    <Checkbox
+                      id={business.name}
+                      name={business.name}
+                      checked={isBusinessSelected(business.id)}
+                      onChange={() => {
+                        handleCheckboxChange(`${business.id}`);
+                      }}
+                      className="group-hidden"
+                    />
                   </div>
                   <div className="w-full text-sm leading-6">
                     <label htmlFor={business.name} className="relative flex cursor-pointer justify-between gap-x-6 px-4 sm:px-6">
@@ -216,7 +276,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                           <div className="hidden sm:flex sm:flex-col">
                             <div className="group-block mb-3 hidden h-4 w-24 rounded bg-slate-300"></div>
                             <p className="group-hidden text-sm leading-6 text-gray-900">{business.businessDomain?.toUpperCase()}</p>
-                            {'3h ago' ? (
+                            {'3h ago'.length > 0 ? (
                               <p className="group-hidden mt-1 text-xs leading-5 text-gray-500">
                                 Last seen <time dateTime="2023-01-23T13:23Z">3h ago</time>
                               </p>
@@ -232,7 +292,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                           </div>
                           <div className="group-block mt-3 hidden h-3 w-24 rounded bg-slate-300"></div>
                           <p className="mt-1 flex text-xs leading-5 text-gray-500">
-                            {business?.BusinessPhone && (
+                            {business?.BusinessPhone !== undefined && (
                               <a href={`mailto:${business.BusinessPhone.numberNationalFormatted}`} className="group-hidden relative truncate hover:underline">
                                 {business.BusinessPhone.numberNationalFormatted}
                               </a>

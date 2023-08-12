@@ -1,15 +1,16 @@
 import { Fragment } from 'react';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+
 import { Transition, Dialog } from '@headlessui/react';
-import { LeadsDeletionDialogAttributes } from './LeadsDeletionDialog.interfaces';
+import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
+import { type IUserAttributes } from 'validator/interfaces';
+
+import { type LeadsDeletionDialogAttributes } from './LeadsDeletionDialog.interfaces';
 import { deleteLeadsAction } from '../../../store/actions/leadActions';
-import { IUserAttributes } from 'validator/interfaces';
+import { type IAuthState } from '../../../store/reducers/authReducer';
+import { type ILeadsState } from '../../../store/reducers/leadsPageReducer';
+import { type IUserState } from '../../../store/reducers/userReducer';
 import Button from '../../Inputs/Button/Button';
-import { IAuthState } from '../../../store/reducers/authReducer';
-import { IUserState } from '../../../store/reducers/userReducer';
-import { ILeadsState } from '../../../store/reducers/leadsPageReducer';
 
 const LeadsDeletionDialog: React.FC<LeadsDeletionDialogAttributes> = ({ isOpen, closeModal }: LeadsDeletionDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
@@ -20,13 +21,13 @@ const LeadsDeletionDialog: React.FC<LeadsDeletionDialogAttributes> = ({ isOpen, 
   const selectedLeadIds: string[] = leads.selectedLeadIds;
   const usersLoggedIn: IUserAttributes = users.data[auth.userId];
 
-  const handleDelete = () => {
+  const handleDelete = (): void => {
     closeModal();
     dispatch(
       deleteLeadsAction({
         token: auth.token,
         user: usersLoggedIn,
-        selectedLeadIds,
+        selectedLeadIds
       })
     );
   };

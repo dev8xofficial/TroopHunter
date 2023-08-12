@@ -1,7 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
-import { IUsersFetchPayload, IUsersFetchUserPayload } from '../sagas/userSaga';
-import { IUserAttributes } from 'validator/interfaces';
-import { IUserState } from '../reducers/userReducer';
+import { type IUserAttributes } from 'validator/interfaces';
+
+import { type IUserState } from '../reducers/userReducer';
+import { type IUsersFetchPayload, type IUsersFetchUserPayload } from '../sagas/userSaga';
 
 export const fetchUsersAction = createAction<IUsersFetchPayload>('user/fetchUsersAction');
 export const fetchUsersSuccessAction = createAction<IUserState>('user/fetchUsersSuccessAction');

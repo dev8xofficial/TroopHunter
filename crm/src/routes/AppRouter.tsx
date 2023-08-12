@@ -1,33 +1,40 @@
-import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { URLS } from './Urls';
+
+import { type URL, URLS } from './Urls';
 import AuthLayout from '../layout/AuthLayout';
 import DefaultLayout from '../layout/DefaultLayout';
-import { useSelector } from 'react-redux';
-import { IAuthState } from '../store/reducers/authReducer';
+import { type IAuthState } from '../store/reducers/authReducer';
 
-const PublicRoute = ({ userToken, children }: any) => {
-  if (userToken) {
+interface PublicRouteProps {
+  userToken: string | null | undefined;
+  children: JSX.Element;
+}
+
+const PublicRoute: React.FC<PublicRouteProps> = ({ userToken, children }: PublicRouteProps): JSX.Element => {
+  console.log('PublicRoute: ', userToken);
+  if (userToken?.length != null && userToken.length > 0) {
     return <Navigate to="/" />;
   }
   return children;
 };
 
-const PrivateRoute = ({ userToken, children }: any) => {
-  if (!userToken) {
+const PrivateRoute: React.FC<PublicRouteProps> = ({ userToken, children }: PublicRouteProps): JSX.Element => {
+  console.log('PrivateRoute: ', userToken);
+  if (userToken?.length == null || userToken.length === 0) {
     return <Navigate to="/signin" />;
   }
   return children;
 };
 
-const AppRouter: FC = () => {
+const AppRouter: React.FC = () => {
   const auth = useSelector((state: { auth: IAuthState }) => state.auth);
 
   return (
     <>
       <Router>
         <Routes>
-          {URLS.map((obj: any) => {
+          {URLS.map((obj: URL) => {
             return obj.isPublic ? (
               <Route
                 key={obj.path}

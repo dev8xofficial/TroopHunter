@@ -1,33 +1,31 @@
-import React, { ChangeEvent, useEffect, useRef, useState, Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { XMarkIcon, PlusIcon, MinusIcon, AdjustmentsVerticalIcon as AdjustmentsVerticalIconSolid } from '@heroicons/react/20/solid';
-import { AdjustmentsVerticalIcon } from '@heroicons/react/24/outline';
-import IconButton from '../components/Inputs/IconButton/IconButton';
+import React, { type ChangeEvent, useEffect, useRef, useState, Fragment } from 'react';
+
 import { Transition, Dialog, Disclosure } from '@headlessui/react';
-import { ChevronLeftIcon } from '@heroicons/react/20/solid';
-import { fetchBusinessesAction } from '../store/actions/businessActions';
-import CustomTextField from '../components/Inputs/CustomTextField/CustomTextField';
-import Accordion from '../components/Surfaces/Accordion/Accordion';
+import { XMarkIcon, PlusIcon, MinusIcon, AdjustmentsVerticalIcon as AdjustmentsVerticalIconSolid, ChevronLeftIcon } from '@heroicons/react/20/solid';
+import { AdjustmentsVerticalIcon } from '@heroicons/react/24/outline';
+import { useSelector, useDispatch } from 'react-redux';
+import { type IUserAttributes, type ILeadAttributes } from 'validator/interfaces';
+
+import { type IBusinessesFetchPayload } from 'store/sagas/businessSaga';
+
 import TableLead from '../components/DataDisplay/Table/TableLead';
-import { resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageFiltersAction, setHomePagePaginationPageAction } from '../store/actions/homePageActions';
-import { IFilterAttributes, IHomePageState, initialValue } from '../store/reducers/homePageReducer';
-import Button from '../components/Inputs/Button/Button';
-import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
-import LeadSaveDialog from '../components/Feedback/LeadSaveDialog/LeadSaveDialog';
 import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDeletionDialog';
-import { IAuthState } from '../store/reducers/authReducer';
-import { compareFiltersAndLead, isFiltersChanged } from '../utils/helpers';
-import { IUserAttributes } from 'validator/interfaces';
-import { ILeadAttributes } from 'validator/interfaces';
-import { IUserState } from '../store/reducers/userReducer';
+import LeadSaveDialog from '../components/Feedback/LeadSaveDialog/LeadSaveDialog';
+import Button from '../components/Inputs/Button/Button';
+import CustomTextField from '../components/Inputs/CustomTextField/CustomTextField';
+import IconButton from '../components/Inputs/IconButton/IconButton';
+import Accordion from '../components/Surfaces/Accordion/Accordion';
+import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
+import { fetchBusinessesAction } from '../store/actions/businessActions';
+import { resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePagePaginationPageAction } from '../store/actions/homePageActions';
+import { type IAuthState } from '../store/reducers/authReducer';
+import { type IFilterAttributes, type IHomePageState, initialValue } from '../store/reducers/homePageReducer';
+import { type IUserState } from '../store/reducers/userReducer';
+import { classNames, compareFiltersAndLead, isFiltersChanged } from '../utils/helpers';
 
 const tabs = [{ name: 'Filters', href: '#', current: true }];
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
-
-const Lead = () => {
+const Lead: React.FC = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state: { auth: IAuthState }) => state.auth);
   const home = useSelector((state: { home: IHomePageState }) => state.home);
@@ -50,10 +48,15 @@ const Lead = () => {
   const [isOpenMobileFiltersDialog, setIsOpenMobileFiltersDialog] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
   const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
+  const prevLeadPageFilters = useRef<IFilterAttributes>(leadPageFilters);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const name = event.target.name;
-    const newValue = event.target.value;
+    let newValue: string | boolean = event.target.value;
+
+    if (name === 'sponsoredAd') {
+      newValue = JSON.parse(newValue);
+    }
 
     if (name === 'name' && leadPagePaginationPage !== 1) {
       dispatch(setHomePagePaginationPageAction(1));
@@ -67,26 +70,26 @@ const Lead = () => {
     dispatch(setHomePageFiltersAction(newFilters));
   };
 
-  const handleReset = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleReset = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
     event.preventDefault();
     dispatch(resetHomePageFiltersAction());
   };
 
-  const loadMoreBusinesses = ({ page, limit }: { page: number; limit: number }) => {
-    const requestData = {
+  const loadMoreBusinesses = ({ page, limit }: { page: number; limit: number }): void => {
+    const requestData: IBusinessesFetchPayload = {
       token: auth.token,
-      page: page,
-      limit: limit,
-      name: leadPageFilters['name'].value,
-      businessDomain: leadPageFilters['businessDomain'].value,
-      address: leadPageFilters['address'].value,
-      cityId: leadPageFilters['cityId'].value,
-      stateId: leadPageFilters['stateId'].value,
-      countryId: leadPageFilters['countryId'].value,
-      phone: leadPageFilters['phone'].value,
-      email: leadPageFilters['email'].value,
-      website: leadPageFilters['website'].value,
-      sponsoredAd: leadPageFilters['sponsoredAd'].value,
+      page,
+      limit,
+      name: leadPageFilters.name.value !== null ? leadPageFilters.name.value : undefined,
+      businessDomain: leadPageFilters.businessDomain.value !== undefined ? leadPageFilters.businessDomain.value : undefined,
+      address: leadPageFilters.address.value !== undefined ? leadPageFilters.address.value : undefined,
+      cityId: leadPageFilters.cityId.value !== undefined ? leadPageFilters.cityId.value : undefined,
+      stateId: leadPageFilters.stateId.value !== undefined ? leadPageFilters.stateId.value : undefined,
+      countryId: leadPageFilters.countryId.value !== undefined ? leadPageFilters.countryId.value : undefined,
+      phone: leadPageFilters.phone.value !== undefined ? leadPageFilters.phone.value : undefined,
+      email: leadPageFilters.email.value !== undefined ? leadPageFilters.email.value : undefined,
+      website: leadPageFilters.website.value !== undefined ? leadPageFilters.website.value : undefined,
+      sponsoredAd: leadPageFilters.sponsoredAd.value !== undefined ? leadPageFilters.sponsoredAd.value : undefined
     };
     dispatch(fetchBusinessesAction(requestData));
   };
@@ -105,14 +108,19 @@ const Lead = () => {
   }, [leadPageFilters]);
 
   useEffect(() => {
+    // console.log('filters: ', prevLeadPageFilters.current.view, leadPageFilters.view);
     if (Object.keys(debouncedFilters).length > 0) {
-      loadMoreBusinesses({ page: leadPagePaginationPage, limit: leadPagePaginationLimit });
+      if (prevLeadPageFilters.current.view === debouncedFilters.view) {
+        loadMoreBusinesses({ page: leadPagePaginationPage, limit: leadPagePaginationLimit });
+      } else {
+        dispatch(setHomePageLoadingSuccessAction());
+      }
     }
   }, [debouncedFilters]);
 
   useEffect(() => {
-    const resizeHandler = () => {
-      if (mainRef.current) {
+    const resizeHandler = (): void => {
+      if (mainRef.current != null) {
         const docHeight = document.documentElement.clientHeight;
         const mainTop = mainRef.current.getBoundingClientRect().top;
         const remainingHeight = docHeight - mainTop;
@@ -122,7 +130,9 @@ const Lead = () => {
 
     resizeHandler();
     window.addEventListener('resize', resizeHandler);
-    return () => window.removeEventListener('resize', resizeHandler);
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    };
   }, []);
 
   return (
@@ -136,7 +146,7 @@ const Lead = () => {
         {/* Filters Head */}
         <div className="flex divide-x border-b border-gray-200 bg-white">
           {/* Filters Tab */}
-          <div className={classNames(filtersPanelWidth && 'xl:max-w-lg 2xl:max-w-xl', 'hidden w-full max-w-sm xl:block', 'transition-all duration-500 ease-in-out')}>
+          <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'hidden w-full max-w-sm xl:block', 'transition-all duration-500 ease-in-out')}>
             <div className="hidden sm:block">
               <div className="flex items-center justify-between px-4">
                 <nav className="-mb-px -ml-4 flex space-x-8" aria-label="Tabs">
@@ -146,8 +156,13 @@ const Lead = () => {
                     </a>
                   ))}
                 </nav>
-                <a className="inline-flex cursor-pointer items-center text-sm font-semibold" onClick={() => setFiltersPanelWidth(!filtersPanelWidth)}>
-                  <ChevronLeftIcon className={classNames(!filtersPanelWidth && '-rotate-180', 'h-5 w-5 transform transition duration-300')} aria-hidden="true" />
+                <a
+                  className="inline-flex cursor-pointer items-center text-sm font-semibold"
+                  onClick={() => {
+                    setFiltersPanelWidth(!filtersPanelWidth);
+                  }}
+                >
+                  <ChevronLeftIcon className={classNames(!filtersPanelWidth ? '-rotate-180' : '', 'h-5 w-5 transform transition duration-300')} aria-hidden="true" />
                   {filtersPanelWidth ? 'Collapse' : 'Expand'}
                 </a>
               </div>
@@ -158,13 +173,21 @@ const Lead = () => {
             <div>
               <div className="flex items-center justify-between space-x-6 pl-4 pr-4 sm:pr-6 lg:pr-8">
                 <div className="flex flex-grow items-center space-x-6">
-                  <div className="max-w-md flex-grow">{leadPageFilters['name'] && <CustomTextField label={leadPageFilters['name']?.label} name={leadPageFilters['name']?.name} value={leadPageFilters['name']?.value !== null ? leadPageFilters['name']?.value : ''} onChange={handleChange} placeholder={`Search ${leadPageFilters['name'].label.toLowerCase()} title...`} />}</div>
+                  <div className="max-w-md flex-grow">{leadPageFilters.name !== undefined && <CustomTextField label={leadPageFilters.name?.label} name={leadPageFilters.name?.name} value={leadPageFilters.name?.value !== null ? leadPageFilters.name?.value : ''} onChange={handleChange} placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`} />}</div>
 
                   <a className="inline-flex items-center whitespace-nowrap text-sm font-semibold">Saved searches</a>
                 </div>
                 {/* Mobile advanced search filters */}
                 <div className="xl:hidden">
-                  <IconButton className="xl:hidden" variant="outlined" color="red" ringOffset="white" onClick={() => setIsOpenMobileFiltersDialog(true)}>
+                  <IconButton
+                    className="xl:hidden"
+                    variant="outlined"
+                    color="red"
+                    ringOffset="white"
+                    onClick={() => {
+                      setIsOpenMobileFiltersDialog(true);
+                    }}
+                  >
                     <>
                       <AdjustmentsVerticalIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
                       <AdjustmentsVerticalIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
@@ -172,7 +195,13 @@ const Lead = () => {
                   </IconButton>
 
                   <Transition appear show={isOpenMobileFiltersDialog} as={Fragment}>
-                    <Dialog as="div" className="relative z-10" onClose={() => setIsOpenMobileFiltersDialog(false)}>
+                    <Dialog
+                      as="div"
+                      className="relative z-10"
+                      onClose={() => {
+                        setIsOpenMobileFiltersDialog(false);
+                      }}
+                    >
                       <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                         <div className="fixed inset-0 bg-black bg-opacity-25" />
                       </Transition.Child>
@@ -192,7 +221,13 @@ const Lead = () => {
                                     <button type="button" className="ml-3 inline-flex items-center rounded bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                       Search
                                     </button>
-                                    <button onClick={() => setIsOpenMobileFiltersDialog(false)} type="button" className="rounded-full p-2 shadow-sm hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    <button
+                                      onClick={() => {
+                                        setIsOpenMobileFiltersDialog(false);
+                                      }}
+                                      type="button"
+                                      className="rounded-full p-2 shadow-sm hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    >
                                       <XMarkIcon className="h-5 w-5" aria-hidden="true" />
                                     </button>
                                   </div>
@@ -393,7 +428,7 @@ const Lead = () => {
         {/* Filters Body */}
         <div className="mb-3 justify-between divide-x pb-20 xl:mb-0 xl:flex">
           {/* Filters Menu */}
-          <div className={classNames(filtersPanelWidth && 'xl:max-w-lg 2xl:max-w-xl', 'relative hidden w-full max-w-sm bg-white xl:block', 'transition-all duration-500 ease-in-out')}>
+          <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'relative hidden w-full max-w-sm bg-white xl:block', 'transition-all duration-500 ease-in-out')}>
             <div className="flex w-full items-center justify-between border-b bg-white px-4 py-4 text-sm shadow">
               <label htmlFor="selectAll" className="leading-6 text-gray-900">
                 0 filters applied
@@ -415,32 +450,59 @@ const Lead = () => {
               </div>
             </div>
             {/* Action buttons */}
-            <div className={classNames(filtersPanelWidth && 'xl:max-w-lg 2xl:max-w-xl', 'fixed bottom-0 w-full max-w-sm flex-shrink-0 border-t border-gray-200 bg-white px-4 py-5 sm:px-6', 'transition-all duration-500 ease-in-out')}>
+            <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'fixed bottom-0 w-full max-w-sm flex-shrink-0 border-t border-gray-200 bg-white px-4 py-5 sm:px-6', 'transition-all duration-500 ease-in-out')}>
               <div className="flex items-center justify-between">
-                {leadPageDraftLeadId && (
+                {leadPageDraftLeadId.length > 0 && (
                   <>
-                    <Button variant="outlined" color="red" onClick={() => setIsOpenLeadDeletionDialog(!isOpenLeadLeadDeletionDialog)}>
+                    <Button
+                      variant="outlined"
+                      color="red"
+                      onClick={() => {
+                        setIsOpenLeadDeletionDialog(!isOpenLeadLeadDeletionDialog);
+                      }}
+                    >
                       Delete
                     </Button>
-                    <LeadDeletionDialog isOpen={isOpenLeadLeadDeletionDialog} closeModal={() => setIsOpenLeadDeletionDialog(!isOpenLeadLeadDeletionDialog)} />
+                    <LeadDeletionDialog
+                      isOpen={isOpenLeadLeadDeletionDialog}
+                      closeModal={() => {
+                        setIsOpenLeadDeletionDialog(!isOpenLeadLeadDeletionDialog);
+                      }}
+                    />
                   </>
                 )}
                 <div className="ml-auto flex justify-end space-x-3">
-                  {!leadPageDraftLeadId && isFiltersChanged(leadPageFilters, initialValue) && (
-                    <a className="inline-flex cursor-pointer items-center text-sm font-semibold" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handleReset(event)}>
+                  {leadPageDraftLeadId.length === 0 && isFiltersChanged(leadPageFilters, initialValue) && (
+                    <a
+                      className="inline-flex cursor-pointer items-center text-sm font-semibold"
+                      onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+                        handleReset(event);
+                      }}
+                    >
                       Clear all
                     </a>
                   )}
-                  {leadPageDraftLeadId && !compareFiltersAndLead(leadPageFilters, draftLead) && (
+                  {leadPageDraftLeadId.length > 0 && !compareFiltersAndLead(leadPageFilters, draftLead) && (
                     <a className="inline-flex cursor-pointer items-center text-sm font-semibold" onClick={() => dispatch(restoreHomePageFiltersAction(draftLead))}>
                       Restore
                     </a>
                   )}
                   <>
-                    <Button variant="contained" color="indigo" onClick={() => setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog)}>
-                      {leadPageDraftLeadId ? 'Update' : 'Save'} search
+                    <Button
+                      variant="contained"
+                      color="indigo"
+                      onClick={() => {
+                        setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog);
+                      }}
+                    >
+                      {leadPageDraftLeadId.length > 0 ? 'Update' : 'Save'} search
                     </Button>
-                    <LeadSaveDialog isOpen={isOpenLeadSaveDialog} closeModal={() => setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog)} />
+                    <LeadSaveDialog
+                      isOpen={isOpenLeadSaveDialog}
+                      closeModal={() => {
+                        setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog);
+                      }}
+                    />
                   </>
                 </div>
               </div>

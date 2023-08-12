@@ -1,4 +1,5 @@
-import { PayloadAction, createReducer } from '@reduxjs/toolkit';
+import { type PayloadAction, createReducer } from '@reduxjs/toolkit';
+
 import { setLeadsPageSelectedLeadIds, resetLeadsPageSelectedLeadIds } from '../actions/leadsPageActions';
 
 export interface ILeadsState {

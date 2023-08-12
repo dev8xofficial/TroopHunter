@@ -1,19 +1,18 @@
-import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
+
 import { Menu, Transition } from '@headlessui/react';
-import { IMenuOption, IMenuProps } from './Menu.interfaces';
+import { Link } from 'react-router-dom';
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
+import { type IMenuOption, type IMenuProps } from './Menu.interfaces';
+import { classNames } from '../../../utils/helpers';
 
-const _Menu: React.FC<IMenuProps> = ({ children, options, className }: IMenuProps): JSX.Element => {
+const _Menu: React.FC<IMenuProps> = ({ children, options, className = '' }: IMenuProps): JSX.Element => {
   return (
     <>
       {/* Mobile navigation */}
       <Menu as="div" className="relative ml-3">
         <div>
-          <Menu.Button className={`flex items-center justify-center rounded-full transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-4 ${className ? className : ''}`}>
+          <Menu.Button className={`flex items-center justify-center rounded-full transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-4 ${className}`}>
             <span className="sr-only">Open user menu</span>
             {children}
           </Menu.Button>
@@ -23,7 +22,7 @@ const _Menu: React.FC<IMenuProps> = ({ children, options, className }: IMenuProp
             {options.map((item: IMenuOption) => (
               <Menu.Item key={item.name}>
                 {({ active }) => (
-                  <Link to={item.href || '#'} onClick={item.onClick} className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                  <Link to={item.href ?? '#'} onClick={item.onClick} className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
                     {item.name}
                   </Link>
                 )}

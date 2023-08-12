@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from 'react';
+import { type HTMLInputTypeAttribute } from 'react';
 
 export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;

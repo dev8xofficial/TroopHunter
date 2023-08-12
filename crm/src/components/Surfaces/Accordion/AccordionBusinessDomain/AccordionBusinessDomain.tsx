@@ -1,6 +1,7 @@
 import { Disclosure, Transition } from '@headlessui/react';
 import { PlusIcon, MinusIcon } from '@heroicons/react/20/solid';
-import { IAccordionBusinessDomainProps } from './AccordionBusinessDomain.interfaces';
+
+import { type IAccordionBusinessDomainProps } from './AccordionBusinessDomain.interfaces';
 import TextField from '../../../Inputs/TextField/TextField';
 
 const AccordionBusinessDomain: React.FC<IAccordionBusinessDomainProps> = ({ label, name, value, handleChange }: IAccordionBusinessDomainProps): JSX.Element => {
@@ -8,7 +9,7 @@ const AccordionBusinessDomain: React.FC<IAccordionBusinessDomainProps> = ({ labe
     <Disclosure as="div">
       {({ open }) => (
         <>
-          <Disclosure.Button className={`flex w-full justify-between px-4 py-6 text-left ${open && 'bg-white'} hover:bg-white focus:outline-none sm:px-6`}>
+          <Disclosure.Button className={`flex w-full justify-between px-4 py-6 text-left ${open ? 'bg-white' : ''} hover:bg-white focus:outline-none sm:px-6`}>
             <span>{label}</span>
             {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
           </Disclosure.Button>

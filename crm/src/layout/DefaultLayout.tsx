@@ -1,44 +1,43 @@
-import { ReactNode } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { type ReactNode } from 'react';
+
 import { Disclosure } from '@headlessui/react';
 import { BellIcon } from '@heroicons/react/24/outline';
-import BottomNavigation from '../components/Navigation/BottomNavigation/BottomNavigation';
+import { Link, useLocation } from 'react-router-dom';
+
 import Avatar from '../components/DataDisplay/Avatar/Avatar';
+import BottomNavigation from '../components/Navigation/BottomNavigation/BottomNavigation';
 import Menu from '../components/Navigation/Menu/Menu';
+import { classNames } from '../utils/helpers';
 
 const user = {
   firstName: 'Tom',
   lastName: 'Cook',
   email: 'tom@example.com',
-  imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
 };
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
-  { name: 'Leads', href: '/leads', current: false },
+  { name: 'Leads', href: '/leads', current: false }
 ];
 
 const userNavigation = [
   { name: 'Settings', href: '/settings' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', href: '#' }
 ];
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
 
 interface DefaultLayoutProps {
   children: ReactNode;
 }
 
-const DefaultLayout = ({ children }: DefaultLayoutProps) => {
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayoutProps): JSX.Element => {
   // Use the useLocation hook to get the current URL pathname
   const location = useLocation();
 
   // Update the navigation array based on the current URL
   const updatedNavigation = navigation.map((item) => ({
     ...item,
-    current: item.href === location.pathname,
+    current: item.href === location.pathname
   }));
 
   return (

@@ -1,6 +1,7 @@
-import { PayloadAction, createReducer } from '@reduxjs/toolkit';
+import { type PayloadAction, createReducer } from '@reduxjs/toolkit';
+import { type ILeadAttributes } from 'validator/interfaces';
+
 import { setHomePageFiltersAction, resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePageLoadingFailureAction, setHomePagePaginationPageAction, setHomePagePaginationLimitAction, setHomePageDraftLeadIdAction, resetHomePageDraftLeadIdAction, setHomePageBusinessIdsAction, resetHomePageBusinessIdsAction } from '../actions/homePageActions';
-import { ILeadAttributes } from 'validator/interfaces';
 
 export interface IFilterAttributes {
   name: { label: string; name: string; value: string };
@@ -27,18 +28,18 @@ export interface IHomePageState {
 }
 
 export const initialValue: IFilterAttributes = {
-  name: { label: 'Business', name: 'name', value: null },
+  name: { label: 'Business', name: 'name', value: '' },
   view: { label: 'Business', name: 'view', value: 'all' },
   sort: { label: 'Sort', name: 'sort', value: 'relevance' },
-  businessDomain: { label: 'Business Domain', name: 'businessDomain', value: null },
-  address: { label: 'Address', name: 'address', value: null },
-  cityId: { label: 'City', name: 'cityId', value: null },
-  stateId: { label: 'State', name: 'stateId', value: null },
-  countryId: { label: 'Country', name: 'countryId', value: null },
-  phone: { label: 'Phone', name: 'phone', value: null },
-  email: { label: 'Email', name: 'email', value: null },
-  website: { label: 'Website', name: 'website', value: null },
-  sponsoredAd: { label: 'Sponsored', name: 'sponsoredAd', value: false },
+  businessDomain: { label: 'Business Domain', name: 'businessDomain', value: '' },
+  address: { label: 'Address', name: 'address', value: '' },
+  cityId: { label: 'City', name: 'cityId', value: '' },
+  stateId: { label: 'State', name: 'stateId', value: '' },
+  countryId: { label: 'Country', name: 'countryId', value: '' },
+  phone: { label: 'Phone', name: 'phone', value: '' },
+  email: { label: 'Email', name: 'email', value: '' },
+  website: { label: 'Website', name: 'website', value: '' },
+  sponsoredAd: { label: 'Sponsored', name: 'sponsoredAd', value: false }
 };
 
 const initialState: IHomePageState = {
@@ -47,12 +48,11 @@ const initialState: IHomePageState = {
   pageLimit: 10,
   draftLeadId: '',
   businessIds: [],
-  isLoading: false,
+  isLoading: false
 };
 
 const leadPageReducer = createReducer(initialState, (builder) => {
   builder
-    // Handling local updates
     .addCase(setHomePageFiltersAction, (state, action: PayloadAction<IFilterAttributes>) => {
       state.filters = action.payload;
       state.page = 1;
@@ -65,17 +65,17 @@ const leadPageReducer = createReducer(initialState, (builder) => {
       const lead = action.payload;
       const filterValues = {
         name: { label: 'Business', name: 'name', value: lead.search },
-        view: { label: 'Business', name: 'view', value: initialValue['view'].value },
-        sort: { label: 'Sort', name: 'sort', value: initialValue['sort'].value },
+        view: { label: 'Business', name: 'view', value: initialValue.view.value },
+        sort: { label: 'Sort', name: 'sort', value: initialValue.sort.value },
         businessDomain: { label: 'Business Domain', name: 'businessDomain', value: lead.businessDomain },
         address: { label: 'Address', name: 'address', value: lead.address },
         cityId: { label: 'City', name: 'cityId', value: lead.cityId },
         stateId: { label: 'State', name: 'stateId', value: lead.stateId },
         countryId: { label: 'Country', name: 'countryId', value: lead.countryId },
-        phone: { label: 'Phone', name: 'phone', value: null },
+        phone: { label: 'Phone', name: 'phone', value: lead.phone },
         email: { label: 'Email', name: 'email', value: lead.email },
         website: { label: 'Website', name: 'website', value: lead.website },
-        sponsoredAd: { label: 'Sponsored', name: 'sponsoredAd', value: lead.sponsoredAd },
+        sponsoredAd: { label: 'Sponsored', name: 'sponsoredAd', value: lead.sponsoredAd }
       };
       state.filters = filterValues;
     })
@@ -94,7 +94,7 @@ const leadPageReducer = createReducer(initialState, (builder) => {
     .addCase(setHomePageDraftLeadIdAction, (state, action: PayloadAction<string>) => {
       state.draftLeadId = action.payload;
     })
-    .addCase(resetHomePageDraftLeadIdAction, (state, action: PayloadAction<string>) => {
+    .addCase(resetHomePageDraftLeadIdAction, (state) => {
       state.draftLeadId = '';
     })
     .addCase(setHomePageBusinessIdsAction, (state, action: PayloadAction<string[]>) => {

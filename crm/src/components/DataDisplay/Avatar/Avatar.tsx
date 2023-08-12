@@ -1,20 +1,20 @@
-import { IAvatarProps } from './Avatar.interfaces';
+import { type IAvatarProps } from './Avatar.interfaces';
 
 const sizeClasses = {
   xsmall: 'avatar-x-small',
   small: 'avatar-small',
   large: 'avatar-large',
-  xlarge: 'avatar-x-large',
+  xlarge: 'avatar-x-large'
 };
 
-const Avatar = ({ image, firstName, size = 'avatar-small', border, className }: IAvatarProps): JSX.Element => {
-  return image ? (
+const Avatar = ({ image, firstName, size = 'avatar-small', border = '', className = '' }: IAvatarProps): JSX.Element => {
+  return image.length > 0 ? (
     <>
       <img className={`${sizeClasses[size as keyof typeof sizeClasses]} rounded-full ${className}`} src={image} alt={firstName} />
     </>
   ) : (
     <div className={`${sizeClasses[size as keyof typeof sizeClasses]} flex items-center justify-center rounded-full ${border} ${className}`}>
-      <span className="capitalize"> {firstName ? firstName[0] : ''} </span>
+      <span className="capitalize"> {firstName.length > 0 ? firstName[0] : ''} </span>
     </div>
   );
 };

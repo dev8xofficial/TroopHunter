@@ -1,6 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
-import { IAuthLoginSuccessPayload } from '../reducers/authReducer';
-import { IAuthLoginPayload, IAuthRegisterPayload } from '../sagas/authSaga';
+
+import { type IAuthLoginSuccessPayload } from '../reducers/authReducer';
+import { type IAuthLoginPayload, type IAuthRegisterPayload } from '../sagas/authSaga';
 
 export const authLoginAction = createAction<IAuthLoginPayload>('auth/authLoginAction');
 export const authLoginSuccessAction = createAction<IAuthLoginSuccessPayload>('auth/authLoginSuccessAction');

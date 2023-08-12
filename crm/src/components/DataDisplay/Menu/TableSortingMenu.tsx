@@ -1,22 +1,24 @@
-import { ChangeEvent, Fragment, useState } from 'react';
+import { type ChangeEvent, Fragment, useState } from 'react';
+
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
+
+import { type ITableSortingMenuAttributes, type ITableSortingMenuOptionAttributes } from './TableSortingMenu.interfaces';
 import { classNames } from '../../../utils/helpers';
-import { ITableSortingMenuAttributes, ITableSortingMenuOptionAttributes } from './TableSortingMenu.interfaces';
 
 const TableSortingMenu: React.FC<ITableSortingMenuAttributes> = ({ options, value, handleChange }: ITableSortingMenuAttributes): JSX.Element => {
-  const [selected, setSelected] = useState(value ? value : options[0]);
+  const [selected, setSelected] = useState(value != null ? value : options[0]);
 
-  const onChange = (value: ITableSortingMenuOptionAttributes) => {
+  const onChange = (value: ITableSortingMenuOptionAttributes): void => {
     let selectedOptionEvent: ChangeEvent<HTMLInputElement> = {
-      target: { value: '', name: '' },
-    } as ChangeEvent<HTMLInputElement>;
+      target: { value: '', name: '' }
+    } satisfies ChangeEvent<HTMLInputElement>;
 
     for (const option of options) {
       if (option.current) {
         selectedOptionEvent = {
-          target: { value: value.value, name: value.name },
-        } as ChangeEvent<HTMLInputElement>;
+          target: { value: value.value, name: value.name }
+        } satisfies ChangeEvent<HTMLInputElement>;
         break;
       }
     }

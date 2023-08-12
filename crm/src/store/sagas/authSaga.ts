@@ -1,11 +1,12 @@
-import { takeLatest, put } from 'redux-saga/effects';
-import { authLoginSuccessAction, authLoginFailureAction, authLoginAction, authRegisterAction } from '../actions/authActions';
+import { type NavigateFunction } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { takeLatest, put, type ForkEffect } from 'redux-saga/effects';
+import { type ILoginRequestAttributes, type IUserCreateRequestAttributes } from 'validator/interfaces';
+
 import { loginService, registerService } from '../../services/authService';
+import { authLoginSuccessAction, authLoginFailureAction, authLoginAction, authRegisterAction } from '../actions/authActions';
 import { addUserLocallyAction } from '../actions/userActions';
-import { NavigateFunction } from 'react-router-dom';
-import { ILoginRequestAttributes, IUserCreateRequestAttributes } from 'validator/interfaces';
-import { IAuthLoginSuccessPayload } from '../reducers/authReducer';
+import { type IAuthLoginSuccessPayload } from '../reducers/authReducer';
 
 export interface IAuthLoginPayload extends ILoginRequestAttributes {
   navigate: NavigateFunction;
@@ -16,7 +17,7 @@ function* loginSaga({ payload }: { payload: IAuthLoginPayload }): any {
     const { email, password, navigate } = payload;
     const response = yield loginService({ email, password });
 
-    if (response.success) {
+    if (response.success === true) {
       yield put(addUserLocallyAction(response.data.user));
 
       navigate('/');
@@ -30,8 +31,8 @@ function* loginSaga({ payload }: { payload: IAuthLoginPayload }): any {
       toast.error(response.error);
     }
   } catch (error) {
-    toast.error(error.response.error);
-    yield put(authLoginFailureAction(error.message));
+    toast.error((error as Error).message);
+    yield put(authLoginFailureAction());
   }
 }
 
@@ -44,7 +45,7 @@ function* registerSaga({ payload }: { payload: IAuthRegisterPayload }): any {
     const { firstName, lastName, email, password, navigate } = payload;
     const response = yield registerService({ firstName, lastName, email, password });
 
-    if (response.success) {
+    if (response.success === true) {
       navigate('/signin');
 
       toast.success(response.message);
@@ -52,14 +53,14 @@ function* registerSaga({ payload }: { payload: IAuthRegisterPayload }): any {
       toast.error(response.error);
     }
   } catch (error) {
-    toast.error(error.response.error);
+    toast.error((error as Error).message);
   }
 }
 
-export function* watchLoginSaga() {
+export function* watchLoginSaga(): Generator<ForkEffect<never>, void, unknown> {
   yield takeLatest(authLoginAction, loginSaga);
 }
 
-export function* watchRegisterSaga() {
+export function* watchRegisterSaga(): Generator<ForkEffect<never>, void, unknown> {
   yield takeLatest(authRegisterAction, registerSaga);
 }

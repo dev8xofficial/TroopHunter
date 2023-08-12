@@ -1,17 +1,19 @@
 import { useState } from 'react';
+
 import { TrashIcon as TrashIconSolid, DocumentTextIcon as DocumentTextIconSolid } from '@heroicons/react/20/solid';
 import { TrashIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
-import Button from '../../Inputs/Button/Button';
-import IconButton from '../../Inputs/IconButton/IconButton';
-import { IActionBarProps } from './ActionBar.interfaces';
-import Avatar from '../../DataDisplay/Avatar/Avatar';
 import { useSelector } from 'react-redux';
-import { IUserAttributes } from 'validator/interfaces';
+import { type IUserAttributes } from 'validator/interfaces';
+
+import { type IActionBarProps } from './ActionBar.interfaces';
+import { type IAuthState } from '../../../store/reducers/authReducer';
+import { type ILeadsState } from '../../../store/reducers/leadsPageReducer';
+import { type IUserState } from '../../../store/reducers/userReducer';
+import Avatar from '../../DataDisplay/Avatar/Avatar';
 import LeadsDeletionDialog from '../../Feedback/LeadsDeletionDialog/LeadsDeletionDialog';
 import Progress from '../../Feedback/Progress/Progress';
-import { IAuthState } from '../../../store/reducers/authReducer';
-import { IUserState } from '../../../store/reducers/userReducer';
-import { ILeadsState } from '../../../store/reducers/leadsPageReducer';
+import Button from '../../Inputs/Button/Button';
+import IconButton from '../../Inputs/IconButton/IconButton';
 
 const people = [
   {
@@ -22,7 +24,7 @@ const people = [
     imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     href: '#',
     lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
+    lastSeenDateTime: '2023-01-23T13:23Z'
   },
   {
     name: 'Michael Foster',
@@ -32,7 +34,7 @@ const people = [
     imageUrl: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     href: '#',
     lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
+    lastSeenDateTime: '2023-01-23T13:23Z'
   },
   {
     name: 'Dries Vincent',
@@ -41,7 +43,7 @@ const people = [
     updatedAt: '4/4/2022',
     imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     href: '#',
-    lastSeen: null,
+    lastSeen: null
   },
   {
     name: 'Lindsay Walton',
@@ -51,7 +53,7 @@ const people = [
     imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     href: '#',
     lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
+    lastSeenDateTime: '2023-01-23T13:23Z'
   },
   {
     name: 'Courtney Henry',
@@ -61,7 +63,7 @@ const people = [
     imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     href: '#',
     lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
+    lastSeenDateTime: '2023-01-23T13:23Z'
   },
   {
     name: 'Tom Cook',
@@ -70,8 +72,8 @@ const people = [
     updatedAt: '4/4/2022',
     imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     href: '#',
-    lastSeen: null,
-  },
+    lastSeen: null
+  }
 ];
 
 const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = false }: IActionBarProps): JSX.Element => {
@@ -82,7 +84,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
   const selectedLeadIds = leads.selectedLeadIds;
   const usersLoggedIn: IUserAttributes = users.data[auth.userId];
 
-  let [isOpenDeleteLeadsModal, setIsOpenDeleteLeadsModal] = useState(false);
+  const [isOpenDeleteLeadsModal, setIsOpenDeleteLeadsModal] = useState(false);
 
   return (
     <>
@@ -143,10 +145,21 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
                         <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>{' '}
                         <div>
                           <span className="hidden xl:inline-block">
-                            <Button variant="outlined" color="red" onClick={() => setIsOpenDeleteLeadsModal(!isOpenDeleteLeadsModal)}>
+                            <Button
+                              variant="outlined"
+                              color="red"
+                              onClick={() => {
+                                setIsOpenDeleteLeadsModal(!isOpenDeleteLeadsModal);
+                              }}
+                            >
                               Delete
                             </Button>
-                            <LeadsDeletionDialog isOpen={isOpenDeleteLeadsModal} closeModal={() => setIsOpenDeleteLeadsModal(!isOpenDeleteLeadsModal)} />
+                            <LeadsDeletionDialog
+                              isOpen={isOpenDeleteLeadsModal}
+                              closeModal={() => {
+                                setIsOpenDeleteLeadsModal(!isOpenDeleteLeadsModal);
+                              }}
+                            />
                           </span>
                           <span className="xl:flex">
                             <IconButton className="xl:hidden" variant="contained" color="red" ringOffset="white">

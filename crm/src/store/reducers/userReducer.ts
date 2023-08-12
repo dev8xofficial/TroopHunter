@@ -1,9 +1,10 @@
-import { PayloadAction, createReducer } from '@reduxjs/toolkit';
+import { type PayloadAction, createReducer } from '@reduxjs/toolkit';
+import { type IUserAttributes } from 'validator/interfaces';
+
 import { fetchUsersSuccessAction, fetchUsersFailureAction, fetchUserSuccessAction, addUserLocallyAction, updateUserLocallyAction, deleteUserLocallyAction } from '../actions/userActions';
-import { IUserAttributes } from 'validator/interfaces';
 
 export interface IUserState {
-  data: { [key: string]: IUserAttributes };
+  data: Record<string, IUserAttributes>;
 }
 
 const initialState: IUserState = { data: {} };
@@ -18,7 +19,7 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchUserSuccessAction, (state, action: PayloadAction<IUserAttributes>) => {
       const user = action.payload;
-      const mergedUsers: { [key: string]: IUserAttributes } = { ...state.data, [user.id]: { ...user } };
+      const mergedUsers: Record<string, IUserAttributes> = { ...state.data, [user.id]: { ...user } };
       state.data = mergedUsers;
     })
     // Handling local updates
@@ -32,7 +33,7 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(deleteUserLocallyAction, (state, action: PayloadAction<string>) => {
       const userId = action.payload;
-      delete state.data[userId];
+      state.data = Object.fromEntries(Object.entries(state.data).filter(([key]) => key !== userId));
     });
 });
 

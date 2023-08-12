@@ -1,9 +1,10 @@
-import { IFilterAttributes } from '../store/reducers/homePageReducer';
-import { ILeadAttributes } from 'validator/interfaces';
+import { type ILeadAttributes } from 'validator/interfaces';
 
-export function classNames(...classes: any) {
+import { type IFilterAttributes } from '../store/reducers/homePageReducer';
+
+export const classNames = (...classes: Array<string | undefined | null>): string => {
   return classes.filter(Boolean).join(' ');
-}
+};
 
 // Function to compare filters and lead properties
 export const compareFiltersAndLead = (filters: IFilterAttributes, lead: ILeadAttributes): boolean => {
@@ -11,7 +12,7 @@ export const compareFiltersAndLead = (filters: IFilterAttributes, lead: ILeadAtt
   const filteredProperties: any = {};
 
   // Extract the relevant properties from filters object
-  Object.entries(filters).map(([_, filter]) => {
+  Object.entries(filters).forEach(([_, filter]) => {
     filteredProperties[filter.name] = filter.value;
   });
 
@@ -29,10 +30,10 @@ export const isFiltersChanged = (filters: IFilterAttributes, initialValues: IFil
   return true;
 };
 
-export const removeNullValues = <T extends Record<string, any>>(obj: T): T => {
+export const removeEmptyStringValues = <T extends Record<string, any>>(obj: T): T => {
   const newObj: Partial<T> = {};
   for (const key in obj) {
-    if (obj[key] !== null) {
+    if (obj[key] !== '') {
       newObj[key] = obj[key];
     }
   }

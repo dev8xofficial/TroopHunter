@@ -1,11 +1,10 @@
 import { Fragment } from 'react';
+
 import { Menu, Transition } from '@headlessui/react';
-import { ICustomMenuProps } from './CustomMenu.interfaces';
 import { PlusIcon } from '@heroicons/react/20/solid';
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
+import { type ICustomMenuProps } from './CustomMenu.interfaces';
+import { classNames } from '../../../utils/helpers';
 
 const CustomMenu: React.FC<ICustomMenuProps> = ({ children }: ICustomMenuProps): JSX.Element => {
   return (

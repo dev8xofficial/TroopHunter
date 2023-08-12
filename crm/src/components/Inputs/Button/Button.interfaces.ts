@@ -8,6 +8,6 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   color?: 'indigo' | 'red' | 'gray';
   disabled?: boolean;
   onClick?: () => void;
-  style?: {};
+  style?: React.CSSProperties;
   children?: React.ReactNode;
 }

@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { removeNullValues } from '../utils/helpers';
+import { removeEmptyStringValues } from '../utils/helpers';
 
 const BASE_URL = process.env.BACKEND_URL;
 
 export const loginService = async (userData: any) => {
   try {
-    const response = await axios.post(`${BASE_URL}/auth/signin`, removeNullValues(userData));
+    const response = await axios.post(`${BASE_URL}/auth/signin`, removeEmptyStringValues(userData));
     return response.data;
   } catch (error) {
     throw new Error('An error occurred while logging in.');
@@ -14,7 +14,7 @@ export const loginService = async (userData: any) => {
 
 export const registerService = async (userData: any) => {
   try {
-    const response = await axios.post(`${BASE_URL}/auth/signup`, removeNullValues(userData));
+    const response = await axios.post(`${BASE_URL}/auth/signup`, removeEmptyStringValues(userData));
     return response.data;
   } catch (error) {
     throw new Error('An error occurred while registering.');

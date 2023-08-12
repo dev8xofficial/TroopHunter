@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
+
 import AppRouter from './routes/AppRouter';
 
-function App() {
+const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const preloader = document.getElementById('preloader');
-    if (preloader) {
+    if (preloader != null) {
       setTimeout(() => {
         preloader.style.display = 'none';
         setLoading(false);
@@ -23,6 +24,6 @@ function App() {
       <AppRouter />
     </>
   );
-}
+};
 
 export default App;

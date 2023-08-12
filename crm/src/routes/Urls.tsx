@@ -1,9 +1,15 @@
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
 import Leads from '../pages/Leads';
-import Settings from '../pages/Settings';
 import PageNotFound from '../pages/PageNotFound';
+import Settings from '../pages/Settings';
+import SignIn from '../pages/SignIn';
+import SignUp from '../pages/SignUp';
+
+export interface URL {
+  path: string;
+  isPublic: boolean;
+  component: React.ComponentType; // Use React.ComponentType here
+}
 
 export const PAGENOTFOUND_URL = '*'; // Wildcard route for PageNotFound
 export const HOME_URL = '/';
@@ -18,5 +24,5 @@ export const URLS = [
   { path: HOME_URL, isPublic: false, component: Home },
   { path: LEADS_URL, isPublic: false, component: Leads },
   { path: SETTINGS_URL, isPublic: false, component: Settings },
-  { path: PAGENOTFOUND_URL, isPublic: true, component: PageNotFound }, // Add PageNotFound route
+  { path: PAGENOTFOUND_URL, isPublic: true, component: PageNotFound } // Add PageNotFound route
 ];

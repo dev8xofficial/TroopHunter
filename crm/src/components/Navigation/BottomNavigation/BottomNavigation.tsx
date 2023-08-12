@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { ClockIcon, PresentationChartLineIcon, QueueListIcon, UserIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
 
 const BottomNavigation: React.FC = (): JSX.Element => {
   return (

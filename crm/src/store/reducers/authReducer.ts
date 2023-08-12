@@ -1,6 +1,7 @@
-import { PayloadAction, createReducer } from '@reduxjs/toolkit';
+import { type PayloadAction, createReducer } from '@reduxjs/toolkit';
+import { type IUserAttributes } from 'validator/interfaces';
+
 import { authLoginSuccessAction, authLoginFailureAction } from '../actions/authActions';
-import { IUserAttributes } from 'validator/interfaces';
 
 export interface IAuthState {
   token: string;
@@ -13,8 +14,8 @@ export interface IAuthLoginSuccessPayload {
 }
 
 const initialState: IAuthState = {
-  token: null,
-  userId: null,
+  token: '',
+  userId: ''
 };
 
 const authReducer = createReducer(initialState, (builder) => {
@@ -24,8 +25,8 @@ const authReducer = createReducer(initialState, (builder) => {
       state.userId = action.payload.user.id;
     })
     .addCase(authLoginFailureAction, (state) => {
-      state.token = null;
-      state.userId = null;
+      state.token = '';
+      state.userId = '';
     });
 });
 

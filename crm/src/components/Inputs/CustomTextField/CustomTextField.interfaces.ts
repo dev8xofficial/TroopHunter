@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from 'react';
+import { type HTMLInputTypeAttribute } from 'react';
 
 export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -9,7 +9,7 @@ export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElem
   disabled?: boolean;
   inputRef?: React.RefObject<HTMLInputElement>;
   type?: HTMLInputTypeAttribute | undefined;
-  value?: any;
+  value?: string;
   max?: any;
   required?: boolean;
   placeholder?: string;

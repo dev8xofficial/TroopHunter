@@ -13,7 +13,7 @@ const Progress: React.FC<ProgressBarProps> = ({ isLoading }) => {
     let duration = 1500; // Initial duration for 10% width increase (1.5 seconds)
 
     // Function to gradually increase the progress bar width with bounce animation
-    const increaseProgress = () => {
+    const increaseProgress = (): void => {
       const totalIncrements = 100; // Number of increments to reach 10% width increase
       const incrementDuration = duration / totalIncrements; // Duration for each increment
 
@@ -41,7 +41,7 @@ const Progress: React.FC<ProgressBarProps> = ({ isLoading }) => {
     };
 
     // Function to reset the progress bar width and duration
-    const resetProgress = () => {
+    const resetProgress = (): void => {
       clearInterval(interval);
       setProgressWidth(0);
       duration = 1500;

@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 interface AuthLayoutProps {
   children: ReactNode;
 }
 
-const AuthLayout = ({ children }: AuthLayoutProps) => {
+const AuthLayout: React.FC<AuthLayoutProps> = ({ children }: AuthLayoutProps): JSX.Element => {
   return (
     <>
       <div className="h-screen">

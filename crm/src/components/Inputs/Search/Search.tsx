@@ -1,9 +1,10 @@
 import { Fragment, useState } from 'react';
-import { Combobox } from '@headlessui/react';
-import { ChevronDownIcon, MagnifyingGlassIcon, MinusIcon, PlusIcon, AdjustmentsVerticalIcon } from '@heroicons/react/20/solid';
+
+import { Combobox, Disclosure, Transition, Dialog } from '@headlessui/react';
+import { ChevronDownIcon, MagnifyingGlassIcon, MinusIcon, PlusIcon, AdjustmentsVerticalIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { UsersIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { ChevronRightIcon } from '@heroicons/react/20/solid';
-import { Disclosure, Transition, Dialog } from '@headlessui/react';
+
+import { classNames } from '../../../utils/helpers';
 
 const people = [
   {
@@ -14,27 +15,23 @@ const people = [
     role: 'Co-Founder / CEO',
     url: 'https://example.com',
     profileUrl: '#',
-    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
+    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+  }
 ];
 
 const recent = [people[0]];
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
-
-const Search = () => {
+const Search: React.FC = (): JSX.Element => {
   const [query, setQuery] = useState('');
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  function closeModal() {
+  const closeModal = (): void => {
     setIsOpen(false);
-  }
+  };
 
-  function openModal() {
+  const openModal = (): void => {
     setIsOpen(true);
-  }
+  };
 
   const filteredPeople =
     query === ''
@@ -54,7 +51,16 @@ const Search = () => {
                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   </div>
-                  <Combobox.Input type="text" name="email" id="email" placeholder="Search Lead or Buinesses" onChange={(event) => setQuery(event.target.value)} className="block w-full rounded-none rounded-l border-0 px-3 py-1.5 pl-10 pr-3 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                  <Combobox.Input
+                    type="text"
+                    name="email"
+                    id="email"
+                    placeholder="Search Lead or Buinesses"
+                    onChange={(event) => {
+                      setQuery(event.target.value);
+                    }}
+                    className="block w-full rounded-none rounded-l border-0 px-3 py-1.5 pl-10 pr-3 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
                 </div>
                 <button type="button" onClick={openModal} className="relative -ml-px inline-flex items-center gap-x-1.5 whitespace-nowrap rounded-r bg-white px-3 py-2 text-sm font-semibold capitalize text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                   advanced search

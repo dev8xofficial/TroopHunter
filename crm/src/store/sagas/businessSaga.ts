@@ -1,12 +1,11 @@
 import { toast } from 'react-toastify';
-import { takeLatest, put, select } from 'redux-saga/effects';
-import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction, fetchBusinessesAction } from '../actions/businessActions';
+import { takeLatest, put, select, type ForkEffect } from 'redux-saga/effects';
+import { type IBusinessFetchRequestAttributes, type IPaginationAttributes, type IBusinessAttributes } from 'validator/interfaces';
+
 import { getBusinessesBySearchService } from '../../services/businessService';
+import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction, fetchBusinessesAction } from '../actions/businessActions';
 import { setHomePageLoadingFailureAction, setHomePageLoadingSuccessAction } from '../actions/homePageActions';
-import { IBusinessFetchRequestAttributes } from 'validator/interfaces';
-import { IPaginationAttributes } from 'validator/interfaces';
-import { IBusinessAttributes } from 'validator/interfaces';
-import { IBusinessState } from '../reducers/businessReducer';
+import { type IBusinessState } from '../reducers/businessReducer';
 
 export interface IBusinessesFetchPayload extends IBusinessFetchRequestAttributes, IPaginationAttributes {
   token: string;
@@ -17,17 +16,19 @@ function* fetchBusinessesSaga({ payload }: { payload: IBusinessesFetchPayload })
     const { name, businessDomain, address, cityId, stateId, countryId, phone, email, website, sponsoredAd } = payload;
     const { page, limit } = payload;
     const { token } = payload;
-    const params = { name, businessDomain, address, cityId, stateId, countryId, phone, email, website, page, limit };
+    const params: Omit<IBusinessesFetchPayload, 'token'> = { name, businessDomain, address, cityId, stateId, countryId, phone, email, website, page, limit };
     const { businesses }: { businesses: IBusinessState } = yield select((state: { businesses: IBusinessState }) => state);
-    const businessesDataBusinesses: { [key: string]: IBusinessAttributes } = businesses.data.businesses;
+    const businessesDataBusinesses: Record<string, IBusinessAttributes> = businesses.data.businesses;
 
-    if (sponsoredAd) {
-      params['sponsoredAd'] = sponsoredAd;
+    if (sponsoredAd ?? false) {
+      params.sponsoredAd = sponsoredAd;
+    } else {
+      delete params.sponsoredAd;
     }
 
     const response = yield getBusinessesBySearchService(params, token);
 
-    if (response.success) {
+    if (response.success === true) {
       if (page === 1) {
         const { data }: IBusinessState = response as IBusinessState;
         yield put(fetchBusinessesSuccessAction({ data }));
@@ -37,7 +38,7 @@ function* fetchBusinessesSaga({ payload }: { payload: IBusinessesFetchPayload })
         const totalPages = response.data.totalPages;
         const mergedBusinesses = { ...businessesDataBusinesses, ...response.data.businesses };
         const state: IBusinessState = {
-          data: { businesses: mergedBusinesses, totalPages, totalRecords },
+          data: { businesses: mergedBusinesses, totalPages, totalRecords }
         };
 
         yield put(fetchBusinessesSuccessAction(state));
@@ -50,11 +51,11 @@ function* fetchBusinessesSaga({ payload }: { payload: IBusinessesFetchPayload })
     }
   } catch (error) {
     // Display toast message for error
-    toast.error(error.message);
-    yield put(fetchBusinessesFailureAction(error.message));
+    toast.error((error as Error).message);
+    yield put(fetchBusinessesFailureAction());
   }
 }
 
-export function* watchBusinessSaga() {
+export function* watchBusinessSaga(): Generator<ForkEffect<never>, void, unknown> {
   yield takeLatest(fetchBusinessesAction, fetchBusinessesSaga);
 }
