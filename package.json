@@ -27,5 +27,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "force": "^0.0.3"
+  }
 }
