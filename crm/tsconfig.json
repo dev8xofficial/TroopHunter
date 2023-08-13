@@ -16,5 +16,5 @@
       "*": ["*", "src/*"]
     }
   },
-  "include": ["src", "src/lib.d.ts", ".eslintrc.cjs"]
+  "include": ["src", "src/lib.d.ts", ".eslintrc.cjs", "vite.config.ts"]
 }

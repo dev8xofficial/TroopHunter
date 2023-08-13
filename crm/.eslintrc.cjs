@@ -60,5 +60,6 @@ module.exports = {
         moduleDirectory: ['node_modules', 'src/'] // Add this line
       }
     }
-  }
+  },
+  ignorePatterns: ['tailwind.config.cjs', 'vite.config.ts', 'postcss.config.cjs']
 };
