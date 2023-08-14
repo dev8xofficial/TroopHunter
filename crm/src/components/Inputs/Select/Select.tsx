@@ -7,10 +7,10 @@ import { type IOption, type ISelectProps } from './Select.interfaces';
 import { classNames } from '../../../utils/helpers';
 
 const Select: React.FC<ISelectProps> = ({ label, options, value, onChange, disabled }: ISelectProps): JSX.Element => {
-  const initialValue = value != null || options[0];
+  const initialValue = value != null ? value : options[0];
   const [selectedOption, setSelectedOption] = useState<IOption>(initialValue);
 
-  const handleChange = (selectedOption: IOption) => {
+  const handleChange = (selectedOption: IOption): void => {
     setSelectedOption(selectedOption);
     if (onChange != null) onChange(selectedOption);
   };
@@ -23,8 +23,8 @@ const Select: React.FC<ISelectProps> = ({ label, options, value, onChange, disab
     <Listbox value={selectedOption} onChange={handleChange} disabled={disabled}>
       {({ open }) => (
         <>
-          {label && <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">{label}</Listbox.Label>}
-          <div className={classNames(label && 'mt-2', 'relative')}>
+          {label != null && <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">{label}</Listbox.Label>}
+          <div className={classNames(label != null ? 'mt-2' : '', 'relative')}>
             <Listbox.Button className="relative w-full cursor-default rounded border border-gray-300 bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow outline-none transition duration-200 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-white sm:text-sm sm:leading-6">
               <span className="block truncate">{selectedOption.name}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">

@@ -20,7 +20,7 @@ export const LoginSchema = UserSchema.pick({
 export const LoginRequestSchema = UserSchema.pick({ email: true, password: true });
 export const UserFetchRequestSchema = UserSchema.omit({ id: true }).partial();
 export const UserFetchByIdRequestSchema = UserSchema.pick({ id: true });
-export const UserCreateRequestSchema = UserSchema.omit({ id: true });
+export const UserCreateRequestSchema = UserSchema.omit({ id: true, Leads: true });
 export const UserUpdateRequestSchema = UserSchema.omit({ id: true }).partial();
 
 export const LoginRequestValidationMiddleware = validationMiddleware(LoginSchema, 'body');

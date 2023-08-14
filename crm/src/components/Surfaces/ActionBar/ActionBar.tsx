@@ -15,64 +15,37 @@ import Progress from '../../Feedback/Progress/Progress';
 import Button from '../../Inputs/Button/Button';
 import IconButton from '../../Inputs/IconButton/IconButton';
 
+interface IPersonAttributes {
+  id: number;
+  name: string;
+  phone: string;
+  email: string;
+  role: string;
+  url: string;
+  profileUrl: string;
+  imageUrl: string;
+}
+
 const people = [
   {
+    id: 1,
     name: 'Leslie Alexander',
-    email: 'leslie.alexander@example.com',
-    leads: 250,
-    updatedAt: '4/4/2022',
-    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    href: '#',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z'
+    phone: '1-493-747-9031',
+    email: 'lesliealexander@example.com',
+    role: 'Co-Founder / CEO',
+    url: 'https://example.com',
+    profileUrl: '#',
+    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
   },
   {
-    name: 'Michael Foster',
-    email: 'michael.foster@example.com',
-    leads: 250,
-    updatedAt: '4/4/2022',
-    imageUrl: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    href: '#',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z'
-  },
-  {
-    name: 'Dries Vincent',
-    email: 'dries.vincent@example.com',
-    leads: 250,
-    updatedAt: '4/4/2022',
-    imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    href: '#',
-    lastSeen: null
-  },
-  {
-    name: 'Lindsay Walton',
-    email: 'lindsay.walton@example.com',
-    leads: 250,
-    updatedAt: '4/4/2022',
-    imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    href: '#',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z'
-  },
-  {
-    name: 'Courtney Henry',
-    email: 'courtney.henry@example.com',
-    leads: 250,
-    updatedAt: '4/4/2022',
-    imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    href: '#',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z'
-  },
-  {
-    name: 'Tom Cook',
-    email: 'tom.cook@example.com',
-    leads: 250,
-    updatedAt: '4/4/2022',
-    imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    href: '#',
-    lastSeen: null
+    id: 2,
+    name: 'Arham Alexander',
+    phone: '1-493-747-9031',
+    email: 'lesliealexander@example.com',
+    role: 'Co-Founder / CEO',
+    url: 'https://example.com',
+    profileUrl: '#',
+    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
   }
 ];
 
@@ -132,7 +105,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
                   <>
                     <div className="flex items-center">
                       <div className="hidden -space-x-0.5 sm:flex">
-                        {people.map((person: any, index: number) => (
+                        {people.map((person: IPersonAttributes, index: number) => (
                           <span key={index}>
                             <Avatar image={person.imageUrl} firstName={person.name} size="xsmall" border="border border-gray-900" className="bg-gray-50 ring-2 ring-white" />
                           </span>

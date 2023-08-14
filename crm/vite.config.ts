@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
       react(),
       eslintPlugin({
         cache: false,
-        include: ['./src/**/*.js', './src/**/*.jsx'],
+        include: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx'],
         exclude: []
       })
     ],

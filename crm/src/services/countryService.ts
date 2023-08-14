@@ -1,20 +1,24 @@
-import axios from 'axios';
+import axios, { type AxiosResponse } from 'axios';
+import { type IPaginationAttributes, type ApiResponse, type ICountryAttributes, type ICountryFetchRequestAttributes } from 'validator';
+
 import { removeEmptyStringValues } from '../utils/helpers';
 
-const BASE_URL = process.env.BACKEND_URL;
+const BASE_URL = process.env.BACKEND_URL ?? '';
 
-export const getCountriesByQuery = async (params: any, token: string) => {
+interface IGetCountriesByQueryAttributes extends ICountryFetchRequestAttributes, IPaginationAttributes {}
+
+export const getCountriesByQuery = async (params: IGetCountriesByQueryAttributes, token: string): Promise<ApiResponse<ICountryAttributes[]>> => {
   try {
-    const response = await axios.get(`${BASE_URL}/countries/search`, { params: removeEmptyStringValues(params), headers: { Authorization: `Bearer ${token}` } });
+    const response: AxiosResponse<ApiResponse<ICountryAttributes[]>> = await axios.get(`${BASE_URL}/countries/search`, { params: removeEmptyStringValues(params), headers: { Authorization: `Bearer ${token}` } });
     return response.data; // Assuming you want to return the data from the response
   } catch (error) {
     throw new Error('An error occurred while fetching countries.');
   }
 };
 
-export const getCountryByIdService = async (id: string, token: string) => {
+export const getCountryByIdService = async (id: string, token: string): Promise<ApiResponse<ICountryAttributes>> => {
   try {
-    const response = await axios.get(`${BASE_URL}/countries/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+    const response: AxiosResponse<ApiResponse<ICountryAttributes>> = await axios.get(`${BASE_URL}/countries/${id}`, { headers: { Authorization: `Bearer ${token}` } });
     return response.data; // Assuming you want to return the data from the response
   } catch (error) {
     throw new Error('An error occurred while fetching country by ID.');

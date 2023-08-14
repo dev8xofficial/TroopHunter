@@ -10,6 +10,8 @@ export const LeadSchema = BusinessSchema.partial().extend({
   search: z.string(),
   phone: z.string().optional(),
   businessCount: z.number(),
+  updatedAt: z.string().optional(),
+  createdAt: z.string().optional(),
 });
 
 export const LeadFetchRequestSchema = LeadSchema.omit({ id: true }).partial();

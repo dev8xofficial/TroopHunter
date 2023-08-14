@@ -19,7 +19,7 @@ import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import { fetchBusinessesAction } from '../store/actions/businessActions';
 import { resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePagePaginationPageAction } from '../store/actions/homePageActions';
 import { type IAuthState } from '../store/reducers/authReducer';
-import { type IFilterAttributes, type IHomePageState, initialValue } from '../store/reducers/homePageReducer';
+import { type IFilterAttributes, type IHomePageState, initialValue, type IFilterOptionAttributes } from '../store/reducers/homePageReducer';
 import { type IUserState } from '../store/reducers/userReducer';
 import { classNames, compareFiltersAndLead, isFiltersChanged } from '../utils/helpers';
 
@@ -55,7 +55,7 @@ const Lead: React.FC = () => {
     let newValue: string | boolean = event.target.value;
 
     if (name === 'sponsoredAd') {
-      newValue = JSON.parse(newValue);
+      newValue = JSON.parse(newValue) as string | boolean;
     }
 
     if (name === 'name' && leadPagePaginationPage !== 1) {
@@ -64,7 +64,11 @@ const Lead: React.FC = () => {
 
     const newFilters: IFilterAttributes = Object.fromEntries(
       Object.entries(leadPageFilters).map(([key, filter]) => {
-        return [key, filter.name === name ? { ...filter, value: newValue } : filter];
+        const typedFilter = filter as IFilterOptionAttributes;
+        if (typedFilter.name === name) {
+          return [key, { ...typedFilter, value: newValue }];
+        }
+        return [key, typedFilter];
       })
     ) as IFilterAttributes;
     dispatch(setHomePageFiltersAction(newFilters));
@@ -438,12 +442,13 @@ const Lead: React.FC = () => {
               <div>
                 <ul role="list" className="divide-y rounded border bg-gray-100 shadow">
                   {Object.entries(leadPageFilters).map(([_, filter]) => {
-                    return filter.name !== 'name' && filter.name !== 'view' && filter.name !== 'sort' ? (
-                      <li key={filter.name}>
-                        <Accordion label={filter.label} name={filter.name} value={filter.value} handleChange={handleChange} />
+                    const typedFilter = filter as IFilterOptionAttributes;
+                    return typedFilter.name !== 'name' && typedFilter.name !== 'view' && typedFilter.name !== 'sort' ? (
+                      <li key={typedFilter.name}>
+                        <Accordion label={typedFilter.label} name={typedFilter.name} value={typedFilter.value ?? ''} handleChange={handleChange} />
                       </li>
                     ) : (
-                      <React.Fragment key={filter.name} />
+                      <React.Fragment key={typedFilter.name} />
                     );
                   })}
                 </ul>

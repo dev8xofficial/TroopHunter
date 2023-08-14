@@ -5,22 +5,30 @@ import { FingerPrintIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import Avatar from '../components/DataDisplay/Avatar/Avatar';
 import { classNames } from '../utils/helpers';
 
+interface INavagationAttributes {
+  name: string;
+  href: string;
+  icon: React.ElementType;
+  current: boolean;
+}
+
 const Settings: React.FC = (): JSX.Element => {
-  const [secondaryNavigation, setSecondaryNavigation] = useState([
+  const [secondaryNavigation, setSecondaryNavigation] = useState<INavagationAttributes[]>([
     { name: 'Profile', href: '#', icon: UserCircleIcon, current: true },
     { name: 'Security', href: '#', icon: FingerPrintIcon, current: false }
   ]);
 
-  const handleSecondaryNavigation = (active: any): void => {
-    const array: any = secondaryNavigation;
-    array.map((nav: any) => {
+  const handleSecondaryNavigation = (active: INavagationAttributes): void => {
+    const array: INavagationAttributes[] = secondaryNavigation;
+    const updatedArray = array.map((nav: INavagationAttributes) => {
       if (nav.name === active.name) {
         nav.current = true;
       } else {
         nav.current = false;
       }
+      return nav; // Return the modified nav object
     });
-    setSecondaryNavigation(array);
+    setSecondaryNavigation(updatedArray);
   };
 
   return (

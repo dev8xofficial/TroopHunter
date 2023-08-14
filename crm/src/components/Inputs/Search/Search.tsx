@@ -6,10 +6,31 @@ import { UsersIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import { classNames } from '../../../utils/helpers';
 
+interface IPersonAttributes {
+  id: number;
+  name: string;
+  phone: string;
+  email: string;
+  role: string;
+  url: string;
+  profileUrl: string;
+  imageUrl: string;
+}
+
 const people = [
   {
     id: 1,
     name: 'Leslie Alexander',
+    phone: '1-493-747-9031',
+    email: 'lesliealexander@example.com',
+    role: 'Co-Founder / CEO',
+    url: 'https://example.com',
+    profileUrl: '#',
+    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+  },
+  {
+    id: 2,
+    name: 'Arham Alexander',
     phone: '1-493-747-9031',
     email: 'lesliealexander@example.com',
     role: 'Co-Founder / CEO',
@@ -43,7 +64,11 @@ const Search: React.FC = (): JSX.Element => {
   return (
     <>
       <div className="relative z-20 w-full transform">
-        <Combobox onChange={(person: any) => (window.location = person.profileUrl)}>
+        <Combobox
+          onChange={(person: IPersonAttributes) => {
+            window.location.assign(person.profileUrl);
+          }}
+        >
           {({ activeOption }) => (
             <>
               <div className="group flex w-full rounded shadow-sm">
@@ -70,10 +95,10 @@ const Search: React.FC = (): JSX.Element => {
 
               {(query !== '' || filteredPeople.length > 0) && (
                 <Combobox.Options as="div" static hold className="fixed left-0 right-0 mt-2 flex divide-x divide-gray-100 rounded border bg-white shadow">
-                  <div className={classNames('max-h-96 min-w-0 flex-auto scroll-py-4 overflow-y-auto px-6 py-4', activeOption && 'sm:h-96')}>
+                  <div className={classNames('max-h-96 min-w-0 flex-auto scroll-py-4 overflow-y-auto px-6 py-4', activeOption != null ? 'sm:h-96' : '')}>
                     <div className="-mx-2 text-sm text-gray-700">
                       {(query === '' ? recent : filteredPeople).map((person) => (
-                        <Combobox.Option as="div" key={person.id} value={person} className={({ active }) => classNames('flex cursor-default select-none items-center rounded p-2', active && 'bg-gray-100 text-gray-900')}>
+                        <Combobox.Option as="div" key={person.id} value={person} className={({ active }) => classNames('flex cursor-default select-none items-center rounded p-2', active ? 'bg-gray-100 text-gray-900' : '')}>
                           {({ active }) => (
                             <>
                               <img src={person.imageUrl} alt="" className="h-6 w-6 flex-none rounded-full" />
@@ -86,7 +111,7 @@ const Search: React.FC = (): JSX.Element => {
                     </div>
                   </div>
 
-                  {activeOption && (
+                  {activeOption != null && (
                     <div className="hidden h-96 w-1/2 flex-none flex-col divide-y divide-gray-100 overflow-y-auto sm:flex">
                       <div className="flex-none p-6 text-center">
                         <img src={activeOption.imageUrl} alt="" className="mx-auto h-16 w-16 rounded-full" />

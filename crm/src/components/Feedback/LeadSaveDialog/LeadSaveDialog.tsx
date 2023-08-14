@@ -12,7 +12,7 @@ import { type CustomDialogAttributes } from './LeadSaveDialog.interfaces';
 import { createLeadAction, updateLeadAction } from '../../../store/actions/leadActions';
 import { type IAuthState } from '../../../store/reducers/authReducer';
 import { type IBusinessState } from '../../../store/reducers/businessReducer';
-import { type IFilterAttributes, type IHomePageState } from '../../../store/reducers/homePageReducer';
+import { type IFilterOptionAttributes, type IFilterAttributes, type IHomePageState } from '../../../store/reducers/homePageReducer';
 import { type IUserState } from '../../../store/reducers/userReducer';
 import Button from '../../Inputs/Button/Button';
 import TextField from '../../Inputs/TextField/TextField';
@@ -45,7 +45,7 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
     enableReinitialize: true,
     onSubmit: (values, { resetForm }) => {
       const { title } = values;
-      if (Object.keys(leadPageFilters).length > 0 && Object.values(leadPageFilters).some((item) => item.name !== 'sponsoredAd' && item.value !== '')) {
+      if (Object.keys(leadPageFilters).length > 0 && Object.values(leadPageFilters).some((item: IFilterOptionAttributes) => item.name !== 'sponsoredAd' && item.value !== '')) {
         const requestData = {
           id: leadPageDraftLeadId,
           token: auth.token,

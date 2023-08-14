@@ -22,7 +22,7 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
   const [searchResults, setSearchResults] = useState<ILocationComboboxOption[]>([]);
   const [selectedOption, setSelectedOption] = useState<ILocationComboboxOption>(initalValue);
 
-  const handleOptionChange = (selectedOption: any): void => {
+  const handleOptionChange = (selectedOption: ILocationComboboxOption): void => {
     setSelectedOption(selectedOption);
     onChange({ target: { id: selectedOption.id, name: type + 'Id', value: selectedOption?.value ? selectedOption?.value : '' } } as React.ChangeEvent<HTMLInputElement>);
   };

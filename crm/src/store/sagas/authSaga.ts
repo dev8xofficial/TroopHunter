@@ -1,7 +1,7 @@
 import { type NavigateFunction } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { takeLatest, put, type ForkEffect } from 'redux-saga/effects';
-import { type ILoginRequestAttributes, type IUserCreateRequestAttributes } from 'validator/interfaces';
+import { takeLatest, put, call, type StrictEffect } from 'redux-saga/effects';
+import { type ApiResponse, type IUserAttributes, type ILoginRequestAttributes, type IUserCreateRequestAttributes } from 'validator/interfaces';
 
 import { loginService, registerService } from '../../services/authService';
 import { authLoginSuccessAction, authLoginFailureAction, authLoginAction, authRegisterAction } from '../actions/authActions';
@@ -12,20 +12,21 @@ export interface IAuthLoginPayload extends ILoginRequestAttributes {
   navigate: NavigateFunction;
 }
 
-function* loginSaga({ payload }: { payload: IAuthLoginPayload }): any {
+function* loginSaga({ payload }: { payload: IAuthLoginPayload }): Generator<StrictEffect, void, ApiResponse<IAuthLoginSuccessPayload>> {
   try {
     const { email, password, navigate } = payload;
-    const response = yield loginService({ email, password });
+    const response: ApiResponse<IAuthLoginSuccessPayload> = yield call(loginService, { email, password });
 
-    if (response.success === true) {
-      yield put(addUserLocallyAction(response.data.user));
+    if (response.success && response.data !== undefined) {
+      const loginResponse: IAuthLoginSuccessPayload = response.data;
+      yield put(addUserLocallyAction(loginResponse.user));
 
       navigate('/');
 
       toast.success(response.message);
 
       // Perform type check using type assertion
-      const loginSuccessPayload = response.data as IAuthLoginSuccessPayload;
+      const loginSuccessPayload = response.data;
       yield put(authLoginSuccessAction(loginSuccessPayload));
     } else {
       toast.error(response.error);
@@ -36,16 +37,16 @@ function* loginSaga({ payload }: { payload: IAuthLoginPayload }): any {
   }
 }
 
-export interface IAuthRegisterPayload extends Omit<IUserCreateRequestAttributes, 'Leads'> {
+export interface IAuthRegisterPayload extends IUserCreateRequestAttributes {
   navigate: NavigateFunction;
 }
 
-function* registerSaga({ payload }: { payload: IAuthRegisterPayload }): any {
+function* registerSaga({ payload }: { payload: IAuthRegisterPayload }): Generator<StrictEffect, void, ApiResponse<IUserAttributes>> {
   try {
     const { firstName, lastName, email, password, navigate } = payload;
-    const response = yield registerService({ firstName, lastName, email, password });
+    const response: ApiResponse<IUserAttributes> = yield call(registerService, { firstName, lastName, email, password });
 
-    if (response.success === true) {
+    if (response.success) {
       navigate('/signin');
 
       toast.success(response.message);
@@ -57,10 +58,10 @@ function* registerSaga({ payload }: { payload: IAuthRegisterPayload }): any {
   }
 }
 
-export function* watchLoginSaga(): Generator<ForkEffect<never>, void, unknown> {
+export function* watchLoginSaga(): Generator<StrictEffect, void, ApiResponse<IUserAttributes>> {
   yield takeLatest(authLoginAction, loginSaga);
 }
 
-export function* watchRegisterSaga(): Generator<ForkEffect<never>, void, unknown> {
+export function* watchRegisterSaga(): Generator<StrictEffect, void, ApiResponse<IUserAttributes>> {
   yield takeLatest(authRegisterAction, registerSaga);
 }

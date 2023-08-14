@@ -1,58 +1,17 @@
-import axios from 'axios';
-import { removeEmptyStringValues } from '../utils/helpers';
+import axios, { type AxiosResponse } from 'axios';
+import { type ApiResponse, type IUserAttributes } from 'validator';
 
-const BASE_URL = process.env.BACKEND_URL;
+const BASE_URL = process.env.BACKEND_URL ?? '';
 
-export const getUsersService = async (token: string) => {
+interface IParamsAttribute {
+  include: string;
+}
+
+export const getUserWithIncludeService = async (userId: string, token: string, params: IParamsAttribute): Promise<ApiResponse<IUserAttributes>> => {
   try {
-    const response = await axios.get(`${BASE_URL}/users`, { headers: { Authorization: `Bearer ${token}` } });
-    return response.data;
-  } catch (error) {
-    throw new Error('An error occurred while fetching users.');
-  }
-};
-
-export const getUserWithIncludeService = async (id: string, token: string, params: any) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/users/${id}/include`, { params: removeEmptyStringValues(params), headers: { Authorization: `Bearer ${token}` } });
+    const response: AxiosResponse<ApiResponse<IUserAttributes>> = await axios.get(`${BASE_URL}/users/${userId}/include`, { params, headers: { Authorization: `Bearer ${token}` } });
     return response.data;
   } catch (error) {
     throw new Error('An error occurred while fetching user by ID.');
-  }
-};
-
-export const getUserByIdService = async (id: string, token: string) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/users/${id}`, { headers: { Authorization: `Bearer ${token}` } });
-    return response.data;
-  } catch (error) {
-    throw new Error('An error occurred while fetching user by ID.');
-  }
-};
-
-export const createUserService = async (data: any, token: string) => {
-  try {
-    const response = await axios.post(`${BASE_URL}/users`, removeEmptyStringValues(data), { headers: { Authorization: `Bearer ${token}` } });
-    return response.data;
-  } catch (error) {
-    throw new Error('An error occurred while creating a user.');
-  }
-};
-
-export const updateUserService = async (id: string, data: any, token: string) => {
-  try {
-    const response = await axios.put(`${BASE_URL}/users/${id}`, removeEmptyStringValues(data), { headers: { Authorization: `Bearer ${token}` } });
-    return response.data;
-  } catch (error) {
-    throw new Error('An error occurred while updating a user.');
-  }
-};
-
-export const deleteUserService = async (id: string, token: string) => {
-  try {
-    const response = await axios.delete(`${BASE_URL}/users/${id}`, { headers: { Authorization: `Bearer ${token}` } });
-    return response.data;
-  } catch (error) {
-    throw new Error('An error occurred while deleting a user.');
   }
 };

@@ -9,8 +9,7 @@ export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElem
   disabled?: boolean;
   inputRef?: React.RefObject<HTMLInputElement>;
   type?: HTMLInputTypeAttribute | undefined;
-  value?: any;
-  max?: any;
+  value?: string;
   required?: boolean;
   placeholder?: string;
   autoComplete?: string;

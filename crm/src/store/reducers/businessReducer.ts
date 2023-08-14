@@ -3,8 +3,14 @@ import { type IBusinessAttributes } from 'validator/interfaces';
 
 import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction } from '../actions/businessActions';
 
+export interface IBusinessStateData {
+  businesses: Record<string, IBusinessAttributes>;
+  totalPages: number;
+  totalRecords: number;
+}
+
 export interface IBusinessState {
-  data: { businesses: Record<string, IBusinessAttributes>; totalPages: number; totalRecords: number };
+  data: IBusinessStateData;
 }
 
 const initialState: IBusinessState = {

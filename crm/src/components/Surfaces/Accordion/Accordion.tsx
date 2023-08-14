@@ -35,7 +35,7 @@ const Accordion: React.FC<IAccordionProps> = ({ label, name, value, handleChange
         <Switch.Group as="div" className="flex items-center justify-between">
           <span className="flex flex-grow flex-col">
             <Switch.Label as="span" className="text-sm font-medium leading-6 text-gray-900" passive>
-              Business's Sponsored Ad
+              Business&rsquo;s Sponsored Ad
             </Switch.Label>
             <Switch.Description as="span" className="text-sm text-gray-500">
               This business has strategically placed sponsored ads on Google Maps to enhance its online presence and attract potential clients in the target market.

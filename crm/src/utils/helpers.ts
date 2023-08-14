@@ -1,6 +1,6 @@
 import { type ILeadAttributes } from 'validator/interfaces';
 
-import { type IFilterAttributes } from '../store/reducers/homePageReducer';
+import { type IFilterOptionAttributes, type IFilterAttributes } from '../store/reducers/homePageReducer';
 
 export const classNames = (...classes: Array<string | undefined | null>): string => {
   return classes.filter(Boolean).join(' ');
@@ -9,11 +9,12 @@ export const classNames = (...classes: Array<string | undefined | null>): string
 // Function to compare filters and lead properties
 export const compareFiltersAndLead = (filters: IFilterAttributes, lead: ILeadAttributes): boolean => {
   // Create a new object to hold the filtered properties from the filters object
-  const filteredProperties: any = {};
+  const filteredProperties: Record<string, string | boolean | undefined> = {};
 
   // Extract the relevant properties from filters object
   Object.entries(filters).forEach(([_, filter]) => {
-    filteredProperties[filter.name] = filter.value;
+    const typedFilter = filter as IFilterOptionAttributes;
+    filteredProperties[typedFilter.name] = typedFilter.value;
   });
 
   // Perform comparisons
@@ -30,7 +31,7 @@ export const isFiltersChanged = (filters: IFilterAttributes, initialValues: IFil
   return true;
 };
 
-export const removeEmptyStringValues = <T extends Record<string, any>>(obj: T): T => {
+export const removeEmptyStringValues = <T extends Record<string, string | boolean | number | string[]>>(obj: T): T => {
   const newObj: Partial<T> = {};
   for (const key in obj) {
     if (obj[key] !== '') {

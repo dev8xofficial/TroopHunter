@@ -14,7 +14,6 @@ interface PublicRouteProps {
 }
 
 const PublicRoute: React.FC<PublicRouteProps> = ({ userToken, children }: PublicRouteProps): JSX.Element => {
-  console.log('PublicRoute: ', userToken);
   if (userToken?.length != null && userToken.length > 0) {
     return <Navigate to="/" />;
   }
@@ -22,7 +21,6 @@ const PublicRoute: React.FC<PublicRouteProps> = ({ userToken, children }: Public
 };
 
 const PrivateRoute: React.FC<PublicRouteProps> = ({ userToken, children }: PublicRouteProps): JSX.Element => {
-  console.log('PrivateRoute: ', userToken);
   if (userToken?.length == null || userToken.length === 0) {
     return <Navigate to="/signin" />;
   }

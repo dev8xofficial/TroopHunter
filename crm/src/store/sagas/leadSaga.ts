@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
-import { takeLatest, put, type ForkEffect } from 'redux-saga/effects';
-import { type ILeadBuldDeleteRequestAttributes, type ILeadFetchByIdRequestAttributes, type IUserAttributes, type ILeadCreateRequestAttributes, type ILeadAttributes } from 'validator/interfaces';
+import { takeLatest, put, type StrictEffect, call } from 'redux-saga/effects';
+import { type ILeadBuldDeleteRequestAttributes, type ILeadFetchByIdRequestAttributes, type IUserAttributes, type ILeadCreateRequestAttributes, type ILeadAttributes, type ApiResponse } from 'validator/interfaces';
 
 import { createLeadService, updateLeadService, deleteLeadService, deleteLeadsService } from '../../services/leadServices';
 import { resetHomePageFiltersAction, resetHomePageDraftLeadIdAction } from '../actions/homePageActions';
@@ -13,12 +13,12 @@ export interface ICreateLeadPayload extends ILeadCreateRequestAttributes {
   businessIds: string[];
 }
 
-function* createLeadSaga({ payload }: { payload: ICreateLeadPayload }): any {
+function* createLeadSaga({ payload }: { payload: ICreateLeadPayload }): Generator<StrictEffect, void, ApiResponse<ILeadAttributes>> {
   try {
     const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, token } = payload;
-    const response = yield createLeadService({ userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }, token);
+    const response: ApiResponse<ILeadAttributes> = yield call(createLeadService, { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }, token);
 
-    if (response.success === true) {
+    if (response.success) {
       toast.success(response.message);
       yield put(fetchUserAction({ token, userId })); // Assuming fetchUserAction is another saga to fetch user data after creating a lead.
     } else {
@@ -34,12 +34,12 @@ export interface IUpdateLeadPayload extends ILeadAttributes {
   businessIds: string[];
 }
 
-function* updateLeadSaga({ payload }: { payload: IUpdateLeadPayload }): any {
+function* updateLeadSaga({ payload }: { payload: IUpdateLeadPayload }): Generator<StrictEffect, void, ApiResponse<ILeadAttributes>> {
   try {
     const { id, userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId, token } = payload;
-    const response = yield updateLeadService(id, { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }, token);
+    const response: ApiResponse<ILeadAttributes> = yield call(updateLeadService, id, { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }, token);
 
-    if (response.success === true) {
+    if (response.success) {
       toast.success(response.message);
       yield put(fetchUserAction({ token, userId })); // Assuming fetchUserAction is another saga to fetch user data after creating a lead.
     } else {
@@ -55,12 +55,12 @@ export interface IDeleteLeadPayload extends ILeadFetchByIdRequestAttributes {
   user: IUserAttributes;
 }
 
-function* deleteLeadSaga({ payload }: { payload: IDeleteLeadPayload }): any {
+function* deleteLeadSaga({ payload }: { payload: IDeleteLeadPayload }): Generator<StrictEffect, void, ApiResponse<null>> {
   try {
     const { id, token, user } = payload;
-    const response = yield deleteLeadService(id, token);
+    const response: ApiResponse<null> = yield call(deleteLeadService, id, token);
 
-    if (response.success === true) {
+    if (response.success) {
       // Create a new object with the updated Leads array
       const updatedUser: IUserAttributes = {
         ...user,
@@ -84,13 +84,13 @@ export interface IDeleteLeadsPayload extends ILeadBuldDeleteRequestAttributes {
   user: IUserAttributes;
 }
 
-function* deleteLeadsSaga({ payload }: { payload: IDeleteLeadsPayload }): any {
+function* deleteLeadsSaga({ payload }: { payload: IDeleteLeadsPayload }): Generator<StrictEffect, void, ApiResponse<null>> {
   try {
-    const { user } = payload as { user: IUserAttributes };
+    const { user } = payload;
     const { selectedLeadIds, token } = payload;
-    const response = yield deleteLeadsService({ selectedLeadIds }, token);
+    const response: ApiResponse<null> = yield call(deleteLeadsService, selectedLeadIds, token);
 
-    if (response.success === true) {
+    if (response.success) {
       // Create a new object with the updated Leads array
       const updatedUser: IUserAttributes = {
         ...user,
@@ -110,18 +110,18 @@ function* deleteLeadsSaga({ payload }: { payload: IDeleteLeadsPayload }): any {
   }
 }
 
-export function* watchCreateLeadSaga(): Generator<ForkEffect<never>, void, unknown> {
+export function* watchCreateLeadSaga(): Generator<StrictEffect, void, ApiResponse<IUserAttributes>> {
   yield takeLatest(createLeadAction, createLeadSaga);
 }
 
-export function* watchUpdateLeadSaga(): Generator<ForkEffect<never>, void, unknown> {
+export function* watchUpdateLeadSaga(): Generator<StrictEffect, void, ApiResponse<ILeadAttributes>> {
   yield takeLatest(updateLeadAction, updateLeadSaga);
 }
 
-export function* watchDeleteLeadSaga(): Generator<ForkEffect<never>, void, unknown> {
+export function* watchDeleteLeadSaga(): Generator<StrictEffect, void, ApiResponse<null>> {
   yield takeLatest(deleteLeadAction, deleteLeadSaga);
 }
 
-export function* watchDeleteLeadsSaga(): Generator<ForkEffect<never>, void, unknown> {
+export function* watchDeleteLeadsSaga(): Generator<StrictEffect, void, ApiResponse<null>> {
   yield takeLatest(deleteLeadsAction, deleteLeadsSaga);
 }

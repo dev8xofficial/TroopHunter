@@ -20,7 +20,7 @@ import { type IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
 import Avatar from '../Avatar/Avatar';
 
 // Get the encryption key from the environment variable
-const encryptionKey = process.env.ENCRYPTION_KEY ? process.env.ENCRYPTION_KEY : 'AgE34bNmLB9wOThIJ2WR79/cmtMdjqCbpk61w/ucZnviE1Te0IY7c1e2G5qi42h+';
+const encryptionKey = process.env.ENCRYPTION_KEY != null ? process.env.ENCRYPTION_KEY : 'AgE34bNmLB9wOThIJ2WR79/cmtMdjqCbpk61w/ucZnviE1Te0IY7c1e2G5qi42h+';
 
 const Table: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -38,11 +38,11 @@ const Table: React.FC = (): JSX.Element => {
 
   const [localSelectedLeadIds, setLocalSelectedLeadIds] = useState<string[]>(selectedLeadIds);
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const isChecked = e.target.checked;
     const id = e.target.id;
     const bytes = CryptoJS.AES.decrypt(id, encryptionKey);
-    const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8)) as string;
     if (isChecked) {
       setLocalSelectedLeadIds((prevSelected) => [...prevSelected, decryptedData]);
     } else {
@@ -50,25 +50,23 @@ const Table: React.FC = (): JSX.Element => {
     }
   };
 
-  const handleSelectAllCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSelectAllCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const isChecked = e.target.checked;
     if (isChecked) {
-      const leadIds = userLeads?.map((currentLead) => currentLead.id) || [];
+      const leadIds = userLeads.map((currentLead) => currentLead.id) ?? [];
       setLocalSelectedLeadIds(leadIds);
     } else {
       setLocalSelectedLeadIds([]);
     }
   };
 
-  const handleEdit = async (index: number) => {
+  const handleEdit = async (index: number): Promise<void> => {
     try {
       if (!Array.isArray(userLeads)) return;
 
       const selectedLead: ILeadAttributes = userLeads[index];
-      if (selectedLead) {
-        let updatedFilters: IFilterAttributes = {} as IFilterAttributes; // Type assertion
-
-        updatedFilters = {
+      if (selectedLead !== undefined && selectedLead !== null) {
+        const updatedFilters: IFilterAttributes = {
           name: { label: 'Business', name: 'name', value: selectedLead.search },
           view: { label: 'Business', name: 'view', value: leadPageFilters.view.value },
           sort: { label: 'Sort', name: 'sort', value: leadPageFilters.sort.value },
@@ -89,7 +87,7 @@ const Table: React.FC = (): JSX.Element => {
           resolve();
         });
 
-        dispatchActionPromise.then(() => {
+        await dispatchActionPromise.then(() => {
           navigate('/');
         });
       } else {
@@ -100,11 +98,11 @@ const Table: React.FC = (): JSX.Element => {
     }
   };
 
-  const handleDelete = (index: number) => {
-    if (userLeads) {
-      const selectedLead = userLeads[index]; // Specify index as number here
-      const leadId: string = selectedLead && selectedLead.id ? selectedLead.id : '';
-      if (leadId) dispatch(deleteLeadsAction({ token: auth.token, user: usersLoggedIn, selectedLeadIds: [leadId] }));
+  const handleDelete = (index: number): void => {
+    if (userLeads !== undefined && userLeads !== null) {
+      const selectedLead: ILeadAttributes = userLeads[index]; // Specify index as number here
+      const leadId: string = selectedLead !== null && selectedLead !== undefined ? selectedLead.id : '';
+      if (leadId.length > 0) dispatch(deleteLeadsAction({ token: auth.token, user: usersLoggedIn, selectedLeadIds: [leadId] }));
       else toast.error('Failed to delete lead. Lead not found.');
     }
   };
@@ -114,8 +112,8 @@ const Table: React.FC = (): JSX.Element => {
       {
         name: 'Edit',
         href: '#',
-        onClick: async () => {
-          await handleEdit(index);
+        onClick: () => {
+          void handleEdit(index);
         }
       },
       {
@@ -133,7 +131,7 @@ const Table: React.FC = (): JSX.Element => {
     if (!Array.isArray(userLeads)) return;
 
     dispatch(setLeadsPageSelectedLeadIds(localSelectedLeadIds));
-  }, [localSelectedLeadIds]);
+  }, [dispatch, localSelectedLeadIds, userLeads]);
 
   return (
     <>
@@ -184,41 +182,41 @@ const Table: React.FC = (): JSX.Element => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {userLeads &&
-                userLeads.map((lead: any, index: number) => (
-                  <tr key={index}>
-                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                      <div className="relative flex w-full items-start">
-                        <span className="sr-only">Select</span>
-                        <div className="flex h-6 items-center">
-                          <input type="checkbox" id={CryptoJS.AES.encrypt(JSON.stringify(lead.id), encryptionKey).toString()} checked={localSelectedLeadIds.includes(lead.id)} onChange={handleCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
-                        </div>
+              {userLeads?.map((lead: ILeadAttributes, index: number) => (
+                <tr key={index}>
+                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                    <div className="relative flex w-full items-start">
+                      <span className="sr-only">Select</span>
+                      <div className="flex h-6 items-center">
+                        <input type="checkbox" id={CryptoJS.AES.encrypt(JSON.stringify(lead.id), encryptionKey).toString()} checked={localSelectedLeadIds.includes(lead.id)} onChange={handleCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                       </div>
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3.5 text-sm">
-                      <div className="font-medium text-gray-900">{lead.title}</div>
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
-                      <div className="text-gray-900">{lead.businessCount}</div>
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
-                      <div className="flex items-center">
-                        <div className="h-8 w-8 flex-shrink-0">
-                          <Avatar image="" firstName={usersLoggedIn.firstName} size="small" border="border border-gray-900" />
-                        </div>
-                        <div className="ml-4">
-                          <div className="font-medium text-gray-900">{`${usersLoggedIn.firstName} ${usersLoggedIn.lastName}`}</div>
-                        </div>
+                    </div>
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-3.5 text-sm">
+                    <div className="font-medium text-gray-900">{lead.title}</div>
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
+                    <div className="text-gray-900">{lead.businessCount}</div>
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
+                    <div className="flex items-center">
+                      <div className="h-8 w-8 flex-shrink-0">
+                        <Avatar image="" firstName={usersLoggedIn.firstName} size="small" border="border border-gray-900" />
                       </div>
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">{moment(lead.updatedAt).format('YYYY-MM-DD')}</td>
-                    <td className="relative flex justify-end whitespace-nowrap py-3.5 pl-3 pr-4 text-sm font-medium sm:pr-6">
-                      <_Menu options={getLeadsItemMenuOptions(index)} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
-                        <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
-                      </_Menu>
-                    </td>
-                  </tr>
-                ))}
+                      <div className="ml-4">
+                        <div className="font-medium text-gray-900">{`${usersLoggedIn.firstName} ${usersLoggedIn.lastName}`}</div>
+                      </div>
+                    </div>
+                  </td>
+                  {/* eslint-disable-next-line @typescript-eslint/no-unsafe-argument */}
+                  <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">{moment(lead?.updatedAt).format('YYYY-MM-DD')}</td>
+                  <td className="relative flex justify-end whitespace-nowrap py-3.5 pl-3 pr-4 text-sm font-medium sm:pr-6">
+                    <_Menu options={getLeadsItemMenuOptions(index)} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
+                      <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
+                    </_Menu>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

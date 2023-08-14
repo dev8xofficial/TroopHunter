@@ -3,6 +3,12 @@ import { type ILeadAttributes } from 'validator/interfaces';
 
 import { setHomePageFiltersAction, resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePageLoadingFailureAction, setHomePagePaginationPageAction, setHomePagePaginationLimitAction, setHomePageDraftLeadIdAction, resetHomePageDraftLeadIdAction, setHomePageBusinessIdsAction, resetHomePageBusinessIdsAction } from '../actions/homePageActions';
 
+export interface IFilterOptionAttributes {
+  label: string;
+  name: string;
+  value?: string;
+}
+
 export interface IFilterAttributes {
   name: { label: string; name: string; value: string };
   view: { label: string; name: string; value: string };
