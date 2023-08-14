@@ -1,5 +1,4 @@
-import React from 'react';
-import { type ChangeEvent, Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
@@ -11,19 +10,7 @@ const TableSortingMenu: React.FC<ITableSortingMenuAttributes> = ({ options, valu
   const [selected, setSelected] = useState(value != null ? value : options[0]);
 
   const onChange = (value: ITableSortingMenuOptionAttributes): void => {
-    let selectedOptionEvent: ChangeEvent<HTMLInputElement> = {
-      target: { value: '', name: '' }
-    } satisfies ChangeEvent<HTMLInputElement>;
-
-    for (const option of options) {
-      if (option.current) {
-        selectedOptionEvent = {
-          target: { value: value.value, name: value.name }
-        } satisfies ChangeEvent<HTMLInputElement>;
-        break;
-      }
-    }
-    handleChange(selectedOptionEvent);
+    handleChange(value.name, value.value);
     setSelected(value);
   };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ChangeEvent } from 'react';
 
 import { Disclosure, Transition, Switch } from '@headlessui/react';
 import { PlusIcon, MinusIcon } from '@heroicons/react/20/solid';
@@ -28,8 +28,30 @@ const Accordion: React.FC<IAccordionProps> = ({ label, name, value, handleChange
           <_Combobox type="country" value={value} onChange={handleChange} />
         </>
       );
-    if (name === 'phone') return <TextField type="tel" name={name} value={value} onChange={handleChange} placeholder={`Search ${label.toLowerCase()}...`} />;
-    if (name === 'email') return <TextField type="email" name={name} value={value} onChange={handleChange} placeholder={`Search ${label.toLowerCase()}`} />;
+    if (name === 'phone')
+      return (
+        <TextField
+          type="tel"
+          name={name}
+          value={value}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            handleChange(event.target.name, event.target.value);
+          }}
+          placeholder={`Search ${label.toLowerCase()}...`}
+        />
+      );
+    if (name === 'email')
+      return (
+        <TextField
+          type="email"
+          name={name}
+          value={value}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            handleChange(event.target.name, event.target.value);
+          }}
+          placeholder={`Search ${label.toLowerCase()}`}
+        />
+      );
     if (name === 'sponsoredAd')
       return (
         <Switch.Group as="div" className="flex items-center justify-between">
@@ -44,7 +66,7 @@ const Accordion: React.FC<IAccordionProps> = ({ label, name, value, handleChange
           <Switch
             checked={JSON.parse(value) === true}
             onChange={(checked: boolean) => {
-              handleChange({ target: { name: 'sponsoredAd', value: checked.toString() } } satisfies React.ChangeEvent<HTMLInputElement>);
+              handleChange('sponsoredAd', checked.toString());
             }}
             className={classNames(JSON.parse(value) === true ? 'bg-indigo-600' : 'bg-gray-200', 'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2')}
           >
@@ -64,7 +86,17 @@ const Accordion: React.FC<IAccordionProps> = ({ label, name, value, handleChange
           </Switch>
         </Switch.Group>
       );
-    return <TextField type="text" name={name} value={value !== null ? value : ''} onChange={handleChange} placeholder={`Search ${label.toLowerCase()}...`} />;
+    return (
+      <TextField
+        type="text"
+        name={name}
+        value={value !== null ? value : ''}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
+          handleChange(event.target.name, event.target.value);
+        }}
+        placeholder={`Search ${label.toLowerCase()}...`}
+      />
+    );
   };
 
   return (

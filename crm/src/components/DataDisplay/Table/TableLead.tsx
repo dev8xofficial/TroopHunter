@@ -1,5 +1,4 @@
-import React from 'react';
-import { type ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Menu } from '@headlessui/react';
 import { EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
@@ -62,7 +61,7 @@ const sortOptions = [
 
 interface ITable {
   loadMoreBusinesses: ({ page, limit }: { page: number; limit: number }) => void;
-  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (name: string, value: string) => void;
 }
 
 const renderRows = (businessesDataBusinesses: Record<string, IBusinessAttributes>, leadPageFilters: IFilterAttributes, leadPageBusinessIds: string[], draftLeadBusinessIds: string[] | undefined): Record<string, IBusinessAttributes> => {

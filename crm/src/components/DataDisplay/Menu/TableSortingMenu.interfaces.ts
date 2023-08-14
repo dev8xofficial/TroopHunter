@@ -1,5 +1,3 @@
-import { type ChangeEvent } from 'react';
-
 export interface ITableSortingMenuOptionAttributes {
   title: string;
   description: string;
@@ -11,5 +9,5 @@ export interface ITableSortingMenuOptionAttributes {
 export interface ITableSortingMenuAttributes {
   options: ITableSortingMenuOptionAttributes[];
   value: ITableSortingMenuOptionAttributes | undefined;
-  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (name: string, value: string) => void;
 }

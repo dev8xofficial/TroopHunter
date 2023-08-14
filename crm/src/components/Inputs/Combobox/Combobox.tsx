@@ -3,7 +3,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { useSelector } from 'react-redux';
-import { type ICountryAttributes, type IStateAttributes, type ICityAttributes } from 'validator/interfaces';
+import { type ICountryAttributes, type IStateAttributes, type ICityAttributes, type ApiResponse } from 'validator/interfaces';
 
 import { type ILocationComboboxProps, type ILocationComboboxOption } from './Combobox.interfaces';
 import { getCitiesByQuery, getCityByIdService } from '../../../services/cityService';
@@ -11,6 +11,42 @@ import { getCountriesByQuery, getCountryByIdService } from '../../../services/co
 import { getStateByIdService, getStatesByQuery } from '../../../services/stateService';
 import { type IAuthState } from '../../../store/reducers/authReducer';
 import { classNames } from '../../../utils/helpers';
+
+export interface ICountryResponseAttributes {
+  country: ICountryAttributes;
+  totalPages: number;
+  totalRecords: number;
+}
+
+export interface ICountriesResponseAttributes {
+  countries: ICountryAttributes[];
+  totalPages: number;
+  totalRecords: number;
+}
+
+export interface IStateResponseAttributes {
+  state: IStateAttributes;
+  totalPages: number;
+  totalRecords: number;
+}
+
+export interface IStatesResponseAttributes {
+  states: IStateAttributes[];
+  totalPages: number;
+  totalRecords: number;
+}
+
+export interface ICityResponseAttributes {
+  city: ICityAttributes;
+  totalPages: number;
+  totalRecords: number;
+}
+
+export interface ICitiesResponseAttributes {
+  cities: ICityAttributes[];
+  totalPages: number;
+  totalRecords: number;
+}
 
 const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value, onChange }: ILocationComboboxProps): JSX.Element => {
   const auth = useSelector((state: { auth: IAuthState }) => state.auth);
@@ -24,7 +60,8 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
 
   const handleOptionChange = (selectedOption: ILocationComboboxOption): void => {
     setSelectedOption(selectedOption);
-    onChange({ target: { id: selectedOption.id, name: type + 'Id', value: selectedOption?.value ? selectedOption?.value : '' } } as React.ChangeEvent<HTMLInputElement>);
+    // onChange({ target: { id: selectedOption.id, name: type + 'Id', value: selectedOption?.value ? selectedOption?.value : '' } } as React.ChangeEvent<HTMLInputElement>);
+    onChange(type + 'Id', selectedOption !== null ? selectedOption?.value : '');
   };
 
   const handleDisplayValue = (selectedOption: ILocationComboboxOption): string => {
@@ -34,95 +71,6 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
   const handleSearchQuery = (query: string): void => {
     setSearchTerm(query);
   };
-
-  useEffect(() => {
-    const fetchLocationById = async (id: string): Promise<void> => {
-      try {
-        let response: any;
-        let locationData: ILocationComboboxOption;
-
-        switch (type) {
-          case 'country':
-            response = await getCountryByIdService(id, token);
-            if (response.success === true) locationData = mapCountryData(response.data);
-            else locationData = initalValue;
-            break;
-          case 'state':
-            response = await getStateByIdService(id, token);
-            if (response.success === true) locationData = mapStateData(response.data);
-            else locationData = initalValue;
-            break;
-          case 'city':
-            response = await getCityByIdService(id, token);
-            if (response.success === true) locationData = mapCityData(response.data);
-            else locationData = initalValue;
-            break;
-          default:
-            throw new Error('Invalid location type');
-        }
-
-        setSearchResults([locationData]);
-        setSelectedOption(locationData);
-      } catch (error) {
-        console.error('Error fetching location:', error);
-      }
-    };
-
-    if (value.length > 0 && selectedOption !== null && selectedOption !== undefined && value !== selectedOption.id) {
-      void fetchLocationById(value);
-    }
-  }, [value, type, token]);
-
-  useEffect(() => {
-    const fetchLocationsByQuery = async (query: string): Promise<void> => {
-      try {
-        let response: any;
-        let mappedLocations: ILocationComboboxOption[];
-
-        switch (type) {
-          case 'country':
-            response = await getCountriesByQuery({ name: query, page: 1, limit: 10 }, token);
-            if (response.success === true) mappedLocations = response.data.countries.map(mapStateData);
-            else mappedLocations = [];
-            break;
-          case 'state':
-            response = await getStatesByQuery({ name: query, page: 1, limit: 10 }, token);
-            if (response.success === true) mappedLocations = response.data.states.map(mapStateData);
-            else mappedLocations = [];
-            break;
-          case 'city':
-            response = await getCitiesByQuery({ name: query, page: 1, limit: 10 }, token);
-            if (response.success === true) mappedLocations = response.data.cities.map(mapCityData);
-            else mappedLocations = [];
-            break;
-          default:
-            throw new Error('Invalid location type');
-        }
-
-        setSearchResults(mappedLocations);
-      } catch (error) {
-        console.error('Error fetching locations:', error);
-      }
-    };
-
-    if (searchTerm !== '') {
-      const typingTimeout = setTimeout(() => {
-        void fetchLocationsByQuery(searchTerm);
-      }, 500);
-
-      return () => {
-        clearTimeout(typingTimeout);
-      };
-    }
-  }, [searchTerm, type, token]);
-
-  useEffect(() => {
-    if (value === '') {
-      setSearchTerm('');
-      setSearchResults([]);
-      setSelectedOption(initalValue);
-    }
-  }, [value, onChange]);
 
   const mapCountryData = (country: ICountryAttributes): ILocationComboboxOption => {
     return {
@@ -150,6 +98,108 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
       code: city.stateCode
     };
   };
+
+  useEffect(() => {
+    const fetchLocationById = async (id: string): Promise<void> => {
+      try {
+        const countryResponse: ApiResponse<ICountryResponseAttributes> = await getCountryByIdService(id, token);
+        const countryData: ICountryResponseAttributes | undefined = countryResponse.data;
+        const stateResponse: ApiResponse<IStateResponseAttributes> = await getStateByIdService(id, token);
+        const stateData: IStateResponseAttributes | undefined = stateResponse.data;
+        const cityResponse: ApiResponse<ICityResponseAttributes> = await getCityByIdService(id, token);
+        const cityData: ICityResponseAttributes | undefined = cityResponse.data;
+        let locationData: ILocationComboboxOption;
+
+        switch (type) {
+          case 'country':
+            if (countryResponse.success && countryData?.country !== undefined) locationData = mapCountryData(countryData?.country);
+            else locationData = initalValue;
+
+            setSearchResults([locationData]);
+            setSelectedOption(locationData);
+            break;
+          case 'state':
+            if (stateResponse.success && stateData?.state !== undefined) locationData = mapStateData(stateData?.state);
+            else locationData = initalValue;
+
+            setSearchResults([locationData]);
+            setSelectedOption(locationData);
+            break;
+          case 'city':
+            if (cityResponse.success && cityData?.city !== undefined) locationData = mapCityData(cityData.city);
+            else locationData = initalValue;
+
+            setSearchResults([locationData]);
+            setSelectedOption(locationData);
+            break;
+          default:
+            throw new Error('Invalid location type');
+        }
+      } catch (error) {
+        console.error('Error fetching location:', error);
+      }
+    };
+
+    if (value.length > 0 && selectedOption !== null && selectedOption !== undefined && value !== selectedOption.id) {
+      void fetchLocationById(value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, type, token]);
+
+  useEffect(() => {
+    const fetchLocationsByQuery = async (query: string): Promise<void> => {
+      try {
+        const countryResponse: ApiResponse<ICountriesResponseAttributes> = await getCountriesByQuery({ name: query, page: 1, limit: 10 }, token);
+        const countriesData: ICountriesResponseAttributes | undefined = countryResponse.data;
+        const stateResponse: ApiResponse<IStatesResponseAttributes> = await getStatesByQuery({ name: query, page: 1, limit: 10 }, token);
+        const statesData: IStatesResponseAttributes | undefined = stateResponse.data;
+        const cityResponse: ApiResponse<ICitiesResponseAttributes> = await getCitiesByQuery({ name: query, page: 1, limit: 10 }, token);
+        const citiesData: ICitiesResponseAttributes | undefined = cityResponse.data;
+        let mappedLocations: ILocationComboboxOption[] | undefined = [];
+
+        switch (type) {
+          case 'country':
+            if (countryResponse.success) mappedLocations = countriesData?.countries?.map(mapCountryData);
+            else mappedLocations = [];
+            setSearchResults(mappedLocations ?? []);
+            break;
+          case 'state':
+            if (stateResponse.success) mappedLocations = statesData?.states.map(mapStateData);
+            else mappedLocations = [];
+            setSearchResults(mappedLocations ?? []);
+            break;
+          case 'city':
+            if (cityResponse.success) mappedLocations = citiesData?.cities.map(mapCityData);
+            else mappedLocations = [];
+            setSearchResults(mappedLocations ?? []);
+            break;
+          default:
+            throw new Error('Invalid location type');
+        }
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      }
+    };
+
+    if (searchTerm !== '') {
+      const typingTimeout = setTimeout(() => {
+        void fetchLocationsByQuery(searchTerm);
+      }, 500);
+
+      return () => {
+        clearTimeout(typingTimeout);
+      };
+    }
+  }, [searchTerm, type, token]);
+
+  useEffect(() => {
+    if (value === '') {
+      setSearchTerm('');
+      setSearchResults([]);
+      setSelectedOption(initalValue);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, onChange]);
 
   return (
     <Combobox as="div" value={selectedOption} onChange={handleOptionChange} nullable>

@@ -1,4 +1,4 @@
-import React, { type ChangeEvent, useEffect, useRef, useState, Fragment } from 'react';
+import React, { useEffect, useRef, useState, Fragment, type ChangeEvent } from 'react';
 
 import { Transition, Dialog, Disclosure } from '@headlessui/react';
 import { XMarkIcon, PlusIcon, MinusIcon, AdjustmentsVerticalIcon as AdjustmentsVerticalIconSolid, ChevronLeftIcon } from '@heroicons/react/20/solid';
@@ -50,9 +50,10 @@ const Lead: React.FC = () => {
   const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
   const prevLeadPageFilters = useRef<IFilterAttributes>(leadPageFilters);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    const name = event.target.name;
-    let newValue: string | boolean = event.target.value;
+  const handleChange = (name: string, value: string): void => {
+    // const name = name;
+    let newValue: string | boolean = value;
+    console.log('handleChange: ', name, newValue);
 
     if (name === 'sponsoredAd') {
       newValue = JSON.parse(newValue) as string | boolean;
@@ -120,6 +121,7 @@ const Lead: React.FC = () => {
         dispatch(setHomePageLoadingSuccessAction());
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedFilters]);
 
   useEffect(() => {
@@ -177,7 +179,19 @@ const Lead: React.FC = () => {
             <div>
               <div className="flex items-center justify-between space-x-6 pl-4 pr-4 sm:pr-6 lg:pr-8">
                 <div className="flex flex-grow items-center space-x-6">
-                  <div className="max-w-md flex-grow">{leadPageFilters.name !== undefined && <CustomTextField label={leadPageFilters.name?.label} name={leadPageFilters.name?.name} value={leadPageFilters.name?.value !== null ? leadPageFilters.name?.value : ''} onChange={handleChange} placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`} />}</div>
+                  <div className="max-w-md flex-grow">
+                    {leadPageFilters.name !== undefined && (
+                      <CustomTextField
+                        label={leadPageFilters.name?.label}
+                        name={leadPageFilters.name?.name}
+                        value={leadPageFilters.name?.value !== null ? leadPageFilters.name?.value : ''}
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                          handleChange(event.target.name, event.target.value);
+                        }}
+                        placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`}
+                      />
+                    )}
+                  </div>
 
                   <a className="inline-flex items-center whitespace-nowrap text-sm font-semibold">Saved searches</a>
                 </div>
