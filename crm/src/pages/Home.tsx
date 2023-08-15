@@ -53,7 +53,6 @@ const Lead: React.FC = () => {
   const handleChange = (name: string, value: string): void => {
     // const name = name;
     let newValue: string | boolean = value;
-    console.log('handleChange: ', name, newValue);
 
     if (name === 'sponsoredAd') {
       newValue = JSON.parse(newValue) as string | boolean;
@@ -86,6 +85,7 @@ const Lead: React.FC = () => {
       page,
       limit,
       name: leadPageFilters.name.value !== null ? leadPageFilters.name.value : undefined,
+      sort: leadPageFilters.sort.value !== null ? leadPageFilters.sort.value : undefined,
       businessDomain: leadPageFilters.businessDomain.value !== undefined ? leadPageFilters.businessDomain.value : undefined,
       address: leadPageFilters.address.value !== undefined ? leadPageFilters.address.value : undefined,
       cityId: leadPageFilters.cityId.value !== undefined ? leadPageFilters.cityId.value : undefined,

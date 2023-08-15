@@ -9,14 +9,15 @@ import { type IBusinessStateData, type IBusinessState } from '../reducers/busine
 
 export interface IBusinessesFetchPayload extends IBusinessFetchRequestAttributes, IPaginationAttributes {
   token: string;
+  sort?: string;
 }
 
 function* fetchBusinessesSaga({ payload }: { payload: IBusinessesFetchPayload }): Generator<StrictEffect, void, ApiResponse<IBusinessStateData>> {
   try {
     const { name, businessDomain, address, cityId, stateId, countryId, phone, email, website, sponsoredAd } = payload;
-    const { page, limit } = payload;
+    const { page, limit, sort } = payload;
     const { token } = payload;
-    const params: Omit<IBusinessesFetchPayload, 'token'> = { name, businessDomain, address, cityId, stateId, countryId, phone, email, website, page, limit };
+    const params: Omit<IBusinessesFetchPayload, 'token'> = { name, businessDomain, address, cityId, stateId, countryId, phone, email, website, page, limit, sort };
     const businesses = yield select((state: { businesses: IBusinessState }) => state.businesses);
 
     if (sponsoredAd ?? false) {

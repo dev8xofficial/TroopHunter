@@ -53,10 +53,9 @@ const viewOptions = [
 ];
 
 const sortOptions = [
-  { title: 'Relevance', description: 'This job posting can be viewed by anyone who has the link.', current: true, value: 'relevance', name: 'sort' },
-  { title: 'Alphabetical', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'alphabetical', name: 'sort' },
-  { title: 'New First', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'newFirst', name: 'sort' },
-  { title: 'New Last', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'newLast', name: 'sort' }
+  { title: 'Relevance', description: 'Sort by relevance score', current: true, value: 'relevance', name: 'sort' },
+  { title: 'Alphabetical', description: 'Sort by name', current: false, value: 'alphabetical', name: 'sort' },
+  { title: 'New First', description: 'Sort by', current: false, value: 'newFirst', name: 'sort' }
 ];
 
 interface ITable {

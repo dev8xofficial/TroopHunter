@@ -1,17 +1,49 @@
 import React, { Fragment, useState } from 'react';
 
 import { Listbox, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
+import { BarsArrowDownIcon, BarsArrowUpIcon, CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
 
 import { type ITableSortingMenuAttributes, type ITableSortingMenuOptionAttributes } from './TableSortingMenu.interfaces';
 import { classNames } from '../../../utils/helpers';
 
 const TableSortingMenu: React.FC<ITableSortingMenuAttributes> = ({ options, value, handleChange }: ITableSortingMenuAttributes): JSX.Element => {
   const [selected, setSelected] = useState(value != null ? value : options[0]);
+  const [isAscending, setIsAscending] = useState(true);
 
   const onChange = (value: ITableSortingMenuOptionAttributes): void => {
-    handleChange(value.name, value.value);
+    if (value.value !== 'relevance') {
+      handleChange(value.name, value.value + (isAscending ? 'Ascending' : 'Descending'));
+      setIsAscending(!isAscending); // Toggle the isAscending value
+    } else {
+      handleChange(value.name, value.value);
+    }
     setSelected(value);
+  };
+
+  const getOptionDescription = (option: ITableSortingMenuOptionAttributes): string => {
+    switch (option.value) {
+      case 'alphabetical':
+        if (isAscending) return option.description + ' in ascending order';
+        else return option.description + ' in descending order';
+      case 'newFirst':
+        if (isAscending) return option.description + ' newest businesses first';
+        else return option.description + ' oldest businesses first';
+      default:
+        return option.description;
+    }
+  };
+
+  const getOptionIcon = (option: ITableSortingMenuOptionAttributes): React.ReactElement => {
+    switch (option.value) {
+      case 'alphabetical':
+        if (isAscending) return <BarsArrowUpIcon className="h-5 w-5" aria-hidden="true" />;
+        else return <BarsArrowDownIcon className="h-5 w-5" aria-hidden="true" />;
+      case 'newFirst':
+        if (isAscending) return <BarsArrowUpIcon className="h-5 w-5" aria-hidden="true" />;
+        else return <BarsArrowDownIcon className="h-5 w-5" aria-hidden="true" />;
+      default:
+        return <CheckIcon className="h-5 w-5" aria-hidden="true" />;
+    }
   };
 
   return (
@@ -22,7 +54,7 @@ const TableSortingMenu: React.FC<ITableSortingMenuAttributes> = ({ options, valu
           <div className="relative">
             <div className="inline-flex divide-x rounded-md shadow-sm ring-1 ring-inset ring-gray-300">
               <div className="inline-flex items-center gap-x-1.5 rounded-l-md px-3 py-2 shadow-sm">
-                <CheckIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
+                {getOptionIcon(selected)}
                 <p className="text-sm font-semibold">{selected.title}</p>
               </div>
               <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-gray-50">
@@ -45,7 +77,7 @@ const TableSortingMenu: React.FC<ITableSortingMenuAttributes> = ({ options, valu
                             </span>
                           ) : null}
                         </div>
-                        <p className={classNames(active ? 'text-indigo-200' : 'text-gray-500', 'mt-2')}>{option.description}</p>
+                        <p className={classNames(active ? 'text-indigo-200' : 'text-gray-500', 'mt-2')}>{getOptionDescription(option)}</p>
                       </div>
                     )}
                   </Listbox.Option>
