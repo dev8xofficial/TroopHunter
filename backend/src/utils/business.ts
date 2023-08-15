@@ -94,3 +94,24 @@ export const getBusinessesByQueryingIds = async ({ ids }: { ids: string[] }) => 
     return undefined;
   }
 };
+
+export const calculateRelevanceScore = (searchTerm: string, fieldValue: string): number => {
+  const searchTermTokens = searchTerm.toLowerCase().split(' ');
+  const fieldValueTokens = fieldValue.toLowerCase().split(' ');
+
+  let relevanceScore = 0;
+
+  searchTermTokens.forEach((token) => {
+    if (fieldValueTokens.includes(token)) {
+      relevanceScore += 10;
+    }
+
+    fieldValueTokens.forEach((fieldToken) => {
+      if (fieldToken.includes(token)) {
+        relevanceScore += 5;
+      }
+    });
+  });
+
+  return relevanceScore;
+};

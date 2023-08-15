@@ -8,14 +8,15 @@ import { Point } from 'geojson';
 import logger from '../../utils/logger';
 import BusinessPhone from '../../models/BusinessPhone';
 import { BusinessMessageKey, getBusinessMessage } from '../../messages/Business';
+import { calculateRelevanceScore } from '../../utils/business';
 
 export const getBusinessesByQuery = async (req: Request, res: Response) => {
   const { name, businessDomain, address, cityId, stateId, countryId, longitude, latitude, email, website, sponsoredAd } = req.query;
   const { range, phone } = req.query;
-  const { page, limit } = req.query;
+  const { page, limit, sort } = req.query;
   const pageNumber = parseInt(page as string, 10);
   const limitNumber = parseInt(limit as string, 10);
-
+  let order: [string, 'ASC' | 'DESC'][] = [];
   const offset = (pageNumber - 1) * limitNumber;
 
   // Where clause
@@ -57,18 +58,88 @@ export const getBusinessesByQuery = async (req: Request, res: Response) => {
     },
   ];
 
+  // Sorting
+  if (sort === 'alphabeticalAscending') {
+    order = [['name', 'ASC']];
+  }
+  if (sort === 'alphabeticalDescending') {
+    order = [['name', 'DESC']];
+  }
+  if (sort === 'newFirstAscending') {
+    order = [['createdAt', 'ASC']];
+  }
+
   try {
     const { count, rows: businesses } = await Business.findAndCountAll({
       where: whereClause,
       include: [...includeClauseBusinessPhone],
+      order,
       offset,
       limit: limitNumber,
     });
 
     const totalPages = Math.ceil(count / limitNumber);
 
+    const businessesWithRelevance: { business: Business; relevanceScore: number }[] = businesses.map((business: Business) => {
+      let relevanceScore = 0;
+
+      if (name && business.name) {
+        const nameStr = name as string;
+        relevanceScore += calculateRelevanceScore(nameStr, business.name);
+      }
+
+      if (businessDomain && business.businessDomain) {
+        const businessDomainStr = businessDomain as string;
+        relevanceScore += calculateRelevanceScore(businessDomainStr, business.businessDomain);
+      }
+
+      if (address && business.address) {
+        const addressStr = address as string;
+        relevanceScore += calculateRelevanceScore(addressStr, business.address);
+      }
+
+      if (cityId && business.cityId) {
+        const cityIdStr = cityId as string;
+        relevanceScore += calculateRelevanceScore(cityIdStr, business.cityId);
+      }
+
+      if (stateId && business.stateId) {
+        const stateIdStr = stateId as string;
+        relevanceScore += calculateRelevanceScore(stateIdStr, business.stateId);
+      }
+
+      if (countryId && business.countryId) {
+        const countryIdStr = countryId as string;
+        relevanceScore += calculateRelevanceScore(countryIdStr, business.countryId);
+      }
+
+      if (email && business.email) {
+        const emailStr = email as string;
+        relevanceScore += calculateRelevanceScore(emailStr, business.email);
+      }
+
+      if (website && business.website) {
+        const websiteStr = website as string;
+        relevanceScore += calculateRelevanceScore(websiteStr, business.website);
+      }
+
+      if (sponsoredAd && business.sponsoredAd) {
+        const sponsoredAdStr = sponsoredAd as string;
+        relevanceScore += calculateRelevanceScore(sponsoredAdStr, `${business.sponsoredAd}`);
+      }
+
+      return { business, relevanceScore };
+    });
+
+    // Deep sort businessesWithRelevance based on relevance scores
+    if (sort === 'relevance') {
+      businessesWithRelevance.sort((a, b) => b.relevanceScore - a.relevanceScore);
+    }
+
+    const sortedBusinesses = businessesWithRelevance.map((item) => item.business);
+
     const objectOfBusinesses: { [key: string]: Business } = {};
-    businesses.forEach((business: Business) => {
+    sortedBusinesses.forEach((business: Business) => {
       if (business.id) objectOfBusinesses[business.id] = business;
     });
 
