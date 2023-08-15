@@ -69,7 +69,7 @@ const _SignIn: React.FC = (): JSX.Element => {
               </div>
 
               <div>
-                <Button type="submit" variant="contained" color="indigo" className="w-full">
+                <Button type="submit" variant="contained" color="indigo" className="w-full" disabled={!formik.dirty}>
                   Sign in
                 </Button>
               </div>

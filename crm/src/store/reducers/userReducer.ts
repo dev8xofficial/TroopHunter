@@ -1,7 +1,7 @@
 import { type PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { type IUserAttributes } from 'validator/interfaces';
 
-import { fetchUserSuccessAction, addUserLocallyAction, updateUserLocallyAction, deleteUserLocallyAction } from '../actions/userActions';
+import { fetchUserSuccessAction, updateUserSuccessAction, addUserLocallyAction, updateUserLocallyAction, deleteUserLocallyAction } from '../actions/userActions';
 
 export interface IUserState {
   data: Record<string, IUserAttributes>;
@@ -12,6 +12,11 @@ const initialState: IUserState = { data: {} };
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchUserSuccessAction, (state, action: PayloadAction<IUserAttributes>) => {
+      const user = action.payload;
+      const mergedUsers: Record<string, IUserAttributes> = { ...state.data, [user.id]: { ...user } };
+      state.data = mergedUsers;
+    })
+    .addCase(updateUserSuccessAction, (state, action: PayloadAction<IUserAttributes>) => {
       const user = action.payload;
       const mergedUsers: Record<string, IUserAttributes> = { ...state.data, [user.id]: { ...user } };
       state.data = mergedUsers;

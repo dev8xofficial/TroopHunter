@@ -77,7 +77,7 @@ const _SignUp: React.FC = (): JSX.Element => {
               </div>
 
               <div>
-                <Button type="submit" variant="contained" color="indigo" className="w-full">
+                <Button type="submit" variant="contained" color="indigo" className="w-full" disabled={!formik.dirty}>
                   Register
                 </Button>
               </div>

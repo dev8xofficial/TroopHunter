@@ -7,7 +7,11 @@ export const UserSchema = z.object({
   firstName: z.string().nonempty(),
   lastName: z.string().nonempty(),
   email: z.string().email().nonempty(),
-  password: z.string().min(8).nonempty(),
+  password: z
+    .string()
+    .min(8, 'Password must be at least 8 characters long')
+    .nonempty('Password cannot be empty')
+    .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'Password must contain at least one letter, one number, and one special character'),
   role: z.enum(['guest', 'user', 'admin']).optional(),
   Leads: z.array(LeadSchema).default([]),
 });
@@ -21,10 +25,28 @@ export const LoginRequestSchema = UserSchema.pick({ email: true, password: true 
 export const UserFetchRequestSchema = UserSchema.omit({ id: true }).partial();
 export const UserFetchByIdRequestSchema = UserSchema.pick({ id: true });
 export const UserCreateRequestSchema = UserSchema.omit({ id: true, Leads: true });
-export const UserUpdateRequestSchema = UserSchema.omit({ id: true }).partial();
+export const UserUpdateNameRequestSchema = UserSchema.pick({ firstName: true, lastName: true });
+export const UserUpdatePasswordRequestSchema = UserSchema.pick({ password: true })
+  .extend({
+    newPassword: z
+      .string()
+      .min(8, 'New Password must be at least 8 characters long')
+      .nonempty('New Password cannot be empty')
+      .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'Password must contain at least one letter, one number, and one special character'),
+    confirmPassword: z
+      .string()
+      .min(8, 'Confirm Password must be at least 8 characters long')
+      .nonempty('Confirm Password cannot be empty')
+      .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'Password must contain at least one letter, one number, and one special character'),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: "New and Confirm passwords doesn't match.",
+    path: ['confirmPassword'],
+  });
 
 export const LoginRequestValidationMiddleware = validationMiddleware(LoginSchema, 'body');
 export const UserFetchRequestValidationMiddleware = validationMiddleware(UserFetchRequestSchema, 'query');
 export const UserFetchByIdRequestValidationMiddleware = validationMiddleware(UserFetchByIdRequestSchema, 'params');
 export const UserCreateRequestValidationMiddleware = validationMiddleware(UserCreateRequestSchema, 'body');
-export const UserUpdateRequestValidationMiddleware = validationMiddleware(UserUpdateRequestSchema, 'body');
+export const UserUpdateNameRequestValidationMiddleware = validationMiddleware(UserUpdateNameRequestSchema, 'body');
+export const UserUpdatePasswordRequestValidationMiddleware = validationMiddleware(UserUpdatePasswordRequestSchema, 'body');
