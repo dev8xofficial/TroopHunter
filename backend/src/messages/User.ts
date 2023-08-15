@@ -11,10 +11,12 @@ export enum UserMessageKey {
   USER_UPDATED = 'USER_UPDATED',
   USER_DELETED = 'USER_DELETED',
   LOGGED_IN = 'LOGGED_IN',
+  PASSWORD_UPDATED = 'PASSWORD_UPDATED',
 
   // Missing fields messages
 
   // Invalid fields messages
+  PASSWORD_MISMATCH = 'PASSWORD_MISMATCH',
 
   // Duplicate messages
   DUPLICATE_USER = 'DUPLICATE_USER',
@@ -28,6 +30,7 @@ export enum UserMessageKey {
   FAILED_TO_CREATE_USER = 'FAILED_TO_CREATE_USER',
   FAILED_TO_UPDATE_USER = 'FAILED_TO_UPDATE_USER',
   FAILED_TO_DELETE_USER = 'FAILED_TO_DELETE_USER',
+  FAILED_TO_UPDATE_PASSWORD = 'FAILED_TO_UPDATE_PASSWORD',
   LOGIN_FAILED = 'LOGIN_FAILED',
 }
 
@@ -57,15 +60,23 @@ const messages: Record<UserMessageKey, Message> = {
     code: 200,
     message: 'Logged in successfully.',
   },
+  [UserMessageKey.PASSWORD_UPDATED]: {
+    code: 200,
+    message: 'Password updated successfully.',
+  },
 
   // Missing fields messages
+  [UserMessageKey.DUPLICATE_USER]: {
+    code: 409,
+    message: 'Email already exists. Please log in or use a different email.',
+  },
 
   // Invalid fields messages
 
   // Duplicate messages
-  [UserMessageKey.DUPLICATE_USER]: {
+  [UserMessageKey.PASSWORD_MISMATCH]: {
     code: 409,
-    message: 'Email already exists. Please log in or use a different email.',
+    message: 'User password mismatch. Please provide valid user password.',
   },
 
   // Not found messages
@@ -94,6 +105,10 @@ const messages: Record<UserMessageKey, Message> = {
   [UserMessageKey.FAILED_TO_DELETE_USER]: {
     code: 500,
     message: 'Failed to delete user. An internal server error occurred.',
+  },
+  [UserMessageKey.FAILED_TO_UPDATE_PASSWORD]: {
+    code: 500,
+    message: 'Failed to update password. An internal server error occurred.',
   },
   [UserMessageKey.LOGIN_FAILED]: {
     code: 500,
