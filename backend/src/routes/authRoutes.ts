@@ -1,10 +1,12 @@
 import express from 'express';
-import { login, register } from '../controllers/AuthController';
-import { UserCreateRequestValidationMiddleware } from 'validator/validators';
+import { login, refreshToken, register, signOut } from '../controllers/AuthController';
+import { RefreshTokenMiddleware, UserCreateRequestValidationMiddleware, UserFetchByIdRequestValidationMiddleware } from 'validator/validators';
 import { LoginRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 
+router.post('/signout/:id', UserFetchByIdRequestValidationMiddleware, signOut);
+router.post('/refresh-token', RefreshTokenMiddleware, refreshToken);
 router.post('/signin', LoginRequestValidationMiddleware, login);
 router.post('/signup', UserCreateRequestValidationMiddleware, register);
 

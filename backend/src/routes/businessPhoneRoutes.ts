@@ -1,13 +1,13 @@
 import express from 'express';
 import { getBusinessPhonesByNumber, getBusinessPhones, getBusinessPhoneById, createBusinessPhone, updateBusinessPhone, deleteBusinessPhone } from '../controllers/BusinessPhoneController';
-import { authenticateUser } from '../middlewares/authMiddleware';
+import { verifyToken } from '../middlewares/authMiddleware';
 import { BusinessPhoneFetchByIdRequestValidationMiddleware, BusinessPhoneFetchRequestValidationMiddleware, BusinessPhoneCreateRequestValidationMiddleware, BusinessPhoneUpdateRequestValidationMiddleware } from 'validator/validators';
 import { PaginationRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-router.use(authenticateUser);
+router.use(verifyToken);
 
 // Define businessPhone routes
 router.get('/search', BusinessPhoneFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getBusinessPhonesByNumber);

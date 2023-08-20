@@ -3,30 +3,26 @@ import React, { Fragment } from 'react';
 import { Transition, Dialog } from '@headlessui/react';
 import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
-import { type IUserAttributes } from 'validator/interfaces';
 
 import { type LeadsDeletionDialogAttributes } from './LeadsDeletionDialog.interfaces';
 import { deleteLeadsAction } from '../../../store/actions/leadActions';
 import { type IAuthState } from '../../../store/reducers/authReducer';
 import { type ILeadsState } from '../../../store/reducers/leadsPageReducer';
-import { type IUserState } from '../../../store/reducers/userReducer';
 import Button from '../../Inputs/Button/Button';
 
 const LeadsDeletionDialog: React.FC<LeadsDeletionDialogAttributes> = ({ isOpen, closeModal }: LeadsDeletionDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
   const auth = useSelector((state: { auth: IAuthState }) => state.auth);
-  const users = useSelector((state: { users: IUserState }) => state.users);
   const leads = useSelector((state: { leads: ILeadsState }) => state.leads);
 
   const selectedLeadIds: string[] = leads.selectedLeadIds;
-  const usersLoggedIn: IUserAttributes = users.data[auth.userId];
 
   const handleDelete = (): void => {
     closeModal();
     dispatch(
       deleteLeadsAction({
-        token: auth.token,
-        user: usersLoggedIn,
+        accessToken: auth.accessToken,
+        userId: auth.userId,
         selectedLeadIds
       })
     );

@@ -1,7 +1,7 @@
 import { type PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { type IBusinessAttributes } from 'validator/interfaces';
 
-import { fetchBusinessesSuccessAction, fetchBusinessesFailureAction } from '../actions/businessActions';
+import { addBusinessesLocallyAction, failedToAddBusinessesLocallyAction, resetBusinessAction } from '../actions/businessActions';
 
 export interface IBusinessStateData {
   businesses: Record<string, IBusinessAttributes>;
@@ -19,10 +19,13 @@ const initialState: IBusinessState = {
 
 const businessReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchBusinessesSuccessAction, (state, action: PayloadAction<IBusinessState>) => {
+    .addCase(addBusinessesLocallyAction, (state, action: PayloadAction<IBusinessState>) => {
       state.data = action.payload.data;
     })
-    .addCase(fetchBusinessesFailureAction, (state) => {
+    .addCase(failedToAddBusinessesLocallyAction, (state) => {
+      state.data = { businesses: {}, totalPages: 0, totalRecords: 0 };
+    })
+    .addCase(resetBusinessAction, (state) => {
       state.data = { businesses: {}, totalPages: 0, totalRecords: 0 };
     });
 });

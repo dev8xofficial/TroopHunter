@@ -31,10 +31,10 @@ export const isFiltersChanged = (filters: IFilterAttributes, initialValues: IFil
   return true;
 };
 
-export const removeEmptyStringValues = <T extends Record<string, string | boolean | number | string[]>>(obj: T): T => {
+export const removeEmptyStringValues = <T extends Record<string, string | boolean | number | string[] | undefined>>(obj: T): T => {
   const newObj: Partial<T> = {};
   for (const key in obj) {
-    if (obj[key] !== '') {
+    if (obj[key] !== '' && obj[key] !== undefined && obj[key] !== null) {
       newObj[key] = obj[key];
     }
   }

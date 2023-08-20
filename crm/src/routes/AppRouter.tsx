@@ -40,7 +40,7 @@ const AppRouter: React.FC = () => {
                 key={obj.path}
                 path={obj.path}
                 element={
-                  <PublicRoute userToken={auth.token}>
+                  <PublicRoute userToken={auth.accessToken}>
                     <AuthLayout>
                       <obj.component />
                     </AuthLayout>
@@ -52,7 +52,7 @@ const AppRouter: React.FC = () => {
                 key={obj.path}
                 path={obj.path}
                 element={
-                  <PrivateRoute userToken={auth.token}>
+                  <PrivateRoute userToken={auth.accessToken}>
                     <DefaultLayout>
                       <obj.component />
                     </DefaultLayout>

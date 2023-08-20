@@ -51,7 +51,7 @@ export interface ICitiesResponseAttributes {
 const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value, onChange }: ILocationComboboxProps): JSX.Element => {
   const auth = useSelector((state: { auth: IAuthState }) => state.auth);
 
-  const token: string = auth.token;
+  const accessToken: string = auth.accessToken;
 
   const initalValue: ILocationComboboxOption = { id: '', name: '', value: '', code: '' };
   const [searchTerm, setSearchTerm] = useState('');
@@ -102,11 +102,11 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
   useEffect(() => {
     const fetchLocationById = async (id: string): Promise<void> => {
       try {
-        const countryResponse: ApiResponse<ICountryResponseAttributes> = await getCountryByIdService(id, token);
+        const countryResponse: ApiResponse<ICountryResponseAttributes> = await getCountryByIdService(id, accessToken);
         const countryData: ICountryResponseAttributes | undefined = countryResponse.data;
-        const stateResponse: ApiResponse<IStateResponseAttributes> = await getStateByIdService(id, token);
+        const stateResponse: ApiResponse<IStateResponseAttributes> = await getStateByIdService(id, accessToken);
         const stateData: IStateResponseAttributes | undefined = stateResponse.data;
-        const cityResponse: ApiResponse<ICityResponseAttributes> = await getCityByIdService(id, token);
+        const cityResponse: ApiResponse<ICityResponseAttributes> = await getCityByIdService(id, accessToken);
         const cityData: ICityResponseAttributes | undefined = cityResponse.data;
         let locationData: ILocationComboboxOption;
 
@@ -144,16 +144,16 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
       void fetchLocationById(value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, type, token]);
+  }, [value, type, accessToken]);
 
   useEffect(() => {
     const fetchLocationsByQuery = async (query: string): Promise<void> => {
       try {
-        const countryResponse: ApiResponse<ICountriesResponseAttributes> = await getCountriesByQuery({ name: query, page: 1, limit: 10 }, token);
+        const countryResponse: ApiResponse<ICountriesResponseAttributes> = await getCountriesByQuery({ name: query, page: 1, limit: 10 }, accessToken);
         const countriesData: ICountriesResponseAttributes | undefined = countryResponse.data;
-        const stateResponse: ApiResponse<IStatesResponseAttributes> = await getStatesByQuery({ name: query, page: 1, limit: 10 }, token);
+        const stateResponse: ApiResponse<IStatesResponseAttributes> = await getStatesByQuery({ name: query, page: 1, limit: 10 }, accessToken);
         const statesData: IStatesResponseAttributes | undefined = stateResponse.data;
-        const cityResponse: ApiResponse<ICitiesResponseAttributes> = await getCitiesByQuery({ name: query, page: 1, limit: 10 }, token);
+        const cityResponse: ApiResponse<ICitiesResponseAttributes> = await getCitiesByQuery({ name: query, page: 1, limit: 10 }, accessToken);
         const citiesData: ICitiesResponseAttributes | undefined = cityResponse.data;
         let mappedLocations: ILocationComboboxOption[] | undefined = [];
 
@@ -190,7 +190,7 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
         clearTimeout(typingTimeout);
       };
     }
-  }, [searchTerm, type, token]);
+  }, [searchTerm, type, accessToken]);
 
   useEffect(() => {
     if (value === '') {

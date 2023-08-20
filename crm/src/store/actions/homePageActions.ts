@@ -17,3 +17,5 @@ export const resetHomePageDraftLeadIdAction = createAction<string>('homePage/res
 
 export const setHomePageBusinessIdsAction = createAction<string[]>('homePage/setHomePageBusinessIdsAction');
 export const resetHomePageBusinessIdsAction = createAction('homePage/resetHomePageBusinessIdsAction');
+
+export const resetHomePageAction = createAction('homePage/resetHomePageAction');

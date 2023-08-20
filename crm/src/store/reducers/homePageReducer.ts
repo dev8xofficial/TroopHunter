@@ -1,7 +1,7 @@
 import { type PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { type ILeadAttributes } from 'validator/interfaces';
 
-import { setHomePageFiltersAction, resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePageLoadingFailureAction, setHomePagePaginationPageAction, setHomePagePaginationLimitAction, setHomePageDraftLeadIdAction, resetHomePageDraftLeadIdAction, setHomePageBusinessIdsAction, resetHomePageBusinessIdsAction } from '../actions/homePageActions';
+import { setHomePageFiltersAction, resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePageLoadingFailureAction, setHomePagePaginationPageAction, setHomePagePaginationLimitAction, setHomePageDraftLeadIdAction, resetHomePageDraftLeadIdAction, setHomePageBusinessIdsAction, resetHomePageBusinessIdsAction, resetHomePageAction } from '../actions/homePageActions';
 
 export interface IFilterOptionAttributes {
   label: string;
@@ -108,6 +108,14 @@ const leadPageReducer = createReducer(initialState, (builder) => {
     })
     .addCase(resetHomePageBusinessIdsAction, (state) => {
       state.businessIds = [];
+    })
+    .addCase(resetHomePageAction, (state) => {
+      state.filters = initialValue;
+      state.page = 1;
+      state.pageLimit = 10;
+      state.draftLeadId = '';
+      state.businessIds = [];
+      state.isLoading = false;
     });
 });
 

@@ -1,10 +1,10 @@
-import { type AllEffect, type ForkEffect, all } from 'redux-saga/effects';
+import { type AllEffect, type StrictEffect, all } from 'redux-saga/effects';
 
-import { watchLoginSaga, watchRegisterSaga } from './sagas/authSaga';
-import { watchBusinessSaga } from './sagas/businessSaga';
-import { watchCreateLeadSaga, watchUpdateLeadSaga, watchDeleteLeadSaga, watchDeleteLeadsSaga } from './sagas/leadSaga';
-import { watchGetUserSaga, watchUpdateUserNameSaga, watchUpdatePasswordNameSaga } from './sagas/userSaga';
+import { watchLoginSaga, watchLoginSuccessSaga, watchRegisterSaga, watchSignOutSaga, watchSignOutSuccessSaga } from './sagas/auth';
+import { watchBusinessSaga, watchBusinessSuccessSaga } from './sagas/business';
+import { watchCreateLeadSaga, watchUpdateLeadSaga, watchDeleteLeadSaga, watchDeleteLeadsSaga, watchCreateLeadSuccessSaga, watchUpdateSuccessLeadSaga, watchDeleteLeadsSuccessSaga, watchDeleteLeadSuccessSaga } from './sagas/lead';
+import { watchGetUserSaga, watchUpdateUserNameSaga, watchUpdateUserPasswordSaga, watchGetUserSuccessSaga, watchUpdateUserNameSuccessSaga, watchUpdateUserPasswordSuccessSaga } from './sagas/user';
 
-export default function* rootSaga(): Generator<AllEffect<Generator<ForkEffect<never>, void, unknown>>, void, unknown> {
-  yield all([watchLoginSaga(), watchRegisterSaga(), watchGetUserSaga(), watchUpdateUserNameSaga(), watchUpdatePasswordNameSaga(), watchBusinessSaga(), watchCreateLeadSaga(), watchUpdateLeadSaga(), watchDeleteLeadSaga(), watchDeleteLeadsSaga()]);
+export default function* rootSaga(): Generator<AllEffect<Generator<StrictEffect, void, void>>> {
+  yield all([watchLoginSaga(), watchLoginSuccessSaga(), watchSignOutSaga(), watchSignOutSuccessSaga(), watchRegisterSaga(), watchGetUserSaga(), watchGetUserSuccessSaga(), watchUpdateUserNameSaga(), watchUpdateUserNameSuccessSaga(), watchUpdateUserPasswordSaga(), watchUpdateUserPasswordSuccessSaga(), watchBusinessSaga(), watchBusinessSuccessSaga(), watchCreateLeadSaga(), watchCreateLeadSuccessSaga(), watchUpdateLeadSaga(), watchUpdateSuccessLeadSaga(), watchDeleteLeadSaga(), watchDeleteLeadSuccessSaga(), watchDeleteLeadsSaga(), watchDeleteLeadsSuccessSaga()]);
 }

@@ -53,7 +53,8 @@ module.exports = {
           caseInsensitive: true
         }
       }
-    ]
+    ],
+    'no-debugger': 'warn'
   },
   settings: {
     'import/resolver': {

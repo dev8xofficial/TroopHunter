@@ -11,6 +11,7 @@ export enum UserMessageKey {
   USER_UPDATED = 'USER_UPDATED',
   USER_DELETED = 'USER_DELETED',
   LOGGED_IN = 'LOGGED_IN',
+  SIGN_OUT = 'SIGN_OUT',
   PASSWORD_UPDATED = 'PASSWORD_UPDATED',
 
   // Missing fields messages
@@ -23,6 +24,7 @@ export enum UserMessageKey {
 
   // Not found messages
   USER_NOT_FOUND = 'USER_NOT_FOUND',
+  USER_NOT_FOUND_BY_ID = 'USER_NOT_FOUND_BY_ID',
 
   // Failure messages
   FAILED_TO_RETRIEVE_USERS = 'FAILED_TO_RETRIEVE_USERS',
@@ -32,6 +34,7 @@ export enum UserMessageKey {
   FAILED_TO_DELETE_USER = 'FAILED_TO_DELETE_USER',
   FAILED_TO_UPDATE_PASSWORD = 'FAILED_TO_UPDATE_PASSWORD',
   LOGIN_FAILED = 'LOGIN_FAILED',
+  SIGN_OUT_FAILED = 'SIGN_OUT_FAILED',
 }
 
 const messages: Record<UserMessageKey, Message> = {
@@ -60,6 +63,10 @@ const messages: Record<UserMessageKey, Message> = {
     code: 200,
     message: 'Logged in successfully.',
   },
+  [UserMessageKey.SIGN_OUT]: {
+    code: 200,
+    message: 'Sign out successfully.',
+  },
   [UserMessageKey.PASSWORD_UPDATED]: {
     code: 200,
     message: 'Password updated successfully.',
@@ -83,6 +90,10 @@ const messages: Record<UserMessageKey, Message> = {
   [UserMessageKey.USER_NOT_FOUND]: {
     code: 404,
     message: 'User not found. Please check your credentials or sign up for a new account.',
+  },
+  [UserMessageKey.USER_NOT_FOUND_BY_ID]: {
+    code: 404,
+    message: 'User not found.',
   },
 
   // Failure messages
@@ -113,6 +124,10 @@ const messages: Record<UserMessageKey, Message> = {
   [UserMessageKey.LOGIN_FAILED]: {
     code: 500,
     message: 'Failed to login. Please try again later or contact support.',
+  },
+  [UserMessageKey.SIGN_OUT_FAILED]: {
+    code: 500,
+    message: 'Failed to sign out. Please try again later or contact support.',
   },
 };
 

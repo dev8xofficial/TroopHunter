@@ -48,7 +48,7 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
       if (Object.keys(leadPageFilters).length > 0 && Object.values(leadPageFilters).some((item: IFilterOptionAttributes) => item.name !== 'sponsoredAd' && item.value !== '')) {
         const requestData = {
           id: leadPageDraftLeadId,
-          token: auth.token,
+          accessToken: auth.accessToken,
           userId: auth.userId,
           businessCount: Array.isArray(leadPageBusinessIds) && leadPageBusinessIds.length > 0 ? leadPageBusinessIds.length : businessesTotalRecords !== undefined ? businessesTotalRecords : 0,
           businessIds: leadPageBusinessIds,

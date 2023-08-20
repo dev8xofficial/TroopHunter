@@ -28,7 +28,6 @@ export const deleteLead = async (req: Request, res: Response) => {
 
 export const deleteLeads = async (req: Request, res: Response) => {
   const { selectedLeadIds } = req.body;
-  console.log('selectedLeadIds: ', selectedLeadIds);
 
   try {
     const leads = await Lead.findAll({ where: { id: selectedLeadIds } });

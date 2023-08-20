@@ -20,7 +20,9 @@ export const LoginSchema = UserSchema.pick({
   email: true,
   password: true,
 }).strict();
-
+export const RefreshTokenSchema = z.object({
+  refreshToken: z.string().nonempty(),
+});
 export const LoginRequestSchema = UserSchema.pick({ email: true, password: true });
 export const UserFetchRequestSchema = UserSchema.omit({ id: true }).partial();
 export const UserFetchByIdRequestSchema = UserSchema.pick({ id: true });
@@ -43,8 +45,15 @@ export const UserUpdatePasswordRequestSchema = UserSchema.pick({ password: true 
     message: "New and Confirm passwords doesn't match.",
     path: ['confirmPassword'],
   });
+export const UserTokenRequestSchema = z.object({
+  id: z.string().uuid().nonempty(),
+  userId: z.string().uuid().nonempty(),
+  accessToken: z.string().nonempty().nullable(),
+  refreshToken: z.string().nonempty().nullable(),
+});
 
 export const LoginRequestValidationMiddleware = validationMiddleware(LoginSchema, 'body');
+export const RefreshTokenMiddleware = validationMiddleware(RefreshTokenSchema, 'body');
 export const UserFetchRequestValidationMiddleware = validationMiddleware(UserFetchRequestSchema, 'query');
 export const UserFetchByIdRequestValidationMiddleware = validationMiddleware(UserFetchByIdRequestSchema, 'params');
 export const UserCreateRequestValidationMiddleware = validationMiddleware(UserCreateRequestSchema, 'body');

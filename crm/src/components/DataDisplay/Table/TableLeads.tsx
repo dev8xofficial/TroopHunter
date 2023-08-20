@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { type ILeadAttributes, type IUserAttributes } from 'validator/interfaces';
 
+import { HOME_URL } from '../../../routes/Urls';
 import { setHomePageDraftLeadIdAction, setHomePageFiltersAction } from '../../../store/actions/homePageActions';
 import { deleteLeadsAction } from '../../../store/actions/leadActions';
 import { setLeadsPageSelectedLeadIds } from '../../../store/actions/leadsPageActions';
@@ -88,7 +89,7 @@ const Table: React.FC = (): JSX.Element => {
         });
 
         await dispatchActionPromise.then(() => {
-          navigate('/');
+          navigate(HOME_URL);
         });
       } else {
         toast.error('Lead not found.');
@@ -102,7 +103,7 @@ const Table: React.FC = (): JSX.Element => {
     if (userLeads !== undefined && userLeads !== null) {
       const selectedLead: ILeadAttributes = userLeads[index]; // Specify index as number here
       const leadId: string = selectedLead !== null && selectedLead !== undefined ? selectedLead.id : '';
-      if (leadId.length > 0) dispatch(deleteLeadsAction({ token: auth.token, user: usersLoggedIn, selectedLeadIds: [leadId] }));
+      if (leadId.length > 0) dispatch(deleteLeadsAction({ accessToken: auth.accessToken, userId: authUserId, selectedLeadIds: [leadId] }));
       else toast.error('Failed to delete lead. Lead not found.');
     }
   };

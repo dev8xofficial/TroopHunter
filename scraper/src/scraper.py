@@ -27,6 +27,7 @@ class BusinessScraper:
         self.medium_wait = 10
         self.long_wait = 60
 
+        chrome_driver_path = '/Users/abdulrehman/Workstation/Personal/helloabdul/helloabdul/scraper/driver/chromedriver'
         # Chrome Options
         chrome_options = Options()
         # chrome_options.add_argument("--headless")
@@ -37,7 +38,7 @@ class BusinessScraper:
 
         try:
             logger.info("Initiating chrome web driver.")
-            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager("114.0.5735.90").install()), options=chrome_options)
+            self.driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
         except Exception as e:
             logger.error("Service chromedriver unexpectedly exited: ", e)
 

@@ -36,14 +36,10 @@ const SettingsSecurity: React.FC = (): JSX.Element => {
     onSubmit: (values) => {
       dispatch(
         updateUserPasswordAction({
-          id: usersLoggedIn.id,
+          userId: usersLoggedIn.id,
           password: values.password,
           newPassword: values.newPassword,
-          confirmPassword: values.confirmPassword,
-          token: auth.token,
-          clearPasswordFields: () => {
-            formik.resetForm();
-          }
+          confirmPassword: values.confirmPassword
         })
       );
     }

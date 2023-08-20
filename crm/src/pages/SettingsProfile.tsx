@@ -35,10 +35,9 @@ const SettingsProfile: React.FC = (): JSX.Element => {
     onSubmit: (values) => {
       dispatch(
         updateUserNameAction({
-          id: usersLoggedIn.id,
+          userId: usersLoggedIn.id,
           firstName: values.firstName,
-          lastName: values.lastName,
-          token: auth.token
+          lastName: values.lastName
         })
       );
     }

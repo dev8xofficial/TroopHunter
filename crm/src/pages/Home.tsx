@@ -6,7 +6,7 @@ import { AdjustmentsVerticalIcon } from '@heroicons/react/24/outline';
 import { useSelector, useDispatch } from 'react-redux';
 import { type IUserAttributes, type ILeadAttributes } from 'validator/interfaces';
 
-import { type IBusinessesFetchPayload } from 'store/sagas/businessSaga';
+import { type IBusinessesFetchPayload } from 'store/sagas/business/business.fetch';
 
 import TableLead from '../components/DataDisplay/Table/TableLead';
 import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDeletionDialog';
@@ -81,7 +81,7 @@ const Lead: React.FC = () => {
 
   const loadMoreBusinesses = ({ page, limit }: { page: number; limit: number }): void => {
     const requestData: IBusinessesFetchPayload = {
-      token: auth.token,
+      accessToken: auth.accessToken,
       page,
       limit,
       name: leadPageFilters.name.value !== null ? leadPageFilters.name.value : undefined,
@@ -116,8 +116,10 @@ const Lead: React.FC = () => {
     // console.log('filters: ', prevLeadPageFilters.current.view, leadPageFilters.view);
     if (Object.keys(debouncedFilters).length > 0) {
       if (prevLeadPageFilters.current.view === debouncedFilters.view) {
+        debugger;
         loadMoreBusinesses({ page: leadPagePaginationPage, limit: leadPagePaginationLimit });
       } else {
+        debugger;
         dispatch(setHomePageLoadingSuccessAction());
       }
     }

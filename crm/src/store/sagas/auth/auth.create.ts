@@ -1,0 +1,60 @@
+import { type NavigateFunction } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { takeLatest, put, type StrictEffect } from 'redux-saga/effects';
+import { type ApiResponse, type IUserAttributes, type IUserCreateRequestAttributes } from 'validator/interfaces';
+
+import { removeEmptyStringValues } from '../../../utils/helpers';
+import { ApiRequestAction, type IApiRequestAttributes } from '../../actions/apiActions';
+import { authRegisterAction } from '../../actions/authActions';
+
+export interface IAuthRegisterPayload extends IUserCreateRequestAttributes {
+  navigate: NavigateFunction;
+}
+
+function* registerSaga({ payload }: { payload: IAuthRegisterPayload }): Generator<StrictEffect, void, void> {
+  try {
+    const { firstName, lastName, email, password, navigate } = payload;
+
+    const apiPayload = {
+      url: '/auth/signup',
+      method: 'POST',
+      data: removeEmptyStringValues({ firstName, lastName, email, password }),
+      payload: { navigate },
+      onSuccess: 'auth/authRegisterSuccessAction',
+      requireAuth: true
+    };
+
+    yield put(ApiRequestAction(apiPayload));
+  } catch (error) {
+    toast.error((error as Error).message);
+  }
+}
+
+export interface IAuthRegisterSuccessPayload {
+  request: IApiRequestAttributes<IUserCreateRequestAttributes, undefined, undefined, { navigate: NavigateFunction }>;
+  response: ApiResponse<IUserAttributes>;
+}
+
+// function* registerSuccessSaga({ payload }: { payload: IAuthRegisterSuccessPayload }): Generator<StrictEffect, void, void> {
+//   try {
+//     const { request, response } = payload;
+
+//     if (response.success && request.payload !== undefined) {
+//       request.payload.navigate(LOGIN_URL);
+
+//       toast.success(response.message);
+//     } else {
+//       toast.error(response.error);
+//     }
+//   } catch (error) {
+//     toast.error((error as Error).message);
+//   }
+// }
+
+export function* watchRegisterSaga(): Generator<StrictEffect, void, void> {
+  yield takeLatest(authRegisterAction, registerSaga);
+}
+
+// export function* watchRegisterSuccessSaga(): Generator<StrictEffect, void, void> {
+//   yield takeLatest(authRegisterSuccessAction, registerSuccessSaga);
+// }

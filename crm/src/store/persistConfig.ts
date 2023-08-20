@@ -6,6 +6,7 @@ import authReducer from './reducers/authReducer';
 import businessReducer from './reducers/businessReducer';
 import homePageReducer from './reducers/homePageReducer';
 import leadReducer from './reducers/leadsPageReducer';
+import navigationReducer from './reducers/navigationReducer';
 import userReducer from './reducers/userReducer';
 
 const persistConfig = {
@@ -15,6 +16,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  navigation: navigationReducer,
   auth: authReducer,
   users: userReducer,
   businesses: businessReducer,

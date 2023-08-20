@@ -1,13 +1,13 @@
 import express from 'express';
 import { getStates, getStateById, getStatesByQuery, createState, updateState, deleteState } from '../controllers/StateController';
 import { StateFetchByIdRequestValidationMiddleware, StateFetchRequestValidationMiddleware, StateCreateRequestValidationMiddleware, StateUpdateRequestValidationMiddleware } from 'validator/validators';
-import { authenticateUser } from '../middlewares/authMiddleware';
+import { verifyToken } from '../middlewares/authMiddleware';
 import { PaginationRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-router.use(authenticateUser);
+router.use(verifyToken);
 
 // Define state routes
 router.get('/search', StateFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getStatesByQuery);

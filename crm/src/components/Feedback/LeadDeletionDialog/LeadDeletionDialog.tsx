@@ -3,31 +3,27 @@ import React, { Fragment } from 'react';
 import { Transition, Dialog } from '@headlessui/react';
 import { XMarkIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
-import { type IUserAttributes } from 'validator/interfaces';
 
 import { type LeadDeletionDialogAttributes } from './LeadDeletionDialog.interfaces';
 import { deleteLeadAction } from '../../../store/actions/leadActions';
 import { type IAuthState } from '../../../store/reducers/authReducer';
 import { type IHomePageState } from '../../../store/reducers/homePageReducer';
-import { type IUserState } from '../../../store/reducers/userReducer';
 import Button from '../../Inputs/Button/Button';
 
 const LeadDeletionDialog: React.FC<LeadDeletionDialogAttributes> = ({ isOpen, closeModal }: LeadDeletionDialogAttributes): JSX.Element => {
   const dispatch = useDispatch();
   const auth = useSelector((state: { auth: IAuthState }) => state.auth);
-  const users = useSelector((state: { users: IUserState }) => state.users);
   const home = useSelector((state: { home: IHomePageState }) => state.home);
 
   const leadPageDraftLeadId: string = home.draftLeadId;
-  const usersLoggedIn: IUserAttributes = users.data[auth.userId];
 
   const handleDelete = (): void => {
     closeModal();
     dispatch(
       deleteLeadAction({
-        token: auth.token,
+        accessToken: auth.accessToken,
         id: leadPageDraftLeadId,
-        user: usersLoggedIn
+        userId: auth.userId
       })
     );
   };

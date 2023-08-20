@@ -1,13 +1,13 @@
 import express from 'express';
 import { getBusinessesByQuery, getBusinesses, getBusinessById, createBusiness, updateBusiness, deleteBusiness } from '../controllers/BusinessController';
-import { authenticateUser } from '../middlewares/authMiddleware';
+import { verifyToken } from '../middlewares/authMiddleware';
 import { BusinessCreateRequestValidationMiddleware, BusinessFetchByIdRequestValidationMiddleware, BusinessFetchRequestValidationMiddleware, BusinessUpdateRequestValidationMiddleware } from 'validator/validators';
 import { PaginationRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-router.use(authenticateUser);
+router.use(verifyToken);
 
 // Define business routes
 router.get('/search', BusinessFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getBusinessesByQuery);

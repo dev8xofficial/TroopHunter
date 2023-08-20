@@ -1,12 +1,16 @@
-import React, { type ReactNode } from 'react';
+import React, { Fragment, type ReactNode } from 'react';
 
-import { Disclosure } from '@headlessui/react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon } from '@heroicons/react/24/outline';
-import { Link, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import Avatar from '../components/DataDisplay/Avatar/Avatar';
 import BottomNavigation from '../components/Navigation/BottomNavigation/BottomNavigation';
-import Menu from '../components/Navigation/Menu/Menu';
+import { authSignOutAction } from '../store/actions/authActions';
+// import { resetNavigationAction } from '../store/actions/navigationActions';
+import { type IAuthState } from '../store/reducers/authReducer';
+// import { type INavigationState } from '../store/reducers/navigationReducer';
 import { classNames } from '../utils/helpers';
 
 const user = {
@@ -21,18 +25,17 @@ const navigation = [
   { name: 'Leads', href: '/leads', current: false }
 ];
 
-const userNavigation = [
-  { name: 'Settings', href: '/settings/profile' },
-  { name: 'Sign out', href: '#' }
-];
-
 interface DefaultLayoutProps {
   children: ReactNode;
 }
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayoutProps): JSX.Element => {
   // Use the useLocation hook to get the current URL pathname
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
+
+  const auth = useSelector((state: { auth: IAuthState }) => state.auth);
 
   // Update the navigation array based on the current URL
   const updatedNavigation = navigation.map((item) => ({
@@ -70,8 +73,37 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
                     </button>
 
                     {/* Profile dropdown */}
-                    <Menu options={userNavigation} className="focus:ring-white focus:ring-offset-gray-800">
-                      <Avatar image={user.imageUrl} firstName={user.firstName} size="small" border="border" />
+                    <Menu as="div" className="relative ml-3">
+                      <div>
+                        <Menu.Button className={`flex items-center justify-center rounded-full transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-4`}>
+                          <span className="sr-only">Open user menu</span>
+                          <Avatar image={user.imageUrl} firstName={user.firstName} size="small" border="border" />
+                        </Menu.Button>
+                      </div>
+                      <Transition as={Fragment} enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale-100" leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95">
+                        <Menu.Items className="absolute right-0 z-30 mt-2 w-48 origin-top-right rounded bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Item key="Home">
+                            {({ active }) => (
+                              <Link to="/settings/profile" className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                                Settings
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item key="Leads">
+                            {({ active }) => (
+                              <Link
+                                to="#"
+                                onClick={() => {
+                                  dispatch(authSignOutAction({ id: auth.userId, navigate }));
+                                }}
+                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                              >
+                                Sign out
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </Menu.Items>
+                      </Transition>
                     </Menu>
                   </div>
                 </div>

@@ -16,7 +16,9 @@ def get_location_details(latitude: float, longitude: float, address: str):
         location = None
         location_point = Point(lat, lon)
         try:
-            location = geolocator.reverse(location_point, exactly_one=True, language="en")
+            location = geolocator.reverse(
+                location_point, exactly_one=True, language="en"
+            )
         except GeocoderTimedOut:
             return reverse_geocode(lat, lon)  # Retry in case of timeout
         return location
@@ -90,7 +92,9 @@ def get_postal_code(address: str):
                 pass
 
     except Exception as e:
-        logging.exception("An error occurred while extracting postal code from address: %s", e)
+        logging.exception(
+            "An error occurred while extracting postal code from address: %s", e
+        )
 
     # If no valid postal code is found
     return None
@@ -122,5 +126,5 @@ def extract_lat_lon(city, url):
     if match:
         lat = match.group(1)
         lon = match.group(2)
-        return lat, lon
-    return city["latitude"], city["longitude"]
+        return float(lat), float(lon)
+    return float(city["latitude"]), float(city["longitude"])

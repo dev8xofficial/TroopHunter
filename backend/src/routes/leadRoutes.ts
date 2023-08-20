@@ -1,13 +1,13 @@
 import express from 'express';
 import { getLeads, getLeadById, createLead, updateLead, deleteLead, deleteLeads } from '../controllers/LeadController';
 import { LeadFetchByIdRequestValidationMiddleware, LeadCreateRequestValidationMiddleware, LeadUpdateRequestValidationMiddleware, LeadBulkDeleteRequestValidationMiddleware } from 'validator/validators';
-import { authenticateUser } from '../middlewares/authMiddleware';
+import { verifyToken } from '../middlewares/authMiddleware';
 import { PaginationRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-router.use(authenticateUser);
+router.use(verifyToken);
 
 // Define leads routes
 router.delete('/bulk', LeadBulkDeleteRequestValidationMiddleware, deleteLeads);

@@ -1,6 +1,6 @@
 import { type PayloadAction, createReducer } from '@reduxjs/toolkit';
 
-import { setLeadsPageSelectedLeadIds, resetLeadsPageSelectedLeadIds } from '../actions/leadsPageActions';
+import { setLeadsPageSelectedLeadIds, resetLeadsPageSelectedLeadIds, resetLeadsPageAction } from '../actions/leadsPageActions';
 
 export interface ILeadsState {
   selectedLeadIds: string[];
@@ -16,6 +16,9 @@ const leadReducer = createReducer(initialState, (builder) => {
       state.selectedLeadIds = ids;
     })
     .addCase(resetLeadsPageSelectedLeadIds, (state) => {
+      state.selectedLeadIds = [];
+    })
+    .addCase(resetLeadsPageAction, (state) => {
       state.selectedLeadIds = [];
     });
 });

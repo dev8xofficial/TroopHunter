@@ -1,17 +1,19 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import logger from '../utils/logger';
+import UserToken from '../models/UserToken';
 
 interface AuthenticatedRequest extends Request {
   user?: any; // Replace 'any' with the actual type of the user object
 }
 
-export const authenticateUser = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+export const verifyToken = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   const token = req.headers.authorization?.split(' ')[1];
+  const userToken: UserToken | null = await UserToken.findOne({ where: { accessToken: token } });
 
-  if (!token) {
+  if (!token || userToken === null) {
     logger.error('Access denied: Authentication token not found');
-    return res.status(401).json({ error: 'Access denied: Authentication token not found' });
+    return res.status(406).json({ error: 'Access denied: Authentication token not found' });
   }
 
   try {
@@ -20,7 +22,7 @@ export const authenticateUser = (req: AuthenticatedRequest, res: Response, next:
     next();
   } catch (error) {
     logger.error('Error authenticating user:', error);
-    return res.status(401).json({ error: 'Access denied: You are not authorized to perform this action.' });
+    return res.status(406).json({ error: 'Access denied: You are not authorized to perform this action.' });
   }
 };
 
