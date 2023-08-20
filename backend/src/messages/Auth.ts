@@ -22,6 +22,8 @@ export enum AuthMessageKey {
   // Duplicate messages
 
   // Not found messages
+  NOT_FOUND_ACCESS_TOKEN = 'NOT_FOUND_ACCESS_TOKEN',
+  NOT_FOUND_REFRESH_TOKEN = 'NOT_FOUND_REFRESH_TOKEN',
 
   // Failure messages
 }
@@ -36,11 +38,11 @@ const messages: Record<AuthMessageKey, Message> = {
   // Missing fields messages
   [AuthMessageKey.MISSING_ACCESS_TOKEN]: {
     code: 403,
-    message: 'Missing access token. Please provide access token to proceed.',
+    message: 'Missing access token. Please provide valid access token to proceed.',
   },
   [AuthMessageKey.MISSING_REFRESH_TOKEN]: {
     code: 403,
-    message: 'Missing refresh token. Please provide refresh token to proceed.',
+    message: 'Missing refresh token. Please provide valid refresh token to proceed.',
   },
 
   // Invalid fields messages
@@ -66,6 +68,14 @@ const messages: Record<AuthMessageKey, Message> = {
   // Duplicate messages
 
   // Not found messages
+  [AuthMessageKey.NOT_FOUND_ACCESS_TOKEN]: {
+    code: 403,
+    message: 'Access token not found. Please login again to proceed.',
+  },
+  [AuthMessageKey.NOT_FOUND_REFRESH_TOKEN]: {
+    code: 403,
+    message: 'Refresh token not found. Please login again to proceed.',
+  },
 
   // Failure messages
 };

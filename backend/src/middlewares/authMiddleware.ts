@@ -14,9 +14,15 @@ export const verifyToken = async (req: AuthenticatedRequest, res: Response, next
   const token = req.headers.authorization?.split(' ')[1];
   const userToken: UserToken | null = await UserToken.findOne({ where: { accessToken: token } });
 
-  if (!token || userToken === null) {
-    logger.error('Access denied: Authentication token not found');
+  if (!token) {
+    logger.error(getAuthMessage(AuthMessageKey.MISSING_ACCESS_TOKEN).message);
     const response: ApiResponse<null> = createApiResponse({ error: getAuthMessage(AuthMessageKey.MISSING_ACCESS_TOKEN).message, status: getAuthMessage(AuthMessageKey.MISSING_ACCESS_TOKEN).code });
+    return res.json(response);
+  }
+
+  if (userToken === null) {
+    logger.error(getAuthMessage(AuthMessageKey.NOT_FOUND_ACCESS_TOKEN).message);
+    const response: ApiResponse<null> = createApiResponse({ error: getAuthMessage(AuthMessageKey.NOT_FOUND_ACCESS_TOKEN).message, status: getAuthMessage(AuthMessageKey.NOT_FOUND_ACCESS_TOKEN).code });
     return res.json(response);
   }
 

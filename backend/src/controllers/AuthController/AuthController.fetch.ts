@@ -98,8 +98,15 @@ export const refreshToken = async (req: Request, res: Response) => {
   const { refreshToken } = req.body;
   const userToken: UserToken | null = await UserToken.findOne({ where: { refreshToken } });
 
-  if (!refreshToken || userToken === null) {
+  if (!refreshToken) {
+    logger.error(getAuthMessage(AuthMessageKey.MISSING_REFRESH_TOKEN).message);
     const response: ApiResponse<null> = createApiResponse({ error: getAuthMessage(AuthMessageKey.MISSING_REFRESH_TOKEN).message, status: getAuthMessage(AuthMessageKey.MISSING_REFRESH_TOKEN).code });
+    return res.json(response);
+  }
+
+  if (userToken === null) {
+    logger.error(getAuthMessage(AuthMessageKey.NOT_FOUND_REFRESH_TOKEN).message);
+    const response: ApiResponse<null> = createApiResponse({ error: getAuthMessage(AuthMessageKey.NOT_FOUND_REFRESH_TOKEN).message, status: getAuthMessage(AuthMessageKey.NOT_FOUND_REFRESH_TOKEN).code });
     return res.json(response);
   }
 
