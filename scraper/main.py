@@ -5,12 +5,14 @@ from config import LOCATIONS, LAPTOP_NAME
 import logging
 import datetime
 from dotenv import load_dotenv
+from src.services.auth import login
 from src.services.queue import get_queue, update_queue
 from src.services.city import get_cities
 from concurrent.futures import ThreadPoolExecutor, wait
 from src.utils.general import is_internet_available
 import requests
 from requests.exceptions import Timeout
+import os
 
 # Load environment variables from .env file
 load_dotenv()
@@ -64,6 +66,8 @@ def process_queue(queue, city):
 
 def main():
     logging.info("Scraping process started.")
+
+    login(os.environ.get("BACKEND_USER"), os.environ.get("BACKEND_USER_PASSWORD"))
 
     LIMIT = 1  # Number of queues to process per page
     total_pages_queues = get_queue(limit=LIMIT)["totalPages"]

@@ -2,16 +2,19 @@ import json
 import os
 import requests
 import logging
+from src.services.auth import refreshToken
+from dotenv import load_dotenv
 
 
 def get_queue(page=1, limit=5):
     try:
+        load_dotenv()
         # Define the endpoint URL
         backend_url = os.environ.get("BACKEND_URL")
         url = f"{backend_url}/queues"
 
         # Set the request headers
-        token = os.environ.get("BACKEND_AUTHENTICATION")
+        token = os.environ.get("ACCESS_TOKEN")
         headers = {
             "Authorization": f"Bearer {token}",
         }
@@ -30,8 +33,14 @@ def get_queue(page=1, limit=5):
         if jsonResponse["success"]:
             return response.json()["data"]
         else:
-            # Request failed
-            logging.error("Failed to retrieve queue. Status code: %s, Response: %s", jsonResponse["status"], jsonResponse["error"])
+            if jsonResponse["status"] == 406:
+                refreshToken()
+                get_queue(page, limit)
+            logging.error(
+                "Failed to retrieve queue. Status code: %s, Response: %s",
+                jsonResponse["status"],
+                jsonResponse["error"],
+            )
             return None
     except requests.exceptions.RequestException as e:
         # Request encountered an error
@@ -40,13 +49,17 @@ def get_queue(page=1, limit=5):
 
 def update_queue(request: dict):
     try:
+        load_dotenv()
         # Define the endpoint URL
         backend_url = os.environ.get("BACKEND_URL")
         url = f"{backend_url}/queues/{request['id']}"
 
         # Set the request headers
-        token = os.environ.get("BACKEND_AUTHENTICATION")
-        headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+        token = os.environ.get("ACCESS_TOKEN")
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        }
 
         # Send the PUT request to the endpoint
         response = requests.put(url, headers=headers, data=json.dumps(request))
@@ -56,8 +69,14 @@ def update_queue(request: dict):
         if jsonResponse["success"]:
             return response.json()
         else:
-            # Request failed
-            logging.error("Failed to update the queue. Status code: %s, Response: %s", jsonResponse["status"], jsonResponse["error"])
+            if jsonResponse["status"] == 406:
+                refreshToken()
+                update_queue(request)
+            logging.error(
+                "Failed to update the queue. Status code: %s, Response: %s",
+                jsonResponse["status"],
+                jsonResponse["error"],
+            )
             return None
     except requests.exceptions.RequestException as e:
         # Request encountered an error
