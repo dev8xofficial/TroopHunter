@@ -116,12 +116,12 @@ export const refreshToken = async (req: Request, res: Response) => {
     // Generate a new access token and send it in the response
     const accessToken = jwt.sign({ userId: decoded }, process.env.JWT_SECRET ?? '', { expiresIn: '15m' });
 
-    let userToken: UserToken | null = await UserToken.findOne({ where: { refreshToken } });
+    let userTokenNew: UserToken | null = await UserToken.findOne({ where: { refreshToken } });
 
-    if (userToken) {
-      userToken.accessToken = accessToken;
-      userToken.refreshToken = refreshToken;
-      await userToken.save();
+    if (userTokenNew) {
+      userTokenNew.accessToken = accessToken;
+      userTokenNew.refreshToken = refreshToken;
+      await userTokenNew.save();
     }
 
     const response: ApiResponse<{ accessToken: string }> = createApiResponse({ success: true, data: { accessToken }, message: getAuthMessage(AuthMessageKey.ACCESS_TOKEN_REFRESHED).message, status: getAuthMessage(AuthMessageKey.ACCESS_TOKEN_REFRESHED).code });

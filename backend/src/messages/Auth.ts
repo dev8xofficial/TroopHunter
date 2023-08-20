@@ -69,11 +69,11 @@ const messages: Record<AuthMessageKey, Message> = {
 
   // Not found messages
   [AuthMessageKey.NOT_FOUND_ACCESS_TOKEN]: {
-    code: 403,
-    message: 'Access token not found. Please login again to proceed.',
+    code: 406,
+    message: 'Access token not found.',
   },
   [AuthMessageKey.NOT_FOUND_REFRESH_TOKEN]: {
-    code: 403,
+    code: 407,
     message: 'Refresh token not found. Please login again to proceed.',
   },
 
