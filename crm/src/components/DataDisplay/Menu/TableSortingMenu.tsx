@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 
 import { Listbox, Transition } from '@headlessui/react';
-import { BarsArrowDownIcon, BarsArrowUpIcon, CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
+import { Bars3Icon, BarsArrowDownIcon, BarsArrowUpIcon, BookmarkIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 
 import { type ITableSortingMenuAttributes, type ITableSortingMenuOptionAttributes } from './TableSortingMenu.interfaces';
 import { classNames } from '../../../utils/helpers';
@@ -11,7 +11,7 @@ const TableSortingMenu: React.FC<ITableSortingMenuAttributes> = ({ options, valu
   const [isAscending, setIsAscending] = useState(true);
 
   const onChange = (value: ITableSortingMenuOptionAttributes): void => {
-    if (value.value !== 'relevance') {
+    if (value.value === 'alphabetical' || value.value === 'newFirst') {
       handleChange(value.name, value.value + (isAscending ? 'Ascending' : 'Descending'));
       setIsAscending(!isAscending); // Toggle the isAscending value
     } else {
@@ -35,12 +35,20 @@ const TableSortingMenu: React.FC<ITableSortingMenuAttributes> = ({ options, valu
 
   const getOptionIcon = (option: ITableSortingMenuOptionAttributes): React.ReactElement => {
     switch (option.value) {
+      case 'relevance':
+        return <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />;
       case 'alphabetical':
         if (isAscending) return <BarsArrowUpIcon className="h-5 w-5" aria-hidden="true" />;
         else return <BarsArrowDownIcon className="h-5 w-5" aria-hidden="true" />;
       case 'newFirst':
         if (isAscending) return <BarsArrowUpIcon className="h-5 w-5" aria-hidden="true" />;
         else return <BarsArrowDownIcon className="h-5 w-5" aria-hidden="true" />;
+      case 'all':
+        return <Bars3Icon className="h-5 w-5" aria-hidden="true" />;
+      case 'selected':
+        return <CheckCircleIcon className="h-5 w-5" aria-hidden="true" />;
+      case 'saved':
+        return <BookmarkIcon className="h-5 w-5" aria-hidden="true" />;
       default:
         return <CheckIcon className="h-5 w-5" aria-hidden="true" />;
     }
@@ -70,7 +78,10 @@ const TableSortingMenu: React.FC<ITableSortingMenuAttributes> = ({ options, valu
                     {({ selected, active }) => (
                       <div className="flex flex-col">
                         <div className="flex justify-between">
-                          <p className={selected ? 'font-semibold' : 'font-normal'}>{option.title}</p>
+                          <p className={classNames(selected ? 'font-semibold' : 'font-normal', 'flex items-start justify-start space-x-2')}>
+                            <span>{getOptionIcon(option)}</span>
+                            <span>{option.title}</span>
+                          </p>
                           {selected ? (
                             <span className={active ? 'text-white' : 'text-indigo-600'}>
                               <CheckIcon className="h-5 w-5" aria-hidden="true" />
