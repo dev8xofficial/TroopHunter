@@ -116,10 +116,8 @@ const Lead: React.FC = () => {
     // console.log('filters: ', prevLeadPageFilters.current.view, leadPageFilters.view);
     if (Object.keys(debouncedFilters).length > 0) {
       if (prevLeadPageFilters.current.view === debouncedFilters.view) {
-        debugger;
         loadMoreBusinesses({ page: leadPagePaginationPage, limit: leadPagePaginationLimit });
       } else {
-        debugger;
         dispatch(setHomePageLoadingSuccessAction());
       }
     }

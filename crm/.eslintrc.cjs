@@ -35,6 +35,8 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   rules: {
+    // 'no-shadow': 'error',
+    'no-debugger': 'warn',
     'import/order': [
       'error',
       {
@@ -53,8 +55,7 @@ module.exports = {
           caseInsensitive: true
         }
       }
-    ],
-    'no-debugger': 'warn'
+    ]
   },
   settings: {
     'import/resolver': {

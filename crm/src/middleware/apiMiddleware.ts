@@ -32,13 +32,32 @@ const apiMiddleware: Middleware =
 
       try {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const response: AxiosResponse<AxiosResponse<any>> = await axiosInstance.request({
+        let response: AxiosResponse<AxiosResponse<any>> = await axiosInstance.request({
           url,
           method,
           headers: headers as AxiosHeaders,
           params: params as AxiosRequestConfig,
           data: data as AxiosRequestConfig
         });
+
+        if (response.data !== null && response.data !== undefined && response.data.status === 406) {
+          const refreshResponse: ApiResponse<{ accessToken: string }> = await refreshTokenService(axiosInstance, refreshToken);
+          if (refreshResponse.data !== null && refreshResponse.data !== undefined && refreshResponse.data.accessToken.length > 0) {
+            axiosInstance.defaults.headers.common.Authorization = `Bearer ${refreshResponse.data.accessToken}`;
+            dispatch(refreshTokenSuccessAction({ accessToken: refreshResponse.data.accessToken }));
+
+            response = await axiosInstance.request({
+              url,
+              method,
+              headers: headers as AxiosHeaders,
+              params: params as AxiosRequestConfig,
+              data: data as AxiosRequestConfig
+            });
+          } else {
+            toast.error(refreshResponse.error);
+            return;
+          }
+        }
 
         const successActionType = onSuccess;
         const successPayload = { request: action.payload, response: response.data, payload: payload as Record<any, any> };
