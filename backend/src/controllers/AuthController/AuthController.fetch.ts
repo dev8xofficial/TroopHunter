@@ -23,7 +23,6 @@ export const login = async (req: Request, res: Response) => {
       const response: ApiResponse<null> = createApiResponse({ error: getAuthMessage(AuthMessageKey.INVALID_AUTH_EMAIL).message, status: getAuthMessage(AuthMessageKey.INVALID_AUTH_EMAIL).code });
       return res.json(response);
     }
-    console.log('payload::::::::::::::::::: ', email);
 
     // Compare the provided password with the stored hashed password
     const passwordMatch = await bcrypt.compare(password, user.password);
@@ -34,8 +33,8 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // Generate a JWT token
-    const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '120m' });
-    const refreshToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '120m' });
+    const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '15m' });
+    const refreshToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '30m' });
 
     let userToken: UserToken | null = await UserToken.findOne({ where: { userId: user.id } });
 
@@ -100,19 +99,29 @@ export const refreshToken = async (req: Request, res: Response) => {
   const userToken: UserToken | null = await UserToken.findOne({ where: { refreshToken } });
 
   if (!refreshToken || userToken === null) {
-    return res.status(401).json({ message: 'No refresh token provided.' });
+    const response: ApiResponse<null> = createApiResponse({ error: getAuthMessage(AuthMessageKey.MISSING_REFRESH_TOKEN).message, status: getAuthMessage(AuthMessageKey.MISSING_REFRESH_TOKEN).code });
+    return res.json(response);
   }
 
   try {
     const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET ?? '');
 
     // Generate a new access token and send it in the response
-    const accessToken = jwt.sign({ userId: decoded }, process.env.JWT_SECRET ?? '', { expiresIn: '120m' });
-    const response: ApiResponse<{ accessToken: string }> = createApiResponse({ success: true, data: { accessToken }, message: 'Access token refreshed.', status: 200 });
+    const accessToken = jwt.sign({ userId: decoded }, process.env.JWT_SECRET ?? '', { expiresIn: '15m' });
+
+    let userToken: UserToken | null = await UserToken.findOne({ where: { refreshToken } });
+
+    if (userToken) {
+      userToken.accessToken = accessToken;
+      userToken.refreshToken = refreshToken;
+      await userToken.save();
+    }
+
+    const response: ApiResponse<{ accessToken: string }> = createApiResponse({ success: true, data: { accessToken }, message: getAuthMessage(AuthMessageKey.ACCESS_TOKEN_REFRESHED).message, status: getAuthMessage(AuthMessageKey.ACCESS_TOKEN_REFRESHED).code });
     return res.json(response);
   } catch (error) {
-    logger.error('Error authenticating user:', error);
-    const response: ApiResponse<null> = createApiResponse({ error: 'Access denied: Invalid refresh token. Kindly login again.', status: 403 });
+    logger.error('Access denied: Invalid refresh token:', error);
+    const response: ApiResponse<null> = createApiResponse({ error: getAuthMessage(AuthMessageKey.INVALID_REFRESH_TOKEN).message, status: getAuthMessage(AuthMessageKey.INVALID_REFRESH_TOKEN).code });
     return res.json(response);
   }
 };

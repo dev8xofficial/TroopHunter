@@ -5,9 +5,9 @@ import { LoginRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
 
-router.post('/signout/:id', UserFetchByIdRequestValidationMiddleware, signOut);
 router.post('/refresh-token', RefreshTokenMiddleware, refreshToken);
 router.post('/signin', LoginRequestValidationMiddleware, login);
 router.post('/signup', UserCreateRequestValidationMiddleware, register);
+router.post('/signout/:id', UserFetchByIdRequestValidationMiddleware, signOut);
 
 export default router;

@@ -2,6 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import logger from '../utils/logger';
 import UserToken from '../models/UserToken';
+import { createApiResponse } from 'validator/utils';
+import { ApiResponse } from 'validator/interfaces';
+import { AuthMessageKey, getAuthMessage } from '../messages/Auth';
 
 interface AuthenticatedRequest extends Request {
   user?: any; // Replace 'any' with the actual type of the user object
@@ -13,7 +16,8 @@ export const verifyToken = async (req: AuthenticatedRequest, res: Response, next
 
   if (!token || userToken === null) {
     logger.error('Access denied: Authentication token not found');
-    return res.status(406).json({ error: 'Access denied: Authentication token not found' });
+    const response: ApiResponse<null> = createApiResponse({ error: getAuthMessage(AuthMessageKey.MISSING_ACCESS_TOKEN).message, status: getAuthMessage(AuthMessageKey.MISSING_ACCESS_TOKEN).code });
+    return res.json(response);
   }
 
   try {
@@ -21,8 +25,9 @@ export const verifyToken = async (req: AuthenticatedRequest, res: Response, next
     req.user = decoded;
     next();
   } catch (error) {
-    logger.error('Error authenticating user:', error);
-    return res.status(406).json({ error: 'Access denied: You are not authorized to perform this action.' });
+    logger.error('Access denied: Invalid access token:', error);
+    const response: ApiResponse<null> = createApiResponse({ error: getAuthMessage(AuthMessageKey.INVALID_ACCESS_TOKEN).message, status: getAuthMessage(AuthMessageKey.INVALID_ACCESS_TOKEN).code });
+    return res.json(response);
   }
 };
 
