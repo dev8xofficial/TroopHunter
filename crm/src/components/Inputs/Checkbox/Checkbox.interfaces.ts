@@ -6,4 +6,5 @@ export interface ICheckboxProps extends React.InputHTMLAttributes<HTMLInputEleme
   checked?: boolean;
   defaultChecked?: boolean;
   className?: string;
+  color?: 'indigo' | 'green';
 }

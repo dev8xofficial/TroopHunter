@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
-import { Menu } from '@headlessui/react';
-import { EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
+import { Menu, Switch } from '@headlessui/react';
+import { ArrowDownTrayIcon, CheckIcon, EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from 'react-redux';
-// import { Switch } from '@headlessui/react';
 import { type IBusinessAttributes, type ILeadAttributes, type IUserAttributes } from 'validator/interfaces';
 
-import { setHomePageBusinessIdsAction, setHomePagePaginationPageAction } from '../../../store/actions/homePageActions';
+import { setHomePageBusinessIdsAction, setHomePagePaginationPageAction, setHomePageRemoveSavedBusinessAction } from '../../../store/actions/homePageActions';
 import { type IAuthState } from '../../../store/reducers/authReducer';
 import { type IBusinessState } from '../../../store/reducers/businessReducer';
 import { type IFilterAttributes, type IHomePageState } from '../../../store/reducers/homePageReducer';
 import { type IUserState } from '../../../store/reducers/userReducer';
 import { classNames } from '../../../utils/helpers';
 import Avatar from '../../DataDisplay/Avatar/Avatar';
-import Checkbox from '../../Inputs/Checkbox/Checkbox';
+import Checkbox, { checkboxColors } from '../../Inputs/Checkbox/Checkbox';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
 import _Menu from '../../Navigation/Menu/Menu';
 import TableSortingMenu from '../Menu/TableSortingMenu';
@@ -104,6 +103,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   const leadPagePaginationPage: number = home.page;
   const leadPagePaginationLimit: number = home.pageLimit;
   const leadPageDraftLeadId: string = home.draftLeadId;
+  const leadPageRemoveSavedBusinesses: boolean = home.removeSavedBusinesses;
   const authUserId: string = auth.userId;
   const usersLoggedIn: IUserAttributes = users.data[authUserId];
   const userLeads: ILeadAttributes[] = usersLoggedIn.Leads;
@@ -114,7 +114,6 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   const [tableHeight, setTableHeight] = useState<number | undefined>(undefined);
   const [selectedBusinessIds, setSelectedBusinessIds] = useState<string[]>([]);
   const tableRowsData = renderRows(businessesDataBusinesses, leadPageFilters, leadPageBusinessIds, draftLeadBusinessIds);
-  // const [isSwitch, setIsSwitch] = useState<boolean>(false);
 
   const handleCheckboxChange = (businessId: string): void => {
     setSelectedBusinessIds((prevSelectedIds) => {
@@ -143,8 +142,8 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   };
 
   useEffect(() => {
-    dispatch(setHomePageBusinessIdsAction(selectedBusinessIds));
-  }, [dispatch, selectedBusinessIds]);
+    dispatch(setHomePageBusinessIdsAction({ businessIds: selectedBusinessIds, draftLeadBusinessIds: draftLeadBusinessIds != null ? draftLeadBusinessIds : [] }));
+  }, [dispatch, draftLeadBusinessIds, selectedBusinessIds]);
 
   useEffect(() => {
     const calculateTableHeight = (): void => {
@@ -199,20 +198,31 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
           </CustomMenu>
         </div>
         <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
-        {/* <div className="inline-flex items-center space-x-2">
-          <label>Business:</label>
-          <Switch checked={isSwitch} onChange={(checked: boolean) => setIsSwitch(checked)} className={classNames(isSwitch ? 'bg-indigo-600' : 'bg-gray-200', 'relative inline-flex h-6 w-26 flex-shrink-0 cursor-pointer rounded border-2 border-transparent transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2')}>
-            <span className="sr-only">Use setting</span>
-            <span className={classNames(isSwitch ? 'translate-x-14' : 'translate-x-0', 'pointer-events-none relative inline-block h-5 w-12 transform rounded bg-white shadow ring-0 transition duration-200 ease-in-out')}>
-              <span className={classNames(isSwitch ? 'opacity-0 duration-100 ease-out' : 'opacity-100 duration-200 ease-in', 'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity')} aria-hidden="true">
-                <span className="text-xxs">Recent</span>
-              </span>
-              <span className={classNames(isSwitch ? 'opacity-100 duration-200 ease-in' : 'opacity-0 duration-100 ease-out', 'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity')} aria-hidden="true">
-                <span className="text-xxs">Saved</span>
-              </span>
-            </span>
-          </Switch>
-        </div> */}
+        {draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 && (
+          <>
+            <div className="inline-flex items-center space-x-2">
+              <label>Saved Businesses:</label>
+              <Switch
+                checked={leadPageRemoveSavedBusinesses}
+                onChange={(checked: boolean) => {
+                  dispatch(setHomePageRemoveSavedBusinessAction(checked));
+                }}
+                className={classNames(leadPageRemoveSavedBusinesses ? 'bg-indigo-600' : 'bg-gray-200', 'relative inline-flex h-6 w-26 flex-shrink-0 cursor-pointer rounded border-2 border-transparent transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2')}
+              >
+                <span className="sr-only">Use setting</span>
+                <span className={classNames(leadPageRemoveSavedBusinesses ? 'translate-x-14' : 'translate-x-0', 'pointer-events-none relative inline-block h-5 w-12 transform rounded bg-white shadow ring-0 transition duration-200 ease-in-out')}>
+                  <span className={classNames(leadPageRemoveSavedBusinesses ? 'opacity-0 duration-100 ease-out' : 'opacity-100 duration-200 ease-in', 'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity')} aria-hidden="true">
+                    <span className="text-xxs">Keep</span>
+                  </span>
+                  <span className={classNames(leadPageRemoveSavedBusinesses ? 'opacity-100 duration-200 ease-in' : 'opacity-0 duration-100 ease-out', 'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity')} aria-hidden="true">
+                    <span className="text-xxs">Remove</span>
+                  </span>
+                </span>
+              </Switch>
+            </div>
+            <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
+          </>
+        )}
         <div className="inline-flex items-center space-x-2">
           <label>Business: </label>
           <TableSortingMenu options={viewOptions} value={viewOptions.find((option) => option.value === leadPageFilters.view.value)} handleChange={handleChange} />
@@ -225,7 +235,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
         {businessesTotalRecords !== null && (
           <>
             <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
-            <div className="h-full whitespace-nowrap pr-14">{`Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div>
+            <div className="h-full whitespace-nowrap pr-14">{`${draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? `${leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}: ${draftLeadBusinessIds?.length} | ` : ''}Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div>
           </>
         )}
       </div>
@@ -245,77 +255,93 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
         <InfiniteScroll dataLength={Object.keys(tableRowsData).length} next={onNext} hasMore={businessesTotalRecords !== undefined && Object.keys(tableRowsData).length < businessesTotalRecords} loader={<></>} scrollableTarget="table-lead-container">
           {/* Existing code for TableLead */}
           <ul role="list" className={classNames(isLeadPageLoading ? 'group animate-pulse' : '', 'divide-y rounded border bg-white shadow')}>
-            {Object.values(tableRowsData).map((business: IBusinessAttributes, index) => (
-              <li key={index} className={classNames(index === 0 ? 'hover:rounded-t' : '', index === Object.values(tableRowsData).length - 1 ? 'hover:rounded-b' : '', 'hover:bg-gray-100')}>
-                <div className="relative flex w-full items-start px-6 py-5">
-                  <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">
-                    <div className="group-block hidden h-5 w-5 rounded bg-slate-300"></div>
-                    <Checkbox
-                      id={business.name}
-                      name={business.name}
-                      checked={isBusinessSelected(business.id)}
-                      onChange={() => {
-                        handleCheckboxChange(`${business.id}`);
-                      }}
-                      className="group-hidden"
-                    />
-                  </div>
-                  <div className="w-full text-sm leading-6">
-                    <label htmlFor={business.name} className="relative flex cursor-pointer justify-between gap-x-6 px-4 sm:px-6">
-                      <div className="flex gap-x-4">
-                        <div className="group-block hidden h-10 w-10 rounded-full bg-slate-300 md:h-12 md:w-12 xl:h-16 xl:w-16"></div>
-                        <Avatar image={images[Math.floor(Math.random() * images.length)]} firstName={business.name} size="large" border="border border-gray-900" className="group-hidden" />
-                        <div className="min-w-0 flex-auto">
-                          <div className="group-block mb-1 hidden h-6 w-40 rounded bg-slate-300"></div>
-                          <p className="text-lg font-semibold leading-6 text-gray-900">
-                            <a href="#" className="group-hidden">
-                              {business.name}
-                            </a>
-                          </p>
-                          <div className="hidden sm:flex sm:flex-col">
-                            <div className="group-block mb-3 hidden h-4 w-24 rounded bg-slate-300"></div>
-                            <p className="group-hidden text-sm leading-6 text-gray-900">{business.businessDomain?.toUpperCase()}</p>
-                            {'3h ago'.length > 0 ? (
-                              <p className="group-hidden mt-1 text-xs leading-5 text-gray-500">
-                                Last seen <time dateTime="2023-01-23T13:23Z">3h ago</time>
-                              </p>
-                            ) : (
-                              <div className="group-hidden mt-1 flex items-center gap-x-1.5">
-                                <div className="flex-none rounded-full bg-emerald-500/20 p-1">
-                                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                                </div>
-                                <p className="text-xs leading-5 text-gray-500">Online</p>
-                              </div>
-                            )}
-                            <div className="group-block hidden h-3 w-24 rounded bg-slate-300"></div>
-                          </div>
-                          <div className="group-block mt-3 hidden h-3 w-24 rounded bg-slate-300"></div>
-                          <p className="mt-1 flex text-xs leading-5 text-gray-500">
-                            {business?.BusinessPhone !== undefined && (
-                              <a href={`mailto:${business.BusinessPhone.numberNationalFormatted}`} className="group-hidden relative truncate hover:underline">
-                                {business.BusinessPhone.numberNationalFormatted}
+            {Object.values(tableRowsData).map((business: IBusinessAttributes, index) => {
+              const isSaved = Array.isArray(draftLeadBusinessIds) && draftLeadBusinessIds?.includes(business.id);
+              return (
+                <li key={index} className={classNames(index === 0 ? 'hover:rounded-t' : '', index === Object.values(tableRowsData).length - 1 ? 'hover:rounded-b' : '', 'hover:bg-gray-100')}>
+                  <div className="relative flex w-full items-start px-6 py-5">
+                    <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">
+                      <div className="group-block hidden h-5 w-5 rounded bg-slate-300"></div>
+                      <Checkbox
+                        id={business.name}
+                        name={business.name}
+                        checked={isBusinessSelected(business.id)}
+                        onChange={() => {
+                          handleCheckboxChange(`${business.id}`);
+                        }}
+                        className="group-hidden"
+                        color={isSaved ? checkboxColors.green : checkboxColors.indigo}
+                      />
+                    </div>
+                    <div className="w-full text-sm leading-6">
+                      <label htmlFor={business.name} className="relative flex cursor-pointer justify-between gap-x-6 px-4 sm:px-6">
+                        <div className="flex gap-x-4">
+                          <div className="group-block hidden h-10 w-10 rounded-full bg-slate-300 md:h-12 md:w-12 xl:h-16 xl:w-16"></div>
+                          <Avatar image={images[Math.floor(Math.random() * images.length)]} firstName={business.name} size="large" border="border border-gray-900" className="group-hidden" />
+                          <div className="min-w-0 flex-auto">
+                            <div className="group-block mb-1 hidden h-6 w-40 rounded bg-slate-300"></div>
+                            <p className="text-lg font-semibold leading-6 text-gray-900">
+                              <a href="#" className="group-hidden">
+                                {business.name}
                               </a>
-                            )}
-                          </p>
+                            </p>
+                            <div className="hidden sm:flex sm:flex-col">
+                              <div className="group-block mb-3 hidden h-4 w-24 rounded bg-slate-300"></div>
+                              <p className="group-hidden text-sm leading-6 text-gray-900">{business.businessDomain?.toUpperCase()}</p>
+                              {'3h ago'.length > 0 ? (
+                                <p className="group-hidden mt-1 text-xs leading-5 text-gray-500">
+                                  Last seen <time dateTime="2023-01-23T13:23Z">3h ago</time>
+                                </p>
+                              ) : (
+                                <div className="group-hidden mt-1 flex items-center gap-x-1.5">
+                                  <div className="flex-none rounded-full bg-emerald-500/20 p-1">
+                                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                                  </div>
+                                  <p className="text-xs leading-5 text-gray-500">Online</p>
+                                </div>
+                              )}
+                              <div className="group-block hidden h-3 w-24 rounded bg-slate-300"></div>
+                            </div>
+                            <div className="group-block mt-3 hidden h-3 w-24 rounded bg-slate-300"></div>
+                            <p className="mt-1 flex text-xs leading-5 text-gray-500">
+                              {business?.BusinessPhone !== undefined && (
+                                <a href={`mailto:${business.BusinessPhone.numberNationalFormatted}`} className="group-hidden relative truncate hover:underline">
+                                  {business.BusinessPhone.numberNationalFormatted}
+                                </a>
+                              )}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-center gap-x-4">
-                        <div className="flex flex-none items-center gap-x-4">
-                          <div className="group-block hidden h-5 w-16 rounded-full bg-slate-300"></div>
-                          <CustomMenu>
-                            <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-0.5 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white">Save</Menu.Button>
-                          </CustomMenu>
-                          <div className="group-block -mr-3.5 hidden h-4 w-1 rounded bg-slate-300"></div>
-                          <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
-                            <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
-                          </_Menu>
+                        <div className="flex items-center gap-x-4">
+                          <div className="flex flex-none items-center gap-x-4">
+                            <div className="group-block hidden h-5 w-16 rounded-full bg-slate-300"></div>
+                            <CustomMenu>
+                              <>
+                                {isSaved ? (
+                                  <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-green-600 bg-green-600 px-2.5 py-1 text-xs font-semibold text-white ring-green-600 transition duration-200 hover:bg-green-700 focus:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white">
+                                    <CheckIcon className="h-4 w-4 mr-0.5" aria-hidden="true" />
+                                    Saved
+                                  </Menu.Button>
+                                ) : (
+                                  <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-1 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white">
+                                    <ArrowDownTrayIcon className="h-4 w-4 mr-0.5" aria-hidden="true" />
+                                    Save
+                                  </Menu.Button>
+                                )}
+                              </>
+                            </CustomMenu>
+                            <div className="group-block -mr-3.5 hidden h-4 w-1 rounded bg-slate-300"></div>
+                            <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
+                              <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
+                            </_Menu>
+                          </div>
                         </div>
-                      </div>
-                    </label>
+                      </label>
+                    </div>
                   </div>
-                </div>
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
         </InfiniteScroll>
       </div>

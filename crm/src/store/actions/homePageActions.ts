@@ -15,7 +15,9 @@ export const setHomePagePaginationLimitAction = createAction<number>('homePage/s
 export const setHomePageDraftLeadIdAction = createAction<string>('homePage/setHomePageDraftLeadIdAction');
 export const resetHomePageDraftLeadIdAction = createAction<string>('homePage/resetHomePageDraftLeadIdAction');
 
-export const setHomePageBusinessIdsAction = createAction<string[]>('homePage/setHomePageBusinessIdsAction');
+export const setHomePageBusinessIdsAction = createAction<{ businessIds: string[]; draftLeadBusinessIds: string[] }>('homePage/setHomePageBusinessIdsAction');
 export const resetHomePageBusinessIdsAction = createAction('homePage/resetHomePageBusinessIdsAction');
+
+export const setHomePageRemoveSavedBusinessAction = createAction<boolean>('homePage/setHomePageRemoveSavedBusinessAction');
 
 export const resetHomePageAction = createAction('homePage/resetHomePageAction');

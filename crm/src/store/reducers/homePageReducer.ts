@@ -1,7 +1,7 @@
 import { type PayloadAction, createReducer } from '@reduxjs/toolkit';
 import { type ILeadAttributes } from 'validator/interfaces';
 
-import { setHomePageFiltersAction, resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePageLoadingFailureAction, setHomePagePaginationPageAction, setHomePagePaginationLimitAction, setHomePageDraftLeadIdAction, resetHomePageDraftLeadIdAction, setHomePageBusinessIdsAction, resetHomePageBusinessIdsAction, resetHomePageAction } from '../actions/homePageActions';
+import { setHomePageFiltersAction, resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePageLoadingFailureAction, setHomePagePaginationPageAction, setHomePagePaginationLimitAction, setHomePageDraftLeadIdAction, resetHomePageDraftLeadIdAction, setHomePageBusinessIdsAction, resetHomePageBusinessIdsAction, resetHomePageAction, setHomePageRemoveSavedBusinessAction } from '../actions/homePageActions';
 
 export interface IFilterOptionAttributes {
   label: string;
@@ -30,6 +30,7 @@ export interface IHomePageState {
   pageLimit: number;
   draftLeadId: string;
   businessIds: string[];
+  removeSavedBusinesses: boolean;
   isLoading: boolean;
 }
 
@@ -54,6 +55,7 @@ const initialState: IHomePageState = {
   pageLimit: 10,
   draftLeadId: '',
   businessIds: [],
+  removeSavedBusinesses: false,
   isLoading: false
 };
 
@@ -103,11 +105,16 @@ const leadPageReducer = createReducer(initialState, (builder) => {
     .addCase(resetHomePageDraftLeadIdAction, (state) => {
       state.draftLeadId = '';
     })
-    .addCase(setHomePageBusinessIdsAction, (state, action: PayloadAction<string[]>) => {
-      state.businessIds = action.payload;
+    .addCase(setHomePageBusinessIdsAction, (state, action: PayloadAction<{ businessIds: string[]; draftLeadBusinessIds: string[] }>) => {
+      const { businessIds, draftLeadBusinessIds } = action.payload;
+      const mergedBusinessIds: string[] = [...businessIds, ...(!state.removeSavedBusinesses && draftLeadBusinessIds.length > 0 ? draftLeadBusinessIds : [])];
+      state.businessIds = mergedBusinessIds;
     })
     .addCase(resetHomePageBusinessIdsAction, (state) => {
       state.businessIds = [];
+    })
+    .addCase(setHomePageRemoveSavedBusinessAction, (state, action: PayloadAction<boolean>) => {
+      state.removeSavedBusinesses = action.payload;
     })
     .addCase(resetHomePageAction, (state) => {
       state.filters = initialValue;
