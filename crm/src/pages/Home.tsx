@@ -113,13 +113,13 @@ const Lead: React.FC = () => {
   }, [leadPageFilters]);
 
   useEffect(() => {
-    // console.log('filters: ', prevLeadPageFilters.current.view, leadPageFilters.view);
     if (Object.keys(debouncedFilters).length > 0) {
       if (prevLeadPageFilters.current.view === debouncedFilters.view) {
         loadMoreBusinesses({ page: leadPagePaginationPage, limit: leadPagePaginationLimit });
       } else {
         dispatch(setHomePageLoadingSuccessAction());
       }
+      prevLeadPageFilters.current = debouncedFilters;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedFilters]);
