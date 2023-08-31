@@ -1,0 +1,10 @@
+logs
+node_modules
+.env.example
+.gitignore
+.prettierrc
+class.diagram.drawio
+cmd.txt
+package-lock.json
+README.md
+SRS.txt

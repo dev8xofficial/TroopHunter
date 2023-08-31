@@ -2,9 +2,6 @@
 logs
 *.log
 package-lock.json
+postgres-data
 
 node_modules
-
-# Docker files
-docker-compose*
-Dockerfile*

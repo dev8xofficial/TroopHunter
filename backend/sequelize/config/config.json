@@ -1,23 +1,35 @@
 {
   "development": {
     "username": "postgres",
-    "password": null,
+    "password": "mysecretpassword",
     "database": "postgres",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "host": "postgres",
+    "dialect": "postgres",
+    "port": 5432,
+    "define": {
+      "timestamps": false,
+      "underscored": true,
+      "dialectOptions": {
+        "typeCast": true
+      }
+    },
+    "dialectModule": "pg",
+    "dialectOptions": {
+      "ssl": false
+    }
   },
   "test": {
     "username": "postgres",
-    "password": null,
+    "password": "mysecretpassword",
     "database": "postgres",
-    "host": "127.0.0.1",
+    "host": "postgres",
     "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
-    "password": null,
+    "password": "mysecretpassword",
     "database": "postgres",
-    "host": "127.0.0.1",
+    "host": "postgres",
     "dialect": "postgres"
   }
 }
