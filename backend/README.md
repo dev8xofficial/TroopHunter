@@ -70,7 +70,7 @@ services:
       dockerfile: Dockerfile.dev
     container_name: backend
     ports:
-      - '50001:50001'
+      - '50003:50003'
     environment:
       - POSTGRES_HOST=postgres # Use the service name of the PostgreSQL container
       - POSTGRES_USERNAME=postgres
@@ -101,7 +101,7 @@ services:
       dockerfile: Dockerfile.dev
     container_name: backend
     ports:
-      - '50001:50001'
+      - '50003:50003'
     depends_on:
       - postgres
 
@@ -125,14 +125,14 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log(`Database: ${process.env.DB_NAME} ${process.env.DB_USERNAME} ${process.env.DB_PASSWORD} ${process.env.DB_HOST}`);
+console.log(`Database: ${process.env.POSTGRES_DB} ${process.env.POSTGRES_USER} ${process.env.POSTGRES_PASSWORD} ${process.env.POSTGRES_HOST}`);
 
 const sequelize = new Sequelize({
-  database: process.env.DB_NAME,
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT || '5432'),
+  database: process.env.POSTGRES_DB,
+  username: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  host: process.env.POSTGRES_HOST,
+  port: parseInt(process.env.POSTGRES_PORT || '5432'),
   dialect: 'postgres',
 });
 
@@ -142,16 +142,14 @@ export default sequelize;
 helloabdul/backend/.env:
 
 ```
-DATABASE_URL=postgres://postgres:@localhost:5432/postgres
-
 # Environment Variables
 
 # Database Configuration
-DB_HOST=postgres
-DB_PORT=5432
-DB_NAME=postgres
-DB_USERNAME=postgres
-DB_PASSWORD=
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=
 
 
 # JWT Configuration
@@ -164,52 +162,5 @@ GMAIL_CLIENT_SECRET=myclientsecret
 GMAIL_CALLBACK_URL=http://localhost:3000/auth/gmail/callback
 
 # Server Configuration
-PORT=50001
+PORT=50003
 ```
-
-Resolve this Error:
-
-```
-2023-06-01 11:15:54 Database: postgres postgres  postgres
-2023-06-01 11:15:54 Database: postgres postgres  postgres
-2023-06-01 11:15:54 Server running on port 50001
-2023-06-01 11:15:54 /app/node_modules/sequelize/src/dialects/postgres/connection-manager.js:179
-2023-06-01 11:15:54                 reject(new sequelizeErrors.ConnectionRefusedError(err));
-2023-06-01 11:15:54                        ^
-2023-06-01 11:15:54 ConnectionRefusedError [SequelizeConnectionRefusedError]: connect ECONNREFUSED 172.22.0.2:5432
-2023-06-01 11:15:54     at Client._connectionCallback (/app/node_modules/sequelize/src/dialects/postgres/connection-manager.js:179:24)
-2023-06-01 11:15:54     at Client._handleErrorWhileConnecting (/app/node_modules/pg/lib/client.js:327:19)
-2023-06-01 11:15:54     at Client._handleErrorEvent (/app/node_modules/pg/lib/client.js:337:19)
-2023-06-01 11:15:54     at Connection.emit (node:events:513:28)
-2023-06-01 11:15:54     at Connection.emit (node:domain:489:12)
-2023-06-01 11:15:54     at Socket.reportStreamError (/app/node_modules/pg/lib/connection.js:58:12)
-2023-06-01 11:15:54     at Socket.emit (node:events:513:28)
-2023-06-01 11:15:54     at Socket.emit (node:domain:489:12)
-2023-06-01 11:15:54     at emitErrorNT (node:internal/streams/destroy:151:8)
-2023-06-01 11:15:54     at emitErrorCloseNT (node:internal/streams/destroy:116:3) {
-2023-06-01 11:15:54   parent: Error: connect ECONNREFUSED 172.22.0.2:5432
-2023-06-01 11:15:54       at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1284:16) {
-2023-06-01 11:15:54     errno: -111,
-2023-06-01 11:15:54     code: 'ECONNREFUSED',
-2023-06-01 11:15:54     syscall: 'connect',
-2023-06-01 11:15:54     address: '172.22.0.2',
-2023-06-01 11:15:54     port: 5432
-2023-06-01 11:15:54   },
-2023-06-01 11:15:54   original: Error: connect ECONNREFUSED 172.22.0.2:5432
-2023-06-01 11:15:54       at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1284:16) {
-2023-06-01 11:15:54     errno: -111,
-2023-06-01 11:15:54     code: 'ECONNREFUSED',
-2023-06-01 11:15:54     syscall: 'connect',
-2023-06-01 11:15:54     address: '172.22.0.2',
-2023-06-01 11:15:54     port: 5432
-2023-06-01 11:15:54   }
-2023-06-01 11:15:54 }
-2023-06-01 11:15:54 [nodemon] app crashed - waiting for file changes before starting...
-```
-
-Additional Information about error:
-Failure case:
-When I use docker to run the backend project, sequelize failed to connect.
-
-Success case:
-I have to change DB_HOST=postgres to DB_HOST=localhost. Then I run the backend project directly by running the command `npm run dev` into backend directory without running docker. Sequelize successfully connected.

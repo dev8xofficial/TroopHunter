@@ -27,7 +27,3 @@ dist-ssr
 # local env files
 .env*.local
 .env
-
-# Docker files
-docker-compose*
-Dockerfile*

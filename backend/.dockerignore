@@ -1,5 +1,7 @@
 logs
 node_modules
+pgadmin-data
+postgres-data
 .env.example
 .gitignore
 .prettierrc

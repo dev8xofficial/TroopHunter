@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import User from '../../models/User';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import logger from '../../utils/logger';
 import { ApiResponse, IUserFetchByIdRequestAttributes, IUserTokenRequestAttributes } from 'validator/interfaces';

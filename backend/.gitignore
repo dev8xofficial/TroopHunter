@@ -27,7 +27,8 @@ dist-ssr
 # local env files
 .env*.local
 .env
-
-# Docker files
-docker-compose*
-Dockerfile*
+pgadmin-data
+postgres-data
+postgres-data-dev
+postgres-data-prod
+postgres-data-stag

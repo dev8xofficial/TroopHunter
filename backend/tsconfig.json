@@ -12,6 +12,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["src", "examples", "doc"],
+  "include": ["src", "examples", "doc", "sequelize"],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,0 +1,164 @@
+version: '3.8'
+services:
+  ngrok:
+    container_name: ngrok
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./ngrok/Dockerfile
+    command:
+      - 'start'
+      - '--all'
+      - '--config'
+      - '/etc/ngrok.yml'
+    ports:
+      - '4040:4040'
+    env_file:
+      - ./ngrok/.env
+    volumes:
+      - ./ngrok/ngrok.yml:/etc/ngrok.yml
+    networks:
+      - helloabdul-network
+
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      - ngrok
+      - backend_dev
+    networks:
+      - helloabdul-network
+
+  postgres_dev:
+    image: postgis/postgis:latest
+    container_name: postgres_dev
+    restart: always
+    ports:
+      - '5432:5432'
+    env_file:
+      - ./backend/.env.dev
+    volumes:
+      - ./backend/postgres-data-dev:/var/lib/postgresql/data
+    networks:
+      - helloabdul-network
+
+  # postgres_stag:
+  #   image: postgis/postgis:latest
+  #   container_name: postgres_stag
+  #   restart: always
+  #   ports:
+  #     - '5433:5432'
+  #   env_file:
+  #     - ./backend/.env.stag
+  #   volumes:
+  #     - ./backend/postgres-data-stag:/var/lib/postgresql/data
+
+  # postgres_prod:
+  #   image: postgis/postgis:latest
+  #   container_name: postgres_prod
+  #   restart: always
+  #   ports:
+  #     - '5434:5432'
+  #   env_file:
+  #     - ./backend/.env.prod
+  #   volumes:
+  #     - ./backend/postgres-data-prod:/var/lib/postgresql/data
+
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   container_name: pgadmin
+  #   ports:
+  #     - '60001:80'
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=admin@example.com
+  #     - PGADMIN_DEFAULT_PASSWORD=Ssg123777
+  #   volumes:
+  #     - ./backend/pgadmin-data:/var/lib/pgadmin
+  #   depends_on:
+  #     - postgres_dev
+  #     - postgres_prod
+
+  backend_dev: # Development environment
+    container_name: backend_dev
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+      target: development # Use the development stage in the Dockerfile
+    entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
+    env_file:
+      - ./backend/.env.dev # Use development environment variables
+    ports:
+      - '50001:50001'
+    depends_on:
+      postgres_dev:
+        condition: service_started
+    networks:
+      - helloabdul-network
+
+  # backend_stag: # Development environment
+  #   container_name: backend_stag
+  #   build:
+  #     context: .
+  #     dockerfile: ./backend/Dockerfile
+  #     target: development # Use the development stage in the Dockerfile
+  #   entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
+  #   env_file:
+  #     - ./backend/.env.stag # Use development environment variables
+  #   ports:
+  #     - '50002:50002'
+  #   depends_on:
+  #     postgres_stag:
+  #       condition: service_started
+  #   networks:
+  #     - helloabdul-network
+
+  # backend_prod: # Production environment
+  #   container_name: backend_prod
+  #   build:
+  #     context: .
+  #     dockerfile: ./backend/Dockerfile
+  #     target: production # Use the production stage in the Dockerfile
+  #   entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
+  #   env_file:
+  #     - ./backend/.env.prod # Use production environment variables
+  #   ports:
+  #     - '50003:50003'
+  #   depends_on:
+  #     postgres_prod:
+  #       condition: service_started
+  #   networks:
+  #     - helloabdul-network
+
+  crm:
+    container_name: crm
+    build:
+      context: .
+      dockerfile: ./crm/Dockerfile
+      target: development
+    env_file:
+      - ./crm/.env.dev # Use development environment variables
+    ports:
+      - '5173:5173'
+    expose:
+      - '5173'
+    depends_on:
+      - postgres_dev
+      # - postgres_prod
+      - backend_dev
+      # - backend_prod
+    networks:
+      - helloabdul-network
+
+volumes:
+  pgadmin-data:
+  nginx:
+
+networks:
+  helloabdul-network:
+    driver: bridge

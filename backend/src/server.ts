@@ -1,7 +1,7 @@
 import app from './index';
 import logger from './utils/logger';
 
-const port = process.env.PORT || 50001;
+const port = process.env.PORT || 50003;
 
 try {
   app.listen(port, () => {
