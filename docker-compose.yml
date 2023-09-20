@@ -35,22 +35,17 @@ services:
     networks:
       - helloabdul-network
 
-  # jenkins:
-  #   container_name: jenkins
-  #   build:
-  #     context: .
-  #     dockerfile: ./jenkins/Dockerfile
-  #   # environment:
-  #   #   - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
-  #   ports:
-  #     - '8080:8080'
-  #   volumes:
-  #     - ./jenkins/jenkins_home:/var/jenkins_home
-  #   # networks:
-  #   #   - helloabdul-network
+  jenkins:
+    container_name: jenkins
+    build:
+      context: .
+      dockerfile: ./jenkins/Dockerfile
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./jenkins/jenkins_home:/var/jenkins_home
 
   postgres_dev:
-    # image: postgis/postgis:3.17
     container_name: postgres_dev
     build:
       context: .
