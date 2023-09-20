@@ -12,14 +12,14 @@ pipeline {
     stage('Build') {
       steps {
         // Build your Docker containers
-        sh 'docker-compose -f docker-compose.yml build'
+        sh 'docker compose -f docker-compose.yml build'
       }
     }
 
     stage('Deploy') {
       steps {
         // Deploy your Docker containers
-        sh 'docker-compose -f docker-compose.yml up -d'
+        sh 'docker compose -f docker-compose.yml up'
       }
     }
   }
