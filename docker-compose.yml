@@ -18,7 +18,7 @@ services:
     volumes:
       - ./ngrok/ngrok.yml:/etc/ngrok.yml
     networks:
-      - helloabdul-network
+      - custom_network
 
   nginx:
     container_name: nginx
@@ -33,17 +33,18 @@ services:
       - ngrok
       - backend_dev
     networks:
-      - helloabdul-network
+      - custom_network
 
-  jenkins:
-    container_name: jenkins
-    build:
-      context: .
-      dockerfile: ./jenkins/Dockerfile
-    ports:
-      - '8080:8080'
-    volumes:
-      - ./jenkins/jenkins_home:/var/jenkins_home
+  # jenkins:
+  #   container_name: jenkins
+  #   build:
+  #     context: .
+  #     dockerfile: ./jenkins/Dockerfile
+  #   ports:
+  #     - '8080:8080'
+  #   volumes:
+  #     - ./jenkins/jenkins_home:/var/jenkins_home
+  #     - /var/run/docker.sock:/var/run/docker.sock
 
   postgres_dev:
     container_name: postgres_dev
@@ -58,7 +59,7 @@ services:
     volumes:
       - ./backend/postgres-data-dev:/var/lib/postgresql/data
     networks:
-      - helloabdul-network
+      - custom_network
 
   # postgres_stag:
   #   image: postgis/postgis:latest
@@ -111,7 +112,7 @@ services:
       postgres_dev:
         condition: service_started
     networks:
-      - helloabdul-network
+      - custom_network
 
   # backend_stag: # Development environment
   #   container_name: backend_stag
@@ -128,7 +129,7 @@ services:
   #     postgres_stag:
   #       condition: service_started
   #   networks:
-  #     - helloabdul-network
+  #     - custom_network
 
   # backend_prod: # Production environment
   #   container_name: backend_prod
@@ -145,7 +146,7 @@ services:
   #     postgres_prod:
   #       condition: service_started
   #   networks:
-  #     - helloabdul-network
+  #     - custom_network
 
   crm:
     container_name: crm
@@ -165,12 +166,12 @@ services:
       - backend_dev
       # - backend_prod
     networks:
-      - helloabdul-network
+      - custom_network
 
 volumes:
   pgadmin-data:
   nginx:
 
 networks:
-  helloabdul-network:
+  custom_network:
     driver: bridge
