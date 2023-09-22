@@ -1,0 +1,119 @@
+version: '3.8'
+name: 'helloabdul_stag'
+services:
+  ngrok_stag:
+    container_name: ngrok_stag
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./ngrok/Dockerfile
+    command:
+      - 'start'
+      - '--all'
+      - '--config'
+      - '/etc/ngrok.yml'
+    ports:
+      - '4041:4040'
+    env_file:
+      - ./ngrok/.env
+    volumes:
+      - ./ngrok/ngrok.yml:/etc/ngrok.yml
+    networks:
+      - custom_network
+
+  nginx_stag:
+    container_name: nginx_stag
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - '81:80'
+    volumes:
+      - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      - ngrok_stag
+      - backend_stag
+    networks:
+      - custom_network
+
+  # jenkins:
+  #   container_name: jenkins
+  #   build:
+  #     context: .
+  #     dockerfile: ./jenkins/Dockerfile
+  #   ports:
+  #     - '8080:8080'
+  #   volumes:
+  #     - ./jenkins/jenkins_home:/var/jenkins_home
+  #     - /var/run/docker.sock:/var/run/docker.sock
+
+  postgres_stag:
+    container_name: postgres_stag
+    build:
+      context: .
+      dockerfile: ./postgres/Dockerfile
+    restart: always
+    ports:
+      - '5433:5432'
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./postgres/postgres_stag:/var/lib/postgresql/data
+    networks:
+      - custom_network
+
+  pgadmin_stag:
+    container_name: pgadmin_stag
+    build:
+      context: .
+      dockerfile: ./pgadmin/Dockerfile
+    ports:
+      - '60002:80'
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=Ssg123777
+    volumes:
+      - ./pgadmin/pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres_stag
+
+  backend_stag: # Production environment
+    container_name: backend_stag
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+      target: production # Use the production stage in the Dockerfile
+    entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
+    env_file:
+      - ./backend/.env # Use production environment variables
+    ports:
+      - '50001:50001'
+    depends_on:
+      postgres_stag:
+        condition: service_started
+    networks:
+      - custom_network
+
+  crm_stag:
+    container_name: crm_stag
+    build:
+      context: .
+      dockerfile: ./crm/Dockerfile
+      target: production
+    env_file:
+      - ./crm/.env # Use development environment variables
+    ports:
+      - '5171:5173'
+    depends_on:
+      - postgres_stag
+      - backend_stag
+    networks:
+      - custom_network
+
+volumes:
+  pgadmin-data:
+  nginx:
+
+networks:
+  custom_network:
+    driver: bridge

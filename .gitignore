@@ -5,3 +5,7 @@ package-lock.json
 
 node_modules
 jenkins/jenkins_home
+pgadmin/pgadmin
+postgres/postgres_dev
+postgres/postgres_stag
+postgres/postgres_prod
