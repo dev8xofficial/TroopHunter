@@ -1,26 +1,6 @@
 version: '3.8'
 name: 'helloabdul_dev'
 services:
-  ngrok_dev:
-    container_name: ngrok_dev
-    restart: unless-stopped
-    build:
-      context: .
-      dockerfile: ./ngrok/Dockerfile
-    command:
-      - 'start'
-      - '--all'
-      - '--config'
-      - '/etc/ngrok.yml'
-    ports:
-      - '4040:4040'
-    env_file:
-      - ./ngrok/.env
-    volumes:
-      - ./ngrok/ngrok.yml:/etc/ngrok.yml
-    networks:
-      - custom_network
-
   nginx_dev:
     container_name: nginx_dev
     build:
@@ -31,7 +11,6 @@ services:
     volumes:
       - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
     depends_on:
-      - ngrok_dev
       - backend_dev
     networks:
       - custom_network

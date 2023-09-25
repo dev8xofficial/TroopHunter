@@ -15,7 +15,6 @@
     "start:stag": "docker compose -f docker-compose.stag.yml up",
     "start:prod": "docker compose -f docker-compose.prod.yml up",
     "stop": "docker compose -f docker-compose.yml down",
-    "stop:ngrok": "docker compose -f docker-compose.yml down ngrok",
     "stop:nginx": "docker compose -f docker-compose.yml down nginx",
     "stop:prod": "docker compose -f docker-compose.prod.yml down",
     "restart": "docker compose -f docker-compose.yml restart",
