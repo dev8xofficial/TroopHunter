@@ -1,26 +1,6 @@
 version: '3.8'
 name: 'helloabdul_prod'
 services:
-  ngrok_prod:
-    container_name: ngrok_prod
-    restart: unless-stopped
-    build:
-      context: .
-      dockerfile: ./ngrok/Dockerfile
-    command:
-      - 'start'
-      - '--all'
-      - '--config'
-      - '/etc/ngrok.yml'
-    ports:
-      - '4040:4040'
-    env_file:
-      - ./ngrok/.env
-    volumes:
-      - ./ngrok/ngrok.yml:/etc/ngrok.yml
-    networks:
-      - custom_network
-
   nginx_prod:
     container_name: nginx_prod
     build:
@@ -31,7 +11,6 @@ services:
     volumes:
       - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
     depends_on:
-      - ngrok_prod
       - backend_prod
     networks:
       - custom_network
