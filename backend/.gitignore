@@ -27,6 +27,8 @@ dist-ssr
 # local env files
 .env*.local
 .env
+.env.main
+.env.develop
 pgadmin-data
 postgres-data
 postgres-data-dev

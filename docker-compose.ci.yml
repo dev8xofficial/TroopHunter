@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  ci:
+    container_name: ci
+    build:
+      context: .
+      dockerfile: ./ci/Dockerfile
+    networks:
+      - custom_network

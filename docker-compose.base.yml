@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  postgres_dev:
+    container_name: postgres_dev
+    build:
+      context: .
+      dockerfile: ./postgres/Dockerfile
+    restart: always
+    ports:
+      - '5432:5432'
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./postgres/postgres_dev:/var/lib/postgresql/data
+    networks:
+      - custom_network
+
+networks:
+  custom_network:
+    driver: bridge

@@ -1,3 +1,3 @@
-FROM postgis/postgis:15-3.4 AS postgres
+FROM postgis/postgis:15-master AS postgres
 
 EXPOSE 5432

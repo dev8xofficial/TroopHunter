@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  pgadmin_dev:
+    container_name: pgadmin_dev
+    build:
+      context: .
+      dockerfile: ./postgres/Dockerfile
+    ports:
+      - '60001:80'
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=Ssg123777
+    volumes:
+      - ./pgadmin/pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres_dev

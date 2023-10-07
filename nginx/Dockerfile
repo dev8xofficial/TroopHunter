@@ -1,3 +1,3 @@
 FROM nginx:latest AS nginx
 
-EXPOSE 80
+# EXPOSE 80

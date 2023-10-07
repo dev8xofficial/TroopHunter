@@ -1,25 +1,15 @@
 version: '3.8'
 name: 'helloabdul_dev'
 services:
-  ngrok_dev:
-    container_name: ngrok_dev
-    restart: unless-stopped
-    build:
-      context: .
-      dockerfile: ./ngrok/Dockerfile
-    command:
-      - 'start'
-      - '--all'
-      - '--config'
-      - '/etc/ngrok.yml'
-    ports:
-      - '4040:4040'
-    env_file:
-      - ./ngrok/.env
-    volumes:
-      - ./ngrok/ngrok.yml:/etc/ngrok.yml
-    networks:
-      - custom_network
+  # ci:
+  #   container_name: ci
+  #   build:
+  #     context: .
+  #     dockerfile: ./ci/Dockerfile
+  #   ports:
+  #     - '4999:4999'
+  #   networks:
+  #     - custom_network
 
   nginx_dev:
     container_name: nginx_dev
@@ -31,21 +21,10 @@ services:
     volumes:
       - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
     depends_on:
-      - ngrok_dev
-      - backend_dev
+      backend_dev:
+        condition: service_started
     networks:
       - custom_network
-
-  # jenkins:
-  #   container_name: jenkins
-  #   build:
-  #     context: .
-  #     dockerfile: ./jenkins/Dockerfile
-  #   ports:
-  #     - '8080:8080'
-  #   volumes:
-  #     - ./jenkins/jenkins_home:/var/jenkins_home
-  #     - /var/run/docker.sock:/var/run/docker.sock
 
   postgres_dev:
     container_name: postgres_dev
@@ -62,20 +41,20 @@ services:
     networks:
       - custom_network
 
-  pgadmin_dev:
-    container_name: pgadmin_dev
-    build:
-      context: .
-      dockerfile: ./postgres/Dockerfile
-    ports:
-      - '60001:80'
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=Ssg123777
-    volumes:
-      - ./pgadmin/pgadmin:/var/lib/pgadmin
-    depends_on:
-      - postgres_dev
+  # pgadmin_dev:
+  #   container_name: pgadmin_dev
+  #   build:
+  #     context: .
+  #     dockerfile: ./postgres/Dockerfile
+  #   ports:
+  #     - '60001:80'
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=admin@example.com
+  #     - PGADMIN_DEFAULT_PASSWORD=Ssg123777
+  #   volumes:
+  #     - ./pgadmin/pgadmin:/var/lib/pgadmin
+  #   depends_on:
+  #     - postgres_dev
 
   backend_dev: # Development environment
     container_name: backend_dev
@@ -87,28 +66,28 @@ services:
     env_file:
       - ./backend/.env # Use development environment variables
     ports:
-      - '50000:50001'
+      - '50001:50001'
     depends_on:
       postgres_dev:
         condition: service_started
     networks:
       - custom_network
 
-  crm_dev:
-    container_name: crm_dev
-    build:
-      context: .
-      dockerfile: ./crm/Dockerfile
-      target: development
-    env_file:
-      - ./crm/.env # Use development environment variables
-    ports:
-      - '5170:5173'
-    depends_on:
-      - postgres_dev
-      - backend_dev
-    networks:
-      - custom_network
+  # crm_dev:
+  #   container_name: crm_dev
+  #   build:
+  #     context: .
+  #     dockerfile: ./crm/Dockerfile
+  #     target: development
+  #   env_file:
+  #     - ./crm/.env # Use development environment variables
+  #   ports:
+  #     - '5173:5173'
+  #   depends_on:
+  #     - postgres_dev
+  #     - backend_dev
+  #   networks:
+  #     - custom_network
 
 volumes:
   pgadmin-data:

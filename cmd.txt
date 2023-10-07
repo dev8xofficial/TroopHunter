@@ -9,3 +9,6 @@ docker system prune -f
 # docker command to remove images
 docker image prune -a -f
 docker rmi $(docker images -q)
+
+# To know which port is using which application or service in Mac
+lsof -i -n -P | grep LISTEN

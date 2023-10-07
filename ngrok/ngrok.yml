@@ -1,7 +1,0 @@
-version: "2"
-authtoken: 2ULoFEUrfmHkYja2d4TAlpKkDxy_4UTTs5fXH4uzCmCap7AYq
-tunnels:
-  backend:
-    proto: http
-    addr: backend_dev:50001
-    inspect: true
