@@ -42,7 +42,7 @@ services:
       dockerfile: ./postgres/Dockerfile
     restart: always
     ports:
-      - '5434:5432'
+      - '5432:5432'
     env_file:
       - ./backend/.env
     volumes:
@@ -75,7 +75,7 @@ services:
     env_file:
       - ./backend/.env # Use development environment variables
     ports:
-      - '50003:50001'
+      - '50001:50001'
     depends_on:
       postgres_prod:
         condition: service_started
