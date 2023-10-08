@@ -1,30 +1,39 @@
 version: '3.8'
 name: 'helloabdul_stag'
 services:
+  # ci:
+  #   container_name: ci
+  #   build:
+  #     context: .
+  #     dockerfile: ./ci/Dockerfile
+  #   ports:
+  #     - '4999:4999'
+  #   networks:
+  #     - custom_network
+
   # nginx_stag:
   #   container_name: nginx_stag
   #   build:
   #     context: .
   #     dockerfile: ./nginx/Dockerfile
   #   ports:
-  #     - '81:80'
+  #     - '80:80'
+  #   # environment:
+  #   #   - NGINX_PORT=80
+  #   # command: >
+  #   #   /bin/sh -c
+  #   #   "envsubst '
+  #   #   $${NGINX_PORT}
+  #   #   '< /etc/nginx/conf.d/nginx.conf
+  #   #   >  /etc/nginx/conf.d/nginx.conf
+  #   #   && nginx -g 'daemon off;'"
   #   volumes:
   #     - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
   #   depends_on:
-  #     - backend_stag
+  #     backend_stag:
+  #       condition: service_started
   #   networks:
   #     - custom_network
-
-  # jenkins:
-  #   container_name: jenkins
-  #   build:
-  #     context: .
-  #     dockerfile: ./jenkins/Dockerfile
-  #   ports:
-  #     - '8080:8080'
-  #   volumes:
-  #     - ./jenkins/jenkins_home:/var/jenkins_home
-  #     - /var/run/docker.sock:/var/run/docker.sock
 
   postgres_stag:
     container_name: postgres_stag
@@ -33,7 +42,7 @@ services:
       dockerfile: ./postgres/Dockerfile
     restart: always
     ports:
-      - '5433:5432'
+      - '5434:5432'
     env_file:
       - ./backend/.env
     volumes:
@@ -45,9 +54,9 @@ services:
   #   container_name: pgadmin_stag
   #   build:
   #     context: .
-  #     dockerfile: ./pgadmin/Dockerfile
+  #     dockerfile: ./postgres/Dockerfile
   #   ports:
-  #     - '60002:80'
+  #     - '60001:80'
   #   environment:
   #     - PGADMIN_DEFAULT_EMAIL=admin@example.com
   #     - PGADMIN_DEFAULT_PASSWORD=Ssg123777
@@ -56,17 +65,17 @@ services:
   #   depends_on:
   #     - postgres_stag
 
-  backend_stag: # Production environment
+  backend_stag: # Development environment
     container_name: backend_stag
     build:
       context: .
       dockerfile: ./backend/Dockerfile
-      target: development # Use the production stage in the Dockerfile
+      target: development # Use the development stage in the Dockerfile
     entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
     env_file:
-      - ./backend/.env # Use production environment variables
+      - ./backend/.env # Use development environment variables
     ports:
-      - '50002:50001'
+      - '50003:50001'
     depends_on:
       postgres_stag:
         condition: service_started
@@ -78,11 +87,11 @@ services:
   #   build:
   #     context: .
   #     dockerfile: ./crm/Dockerfile
-  #     target: production
+  #     target: development
   #   env_file:
   #     - ./crm/.env # Use development environment variables
   #   ports:
-  #     - '5171:5173'
+  #     - '5173:5173'
   #   depends_on:
   #     - postgres_stag
   #     - backend_stag
@@ -95,4 +104,4 @@ volumes:
 
 networks:
   custom_network:
-    driver: bridge
+    external: true
