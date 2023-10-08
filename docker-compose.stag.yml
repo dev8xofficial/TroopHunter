@@ -61,7 +61,7 @@ services:
     build:
       context: .
       dockerfile: ./backend/Dockerfile
-      target: production # Use the production stage in the Dockerfile
+      target: development # Use the production stage in the Dockerfile
     entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
     env_file:
       - ./backend/.env # Use production environment variables
