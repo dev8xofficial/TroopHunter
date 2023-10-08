@@ -24,7 +24,7 @@ app.post('/webhook', (req, res) => {
 
   if (signature === digest) {
     if (event === 'ping') {
-      const gitPullProcess = spawn('git', ['pull', 'origin', 'feature/crm'], { cwd: '..' });
+      const gitPullProcess = spawn('git', ['pull', 'origin', `${process.env.GIT_BRANCH}`], { cwd: '..' });
       gitPullProcess.stdout.on('data', (data) => {
         console.log(`[GIT] ${data}`);
       });
