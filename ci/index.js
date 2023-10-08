@@ -36,7 +36,7 @@ app.post('/webhook', (req, res) => {
       });
 
       // Change to the parent directory (helloabdul) and then run npm run build:dev
-      const buildProcess = spawn('npm', ['run', 'build:dev'], { cwd: '..' });
+      const buildProcess = spawn('npm', ['run', 'build:' + process.env.ENVIRONMENT], { cwd: '..' });
       buildProcess.stdout.on('data', (data) => {
         console.log(`[BUILD] ${data}`);
       });
@@ -70,7 +70,7 @@ app.post('/webhook', (req, res) => {
           });
 
           // After the build, start your application with a similar approach
-          const startProcess = spawn('npm', ['run', 'start:dev'], { cwd: '..' });
+          const startProcess = spawn('npm', ['run', 'start:' + process.env.ENVIRONMENT], { cwd: '..' });
           startProcess.stdout.on('data', (data) => {
             console.log(`[START] ${data}`);
           });

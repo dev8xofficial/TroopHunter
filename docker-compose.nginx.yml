@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-  nginx_dev:
-    container_name: nginx_dev
+  nginx:
+    container_name: nginx
     build:
       context: .
       dockerfile: ./nginx/Dockerfile
@@ -9,8 +9,12 @@ services:
       - '80:80'
     volumes:
       - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
-    depends_on:
-      backend_dev:
-        condition: service_started
+    # depends_on:
+    #   backend_dev:
+    #     condition: service_started
     networks:
       - custom_network
+
+networks:
+  custom_network:
+    external: true

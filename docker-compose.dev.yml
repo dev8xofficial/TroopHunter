@@ -11,20 +11,29 @@ services:
   #   networks:
   #     - custom_network
 
-  nginx_dev:
-    container_name: nginx_dev
-    build:
-      context: .
-      dockerfile: ./nginx/Dockerfile
-    ports:
-      - '80:80'
-    volumes:
-      - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
-    depends_on:
-      backend_dev:
-        condition: service_started
-    networks:
-      - custom_network
+  # nginx_dev:
+  #   container_name: nginx_dev
+  #   build:
+  #     context: .
+  #     dockerfile: ./nginx/Dockerfile
+  #   ports:
+  #     - '80:80'
+  #   # environment:
+  #   #   - NGINX_PORT=80
+  #   # command: >
+  #   #   /bin/sh -c
+  #   #   "envsubst '
+  #   #   $${NGINX_PORT}
+  #   #   '< /etc/nginx/conf.d/nginx.conf
+  #   #   >  /etc/nginx/conf.d/nginx.conf
+  #   #   && nginx -g 'daemon off;'"
+  #   volumes:
+  #     - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
+  #   depends_on:
+  #     backend_dev:
+  #       condition: service_started
+  #   networks:
+  #     - custom_network
 
   postgres_dev:
     container_name: postgres_dev
@@ -95,4 +104,4 @@ volumes:
 
 networks:
   custom_network:
-    driver: bridge
+    external: true

@@ -1,0 +1,12 @@
+version: "2"
+authtoken: 2WTxYDV7T3a0J2TOqieV2KaRhZR_3YXNFebLowdEuQoPcez9y
+tunnels:
+  backend_dev:
+    addr: nginx:82
+    proto: http
+  # ci_dev:
+  #   addr: nginx:4999
+  #   proto: http
+  # crm:
+  #   addr: crm
+  #   proto: http

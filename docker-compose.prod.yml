@@ -1,19 +1,19 @@
 version: '3.8'
 name: 'helloabdul_prod'
 services:
-  nginx_prod:
-    container_name: nginx_prod
-    build:
-      context: .
-      dockerfile: ./nginx/Dockerfile
-    ports:
-      - '80:80'
-    volumes:
-      - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
-    depends_on:
-      - backend_prod
-    networks:
-      - custom_network
+  # nginx_prod:
+  #   container_name: nginx_prod
+  #   build:
+  #     context: .
+  #     dockerfile: ./nginx/Dockerfile
+  #   ports:
+  #     - '80:80'
+  #   volumes:
+  #     - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
+  #   depends_on:
+  #     - backend_prod
+  #   networks:
+  #     - custom_network
 
   # jenkins:
   #   container_name: jenkins
@@ -33,7 +33,7 @@ services:
       dockerfile: ./postgres/Dockerfile
     restart: always
     ports:
-      - '5432:5432'
+      - '5433:5432'
     env_file:
       - ./backend/.env
     volumes:
@@ -41,27 +41,27 @@ services:
     networks:
       - custom_network
 
-  pgadmin_prod:
-    container_name: pgadmin_prod
-    build:
-      context: .
-      dockerfile: ./pgadmin/Dockerfile
-    ports:
-      - '60000:80'
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=Ssg123777
-    volumes:
-      - ./pgadmin/pgadmin:/var/lib/pgadmin
-    depends_on:
-      - postgres_prod
+  # pgadmin_prod:
+  #   container_name: pgadmin_prod
+  #   build:
+  #     context: .
+  #     dockerfile: ./pgadmin/Dockerfile
+  #   ports:
+  #     - '60000:80'
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=admin@example.com
+  #     - PGADMIN_DEFAULT_PASSWORD=Ssg123777
+  #   volumes:
+  #     - ./pgadmin/pgadmin:/var/lib/pgadmin
+  #   depends_on:
+  #     - postgres_prod
 
   backend_prod: # Production environment
     container_name: backend_prod
     build:
       context: .
       dockerfile: ./backend/Dockerfile
-      target: production # Use the production stage in the Dockerfile
+      target: development # Use the production stage in the Dockerfile
     entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
     env_file:
       - ./backend/.env # Use production environment variables
@@ -73,21 +73,21 @@ services:
     networks:
       - custom_network
 
-  crm_prod:
-    container_name: crm_prod
-    build:
-      context: .
-      dockerfile: ./crm/Dockerfile
-      target: production
-    env_file:
-      - ./crm/.env # Use development environment variables
-    ports:
-      - '5173:5173'
-    depends_on:
-      - postgres_prod
-      - backend_prod
-    networks:
-      - custom_network
+  # crm_prod:
+  #   container_name: crm_prod
+  #   build:
+  #     context: .
+  #     dockerfile: ./crm/Dockerfile
+  #     target: production
+  #   env_file:
+  #     - ./crm/.env # Use development environment variables
+  #   ports:
+  #     - '5173:5173'
+  #   depends_on:
+  #     - postgres_prod
+  #     - backend_prod
+  #   networks:
+  #     - custom_network
 
 volumes:
   pgadmin-data:
@@ -95,4 +95,4 @@ volumes:
 
 networks:
   custom_network:
-    driver: bridge
+    external: true
