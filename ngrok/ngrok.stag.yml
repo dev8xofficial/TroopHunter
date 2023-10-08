@@ -2,10 +2,10 @@ version: "2"
 authtoken: 2ULoFEUrfmHkYja2d4TAlpKkDxy_4UTTs5fXH4uzCmCap7AYq
 tunnels:
   backend_stag:
-    addr: nginx:80
+    addr: nginx:81
     proto: http
   # ci_stag:
-  #   addr: nginx:4997
+  #   addr: nginx:4998
   #   proto: http
   # crm:
   #   addr: crm
