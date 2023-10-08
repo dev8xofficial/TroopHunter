@@ -4,9 +4,6 @@ tunnels:
   backend_stag:
     addr: nginx:81
     proto: http
-  # ci_stag:
-  #   addr: nginx:4998
-  #   proto: http
-  # crm:
-  #   addr: crm
+  # crm_dev:
+  #   addr: nginx:5174
   #   proto: http

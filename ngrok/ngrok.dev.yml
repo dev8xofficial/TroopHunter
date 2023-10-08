@@ -4,9 +4,6 @@ tunnels:
   backend_dev:
     addr: nginx:82
     proto: http
-  # ci_dev:
-  #   addr: nginx:4999
-  #   proto: http
-  # crm:
-  #   addr: crm
+  # crm_dev:
+  #   addr: nginx:5175
   #   proto: http
