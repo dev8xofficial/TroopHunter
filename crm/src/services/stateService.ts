@@ -3,7 +3,7 @@ import { type ApiResponse, type IPaginationAttributes, type IStateFetchRequestAt
 
 import { type IStatesResponseAttributes, type IStateResponseAttributes } from 'components/Inputs/Combobox/Combobox';
 
-const BASE_URL = process.env.BACKEND_URL ?? '';
+const BASE_URL = import.meta.env.VITE_BACKEND_URL ?? '';
 
 interface IGetStatesByQueryAttributes extends IStateFetchRequestAttributes, IPaginationAttributes {}
 

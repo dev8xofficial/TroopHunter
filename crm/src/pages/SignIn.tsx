@@ -12,8 +12,6 @@ import { type ISignInFormmValues } from '../types/formik';
 const _SignIn: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const BASE_URL = process.env.BACKEND_URL ?? '';
-  console.log("Env: ", BASE_URL);
 
   const initialValues: ISignInFormmValues = {
     email: '',
