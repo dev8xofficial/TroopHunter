@@ -1,0 +1,15 @@
+---
+- name: Install iftop
+  package:
+    name: iftop
+    state: present
+
+- name: Install required system packages
+  apt:
+    pkg:
+      - curl
+      - vim
+      - git
+      - ufw
+    state: latest
+    update_cache: true

@@ -13,8 +13,6 @@ services:
       - '/etc/ngrok.yml'
     ports:
       - '4040:4040'
-    env_file:
-      - ./ngrok/.env
     volumes:
       - ./ngrok/ngrok.prod.yml:/etc/ngrok.yml
     networks:
@@ -33,8 +31,6 @@ services:
       - '/etc/ngrok.yml'
     ports:
       - '4041:4040'
-    env_file:
-      - ./ngrok/.env
     volumes:
       - ./ngrok/ngrok.stag.yml:/etc/ngrok.yml
     networks:
@@ -53,8 +49,6 @@ services:
       - '/etc/ngrok.yml'
     ports:
       - '4042:4040'
-    env_file:
-      - ./ngrok/.env
     volumes:
       - ./ngrok/ngrok.dev.yml:/etc/ngrok.yml
     networks:

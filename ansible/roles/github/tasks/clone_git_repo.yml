@@ -1,0 +1,8 @@
+---
+- name: Clone a private repository into {{PROJECT_NAME}} folder.
+  git:
+    repo: "{{ GIT_REPO }}"
+    version: "{{ GIT_BRANCH }}"
+    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}"
+    accept_hostkey: yes
+  become: false

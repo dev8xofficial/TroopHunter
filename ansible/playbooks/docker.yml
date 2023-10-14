@@ -1,0 +1,8 @@
+---
+- hosts: ubuntu
+  become: true
+  gather_facts: true
+  vars:
+    USER: ubuntu-desktop
+  roles:
+    - docker

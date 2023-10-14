@@ -1,0 +1,5 @@
+---
+- name: Remove the helloabdul directory.
+  file:
+    path: /home/ubuntu/helloabdul
+    state: absent

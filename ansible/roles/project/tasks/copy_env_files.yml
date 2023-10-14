@@ -1,0 +1,15 @@
+---
+- name: Copy .env file from backend into host backend.
+  copy:
+    src: "{{ ENV_PATH }}/backend/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/backend/.env
+
+- name: Copy .env file from ci into host ci.
+  copy:
+    src: "{{ ENV_PATH }}/ci/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/ci/.env
+
+- name: Copy .env file from crm into host crm.
+  copy:
+    src: "{{ ENV_PATH }}/crm/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/crm/.env

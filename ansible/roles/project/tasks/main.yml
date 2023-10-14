@@ -1,0 +1,5 @@
+---
+- include_tasks: copy_env_files.yml
+- include_tasks: run_npm_build.yml
+- include_tasks: run_npm_start.yml
+- include_tasks: allow_ufw_ngrok.yml

@@ -1,5 +1,6 @@
 version: "2"
 authtoken: 2ULoFEUrfmHkYja2d4TAlpKkDxy_4UTTs5fXH4uzCmCap7AYq
+region: us
 tunnels:
   backend_stag:
     addr: nginx:81

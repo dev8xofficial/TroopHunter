@@ -1,0 +1,6 @@
+---
+- name: Install Docker Compose
+  apt:
+    name: docker-compose
+    state: latest
+    update_cache: true

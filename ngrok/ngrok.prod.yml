@@ -1,5 +1,6 @@
 version: "2"
 authtoken: 2WTy8h4ra78Yt3eeryPQFYqlZQI_iQyetssHVcdVibbjqC28
+region: us
 tunnels:
   backend_prod:
     addr: nginx:80

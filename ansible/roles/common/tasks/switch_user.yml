@@ -1,0 +1,5 @@
+- name: Switch to the ubuntu-desktop user
+  user:
+    name: "{{ USER }}"
+    state: present
+  become: true
