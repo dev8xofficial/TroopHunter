@@ -12,3 +12,17 @@ docker rmi $(docker images -q)
 
 # To know which port is using which application or service in Mac
 lsof -i -n -P | grep LISTEN
+
+# ==Start== Below instructions automate ubuntu server process
+
+# To copy public key in ubuntu server
+ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-desktop@192.168.1.17
+
+# To allow user password free access
+sudo visudo
+ubuntu-desktop ALL=(ALL) NOPASSWD:ALL
+
+# To add user in sudo group
+sudo usermod -aG sudo ubuntu-desktop
+
+# ==End==
