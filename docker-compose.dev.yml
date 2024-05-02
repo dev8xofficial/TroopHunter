@@ -98,6 +98,19 @@ services:
   #   networks:
   #     - custom_network
 
+  cloudflare:
+    container_name: cloudflare
+    build:
+      context: .
+      dockerfile: ./cloudflare/Dockerfile
+    # image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=eyJhIjoiNmVhNmZmMmIxYmI2ZDFkMjA1NzU2NzQwYmI2ZjVhOWYiLCJ0IjoiZjU2ZTFiODYtOGVkYi00MWE5LThmZWYtZjU3MWI1M2JiYTU5IiwicyI6Ik5qTmpZbU5sTVRVdFlXWXhaQzAwWmpOaUxXSTFaVEF0T0dRMk1qaGhZalZrWTJFMSJ9
+    networks:
+      - custom_network
+
 volumes:
   pgadmin-data:
   nginx:
