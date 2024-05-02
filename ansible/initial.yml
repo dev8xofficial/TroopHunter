@@ -15,7 +15,7 @@
 
   - name: Add user to sudo group
     user:
-      name: ubuntu
+      name: ubuntu-desktop
       groups: sudo
       append: yes
       password: Ssg123777
