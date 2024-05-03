@@ -1,4 +1,4 @@
-version: '3.8'
+# version: '3.8'
 name: 'helloabdul_prod'
 services:
   # ci:
@@ -104,4 +104,4 @@ volumes:
 
 networks:
   custom_network:
-    external: true
+    # external: true
