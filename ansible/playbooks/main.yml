@@ -8,7 +8,7 @@
     - /ansible/secrets/github_token
   vars:
     USER: ubuntu-desktop
-    NODE_VERSION: 20.6.1
+    NODE_VERSION: 20.12.2
     GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/helloabdul.git"
     GIT_BRANCH: main
     PROJECT_NAME: helloabdul

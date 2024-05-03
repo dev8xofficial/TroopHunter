@@ -4,6 +4,6 @@
   gather_facts: true
   vars:
     USER: ubuntu-desktop
-    NODE_VERSION: 20.6.1
+    NODE_VERSION: 20.12.2
   roles:
     - nvm

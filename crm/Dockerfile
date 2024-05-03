@@ -1,4 +1,4 @@
-# FROM node:20.6.1
+# FROM node:20.12.2
 
 # WORKDIR /app
 # COPY crm ./crm
