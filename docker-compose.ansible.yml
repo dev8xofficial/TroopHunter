@@ -16,4 +16,4 @@ services:
 
 networks:
   custom_network:
-    external: true
+    # external: true
