@@ -58,21 +58,21 @@ services:
     networks:
       - custom_network
 
-  # crm_dev:
-  #   container_name: crm_dev
-  #   build:
-  #     context: .
-  #     dockerfile: ./crm/Dockerfile
-  #     target: development
-  #   env_file:
-  #     - ./crm/.env # Use development environment variables
-  #   ports:
-  #     - '5173:5173'
-  #   depends_on:
-  #     - postgres_dev
-  #     - backend_dev
-  #   networks:
-  #     - custom_network
+  crm_dev:
+    container_name: crm_dev
+    build:
+      context: .
+      dockerfile: ./crm/Dockerfile
+      target: development
+    env_file:
+      - ./crm/.env # Use development environment variables
+    ports:
+      - '5173:5173'
+    depends_on:
+      - postgres_dev
+      - backend_dev
+    networks:
+      - custom_network
 
   cloudflare:
     container_name: cloudflare
