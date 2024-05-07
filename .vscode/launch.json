@@ -20,7 +20,7 @@
     },
     {
       "name": "Scraper",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/scraper/main.py",
       "console": "integratedTerminal",
