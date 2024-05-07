@@ -1,15 +1,15 @@
 # version: '3.8'
 name: 'helloabdul_dev'
 services:
-  # ci:
-  #   container_name: ci
-  #   build:
-  #     context: .
-  #     dockerfile: ./ci/Dockerfile
-  #   ports:
-  #     - '4999:4999'
-  #   networks:
-  #     - custom_network
+  ci:
+    container_name: ci
+    build:
+      context: .
+      dockerfile: ./ci/Dockerfile
+    ports:
+      - '4999:4999'
+    networks:
+      - custom_network
 
   # nginx_dev:
   #   container_name: nginx_dev
