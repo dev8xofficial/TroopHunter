@@ -1,34 +1,34 @@
-name: 'helloabdul_dev'
+name: 'helloabdul_stag'
 services:
   ci:
     extends:
       file: docker-compose.ci.yml
-      service: ci_dev
+      service: ci_stag
 
-  postgres_dev:
+  postgres_stag:
     extends:
       file: docker-compose.base.yml
-      service: postgres_dev
+      service: postgres_stag
 
-  # pgadmin_dev:
+  # pgadmin_stag:
   #   extends:
   #     file: docker-compose.pgadmin.yml
-  #     service: pgadmin_dev
+  #     service: pgadmin_stag
 
-  backend_dev:
+  backend_stag:
     extends:
       file: docker-compose.backend.yml
-      service: backend_dev
+      service: backend_stag
 
-  crm_dev:
+  crm_stag:
     extends:
       file: docker-compose.crm.yml
-      service: crm_dev
+      service: crm_stag
 
-  cloudflare_dev:
+  cloudflare_stag:
     extends:
       file: docker-compose.cloudflare.yml
-      service: cloudflare_dev
+      service: cloudflare_stag
 
 volumes:
   pgadmin-data:

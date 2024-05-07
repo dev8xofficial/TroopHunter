@@ -1,34 +1,34 @@
-name: 'helloabdul_dev'
+name: 'helloabdul_prod'
 services:
   ci:
     extends:
       file: docker-compose.ci.yml
-      service: ci_dev
+      service: ci_prod
 
-  postgres_dev:
+  postgres_prod:
     extends:
       file: docker-compose.base.yml
-      service: postgres_dev
+      service: postgres_prod
 
-  # pgadmin_dev:
+  # pgadmin_prod:
   #   extends:
   #     file: docker-compose.pgadmin.yml
-  #     service: pgadmin_dev
+  #     service: pgadmin_prod
 
-  backend_dev:
+  backend_prod:
     extends:
       file: docker-compose.backend.yml
-      service: backend_dev
+      service: backend_prod
 
-  crm_dev:
+  crm_prod:
     extends:
       file: docker-compose.crm.yml
-      service: crm_dev
+      service: crm_prod
 
-  cloudflare_dev:
+  cloudflare_prod:
     extends:
       file: docker-compose.cloudflare.yml
-      service: cloudflare_dev
+      service: cloudflare_prod
 
 volumes:
   pgadmin-data:
