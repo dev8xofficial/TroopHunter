@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     command: tunnel run
     environment:
-      - TUNNEL_TOKEN=eyJhIjoiNmVhNmZmMmIxYmI2ZDFkMjA1NzU2NzQwYmI2ZjVhOWYiLCJ0IjoiZDlkZjMwZDktMzFiOS00Y2YxLTljYWYtZDk3MjVhMDFlNWQwIiwicyI6Ik5tSTFOR0ZtTkdJdFlqazFaQzAwWVdFNUxXSTRaVE10WmpBME9EZ3hOR05qT1RreiJ9
+      - TUNNEL_TOKEN=eyJhIjoiNmVhNmZmMmIxYmI2ZDFkMjA1NzU2NzQwYmI2ZjVhOWYiLCJ0IjoiZDlkZjMwZDktMzFiOS00Y2YxLTljYWYtZDk3MjVhMDFlNWQwIiwicyI6Ik5UUXpZV0U0WlRrdE9EZGhNQzAwTURNMUxXRm1NV1l0Wm1VMllUUTVNVEprTmpkaCJ9
     networks:
       - custom_network
 
@@ -21,7 +21,7 @@ services:
     restart: unless-stopped
     command: tunnel run
     environment:
-      - TUNNEL_TOKEN=eyJhIjoiNmVhNmZmMmIxYmI2ZDFkMjA1NzU2NzQwYmI2ZjVhOWYiLCJ0IjoiMmUzYTVlNTktMjA0OS00YzFlLTljNDMtMDg5MzRlM2UyMTIxIiwicyI6IllqTmtPRGswTkRJdE56aGhZeTAwWmpWbExUbGxNekF0TmpGak9UWXpZamc0TlRsbSJ9
+      - TUNNEL_TOKEN=eyJhIjoiNmVhNmZmMmIxYmI2ZDFkMjA1NzU2NzQwYmI2ZjVhOWYiLCJ0IjoiMmUzYTVlNTktMjA0OS00YzFlLTljNDMtMDg5MzRlM2UyMTIxIiwicyI6Ik5EWmlZVGRtTnpRdE5XTmhOaTAwT0dZNExUbGxNREl0TlRWbE5UUmhPR1V3TURBMSJ9
     networks:
       - custom_network
 
@@ -34,6 +34,6 @@ services:
     restart: unless-stopped
     command: tunnel run
     environment:
-      - TUNNEL_TOKEN=eyJhIjoiNmVhNmZmMmIxYmI2ZDFkMjA1NzU2NzQwYmI2ZjVhOWYiLCJ0IjoiZjU2ZTFiODYtOGVkYi00MWE5LThmZWYtZjU3MWI1M2JiYTU5IiwicyI6Ik5qTmpZbU5sTVRVdFlXWXhaQzAwWmpOaUxXSTFaVEF0T0dRMk1qaGhZalZrWTJFMSJ9
+      - TUNNEL_TOKEN=eyJhIjoiNmVhNmZmMmIxYmI2ZDFkMjA1NzU2NzQwYmI2ZjVhOWYiLCJ0IjoiZjU2ZTFiODYtOGVkYi00MWE5LThmZWYtZjU3MWI1M2JiYTU5IiwicyI6Ik4yRTJZVEZsTlRNdFpqSmtaQzAwWlRWbExUa3laR1F0WVdFeE16azNZalF4WlRGayJ9
     networks:
       - custom_network
