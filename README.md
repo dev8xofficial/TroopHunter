@@ -40,7 +40,7 @@
 
     lsof -i -n -P | grep LISTEN
 
-# ------------------------------------------------ Virutal machines automatation setip --------------------------------------------------------------------------------------------
+# ------------------------------------------------ Virutal machines automatation setup --------------------------------------------------------------------------------------------
 
 # Step 1 - Run below commands in ubuntu server to allow user password free access
 
@@ -59,3 +59,7 @@
 
     Its hidden as a result of the dot(.) before the name.
     So to find it do `ls -a` in your current location as seen in the image.
+
+# To remove a folder along files
+
+    sudo rm -r foldername

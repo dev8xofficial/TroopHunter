@@ -1,6 +1,6 @@
 services:
-  ansible:
-    container_name: ansible
+  ansible_dev:
+    container_name: ansible_dev
     build:
       context: .
       dockerfile: ./ansible/Dockerfile

@@ -1,5 +1,10 @@
 name: 'helloabdul_dev'
 services:
+  ansible:
+    extends:
+      file: docker-compose.ansible.yml
+      service: ansible_dev
+
   ci:
     extends:
       file: docker-compose.ci.yml
