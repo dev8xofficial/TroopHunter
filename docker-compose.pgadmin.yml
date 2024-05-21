@@ -14,7 +14,7 @@ services:
     volumes:
       - ./pgadmin/pgadmin:/var/lib/pgadmin
     depends_on:
-      postgres_dev:
+      postgres_prod:
         condition: service_started
 
   pgadmin_stag:
@@ -32,7 +32,7 @@ services:
     volumes:
       - ./pgadmin/pgadmin:/var/lib/pgadmin
     depends_on:
-      postgres_dev:
+      postgres_stag:
         condition: service_started
 
   pgadmin_dev:
