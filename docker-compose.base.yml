@@ -1,5 +1,34 @@
-# version: '3.8'
 services:
+  postgres_prod:
+    container_name: postgres_prod
+    build:
+      context: .
+      dockerfile: ./postgres/Dockerfile
+    restart: always
+    ports:
+      - '5432:5432'
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./postgres/postgres_prod:/var/lib/postgresql/data
+    networks:
+      - custom_network
+
+  postgres_stag:
+    container_name: postgres_stag
+    build:
+      context: .
+      dockerfile: ./postgres/Dockerfile
+    restart: always
+    ports:
+      - '5433:5432'
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./postgres/postgres_stag:/var/lib/postgresql/data
+    networks:
+      - custom_network
+
   postgres_dev:
     container_name: postgres_dev
     build:
@@ -7,7 +36,7 @@ services:
       dockerfile: ./postgres/Dockerfile
     restart: always
     ports:
-      - '5432:5432'
+      - '5434:5432'
     env_file:
       - ./backend/.env
     volumes:

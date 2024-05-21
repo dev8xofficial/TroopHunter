@@ -1,9 +1,30 @@
-# version: '3.8'
 services:
-  ci:
-    container_name: ci
+  ci_prod:
+    container_name: ci_prod
     build:
       context: .
       dockerfile: ./ci/Dockerfile
+    ports:
+      - '4997:4997'
+    networks:
+      - custom_network
+
+  ci_stag:
+    container_name: ci_stag
+    build:
+      context: .
+      dockerfile: ./ci/Dockerfile
+    ports:
+      - '4998:4998'
+    networks:
+      - custom_network
+
+  ci_dev:
+    container_name: ci_dev
+    build:
+      context: .
+      dockerfile: ./ci/Dockerfile
+    ports:
+      - '4999:4999'
     networks:
       - custom_network
