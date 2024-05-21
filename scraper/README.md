@@ -11,13 +11,19 @@ cd /path/to/your/project
 2. Install the `virtualenv` package if you haven't already:
 
 ```bash
-pip install virtualenv
+python3 -m pip install virtualenv
 ```
 
 3. Create a virtual environment in your project directory (you can choose a different name if you prefer):
 
 ```bash
 virtualenv venv
+```
+
+Or
+
+```bash
+python3 -m pip venv venv
 ```
 
 4. Activate the virtual environment:
@@ -39,7 +45,7 @@ venv\Scripts\activate
 6. Install the required packages for your project within the virtual environment:
 
 ```bash
-pip install package_name
+python3 -m pip install package_name
 ```
 
 Replace `package_name` with the name of the package you want to install for your project.
@@ -55,13 +61,13 @@ By using a virtual environment, you can keep your project's dependencies isolate
 Additionally, you can create a `requirements.txt` file in your project directory to list all the packages required for your project. This file can be used to recreate the virtual environment and install all the necessary packages on another system:
 
 ```bash
-pip freeze > requirements.txt
+python3 -m pip freeze > requirements.txt
 ```
 
 To install the packages listed in the `requirements.txt` file on another system, run:
 
 ```bash
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 Remember to keep your `requirements.txt` file updated whenever you add or remove packages from your project.

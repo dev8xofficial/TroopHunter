@@ -3,7 +3,7 @@
   become: true
   gather_facts: true
   vars:
-    USER: ubuntu-desktop
+    USER: ubuntu-server
     NODE_VERSION: 20.12.2
   roles:
     - nvm

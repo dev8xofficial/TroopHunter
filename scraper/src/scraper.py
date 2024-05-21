@@ -27,7 +27,7 @@ class BusinessScraper:
         self.medium_wait = 10
         self.long_wait = 60
 
-        chrome_driver_path = '/Users/abdulrehman/Workstation/Personal/helloabdul/helloabdul/scraper/driver/chromedriver'
+        chrome_driver_path = '/Users/abdulrehman/Workstation/hellobadul/development/helloabdul/scraper/driver/chromedriver'
         # Chrome Options
         chrome_options = Options()
         # chrome_options.add_argument("--headless")

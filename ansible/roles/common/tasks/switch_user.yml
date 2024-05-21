@@ -1,4 +1,4 @@
-- name: Switch to the ubuntu-desktop user
+- name: Switch to the ubuntu-server user
   user:
     name: "{{ USER }}"
     state: present
