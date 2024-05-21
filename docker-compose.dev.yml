@@ -1,10 +1,5 @@
 name: 'helloabdul_dev'
 services:
-  ansible:
-    extends:
-      file: docker-compose.ansible.yml
-      service: ansible_dev
-
   ci:
     extends:
       file: docker-compose.ci.yml
@@ -15,10 +10,10 @@ services:
       file: docker-compose.base.yml
       service: postgres_dev
 
-  # pgadmin_dev:
-  #   extends:
-  #     file: docker-compose.pgadmin.yml
-  #     service: pgadmin_dev
+  pgadmin_dev:
+    extends:
+      file: docker-compose.pgadmin.yml
+      service: pgadmin_dev
 
   backend_dev:
     extends:

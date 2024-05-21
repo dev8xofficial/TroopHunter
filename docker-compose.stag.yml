@@ -10,10 +10,10 @@ services:
       file: docker-compose.base.yml
       service: postgres_stag
 
-  # pgadmin_stag:
-  #   extends:
-  #     file: docker-compose.pgadmin.yml
-  #     service: pgadmin_stag
+  pgadmin_stag:
+    extends:
+      file: docker-compose.pgadmin.yml
+      service: pgadmin_stag
 
   backend_stag:
     extends:
