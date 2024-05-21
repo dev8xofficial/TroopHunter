@@ -27,6 +27,10 @@
 
     git rm --cached -r logs **pycache**
 
+# Run to discard all changes in git branch
+
+    git reset --hard HEAD
+
 # Run the following command to remove containers in your docker.
 
     docker system prune -f
@@ -36,30 +40,38 @@
     docker image prune -a -f
     docker rmi $(docker images -q)
 
+# To see all docker containers running
+
+    docker ps -a
+
+# To see logs of all docker containers
+
+    docker logs --detail container_id
+
 # Run the following command to know which port is using which application or service in Mac
 
     lsof -i -n -P | grep LISTEN
+
+# Copy .env files from macbook to ubuntu server
+
+    scp -rp /Users/abdulrehman/Workstation/hellobadul/development/helloabdul/backend/.env ubuntu-server@192.168.1.16:/home/ubuntu-server/helloabdul
 
 # ------------------------------------------------ Virutal machines automatation setup --------------------------------------------------------------------------------------------
 
 # Step 1 - Run below commands in ubuntu server to allow user password free access
 
     sudo visudo
-    ubuntu-desktop ALL=(ALL) NOPASSWD:ALL
+    ubuntu-server ALL=(ALL) NOPASSWD:ALL
 
 # Step 2 - Run below commands in ubuntu server to add user in sudo group
 
-    sudo usermod -aG sudo ubuntu-desktop
+    sudo usermod -aG sudo ubuntu-server
 
 # Step 3 - Run below commands in ubuntu server to copy public key in ubuntu server
 
-    ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-desktop@192.168.1.17
+    ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-server@192.168.1.12
 
 # To find .ssh directory go to home/your-username/.ssh
 
     Its hidden as a result of the dot(.) before the name.
     So to find it do `ls -a` in your current location as seen in the image.
-
-# To remove a folder along files
-
-    sudo rm -r foldername
