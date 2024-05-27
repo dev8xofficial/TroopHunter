@@ -5,4 +5,5 @@
     version: "{{ GIT_BRANCH }}"
     dest: "/home/{{ USER }}/{{ PROJECT_NAME }}"
     accept_hostkey: yes
+    clone: true
   become: false

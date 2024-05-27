@@ -69,7 +69,13 @@
 
 # Step 3 - Run below commands in ubuntu server to copy public key in ubuntu server
 
-    ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-server@192.168.1.12
+    ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-server@192.168.1.17
+
+# Step 4 - After deplying git code and before building project build.
+
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    newgrp docker
 
 # To find .ssh directory go to home/your-username/.ssh
 
