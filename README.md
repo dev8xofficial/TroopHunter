@@ -31,6 +31,10 @@
 
     git reset --hard HEAD
 
+# Stop all containers
+
+    docker stop $(docker ps -a -q)
+
 # Run the following command to remove containers in your docker.
 
     docker system prune -f
@@ -67,9 +71,28 @@
 
     sudo usermod -aG sudo ubuntu-server
 
-# Step 3 - Run below commands in ubuntu server to copy public key in ubuntu server
+# Step 3 - Add static ip in the router.
 
-    ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-server@192.168.1.12
+    192.168.1.100
+    Install Linux ProtonVPN
+    Install bridge-utils
+    Install net-tools
+    Install openssh-server
+
+# Step 4 - Run below commands in ubuntu server to copy public key in ubuntu server
+
+    Go to /etc/ansible directory and run below command.
+    ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-server@192.168.1.100
+
+# Step 5 - RUn this command to execute the initial setup.
+
+    ansible-playbook --ask-vault-pass playbooks/main.yml
+
+# Step 5 - After deplying git code and before building project build.
+
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    newgrp docker
 
 # To find .ssh directory go to home/your-username/.ssh
 
