@@ -1,4 +1,4 @@
-# FROM node:20.6.1
+# FROM node:20.12.2
 
 # WORKDIR /app
 # COPY crm ./crm
@@ -11,7 +11,7 @@
 # RUN [ -d "node_modules" ] || npm install
 
 # # Use an official Node.js runtime as a parent image
-# # FROM node:20.6.1
+# # FROM node:20.12.2
 
 # # Set the working directory in the container
 # # WORKDIR /app/crm
@@ -35,7 +35,7 @@
 
 
 # Use an official Node.js runtime as a parent image
-FROM node:20.6.1 as development
+FROM node:20.12.2 as development
 
 # Install the PostgreSQL client tools
 RUN apt-get update && \

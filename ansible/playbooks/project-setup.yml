@@ -3,7 +3,7 @@
   become: true
   gather_facts: true
   vars:
-    USER: ubuntu-desktop
+    USER: ubuntu-server
     PROJECT_NAME: helloabdul
     ENVIRONMENT: prod
     ENV_PATH: "/ansible/secrets"

@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-ENV ANSIBLE_VERSION 3.1.0
+ENV ANSIBLE_VERSION 9.5.1
 
 COPY ansible ./etc/ansible/
 COPY ansible/inventory/hosts ./ansible/

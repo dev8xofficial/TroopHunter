@@ -1,9 +1,3 @@
 ---
-- name: Move into the helloabdul directory and run npm run start:ngrok
-  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run start:ngrok"
-
-- name: Move into the helloabdul directory and run npm run start:nginx
-  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run start:nginx"
-
-- name: Move into the helloabdul directory and run npm run start:dev
-  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run start:dev"
+- name: Move into the helloabdul directory and run npm run start:{{ ENVIRONMENT }}
+  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run start:{{ ENVIRONMENT }}"

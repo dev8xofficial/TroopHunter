@@ -1,5 +1,38 @@
-version: '3.8'
 services:
+  backend_prod: # Development environment
+    container_name: backend_prod
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+      target: development # Use the development stage in the Dockerfile
+    entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
+    env_file:
+      - ./backend/.env # Use development environment variables
+    ports:
+      - '50001:50001'
+    depends_on:
+      postgres_prod:
+        condition: service_started
+    networks:
+      - custom_network
+
+  backend_stag: # Development environment
+    container_name: backend_stag
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+      target: development # Use the development stage in the Dockerfile
+    entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
+    env_file:
+      - ./backend/.env # Use development environment variables
+    ports:
+      - '50002:50001'
+    depends_on:
+      postgres_stag:
+        condition: service_started
+    networks:
+      - custom_network
+
   backend_dev:
     container_name: backend_dev
     build:
@@ -10,7 +43,7 @@ services:
     env_file:
       - ./backend/.env
     ports:
-      - '50001:50001'
+      - '50003:50001'
     depends_on:
       postgres_dev:
         condition: service_started

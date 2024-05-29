@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:20.6.1 as development
+FROM node:20.12.2 as development
 
 # Install the PostgreSQL client tools
 RUN apt-get update && \

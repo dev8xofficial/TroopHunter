@@ -1,107 +1,38 @@
-version: '3.8'
 name: 'helloabdul_dev'
 services:
-  # ci:
-  #   container_name: ci
-  #   build:
-  #     context: .
-  #     dockerfile: ./ci/Dockerfile
-  #   ports:
-  #     - '4999:4999'
-  #   networks:
-  #     - custom_network
-
-  # nginx_dev:
-  #   container_name: nginx_dev
-  #   build:
-  #     context: .
-  #     dockerfile: ./nginx/Dockerfile
-  #   ports:
-  #     - '80:80'
-  #   # environment:
-  #   #   - NGINX_PORT=80
-  #   # command: >
-  #   #   /bin/sh -c
-  #   #   "envsubst '
-  #   #   $${NGINX_PORT}
-  #   #   '< /etc/nginx/conf.d/nginx.conf
-  #   #   >  /etc/nginx/conf.d/nginx.conf
-  #   #   && nginx -g 'daemon off;'"
-  #   volumes:
-  #     - ./nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
-  #   depends_on:
-  #     backend_dev:
-  #       condition: service_started
-  #   networks:
-  #     - custom_network
+  ci:
+    extends:
+      file: docker-compose.ci.yml
+      service: ci_dev
 
   postgres_dev:
-    container_name: postgres_dev
-    build:
-      context: .
-      dockerfile: ./postgres/Dockerfile
-    restart: always
-    ports:
-      - '5434:5432'
-    env_file:
-      - ./backend/.env
-    volumes:
-      - ./postgres/postgres_dev:/var/lib/postgresql/data
-    networks:
-      - custom_network
+    extends:
+      file: docker-compose.base.yml
+      service: postgres_dev
 
-  # pgadmin_dev:
-  #   container_name: pgadmin_dev
-  #   build:
-  #     context: .
-  #     dockerfile: ./postgres/Dockerfile
-  #   ports:
-  #     - '60001:80'
-  #   environment:
-  #     - PGADMIN_DEFAULT_EMAIL=admin@example.com
-  #     - PGADMIN_DEFAULT_PASSWORD=Ssg123777
-  #   volumes:
-  #     - ./pgadmin/pgadmin:/var/lib/pgadmin
-  #   depends_on:
-  #     - postgres_dev
+  pgadmin_dev:
+    extends:
+      file: docker-compose.pgadmin.yml
+      service: pgadmin_dev
 
-  backend_dev: # Development environment
-    container_name: backend_dev
-    build:
-      context: .
-      dockerfile: ./backend/Dockerfile
-      target: development # Use the development stage in the Dockerfile
-    entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
-    env_file:
-      - ./backend/.env # Use development environment variables
-    ports:
-      - '50003:50001'
-    depends_on:
-      postgres_dev:
-        condition: service_started
-    networks:
-      - custom_network
+  backend_dev:
+    extends:
+      file: docker-compose.backend.yml
+      service: backend_dev
 
-  # crm_dev:
-  #   container_name: crm_dev
-  #   build:
-  #     context: .
-  #     dockerfile: ./crm/Dockerfile
-  #     target: development
-  #   env_file:
-  #     - ./crm/.env # Use development environment variables
-  #   ports:
-  #     - '5173:5173'
-  #   depends_on:
-  #     - postgres_dev
-  #     - backend_dev
-  #   networks:
-  #     - custom_network
+  crm_dev:
+    extends:
+      file: docker-compose.crm.yml
+      service: crm_dev
+
+  cloudflare_dev:
+    extends:
+      file: docker-compose.cloudflare.yml
+      service: cloudflare_dev
 
 volumes:
   pgadmin-data:
-  nginx:
 
 networks:
   custom_network:
-    external: true
+    driver: bridge

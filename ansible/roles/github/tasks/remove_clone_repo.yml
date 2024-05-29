@@ -1,5 +1,5 @@
 ---
 - name: Remove the helloabdul directory.
   file:
-    path: /home/ubuntu/helloabdul
+    path: /home//{{ USER }}/{{ PROJECT_NAME }}
     state: absent
