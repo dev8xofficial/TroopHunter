@@ -3,7 +3,7 @@
   git:
     repo: "{{ GIT_REPO }}"
     version: "{{ GIT_BRANCH }}"
-    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}"
+    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}"
     accept_hostkey: yes
     clone: true
   become: false
