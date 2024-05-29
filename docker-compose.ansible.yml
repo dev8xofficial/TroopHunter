@@ -10,9 +10,3 @@ services:
     stdin_open: true
     tty: true
     command: /bin/bash
-    networks:
-      - custom_network
-
-networks:
-  custom_network:
-    external: true
