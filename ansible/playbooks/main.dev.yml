@@ -16,8 +16,8 @@
     ENV_PATH: "/ansible/secrets"
   gather_facts: true
   roles:
-    - common
-    - nvm
-    - docker
+    # - common
+    # - nvm
+    # - docker
     - github
     - project
