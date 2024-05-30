@@ -13,3 +13,8 @@
   copy:
     src: "{{ ENV_PATH }}/crm/.env-{{ ENVIRONMENT }}"
     dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/crm/.env
+
+- name: Copy .env file from cloudflare into host cloudflare.
+  copy:
+    src: "{{ ENV_PATH }}/cloudflare/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/cloudflare/.env
