@@ -31,8 +31,9 @@
 
     git reset --hard HEAD
 
-# Stop all containers
+# Stop container/containers
 
+    docker stop container_id
     docker stop $(docker ps -a -q)
 
 # Run the following command to remove containers in your docker.
@@ -50,7 +51,7 @@
 
 # To see logs of all docker containers
 
-    docker logs --detail container_id
+    docker logs --details container_id
 
 # Run the following command to know which port is using which application or service in Mac
 
