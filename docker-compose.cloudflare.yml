@@ -4,11 +4,10 @@ services:
     build:
       context: .
       dockerfile: ./cloudflare/Dockerfile
-    # image: cloudflare/cloudflared:latest
     restart: unless-stopped
     command: tunnel run
-    environment:
-      - TUNNEL_TOKEN=eyJhIjoiNmVhNmZmMmIxYmI2ZDFkMjA1NzU2NzQwYmI2ZjVhOWYiLCJ0IjoiZDlkZjMwZDktMzFiOS00Y2YxLTljYWYtZDk3MjVhMDFlNWQwIiwicyI6Ik5UUXpZV0U0WlRrdE9EZGhNQzAwTURNMUxXRm1NV1l0Wm1VMllUUTVNVEprTmpkaCJ9
+    env_file:
+      - ./cloudflare/.env
     networks:
       - custom_network
 
@@ -17,11 +16,10 @@ services:
     build:
       context: .
       dockerfile: ./cloudflare/Dockerfile
-    # image: cloudflare/cloudflared:latest
     restart: unless-stopped
     command: tunnel run
-    environment:
-      - TUNNEL_TOKEN=eyJhIjoiNmVhNmZmMmIxYmI2ZDFkMjA1NzU2NzQwYmI2ZjVhOWYiLCJ0IjoiMmUzYTVlNTktMjA0OS00YzFlLTljNDMtMDg5MzRlM2UyMTIxIiwicyI6Ik5EWmlZVGRtTnpRdE5XTmhOaTAwT0dZNExUbGxNREl0TlRWbE5UUmhPR1V3TURBMSJ9
+    env_file:
+      - ./cloudflare/.env
     networks:
       - custom_network
 
@@ -30,10 +28,9 @@ services:
     build:
       context: .
       dockerfile: ./cloudflare/Dockerfile
-    # image: cloudflare/cloudflared:latest
     restart: unless-stopped
     command: tunnel run
-    environment:
-      - TUNNEL_TOKEN=eyJhIjoiNmVhNmZmMmIxYmI2ZDFkMjA1NzU2NzQwYmI2ZjVhOWYiLCJ0IjoiZjU2ZTFiODYtOGVkYi00MWE5LThmZWYtZjU3MWI1M2JiYTU5IiwicyI6Ik4yRTJZVEZsTlRNdFpqSmtaQzAwWlRWbExUa3laR1F0WVdFeE16azNZalF4WlRGayJ9
+    env_file:
+      - ./cloudflare/.env
     networks:
       - custom_network
