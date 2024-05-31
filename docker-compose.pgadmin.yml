@@ -6,9 +6,6 @@ services:
       dockerfile: ./postgres/Dockerfile
     ports:
       - '60001:80'
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=Ssg123777
     env_file:
       - ./backend/.env
     volumes:
@@ -24,9 +21,6 @@ services:
       dockerfile: ./postgres/Dockerfile
     ports:
       - '60002:80'
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=Ssg123777
     env_file:
       - ./backend/.env
     volumes:
@@ -42,9 +36,6 @@ services:
       dockerfile: ./postgres/Dockerfile
     ports:
       - '60003:80'
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=Ssg123777
     env_file:
       - ./backend/.env
     volumes:
