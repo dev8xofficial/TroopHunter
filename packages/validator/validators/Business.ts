@@ -47,7 +47,7 @@ export const BusinessCreateRequestSchema = BusinessSchema.extend({
   source: z.string().optional(),
   openingHour: z.string().optional(),
   closingHour: z.string().optional(),
-}).omit({ id: true, categoryId: true, postalCodeId: true, phoneId: true, ratingId: true, timezoneId: true, sourceId: true, openingHourId: true, closingHourId: true });
+}).omit({ id: true, categoryId: true, postalCodeId: true, phoneId: true, ratingId: true, timezoneId: true, sourceId: true, openingHourId: true, closingHourId: true, BusinessPhone: true });
 
 export const BusinessUpdateRequestSchema = BusinessSchema.omit({ id: true }).partial();
 
