@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: ./backend/Dockerfile
-      target: development
+      target: production
     entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
     env_file:
       - ./backend/.env
@@ -21,7 +21,7 @@ services:
     build:
       context: .
       dockerfile: ./backend/Dockerfile
-      target: development
+      target: production
     entrypoint: ['/bin/bash', '/app/backend/entrypoint.sh']
     env_file:
       - ./backend/.env
