@@ -276,71 +276,75 @@ class BusinessScraper:
                 soup_elements = [BeautifulSoup(html, "html.parser") for html in html_sources]
 
                 for info in soup_elements:
-                    img_with_place_src = info.find("img", {"src": lambda s: "place_gm" in s})
-                    img_with_schedule_src = info.find("img", {"src": lambda s: "schedule" in s})
-                    img_with_shipping_src = info.find("img", {"src": lambda s: "shipping" in s})
-                    img_with_public_src = info.find("img", {"src": lambda s: "public" in s})
-                    img_with_phone_src = info.find("img", {"src": lambda s: "phone" in s})
-                    img_with_plus_code_src = info.find("img", {"src": lambda s: "plus_code" in s})
-                    img_with_send_to_mobile_src = info.find("img", {"src": lambda s: "send_to_mobile" in s})
+                    # img_with_place_src = info.find("button", {"data-tooltip": lambda s: "Copy address" in s})
+                    # img_with_schedule_src = info.find("img", {"src": lambda s: "schedule" in s})
+                    # img_with_shipping_src = info.find("img", {"src": lambda s: "shipping" in s})
+                    # img_with_public_src = info.find("a", {"data-tooltip": lambda s: "Open website" in s})
+                    # img_with_phone_src = info.find("button", {"data-tooltip": lambda s: "Copy phone number" in s})
+                    # img_with_plus_code_src = info.find("button", {"data-tooltip": lambda s: "Copy plus code" in s})
+                    # img_with_send_to_mobile_src = info.find("button", {"aria-label": lambda s: "Send to your phone" in s})
 
-                    if img_with_place_src:
-                        self.logger.info("~~~~~~~~ Address Info ~~~~~~~~")
-                        tr_text = info.get_text("|", strip=True)
-                        current_business_data["address"] = tr_text
-                        self.logger.info(f"Place: {tr_text}")
-                        zip = get_postal_code(address=tr_text)
-                        self.logger.info("Location:")
-                        self.logger.info(f"Postal Code: {zip}")
-                        state = get_states(code=city['stateCode'], country_code=city['countryCode'])['states'][0]
-                        country = get_countries(code=city['countryCode'])['countries'][0]
-                        self.logger.info(f"CityId: {city['id']}")
-                        self.logger.info(f"StateId: {state['id']}")
-                        self.logger.info(f"CountryId: {country['id']}")
-                        current_business_data["postalCode"] = zip
-                        current_business_data["cityId"] = city['id']
-                        current_business_data["stateId"] = state['id']
-                        current_business_data["countryId"] = country['id']
-                    elif img_with_schedule_src:
-                        self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
-                        tr_elements = soup.find_all("tr", class_="y0skZc")
+                    try:
+                        if info.find("button", {"data-tooltip": lambda s: "Copy address" in s}):
+                            self.logger.info("~~~~~~~~ Address Info ~~~~~~~~")
+                            tr_text = info.find("button", {"data-tooltip": lambda s: "Copy address" in s}).get_text("|", strip=True).replace("\ue0c8|", "").replace("\ue14d", "").replace("\ue88e", "")
+                            current_business_data["address"] = tr_text
+                            self.logger.info(f"Place: {tr_text}")
+                            zip = get_postal_code(address=tr_text)
+                            self.logger.info("Location:")
+                            self.logger.info(f"Postal Code: {zip}")
+                            state = get_states(code=city['stateCode'], country_code=city['countryCode'])['states'][0]
+                            country = get_countries(code=city['countryCode'])['countries'][0]
+                            self.logger.info(f"CityId: {city['id']}")
+                            self.logger.info(f"StateId: {state['id']}")
+                            self.logger.info(f"CountryId: {country['id']}")
+                            current_business_data["postalCode"] = zip
+                            current_business_data["cityId"] = city['id']
+                            current_business_data["stateId"] = state['id']
+                            current_business_data["countryId"] = country['id']
+                        elif info.find("table", class_="fontBodyMedium"):
+                            self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
+                            tr_elements = soup.find_all("tr", class_="y0skZc")
 
-                        for tr in tr_elements:
-                            td_elements = tr.find_all("td")
+                            for tr in tr_elements:
+                                td_elements = tr.find_all("td")
 
-                            if len(td_elements) >= 2:
-                                first_td_text = td_elements[0].text.strip()
-                                second_td_text = td_elements[1].text.strip()
-                                string = td_elements[1].text.replace("\u202f", "")  # Remove space
-                                string = string.replace("–", "-")  # Replace non-standard hyphen with regular hyphen
-                                result = string.split("-")
-                                if "Mon" in first_td_text or "Tue" in first_td_text or "Wed" in first_td_text:
-                                    try:
-                                        current_business_data["openingHour"] = convert_to_24h_format(result[0])
-                                        current_business_data["closingHour"] = convert_to_24h_format(result[1])
-                                    except IndexError:
-                                        self.logger.warning(f"Open/Close Hours: {result}")
-                                        pass
-                                self.logger.info(f"{first_td_text}: {second_td_text}")
-                    elif img_with_shipping_src:
-                        tr_text = info.get_text("|", strip=True)
-                        self.logger.info(f"Shipping: {tr_text}")
-                    elif img_with_public_src:
-                        tr_text = info.get_text("|", strip=True)
-                        current_business_data["website"] = tr_text
-                        self.logger.info(f"Website: {tr_text}")
-                    elif img_with_phone_src:
-                        tr_text = info.get_text("|", strip=True)
-                        current_business_data["phone"] = get_cleaned_phone(phone=tr_text)
-                        self.logger.info(f"Phone: {tr_text}")
-                    elif img_with_plus_code_src:
-                        tr_text = info.get_text("|", strip=True)
-                        self.logger.info(f"Plus Code: {tr_text}")
-                    elif img_with_send_to_mobile_src:
-                        tr_text = info.get_text("|", strip=True)
-                        self.logger.info(f"Send To Mobile: {tr_text}")
-                    else:
-                        self.logger.info(f"Other: {info.find('img')} {info.get_text('|', strip=True)}")
+                                if len(td_elements) >= 2:
+                                    first_td_text = td_elements[0].text.strip()
+                                    second_td_text = td_elements[1].text.strip()
+                                    string = td_elements[1].text.replace("\u202f", "")  # Remove space
+                                    string = string.replace("–", "-")  # Replace non-standard hyphen with regular hyphen
+                                    result = string.split("-")
+                                    if "Mon" in first_td_text or "Tue" in first_td_text or "Wed" in first_td_text or "Thu" in first_td_text or "Fri" in first_td_text or "Sat" in first_td_text or "Sun" in first_td_text:
+                                        try:
+                                            current_business_data["openingHour"] = convert_to_24h_format(result[0])
+                                            current_business_data["closingHour"] = convert_to_24h_format(result[1])
+                                        except IndexError:
+                                            self.logger.warning(f"Open/Close Hours: {result}")
+                                            pass
+                                    self.logger.info(f"{first_td_text}: {second_td_text}")
+                        elif info.find("img", {"src": lambda s: "shipping" in s}):
+                            tr_text = info.get_text("|", strip=True)
+                            self.logger.info(f"Shipping: {tr_text}")
+                        elif info.find("a", {"data-tooltip": lambda s: "Open website" in s}):
+                            tr_text = info.find("a", {"data-tooltip": lambda s: "Open website" in s}).get_text("|", strip=True).replace("\ue80b|", "").replace("\ue89e", "").replace("\ue14d", "")
+                            current_business_data["website"] = tr_text
+                            self.logger.info(f"Website: {tr_text}")
+                        elif info.find("button", {"data-tooltip": lambda s: "Copy phone number" in s}):
+                            tr_text = info.find("button", {"data-tooltip": lambda s: "Copy phone number" in s}).get_text("|", strip=True).replace("\ue0b0|", "").replace("\ue14d", "").replace("\ue0b0", "")
+                            current_business_data["phone"] = get_cleaned_phone(phone=tr_text)
+                            self.logger.info(f"Phone: {tr_text}")
+                        elif info.find("button", {"data-tooltip": lambda s: "Copy plus code" in s}):
+                            tr_text = info.find("button", {"data-tooltip": lambda s: "Copy plus code" in s}).get_text("|", strip=True).replace("\uf186|", "").replace("\ue14d", "").replace("\ue88e", "")
+                            self.logger.info(f"Plus Code: {tr_text}")
+                        elif info.find("button", {"aria-label": lambda s: "Send to your phone" in s}):
+                            tr_text = info.get_text("|", strip=True)
+                            self.logger.info(f"Send To Mobile: {tr_text}")
+                        else:
+                            self.logger.info(f"Other: {info.find('img')} {info.get_text('|', strip=True)}")
+
+                    except Exception:
+                        self.logger.info("An error occurred while searching business information:")
 
                 if has_scrolled:
                     time.sleep(self.short_wait)
