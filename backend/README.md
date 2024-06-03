@@ -22,6 +22,24 @@ This is the backend system for user and business management.
 
 The API documentation can be found in the Swagger documentation at `http://localhost:3000/api-docs` when the server is running.
 
+## Common Errors
+
+```
+== 20230613145501-create_business_table: migrating =======
+ERROR: type "geometry" does not exist
+```
+
+Solution:
+
+```
+CREATE EXTENSION postgis;
+```
+
+1. Open pgAdmin
+2. Select (click) your database
+3. Click "SQL" icon on the bar
+4. Run "CREATE EXTENSION postgis;"
+
 ## Contributing
 
 1. Fork the repository.

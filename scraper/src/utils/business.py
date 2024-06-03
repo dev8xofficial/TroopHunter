@@ -13,6 +13,8 @@ def convert_to_24h_format(time_str):
         # Handle "Open 24 hours" case
         if time_str.lower() == "open 24 hours":
             return "00:00"
+        if time_str.lower() == "closed":
+            return "23:59"
 
         # Remove any non-alphanumeric characters except ":" and whitespace
         time_str = re.sub(r"[^\w\s:]", "", time_str)
