@@ -3,7 +3,7 @@ services:
     container_name: pgadmin_prod
     build:
       context: .
-      dockerfile: ./postgres/Dockerfile
+      dockerfile: ./pgadmin/Dockerfile
     ports:
       - '60001:80'
     env_file:
@@ -13,12 +13,14 @@ services:
     depends_on:
       postgres_prod:
         condition: service_started
+    networks:
+      - custom_network
 
   pgadmin_stag:
     container_name: pgadmin_stag
     build:
       context: .
-      dockerfile: ./postgres/Dockerfile
+      dockerfile: ./pgadmin/Dockerfile
     ports:
       - '60002:80'
     env_file:
@@ -28,12 +30,14 @@ services:
     depends_on:
       postgres_stag:
         condition: service_started
+    networks:
+      - custom_network
 
   pgadmin_dev:
     container_name: pgadmin_dev
     build:
       context: .
-      dockerfile: ./postgres/Dockerfile
+      dockerfile: ./pgadmin/Dockerfile
     ports:
       - '60003:80'
     env_file:
@@ -43,3 +47,9 @@ services:
     depends_on:
       postgres_dev:
         condition: service_started
+    networks:
+      - custom_network
+
+networks:
+  custom_network:
+    driver: bridge
