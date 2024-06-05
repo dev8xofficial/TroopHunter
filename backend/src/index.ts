@@ -38,7 +38,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec)); // Mount Sw
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Welcome to the API!');
+  res.send(`${process.env.JWT_SECRET} - Welcome to the API!`);
 });
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
