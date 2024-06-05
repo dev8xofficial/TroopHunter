@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: ./crm/Dockerfile
-      target: production
+      target: development
     env_file:
       - ./crm/.env
     ports:
@@ -20,7 +20,7 @@ services:
     build:
       context: .
       dockerfile: ./crm/Dockerfile
-      target: production
+      target: development
     env_file:
       - ./crm/.env
     ports:
