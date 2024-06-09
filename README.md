@@ -45,6 +45,10 @@
     docker image prune -a -f
     docker rmi $(docker images -q)
 
+# Run the following command to remove all dangling images.
+
+    docker image prune
+
 # To see all docker containers running
 
     docker ps -a
@@ -52,6 +56,14 @@
 # To see logs of all docker containers
 
     docker logs --details container_id
+
+# To see the docker resource usage
+
+    docker stats
+
+# To see the docker information
+
+    docker info
 
 # Run the following command to know which port is using which application or service in Mac
 
@@ -76,9 +88,11 @@
 
     192.168.1.100
     Install Linux ProtonVPN
-    Install bridge-utils
-    Install net-tools
-    Install openssh-server
+    sudo apt install curl
+    Install pgadmin 4 (apt)
+    sudo apt install bridge-utils
+    sudo apt install net-tools
+    sudo apt install openssh-server
 
 # Step 4 - Run below commands in ubuntu server to copy public key in ubuntu server
 
