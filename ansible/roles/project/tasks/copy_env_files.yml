@@ -27,4 +27,4 @@
 - name: Copy chromedriver file from scraper into host scraper.
   copy:
     src: "{{ ENV_PATH }}/scraper/chromedriver"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/scraper/chromedriver
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/scraper/driver/chromedriver
