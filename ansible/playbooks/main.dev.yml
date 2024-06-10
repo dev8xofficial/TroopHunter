@@ -2,8 +2,8 @@
 - hosts: ubuntu
   # user: ubuntu-server
   become: true
-  # become_method: sudo
-  # become_user: root
+  become_method: sudo
+  become_user: root
   vars_files:
     - /ansible/secrets/github_token
   vars:
