@@ -18,3 +18,13 @@
   copy:
     src: "{{ ENV_PATH }}/cloudflare/.env-{{ ENVIRONMENT }}"
     dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/cloudflare/.env
+
+- name: Copy .env file from scraper into host scraper.
+  copy:
+    src: "{{ ENV_PATH }}/scraper/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/scraper/.env
+
+- name: Copy chromedriver file from scraper into host scraper.
+  copy:
+    src: "{{ ENV_PATH }}/scraper/chromedriver"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/scraper/chromedriver

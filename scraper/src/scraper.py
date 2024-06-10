@@ -11,6 +11,8 @@ import re
 from bs4 import BeautifulSoup
 from urllib.parse import quote_plus
 from config import BASE_URL
+from dotenv import load_dotenv
+import os
 
 from src.utils.location import get_postal_code, get_timezone_info, extract_lat_lon
 from src.utils.business import convert_to_24h_format, get_cleaned_phone, click_feed_article, close_feed_article, wait_for_url
@@ -20,6 +22,9 @@ from src.services.state import get_states
 from src.services.country import get_countries
 from config import sourceValues
 
+# Load environment variables from .env file
+load_dotenv()
+
 
 class BusinessScraper:
     def __init__(self, searchQuery=None, logger=None):
@@ -27,7 +32,7 @@ class BusinessScraper:
         self.medium_wait = 10
         self.long_wait = 60
 
-        chrome_driver_path = '/Users/abdulrehman/Workstation/hellobadul/development/helloabdul/scraper/driver/chromedriver'
+        chrome_driver_path = os.environ.get("PROJECT_PATH")
         # Chrome Options
         chrome_options = Options()
         # chrome_options.add_argument("--headless")
