@@ -1,5 +1,6 @@
 # Logs
-logs
+logs/*
+driver/*
 venv
 __pycache__
 **/__pycache__/
