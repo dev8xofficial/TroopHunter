@@ -10,10 +10,10 @@ services:
       file: docker-compose.base.yml
       service: postgres_prod
 
-  pgadmin_prod:
-    extends:
-      file: docker-compose.pgadmin.yml
-      service: pgadmin_prod
+  # pgadmin_prod:
+  #   extends:
+  #     file: docker-compose.pgadmin.yml
+  #     service: pgadmin_prod
 
   backend_prod:
     extends:
