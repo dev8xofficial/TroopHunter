@@ -69,7 +69,7 @@ def main():
 
     login(os.environ.get("BACKEND_USER"), os.environ.get("BACKEND_USER_PASSWORD"))
 
-    LIMIT = 1  # Number of queues to process per page
+    LIMIT = os.environ.get("MAX_WORKERS")  # Number of queues to process per page
     total_pages_queues = get_queue(limit=LIMIT)["totalPages"]
     total_pages_cities = get_cities(limit=LIMIT)["totalPages"]
 
