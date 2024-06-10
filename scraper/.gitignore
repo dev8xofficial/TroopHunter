@@ -1,6 +1,6 @@
 # Logs
-logs/*
-driver/*
+logs/*.log
+driver/chromedriver
 venv
 __pycache__
 **/__pycache__/
