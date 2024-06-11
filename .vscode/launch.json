@@ -14,6 +14,7 @@
         "NODE_ENV": "development" // Set environment variables if needed
       },
       "envFile": "${workspaceFolder}/backend/.env", // Path to your environment file
+      "cwd": "${workspaceFolder}/backend",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "skipFiles": ["<node_internals>/**"]
