@@ -21,15 +21,15 @@ export const getCitiesByQuery = async (req: Request, res: Response) => {
   const whereClause: { [key: string]: any } = {};
 
   if (name) {
-    whereClause.name = { [Op.iLike]: `%${name}%` };
+    whereClause.name = { [Op.eq]: `${name}` };
   }
 
   if (stateCode) {
-    whereClause.stateCode = { [Op.iLike]: `%${stateCode}%` };
+    whereClause.stateCode = { [Op.eq]: `${stateCode}` };
   }
 
   if (countryCode) {
-    whereClause.countryCode = { [Op.iLike]: `%${countryCode}%` };
+    whereClause.countryCode = { [Op.eq]: `${countryCode}` };
   }
 
   try {
