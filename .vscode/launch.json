@@ -9,14 +9,14 @@
       "runtimeArgs": [
         "--inspect" // Add any additional runtime arguments if required
       ],
-      "args": ["${workspaceFolder}/backend/src/index.ts"],
+      "args": ["${workspaceFolder}/backend/src/server.ts"],
       "env": {
         "NODE_ENV": "development" // Set environment variables if needed
       },
+      "envFile": "${workspaceFolder}/backend/.env", // Path to your environment file
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**"],
-      "preLaunchTask": "envFile"
+      "skipFiles": ["<node_internals>/**"]
     },
     {
       "name": "Scraper",
