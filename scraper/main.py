@@ -43,7 +43,8 @@ def process_queue(queue, city):
             searchQuery = f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())}"
             scraper = BusinessScraper(searchQuery=searchQuery, logger=logger)
             scraper.search(searchQuery)
-            scraper.scroll_and_extract_data(queue["searchQuery"], city)
+            # scraper.scroll_and_extract_data(queue["searchQuery"], city)
+            scraper.scroll_and_parse_data(queue["searchQuery"], city)
 
             queue["status"] = "Completed"
             update_queue(request=queue)

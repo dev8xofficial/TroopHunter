@@ -1,11 +1,10 @@
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+from seleniumwire import webdriver
+from seleniumwire.utils import decode
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, WebDriverException, TimeoutException
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 import time
 import re
 from bs4 import BeautifulSoup
@@ -13,6 +12,7 @@ from urllib.parse import quote_plus
 from config import BASE_URL
 from dotenv import load_dotenv
 import os
+import json
 
 from src.utils.location import get_postal_code, get_timezone_info, extract_lat_lon
 from src.utils.business import convert_to_24h_format, get_cleaned_phone, click_feed_article, close_feed_article, wait_for_url
@@ -43,7 +43,7 @@ class BusinessScraper:
 
         try:
             logger.info("Initiating chrome web driver.")
-            self.driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
+            self.driver = webdriver.Chrome(options=chrome_options)
         except Exception as e:
             logger.error("Service chromedriver unexpectedly exited: ", e)
 
@@ -363,6 +363,128 @@ class BusinessScraper:
                 self.logger.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
             except Exception as e:
                 self.logger.exception("An error occurred while scrolling and extracting data: %s", e)
+    
+    def parse_network_traffic(self, target_url):
+        for request in self.driver.requests:                        
+            if target_url in request.url:
+                data = decode(request.response.body, request.response.headers.get('Content-Encoding', 'identity'))
+                data = data.decode("utf8")
+                data = json.loads(data.lstrip(")]}'\n").rstrip(','))
+                return data
+
+    def scroll_and_parse_data(self, query: str, city: str):
+        data = self.driver.execute_script("return window.APP_INITIALIZATION_STATE")
+        data = json.loads(data[3][2].lstrip(")]}'\n").rstrip(','))
+
+        current_business_data = {}
+
+        #Parse place endpoint data
+        # data = self.parse_network_traffic("https://www.google.com/maps/preview/place")
+
+        counter = 1
+        while True:
+            try:
+                current_business_maps_data = data[0][1][counter][14]
+                
+                #Heading
+                self.logger.info("~~~~~~~~ Basic Info ~~~~~~~~")
+                # soup = BeautifulSoup(self.driver.page_source, "html.parser")
+                # h1_text = soup.find("h1", class_="DUwDvf").text
+                current_business_data["name"] = current_business_maps_data[11]
+                self.logger.info(f"Title: {current_business_maps_data[11]}")
+                current_business_data["businessDomain"] = current_business_maps_data[13][0]
+                current_business_data["category"] = query
+                # try:
+                #     # Find the element by its CSS selector
+                #     element = current_business_anchor.find_element(By.XPATH, ".//div[@class='hHbUWd']//h1")
+                #     text = element.text
+                #     if "sponsor" in text.lower():
+                #         current_business_data["sponsoredAd"] = True
+                # except NoSuchElementException as e:
+                #     pass
+
+                # handle_timeout_with_retry(dynamic_code_for_try=lambda: wait_for_url(self=self, h1_text=h1_text), logger=self.logger)
+
+                # Rating
+                if current_business_maps_data[4]:
+                    rating_result = current_business_maps_data[4]
+                    self.logger.info(f"Rating: {rating_result[7]}")
+                    self.logger.info(f"Reviews: {rating_result[8]}")
+                    current_business_data["rating"] = float(rating_result[7])
+                    current_business_data["reviews"] = int(rating_result[8])
+                else:
+                    self.logger.info(f"Rating: {0.0}")
+                    self.logger.info(f"Reviews: {0}")
+                    current_business_data["rating"] = 0.0
+                    current_business_data["reviews"] = 0
+
+                #Latitude & Longitude
+                self.logger.info("~~~~~~~~ Location Info ~~~~~~~~")
+                lat_and_long = current_business_maps_data[9]
+                current_business_data["latitude"] = lat_and_long[2]
+                current_business_data["longitude"] = lat_and_long[3]
+                self.logger.info(f"Latitude & Longitude: {lat_and_long[2]}, {lat_and_long[3]}")
+
+                #Source
+                current_business_data["source"] = sourceValues[0]
+                self.logger.info(f"Source: {sourceValues[0]}")
+
+                #Timezone
+                self.logger.info("~~~~~~~~ Timezone Info ~~~~~~~~")
+                timezone = get_timezone_info(current_business_maps_data[30])
+                self.logger.info(f"Timezone: {current_business_maps_data[30]}")
+                self.logger.info(f"UTC Offset: {timezone['utc_offset']}")
+                self.logger.info(f"DST: {timezone['dst']}")
+                self.logger.info(f"DST Offset: {timezone['dst_offset']}")
+                self.logger.info(f"Country Code: {city['countryCode']}")
+                current_business_data["timezone"] = {
+                    "timezoneName": current_business_maps_data[30],
+                    "utcOffset": timezone["utc_offset"],
+                    "dst": timezone["dst"],
+                    "dstOffset": timezone["dst_offset"],
+                    "countryCode": city["countryCode"],
+                }
+
+                #Address Info
+                self.logger.info("~~~~~~~~ Address Info ~~~~~~~~")
+                current_business_address = ", ".join(current_business_maps_data[2])
+                current_business_data["address"] = current_business_address
+                self.logger.info(f"Place: {current_business_address}")
+                zip = get_postal_code(address=current_business_maps_data[2][1])
+                self.logger.info(f"Postal Code: {zip}")
+                state = get_states(code=city['stateCode'], country_code=city['countryCode'])['states'][0]
+                country = get_countries(code=city['countryCode'])['countries'][0]
+                current_business_data["postalCode"] = zip
+                current_business_data["cityId"] = city['id']
+                current_business_data["stateId"] = state['id']
+                current_business_data["countryId"] = country['id']
+                self.logger.info(f"CityId: {city['id']}")
+                self.logger.info(f"StateId: {state['id']}")
+                self.logger.info(f"CountryId: {country['id']}")
+
+                #Schedule Info
+                self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
+                current_business_schedule = current_business_maps_data[34]
+                open_hour = current_business_schedule[1][0][1][0].replace("\u202f", "").split("–")[0]
+                close_hour = current_business_schedule[1][0][1][0].replace("\u202f", "").split("–")[1]
+                current_business_data["openingHour"] = convert_to_24h_format(open_hour)
+                current_business_data["closingHour"] = convert_to_24h_format(close_hour)
+                self.logger.info(f"Open Hours: {open_hour}")
+                self.logger.info(f"Close Hours: {close_hour}")
+
+                #Website
+                current_business_data["website"] = current_business_maps_data[7][1]
+                self.logger.info(f"Website: {current_business_maps_data[7][1]}")
+
+                #Phone
+                current_business_data["phone"] = current_business_maps_data[178][0][3]
+                self.logger.info(f"Phone: {current_business_maps_data[178][0][3]}")
+            except Exception:
+                self.logger.info("An error occurred while searching business information:")
+            
+            counter = counter + 1
+            if counter >= len(data[0][1]):
+                break
 
     def close(self):
         self.driver.quit()
