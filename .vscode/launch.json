@@ -27,6 +27,15 @@
       "console": "integratedTerminal",
       "justMyCode": true,
       "python": "${workspaceFolder}/scraper/venv/bin/python" // Update with the path to your venv Python executable
-    }
+    },
+    {
+      "name": "Node.js Current File",
+      "program": "${workspaceFolder}/node/cities.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
   ]
 }
