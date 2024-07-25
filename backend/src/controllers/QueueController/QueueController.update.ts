@@ -8,15 +8,15 @@ import { IQueueAttributes } from 'validator/interfaces';
 
 export const updateQueue = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { searchQuery, laptopName, status }: IQueueAttributes = req.body;
+  const { searchQuery, laptopName }: IQueueAttributes = req.body;
 
   try {
     const queue = await Queue.findByPk(id);
 
     if (queue) {
-      queue.searchQuery = searchQuery;
-      queue.laptopName = laptopName;
-      queue.status = status;
+      if (searchQuery) queue.searchQuery = searchQuery;
+      if (laptopName) queue.laptopName = laptopName;
+
       await queue.save();
 
       const response: ApiResponse<Queue> = createApiResponse({ success: true, data: queue, message: getQueueMessage(QueueMessageKey.QUEUE_UPDATED).message, status: getQueueMessage(QueueMessageKey.QUEUE_UPDATED).code });

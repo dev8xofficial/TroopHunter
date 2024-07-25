@@ -1,7 +1,6 @@
-version: '3.9'
 services:
-  ansible:
-    container_name: ansible
+  ansible_dev:
+    container_name: ansible_dev
     build:
       context: .
       dockerfile: ./ansible/Dockerfile
@@ -11,9 +10,3 @@ services:
     stdin_open: true
     tty: true
     command: /bin/bash
-    networks:
-      - custom_network
-
-networks:
-  custom_network:
-    external: true

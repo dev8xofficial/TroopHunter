@@ -2,14 +2,29 @@
 - name: Copy .env file from backend into host backend.
   copy:
     src: "{{ ENV_PATH }}/backend/.env-{{ ENVIRONMENT }}"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/backend/.env
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/backend/.env
 
 - name: Copy .env file from ci into host ci.
   copy:
     src: "{{ ENV_PATH }}/ci/.env-{{ ENVIRONMENT }}"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/ci/.env
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/ci/.env
 
 - name: Copy .env file from crm into host crm.
   copy:
     src: "{{ ENV_PATH }}/crm/.env-{{ ENVIRONMENT }}"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/crm/.env
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/crm/.env
+
+- name: Copy .env file from cloudflare into host cloudflare.
+  copy:
+    src: "{{ ENV_PATH }}/cloudflare/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/cloudflare/.env
+
+- name: Copy .env file from scraper into host scraper.
+  copy:
+    src: "{{ ENV_PATH }}/scraper/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/scraper/.env
+
+- name: Copy chromedriver file from scraper into host scraper.
+  copy:
+    src: "{{ ENV_PATH }}/scraper/chromedriver"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/scraper/driver/chromedriver

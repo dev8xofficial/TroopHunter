@@ -1,24 +1,29 @@
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+from seleniumwire import webdriver
+from seleniumwire.utils import decode
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, WebDriverException, TimeoutException
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 import time
 import re
 from bs4 import BeautifulSoup
 from urllib.parse import quote_plus
 from config import BASE_URL
+from dotenv import load_dotenv
+import os
+import json
 
 from src.utils.location import get_postal_code, get_timezone_info, extract_lat_lon
 from src.utils.business import convert_to_24h_format, get_cleaned_phone, click_feed_article, close_feed_article, wait_for_url
 from src.utils.general import handle_timeout_with_retry
-from src.services.business import check_business_existence, create_business
+from src.services.business import check_business_existence, create_business, create_businesses
 from src.services.state import get_states
 from src.services.country import get_countries
 from config import sourceValues
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 class BusinessScraper:
@@ -27,7 +32,7 @@ class BusinessScraper:
         self.medium_wait = 10
         self.long_wait = 60
 
-        chrome_driver_path = '/Users/abdulrehman/Workstation/Personal/helloabdul/helloabdul/scraper/driver/chromedriver'
+        chrome_driver_path = os.environ.get("PROJECT_PATH")
         # Chrome Options
         chrome_options = Options()
         # chrome_options.add_argument("--headless")
@@ -38,7 +43,7 @@ class BusinessScraper:
 
         try:
             logger.info("Initiating chrome web driver.")
-            self.driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
+            self.driver = webdriver.Chrome(options=chrome_options)
         except Exception as e:
             logger.error("Service chromedriver unexpectedly exited: ", e)
 
@@ -276,71 +281,75 @@ class BusinessScraper:
                 soup_elements = [BeautifulSoup(html, "html.parser") for html in html_sources]
 
                 for info in soup_elements:
-                    img_with_place_src = info.find("img", {"src": lambda s: "place_gm" in s})
-                    img_with_schedule_src = info.find("img", {"src": lambda s: "schedule" in s})
-                    img_with_shipping_src = info.find("img", {"src": lambda s: "shipping" in s})
-                    img_with_public_src = info.find("img", {"src": lambda s: "public" in s})
-                    img_with_phone_src = info.find("img", {"src": lambda s: "phone" in s})
-                    img_with_plus_code_src = info.find("img", {"src": lambda s: "plus_code" in s})
-                    img_with_send_to_mobile_src = info.find("img", {"src": lambda s: "send_to_mobile" in s})
+                    # img_with_place_src = info.find("button", {"data-tooltip": lambda s: "Copy address" in s})
+                    # img_with_schedule_src = info.find("img", {"src": lambda s: "schedule" in s})
+                    # img_with_shipping_src = info.find("img", {"src": lambda s: "shipping" in s})
+                    # img_with_public_src = info.find("a", {"data-tooltip": lambda s: "Open website" in s})
+                    # img_with_phone_src = info.find("button", {"data-tooltip": lambda s: "Copy phone number" in s})
+                    # img_with_plus_code_src = info.find("button", {"data-tooltip": lambda s: "Copy plus code" in s})
+                    # img_with_send_to_mobile_src = info.find("button", {"aria-label": lambda s: "Send to your phone" in s})
 
-                    if img_with_place_src:
-                        self.logger.info("~~~~~~~~ Address Info ~~~~~~~~")
-                        tr_text = info.get_text("|", strip=True)
-                        current_business_data["address"] = tr_text
-                        self.logger.info(f"Place: {tr_text}")
-                        zip = get_postal_code(address=tr_text)
-                        self.logger.info("Location:")
-                        self.logger.info(f"Postal Code: {zip}")
-                        state = get_states(code=city['stateCode'], country_code=city['countryCode'])['states'][0]
-                        country = get_countries(code=city['countryCode'])['countries'][0]
-                        self.logger.info(f"CityId: {city['id']}")
-                        self.logger.info(f"StateId: {state['id']}")
-                        self.logger.info(f"CountryId: {country['id']}")
-                        current_business_data["postalCode"] = zip
-                        current_business_data["cityId"] = city['id']
-                        current_business_data["stateId"] = state['id']
-                        current_business_data["countryId"] = country['id']
-                    elif img_with_schedule_src:
-                        self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
-                        tr_elements = soup.find_all("tr", class_="y0skZc")
+                    try:
+                        if info.find("button", {"data-tooltip": lambda s: "Copy address" in s}):
+                            self.logger.info("~~~~~~~~ Address Info ~~~~~~~~")
+                            tr_text = info.find("button", {"data-tooltip": lambda s: "Copy address" in s}).get_text("|", strip=True).replace("\ue0c8|", "").replace("\ue14d", "").replace("\ue88e", "")
+                            current_business_data["address"] = tr_text
+                            self.logger.info(f"Place: {tr_text}")
+                            zip = get_postal_code(address=tr_text)
+                            self.logger.info("Location:")
+                            self.logger.info(f"Postal Code: {zip}")
+                            state = get_states(code=city['stateCode'], country_code=city['countryCode'])['states'][0]
+                            country = get_countries(code=city['countryCode'])['countries'][0]
+                            self.logger.info(f"CityId: {city['id']}")
+                            self.logger.info(f"StateId: {state['id']}")
+                            self.logger.info(f"CountryId: {country['id']}")
+                            current_business_data["postalCode"] = zip
+                            current_business_data["cityId"] = city['id']
+                            current_business_data["stateId"] = state['id']
+                            current_business_data["countryId"] = country['id']
+                        elif info.find("table", class_="fontBodyMedium"):
+                            self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
+                            tr_elements = soup.find_all("tr", class_="y0skZc")
 
-                        for tr in tr_elements:
-                            td_elements = tr.find_all("td")
+                            for tr in tr_elements:
+                                td_elements = tr.find_all("td")
 
-                            if len(td_elements) >= 2:
-                                first_td_text = td_elements[0].text.strip()
-                                second_td_text = td_elements[1].text.strip()
-                                string = td_elements[1].text.replace("\u202f", "")  # Remove space
-                                string = string.replace("–", "-")  # Replace non-standard hyphen with regular hyphen
-                                result = string.split("-")
-                                if "Mon" in first_td_text or "Tue" in first_td_text or "Wed" in first_td_text:
-                                    try:
-                                        current_business_data["openingHour"] = convert_to_24h_format(result[0])
-                                        current_business_data["closingHour"] = convert_to_24h_format(result[1])
-                                    except IndexError:
-                                        self.logger.warning(f"Open/Close Hours: {result}")
-                                        pass
-                                self.logger.info(f"{first_td_text}: {second_td_text}")
-                    elif img_with_shipping_src:
-                        tr_text = info.get_text("|", strip=True)
-                        self.logger.info(f"Shipping: {tr_text}")
-                    elif img_with_public_src:
-                        tr_text = info.get_text("|", strip=True)
-                        current_business_data["website"] = tr_text
-                        self.logger.info(f"Website: {tr_text}")
-                    elif img_with_phone_src:
-                        tr_text = info.get_text("|", strip=True)
-                        current_business_data["phone"] = get_cleaned_phone(phone=tr_text)
-                        self.logger.info(f"Phone: {tr_text}")
-                    elif img_with_plus_code_src:
-                        tr_text = info.get_text("|", strip=True)
-                        self.logger.info(f"Plus Code: {tr_text}")
-                    elif img_with_send_to_mobile_src:
-                        tr_text = info.get_text("|", strip=True)
-                        self.logger.info(f"Send To Mobile: {tr_text}")
-                    else:
-                        self.logger.info(f"Other: {info.find('img')} {info.get_text('|', strip=True)}")
+                                if len(td_elements) >= 2:
+                                    first_td_text = td_elements[0].text.strip()
+                                    second_td_text = td_elements[1].text.strip()
+                                    string = td_elements[1].text.replace("\u202f", "")  # Remove space
+                                    string = string.replace("–", "-")  # Replace non-standard hyphen with regular hyphen
+                                    result = string.split("-")
+                                    if "Mon" in first_td_text or "Tue" in first_td_text or "Wed" in first_td_text or "Thu" in first_td_text or "Fri" in first_td_text or "Sat" in first_td_text or "Sun" in first_td_text:
+                                        try:
+                                            current_business_data["openingHour"] = convert_to_24h_format(result[0])
+                                            current_business_data["closingHour"] = convert_to_24h_format(result[1])
+                                        except IndexError:
+                                            self.logger.warning(f"Open/Close Hours: {result}")
+                                            pass
+                                    self.logger.info(f"{first_td_text}: {second_td_text}")
+                        elif info.find("img", {"src": lambda s: "shipping" in s}):
+                            tr_text = info.get_text("|", strip=True)
+                            self.logger.info(f"Shipping: {tr_text}")
+                        elif info.find("a", {"data-tooltip": lambda s: "Open website" in s}):
+                            tr_text = info.find("a", {"data-tooltip": lambda s: "Open website" in s}).get_text("|", strip=True).replace("\ue80b|", "").replace("\ue89e", "").replace("\ue14d", "")
+                            current_business_data["website"] = tr_text
+                            self.logger.info(f"Website: {tr_text}")
+                        elif info.find("button", {"data-tooltip": lambda s: "Copy phone number" in s}):
+                            tr_text = info.find("button", {"data-tooltip": lambda s: "Copy phone number" in s}).get_text("|", strip=True).replace("\ue0b0|", "").replace("\ue14d", "").replace("\ue0b0", "")
+                            current_business_data["phone"] = get_cleaned_phone(phone=tr_text)
+                            self.logger.info(f"Phone: {tr_text}")
+                        elif info.find("button", {"data-tooltip": lambda s: "Copy plus code" in s}):
+                            tr_text = info.find("button", {"data-tooltip": lambda s: "Copy plus code" in s}).get_text("|", strip=True).replace("\uf186|", "").replace("\ue14d", "").replace("\ue88e", "")
+                            self.logger.info(f"Plus Code: {tr_text}")
+                        elif info.find("button", {"aria-label": lambda s: "Send to your phone" in s}):
+                            tr_text = info.get_text("|", strip=True)
+                            self.logger.info(f"Send To Mobile: {tr_text}")
+                        else:
+                            self.logger.info(f"Other: {info.find('img')} {info.get_text('|', strip=True)}")
+
+                    except Exception:
+                        self.logger.info("An error occurred while searching business information:")
 
                 if has_scrolled:
                     time.sleep(self.short_wait)
@@ -354,6 +363,287 @@ class BusinessScraper:
                 self.logger.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
             except Exception as e:
                 self.logger.exception("An error occurred while scrolling and extracting data: %s", e)
+    
+    def parse_network_traffic(self, target_url):
+        combined_data = []
+        for request in self.driver.requests:                        
+            if target_url in request.url:
+                data = decode(request.response.body, request.response.headers.get('Content-Encoding', 'identity'))
+                data = data.decode("utf8")
+                if "/place" in target_url:
+                    data = json.loads(data.lstrip(")]}'\n").rstrip(','))
+                elif "/search" in target_url:
+                    data = json.loads(json.loads(data.replace('/*""*/', ""))['d'].lstrip(")]}'\n").rstrip(','))
+                    combined_data = combined_data + data[0][1][1:]
+        return combined_data
+
+    def scroll_and_parse_data(self, query: str, city: str):
+        def scroll_till_the_end_of_list(self, query: str, city: str):
+            self.logger.info("Scrolling into feed.")
+            counter = 0
+
+            try:
+                feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
+            except NoSuchElementException:
+                return
+            except StaleElementReferenceException:
+                return
+
+            print(f"{query} - while loop: \n")
+            while True:
+                business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
+                current_business_anchor = None
+                current_business_anchor_is_article_or_not = None
+                current_business_anchor_is_loader_or_not = None
+                current_business_anchor_is_end_of_list_or_not = None
+
+                current_business_anchor = business_anchor_tags[counter]
+
+                try:
+                    if current_business_anchor:
+                        print(f"{query} - 1: \n")
+                        current_business_anchor_is_article_or_not = current_business_anchor.find_element(By.XPATH, ".//div[contains(@class, 'Nv2PK')]//a[contains(@class, 'hfpxzc')]")
+                except NoSuchElementException:
+                    pass
+                except StaleElementReferenceException:
+                    pass
+
+                try:
+                    if current_business_anchor:
+                        print(f"{query} - 2: \n")
+                        current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
+                except NoSuchElementException:
+                    pass
+                except StaleElementReferenceException:
+                    pass
+
+                try:
+                    if current_business_anchor:
+                        print(f"{query} - 3: \n")
+                        current_business_anchor_is_end_of_list_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='PbZDve ']")
+                except NoSuchElementException:
+                    pass
+                except StaleElementReferenceException:
+                    pass
+
+                if feed is None:
+                    print(f"{query} - 4: \n")
+                    break
+                elif len(business_anchor_tags) <= counter:
+                    print(f"{query} - 5: \n")
+                    break
+
+                if not current_business_anchor_is_article_or_not and not current_business_anchor_is_loader_or_not and not current_business_anchor_is_end_of_list_or_not:
+                    print(f"{query} - 6: \n")
+                    counter = counter + 1
+                    continue
+                if current_business_anchor_is_loader_or_not:
+                    print(f"{query} - 7: \n")
+                    while True:
+                        try:
+                            print(f"{query} - 8: \n")
+                            business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
+                            current_business_anchor = business_anchor_tags[counter]
+                            current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
+                        except NoSuchElementException:
+                            break
+                        except StaleElementReferenceException:
+                            pass
+
+                        if current_business_anchor_is_loader_or_not:
+                            print(f"{query} - 9: \n")
+                            wait = WebDriverWait(self.driver, 5)
+                            try:
+                                wait.until(EC.invisibility_of_element_located((By.XPATH, "//div[@class='qjESne veYFef']")))
+                            except NoSuchElementException:
+                                pass
+                            except TimeoutException:
+                                pass
+                            continue
+                        else:
+                            break
+                    counter = counter + 1
+                    continue
+                if current_business_anchor_is_end_of_list_or_not:
+                    print(f"{query} - 10: \n")
+                    counter = counter + 1
+                    break
+
+                has_scrolled = self.driver.execute_script(
+                    """
+                        try {
+                            arguments[0].scrollIntoView(true);
+                            return true;
+                        } catch (error) {
+                            console.error(error);
+                            return false;
+                        }
+                    """,
+                    current_business_anchor_is_article_or_not,
+                )
+
+                counter = counter + 1
+
+                try:
+                    if has_scrolled:
+                        time.sleep(0.5)
+
+                    self.logger.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
+                except Exception as e:
+                    self.logger.exception("An error occurred while scrolling and extracting data: %s", e)
+
+        scroll_till_the_end_of_list(self, query, city)
+
+        data = self.driver.execute_script("return window.APP_INITIALIZATION_STATE")
+        data = json.loads(data[3][2].lstrip(")]}'\n").rstrip(','))
+
+        businesses = []
+        state = get_states(code=city['stateCode'], country_code=city['countryCode'])['states'][0]
+        country = get_countries(code=city['countryCode'])['countries'][0]
+
+        #Parse place endpoint data
+        data = data[0][1] + self.parse_network_traffic("https://www.google.com/search")
+
+        counter = 1
+        while True:
+            try:
+                current_business_data = {}
+                current_business_maps_data = data[counter][14]
+                
+                #Heading
+                try:
+                    self.logger.info("~~~~~~~~ Basic Info ~~~~~~~~")
+                    # soup = BeautifulSoup(self.driver.page_source, "html.parser")
+                    # h1_text = soup.find("h1", class_="DUwDvf").text
+                    current_business_data["name"] = current_business_maps_data[11]
+                    self.logger.info(f"Title: {current_business_maps_data[11]}")
+                    current_business_data["businessDomain"] = current_business_maps_data[13][0]
+                except Exception as e:
+                    self.logger.info(f"Phone: An error occurred while searching basic information: {e}")
+                # try:
+                #     # Find the element by its CSS selector
+                #     element = current_business_anchor.find_element(By.XPATH, ".//div[@class='hHbUWd']//h1")
+                #     text = element.text
+                #     if "sponsor" in text.lower():
+                #         current_business_data["sponsoredAd"] = True
+                # except NoSuchElementException as e:
+                #     pass
+
+                # handle_timeout_with_retry(dynamic_code_for_try=lambda: wait_for_url(self=self, h1_text=h1_text), logger=self.logger)
+
+                # Rating
+                try:
+                    if current_business_maps_data[4]:
+                        rating_result = current_business_maps_data[4]
+                        self.logger.info(f"Rating: {rating_result[7]}")
+                        self.logger.info(f"Reviews: {rating_result[8]}")
+                        current_business_data["rating"] = float(rating_result[7])
+                        current_business_data["reviews"] = int(rating_result[8])
+                    else:
+                        self.logger.info(f"Rating: {0.0}")
+                        self.logger.info(f"Reviews: {0}")
+                        current_business_data["rating"] = 0.0
+                        current_business_data["reviews"] = 0
+                except Exception as e:
+                    self.logger.info(f"Phone: An error occurred while searching ratings: {e}")
+
+                #Latitude & Longitude
+                try:
+                    self.logger.info("~~~~~~~~ Location Info ~~~~~~~~")
+                    lat_and_long = current_business_maps_data[9]
+                    current_business_data["latitude"] = lat_and_long[2]
+                    current_business_data["longitude"] = lat_and_long[3]
+                    self.logger.info(f"Latitude & Longitude: {lat_and_long[2]}, {lat_and_long[3]}")
+                except Exception as e:
+                    self.logger.info(f"Phone: An error occurred while searching location: {e}")
+
+                #Source
+                current_business_data["source"] = sourceValues[0]
+                self.logger.info(f"Source: {sourceValues[0]}")
+
+                #Timezone
+                try:
+                    self.logger.info("~~~~~~~~ Timezone Info ~~~~~~~~")
+                    timezone = get_timezone_info(current_business_maps_data[30])
+                    self.logger.info(f"Timezone: {current_business_maps_data[30]}")
+                    self.logger.info(f"UTC Offset: {timezone['utc_offset']}")
+                    self.logger.info(f"DST: {timezone['dst']}")
+                    self.logger.info(f"DST Offset: {timezone['dst_offset']}")
+                    self.logger.info(f"Country Code: {city['countryCode']}")
+                    current_business_data["timezone"] = {
+                        "timezoneName": current_business_maps_data[30],
+                        "utcOffset": timezone["utc_offset"],
+                        "dst": timezone["dst"],
+                        "dstOffset": timezone["dst_offset"],
+                        "countryCode": city["countryCode"],
+                    }
+                except Exception as e:
+                    self.logger.info(f"Phone: An error occurred while searching timezone: {e}")
+
+                #Address Info
+                try:
+                    self.logger.info("~~~~~~~~ Address Info ~~~~~~~~")
+                    current_business_address = " ".join(current_business_maps_data[2])
+                    current_business_data["address"] = current_business_address
+                    self.logger.info(f"Place: {current_business_address}")
+                except Exception as e:
+                    self.logger.info(f"Phone: An error occurred while searching address: {e}")
+                    current_business_data["address"] = ", ".join([city['name'], state['name'], country['name']])
+                
+                #Postal Code Info
+                try:
+                    zip = get_postal_code(address=", ".join(current_business_maps_data[2]))
+                    self.logger.info(f"Postal Code: {zip}")
+                    current_business_data["postalCode"] = zip
+                except Exception as e:
+                    self.logger.info(f"Phone: An error occurred while searching postal code: {e}")
+                
+                #City/State/Country Info
+                try:
+                    current_business_data["cityId"] = city['id']
+                    current_business_data["stateId"] = state['id']
+                    current_business_data["countryId"] = country['id']
+                    self.logger.info(f"CityId: {city['id']}")
+                    self.logger.info(f"StateId: {state['id']}")
+                    self.logger.info(f"CountryId: {country['id']}")
+                except Exception as e:
+                    self.logger.info(f"Phone: An error occurred while searching city/state/country: {e}")
+
+                #Schedule Info
+                try:
+                    self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
+                    current_business_schedule = current_business_maps_data[34]
+                    open_hour = current_business_schedule[1][0][1][0].replace("\u202f", "").split("–")[0]
+                    close_hour = current_business_schedule[1][0][1][0].replace("\u202f", "").split("–")[1]
+                    current_business_data["openingHour"] = convert_to_24h_format(open_hour)
+                    current_business_data["closingHour"] = convert_to_24h_format(close_hour)
+                    self.logger.info(f"Open Hours: {open_hour}")
+                    self.logger.info(f"Close Hours: {close_hour}")
+                except Exception as e:
+                    self.logger.info(f"Phone: An error occurred while searching openingHour/closingHour: {e}")
+
+                #Website
+                try:
+                    self.logger.info("~~~~~~~~ Contact Info ~~~~~~~~")
+                    current_business_data["website"] = current_business_maps_data[7][1]
+                    self.logger.info(f"Website: {current_business_maps_data[7][1]}")
+                except Exception as e:
+                    self.logger.info(f"Website: An error occurred while searching website: {e}")
+
+                #Phone
+                try:
+                    current_business_data["phone"] = current_business_maps_data[178][0][3]
+                    self.logger.info(f"Phone: {current_business_maps_data[178][0][3]}")
+                except Exception as e:
+                    self.logger.info(f"Phone: An error occurred while searching phone: {e}")
+            except Exception:
+                self.logger.info("An error occurred in while loop of scroll_and_parse_data function:")
+            
+            counter = counter + 1
+            businesses.append(current_business_data)
+            if counter >= len(data):
+                create_businesses(businesses)
+                break
 
     def close(self):
         self.driver.quit()

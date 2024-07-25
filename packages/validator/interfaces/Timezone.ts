@@ -1,6 +1,8 @@
 import * as z from 'zod';
-import { TimezoneSchema } from '../validators/Timezone';
+import { TimezoneCreateRequestSchema, TimezoneSchema } from '../validators/Timezone';
 
-type TimezoneAttributes = z.infer<typeof TimezoneSchema>;
+type Timezone = z.infer<typeof TimezoneSchema>;
+type TimezoneCreateRequestAttributes = z.infer<typeof TimezoneCreateRequestSchema>;
 
-export interface ITimezoneAttributes extends TimezoneAttributes {}
+export interface ITimezoneAttributes extends Timezone {}
+export interface ITimezoneCreateRequestAttributes extends TimezoneCreateRequestAttributes {}

@@ -10,6 +10,7 @@ import businessPhoneRoutes from './routes/businessPhoneRoutes';
 import businessRoutes from './routes/businessRoutes';
 import leadRoutes from './routes/leadRoutes';
 import queueRoutes from './routes/queueRoutes';
+import cityQueueRoutes from './routes/cityQueueRoutes';
 import countryRoutes from './routes/countryRoutes';
 import stateRoutes from './routes/stateRoutes';
 import cityRoutes from './routes/cityRoutes';
@@ -38,7 +39,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec)); // Mount Sw
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Welcome to the API!');
+  res.send(`${process.env.ENVIRONMENT} - Welcome to the API!`);
 });
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
@@ -46,6 +47,7 @@ app.use('/business-phones', businessPhoneRoutes);
 app.use('/businesses', businessRoutes);
 app.use('/leads', leadRoutes);
 app.use('/queues', queueRoutes);
+app.use('/city-queues', cityQueueRoutes);
 app.use('/countries', countryRoutes);
 app.use('/states', stateRoutes);
 app.use('/cities', cityRoutes);
