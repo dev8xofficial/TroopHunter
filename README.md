@@ -77,6 +77,8 @@
 
 # Step 1 - Run below commands in ubuntu server to allow user password free access
 
+    sudo adduser ubuntu-server
+    sudo su - ubuntu-server
     sudo visudo
     ubuntu-server ALL=(ALL) NOPASSWD:ALL
 
