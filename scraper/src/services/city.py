@@ -20,9 +20,7 @@ def get_cities(page=1, limit=5):
 
         # Set the request parameters
         params = {
-            "name": "San Francisco",
-            "stateCode": "CA",
-            "countryCode": "US",
+            "sort": "gdpDescending",
             "page": page,
             "limit": limit,
         }
@@ -38,11 +36,7 @@ def get_cities(page=1, limit=5):
             if jsonResponse["status"] == 406:
                 refreshToken()
                 get_cities(page, limit)
-            logging.error(
-                "Failed to retrieve cities. Status code: %s, Response: %s",
-                jsonResponse["status"],
-                jsonResponse["error"],
-            )
+            logging.error("Failed to retrieve cities. Status code: %s, Response: %s", jsonResponse["status"], jsonResponse["error"])
             return None
     except requests.exceptions.RequestException as e:
         # Request encountered an error

@@ -1,0 +1,38 @@
+name: 'helloabdul_prod'
+services:
+  ci:
+    extends:
+      file: docker-compose.ci.yml
+      service: ci_prod
+
+  postgres_prod:
+    extends:
+      file: docker-compose.base.yml
+      service: postgres_prod
+
+  # pgadmin_prod:
+  #   extends:
+  #     file: docker-compose.pgadmin.yml
+  #     service: pgadmin_prod
+
+  backend_prod:
+    extends:
+      file: docker-compose.backend.yml
+      service: backend_prod
+
+  crm_prod:
+    extends:
+      file: docker-compose.crm.yml
+      service: crm_prod
+
+  cloudflare_prod:
+    extends:
+      file: docker-compose.cloudflare.yml
+      service: cloudflare_prod
+
+volumes:
+  pgadmin-data:
+
+networks:
+  custom_network:
+    driver: bridge

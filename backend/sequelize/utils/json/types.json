@@ -1,0 +1,1177 @@
+[
+    {
+        id: uuidv4(),
+        searchQuery: 'american_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'bakery',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'bar',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'barbecue_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'brazilian_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'breakfast_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'brunch_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'cafe',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'chinese_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'coffee_shop',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'fast_food_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'french_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'greek_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'hamburger_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'ice_cream_shop',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'indian_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'indonesian_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'italian_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'japanese_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'korean_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'lebanese_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'meal_delivery',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'meal_takeaway',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'mediterranean_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'mexican_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'middle_eastern_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'pizza_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'ramen_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'sandwich_shop',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'seafood_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'spanish_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'steak_house',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'sushi_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'thai_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'turkish_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'vegan_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'vegetarian_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'vietnamese_restaurant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'auto_parts_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'bicycle_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'book_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'cell_phone_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'clothing_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'convenience_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'department_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'discount_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'electronics_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'furniture_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'gift_shop',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'grocery_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'hardware_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'home_goods_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'home_improvement_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'jewelry_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'liquor_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'market',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'pet_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'shoe_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'shopping_mall',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'sporting_goods_store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'store',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'supermarket',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'wholesaler',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'barber_shop',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'beauty_salon',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'cemetery',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'child_care_agency',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'consultant',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'courier_service',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'electrician',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'florist',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'funeral_home',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'hair_care',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'hair_salon',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'insurance_agency',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'laundry',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'lawyer',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'locksmith',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'moving_company',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'painter',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'plumber',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'real_estate_agency',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'roofing_contractor',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'storage',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'tailor',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'telecommunications_service_provider',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'travel_agency',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'veterinary_care',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'amusement_center',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'amusement_park',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'aquarium',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'banquet_hall',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'bowling_alley',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'casino',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'community_center',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'convention_center',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'cultural_center',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'dog_park',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'event_venue',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'hiking_area',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'historical_landmark',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'marina',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'movie_rental',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'movie_theater',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'national_park',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'night_club',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'park',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'tourist_attraction',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'visitor_center',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'wedding_venue',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'zoo',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'library',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'preschool',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'primary_school',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'school',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'secondary_school',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'university',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'dental_clinic',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'dentist',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'doctor',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'drugstore',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'hospital',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'medical_lab',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'pharmacy',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'physiotherapist',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'spa',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'bed_and_breakfast',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'campground',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'camping_cabin',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'cottage',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'extended_stay_hotel',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'farmstay',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'guest_house',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'hostel',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'hotel',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'lodging',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'motel',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'private_guest_room',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'resort_hotel',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'rv_park',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'athletic_field',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'fitness_center',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'golf_course',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'gym',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'playground',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'ski_resort',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'sports_club',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'sports_complex',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'stadium',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'swimming_pool',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'airport',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'bus_station',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'bus_stop',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'ferry_terminal',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'heliport',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'light_rail_station',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'park_and_ride',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'subway_station',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'taxi_stand',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'train_station',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'transit_depot',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'transit_station',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'truck_stop',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'city_hall',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'courthouse',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'embassy',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'fire_station',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'local_government_office',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'police',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'post_office',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'accounting',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'atm',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'bank',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'car_dealer',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'car_rental',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'car_repair',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'car_wash',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'electric_vehicle_charging_station',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'gas_station',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'parking',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'rest_stop',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'church',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'hindu_temple',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'mosque',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'synagogue',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'administrative_area_level_1',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'administrative_area_level_2',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'country',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'locality',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'postal_code',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'school_district',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'art_gallery',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'museum',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'performing_arts_theater',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'farm',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'administrative_area_level_3',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'administrative_area_level_4',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'administrative_area_level_5',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'administrative_area_level_6',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'administrative_area_level_7',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'archipelago',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'colloquial_area',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'continent',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'establishment',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'floor',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'food',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'general_contractor',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'geocode',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'health',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'intersection',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'landmark',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'natural_feature',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'neighborhood',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'place_of_worship',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'plus_code',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'point_of_interest',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'political',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'post_box',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'postal_code_prefix',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'postal_code_suffix',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'postal_town',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'premise',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'room',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'route',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'street_address',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'street_number',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'sublocality',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'sublocality_level_1',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'sublocality_level_2',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'sublocality_level_3',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'sublocality_level_4',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'sublocality_level_5',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'subpremise',
+        laptopName: '',
+      },
+      {
+        id: uuidv4(),
+        searchQuery: 'town_square',
+        laptopName: '',
+      }
+]

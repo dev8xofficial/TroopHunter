@@ -1,0 +1,6 @@
+---
+- name: Allow port 4040.
+  ufw:
+    rule: allow
+    port: 4040
+    proto: tcp

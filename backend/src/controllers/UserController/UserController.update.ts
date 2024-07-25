@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import User from '../../models/User';
 import logger from '../../utils/logger';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { ApiResponse } from 'validator/interfaces';
 import { IUserAttributes } from 'validator/interfaces';
 import { createApiResponse } from 'validator/utils';

@@ -3,7 +3,7 @@ import { type IPaginationAttributes, type ApiResponse, type ICountryFetchRequest
 
 import { type ICountriesResponseAttributes, type ICountryResponseAttributes } from 'components/Inputs/Combobox/Combobox';
 
-const BASE_URL = process.env.BACKEND_URL ?? '';
+const BASE_URL = import.meta.env.VITE_BACKEND_URL ?? '';
 
 interface IGetCountriesByQueryAttributes extends ICountryFetchRequestAttributes, IPaginationAttributes {}
 

@@ -1,0 +1,13 @@
+---
+- hosts: ubuntu
+  become: true
+  gather_facts: true
+  vars_files:
+    - /ansible/secrets/github_token
+  vars:
+    USER: ubuntu-server
+    GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/helloabdul.git"
+    GIT_BRANCH: main
+    PROJECT_NAME: helloabdul
+  roles:
+    - github

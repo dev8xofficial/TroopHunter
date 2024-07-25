@@ -3,10 +3,9 @@ import sequelize from '../config/database';
 import { IQueueAttributes } from 'validator/interfaces';
 
 class Queue extends Model<IQueueAttributes> implements IQueueAttributes {
-  public id!: number;
+  public id!: string;
   public searchQuery!: string;
   public laptopName!: string;
-  public status!: 'Pending' | 'Completed';
 }
 
 Queue.init(
@@ -26,11 +25,6 @@ Queue.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    status: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: 'Pending',
-    },
   },
   {
     sequelize,
@@ -38,7 +32,7 @@ Queue.init(
     indexes: [
       {
         unique: true,
-        fields: ['searchQuery', 'laptopName', 'status'],
+        fields: ['searchQuery', 'laptopName'],
       },
     ],
   }

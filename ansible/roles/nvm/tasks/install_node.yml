@@ -1,0 +1,10 @@
+---
+- name: Install the latest Node.js using NVM
+  become_user: "{{ USER }}"
+  shell: |
+    source ~/.nvm/nvm.sh
+    nvm install {{ NODE_VERSION }}
+  environment:
+    NVM_DIR: "/home/{{ USER }}/.nvm"
+  args:
+    executable: /bin/bash

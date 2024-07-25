@@ -1,0 +1,4 @@
+---
+- include_tasks: update_system.yml
+- include_tasks: install_required_packages.yml
+- include_tasks: ufw_setup.yml

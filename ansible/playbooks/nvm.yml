@@ -1,0 +1,9 @@
+---
+- hosts: ubuntu
+  become: true
+  gather_facts: true
+  vars:
+    USER: ubuntu-server
+    NODE_VERSION: 20.12.2
+  roles:
+    - nvm

@@ -25,7 +25,7 @@ const apiMiddleware: Middleware =
         return;
       }
 
-      axios.defaults.baseURL = process.env.BACKEND_URL ?? '';
+      axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL ?? '';
       axios.defaults.headers.common['Content-Type'] = 'application/json';
       const axiosInstance: AxiosInstance = axios.create();
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;

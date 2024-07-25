@@ -9,23 +9,33 @@
       "runtimeArgs": [
         "--inspect" // Add any additional runtime arguments if required
       ],
-      "args": ["${workspaceFolder}/backend/src/index.ts"],
+      "args": ["${workspaceFolder}/backend/src/server.ts"],
       "env": {
         "NODE_ENV": "development" // Set environment variables if needed
       },
+      "envFile": "${workspaceFolder}/backend/.env", // Path to your environment file
+      "cwd": "${workspaceFolder}/backend",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**"],
-      "preLaunchTask": "envFile"
+      "skipFiles": ["<node_internals>/**"]
     },
     {
       "name": "Scraper",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/scraper/main.py",
       "console": "integratedTerminal",
       "justMyCode": true,
       "python": "${workspaceFolder}/scraper/venv/bin/python" // Update with the path to your venv Python executable
-    }
+    },
+    {
+      "name": "Node.js Current File",
+      "program": "${workspaceFolder}/node/cities.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
   ]
 }
