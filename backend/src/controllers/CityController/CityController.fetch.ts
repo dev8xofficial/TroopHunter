@@ -9,11 +9,12 @@ import { PaginationMessageKey, getPaginationMessage } from '../../messages/Pagin
 
 // Get cities by name and state
 export const getCitiesByQuery = async (req: Request, res: Response) => {
-  const { name, stateCode, countryCode, page, limit } = req.query;
+  const { name, stateCode, countryCode, page, limit, sort } = req.query;
 
   // Pagination
   const pageNumber = parseInt(page as string, 10);
   const limitNumber = parseInt(limit as string, 10);
+  let order: [string, 'ASC' | 'ASC NULLS FIRST' | 'ASC NULLS LAST' | 'DESC' | 'DESC NULLS FIRST' | 'DESC NULLS LAST'][] = [];
 
   const offset = (pageNumber - 1) * limitNumber;
 
@@ -32,9 +33,18 @@ export const getCitiesByQuery = async (req: Request, res: Response) => {
     whereClause.countryCode = { [Op.eq]: `${countryCode}` };
   }
 
+  // Sorting
+  if (sort === 'gdpAscending') {
+    order = [['gdpInBillionUsd', 'ASC NULLS LAST']];
+  }
+  if (sort === 'gdpDescending') {
+    order = [['gdpInBillionUsd', 'DESC NULLS LAST']];
+  }
+
   try {
     const { count, rows: cities } = await City.findAndCountAll({
       where: whereClause,
+      order,
       offset,
       limit: limitNumber,
     });

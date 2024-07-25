@@ -1774,7 +1774,6 @@ module.exports = {
     
     const mergedData = mergeCountriesByName(countryData, selectiveCountries);
     const orderedCountries = _.orderBy(mergedData, ['rank'], ['desc']);
-    console.log(orderedCountries.slice(0, 10));
     await queryInterface.bulkInsert('Countries', orderedCountries);
   },
 
