@@ -8,6 +8,8 @@ export const CitySchema = z.object({
   stateCode: z.string(),
   country: z.string(),
   countryCode: z.string(),
+  gdpInBillionUsd: z.bigint().optional(),
+  year: z.number().optional(),
   longitude: z.number(),
   latitude: z.number(),
 });

@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import { Op } from 'sequelize';
+import Sequelize from '../../config/database';
 import Queue from '../../models/Queue';
 import logger from '../../utils/logger';
 import { ApiResponse } from 'validator/interfaces';
@@ -6,15 +8,27 @@ import { createApiResponse } from 'validator/utils';
 import { QueueMessageKey, getQueueMessage } from '../../messages/Queue';
 
 export const getQueues = async (req: Request, res: Response) => {
-  const { page, limit } = req.query;
+  const { page, limit, cityId } = req.query;
 
   const pageNumber = parseInt(page as string, 10);
   const limitNumber = parseInt(limit as string, 10);
 
   const offset = (pageNumber - 1) * limitNumber;
 
+  // Where clause
+  const whereClause: { [key: string]: any } = {};
+
+  if (cityId && typeof cityId === 'string') {
+    whereClause.id = {
+      [Op.notIn]: Sequelize.literal(
+        `(SELECT "queueId" FROM "CityQueues" WHERE "cityId" = '${cityId}')`
+      ),
+    };
+  }
+
   try {
     const { count, rows: queues } = await Queue.findAndCountAll({
+      where: whereClause,
       offset,
       limit: limitNumber,
       order: [['searchQuery', 'ASC']],

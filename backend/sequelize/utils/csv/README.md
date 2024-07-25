@@ -1,0 +1,1 @@
+These files countains the raw data for countries and cities which need in the database tables.

@@ -1,7 +1,7 @@
 import express from 'express';
-import { getBusinessesByQuery, getBusinesses, getBusinessById, createBusiness, updateBusiness, deleteBusiness } from '../controllers/BusinessController';
+import { getBusinessesByQuery, getBusinesses, getBusinessById, createBusiness, updateBusiness, deleteBusiness, createBusinesses } from '../controllers/BusinessController';
 import { verifyToken } from '../middlewares/authMiddleware';
-import { BusinessCreateRequestValidationMiddleware, BusinessFetchByIdRequestValidationMiddleware, BusinessFetchRequestValidationMiddleware, BusinessUpdateRequestValidationMiddleware } from 'validator/validators';
+import { BulkBusinessCreateRequestValidationMiddleware, BusinessCreateRequestValidationMiddleware, BusinessFetchByIdRequestValidationMiddleware, BusinessFetchRequestValidationMiddleware, BusinessUpdateRequestValidationMiddleware } from 'validator/validators';
 import { PaginationRequestValidationMiddleware } from 'validator/validators';
 
 const router = express.Router();
@@ -14,6 +14,7 @@ router.get('/search', BusinessFetchRequestValidationMiddleware, PaginationReques
 router.get('/', PaginationRequestValidationMiddleware, getBusinesses);
 router.get('/:id', BusinessFetchByIdRequestValidationMiddleware, getBusinessById);
 router.post('/', BusinessCreateRequestValidationMiddleware, createBusiness);
+router.post('/bulk', BulkBusinessCreateRequestValidationMiddleware, createBusinesses);
 router.put('/:id', BusinessFetchByIdRequestValidationMiddleware, BusinessUpdateRequestValidationMiddleware, updateBusiness);
 router.delete('/:id', BusinessFetchByIdRequestValidationMiddleware, deleteBusiness);
 
