@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { ZodSchema, ZodError } from 'zod';
+import { ZodSchema, ZodError, ZodIssue } from 'zod';
 import { createApiResponse } from '../utils/response';
 import { ApiResponse } from '../interfaces/Response';
 
@@ -8,10 +8,21 @@ type RequestData = 'body' | 'params' | 'query';
 const numberRegex = /^[+-]?\d+(\.\d+)?$/;
 const booleanRegex = /^(true|false)$/i;
 
-const generateDescriptiveErrorMessages = (error: any) => {
-  const firstError = error.errors[0];
-  return firstError.message;
-};
+const formatZodIssue = (issue: ZodIssue): string => {
+  const { path, message } = issue
+  const pathString = path.join('.')
+
+  return `${pathString}: ${message}`
+}
+
+// Format the Zod error message with only the current error
+export const formatZodError = (error: ZodError): { message: string, error: string } => {
+  const { issues } = error
+
+  const currentIssue = issues[0]
+
+  return { "error": formatZodIssue(currentIssue), "message": currentIssue.message}
+}
 
 const processQueryParams = (queryParams: Record<string, string | any>) => {
   const processedQuery: Record<string, any> = {};
@@ -58,14 +69,16 @@ const validationMiddleware = <T>(schema: ZodSchema<T>, requestData: RequestData)
       next();
     } catch (error) {
       if (error instanceof ZodError) {
-        const descriptiveErrorMessage = generateDescriptiveErrorMessages(error);
+        const descriptiveErrorMessage: { message: string, error: string } = formatZodError(error);
+        const status = 400;
 
         const response: ApiResponse<null> = createApiResponse({
-          error: descriptiveErrorMessage,
-          status: 400,
+          message: descriptiveErrorMessage.message,
+          error: descriptiveErrorMessage.error,
+          status: status,
         });
 
-        return res.json(response);
+        return res.status(status).json(response);
       }
       next(error);
     }
