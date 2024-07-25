@@ -1,6 +1,6 @@
 import * as z from 'zod';
 import { GeoPointSchema } from './GeoPoint';
-import { TimezoneSchema } from './Timezone';
+import { TimezoneCreateRequestSchema, TimezoneSchema } from './Timezone';
 import validationMiddleware from '../middleware/validationMiddleware';
 import { BusinessPhoneSchema } from './BusinessPhone';
 
@@ -43,15 +43,18 @@ export const BusinessCreateRequestSchema = BusinessSchema.extend({
   postalCode: z.string().optional(),
   phone: z.string().optional(),
   rating: z.number().optional(),
-  timezone: TimezoneSchema.optional(),
+  timezone: TimezoneCreateRequestSchema.optional(),
   source: z.string().optional(),
   openingHour: z.string().optional(),
   closingHour: z.string().optional(),
 }).omit({ id: true, categoryId: true, postalCodeId: true, phoneId: true, ratingId: true, timezoneId: true, sourceId: true, openingHourId: true, closingHourId: true, BusinessPhone: true });
+
+export const BulkBusinessCreateRequestSchema = z.array(BusinessCreateRequestSchema);
 
 export const BusinessUpdateRequestSchema = BusinessSchema.omit({ id: true }).partial();
 
 export const BusinessFetchRequestValidationMiddleware = validationMiddleware(BusinessFetchRequestSchema, 'query');
 export const BusinessFetchByIdRequestValidationMiddleware = validationMiddleware(BusinessFetchByIdRequestSchema, 'params');
 export const BusinessCreateRequestValidationMiddleware = validationMiddleware(BusinessCreateRequestSchema, 'body');
+export const BulkBusinessCreateRequestValidationMiddleware = validationMiddleware(BulkBusinessCreateRequestSchema, 'body');
 export const BusinessUpdateRequestValidationMiddleware = validationMiddleware(BusinessUpdateRequestSchema, 'body');

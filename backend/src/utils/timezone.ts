@@ -1,9 +1,9 @@
 import { Transaction } from 'sequelize';
 import Timezone from '../models/Timezone';
-import { ITimezoneAttributes } from 'validator/interfaces';
+import { ITimezoneAttributes, ITimezoneCreateRequestAttributes } from 'validator/interfaces';
 import logger from '../utils/logger';
 
-export const findOrCreateTimezone = async (timezone: ITimezoneAttributes, transaction: Transaction): Promise<ITimezoneAttributes | undefined> => {
+export const findOrCreateTimezone = async (timezone: ITimezoneCreateRequestAttributes, transaction: Transaction): Promise<ITimezoneAttributes | undefined> => {
   try {
     const { timezoneName, utcOffset, dst, dstOffset, countryCode } = timezone;
     const [record, created] = await Timezone.findOrCreate({
