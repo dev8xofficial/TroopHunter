@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
 from src.scraper import BusinessScraper
-from config import LOCATIONS, LAPTOP_NAME
+from config import LAPTOP_NAME
 import logging
 import datetime
 from dotenv import load_dotenv
 from src.services.auth import login
-from src.services.queue import get_queue, update_queue
+from src.services.queue import get_queue, update_queue, create_city_queue
 from src.services.city import get_cities
 from concurrent.futures import ThreadPoolExecutor, wait
 from src.utils.general import is_internet_available
@@ -27,9 +27,7 @@ def process_queue(queue, city):
 
     # Add a file handler with the specific log file name
     file_handler = logging.FileHandler(log_file)
-    formatter = logging.Formatter(
-        "%(asctime)s - %(levelname)s - %(module)s - %(message)s"
-    )
+    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(module)s - %(message)s")
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
@@ -40,17 +38,19 @@ def process_queue(queue, city):
 
     while True:
         try:
-            searchQuery = f"{queue['searchQuery']} in {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())}"
+            searchQuery = f"{queue['searchQuery'].replace('_', ' ')} in {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'gdpInBillionUsd' and key != 'year' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())}"
             scraper = BusinessScraper(searchQuery=searchQuery, logger=logger)
             scraper.search(searchQuery)
             # scraper.scroll_and_extract_data(queue["searchQuery"], city)
             scraper.scroll_and_parse_data(queue["searchQuery"], city)
 
-            queue["status"] = "Completed"
-            update_queue(request=queue)
-            logger.info(
-                f"Search for '{queue['searchQuery']}' in {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())} completed."
-            )
+            city_queue = {
+                "cityId": city["id"],
+                "queueId": queue["id"],
+                "status": "Completed",
+            }
+            create_city_queue(request=city_queue)
+            logger.info(f"Search for '{queue['searchQuery'].replace('_', ' ')}' in {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'gdpInBillionUsd' and key != 'year' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())} completed.")
             scraper.close()
             break
         except (Timeout, requests.exceptions.RequestException, Exception) as e:
@@ -60,9 +60,7 @@ def process_queue(queue, city):
                     scraper.close()
                     break
                 else:
-                    logger.info(
-                        "Internet connection is not available. Retrying in 5 seconds..."
-                    )
+                    logger.info("Internet connection is not available. Retrying in 5 seconds...")
 
 
 def main():
@@ -80,23 +78,18 @@ def main():
             logging.error("Failed to retrieve cities for city page %d.", city_page)
             continue
         for queue_page in range(1, total_pages_queues + 1):
-            queues_response = get_queue(page=queue_page, limit=LIMIT)
+            queues_response = get_queue(city_id=cities_response["cities"][city_page - 1]['id'], page=queue_page, limit=LIMIT)
             if not queues_response["totalRecords"] > 0:
-                logging.error(
-                    "Failed to retrieve queues for queue page %d.", queue_page
-                )
+                logging.error("Failed to retrieve queues for queue page %d.", queue_page)
                 continue
 
             with ThreadPoolExecutor(max_workers=LIMIT) as executor:
                 futures = []
                 for city in cities_response["cities"]:
                     for queue in queues_response["queues"]:
-                        if (
-                            queue["laptopName"] == LAPTOP_NAME
-                            and queue["status"] == "Pending"
-                        ):
+                        if queue["laptopName"] == LAPTOP_NAME:
                             pass
-                        elif queue["laptopName"] == "" and queue["status"] == "Pending":
+                        elif queue["laptopName"] == "":
                             queue["laptopName"] = LAPTOP_NAME
                             update_queue(request=queue)
                         else:
@@ -117,11 +110,7 @@ if __name__ == "__main__":
         # Set up logging for the main script
         current_date = datetime.datetime.now().strftime("%m-%d-%Y")
         log_file = f"scraper/logs/main__{current_date}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
-        logging.basicConfig(
-            filename=log_file,
-            level=logging.INFO,
-            format="%(asctime)s - %(levelname)s - %(module)s - %(message)s",
-        )
+        logging.basicConfig(filename=log_file,level=logging.INFO,format="%(asctime)s - %(levelname)s - %(module)s - %(message)s")
         main()
     except Exception as e:
         logging.exception("An unhandled error occurred during scraper execution: %s", e)

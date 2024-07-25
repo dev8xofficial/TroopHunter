@@ -88,7 +88,8 @@ def get_postal_code(address: str):
             try:
                 # zip_info = zip_db[number]
                 # return zip_info.zip
-                return number
+                if len(number) >= 4:
+                    return number
             except KeyError:
                 pass
 
