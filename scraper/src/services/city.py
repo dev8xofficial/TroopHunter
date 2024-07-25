@@ -20,9 +20,7 @@ def get_cities(page=1, limit=5):
 
         # Set the request parameters
         params = {
-            "name": "San Francisco",
-            "stateCode": "CA",
-            "countryCode": "US",
+            "sort": "gdpDescending",
             "page": page,
             "limit": limit,
         }

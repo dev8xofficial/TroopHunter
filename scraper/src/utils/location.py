@@ -86,15 +86,15 @@ def get_postal_code(address: str):
         # Check if each number is a valid postal code
         for number in numbers:
             try:
-                zip_info = zip_db[number]
-                return zip_info.zip
+                # zip_info = zip_db[number]
+                # return zip_info.zip
+                if len(number) >= 4:
+                    return number
             except KeyError:
                 pass
 
     except Exception as e:
-        logging.exception(
-            "An error occurred while extracting postal code from address: %s", e
-        )
+        logging.exception("An error occurred while extracting postal code from address: %s", e)
 
     # If no valid postal code is found
     return None

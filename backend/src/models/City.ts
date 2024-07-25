@@ -9,6 +9,8 @@ class City extends Model<ICityAttributes> implements ICityAttributes {
   public stateCode!: string;
   public country!: string;
   public countryCode!: string;
+  public gdpInBillionUsd!: bigint;
+  public year!: number;
   public longitude!: number;
   public latitude!: number;
 }
@@ -39,6 +41,14 @@ City.init(
     },
     countryCode: {
       type: DataTypes.STRING(5),
+      allowNull: false,
+    },
+    gdpInBillionUsd: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
+    year: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     longitude: {

@@ -72,7 +72,7 @@ def click_feed_article(self, current_business_anchor):
 
 
 def close_feed_article(self):
-    close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb '][@role='main']//button[@aria-label='Close']")
+    close_current_business_anchor = self.driver.find_element(By.XPATH, ".//div[@class='m6QErb WNBkOb XiKgde '][@role='main']//button[@aria-label='Close']")
     close_current_business_anchor.click()
 
 

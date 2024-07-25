@@ -33,8 +33,8 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // Generate a JWT token
-    const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '15m' });
-    const refreshToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '30m' });
+    const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '30m' });
+    const refreshToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '40m' });
 
     let userToken: UserToken | null = await UserToken.findOne({ where: { userId: user.id } });
 

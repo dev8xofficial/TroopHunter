@@ -8,6 +8,7 @@ export * from './BusinessRating';
 export * from './BusinessSocialMedia';
 export * from './BusinessSource';
 export * from './City';
+export * from './CityQueue';
 export * from './Country';
 export * from './GeoPoint';
 export * from './Lead';

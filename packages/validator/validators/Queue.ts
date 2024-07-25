@@ -2,10 +2,9 @@ import { z } from 'zod';
 import validationMiddleware from '../middleware/validationMiddleware';
 
 export const QueueSchema = z.object({
-  id: z.number().int(),
+  id: z.string().uuid(),
   searchQuery: z.string(),
   laptopName: z.string(),
-  status: z.enum(['Pending', 'Completed']),
 });
 
 export const QueueFetchRequestSchema = QueueSchema.omit({ id: true }).partial();
