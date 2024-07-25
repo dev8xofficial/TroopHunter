@@ -26,6 +26,12 @@ Or
 python3 -m pip venv venv
 ```
 
+Or
+
+```bash
+python3 -m virtualenv venv
+```
+
 4. Activate the virtual environment:
 
 On macOS/Linux:

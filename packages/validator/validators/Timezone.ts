@@ -8,3 +8,5 @@ export const TimezoneSchema = z.object({
   dstOffset: z.string(),
   countryCode: z.string(),
 });
+
+export const TimezoneCreateRequestSchema = TimezoneSchema.omit({ id: true });
