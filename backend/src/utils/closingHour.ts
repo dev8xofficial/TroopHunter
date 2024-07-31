@@ -1,23 +1,33 @@
 import { Transaction } from 'sequelize';
-import BusinessClosingHour from '../models/BusinessClosingHour';
-import { IBusinessClosingHourAttributes } from 'validator/interfaces';
+import { IClosingHourAttributes } from 'validator/interfaces';
 import logger from '../utils/logger';
+import ClosingHour from '../models/ClosingHour';
 
-export const findOrCreateBusinessClosingHour = async (time: string, transaction: Transaction): Promise<IBusinessClosingHourAttributes | undefined> => {
+export const findOrCreateClosingHour = async (time: string, transaction: Transaction): Promise<IClosingHourAttributes | undefined> => {
   try {
-    const [record, created] = await BusinessClosingHour.findOrCreate({
+    const [record, created] = await ClosingHour.findOrCreate({
       where: { time },
       transaction,
     });
 
     if (created) {
-      logger.info(`Business closing hour ${time} created successfully.`);
-      return record.toJSON() as IBusinessClosingHourAttributes;
+      logger.info(`Closing hour created successfully: ${time}`);
+      return record.toJSON() as IClosingHourAttributes;
     } else {
-      logger.info(`Business closing hour ${time} already exists.`);
-      return record.toJSON() as IBusinessClosingHourAttributes;
+      logger.info(`Closing hour already exists: ${time}`);
+      return record.toJSON() as IClosingHourAttributes;
     }
   } catch (error) {
-    logger.error('Failed to find or create business closing hour:', error);
+    logger.error('Failed to find or create closing hour: ', time, ", ", error);
+  }
+};
+
+export const findAllClosingHours = async (): Promise<IClosingHourAttributes[] | undefined> => {
+  try {
+    const records = await ClosingHour.findAll();
+
+    return records.map(record => record.toJSON() as IClosingHourAttributes);
+  } catch (error) {
+    logger.error('Failed to fetch ClosingHours.');
   }
 };

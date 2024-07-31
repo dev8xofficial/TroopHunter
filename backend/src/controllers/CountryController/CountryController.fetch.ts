@@ -42,7 +42,7 @@ export const getCountriesByQuery = async (req: Request, res: Response) => {
 
     const totalPages = Math.ceil(count / limitNumber);
 
-    logger.info(`Successfully retrieved countries for country: ${name}`);
+    logger.info('Successfully retrieved countries.');
     const response: ApiResponse<{ totalRecords: number; totalPages: number; countries: Country[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, countries }, message: getCountryMessage(CountryMessageKey.COUNTRIES_RETRIEVED).message, status: getCountryMessage(CountryMessageKey.COUNTRIES_RETRIEVED).code });
     res.json(response);
   } catch (error) {

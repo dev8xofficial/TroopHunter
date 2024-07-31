@@ -33,14 +33,14 @@ export const getPhoneWithDetails = (phone: string): Omit<IBusinessPhoneAttribute
 
   const isValid = phoneUtil.isValidNumber(parsedNumber);
 
-  logger.info('Phone details:');
-  logger.info('Country Code:', countryCode);
-  logger.info('Region Code:', regionCode);
-  logger.info('Number:', number);
-  logger.info('Number National:', numberNationalFormatted);
-  logger.info('Number International:', numberInternationalFormatted);
-  logger.info('Number Type:', numberType);
-  logger.info('Is Number Valid:', isValid);
+  // logger.info('Phone details:');
+  // logger.info('Country Code:', countryCode);
+  // logger.info('Region Code:', regionCode);
+  // logger.info('Number:', number);
+  // logger.info('Number National:', numberNationalFormatted);
+  // logger.info('Number International:', numberInternationalFormatted);
+  // logger.info('Number Type:', numberType);
+  // logger.info('Is Number Valid:', isValid);
 
   return { countryCode, regionCode, number, numberNationalFormatted, numberInternationalFormatted, numberType, isValid };
 };
