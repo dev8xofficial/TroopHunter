@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
 import Sequelize from '../../config/database';
-import { IBusinessCreateRequestAttributes, IBusinessAttributes } from 'validator/interfaces';
+import { IBusinessCreateRequestAttributes, IBusinessAttributes, IOpeningHourAttributes, IClosingHourAttributes, IDayAttributes, IBusinessDayAttributes } from 'validator/interfaces';
 import { IBusinessRatingAttributes } from 'validator/interfaces';
 import { IBusinessSourceAttributes } from 'validator/interfaces';
 import { IBusinessOpeningHourAttributes } from 'validator/interfaces';
@@ -18,17 +19,40 @@ import { findOrCreateBusinessCategory } from '../../utils/category';
 import { findOrCreatePostalCode } from '../../utils/postalCode';
 import { findOrCreateBusinessRating } from '../../utils/rating';
 import { findOrCreateTimezone } from '../../utils/timezone';
-import { findOrCreateBusinessOpeningHour } from '../../utils/openingHour';
-import { findOrCreateBusinessClosingHour } from '../../utils/closingHour';
+import { findAllOpeningHours } from '../../utils/openingHour';
+import { findAllClosingHours } from '../../utils/closingHour';
 import { createApiResponse } from 'validator/utils';
 import { BusinessMessageKey, getBusinessMessage } from '../../messages/Business';
-import { v4 as uuidv4 } from 'uuid';
 import logger from '../../utils/logger';
+import BusinessOpeningHour from '../../models/BusinessOpeningHour';
+import BusinessClosingHour from '../../models/BusinessClosingHour';
+import BusinessDay from '../../models/BusinessDay';
+import { findAllDays } from '../../utils/day';
 
 export const createBusiness = async (req: Request, res: Response) => {
   const transaction = await Sequelize.transaction();
 
-  const { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour }: IBusinessCreateRequestAttributes = req.body;
+  const days: IDayAttributes[] | undefined = await findAllDays();
+  const openingHours: IOpeningHourAttributes[] | undefined = await findAllOpeningHours();
+  const closingHours: IClosingHourAttributes[] | undefined = await findAllClosingHours();
+  let daysAndIds: any = {}
+  let openingHoursAndIds: any = {}
+  let closingHoursAndIds: any = {}
+
+  let businessDays: IBusinessDayAttributes[] = [];
+  let businessOpeningHours: IBusinessOpeningHourAttributes[] = [];
+  let businessClosingHours: IBusinessClosingHourAttributes[] = [];
+
+  if(days?.length)
+    days.map((day: IDayAttributes) => { daysAndIds[day.day] = { id: day.id }});
+
+  if(openingHours?.length)
+    openingHours.map((openingHour: IOpeningHourAttributes) => { openingHoursAndIds[openingHour.time] = { id: openingHour.id }});
+
+  if(closingHours?.length)
+    closingHours.map((closingHour: IClosingHourAttributes) => { closingHoursAndIds[closingHour.time] = { id: closingHour.id }});
+
+  const { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, operatingHours }: IBusinessCreateRequestAttributes = req.body;
 
   const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
   let payload: Omit<IBusinessAttributes, 'BusinessPhone'> = {
@@ -83,22 +107,22 @@ export const createBusiness = async (req: Request, res: Response) => {
       payload.timezoneId = timezoneFromDB?.id;
     }
 
-    if (openingHour) {
-      const openingHourFromDB: IBusinessOpeningHourAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour, transaction);
-      payload.openingHourId = openingHourFromDB?.id;
-    }
-
-    if (closingHour) {
-      const closingHourFromDB: IBusinessClosingHourAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour, transaction);
-      payload.closingHourId = closingHourFromDB?.id;
-    }
-
     const business = await Business.create(payload, { transaction });
 
-    await transaction.commit().then(() => {
-      logger.info(`Business named ${name} created successfully.`);
-      return business;
-    });
+    if(operatingHours) {
+      for (const { day, openingHour, closingHour } of operatingHours) {
+        businessDays.push({ id: uuidv4(), businessId: business.id, dayId: daysAndIds[day].id });
+        businessOpeningHours.push({ id: uuidv4(), businessId: business.id, openingHourId: openingHoursAndIds[openingHour].id });
+        businessClosingHours.push({ id: uuidv4(), businessId: business.id, closingHourId: closingHoursAndIds[closingHour].id });
+      }
+    }
+
+    await transaction.commit();
+
+    await BusinessDay.bulkCreate(businessDays);
+    await BusinessOpeningHour.bulkCreate(businessOpeningHours);
+    await BusinessClosingHour.bulkCreate(businessClosingHours);
+    logger.info(`Business named ${name} created successfully.`);
 
     const response: ApiResponse<{ business: Business }> = createApiResponse({ success: true, data: { business }, message: getBusinessMessage(BusinessMessageKey.BUSINESS_CREATED).message, status: getBusinessMessage(BusinessMessageKey.BUSINESS_CREATED).code });
     res.json(response);
@@ -123,6 +147,17 @@ export const createBusinesses = async (req: Request, res: Response) => {
   const uniqueBusinessKeys = new Set();
   const uniqueBusinessRequests = [];
 
+  const days: IDayAttributes[] | undefined = await findAllDays();
+  const openingHours: IOpeningHourAttributes[] | undefined = await findAllOpeningHours();
+  const closingHours: IClosingHourAttributes[] | undefined = await findAllClosingHours();
+  let daysAndIds: any = {}
+  let openingHoursAndIds: any = {}
+  let closingHoursAndIds: any = {}
+
+  let businessDays: IBusinessDayAttributes[] = [];
+  let businessOpeningHours: IBusinessOpeningHourAttributes[] = [];
+  let businessClosingHours: IBusinessClosingHourAttributes[] = [];
+
   for (const business of businessRequests) {
     const key = `${business.name}-${business.address}`;
     if (!uniqueBusinessKeys.has(key)) {
@@ -130,6 +165,15 @@ export const createBusinesses = async (req: Request, res: Response) => {
       uniqueBusinessRequests.push(business);
     }
   }
+
+  if(days?.length)
+    days.map((day: IDayAttributes) => { daysAndIds[day.day] = { id: day.id }});
+
+  if(openingHours?.length)
+    openingHours.map((openingHour: IOpeningHourAttributes) => { openingHoursAndIds[openingHour.time] = { id: openingHour.id }});
+
+  if(closingHours?.length)
+    closingHours.map((closingHour: IClosingHourAttributes) => { closingHoursAndIds[closingHour.time] = { id: closingHour.id }});
 
   try {
     // Filtering pre-existing businesses in the database
@@ -152,7 +196,7 @@ export const createBusinesses = async (req: Request, res: Response) => {
 
     const createdBusinesses = await Promise.all(
       newBusinessRequests.map(async (businessData) => {
-        const { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, openingHour, closingHour }: IBusinessCreateRequestAttributes = businessData;
+        const { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, operatingHours }: IBusinessCreateRequestAttributes = businessData;
 
         const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
         let payload: Omit<IBusinessAttributes, 'BusinessPhone'> = {
@@ -213,21 +257,26 @@ export const createBusinesses = async (req: Request, res: Response) => {
           payload.timezoneId = timezoneFromDB?.id;
         }
     
-        if (openingHour) {
-          const openingHourFromDB: IBusinessOpeningHourAttributes | undefined = await findOrCreateBusinessOpeningHour(openingHour, transaction);
-          payload.openingHourId = openingHourFromDB?.id;
+        const business = await Business.create(payload, { transaction });
+
+        if(operatingHours) {
+          for (const { day, openingHour, closingHour } of operatingHours) {
+            businessDays.push({ id: uuidv4(), businessId: business.id, dayId: daysAndIds[day].id });
+            businessOpeningHours.push({ id: uuidv4(), businessId: business.id, openingHourId: openingHoursAndIds[openingHour].id });
+            businessClosingHours.push({ id: uuidv4(), businessId: business.id, closingHourId: closingHoursAndIds[closingHour].id });
+          }
         }
-    
-        if (closingHour) {
-          const closingHourFromDB: IBusinessClosingHourAttributes | undefined = await findOrCreateBusinessClosingHour(closingHour, transaction);
-          payload.closingHourId = closingHourFromDB?.id;
-        }
-    
-        return Business.create(payload, { transaction });
+
+        return business;
       })
     );
 
     await transaction.commit();
+
+    await BusinessDay.bulkCreate(businessDays);
+    await BusinessOpeningHour.bulkCreate(businessOpeningHours);
+    await BusinessClosingHour.bulkCreate(businessClosingHours);
+    logger.info('Businesses created successfully.');
 
     const response: ApiResponse<{ businesses: Business[] }> = createApiResponse({ success: true, data: { businesses: createdBusinesses }, message: getBusinessMessage(BusinessMessageKey.BUSINESSES_CREATED).message, status: getBusinessMessage(BusinessMessageKey.BUSINESSES_CREATED).code });
     res.json(response);

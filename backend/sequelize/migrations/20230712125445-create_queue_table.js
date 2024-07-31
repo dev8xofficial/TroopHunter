@@ -10564,11 +10564,11 @@ module.exports = {
         searchQuery: 'aquarium',
         laptopName: '',
       },
-      {
-        id: uuidv4(),
-        searchQuery: 'banquet_hall',
-        laptopName: '',
-      },
+      // {
+      //   id: uuidv4(),
+      //   searchQuery: 'banquet_hall',
+      //   laptopName: '',
+      // },
       {
         id: uuidv4(),
         searchQuery: 'bowling_alley',
@@ -10924,11 +10924,11 @@ module.exports = {
       //   searchQuery: 'truck_stop',
       //   laptopName: '',
       // },
-      {
-        id: uuidv4(),
-        searchQuery: 'city_hall',
-        laptopName: '',
-      },
+      // {
+      //   id: uuidv4(),
+      //   searchQuery: 'city_hall',
+      //   laptopName: '',
+      // },
       // {
       //   id: uuidv4(),
       //   searchQuery: 'courthouse',

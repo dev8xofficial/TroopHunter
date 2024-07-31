@@ -5,7 +5,6 @@ import { ApiResponse } from 'validator/interfaces';
 import { createApiResponse } from 'validator/utils';
 import { Op } from 'sequelize';
 import { CityMessageKey, getCityMessage } from '../../messages/City';
-import { PaginationMessageKey, getPaginationMessage } from '../../messages/Pagination';
 
 // Get cities by name and state
 export const getCitiesByQuery = async (req: Request, res: Response) => {
@@ -57,7 +56,7 @@ export const getCitiesByQuery = async (req: Request, res: Response) => {
 
     const totalPages = Math.ceil(count / limitNumber);
 
-    logger.info(`Successfully retrieved cities for city: ${name}`);
+    logger.info('Successfully retrieved cities.');
     const response: ApiResponse<{ totalRecords: number; totalPages: number; cities: City[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, cities }, message: getCityMessage(CityMessageKey.CITIES_RETRIEVED).message, status: getCityMessage(CityMessageKey.CITIES_RETRIEVED).code });
     res.json(response);
   } catch (error) {

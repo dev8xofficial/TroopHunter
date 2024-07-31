@@ -38,8 +38,6 @@ class Business extends Model<Omit<IBusinessAttributes, 'BusinessPhone'>> impleme
   public sourceId!: string;
   public socialMediaId?: string;
   public sponsoredAd?: boolean;
-  public openingHourId!: string;
-  public closingHourId!: string;
 
   // Define associations, if any
   public readonly photos?: IBusinessPhotoAttributes[]; // Define the association with BusinessPhoto model
@@ -135,14 +133,6 @@ Business.init(
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
-    openingHourId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-    },
-    closingHourId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-    },
   },
   {
     sequelize,
@@ -170,8 +160,6 @@ Business.belongsTo(BusinessRating, { foreignKey: 'ratingId' });
 Business.belongsTo(Timezone, { foreignKey: 'timezoneId' });
 Business.belongsTo(BusinessSource, { foreignKey: 'sourceId' });
 Business.belongsTo(BusinessSocialMedia, { foreignKey: 'socialMediaId' });
-Business.belongsTo(BusinessOpeningHour, { foreignKey: 'openingHourId' });
-Business.belongsTo(BusinessClosingHour, { foreignKey: 'closingHourId' });
 Business.hasMany(BusinessPhoto, { foreignKey: 'businessId' });
 
 BusinessPhoto.belongsTo(Business, { foreignKey: 'businessId' });

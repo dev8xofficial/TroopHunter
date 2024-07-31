@@ -1,2 +1,5 @@
 [ubuntu]
 ubuntu_host ansible_port=22 ansible_host=192.168.1.100 ansible_user=ubuntu-server ansible_ssh_private_key_file=~/.ssh/id_ed25519_ubuntu
+
+[nginx]
+nginx_host ansible_port=22 ansible_host=192.168.1.101 ansible_user=nginx ansible_ssh_private_key_file=~/.ssh/id_ed25519_ubuntu

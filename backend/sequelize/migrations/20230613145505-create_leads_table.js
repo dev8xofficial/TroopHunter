@@ -110,14 +110,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      openingHourId: {
-        allowNull: true,
-        type: Sequelize.UUID,
-      },
-      closingHourId: {
-        allowNull: true,
-        type: Sequelize.UUID,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -218,28 +210,6 @@ module.exports = {
       onDelete: 'SET NULL',
       onUpdate: 'CASCADE',
     });
-    await queryInterface.addConstraint('Leads', {
-      fields: ['openingHourId'],
-      type: 'foreign key',
-      name: 'fk_lead_openingtime',
-      references: {
-        table: 'BusinessOpeningHours',
-        field: 'id',
-      },
-      onDelete: 'SET NULL',
-      onUpdate: 'CASCADE',
-    });
-    await queryInterface.addConstraint('Leads', {
-      fields: ['closingHourId'],
-      type: 'foreign key',
-      name: 'fk_lead_closingtime',
-      references: {
-        table: 'BusinessClosingHours',
-        field: 'id',
-      },
-      onDelete: 'SET NULL',
-      onUpdate: 'CASCADE',
-    });
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -252,8 +222,6 @@ module.exports = {
     await queryInterface.removeConstraint('Businesses', 'fk_lead_postalcode');
     await queryInterface.removeConstraint('Businesses', 'fk_lead_rating');
     await queryInterface.removeConstraint('Businesses', 'fk_lead_timezone');
-    await queryInterface.removeConstraint('Businesses', 'fk_lead_openingtime');
-    await queryInterface.removeConstraint('Businesses', 'fk_lead_closingtime');
 
     // Drop the table
     await queryInterface.dropTable('Leads');

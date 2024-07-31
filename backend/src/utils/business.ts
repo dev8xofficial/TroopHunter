@@ -13,10 +13,10 @@ export const findOrCreateBusinessSource = async (sourceName: string, transaction
     });
 
     if (created) {
-      logger.info(`Business source ${sourceName} created successfully.`);
+      logger.info(`Business source created successfully: ${sourceName}`);
       return record.toJSON() as IBusinessSourceAttributes;
     } else {
-      logger.info(`Business source ${sourceName} already exists.`);
+      logger.info(`Business source already exists: ${sourceName}`);
       return record.toJSON() as IBusinessSourceAttributes;
     }
   } catch (error) {

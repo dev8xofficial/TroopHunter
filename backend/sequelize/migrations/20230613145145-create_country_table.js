@@ -1,3 +1,5 @@
+'use strict';
+
 const { Country } = require('country-state-city');
 const { v4: uuidv4 } = require('uuid');
 const _ = require('lodash');

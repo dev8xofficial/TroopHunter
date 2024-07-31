@@ -494,21 +494,25 @@ class BusinessScraper:
 
         scroll_till_the_end_of_list(self, query, city)
 
-        data = self.driver.execute_script("return window.APP_INITIALIZATION_STATE")
-        data = json.loads(data[3][2].lstrip(")]}'\n").rstrip(','))
+        initialization_state = self.driver.execute_script("return window.APP_INITIALIZATION_STATE")
+        json_initialization_state = json.loads(initialization_state[3][2].lstrip(")]}'\n").rstrip(','))
 
         businesses = []
         state = get_states(code=city['stateCode'], country_code=city['countryCode'])['states'][0]
         country = get_countries(code=city['countryCode'])['countries'][0]
 
         #Parse place endpoint data
-        data = data[0][1] + self.parse_network_traffic("https://www.google.com/search")
+        initialization_state_and_requests = None
+        if len(json_initialization_state[0][1]) > 1:
+            initialization_state_and_requests = json_initialization_state[0][1] + self.parse_network_traffic("https://www.google.com/search")
+        elif len(json_initialization_state[64]) > 1:
+            initialization_state_and_requests = json_initialization_state[64] + self.parse_network_traffic("https://www.google.com/search")
 
         counter = 1
         while True:
             try:
                 current_business_data = {}
-                current_business_maps_data = data[counter][14]
+                current_business_maps_data = initialization_state_and_requests[counter][14]
                 
                 #Heading
                 try:
@@ -519,7 +523,7 @@ class BusinessScraper:
                     self.logger.info(f"Title: {current_business_maps_data[11]}")
                     current_business_data["businessDomain"] = current_business_maps_data[13][0]
                 except Exception as e:
-                    self.logger.info(f"Phone: An error occurred while searching basic information: {e}")
+                    self.logger.info(f"Basic Info: An error occurred while searching basic information: {e}")
                 # try:
                 #     # Find the element by its CSS selector
                 #     element = current_business_anchor.find_element(By.XPATH, ".//div[@class='hHbUWd']//h1")
@@ -545,7 +549,7 @@ class BusinessScraper:
                         current_business_data["rating"] = 0.0
                         current_business_data["reviews"] = 0
                 except Exception as e:
-                    self.logger.info(f"Phone: An error occurred while searching ratings: {e}")
+                    self.logger.info(f"Rating: An error occurred while searching ratings: {e}")
 
                 #Latitude & Longitude
                 try:
@@ -555,7 +559,7 @@ class BusinessScraper:
                     current_business_data["longitude"] = lat_and_long[3]
                     self.logger.info(f"Latitude & Longitude: {lat_and_long[2]}, {lat_and_long[3]}")
                 except Exception as e:
-                    self.logger.info(f"Phone: An error occurred while searching location: {e}")
+                    self.logger.info(f"Latitude & Longitude: An error occurred while searching location: {e}")
 
                 #Source
                 current_business_data["source"] = sourceValues[0]
@@ -578,7 +582,7 @@ class BusinessScraper:
                         "countryCode": city["countryCode"],
                     }
                 except Exception as e:
-                    self.logger.info(f"Phone: An error occurred while searching timezone: {e}")
+                    self.logger.info(f"Timezone: An error occurred while searching timezone: {e}")
 
                 #Address Info
                 try:
@@ -587,7 +591,7 @@ class BusinessScraper:
                     current_business_data["address"] = current_business_address
                     self.logger.info(f"Place: {current_business_address}")
                 except Exception as e:
-                    self.logger.info(f"Phone: An error occurred while searching address: {e}")
+                    self.logger.info(f"Address: An error occurred while searching address: {e}")
                     current_business_data["address"] = ", ".join([city['name'], state['name'], country['name']])
                 
                 #Postal Code Info
@@ -596,7 +600,7 @@ class BusinessScraper:
                     self.logger.info(f"Postal Code: {zip}")
                     current_business_data["postalCode"] = zip
                 except Exception as e:
-                    self.logger.info(f"Phone: An error occurred while searching postal code: {e}")
+                    self.logger.info(f"Postal Code: An error occurred while searching postal code: {e}")
                 
                 #City/State/Country Info
                 try:
@@ -607,20 +611,53 @@ class BusinessScraper:
                     self.logger.info(f"StateId: {state['id']}")
                     self.logger.info(f"CountryId: {country['id']}")
                 except Exception as e:
-                    self.logger.info(f"Phone: An error occurred while searching city/state/country: {e}")
+                    self.logger.info(f"City/State/Country: An error occurred while searching city/state/country: {e}")
 
                 #Schedule Info
                 try:
                     self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
                     current_business_schedule = current_business_maps_data[34]
-                    open_hour = current_business_schedule[1][0][1][0].replace("\u202f", "").split("–")[0]
-                    close_hour = current_business_schedule[1][0][1][0].replace("\u202f", "").split("–")[1]
-                    current_business_data["openingHour"] = convert_to_24h_format(open_hour)
-                    current_business_data["closingHour"] = convert_to_24h_format(close_hour)
-                    self.logger.info(f"Open Hours: {open_hour}")
-                    self.logger.info(f"Close Hours: {close_hour}")
+                    operating_hours = []
+                    if current_business_schedule is not None:
+                        for schedule in current_business_schedule[1]:
+                            day, hours = schedule[0], schedule[1]
+                            if hours:
+                                opening, closing = None, None
+                                try:
+                                    opening, closing = hours[0].replace("\u202f", "").split("–")
+                                except Exception as e:
+                                    opening=closing= hours[0]
+                                operating_hours.append({
+                                    'day': day,
+                                    'openingHour': convert_to_24h_format(opening),
+                                    'closingHour': convert_to_24h_format(closing),
+                                })
+
+                        # open_hour = current_business_schedule[1][0][1][0].replace("\u202f", "").split("–")[0]
+                        # close_hour = current_business_schedule[1][0][1][0].replace("\u202f", "").split("–")[1]
+                    else:
+                        sample_schedule = [
+                            ["Thursday", ["open 24 hours-closed"]],
+                            ["Friday", ["open 24 hours-closed"]],
+                            ["Saturday", ["open 24 hours-closed"]],
+                            ["Sunday", ["open 24 hours-closed"]],
+                            ["Monday", ["open 24 hours-closed"]],
+                            ["Tuesday", ["open 24 hours-closed"]],
+                            ["Wednesday", ["open 24 hours-closed"]]
+                        ]
+                        for schedule in sample_schedule:
+                            day, hours = schedule[0], schedule[1]
+                            if hours:
+                                opening, closing = hours[0].split("-")
+                                operating_hours.append({
+                                    'day': day,
+                                    'openingHour': convert_to_24h_format(opening),
+                                    'closingHour': convert_to_24h_format(closing),
+                                })
+                    current_business_data["operatingHours"] = operating_hours
+                    self.logger.info(f"Operating Hours: {operating_hours}")
                 except Exception as e:
-                    self.logger.info(f"Phone: An error occurred while searching openingHour/closingHour: {e}")
+                    self.logger.info(f"Operating Hours: An error occurred while searching openingHour/closingHour: {e}")
 
                 #Website
                 try:
@@ -636,12 +673,12 @@ class BusinessScraper:
                     self.logger.info(f"Phone: {current_business_maps_data[178][0][3]}")
                 except Exception as e:
                     self.logger.info(f"Phone: An error occurred while searching phone: {e}")
-            except Exception:
-                self.logger.info("An error occurred in while loop of scroll_and_parse_data function:")
+            except Exception as e:
+                self.logger.info("An error occurred in while loop of scroll_and_parse_data function: {e}")
             
             counter = counter + 1
             businesses.append(current_business_data)
-            if counter >= len(data):
+            if counter >= len(initialization_state_and_requests):
                 create_businesses(businesses)
                 break
 
