@@ -46,7 +46,7 @@ export const getStatesByQuery = async (req: Request, res: Response) => {
 
     const totalPages = Math.ceil(count / limitNumber);
 
-    logger.info(`Successfully retrieved states for state: ${name}`);
+    logger.info('Successfully retrieved states.');
     const response: ApiResponse<{ totalRecords: number; totalPages: number; states: State[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, states }, message: getStateMessage(StateMessageKey.STATES_RETRIEVED).message, status: getStateMessage(StateMessageKey.STATES_RETRIEVED).code });
     res.json(response);
   } catch (error) {

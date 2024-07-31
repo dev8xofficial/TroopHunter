@@ -9,8 +9,6 @@ import BusinessCategory from './BusinessCategory';
 import PostalCode from './PostalCode';
 import BusinessRating from './BusinessRating';
 import Timezone from './Timezone';
-import BusinessOpeningHour from './BusinessOpeningHour';
-import BusinessClosingHour from './BusinessClosingHour';
 
 class Lead extends Model<ILeadAttributes> implements ILeadAttributes {
   public id!: string;
@@ -33,8 +31,6 @@ class Lead extends Model<ILeadAttributes> implements ILeadAttributes {
   public timezoneId?: string;
   public sponsoredAd?: boolean;
   public businessCount!: number;
-  public openingHourId?: string;
-  public closingHourId?: string;
 
   // Define associations, if any
   public createUser!: BelongsToCreateAssociationMixin<User>;
@@ -126,14 +122,6 @@ Lead.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    openingHourId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-    },
-    closingHourId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-    },
   },
   {
     sequelize,
@@ -148,8 +136,6 @@ Lead.belongsTo(Country, { foreignKey: 'countryId' });
 Lead.belongsTo(PostalCode, { foreignKey: 'postalCodeId' });
 Lead.belongsTo(BusinessRating, { foreignKey: 'ratingId' });
 Lead.belongsTo(Timezone, { foreignKey: 'timezoneId' });
-Lead.belongsTo(BusinessOpeningHour, { foreignKey: 'openingHourId' });
-Lead.belongsTo(BusinessClosingHour, { foreignKey: 'closingHourId' });
 
 Lead.sync();
 

@@ -12,10 +12,10 @@ export const findOrCreateTimezone = async (timezone: ITimezoneCreateRequestAttri
     });
 
     if (created) {
-      logger.info(`Timezone ${timezoneName} created successfully.`);
+      logger.info(`Timezone created successfully: ${timezoneName}`);
       return record.toJSON() as ITimezoneAttributes;
     } else {
-      logger.info(`Timezone ${timezoneName} already exists.`);
+      logger.info(`Timezone already exists: ${timezoneName}`);
       return record.toJSON() as ITimezoneAttributes;
     }
   } catch (error) {
