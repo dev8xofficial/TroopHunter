@@ -7,6 +7,15 @@ import phonenumbers
 from datetime import datetime
 import logging
 
+def round_to_nearest_quarter_hour(hour, minute):
+    # Round minute to nearest quarter hour
+    minutes = minute
+    if minutes % 15 != 0:
+        minutes = ((minutes + 7) // 15) * 15
+    if minutes == 60:
+        minutes = 0
+        hour += 1
+    return f"{hour:02}:{minutes:02}"
 
 def convert_to_24h_format(time_str):
     try:
@@ -31,14 +40,14 @@ def convert_to_24h_format(time_str):
                     hour += 12
                 elif period == "am" and hour == 12:
                     hour = 0
-                return datetime.strptime(f"{hour}:{minute:02}", "%H:%M").strftime("%H:%M")
+                return round_to_nearest_quarter_hour(hour, minute)
 
         # Handle 24-hour format
         match = re.search(r"(\d{1,2}):?(\d{2})?", time_str)
         if match:
             hour = int(match.group(1))
             minute = int(match.group(2)) if match.group(2) else 0
-            return datetime.strptime(f"{hour}:{minute:02}", "%H:%M").strftime("%H:%M")
+            return round_to_nearest_quarter_hour(hour, minute)
 
     except Exception as e:
         logging.exception("An error occurred while converting to 24-hour format: %s", e)
