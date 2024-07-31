@@ -1,10 +1,13 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 import { IBusinessClosingHourAttributes } from 'validator/interfaces';
+import Business from './Business';
+import ClosingHour from './ClosingHour';
 
 class BusinessClosingHour extends Model<IBusinessClosingHourAttributes> implements IBusinessClosingHourAttributes {
   public id!: string;
-  public time?: string;
+  public businessId!: string;
+  public closingHourId!: string;
 }
 
 BusinessClosingHour.init(
@@ -15,21 +18,26 @@ BusinessClosingHour.init(
       primaryKey: true,
       unique: true,
     },
-    time: {
-      type: DataTypes.TIME,
-      allowNull: true,
-      unique: true,
+    businessId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: Business,
+        key: 'id',
+      },
+    },
+    closingHourId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: ClosingHour,
+        key: 'id',
+      },
     },
   },
   {
     sequelize,
     modelName: 'BusinessClosingHour',
-    indexes: [
-      {
-        unique: true,
-        fields: ['time'],
-      },
-    ],
   }
 );
 

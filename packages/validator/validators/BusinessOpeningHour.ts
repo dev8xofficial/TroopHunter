@@ -2,5 +2,6 @@ import { z } from 'zod';
 
 export const BusinessOpeningHourSchema = z.object({
   id: z.string().uuid(),
-  time: z.string().optional(),
+  businessId: z.string().uuid(),
+  openingHourId: z.string().uuid(),
 });

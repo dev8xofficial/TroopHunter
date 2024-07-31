@@ -73,7 +73,7 @@ def main():
     total_pages_cities = get_cities(limit=LIMIT)["totalPages"]
 
     for city_page in range(1, total_pages_cities + 1):
-        cities_response = get_cities(page=city_page, limit=LIMIT)
+        cities_response = get_cities(page=city_page, limit=1)
         if not cities_response["totalRecords"] > 0:
             logging.error("Failed to retrieve cities for city page %d.", city_page)
             continue
@@ -98,6 +98,7 @@ def main():
                         # Submit each search task to the ThreadPoolExecutor
                         future = executor.submit(process_queue, queue, city)
                         futures.append(future)
+                    break
 
                 # Wait for all tasks on this page to complete
                 wait(futures)
