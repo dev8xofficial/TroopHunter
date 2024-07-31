@@ -11,10 +11,10 @@ export const findOrCreateBusinessRating = async (ratingValue: number, transactio
     });
 
     if (created) {
-      logger.info(`Business rating ${ratingValue} created successfully.`);
+      logger.info(`Business rating created successfully: ${ratingValue}`);
       return record.toJSON() as IBusinessRatingAttributes;
     } else {
-      logger.info(`Business rating ${ratingValue} already exists.`);
+      logger.info(`Business rating already exists: ${ratingValue}`);
       return record.toJSON() as IBusinessRatingAttributes;
     }
   } catch (error) {

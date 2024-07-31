@@ -1,8 +1,12 @@
 DELETE FROM "BusinessPhotos";
 DELETE FROM "Businesses";
 DELETE FROM "BusinessCategories";
-DELETE FROM "BusinessClosingHours";
+DELETE FROM "Days";
+DELETE FROM "OpeningHours";
+DELETE FROM "ClosingHours";
+DELETE FROM "BusinessDays";
 DELETE FROM "BusinessOpeningHours";
+DELETE FROM "BusinessClosingHours";
 DELETE FROM "BusinessPhones";
 DELETE FROM "BusinessRatings";
 DELETE FROM "BusinessSocialMedia";

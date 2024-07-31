@@ -10,7 +10,7 @@ import { UserMessageKey, getUserMessage } from '../../messages/User';
 
 export const updateLead = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }: ILeadAttributes = req.body;
+  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount }: ILeadAttributes = req.body;
 
   try {
     const user = await User.findByPk(userId);
@@ -26,7 +26,7 @@ export const updateLead = async (req: Request, res: Response) => {
       return res.json(response);
     }
 
-    await lead.update({ userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId });
+    await lead.update({ userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount });
 
     const response: ApiResponse<Lead> = createApiResponse({ success: true, data: lead, message: getLeadMessage(LeadMessageKey.LEAD_UPDATED).message, status: getLeadMessage(LeadMessageKey.LEAD_UPDATED).code });
     res.json(response);

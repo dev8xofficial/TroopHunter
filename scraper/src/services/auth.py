@@ -32,11 +32,7 @@ def login(email, password):
             os.environ["REFRESH_TOKEN"] = data["refreshToken"]
         else:
             # Request failed
-            logging.error(
-                "Failed to login. Status code: %s, Response: %s",
-                jsonResponse["status"],
-                jsonResponse["error"],
-            )
+            logging.error("Failed to login. Status code: %s, Response: %s", jsonResponse["status"],  jsonResponse["error"])
             return None
     except requests.exceptions.RequestException as e:
         # Request encountered an error
@@ -70,15 +66,8 @@ def refreshToken():
         else:
             # Request failed
             if jsonResponse["status"] == 407:
-                login(
-                    os.environ.get("BACKEND_USER"),
-                    os.environ.get("BACKEND_USER_PASSWORD"),
-                )
-            logging.error(
-                "Failed to login. Status code: %s, Response: %s",
-                jsonResponse["status"],
-                jsonResponse["error"],
-            )
+                login(os.environ.get("BACKEND_USER"), os.environ.get("BACKEND_USER_PASSWORD"))
+            logging.error("Failed to login. Status code: %s, Response: %s", jsonResponse["status"], jsonResponse["error"])
             return None
     except requests.exceptions.RequestException as e:
         # Request encountered an error

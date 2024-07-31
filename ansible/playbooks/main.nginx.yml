@@ -1,0 +1,7 @@
+---
+- name: Install NGINX
+  hosts: nginx
+  become: true
+  roles:
+    - nginx
+    - cloudflare

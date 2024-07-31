@@ -11,10 +11,10 @@ export const findOrCreatePostalCode = async (code: string, transaction: Transact
     });
 
     if (created) {
-      logger.info(`Business postal code ${code} created successfully.`);
+      logger.info(`Business postal code created successfully: ${code}`);
       return record.toJSON() as IPostalCodeAttributes;
     } else {
-      logger.info(`Business postal code ${code} already exists.`);
+      logger.info(`Business postal code already exists: ${code}`);
       return record.toJSON() as IPostalCodeAttributes;
     }
   } catch (error) {

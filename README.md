@@ -21,7 +21,9 @@
 
     npm run start:ci
 
-# ------------------------------------------------ Other commands for this project --------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
+# ------------ Helping Commands ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
 
 # Run the following command to remove the already committed files/folders from the repository.
 
@@ -73,45 +75,3 @@
 
     scp -rp /Users/abdulrehman/Workstation/hellobadul/development/helloabdul/backend/.env ubuntu-server@192.168.1.16:/home/ubuntu-server/helloabdul
 
-# ------------------------------------------------ Virutal machines automatation setup --------------------------------------------------------------------------------------------
-
-# Step 1 - Run below commands in ubuntu server to allow user password free access
-
-    sudo adduser ubuntu-server
-    sudo su - ubuntu-server
-    sudo visudo
-    ubuntu-server ALL=(ALL) NOPASSWD:ALL
-
-# Step 2 - Run below commands in ubuntu server to add user in sudo group
-
-    sudo usermod -aG sudo ubuntu-server
-
-# Step 3 - Add static ip in the router.
-
-    192.168.1.100
-    Install Linux ProtonVPN
-    sudo apt install curl
-    Install pgadmin 4 (apt)
-    sudo apt install bridge-utils
-    sudo apt install net-tools
-    sudo apt install openssh-server
-
-# Step 4 - Run below commands in ubuntu server to copy public key in ubuntu server
-
-    Go to /etc/ansible directory and run below command.
-    ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-server@192.168.1.100
-
-# Step 5 - RUn this command to execute the initial setup.
-
-    ansible-playbook --ask-vault-pass playbooks/main.yml
-
-# Step 5 - After deplying git code and before building project build.
-
-    sudo groupadd docker
-    sudo usermod -aG docker $USER
-    newgrp docker
-
-# To find .ssh directory go to home/your-username/.ssh
-
-    Its hidden as a result of the dot(.) before the name.
-    So to find it do `ls -a` in your current location as seen in the image.
