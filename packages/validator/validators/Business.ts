@@ -29,8 +29,6 @@ export const BusinessSchema = z.object({
   sourceId: z.string().uuid().optional(),
   socialMediaId: z.string().uuid().optional(),
   sponsoredAd: z.boolean().optional(),
-  openingHourId: z.string().uuid().optional(),
-  closingHourId: z.string().uuid().optional(),
   BusinessPhone: BusinessPhoneSchema,
 });
 
@@ -45,9 +43,12 @@ export const BusinessCreateRequestSchema = BusinessSchema.extend({
   rating: z.number().optional(),
   timezone: TimezoneCreateRequestSchema.optional(),
   source: z.string().optional(),
-  openingHour: z.string().optional(),
-  closingHour: z.string().optional(),
-}).omit({ id: true, categoryId: true, postalCodeId: true, phoneId: true, ratingId: true, timezoneId: true, sourceId: true, openingHourId: true, closingHourId: true, BusinessPhone: true });
+  operatingHours: z.array(z.object({
+    day: z.enum(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']),
+    openingHour: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format, must be HH:MM'),
+    closingHour: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format, must be HH:MM'),
+  })).optional(),
+}).omit({ id: true, categoryId: true, postalCodeId: true, phoneId: true, ratingId: true, timezoneId: true, sourceId: true, BusinessPhone: true });
 
 export const BulkBusinessCreateRequestSchema = z.array(BusinessCreateRequestSchema);
 

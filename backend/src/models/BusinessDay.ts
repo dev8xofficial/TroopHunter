@@ -1,16 +1,16 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import { IBusinessOpeningHourAttributes } from 'validator/interfaces';
 import Business from './Business';
-import OpeningHour from './OpeningHour';
+import Day from './Day';
+import { IBusinessDayAttributes } from 'validator/interfaces';
 
-class BusinessOpeningHour extends Model<IBusinessOpeningHourAttributes> implements IBusinessOpeningHourAttributes {
+class BusinessDay extends Model<IBusinessDayAttributes> implements IBusinessDayAttributes {
   public id!: string;
   public businessId!: string;
-  public openingHourId!: string;
+  public dayId!: string;
 }
 
-BusinessOpeningHour.init(
+BusinessDay.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -26,21 +26,19 @@ BusinessOpeningHour.init(
         key: 'id',
       },
     },
-    openingHourId: {
+    dayId: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: OpeningHour,
+        model: Day,
         key: 'id',
       },
     },
   },
   {
     sequelize,
-    modelName: 'BusinessOpeningHour',
+    modelName: 'BusinessDay',
   }
 );
 
-BusinessOpeningHour.sync();
-
-export default BusinessOpeningHour;
+export default BusinessDay;

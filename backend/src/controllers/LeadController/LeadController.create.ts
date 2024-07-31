@@ -10,10 +10,10 @@ import { LeadMessageKey, getLeadMessage } from '../../messages/Lead';
 import { v4 as uuidv4 } from 'uuid';
 
 export const createLead = async (req: Request, res: Response) => {
-  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId }: ILeadAttributes = req.body;
+  const { userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount }: ILeadAttributes = req.body;
 
   try {
-    const requestData: ILeadAttributes = { id: uuidv4(), userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount, openingHourId, closingHourId };
+    const requestData: ILeadAttributes = { id: uuidv4(), userId, businessIds, title, search, businessDomain, categoryId, address, cityId, stateId, countryId, postalCodeId, phone, email, website, ratingId, reviews, timezoneId, sponsoredAd, businessCount };
     const lead = await Lead.create(requestData);
 
     let businesses: Business[] | undefined = [];

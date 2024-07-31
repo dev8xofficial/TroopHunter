@@ -9,7 +9,7 @@ import { IBusinessAttributes } from 'validator/interfaces';
 export const updateBusiness = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const { name, businessDomain, categoryId, address, cityId, stateId, countryId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd, openingHourId, closingHourId }: IBusinessAttributes = req.body;
+    const { name, businessDomain, categoryId, address, cityId, stateId, countryId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd }: IBusinessAttributes = req.body;
     // const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
     const business = await Business.findByPk(id);
@@ -35,8 +35,6 @@ export const updateBusiness = async (req: Request, res: Response) => {
       if (sourceId) business.sourceId = sourceId;
       if (sponsoredAd) business.sponsoredAd = sponsoredAd;
       if (socialMediaId) business.socialMediaId = socialMediaId;
-      if (openingHourId) business.openingHourId = openingHourId;
-      if (closingHourId) business.closingHourId = closingHourId;
 
       await business.save();
 
