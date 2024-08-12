@@ -67,13 +67,13 @@ By using a virtual environment, you can keep your project's dependencies isolate
 Additionally, you can create a `requirements.txt` file in your project directory to list all the packages required for your project. This file can be used to recreate the virtual environment and install all the necessary packages on another system:
 
 ```bash
-python3 -m pip freeze > requirements.txt
+python3 -m pip freeze > requirements.txt -t .
 ```
 
 To install the packages listed in the `requirements.txt` file on another system, run:
 
 ```bash
-python3 -m pip install -r requirements.txt
+python3 -m pip install -r requirements.txt -t .
 ```
 
 Remember to keep your `requirements.txt` file updated whenever you add or remove packages from your project.
@@ -83,10 +83,10 @@ Using virtual environments and managing project-specific dependencies is a best 
 Helper commands:
 
 ```bash
-python3 -m pip install -r requirements.txt
-python3 -m pip install --upgrade -r requirements.txt
+python3 -m pip install -r requirements.txt -t .
+python3 -m pip install --upgrade -r requirements.txt -t .
 python3 -m pip list
-python3 -m pip uninstall package_name
+python3 -m pip uninstall package_name -t .
 
 git rm -r --cached folder_name
 git rm -r --cached \*\*/**pycache**/\*

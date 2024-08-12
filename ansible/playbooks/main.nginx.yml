@@ -3,5 +3,6 @@
   hosts: nginx
   become: true
   roles:
+    - common
     - nginx
     - cloudflare
