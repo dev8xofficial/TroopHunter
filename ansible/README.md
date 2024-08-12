@@ -69,7 +69,7 @@
 # Step 6 - Run below commands in ansible container to copy public key in lxc container
 
     Go to /etc/ansible directory and run below command.
-    ssh-copy-id -i secrets/id_ed25519_ubuntu nginx@192.168.1.101
+    ssh-copy-id -i secrets/id_ed25519_ubuntu nginx@192.168.1.102
 
 # Step 7 - Run this command to execute the initial setup for nginx.
 
@@ -94,6 +94,10 @@ ansible-vault edit
 # To run ansible script
 
 ansible-playbook --ask-vault-pass playbooks/main.prod.yml
+ansible-playbook --ask-vault-pass playbooks/main.stag.yml
+ansible-playbook --ask-vault-pass playbooks/main.dev.yml
+ansible-playbook --ask-vault-pass playbooks/main.nginx.yml
+ansible-playbook --ask-vault-pass playbooks/main.scraper.yml
 
 # Refresh terminal in ubuntu to see changes.
 
@@ -106,3 +110,7 @@ sudo rm -r foldername
 # To remove locked folder in ubuntu
 
 sudo nautilus
+
+# To remove known_hosts
+
+ssh-keygen -f "/root/.ssh/known_hosts" -R "192.168.1.102"
