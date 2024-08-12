@@ -1,0 +1,10 @@
+---
+- name: Move into the scraper directory and run virtualenv venv
+  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/scraper && virtualenv venv"
+
+- name: Move into the scraper directory and build/install packages
+  command: bash -c "
+    cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/scraper &&
+    virtualenv venv &&
+    source venv/bin/activate &&
+    pip install -r requirements.txt"

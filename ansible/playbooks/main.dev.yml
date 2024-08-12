@@ -14,8 +14,12 @@
     PROJECT_NAME: helloabdul
     ENVIRONMENT: dev
     ENV_PATH: "/ansible/secrets"
+    # PROTONVPN_USERNAME: alrazzaq1971@gmail.com
+    # PROTONVPN_PASSWORD: 7!>G^dmkmwwWbc50
+    # PROTONVPN_SERVER: US-NY#627
   gather_facts: true
   roles:
+    # - proton
     # - common
     # - nvm
     # - docker

@@ -57,7 +57,7 @@
 
 # To see logs of all docker containers
 
-    docker logs --details container_id
+    docker logs --details -f container_id
 
 # To see the docker resource usage
 
