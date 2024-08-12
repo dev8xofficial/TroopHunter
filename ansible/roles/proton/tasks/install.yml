@@ -1,0 +1,19 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install dependencies for ProtonVPN CLI
+  apt:
+    name: 
+      - openvpn
+      - dialog
+      - python3-pip
+      - python3-setuptools
+    state: present
+
+- name: Install ProtonVPN CLI
+  pip:
+    name: protonvpn-cli
+    state: present
+    executable: pip3
