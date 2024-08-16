@@ -38,19 +38,21 @@ def process_queue(queue, city):
 
     while True:
         try:
-            searchQuery = f"{queue['searchQuery'].replace('_', ' ')} in {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'gdpInBillionUsd' and key != 'year' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())}"
+            searchQuery = f"{queue['searchQuery'].replace('_', ' ')} near {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'gdpInBillionUsd' and key != 'year' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())}"
             scraper = BusinessScraper(searchQuery=searchQuery, logger=logger)
             scraper.search(searchQuery)
             # scraper.scroll_and_extract_data(queue["searchQuery"], city)
-            scraper.scroll_and_parse_data(queue["searchQuery"], city)
+            new_businesses = scraper.scroll_and_parse_data(queue["searchQuery"], city)
 
             city_queue = {
                 "cityId": city["id"],
                 "queueId": queue["id"],
                 "status": "Completed",
             }
+            if new_businesses is None:
+                city_queue["status"] = "Failed"
             create_city_queue(request=city_queue)
-            logger.info(f"Search for '{queue['searchQuery'].replace('_', ' ')}' in {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'gdpInBillionUsd' and key != 'year' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())} completed.")
+            logger.info(f"Search for '{queue['searchQuery'].replace('_', ' ')}' near {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'gdpInBillionUsd' and key != 'year' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())} completed.")
             scraper.close()
             break
         except (Timeout, requests.exceptions.RequestException, Exception) as e:
@@ -87,8 +89,12 @@ def main():
                 futures = []
                 for city in cities_response["cities"]:
                     for queue in queues_response["queues"]:
-                        if queue["laptopName"] == LAPTOP_NAME:
-                            pass
+                        if queue["laptopName"] is not "":
+                            try:
+                                if queue["status"] == "Completed" or queue["status"] == "Failed":
+                                    pass
+                            except Exception as e:
+                                pass
                         elif queue["laptopName"] == "":
                             queue["laptopName"] = LAPTOP_NAME
                             update_queue(request=queue)
