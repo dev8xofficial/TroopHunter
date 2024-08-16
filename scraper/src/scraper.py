@@ -54,8 +54,11 @@ class BusinessScraper:
         self.logger.info(f"Searching for query: {query}")
         self.driver.get(f"{BASE_URL}/{quote_plus(query)}")
         wait = WebDriverWait(self.driver, self.long_wait)
-        wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
-        wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
+        try:
+            wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
+            wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
+        except TimeoutException:
+            self.logger.warning("Element with role='feed' not found, continuing to the next step.")
 
     def scroll_and_extract_data(self, query: str, city: str):
         self.logger.info("Scrolling into feed.")
@@ -492,7 +495,14 @@ class BusinessScraper:
                 except Exception as e:
                     self.logger.exception("An error occurred while scrolling and extracting data: %s", e)
 
-        scroll_till_the_end_of_list(self, query, city)
+        try:
+            feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
+            if feed is not None:
+                scroll_till_the_end_of_list(self, query, city)
+        except NoSuchElementException:
+            pass
+        except StaleElementReferenceException:
+            pass
 
         initialization_state = self.driver.execute_script("return window.APP_INITIALIZATION_STATE")
         json_initialization_state = json.loads(initialization_state[3][2].lstrip(")]}'\n").rstrip(','))
@@ -503,9 +513,9 @@ class BusinessScraper:
 
         #Parse place endpoint data
         initialization_state_and_requests = None
-        if len(json_initialization_state[0][1]) > 1:
+        if len(json_initialization_state[0][1]) > 0:
             initialization_state_and_requests = json_initialization_state[0][1] + self.parse_network_traffic("https://www.google.com/search")
-        elif len(json_initialization_state[64]) > 1:
+        elif len(json_initialization_state[64]) > 0:
             initialization_state_and_requests = json_initialization_state[64] + self.parse_network_traffic("https://www.google.com/search")
 
         counter = 1
@@ -683,8 +693,7 @@ class BusinessScraper:
             counter = counter + 1
             businesses.append(current_business_data)
             if counter >= len(initialization_state_and_requests):
-                create_businesses(businesses)
-                break
+                return create_businesses(businesses)
 
     def close(self):
         self.driver.quit()
