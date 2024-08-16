@@ -11154,11 +11154,11 @@ module.exports = {
         searchQuery: 'health',
         laptopName: '',
       },
-      {
-        id: uuidv4(),
-        searchQuery: 'intersection',
-        laptopName: '',
-      },
+      // {
+      //   id: uuidv4(),
+      //   searchQuery: 'intersection',
+      //   laptopName: '',
+      // },
       {
         id: uuidv4(),
         searchQuery: 'landmark',
