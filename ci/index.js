@@ -35,7 +35,7 @@ app.post('/webhook', (req, res) => {
         console.log('[GIT] Pulled successfully.');
       });
 
-      // Change to the parent directory (helloabdul) and then run npm run build:dev
+      // Change to the parent directory (troophunter) and then run npm run build:dev
       const buildProcess = spawn('npm', ['run', 'build:' + process.env.ENVIRONMENT], { cwd: '..' });
       buildProcess.stdout.on('data', (data) => {
         console.log(`[BUILD] ${data}`);

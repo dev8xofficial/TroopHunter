@@ -1,4 +1,4 @@
-name: 'helloabdul_dev'
+name: 'troophunter_dev'
 services:
   ci:
     extends:

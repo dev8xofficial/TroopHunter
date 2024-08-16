@@ -4,7 +4,7 @@
   "private": true,
   "description": "This repository is a shared resource among backend and crm.",
   "keywords": [],
-  "author": "helloabdul <contact@helloabdul.com>",
+  "author": "troophunter <contact@helloabdul.com>",
   "license": "ISC",
   "main": "lib/validator.js",
   "directories": {
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@helloabdul:helloabdul/helloabdul.git"
+    "url": "git@helloabdul:helloabdul/troophunter.git"
   },
   "scripts": {
     "test": "node ./__tests__/validator.test.js"

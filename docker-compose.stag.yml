@@ -1,4 +1,4 @@
-name: 'helloabdul_stag'
+name: 'troophunter_stag'
 services:
   ci:
     extends:
