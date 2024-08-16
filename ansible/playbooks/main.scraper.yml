@@ -14,5 +14,6 @@
     ENV_PATH: "/ansible/secrets"
   gather_facts: true
   roles:
-    - common
+    # - common
+    - github
     - scraper
