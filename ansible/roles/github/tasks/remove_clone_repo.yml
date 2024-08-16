@@ -1,5 +1,5 @@
 ---
-- name: Remove the helloabdul directory.
+- name: Remove the TroopHunter directory.
   file:
     path: /home//{{ USER }}/{{ PROJECT_NAME }}
     state: absent

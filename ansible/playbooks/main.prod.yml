@@ -9,9 +9,9 @@
   vars:
     USER: ubuntu-server
     NODE_VERSION: 20.12.2
-    GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/helloabdul.git"
+    GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/TroopHunter.git"
     GIT_BRANCH: main
-    PROJECT_NAME: helloabdul
+    PROJECT_NAME: TroopHunter
     ENVIRONMENT: prod
     ENV_PATH: "/ansible/secrets"
     # PROTONVPN_USERNAME: 49bFnqbhzhVjOm5Z
