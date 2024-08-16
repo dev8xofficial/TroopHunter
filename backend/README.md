@@ -51,7 +51,7 @@ CREATE EXTENSION postgis;
 
 This project is licensed under the [MIT License](LICENSE).
 
-helloabdul/docker-compose.dev.yml:
+troophunter/docker-compose.dev.yml:
 
 ```
 version: '3.8'
@@ -109,7 +109,7 @@ services:
       - /Users/abdulrehman/Library/Application Support/Postgres/var-15:/var/lib/postgresql/data
 ```
 
-helloabdul/backend/docker-compose.yml:
+troophunter/backend/docker-compose.yml:
 
 ```
 services:
@@ -135,7 +135,7 @@ services:
       - ./postgres-data:/var/lib/postgresql/data
 ```
 
-helloabdul/backend/src/config/database.ts:
+troophunter/backend/src/config/database.ts:
 
 ```
 import { Sequelize } from 'sequelize';
@@ -157,7 +157,7 @@ const sequelize = new Sequelize({
 export default sequelize;
 ```
 
-helloabdul/backend/.env:
+troophunter/backend/.env:
 
 ```
 # Environment Variables
