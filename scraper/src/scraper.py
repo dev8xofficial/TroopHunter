@@ -511,8 +511,12 @@ class BusinessScraper:
         counter = 1
         while True:
             try:
-                current_business_data = {}
-                current_business_maps_data = initialization_state_and_requests[counter][14]
+                #Data Seeding
+                try:
+                    current_business_data = {}
+                    current_business_maps_data = initialization_state_and_requests[counter][14]
+                except Exception as e:
+                    self.logger.info(f"An error occurred in while loop where current_business_maps_data is seeding: {e}")
                 
                 #Heading
                 try:

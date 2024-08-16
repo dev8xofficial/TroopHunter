@@ -1,4 +1,4 @@
-name: 'helloabdul_prod'
+name: 'troophunter_prod'
 services:
   ci:
     extends:
