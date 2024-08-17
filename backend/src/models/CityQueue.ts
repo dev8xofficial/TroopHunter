@@ -8,7 +8,7 @@ class CityQueue extends Model<ICityQueueAttributes> implements ICityQueueAttribu
   public id!: string;
   public cityId!: string;
   public queueId!: string;
-  public status!: 'Pending' | 'Completed';
+  public status!: 'Pending' | 'Completed' | 'Failed';
 }
 
 CityQueue.init(
