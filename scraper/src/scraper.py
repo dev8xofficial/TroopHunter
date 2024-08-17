@@ -497,7 +497,7 @@ class BusinessScraper:
 
         try:
             feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
-            if feed is not None:
+            if feed != None:
                 scroll_till_the_end_of_list(self, query, city)
         except NoSuchElementException:
             pass
@@ -632,7 +632,7 @@ class BusinessScraper:
                     self.logger.info("~~~~~~~~ Schedule Info ~~~~~~~~")
                     current_business_schedule = current_business_maps_data[34]
                     operating_hours = []
-                    if current_business_schedule is not None:
+                    if current_business_schedule != None:
                         for schedule in current_business_schedule[1]:
                             day, hours = schedule[0], schedule[1]
                             if hours:

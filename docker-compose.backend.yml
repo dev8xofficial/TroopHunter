@@ -13,6 +13,8 @@ services:
     depends_on:
       postgres_prod:
         condition: service_started
+    volumes:
+      - ./backend/logs/:/backend/logs/
     networks:
       - custom_network
 
@@ -30,6 +32,8 @@ services:
     depends_on:
       postgres_stag:
         condition: service_started
+    volumes:
+      - ./backend/logs/:/backend/logs/
     networks:
       - custom_network
 
@@ -47,5 +51,7 @@ services:
     depends_on:
       postgres_dev:
         condition: service_started
+    volumes:
+      - ./backend/logs/:/backend/logs/
     networks:
       - custom_network
