@@ -5,7 +5,7 @@ export const CityQueueSchema = z.object({
   id: z.string().uuid(),
   cityId: z.string().uuid(),
   queueId: z.string().uuid(),
-  status: z.enum(['Pending', 'Completed']),
+  status: z.enum(['Pending', 'Completed', 'Failed']),
 });
 
 export const CityQueueFetchRequestSchema = CityQueueSchema.omit({ id: true }).partial();
