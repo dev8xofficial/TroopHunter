@@ -71,25 +71,26 @@ def main():
     login(os.environ.get("BACKEND_USER"), os.environ.get("BACKEND_USER_PASSWORD"))
 
     LIMIT = int(os.environ.get("MAX_WORKERS"))  # Number of queues to process per page
-    total_pages_queues = get_queue(limit=LIMIT)["totalPages"]
+    total_pages_queues = get_queue(limit=1)["totalPages"]
     total_pages_cities = get_cities(limit=LIMIT)["totalPages"]
 
     for city_page in range(1, total_pages_cities + 1):
-        cities_response = get_cities(page=city_page, limit=1)
-        if not cities_response["totalRecords"] > 0:
+        cities_response = get_cities(page=city_page, limit=LIMIT)
+        if len(cities_response["queues"]) < 0:
             logging.error("Failed to retrieve cities for city page %d.", city_page)
             continue
         for queue_page in range(1, total_pages_queues + 1):
-            queues_response = get_queue(city_id=cities_response["cities"][city_page - 1]['id'], page=queue_page, limit=LIMIT)
-            if not queues_response["totalRecords"] > 0:
-                logging.error("Failed to retrieve queues for queue page %d.", queue_page)
-                continue
+            # queues_response = get_queue(city_id=cities_response["cities"][city_page - 1]['id'], page=queue_page, limit=LIMIT)
+            # if not queues_response["totalRecords"] > 0:
+            #     logging.error("Failed to retrieve queues for queue page %d.", queue_page)
+            #     continue
 
             with ThreadPoolExecutor(max_workers=LIMIT) as executor:
                 futures = []
                 for city in cities_response["cities"]:
+                    queues_response = get_queue(city_id=city['id'], page=queue_page, limit=1)
                     for queue in queues_response["queues"]:
-                        if queue["laptopName"] is not "":
+                        if queue["laptopName"] != "":
                             try:
                                 if queue["status"] == "Completed" or queue["status"] == "Failed":
                                     pass
@@ -104,10 +105,10 @@ def main():
                         # Submit each search task to the ThreadPoolExecutor
                         future = executor.submit(process_queue, queue, city)
                         futures.append(future)
-                    break
+                    # break
 
-                # Wait for all tasks on this page to complete
-                wait(futures)
+            # Wait for all tasks on this page to complete
+            wait(futures)
 
     logging.info("Scraping process completed.")
 
