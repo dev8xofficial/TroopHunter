@@ -9,7 +9,7 @@ const TextField: React.FC<ITextFieldProps> = ({ label, helperText, className, on
   return (
     <div className="relative w-full">
       {(label ?? '').length > 0 ? (
-        <label htmlFor={id} className="block text-sm font-medium leading-6 text-gray-900">
+        <label htmlFor={id} className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
           {(helperText ?? '').length > 0 ? <FieldError className="">{helperText}</FieldError> : label}
         </label>
       ) : null}
@@ -26,7 +26,7 @@ const TextField: React.FC<ITextFieldProps> = ({ label, helperText, className, on
           onChange={onChange}
           placeholder={placeholder}
           autoComplete={autoComplete}
-          className={classNames('dark:bg-black-900 dark:border-black-900 block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:outline-none dark:text-white sm:text-sm', noring ?? false ? '' : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-white', disabled ?? false ? 'bg-gray-100 text-gray-400' : '', className)}
+          className={classNames('dark:bg-charcoal-200 dark:border-charcoal-800 block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:outline-none dark:text-white sm:text-sm', noring ?? false ? '' : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-charcoal-900', disabled ?? false ? 'bg-gray-100 text-gray-400' : '', className)}
         />
       </div>
     </div>
