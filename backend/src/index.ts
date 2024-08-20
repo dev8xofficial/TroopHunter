@@ -26,7 +26,10 @@ const app: Application = express();
 dotenv.config();
 
 // Middleware
-app.use(cors());
+let corsOptions = {
+  origin: ['https://www.troophunter.com','http://localhost:5173']
+}
+app.use(cors(corsOptions));
 app.use(morgan('dev'));
 app.use(express.json({ limit: '1mb' }));
 
