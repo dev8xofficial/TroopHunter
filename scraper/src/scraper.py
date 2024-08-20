@@ -3,7 +3,7 @@ from seleniumwire.utils import decode
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, WebDriverException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, WebDriverException, TimeoutException, NoSuchWindowException
 from selenium.webdriver.chrome.options import Options
 import time
 import re
@@ -12,6 +12,7 @@ from urllib.parse import quote_plus
 from config import BASE_URL
 from dotenv import load_dotenv
 import os
+import random
 import json
 
 from src.utils.location import get_postal_code, get_timezone_info, extract_lat_lon
@@ -39,21 +40,92 @@ class BusinessScraper:
         # chrome_options.add_argument("--disable-network")
         # chrome_options.add_argument("--force-effective-connection-type=slow-3g")
         chrome_options.add_argument("--start-maximized")
+        chrome_options.add_argument("--enable-gpu")
+        chrome_options.add_argument("--disable-notifications")
+        # Randomize user agent
+        user_agents = [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15",
+            "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/91.0.864.54",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0",
+            "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
+            "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0",
+            "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:42.0) Gecko/20100101 Firefox/42.0"
+        ]
+        chrome_options.add_argument(f"user-agent={random.choice(user_agents)}")
         # chrome_options.add_argument("--auto-open-devtools-for-tabs")
 
         try:
-            logger.info("Initiating chrome web driver.")
+            # logger.info("Initiating chrome web driver.")
+            print("Initiating chrome web driver.")
             self.driver = webdriver.Chrome(options=chrome_options)
         except Exception as e:
-            logger.error("Service chromedriver unexpectedly exited: ", e)
+            # logger.error("Service chromedriver unexpectedly exited: ", e)
+            print("Service chromedriver unexpectedly exited: ", e)
 
         self.logger = logger
         self.searchQuery = searchQuery
 
+    def ensure_driver_is_open(self, driver):
+        try:
+            # Attempt to perform a simple action to check if the driver is still active
+            driver.title  # Access the title to see if the session is active
+        except (WebDriverException, NoSuchWindowException) as e:
+            # Driver is closed; reinitialize it
+            print("Driver has been closed. Reinitializing...")
+            driver = self.reinitialize_driver(driver)
+        return driver
+
+    def reinitialize_driver(self, existing_driver):
+        # Close the existing driver if it's partially open
+        try:
+            existing_driver.quit()
+        except:
+            pass  # Ignore any errors during closure
+
+        # Create a new instance of the driver
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--start-maximized")
+        chrome_options.add_argument("--enable-gpu")
+        chrome_options.add_argument("--disable-notifications")
+
+        try:
+            # logger.info("Initiating chrome web driver.")
+            print("Initiating chrome web driver.")
+            self.driver = webdriver.Chrome(options=chrome_options)
+        except Exception as e:
+            # logger.error("Service chromedriver unexpectedly exited: ", e)
+            print("Service chromedriver unexpectedly exited: ", e)
+
+    def set_logger(self, logger):
+        self.logger = logger
+
+    def set_search_query(self, searchQuery):
+        self.searchQuery = searchQuery
+
     def search(self, query):
+        original_window = self.driver.current_window_handle
+        self.driver.execute_script("window.open('');")
+        new_tab = self.driver.window_handles[-1]
+        self.driver.switch_to.window(new_tab)
+        
         self.logger.info(f"Searching for query: {query}")
         self.driver.get(f"{BASE_URL}/{quote_plus(query)}")
         wait = WebDriverWait(self.driver, self.long_wait)
+
+        if len(self.driver.window_handles) > 1:
+            self.driver.switch_to.window(original_window)
+            self.driver.close()
+
+        self.driver.switch_to.window(self.driver.window_handles[-1])
         try:
             wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
             wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
@@ -494,6 +566,7 @@ class BusinessScraper:
                     self.logger.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
                 except Exception as e:
                     self.logger.exception("An error occurred while scrolling and extracting data: %s", e)
+        # End of scrolling loop
 
         try:
             feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
