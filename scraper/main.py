@@ -18,7 +18,7 @@ import os
 load_dotenv()
 
 
-def process_queue(queue, city):
+def process_queue(queue, city, scraper):
     # Set up logging for the current search query and laptop name
     current_date = datetime.datetime.now().strftime("%m-%d-%Y")
     log_file = f"scraper/logs/scraper__{current_date}__{queue['searchQuery'].replace(' ', '-')}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
@@ -39,7 +39,9 @@ def process_queue(queue, city):
     while True:
         try:
             searchQuery = f"{queue['searchQuery'].replace('_', ' ')} near {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'gdpInBillionUsd' and key != 'year' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())}"
-            scraper = BusinessScraper(searchQuery=searchQuery, logger=logger)
+            # scraper = BusinessScraper(searchQuery=searchQuery, logger=logger)
+            scraper.set_logger(logger)
+            scraper.set_search_query(searchQuery)
             scraper.search(searchQuery)
             # scraper.scroll_and_extract_data(queue["searchQuery"], city)
             new_businesses = scraper.scroll_and_parse_data(queue["searchQuery"], city)
@@ -53,13 +55,13 @@ def process_queue(queue, city):
                 city_queue["status"] = "Failed"
             create_city_queue(request=city_queue)
             logger.info(f"Search for '{queue['searchQuery'].replace('_', ' ')}' near {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'gdpInBillionUsd' and key != 'year' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())} completed.")
-            scraper.close()
+            # scraper.close()
             break
         except (Timeout, requests.exceptions.RequestException, Exception) as e:
             while True:
                 if is_internet_available():
                     logger.info("Internet connection is working. Retrying...")
-                    scraper.close()
+                    # scraper.close()
                     break
                 else:
                     logger.info("Internet connection is not available. Retrying in 5 seconds...")
@@ -76,9 +78,15 @@ def main():
 
     for city_page in range(1, total_pages_cities + 1):
         cities_response = get_cities(page=city_page, limit=LIMIT)
-        if len(cities_response["queues"]) < 0:
+        browsers = {}
+        if not cities_response["totalRecords"] > 0:
             logging.error("Failed to retrieve cities for city page %d.", city_page)
             continue
+
+        for city in cities_response["cities"]:
+            scraper = BusinessScraper()
+            browsers[city["id"]] = scraper
+
         for queue_page in range(1, total_pages_queues + 1):
             # queues_response = get_queue(city_id=cities_response["cities"][city_page - 1]['id'], page=queue_page, limit=LIMIT)
             # if not queues_response["totalRecords"] > 0:
@@ -103,7 +111,7 @@ def main():
                             continue
 
                         # Submit each search task to the ThreadPoolExecutor
-                        future = executor.submit(process_queue, queue, city)
+                        future = executor.submit(process_queue, queue, city, browsers[city["id"]])
                         futures.append(future)
                     # break
 
