@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 import os
 import random
 import json
+import urllib.parse
 
 from src.utils.location import get_postal_code, get_timezone_info, extract_lat_lon
 from src.utils.business import convert_to_24h_format, get_cleaned_phone, click_feed_article, close_feed_article, wait_for_url
@@ -441,8 +442,9 @@ class BusinessScraper:
     
     def parse_network_traffic(self, target_url):
         combined_data = []
+        encoded_text = urllib.parse.quote(self.searchQuery)
         for request in self.driver.requests:                        
-            if target_url in request.url:
+            if target_url in request.url and encoded_text in request.url:
                 data = decode(request.response.body, request.response.headers.get('Content-Encoding', 'identity'))
                 data = data.decode("utf8")
                 if "/place" in target_url:
