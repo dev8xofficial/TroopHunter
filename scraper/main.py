@@ -92,11 +92,15 @@ def main():
             # if not queues_response["totalRecords"] > 0:
             #     logging.error("Failed to retrieve queues for queue page %d.", queue_page)
             #     continue
+            queue_is_empty = False
 
             with ThreadPoolExecutor(max_workers=LIMIT) as executor:
                 futures = []
                 for city in cities_response["cities"]:
                     queues_response = get_queue(city_id=city['id'], page=queue_page, limit=1)
+                    if len(queues_response["queues"]) < 1:
+                        queue_is_empty = True
+                        break
                     for queue in queues_response["queues"]:
                         if queue["laptopName"] != "":
                             try:
@@ -117,6 +121,12 @@ def main():
 
             # Wait for all tasks on this page to complete
             wait(futures)
+
+            if queue_is_empty is True:
+                break
+
+        for city in cities_response["cities"]:
+            browsers[city["id"]].close()
 
     logging.info("Scraping process completed.")
 
