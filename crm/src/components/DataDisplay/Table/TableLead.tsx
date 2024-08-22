@@ -177,27 +177,27 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   return (
     <>
       {/* Table */}
-      <div className="flex w-full items-center bg-white text-sm shadow">
+      <div className="dark:bg-charcoal-500 dark:border-charcoal-100 flex w-full items-center bg-white text-sm shadow dark:border-b-2">
         <div className="mr-auto flex items-center">
           <div className="relative flex w-full items-start py-4 pl-10">
             <div className="flex h-6 items-center">
               <Checkbox id="selectAll" name="selectAll" checked={isAllBusinessesSelected()} onChange={handleSelectAllChange} />
             </div>
-            <label htmlFor="selectAll" className="px-4 leading-6 text-gray-900 sm:px-6">
+            <label htmlFor="selectAll" className="px-4 leading-6 text-gray-900 sm:px-6 dark:text-white">
               Select all
             </label>
           </div>
 
-          <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
+          <div className="dark:border-charcoal-100 mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
 
           <CustomMenu>
-            <Menu.Button disabled={true} className="inline-flex w-full justify-center whitespace-nowrap px-3 py-2 text-sm text-gray-500 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white">
+            <Menu.Button disabled={true} className="inline-flex w-full justify-center whitespace-nowrap px-3 py-2 text-sm text-gray-500 disabled:cursor-not-allowed  disabled:opacity-30 disabled:hover:bg-white dark:text-gray-100 disabled:dark:hover:bg-transparent">
               <ListBulletIcon className="mr-0.5 h-5 w-5" aria-hidden="true" />
               Save to list
             </Menu.Button>
           </CustomMenu>
         </div>
-        <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
+        <div className="dark:border-charcoal-100 mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
         {draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 && (
           <>
             <div className="inline-flex items-center space-x-2">
@@ -220,45 +220,45 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                 </span>
               </Switch>
             </div>
-            <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
+            <div className="dark:border-charcoal-100 mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
           </>
         )}
-        <div className="inline-flex items-center space-x-2">
+        <div className="inline-flex items-center space-x-2 dark:text-white">
           <label>Business: </label>
           <TableSortingMenu options={viewOptions} value={viewOptions.find((option) => option.value === leadPageFilters.view.value)} handleChange={handleChange} />
         </div>
-        <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
-        <div className="inline-flex items-center space-x-2">
+        <div className="dark:border-charcoal-100 mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
+        <div className="inline-flex items-center space-x-2 dark:text-white">
           <label>Sort: </label>
           <TableSortingMenu options={sortOptions} value={sortOptions.find((option) => option.value === leadPageFilters.sort.value)} handleChange={handleChange} />
         </div>
         {businessesTotalRecords !== null && (
           <>
-            <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
-            <div className="h-full whitespace-nowrap pr-14">{`${draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? `${leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}: ${draftLeadBusinessIds?.length} | ` : ''}Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div>
+            <div className="dark:border-charcoal-100 mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
+            <div className="flex items-center justify-center whitespace-nowrap pr-14">{`${draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? `${leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}: ${draftLeadBusinessIds?.length} | ` : ''}Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div>
           </>
         )}
       </div>
       {/* Empty State */}
-      <div className={classNames(Object.values(tableRowsData).length > 0 ? 'hidden' : '', 'h-full rounded p-4')}>
-        <div className="flex h-full flex-col items-center justify-center bg-white">
-          <MagnifyingGlassCircleIcon className="-ml-0.5 h-32 w-32 text-indigo-600" aria-hidden="true" />
+      <div className={classNames(Object.values(tableRowsData).length > 0 ? 'hidden' : '', 'dark:bg-charcoal-300 h-full p-4')}>
+        <div className="h-full flex flex-col items-center justify-center bg-white dark:bg-charcoal-200">
+          <MagnifyingGlassCircleIcon className="-ml-0.5 h-32 w-32 text-indigo-600 dark:text-primary-text" aria-hidden="true" />
           <div className="text-center">
-            <h3 className="mt-2 text-lg font-normal text-gray-900">Apply filters to find leads</h3>
-            <p className="mt-2 text-sm text-gray-500">Leads matching your search criteria will be displayed here</p>
+            <h3 className="mt-2 text-lg font-normal text-gray-900 dark:text-primary-text">Apply filters to find leads</h3>
+            <p className="mt-2 text-sm text-gray-500 dark:text-secondary-text">Leads matching your search criteria will be displayed here</p>
           </div>
         </div>
       </div>
 
       {/* Table Body */}
-      <div id="table-lead-container" style={{ height: tableHeight, overflowY: 'auto' }} className={classNames(Object.values(tableRowsData).length < 1 ? 'hidden' : '', 'p-4')}>
+      <div id="table-lead-container" style={{ height: tableHeight, overflowY: 'auto' }} className={classNames(Object.values(tableRowsData).length < 1 ? 'hidden' : '', 'dark:bg-charcoal-300 p-4')}>
         <InfiniteScroll dataLength={Object.keys(tableRowsData).length} next={onNext} hasMore={businessesTotalRecords !== undefined && Object.keys(tableRowsData).length < businessesTotalRecords} loader={<></>} scrollableTarget="table-lead-container">
           {/* Existing code for TableLead */}
-          <ul role="list" className={classNames(isLeadPageLoading ? 'group animate-pulse' : '', 'divide-y rounded border bg-white shadow')}>
+          <ul role="list" className={classNames(isLeadPageLoading ? 'group animate-pulse' : '', 'dark:border-charcoal-100 dark:divide-charcoal-100 divide-y rounded border bg-white shadow dark:bg-charcoal-200')}>
             {Object.values(tableRowsData).map((business: IBusinessAttributes, index) => {
               const isSaved = Array.isArray(draftLeadBusinessIds) && draftLeadBusinessIds?.includes(business.id);
               return (
-                <li key={index} className={classNames(index === 0 ? 'hover:rounded-t' : '', index === Object.values(tableRowsData).length - 1 ? 'hover:rounded-b' : '', 'hover:bg-gray-100')}>
+                <li key={index} className={classNames(index === 0 ? 'hover:rounded-t' : '', index === Object.values(tableRowsData).length - 1 ? 'hover:rounded-b' : '', 'dark:hover:bg-charcoal-400 hover:bg-gray-100')}>
                   <div className="relative flex w-full items-start px-6 py-5">
                     <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">
                       <div className="group-block hidden h-5 w-5 rounded bg-slate-300"></div>
@@ -280,16 +280,16 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                           <Avatar image={images[Math.floor(Math.random() * images.length)]} firstName={business.name} size="large" border="border border-gray-900" className="group-hidden" />
                           <div className="min-w-0 flex-auto">
                             <div className="group-block mb-1 hidden h-6 w-40 rounded bg-slate-300"></div>
-                            <p className="text-lg font-semibold leading-6 text-gray-900">
+                            <p className="text-lg font-semibold leading-6 text-gray-900 dark:text-primary-text">
                               <a href="#" className="group-hidden">
                                 {business.name}
                               </a>
                             </p>
                             <div className="hidden sm:flex sm:flex-col">
                               <div className="group-block mb-3 hidden h-4 w-24 rounded bg-slate-300"></div>
-                              <p className="group-hidden text-sm leading-6 text-gray-900">{business.businessDomain?.toUpperCase()}</p>
+                              <p className="group-hidden text-sm leading-6 text-gray-900 dark:text-primary-text">{business.businessDomain?.toUpperCase()}</p>
                               {'3h ago'.length > 0 ? (
-                                <p className="group-hidden mt-1 text-xs leading-5 text-gray-500">
+                                <p className="group-hidden mt-1 text-xs leading-5 text-gray-500 dark:text-primary-text">
                                   Last seen <time dateTime="2023-01-23T13:23Z">3h ago</time>
                                 </p>
                               ) : (
@@ -297,13 +297,13 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                                   <div className="flex-none rounded-full bg-emerald-500/20 p-1">
                                     <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                                   </div>
-                                  <p className="text-xs leading-5 text-gray-500">Online</p>
+                                  <p className="text-xs leading-5 text-gray-500 dark:text-primary-text">Online</p>
                                 </div>
                               )}
                               <div className="group-block hidden h-3 w-24 rounded bg-slate-300"></div>
                             </div>
                             <div className="group-block mt-3 hidden h-3 w-24 rounded bg-slate-300"></div>
-                            <p className="mt-1 flex text-xs leading-5 text-gray-500">
+                            <p className="mt-1 flex text-xs leading-5 text-gray-500 dark:text-primary-text">
                               {business?.BusinessPhone !== undefined && (
                                 <a href={`mailto:${business.BusinessPhone.numberNationalFormatted}`} className="group-hidden relative truncate hover:underline">
                                   {business.BusinessPhone.numberNationalFormatted}
@@ -319,19 +319,19 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                               <>
                                 {isSaved ? (
                                   <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-green-600 bg-green-600 px-2.5 py-1 text-xs font-semibold text-white ring-green-600 transition duration-200 hover:bg-green-700 focus:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white">
-                                    <CheckIcon className="h-4 w-4 mr-0.5" aria-hidden="true" />
+                                    <CheckIcon className="mr-0.5 h-4 w-4" aria-hidden="true" />
                                     Saved
                                   </Menu.Button>
                                 ) : (
                                   <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-1 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white">
-                                    <ArrowDownTrayIcon className="h-4 w-4 mr-0.5" aria-hidden="true" />
+                                    <ArrowDownTrayIcon className="mr-0.5 h-4 w-4" aria-hidden="true" />
                                     Save
                                   </Menu.Button>
                                 )}
                               </>
                             </CustomMenu>
                             <div className="group-block -mr-3.5 hidden h-4 w-1 rounded bg-slate-300"></div>
-                            <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
+                            <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white dark:text-primary-text dark:hover:text-secondary-text">
                               <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
                             </_Menu>
                           </div>

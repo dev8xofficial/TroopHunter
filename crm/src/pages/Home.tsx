@@ -148,16 +148,16 @@ const Lead: React.FC = () => {
         <ActionBar title="Lead" isLoading={isLeadLoading} />
       </div>
 
-      <div className="bg-gray-100">
+      <div className="flex flex-1 flex-col bg-gray-100">
         {/* Filters Head */}
-        <div className="flex divide-x border-b border-gray-200 bg-white">
+        <div className="dark:bg-charcoal-500 dark:divide-charcoal-100 dark:border-charcoal-100 flex divide-x border-b border-gray-200 bg-white">
           {/* Filters Tab */}
           <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'hidden w-full max-w-sm xl:block', 'transition-all duration-500 ease-in-out')}>
             <div className="hidden sm:block">
               <div className="flex items-center justify-between px-4">
                 <nav className="-mb-px -ml-4 flex space-x-8" aria-label="Tabs">
                   {tabs.map((tab) => (
-                    <a key={tab.name} href={tab.href} className={classNames(tab.current ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700', 'whitespace-nowrap border-b-2 px-10 py-5 text-sm font-medium')} aria-current={tab.current ? 'page' : undefined}>
+                    <a key={tab.name} href={tab.href} className={classNames(tab.current ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300  hover:text-gray-700', 'whitespace-nowrap border-b-2 px-10 py-5 text-sm font-medium')} aria-current={tab.current ? 'page' : undefined}>
                       {tab.name}
                     </a>
                   ))}
@@ -444,17 +444,17 @@ const Lead: React.FC = () => {
           </div>
         </div>
         {/* Filters Body */}
-        <div className="mb-3 justify-between divide-x pb-20 xl:mb-0 xl:flex">
+        <div className="dark:divide-charcoal-100 flex flex-1 flex-row justify-between divide-x">
           {/* Filters Menu */}
           <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'relative hidden w-full max-w-sm bg-white xl:block', 'transition-all duration-500 ease-in-out')}>
-            <div className="flex w-full items-center justify-between border-b bg-white px-4 py-4 text-sm shadow">
-              <label htmlFor="selectAll" className="leading-6 text-gray-900">
+            <div className="dark:bg-charcoal-500 dark:border-charcoal-100 flex w-full items-center justify-between border-b bg-white px-4 py-4 text-sm shadow">
+              <label htmlFor="selectAll" className="leading-6 text-gray-900 dark:text-white">
                 0 filters applied
               </label>
             </div>
-            <div className="mb-2 hidden overflow-y-scroll p-4 pb-24 xl:col-span-4 xl:block" ref={mainRef} style={{ height: mainHeight }}>
+            <div className="dark:bg-charcoal-300 mb-2 hidden overflow-y-scroll p-4 pb-24 xl:col-span-4 xl:block" ref={mainRef} style={{ height: mainHeight }}>
               <div>
-                <ul role="list" className="divide-y rounded border bg-gray-100 shadow">
+                <ul role="list" className="dark:border-charcoal-100 dark:divide-charcoal-100 dark:bg-charcoal-500 divide-y rounded border bg-gray-100 shadow">
                   {Object.entries(leadPageFilters).map(([_, filter]) => {
                     const typedFilter = filter as IFilterOptionAttributes;
                     return typedFilter.name !== 'name' && typedFilter.name !== 'view' && typedFilter.name !== 'sort' ? (
@@ -469,7 +469,7 @@ const Lead: React.FC = () => {
               </div>
             </div>
             {/* Action buttons */}
-            <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'fixed bottom-0 w-full max-w-sm flex-shrink-0 border-t border-gray-200 bg-white px-4 py-5 sm:px-6', 'transition-all duration-500 ease-in-out')}>
+            <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'dark:border-charcoal-100 fixed bottom-0 w-full max-w-sm flex-shrink-0 border-t border-gray-200   bg-white px-4 py-5 sm:px-6 dark:bg-charcoal-700', 'transition-all duration-500 ease-in-out')}>
               <div className="flex items-center justify-between">
                 {leadPageDraftLeadId.length > 0 && (
                   <>
@@ -528,7 +528,7 @@ const Lead: React.FC = () => {
             </div>
           </div>
           {/* Filters Table */}
-          <div className="flex-grow">
+          <div className="flex flex-1 flex-col">
             <TableLead loadMoreBusinesses={loadMoreBusinesses} handleChange={handleChange} />
           </div>
         </div>

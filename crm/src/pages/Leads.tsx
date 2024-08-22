@@ -13,7 +13,7 @@ const Leads: React.FC = (): JSX.Element => {
   return (
     <>
       <header>
-        <div className="hidden w-full items-center justify-center space-x-8 bg-gray-800 xl:flex">
+        <div className="dark:bg-charcoal-500 dark:border-charcoal-100 hidden w-full items-center justify-center space-x-8 border-b bg-gray-800 xl:flex">
           {/* Advanced Search */}
           <div className="mx-auto max-w-7xl flex-1 px-4 py-4 sm:px-6 lg:px-8">
             <div className="flex flex-1 justify-center space-x-4">

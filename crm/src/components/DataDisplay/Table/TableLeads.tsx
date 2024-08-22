@@ -141,14 +141,14 @@ const Table: React.FC = (): JSX.Element => {
         <div className="col-span-12 hidden flex-col items-center justify-center rounded-sm border py-20 shadow xl:col-span-8">
           <MagnifyingGlassCircleIcon className="-ml-0.5 h-20 w-20 text-indigo-600" aria-hidden="true" />
           <div className="text-center">
-            <h3 className="mt-2 text-sm font-semibold text-gray-900">No results</h3>
+            <h3 className="mt-2 text-sm font-semibold text-gray-900 dark:text-primary-text">No results</h3>
             <p className="mt-2 text-sm text-gray-500">Start your query by customizing your search criteria here</p>
           </div>
         </div>
 
         {/* Table */}
-        <div className="rounded-sm border shadow sm:mx-0">
-          <table className="min-w-full divide-y divide-gray-300">
+        <div className="dark:border-charcoal-100 rounded-sm border shadow sm:mx-0">
+          <table className="dark:divide-charcoal-100 min-w-full divide-y divide-gray-300">
             <thead>
               <tr>
                 <th scope="col">
@@ -160,19 +160,19 @@ const Table: React.FC = (): JSX.Element => {
                   </div>
                 </th>
                 <th scope="col">
-                  <button className="flex w-full items-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  <button className="flex w-full items-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
                     Name
                     <ChevronUpDownIcon className="h-5 w-5" aria-hidden="true" />
                   </button>
                 </th>
-                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
                   Leads
                 </th>
-                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
                   Owner
                 </th>
                 <th scope="col">
-                  <button className="flex w-full items-center whitespace-nowrap px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  <button className="flex w-full items-center whitespace-nowrap px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
                     Last Updated
                     <ChevronUpDownIcon className="h-5 w-5" aria-hidden="true" />
                   </button>
@@ -194,18 +194,18 @@ const Table: React.FC = (): JSX.Element => {
                     </div>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3.5 text-sm">
-                    <div className="font-medium text-gray-900">{lead.title}</div>
+                    <div className="font-medium text-gray-900 dark:text-primary-text">{lead.title}</div>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
+                  <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500 dark:text-secondary-text">
                     <div className="text-gray-900">{lead.businessCount}</div>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">
+                  <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500 dark:text-secondary-text">
                     <div className="flex items-center">
                       <div className="h-8 w-8 flex-shrink-0">
                         <Avatar image="" firstName={usersLoggedIn.firstName} size="small" border="border border-gray-900" />
                       </div>
                       <div className="ml-4">
-                        <div className="font-medium text-gray-900">{`${usersLoggedIn.firstName} ${usersLoggedIn.lastName}`}</div>
+                        <div className="font-medium text-gray-900 dark:text-primary-text">{`${usersLoggedIn.firstName} ${usersLoggedIn.lastName}`}</div>
                       </div>
                     </div>
                   </td>
