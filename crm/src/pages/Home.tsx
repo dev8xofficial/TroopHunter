@@ -150,7 +150,7 @@ const Lead: React.FC = () => {
 
       <div className="flex flex-1 flex-col bg-gray-100">
         {/* Filters Head */}
-        <div className="dark:bg-charcoal-500 dark:divide-charcoal-100 dark:border-charcoal-100 flex divide-x border-b border-gray-200 bg-white">
+        <div className="flex divide-x border-b border-gray-200 bg-white dark:divide-charcoal-100 dark:border-charcoal-100 dark:bg-charcoal-500">
           {/* Filters Tab */}
           <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'hidden w-full max-w-sm xl:block', 'transition-all duration-500 ease-in-out')}>
             <div className="hidden sm:block">
@@ -444,17 +444,17 @@ const Lead: React.FC = () => {
           </div>
         </div>
         {/* Filters Body */}
-        <div className="dark:divide-charcoal-100 flex flex-1 flex-row justify-between divide-x">
+        <div className="flex flex-1 flex-row justify-between divide-x dark:divide-charcoal-100">
           {/* Filters Menu */}
           <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'relative hidden w-full max-w-sm bg-white xl:block', 'transition-all duration-500 ease-in-out')}>
-            <div className="dark:bg-charcoal-500 dark:border-charcoal-100 flex w-full items-center justify-between border-b bg-white px-4 py-4 text-sm shadow">
+            <div className="flex w-full items-center justify-between border-b bg-white px-4 py-4 text-sm shadow dark:border-charcoal-100 dark:bg-charcoal-500">
               <label htmlFor="selectAll" className="leading-6 text-gray-900 dark:text-white">
                 0 filters applied
               </label>
             </div>
-            <div className="dark:bg-charcoal-300 mb-2 hidden overflow-y-scroll p-4 pb-24 xl:col-span-4 xl:block" ref={mainRef} style={{ height: mainHeight }}>
+            <div className="hidden overflow-y-scroll p-4 pb-24 xl:col-span-4 xl:block dark:bg-charcoal-300" ref={mainRef} style={{ height: mainHeight }}>
               <div>
-                <ul role="list" className="dark:border-charcoal-100 dark:divide-charcoal-100 dark:bg-charcoal-500 divide-y rounded border bg-gray-100 shadow">
+                <ul role="list" className="divide-y rounded border bg-gray-100 shadow dark:divide-charcoal-100 dark:border-charcoal-100 dark:bg-charcoal-500">
                   {Object.entries(leadPageFilters).map(([_, filter]) => {
                     const typedFilter = filter as IFilterOptionAttributes;
                     return typedFilter.name !== 'name' && typedFilter.name !== 'view' && typedFilter.name !== 'sort' ? (
@@ -469,7 +469,7 @@ const Lead: React.FC = () => {
               </div>
             </div>
             {/* Action buttons */}
-            <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'dark:border-charcoal-100 fixed bottom-0 w-full max-w-sm flex-shrink-0 border-t border-gray-200   bg-white px-4 py-5 sm:px-6 dark:bg-charcoal-700', 'transition-all duration-500 ease-in-out')}>
+            <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'fixed bottom-0 w-full max-w-sm flex-shrink-0 border-t border-gray-200 bg-white   px-4 py-5 sm:px-6 dark:border-charcoal-100 dark:bg-charcoal-700', 'transition-all duration-500 ease-in-out')}>
               <div className="flex items-center justify-between">
                 {leadPageDraftLeadId.length > 0 && (
                   <>
@@ -528,7 +528,7 @@ const Lead: React.FC = () => {
             </div>
           </div>
           {/* Filters Table */}
-          <div className="flex flex-1 flex-col">
+          <div className="relative flex flex-1 flex-col">
             <TableLead loadMoreBusinesses={loadMoreBusinesses} handleChange={handleChange} />
           </div>
         </div>

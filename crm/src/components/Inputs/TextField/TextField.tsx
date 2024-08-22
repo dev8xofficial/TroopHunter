@@ -26,7 +26,7 @@ const TextField: React.FC<ITextFieldProps> = ({ label, helperText, className, on
           onChange={onChange}
           placeholder={placeholder}
           autoComplete={autoComplete}
-          className={classNames('block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:outline-none sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white', (noring ?? false) ? '' : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-charcoal-700', (disabled ?? false) ? 'bg-gray-100 text-gray-400' : '', className)}
+          className={classNames('block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:outline-none sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white', noring ?? false ? '' : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-charcoal-700', disabled ?? false ? 'bg-gray-100 text-gray-400' : '', className)}
         />
       </div>
     </div>

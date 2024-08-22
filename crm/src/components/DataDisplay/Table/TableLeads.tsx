@@ -147,8 +147,8 @@ const Table: React.FC = (): JSX.Element => {
         </div>
 
         {/* Table */}
-        <div className="dark:border-charcoal-100 rounded-sm border shadow sm:mx-0">
-          <table className="dark:divide-charcoal-100 min-w-full divide-y divide-gray-300">
+        <div className="rounded-sm border shadow sm:mx-0 dark:border-charcoal-100">
+          <table className="min-w-full divide-y divide-gray-300 dark:divide-charcoal-100">
             <thead>
               <tr>
                 <th scope="col">

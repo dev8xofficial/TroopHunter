@@ -63,7 +63,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
     <>
       {/* Action tab */}
       <div className="sticky top-0 z-10 h-fit bg-white dark:bg-charcoal-500">
-        <div className="flex h-16 items-center justify-between border-b dark:border-charcoal-100 shadow">
+        <div className="flex h-16 items-center justify-between border-b shadow dark:border-charcoal-100">
           <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between">
               <div className="min-w-0 flex-1">
