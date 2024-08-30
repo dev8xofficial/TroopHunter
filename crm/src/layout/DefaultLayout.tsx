@@ -1,7 +1,7 @@
 import React, { Fragment, type ReactNode } from 'react';
 
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { BellIcon } from '@heroicons/react/24/outline';
+// import { BellIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -67,15 +67,15 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
                 </div>
                 <div>
                   <div className="ml-4 flex items-center md:ml-6">
-                    <button type="button" className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    {/* <button type="button" className="rounded-full bg-red-800 p-1 text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-900 focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">View notifications</span>
                       <BellIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
+                    </button> */}
 
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
                       <div>
-                        <Menu.Button className={`flex items-center justify-center rounded-full transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-4`}>
+                        <Menu.Button className={`flex items-center justify-center rounded-full transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2`}>
                           <span className="sr-only">Open user menu</span>
                           <Avatar image={user.imageUrl} firstName={user.firstName} size="small" border="border" />
                         </Menu.Button>
