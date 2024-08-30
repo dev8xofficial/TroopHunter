@@ -1,4 +1,5 @@
-[type='checkbox'], [type='radio'] {
+[type='checkbox'],
+[type='radio'] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -19,7 +20,8 @@
   --tw-shadow: 0 0 #0000;
 }
 
-[type='checkbox']:checked, [type='radio']:checked {
+[type='checkbox']:checked,
+[type='radio']:checked {
   border-color: transparent;
   /* background-color: rgb(79 70 229 / var(--tw-text-opacity)); */
   background-size: 100% 100%;
@@ -88,7 +90,7 @@ a {
 /* ICON BUTTON */
 
 .icon-btn {
-  @apply relative inline-flex items-center justify-center rounded-full p-2.5 text-sm transition duration-200 focus:outline-none;
+  @apply relative inline-flex items-center justify-center rounded-full p-1 transition duration-200 focus:outline-none;
 }
 
 .icon-btn:disabled {
@@ -96,31 +98,31 @@ a {
 }
 
 .icon-btn:focus {
-  @apply outline-none ring-2 ring-offset-4 dark:ring-slate-900 dark:ring-offset-slate-700;
+  @apply outline-none ring-2 ring-offset-2 dark:ring-charcoal-700 dark:ring-offset-charcoal-700;
 }
 
 .icon-btn.icon-btn-contained {
-  @apply border border-transparent text-white shadow-sm dark:bg-slate-900;
+  @apply text-gray-300 hover:text-white shadow-sm dark:bg-charcoal-700;
 }
 
 .icon-btn.icon-btn-outlined {
-  @apply border shadow-sm dark:border-slate-900 dark:bg-transparent;
+  @apply border shadow-sm dark:border-charcoal-700 dark:bg-transparent;
 }
 
 .icon-btn.icon-btn-contained.icon-btn-ring-offset-white {
-  @apply hover:ring-offset-white focus:ring-offset-white;
+  @apply hover:ring-offset-white focus:ring-offset-white dark:focus:ring-offset-charcoal-700;
 }
 
 .icon-btn.icon-btn-contained.icon-btn-ring-offset-gray {
-  @apply hover:ring-offset-gray-900 focus:ring-offset-gray-900;
+  @apply hover:ring-offset-gray-900 focus:ring-offset-gray-900 dark:focus:ring-offset-charcoal-700;
 }
 
 .icon-btn.icon-btn-outlined.icon-btn-ring-offset-white {
-  @apply hover:ring-offset-white focus:ring-offset-white;
+  @apply hover:ring-offset-white focus:ring-offset-white dark:focus:ring-offset-charcoal-700;
 }
 
 .icon-btn.icon-btn-outlined.icon-btn-ring-offset-gray {
-  @apply hover:ring-offset-gray-900 focus:ring-offset-gray-900;
+  @apply hover:ring-offset-gray-900 focus:ring-offset-gray-900 dark:focus:ring-offset-charcoal-700;
 }
 
 /* BUTTON */

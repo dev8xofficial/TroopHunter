@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { TrashIcon as TrashIconSolid, DocumentTextIcon as DocumentTextIconSolid } from '@heroicons/react/20/solid';
 import { TrashIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
 import { useSelector } from 'react-redux';
 import { type IUserAttributes } from 'validator/interfaces';
@@ -64,12 +63,12 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
       {/* Action tab */}
       <div className="sticky top-0 z-10 h-fit bg-white dark:bg-charcoal-500">
         <div className="flex h-16 items-center justify-between border-b shadow dark:border-charcoal-100">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between">
+          <div className="mx-auto h-full w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex h-full items-center justify-between">
               <div className="min-w-0 flex-1">
                 <h2 className="text-lg leading-7 sm:truncate sm:text-xl sm:tracking-tight">{title} results</h2>
               </div>
-              <div className="flex items-center text-sm">
+              <div className="flex h-full items-center text-sm">
                 {title.toLowerCase() === 'lead' && (
                   <>
                     <div>
@@ -77,13 +76,12 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
                       <span className="xl:flex">
                         <IconButton className="xl:hidden" variant="contained" color="indigo" ringOffset="white">
                           <>
-                            <DocumentTextIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
-                            <DocumentTextIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
+                            <DocumentTextIcon className="h-6 w-6" aria-hidden="true" />
                           </>
                         </IconButton>
                       </span>
                     </div>
-                    <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
+                    <div className="mx-4 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r dark:border-r-charcoal-100"></div>
                     <div>
                       <span className="hidden xl:inline-block">
                         <Button variant="outlined" color="red">
@@ -93,8 +91,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
                       <span className="xl:flex">
                         <IconButton className="xl:hidden" variant="contained" color="red" ringOffset="white">
                           <>
-                            <TrashIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
-                            <TrashIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
+                            <TrashIcon className="h-6 w-6" aria-hidden="true" />
                           </>
                         </IconButton>
                       </span>
@@ -137,8 +134,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
                           <span className="xl:flex">
                             <IconButton className="xl:hidden" variant="contained" color="red" ringOffset="white">
                               <>
-                                <TrashIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
-                                <TrashIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
+                                <TrashIcon className="h-5 w-5 xl:hidden" aria-hidden="true" />
                               </>
                             </IconButton>
                           </span>
