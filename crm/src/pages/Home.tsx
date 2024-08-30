@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState, Fragment, type ChangeEvent } from 'react';
 
 import { Transition, Dialog, Disclosure } from '@headlessui/react';
-import { XMarkIcon, PlusIcon, MinusIcon, AdjustmentsVerticalIcon as AdjustmentsVerticalIconSolid, ChevronLeftIcon } from '@heroicons/react/20/solid';
-import { AdjustmentsVerticalIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, PlusIcon, MinusIcon, AdjustmentsVerticalIcon, ChevronLeftIcon } from '@heroicons/react/20/solid';
 import { useSelector, useDispatch } from 'react-redux';
 import { type IUserAttributes, type ILeadAttributes } from 'validator/interfaces';
 
@@ -199,16 +198,15 @@ const Lead: React.FC = () => {
                 <div className="xl:hidden">
                   <IconButton
                     className="xl:hidden"
-                    variant="outlined"
-                    color="red"
+                    variant="contained"
+                    color="indigo"
                     ringOffset="white"
                     onClick={() => {
                       setIsOpenMobileFiltersDialog(true);
                     }}
                   >
                     <>
-                      <AdjustmentsVerticalIcon className="h-5 w-5 group-hover:hidden group-focus:hidden xl:hidden" aria-hidden="true" />
-                      <AdjustmentsVerticalIconSolid className="hidden h-5 w-5 max-xl:group-hover:inline-block max-xl:group-focus:inline-block xl:hidden" aria-hidden="true" />
+                      <AdjustmentsVerticalIcon className="h-6 w-6" aria-hidden="true" />
                     </>
                   </IconButton>
 
