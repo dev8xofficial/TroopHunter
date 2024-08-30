@@ -234,11 +234,11 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
             <div className="hidden h-full items-center justify-center whitespace-nowrap pr-14 md:flex">{`${draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? `${leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}: ${draftLeadBusinessIds?.length} | ` : ''}Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div>
           </>
         )}
-        <div className="mx-4 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:hidden"></div>
+        <div className="mx-4 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:hidden dark:border-r-charcoal-100"></div>
         <div className="pr-4 sm:pr-6 lg:hidden lg:pr-8">
-          <IconButton className="xl:hidden" variant="outlined" color="red" ringOffset="white">
+          <IconButton className="xl:hidden" variant="contained" color="indigo" ringOffset="white">
             <>
-              <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
+              <ChevronDownIcon className="h-6 w-6" aria-hidden="true" />
             </>
           </IconButton>
         </div>

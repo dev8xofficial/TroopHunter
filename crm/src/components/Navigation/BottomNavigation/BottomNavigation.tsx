@@ -18,7 +18,7 @@ const BottomNavigation: React.FC = (): JSX.Element => {
           <span className="btm-nav-label">Leads</span>
         </Link>
         <button className="group border-t-2 border-gray-100 pt-0.5 dark:border-charcoal-100">
-          <div className="inline-flex items-center rounded-full p-3 text-sm shadow-sm max-xl:bg-indigo-600 max-xl:text-white max-xl:group-hover:ring-2 max-xl:group-hover:ring-indigo-600 max-xl:group-hover:ring-offset-4 max-xl:group-hover:ring-offset-white xl:rounded-md xl:border xl:border-indigo-600 xl:px-3 xl:py-2 xl:text-indigo-600">
+          <div className="inline-flex items-center rounded-full p-3 text-sm shadow-sm max-xl:bg-indigo-600 max-xl:text-white max-xl:group-hover:ring-2 max-xl:group-hover:ring-indigo-600 max-xl:group-hover:ring-offset-2 max-xl:group-hover:ring-offset-white xl:rounded-md xl:border xl:border-indigo-600 xl:px-3 xl:py-2 xl:text-indigo-600">
             <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
             <span className="sr-only">Search</span>
           </div>
