@@ -16,7 +16,7 @@ const SettingsLayout: React.FC<{ children: React.ReactNode }> = ({ children }): 
   const location = useLocation();
   const navigationItems: INavigationAttributes[] = [
     { href: '/settings/profile', icon: UserCircleIcon, name: 'Profile', description: 'This information will be displayed publicly so be careful what you share.' },
-    { href: '/settings/security', icon: FingerPrintIcon, name: 'Security', description: 'This information will be applied quickly.' }
+    { href: '/settings/security', icon: FingerPrintIcon, name: 'Security', description: 'Securely update your account password for enhanced protection. This information will be applied quickly.' }
   ];
 
   return (
@@ -36,7 +36,7 @@ const SettingsLayout: React.FC<{ children: React.ReactNode }> = ({ children }): 
             </ul>
           </nav>
         </aside>
-        <main className="w-full px-4 py-4 sm:px-6 lg:flex-auto lg:px-0">
+        <main className="max-w-md px-4 py-4 sm:px-6 lg:flex-auto lg:px-0">
           <div className={classNames('mx-auto w-full max-w-2xl lg:mx-0', location.pathname === '/settings/profile' ? 'space-y-16 sm:space-y-20' : '')}>
             {navigationItems.map((item, index) => (
               <div key={index} className={location.pathname === item.href ? 'block' : 'hidden'}>
