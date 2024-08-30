@@ -8,13 +8,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-          transparent: 'transparent',
-          'charcoal': {
-              200: '#40444B', // Input Background
-              700: '#36393F', // Primary Background
-              800: '#2F3136', // Sidebars
-              900: '#202225' // Navbar
-          }
+        transparent: 'transparent',
+        charcoal: {
+          100: '#4F545C', // Divider
+          200: '#40444B', // Home Table Background, Input Background
+          300: '#36393F', // Primary Background
+          400: '#32353B', // Home Table Row Hovered Background
+          500: '#2F3136', // Secondary Background, Sidebars, Secondary Navbar, Banners
+          600: '#282b30', // Home Table Row Saved Hovered Background
+          700: '#202225' // Tertiary Background, Input Border, Navbar
+        },
+        'input-text': '#DCDDDE', // Input Text
+        'home-table-row-saved': '#7289DA', // Home Table Row Saved Background
+        'button-background': '#7289DA', // Button Background
+        'button-hover': '#677BC4', // Button Hover
+        'primary-text': '#FFFFFF', // Primary Text
+        'secondary-text': '#B9BBBE', // Secondary Text
+        'link-text': '#00AFF4', // Link Text
+        'highlighted-text': '#F04747', // Highlighted Text
+        'mention-text': '#7289DA' // Mention Text
       },
       fontSize: {
         xxs: '0.6rem'
@@ -30,5 +42,4 @@ module.exports = {
     darkTheme: 'dark',
     styled: false // include daisyUI colors and design decisions for all components
   }
-  };
-  
+};
