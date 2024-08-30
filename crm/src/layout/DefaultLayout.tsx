@@ -45,7 +45,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
 
   return (
     <>
-      <div className="min-h-screen">
+      <div className="flex min-h-screen flex-1 flex-col">
         {/* Desktop navigation */}
         <Disclosure as="nav" className="hidden border-b border-gray-700 bg-gray-800 xl:block dark:bg-charcoal-700">
           <>
@@ -115,7 +115,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
         <BottomNavigation />
 
         {/* Content */}
-        <main className="flex flex-col dark:bg-charcoal-300">{children}</main>
+        <main className="flex flex-1 flex-col dark:bg-charcoal-300">{children}</main>
       </div>
     </>
   );
