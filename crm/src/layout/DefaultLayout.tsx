@@ -45,9 +45,9 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
 
   return (
     <>
-      <div className="min-h-full">
+      <div className="min-h-screen">
         {/* Desktop navigation */}
-        <Disclosure as="nav" className="hidden border-b border-gray-700 bg-gray-800 xl:block">
+        <Disclosure as="nav" className="hidden border-b border-gray-700 bg-gray-800 xl:block dark:bg-charcoal-700">
           <>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex h-16 items-center justify-between">
@@ -81,10 +81,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
                         </Menu.Button>
                       </div>
                       <Transition as={Fragment} enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale-100" leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95">
-                        <Menu.Items className="absolute right-0 z-30 mt-2 w-48 origin-top-right rounded bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Items className="absolute right-0 z-30 mt-2 w-48 origin-top-right rounded bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-charcoal-300">
                           <Menu.Item key="Home">
                             {({ active }) => (
-                              <Link to="/settings/profile" className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                              <Link to="/settings/profile" className={classNames(active ? 'bg-gray-100 dark:bg-charcoal-300 dark:text-white dark:hover:bg-charcoal-500 dark:hover:text-primary-text' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-primary-text')}>
                                 Settings
                               </Link>
                             )}
@@ -96,7 +96,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
                                 onClick={() => {
                                   dispatch(authSignOutAction({ id: auth.userId, navigate }));
                                 }}
-                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                className={classNames(active ? 'bg-gray-100 dark:bg-charcoal-300 dark:text-white dark:hover:bg-charcoal-500 dark:hover:text-primary-text' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-primary-text')}
                               >
                                 Sign out
                               </Link>
@@ -115,7 +115,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
         <BottomNavigation />
 
         {/* Content */}
-        <main className="flex flex-col">{children}</main>
+        <main className="flex flex-col dark:bg-charcoal-300">{children}</main>
       </div>
     </>
   );

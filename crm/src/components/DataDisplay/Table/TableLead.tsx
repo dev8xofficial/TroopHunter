@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Menu, Switch } from '@headlessui/react';
-import { ArrowDownTrayIcon, CheckIcon, EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
+import { ArrowDownTrayIcon, CheckIcon, ChevronDownIcon, EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from 'react-redux';
 import { type IBusinessAttributes, type ILeadAttributes, type IUserAttributes } from 'validator/interfaces';
@@ -14,6 +14,7 @@ import { type IUserState } from '../../../store/reducers/userReducer';
 import { classNames } from '../../../utils/helpers';
 import Avatar from '../../DataDisplay/Avatar/Avatar';
 import Checkbox, { checkboxColors } from '../../Inputs/Checkbox/Checkbox';
+import IconButton from '../../Inputs/IconButton/IconButton';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
 import _Menu from '../../Navigation/Menu/Menu';
 import TableSortingMenu from '../Menu/TableSortingMenu';
@@ -111,7 +112,8 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   const draftLead: ILeadAttributes = userLeads[draftLeadIndex];
   const draftLeadBusinessIds: string[] | undefined = draftLead?.businessIds;
 
-  const [tableHeight, setTableHeight] = useState<number | undefined>(undefined);
+  const mainRef = useRef<HTMLDivElement>(null);
+  const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
   const [selectedBusinessIds, setSelectedBusinessIds] = useState<string[]>([]);
   const tableRowsData = renderRows(businessesDataBusinesses, leadPageFilters, leadPageBusinessIds, draftLeadBusinessIds);
 
@@ -146,27 +148,21 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   }, [dispatch, draftLeadBusinessIds, selectedBusinessIds]);
 
   useEffect(() => {
-    const calculateTableHeight = (): void => {
-      const container = document.getElementById('table-lead-container');
-
-      if (container != null) {
-        const remainingSpace = window.innerHeight - container.getBoundingClientRect().top;
-        setTableHeight(remainingSpace);
+    const resizeHandler = (): void => {
+      if (mainRef.current != null) {
+        const docHeight = document.documentElement.clientHeight;
+        const mainTop = mainRef.current.getBoundingClientRect().top;
+        const remainingHeight = docHeight - mainTop;
+        setMainHeight(remainingHeight);
       }
     };
 
-    calculateTableHeight();
-
-    const handleResize = (): void => {
-      calculateTableHeight();
-    };
-
-    window.addEventListener('resize', handleResize);
-
+    resizeHandler();
+    window.addEventListener('resize', resizeHandler);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', resizeHandler);
     };
-  }, []);
+  }, [tableRowsData]);
 
   const onNext = (): void => {
     const nextPage = leadPagePaginationPage + 1;
@@ -177,27 +173,27 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   return (
     <>
       {/* Table */}
-      <div className="flex w-full items-center bg-white text-sm shadow">
+      <div className="flex w-full items-center bg-white text-sm shadow dark:border-b-2 dark:border-charcoal-100 dark:bg-charcoal-500">
         <div className="mr-auto flex items-center">
-          <div className="relative flex w-full items-start py-4 pl-10">
+          <div className="relative flex w-full items-start py-4 pl-9">
             <div className="flex h-6 items-center">
               <Checkbox id="selectAll" name="selectAll" checked={isAllBusinessesSelected()} onChange={handleSelectAllChange} />
             </div>
-            <label htmlFor="selectAll" className="px-4 leading-6 text-gray-900 sm:px-6">
+            <label htmlFor="selectAll" className="inline-flex w-full justify-center whitespace-nowrap px-4 leading-6 text-gray-900 sm:px-6 dark:text-white">
               Select all
             </label>
           </div>
 
-          <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
+          <div className="mx-4 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r dark:border-charcoal-100"></div>
 
           <CustomMenu>
-            <Menu.Button disabled={true} className="inline-flex w-full justify-center whitespace-nowrap px-3 py-2 text-sm text-gray-500 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white">
+            <Menu.Button disabled={true} className="inline-flex w-full justify-center whitespace-nowrap px-3 py-2 text-sm text-gray-500 disabled:cursor-not-allowed  disabled:opacity-30 disabled:hover:bg-white dark:text-gray-100 disabled:dark:hover:bg-transparent">
               <ListBulletIcon className="mr-0.5 h-5 w-5" aria-hidden="true" />
               Save to list
             </Menu.Button>
           </CustomMenu>
         </div>
-        <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
+        <div className="mx-4 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:flex dark:border-charcoal-100"></div>
         {draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 && (
           <>
             <div className="inline-flex items-center space-x-2">
@@ -220,46 +216,54 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                 </span>
               </Switch>
             </div>
-            <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
+            <div className="mx-4 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r dark:border-charcoal-100"></div>
           </>
         )}
-        <div className="inline-flex items-center space-x-2">
+        <div className="hidden items-center space-x-2 lg:inline-flex dark:text-white">
           <label>Business: </label>
           <TableSortingMenu options={viewOptions} value={viewOptions.find((option) => option.value === leadPageFilters.view.value)} handleChange={handleChange} />
         </div>
-        <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
-        <div className="inline-flex items-center space-x-2">
+        <div className="mx-4 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:flex dark:border-charcoal-100"></div>
+        <div className="hidden items-center space-x-2 lg:inline-flex dark:text-white">
           <label>Sort: </label>
           <TableSortingMenu options={sortOptions} value={sortOptions.find((option) => option.value === leadPageFilters.sort.value)} handleChange={handleChange} />
         </div>
         {businessesTotalRecords !== null && (
           <>
-            <div className="mx-6 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r"></div>
-            <div className="h-full whitespace-nowrap pr-14">{`${draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? `${leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}: ${draftLeadBusinessIds?.length} | ` : ''}Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div>
+            <div className="mx-4 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:flex dark:border-charcoal-100"></div>
+            <div className="hidden h-full items-center justify-center whitespace-nowrap pr-14 md:flex">{`${draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? `${leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}: ${draftLeadBusinessIds?.length} | ` : ''}Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div>
           </>
         )}
+        <div className="mx-4 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:hidden"></div>
+        <div className="pr-4 sm:pr-6 lg:hidden lg:pr-8">
+          <IconButton className="xl:hidden" variant="outlined" color="red" ringOffset="white">
+            <>
+              <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
+            </>
+          </IconButton>
+        </div>
       </div>
       {/* Empty State */}
-      <div className={classNames(Object.values(tableRowsData).length > 0 ? 'hidden' : '', 'h-full rounded p-4')}>
-        <div className="flex h-full flex-col items-center justify-center bg-white">
-          <MagnifyingGlassCircleIcon className="-ml-0.5 h-32 w-32 text-indigo-600" aria-hidden="true" />
+      <div className={classNames(Object.values(tableRowsData).length > 0 ? 'hidden' : '', 'h-full p-4 dark:bg-charcoal-300')}>
+        <div className="flex h-full flex-col items-center justify-center bg-white dark:bg-charcoal-200">
+          <MagnifyingGlassCircleIcon className="-ml-0.5 h-32 w-32 text-indigo-600 dark:text-primary-text" aria-hidden="true" />
           <div className="text-center">
-            <h3 className="mt-2 text-lg font-normal text-gray-900">Apply filters to find leads</h3>
-            <p className="mt-2 text-sm text-gray-500">Leads matching your search criteria will be displayed here</p>
+            <h3 className="mt-2 text-lg font-normal text-gray-900 dark:text-primary-text">Apply filters to find leads</h3>
+            <p className="mt-2 text-sm text-gray-500 dark:text-secondary-text">Leads matching your search criteria will be displayed here</p>
           </div>
         </div>
       </div>
 
       {/* Table Body */}
-      <div id="table-lead-container" style={{ height: tableHeight, overflowY: 'auto' }} className={classNames(Object.values(tableRowsData).length < 1 ? 'hidden' : '', 'p-4')}>
+      <div id="table-lead-container" ref={mainRef} style={{ height: mainHeight }} className={classNames(Object.values(tableRowsData).length < 1 ? 'hidden' : '', 'block overflow-y-scroll p-4 dark:bg-charcoal-300')}>
         <InfiniteScroll dataLength={Object.keys(tableRowsData).length} next={onNext} hasMore={businessesTotalRecords !== undefined && Object.keys(tableRowsData).length < businessesTotalRecords} loader={<></>} scrollableTarget="table-lead-container">
           {/* Existing code for TableLead */}
-          <ul role="list" className={classNames(isLeadPageLoading ? 'group animate-pulse' : '', 'divide-y rounded border bg-white shadow')}>
+          <ul role="list" className={classNames(isLeadPageLoading ? 'group animate-pulse' : '', 'divide-y rounded border bg-white shadow dark:divide-charcoal-100 dark:border-charcoal-100 dark:bg-charcoal-200')}>
             {Object.values(tableRowsData).map((business: IBusinessAttributes, index) => {
               const isSaved = Array.isArray(draftLeadBusinessIds) && draftLeadBusinessIds?.includes(business.id);
               return (
-                <li key={index} className={classNames(index === 0 ? 'hover:rounded-t' : '', index === Object.values(tableRowsData).length - 1 ? 'hover:rounded-b' : '', 'hover:bg-gray-100')}>
-                  <div className="relative flex w-full items-start px-6 py-5">
+                <li key={index} className={classNames(index === 0 ? 'hover:rounded-t' : '', index === Object.values(tableRowsData).length - 1 ? 'hover:rounded-b' : '', 'hover:bg-gray-100 dark:hover:bg-charcoal-400')}>
+                  <div className="relative flex w-full items-start px-5 py-4 md:px-6 md:py-5">
                     <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">
                       <div className="group-block hidden h-5 w-5 rounded bg-slate-300"></div>
                       <Checkbox
@@ -274,22 +278,22 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                       />
                     </div>
                     <div className="w-full text-sm leading-6">
-                      <label htmlFor={business.name} className="relative flex cursor-pointer justify-between gap-x-6 px-4 sm:px-6">
+                      <label htmlFor={business.name} className="relative flex cursor-pointer justify-between gap-x-6 pl-4 sm:px-6">
                         <div className="flex gap-x-4">
                           <div className="group-block hidden h-10 w-10 rounded-full bg-slate-300 md:h-12 md:w-12 xl:h-16 xl:w-16"></div>
-                          <Avatar image={images[Math.floor(Math.random() * images.length)]} firstName={business.name} size="large" border="border border-gray-900" className="group-hidden" />
+                          <Avatar image={images[Math.floor(Math.random() * images.length)]} firstName={business.name} size="large" border="border border-gray-900" className="group-hidden hidden" />
                           <div className="min-w-0 flex-auto">
                             <div className="group-block mb-1 hidden h-6 w-40 rounded bg-slate-300"></div>
-                            <p className="text-lg font-semibold leading-6 text-gray-900">
-                              <a href="#" className="group-hidden">
+                            <p className="text-md font-semibold leading-6 text-gray-900 md:text-lg dark:text-primary-text">
+                              <a href="#" className="group-hidden uppercase">
                                 {business.name}
                               </a>
                             </p>
-                            <div className="hidden sm:flex sm:flex-col">
+                            <div className="flex flex-col">
                               <div className="group-block mb-3 hidden h-4 w-24 rounded bg-slate-300"></div>
-                              <p className="group-hidden text-sm leading-6 text-gray-900">{business.businessDomain?.toUpperCase()}</p>
+                              <p className="group-hidden text-sm uppercase leading-6 text-gray-900 dark:text-primary-text">{business.businessDomain}</p>
                               {'3h ago'.length > 0 ? (
-                                <p className="group-hidden mt-1 text-xs leading-5 text-gray-500">
+                                <p className="group-hidden mt-1 text-xs leading-5 text-gray-500 dark:text-primary-text">
                                   Last seen <time dateTime="2023-01-23T13:23Z">3h ago</time>
                                 </p>
                               ) : (
@@ -297,13 +301,13 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                                   <div className="flex-none rounded-full bg-emerald-500/20 p-1">
                                     <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                                   </div>
-                                  <p className="text-xs leading-5 text-gray-500">Online</p>
+                                  <p className="text-xs leading-5 text-gray-500 dark:text-primary-text">Online</p>
                                 </div>
                               )}
                               <div className="group-block hidden h-3 w-24 rounded bg-slate-300"></div>
                             </div>
                             <div className="group-block mt-3 hidden h-3 w-24 rounded bg-slate-300"></div>
-                            <p className="mt-1 flex text-xs leading-5 text-gray-500">
+                            <p className="mt-1 flex text-xs leading-5 text-gray-500 dark:text-primary-text">
                               {business?.BusinessPhone !== undefined && (
                                 <a href={`mailto:${business.BusinessPhone.numberNationalFormatted}`} className="group-hidden relative truncate hover:underline">
                                   {business.BusinessPhone.numberNationalFormatted}
@@ -313,25 +317,25 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                           </div>
                         </div>
                         <div className="flex items-center gap-x-4">
-                          <div className="flex flex-none items-center gap-x-4">
+                          <div className="flex flex-none items-center">
                             <div className="group-block hidden h-5 w-16 rounded-full bg-slate-300"></div>
                             <CustomMenu>
                               <>
                                 {isSaved ? (
                                   <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-green-600 bg-green-600 px-2.5 py-1 text-xs font-semibold text-white ring-green-600 transition duration-200 hover:bg-green-700 focus:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white">
-                                    <CheckIcon className="h-4 w-4 mr-0.5" aria-hidden="true" />
+                                    <CheckIcon className="mr-0.5 h-4 w-4" aria-hidden="true" />
                                     Saved
                                   </Menu.Button>
                                 ) : (
-                                  <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-1 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white">
-                                    <ArrowDownTrayIcon className="h-4 w-4 mr-0.5" aria-hidden="true" />
+                                  <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-1 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white dark:border-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-200 dark:focus:bg-charcoal-300 dark:focus:ring-offset-charcoal-200">
+                                    <ArrowDownTrayIcon className="mr-0.5 h-4 w-4" aria-hidden="true" />
                                     Save
                                   </Menu.Button>
                                 )}
                               </>
                             </CustomMenu>
                             <div className="group-block -mr-3.5 hidden h-4 w-1 rounded bg-slate-300"></div>
-                            <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
+                            <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white dark:text-primary-text dark:hover:text-secondary-text dark:focus:border-charcoal-700 dark:focus:ring-charcoal-700 dark:focus:ring-offset-charcoal-200">
                               <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
                             </_Menu>
                           </div>

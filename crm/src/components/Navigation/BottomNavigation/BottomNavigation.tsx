@@ -8,26 +8,26 @@ const BottomNavigation: React.FC = (): JSX.Element => {
   return (
     <>
       {/* Mobile navigation */}
-      <div className="btm-nav z-20 h-16 bg-white text-sm shadow xl:hidden">
-        <Link to="/" className="active gap-1 border-t-2 border-indigo-600 pt-0.5 hover:border-indigo-600 hover:text-indigo-600">
-          <PresentationChartLineIcon className="h-5 w-5 text-indigo-600" aria-hidden="true" />
-          <span className="btm-nav-label text-indigo-600">Home</span>
+      <div className="btm-nav z-20 h-16 bg-white text-sm shadow xl:hidden dark:bg-charcoal-700">
+        <Link to="/" className="active gap-1 border-t-2 border-indigo-600 pt-0.5 text-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 hover:text-white">
+          <PresentationChartLineIcon className="h-5 w-5" aria-hidden="true" />
+          <span className="btm-nav-label">Home</span>
         </Link>
-        <Link to="/leads" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900">
+        <Link to="/leads" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text">
           <QueueListIcon className="h-5 w-5" aria-hidden="true" />
           <span className="btm-nav-label">Leads</span>
         </Link>
-        <button className="group border-t-2 border-gray-100 pt-0.5">
+        <button className="group border-t-2 border-gray-100 pt-0.5 dark:border-charcoal-100">
           <div className="inline-flex items-center rounded-full p-3 text-sm shadow-sm max-xl:bg-indigo-600 max-xl:text-white max-xl:group-hover:ring-2 max-xl:group-hover:ring-indigo-600 max-xl:group-hover:ring-offset-4 max-xl:group-hover:ring-offset-white xl:rounded-md xl:border xl:border-indigo-600 xl:px-3 xl:py-2 xl:text-indigo-600">
             <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
             <span className="sr-only">Search</span>
           </div>
         </button>
-        <Link to="/settings" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900">
+        <Link to="/settings" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text">
           <UserIcon className="h-5 w-5" aria-hidden="true" />
           <span className="btm-nav-label">Profile</span>
         </Link>
-        <Link to="#" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900">
+        <Link to="#" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text">
           <ClockIcon className="h-5 w-5" aria-hidden="true" />
           <span className="btm-nav-label">History</span>
         </Link>
