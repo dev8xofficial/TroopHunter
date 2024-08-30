@@ -56,10 +56,10 @@ const Accordion: React.FC<IAccordionProps> = ({ label, name, value, handleChange
       return (
         <Switch.Group as="div" className="flex items-center justify-between">
           <span className="flex flex-grow flex-col">
-            <Switch.Label as="span" className="text-sm font-medium leading-6 text-gray-900" passive>
+            <Switch.Label as="span" className="text-sm font-medium leading-6 text-gray-900 dark:text-primary-text" passive>
               Business&rsquo;s Sponsored Ad
             </Switch.Label>
-            <Switch.Description as="span" className="text-sm text-gray-500">
+            <Switch.Description as="span" className="text-sm text-gray-500 dark:text-primary-text">
               This business has strategically placed sponsored ads on Google Maps to enhance its online presence and attract potential clients in the target market.
             </Switch.Description>
           </span>
@@ -110,17 +110,18 @@ const Accordion: React.FC<IAccordionProps> = ({ label, name, value, handleChange
           <Transition enter="transition duration-200 ease-out" enterFrom="transform scale-95 opacity-0" enterTo="transform scale-100 opacity-100" leave="transition duration-75 ease-out" leaveFrom="transform scale-100 opacity-100" leaveTo="transform scale-95 opacity-0">
             <Disclosure.Panel className="space-y-4 border-t border-dashed bg-white p-4 sm:px-6 dark:bg-charcoal-300">
               <div>
-                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
                   Badge
-                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
+                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
                     <span className="sr-only">Remove</span>
-                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
                       <path d="M4 4l6 6m0-6l-6 6" />
                     </svg>
                     <span className="absolute -inset-1" />
                   </button>
                 </span>
               </div>
+
               <div>{getField(name)}</div>
             </Disclosure.Panel>
           </Transition>

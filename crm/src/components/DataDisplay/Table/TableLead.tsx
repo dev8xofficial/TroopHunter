@@ -327,7 +327,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                                     Saved
                                   </Menu.Button>
                                 ) : (
-                                  <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-1 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white">
+                                  <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-1 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white dark:border-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-200 dark:focus:bg-charcoal-300 dark:focus:ring-offset-charcoal-200">
                                     <ArrowDownTrayIcon className="mr-0.5 h-4 w-4" aria-hidden="true" />
                                     Save
                                   </Menu.Button>
@@ -335,7 +335,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                               </>
                             </CustomMenu>
                             <div className="group-block -mr-3.5 hidden h-4 w-1 rounded bg-slate-300"></div>
-                            <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white dark:text-primary-text dark:hover:text-secondary-text">
+                            <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white dark:text-primary-text dark:hover:text-secondary-text dark:focus:border-charcoal-700 dark:focus:ring-charcoal-700 dark:focus:ring-offset-charcoal-200">
                               <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
                             </_Menu>
                           </div>

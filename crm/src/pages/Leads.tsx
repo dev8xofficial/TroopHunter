@@ -19,7 +19,7 @@ const Leads: React.FC = (): JSX.Element => {
             <div className="flex flex-1 justify-center space-x-4">
               <Search />
               <span className="relative hidden whitespace-nowrap text-white md:inline-block">
-                <button type="button" className="px-3.5 py-2.5 text-sm capitalize hover:text-indigo-600">
+                <button type="button" className="px-3.5 py-2.5 text-sm capitalize hover:text-indigo-600 dark:hover:text-white">
                   saved searches
                 </button>
                 <span className="absolute -right-4 top-0 rounded bg-red-600 px-1 text-xs">66+</span>

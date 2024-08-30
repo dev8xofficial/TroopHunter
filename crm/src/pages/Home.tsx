@@ -227,8 +227,8 @@ const Lead: React.FC = () => {
                       <div className="fixed inset-0 overflow-y-auto">
                         <div className="flex min-h-full items-center justify-center p-4 text-center">
                           <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
-                            <Dialog.Panel className="w-full max-w-5xl transform divide-y overflow-hidden rounded bg-white text-left align-middle shadow-xl transition-all">
-                              <Dialog.Title as="h3" className="px-6 py-4 text-lg font-medium leading-6 text-indigo-600">
+                            <Dialog.Panel className="w-full max-w-5xl transform divide-y overflow-hidden rounded bg-white text-left align-middle shadow-xl transition-all dark:divide-charcoal-100">
+                              <Dialog.Title as="h3" className="px-6 py-4 text-lg font-medium leading-6 text-indigo-600 dark:bg-charcoal-600 dark:text-primary-text">
                                 <div className="flex items-center justify-between">
                                   <AdjustmentsVerticalIcon className="mr-3 h-5 w-5" aria-hidden="true" />
                                   <div className="min-w-0 flex-1">
@@ -236,7 +236,7 @@ const Lead: React.FC = () => {
                                   </div>
                                   <div className="flex items-center space-x-3 md:ml-4">
                                     <p className="hidden text-sm sm:block">0 results</p>
-                                    <button type="button" className="ml-3 inline-flex items-center rounded bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    <button type="button" className="ml-3 inline-flex items-center rounded border bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-600 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:border-white dark:bg-transparent dark:text-white dark:hover:border-indigo-600">
                                       Search
                                     </button>
                                     <button
@@ -251,33 +251,34 @@ const Lead: React.FC = () => {
                                   </div>
                                 </div>
                               </Dialog.Title>
-                              <div className="p-6">
+                              <div className="p-6 dark:bg-charcoal-400 dark:text-primary-text">
                                 <h3>Top Filters</h3>
-                                <div className="mr-6 mt-6 border shadow sm:rounded">
-                                  <ul role="list" className="grid grid-cols-1 divide-x divide-y md:grid-cols-2">
+                                <div className="mr-6 mt-6 border shadow sm:rounded dark:border-charcoal-100">
+                                  <ul role="list" className="grid grid-cols-1 divide-x divide-y md:grid-cols-2 dark:divide-charcoal-100">
                                     <li>
                                       <Disclosure as="div">
                                         {({ open }) => (
                                           <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
                                               <span>Your leads & accounts</span>
                                               {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
                                                     <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
                                                     </svg>
                                                     <span className="absolute -inset-1" />
                                                   </button>
                                                 </span>
                                               </div>
+
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
@@ -288,25 +289,26 @@ const Lead: React.FC = () => {
                                       <Disclosure as="div">
                                         {({ open }) => (
                                           <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
                                               <span>Relationship</span>
                                               {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
                                                     <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
                                                     </svg>
                                                     <span className="absolute -inset-1" />
                                                   </button>
                                                 </span>
                                               </div>
+
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
@@ -317,17 +319,17 @@ const Lead: React.FC = () => {
                                       <Disclosure as="div">
                                         {({ open }) => (
                                           <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
                                               <span>Company</span>
                                               {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
                                                     <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
                                                     </svg>
                                                     <span className="absolute -inset-1" />
@@ -335,7 +337,7 @@ const Lead: React.FC = () => {
                                                 </span>
                                               </div>
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
@@ -346,25 +348,26 @@ const Lead: React.FC = () => {
                                       <Disclosure as="div">
                                         {({ open }) => (
                                           <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
                                               <span>Industry</span>
                                               {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
                                                     <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
                                                     </svg>
                                                     <span className="absolute -inset-1" />
                                                   </button>
                                                 </span>
                                               </div>
+
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
@@ -375,25 +378,26 @@ const Lead: React.FC = () => {
                                       <Disclosure as="div">
                                         {({ open }) => (
                                           <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
                                               <span>Company headcount</span>
                                               {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
                                                     <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
                                                     </svg>
                                                     <span className="absolute -inset-1" />
                                                   </button>
                                                 </span>
                                               </div>
+
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
@@ -404,25 +408,26 @@ const Lead: React.FC = () => {
                                       <Disclosure as="div">
                                         {({ open }) => (
                                           <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6">
+                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
                                               <span>Function</span>
                                               {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
                                               <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
                                                   Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20">
+                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
                                                     <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75">
+                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
                                                       <path d="M4 4l6 6m0-6l-6 6" />
                                                     </svg>
                                                     <span className="absolute -inset-1" />
                                                   </button>
                                                 </span>
                                               </div>
+
                                               <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border-0 px-3 py-1.5 text-gray-900 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" />
+                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
                                               </div>
                                             </Disclosure.Panel>
                                           </>
