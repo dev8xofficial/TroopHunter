@@ -173,7 +173,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   return (
     <>
       {/* Table */}
-      <div className="flex w-full items-center bg-white text-sm shadow dark:border-b-2 dark:border-charcoal-100 dark:bg-charcoal-500">
+      <div className="flex w-full items-center bg-white text-sm shadow dark:border-b dark:border-charcoal-100 dark:bg-charcoal-500">
         <div className="mr-auto flex items-center">
           <div className="relative flex w-full items-start py-4 pl-9">
             <div className="flex h-6 items-center">
@@ -255,7 +255,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
       </div>
 
       {/* Table Body */}
-      <div id="table-lead-container" ref={mainRef} style={{ height: mainHeight }} className={classNames(Object.values(tableRowsData).length < 1 ? 'hidden' : '', 'block overflow-y-scroll p-4 dark:bg-charcoal-300')}>
+      <div id="table-lead-container" ref={mainRef} style={{ height: mainHeight }} className={classNames(Object.values(tableRowsData).length < 1 ? 'hidden' : '', 'block overflow-y-scroll p-4 pb-20 xl:pb-4 dark:bg-charcoal-300')}>
         <InfiniteScroll dataLength={Object.keys(tableRowsData).length} next={onNext} hasMore={businessesTotalRecords !== undefined && Object.keys(tableRowsData).length < businessesTotalRecords} loader={<></>} scrollableTarget="table-lead-container">
           {/* Existing code for TableLead */}
           <ul role="list" className={classNames(isLeadPageLoading ? 'group animate-pulse' : '', 'divide-y rounded border bg-white shadow dark:divide-charcoal-100 dark:border-charcoal-100 dark:bg-charcoal-200')}>
