@@ -21,7 +21,8 @@ load_dotenv()
 def process_queue(queue, city, scraper):
     # Set up logging for the current search query and laptop name
     current_date = datetime.datetime.now().strftime("%m-%d-%Y")
-    log_file = f"scraper/logs/scraper__{current_date}__{queue['searchQuery'].replace(' ', '-')}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
+    current_time = datetime.datetime.now().strftime("%H:%M")
+    log_file = f"scraper/logs/scraper__{current_date}__{current_time}__{queue['searchQuery'].replace(' ', '-')}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
     logger = logging.getLogger(log_file)
     logger.setLevel(logging.INFO)
 
