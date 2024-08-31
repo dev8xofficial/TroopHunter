@@ -136,91 +136,94 @@ const Table: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        {/* Empty State */}
-        <div className="col-span-12 hidden flex-col items-center justify-center rounded-sm border py-20 shadow xl:col-span-8">
-          <MagnifyingGlassCircleIcon className="-ml-0.5 h-20 w-20 text-indigo-600" aria-hidden="true" />
-          <div className="text-center">
-            <h3 className="mt-2 text-sm font-semibold text-gray-900 dark:text-primary-text">No results</h3>
-            <p className="mt-2 text-sm text-gray-500">Start your query by customizing your search criteria here</p>
-          </div>
-        </div>
-
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-4 pb-20 sm:px-6 lg:px-8 xl:pb-4">
         {/* Table */}
-        <div className="rounded-sm border shadow sm:mx-0 dark:border-charcoal-100">
-          <table className="min-w-full divide-y divide-gray-300 dark:divide-charcoal-100">
-            <thead>
-              <tr>
-                <th scope="col">
-                  <div className="relative flex w-full items-start py-3.5 pl-4 pr-3 sm:pl-6">
-                    <span className="sr-only">Select</span>
-                    <div className="flex h-6 items-center">
-                      <input id="select-all" name="select-all" type="checkbox" checked={localSelectedLeadIds.length > 0 && localSelectedLeadIds.length === userLeads?.length} onChange={handleSelectAllCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
-                    </div>
-                  </div>
-                </th>
-                <th scope="col">
-                  <button className="flex w-full items-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
-                    Name
-                    <ChevronUpDownIcon className="h-5 w-5" aria-hidden="true" />
-                  </button>
-                </th>
-                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
-                  Leads
-                </th>
-                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
-                  Owner
-                </th>
-                <th scope="col">
-                  <button className="flex w-full items-center whitespace-nowrap px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
-                    Last Updated
-                    <ChevronUpDownIcon className="h-5 w-5" aria-hidden="true" />
-                  </button>
-                </th>
-                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                  <span className="sr-only">Edit</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {userLeads?.map((lead: ILeadAttributes, index: number) => (
-                <tr key={index}>
-                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                    <div className="relative flex w-full items-start">
+        {userLeads.length > 0 ? (
+          <div className="rounded-sm border shadow sm:mx-0 dark:border-charcoal-100">
+            <table className="min-w-full divide-y divide-gray-300 dark:divide-charcoal-100">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <div className="relative flex w-full items-start py-3.5 pl-4 pr-3 sm:pl-6">
                       <span className="sr-only">Select</span>
                       <div className="flex h-6 items-center">
-                        <input type="checkbox" id={CryptoJS.AES.encrypt(JSON.stringify(lead.id), encryptionKey).toString()} checked={localSelectedLeadIds.includes(lead.id)} onChange={handleCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                        <input id="select-all" name="select-all" type="checkbox" checked={localSelectedLeadIds.length > 0 && localSelectedLeadIds.length === userLeads?.length} onChange={handleSelectAllCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                       </div>
                     </div>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3.5 text-sm">
-                    <div className="font-medium text-gray-900 dark:text-primary-text">{lead.title}</div>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500 dark:text-secondary-text">
-                    <div className="text-gray-900">{lead.businessCount}</div>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500 dark:text-secondary-text">
-                    <div className="flex items-center">
-                      <div className="h-8 w-8 flex-shrink-0">
-                        <Avatar image="" firstName={usersLoggedIn.firstName} size="small" border="border border-gray-900" />
-                      </div>
-                      <div className="ml-4">
-                        <div className="font-medium text-gray-900 dark:text-primary-text">{`${usersLoggedIn.firstName} ${usersLoggedIn.lastName}`}</div>
-                      </div>
-                    </div>
-                  </td>
-                  {/* eslint-disable-next-line @typescript-eslint/no-unsafe-argument */}
-                  <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">{moment(lead?.updatedAt).format('YYYY-MM-DD')}</td>
-                  <td className="relative flex justify-end whitespace-nowrap py-3.5 pl-3 pr-4 text-sm font-medium sm:pr-6">
-                    <_Menu options={getLeadsItemMenuOptions(index)} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
-                      <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
-                    </_Menu>
-                  </td>
+                  </th>
+                  <th scope="col">
+                    <button className="flex w-full items-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
+                      Name
+                      <ChevronUpDownIcon className="h-5 w-5" aria-hidden="true" />
+                    </button>
+                  </th>
+                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
+                    Leads
+                  </th>
+                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
+                    Owner
+                  </th>
+                  <th scope="col">
+                    <button className="flex w-full items-center whitespace-nowrap px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-primary-text">
+                      Last Updated
+                      <ChevronUpDownIcon className="h-5 w-5" aria-hidden="true" />
+                    </button>
+                  </th>
+                  <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                    <span className="sr-only">Edit</span>
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {userLeads?.map((lead: ILeadAttributes, index: number) => (
+                  <tr key={index}>
+                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                      <div className="relative flex w-full items-start">
+                        <span className="sr-only">Select</span>
+                        <div className="flex h-6 items-center">
+                          <input type="checkbox" id={CryptoJS.AES.encrypt(JSON.stringify(lead.id), encryptionKey).toString()} checked={localSelectedLeadIds.includes(lead.id)} onChange={handleCheckboxChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                        </div>
+                      </div>
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-3.5 text-sm">
+                      <div className="font-medium text-gray-900 dark:text-primary-text">{lead.title}</div>
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500 dark:text-secondary-text">
+                      <div className="text-gray-900">{lead.businessCount}</div>
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500 dark:text-secondary-text">
+                      <div className="flex items-center">
+                        <div className="h-8 w-8 flex-shrink-0">
+                          <Avatar image="" firstName={usersLoggedIn.firstName} size="small" border="border border-gray-900" />
+                        </div>
+                        <div className="ml-4">
+                          <div className="font-medium text-gray-900 dark:text-primary-text">{`${usersLoggedIn.firstName} ${usersLoggedIn.lastName}`}</div>
+                        </div>
+                      </div>
+                    </td>
+                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-argument */}
+                    <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">{moment(lead?.updatedAt).format('YYYY-MM-DD')}</td>
+                    <td className="relative flex justify-end whitespace-nowrap py-3.5 pl-3 pr-4 text-sm font-medium sm:pr-6">
+                      <_Menu options={getLeadsItemMenuOptions(index)} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
+                        <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
+                      </_Menu>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="flex h-full flex-1 flex-col dark:bg-charcoal-300">
+            <div className="flex h-full flex-1 flex-col items-center justify-center bg-white dark:bg-charcoal-200">
+              <MagnifyingGlassCircleIcon className="-ml-0.5 h-32 w-32 text-indigo-600 dark:text-primary-text" aria-hidden="true" />
+              <div className="text-center">
+                <h3 className="mt-2 text-lg font-normal text-gray-900 dark:text-primary-text">Apply filters to find leads</h3>
+                <p className="mt-2 text-sm text-gray-500 dark:text-secondary-text">Leads matching your search criteria will be displayed here</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
