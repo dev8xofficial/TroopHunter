@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { ArrowLeftStartOnRectangleIcon, PresentationChartLineIcon, QueueListIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+
 interface DefaultLayoutProps {
   signOut: () => void;
 }
 
 const BottomNavigation: React.FC<DefaultLayoutProps> = ({ signOut }: DefaultLayoutProps): JSX.Element => {
+  const [activeTab, setActiveTab] = useState<string>('/');
+  const location = useLocation();
+
+  useEffect(() => {
+    setActiveTab(location.pathname);
+  }, [location]);
+
+  const isActive = (path: string): boolean => {
+    return activeTab === path;
+  };
+
   return (
     <>
       {/* Mobile navigation */}
       <div className="btm-nav z-20 h-16 bg-white text-sm shadow xl:hidden dark:bg-charcoal-700">
-        <Link to="/" className="active gap-1 border-t-2 border-indigo-600 pt-0.5 text-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 hover:text-white">
+        <Link to="/" className={`active gap-1 border-t-2 ${isActive('/') ? 'border-indigo-600 pt-0.5 text-indigo-600' : 'border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text'}`}>
           <PresentationChartLineIcon className="h-5 w-5" aria-hidden="true" />
           <span className="btm-nav-label">Home</span>
         </Link>
-        <Link to="/leads" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text">
+        <Link to="/leads" className={`active gap-1 border-t-2 ${isActive('/leads') ? 'border-indigo-600 pt-0.5 text-indigo-600' : 'border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text'}`}>
           <QueueListIcon className="h-5 w-5" aria-hidden="true" />
           <span className="btm-nav-label">Leads</span>
         </Link>
@@ -26,7 +38,7 @@ const BottomNavigation: React.FC<DefaultLayoutProps> = ({ signOut }: DefaultLayo
             <span className="sr-only">Search</span>
           </div>
         </button>
-        <Link to="/settings/profile" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text">
+        <Link to="/settings/profile" className={`active gap-1 border-t-2 ${isActive('/settings/profile') || isActive('/settings/security') ? 'border-indigo-600 pt-0.5 text-indigo-600' : 'border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text'}`}>
           <Cog6ToothIcon className="h-5 w-5" aria-hidden="true" />
           <span className="btm-nav-label">Settings</span>
         </Link>
