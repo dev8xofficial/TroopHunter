@@ -244,7 +244,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
         </div>
       </div>
       {/* Empty State */}
-      <div className={classNames(Object.values(tableRowsData).length > 0 ? 'hidden' : '', 'h-full p-4 dark:bg-charcoal-300')}>
+      <div className={classNames(Object.values(tableRowsData).length > 0 ? 'hidden' : '', 'h-full p-4 pb-20 xl:pb-4 dark:bg-charcoal-300')}>
         <div className="flex h-full flex-col items-center justify-center bg-white dark:bg-charcoal-200">
           <MagnifyingGlassCircleIcon className="-ml-0.5 h-32 w-32 text-indigo-600 dark:text-primary-text" aria-hidden="true" />
           <div className="text-center">

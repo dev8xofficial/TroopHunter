@@ -74,7 +74,7 @@ const Search: React.FC = (): JSX.Element => {
               <div className="group flex w-full rounded shadow-sm">
                 <div className="relative flex flex-grow items-stretch focus-within:z-10">
                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                    <MagnifyingGlassIcon className="text-gray-40 h-5 w-5 dark:text-white" aria-hidden="true" />
                   </div>
                   <Combobox.Input
                     type="text"
@@ -94,11 +94,11 @@ const Search: React.FC = (): JSX.Element => {
               </div>
 
               {(query !== '' || filteredPeople.length > 0) && (
-                <Combobox.Options as="div" static hold className="fixed left-0 right-0 mt-2 flex divide-x divide-gray-100 rounded border bg-white shadow">
+                <Combobox.Options as="div" static hold className="fixed left-0 right-0 mt-2 flex divide-x divide-gray-100 rounded border bg-white shadow dark:divide-charcoal-100 dark:border-charcoal-100 dark:bg-charcoal-300">
                   <div className={classNames('max-h-96 min-w-0 flex-auto scroll-py-4 overflow-y-auto px-6 py-4', activeOption != null ? 'sm:h-96' : '')}>
-                    <div className="-mx-2 text-sm text-gray-700">
+                    <div className="-mx-2 text-sm text-gray-700 dark:text-white">
                       {(query === '' ? recent : filteredPeople).map((person) => (
-                        <Combobox.Option as="div" key={person.id} value={person} className={({ active }) => classNames('flex cursor-default select-none items-center rounded p-2', active ? 'bg-gray-100 text-gray-900' : '')}>
+                        <Combobox.Option as="div" key={person.id} value={person} className={({ active }) => classNames('flex cursor-default select-none items-center rounded p-2', active ? 'bg-gray-100 text-gray-900 dark:bg-charcoal-400 dark:text-white dark:hover:bg-charcoal-400 dark:hover:text-white' : '')}>
                           {({ active }) => (
                             <>
                               <img src={person.imageUrl} alt="" className="h-6 w-6 flex-none rounded-full" />
@@ -112,25 +112,25 @@ const Search: React.FC = (): JSX.Element => {
                   </div>
 
                   {activeOption != null && (
-                    <div className="hidden h-96 w-1/2 flex-none flex-col divide-y divide-gray-100 overflow-y-auto sm:flex">
+                    <div className="hidden h-96 w-1/2 flex-none flex-col divide-y divide-gray-100 overflow-y-auto sm:flex dark:divide-charcoal-100 dark:bg-charcoal-300">
                       <div className="flex-none p-6 text-center">
                         <img src={activeOption.imageUrl} alt="" className="mx-auto h-16 w-16 rounded-full" />
-                        <h2 className="mt-3 font-semibold text-gray-900">{activeOption.name}</h2>
-                        <p className="text-sm leading-6 text-gray-500">{activeOption.role}</p>
+                        <h2 className="mt-3 font-semibold text-gray-900 dark:text-white">{activeOption.name}</h2>
+                        <p className="text-sm leading-6 text-gray-500 dark:text-white">{activeOption.role}</p>
                       </div>
                       <div className="flex flex-auto flex-col justify-between p-6">
-                        <dl className="grid grid-cols-1 gap-x-6 gap-y-3 text-sm text-gray-700">
-                          <dt className="col-end-1 font-semibold text-gray-900">Phone</dt>
+                        <dl className="grid grid-cols-1 gap-x-6 gap-y-3 text-sm text-gray-700 dark:text-white">
+                          <dt className="col-end-1 font-semibold text-gray-900 dark:text-white">Phone</dt>
                           <dd>{activeOption.phone}</dd>
-                          <dt className="col-end-1 font-semibold text-gray-900">URL</dt>
+                          <dt className="col-end-1 font-semibold text-gray-900 dark:text-white">URL</dt>
                           <dd className="truncate">
-                            <a href={activeOption.url} className="text-indigo-600 underline">
+                            <a href={activeOption.url} className="text-indigo-600 underline dark:text-indigo-500">
                               {activeOption.url}
                             </a>
                           </dd>
-                          <dt className="col-end-1 font-semibold text-gray-900">Email</dt>
+                          <dt className="col-end-1 font-semibold text-gray-900 dark:text-white">Email</dt>
                           <dd className="truncate">
-                            <a href={`mailto:${activeOption.email}`} className="text-indigo-600 underline">
+                            <a href={`mailto:${activeOption.email}`} className="text-indigo-600 underline dark:text-indigo-500">
                               {activeOption.email}
                             </a>
                           </dd>
@@ -145,10 +145,10 @@ const Search: React.FC = (): JSX.Element => {
               )}
 
               {query !== '' && filteredPeople.length === 0 && (
-                <div className="fixed left-0 right-0 mt-2 rounded border bg-white px-6 py-14 text-center text-sm shadow sm:px-14">
-                  <UsersIcon className="mx-auto h-6 w-6 text-gray-400" aria-hidden="true" />
-                  <p className="mt-4 font-semibold text-gray-900">No people found</p>
-                  <p className="mt-2 text-gray-500">We couldn’t find anything with that term. Please try again.</p>
+                <div className="fixed left-0 right-0 mt-2 rounded border bg-white px-6 py-14 text-center text-sm shadow sm:px-14 dark:border-charcoal-100 dark:bg-charcoal-300">
+                  <UsersIcon className="mx-auto h-6 w-6 text-gray-400 dark:text-white" aria-hidden="true" />
+                  <p className="mt-4 font-semibold text-gray-900 dark:text-white">No people found</p>
+                  <p className="mt-2 text-gray-500 dark:text-white">We couldn’t find anything with that term. Please try again.</p>
                 </div>
               )}
             </>
