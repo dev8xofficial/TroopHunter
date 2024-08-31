@@ -1,10 +1,13 @@
 import React from 'react';
 
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
-import { ClockIcon, PresentationChartLineIcon, QueueListIcon, UserIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftStartOnRectangleIcon, PresentationChartLineIcon, QueueListIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+interface DefaultLayoutProps {
+  signOut: () => void;
+}
 
-const BottomNavigation: React.FC = (): JSX.Element => {
+const BottomNavigation: React.FC<DefaultLayoutProps> = ({ signOut }: DefaultLayoutProps): JSX.Element => {
   return (
     <>
       {/* Mobile navigation */}
@@ -23,13 +26,13 @@ const BottomNavigation: React.FC = (): JSX.Element => {
             <span className="sr-only">Search</span>
           </div>
         </button>
-        <Link to="/settings" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text">
-          <UserIcon className="h-5 w-5" aria-hidden="true" />
-          <span className="btm-nav-label">Profile</span>
+        <Link to="/settings/profile" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text">
+          <Cog6ToothIcon className="h-5 w-5" aria-hidden="true" />
+          <span className="btm-nav-label">Settings</span>
         </Link>
-        <Link to="#" className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text">
-          <ClockIcon className="h-5 w-5" aria-hidden="true" />
-          <span className="btm-nav-label">History</span>
+        <Link to="#" onClick={signOut} className="border-t-2 border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text">
+          <ArrowLeftStartOnRectangleIcon className="h-5 w-5" aria-hidden="true" />
+          <span className="btm-nav-label">Sign Out</span>
         </Link>
       </div>
     </>
