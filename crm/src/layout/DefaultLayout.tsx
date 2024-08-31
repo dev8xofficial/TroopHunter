@@ -112,7 +112,11 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
           </>
         </Disclosure>
 
-        <BottomNavigation />
+        <BottomNavigation
+          signOut={() => {
+            dispatch(authSignOutAction({ id: auth.userId, navigate }));
+          }}
+        />
 
         {/* Content */}
         <main className="flex flex-1 flex-col dark:bg-charcoal-300">{children}</main>
