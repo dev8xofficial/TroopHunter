@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { Menu, Switch } from '@headlessui/react';
-import { ArrowDownTrayIcon, CheckIcon, ChevronDownIcon, EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
+import { Menu } from '@headlessui/react';
+import { ArrowDownTrayIcon, CheckIcon, EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
+import { FunnelIcon } from '@heroicons/react/24/outline';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from 'react-redux';
 import { type IBusinessAttributes, type ILeadAttributes, type IUserAttributes } from 'validator/interfaces';
 
-import { setHomePageBusinessIdsAction, setHomePagePaginationPageAction, setHomePageRemoveSavedBusinessAction } from '../../../store/actions/homePageActions';
+import { setHomePageBusinessIdsAction, setHomePagePaginationPageAction } from '../../../store/actions/homePageActions';
 import { type IAuthState } from '../../../store/reducers/authReducer';
 import { type IBusinessState } from '../../../store/reducers/businessReducer';
 import { type IFilterAttributes, type IHomePageState } from '../../../store/reducers/homePageReducer';
@@ -16,8 +17,8 @@ import Avatar from '../../DataDisplay/Avatar/Avatar';
 import Checkbox, { checkboxColors } from '../../Inputs/Checkbox/Checkbox';
 import IconButton from '../../Inputs/IconButton/IconButton';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
+import Drawer from '../../Navigation/Drawer/Drawer';
 import _Menu from '../../Navigation/Menu/Menu';
-import TableSortingMenu from '../Menu/TableSortingMenu';
 
 const images = [
   'https://plus.unsplash.com/premium_photo-1673408622902-8c1126555f29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -44,18 +45,6 @@ const leadItemMenu = [
       console.log('Remove');
     }
   }
-];
-
-const viewOptions = [
-  { title: 'All', description: 'This job posting can be viewed by anyone who has the link.', current: true, value: 'all', name: 'view' },
-  { title: 'Selected', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'selected', name: 'view' },
-  { title: 'Saved', description: 'This job posting will no longer be publicly accessible.', current: false, value: 'saved', name: 'view' }
-];
-
-const sortOptions = [
-  { title: 'Relevance', description: 'Sort by relevance score', current: true, value: 'relevance', name: 'sort' },
-  { title: 'Alphabetical', description: 'Sort by name', current: false, value: 'alphabetical', name: 'sort' },
-  { title: 'New First', description: 'Sort by', current: false, value: 'newFirst', name: 'sort' }
 ];
 
 interface ITable {
@@ -116,6 +105,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
   const [selectedBusinessIds, setSelectedBusinessIds] = useState<string[]>([]);
   const tableRowsData = renderRows(businessesDataBusinesses, leadPageFilters, leadPageBusinessIds, draftLeadBusinessIds);
+  const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
   const handleCheckboxChange = (businessId: string): void => {
     setSelectedBusinessIds((prevSelectedIds) => {
@@ -172,7 +162,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
 
   return (
     <>
-      {/* Table */}
+      {/* Table Actions */}
       <div className="flex w-full items-center bg-white text-sm shadow dark:border-b dark:border-charcoal-100 dark:bg-charcoal-500">
         <div className="mr-auto flex items-center">
           <div className="relative flex w-full items-start py-4 pl-9">
@@ -193,56 +183,49 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
             </Menu.Button>
           </CustomMenu>
         </div>
-        <div className="mx-4 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:flex dark:border-charcoal-100"></div>
-        {draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 && (
-          <>
-            <div className="inline-flex items-center space-x-2">
-              <label>Saved Businesses:</label>
-              <Switch
-                checked={leadPageRemoveSavedBusinesses}
-                onChange={(checked: boolean) => {
-                  dispatch(setHomePageRemoveSavedBusinessAction(checked));
-                }}
-                className={classNames(leadPageRemoveSavedBusinesses ? 'bg-indigo-600' : 'bg-gray-200', 'relative inline-flex h-6 w-26 flex-shrink-0 cursor-pointer rounded border-2 border-transparent transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2')}
-              >
-                <span className="sr-only">Use setting</span>
-                <span className={classNames(leadPageRemoveSavedBusinesses ? 'translate-x-14' : 'translate-x-0', 'pointer-events-none relative inline-block h-5 w-12 transform rounded bg-white shadow ring-0 transition duration-200 ease-in-out')}>
-                  <span className={classNames(leadPageRemoveSavedBusinesses ? 'opacity-0 duration-100 ease-out' : 'opacity-100 duration-200 ease-in', 'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity')} aria-hidden="true">
-                    <span className="text-xxs">Keep</span>
-                  </span>
-                  <span className={classNames(leadPageRemoveSavedBusinesses ? 'opacity-100 duration-200 ease-in' : 'opacity-0 duration-100 ease-out', 'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity')} aria-hidden="true">
-                    <span className="text-xxs">Remove</span>
-                  </span>
-                </span>
-              </Switch>
-            </div>
-            <div className="mx-4 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r dark:border-charcoal-100"></div>
-          </>
-        )}
-        <div className="hidden items-center space-x-2 lg:inline-flex dark:text-white">
-          <label>Business: </label>
-          <TableSortingMenu options={viewOptions} value={viewOptions.find((option) => option.value === leadPageFilters.view.value)} handleChange={handleChange} />
-        </div>
-        <div className="mx-4 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:flex dark:border-charcoal-100"></div>
-        <div className="hidden items-center space-x-2 lg:inline-flex dark:text-white">
-          <label>Sort: </label>
-          <TableSortingMenu options={sortOptions} value={sortOptions.find((option) => option.value === leadPageFilters.sort.value)} handleChange={handleChange} />
-        </div>
         {businessesTotalRecords !== null && (
           <>
             <div className="mx-4 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:flex dark:border-charcoal-100"></div>
-            <div className="hidden h-full items-center justify-center whitespace-nowrap pr-14 md:flex">{`${draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? `${leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}: ${draftLeadBusinessIds?.length} | ` : ''}Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div>
+            <div className="hidden h-full items-center justify-center whitespace-nowrap md:flex">{`${draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? `${leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}: ${draftLeadBusinessIds?.length} | ` : ''}Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div>
           </>
         )}
-        <div className="mx-4 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r lg:hidden dark:border-r-charcoal-100"></div>
-        <div className="pr-4 sm:pr-6 lg:hidden lg:pr-8">
-          <IconButton className="xl:hidden" variant="contained" color="indigo" ringOffset="white">
-            <>
-              <ChevronDownIcon className="h-6 w-6" aria-hidden="true" />
-            </>
-          </IconButton>
+        <div className="mx-4 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r dark:border-r-charcoal-100"></div>
+        <div className="pr-4 sm:pr-6 lg:pr-8">
+          <span className="relative inline-block">
+            <IconButton
+              variant="contained"
+              color="indigo"
+              ringOffset="white"
+              onClick={() => {
+                setIsOpenDrawer(!isOpenDrawer);
+              }}
+            >
+              <>
+                <FunnelIcon className="h-6 w-6" aria-hidden="true" />
+              </>
+            </IconButton>
+            {home.filters.view.value === 'all' && home.filters.sort.value === 'relevance' ? (
+              <></>
+            ) : (
+              <span className="absolute right-0 top-0 block -translate-y-1/2 translate-x-1/2 transform">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
+                </span>
+              </span>
+            )}
+          </span>
         </div>
       </div>
+      <Drawer
+        isOpen={isOpenDrawer}
+        closeDrawer={() => {
+          setIsOpenDrawer(!isOpenDrawer);
+        }}
+        leadPageRemoveSavedBusinesses={leadPageRemoveSavedBusinesses}
+        draftLeadBusinessIds={draftLeadBusinessIds}
+        handleChange={handleChange}
+      />
       {/* Empty State */}
       <div className={classNames(Object.values(tableRowsData).length > 0 ? 'hidden' : '', 'h-full p-4 pb-20 xl:pb-4 dark:bg-charcoal-300')}>
         <div className="flex h-full flex-col items-center justify-center bg-white dark:bg-charcoal-200">
