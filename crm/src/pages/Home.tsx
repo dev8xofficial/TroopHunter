@@ -181,6 +181,7 @@ const Lead: React.FC = () => {
                   <div className="max-w-md flex-grow">
                     {leadPageFilters.name !== undefined && (
                       <CustomTextField
+                        id="home-search"
                         label={leadPageFilters.name?.label}
                         name={leadPageFilters.name?.name}
                         value={leadPageFilters.name?.value !== null ? leadPageFilters.name?.value : ''}
