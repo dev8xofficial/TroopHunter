@@ -139,7 +139,7 @@ const Table: React.FC = (): JSX.Element => {
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-4 pb-20 sm:px-6 lg:px-8 xl:pb-4">
         {/* Table */}
         {userLeads.length > 0 ? (
-          <div className="rounded-sm border shadow sm:mx-0 dark:border-charcoal-100">
+          <div className="overflow-x-auto rounded-sm border shadow sm:mx-0 dark:border-charcoal-100">
             <table className="min-w-full divide-y divide-gray-300 dark:divide-charcoal-100">
               <thead>
                 <tr>
@@ -174,7 +174,7 @@ const Table: React.FC = (): JSX.Element => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-200 dark:divide-charcoal-100">
                 {userLeads?.map((lead: ILeadAttributes, index: number) => (
                   <tr key={index}>
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
@@ -189,12 +189,12 @@ const Table: React.FC = (): JSX.Element => {
                       <div className="font-medium text-gray-900 dark:text-primary-text">{lead.title}</div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500 dark:text-secondary-text">
-                      <div className="text-gray-900">{lead.businessCount}</div>
+                      <div className="text-gray-900 dark:text-primary-text">{lead.businessCount}</div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500 dark:text-secondary-text">
                       <div className="flex items-center">
                         <div className="h-8 w-8 flex-shrink-0">
-                          <Avatar image="" firstName={usersLoggedIn.firstName} size="small" border="border border-gray-900" />
+                          <Avatar image="" firstName={usersLoggedIn.firstName} size="small" border="border border-gray-900 dark:border-secondary-text" className="dark:text-secondary-text" />
                         </div>
                         <div className="ml-4">
                           <div className="font-medium text-gray-900 dark:text-primary-text">{`${usersLoggedIn.firstName} ${usersLoggedIn.lastName}`}</div>
@@ -202,9 +202,9 @@ const Table: React.FC = (): JSX.Element => {
                       </div>
                     </td>
                     {/* eslint-disable-next-line @typescript-eslint/no-unsafe-argument */}
-                    <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500">{moment(lead?.updatedAt).format('YYYY-MM-DD')}</td>
+                    <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500 dark:text-secondary-text">{moment(lead?.updatedAt).format('YYYY-MM-DD')}</td>
                     <td className="relative flex justify-end whitespace-nowrap py-3.5 pl-3 pr-4 text-sm font-medium sm:pr-6">
-                      <_Menu options={getLeadsItemMenuOptions(index)} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white">
+                      <_Menu options={getLeadsItemMenuOptions(index)} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white dark:text-primary-text dark:hover:text-secondary-text dark:focus:border-charcoal-700 dark:focus:ring-charcoal-700 dark:focus:ring-offset-charcoal-200">
                         <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
                       </_Menu>
                     </td>
