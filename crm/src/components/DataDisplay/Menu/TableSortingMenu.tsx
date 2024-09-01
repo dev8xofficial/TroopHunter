@@ -60,12 +60,12 @@ const TableSortingMenu: React.FC<ITableSortingMenuAttributes> = ({ options, valu
         <>
           <Listbox.Label className="sr-only">Change published status</Listbox.Label>
           <div className="relative">
-            <div className="inline-flex divide-x rounded-md shadow-sm ring-1 ring-inset ring-gray-300 dark:divide-charcoal-100 dark:ring-charcoal-100">
+            <div className="inline-flex divide-x rounded-md shadow-sm ring-1 ring-inset ring-gray-300 dark:divide-charcoal-100 dark:text-primary-text dark:ring-charcoal-100">
               <div className="inline-flex items-center gap-x-1.5 rounded-l-md px-3 py-2 shadow-sm">
                 {getOptionIcon(selected)}
                 <p className="text-sm font-semibold">{selected.title}</p>
               </div>
-              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-charcoal-700">
+              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-gray-50 dark:text-primary-text dark:focus:ring-offset-charcoal-700">
                 <span className="sr-only">Change published status</span>
                 <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
               </Listbox.Button>
