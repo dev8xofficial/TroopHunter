@@ -88,7 +88,7 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
                 <Dialog.Panel className="w-full max-w-xl transform divide-y overflow-hidden rounded bg-white text-left align-middle shadow-xl transition-all dark:divide-charcoal-100 dark:bg-charcoal-400">
-                  <Dialog.Title as="h3" className="bg-gray-800 px-6 py-4 text-lg font-medium leading-6 text-white dark:bg-charcoal-600">
+                  <Dialog.Title as="h3" className="bg-gray-50 px-4 py-6 text-lg font-medium leading-6 text-gray-900 sm:px-6 dark:bg-charcoal-600 dark:text-primary-text">
                     <div className="flex items-center justify-between">
                       <AdjustmentsVerticalIcon className="mr-3 h-5 w-5" aria-hidden="true" />
                       <div className="min-w-0 flex-1">
@@ -96,8 +96,10 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
                         <p className="text-sm sm:hidden">0 results</p>
                       </div>
                       <div className="flex items-center space-x-3 md:ml-4">
-                        <button onClick={closeModal} type="button" className="rounded-full p-2 shadow-sm hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                          <XMarkIcon className="h-5 w-5" aria-hidden="true" />
+                        <button type="button" onClick={closeModal} className="relative text-gray-400 hover:text-gray-500 dark:hover:text-primary-text">
+                          <span className="absolute -inset-2.5" />
+                          <span className="sr-only">Close panel</span>
+                          <XMarkIcon aria-hidden="true" className="h-6 w-6" />
                         </button>
                       </div>
                     </div>
