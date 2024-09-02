@@ -52,7 +52,7 @@ const Drawer: React.FC<IDrawerProps> = ({ isOpen, closeDrawer, leadPageRemoveSav
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" onClose={closeDrawer} className="relative z-30">
           <Transition.Child as={Fragment} enter="ease-out duration-500" leave="ease-in duration-500">
-            <div className="fixed inset-0 bg-gray-900 opacity-30" />
+            <div className="fixed inset-0 bg-white/10 backdrop-blur-md" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-hidden">
@@ -63,7 +63,7 @@ const Drawer: React.FC<IDrawerProps> = ({ isOpen, closeDrawer, leadPageRemoveSav
                     <form className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl dark:bg-charcoal-400">
                       <div className="flex-1">
                         {/* Header */}
-                        <div className="bg-gray-50 px-4 py-6 sm:px-6 dark:bg-charcoal-600">
+                        <div className="bg-gray-50 px-4 py-6 xl:px-6 dark:bg-charcoal-600">
                           <div className="flex items-start justify-between space-x-3">
                             <div className="space-y-1">
                               <Dialog.Title className="text-base font-semibold leading-6 text-gray-900 dark:text-primary-text">Filters</Dialog.Title>
@@ -84,7 +84,7 @@ const Drawer: React.FC<IDrawerProps> = ({ isOpen, closeDrawer, leadPageRemoveSav
                           {/* Saved Businesses */}
                           {draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 && (
                             <>
-                              <div className="flex items-center justify-between px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                              <div className="flex items-center justify-between px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 xl:px-6">
                                 <div>
                                   <label htmlFor="project-name" className="block text-sm font-medium leading-6 text-gray-900 dark:text-secondary-text">
                                     Saved Businesses:
@@ -116,7 +116,7 @@ const Drawer: React.FC<IDrawerProps> = ({ isOpen, closeDrawer, leadPageRemoveSav
                           )}
 
                           {/* Business: */}
-                          <div className="flex items-center justify-between px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                          <div className="flex items-center justify-between px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 xl:px-6">
                             <div>
                               <label htmlFor="project-description" className="block text-sm font-medium leading-6 text-gray-900 dark:text-secondary-text">
                                 Business:
@@ -130,7 +130,7 @@ const Drawer: React.FC<IDrawerProps> = ({ isOpen, closeDrawer, leadPageRemoveSav
                           </div>
 
                           {/* Sort: */}
-                          <div className="flex items-center justify-between px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                          <div className="flex items-center justify-between px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 xl:px-6">
                             <div>
                               <label htmlFor="project-description" className="block text-sm font-medium leading-6 text-gray-900 dark:text-secondary-text">
                                 Sort:

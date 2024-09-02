@@ -169,7 +169,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
             <div className="flex h-6 items-center">
               <Checkbox id="selectAll" name="selectAll" checked={isAllBusinessesSelected()} onChange={handleSelectAllChange} />
             </div>
-            <label htmlFor="selectAll" className="inline-flex w-full justify-center whitespace-nowrap px-4 leading-6 text-gray-900 sm:px-6 dark:text-white">
+            <label htmlFor="selectAll" className="inline-flex w-full justify-center whitespace-nowrap pl-4 leading-6 text-gray-900 sm:px-6 dark:text-white">
               Select all
             </label>
           </div>
@@ -177,7 +177,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
           <div className="mx-4 my-0 flex h-auto flex-col items-center self-stretch whitespace-nowrap border-r dark:border-charcoal-100"></div>
 
           <CustomMenu>
-            <Menu.Button disabled={true} className="inline-flex w-full justify-center whitespace-nowrap px-3 py-2 text-sm text-gray-500 disabled:cursor-not-allowed  disabled:opacity-30 disabled:hover:bg-white dark:text-gray-100 disabled:dark:hover:bg-transparent">
+            <Menu.Button disabled={true} className="inline-flex w-full justify-center whitespace-nowrap py-2 pr-4 text-sm text-gray-500 disabled:cursor-not-allowed disabled:opacity-30  disabled:hover:bg-white sm:px-6 dark:text-gray-100 disabled:dark:hover:bg-transparent">
               <ListBulletIcon className="mr-0.5 h-5 w-5" aria-hidden="true" />
               Save to list
             </Menu.Button>
@@ -194,7 +194,6 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
           <span className="relative inline-block">
             <IconButton
               variant="contained"
-              color="indigo"
               ringOffset="white"
               onClick={() => {
                 setIsOpenDrawer(!isOpenDrawer);
@@ -261,8 +260,8 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                       />
                     </div>
                     <div className="w-full text-sm leading-6">
-                      <label htmlFor={business.name} className="relative flex cursor-pointer justify-between gap-x-6 pl-4 sm:px-6">
-                        <div className="flex gap-x-4">
+                      <label htmlFor={business.name} className="relative flex w-full cursor-pointer justify-between gap-x-6 pl-4 sm:px-6">
+                        <div className="flex w-full gap-x-4">
                           <div className="group-block hidden h-10 w-10 rounded-full bg-slate-300 md:h-12 md:w-12 xl:h-16 xl:w-16"></div>
                           <Avatar image={images[Math.floor(Math.random() * images.length)]} firstName={business.name} size="large" border="border border-gray-900" className="group-hidden hidden" />
                           <div className="min-w-0 flex-auto">
@@ -290,27 +289,53 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                               <div className="group-block hidden h-3 w-24 rounded bg-slate-300"></div>
                             </div>
                             <div className="group-block mt-3 hidden h-3 w-24 rounded bg-slate-300"></div>
-                            <p className="mt-1 flex text-xs leading-5 text-gray-500 dark:text-primary-text">
-                              {business?.BusinessPhone !== undefined && (
-                                <a href={`mailto:${business.BusinessPhone.numberNationalFormatted}`} className="group-hidden relative truncate hover:underline">
-                                  {business.BusinessPhone.numberNationalFormatted}
-                                </a>
-                              )}
-                            </p>
+                            <div className="flex items-center justify-between gap-x-4">
+                              <p className="mt-1 flex text-xs leading-5 text-gray-500 dark:text-primary-text">
+                                {business?.BusinessPhone !== undefined && (
+                                  <a href={`mailto:${business.BusinessPhone.numberNationalFormatted}`} className="group-hidden relative truncate hover:underline">
+                                    {business.BusinessPhone.numberNationalFormatted}
+                                  </a>
+                                )}
+                              </p>
+                              <div className="flex items-center gap-x-4 sm:hidden">
+                                <div className="flex flex-none items-center">
+                                  <div className="group-block hidden h-5 w-16 rounded-full bg-slate-300"></div>
+                                  <CustomMenu>
+                                    <>
+                                      {isSaved ? (
+                                        <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-green-600 bg-green-600 px-2.5 py-1 text-xs font-semibold text-white ring-green-600 transition duration-200 hover:bg-green-700 focus:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white">
+                                          <CheckIcon className="mr-0.5 h-4 w-4" aria-hidden="true" />
+                                          Saved
+                                        </Menu.Button>
+                                      ) : (
+                                        <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-1 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:border-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-200 dark:focus:bg-charcoal-300 dark:focus:ring-offset-charcoal-200">
+                                          <ArrowDownTrayIcon className="mr-0.5 h-4 w-4" aria-hidden="true" />
+                                          Save
+                                        </Menu.Button>
+                                      )}
+                                    </>
+                                  </CustomMenu>
+                                  <div className="group-block -mr-3.5 hidden h-4 w-1 rounded bg-slate-300"></div>
+                                  <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 dark:text-primary-text dark:hover:text-secondary-text">
+                                    <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
+                                  </_Menu>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                        <div className="flex items-center gap-x-4">
+                        <div className="hidden items-center gap-x-4 sm:flex">
                           <div className="flex flex-none items-center">
                             <div className="group-block hidden h-5 w-16 rounded-full bg-slate-300"></div>
                             <CustomMenu>
                               <>
                                 {isSaved ? (
-                                  <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-green-600 bg-green-600 px-2.5 py-1 text-xs font-semibold text-white ring-green-600 transition duration-200 hover:bg-green-700 focus:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white">
+                                  <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-green-600 bg-green-600 px-2.5 py-1 text-xs font-semibold text-white ring-green-600 transition duration-200 hover:bg-green-700 focus:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white">
                                     <CheckIcon className="mr-0.5 h-4 w-4" aria-hidden="true" />
                                     Saved
                                   </Menu.Button>
                                 ) : (
-                                  <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-1 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-white dark:border-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-200 dark:focus:bg-charcoal-300 dark:focus:ring-offset-charcoal-200">
+                                  <Menu.Button className="group-hidden flex items-center justify-center rounded-full border border-indigo-600 px-2.5 py-1 text-xs font-semibold text-indigo-600 ring-indigo-600 transition duration-200 hover:bg-indigo-50 hover:bg-opacity-70 focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:border-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-200 dark:focus:bg-charcoal-300 dark:focus:ring-offset-charcoal-200">
                                     <ArrowDownTrayIcon className="mr-0.5 h-4 w-4" aria-hidden="true" />
                                     Save
                                   </Menu.Button>
@@ -318,7 +343,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                               </>
                             </CustomMenu>
                             <div className="group-block -mr-3.5 hidden h-4 w-1 rounded bg-slate-300"></div>
-                            <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white dark:text-primary-text dark:hover:text-secondary-text dark:focus:border-charcoal-700 dark:focus:ring-charcoal-700 dark:focus:ring-offset-charcoal-200">
+                            <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 dark:text-primary-text dark:hover:text-secondary-text">
                               <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
                             </_Menu>
                           </div>
