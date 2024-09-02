@@ -61,12 +61,12 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
   return (
     <>
       {/* Action tab */}
-      <div className="sticky top-0 z-10 h-fit bg-gray-800 xl:bg-transparent dark:bg-charcoal-700 xl:dark:bg-charcoal-500">
-        <div className="flex h-16 items-center justify-between border-b shadow dark:border-charcoal-100">
-          <div className="mx-auto h-full w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="sticky top-0 z-10 h-fit bg-transparent dark:bg-charcoal-500 xl:dark:bg-charcoal-500">
+        <div className="flex items-center justify-between xl:border-b xl:shadow dark:border-charcoal-100">
+          <div className="mx-auto h-full w-full max-w-7xl px-4 py-6 xl:px-8">
             <div className="flex h-full items-center justify-between">
               <div className="min-w-0 flex-1">
-                <h2 className="text-lg leading-7 text-white sm:truncate sm:text-xl sm:tracking-tight">{title} results</h2>
+                <h2 className="text-lg leading-7 text-gray-900 sm:truncate sm:text-xl sm:tracking-tight dark:text-primary-text">{title}</h2>
               </div>
               <div className="hidden h-full items-center text-sm">
                 {title.toLowerCase() === 'lead' && (
