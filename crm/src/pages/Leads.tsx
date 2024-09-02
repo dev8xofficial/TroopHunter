@@ -30,7 +30,7 @@ const Leads: React.FC = (): JSX.Element => {
       </header>
 
       {/* Action tab */}
-      <ActionBar title="Leads" isLoading={isLeadPageLoading} />
+      <ActionBar title="Leads Results" isLoading={isLeadPageLoading} />
 
       {/* Content */}
       <Table />

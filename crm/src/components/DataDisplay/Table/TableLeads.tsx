@@ -136,10 +136,10 @@ const Table: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-4 pb-20 sm:px-6 lg:px-8 xl:pb-4">
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col bg-gray-100 px-4 py-4 pb-20 xl:bg-transparent xl:px-8 xl:pb-4 dark:bg-transparent">
         {/* Table */}
         {userLeads.length > 0 ? (
-          <div className="overflow-x-auto rounded-sm border shadow sm:mx-0 dark:border-charcoal-100">
+          <div className="overflow-x-auto rounded-sm border bg-white shadow sm:mx-0 dark:border-charcoal-100 dark:bg-charcoal-200">
             <table className="min-w-full divide-y divide-gray-300 dark:divide-charcoal-100">
               <thead>
                 <tr>
@@ -214,7 +214,7 @@ const Table: React.FC = (): JSX.Element => {
             </table>
           </div>
         ) : (
-          <div className="flex h-full flex-1 flex-col dark:bg-charcoal-300">
+          <div className="flex h-full flex-1 flex-col bg-white dark:bg-charcoal-200">
             <div className="flex h-full flex-1 flex-col items-center justify-center bg-white dark:bg-charcoal-200">
               <MagnifyingGlassCircleIcon className="-ml-0.5 h-32 w-32 text-indigo-600 dark:text-primary-text" aria-hidden="true" />
               <div className="text-center">
