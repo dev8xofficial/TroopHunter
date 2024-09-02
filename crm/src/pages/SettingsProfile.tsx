@@ -66,7 +66,7 @@ const SettingsProfile: React.FC = (): JSX.Element => {
             <div className="sm:flex xl:pt-6">
               <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-primary-text">First Name</dt>
               <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-                <div>
+                <div className="w-full sm:w-auto">
                   <TextField type="text" name="firstName" value={formik.values?.firstName} onChange={formik.handleChange} required />
                 </div>
               </dd>
@@ -74,13 +74,13 @@ const SettingsProfile: React.FC = (): JSX.Element => {
             <div className="sm:flex xl:pt-6">
               <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-primary-text">Last Name</dt>
               <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-                <div>
+                <div className="w-full sm:w-auto">
                   <TextField type="text" name="lastName" value={formik.values?.lastName} onChange={formik.handleChange} required />
                 </div>
               </dd>
             </div>
-            <div className="sm:flex xl:pt-6">
-              <Button type="submit" variant="contained" color="indigo" disabled={!formik.dirty}>
+            <div className="pt-2 sm:flex sm:pt-0 xl:pt-6">
+              <Button type="submit" variant="contained" color="indigo" disabled={!formik.dirty} className="w-full sm:w-auto">
                 Update
               </Button>
             </div>
