@@ -12,7 +12,7 @@ const _Menu: React.FC<IMenuProps> = ({ children, options, className = '' }: IMen
       {/* Mobile navigation */}
       <Menu as="div" className="relative ml-3">
         <div>
-          <Menu.Button className={`flex items-center justify-center rounded-full transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-4 ${className}`}>
+          <Menu.Button className={`flex items-center justify-center ${className}`}>
             <span className="sr-only">Open user menu</span>
             {children}
           </Menu.Button>
