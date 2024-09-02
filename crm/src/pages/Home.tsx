@@ -12,9 +12,9 @@ import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDe
 import LeadSaveDialog from '../components/Feedback/LeadSaveDialog/LeadSaveDialog';
 import Button from '../components/Inputs/Button/Button';
 import CustomTextField from '../components/Inputs/CustomTextField/CustomTextField';
-import IconButton from '../components/Inputs/IconButton/IconButton';
 import Accordion from '../components/Surfaces/Accordion/Accordion';
-import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
+// import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
+import useTailwindBreakpoint from '../middleware/useTailwindBreakpoint';
 import { fetchBusinessesAction } from '../store/actions/businessActions';
 import { resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePagePaginationPageAction } from '../store/actions/homePageActions';
 import { type IAuthState } from '../store/reducers/authReducer';
@@ -30,7 +30,7 @@ const Lead: React.FC = () => {
   const home = useSelector((state: { home: IHomePageState }) => state.home);
   const users = useSelector((state: { users: IUserState }) => state.users);
 
-  const isLeadLoading = home.isLoading;
+  // const isLeadLoading = home.isLoading;
   const leadPageFilters: IFilterAttributes = home.filters;
   const leadPagePaginationPage: number = home.page;
   const leadPagePaginationLimit: number = home.pageLimit;
@@ -48,6 +48,7 @@ const Lead: React.FC = () => {
   const mainRef = useRef<HTMLDivElement>(null);
   const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
   const prevLeadPageFilters = useRef<IFilterAttributes>(leadPageFilters);
+  const breakpoint = useTailwindBreakpoint();
 
   const handleChange = (name: string, value: string): void => {
     // const name = name;
@@ -143,9 +144,9 @@ const Lead: React.FC = () => {
   return (
     <>
       {/* Action tab */}
-      <div className="xl:hidden">
+      {/* <div className="xl:hidden">
         <ActionBar title="Lead" isLoading={isLeadLoading} />
-      </div>
+      </div> */}
 
       <div className="flex flex-1 flex-col bg-gray-100">
         {/* Filters Head */}
@@ -176,8 +177,8 @@ const Lead: React.FC = () => {
           {/* Filters Search */}
           <div className="w-full py-3">
             <div>
-              <div className="flex items-center justify-between space-x-6 pl-4 pr-4 sm:pr-6 lg:pr-8">
-                <div className="flex flex-grow items-center space-x-6">
+              <div className="flex items-center justify-between px-4">
+                <div className="flex flex-grow items-center justify-between space-x-6 sm:justify-start">
                   <div className="max-w-md flex-grow">
                     {leadPageFilters.name !== undefined && (
                       <CustomTextField
@@ -188,6 +189,10 @@ const Lead: React.FC = () => {
                         onChange={(event: ChangeEvent<HTMLInputElement>) => {
                           handleChange(event.target.name, event.target.value);
                         }}
+                        handleFilters={() => {
+                          setIsOpenMobileFiltersDialog(true);
+                        }}
+                        breakpoint={breakpoint}
                         placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`}
                       />
                     )}
@@ -197,20 +202,6 @@ const Lead: React.FC = () => {
                 </div>
                 {/* Mobile advanced search filters */}
                 <div className="xl:hidden">
-                  <IconButton
-                    className="xl:hidden"
-                    variant="contained"
-                    color="indigo"
-                    ringOffset="white"
-                    onClick={() => {
-                      setIsOpenMobileFiltersDialog(true);
-                    }}
-                  >
-                    <>
-                      <AdjustmentsVerticalIcon className="h-6 w-6" aria-hidden="true" />
-                    </>
-                  </IconButton>
-
                   <Transition appear show={isOpenMobileFiltersDialog} as={Fragment}>
                     <Dialog
                       as="div"
@@ -220,7 +211,7 @@ const Lead: React.FC = () => {
                       }}
                     >
                       <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
-                        <div className="fixed inset-0 bg-black bg-opacity-25" />
+                        <div className="fixed inset-0 bg-white/10 backdrop-blur-sm" />
                       </Transition.Child>
 
                       <div className="fixed inset-0 overflow-y-auto">
@@ -243,7 +234,7 @@ const Lead: React.FC = () => {
                                         setIsOpenMobileFiltersDialog(false);
                                       }}
                                       type="button"
-                                      className="rounded-full p-2 shadow-sm hover:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                      className="rounded-full p-2 text-gray-400 shadow-sm hover:text-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:hover:text-primary-text"
                                     >
                                       <XMarkIcon className="h-5 w-5" aria-hidden="true" />
                                     </button>
