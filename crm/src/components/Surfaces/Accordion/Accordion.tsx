@@ -103,7 +103,7 @@ const Accordion: React.FC<IAccordionProps> = ({ label, name, value, handleChange
     <Disclosure as="div">
       {({ open }) => (
         <>
-          <Disclosure.Button className={`flex w-full justify-between px-4 py-6 text-left ${open ? 'bg-white' : ''} hover:bg-white focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600`}>
+          <Disclosure.Button className={`flex w-full justify-between px-4 py-6 text-left ${open ? 'bg-white' : ''} hover:bg-white focus:outline-none sm:px-6 dark:bg-charcoal-200 dark:text-primary-text dark:hover:bg-charcoal-500`}>
             <span>{label}</span>
             {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
           </Disclosure.Button>

@@ -25,7 +25,7 @@ const Select: React.FC<ISelectProps> = ({ label, options, value, onChange, disab
         <>
           {label != null && <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">{label}</Listbox.Label>}
           <div className={classNames(label != null ? 'mt-2' : '', 'relative')}>
-            <Listbox.Button className="relative w-full cursor-default rounded border border-gray-300 bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow outline-none transition duration-200 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm sm:leading-6 dark:focus:ring-offset-white">
+            <Listbox.Button className="relative w-full cursor-default rounded border border-gray-300 bg-white py-1.5 pl-3 pr-10 text-left text-sm text-gray-900 shadow outline-none transition duration-200 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:leading-6 dark:focus:ring-offset-white">
               <span className="block truncate">{selectedOption.name}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />

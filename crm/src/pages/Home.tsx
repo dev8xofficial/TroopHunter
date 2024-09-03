@@ -157,7 +157,7 @@ const Lead: React.FC = () => {
               <div className="flex items-center justify-between px-4">
                 <nav className="-mb-px -ml-4 flex space-x-8" aria-label="Tabs">
                   {tabs.map((tab) => (
-                    <a key={tab.name} href={tab.href} className={classNames(tab.current ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300  hover:text-gray-700', 'whitespace-nowrap border-b-2 px-10 py-5 text-sm font-medium')} aria-current={tab.current ? 'page' : undefined}>
+                    <a key={tab.name} href={tab.href} className={classNames(tab.current ? 'border-indigo-500 text-indigo-600 dark:border-indigo-300 dark:text-indigo-300' : 'border-transparent text-gray-500 hover:border-gray-300  hover:text-gray-700', 'whitespace-nowrap border-b-2 px-10 py-5 text-sm font-medium')} aria-current={tab.current ? 'page' : undefined}>
                       {tab.name}
                     </a>
                   ))}
@@ -226,9 +226,9 @@ const Lead: React.FC = () => {
                                   </div>
                                   <div className="flex items-center space-x-3 md:ml-4">
                                     <p className="hidden text-sm sm:block">0 results</p>
-                                    <button type="button" className="ml-3 inline-flex items-center rounded border bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-600 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:border-white dark:bg-transparent dark:text-white dark:hover:border-indigo-600">
+                                    <Button variant="outlined" color="indigo">
                                       Search
-                                    </button>
+                                    </Button>
                                     <button
                                       onClick={() => {
                                         setIsOpenMobileFiltersDialog(false);
@@ -464,7 +464,7 @@ const Lead: React.FC = () => {
               </div>
             </div>
             {/* Action buttons */}
-            <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'fixed bottom-0 w-full max-w-sm flex-shrink-0 border-t border-gray-200 bg-white   px-4 py-5 sm:px-6 dark:border-charcoal-100 dark:bg-charcoal-700', 'transition-all duration-500 ease-in-out')}>
+            <div className={classNames(filtersPanelWidth ? 'xl:max-w-lg 2xl:max-w-xl' : '', 'fixed bottom-0 w-full max-w-sm flex-shrink-0 border-t border-gray-200 bg-white   px-4 py-5 sm:px-6 dark:border-charcoal-100 dark:bg-charcoal-300', 'transition-all duration-500 ease-in-out')}>
               <div className="flex items-center justify-between">
                 {leadPageDraftLeadId.length > 0 && (
                   <>
