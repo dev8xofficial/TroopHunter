@@ -60,10 +60,10 @@ const Drawer: React.FC<IDrawerProps> = ({ isOpen, closeDrawer, leadPageRemoveSav
               <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
                 <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="translate-x-full sm:duration-700" enterTo="translate-x-0" leave="ease-in duration-200" leaveFrom="translate-x-0" leaveTo="translate-x-full sm:duration-500">
                   <Dialog.Panel className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700">
-                    <form className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl dark:bg-charcoal-400">
+                    <form className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl dark:bg-charcoal-200">
                       <div className="flex-1">
                         {/* Header */}
-                        <div className="bg-gray-50 px-4 py-6 xl:px-6 dark:bg-charcoal-600">
+                        <div className="bg-gray-50 px-4 py-6 xl:px-6 dark:bg-charcoal-300">
                           <div className="flex items-start justify-between space-x-3">
                             <div className="space-y-1">
                               <Dialog.Title className="text-base font-semibold leading-6 text-gray-900 dark:text-primary-text">Filters</Dialog.Title>

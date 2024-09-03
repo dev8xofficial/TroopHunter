@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Table from '../components/DataDisplay/Table/TableLeads';
-import Search from '../components/Inputs/Search/Search';
+// import Search from '../components/Inputs/Search/Search';
 import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
 import { type IHomePageState } from '../store/reducers/homePageReducer';
 
@@ -12,9 +12,9 @@ const Leads: React.FC = (): JSX.Element => {
   const isLeadPageLoading = home.isLoading;
   return (
     <>
-      <header>
+      {/* Advanced Search */}
+      {/* <header>
         <div className="hidden w-full items-center justify-center space-x-8 border-b bg-gray-800 xl:flex dark:border-charcoal-100 dark:bg-charcoal-500">
-          {/* Advanced Search */}
           <div className="mx-auto max-w-7xl flex-1 px-4 py-4 sm:px-6 lg:px-8">
             <div className="flex flex-1 justify-center space-x-4">
               <Search />
@@ -27,7 +27,7 @@ const Leads: React.FC = (): JSX.Element => {
             </div>
           </div>
         </div>
-      </header>
+      </header> */}
 
       {/* Action tab */}
       <ActionBar title="Leads Results" isLoading={isLeadPageLoading} />
