@@ -87,8 +87,8 @@ const LeadSaveDialog: React.FC<CustomDialogAttributes> = ({ isOpen, closeModal }
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
-                <Dialog.Panel className="w-full max-w-xl transform divide-y overflow-hidden rounded bg-white text-left align-middle shadow-xl transition-all dark:divide-charcoal-100 dark:bg-charcoal-400">
-                  <Dialog.Title as="h3" className="bg-gray-50 px-4 py-6 text-lg font-medium leading-6 text-gray-900 sm:px-6 dark:bg-charcoal-600 dark:text-primary-text">
+                <Dialog.Panel className="w-full max-w-xl transform divide-y overflow-hidden rounded bg-white text-left align-middle shadow-xl transition-all dark:divide-charcoal-100 dark:bg-charcoal-300">
+                  <Dialog.Title as="h3" className="bg-gray-50 px-4 py-6 text-lg font-medium leading-6 text-gray-900 sm:px-6 dark:bg-charcoal-500 dark:text-primary-text">
                     <div className="flex items-center justify-between">
                       <AdjustmentsVerticalIcon className="mr-3 h-5 w-5" aria-hidden="true" />
                       <div className="min-w-0 flex-1">

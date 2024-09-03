@@ -1,29 +1,31 @@
-import React, { Fragment, type ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 
-import { Disclosure, Menu, Transition } from '@headlessui/react';
+// import { Disclosure, Menu, Transition } from '@headlessui/react';
 // import { BellIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+// import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import Avatar from '../components/DataDisplay/Avatar/Avatar';
-import BottomNavigation from '../components/Navigation/BottomNavigation/BottomNavigation';
+// import Avatar from '../components/DataDisplay/Avatar/Avatar';
+// import BottomNavigation from '../components/Navigation/BottomNavigation/BottomNavigation';
+import BottomNavigationBlur from '../components/Navigation/BottomNavigation/BottomNavigationBlur';
 import { authSignOutAction } from '../store/actions/authActions';
 // import { resetNavigationAction } from '../store/actions/navigationActions';
 import { type IAuthState } from '../store/reducers/authReducer';
 // import { type INavigationState } from '../store/reducers/navigationReducer';
-import { classNames } from '../utils/helpers';
+// import { classNames } from '../utils/helpers';
 
-const user = {
-  firstName: 'Tom',
-  lastName: 'Cook',
-  email: 'tom@example.com',
-  imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-};
+// const user = {
+//   firstName: 'Tom',
+//   lastName: 'Cook',
+//   email: 'tom@example.com',
+//   imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+// };
 
-const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Leads', href: '/leads', current: false }
-];
+// const navigation = [
+//   { name: 'Home', href: '/', current: true },
+//   { name: 'Leads', href: '/leads', current: false }
+// ];
 
 interface DefaultLayoutProps {
   children: ReactNode;
@@ -33,21 +35,21 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
   // Use the useLocation hook to get the current URL pathname
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
 
   const auth = useSelector((state: { auth: IAuthState }) => state.auth);
 
   // Update the navigation array based on the current URL
-  const updatedNavigation = navigation.map((item) => ({
-    ...item,
-    current: item.href === location.pathname
-  }));
+  // const updatedNavigation = navigation.map((item) => ({
+  //   ...item,
+  //   current: item.href === location.pathname
+  // }));
 
   return (
     <>
       <div className="flex min-h-screen flex-1 flex-col">
         {/* Desktop navigation */}
-        <Disclosure as="nav" className="hidden border-b border-gray-700 bg-gray-800 xl:block dark:bg-charcoal-700">
+        {/* <Disclosure as="nav" className="hidden border-b border-gray-700 bg-gray-800 xl:block dark:bg-charcoal-700">
           <>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex h-16 items-center justify-between">
@@ -67,12 +69,11 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
                 </div>
                 <div>
                   <div className="ml-4 flex items-center md:ml-6">
-                    {/* <button type="button" className="rounded-full bg-red-800 p-1 text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-900 focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <button type="button" className="rounded-full bg-red-800 p-1 text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-900 focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">View notifications</span>
                       <BellIcon className="h-6 w-6" aria-hidden="true" />
-                    </button> */}
+                    </button>
 
-                    {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
                       <div>
                         <Menu.Button className={`flex items-center justify-center rounded-full transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2`}>
@@ -110,9 +111,9 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
               </div>
             </div>
           </>
-        </Disclosure>
+        </Disclosure> */}
 
-        <BottomNavigation
+        <BottomNavigationBlur
           signOut={() => {
             dispatch(authSignOutAction({ id: auth.userId, navigate }));
           }}

@@ -106,7 +106,7 @@ a {
 }
 
 .icon-btn.icon-btn-outlined {
-  @apply border dark:border-charcoal-700;
+  @apply border;
 }
 
 /* .icon-btn.icon-btn-contained.icon-btn-ring-offset-white {
@@ -201,7 +201,7 @@ a {
 /* icon variant contained */
 
 .icon-btn.icon-btn-contained.icon-btn-indigo {
-  @apply text-gray-300 hover:text-white bg-indigo-600 hover:bg-indigo-700 dark:bg-transparent dark:hover:bg-transparent;
+  @apply bg-indigo-600 text-gray-300 hover:bg-indigo-700 hover:text-white dark:bg-transparent dark:hover:bg-transparent;
 }
 
 .icon-btn.icon-btn-contained.icon-btn-indigo:focus {
@@ -209,7 +209,7 @@ a {
 }
 
 .icon-btn.icon-btn-contained.icon-btn-red {
-  @apply text-gray-300 hover:text-white bg-red-600 hover:bg-red-700 dark:bg-transparent dark:hover:bg-transparent;
+  @apply bg-red-600 text-gray-300 hover:bg-red-700 hover:text-white dark:bg-transparent dark:hover:bg-transparent;
 }
 
 .icon-btn.icon-btn-contained.icon-btn-red:focus {
@@ -219,27 +219,27 @@ a {
 /* variant outlined */
 
 .btn.btn-outlined.btn-indigo {
-  @apply border-indigo-600 text-indigo-600 dark:bg-transparent;
+  @apply border-indigo-600 bg-transparent text-indigo-600 dark:text-indigo-300 dark:hover:text-indigo-100;
 }
 
 .btn.btn-outlined.btn-indigo:focus {
-  @apply ring-indigo-600;
+  @apply ring-indigo-600 ring-offset-white dark:ring-indigo-600 dark:ring-offset-charcoal-700;
 }
 
 .btn.btn-outlined.btn-red {
-  @apply border-red-600 text-red-600 hover:bg-red-50 hover:bg-opacity-70 dark:bg-transparent;
+  @apply border-red-600 bg-transparent text-red-600 dark:text-red-300 dark:hover:text-red-100;
 }
 
 .btn.btn-outlined.btn-red:focus {
-  @apply ring-red-600 focus:bg-red-50;
+  @apply ring-red-600 ring-offset-white dark:ring-red-600 dark:ring-offset-charcoal-700;
 }
 
 .btn.btn-outlined.btn-gray {
-  @apply border-gray-600 text-gray-600 dark:bg-transparent;
+  @apply border-gray-600 bg-transparent text-gray-600 dark:text-gray-300 dark:hover:text-gray-100;
 }
 
 .btn.btn-outlined.btn-gray:focus {
-  @apply ring-gray-600 focus:bg-gray-50;
+  @apply ring-gray-600 ring-offset-white dark:ring-gray-600 dark:ring-offset-charcoal-700;
 }
 
 /* variant outlined */

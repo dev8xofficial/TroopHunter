@@ -84,7 +84,7 @@ const Search: React.FC = (): JSX.Element => {
                     onChange={(event) => {
                       setQuery(event.target.value);
                     }}
-                    className="block w-full rounded-none rounded-l border-0 px-3 py-1.5 pl-10 pr-3 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:ring-charcoal-700 dark:focus:ring-offset-charcoal-700"
+                    className="block w-full rounded-none rounded-l border-0 px-3 py-1.5 pl-10 pr-3 text-sm shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6 dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:ring-charcoal-700 dark:focus:ring-offset-charcoal-700"
                   />
                 </div>
                 <button type="button" onClick={openModal} className="relative -ml-px inline-flex items-center gap-x-1.5 whitespace-nowrap rounded-r bg-white px-3 py-2 text-sm font-semibold capitalize text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-charcoal-400 dark:text-primary-text dark:ring-charcoal-700 dark:hover:bg-charcoal-300">
