@@ -23,20 +23,20 @@ const SettingsLayout: React.FC<{ children: React.ReactNode }> = ({ children }): 
   return (
     <>
       {/* Action tab */}
-      <div className="xl:hidden">
+      <div>
         <ActionBar title="Settings" isLoading={false} />
       </div>
 
-      <div className="flex flex-1 flex-col bg-gray-100 p-4 pb-20 xl:bg-transparent xl:pb-4 dark:bg-charcoal-200 lg:dark:bg-charcoal-300">
-        <div className="flex flex-1 flex-col bg-white sm:max-w-7xl lg:p-4 xl:mx-auto xl:bg-transparent dark:bg-charcoal-300 lg:dark:bg-transparent">
+      <div className="flex flex-1 flex-col bg-gray-100 p-4 xl:pb-4 dark:bg-charcoal-200 lg:dark:bg-charcoal-300">
+        <div className="flex flex-1 flex-col sm:max-w-7xl lg:p-4 xl:mx-auto dark:bg-charcoal-300">
           <div className="lg:flex lg:gap-x-16">
             <aside className="flex flex-col overflow-x-auto border-b border-gray-900/5 py-4 lg:block lg:w-64 lg:flex-none lg:border-0 dark:border-charcoal-100">
               <nav className="flex-none px-4 sm:px-6 lg:px-0">
                 <ul role="list" className="flex gap-x-3 gap-y-1 whitespace-nowrap lg:flex-col">
                   {navigationItems.map((item) => (
                     <li key={item.name}>
-                      <Link to={item.href} className={classNames(location.pathname === item.href ? 'bg-gray-50 text-indigo-600 dark:bg-charcoal-400 dark:text-indigo-500' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-primary-text dark:hover:bg-charcoal-500 dark:hover:text-primary-text', 'group flex w-full gap-x-3 rounded py-2 pl-2 pr-3 text-sm font-semibold leading-6')}>
-                        <item.icon className={classNames(location.pathname === item.href ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600 dark:text-primary-text dark:hover:bg-charcoal-600 dark:group-hover:text-primary-text', 'h-6 w-6 shrink-0')} aria-hidden="true" />
+                      <Link to={item.href} className={classNames(location.pathname === item.href ? 'bg-gray-50 text-indigo-600 dark:bg-charcoal-400 dark:text-indigo-300' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-primary-text dark:hover:bg-charcoal-500 dark:hover:text-primary-text', 'group flex w-full gap-x-3 rounded py-2 pl-2 pr-3 text-sm font-semibold leading-6')}>
+                        <item.icon className={classNames(location.pathname === item.href ? 'text-indigo-600 dark:text-indigo-300' : 'text-gray-400 group-hover:text-indigo-600 dark:text-primary-text dark:hover:bg-charcoal-600 dark:group-hover:text-primary-text', 'h-6 w-6 shrink-0')} aria-hidden="true" />
                         {item.name}
                       </Link>
                     </li>
