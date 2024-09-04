@@ -44,7 +44,7 @@ const _SignUp: React.FC = (): JSX.Element => {
         <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Already a member?{' '}
           <Link to="/signin" className="font-semibold text-indigo-500 hover:text-indigo-600">
-            Sign in now
+            Sign in
           </Link>
         </p>
       </div>
@@ -61,13 +61,13 @@ const _SignUp: React.FC = (): JSX.Element => {
 
               <TextField label="Password" type="password" name="password" value={formik.values?.password} onChange={formik.handleChange} required />
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
+              <div className="flex items-center justify-end">
+                {/* <div className="flex items-center">
                   <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                   <label htmlFor="remember-me" className="ml-3 block text-sm leading-6 text-gray-700 dark:text-gray-400">
                     Remember me
                   </label>
-                </div>
+                </div> */}
 
                 <div className="text-sm leading-6">
                   <a href="#" className="font-semibold text-indigo-500 hover:text-indigo-600">
@@ -85,13 +85,13 @@ const _SignUp: React.FC = (): JSX.Element => {
           </FormikProvider>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center" aria-hidden="true">
               <div className="w-full border-t border-gray-200" />
             </div>
             <div className="relative flex justify-center text-sm font-medium leading-6">
-              <span className="bg-white px-6 text-gray-100 dark:bg-charcoal-500 ">Or continue with</span>
+              <span className="bg-white px-4 uppercase text-gray-600 dark:bg-charcoal-500 dark:text-gray-100">or</span>
             </div>
           </div>
 
