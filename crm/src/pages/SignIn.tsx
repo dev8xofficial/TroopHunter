@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '../components/Inputs/Button/Button';
 import TextField from '../components/Inputs/TextField/TextField';
+import logo from '../images/logo/TroopHunter-style.svg';
 import { authLoginAction } from '../store/actions/authActions';
 import { type ISignInFormmValues } from '../types/formik';
 
@@ -35,8 +36,7 @@ const _SignIn: React.FC = (): JSX.Element => {
   return (
     <>
       <div>
-        <img className="h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
-        <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-gray-100">Sign in to your account</h2>
+        <img className="h-8" src={String(logo)} alt="TroopHunter" />
         <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Not a member?{' '}
           <Link to="/signup" className="font-semibold text-indigo-500 hover:text-indigo-600">
@@ -45,30 +45,24 @@ const _SignIn: React.FC = (): JSX.Element => {
         </p>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-6">
         <div>
           <FormikProvider value={formik}>
-            <Form noValidate onSubmit={formik.handleSubmit} className="space-y-6">
+            <Form noValidate onSubmit={formik.handleSubmit} className="space-y-2 xl:space-y-6">
               <TextField label="Email address" type="email" name="email" value={formik.values?.email} onChange={formik.handleChange} required />
 
               <TextField label="Password" type="password" name="password" value={formik.values?.password} onChange={formik.handleChange} required />
 
-              <div className="flex items-center justify-end">
-                {/* <div className="flex items-center">
+              {/* <div className="flex items-center justify-end">
+                <div className="flex items-center">
                   <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                   <label htmlFor="remember-me" className="ml-3 block text-sm leading-6 text-gray-700 dark:text-gray-400">
                     Remember me
                   </label>
-                </div> */}
-
-                <div className="text-sm leading-6">
-                  <a href="#" className="font-semibold text-indigo-400 hover:text-indigo-500">
-                    Forgot password?
-                  </a>
                 </div>
-              </div>
+              </div> */}
 
-              <div>
+              <div className="pt-6">
                 <Button type="submit" variant="contained" color="indigo" className="w-full" disabled={!formik.dirty}>
                   Sign in
                 </Button>
@@ -80,14 +74,14 @@ const _SignIn: React.FC = (): JSX.Element => {
         <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center" aria-hidden="true">
-              <div className="w-full border-t border-charcoal-100" />
+              <div className="w-full border-t border-gray-600 dark:border-charcoal-100" />
             </div>
             <div className="relative flex justify-center text-sm font-medium leading-6">
               <span className="bg-white px-4 uppercase text-gray-600 dark:bg-charcoal-300 dark:text-gray-100">or</span>
             </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-4">
+          <div className="mt-2 grid grid-cols-2 gap-4 xl:mt-6">
             <a href="#" className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent dark:bg-transparent dark:text-white dark:ring-indigo-600 dark:hover:bg-indigo-600 dark:hover:text-white">
               <svg className="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
@@ -106,6 +100,12 @@ const _SignIn: React.FC = (): JSX.Element => {
               <span className="text-sm font-semibold leading-6 ">GitHub</span>
             </a>
           </div>
+        </div>
+
+        <div className="mt-6 flex justify-center text-sm leading-6">
+          <a href="#" className="font-semibold text-indigo-400 hover:text-indigo-500">
+            Forgot password?
+          </a>
         </div>
       </div>
     </>

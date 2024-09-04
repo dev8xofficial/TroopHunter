@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 // import Avatar from '../components/DataDisplay/Avatar/Avatar';
 // import BottomNavigation from '../components/Navigation/BottomNavigation/BottomNavigation';
 import BottomNavigationBlur from '../components/Navigation/BottomNavigation/BottomNavigationBlur';
+// import logo from '../images/logo/TroopHunter-style.svg';
 import { authSignOutAction } from '../store/actions/authActions';
 // import { resetNavigationAction } from '../store/actions/navigationActions';
 import { type IAuthState } from '../store/reducers/authReducer';
@@ -55,7 +56,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
               <div className="flex h-16 items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <img className="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
+                    <img className="h-6" src={String(logo)} alt="TroopHunter" />
                   </div>
                 </div>
                 <div>
