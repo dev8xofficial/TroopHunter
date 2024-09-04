@@ -64,10 +64,15 @@ const apiMiddleware: Middleware =
         dispatch({ type: successActionType, payload: successPayload });
       } catch (error) {
         try {
-          const axiosError = error as AxiosError;
+          const axiosError = error as AxiosError<ApiResponse<Omit<ApiResponse<unknown>, 'data'>>>;
 
           if (!(axiosError.response != null && axiosError.response.status === 406)) {
-            toast.error(`Failed to execute api. An internal server error occurred.`);
+            if (axiosError.response != null && typeof axiosError.response.data === 'object') {
+              const errorMessage = axiosError.response.data.message as string;
+              toast.error(`${errorMessage}`);
+            } else {
+              toast.error(`Failed to execute API. An internal server error occurred.`);
+            }
             return;
           }
 
