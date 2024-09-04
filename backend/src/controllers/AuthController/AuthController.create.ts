@@ -7,6 +7,7 @@ import { IUserAttributes } from 'validator/interfaces';
 import { createApiResponse } from 'validator/utils';
 import { UserMessageKey, getUserMessage } from '../../messages/User';
 import { v4 as uuidv4 } from 'uuid';
+import { UserSchema } from 'validator';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -20,11 +21,14 @@ export const register = async (req: Request, res: Response) => {
       return res.json(response);
     }
 
+    const requestData: Omit<IUserAttributes, 'Leads'> = { id: uuidv4(), firstName, lastName, email, password };
+    UserSchema.parse(requestData);
+
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
+    requestData.password = hashedPassword;
 
     // Create the user
-    const requestData: Omit<IUserAttributes, 'Leads'> = { id: uuidv4(), firstName, lastName, email, password: hashedPassword };
     const user = await User.create(requestData);
 
     logger.info(`User with email ${email} registered successfully.`);
