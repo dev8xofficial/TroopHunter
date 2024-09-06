@@ -73,4 +73,4 @@
 
 # Copy .env files from macbook to ubuntu server
 
-    scp -rp /Users/abdulrehman/Workstation/hellobadul/development/troophunter/backend/.env ubuntu-server@192.168.1.16:/home/ubuntu-server/troophunter
+    scp -rp /Users/abdulrehman/Workstation/hellobadul/development/troophunter/backend/.env ubuntu-server@192.168.0.216:/home/ubuntu-server/troophunter
