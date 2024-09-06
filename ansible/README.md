@@ -15,7 +15,7 @@
 
 # Step 3 - Add static ip in the router.
 
-    192.168.1.100
+    192.168.0.200
     Install Linux ProtonVPN
     sudo apt install curl
     Install pgadmin 4 (apt)
@@ -26,7 +26,7 @@
 # Step 4 - Run below commands in ansible container to copy public key in ubuntu server
 
     Go to /etc/ansible directory and run below command.
-    ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-server@192.168.1.100
+    ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-server@192.168.0.200
 
 # Step 5 - RUn this command to execute the initial setup.
 
@@ -69,7 +69,7 @@
 # Step 6 - Run below commands in ansible container to copy public key in lxc container
 
     Go to /etc/ansible directory and run below command.
-    ssh-copy-id -i secrets/id_ed25519_ubuntu nginx@192.168.1.102
+    ssh-copy-id -i secrets/id_ed25519_ubuntu nginx@192.168.0.202
 
 # Step 7 - Run this command to execute the initial setup for nginx.
 
@@ -113,4 +113,4 @@ sudo nautilus
 
 # To remove known_hosts
 
-ssh-keygen -f "/root/.ssh/known_hosts" -R "192.168.1.102"
+ssh-keygen -f "/root/.ssh/known_hosts" -R "192.168.0.202"
