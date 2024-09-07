@@ -243,20 +243,25 @@ const Lead: React.FC = () => {
                         />
                         {!isSmScreen && businessesTotalRecords !== null && (
                           <>
-                            <div className="absolute right-0 top-4 z-10 h-full pr-3 text-xs text-gray-400">
+                            <a
+                              className="absolute right-0 top-4 z-10 h-full pr-3 text-xs text-gray-400 outline-none focus:outline-none dark:text-secondary-text"
+                              onClick={() => {
+                                if (!isXLScreen) setIsOpenMobileFiltersDialog(true);
+                              }}
+                            >
                               {draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? (
                                 <>
-                                  {leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}:<span className="font-semibold text-gray-500">{draftLeadBusinessIds?.length}</span> |
+                                  {leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}:<span className="font-semibold text-gray-500 dark:text-primary-text">{draftLeadBusinessIds?.length}</span> |
                                 </>
                               ) : null}
                               <span>
-                                Selected: <span className="font-semibold text-gray-500">{leadPageBusinessIds.length}</span>
+                                Selected: <span className="font-semibold text-gray-500 dark:text-indigo-300">{leadPageBusinessIds.length}</span>
                               </span>
                               <span className="mx-1">|</span>
                               <span>
-                                Filtered: <span className="font-semibold text-gray-500">{businessesTotalRecords}</span>
+                                Filtered: <span className="font-semibold text-gray-500 dark:text-primary-text">{businessesTotalRecords}</span>
                               </span>
-                            </div>
+                            </a>
                           </>
                         )}
                         {isXLScreen ? (

@@ -96,18 +96,18 @@ const SearchDrawer: React.FC<ISearchDrawerProps> = ({ isOpen, handleReset, close
                                     handleChange(event.target.name, event.target.value);
                                   }}
                                   placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`}
-                                  className="border-none bg-transparent shadow-none ring-0 ring-transparent ring-offset-0 ring-offset-transparent focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0 focus:ring-offset-transparent"
+                                  className="border-none bg-transparent shadow-none ring-0 ring-transparent ring-offset-0 ring-offset-transparent focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0 focus:ring-offset-transparent dark:bg-transparent dark:focus:ring-offset-transparent"
                                 />
                               )}
                               {businessesTotalRecords !== null && (
                                 <>
-                                  <div className="mt-2 h-full px-3 py-1.5 text-xs text-gray-400">
+                                  <div className="mt-2 h-full px-3 py-1.5 text-xs text-gray-400 dark:text-secondary-text">
                                     {draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? (
                                       <>
-                                        {leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}:<span className="font-semibold text-gray-500">{draftLeadBusinessIds?.length}</span> |
+                                        {leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}:<span className="font-semibold text-gray-500 dark:text-primary-text">{draftLeadBusinessIds?.length}</span> |
                                       </>
                                     ) : null}
-                                    Selected: <span className="font-semibold text-gray-500">{leadPageBusinessIds.length}</span> | Filtered: <span className="font-semibold text-gray-500">{businessesTotalRecords}</span>
+                                    Selected: <span className="font-semibold text-gray-500 dark:text-primary-text">{leadPageBusinessIds.length}</span> | Filtered: <span className="font-semibold text-indigo-400 dark:text-indigo-300">{businessesTotalRecords}</span>
                                   </div>
                                 </>
                               )}
