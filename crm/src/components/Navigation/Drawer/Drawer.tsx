@@ -70,7 +70,7 @@ const Drawer: React.FC<IDrawerProps> = ({ isOpen, closeDrawer, leadPageRemoveSav
                               <p className="text-sm text-gray-500 dark:text-secondary-text">Apply filters to alter the table rows.</p>
                             </div>
                             <div className="flex h-7 items-center">
-                              <button type="button" onClick={closeDrawer} className="relative text-gray-400 hover:text-gray-500 dark:hover:text-primary-text">
+                              <button type="button" onClick={closeDrawer} className="relative text-gray-400 hover:text-gray-500 focus:outline-none dark:hover:text-primary-text">
                                 <span className="absolute -inset-2.5" />
                                 <span className="sr-only">Close panel</span>
                                 <XMarkIcon aria-hidden="true" className="h-6 w-6" />
