@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import { ChevronLeftIcon } from '@heroicons/react/20/solid';
 import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline';
 import { useSelector, useDispatch } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import { type IUserAttributes, type ILeadAttributes } from 'validator/interfaces';
 
 import { type IBusinessesFetchPayload } from 'store/sagas/business/business.fetch';
@@ -49,6 +50,7 @@ const Lead: React.FC = () => {
   const mainRef = useRef<HTMLDivElement>(null);
   const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
   const prevLeadPageFilters = useRef<IFilterAttributes>(leadPageFilters);
+  const isXLScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const defaultFilterValues: Partial<IFilterAttributes> = {
     name: { label: 'Business', name: 'name', value: '' },
@@ -219,36 +221,38 @@ const Lead: React.FC = () => {
                         name={leadPageFilters.name?.name}
                         value={leadPageFilters.name?.value !== null ? leadPageFilters.name?.value : ''}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                          setIsOpenMobileFiltersDialog(true);
+                          if (!isXLScreen) setIsOpenMobileFiltersDialog(true);
                           handleChange(event.target.name, event.target.value);
                         }}
                         onClick={() => {
-                          setIsOpenMobileFiltersDialog(true);
+                          if (!isXLScreen) setIsOpenMobileFiltersDialog(true);
                         }}
                         placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`}
                         className="pr-11 sm:pr-3"
                       />
                     )}
                   </div>
-                  <div className="absolute right-1.5 mt-2 flex flex-col items-end justify-end text-gray-400">
-                    <span className="relative inline-block">
-                      {countChangedFilters(leadPageFilters, defaultFilterValues) < 1 ? (
-                        <></>
-                      ) : (
-                        <>
-                          <IconButton variant="contained" ringOffset="white">
-                            <AdjustmentsHorizontalIcon className="h-6 w-6" aria-hidden="true" />
-                          </IconButton>
-                          <span className="absolute right-0 top-0 block -translate-y-3 translate-x-3 transform">
-                            <span className="relative flex h-4 w-4">
-                              <span className="absolute z-10 inline-flex h-full w-full items-center justify-center rounded-full bg-indigo-600 text-xxs text-white opacity-75">{countChangedFilters(leadPageFilters, defaultFilterValues)}</span>
-                              <span className="relative inline-flex h-4 w-4 animate-ping rounded-full bg-indigo-300 transition duration-700 ease-in"></span>
+                  {!isXLScreen && (
+                    <div className="absolute right-1.5 mt-2 flex flex-col items-end justify-end text-gray-400">
+                      <span className="relative inline-block">
+                        {countChangedFilters(leadPageFilters, defaultFilterValues) < 1 ? (
+                          <></>
+                        ) : (
+                          <>
+                            <IconButton variant="contained" ringOffset="white">
+                              <AdjustmentsHorizontalIcon className="h-6 w-6" aria-hidden="true" />
+                            </IconButton>
+                            <span className="absolute right-0 top-0 block -translate-y-3 translate-x-3 transform">
+                              <span className="relative flex h-4 w-4">
+                                <span className="absolute z-10 inline-flex h-full w-full items-center justify-center rounded-full bg-indigo-500 text-xxs text-white">{countChangedFilters(leadPageFilters, defaultFilterValues)}</span>
+                                <span className="relative inline-flex h-4 w-4 animate-ping rounded-full bg-indigo-400 transition duration-700 ease-in-out"></span>
+                              </span>
                             </span>
-                          </span>
-                        </>
-                      )}
-                    </span>
-                  </div>
+                          </>
+                        )}
+                      </span>
+                    </div>
+                  )}
 
                   <a className="hidden items-center whitespace-nowrap text-sm font-semibold sm:inline-flex">Saved searches</a>
                 </div>

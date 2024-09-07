@@ -241,8 +241,8 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
             ) : (
               <span className="absolute right-0 top-0 block -translate-y-3 translate-x-3 transform">
                 <span className="relative flex h-4 w-4">
-                  <span className="absolute z-10 inline-flex h-full w-full items-center justify-center rounded-full bg-indigo-600 text-xxs text-white opacity-75">{countChangedFilters(leadPageFilters, defaultFilterValues)}</span>
-                  <span className="relative inline-flex h-4 w-4 animate-ping rounded-full bg-indigo-300 transition duration-700 ease-in"></span>
+                  <span className="absolute z-10 inline-flex h-full w-full items-center justify-center rounded-full bg-indigo-500 text-xxs text-white">{countChangedFilters(leadPageFilters, defaultFilterValues)}</span>
+                  <span className="relative inline-flex h-4 w-4 animate-ping rounded-full bg-indigo-400 transition duration-700 ease-in-out"></span>
                 </span>
               </span>
             )}
