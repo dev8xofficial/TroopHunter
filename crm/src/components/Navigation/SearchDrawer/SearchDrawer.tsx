@@ -55,7 +55,7 @@ const SearchDrawer: React.FC<ISearchDrawerProps> = ({ isOpen, closeSearchDrawer,
                                     handleChange(event.target.name, event.target.value);
                                   }}
                                   placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`}
-                                  className="border-none bg-transparent shadow-none ring-0 ring-transparent ring-offset-0 focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0"
+                                  className="border-none bg-transparent shadow-none ring-0 ring-transparent ring-offset-0 ring-offset-transparent focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0 focus:ring-offset-transparent"
                                 />
                               )}
                               {businessesTotalRecords !== null && (
