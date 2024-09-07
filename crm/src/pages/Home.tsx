@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState, type ChangeEvent } from 'react';
+import React, { type KeyboardEvent, useEffect, useRef, useState, type ChangeEvent } from 'react';
 
 import { ChevronLeftIcon } from '@heroicons/react/20/solid';
-import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline';
 import { useSelector, useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { type IUserAttributes, type ILeadAttributes } from 'validator/interfaces';
@@ -12,7 +11,6 @@ import TableLead from '../components/DataDisplay/Table/TableLead';
 import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDeletionDialog';
 import LeadSaveDialog from '../components/Feedback/LeadSaveDialog/LeadSaveDialog';
 import Button from '../components/Inputs/Button/Button';
-import IconButton from '../components/Inputs/IconButton/IconButton';
 import TextField from '../components/Inputs/TextField/TextField';
 import SearchDrawer from '../components/Navigation/SearchDrawer/SearchDrawer';
 import Accordion from '../components/Surfaces/Accordion/Accordion';
@@ -20,6 +18,7 @@ import Accordion from '../components/Surfaces/Accordion/Accordion';
 import { fetchBusinessesAction } from '../store/actions/businessActions';
 import { resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePagePaginationPageAction } from '../store/actions/homePageActions';
 import { type IAuthState } from '../store/reducers/authReducer';
+import { type IBusinessState } from '../store/reducers/businessReducer';
 import { type IFilterAttributes, type IHomePageState, initialValue, type IFilterOptionAttributes } from '../store/reducers/homePageReducer';
 import { type IUserState } from '../store/reducers/userReducer';
 import { classNames, compareFiltersAndLead, isFiltersChanged } from '../utils/helpers';
@@ -29,18 +28,23 @@ const tabs = [{ name: 'Filters', href: '#', current: true }];
 const Lead: React.FC = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state: { auth: IAuthState }) => state.auth);
+  const businesses = useSelector((state: { businesses: IBusinessState }) => state.businesses);
   const home = useSelector((state: { home: IHomePageState }) => state.home);
   const users = useSelector((state: { users: IUserState }) => state.users);
 
   // const isLeadLoading = home.isLoading;
+  const businessesTotalRecords: number = businesses.data.totalRecords;
   const leadPageFilters: IFilterAttributes = home.filters;
+  const leadPageBusinessIds: string[] = home.businessIds;
   const leadPagePaginationPage: number = home.page;
   const leadPagePaginationLimit: number = home.pageLimit;
   const leadPageDraftLeadId: string = home.draftLeadId;
+  const leadPageRemoveSavedBusinesses: boolean = home.removeSavedBusinesses;
   const usersLoggedIn: IUserAttributes = users.data[auth.userId];
   const userLeads: ILeadAttributes[] = usersLoggedIn.Leads;
   const draftLeadIndex: number = userLeads.findIndex((lead) => lead.id === leadPageDraftLeadId);
   const draftLead: ILeadAttributes = userLeads[draftLeadIndex];
+  const draftLeadBusinessIds: string[] | undefined = draftLead?.businessIds;
 
   const [debouncedFilters, setDebouncedFilters] = useState<IFilterAttributes>(leadPageFilters);
   const [filtersPanelWidth, setFiltersPanelWidth] = useState<boolean>(false);
@@ -51,6 +55,7 @@ const Lead: React.FC = () => {
   const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
   const prevLeadPageFilters = useRef<IFilterAttributes>(leadPageFilters);
   const isXLScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+  const isSmScreen = useMediaQuery({ query: '(min-width: 640px)' });
 
   const defaultFilterValues: Partial<IFilterAttributes> = {
     name: { label: 'Business', name: 'name', value: '' },
@@ -91,8 +96,8 @@ const Lead: React.FC = () => {
     dispatch(setHomePageFiltersAction(newFilters));
   };
 
-  const handleReset = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
-    event.preventDefault();
+  const handleReset = (event?: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+    event?.preventDefault();
     dispatch(resetHomePageFiltersAction());
   };
 
@@ -214,52 +219,69 @@ const Lead: React.FC = () => {
             <div>
               <div className="flex items-center justify-between px-4">
                 <div className="relative flex flex-grow items-center justify-between space-x-6 sm:justify-start">
-                  <div className="flex-grow sm:max-w-md">
+                  <div className="relative flex-grow sm:max-w-md">
                     {leadPageFilters.name !== undefined && (
-                      <TextField
-                        id="home-search"
-                        name={leadPageFilters.name?.name}
-                        value={leadPageFilters.name?.value !== null ? leadPageFilters.name?.value : ''}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                          if (!isXLScreen) setIsOpenMobileFiltersDialog(true);
-                          handleChange(event.target.name, event.target.value);
-                        }}
-                        onClick={() => {
-                          if (!isXLScreen) setIsOpenMobileFiltersDialog(true);
-                        }}
-                        placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`}
-                        className="pr-11 sm:pr-3"
-                      />
-                    )}
-                  </div>
-                  {!isXLScreen && (
-                    <div className="absolute right-1.5 mt-2 flex flex-col items-end justify-end text-gray-400">
-                      <span className="relative inline-block">
-                        {countChangedFilters(leadPageFilters, defaultFilterValues) < 1 ? (
+                      <>
+                        <TextField
+                          id="home-search"
+                          name={leadPageFilters.name?.name}
+                          value={leadPageFilters.name?.value !== null ? leadPageFilters.name?.value : ''}
+                          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                            if (!isXLScreen) setIsOpenMobileFiltersDialog(true);
+                            handleChange(event.target.name, event.target.value);
+                          }}
+                          onClick={() => {
+                            if (!isXLScreen) setIsOpenMobileFiltersDialog(true);
+                          }}
+                          onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => {
+                            if (event.key === 'Enter' && !isXLScreen) {
+                              setIsOpenMobileFiltersDialog(true);
+                            }
+                          }}
+                          placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`}
+                          className="pr-44 sm:pr-3"
+                        />
+                        {!isSmScreen && businessesTotalRecords !== null && (
+                          <>
+                            <div className="absolute right-0 top-4 z-10 h-full pr-3 text-xs text-gray-400">
+                              {draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? (
+                                <>
+                                  {leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}:<span className="font-semibold text-gray-500">{draftLeadBusinessIds?.length}</span> |
+                                </>
+                              ) : null}
+                              <span>
+                                Selected: <span className="font-semibold text-gray-500">{leadPageBusinessIds.length}</span>
+                              </span>
+                              <span className="mx-1">|</span>
+                              <span>
+                                Filtered: <span className="font-semibold text-gray-500">{businessesTotalRecords}</span>
+                              </span>
+                            </div>
+                          </>
+                        )}
+                        {isXLScreen ? (
                           <></>
                         ) : (
-                          <>
-                            <IconButton variant="contained" ringOffset="white">
-                              <AdjustmentsHorizontalIcon className="h-6 w-6" aria-hidden="true" />
-                            </IconButton>
-                            <span className="absolute right-0 top-0 block -translate-y-3 translate-x-3 transform">
+                          countChangedFilters(leadPageFilters, defaultFilterValues) > 0 && (
+                            <span className="absolute -right-2 top-0 block transform">
                               <span className="relative flex h-4 w-4">
                                 <span className="absolute z-10 inline-flex h-full w-full items-center justify-center rounded-full bg-indigo-500 text-xxs text-white">{countChangedFilters(leadPageFilters, defaultFilterValues)}</span>
                                 <span className="relative inline-flex h-4 w-4 animate-ping rounded-full bg-indigo-400 transition duration-700 ease-in-out"></span>
                               </span>
                             </span>
-                          </>
+                          )
                         )}
-                      </span>
-                    </div>
-                  )}
+                      </>
+                    )}
+                  </div>
 
-                  <a className="hidden items-center whitespace-nowrap text-sm font-semibold sm:inline-flex">Saved searches</a>
+                  <a className="hidden items-center whitespace-nowrap text-sm font-semibold">Saved searches</a>
                 </div>
                 {/* Mobile advanced search filters */}
                 <div className="xl:hidden">
                   <SearchDrawer
                     isOpen={isOpenMobileFiltersDialog}
+                    handleReset={handleReset}
                     closeSearchDrawer={() => {
                       setIsOpenMobileFiltersDialog(!isOpenMobileFiltersDialog);
                     }}
