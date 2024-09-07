@@ -43,19 +43,19 @@ const SearchDrawer: React.FC<ISearchDrawerProps> = ({ isOpen, closeSearchDrawer,
                     <form className="flex h-full flex-col overflow-y-scroll bg-white/10 shadow-xl backdrop-blur-md dark:bg-charcoal-200">
                       <div className="flex-1">
                         {/* Header */}
-                        <div className="bg-gray-50 px-4 py-6 xl:px-6 dark:bg-charcoal-300">
-                          <div className="flex items-center justify-between space-x-3">
+                        <div className="px-4 py-6 xl:px-6 dark:bg-charcoal-300">
+                          <div className="flex items-start justify-between space-x-3">
                             <div className="w-full">
                               {leadPageFilters.name !== undefined && (
                                 <TextField
-                                  type="tel"
+                                  type="text"
                                   name={leadPageFilters.name?.name}
                                   value={leadPageFilters.name?.value !== null ? leadPageFilters.name?.value : ''}
                                   onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                     handleChange(event.target.name, event.target.value);
                                   }}
                                   placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`}
-                                  className="border-none shadow-none ring-0 ring-offset-0 focus:ring-0 focus:ring-offset-0"
+                                  className="border-none bg-transparent shadow-none ring-0 ring-offset-0 focus:outline-none focus:ring-0 focus:ring-offset-0"
                                 />
                               )}
                               {businessesTotalRecords !== null && (
@@ -71,7 +71,7 @@ const SearchDrawer: React.FC<ISearchDrawerProps> = ({ isOpen, closeSearchDrawer,
                                 </>
                               )}
                             </div>
-                            <div className="flex h-7 items-center">
+                            <div className="mt-2.5 flex h-7 items-center">
                               <button type="button" onClick={closeSearchDrawer} className="relative text-gray-400 hover:text-gray-500 dark:hover:text-primary-text">
                                 <span className="absolute -inset-2.5" />
                                 <span className="sr-only">Close panel</span>
