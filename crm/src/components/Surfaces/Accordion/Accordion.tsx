@@ -109,7 +109,7 @@ const Accordion: React.FC<IAccordionProps> = ({ label, name, value, handleChange
           </Disclosure.Button>
           <Transition enter="transition duration-200 ease-out" enterFrom="transform scale-95 opacity-0" enterTo="transform scale-100 opacity-100" leave="transition duration-75 ease-out" leaveFrom="transform scale-100 opacity-100" leaveTo="transform scale-95 opacity-0">
             <Disclosure.Panel className="space-y-4 border-t border-dashed bg-white p-4 sm:px-6 dark:bg-charcoal-300">
-              <div>
+              {/* <div>
                 <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
                   Badge
                   <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
@@ -120,7 +120,7 @@ const Accordion: React.FC<IAccordionProps> = ({ label, name, value, handleChange
                     <span className="absolute -inset-1" />
                   </button>
                 </span>
-              </div>
+              </div> */}
 
               <div>{getField(name)}</div>
             </Disclosure.Panel>
