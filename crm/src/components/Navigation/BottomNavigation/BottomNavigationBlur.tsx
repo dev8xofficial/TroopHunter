@@ -67,6 +67,7 @@ const BottomNavigationBlur: React.FC<DefaultLayoutProps> = ({ signOut }: Default
               else
                 setTimeout(() => {
                   document.getElementById('home-search')?.focus();
+                  document.getElementById('home-search')?.click();
                 }, 0);
             }}
           >
