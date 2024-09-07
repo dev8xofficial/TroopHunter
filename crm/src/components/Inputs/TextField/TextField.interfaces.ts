@@ -1,10 +1,12 @@
-import { type HTMLInputTypeAttribute } from 'react';
+import { type KeyboardEvent, type HTMLInputTypeAttribute } from 'react';
 
 export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   className?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: () => void;
+  onSubmit?: () => void;
+  onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   id?: string;
   noring?: boolean;
   disabled?: boolean;
