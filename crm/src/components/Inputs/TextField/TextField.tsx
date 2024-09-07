@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { type ITextFieldProps } from './TextField.interfaces';
 import FieldError from '../../Feedback/FieldError/FieldError';
 
-const TextField: React.FC<ITextFieldProps> = ({ label, helperText, className, onChange, onClick, id, noring, disabled, inputRef, type, value = '', required, placeholder, autoComplete, style, name }: ITextFieldProps): JSX.Element => {
+const TextField: React.FC<ITextFieldProps> = ({ label, helperText, className, id, noring, disabled, inputRef, type, value = '', required, placeholder, autoComplete, style, name, onChange, onClick, onSubmit, onKeyDown }: ITextFieldProps): JSX.Element => {
   return (
     <div className="relative w-full">
       {(label ?? '').length > 0 ? (
@@ -25,6 +25,8 @@ const TextField: React.FC<ITextFieldProps> = ({ label, helperText, className, on
           required={required}
           onChange={onChange}
           onClick={onClick}
+          onSubmit={onSubmit}
+          onKeyDown={onKeyDown}
           placeholder={placeholder}
           autoComplete={autoComplete}
           className={classNames('block w-full rounded border border-gray-300 px-3 py-1.5 text-sm placeholder-gray-400 shadow transition duration-200 focus:outline-none dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white', noring ?? false ? '' : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-charcoal-700', disabled ?? false ? 'bg-gray-100 text-gray-400' : '', className)}
