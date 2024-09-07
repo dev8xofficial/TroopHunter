@@ -19,9 +19,9 @@ const ringOffsetClasses = {
   gray: 'icon-btn-ring-offset-gray'
 };
 
-const IconButton: React.FC<IIconButtonProps> = ({ children, variant = 'contained', color, ringOffset, onClick, type = 'button', className = '', loading, disabled }: IIconButtonProps): JSX.Element => {
+const IconButton: React.FC<IIconButtonProps> = ({ children, variant = 'contained', color, ringOffset, onClick, type = 'button', className = '', loading, disabled, buttonRef }: IIconButtonProps): JSX.Element => {
   return (
-    <button type={type} disabled={(disabled ?? false) || loading} onClick={onClick} className={`icon-btn-rounded icon-btn group ${variantClasses[variant]} ${colorClasses[color as keyof typeof colorClasses]} ${ringOffsetClasses[ringOffset as keyof typeof ringOffsetClasses]} ${className} icon-btn`}>
+    <button type={type} disabled={(disabled ?? false) || loading} onClick={onClick} ref={buttonRef} className={`icon-btn-rounded icon-btn group ${variantClasses[variant]} ${colorClasses[color as keyof typeof colorClasses]} ${ringOffsetClasses[ringOffset as keyof typeof ringOffsetClasses]} ${className} icon-btn`}>
       {loading ?? false ? (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform" id="button-loader">
           <svg className={`h-5 w-5 animate-spin text-${colorClasses[color as keyof typeof colorClasses]}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

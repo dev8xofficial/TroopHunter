@@ -8,4 +8,5 @@ export interface IIconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
   variant?: 'text' | 'contained' | 'outlined';
   color?: 'primary' | 'indigo' | 'indigo-light' | 'red' | 'gray' | 'gray-light' | 'gray-dark' | 'white';
   ringOffset?: 'gray' | 'white';
+  buttonRef?: React.RefObject<HTMLButtonElement>;
 }

@@ -33,7 +33,7 @@ const BottomNavigationBlur: React.FC<DefaultLayoutProps> = ({ signOut }: Default
   return (
     <>
       {/* Mobile navigation */}
-      <div className="fixed bottom-2 left-0 right-0 z-20 mx-auto flex max-w-fit flex-row items-center justify-around space-x-10 rounded-xl border border-gray-100 bg-gray-600/10 px-2 py-1 text-sm shadow-2xl backdrop-blur-sm sm:mx-auto sm:max-w-fit xl:space-x-10 xl:px-2.5 xl:py-1.5 dark:border-charcoal-100">
+      <div className="fixed bottom-2 left-0 right-0 z-20 mx-auto flex max-w-fit flex-row items-center justify-around space-x-6 rounded-xl border border-gray-100 bg-gray-600/10 px-2 py-1 text-sm shadow-2xl backdrop-blur-sm sm:mx-auto sm:max-w-fit xl:space-x-10 xl:px-2.5 xl:py-1.5 dark:border-charcoal-100">
         <Link to="/" className={`relative inline-block gap-1 rounded-xl bg-transparent p-2.5 ${isActive('/') ? 'dark:text-primary-text' : 'dark:text-gray-400'} dark:hover:text-primary-text`}>
           {isActive('/') ? (
             <>
@@ -67,6 +67,7 @@ const BottomNavigationBlur: React.FC<DefaultLayoutProps> = ({ signOut }: Default
               else
                 setTimeout(() => {
                   document.getElementById('home-search')?.focus();
+                  document.getElementById('home-search')?.click();
                 }, 0);
             }}
           >
