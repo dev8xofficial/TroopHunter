@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
+import { EllipsisHorizontalIcon, ChevronUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import CryptoJS from 'crypto-js';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
@@ -217,7 +217,7 @@ const Table: React.FC = (): JSX.Element => {
           ) : (
             <div className="flex h-full flex-1 flex-col bg-white dark:bg-charcoal-200">
               <div className="flex h-full flex-1 flex-col items-center justify-center bg-white dark:bg-charcoal-200">
-                <MagnifyingGlassCircleIcon className="-ml-0.5 h-32 w-32 text-indigo-600 dark:text-primary-text" aria-hidden="true" />
+                <MagnifyingGlassIcon className="-ml-0.5 mb-5 h-16 w-16 dark:text-primary-text" aria-hidden="true" />
                 <div className="text-center">
                   <h3 className="mt-2 text-lg font-normal text-gray-900 dark:text-primary-text">Apply filters to find leads</h3>
                   <p className="mt-2 text-sm text-gray-500 dark:text-secondary-text">Leads matching your search criteria will be displayed here</p>

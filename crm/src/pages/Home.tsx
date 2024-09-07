@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState, Fragment, type ChangeEvent } from 'react';
+import React, { useEffect, useRef, useState, type ChangeEvent } from 'react';
 
-import { Transition, Dialog, Disclosure } from '@headlessui/react';
-import { XMarkIcon, PlusIcon, MinusIcon, AdjustmentsVerticalIcon, ChevronLeftIcon } from '@heroicons/react/20/solid';
+import { ChevronLeftIcon } from '@heroicons/react/20/solid';
+import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline';
 import { useSelector, useDispatch } from 'react-redux';
 import { type IUserAttributes, type ILeadAttributes } from 'validator/interfaces';
 
@@ -11,10 +11,11 @@ import TableLead from '../components/DataDisplay/Table/TableLead';
 import LeadDeletionDialog from '../components/Feedback/LeadDeletionDialog/LeadDeletionDialog';
 import LeadSaveDialog from '../components/Feedback/LeadSaveDialog/LeadSaveDialog';
 import Button from '../components/Inputs/Button/Button';
-import CustomTextField from '../components/Inputs/CustomTextField/CustomTextField';
+import IconButton from '../components/Inputs/IconButton/IconButton';
+import TextField from '../components/Inputs/TextField/TextField';
+import SearchDrawer from '../components/Navigation/SearchDrawer/SearchDrawer';
 import Accordion from '../components/Surfaces/Accordion/Accordion';
 // import ActionBar from '../components/Surfaces/ActionBar/ActionBar';
-import useTailwindBreakpoint from '../middleware/useTailwindBreakpoint';
 import { fetchBusinessesAction } from '../store/actions/businessActions';
 import { resetHomePageFiltersAction, restoreHomePageFiltersAction, setHomePageFiltersAction, setHomePageLoadingSuccessAction, setHomePagePaginationPageAction } from '../store/actions/homePageActions';
 import { type IAuthState } from '../store/reducers/authReducer';
@@ -48,7 +49,21 @@ const Lead: React.FC = () => {
   const mainRef = useRef<HTMLDivElement>(null);
   const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
   const prevLeadPageFilters = useRef<IFilterAttributes>(leadPageFilters);
-  const breakpoint = useTailwindBreakpoint();
+
+  const defaultFilterValues: Partial<IFilterAttributes> = {
+    name: { label: 'Business', name: 'name', value: '' },
+    view: { label: 'Business', name: 'view', value: 'all' },
+    sort: { label: 'Sort', name: 'sort', value: 'relevance' },
+    businessDomain: { label: 'Business Domain', name: 'businessDomain', value: '' },
+    address: { label: 'Address', name: 'address', value: '' },
+    cityId: { label: 'City', name: 'cityId', value: '' },
+    stateId: { label: 'State', name: 'stateId', value: '' },
+    countryId: { label: 'Country', name: 'countryId', value: '' },
+    phone: { label: 'Phone', name: 'phone', value: '' },
+    email: { label: 'Email', name: 'email', value: '' },
+    website: { label: 'Website', name: 'website', value: '' },
+    sponsoredAd: { label: 'Sponsored', name: 'sponsoredAd', value: false }
+  };
 
   const handleChange = (name: string, value: string): void => {
     // const name = name;
@@ -97,6 +112,24 @@ const Lead: React.FC = () => {
       sponsoredAd: leadPageFilters.sponsoredAd.value !== undefined ? leadPageFilters.sponsoredAd.value : undefined
     };
     dispatch(fetchBusinessesAction(requestData));
+  };
+
+  const countChangedFilters = (filters: IFilterAttributes, defaultValues: Partial<IFilterAttributes>): number => {
+    let changedCount = 0;
+    const { view, sort, ...filteredFilters } = filters;
+
+    Object.keys(filteredFilters).forEach((key) => {
+      const filterKey = key as keyof IFilterAttributes;
+      const currentValue = filters[filterKey].value;
+      const defaultValue = defaultValues[filterKey]?.value;
+
+      // Check if the current value differs from the default value
+      if (currentValue !== defaultValue) {
+        changedCount++;
+      }
+    });
+
+    return changedCount;
   };
 
   useEffect(() => {
@@ -178,261 +211,56 @@ const Lead: React.FC = () => {
           <div className="w-full py-3">
             <div>
               <div className="flex items-center justify-between px-4">
-                <div className="flex flex-grow items-center justify-between space-x-6 sm:justify-start">
-                  <div className="max-w-md flex-grow">
+                <div className="relative flex flex-grow items-center justify-between space-x-6 sm:justify-start">
+                  <div className="flex-grow sm:max-w-md">
                     {leadPageFilters.name !== undefined && (
-                      <CustomTextField
+                      <TextField
                         id="home-search"
-                        label={leadPageFilters.name?.label}
                         name={leadPageFilters.name?.name}
                         value={leadPageFilters.name?.value !== null ? leadPageFilters.name?.value : ''}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                          setIsOpenMobileFiltersDialog(true);
                           handleChange(event.target.name, event.target.value);
                         }}
-                        handleFilters={() => {
+                        onClick={() => {
                           setIsOpenMobileFiltersDialog(true);
                         }}
-                        breakpoint={breakpoint}
                         placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`}
+                        className="pr-11 sm:pr-3"
                       />
                     )}
                   </div>
+                  <div className="absolute right-1.5 mt-2 flex flex-col items-end justify-end text-gray-400">
+                    <span className="relative inline-block">
+                      {countChangedFilters(leadPageFilters, defaultFilterValues) < 1 ? (
+                        <></>
+                      ) : (
+                        <>
+                          <IconButton variant="contained" ringOffset="white">
+                            <AdjustmentsHorizontalIcon className="h-6 w-6" aria-hidden="true" />
+                          </IconButton>
+                          <span className="absolute right-0 top-0 block -translate-y-3 translate-x-3 transform">
+                            <span className="relative flex h-4 w-4">
+                              <span className="absolute z-10 inline-flex h-full w-full items-center justify-center rounded-full bg-indigo-600 text-xxs text-white opacity-75">{countChangedFilters(leadPageFilters, defaultFilterValues)}</span>
+                              <span className="relative inline-flex h-4 w-4 animate-ping rounded-full bg-indigo-300 transition duration-700 ease-in"></span>
+                            </span>
+                          </span>
+                        </>
+                      )}
+                    </span>
+                  </div>
 
-                  <a className="inline-flex items-center whitespace-nowrap text-sm font-semibold">Saved searches</a>
+                  <a className="hidden items-center whitespace-nowrap text-sm font-semibold sm:inline-flex">Saved searches</a>
                 </div>
                 {/* Mobile advanced search filters */}
                 <div className="xl:hidden">
-                  <Transition appear show={isOpenMobileFiltersDialog} as={Fragment}>
-                    <Dialog
-                      as="div"
-                      className="relative z-10"
-                      onClose={() => {
-                        setIsOpenMobileFiltersDialog(false);
-                      }}
-                    >
-                      <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
-                        <div className="fixed inset-0 bg-white/10 backdrop-blur-sm" />
-                      </Transition.Child>
-
-                      <div className="fixed inset-0 overflow-y-auto">
-                        <div className="flex min-h-full items-center justify-center p-4 text-center">
-                          <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
-                            <Dialog.Panel className="w-full max-w-5xl transform divide-y overflow-hidden rounded bg-white text-left align-middle shadow-xl transition-all dark:divide-charcoal-100">
-                              <Dialog.Title as="h3" className="px-6 py-4 text-lg font-medium leading-6 text-indigo-600 dark:bg-charcoal-600 dark:text-primary-text">
-                                <div className="flex items-center justify-between">
-                                  <AdjustmentsVerticalIcon className="mr-3 h-5 w-5" aria-hidden="true" />
-                                  <div className="min-w-0 flex-1">
-                                    <h2 className="text-lg leading-7 sm:truncate sm:text-xl sm:tracking-tight">Lead Filters</h2>
-                                  </div>
-                                  <div className="flex items-center space-x-3 md:ml-4">
-                                    <p className="hidden text-sm sm:block">0 results</p>
-                                    <Button variant="outlined" color="indigo">
-                                      Search
-                                    </Button>
-                                    <button
-                                      onClick={() => {
-                                        setIsOpenMobileFiltersDialog(false);
-                                      }}
-                                      type="button"
-                                      className="rounded-full p-2 text-gray-400 shadow-sm hover:text-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:hover:text-primary-text"
-                                    >
-                                      <XMarkIcon className="h-5 w-5" aria-hidden="true" />
-                                    </button>
-                                  </div>
-                                </div>
-                              </Dialog.Title>
-                              <div className="p-6 dark:bg-charcoal-400 dark:text-primary-text">
-                                <h3>Top Filters</h3>
-                                <div className="mr-6 mt-6 border shadow sm:rounded dark:border-charcoal-100">
-                                  <ul role="list" className="grid grid-cols-1 divide-x divide-y md:grid-cols-2 dark:divide-charcoal-100">
-                                    <li>
-                                      <Disclosure as="div">
-                                        {({ open }) => (
-                                          <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
-                                              <span>Your leads & accounts</span>
-                                              {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
-                                            </Disclosure.Button>
-                                            <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
-                                              <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
-                                                  Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
-                                                    <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
-                                                      <path d="M4 4l6 6m0-6l-6 6" />
-                                                    </svg>
-                                                    <span className="absolute -inset-1" />
-                                                  </button>
-                                                </span>
-                                              </div>
-
-                                              <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
-                                              </div>
-                                            </Disclosure.Panel>
-                                          </>
-                                        )}
-                                      </Disclosure>
-                                    </li>
-                                    <li>
-                                      <Disclosure as="div">
-                                        {({ open }) => (
-                                          <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
-                                              <span>Relationship</span>
-                                              {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
-                                            </Disclosure.Button>
-                                            <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
-                                              <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
-                                                  Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
-                                                    <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
-                                                      <path d="M4 4l6 6m0-6l-6 6" />
-                                                    </svg>
-                                                    <span className="absolute -inset-1" />
-                                                  </button>
-                                                </span>
-                                              </div>
-
-                                              <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
-                                              </div>
-                                            </Disclosure.Panel>
-                                          </>
-                                        )}
-                                      </Disclosure>
-                                    </li>
-                                    <li>
-                                      <Disclosure as="div">
-                                        {({ open }) => (
-                                          <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
-                                              <span>Company</span>
-                                              {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
-                                            </Disclosure.Button>
-                                            <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
-                                              <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
-                                                  Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
-                                                    <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
-                                                      <path d="M4 4l6 6m0-6l-6 6" />
-                                                    </svg>
-                                                    <span className="absolute -inset-1" />
-                                                  </button>
-                                                </span>
-                                              </div>
-                                              <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
-                                              </div>
-                                            </Disclosure.Panel>
-                                          </>
-                                        )}
-                                      </Disclosure>
-                                    </li>
-                                    <li>
-                                      <Disclosure as="div">
-                                        {({ open }) => (
-                                          <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
-                                              <span>Industry</span>
-                                              {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
-                                            </Disclosure.Button>
-                                            <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
-                                              <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
-                                                  Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
-                                                    <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
-                                                      <path d="M4 4l6 6m0-6l-6 6" />
-                                                    </svg>
-                                                    <span className="absolute -inset-1" />
-                                                  </button>
-                                                </span>
-                                              </div>
-
-                                              <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
-                                              </div>
-                                            </Disclosure.Panel>
-                                          </>
-                                        )}
-                                      </Disclosure>
-                                    </li>
-                                    <li>
-                                      <Disclosure as="div">
-                                        {({ open }) => (
-                                          <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
-                                              <span>Company headcount</span>
-                                              {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
-                                            </Disclosure.Button>
-                                            <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
-                                              <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
-                                                  Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
-                                                    <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
-                                                      <path d="M4 4l6 6m0-6l-6 6" />
-                                                    </svg>
-                                                    <span className="absolute -inset-1" />
-                                                  </button>
-                                                </span>
-                                              </div>
-
-                                              <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
-                                              </div>
-                                            </Disclosure.Panel>
-                                          </>
-                                        )}
-                                      </Disclosure>
-                                    </li>
-                                    <li>
-                                      <Disclosure as="div">
-                                        {({ open }) => (
-                                          <>
-                                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-6 text-left hover:bg-gray-50 focus:outline-none sm:px-6 dark:bg-charcoal-500 dark:text-primary-text dark:hover:bg-charcoal-600">
-                                              <span>Function</span>
-                                              {open ? <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> : <PlusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
-                                            </Disclosure.Button>
-                                            <Disclosure.Panel className="space-y-4 p-4 sm:px-6">
-                                              <div>
-                                                <span className="inline-flex items-center gap-x-0.5 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-charcoal-500 dark:text-gray-300 dark:ring-gray-600">
-                                                  Badge
-                                                  <button type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded hover:bg-indigo-600/20 dark:bg-transparent dark:hover:bg-charcoal-700">
-                                                    <span className="sr-only">Remove</span>
-                                                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5 stroke-indigo-700/50 group-hover:stroke-indigo-700/75 dark:stroke-white dark:group-hover:stroke-white">
-                                                      <path d="M4 4l6 6m0-6l-6 6" />
-                                                    </svg>
-                                                    <span className="absolute -inset-1" />
-                                                  </button>
-                                                </span>
-                                              </div>
-
-                                              <div>
-                                                <input type="email" name="email" id="email" className="block w-full rounded border border-gray-300 px-3 py-1.5 placeholder-gray-400 shadow transition duration-200 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700" placeholder="you@example.com" />
-                                              </div>
-                                            </Disclosure.Panel>
-                                          </>
-                                        )}
-                                      </Disclosure>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </Dialog.Panel>
-                          </Transition.Child>
-                        </div>
-                      </div>
-                    </Dialog>
-                  </Transition>
+                  <SearchDrawer
+                    isOpen={isOpenMobileFiltersDialog}
+                    closeSearchDrawer={() => {
+                      setIsOpenMobileFiltersDialog(!isOpenMobileFiltersDialog);
+                    }}
+                    handleChange={handleChange}
+                  />
                 </div>
               </div>
             </div>
