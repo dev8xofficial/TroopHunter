@@ -4,6 +4,7 @@ export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElem
   label?: string;
   className?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
   id?: string;
   noring?: boolean;
   disabled?: boolean;

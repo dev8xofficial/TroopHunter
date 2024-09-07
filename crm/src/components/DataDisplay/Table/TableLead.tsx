@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { Menu } from '@headlessui/react';
-import { ArrowDownTrayIcon, CheckIcon, EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/20/solid';
+import { ArrowDownTrayIcon, CheckIcon, EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { FunnelIcon } from '@heroicons/react/24/outline';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from 'react-redux';
@@ -107,6 +107,21 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
   const tableRowsData = renderRows(businessesDataBusinesses, leadPageFilters, leadPageBusinessIds, draftLeadBusinessIds);
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
+  const defaultFilterValues: Partial<IFilterAttributes> = {
+    name: { label: 'Business', name: 'name', value: '' },
+    view: { label: 'Business', name: 'view', value: 'all' },
+    sort: { label: 'Sort', name: 'sort', value: 'relevance' },
+    businessDomain: { label: 'Business Domain', name: 'businessDomain', value: '' },
+    address: { label: 'Address', name: 'address', value: '' },
+    cityId: { label: 'City', name: 'cityId', value: '' },
+    stateId: { label: 'State', name: 'stateId', value: '' },
+    countryId: { label: 'Country', name: 'countryId', value: '' },
+    phone: { label: 'Phone', name: 'phone', value: '' },
+    email: { label: 'Email', name: 'email', value: '' },
+    website: { label: 'Website', name: 'website', value: '' },
+    sponsoredAd: { label: 'Sponsored', name: 'sponsoredAd', value: false }
+  };
+
   const handleCheckboxChange = (businessId: string): void => {
     setSelectedBusinessIds((prevSelectedIds) => {
       if (prevSelectedIds.includes(businessId)) {
@@ -131,6 +146,24 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
     } else {
       setSelectedBusinessIds(Object.keys(businessesDataBusinesses));
     }
+  };
+
+  const countChangedFilters = (filters: IFilterAttributes, defaultValues: Partial<IFilterAttributes>): number => {
+    let changedCount = 0;
+    const { name, businessDomain, address, cityId, stateId, countryId, phone, email, website, sponsoredAd, ...filteredFilters } = filters;
+
+    Object.keys(filteredFilters).forEach((key) => {
+      const filterKey = key as keyof IFilterAttributes;
+      const currentValue = filters[filterKey].value;
+      const defaultValue = defaultValues[filterKey]?.value;
+
+      // Check if the current value differs from the default value
+      if (currentValue !== defaultValue) {
+        changedCount++;
+      }
+    });
+
+    return changedCount;
   };
 
   useEffect(() => {
@@ -203,13 +236,13 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                 <FunnelIcon className="h-6 w-6" aria-hidden="true" />
               </>
             </IconButton>
-            {home.filters.view.value === 'all' && home.filters.sort.value === 'relevance' ? (
+            {countChangedFilters(leadPageFilters, defaultFilterValues) < 1 ? (
               <></>
             ) : (
-              <span className="absolute right-0 top-0 block -translate-y-1/2 translate-x-1/2 transform">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
+              <span className="absolute right-0 top-0 block -translate-y-3 translate-x-3 transform">
+                <span className="relative flex h-4 w-4">
+                  <span className="absolute z-10 inline-flex h-full w-full items-center justify-center rounded-full bg-indigo-600 text-xxs text-white opacity-75">{countChangedFilters(leadPageFilters, defaultFilterValues)}</span>
+                  <span className="relative inline-flex h-4 w-4 animate-ping rounded-full bg-indigo-300 transition duration-700 ease-in"></span>
                 </span>
               </span>
             )}
@@ -228,7 +261,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
       {/* Empty State */}
       <div className={classNames(Object.values(tableRowsData).length > 0 ? 'hidden' : '', 'h-full p-4 xl:pb-4 dark:bg-charcoal-300')}>
         <div className="flex h-full flex-col items-center justify-center bg-white dark:bg-charcoal-200">
-          <MagnifyingGlassCircleIcon className="-ml-0.5 h-32 w-32 text-indigo-600 dark:text-primary-text" aria-hidden="true" />
+          <MagnifyingGlassIcon className="-ml-0.5 mb-5 h-16 w-16 dark:text-primary-text" aria-hidden="true" />
           <div className="text-center">
             <h3 className="mt-2 text-lg font-normal text-gray-900 dark:text-primary-text">Apply filters to find leads</h3>
             <p className="mt-2 text-sm text-gray-500 dark:text-secondary-text">Leads matching your search criteria will be displayed here</p>
