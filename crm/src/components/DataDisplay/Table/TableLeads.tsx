@@ -216,7 +216,7 @@ const Table: React.FC = (): JSX.Element => {
             </div>
           ) : (
             <div className="flex h-full flex-1 flex-col bg-white dark:bg-charcoal-200">
-              <div className="flex h-full flex-1 flex-col items-center justify-center bg-white dark:bg-charcoal-200">
+              <div className="flex h-full flex-1 flex-col items-center justify-center bg-white dark:bg-charcoal-300">
                 <MagnifyingGlassIcon className="-ml-0.5 mb-5 h-16 w-16 dark:text-primary-text" aria-hidden="true" />
                 <div className="text-center">
                   <h3 className="mt-2 text-lg font-normal text-gray-900 dark:text-primary-text">Apply filters to find leads</h3>
