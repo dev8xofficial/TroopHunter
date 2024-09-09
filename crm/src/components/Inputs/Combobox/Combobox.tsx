@@ -210,7 +210,7 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
             handleSearchQuery(event.target.value);
           }}
           displayValue={(option: ILocationComboboxOption) => handleDisplayValue(option)}
-          className="w-full rounded-md border border-gray-300 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow outline-none transition duration-200 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-white sm:text-sm sm:leading-6"
+          className="w-full rounded-md border border-gray-300 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow outline-none transition duration-200 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm sm:leading-6 dark:border-charcoal-700 dark:bg-charcoal-200 dark:text-white dark:focus:ring-offset-charcoal-700"
         />
         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
           <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -224,17 +224,17 @@ const LocationCombobox: React.FC<ILocationComboboxProps> = ({ label, type, value
             setSearchTerm('');
           }}
         >
-          <Combobox.Options className="absolute z-40 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          <Combobox.Options className="absolute z-40 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm dark:bg-charcoal-200">
             {searchResults.length === 0 && searchTerm !== '' ? (
               <div className="relative cursor-default select-none px-4 py-2 text-gray-700">Nothing found.</div>
             ) : (
               searchResults.map((option) => (
-                <Combobox.Option key={option.id} value={option} className={({ active }) => classNames('relative cursor-default select-none py-2 pl-3 pr-9', active ? 'bg-indigo-600 text-white' : 'text-gray-900')}>
+                <Combobox.Option key={option.id} value={option} className={({ active }) => classNames('relative cursor-default select-none py-2 pl-3 pr-9', active ? 'bg-indigo-600 text-white' : 'text-gray-900 dark:text-white')}>
                   {({ active, selected }) => (
                     <>
                       <div className="flex">
                         <span className={classNames('truncate', selected ? 'font-semibold' : '')}>{option.name}</span>
-                        <span className={classNames('ml-2 truncate text-gray-500', active ? 'text-indigo-200' : 'text-gray-500')}>{option.code}</span>
+                        <span className={classNames('ml-2 truncate text-gray-500', active ? 'text-indigo-200' : 'text-gray-500 dark:text-secondary-text')}>{option.code}</span>
                       </div>
 
                       {selected && (

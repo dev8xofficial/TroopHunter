@@ -126,7 +126,7 @@ const SearchDrawer: React.FC<ISearchDrawerProps> = ({ isOpen, handleReset, close
 
                         {/* Divider container */}
                         <div className="divide-y divide-gray-200 sm:py-0 dark:divide-charcoal-100">
-                          <div className="p-4 pb-24 xl:col-span-4 dark:bg-charcoal-300">
+                          <div className="p-4 xl:col-span-4 dark:bg-charcoal-300">
                             <div>
                               <ul role="list" className="divide-y rounded border bg-gray-100 shadow dark:divide-charcoal-100 dark:border-charcoal-100 dark:bg-charcoal-500">
                                 {Object.entries(leadPageFilters).map(([_, filter]) => {
