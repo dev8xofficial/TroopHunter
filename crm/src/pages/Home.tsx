@@ -46,7 +46,6 @@ const Lead: React.FC = () => {
   const draftLead: ILeadAttributes = userLeads[draftLeadIndex];
   const draftLeadBusinessIds: string[] | undefined = draftLead?.businessIds;
 
-  const isFirstRender = useRef(true);
   const [debouncedFilters, setDebouncedFilters] = useState<IFilterAttributes>(leadPageFilters);
   const [filtersPanelWidth, setFiltersPanelWidth] = useState<boolean>(false);
   const [isOpenLeadSaveDialog, setIsOpenLeadSaveDialog] = useState(false);
@@ -154,11 +153,6 @@ const Lead: React.FC = () => {
   }, [leadPageFilters]);
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
     if (Object.keys(debouncedFilters).length > 0) {
       if (prevLeadPageFilters.current.view === debouncedFilters.view) {
         loadMoreBusinesses({ page: leadPagePaginationPage, limit: leadPagePaginationLimit });
