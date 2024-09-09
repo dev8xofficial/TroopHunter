@@ -205,7 +205,7 @@ const Table: React.FC = (): JSX.Element => {
                       {/* eslint-disable-next-line @typescript-eslint/no-unsafe-argument */}
                       <td className="whitespace-nowrap px-3 py-3.5 text-sm text-gray-500 dark:text-secondary-text">{moment(lead?.updatedAt).format('YYYY-MM-DD')}</td>
                       <td className="relative flex justify-end whitespace-nowrap py-3.5 pl-3 pr-4 text-sm font-medium sm:pr-6">
-                        <_Menu options={getLeadsItemMenuOptions(index)} className="block p-1.5 text-gray-500 hover:text-gray-900 focus:border focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-white dark:text-primary-text dark:hover:text-secondary-text dark:focus:border-charcoal-700 dark:focus:ring-charcoal-700 dark:focus:ring-offset-charcoal-200">
+                        <_Menu options={getLeadsItemMenuOptions(index)} className="block p-1.5 text-gray-500 hover:text-gray-900 dark:text-secondary-text dark:hover:text-primary-text" menuItemsClassName="-translate-x-[87%]">
                           <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
                         </_Menu>
                       </td>

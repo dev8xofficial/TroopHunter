@@ -8,4 +8,5 @@ export interface IMenuProps extends React.MenuHTMLAttributes<HTMLMenuElement> {
   children?: JSX.Element | string;
   options: IMenuOption[];
   className?: string;
+  menuItemsClassName?: string;
 }
