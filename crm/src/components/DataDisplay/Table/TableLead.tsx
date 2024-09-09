@@ -1,7 +1,8 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 
 import { Menu, Transition } from '@headlessui/react';
-import { ArrowDownTrayIcon, CheckIcon, EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+// import { ArrowDownTrayIcon, CheckIcon, EllipsisVerticalIcon } from '@heroicons/react/20/solid';
+import { ListBulletIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { FunnelIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,24 +19,24 @@ import Checkbox, { checkboxColors } from '../../Inputs/Checkbox/Checkbox';
 import IconButton from '../../Inputs/IconButton/IconButton';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
 import Drawer from '../../Navigation/Drawer/Drawer';
-import _Menu from '../../Navigation/Menu/Menu';
+// import _Menu from '../../Navigation/Menu/Menu';
 
-const leadItemMenu = [
-  {
-    name: 'Settings',
-    href: '#',
-    onClick: () => {
-      console.log('Message');
-    }
-  },
-  {
-    name: 'Sign out',
-    href: '#',
-    onClick: () => {
-      console.log('Remove');
-    }
-  }
-];
+// const leadItemMenu = [
+//   {
+//     name: 'Settings',
+//     href: '#',
+//     onClick: () => {
+//       console.log('Message');
+//     }
+//   },
+//   {
+//     name: 'Sign out',
+//     href: '#',
+//     onClick: () => {
+//       console.log('Remove');
+//     }
+//   }
+// ];
 
 interface ITable {
   loadMoreBusinesses: ({ page, limit }: { page: number; limit: number }) => void;
@@ -347,7 +348,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange, handleR
                                   </a>
                                 )}
                               </p>
-                              <div className="flex items-center gap-x-4 sm:hidden">
+                              {/* <div className="flex items-center gap-x-4 sm:hidden">
                                 <div className="flex flex-none items-center">
                                   <div className="group-block hidden h-5 w-16 rounded-full bg-slate-300"></div>
                                   <CustomMenu>
@@ -366,15 +367,15 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange, handleR
                                     </>
                                   </CustomMenu>
                                   <div className="group-block -mr-3.5 hidden h-4 w-1 rounded bg-slate-300"></div>
-                                  <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 dark:text-primary-text dark:hover:text-secondary-text">
+                                  <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 dark:text-secondary-text dark:hover:text-primary-text" menuItemsClassName="-translate-x-[90%]">
                                     <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
                                   </_Menu>
                                 </div>
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                         </div>
-                        <div className="hidden items-center gap-x-4 sm:flex">
+                        {/* <div className="hidden items-center gap-x-4 sm:flex">
                           <div className="flex flex-none items-center">
                             <div className="group-block hidden h-5 w-16 rounded-full bg-slate-300"></div>
                             <CustomMenu>
@@ -393,11 +394,11 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange, handleR
                               </>
                             </CustomMenu>
                             <div className="group-block -mr-3.5 hidden h-4 w-1 rounded bg-slate-300"></div>
-                            <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 dark:text-primary-text dark:hover:text-secondary-text">
+                            <_Menu options={leadItemMenu} className="group-hidden block p-1.5 text-gray-500 hover:text-gray-900 dark:text-secondary-text dark:hover:text-primary-text" menuItemsClassName="-translate-x-[90%]">
                               <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
                             </_Menu>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </label>
