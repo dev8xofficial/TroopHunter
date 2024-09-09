@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 
 import { Transition, Dialog, Switch } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
@@ -40,11 +40,6 @@ const Drawer: React.FC<IDrawerProps> = ({ isOpen, closeDrawer, leadPageRemoveSav
   const getSortValue = (sortOptions: ISortOption[]): ISortOption | undefined => {
     return sortOptions.find((option) => (option.value === 'alphabetical' || option.value === 'newFirst' ? option.value === leadPageFilters.sort.value.replace('Ascending', '').replace('Descending', '') : option.value === leadPageFilters.sort.value));
   };
-
-  useEffect(() => {
-    console.log('View: ', home.filters.view);
-    console.log('Sort: ', home.filters.sort);
-  }, [home]);
 
   return (
     <>
