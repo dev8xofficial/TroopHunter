@@ -13,23 +13,12 @@ import { type IBusinessState } from '../../../store/reducers/businessReducer';
 import { type IFilterAttributes, type IHomePageState } from '../../../store/reducers/homePageReducer';
 import { type IUserState } from '../../../store/reducers/userReducer';
 import { classNames } from '../../../utils/helpers';
-import Avatar from '../../DataDisplay/Avatar/Avatar';
 import LeadSaveDialog from '../../Feedback/LeadSaveDialog/LeadSaveDialog';
 import Checkbox, { checkboxColors } from '../../Inputs/Checkbox/Checkbox';
 import IconButton from '../../Inputs/IconButton/IconButton';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
 import Drawer from '../../Navigation/Drawer/Drawer';
 import _Menu from '../../Navigation/Menu/Menu';
-
-const images = [
-  'https://plus.unsplash.com/premium_photo-1673408622902-8c1126555f29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  'https://images.unsplash.com/photo-1609994263270-82dbf0b283e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  'https://images.unsplash.com/photo-1527025047-354c31c26312?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmVzdGF1cmFudCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  'https://images.unsplash.com/photo-1595633013926-15dd888ef02d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJlc3RhdXJhbnQlMjBsb2dvfGVufDB8fDB8fHww&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  'https://images.unsplash.com/photo-1612222869049-d8ec83637a3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YWNjb3VudGFudCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  'https://images.unsplash.com/photo-1615915468538-0fbd857888ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YWNjb3VudGFudCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  'https://images.unsplash.com/photo-1560311225-6a3038e96820?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-];
 
 const leadItemMenu = [
   {
@@ -302,7 +291,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange, handleR
 
       {/* Table Body */}
       <div id="table-lead-container" ref={mainRef} style={{ height: mainHeight }} className={classNames(Object.values(tableRowsData).length < 1 ? 'hidden' : '', 'block overflow-y-scroll p-4 xl:pb-4 dark:bg-charcoal-300')}>
-        <InfiniteScroll dataLength={Object.keys(tableRowsData).length} next={onNext} hasMore={businessesTotalRecords !== undefined && Object.keys(tableRowsData).length < businessesTotalRecords} loader={<></>} scrollableTarget="table-lead-container">
+        <InfiniteScroll dataLength={Object.keys(tableRowsData).length} next={onNext} hasMore={businessesTotalRecords !== undefined && Object.keys(tableRowsData).length < businessesTotalRecords} loader={<></>} scrollableTarget="table-lead-container" scrollThreshold={0.6}>
           {/* Existing code for TableLead */}
           <ul role="list" className={classNames(isLeadPageLoading ? 'group animate-pulse' : '', 'divide-y rounded border bg-white shadow dark:divide-charcoal-100 dark:border-charcoal-100 dark:bg-charcoal-200')}>
             {Object.values(tableRowsData).map((business: IBusinessAttributes, index) => {
@@ -327,7 +316,6 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange, handleR
                       <div className="relative flex w-full cursor-pointer justify-between gap-x-6 pl-4 sm:px-6">
                         <div className="flex w-full gap-x-4">
                           <div className="group-block hidden h-10 w-10 rounded-full bg-slate-300 md:h-12 md:w-12 xl:h-16 xl:w-16"></div>
-                          <Avatar image={images[Math.floor(Math.random() * images.length)]} firstName={business.name} size="large" border="border border-gray-900" className="group-hidden hidden" />
                           <div className="min-w-0 flex-auto">
                             <div className="group-block mb-1 hidden h-6 w-40 rounded bg-slate-300"></div>
                             <p className="text-md font-semibold leading-6 text-gray-900 md:text-lg dark:text-primary-text">
@@ -429,7 +417,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange, handleR
               leaveFrom="translate-x-0" // Start from in view
               leaveTo="translate-x-[200%]" // Move far to the right, off the screen
             >
-              <div className="pointer-events-auto fixed bottom-32 right-8 z-10 mb-3 transition-transform duration-500 ease-in-out">
+              <div className="pointer-events-auto fixed bottom-32 right-8 z-10 mb-3 mr-0.5 transition-transform duration-500 ease-in-out">
                 <IconButton
                   variant="contained"
                   ringOffset="white"
@@ -439,7 +427,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange, handleR
                   }}
                   className="group bg-gray-200 !p-2 dark:bg-charcoal-300"
                 >
-                  <XMarkIcon className="h-5 w-5 text-gray-500 hover:text-gray-600 dark:text-secondary-text dark:group-hover:text-primary-text" aria-hidden="true" />
+                  <XMarkIcon className="h-6 w-6 text-gray-500 hover:text-gray-600 dark:text-secondary-text dark:group-hover:text-primary-text" aria-hidden="true" />
                 </IconButton>
               </div>
             </Transition.Child>
