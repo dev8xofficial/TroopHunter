@@ -286,3 +286,12 @@ a {
 .dark .btn.btn-outlined {
   @apply ring-slate-900 !important;
 } */
+
+@media only screen and (max-width: 480px) {
+  .Toastify__toast {
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    cursor: default;
+    font-size: 14px;
+  }
+}
