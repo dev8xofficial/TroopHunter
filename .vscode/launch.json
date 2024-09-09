@@ -32,10 +32,21 @@
       "name": "Node.js Current File",
       "program": "${workspaceFolder}/node/cities.js",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "skipFiles": ["<node_internals>/**"],
       "type": "node"
     },
+    {
+      "name": "TroopHunter",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/crm/node_modules/vite/bin/vite.js",
+      "cwd": "${workspaceFolder}/crm",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
   ]
 }

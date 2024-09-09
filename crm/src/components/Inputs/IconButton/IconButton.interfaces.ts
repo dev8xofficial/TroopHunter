@@ -1,7 +1,7 @@
 export interface IIconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: JSX.Element;
   type?: 'button' | 'submit' | 'reset' | undefined;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   className?: string;
   loading?: boolean;
   disabled?: boolean;
