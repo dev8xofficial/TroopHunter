@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { ArrowLeftStartOnRectangleIcon as ArrowLeftStartOnRectangleIconSolid, HomeIcon as HomeIconSolid, Bars3CenterLeftIcon as Bars3CenterLeftIconSolid, Cog6ToothIcon as Cog6ToothIconSolid } from '@heroicons/react/20/solid';
-import { MagnifyingGlassIcon, PlusIcon, ArrowLeftStartOnRectangleIcon, HomeIcon, Bars3CenterLeftIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
-import { useSelector } from 'react-redux';
+import { MagnifyingGlassIcon, ArrowLeftStartOnRectangleIcon, HomeIcon, Bars3CenterLeftIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 
-import { type IHomePageState } from '../../../store/reducers/homePageReducer';
 import LeadSaveDialog from '../../Feedback/LeadSaveDialog/LeadSaveDialog';
 
 interface DefaultLayoutProps {
@@ -13,10 +11,6 @@ interface DefaultLayoutProps {
 }
 
 const BottomNavigationBlur: React.FC<DefaultLayoutProps> = ({ signOut }: DefaultLayoutProps): JSX.Element => {
-  const home = useSelector((state: { home: IHomePageState }) => state.home);
-
-  const businessIds: string[] = home.businessIds;
-
   const [isOpenLeadSaveDialog, setIsOpenLeadSaveDialog] = useState(false);
   const [activeTab, setActiveTab] = useState<string>('/');
   const location = useLocation();
@@ -60,10 +54,9 @@ const BottomNavigationBlur: React.FC<DefaultLayoutProps> = ({ signOut }: Default
         </Link>
         <>
           <button
-            className="active gap-1 rounded-xl p-2.5 text-indigo-600 dark:text-indigo-300 dark:hover:text-primary-text"
+            className="group active gap-1 rounded-xl p-2.5"
             onClick={() => {
               if (!isActive('/')) navigate('/');
-              if (businessIds.length > 0) setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog);
               else
                 setTimeout(() => {
                   document.getElementById('home-search')?.focus();
@@ -71,7 +64,7 @@ const BottomNavigationBlur: React.FC<DefaultLayoutProps> = ({ signOut }: Default
                 }, 0);
             }}
           >
-            {isActive('/') && businessIds.length > 0 ? <PlusIcon className="h-7 w-7 xl:h-8 xl:w-8" aria-hidden="true" /> : <MagnifyingGlassIcon className="h-7 w-7 xl:h-8 xl:w-8" aria-hidden="true" />}
+            <MagnifyingGlassIcon className="h-6 w-6 text-indigo-600 xl:h-7 xl:w-7 dark:text-indigo-300 dark:group-hover:text-primary-text" aria-hidden="true" />
           </button>
           <LeadSaveDialog
             isOpen={isOpenLeadSaveDialog}

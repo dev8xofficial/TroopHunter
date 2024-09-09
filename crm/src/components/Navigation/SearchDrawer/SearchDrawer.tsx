@@ -76,7 +76,7 @@ const SearchDrawer: React.FC<ISearchDrawerProps> = ({ isOpen, handleReset, close
                 <Transition.Child as={Fragment} enter="ease-out duration-150" enterFrom="translate-y-full sm:duration-300" enterTo="translate-y-0" leave="ease-in duration-100" leaveFrom="translate-y-0" leaveTo="translate-y-full sm:duration-300">
                   <Dialog.Panel className="pointer-events-auto w-screen transform transition duration-500 ease-in-out data-[closed]:translate-y-full sm:duration-700">
                     <form
-                      className="flex h-full flex-col overflow-y-scroll bg-white/10 shadow-xl backdrop-blur-md dark:bg-charcoal-200"
+                      className="flex h-full flex-col overflow-y-scroll bg-white/10 shadow-xl backdrop-blur-md dark:bg-charcoal-300"
                       onSubmit={(event) => {
                         event.preventDefault();
                         closeSearchDrawer();
@@ -96,7 +96,7 @@ const SearchDrawer: React.FC<ISearchDrawerProps> = ({ isOpen, handleReset, close
                                     handleChange(event.target.name, event.target.value);
                                   }}
                                   placeholder={`Search ${leadPageFilters.name.label.toLowerCase()} title...`}
-                                  className="border-none bg-transparent shadow-none ring-0 ring-transparent ring-offset-0 ring-offset-transparent focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0 focus:ring-offset-transparent dark:bg-transparent dark:focus:ring-offset-transparent"
+                                  className="border-none bg-transparent shadow-none ring-0 ring-transparent ring-offset-0 ring-offset-transparent focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0 focus:ring-offset-transparent dark:bg-transparent dark:focus:bg-transparent dark:focus:ring-offset-transparent"
                                 />
                               )}
                               {businessesTotalRecords !== null && (

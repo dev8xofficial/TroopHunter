@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 
-import { Menu } from '@headlessui/react';
+import { Menu, Transition } from '@headlessui/react';
 import { ArrowDownTrayIcon, CheckIcon, EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
-import { FunnelIcon } from '@heroicons/react/24/outline';
+import { FunnelIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from 'react-redux';
 import { type IBusinessAttributes, type ILeadAttributes, type IUserAttributes } from 'validator/interfaces';
@@ -14,6 +14,7 @@ import { type IFilterAttributes, type IHomePageState } from '../../../store/redu
 import { type IUserState } from '../../../store/reducers/userReducer';
 import { classNames } from '../../../utils/helpers';
 import Avatar from '../../DataDisplay/Avatar/Avatar';
+import LeadSaveDialog from '../../Feedback/LeadSaveDialog/LeadSaveDialog';
 import Checkbox, { checkboxColors } from '../../Inputs/Checkbox/Checkbox';
 import IconButton from '../../Inputs/IconButton/IconButton';
 import CustomMenu from '../../Navigation/CustomMenu/CustomMenu';
@@ -50,6 +51,7 @@ const leadItemMenu = [
 interface ITable {
   loadMoreBusinesses: ({ page, limit }: { page: number; limit: number }) => void;
   handleChange: (name: string, value: string) => void;
+  handleReset?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const renderRows = (businessesDataBusinesses: Record<string, IBusinessAttributes>, leadPageFilters: IFilterAttributes, leadPageBusinessIds: string[], draftLeadBusinessIds: string[] | undefined): Record<string, IBusinessAttributes> => {
@@ -78,7 +80,7 @@ const renderRows = (businessesDataBusinesses: Record<string, IBusinessAttributes
   return updatedBusinessesData;
 };
 
-const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
+const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange, handleReset }) => {
   const dispatch = useDispatch();
   const businesses = useSelector((state: { businesses: IBusinessState }) => state.businesses);
   const home = useSelector((state: { home: IHomePageState }) => state.home);
@@ -103,9 +105,11 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
 
   const mainRef = useRef<HTMLDivElement>(null);
   const [mainHeight, setMainHeight] = useState<number | undefined>(undefined);
-  const [selectedBusinessIds, setSelectedBusinessIds] = useState<string[]>([]);
+  const [selectedBusinessIds, setSelectedBusinessIds] = useState<string[]>(leadPageBusinessIds);
   const tableRowsData = renderRows(businessesDataBusinesses, leadPageFilters, leadPageBusinessIds, draftLeadBusinessIds);
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+  const [isOpenLeadSaveDialog, setIsOpenLeadSaveDialog] = useState(false);
+  const [delayedShow, setDelayedShow] = useState(false);
 
   const defaultFilterValues: Partial<IFilterAttributes> = {
     name: { label: 'Business', name: 'name', value: '' },
@@ -186,6 +190,19 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
       window.removeEventListener('resize', resizeHandler);
     };
   }, [tableRowsData]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(
+      () => {
+        setDelayedShow(leadPageBusinessIds.length > 0);
+      },
+      leadPageBusinessIds.length > 0 ? 300 : 0
+    );
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [leadPageBusinessIds]);
 
   const onNext = (): void => {
     const nextPage = leadPagePaginationPage + 1;
@@ -292,7 +309,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
               const isSaved = Array.isArray(draftLeadBusinessIds) && draftLeadBusinessIds?.includes(business.id);
               return (
                 <li key={index} className={classNames(index === 0 ? 'hover:rounded-t' : '', index === Object.values(tableRowsData).length - 1 ? 'hover:rounded-b' : '', 'hover:bg-gray-100 dark:hover:bg-charcoal-400')}>
-                  <div className="relative flex w-full items-start px-5 py-4 md:px-6 md:py-5">
+                  <label htmlFor={business.name} className="relative flex w-full items-start px-5 py-4 md:px-6 md:py-5">
                     <div className="mt-2 flex h-6 items-center md:mt-3 xl:mt-6">
                       <div className="group-block hidden h-5 w-5 rounded bg-slate-300"></div>
                       <Checkbox
@@ -307,16 +324,14 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                       />
                     </div>
                     <div className="w-full text-sm leading-6">
-                      <label htmlFor={business.name} className="relative flex w-full cursor-pointer justify-between gap-x-6 pl-4 sm:px-6">
+                      <div className="relative flex w-full cursor-pointer justify-between gap-x-6 pl-4 sm:px-6">
                         <div className="flex w-full gap-x-4">
                           <div className="group-block hidden h-10 w-10 rounded-full bg-slate-300 md:h-12 md:w-12 xl:h-16 xl:w-16"></div>
                           <Avatar image={images[Math.floor(Math.random() * images.length)]} firstName={business.name} size="large" border="border border-gray-900" className="group-hidden hidden" />
                           <div className="min-w-0 flex-auto">
                             <div className="group-block mb-1 hidden h-6 w-40 rounded bg-slate-300"></div>
                             <p className="text-md font-semibold leading-6 text-gray-900 md:text-lg dark:text-primary-text">
-                              <a href="#" className="group-hidden uppercase">
-                                {business.name}
-                              </a>
+                              <span className="group-hidden uppercase">{business.name}</span>
                             </p>
                             <div className="flex flex-col">
                               <div className="group-block mb-3 hidden h-4 w-24 rounded bg-slate-300"></div>
@@ -395,14 +410,72 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange }) => {
                             </_Menu>
                           </div>
                         </div>
-                      </label>
+                      </div>
                     </div>
-                  </div>
+                  </label>
                 </li>
               );
             })}
           </ul>
         </InfiniteScroll>
+        <div className="xl:hidden">
+          <Transition appear show={delayedShow} as={Fragment}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-150"
+              enterFrom="translate-x-[200%]" // Start off the screen
+              enterTo="translate-x-0" // Move into view
+              leave="ease-in duration-150"
+              leaveFrom="translate-x-0" // Start from in view
+              leaveTo="translate-x-[200%]" // Move far to the right, off the screen
+            >
+              <div className="pointer-events-auto fixed bottom-32 right-8 z-10 mb-3 transition-transform duration-500 ease-in-out">
+                <IconButton
+                  variant="contained"
+                  ringOffset="white"
+                  onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                    if (handleReset != null) handleReset(event); // Pass the event correctly
+                    setSelectedBusinessIds([]);
+                  }}
+                  className="group bg-gray-200 !p-2 dark:bg-charcoal-300"
+                >
+                  <XMarkIcon className="h-5 w-5 text-gray-500 hover:text-gray-600 dark:text-secondary-text dark:group-hover:text-primary-text" aria-hidden="true" />
+                </IconButton>
+              </div>
+            </Transition.Child>
+          </Transition>
+
+          <Transition appear show={leadPageBusinessIds.length > 0} as={Fragment}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-150"
+              enterFrom="translate-x-[200%]" // Start far off-screen to the right
+              enterTo="translate-x-0" // Move into view
+              leave="ease-in duration-150"
+              leaveFrom="translate-x-0" // Start from in view
+              leaveTo="translate-x-[200%]" // Move far off-screen to the right
+            >
+              <div className="pointer-events-auto fixed bottom-20 right-8 z-10 transition-transform duration-500 ease-in-out">
+                <IconButton
+                  variant="contained"
+                  ringOffset="white"
+                  onClick={() => {
+                    setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog);
+                  }}
+                  className="group bg-indigo-600 !p-2 hover:bg-indigo-700"
+                >
+                  <PlusIcon className="h-7 w-7 text-white xl:h-8 xl:w-8 dark:text-white" aria-hidden="true" />
+                </IconButton>
+              </div>
+            </Transition.Child>
+          </Transition>
+        </div>
+        <LeadSaveDialog
+          isOpen={isOpenLeadSaveDialog}
+          closeModal={() => {
+            setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog);
+          }}
+        />
       </div>
     </>
   );
