@@ -96,7 +96,7 @@ const Lead: React.FC = () => {
     dispatch(setHomePageFiltersAction(newFilters));
   };
 
-  const handleReset = (event?: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+  const handleReset = (event?: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>): void => {
     event?.preventDefault();
     dispatch(resetHomePageFiltersAction());
   };
@@ -383,7 +383,7 @@ const Lead: React.FC = () => {
           </div>
           {/* Filters Table */}
           <div className="relative flex flex-1 flex-col">
-            <TableLead loadMoreBusinesses={loadMoreBusinesses} handleChange={handleChange} />
+            <TableLead loadMoreBusinesses={loadMoreBusinesses} handleChange={handleChange} handleReset={handleReset} />
           </div>
         </div>
       </div>
