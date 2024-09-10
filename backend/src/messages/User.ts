@@ -5,6 +5,8 @@ interface Message {
 
 export enum UserMessageKey {
   // Success messages
+  VERIFY_EMAIL = 'VERIFY_EMAIL',
+  EMAIL_VERIFIED = 'EMAIL_VERIFIED',
   USERS_RETRIEVED = 'USERS_RETRIEVED',
   USER_RETRIEVED = 'USER_RETRIEVED',
   USER_CREATED = 'USER_CREATED',
@@ -17,16 +19,19 @@ export enum UserMessageKey {
   // Missing fields messages
 
   // Invalid fields messages
+  EMAIL_UNVERIFIED = 'EMAIL_UNVERIFIED',
   PASSWORD_MISMATCH = 'PASSWORD_MISMATCH',
 
   // Duplicate messages
   DUPLICATE_USER = 'DUPLICATE_USER',
 
   // Not found messages
+  INVALID_EMAIL_VERIFICATION_TOKEN = 'INVALID_EMAIL_VERIFICATION_TOKEN',
   USER_NOT_FOUND = 'USER_NOT_FOUND',
   USER_NOT_FOUND_BY_ID = 'USER_NOT_FOUND_BY_ID',
 
   // Failure messages
+  EMAIL_VERIFICATION_TOKEN_FAILED = 'EMAIL_VERIFICATION_TOKEN_FAILED',
   FAILED_TO_RETRIEVE_USERS = 'FAILED_TO_RETRIEVE_USERS',
   FAILED_TO_RETRIEVE_USER = 'FAILED_TO_RETRIEVE_USER',
   FAILED_TO_CREATE_USER = 'FAILED_TO_CREATE_USER',
@@ -39,6 +44,14 @@ export enum UserMessageKey {
 
 const messages: Record<UserMessageKey, Message> = {
   // Success messages
+  [UserMessageKey.VERIFY_EMAIL]: {
+    code: 200,
+    message: 'Verification email sent successfully. Please check your inbox.',
+  },
+  [UserMessageKey.EMAIL_VERIFIED]: {
+    code: 200,
+    message: 'Email verified successfully.',
+  },
   [UserMessageKey.USERS_RETRIEVED]: {
     code: 200,
     message: 'Users retrieved successfully.',
@@ -79,6 +92,14 @@ const messages: Record<UserMessageKey, Message> = {
   },
 
   // Invalid fields messages
+  [UserMessageKey.INVALID_EMAIL_VERIFICATION_TOKEN]: {
+    code: 409,
+    message: 'Invalid email verification token.',
+  },
+  [UserMessageKey.EMAIL_UNVERIFIED]: {
+    code: 409,
+    message: 'Email unverified. Please verify your email to proceed.',
+  },
 
   // Duplicate messages
   [UserMessageKey.PASSWORD_MISMATCH]: {
@@ -97,6 +118,10 @@ const messages: Record<UserMessageKey, Message> = {
   },
 
   // Failure messages
+  [UserMessageKey.EMAIL_VERIFICATION_TOKEN_FAILED]: {
+    code: 500,
+    message: 'Failed to verify email. An internal server error occurred.',
+  },
   [UserMessageKey.FAILED_TO_RETRIEVE_USERS]: {
     code: 500,
     message: 'Failed to retrieve users. An internal server error occurred.',
