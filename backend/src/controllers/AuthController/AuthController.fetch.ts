@@ -24,6 +24,12 @@ export const login = async (req: Request, res: Response) => {
       return res.json(response);
     }
 
+    if (!user.verified) {
+      logger.error(`${email} not verified yet.`);
+      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage(UserMessageKey.EMAIL_UNVERIFIED).message, status: getUserMessage(UserMessageKey.EMAIL_UNVERIFIED).code });
+      return res.json(response);
+    }
+
     // Compare the provided password with the stored hashed password
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
