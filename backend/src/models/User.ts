@@ -10,6 +10,7 @@ class User extends Model<Omit<IUserAttributes, 'Leads'>> implements Omit<IUserAt
   public email!: string;
   public password!: string;
   public role?: 'guest' | 'user' | 'admin';
+  public verified!: boolean;
 
   // Define associations, if any
   public createLead!: HasManyCreateAssociationMixin<Lead>;
@@ -46,6 +47,11 @@ User.init(
       type: DataTypes.ENUM('guest', 'user', 'admin'),
       allowNull: false,
       defaultValue: 'guest',
+    },
+    verified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
     },
   },
   {
