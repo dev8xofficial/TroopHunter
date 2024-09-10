@@ -13,9 +13,13 @@ export const UserSchema = z.object({
     .nonempty('Password cannot be empty')
     .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'Password must contain at least one letter, one number, and one special character'),
   role: z.enum(['guest', 'user', 'admin']).optional(),
+  verified: z.boolean(),
   Leads: z.array(LeadSchema).default([]),
 });
 
+export const VerifyUserSchema = UserSchema.pick({ id: true }).extend({
+  token: z.string().nonempty('User verification token must be attached in request.'),
+});
 export const LoginSchema = UserSchema.pick({
   email: true,
   password: true,
@@ -26,7 +30,7 @@ export const RefreshTokenSchema = z.object({
 export const LoginRequestSchema = UserSchema.pick({ email: true, password: true });
 export const UserFetchRequestSchema = UserSchema.omit({ id: true }).partial();
 export const UserFetchByIdRequestSchema = UserSchema.pick({ id: true });
-export const UserCreateRequestSchema = UserSchema.omit({ id: true, Leads: true });
+export const UserCreateRequestSchema = UserSchema.omit({ id: true, verified: true, Leads: true, role: true });
 export const UserUpdateNameRequestSchema = UserSchema.pick({ firstName: true, lastName: true });
 export const UserUpdatePasswordRequestSchema = UserSchema.pick({ password: true })
   .extend({
@@ -52,8 +56,9 @@ export const UserTokenRequestSchema = z.object({
   refreshToken: z.string().nonempty().nullable(),
 });
 
+export const VerifyUserValidationMiddleware = validationMiddleware(VerifyUserSchema, 'params');
 export const LoginRequestValidationMiddleware = validationMiddleware(LoginSchema, 'body');
-export const RefreshTokenMiddleware = validationMiddleware(RefreshTokenSchema, 'body');
+export const RefreshTokenValidationMiddleware = validationMiddleware(RefreshTokenSchema, 'body');
 export const UserFetchRequestValidationMiddleware = validationMiddleware(UserFetchRequestSchema, 'query');
 export const UserFetchByIdRequestValidationMiddleware = validationMiddleware(UserFetchByIdRequestSchema, 'params');
 export const UserCreateRequestValidationMiddleware = validationMiddleware(UserCreateRequestSchema, 'body');
