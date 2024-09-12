@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 
 import { type ISaveAuthSuccessPayload } from '../reducers/authReducer';
-import { type IAuthRegisterSuccessPayload, type IAuthLoginSuccessPayload, type IAuthSignOutSuccessPayload, type IAuthLoginPayload, type IAuthSignOutPayload, type IAuthRegisterPayload } from '../sagas/auth';
+import { type IAuthRegisterSuccessPayload, type IAuthLoginSuccessPayload, type IAuthSignOutSuccessPayload, type IAuthLoginPayload, type IAuthSignOutPayload, type IAuthRegisterPayload, type IAuthSendVerificationTokenPayload, type IAuthSendVerificationTokenSuccessPayload } from '../sagas/auth';
 
 export const authLoginAction = createAction<IAuthLoginPayload>('auth/authLoginAction');
 export const authLoginSuccessAction = createAction<IAuthLoginSuccessPayload>('auth/authLoginSuccessAction');
@@ -14,5 +14,8 @@ export const authSignOutSuccessAction = createAction<IAuthSignOutSuccessPayload>
 export const authRegisterAction = createAction<IAuthRegisterPayload>('auth/authRegisterAction');
 export const authRegisterSuccessAction = createAction<IAuthRegisterSuccessPayload>('auth/authRegisterSuccessAction');
 export const refreshTokenSuccessAction = createAction<{ accessToken: string }>('auth/refreshTokenSuccessAction');
+
+export const authSendVerificationTokenAction = createAction<IAuthSendVerificationTokenPayload>('auth/authSendVerificationTokenAction');
+export const authSendVerificationTokenSuccessAction = createAction<IAuthSendVerificationTokenSuccessPayload>('auth/authSendVerificationTokenSuccessAction');
 
 export const resetAuthAction = createAction('auth/resetAuthAction');
