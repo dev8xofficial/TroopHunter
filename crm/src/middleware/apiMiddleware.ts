@@ -25,7 +25,8 @@ const apiMiddleware: Middleware =
         return;
       }
 
-      axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL ?? '';
+      if (!url.includes('/verify')) axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL ?? '';
+      else axios.defaults.baseURL = import.meta.env.VITE_AUTH_URL ?? '';
       axios.defaults.headers.common['Content-Type'] = 'application/json';
       const axiosInstance: AxiosInstance = axios.create();
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;

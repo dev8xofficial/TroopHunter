@@ -1,42 +1,43 @@
 import { Request, Response } from 'express';
 import User from '../../models/User';
-import bcrypt from 'bcryptjs';
 import logger from '../../utils/logger';
-import { ApiResponse, IUserAttributes } from 'validator/interfaces';
+import { ApiResponse, ISendVerificationTokenAttributes, IUserAttributes } from 'validator/interfaces';
 import { createApiResponse } from 'validator/utils';
 import { UserMessageKey, getUserMessage } from '../../messages/User';
-import { v4 as uuidv4 } from 'uuid';
 import { checkToken, generateToken } from '../../utils/jwt';
 import sendEmail from '../../utils/emailVerification';
 import { verifyEmail } from '../../templates/verifyEmail';
 
-export const register = async (req: Request, res: Response) => {
+export const sendVerificationToken = async (req: Request, res: Response) => {
   try {
-    const { firstName, lastName, email, password }: IUserAttributes = req.body;
+    const { email }: ISendVerificationTokenAttributes = req.body;
 
-    // Check if the user already exists
     const existingUser = await User.findOne({ where: { email } });
-    if (existingUser) {
-      logger.error(`User with email ${email} already exists.`);
-      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage(UserMessageKey.DUPLICATE_USER).message, status: getUserMessage(UserMessageKey.DUPLICATE_USER).code });
+    if (!existingUser) {
+      logger.error(`User not found.`);
+      const response: ApiResponse<null> = createApiResponse({ error: getUserMessage(UserMessageKey.USER_NOT_FOUND).message, status: getUserMessage(UserMessageKey.USER_NOT_FOUND).code });
       return res.json(response);
     }
 
-    const requestData: Omit<IUserAttributes, 'Leads'> = { id: uuidv4(), firstName, lastName, email, password, verified: false };
+    const payload = {
+      id: existingUser.id,
+      email,
+    };
+    const token = await generateToken(payload, {
+      expiresIn: '0.5h',
+      algorithm: 'HS256',
+    });
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-    requestData.password = hashedPassword;
+    const html = verifyEmail(`${process.env.BASE_URL}/auth/verify/${existingUser.id}/${token}`);
+    const emailResponse = sendEmail(email, 'Verify Your Email', html);
 
-    // Create the user
-    const user = await User.create(requestData);
+    logger.info(`Verify email: ${email}`);
+    logger.info(`Email response: ${emailResponse}`);
 
-    logger.info(`User with email ${email} registered successfully.`);
-
-    const response: ApiResponse<User> = createApiResponse({ success: true, data: user, message: getUserMessage(UserMessageKey.USER_CREATED).message, status: getUserMessage(UserMessageKey.USER_CREATED).code });
+    const response: ApiResponse<User> = createApiResponse({ success: true, message: getUserMessage(UserMessageKey.VERIFY_EMAIL).message, status: getUserMessage(UserMessageKey.VERIFY_EMAIL).code });
     res.json(response);
   } catch (error) {
-    logger.error('Failed to create user:', error);
+    logger.error('Failed to verify user:', error);
 
     const response: ApiResponse<null> = createApiResponse({ error: getUserMessage(UserMessageKey.FAILED_TO_CREATE_USER).message, status: getUserMessage(UserMessageKey.FAILED_TO_CREATE_USER).code });
     return res.json(response);
@@ -47,9 +48,7 @@ export const verifyUser = async (req: Request, res: Response) => {
   try {
     const { id, token } = req.params;
 
-    // Check if the gym already exists
     const user = await User.findByPk(id);
-    // if is exist throw an error
     if (!user) {
       logger.error(`User not found.`);
       const response: ApiResponse<null> = createApiResponse({ error: getUserMessage(UserMessageKey.USER_NOT_FOUND).message, status: getUserMessage(UserMessageKey.USER_NOT_FOUND).code });
