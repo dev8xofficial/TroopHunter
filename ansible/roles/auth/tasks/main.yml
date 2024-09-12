@@ -1,0 +1,4 @@
+---
+- include_tasks: install_required_packages.yml
+- include_tasks: auth.yml
+# - include_tasks: cloudflare.yml
