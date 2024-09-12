@@ -20,6 +20,24 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
+      "name": "auth",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/services/auth/node_modules/ts-node/dist/bin.js", // Update with the path to your main server file
+      "runtimeArgs": [
+        "--inspect" // Add any additional runtime arguments if required
+      ],
+      "args": ["${workspaceFolder}/services/auth/src/server.ts"],
+      "env": {
+        "NODE_ENV": "development" // Set environment variables if needed
+      },
+      "envFile": "${workspaceFolder}/services/auth/.env", // Path to your environment file
+      "cwd": "${workspaceFolder}/services/auth",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
       "name": "Scraper",
       "type": "debugpy",
       "request": "launch",
