@@ -44,9 +44,10 @@ export const register = async (req: Request, res: Response) => {
     });
 
     const html = verifyEmail(`${process.env.BASE_URL}/auth/verify/${user.id}/${token}`);
-    sendEmail(email, 'Verify Your Email', html);
+    const emailResponse = sendEmail(email, 'Verify Your Email', html);
 
     logger.info(`Verify email: ${email}`);
+    logger.info(`Email response: ${emailResponse}`);
 
     const response: ApiResponse<User> = createApiResponse({ success: true, message: getUserMessage(UserMessageKey.VERIFY_EMAIL).message, status: getUserMessage(UserMessageKey.VERIFY_EMAIL).code });
     res.json(response);
