@@ -17,6 +17,7 @@ export const UserSchema = z.object({
   Leads: z.array(LeadSchema).default([]),
 });
 
+export const SendVerificationTokenSchema = UserSchema.pick({ email: true });
 export const VerifyUserSchema = UserSchema.pick({ id: true }).extend({
   token: z.string().nonempty('User verification token must be attached in request.'),
 });
@@ -56,6 +57,7 @@ export const UserTokenRequestSchema = z.object({
   refreshToken: z.string().nonempty().nullable(),
 });
 
+export const SendVerificationTokenMiddleware = validationMiddleware(SendVerificationTokenSchema, 'body');
 export const VerifyUserValidationMiddleware = validationMiddleware(VerifyUserSchema, 'params');
 export const LoginRequestValidationMiddleware = validationMiddleware(LoginSchema, 'body');
 export const RefreshTokenValidationMiddleware = validationMiddleware(RefreshTokenSchema, 'body');

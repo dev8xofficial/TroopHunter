@@ -1,3 +1,5 @@
 ---
 - name: Move into the TroopHunter directory and run npm run start:{{ ENVIRONMENT }}
   command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run start:{{ ENVIRONMENT }}"
+- name: Move into the TroopHunter directory and run npm run start:{{ ENVIRONMENT }}
+  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/services/auth/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run dev"

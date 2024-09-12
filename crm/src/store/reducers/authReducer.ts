@@ -3,8 +3,8 @@ import { toast } from 'react-toastify';
 import { type IUserAttributes } from 'validator/interfaces';
 
 import { LOGIN_URL } from '../../routes/Urls';
-import { type IAuthRegisterSuccessPayload } from '../../store/sagas/auth';
-import { saveAuthSuccessAction, saveAuthFailureAction, refreshTokenSuccessAction, resetAuthAction, authRegisterSuccessAction } from '../actions/authActions';
+import { type IAuthSendVerificationTokenSuccessPayload, type IAuthRegisterSuccessPayload } from '../../store/sagas/auth';
+import { saveAuthSuccessAction, saveAuthFailureAction, refreshTokenSuccessAction, resetAuthAction, authRegisterSuccessAction, authSendVerificationTokenSuccessAction } from '../actions/authActions';
 
 export interface IAuthState {
   accessToken: string;
@@ -49,6 +49,14 @@ const authReducer = createReducer(initialState, (builder) => {
       if (response.success && request.payload !== undefined) {
         request.payload.navigate(LOGIN_URL);
 
+        toast.success(response.message);
+      } else {
+        toast.error(response.error);
+      }
+    })
+    .addCase(authSendVerificationTokenSuccessAction, (_state, action: PayloadAction<IAuthSendVerificationTokenSuccessPayload>) => {
+      const { response } = action.payload;
+      if (response.success) {
         toast.success(response.message);
       } else {
         toast.error(response.error);
