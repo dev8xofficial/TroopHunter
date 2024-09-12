@@ -21,7 +21,7 @@
       server {
         listen 80;
         listen [::]:80;
-        server_name nginx.ldsauto.co;
+        server_name nginx.troophunter.com;
         
         location / {
           proxy_pass http://192.168.0.200:50001;

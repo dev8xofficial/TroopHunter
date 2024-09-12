@@ -6,3 +6,6 @@ scraper_host ansible_port=22 ansible_host=192.168.0.201 ansible_user=ubuntu-serv
 
 [nginx]
 nginx_host ansible_port=22 ansible_host=192.168.0.202 ansible_user=nginx ansible_ssh_private_key_file=~/.ssh/id_ed25519_ubuntu
+
+[auth]
+auth_host ansible_port=22 ansible_host=192.168.0.204 ansible_user=nginx ansible_ssh_private_key_file=~/.ssh/id_ed25519_ubuntu
