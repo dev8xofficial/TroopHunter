@@ -59,6 +59,10 @@
 
     docker logs --details -f container_id
 
+# To enter into container's terminal
+
+    docker exec -it container_name bash
+
 # To see the docker resource usage
 
     docker stats
