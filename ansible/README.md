@@ -97,6 +97,7 @@ ansible-playbook --ask-vault-pass playbooks/main.prod.yml
 ansible-playbook --ask-vault-pass playbooks/main.stag.yml
 ansible-playbook --ask-vault-pass playbooks/main.dev.yml
 ansible-playbook --ask-vault-pass playbooks/main.nginx.yml
+ansible-playbook --ask-vault-pass playbooks/main.auth.yml
 ansible-playbook --ask-vault-pass playbooks/main.scraper.yml
 
 # Refresh terminal in ubuntu to see changes.
@@ -114,3 +115,11 @@ sudo nautilus
 # To remove known_hosts
 
 ssh-keygen -f "/root/.ssh/known_hosts" -R "192.168.0.202"
+
+# To remove cloudflared service
+
+cloudflared service uninstall
+
+# To remove cloudflare package
+
+sudo apt-get remove cloudflared
