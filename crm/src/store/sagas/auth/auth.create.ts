@@ -33,6 +33,11 @@ function* registerSaga({ payload }: { payload: IAuthRegisterPayload }): Generato
   }
 }
 
+export interface IAuthRegisterSuccessPayload {
+  request: IApiRequestAttributes<IUserCreateRequestAttributes, undefined, undefined, { navigate: NavigateFunction }>;
+  response: ApiResponse<IUserAttributes>;
+}
+
 export interface IAuthSendVerificationTokenPayload extends ISendVerificationTokenAttributes {}
 
 function* sendVerificationTokenSaga({ payload }: { payload: IAuthSendVerificationTokenPayload }): Generator<StrictEffect, void, void> {
@@ -55,11 +60,6 @@ function* sendVerificationTokenSaga({ payload }: { payload: IAuthSendVerificatio
 
 export interface IAuthSendVerificationTokenSuccessPayload {
   response: ApiResponse<null>;
-}
-
-export interface IAuthRegisterSuccessPayload {
-  request: IApiRequestAttributes<IUserCreateRequestAttributes, undefined, undefined, { navigate: NavigateFunction }>;
-  response: ApiResponse<IUserAttributes>;
 }
 
 // function* registerSuccessSaga({ payload }: { payload: IAuthRegisterSuccessPayload }): Generator<StrictEffect, void, void> {
