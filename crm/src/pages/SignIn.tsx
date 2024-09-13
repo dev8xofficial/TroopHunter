@@ -37,6 +37,7 @@ const _SignIn: React.FC = (): JSX.Element => {
     <>
       <div>
         <img className="h-8" src={String(logo)} alt="TroopHunter" />
+        {/* <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2> */}
         <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Not a member?{' '}
           <Link to="/signup" className="font-semibold text-indigo-500 hover:text-indigo-600">
@@ -103,9 +104,9 @@ const _SignIn: React.FC = (): JSX.Element => {
         </div>
 
         <div className="mt-6 flex justify-center text-sm leading-6">
-          <a href="#" className="font-semibold text-indigo-400 hover:text-indigo-500">
+          <Link to="/forgot-password" className="font-semibold text-indigo-400 hover:text-indigo-500">
             Forgot password?
-          </a>
+          </Link>
         </div>
       </div>
     </>

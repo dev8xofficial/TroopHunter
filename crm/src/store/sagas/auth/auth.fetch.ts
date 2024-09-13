@@ -1,12 +1,12 @@
 import { type NavigateFunction } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { takeLatest, put, type StrictEffect } from 'redux-saga/effects';
-import { type IUserFetchByIdRequestAttributes, type ApiResponse, type ILoginRequestAttributes } from 'validator/interfaces';
+import { type IUserFetchByIdRequestAttributes, type ApiResponse, type ILoginRequestAttributes, type IForgotPasswordAttributes, type IResetPasswordAttributes, type IResetPasswordVerificationAttributes } from 'validator/interfaces';
 
 import { LOGIN_URL } from '../../../routes/Urls';
 import { removeEmptyStringValues } from '../../../utils/helpers';
 import { ApiRequestAction, type IApiRequestAttributes } from '../../actions/apiActions';
-import { saveAuthSuccessAction, saveAuthFailureAction, authLoginAction, authLoginSuccessAction, authSignOutAction, authSignOutSuccessAction, resetAuthAction } from '../../actions/authActions';
+import { saveAuthSuccessAction, saveAuthFailureAction, authLoginAction, authLoginSuccessAction, authSignOutAction, authSignOutSuccessAction, resetAuthAction, authForgotPasswordAction, authResetPasswordAction, authResetPasswordVerificationAction } from '../../actions/authActions';
 import { resetBusinessAction } from '../../actions/businessActions';
 import { resetHomePageAction } from '../../actions/homePageActions';
 import { resetLeadsPageAction } from '../../actions/leadsPageActions';
@@ -114,6 +114,86 @@ function* signOutSuccessSaga({ payload }: { payload: IAuthSignOutSuccessPayload 
   }
 }
 
+export interface IAuthForgotPasswordPayload extends IForgotPasswordAttributes {}
+
+function* forgotPasswordSaga({ payload }: { payload: IAuthForgotPasswordPayload }): Generator<StrictEffect, void, void> {
+  try {
+    const { email } = payload;
+
+    const apiPayload = {
+      url: '/auth/forgot-password',
+      method: 'POST',
+      data: removeEmptyStringValues({ email }),
+      onSuccess: 'auth/authForgotPasswordSuccessAction',
+      requireAuth: true
+    };
+
+    yield put(ApiRequestAction(apiPayload));
+  } catch (error) {
+    toast.error((error as Error).message);
+    yield put(saveAuthFailureAction());
+  }
+}
+
+export interface IAuthForgotPasswordSuccessPayload {
+  response: ApiResponse<null>;
+}
+
+export interface IAuthResetPasswordPayload extends IResetPasswordAttributes {
+  navigate: NavigateFunction;
+}
+
+function* resetPasswordSaga({ payload }: { payload: IAuthResetPasswordPayload }): Generator<StrictEffect, void, void> {
+  try {
+    const { id, token, newPassword, confirmPassword, navigate } = payload;
+
+    const apiPayload = {
+      url: '/auth/reset-password',
+      method: 'POST',
+      data: removeEmptyStringValues({ id, token, newPassword, confirmPassword }),
+      payload: { navigate },
+      onSuccess: 'auth/authResetPasswordSuccessAction',
+      requireAuth: true
+    };
+
+    yield put(ApiRequestAction(apiPayload));
+  } catch (error) {
+    toast.error((error as Error).message);
+    yield put(saveAuthFailureAction());
+  }
+}
+
+export interface IAuthResetPasswordSuccessPayload {
+  request: IApiRequestAttributes<IResetPasswordAttributes, undefined, undefined, { navigate: NavigateFunction }>;
+  response: ApiResponse<null>;
+}
+
+export interface IAuthResetPasswordVerificationPayload extends IResetPasswordVerificationAttributes {}
+
+function* resetPasswordVerificationSaga({ payload }: { payload: IAuthResetPasswordVerificationPayload }): Generator<StrictEffect, void, void> {
+  try {
+    const { id, token } = payload;
+
+    const apiPayload = {
+      url: `/auth/reset-password/${id}/${token}`,
+      method: 'GET',
+      payload: { isResetPasswordVerified: true },
+      onSuccess: 'auth/authResetPasswordVerfiedSuccessAction',
+      requireAuth: true
+    };
+
+    yield put(ApiRequestAction(apiPayload));
+  } catch (error) {
+    toast.error((error as Error).message);
+    yield put(saveAuthFailureAction());
+  }
+}
+
+export interface IAuthResetPasswordVerifiedSuccessPayload {
+  request: IApiRequestAttributes<IResetPasswordAttributes, undefined, undefined, { isResetPasswordVerified: boolean }>;
+  response: ApiResponse<null>;
+}
+
 export function* watchLoginSaga(): Generator<StrictEffect, void, void> {
   yield takeLatest(authLoginAction, loginSaga);
 }
@@ -128,4 +208,16 @@ export function* watchSignOutSaga(): Generator<StrictEffect, void, void> {
 
 export function* watchSignOutSuccessSaga(): Generator<StrictEffect, void, void> {
   yield takeLatest(authSignOutSuccessAction, signOutSuccessSaga);
+}
+
+export function* watchForgotPasswordSaga(): Generator<StrictEffect, void, void> {
+  yield takeLatest(authForgotPasswordAction, forgotPasswordSaga);
+}
+
+export function* watchResetPasswordSaga(): Generator<StrictEffect, void, void> {
+  yield takeLatest(authResetPasswordAction, resetPasswordSaga);
+}
+
+export function* watchResetPasswordVerificationSaga(): Generator<StrictEffect, void, void> {
+  yield takeLatest(authResetPasswordVerificationAction, resetPasswordVerificationSaga);
 }

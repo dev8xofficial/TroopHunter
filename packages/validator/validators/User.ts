@@ -56,8 +56,22 @@ export const UserTokenRequestSchema = z.object({
   accessToken: z.string().nonempty().nullable(),
   refreshToken: z.string().nonempty().nullable(),
 });
+export const ResetPasswordSchema = UserSchema.pick({ id: true }).extend({
+  token: z.string().nonempty('User verification token must be attached in request.'),
+  newPassword: z
+    .string()
+    .min(8, 'Password must be at least 8 characters long')
+    .nonempty('Password cannot be empty')
+    .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'Password must contain at least one letter, one number, and one special character'),
+  confirmPassword: z
+    .string()
+    .min(8, 'Password must be at least 8 characters long')
+    .nonempty('Password cannot be empty')
+    .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'Password must contain at least one letter, one number, and one special character'),
+});
+export const ResetPasswordVerificationSchema = ResetPasswordSchema.pick({ id: true, token: true });
 
-export const SendVerificationTokenMiddleware = validationMiddleware(SendVerificationTokenSchema, 'body');
+export const SendVerificationTokenValidationMiddleware = validationMiddleware(SendVerificationTokenSchema, 'body');
 export const VerifyUserValidationMiddleware = validationMiddleware(VerifyUserSchema, 'params');
 export const LoginRequestValidationMiddleware = validationMiddleware(LoginSchema, 'body');
 export const RefreshTokenValidationMiddleware = validationMiddleware(RefreshTokenSchema, 'body');
@@ -66,3 +80,6 @@ export const UserFetchByIdRequestValidationMiddleware = validationMiddleware(Use
 export const UserCreateRequestValidationMiddleware = validationMiddleware(UserCreateRequestSchema, 'body');
 export const UserUpdateNameRequestValidationMiddleware = validationMiddleware(UserUpdateNameRequestSchema, 'body');
 export const UserUpdatePasswordRequestValidationMiddleware = validationMiddleware(UserUpdatePasswordRequestSchema, 'body');
+export const ForgotPasswordValidationMiddleware = validationMiddleware(SendVerificationTokenSchema, 'body');
+export const ResetPasswordSchemaValidationMiddleware = validationMiddleware(ResetPasswordSchema, 'body');
+export const ResetPasswordVerificationSchemaValidationMiddleware = validationMiddleware(ResetPasswordVerificationSchema, 'params');
