@@ -1,6 +1,6 @@
 import { type AllEffect, type StrictEffect, all } from 'redux-saga/effects';
 
-import { watchLoginSaga, watchLoginSuccessSaga, watchRegisterSaga, watchSendVerificationTokenSaga, watchSignOutSaga, watchSignOutSuccessSaga, watchForgotPasswordSaga, watchResetPasswordSaga, watchResetPasswordVerificationSaga } from './sagas/auth';
+import { watchLoginSaga, watchLoginSuccessSaga, watchRegisterSaga, watchSendVerificationTokenSaga, watchSignOutSaga, watchSignOutSuccessSaga, watchVerifyUserSaga, watchForgotPasswordSaga, watchResetPasswordSaga, watchResetPasswordVerificationSaga } from './sagas/auth';
 import { watchBusinessSaga, watchBusinessSuccessSaga } from './sagas/business';
 import { watchCreateLeadSaga, watchUpdateLeadSaga, watchDeleteLeadSaga, watchDeleteLeadsSaga, watchCreateLeadSuccessSaga, watchUpdateSuccessLeadSaga, watchDeleteLeadsSuccessSaga, watchDeleteLeadSuccessSaga } from './sagas/lead';
 import { watchGetUserSaga, watchUpdateUserNameSaga, watchUpdateUserPasswordSaga, watchGetUserSuccessSaga, watchUpdateUserNameSuccessSaga, watchUpdateUserPasswordSuccessSaga } from './sagas/user';
@@ -13,6 +13,7 @@ export default function* rootSaga(): Generator<AllEffect<Generator<StrictEffect,
     watchSignOutSuccessSaga(),
     watchRegisterSaga(),
     watchSendVerificationTokenSaga(),
+    watchVerifyUserSaga(),
     watchForgotPasswordSaga(),
     watchResetPasswordSaga(),
     watchResetPasswordVerificationSaga(),

@@ -29,7 +29,7 @@ export const sendVerificationToken = async (req: Request, res: Response) => {
       algorithm: 'HS256',
     });
 
-    const html = verifyEmail(`${process.env.BASE_URL}/auth/verify/${existingUser.id}/${token}`);
+    const html = verifyEmail(`${process.env.FRONTEND_URL}/verify/${existingUser.id}/${token}`);
     const emailResponse = sendEmail(email, 'Verify Your Email', html);
 
     logger.info(`Verify email: ${email}`);
