@@ -1,9 +1,9 @@
 name: 'troophunter_prod'
 services:
-  ci:
-    extends:
-      file: docker-compose.ci.yml
-      service: ci_prod
+  # ci:
+  #   extends:
+  #     file: docker-compose.ci.yml
+  #     service: ci_prod
 
   postgres_prod:
     extends:
@@ -20,10 +20,10 @@ services:
       file: docker-compose.backend.yml
       service: backend_prod
 
-  crm_prod:
-    extends:
-      file: docker-compose.crm.yml
-      service: crm_prod
+  # crm_prod:
+  #   extends:
+  #     file: docker-compose.crm.yml
+  #     service: crm_prod
 
   cloudflare_prod:
     extends:
