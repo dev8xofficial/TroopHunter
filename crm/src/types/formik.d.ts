@@ -9,3 +9,12 @@ export interface ISignUpFormValues {
   email: string;
   password: string;
 }
+
+export interface IResetPasswordFormmValues {
+  newPassword: string;
+  confirmPassword: string;
+}
+
+export interface IForgotPasswordFormmValues {
+  email: string;
+}

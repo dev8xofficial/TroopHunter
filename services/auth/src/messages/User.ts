@@ -7,6 +7,7 @@ export enum UserMessageKey {
   // Success messages
   VERIFY_EMAIL = 'VERIFY_EMAIL',
   EMAIL_VERIFIED = 'EMAIL_VERIFIED',
+  RESET_PASSWORD_TOKEN_VERIFIED = 'RESET_PASSWORD_TOKEN_VERIFIED',
   USERS_RETRIEVED = 'USERS_RETRIEVED',
   USER_RETRIEVED = 'USER_RETRIEVED',
   USER_CREATED = 'USER_CREATED',
@@ -15,23 +16,30 @@ export enum UserMessageKey {
   LOGGED_IN = 'LOGGED_IN',
   SIGN_OUT = 'SIGN_OUT',
   PASSWORD_UPDATED = 'PASSWORD_UPDATED',
+  FORGOT_PASSWORD = 'FORGOT_PASSWORD',
+  RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS',
 
   // Missing fields messages
 
   // Invalid fields messages
   EMAIL_UNVERIFIED = 'EMAIL_UNVERIFIED',
   PASSWORD_MISMATCH = 'PASSWORD_MISMATCH',
+  INVALID_EMAIL_VERIFICATION_TOKEN = 'INVALID_EMAIL_VERIFICATION_TOKEN',
+  EXPIRED_EMAIL_VERIFICATION_TOKEN = 'EXPIRED_EMAIL_VERIFICATION_TOKEN',
+  INVALID_RESET_PASSWORD_VERIFICATION_TOKEN = 'INVALID_RESET_PASSWORD_VERIFICATION_TOKEN',
+  EXPIRED_RESET_PASSWORD_VERIFICATION_TOKEN = 'EXPIRED_RESET_PASSWORD_VERIFICATION_TOKEN',
 
   // Duplicate messages
   DUPLICATE_USER = 'DUPLICATE_USER',
 
   // Not found messages
-  INVALID_EMAIL_VERIFICATION_TOKEN = 'INVALID_EMAIL_VERIFICATION_TOKEN',
   USER_NOT_FOUND = 'USER_NOT_FOUND',
   USER_NOT_FOUND_BY_ID = 'USER_NOT_FOUND_BY_ID',
 
   // Failure messages
   EMAIL_VERIFICATION_TOKEN_FAILED = 'EMAIL_VERIFICATION_TOKEN_FAILED',
+  FAILED_TO_SEND_EMAIL_VERIFICATION_TOKEN = 'FAILED_TO_SEND_EMAIL_VERIFICATION_TOKEN',
+  FAILED_TO_VERIFY_RESET_PASSWORD_TOKEN = 'FAILED_TO_VERIFY_RESET_PASSWORD_TOKEN',
   FAILED_TO_RETRIEVE_USERS = 'FAILED_TO_RETRIEVE_USERS',
   FAILED_TO_RETRIEVE_USER = 'FAILED_TO_RETRIEVE_USER',
   FAILED_TO_CREATE_USER = 'FAILED_TO_CREATE_USER',
@@ -40,6 +48,8 @@ export enum UserMessageKey {
   FAILED_TO_UPDATE_PASSWORD = 'FAILED_TO_UPDATE_PASSWORD',
   LOGIN_FAILED = 'LOGIN_FAILED',
   SIGN_OUT_FAILED = 'SIGN_OUT_FAILED',
+  FAILED_TO_SEND_FORGOT_PASSWORD_TOKEN = 'FAILED_TO_SEND_FORGOT_PASSWORD_TOKEN',
+  FAILED_TO_RESET_PASSWORD_TOKEN = 'FAILED_TO_RESET_PASSWORD_TOKEN',
 }
 
 const messages: Record<UserMessageKey, Message> = {
@@ -51,6 +61,10 @@ const messages: Record<UserMessageKey, Message> = {
   [UserMessageKey.EMAIL_VERIFIED]: {
     code: 200,
     message: 'Email verified successfully.',
+  },
+  [UserMessageKey.RESET_PASSWORD_TOKEN_VERIFIED]: {
+    code: 200,
+    message: 'Reset password token verified successfully.',
   },
   [UserMessageKey.USERS_RETRIEVED]: {
     code: 200,
@@ -84,6 +98,14 @@ const messages: Record<UserMessageKey, Message> = {
     code: 200,
     message: 'Password updated successfully.',
   },
+  [UserMessageKey.FORGOT_PASSWORD]: {
+    code: 200,
+    message: 'Please check your inbox to proceed.',
+  },
+  [UserMessageKey.RESET_PASSWORD_SUCCESS]: {
+    code: 200,
+    message: 'Password reset successfully.',
+  },
 
   // Missing fields messages
   [UserMessageKey.DUPLICATE_USER]: {
@@ -95,6 +117,18 @@ const messages: Record<UserMessageKey, Message> = {
   [UserMessageKey.INVALID_EMAIL_VERIFICATION_TOKEN]: {
     code: 409,
     message: 'Invalid email verification token.',
+  },
+  [UserMessageKey.EXPIRED_EMAIL_VERIFICATION_TOKEN]: {
+    code: 409,
+    message: 'Email verification token is expired.',
+  },
+  [UserMessageKey.INVALID_RESET_PASSWORD_VERIFICATION_TOKEN]: {
+    code: 409,
+    message: 'Invalid reset password token.',
+  },
+  [UserMessageKey.EXPIRED_RESET_PASSWORD_VERIFICATION_TOKEN]: {
+    code: 409,
+    message: 'Reset password token is expired!',
   },
   [UserMessageKey.EMAIL_UNVERIFIED]: {
     code: 409,
@@ -121,6 +155,14 @@ const messages: Record<UserMessageKey, Message> = {
   [UserMessageKey.EMAIL_VERIFICATION_TOKEN_FAILED]: {
     code: 500,
     message: 'Failed to verify email. An internal server error occurred.',
+  },
+  [UserMessageKey.FAILED_TO_SEND_EMAIL_VERIFICATION_TOKEN]: {
+    code: 500,
+    message: 'Failed to send email verification token. An internal server error occurred.',
+  },
+  [UserMessageKey.FAILED_TO_VERIFY_RESET_PASSWORD_TOKEN]: {
+    code: 500,
+    message: 'Failed to verify reset password token. An internal server error occurred.',
   },
   [UserMessageKey.FAILED_TO_RETRIEVE_USERS]: {
     code: 500,
@@ -153,6 +195,14 @@ const messages: Record<UserMessageKey, Message> = {
   [UserMessageKey.SIGN_OUT_FAILED]: {
     code: 500,
     message: 'Failed to sign out. Please try again later or contact support.',
+  },
+  [UserMessageKey.FAILED_TO_SEND_FORGOT_PASSWORD_TOKEN]: {
+    code: 500,
+    message: 'Failed to send reset password verification. An internal server error occurred.',
+  },
+  [UserMessageKey.FAILED_TO_RESET_PASSWORD_TOKEN]: {
+    code: 500,
+    message: 'Failed to reset password. An internal server error occurred.',
   },
 };
 
