@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { UserSchema, SendVerificationTokenSchema, VerifyUserSchema, LoginRequestSchema, RefreshTokenSchema, UserFetchRequestSchema, UserFetchByIdRequestSchema, UserCreateRequestSchema, UserUpdateNameRequestSchema, UserUpdatePasswordRequestSchema, UserTokenRequestSchema } from '../validators/User';
+import { UserSchema, SendVerificationTokenSchema, VerifyUserSchema, LoginRequestSchema, RefreshTokenSchema, UserFetchRequestSchema, UserFetchByIdRequestSchema, UserCreateRequestSchema, UserUpdateNameRequestSchema, UserUpdatePasswordRequestSchema, UserTokenRequestSchema, ResetPasswordSchema, ResetPasswordVerificationSchema } from '../validators/User';
 
 type UserSchema = z.infer<typeof UserSchema>;
 type SendVerificationTokenAttributes = z.infer<typeof SendVerificationTokenSchema>;
@@ -12,6 +12,9 @@ type UserCreateRequestAttributes = z.infer<typeof UserCreateRequestSchema>;
 type UserUpdateNameRequestAttributes = z.infer<typeof UserUpdateNameRequestSchema>;
 type UserUpdatePasswordRequestAttributes = z.infer<typeof UserUpdatePasswordRequestSchema>;
 type UserTokenRequestAttributes = z.infer<typeof UserTokenRequestSchema>;
+type ForgotPasswordAttributes = z.infer<typeof SendVerificationTokenSchema>;
+type ResetPasswordAttributes = z.infer<typeof ResetPasswordSchema>;
+type ResetPasswordVerificationAttributes = z.infer<typeof ResetPasswordVerificationSchema>;
 
 export interface IUserAttributes extends UserSchema {}
 export interface ISendVerificationTokenAttributes extends SendVerificationTokenAttributes {}
@@ -24,3 +27,6 @@ export interface IUserCreateRequestAttributes extends UserCreateRequestAttribute
 export interface IUserUpdateNameRequestAttributes extends UserUpdateNameRequestAttributes {}
 export interface IUserUpdatePasswordRequestAttributes extends UserUpdatePasswordRequestAttributes {}
 export interface IUserTokenRequestAttributes extends UserTokenRequestAttributes {}
+export interface IForgotPasswordAttributes extends ForgotPasswordAttributes {}
+export interface IResetPasswordAttributes extends ResetPasswordAttributes {}
+export interface IResetPasswordVerificationAttributes extends ResetPasswordVerificationAttributes {}
