@@ -1,6 +1,8 @@
+import ForgotPassword from '../pages/ForgotPassword';
 import Home from '../pages/Home';
 import Leads from '../pages/Leads';
 import PageNotFound from '../pages/PageNotFound';
+import ResetPassword from '../pages/ResetPassword';
 import SettingsProfile from '../pages/SettingsProfile';
 import SettingsSecurity from '../pages/SettingsSecurity';
 import SignIn from '../pages/SignIn';
@@ -16,6 +18,8 @@ export const PAGENOTFOUND_URL = '*'; // Wildcard route for PageNotFound
 export const HOME_URL = '/';
 export const LOGIN_URL = '/signin';
 export const SIGNUP_URL = '/signup';
+export const FORGOTPASSWORD_URL = '/forgot-password';
+export const RESETPASSWORD_URL = '/reset-password/:id/:token';
 export const LEADS_URL = '/leads';
 export const SETTINGS_PROFILE_URL = '/settings/profile';
 export const SETTINGS_SECURITY_URL = '/settings/security';
@@ -23,6 +27,8 @@ export const SETTINGS_SECURITY_URL = '/settings/security';
 export const URLS = [
   { path: LOGIN_URL, isPublic: true, component: SignIn },
   { path: SIGNUP_URL, isPublic: true, component: SignUp },
+  { path: FORGOTPASSWORD_URL, isPublic: true, component: ForgotPassword },
+  { path: RESETPASSWORD_URL, isPublic: true, component: ResetPassword },
   { path: HOME_URL, isPublic: false, component: Home },
   { path: LEADS_URL, isPublic: false, component: Leads },
   { path: SETTINGS_PROFILE_URL, isPublic: false, component: SettingsProfile },

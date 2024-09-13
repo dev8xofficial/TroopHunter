@@ -15,10 +15,7 @@ interface IGenerateTokenPayload {
   [key: string]: any;
 }
 
-export const generateToken = (
-  object: IGenerateTokenPayload,
-  options: SignOptions = OPTIONS
-): Promise<string> => {
+export const generateToken = (object: IGenerateTokenPayload, options: SignOptions = OPTIONS): Promise<string> => {
   return new Promise((resolve, reject) => {
     sign(object, JWT_SECRET as string, options, (error, token) => {
       if (error) return reject(error);
@@ -27,11 +24,13 @@ export const generateToken = (
   });
 };
 
-export const checkToken = (token: string): Promise<JwtPayload | string> => {
-  return new Promise((resolve, reject) => {
+export const checkToken = (token: string): Promise<{ payload?: JwtPayload | string; error?: Error }> => {
+  return new Promise((resolve) => {
     verify(token, JWT_SECRET as string, (error, payload) => {
-      if (error) return reject(error);
-      return resolve(payload as JwtPayload | string);
+      if (error) {
+        return resolve({ error });
+      }
+      return resolve({ payload });
     });
   });
 };
