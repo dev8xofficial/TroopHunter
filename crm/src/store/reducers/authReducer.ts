@@ -3,14 +3,15 @@ import { toast } from 'react-toastify';
 import { type IUserAttributes } from 'validator/interfaces';
 
 import { LOGIN_URL } from '../../routes/Urls';
-import { type IAuthSendVerificationTokenSuccessPayload, type IAuthRegisterSuccessPayload, type IAuthForgotPasswordSuccessPayload, type IAuthResetPasswordSuccessPayload, type IAuthResetPasswordVerifiedSuccessPayload } from '../../store/sagas/auth';
-import { saveAuthSuccessAction, saveAuthFailureAction, refreshTokenSuccessAction, resetAuthAction, authRegisterSuccessAction, authSendVerificationTokenSuccessAction, authForgotPasswordSuccessAction, authResetPasswordSuccessAction, authResetPasswordVerfiedSuccessAction } from '../actions/authActions';
+import { type IAuthSendVerificationTokenSuccessPayload, type IAuthRegisterSuccessPayload, type IAuthForgotPasswordSuccessPayload, type IAuthResetPasswordSuccessPayload, type IAuthResetPasswordVerifiedSuccessPayload, type IAuthVerifyUserSuccessPayload } from '../../store/sagas/auth';
+import { saveAuthSuccessAction, saveAuthFailureAction, refreshTokenSuccessAction, resetAuthAction, authRegisterSuccessAction, authSendVerificationTokenSuccessAction, authForgotPasswordSuccessAction, authResetPasswordSuccessAction, authResetPasswordVerfiedSuccessAction, authVerifyUserSuccessAction } from '../actions/authActions';
 
 export interface IAuthState {
   accessToken: string;
   refreshToken: string;
   userId: string;
   loggedIn: boolean;
+  isUserVerified: boolean;
   isResetPasswordVerified: boolean;
 }
 
@@ -19,6 +20,7 @@ export interface ISaveAuthSuccessPayload {
   refreshToken: string;
   user: IUserAttributes;
   loggedIn: boolean;
+  isUserVerified: boolean;
   isResetPasswordVerified: boolean;
 }
 
@@ -27,6 +29,7 @@ const initialState: IAuthState = {
   refreshToken: '',
   userId: '',
   loggedIn: false,
+  isUserVerified: false,
   isResetPasswordVerified: false
 };
 
@@ -67,6 +70,15 @@ const authReducer = createReducer(initialState, (builder) => {
         toast.error(response.error);
       }
     })
+    .addCase(authVerifyUserSuccessAction, (state, action: PayloadAction<IAuthVerifyUserSuccessPayload>) => {
+      const { request, response } = action.payload;
+      if (response.success && request.payload !== undefined) {
+        state.isUserVerified = request.payload.isUserVerified;
+      } else {
+        state.isUserVerified = false;
+        toast.error(response.error);
+      }
+    })
     .addCase(authForgotPasswordSuccessAction, (_state, action: PayloadAction<IAuthForgotPasswordSuccessPayload>) => {
       const { response } = action.payload;
       if (response.success) {
@@ -76,9 +88,12 @@ const authReducer = createReducer(initialState, (builder) => {
       }
     })
     .addCase(authResetPasswordVerfiedSuccessAction, (state, action: PayloadAction<IAuthResetPasswordVerifiedSuccessPayload>) => {
-      const { request } = action.payload;
-      if (request.payload !== undefined) {
+      const { request, response } = action.payload;
+      if (response.success && request.payload !== undefined) {
         state.isResetPasswordVerified = request.payload.isResetPasswordVerified;
+      } else {
+        state.isResetPasswordVerified = false;
+        toast.error(response.error);
       }
     })
     .addCase(authResetPasswordSuccessAction, (_state, action: PayloadAction<IAuthResetPasswordSuccessPayload>) => {

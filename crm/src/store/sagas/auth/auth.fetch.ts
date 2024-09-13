@@ -1,12 +1,12 @@
 import { type NavigateFunction } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { takeLatest, put, type StrictEffect } from 'redux-saga/effects';
-import { type IUserFetchByIdRequestAttributes, type ApiResponse, type ILoginRequestAttributes, type IForgotPasswordAttributes, type IResetPasswordAttributes, type IResetPasswordVerificationAttributes } from 'validator/interfaces';
+import { type IUserFetchByIdRequestAttributes, type ApiResponse, type ILoginRequestAttributes, type IForgotPasswordAttributes, type IResetPasswordAttributes, type IResetPasswordVerificationAttributes, type IVerifyUserAttributes } from 'validator/interfaces';
 
 import { LOGIN_URL } from '../../../routes/Urls';
 import { removeEmptyStringValues } from '../../../utils/helpers';
 import { ApiRequestAction, type IApiRequestAttributes } from '../../actions/apiActions';
-import { saveAuthSuccessAction, saveAuthFailureAction, authLoginAction, authLoginSuccessAction, authSignOutAction, authSignOutSuccessAction, resetAuthAction, authForgotPasswordAction, authResetPasswordAction, authResetPasswordVerificationAction } from '../../actions/authActions';
+import { saveAuthSuccessAction, saveAuthFailureAction, authLoginAction, authLoginSuccessAction, authSignOutAction, authSignOutSuccessAction, resetAuthAction, authForgotPasswordAction, authResetPasswordAction, authResetPasswordVerificationAction, authVerifyUserAction } from '../../actions/authActions';
 import { resetBusinessAction } from '../../actions/businessActions';
 import { resetHomePageAction } from '../../actions/homePageActions';
 import { resetLeadsPageAction } from '../../actions/leadsPageActions';
@@ -194,6 +194,32 @@ export interface IAuthResetPasswordVerifiedSuccessPayload {
   response: ApiResponse<null>;
 }
 
+export interface IAuthVerifyUserPayload extends IVerifyUserAttributes {}
+
+function* verifyUserSaga({ payload }: { payload: IAuthVerifyUserPayload }): Generator<StrictEffect, void, void> {
+  try {
+    const { id, token } = payload;
+
+    const apiPayload = {
+      url: `/auth/verify/${id}/${token}`,
+      method: 'GET',
+      payload: { isUserVerified: true },
+      onSuccess: 'auth/authVerifyUserSuccessAction',
+      requireAuth: true
+    };
+
+    yield put(ApiRequestAction(apiPayload));
+  } catch (error) {
+    toast.error((error as Error).message);
+    yield put(saveAuthFailureAction());
+  }
+}
+
+export interface IAuthVerifyUserSuccessPayload {
+  request: IApiRequestAttributes<IVerifyUserAttributes, undefined, undefined, { isUserVerified: boolean }>;
+  response: ApiResponse<null>;
+}
+
 export function* watchLoginSaga(): Generator<StrictEffect, void, void> {
   yield takeLatest(authLoginAction, loginSaga);
 }
@@ -208,6 +234,10 @@ export function* watchSignOutSaga(): Generator<StrictEffect, void, void> {
 
 export function* watchSignOutSuccessSaga(): Generator<StrictEffect, void, void> {
   yield takeLatest(authSignOutSuccessAction, signOutSuccessSaga);
+}
+
+export function* watchVerifyUserSaga(): Generator<StrictEffect, void, void> {
+  yield takeLatest(authVerifyUserAction, verifyUserSaga);
 }
 
 export function* watchForgotPasswordSaga(): Generator<StrictEffect, void, void> {
