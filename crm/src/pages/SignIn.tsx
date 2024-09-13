@@ -72,7 +72,7 @@ const _SignIn: React.FC = (): JSX.Element => {
           </FormikProvider>
         </div>
 
-        {/* <div className="mt-6">
+        <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center" aria-hidden="true">
               <div className="w-full border-t border-gray-600 dark:border-charcoal-100" />
@@ -101,7 +101,7 @@ const _SignIn: React.FC = (): JSX.Element => {
               <span className="text-sm font-semibold leading-6 ">GitHub</span>
             </a>
           </div>
-        </div> */}
+        </div>
 
         <div className="mt-6 flex justify-center text-sm leading-6">
           <Link to="/forgot-password" className="font-semibold text-indigo-400 hover:text-indigo-500">

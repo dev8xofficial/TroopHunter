@@ -48,7 +48,7 @@ const SettingsProfile: React.FC = (): JSX.Element => {
       <dl className="space-y-6 divide-y divide-gray-100 text-sm leading-6 lg:mt-6 lg:border-t lg:border-gray-200 dark:border-charcoal-100">
         <FormikProvider value={formik}>
           <Form noValidate onSubmit={formik.handleSubmit} className="space-y-6">
-            {/* <div className="pt-8 sm:flex lg:pt-6">
+            <div className="pt-8 sm:flex lg:pt-6">
               <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
                 <div>
                   <div className="col-span-full flex items-center gap-x-8">
@@ -62,7 +62,7 @@ const SettingsProfile: React.FC = (): JSX.Element => {
                   </div>
                 </div>
               </dd>
-            </div> */}
+            </div>
             <div className="sm:flex xl:pt-6">
               <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-primary-text">First Name</dt>
               <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
