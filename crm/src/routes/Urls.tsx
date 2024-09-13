@@ -7,6 +7,7 @@ import SettingsProfile from '../pages/SettingsProfile';
 import SettingsSecurity from '../pages/SettingsSecurity';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
+import Verified from '../pages/Verified';
 
 export interface URL {
   path: string;
@@ -18,6 +19,7 @@ export const PAGENOTFOUND_URL = '*'; // Wildcard route for PageNotFound
 export const HOME_URL = '/';
 export const LOGIN_URL = '/signin';
 export const SIGNUP_URL = '/signup';
+export const VERIFIED_URL = '/verify/:id/:token';
 export const FORGOTPASSWORD_URL = '/forgot-password';
 export const RESETPASSWORD_URL = '/reset-password/:id/:token';
 export const LEADS_URL = '/leads';
@@ -33,5 +35,6 @@ export const URLS = [
   { path: LEADS_URL, isPublic: false, component: Leads },
   { path: SETTINGS_PROFILE_URL, isPublic: false, component: SettingsProfile },
   { path: SETTINGS_SECURITY_URL, isPublic: false, component: SettingsSecurity },
-  { path: PAGENOTFOUND_URL, isPublic: true, component: PageNotFound } // Add PageNotFound route
+  { path: PAGENOTFOUND_URL, isPublic: true, component: PageNotFound }, // Add PageNotFound route
+  { path: VERIFIED_URL, isPublic: true, component: Verified }
 ];
