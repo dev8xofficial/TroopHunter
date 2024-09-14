@@ -1,4 +1,4 @@
-export const emailTemplate = ({ logo, headerImage, link, firstName, expireTime, heading, startParagraph, endingParagraph, buttonText }: { logo: string; headerImage: string; link: string; firstName: string; expireTime: string; heading: string; startParagraph: string; endingParagraph: string; buttonText: string }): string => {
+export const emailTemplate = ({ logo, headerImage, link, firstName, expireTime, heading, preHeading, startParagraph, endingParagraph, buttonText }: { logo: string; headerImage: string; link: string; firstName: string; expireTime: string; heading: string; preHeading: string, startParagraph: string; endingParagraph: string; buttonText: string }): string => {
   return `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -125,17 +125,17 @@ export const emailTemplate = ({ logo, headerImage, link, firstName, expireTime, 
     <!--<![endif]-->
   </head>
 
-  <body class="clean-body u_body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #c2e0f4; color: #000000">
+  <body class="clean-body u_body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #f3f4f6; color: #000000">
     <div style="display: none; max-height: 0px; overflow: hidden;">
-      Thank you for signing up with TroopHunter!
+    ${preHeading}
     </div>
     <!--[if IE]><div class="ie-container"><![endif]-->
     <!--[if mso]><div class="mso-container"><![endif]-->
-    <table id="u_body" style="border-collapse: collapse; table-layout: fixed; border-spacing: 0; mso-table-lspace: 0pt; mso-table-rspace: 0pt; vertical-align: top; min-width: 320px; margin: 0 auto; background-color: #c2e0f4; width: 100%" cellpadding="0" cellspacing="0">
+    <table id="u_body" style="border-collapse: collapse; table-layout: fixed; border-spacing: 0; mso-table-lspace: 0pt; mso-table-rspace: 0pt; vertical-align: top; min-width: 320px; margin: 0 auto; background-color: #f3f4f6; width: 100%" cellpadding="0" cellspacing="0">
       <tbody>
         <tr style="vertical-align: top">
           <td style="word-break: break-word; border-collapse: collapse !important; vertical-align: top">
-            <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color: #c2e0f4;"><![endif]-->
+            <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color: #f3f4f6;"><![endif]-->
 
             <div class="u-row-container" style="padding: 0px; background-color: transparent">
               <div class="u-row" style="margin: 0 auto; min-width: 320px; max-width: 600px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #ffffff">
@@ -303,7 +303,7 @@ export const emailTemplate = ({ logo, headerImage, link, firstName, expireTime, 
                                       font-size: 14px;
                                     "
                                   >
-                                    <span style="display: block; padding: 12px 70px; line-height: 120%"
+                                    <span style="display: block; padding: 12px 40px; line-height: 120%"
                                       ><strong><span style="font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 16.8px">${buttonText}</span></strong></span
                                     >
                                   </a>
