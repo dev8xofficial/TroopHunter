@@ -29,17 +29,17 @@ export const sendVerificationToken = async (req: Request, res: Response) => {
       algorithm: 'HS256',
     });
 
-    const html = emailTemplate(
-      `${process.env.FRONTEND_URL}/troophunter.png`,
-      `${process.env.FRONTEND_URL}/email-verification.svg`,
-      `${process.env.FRONTEND_URL}/verify/${existingUser.id}/${token}`,
-      existingUser.firstName,
-      `${0.25 * 60} minutes`,
-      'Verify Your Email Address',
-      'Thank you for signing up with TroopHunter! To complete your registration, we need to verify your email address. Simply click the button below to verify your account:',
-      'If you did not create an account with TroopHunter, please ignore this email. ',
-      'V E R I F Y&nbsp; &nbsp;N O W'
-    );
+    const html = emailTemplate({
+      logo: `${process.env.FRONTEND_URL}/troophunter.png`,
+      headerImage: `${process.env.FRONTEND_URL}/user-verification-indigo.png`,
+      link: `${process.env.FRONTEND_URL}/verify/${existingUser.id}/${token}`,
+      firstName: existingUser.firstName,
+      expireTime: `${0.25 * 60} minutes`,
+      heading: 'Verify Your Email Address',
+      startParagraph: 'Thank you for signing up with TroopHunter! To complete your registration, we need to verify your email address. Simply click the button below to verify your account:',
+      endingParagraph: 'If you did not create an account with TroopHunter, please ignore this email. ',
+      buttonText: 'V E R I F Y&nbsp; &nbsp;N O W',
+    });
     const emailResponse = sendEmail(email, 'Verify Your Email', html);
 
     logger.info(`Verify email: ${email}`);
@@ -113,17 +113,17 @@ export const forgotPassword = async (req: Request, res: Response) => {
       algorithm: 'HS256',
     });
 
-    const html = emailTemplate(
-      `${process.env.FRONTEND_URL}/troophunter.png`,
-      `${process.env.FRONTEND_URL}/reset-password.svg`,
-      `${process.env.FRONTEND_URL}/reset-password/${existingUser.id}/${token}`,
-      existingUser.firstName,
-      `${0.25 * 60} minutes`,
-      'Reset Your Password',
-      'We received a request to reset the password for your TroopHunter account. If this was you, please click the button below to reset your password:',
-      'If you did not request a password reset with TroopHunter, please ignore this email.',
-      'R E S E T &nbsp; &nbsp;N O W'
-    );
+    const html = emailTemplate({
+      logo: `${process.env.FRONTEND_URL}/troophunter.png`,
+      headerImage: `${process.env.FRONTEND_URL}/forgot-password.png`,
+      link: `${process.env.FRONTEND_URL}/reset-password/${existingUser.id}/${token}`,
+      firstName: existingUser.firstName,
+      expireTime: `${0.25 * 60} minutes`,
+      heading: 'Reset Your Password',
+      startParagraph: 'We received a request to reset the password for your TroopHunter account. If this was you, please click the button below to reset your password:',
+      endingParagraph: 'If you did not request a password reset with TroopHunter, please ignore this email.',
+      buttonText: 'R E S E T &nbsp; &nbsp;P A S S W O R D',
+    });
     const emailResponse = sendEmail(email, 'Reset Your Password', html);
 
     logger.info(`Forgot Password: ${email}`);
