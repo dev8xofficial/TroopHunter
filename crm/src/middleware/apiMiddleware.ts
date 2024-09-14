@@ -69,8 +69,9 @@ const apiMiddleware: Middleware =
 
           if (!(axiosError.response != null && axiosError.response.status === 406)) {
             if (axiosError.response != null && typeof axiosError.response.data === 'object') {
-              const errorMessage = axiosError.response.data.message as string;
-              toast.error(`${errorMessage}`);
+              const messageText = axiosError.response.data.message as string;
+              const errorText = axiosError.response.data.error as string;
+              toast.error(`${messageText.length > 0 ? messageText : errorText}`);
             } else {
               toast.error(`Failed to execute API. An internal server error occurred.`);
             }
