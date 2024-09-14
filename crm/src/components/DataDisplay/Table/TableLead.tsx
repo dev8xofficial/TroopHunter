@@ -227,18 +227,18 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange, handleR
           <>
             <div className="mx-4 my-0 hidden h-auto flex-col items-center self-stretch whitespace-nowrap border-r sm:flex dark:border-charcoal-100"></div>
             {/* <div className="hidden h-full items-center justify-center whitespace-nowrap sm:flex">{`${draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? `${leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}: ${draftLeadBusinessIds?.length} | ` : ''}Selected: ${leadPageBusinessIds.length} | Total: ${businessesTotalRecords}`}</div> */}
-            <div className="hidden h-full items-center justify-center whitespace-nowrap text-gray-400 sm:flex">
+            <div className="hidden h-full items-center justify-center whitespace-nowrap text-gray-400 sm:flex dark:text-secondary-text">
               {draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? (
                 <>
-                  {leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}:<span className="font-semibold text-gray-500">{draftLeadBusinessIds?.length}</span> |
+                  {leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}:<span className="font-semibold text-gray-500 dark:text-primary-text">{draftLeadBusinessIds?.length}</span> |
                 </>
               ) : null}
               <span>
-                Selected: <span className="font-semibold text-gray-500">{leadPageBusinessIds.length}</span>
+                Selected: <span className="font-semibold text-gray-500 dark:text-primary-text">{leadPageBusinessIds.length}</span>
               </span>
               <span className="mx-1">|</span>
               <span>
-                Filtered: <span className="font-semibold text-gray-500">{businessesTotalRecords}</span>
+                Filtered: <span className="font-semibold text-gray-500 dark:text-primary-text">{businessesTotalRecords}</span>
               </span>
             </div>
           </>
