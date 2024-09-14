@@ -1,4 +1,4 @@
-export const emailTemplate = (logo: string, headerImage: string, link: string, firstName: string, expireTime: string, heading: string, startParagraph: string, endingParagraph: string, buttonText: string): string => {
+export const emailTemplate = ({ logo, headerImage, link, firstName, expireTime, heading, startParagraph, endingParagraph, buttonText } : {logo: string, headerImage: string, link: string, firstName: string, expireTime: string, heading: string, startParagraph: string, endingParagraph: string, buttonText: string}): string => {
   return `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -168,7 +168,7 @@ export const emailTemplate = (logo: string, headerImage: string, link: string, f
                                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
                                   <tr>
                                     <td class="v-text-align" style="padding-right: 0px; padding-left: 0px" align="center">
-                                      <img align="center" border="0" src="${logo}" alt="Logo" title="Logo" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; display: inline-block !important; border: none; height: auto; float: none; width: 40%; max-width: 200px" width="200" class="v-src-width v-src-max-width" />
+                                      <img src="${logo}" alt="Logo" title="Logo" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; display: inline-block !important; border: none; height: auto; float: none; width: 40%; max-width: 200px" width="200" class="v-src-width v-src-max-width" align="center" border="0" />
                                     </td>
                                   </tr>
                                 </table>
@@ -204,7 +204,7 @@ export const emailTemplate = (logo: string, headerImage: string, link: string, f
                                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
                                   <tr>
                                     <td class="v-text-align" style="padding-right: 0px; padding-left: 0px" align="center">
-                                      <img align="center" border="0" src="${headerImage}" alt="Banner" title="Banner" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; display: inline-block !important; border: none; height: auto; float: none; width: 60%; max-width: 545.2px" width="545.2" class="v-src-width v-src-max-width" />
+                                      <img src="${headerImage}" alt="Banner" title="Banner" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; display: inline-block !important; border: none; height: auto; float: none; width: 60%; max-width: 545.2px" width="545.2" class="v-src-width v-src-max-width" align="center" border="0" />
                                     </td>
                                   </tr>
                                 </table>
