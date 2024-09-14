@@ -79,7 +79,7 @@ const _SignUp: React.FC = (): JSX.Element => {
           </FormikProvider>
         </div>
 
-        <div className="mt-6">
+        {/* <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center" aria-hidden="true">
               <div className="w-full border-t border-gray-600 dark:border-charcoal-100" />
@@ -108,7 +108,7 @@ const _SignUp: React.FC = (): JSX.Element => {
               <span className="text-sm font-semibold leading-6">GitHub</span>
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
