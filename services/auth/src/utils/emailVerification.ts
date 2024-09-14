@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-const sendEmail = async (to: string, subject: string, html: string): Promise<any> => {
+const sendEmail = async ({ to, subject, html, text }: { to: string; subject: string; html: string; text: string }): Promise<any> => {
   try {
     const { MAIL_HOST, MAIL_PORT, MAIL_USER, MAIL_PASS, EMAIL_SENDER } = process.env;
 
@@ -23,6 +23,7 @@ const sendEmail = async (to: string, subject: string, html: string): Promise<any
       to,
       subject,
       html,
+      text
     };
 
     const transporter = nodemailer.createTransport(transporterPayload);

@@ -40,7 +40,27 @@ export const sendVerificationToken = async (req: Request, res: Response) => {
       endingParagraph: 'If you did not create an account with TroopHunter, please ignore this email. ',
       buttonText: 'V E R I F Y&nbsp; &nbsp;N O W',
     });
-    const emailResponse = sendEmail(email, 'Verify Your Email', html);
+    const emailResponse = sendEmail({
+      to: email,
+      subject: 'Verify Your Email Address',
+      html: html,
+      text: `
+      Verify Your Email Address
+      
+      Hello ${existingUser.firstName},
+      
+      Thank you for signing up with TroopHunter! To complete your registration, we need to verify your email address. Simply click the button below to verify your account: 
+      
+      [VERIFY NOW](https://www.troophunter.com//verify/${existingUser.id}/${token})
+
+      Please note, for security reasons, this link will expire in 15 minutes. If the link has expired, you can request a new verification link by signing in to your account.
+      
+      If you did not create an account with TroopHunter, please ignore this email.  
+      
+      Thank you,
+      The TroopHunter Team
+      `,
+    });
 
     logger.info(`Verify email: ${email}`);
     logger.info(`Email response: ${emailResponse}`);
@@ -124,7 +144,27 @@ export const forgotPassword = async (req: Request, res: Response) => {
       endingParagraph: 'If you did not request a password reset with TroopHunter, please ignore this email.',
       buttonText: 'R E S E T &nbsp; &nbsp;P A S S W O R D',
     });
-    const emailResponse = sendEmail(email, 'Reset Your Password', html);
+    const emailResponse = sendEmail({
+      to: email,
+      subject: 'Reset Your Password',
+      html: html,
+      text: `
+      Reset Your Password
+      
+      Hello ${existingUser.firstName},
+      
+      We received a request to reset the password for your TroopHunter account. If this was you, please click the button below to reset your password: 
+      
+      [RESET PASSWORD](https://www.troophunter.com//reset-password/${existingUser.id}/${token})
+
+      Please note, for security reasons, this link will expire in 15 minutes. If the link has expired, you can request a new verification link by signing in to your account.
+      
+      If you did not request a password reset with TroopHunter, please ignore this email. 
+      
+      Thank you,
+      The TroopHunter Team
+      `,
+    });
 
     logger.info(`Forgot Password: ${email}`);
     logger.info(`Forgot password response: ${emailResponse}`);
