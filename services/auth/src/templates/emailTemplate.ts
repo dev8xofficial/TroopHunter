@@ -1,4 +1,4 @@
-export const emailTemplate = ({ logo, headerImage, link, firstName, expireTime, heading, startParagraph, endingParagraph, buttonText } : {logo: string, headerImage: string, link: string, firstName: string, expireTime: string, heading: string, startParagraph: string, endingParagraph: string, buttonText: string}): string => {
+export const emailTemplate = ({ logo, headerImage, link, firstName, expireTime, heading, startParagraph, endingParagraph, buttonText }: { logo: string; headerImage: string; link: string; firstName: string; expireTime: string; heading: string; startParagraph: string; endingParagraph: string; buttonText: string }): string => {
   return `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -126,6 +126,9 @@ export const emailTemplate = ({ logo, headerImage, link, firstName, expireTime, 
   </head>
 
   <body class="clean-body u_body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #c2e0f4; color: #000000">
+    <div style="display: none; max-height: 0px; overflow: hidden;">
+      Thank you for signing up with TroopHunter!
+    </div>
     <!--[if IE]><div class="ie-container"><![endif]-->
     <!--[if mso]><div class="mso-container"><![endif]-->
     <table id="u_body" style="border-collapse: collapse; table-layout: fixed; border-spacing: 0; mso-table-lspace: 0pt; mso-table-rspace: 0pt; vertical-align: top; min-width: 320px; margin: 0 auto; background-color: #c2e0f4; width: 100%" cellpadding="0" cellspacing="0">
