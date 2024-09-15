@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Form, FormikProvider, useFormik } from 'formik';
+import { Helmet } from 'react-helmet-async';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -31,6 +32,12 @@ const _ForgotPassword: React.FC = (): JSX.Element => {
 
   return (
     <>
+      <Helmet>
+        <title>Forgot Password - TroopHunter</title>
+        <meta name="description" content="Forgot your password? Recover it here and regain access to your TroopHunter account." />
+        <link rel="canonical" href="https://www.troophunter.com/forgot-password" />
+      </Helmet>
+
       <div>
         <img className="h-8" src={String(logo)} alt="TroopHunter" />
         {/* <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>

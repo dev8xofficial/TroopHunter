@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { CheckIcon } from '@heroicons/react/20/solid';
+import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
@@ -26,6 +27,12 @@ const PageNotFound: React.FC = (): JSX.Element => {
 
   return (
     <>
+      <Helmet>
+        <title>Account Verified - TroopHunter</title>
+        <meta name="description" content="Your account has been successfully verified. You can now access all features of TroopHunter." />
+        <link rel="canonical" href="https://www.troophunter.com/verify/:id/:token" />
+      </Helmet>
+
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div>
           {auth.isUserVerified ? <CheckIcon className="h-8 text-green-500" /> : <p className="text-base font-semibold text-red-600">500</p>}

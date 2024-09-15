@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Form, FormikProvider, useFormik } from 'formik';
+import { Helmet } from 'react-helmet-async';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -39,6 +40,12 @@ const _SignUp: React.FC = (): JSX.Element => {
 
   return (
     <>
+      <Helmet>
+        <title>Sign Up - TroopHunter</title>
+        <meta name="description" content="Sign up for TroopHunter to start finding the right clients and grow your business." />
+        <link rel="canonical" href="https://www.troophunter.com/signup" />
+      </Helmet>
+
       <div>
         <img className="h-8" src={String(logo)} alt="TroopHunter" />
         <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">

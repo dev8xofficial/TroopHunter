@@ -69,5 +69,5 @@ module.exports = {
       }
     }
   },
-  ignorePatterns: ['tailwind.config.cjs', 'vite.config.ts', 'postcss.config.cjs']
+  ignorePatterns: ['tailwind.config.cjs', 'vite.config.ts', 'postcss.config.cjs', 'sitemap.js']
 };
