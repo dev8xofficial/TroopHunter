@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "plugin:import/recommended", "plugin:react/recommended", "plugin:react-hooks/recommended", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking", "standard-with-typescript", "plugin:prettier/recommended", "prettier", "eslint-config-prettier"],
+  "extends": ["next/core-web-vitals", "eslint:recommended", "plugin:import/recommended", "plugin:react/recommended", "plugin:react-hooks/recommended", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking", "standard-with-typescript", "plugin:prettier/recommended", "prettier", "eslint-config-prettier"],
   "overrides": [
     {
       "env": {
@@ -19,7 +19,7 @@
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": "./tsconfig.json"
+    "project": "./website/tsconfig.json"
   },
   "plugins": ["@typescript-eslint", "react", "react-hooks"],
   "rules": {
