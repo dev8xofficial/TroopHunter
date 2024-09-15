@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 
 import Table from '../components/DataDisplay/Table/TableLeads';
@@ -12,6 +13,12 @@ const Leads: React.FC = (): JSX.Element => {
   const isLeadPageLoading = home.isLoading;
   return (
     <>
+      <Helmet>
+        <title>Leads - TroopHunter</title>
+        <meta name="description" content="View and manage your leads on TroopHunter to efficiently follow up and convert potential clients." />
+        <link rel="canonical" href="https://www.troophunter.com/leads" />
+      </Helmet>
+
       {/* Advanced Search */}
       {/* <header>
         <div className="hidden w-full items-center justify-center space-x-8 border-b bg-gray-800 xl:flex dark:border-charcoal-100 dark:bg-charcoal-500">

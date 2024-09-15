@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Form, FormikProvider, useFormik } from 'formik';
+import { Helmet } from 'react-helmet-async';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -35,6 +36,12 @@ const _SignIn: React.FC = (): JSX.Element => {
 
   return (
     <>
+      <Helmet>
+        <title>Sign In - TroopHunter</title>
+        <meta name="description" content="Sign in to TroopHunter to access your account and manage your lead generation activities." />
+        <link rel="canonical" href="https://www.troophunter.com/signin" />
+      </Helmet>
+
       <div>
         <img className="h-8" src={String(logo)} alt="TroopHunter" />
         {/* <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2> */}
@@ -65,7 +72,7 @@ const _SignIn: React.FC = (): JSX.Element => {
 
               <div className="pt-6">
                 <Button type="submit" variant="contained" color="indigo" className="w-full" disabled={!formik.dirty}>
-                  Sign in
+                  Sign In
                 </Button>
               </div>
             </Form>
