@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Form, FormikProvider, useFormik } from 'formik';
+import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { type IUserAttributes } from 'validator';
 
@@ -45,6 +46,12 @@ const SettingsProfile: React.FC = (): JSX.Element => {
 
   return (
     <SettingsLayout>
+      <Helmet>
+        <title>Profile Settings - TroopHunter</title>
+        <meta name="description" content="Update your profile settings on TroopHunter to keep your account information up to date." />
+        <link rel="canonical" href="https://www.troophunter.com/settings/profile" />
+      </Helmet>
+
       <dl className="space-y-6 divide-y divide-gray-100 text-sm leading-6 lg:mt-6 lg:border-t lg:border-gray-200 dark:border-charcoal-100">
         <FormikProvider value={formik}>
           <Form noValidate onSubmit={formik.handleSubmit} className="space-y-6">

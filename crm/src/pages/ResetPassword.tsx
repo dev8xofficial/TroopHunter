@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { Form, FormikProvider, useFormik } from 'formik';
+import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
@@ -53,6 +54,12 @@ const _ResetPassword: React.FC = (): JSX.Element => {
 
   return (
     <>
+      <Helmet>
+        <title>Reset Password - TroopHunter</title>
+        <meta name="description" content="Reset your password to access your TroopHunter account securely." />
+        <link rel="canonical" href="https://www.troophunter.com/reset-password/:id/:token" />
+      </Helmet>
+
       <div>
         <img className="h-8" src={String(logo)} alt="TroopHunter" />
         {/* <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
