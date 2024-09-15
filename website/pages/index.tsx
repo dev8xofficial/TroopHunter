@@ -4,8 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
-import Header from '../components/header/header';
-import VideoModal from '../components/Modals/VideoModal';
+import Header from '../components/Surfaces/Header/Header';
+import VideoModal from '../components/Feedback/VideoDialog/VideoDialog';
 import va from '@vercel/analytics';
 
 export default function Home() {
@@ -30,24 +30,6 @@ export default function Home() {
               </h1>
               <p className="text-lg text-zinc-600 sm:pr-5">I build innovative and secure web applications using various programming languages and technologies such as HTML, CSS, JavaScript, React, and Next.js.</p>
             </div>
-            {/* <div className="lg:w-[80%] sm:-mb-[15%]">
-              <h1 className="text-3xl sm:text-[35px] text-zinc-800 leading-[1.1] font-semibold mb-4">
-                I am Abdul Rehman, <br className="block sm:hidden" /> Full Stack
-                Developer based in Pakistan
-              </h1>
-              <p className="text-zinc-600 text-lg mb-4">
-                I build innovative and secure web applications using various
-                programming languages and technologies such as HTML, CSS,
-                JavaScript, React, Node.js, and MongoDB.
-              </p>
-
-              <button
-                type="button"
-                className="rounded-md bg-teal-600 py-2 px-4 text-sm transition font-semibold text-white shadow-sm hover:bg-teal-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
-              >
-                Projects
-              </button>
-            </div> */}
           </div>
         </section>
         <section className="-mx-16 hidden translate-y-[45%] transform justify-between space-x-8 lg:flex">
@@ -130,22 +112,6 @@ export default function Home() {
                     <i className="fab fa-facebook-f"></i>
                   </a>
                 </li>
-                {/* <li>
-                  <a
-                    href="#"
-                    className="text-xl hover:text-teal-600 p-0.5 transition"
-                  >
-                    <i className="fab fa-instagram"></i>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-xl hover:text-teal-600 p-0.5 transition"
-                  >
-                    <i className="fab fa-twitter"></i>
-                  </a>
-                </li> */}
 
                 <li>
                   <a href="https://www.linkedin.com/in/helloabdul" className="p-0.5 text-xl transition hover:text-teal-600">

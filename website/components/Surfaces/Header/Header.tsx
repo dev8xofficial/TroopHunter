@@ -2,7 +2,7 @@ import { Menu, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import React, { Fragment, useEffect, useState } from 'react';
 import { Bars2Icon, Bars3Icon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/20/solid';
-import { classNames } from '../../utils/helpers';
+import { classNames } from '../../../utils/helpers';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
