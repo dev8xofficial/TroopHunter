@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/24/outline";
+import React, { Fragment, useEffect, useRef, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { CheckIcon } from '@heroicons/react/24/outline';
 
 export default function VideoModal({ open, setOpen, src }) {
   const videoRef = useRef(null);
@@ -17,22 +17,9 @@ export default function VideoModal({ open, setOpen, src }) {
   }, [open]);
 
   return (
-    <div
-      className={`w-full min-h-screen fixed top-0 left-0 z-50 bg-black bg-opacity-70 transition duration-300 ${
-        open
-          ? "pointer-events-auto opacity-100"
-          : "pointer-events-none opacity-0"
-      }`}
-    >
-      <div
-        className="w-full z-40 top-0 left-0 h-full absolute"
-        onClick={() => setOpen(false)}
-      ></div>
-      <div
-        className={`transform absolute z-50 ${
-          open ? "top-1/2" : "top-[60%]"
-        } left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl bg-white text-left shadow-xl transition-all w-[95%] sm:max-w-5xl`}
-      >
+    <div className={`fixed left-0 top-0 z-50 min-h-screen w-full bg-black bg-opacity-70 transition duration-300 ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}>
+      <div className="absolute left-0 top-0 z-40 h-full w-full" onClick={() => setOpen(false)}></div>
+      <div className={`absolute z-50 transform ${open ? 'top-1/2' : 'top-[60%]'} left-1/2 w-[95%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl bg-white text-left shadow-xl transition-all sm:max-w-5xl`}>
         <div>
           <video ref={videoRef} src={src} controls></video>
         </div>
