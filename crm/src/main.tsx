@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { ToastContainer, Flip } from 'react-toastify';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -19,7 +20,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={true} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover transition={Flip} />
-        <App />
+
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>

@@ -1,6 +1,7 @@
 import React, { type KeyboardEvent, useEffect, useRef, useState, type ChangeEvent } from 'react';
 
 import { ChevronLeftIcon } from '@heroicons/react/20/solid';
+import { Helmet } from 'react-helmet-async';
 import { useSelector, useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { type IUserAttributes, type ILeadAttributes } from 'validator/interfaces';
@@ -183,6 +184,12 @@ const Lead: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Home - TroopHunter</title>
+        <meta name="description" content="Welcome to TroopHunter, your go-to tool for lead generation and finding the right clients." />
+        <link rel="canonical" href="https://www.troophunter.com/" />
+      </Helmet>
+
       {/* Action tab */}
       {/* <div className="xl:hidden">
         <ActionBar title="Lead" isLoading={isLeadLoading} />

@@ -1,8 +1,16 @@
 import React from 'react';
 
+import { Helmet } from 'react-helmet-async';
+
 const PageNotFound: React.FC = (): JSX.Element => {
   return (
     <>
+      <Helmet>
+        <title>Page Not Found - TroopHunter</title>
+        <meta name="description" content="The page you are looking for does not exist on TroopHunter. Return to the homepage or contact support." />
+        <link rel="canonical" href="https://www.troophunter.com/page-not-found" />
+      </Helmet>
+
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div>
           <p className="text-base font-semibold text-red-600">404</p>
