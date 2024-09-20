@@ -19,7 +19,7 @@ const sendEmail = async ({ to, subject, html, text }: { to: string; subject: str
     };
 
     const infoPayload = {
-      from: `"TroopHunter" <${EMAIL_SENDER}>`,
+      from: `"Team TroopHunter" <${EMAIL_SENDER}>`,
       to,
       subject,
       html,
