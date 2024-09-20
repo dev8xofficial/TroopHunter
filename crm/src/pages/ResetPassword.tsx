@@ -57,6 +57,20 @@ const _ResetPassword: React.FC = (): JSX.Element => {
         <title>Reset Password - TroopHunter</title>
         <meta name="description" content="Reset your password to access your TroopHunter account securely." />
         <link rel="canonical" href="https://www.troophunter.com/reset-password/:id/:token" />
+
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Reset Password - TroopHunter" />
+        <meta property="og:description" content="Reset your password to access your TroopHunter account securely." />
+        <meta property="og:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta property="og:url" content="https://www.troophunter.com" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Reset Password - TroopHunter" />
+        <meta name="twitter:description" content="Reset your password to access your TroopHunter account securely." />
+        <meta name="twitter:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
       <div>

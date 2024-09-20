@@ -185,9 +185,23 @@ const Lead: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Home - TroopHunter</title>
+        <title>Find Leads - TroopHunter</title>
         <meta name="description" content="Welcome to TroopHunter, your go-to tool for lead generation and finding the right clients." />
         <link rel="canonical" href="https://www.troophunter.com/" />
+
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Find Leads - TroopHunter" />
+        <meta property="og:description" content="Welcome to TroopHunter, your go-to tool for lead generation and finding the right clients." />
+        <meta property="og:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta property="og:url" content="https://www.troophunter.com" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Find Leads - TroopHunter" />
+        <meta name="twitter:description" content="Welcome to TroopHunter, your go-to tool for lead generation and finding the right clients." />
+        <meta name="twitter:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
       {/* Action tab */}
