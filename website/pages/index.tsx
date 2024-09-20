@@ -150,7 +150,7 @@ export default function Home() {
         {/* Open Graph Tags */}
         <meta property="og:title" content="TroopHunter - Find your next client!" />
         <meta property="og:description" content="TroopHunter simplifies finding and connecting with businesses around the world." />
-        <meta property="og:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta property="og:image" content="https://www.troophunter.com/logo-social.svg" />
         <meta property="og:url" content="https://www.troophunter.com" />
         <meta property="og:type" content="website" />
 
@@ -158,7 +158,7 @@ export default function Home() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="TroopHunter - Find your next client!" />
         <meta name="twitter:description" content="TroopHunter simplifies finding and connecting with businesses around the world." />
-        <meta name="twitter:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.svg" />
         <meta name="twitter:site" content="@TroopHunter" />
       </Head>
       {/* Main container with smooth-scrollbar */}
