@@ -18,10 +18,10 @@ export default function Document() {
         <meta name="twitter:image" content="https://www.troophunter.com/troophunter.png" />
         <meta name="twitter:site" content="@TroopHunter" />
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.svg" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon-32x32.svg" />
-        <link rel="icon" type="image/svg+xml" sizes="16x16" href="/favicon-16x16.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="https://www.troophunter.com/apple-touch-icon.svg" />
+        <link rel="icon" type="image/x-icon" href="https://www.troophunter.com/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" sizes="32x32" href="https://www.troophunter.com/favicon-32x32.svg" />
+        <link rel="icon" type="image/svg+xml" sizes="16x16" href="https://www.troophunter.com/favicon-16x16.svg" />
 
         {/* <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
