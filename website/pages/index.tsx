@@ -143,17 +143,23 @@ export default function Home() {
   return (
     <>
       <Head>
-        <link rel="preload" href="/fonts/light.otf" as="font" crossOrigin="" type="font/otf"></link>
-        <link rel="preload" href="/fonts/light-italic.otf" as="font" crossOrigin="" type="font/otf"></link>
-        <link rel="preload" href="/fonts/regular.otf" as="font" crossOrigin="" type="font/otf"></link>
-        <link rel="preload" href="/fonts/bold.otf" as="font" crossOrigin="" type="font/otf"></link>
-        <link rel="preload" href="/fonts/italic.otf" as="font" crossOrigin="" type="font/otf"></link>
-        <link rel="preload" href="/fonts/medium.otf" as="font" crossOrigin="" type="font/otf"></link>
-        <link rel="preload" href="/fonts/medium-italic.otf" as="font" crossOrigin="" type="font/otf"></link>
-        <link rel="preload" href="/fonts/bold.otf" as="font" crossOrigin="" type="font/otf"></link>
-        <link rel="preload" href="/fonts/bold-italic.otf" as="font" crossOrigin="" type="font/otf"></link>
         <title>TroopHunter - Find your next client!</title>
+        <meta name="description" content="TroopHunter simplifies finding and connecting with businesses around the world." />
         <link rel="canonical" href="https://www.troophunter.com/" />
+
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="TroopHunter - Find your next client!" />
+        <meta property="og:description" content="TroopHunter simplifies finding and connecting with businesses around the world." />
+        <meta property="og:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta property="og:url" content="https://www.troophunter.com" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="TroopHunter - Find your next client!" />
+        <meta name="twitter:description" content="TroopHunter simplifies finding and connecting with businesses around the world." />
+        <meta name="twitter:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta name="twitter:site" content="@TroopHunter" />
       </Head>
       {/* Main container with smooth-scrollbar */}
       <main className="relative min-h-screen leading-relaxed font-medium h-full max-h-screen transition-colors duration-500 ease-in-out" id="smooth-scrollbar">
