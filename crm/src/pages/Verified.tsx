@@ -35,7 +35,7 @@ const PageNotFound: React.FC = (): JSX.Element => {
         {/* Open Graph Tags */}
         <meta property="og:title" content="Account Verified - TroopHunter" />
         <meta property="og:description" content="Your account has been successfully verified. You can now access all features of TroopHunter." />
-        <meta property="og:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta property="og:image" content="https://www.troophunter.com/logo-social.svg" />
         <meta property="og:url" content="https://www.troophunter.com" />
         <meta property="og:type" content="website" />
 
@@ -43,7 +43,7 @@ const PageNotFound: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Account Verified - TroopHunter" />
         <meta name="twitter:description" content="Your account has been successfully verified. You can now access all features of TroopHunter." />
-        <meta name="twitter:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.svg" />
         <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 

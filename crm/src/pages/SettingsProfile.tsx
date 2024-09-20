@@ -54,7 +54,7 @@ const SettingsProfile: React.FC = (): JSX.Element => {
         {/* Open Graph Tags */}
         <meta property="og:title" content="Profile Settings - TroopHunter" />
         <meta property="og:description" content="Update your profile settings on TroopHunter to keep your account information up to date." />
-        <meta property="og:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta property="og:image" content="https://www.troophunter.com/logo-social.svg" />
         <meta property="og:url" content="https://www.troophunter.com" />
         <meta property="og:type" content="website" />
 
@@ -62,7 +62,7 @@ const SettingsProfile: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Profile Settings - TroopHunter" />
         <meta name="twitter:description" content="Update your profile settings on TroopHunter to keep your account information up to date." />
-        <meta name="twitter:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.svg" />
         <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
