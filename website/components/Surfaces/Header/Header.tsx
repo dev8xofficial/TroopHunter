@@ -99,7 +99,7 @@ const Header = () => {
         <div className="items-center gap-[3.75rem] grid-template-columns-auto-1fr-auto grid px-[var(--container-gutter)] w-full h-[5.3125rem]">
           <a className="transform transition-[color_.4s_ease-in-out] z-10 text-[var(--theme-logo,var(--theme-secondary))]" aria-hidden="true" tabIndex={-1} href="/">
             <span className="hidden">Home</span>
-            <img className="mx-auto h-8" src="/logo/TroopHunter-style.svg" alt="TroopHunter" />
+            <img className="mx-auto h-8" src="https://www.troophunter.com/troophunter.svg" alt="TroopHunter" />
           </a>
           <div></div>
           <div className="transform transition-[color_.4s_ease-in-out] z-10 color-[var(--theme-header-face,var(--theme-secondary))] col-start-3 col-end-auto h-[50px] w-[50px] touch-none relative">
