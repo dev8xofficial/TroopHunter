@@ -39,7 +39,7 @@ const _ForgotPassword: React.FC = (): JSX.Element => {
         {/* Open Graph Tags */}
         <meta property="og:title" content="Forgot Password - TroopHunter" />
         <meta property="og:description" content="Forgot your password? Recover it here and regain access to your TroopHunter account." />
-        <meta property="og:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta property="og:image" content="https://www.troophunter.com/logo-social.svg" />
         <meta property="og:url" content="https://www.troophunter.com" />
         <meta property="og:type" content="website" />
 
@@ -47,12 +47,12 @@ const _ForgotPassword: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Forgot Password - TroopHunter" />
         <meta name="twitter:description" content="Forgot your password? Recover it here and regain access to your TroopHunter account." />
-        <meta name="twitter:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.svg" />
         <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
       <div>
-        <img className="h-8" src="https://www.troophunter.com/troophunter.svg" alt="TroopHunter" />
+        <img className="h-8" src="https://www.troophunter.com/logo.svg" alt="TroopHunter" />
         {/* <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
         <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Already a member?{' '}

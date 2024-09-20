@@ -30,7 +30,7 @@ export const sendVerificationToken = async (req: Request, res: Response) => {
     });
 
     const html = emailTemplate({
-      logo: `${process.env.FRONTEND_URL}/troophunter.png`,
+      logo: `${process.env.FRONTEND_URL}/logo.png`,
       headerImage: `${process.env.FRONTEND_URL}/user-verification-indigo.png`,
       link: `${process.env.FRONTEND_URL}/verify/${existingUser.id}/${token}`,
       firstName: existingUser.firstName,
@@ -135,7 +135,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
     });
 
     const html = emailTemplate({
-      logo: `${process.env.FRONTEND_URL}/troophunter.png`,
+      logo: `${process.env.FRONTEND_URL}/logo.png`,
       headerImage: `${process.env.FRONTEND_URL}/forgot-password.png`,
       link: `${process.env.FRONTEND_URL}/reset-password/${existingUser.id}/${token}`,
       firstName: existingUser.firstName,
