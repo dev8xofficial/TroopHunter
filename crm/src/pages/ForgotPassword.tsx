@@ -35,6 +35,20 @@ const _ForgotPassword: React.FC = (): JSX.Element => {
         <title>Forgot Password - TroopHunter</title>
         <meta name="description" content="Forgot your password? Recover it here and regain access to your TroopHunter account." />
         <link rel="canonical" href="https://www.troophunter.com/forgot-password" />
+
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Forgot Password - TroopHunter" />
+        <meta property="og:description" content="Forgot your password? Recover it here and regain access to your TroopHunter account." />
+        <meta property="og:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta property="og:url" content="https://www.troophunter.com" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Forgot Password - TroopHunter" />
+        <meta name="twitter:description" content="Forgot your password? Recover it here and regain access to your TroopHunter account." />
+        <meta name="twitter:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
       <div>
