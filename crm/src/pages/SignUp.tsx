@@ -43,6 +43,20 @@ const _SignUp: React.FC = (): JSX.Element => {
         <title>Sign Up - TroopHunter</title>
         <meta name="description" content="Sign up for TroopHunter to start finding the right clients and grow your business." />
         <link rel="canonical" href="https://www.troophunter.com/signup" />
+
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Sign Up - TroopHunter" />
+        <meta property="og:description" content="Sign up for TroopHunter to start finding the right clients and grow your business." />
+        <meta property="og:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta property="og:url" content="https://www.troophunter.com" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sign Up - TroopHunter" />
+        <meta name="twitter:description" content="Sign up for TroopHunter to start finding the right clients and grow your business." />
+        <meta name="twitter:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
       <div>

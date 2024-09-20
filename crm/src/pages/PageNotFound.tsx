@@ -9,6 +9,20 @@ const PageNotFound: React.FC = (): JSX.Element => {
         <title>Page Not Found - TroopHunter</title>
         <meta name="description" content="The page you are looking for does not exist on TroopHunter. Return to the homepage or contact support." />
         <link rel="canonical" href="https://www.troophunter.com/page-not-found" />
+
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Page Not Found - TroopHunter" />
+        <meta property="og:description" content="The page you are looking for does not exist on TroopHunter. Return to the homepage or contact support." />
+        <meta property="og:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta property="og:url" content="https://www.troophunter.com" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Page Not Found - TroopHunter" />
+        <meta name="twitter:description" content="The page you are looking for does not exist on TroopHunter. Return to the homepage or contact support." />
+        <meta name="twitter:image" content="https://www.troophunter.com/troophunter.png" />
+        <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
