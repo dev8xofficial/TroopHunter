@@ -7,7 +7,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '../components/Inputs/Button/Button';
 import TextField from '../components/Inputs/TextField/TextField';
-import logo from '../images/logo/TroopHunter-style.svg';
 import { authRegisterAction } from '../store/actions/authActions';
 import { type ISignUpFormValues } from '../types/formik';
 
@@ -47,7 +46,7 @@ const _SignUp: React.FC = (): JSX.Element => {
       </Helmet>
 
       <div>
-        <img className="h-8" src={String(logo)} alt="TroopHunter" />
+        <img className="h-8" src="https://www.troophunter.com/troophunter.svg" alt="TroopHunter" />
         <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Already a member?{' '}
           <Link to="/signin" className="font-semibold text-indigo-500 hover:text-indigo-600">

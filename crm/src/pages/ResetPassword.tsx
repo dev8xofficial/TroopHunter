@@ -7,7 +7,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import Button from '../components/Inputs/Button/Button';
 import TextField from '../components/Inputs/TextField/TextField';
-import logo from '../images/logo/TroopHunter-style.svg';
 import { authResetPasswordAction, authResetPasswordVerificationAction } from '../store/actions/authActions';
 import { type IAuthState } from '../store/reducers/authReducer';
 import { type IResetPasswordFormmValues } from '../types/formik';
@@ -61,7 +60,7 @@ const _ResetPassword: React.FC = (): JSX.Element => {
       </Helmet>
 
       <div>
-        <img className="h-8" src={String(logo)} alt="TroopHunter" />
+        <img className="h-8" src="https://www.troophunter.com/troophunter.svg" alt="TroopHunter" />
         {/* <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
         <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Already a member?{' '}

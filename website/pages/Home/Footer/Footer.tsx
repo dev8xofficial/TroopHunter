@@ -53,7 +53,7 @@ const Footer: React.FC = (): JSX.Element => {
           </div> */}
           <div className="pt-[3.75rem] text-[clamp(.8125rem,.8597883598vw,1.080625rem)] gap-[1.875rem] items-center flex-col flex transform transition-[border-color_.4s] border-t border-[var(--theme-primary)] mt-[clamp(.5rem,.5291005291vw,.665rem)] row-start-[bottom] col-start-[bottom] row-end-[bottom] col-end-[bottom] lg:gap-[clamp(2.875rem,3.0423280423vw,3.82375rem)] lg:p-[clamp(1.875rem,1.9841269841vw,2.49375rem)_0] lg:flex-row lg:mt-0">
             <div className="gap-[clamp(1rem,1.0582010582vw,1.33rem)] items-center flex">
-              <img className="mx-auto h-5" src="/logo/TroopHunter-style.svg" alt="TroopHunter" />
+              <img className="mx-auto h-5" src="https://www.troophunter.com/troophunter.svg" alt="TroopHunter" />
               <span className="opacity-50 text-[var(--theme-secondary)]">
                 © 2024{' '}
                 <a href="" className="text-inherit underline">
