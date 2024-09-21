@@ -1,15 +1,16 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 import Header from '../components/Surfaces/Header/Header';
-import Hero from './Home/Hero/Hero';
 import FeatureVideo from './Home/FeatureVideo/FeatureVideo';
-import Testimonials from './Home/Testimonials/Testimonials';
 import Work from './Home/Work/Work';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Scrollbar from 'smooth-scrollbar';
 import About from './Home/About/About';
 import Footer from './Home/Footer/Footer';
+import Steps from './Home/Steps/Steps';
+import TestimonialsLarge from './Home/Testimonials/TestimonialsLarge';
+import Hero from './Home/Hero/Hero';
 
 type ScrollTriggerCallback = () => void;
 
@@ -144,22 +145,25 @@ export default function Home() {
     <>
       <Head>
         <title>TroopHunter - Find your next client!</title>
-        <meta name="description" content="TroopHunter simplifies finding and connecting with businesses around the world." />
+        <meta name="description" content="TroopHunter simplifies finding and connecting with businesses around the world."></meta>
         <link rel="canonical" href="https://www.troophunter.com/" />
 
         {/* Open Graph Tags */}
-        <meta property="og:title" content="TroopHunter - Find your next client!" />
-        <meta property="og:description" content="TroopHunter simplifies finding and connecting with businesses around the world." />
-        <meta property="og:image" content="https://www.troophunter.com/logo-social.svg" />
-        <meta property="og:url" content="https://www.troophunter.com" />
-        <meta property="og:type" content="website" />
+        <meta property="og:title" content="TroopHunter - Find your next client!"></meta>
+        <meta property="og:description" content="TroopHunter simplifies finding and connecting with businesses around the world."></meta>
+        <meta property="og:url" content="https://www.troophunter.com"></meta>
+        <meta property="og:locale" content="en_US"></meta>
+        <meta property="og:image" content="https://www.troophunter.com/logo-social.png"></meta>
+        <meta property="og:image:secure_url" content="https://www.troophunter.com/logo-social.png"></meta>
+        <meta property="og:type" content="website"></meta>
+        <meta property="og:site_name" content="TroopHunter"></meta>
 
         {/* Twitter Card Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="TroopHunter - Find your next client!" />
-        <meta name="twitter:description" content="TroopHunter simplifies finding and connecting with businesses around the world." />
-        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.svg" />
-        <meta name="twitter:site" content="@TroopHunter" />
+        <meta name="twitter:card" content="summary_large_image"></meta>
+        <meta name="twitter:title" content="TroopHunter - Find your next client!"></meta>
+        <meta name="twitter:description" content="TroopHunter simplifies finding and connecting with businesses around the world."></meta>
+        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.png"></meta>
+        <meta name="twitter:site" content="@TroopHunter"></meta>
       </Head>
       {/* Main container with smooth-scrollbar */}
       <main className="relative min-h-screen leading-relaxed font-medium h-full max-h-screen transition-colors duration-500 ease-in-out" id="smooth-scrollbar">
@@ -171,11 +175,14 @@ export default function Home() {
           <FeatureVideo />
         </section>
         <section id="testimonials-section">
-          <Testimonials />
+          <TestimonialsLarge />
         </section>
         <div className="grid">
           <section id="work-section">
             <Work />
+          </section>
+          <section>
+            <Steps />
           </section>
           <section>
             <About />
