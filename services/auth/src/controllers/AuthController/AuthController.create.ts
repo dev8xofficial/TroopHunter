@@ -52,7 +52,7 @@ export const sendVerificationToken = async (req: Request, res: Response) => {
       
       Thank you for signing up with TroopHunter! To complete your registration, we need to verify your email address. Simply click the button below to verify your account: 
       
-      [VERIFY NOW](https://www.troophunter.com//verify/${existingUser.id}/${token})
+      [VERIFY NOW](${process.env.FRONTEND_URL}/verify/${existingUser.id}/${token})
 
       Please note, for security reasons, this link will expire in 15 minutes. If the link has expired, you can request a new verification link by signing in to your account.
       
@@ -157,7 +157,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
       
       We received a request to reset the password for your TroopHunter account. If this was you, please click the button below to reset your password: 
       
-      [RESET PASSWORD](https://www.troophunter.com//reset-password/${existingUser.id}/${token})
+      [RESET PASSWORD](${process.env.FRONTEND_URL}/reset-password/${existingUser.id}/${token})
 
       Please note, for security reasons, this link will expire in 15 minutes. If the link has expired, you can request a new verification link by signing in to your account.
       

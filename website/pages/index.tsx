@@ -146,15 +146,15 @@ export default function Home() {
       <Head>
         <title>TroopHunter - Find your next client!</title>
         <meta name="description" content="TroopHunter simplifies finding and connecting with businesses around the world."></meta>
-        <link rel="canonical" href="https://www.troophunter.com/" />
+        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="TroopHunter - Find your next client!"></meta>
         <meta property="og:description" content="TroopHunter simplifies finding and connecting with businesses around the world."></meta>
-        <meta property="og:url" content="https://www.troophunter.com"></meta>
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}`}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content="https://www.troophunter.com/logo-social.png"></meta>
-        <meta property="og:image:secure_url" content="https://www.troophunter.com/logo-social.png"></meta>
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/logo-social.png`}></meta>
+        <meta property="og:image:secure_url" content={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/logo-social.png`}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="TroopHunter"></meta>
 
@@ -162,7 +162,7 @@ export default function Home() {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content="TroopHunter - Find your next client!"></meta>
         <meta name="twitter:description" content="TroopHunter simplifies finding and connecting with businesses around the world."></meta>
-        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.png"></meta>
+        <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/logo-social.png`}></meta>
         <meta name="twitter:site" content="@TroopHunter"></meta>
       </Head>
       {/* Main container with smooth-scrollbar */}
