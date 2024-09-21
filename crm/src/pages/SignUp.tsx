@@ -42,15 +42,15 @@ const _SignUp: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Sign Up - TroopHunter</title>
         <meta name="description" content="Sign up for TroopHunter to start finding the right clients and grow your business." />
-        <link rel="canonical" href="https://www.app.troophunter.com/signup" />
+        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/signup`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Sign Up - TroopHunter" />
         <meta property="og:description" content="Sign up for TroopHunter to start finding the right clients and grow your business." />
-        <meta property="og:url" content="https://www.app.troophunter.com/signup" />
+        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/signup`} />
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content="https://www.troophunter.com/logo-social.png" />
-        <meta property="og:image:secure_url" content="https://www.troophunter.com/logo-social.png"></meta>
+        <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
+        <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
         <meta property="og:type" content="product" />
         <meta property="og:site_name" content="TroopHunter"></meta>
 
@@ -58,12 +58,12 @@ const _SignUp: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Sign Up - TroopHunter" />
         <meta name="twitter:description" content="Sign up for TroopHunter to start finding the right clients and grow your business." />
-        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.png" />
+        <meta name="twitter:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
         <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
       <div>
-        <img className="h-8" src="https://www.troophunter.com/logo.svg" alt="TroopHunter" />
+        <img className="h-8" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo.svg`} alt="TroopHunter" />
         <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Already a member?{' '}
           <Link to="/signin" className="font-semibold text-indigo-500 hover:text-indigo-600">
