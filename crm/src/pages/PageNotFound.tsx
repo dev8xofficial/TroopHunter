@@ -13,15 +13,17 @@ const PageNotFound: React.FC = (): JSX.Element => {
         {/* Open Graph Tags */}
         <meta property="og:title" content="Page Not Found - TroopHunter" />
         <meta property="og:description" content="The page you are looking for does not exist on TroopHunter. Return to the homepage or contact support." />
-        <meta property="og:image" content="https://www.troophunter.com/logo-social.svg" />
         <meta property="og:url" content="https://www.troophunter.com" />
-        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US"></meta>
+        <meta property="og:image" content="https://www.troophunter.com/logo-social.png" />
+        <meta property="og:type" content="product" />
+        <meta property="og:site_name" content="TroopHunter"></meta>
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Page Not Found - TroopHunter" />
         <meta name="twitter:description" content="The page you are looking for does not exist on TroopHunter. Return to the homepage or contact support." />
-        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.svg" />
+        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.png" />
         <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 

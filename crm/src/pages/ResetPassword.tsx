@@ -61,15 +61,17 @@ const _ResetPassword: React.FC = (): JSX.Element => {
         {/* Open Graph Tags */}
         <meta property="og:title" content="Reset Password - TroopHunter" />
         <meta property="og:description" content="Reset your password to access your TroopHunter account securely." />
-        <meta property="og:image" content="https://www.troophunter.com/logo-social.svg" />
         <meta property="og:url" content="https://www.troophunter.com" />
-        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US"></meta>
+        <meta property="og:image" content="https://www.troophunter.com/logo-social.png" />
+        <meta property="og:type" content="product" />
+        <meta property="og:site_name" content="TroopHunter"></meta>
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Reset Password - TroopHunter" />
         <meta name="twitter:description" content="Reset your password to access your TroopHunter account securely." />
-        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.svg" />
+        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.png" />
         <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
