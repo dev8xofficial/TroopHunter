@@ -3,7 +3,7 @@ import { type ApiResponse, type ICityFetchRequestAttributes, type IPaginationAtt
 
 import { type ICitiesResponseAttributes, type ICityResponseAttributes } from 'components/Inputs/Combobox/Combobox';
 
-const BASE_URL = import.meta.env.VITE_BACKEND_URL ?? '';
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 interface IGetCitiesByQueryAttributes extends ICityFetchRequestAttributes, IPaginationAttributes {}
 

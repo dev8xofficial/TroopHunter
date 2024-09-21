@@ -14,10 +14,10 @@ export default function Document() {
         <link rel="preload" href="/fonts/bold.otf" as="font" crossOrigin="" type="font/otf"></link>
         <link rel="preload" href="/fonts/bold-italic.otf" as="font" crossOrigin="" type="font/otf"></link>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="https://www.troophunter.com/apple-touch-icon.svg" />
-        <link rel="icon" type="image/x-icon" href="https://www.troophunter.com/favicon.ico" />
-        <link rel="icon" type="image/svg+xml" sizes="32x32" href="https://www.troophunter.com/favicon-32x32.svg" />
-        <link rel="icon" type="image/svg+xml" sizes="16x16" href="https://www.troophunter.com/favicon-16x16.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/apple-touch-icon.svg`} />
+        <link rel="icon" type="image/x-icon" href={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/favicon.ico`} />
+        <link rel="icon" type="image/svg+xml" sizes="32x32" href={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/favicon-32x32.svg`} />
+        <link rel="icon" type="image/svg+xml" sizes="16x16" href={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/favicon-16x16.svg`} />
 
         {/* <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
