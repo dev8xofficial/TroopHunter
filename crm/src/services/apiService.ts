@@ -1,7 +1,7 @@
 import { type AxiosInstance, type AxiosResponse } from 'axios';
 import { type ApiResponse } from 'validator';
 
-const BASE_URL = import.meta.env.VITE_BACKEND_URL ?? '';
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const refreshTokenService = async (axiosInstance: AxiosInstance, refreshToken: string): Promise<ApiResponse<{ accessToken: string }>> => {
   try {
