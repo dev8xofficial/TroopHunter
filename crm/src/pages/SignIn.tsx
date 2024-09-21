@@ -43,9 +43,10 @@ const _SignIn: React.FC = (): JSX.Element => {
         {/* Open Graph Tags */}
         <meta property="og:title" content="Sign In - TroopHunter" />
         <meta property="og:description" content="Sign in to TroopHunter to access your account and manage your lead generation activities." />
-        <meta property="og:url" content="https://www.troophunter.com/signin" />
+        <meta property="og:url" content="https://www.app.troophunter.com/signin" />
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content="https://www.troophunter.com/logo-social.png" />
+        <meta property="og:image:secure_url" content="https://www.troophunter.com/logo-social.png"></meta>
         <meta property="og:type" content="product" />
         <meta property="og:site_name" content="TroopHunter"></meta>
 

@@ -56,9 +56,10 @@ const SettingsSecurity: React.FC = (): JSX.Element => {
         {/* Open Graph Tags */}
         <meta property="og:title" content="Security Settings - TroopHunter" />
         <meta property="og:description" content="Manage your security settings on TroopHunter to protect your account and data." />
-        <meta property="og:url" content="https://www.troophunter.com/settings/security" />
+        <meta property="og:url" content="https://www.app.troophunter.com/settings/security" />
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content="https://www.troophunter.com/logo-social.png" />
+        <meta property="og:image:secure_url" content="https://www.troophunter.com/logo-social.png"></meta>
         <meta property="og:type" content="product" />
         <meta property="og:site_name" content="TroopHunter"></meta>
 
