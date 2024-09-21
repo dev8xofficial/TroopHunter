@@ -49,7 +49,7 @@ const SettingsProfile: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Profile Settings - TroopHunter</title>
         <meta name="description" content="Update your profile settings on TroopHunter to keep your account information up to date." />
-        <link rel="canonical" href="https://www.troophunter.com/settings/profile" />
+        <link rel="canonical" href="https://www.app.troophunter.com/settings/profile" />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Profile Settings - TroopHunter" />
