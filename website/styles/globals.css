@@ -136,6 +136,10 @@ html {
   }
 }
 
+.var-container-gutter-0px {
+  --container-gutter: 0px;
+}
+
 html {
   overflow: hidden;
 }
@@ -184,6 +188,30 @@ html {
   --height: 14;
 }
 
+.var-w-22 {
+  --width: 22;
+}
+
+.var-h-22 {
+  --height: 22;
+}
+
+.var-w-24 {
+  --width: 24;
+}
+
+.var-h-24 {
+  --height: 24;
+}
+
+.var-w-26 {
+  --width: 26;
+}
+
+.var-h-26 {
+  --height: 26;
+}
+
 .var-text-icon-background-color {
   --text-color: var(--theme-secondary);
   --icon-color: var(--theme-secondary);
@@ -212,6 +240,10 @@ html {
   .grid-template-areas-a-b {
     grid-template-areas: 'a b';
   }
+}
+
+.grid-template-areas-heading-columns {
+  grid-template-areas: 'heading' 'columns';
 }
 
 .grid-template-areas-heading-content-image-stats {

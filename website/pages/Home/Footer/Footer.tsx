@@ -28,7 +28,7 @@ const Footer: React.FC = (): JSX.Element => {
               clipRule="evenodd"
             ></path>
           </svg> */}
-          {/* <div className="grid-cols-[repeat(2,1fr)] justify-items-start gap-[3.125rem] leading-[1.5294117647] text-[1rem] pointer-events-none self-center mt-[clamp(1rem,1.0582010582vw,1.33rem)] grid row-start-[columns] col-start-[columns] row-end-[columns] col-end-[columns] lg:mb-[clamp(5.625rem,5.9523809524vw,7.48125rem)]">
+          {/* <div className="grid-cols-[repeat(2,1fr)] justify-items-start gap-[3.125rem] leading-[1.5294117647] text-[1rem] pointer-events-none self-center mt-[clamp(1rem,1.0582010582vw,1.33rem)] grid row-start-[columns] col-start-[columns] row-end-[columns] col-end-[columns] lg:mb-[clamp(5.625rem,5.9523809524vw,7.48125rem)] xl:text-[clamp(1.0625rem,1.1243386243vw,1.413125rem)] xl:gap-[clamp(1.875rem,1.9841269841vw,2.49375rem)_clamp(4.375rem,4.6296296296vw,5.81875rem)] xl:justify-self-start xl:col-start-1 xl:col-end-2 xl:grid-cols-3 2xl:grid-cols-[repeat(4,auto)]">
             <div className="pointer-events-auto">
               <h3 className="text-[inherit] leading-[inherit] mb-[.125rem] mt-0">Speak to us</h3>
               <a className="bg-transparent transform transition-[text-decoration_.2s_ease-in-out,-webkit-text-decoration_.2s_ease-in-out] decoration-transparent text-[inherit] block" href="tel:1800%20486%20226">
@@ -38,17 +38,17 @@ const Footer: React.FC = (): JSX.Element => {
                 support@troophunter.com
               </a>
             </div>
-            <div className="pointer-events-auto">
+            <div className="pointer-events-auto xl:max-2xl:row-start-2 xl:max-2xl:row-end-2">
               <h3 className="text-[inherit] leading-[inherit] mb-[.125rem] mt-0">Perth</h3>
-              <address className="opacity-50 not-italic">470 William St, Perth, WA 6000</address>
+              <address className="opacity-50 not-italic whitespace-pre-line">470 William St, Perth, WA 6000</address>
             </div>
-            <div className="pointer-events-auto">
+            <div className="pointer-events-auto xl:max-2xl:row-start-2 xl:max-2xl:row-end-2">
               <h3 className="text-[inherit] leading-[inherit] mb-[.125rem] mt-0">Melbourne</h3>
-              <address className="opacity-50 not-italic">23/10-20 Gwynne St, Cremorne, VIC 3121</address>
+              <address className="opacity-50 not-italic whitespace-pre-line">23/10-20 Gwynne St, Cremorne, VIC 3121</address>
             </div>
-            <div className="pointer-events-auto">
+            <div className="pointer-events-auto xl:max-2xl:row-start-2 xl:max-2xl:row-end-2">
               <h3 className="text-[inherit] leading-[inherit] mb-[.125rem] mt-0">Sydney</h3>
-              <address className="opacity-50 not-italic">35/285A Crown St, Surry Hills, NSW 2010</address>
+              <address className="opacity-50 not-italic whitespace-pre-line">35/285A Crown St, Surry Hills, NSW 2010</address>
             </div>
           </div> */}
           <div className="pt-[3.75rem] text-[clamp(.8125rem,.8597883598vw,1.080625rem)] gap-[1.875rem] items-center flex-col flex transform transition-[border-color_.4s] border-t border-[var(--theme-primary)] mt-[clamp(.5rem,.5291005291vw,.665rem)] row-start-[bottom] col-start-[bottom] row-end-[bottom] col-end-[bottom] lg:gap-[clamp(2.875rem,3.0423280423vw,3.82375rem)] lg:p-[clamp(1.875rem,1.9841269841vw,2.49375rem)_0] lg:flex-row lg:mt-0">
