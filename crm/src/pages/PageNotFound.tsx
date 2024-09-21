@@ -8,7 +8,7 @@ const PageNotFound: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Page Not Found - TroopHunter</title>
         <meta name="description" content="The page you are looking for does not exist on TroopHunter. Return to the homepage or contact support." />
-        <link rel="canonical" href="https://www.troophunter.com/page-not-found" />
+        <link rel="canonical" href="https://www.app.troophunter.com/page-not-found" />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Page Not Found - TroopHunter" />

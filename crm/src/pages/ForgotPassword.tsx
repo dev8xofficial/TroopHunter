@@ -34,7 +34,7 @@ const _ForgotPassword: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Forgot Password - TroopHunter</title>
         <meta name="description" content="Forgot your password? Recover it here and regain access to your TroopHunter account." />
-        <link rel="canonical" href="https://www.troophunter.com/forgot-password" />
+        <link rel="canonical" href="https://www.app.troophunter.com/forgot-password" />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Forgot Password - TroopHunter" />

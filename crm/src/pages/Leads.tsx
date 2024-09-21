@@ -16,7 +16,7 @@ const Leads: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Leads - TroopHunter</title>
         <meta name="description" content="View and manage your leads on TroopHunter to efficiently follow up and convert potential clients." />
-        <link rel="canonical" href="https://www.troophunter.com/leads" />
+        <link rel="canonical" href="https://www.app.troophunter.com/leads" />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Leads - TroopHunter" />
