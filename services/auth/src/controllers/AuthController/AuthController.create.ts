@@ -30,9 +30,9 @@ export const sendVerificationToken = async (req: Request, res: Response) => {
     });
 
     const html = emailTemplate({
-      logo: `${process.env.FRONTEND_URL}/logo.png`,
-      headerImage: `${process.env.FRONTEND_URL}/user-verification-indigo.png`,
-      link: `${process.env.FRONTEND_URL}/verify/${existingUser.id}/${token}`,
+      logo: `${process.env.TROOPHUNTER_URL}/logo.png`,
+      headerImage: `${process.env.TROOPHUNTER_URL}/user-verification-indigo.png`,
+      link: `${process.env.TROOPHUNTER_APP_URL}/verify/${existingUser.id}/${token}`,
       firstName: existingUser.firstName,
       expireTime: `${0.25 * 60} minutes`,
       heading: 'Verify Your Email Address',
@@ -52,7 +52,7 @@ export const sendVerificationToken = async (req: Request, res: Response) => {
       
       Thank you for signing up with TroopHunter! To complete your registration, we need to verify your email address. Simply click the button below to verify your account: 
       
-      [VERIFY NOW](${process.env.FRONTEND_URL}/verify/${existingUser.id}/${token})
+      [VERIFY NOW](${process.env.TROOPHUNTER_APP_URL}/verify/${existingUser.id}/${token})
 
       Please note, for security reasons, this link will expire in 15 minutes. If the link has expired, you can request a new verification link by signing in to your account.
       
@@ -135,9 +135,9 @@ export const forgotPassword = async (req: Request, res: Response) => {
     });
 
     const html = emailTemplate({
-      logo: `${process.env.FRONTEND_URL}/logo.png`,
-      headerImage: `${process.env.FRONTEND_URL}/forgot-password.png`,
-      link: `${process.env.FRONTEND_URL}/reset-password/${existingUser.id}/${token}`,
+      logo: `${process.env.TROOPHUNTER_URL}/logo.png`,
+      headerImage: `${process.env.TROOPHUNTER_URL}/forgot-password.png`,
+      link: `${process.env.TROOPHUNTER_APP_URL}/reset-password/${existingUser.id}/${token}`,
       firstName: existingUser.firstName,
       expireTime: `${0.25 * 60} minutes`,
       heading: 'Reset Your Password',
@@ -157,7 +157,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
       
       We received a request to reset the password for your TroopHunter account. If this was you, please click the button below to reset your password: 
       
-      [RESET PASSWORD](${process.env.FRONTEND_URL}/reset-password/${existingUser.id}/${token})
+      [RESET PASSWORD](${process.env.TROOPHUNTER_APP_URL}/reset-password/${existingUser.id}/${token})
 
       Please note, for security reasons, this link will expire in 15 minutes. If the link has expired, you can request a new verification link by signing in to your account.
       
