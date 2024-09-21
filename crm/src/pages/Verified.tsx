@@ -30,15 +30,15 @@ const PageNotFound: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Account Verified - TroopHunter</title>
         <meta name="description" content="Your account has been successfully verified. You can now access all features of TroopHunter." />
-        <link rel="canonical" href="https://www.app.troophunter.com/verify/:id/:token" />
+        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/verify/:id/:token`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Account Verified - TroopHunter" />
         <meta property="og:description" content="Your account has been successfully verified. You can now access all features of TroopHunter." />
-        <meta property="og:url" content="https://www.app.troophunter.com" />
+        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}`} />
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content="https://www.troophunter.com/logo-social.png" />
-        <meta property="og:image:secure_url" content="https://www.troophunter.com/logo-social.png"></meta>
+        <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
+        <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
         <meta property="og:type" content="product" />
         <meta property="og:site_name" content="TroopHunter"></meta>
 
@@ -46,7 +46,7 @@ const PageNotFound: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Account Verified - TroopHunter" />
         <meta name="twitter:description" content="Your account has been successfully verified. You can now access all features of TroopHunter." />
-        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.png" />
+        <meta name="twitter:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
         <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
