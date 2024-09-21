@@ -42,7 +42,7 @@ const _SignUp: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Sign Up - TroopHunter</title>
         <meta name="description" content="Sign up for TroopHunter to start finding the right clients and grow your business." />
-        <link rel="canonical" href="https://www.troophunter.com/signup" />
+        <link rel="canonical" href="https://www.app.troophunter.com/signup" />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Sign Up - TroopHunter" />
