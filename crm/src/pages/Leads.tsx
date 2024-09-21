@@ -21,15 +21,17 @@ const Leads: React.FC = (): JSX.Element => {
         {/* Open Graph Tags */}
         <meta property="og:title" content="Leads - TroopHunter" />
         <meta property="og:description" content="View and manage your leads on TroopHunter to efficiently follow up and convert potential clients." />
-        <meta property="og:image" content="https://www.troophunter.com/logo-social.svg" />
-        <meta property="og:url" content="https://www.troophunter.com" />
-        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.troophunter.com/leads" />
+        <meta property="og:locale" content="en_US"></meta>
+        <meta property="og:image" content="https://www.troophunter.com/logo-social.png" />
+        <meta property="og:type" content="product" />
+        <meta property="og:site_name" content="TroopHunter"></meta>
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Leads - TroopHunter" />
         <meta name="twitter:description" content="View and manage your leads on TroopHunter to efficiently follow up and convert potential clients." />
-        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.svg" />
+        <meta name="twitter:image" content="https://www.troophunter.com/logo-social.png" />
         <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
