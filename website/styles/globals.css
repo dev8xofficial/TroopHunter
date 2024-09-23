@@ -156,6 +156,14 @@ html {
   --aspect-y: 890;
 }
 
+.progress-0 {
+  --progress: 0;
+}
+
+.offset-feature-video {
+  --offset: calc((1 - var(--progress)) * var(--container-gutter) - var(--container-gutter));
+}
+
 .var-w-14 {
   --width: 14;
 }
@@ -226,6 +234,14 @@ html {
 
 .grid-template-areas-top-bottom {
   grid-template-areas: 'top' 'bottom';
+}
+
+.grid-area-top {
+  grid-area: top;
+}
+
+.grid-area-bottom {
+  grid-area: bottom;
 }
 
 .grid-template-areas-a {
