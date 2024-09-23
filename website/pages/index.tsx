@@ -1,44 +1,35 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
-import Header from '../components/Surfaces/Header/Header';
-import FeatureVideo from './Home/FeatureVideo/FeatureVideo';
-import Work from './Home/Work/Work';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Scrollbar from 'smooth-scrollbar';
+import Hero from './Home/Hero/Hero';
+import Header from '../components/Surfaces/Header/Header';
+import FeatureVideoResponsive from './Home/FeatureVideo/FeatureVideoResponsive';
+import TestimonialsLarge from './Home/Testimonials/TestimonialsLarge';
+import WorkWithVideos from './Home/Work/WorkWithVideos';
 import About from './Home/About/About';
 import Footer from './Home/Footer/Footer';
-import Steps from './Home/Steps/Steps';
-import TestimonialsLarge from './Home/Testimonials/TestimonialsLarge';
-import Hero from './Home/Hero/Hero';
 
 type ScrollTriggerCallback = () => void;
 
-const createBackgroundScrollTrigger = (
-  sectionId: string, // ID or class selector of the section
-  startTrigger: string, // Scroll start point (e.g., 'top 50%')
-  endTrigger: string, // Scroll end point (e.g., 'bottom 50%')
-  onEnter: ScrollTriggerCallback = () => {}, // Callback when entering the section
-  onLeave: ScrollTriggerCallback = () => {}, // Callback when leaving the section
-  onLeaveBack: ScrollTriggerCallback = () => {}, // Callback when scrolling back and leaving
-  onEnterBack: ScrollTriggerCallback = () => {} // Callback when scrolling back and entering
-) => {
+const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter: ScrollTriggerCallback = () => {}, onLeave: ScrollTriggerCallback = () => {}, onLeaveBack: ScrollTriggerCallback = () => {}, onEnterBack: ScrollTriggerCallback = () => {}) => {
   ScrollTrigger.create({
     trigger: sectionId,
     scroller: '#smooth-scrollbar',
-    start: startTrigger, // When the section enters the center of the viewport
-    end: endTrigger, // When the next section reaches the center of the viewport
+    start: startTrigger,
+    end: endTrigger,
     onEnter: () => {
-      onEnter(); // Custom enter callback
+      onEnter();
     },
     onLeave: () => {
-      onLeave(); // Custom leave callback
+      onLeave();
     },
     onLeaveBack: () => {
-      onLeaveBack(); // Custom leave back callback
+      onLeaveBack();
     },
     onEnterBack: () => {
-      onEnterBack(); // Custom enter back callback
+      onEnterBack();
     }
   });
 };
@@ -52,20 +43,20 @@ export default function Home() {
         damping: 0.05
       });
 
-      // Set up scroller proxy for smooth-scrollbar
       ScrollTrigger.scrollerProxy('#smooth-scrollbar', {
         scrollTop(value) {
           if (arguments.length) {
             scrollbar.scrollTop = value;
           }
           return scrollbar.scrollTop;
+        },
+        getBoundingClientRect() {
+          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
         }
       });
 
-      // Update ScrollTrigger on scrollbar update
       scrollbar.addListener(ScrollTrigger.update);
 
-      // Animate sections on scroll
       const sections = document.querySelectorAll('section');
       sections.forEach((section) => {
         gsap.fromTo(
@@ -86,54 +77,74 @@ export default function Home() {
         );
       });
 
-      // Change background color of the main tag when Testimonials enter viewport
       const mainTag = document.querySelector('main');
-      // Background change animation when feature-video is at the center of the viewport
+      
+      // Code for FeatureVideo
+      // const triggerElment = document.getElementById('hero-section');
+      // const featureVideoWrapperElement = document.getElementById('feature-video-wrapper');
+      // let featureVideoElement = document.getElementById('feature-video');
+
+      // scrollbar.addListener(function (status) {
+      //   var offset = status.offset;
+
+      //   console.log('offset.y: ', offset.y);
+      //   featureVideoElement.style.top = `calc(${offset.y + 'px' + ' - 5vh'})`;
+      // });
+
+      // ScrollTrigger.create({
+      //   trigger: featureVideoElement,
+      //   scroller: '#smooth-scrollbar',
+      //   start: 'top 50%',
+      //   end: 'bottom bottom',
+      //   scrub: true, // Enable smooth scrubbing (this will automatically reverse the animation on scroll up)
+      //   onUpdate: (self) => {
+      //     featureVideoElement.style.setProperty('--progress', self.progress.toString());
+      //   }
+      // });
+
       createBackgroundScrollTrigger(
-        '#feature-video', // sectionId
-        'top 10%', // startTrigger (at the center of the viewport)
-        'top 10%', // endTrigger (when the work section reaches the center)
+        '#feature-video-section',
+        'top 10%',
+        'top 10%',
         () => {
           if (mainTag) {
-            mainTag.style.backgroundColor = '#B488F1'; // Change background color on enter
+            mainTag.style.backgroundColor = '#f3f3e9';
           }
         },
         () => {
           if (mainTag) {
-            mainTag.style.backgroundColor = '#B488F1'; // Reset background color on leave
+            mainTag.style.backgroundColor = '#f3f3e9';
           }
         },
         () => {
           if (mainTag) {
-            mainTag.style.backgroundColor = ''; // Reset background color when leaving back
+            mainTag.style.backgroundColor = '';
           }
         },
         () => {
           if (mainTag) {
-            mainTag.style.backgroundColor = '#B488F1'; // Change background back on enter back
+            mainTag.style.backgroundColor = '#f3f3e9';
           }
         }
       );
 
-      // Reset background when work section is at the center of the viewport
       createBackgroundScrollTrigger(
-        '#work-section', // sectionId
-        'top 50%', // startTrigger (work section reaches the center)
-        'bottom top', // endTrigger
+        '#about-section',
+        'top top',
+        'bottom top',
         () => {
           if (mainTag) {
-            mainTag.style.backgroundColor = ''; // Reset background on work section enter
+            mainTag.style.backgroundColor = '';
           }
         },
         () => {},
         () => {
           if (mainTag) {
-            mainTag.style.backgroundColor = '#B488F1'; // Revert background when scrolling back to feature-video
+            mainTag.style.backgroundColor = '#f3f3e9';
           }
         }
       );
 
-      // Cleanup
       return () => {
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         scrollbar.destroy();
@@ -168,26 +179,23 @@ export default function Home() {
       {/* Main container with smooth-scrollbar */}
       <main className="relative min-h-screen leading-relaxed font-medium h-full max-h-screen transition-colors duration-500 ease-in-out" id="smooth-scrollbar">
         <Header />
-        <section>
+        <section id="hero-section">
           <Hero />
         </section>
-        <section id="feature-video">
-          <FeatureVideo />
+        <section id="feature-video-section">
+          <FeatureVideoResponsive />
         </section>
         <section id="testimonials-section">
           <TestimonialsLarge />
         </section>
         <div className="grid">
           <section id="work-section">
-            <Work />
+            <WorkWithVideos />
           </section>
-          <section>
-            <Steps />
-          </section>
-          <section>
+          <section id="about-section">
             <About />
           </section>
-          <section>
+          <section id="footer-section">
             <Footer />
           </section>
         </div>
