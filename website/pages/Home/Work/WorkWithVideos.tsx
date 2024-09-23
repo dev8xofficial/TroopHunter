@@ -38,7 +38,7 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
                   <picture className="max-w-full leading-[0] block rounded-[20px] row-start-1 -col-start-1 row-end-auto col-end-auto">
                     <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/images/placeholder/3040.png`}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full object-center object-contain" src={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/videos/troophunter/sort.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain" src={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/videos/troophunter/sort.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
               <div className="grid content-end md:h-full md:w-full md:left-0 md:bottom-0 md:absolute">
@@ -58,7 +58,7 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
                   <picture className="max-w-full leading-[0] block rounded-[20px] row-start-1 -col-start-1 row-end-auto col-end-auto">
                     <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/images/placeholder/3040.png`}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full object-center object-contain" src={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/videos/troophunter/call.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain" src={`${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/videos/troophunter/call.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
               <div className="grid content-end md:h-full md:w-full md:left-0 md:bottom-0 md:absolute">
