@@ -18,7 +18,7 @@ const BottomNavigation: React.FC<DefaultLayoutProps> = ({ signOut }: DefaultLayo
   const businessIds: string[] = home.businessIds;
 
   const [isOpenLeadSaveDialog, setIsOpenLeadSaveDialog] = useState(false);
-  const [activeTab, setActiveTab] = useState<string>('/');
+  const [activeTab, setActiveTab] = useState<string>('/lead');
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ const BottomNavigation: React.FC<DefaultLayoutProps> = ({ signOut }: DefaultLayo
     <>
       {/* Mobile navigation */}
       <div className="btm-nav z-20 h-16 bg-white text-sm shadow xl:hidden dark:bg-charcoal-700">
-        <Link to="/" className={`active gap-1 border-t-2 ${isActive('/') ? 'border-indigo-600 pt-0.5 text-indigo-600' : 'border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text'}`}>
+        <Link to="/lead" className={`active gap-1 border-t-2 ${isActive('/lead') ? 'border-indigo-600 pt-0.5 text-indigo-600' : 'border-gray-100 pt-0.5 hover:border-gray-900 dark:border-charcoal-100 dark:hover:border-primary-text dark:hover:text-primary-text'}`}>
           <PresentationChartLineIcon className="h-6 w-6" aria-hidden="true" />
           <span className="btm-nav-label">Home</span>
         </Link>
@@ -45,7 +45,7 @@ const BottomNavigation: React.FC<DefaultLayoutProps> = ({ signOut }: DefaultLayo
         <button
           className="group border-t-2 border-gray-100 pt-0.5 dark:border-charcoal-100"
           onClick={() => {
-            if (!isActive('/')) navigate('/');
+            if (!isActive('/lead')) navigate('/lead');
             if (businessIds.length > 0) setIsOpenLeadSaveDialog(!isOpenLeadSaveDialog);
             else
               setTimeout(() => {
@@ -54,7 +54,7 @@ const BottomNavigation: React.FC<DefaultLayoutProps> = ({ signOut }: DefaultLayo
           }}
         >
           <div className="inline-flex items-center rounded-full p-3 text-sm shadow-sm max-xl:bg-indigo-600 max-xl:text-white max-xl:group-hover:ring-2 max-xl:group-hover:ring-indigo-600 max-xl:group-hover:ring-offset-2 max-xl:group-hover:ring-offset-white xl:rounded-md xl:border xl:border-indigo-600 xl:px-3 xl:py-2 xl:text-indigo-600">
-            {isActive('/') && businessIds.length > 0 ? <PlusIcon className="h-6 w-6" aria-hidden="true" /> : <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />}
+            {isActive('/lead') && businessIds.length > 0 ? <PlusIcon className="h-6 w-6" aria-hidden="true" /> : <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />}
             <span className="sr-only">Search</span>
           </div>
         </button>
