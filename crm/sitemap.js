@@ -19,7 +19,7 @@ const componentToUrlMap = {
   SignUp: '/signup',
   ForgotPassword: '/forgot-password',
   ResetPassword: '/reset-password/:id/:token',
-  Home: '/',
+  Home: '/lead',
   Leads: '/leads',
   SettingsProfile: '/settings/profile',
   SettingsSecurity: '/settings/security',
@@ -47,7 +47,7 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(componentToU
 
   for (const [componentName, urlPath] of Object.entries(componentToUrlMap)) {
     const lastmod = updatedPaths.has(urlPath) ? getCurrentDate() : undefined;
-    const changefreq = urlPath === '/' ? 'daily' : 'monthly'; // Customize based on page type
+    const changefreq = urlPath === '/lead' ? 'daily' : 'monthly'; // Customize based on page type
 
     sitemapStream.write({
       url: urlPath,
