@@ -42,12 +42,12 @@ const _SignUp: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Sign Up - TroopHunter</title>
         <meta name="description" content="Sign up for TroopHunter to start finding the right clients and grow your business." />
-        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/signup`} />
+        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/signup`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Sign Up - TroopHunter" />
         <meta property="og:description" content="Sign up for TroopHunter to start finding the right clients and grow your business." />
-        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/signup`} />
+        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/signup`} />
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
         <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>

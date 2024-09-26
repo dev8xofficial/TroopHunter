@@ -49,12 +49,12 @@ const SettingsProfile: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Profile Settings - TroopHunter</title>
         <meta name="description" content="Update your profile settings on TroopHunter to keep your account information up to date." />
-        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/settings/profile`} />
+        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/settings/profile`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Profile Settings - TroopHunter" />
         <meta property="og:description" content="Update your profile settings on TroopHunter to keep your account information up to date." />
-        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/settings/profile`} />
+        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/settings/profile`} />
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
         <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>

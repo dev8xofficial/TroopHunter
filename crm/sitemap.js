@@ -40,7 +40,7 @@ let existingSitemapContent = '';
 const generateSitemap = async (updatedPaths = new Set(Object.values(componentToUrlMap))) => {
   console.log('Generating sitemap...');
 
-  const sitemapStream = new SitemapStream({ hostname: `${import.meta.env.VITE_TROOPHUNTER_APP_URL}` });
+  const sitemapStream = new SitemapStream({ hostname: `${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}` });
   const writeStream = createWriteStream('./public/sitemap.xml');
 
   sitemapStream.pipe(writeStream);
