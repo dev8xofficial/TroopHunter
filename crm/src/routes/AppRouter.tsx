@@ -15,14 +15,14 @@ interface PublicRouteProps {
 
 const PublicRoute: React.FC<PublicRouteProps> = ({ userToken, children }: PublicRouteProps): JSX.Element => {
   if (userToken?.length != null && userToken.length > 0) {
-    return <Navigate to="/" />;
+    return <Navigate to="/lead" />;
   }
   return children;
 };
 
 const PrivateRoute: React.FC<PublicRouteProps> = ({ userToken, children }: PublicRouteProps): JSX.Element => {
   if (userToken?.length == null || userToken.length === 0) {
-    return <Navigate to="/signin" />;
+    return <Navigate to="/" />;
   }
   return children;
 };
@@ -41,9 +41,13 @@ const AppRouter: React.FC = () => {
                 path={obj.path}
                 element={
                   <PublicRoute userToken={auth.accessToken}>
-                    <AuthLayout>
+                    {obj.isAuth ? (
+                      <AuthLayout>
+                        <obj.component />
+                      </AuthLayout>
+                    ) : (
                       <obj.component />
-                    </AuthLayout>
+                    )}
                   </PublicRoute>
                 }
               />
