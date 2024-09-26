@@ -56,12 +56,12 @@ const _ResetPassword: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Reset Password - TroopHunter</title>
         <meta name="description" content="Reset your password to access your TroopHunter account securely." />
-        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/reset-password/:id/:token`} />
+        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/reset-password/:id/:token`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Reset Password - TroopHunter" />
         <meta property="og:description" content="Reset your password to access your TroopHunter account securely." />
-        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}`} />
+        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}`} />
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
         <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>

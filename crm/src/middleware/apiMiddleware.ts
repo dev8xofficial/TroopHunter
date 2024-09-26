@@ -26,7 +26,7 @@ const apiMiddleware: Middleware =
       }
 
       if (!url.includes('/verify') && !url.includes('/forgot') && !url.includes('/reset')) axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
-      else axios.defaults.baseURL = import.meta.env.VITE_TROOPHUNTER_AUTH_APP_URL;
+      else axios.defaults.baseURL = import.meta.env.VITE_AUTH_BACKEND_URL;
       axios.defaults.headers.common['Content-Type'] = 'application/json';
       const axiosInstance: AxiosInstance = axios.create();
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;

@@ -30,12 +30,12 @@ const PageNotFound: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Account Verified - TroopHunter</title>
         <meta name="description" content="Your account has been successfully verified. You can now access all features of TroopHunter." />
-        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/verify/:id/:token`} />
+        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/verify/:id/:token`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Account Verified - TroopHunter" />
         <meta property="og:description" content="Your account has been successfully verified. You can now access all features of TroopHunter." />
-        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}`} />
+        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}`} />
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
         <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
