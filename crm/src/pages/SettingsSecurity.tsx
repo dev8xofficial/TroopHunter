@@ -51,12 +51,12 @@ const SettingsSecurity: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Security Settings - TroopHunter</title>
         <meta name="description" content="Manage your security settings on TroopHunter to protect your account and data." />
-        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/settings/security`} />
+        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/settings/security`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Security Settings - TroopHunter" />
         <meta property="og:description" content="Manage your security settings on TroopHunter to protect your account and data." />
-        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/settings/security`} />
+        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/settings/security`} />
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
         <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
