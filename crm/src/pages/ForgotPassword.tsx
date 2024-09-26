@@ -34,12 +34,12 @@ const _ForgotPassword: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Forgot Password - TroopHunter</title>
         <meta name="description" content="Forgot your password? Recover it here and regain access to your TroopHunter account." />
-        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/forgot-password}`} />
+        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/forgot-password}`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Forgot Password - TroopHunter" />
         <meta property="og:description" content="Forgot your password? Recover it here and regain access to your TroopHunter account." />
-        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/forgot-password}`} />
+        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/forgot-password}`} />
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
         <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
