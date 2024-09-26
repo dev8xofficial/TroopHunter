@@ -23,7 +23,7 @@ import { type IAuthState } from '../store/reducers/authReducer';
 // };
 
 // const navigation = [
-//   { name: 'Home', href: '/', current: true },
+//   { name: 'Home', href: '/lead', current: true },
 //   { name: 'Leads', href: '/leads', current: false }
 // ];
 
