@@ -38,12 +38,12 @@ const _SignIn: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Sign In - TroopHunter</title>
         <meta name="description" content="Sign in to TroopHunter to access your account and manage your lead generation activities." />
-        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/signin`} />
+        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/signin`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Sign In - TroopHunter" />
         <meta property="og:description" content="Sign in to TroopHunter to access your account and manage your lead generation activities." />
-        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/signin`} />
+        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/signin`} />
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
         <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>

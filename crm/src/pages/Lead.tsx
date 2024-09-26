@@ -187,12 +187,12 @@ const Lead: React.FC = () => {
       <Helmet>
         <title>Find Leads - TroopHunter</title>
         <meta name="description" content="Welcome to TroopHunter, your go-to tool for lead generation and finding the right clients." />
-        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}`} />
+        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Find Leads - TroopHunter" />
         <meta property="og:description" content="Welcome to TroopHunter, your go-to tool for lead generation and finding the right clients." />
-        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}`} />
+        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}`} />
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
         <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>

@@ -8,12 +8,12 @@ const PageNotFound: React.FC = (): JSX.Element => {
       <Helmet>
         <title>Page Not Found - TroopHunter</title>
         <meta name="description" content="The page you are looking for does not exist on TroopHunter. Return to the homepage or contact support." />
-        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}/page-not-found`} />
+        <link rel="canonical" href={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/page-not-found`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Page Not Found - TroopHunter" />
         <meta property="og:description" content="The page you are looking for does not exist on TroopHunter. Return to the homepage or contact support." />
-        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_APP_URL}`} />
+        <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}`} />
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
         <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
