@@ -61,12 +61,12 @@ const _SignIn: React.FC = (): JSX.Element => {
       <div>
         <img className="h-8" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo.svg`} alt="TroopHunter" />
         {/* <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2> */}
-        <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
+        <h1 className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Not a member?{' '}
           <Link to="/signup" className="font-semibold text-indigo-500 hover:text-indigo-600">
             Register now
           </Link>
-        </p>
+        </h1>
       </div>
 
       <div className="mt-6">
