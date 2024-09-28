@@ -6,7 +6,7 @@ from src.services.auth import refreshToken
 from dotenv import load_dotenv
 
 
-def get_queue(city_id="", page=1, limit=5):
+def get_queue(city_id="", business_source_Id="", page=1, limit=5):
     try:
         load_dotenv()
         # Define the endpoint URL
@@ -22,6 +22,7 @@ def get_queue(city_id="", page=1, limit=5):
         # Set the request parameters
         params = {
             "cityId": city_id,
+            "businessSourceId": business_source_Id,
             "page": page,
             "limit": limit,
         }
