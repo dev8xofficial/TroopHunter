@@ -1,13 +1,15 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const Footer: React.FC = (): JSX.Element => {
   return (
     <>
       <footer className="bg-white z-0 max-h-[100svh] transform transition-[color_.4s] text-[var(--theme-secondary)] col-start-1 col-end-auto row-start-2 row-end-auto">
         <div className="z-0 relative pb-[6.25rem] pt-[3.875rem] gap-[3.75rem] grid-template-areas-heading-columns-bottom-face grid mx-auto max-w-[30rem] px-[var(--container-gutter)] w-full md:pb-[3.875rem] md:pt-[6.25rem] md:max-w-full lg:p-[3.875rem_clamp(5rem,5.291005291vw,6.65rem)_clamp(3.875rem,4.1005291005vw,5.15375rem)] lg:max-w-none lg:gap-0">
           <h2 className="font-medium m-0 row-start-[heading] col-start-[heading] row-end-[heading] col-end-[heading] mt-0 lg:w-min lg:mb-[clamp(6.25rem,6.6137566138vw,8.3125rem)]">
-            <a className="transform transition-[color_.15s] text-[2.5rem] gap-x-[.3125rem] leading-[1] text-[inherit] self-start items-center flex-wrap flex list-none list-image-[initial] list-inside hover:text-[var(--theme-primary)] lg:p-[clamp(2.25rem,2.380952381vw,2.9925rem)_0] lg:text-[clamp(4.375rem,4.6296296296vw,5.81875rem)] lg:gap-x-[clamp(.3125rem,.3306878307vw,.415625rem)]" target="_tab" href={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}`}>
+            <Link className="transform transition-[color_.15s] text-[2.5rem] gap-x-[.3125rem] leading-[1] text-[inherit] self-start items-center flex-wrap flex list-none list-image-[initial] list-inside hover:text-[var(--theme-primary)] lg:p-[clamp(2.25rem,2.380952381vw,2.9925rem)_0] lg:text-[clamp(4.375rem,4.6296296296vw,5.81875rem)] lg:gap-x-[clamp(.3125rem,.3306878307vw,.415625rem)]" target="" to="/signin">
               <span>Let’s find </span>
               <br />
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" className="block min-h-0 min-w-0 stroke-1 transform translate-y-[10%] h-[.65em] transition-[color_.4s,transform_.15s] text-[var(--theme-primary)] w-auto var-w-14 var-h-13 lg:stroke-2 ">
@@ -19,7 +21,7 @@ const Footer: React.FC = (): JSX.Element => {
                   <span className="row-start-1 -col-start-1 row-end-auto col-end-auto">client! </span>
                 </span>
               </span>
-            </a>
+            </Link>
           </h2>
           {/* <svg xmlns="http://www.w3.org/2000/svg" width="289" height="311" fill="none" viewBox="0 0 289 311" className="block min-h-0 min-w-0 w-auto h-[3.87rem] justify-self-center self-center transform transition-[color_.4s] text-[var(--theme-primary)] row-start-[face] col-start-[face] row-end-[face] col-end-[face] var-w-289 var-h-311 lg:hidden">
             <path
