@@ -54,9 +54,15 @@ venv\Scripts\activate
 python3 -m pip install package_name
 ```
 
+7. Navigate to your project/venv/lib/python3.9/site-packages directory in the terminal:
+
+```bash
+cd /venv/lib/python3.9/site-packages
+```
+
 Replace `package_name` with the name of the package you want to install for your project.
 
-7. To deactivate the virtual environment and return to the global Python environment, use the following command:
+8. To deactivate the virtual environment and return to the global Python environment, use the following command:
 
 ```bash
 deactivate
