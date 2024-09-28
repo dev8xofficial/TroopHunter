@@ -194,8 +194,8 @@ const Lead: React.FC = () => {
         <meta property="og:description" content="Welcome to TroopHunter, your go-to tool for lead generation and finding the right clients." />
         <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}`} />
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
-        <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
+        <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`} />
+        <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`}></meta>
         <meta property="og:type" content="product" />
         <meta property="og:site_name" content="TroopHunter"></meta>
 
@@ -203,7 +203,7 @@ const Lead: React.FC = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Find Leads - TroopHunter" />
         <meta name="twitter:description" content="Welcome to TroopHunter, your go-to tool for lead generation and finding the right clients." />
-        <meta name="twitter:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
+        <meta name="twitter:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`} />
         <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
