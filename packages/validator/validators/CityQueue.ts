@@ -5,6 +5,7 @@ export const CityQueueSchema = z.object({
   id: z.string().uuid(),
   cityId: z.string().uuid(),
   queueId: z.string().uuid(),
+  businessSourceId: z.string().uuid(),
   status: z.enum(['Pending', 'Completed', 'Failed']),
 });
 
