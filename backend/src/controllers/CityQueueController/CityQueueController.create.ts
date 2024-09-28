@@ -8,9 +8,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 // Create a new city
 export const createCityQueue = async (req: Request, res: Response) => {
-  const { cityId, queueId, status }: ICityQueueAttributes = req.body;
+  const { cityId, queueId, businessSourceId, status }: ICityQueueAttributes = req.body;
   try {
-    const requestData: ICityQueueAttributes = { id: uuidv4(), cityId, queueId, status };
+    const requestData: ICityQueueAttributes = { id: uuidv4(), cityId, queueId, businessSourceId, status };
 
     const newCityQueue = await CityQueue.create(requestData);
 
@@ -19,7 +19,7 @@ export const createCityQueue = async (req: Request, res: Response) => {
     const response: ApiResponse<CityQueue> = createApiResponse({ success: true, data: newCityQueue, message: getCityQueueMessage(CityQueueMessageKey.CITYQUEUE_CREATED).message, status: getCityQueueMessage(CityQueueMessageKey.CITYQUEUE_CREATED).code });
     res.json(response);
   } catch (error) {
-    logger.error('Error while creating city:', error);
+    logger.error('Error while creating city queue:', error);
     
     const response: ApiResponse<null> = createApiResponse({ error: getCityQueueMessage(CityQueueMessageKey.FAILED_TO_CREATE_CITYQUEUE).message, status: getCityQueueMessage(CityQueueMessageKey.FAILED_TO_CREATE_CITYQUEUE).code });
     res.json(response);

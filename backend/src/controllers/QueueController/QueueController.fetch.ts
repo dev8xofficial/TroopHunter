@@ -8,7 +8,7 @@ import { createApiResponse } from 'validator/utils';
 import { QueueMessageKey, getQueueMessage } from '../../messages/Queue';
 
 export const getQueues = async (req: Request, res: Response) => {
-  const { page, limit, cityId } = req.query;
+  const { page, limit, cityId, businessSourceId } = req.query;
 
   const pageNumber = parseInt(page as string, 10);
   const limitNumber = parseInt(limit as string, 10);
@@ -18,10 +18,10 @@ export const getQueues = async (req: Request, res: Response) => {
   // Where clause
   const whereClause: { [key: string]: any } = {};
 
-  if (cityId && typeof cityId === 'string') {
+  if (cityId && businessSourceId && typeof cityId === 'string' && typeof businessSourceId === 'string') {
     whereClause.id = {
       [Op.notIn]: Sequelize.literal(
-        `(SELECT "queueId" FROM "CityQueues" WHERE "cityId" = '${cityId}')`
+        `(SELECT "queueId" FROM "CityQueues" WHERE "cityId" = '${cityId}' AND "businessSourceId" = '${businessSourceId}')`
       ),
     };
   }
