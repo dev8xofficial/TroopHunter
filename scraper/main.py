@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 
 from src.scraper import BusinessScraper
-from config import LAPTOP_NAME
+from src.googlePlacesScraper import google_places_scraper
+from config import LAPTOP_NAME, sourceValues
 import logging
 import datetime
 from dotenv import load_dotenv
 from src.services.auth import login
 from src.services.queue import get_queue, update_queue, create_city_queue
+from src.services.businessSource import get_business_source
 from src.services.city import get_cities
 from concurrent.futures import ThreadPoolExecutor, wait
 from src.utils.general import is_internet_available
@@ -74,6 +76,7 @@ def main():
     login(os.environ.get("BACKEND_USER"), os.environ.get("BACKEND_USER_PASSWORD"))
 
     LIMIT = int(os.environ.get("MAX_WORKERS"))  # Number of queues to process per page
+    business_source = get_business_source(sourceName=sourceValues[0])
     total_pages_queues = get_queue(limit=1)["totalPages"]
     total_pages_cities = get_cities(limit=LIMIT)["totalPages"]
 
@@ -98,7 +101,7 @@ def main():
             with ThreadPoolExecutor(max_workers=LIMIT) as executor:
                 futures = []
                 for city in cities_response["cities"]:
-                    queues_response = get_queue(city_id=city['id'], page=queue_page, limit=1)
+                    queues_response = get_queue(city_id=city['id'], business_source_Id=business_source['id'], page=queue_page, limit=1)
                     if len(queues_response["queues"]) < 1:
                         queue_is_empty = True
                         break
@@ -134,10 +137,15 @@ def main():
 
 if __name__ == "__main__":
     try:
-        # Set up logging for the main script
-        current_date = datetime.datetime.now().strftime("%m-%d-%Y")
-        log_file = f"scraper/logs/main__{current_date}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
-        logging.basicConfig(filename=log_file,level=logging.INFO,format="%(asctime)s - %(levelname)s - %(module)s - %(message)s")
-        main()
+        findPlaceMain = os.environ.get("FINDPLACEMAIN")
+        if findPlaceMain == "True":
+            google_places_scraper()
+        else:
+            print("Main")
+            # Set up logging for the main script
+            current_date = datetime.datetime.now().strftime("%m-%d-%Y")
+            log_file = f"scraper/logs/main__{current_date}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
+            logging.basicConfig(filename=log_file,level=logging.INFO,format="%(asctime)s - %(levelname)s - %(module)s - %(message)s")
+            main()
     except Exception as e:
         logging.exception("An unhandled error occurred during scraper execution: %s", e)
