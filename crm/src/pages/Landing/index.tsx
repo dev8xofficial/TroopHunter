@@ -180,8 +180,8 @@ const Landing: React.FC = (): JSX.Element => {
         <meta property="og:description" content="TroopHunter simplifies finding and connecting with businesses around the world."></meta>
         <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}`}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
-        <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
+        <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`}></meta>
+        <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="TroopHunter"></meta>
 
@@ -189,7 +189,7 @@ const Landing: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content="TroopHunter - Find your next client!"></meta>
         <meta name="twitter:description" content="TroopHunter simplifies finding and connecting with businesses around the world."></meta>
-        <meta name="twitter:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
+        <meta name="twitter:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`}></meta>
         <meta name="twitter:site" content="@TroopHunter"></meta>
       </Helmet>
       {/* Main container with smooth-scrollbar */}
