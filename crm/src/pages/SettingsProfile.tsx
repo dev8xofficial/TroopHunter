@@ -56,8 +56,8 @@ const SettingsProfile: React.FC = (): JSX.Element => {
         <meta property="og:description" content="Update your profile settings on TroopHunter to keep your account information up to date." />
         <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/settings/profile`} />
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
-        <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
+        <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`} />
+        <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`}></meta>
         <meta property="og:type" content="product" />
         <meta property="og:site_name" content="TroopHunter"></meta>
 
@@ -65,7 +65,7 @@ const SettingsProfile: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Profile Settings - TroopHunter" />
         <meta name="twitter:description" content="Update your profile settings on TroopHunter to keep your account information up to date." />
-        <meta name="twitter:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
+        <meta name="twitter:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`} />
         <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 

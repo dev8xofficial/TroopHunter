@@ -41,8 +41,8 @@ const _ForgotPassword: React.FC = (): JSX.Element => {
         <meta property="og:description" content="Forgot your password? Recover it here and regain access to your TroopHunter account." />
         <meta property="og:url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/forgot-password}`} />
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
-        <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`}></meta>
+        <meta property="og:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`} />
+        <meta property="og:image:secure_url" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`}></meta>
         <meta property="og:type" content="product" />
         <meta property="og:site_name" content="TroopHunter"></meta>
 
@@ -50,12 +50,12 @@ const _ForgotPassword: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Forgot Password - TroopHunter" />
         <meta name="twitter:description" content="Forgot your password? Recover it here and regain access to your TroopHunter account." />
-        <meta name="twitter:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo-social.png`} />
+        <meta name="twitter:image" content={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`} />
         <meta name="twitter:site" content="@TroopHunter" />
       </Helmet>
 
       <div>
-        <img className="h-8" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo.svg`} alt="TroopHunter" />
+        <img className="h-8" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
         {/* <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
         <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Already a member?{' '}
