@@ -14,7 +14,7 @@ dotenv.config();
 
 // Middleware
 let corsOptions = {
-  origin: ['https://www.app.troophunter.com', 'https://app.troophunter.com', 'http://localhost:5173', 'http://192.168.0.220:5173', 'http://192.168.0.221:5173'],
+  origin: process.env.origins ? process.env.origins.split(',') : undefined,
 };
 app.use(cors(corsOptions));
 app.use(morgan('dev'));
