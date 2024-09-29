@@ -66,7 +66,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
           <div className="mx-auto h-full w-full max-w-7xl px-4 py-6 xl:px-8">
             <div className="flex h-full items-center justify-between">
               <div className="min-w-0 flex-1">
-                <img className="mx-auto h-6" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo.svg`} alt="TroopHunter" />
+                <img className="mx-auto h-6" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
               </div>
               <div className="hidden h-full items-center text-sm">
                 {title.toLowerCase() === 'lead' && (
