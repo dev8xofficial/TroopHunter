@@ -31,7 +31,7 @@ export const sendVerificationToken = async (req: Request, res: Response) => {
 
     const html = emailTemplate({
       logo: `${process.env.TROOPHUNTER_PUBLIC_URL}/logo/logo.png`,
-      headerImage: `${process.env.TROOPHUNTER_PUBLIC_URL}/user-verification/user-verification-indigo.png`,
+      headerImage: `${process.env.TROOPHUNTER_PUBLIC_URL}/images/user-verification/user-verification-indigo.png`,
       link: `${process.env.TROOPHUNTER_PUBLIC_URL}/verify/${existingUser.id}/${token}`,
       firstName: existingUser.firstName,
       expireTime: `${0.25 * 60} minutes`,
@@ -136,7 +136,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
 
     const html = emailTemplate({
       logo: `${process.env.TROOPHUNTER_PUBLIC_URL}/logo/logo.png`,
-      headerImage: `${process.env.TROOPHUNTER_PUBLIC_URL}/forgot-password/forgot-password.png`,
+      headerImage: `${process.env.TROOPHUNTER_PUBLIC_URL}/images/forgot-password/forgot-password.png`,
       link: `${process.env.TROOPHUNTER_PUBLIC_URL}/reset-password/${existingUser.id}/${token}`,
       firstName: existingUser.firstName,
       expireTime: `${0.25 * 60} minutes`,
