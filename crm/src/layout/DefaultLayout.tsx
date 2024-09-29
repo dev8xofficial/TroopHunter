@@ -55,7 +55,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }: DefaultLayout
               <div className="flex h-16 items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <img className="h-6" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo.svg`} alt="TroopHunter" />
+                    <img className="h-6" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
                   </div>
                 </div>
                 <div>
