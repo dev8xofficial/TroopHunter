@@ -22,8 +22,8 @@ const App: React.FC = () => {
     <p className="text-danger text-center">Failed to load app</p>
   ) : (
     <>
-      <div className="fixed left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-white" ref={preloaderRef}>
-        <img className="mx-auto h-8 animate-bounce lg:h-10" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
+      <div className="fixed left-0 top-0 z-50 flex h-screen w-screen touch-none flex-col items-center justify-center bg-white" ref={preloaderRef}>
+        <img className="mx-auto h-8 animate-pulse lg:h-10" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
       </div>
       <AppRouter />
     </>
