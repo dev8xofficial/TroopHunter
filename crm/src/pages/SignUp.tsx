@@ -63,7 +63,7 @@ const _SignUp: React.FC = (): JSX.Element => {
       </Helmet>
 
       <div>
-        <img className="h-8" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
+        <img className="h-7 lg:h-8" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
         <h1 className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Already a member?{' '}
           <Link to="/signin" className="font-semibold text-indigo-500 hover:text-indigo-600">
