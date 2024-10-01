@@ -77,7 +77,7 @@ const _ResetPassword: React.FC = (): JSX.Element => {
       </Helmet>
 
       <div>
-        <img className="h-7 lg:h-8" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
+        <img className="h-6 lg:h-8" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
         {/* <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
         <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Already a member?{' '}
