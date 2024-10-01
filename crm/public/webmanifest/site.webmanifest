@@ -324,8 +324,8 @@
       "sizes": "256x256"
     },
     {
-      "src": "android/android-launchericon-512-512.png",
-      "sizes": "512x512"
+      "src": "android/android-launchericon-256-256.png",
+      "sizes": "256x256"
     },
     {
       "src": "android/android-launchericon-192-192.png",
