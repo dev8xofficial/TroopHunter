@@ -10,7 +10,7 @@ const Header: React.FC = (): JSX.Element => {
         <div className="grid-template-columns-auto-1fr-auto grid h-[5.3125rem] w-full items-center gap-[3.75rem] px-[var(--container-gutter)]">
           <a className="z-10 transform text-[var(--theme-logo,var(--theme-secondary))] transition-[color_.4s_ease-in-out]" aria-hidden="true" tabIndex={-1} href="/">
             <span className="hidden">Home</span>
-            <img className="mx-auto h-6 lg:h-8" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
+            <img className="mx-auto h-7 lg:h-8 2xl:h-10" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
           </a>
           <div></div>
           <div className="color-[var(--theme-header-face,var(--theme-secondary))] relative z-10 col-start-3 col-end-auto h-[50px] w-[50px] transform touch-none transition-[color_.4s_ease-in-out]">

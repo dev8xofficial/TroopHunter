@@ -23,7 +23,7 @@ const App: React.FC = () => {
   ) : (
     <>
       <div className="fixed left-0 top-0 z-50 flex h-screen w-screen touch-none flex-col items-center justify-center bg-white" ref={preloaderRef}>
-        <img className="mx-auto h-8 lg:h-10" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
+        <img className="mx-auto h-12 lg:h-14 2xl:h-16" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo.svg`} alt="TroopHunter" />
       </div>
       <AppRouter />
     </>
