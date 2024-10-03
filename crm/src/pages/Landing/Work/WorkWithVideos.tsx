@@ -4,7 +4,7 @@ import React from 'react';
 const WorkWithVideos: React.FC = (): JSX.Element => {
   return (
     <>
-      <div className="m-[2.5rem_0] gap-[3.125rem] grid w-full mx-auto px-[var(--container-gutter)] max-w-[calc(clamp(89.5rem,94.708994709vw,119.035rem)+var(--container-gutter)*2)] !-mt-[50vh] md:gap-[clamp(1.875rem,1.9841269841vw,2.49375rem)] lg:m-[clamp(4.375rem,4.6296296296vw,5.81875rem)_0]">
+      <div className="m-[2.5rem_0] gap-[3.125rem] grid w-full mx-auto px-[var(--container-gutter)] max-w-[calc(clamp(89.5rem,94.708994709vw,119.035rem)+var(--container-gutter)*2)] !-mt-[50vh] md:gap-[clamp(1.875rem,1.9841269841vw,2.49375rem)] lg:m-[clamp(4.375rem,4.6296296296vw,5.81875rem)_auto]">
         <div className="auto-cols-fr gap-[inherit] grid grid-template-areas-a">
           <div className="w-full aspect-x-1452 aspect-y-890">
             <a className="bg-transparent rounded-[clamp(1.25rem,1.3227513228vw,1.6625rem)] text-[inherit] no-underline relative w-full block lg:rounded-[clamp(1.875rem,1.9841269841vw,2.49375rem)]">
