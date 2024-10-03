@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { takeLatest, take, put, type StrictEffect } from 'redux-saga/effects';
 import { type ISendVerificationTokenAttributes, type ApiResponse, type IUserAttributes, type IUserCreateRequestAttributes } from 'validator/interfaces';
 
+import { logEvent } from '../../../utils/analytics';
 import { removeEmptyStringValues } from '../../../utils/helpers';
 import { ApiRequestAction, type IApiRequestAttributes } from '../../actions/apiActions';
 import { authRegisterAction, authSendVerificationTokenAction } from '../../actions/authActions';
@@ -26,6 +27,7 @@ function* registerSaga({ payload }: { payload: IAuthRegisterPayload }): Generato
 
     yield put(ApiRequestAction(apiPayload));
     yield take('auth/authRegisterSuccessAction');
+    logEvent('User', 'Signup', 'User signed up successfully.');
 
     yield put(authSendVerificationTokenAction({ email }));
   } catch (error) {
@@ -53,6 +55,7 @@ function* sendVerificationTokenSaga({ payload }: { payload: IAuthSendVerificatio
     };
 
     yield put(ApiRequestAction(apiPayload));
+    logEvent('User', 'Email Verification', 'Email sent for verification.');
   } catch (error) {
     toast.error((error as Error).message);
   }
