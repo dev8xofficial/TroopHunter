@@ -4,6 +4,7 @@ import { takeLatest, put, type StrictEffect } from 'redux-saga/effects';
 import { type IUserFetchByIdRequestAttributes, type ApiResponse, type ILoginRequestAttributes, type IForgotPasswordAttributes, type IResetPasswordAttributes, type IResetPasswordVerificationAttributes, type IVerifyUserAttributes } from 'validator/interfaces';
 
 import { LOGIN_URL } from '../../../routes/Urls';
+import { logEvent } from '../../../utils/analytics';
 import { removeEmptyStringValues } from '../../../utils/helpers';
 import { ApiRequestAction, type IApiRequestAttributes } from '../../actions/apiActions';
 import { saveAuthSuccessAction, saveAuthFailureAction, authLoginAction, authLoginSuccessAction, authSignOutAction, authSignOutSuccessAction, resetAuthAction, authForgotPasswordAction, authResetPasswordAction, authResetPasswordVerificationAction, authVerifyUserAction } from '../../actions/authActions';
@@ -31,6 +32,7 @@ function* loginSaga({ payload }: { payload: IAuthLoginPayload }): Generator<Stri
     };
 
     yield put(ApiRequestAction(apiPayload));
+    logEvent('User', 'Signin', 'User signed in successfully.');
   } catch (error) {
     toast.error((error as Error).message);
     yield put(saveAuthFailureAction());
@@ -82,6 +84,7 @@ function* signOutSaga({ payload }: { payload: IAuthSignOutPayload }): Generator<
     };
 
     yield put(ApiRequestAction(apiPayload));
+    logEvent('User', 'Signout', 'User signed out successfully.');
   } catch (error) {
     toast.error((error as Error).message);
     yield put(saveAuthFailureAction());
@@ -129,6 +132,7 @@ function* forgotPasswordSaga({ payload }: { payload: IAuthForgotPasswordPayload 
     };
 
     yield put(ApiRequestAction(apiPayload));
+    logEvent('User', 'Forgot Password', 'User applied to forgot password.');
   } catch (error) {
     toast.error((error as Error).message);
     yield put(saveAuthFailureAction());
@@ -157,6 +161,7 @@ function* resetPasswordSaga({ payload }: { payload: IAuthResetPasswordPayload })
     };
 
     yield put(ApiRequestAction(apiPayload));
+    logEvent('User', 'Reset Password', 'User received reset password email.');
   } catch (error) {
     toast.error((error as Error).message);
     yield put(saveAuthFailureAction());
@@ -183,6 +188,7 @@ function* resetPasswordVerificationSaga({ payload }: { payload: IAuthResetPasswo
     };
 
     yield put(ApiRequestAction(apiPayload));
+    logEvent('User', 'Reset Password', 'User reset password successfully.');
   } catch (error) {
     toast.error((error as Error).message);
     yield put(saveAuthFailureAction());
@@ -209,6 +215,7 @@ function* verifyUserSaga({ payload }: { payload: IAuthVerifyUserPayload }): Gene
     };
 
     yield put(ApiRequestAction(apiPayload));
+    logEvent('User', 'User Verified', 'User verified successfully.');
   } catch (error) {
     toast.error((error as Error).message);
     yield put(saveAuthFailureAction());

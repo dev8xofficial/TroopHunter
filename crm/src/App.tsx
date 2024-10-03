@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import { useLocation } from 'react-router-dom';
+
 import AppRouter from './routes/AppRouter';
+import { initializeGA, logPageView } from './utils/analytics';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const preloaderRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const preloader = preloaderRef.current;
@@ -17,6 +21,14 @@ const App: React.FC = () => {
       setLoading(false);
     }
   }, [loading]);
+
+  useEffect(() => {
+    initializeGA(import.meta.env.VITE_GOOGLE_ANALYTICS);
+  }, []);
+
+  useEffect(() => {
+    logPageView(location.pathname + location.search);
+  }, [location]);
 
   return loading ? (
     <p className="text-danger text-center"></p>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { type URL, URLS } from './Urls';
 import AuthLayout from '../layout/AuthLayout';
@@ -32,41 +32,39 @@ const AppRouter: React.FC = () => {
 
   return (
     <>
-      <Router>
-        <Routes>
-          {URLS.map((obj: URL) => {
-            return obj.isPublic ? (
-              <Route
-                key={obj.path}
-                path={obj.path}
-                element={
-                  <PublicRoute userToken={auth.accessToken}>
-                    {obj.isAuth ? (
-                      <AuthLayout>
-                        <obj.component />
-                      </AuthLayout>
-                    ) : (
+      <Routes>
+        {URLS.map((obj: URL) => {
+          return obj.isPublic ? (
+            <Route
+              key={obj.path}
+              path={obj.path}
+              element={
+                <PublicRoute userToken={auth.accessToken}>
+                  {obj.isAuth ? (
+                    <AuthLayout>
                       <obj.component />
-                    )}
-                  </PublicRoute>
-                }
-              />
-            ) : (
-              <Route
-                key={obj.path}
-                path={obj.path}
-                element={
-                  <PrivateRoute userToken={auth.accessToken}>
-                    <DefaultLayout>
-                      <obj.component />
-                    </DefaultLayout>
-                  </PrivateRoute>
-                }
-              />
-            );
-          })}
-        </Routes>
-      </Router>
+                    </AuthLayout>
+                  ) : (
+                    <obj.component />
+                  )}
+                </PublicRoute>
+              }
+            />
+          ) : (
+            <Route
+              key={obj.path}
+              path={obj.path}
+              element={
+                <PrivateRoute userToken={auth.accessToken}>
+                  <DefaultLayout>
+                    <obj.component />
+                  </DefaultLayout>
+                </PrivateRoute>
+              }
+            />
+          );
+        })}
+      </Routes>
     </>
   );
 };
