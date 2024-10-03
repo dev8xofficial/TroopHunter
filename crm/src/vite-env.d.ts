@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly VITE_AUTH_BACKEND_URL: string;
   readonly VITE_TROOPHUNTER_PUBLIC_URL: string;
   readonly VITE_ENCRYPTION_KEY: string;
+  readonly VITE_GOOGLE_ANALYTICS: string;
 }
 
 interface ImportMeta {
