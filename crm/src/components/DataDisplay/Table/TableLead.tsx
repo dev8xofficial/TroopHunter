@@ -230,7 +230,10 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange, handleR
             <div className="hidden h-full items-center justify-center whitespace-nowrap text-gray-400 sm:flex dark:text-secondary-text">
               {draftLeadBusinessIds !== undefined && draftLeadBusinessIds?.length > 0 ? (
                 <>
-                  {leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}:<span className="font-semibold text-gray-500 dark:text-primary-text">{draftLeadBusinessIds?.length}</span> |
+                  <span>
+                    {leadPageRemoveSavedBusinesses ? 'Removed' : 'Saved'}: <span className="font-semibold text-gray-500 dark:text-primary-text">{draftLeadBusinessIds?.length}</span>
+                  </span>
+                  <span className="mx-1">|</span>
                 </>
               ) : null}
               <span>
