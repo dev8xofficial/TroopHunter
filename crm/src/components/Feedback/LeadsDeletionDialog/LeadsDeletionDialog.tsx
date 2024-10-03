@@ -54,10 +54,10 @@ const LeadsDeletionDialog: React.FC<LeadsDeletionDialogAttributes> = ({ isOpen, 
                       </div>
                       <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                         <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900 dark:hover:text-primary-text">
-                          Deactivate account
+                          Delete Lead
                         </Dialog.Title>
                         <div className="mt-2">
-                          <p className="text-sm text-gray-500 dark:text-secondary-text">Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.</p>
+                          <p className="text-sm text-gray-500 dark:text-secondary-text">Are you sure you want to delete this lead? All associated data will be permanently removed. This action cannot be undone.</p>
                         </div>
                       </div>
                     </div>

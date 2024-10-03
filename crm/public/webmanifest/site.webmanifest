@@ -463,7 +463,7 @@
   "theme_color": "#f3f4f6",
   "background_color": "#ffffff",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "https://troophunter.com/",
   "orientation": "portrait-primary",
-  "scope": "/"
+  "scope": "https://troophunter.com/"
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ToastContainer, Flip } from 'react-toastify';
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -22,7 +23,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={true} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover transition={Flip} />
 
         <HelmetProvider>
-          <App />
+          <Router>
+            <App />
+          </Router>
         </HelmetProvider>
       </PersistGate>
     </Provider>
