@@ -346,7 +346,7 @@ const TableLead: React.FC<ITable> = ({ loadMoreBusinesses, handleChange, handleR
                             <div className="flex items-center justify-between gap-x-4">
                               <p className="mt-1 flex text-xs leading-5 text-gray-500 dark:text-primary-text">
                                 {business?.BusinessPhone !== undefined && (
-                                  <a href={`mailto:${business.BusinessPhone.numberNationalFormatted}`} className="group-hidden relative truncate hover:underline">
+                                  <a href={`tel:${business.BusinessPhone.numberNationalFormatted}`} className="group-hidden relative truncate hover:underline">
                                     {business.BusinessPhone.numberNationalFormatted}
                                   </a>
                                 )}
