@@ -4,7 +4,7 @@ import React from 'react';
 const WorkWithVideos: React.FC = (): JSX.Element => {
   return (
     <>
-      <div className="m-[2.5rem_0] gap-[3.125rem] grid w-full mx-auto px-[var(--container-gutter)] max-w-[calc(clamp(89.5rem,94.708994709vw,119.035rem)+var(--container-gutter)*2)] !-mt-[50vh] md:gap-[clamp(1.875rem,1.9841269841vw,2.49375rem)] lg:m-[clamp(4.375rem,4.6296296296vw,5.81875rem)_auto]">
+      <div className="text-[var(--theme-secondary)] m-[2.5rem_0] gap-[3.125rem] grid w-full mx-auto px-[var(--container-gutter)] max-w-[calc(clamp(89.5rem,94.708994709vw,119.035rem)+var(--container-gutter)*2)] !-mt-[50vh] md:gap-[clamp(1.875rem,1.9841269841vw,2.49375rem)] lg:m-[clamp(4.375rem,4.6296296296vw,5.81875rem)_auto]">
         <div className="auto-cols-fr gap-[inherit] grid grid-template-areas-a">
           <div className="w-full aspect-x-1452 aspect-y-890">
             <a className="bg-transparent rounded-[clamp(1.25rem,1.3227513228vw,1.6625rem)] text-[inherit] no-underline relative w-full block lg:rounded-[clamp(1.875rem,1.9841269841vw,2.49375rem)]">
@@ -17,7 +17,8 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
                   <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
                     <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/images/placeholder/1080.png`}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/search.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain dark:hidden" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/light/search.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain hidden dark:block" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/dark/search.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
               <div className="grid content-end md:h-full md:w-full md:left-0 md:bottom-0 md:absolute">
@@ -39,7 +40,8 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
                   <picture className="max-w-full leading-[0] block rounded-[20px] row-start-1 -col-start-1 row-end-auto col-end-auto">
                     <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/images/placeholder/3040.png`}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/sort.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain dark:hidden" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/light/sort.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain hidden dark:block" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/dark/sort.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
               <div className="grid content-end md:h-full md:w-full md:left-0 md:bottom-0 md:absolute">
@@ -59,7 +61,8 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
                   <picture className="max-w-full leading-[0] block rounded-[20px] row-start-1 -col-start-1 row-end-auto col-end-auto">
                     <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/images/placeholder/3040.png`}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/call.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain dark:hidden" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/light/call.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain hidden dark:block" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/dark/call.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
               <div className="grid content-end md:h-full md:w-full md:left-0 md:bottom-0 md:absolute">
