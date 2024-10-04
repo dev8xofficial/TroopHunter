@@ -11,7 +11,7 @@ const FeatureVideo: React.FC = (): JSX.Element => {
             <picture className="max-w-full leading-0 block rounded-[inherit] aspect-square row-start-1 col-start-1 row-end-auto col-end-auto object-cover w-full h-screen">
               <img className="block m-0 max-w-full object-cover h-full w-full left-0 top-0 absolute outline-offset-0 rounded-[inherit] border border-solid border-transparent transform transition-[outline_.4s]" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/images/placeholder/1080.png`} alt="" />
             </picture>
-            <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto object-cover w-full lg:object-center lg:object-contain lg:top-0 lg:left-0 lg:absolute lg:h-screen" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter-lead-gen/1080.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
+            <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto object-cover w-full lg:object-center lg:object-contain lg:top-0 lg:left-0 lg:absolute lg:h-screen" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter-lead-gen/light/1080.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
           </div>
         </div>
       </div>

@@ -193,7 +193,7 @@ const Landing: React.FC = (): JSX.Element => {
         <meta name="twitter:site" content="@TroopHunter"></meta>
       </Helmet>
       {/* Main container with smooth-scrollbar */}
-      <main className="relative h-full max-h-screen min-h-screen font-medium leading-relaxed transition-colors duration-500 ease-in-out" id="smooth-scrollbar">
+      <main className="relative h-full max-h-screen min-h-screen font-medium leading-relaxed transition-colors duration-500 ease-in-out dark:bg-white" id="smooth-scrollbar">
         <Header />
         <section id="hero-section">
           <Hero />
