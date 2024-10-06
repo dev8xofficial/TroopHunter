@@ -108,31 +108,42 @@ class BusinessScraper:
             print("Service chromedriver unexpectedly exited: ", e)
 
     def set_logger(self, logger):
-        self.logger = logger
+        try:
+            self.logger = logger
+        except Exception as e:
+            self.logger.error("Something went wrong in set_logger(): {e}")
 
     def set_search_query(self, searchQuery):
-        self.searchQuery = searchQuery
+        try:
+            self.searchQuery = searchQuery
+        except Exception as e:
+            self.logger.error("Something went wrong in set_search_query(): {e}")
 
     def search(self, query):
-        original_window = self.driver.current_window_handle
-        self.driver.execute_script("window.open('');")
-        new_tab = self.driver.window_handles[-1]
-        self.driver.switch_to.window(new_tab)
-        
-        self.logger.info(f"Searching for query: {query}")
-        self.driver.get(f"{BASE_URL}/{quote_plus(query)}")
-        wait = WebDriverWait(self.driver, self.long_wait)
-
-        if len(self.driver.window_handles) > 1:
-            self.driver.switch_to.window(original_window)
-            self.driver.close()
-
-        self.driver.switch_to.window(self.driver.window_handles[-1])
         try:
-            wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
-            wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
-        except TimeoutException:
-            self.logger.warning("Element with role='feed' not found, continuing to the next step.")
+            original_window = self.driver.current_window_handle
+            self.driver.execute_script("window.open('');")
+            new_tab = self.driver.window_handles[-1]
+            self.driver.switch_to.window(new_tab)
+            
+            self.logger.info(f"Searching for query: {query}")
+            self.driver.get(f"{BASE_URL}/{quote_plus(query)}")
+            wait = WebDriverWait(self.driver, self.long_wait)
+
+            if len(self.driver.window_handles) > 1:
+                self.driver.switch_to.window(original_window)
+                self.driver.close()
+
+            self.driver.switch_to.window(self.driver.window_handles[-1])
+            try:
+                wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
+                wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
+            except TimeoutException:
+                self.logger.warning("'feed' TimeoutException: 1. Continuing to the next step.")
+            except Exception as e:
+                self.logger.error("'feed' Exception: 1. Continuing to the next step. {e}")
+        except Exception as e:
+            self.logger.error("Something went wrong in search(): {e}")
 
     def scroll_and_extract_data(self, query: str, city: str):
         self.logger.info("Scrolling into feed.")
@@ -544,9 +555,15 @@ class BusinessScraper:
             try:
                 feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
             except NoSuchElementException:
+                self.logger.warning("'feed' TimeoutException: 2. Continuing to the next step.")
                 return
             except StaleElementReferenceException:
+                self.logger.warning("'feed' TimeoutException: 2. Continuing to the next step.")
                 return
+            except TimeoutException:
+                self.logger.warning("'feed' TimeoutException: 2. Continuing to the next step.")
+            except Exception as e:
+                self.logger.error("'feed' Exception: 2. Continuing to the next step. {e}")
 
             print(f"{query} - while loop: \n")
             while True:
@@ -692,8 +709,16 @@ class BusinessScraper:
             if feed != None:
                 scroll_till_the_end_of_list(self, query, city)
         except NoSuchElementException:
+            self.logger.warning("'feed' TimeoutException: 3. Continuing to the next step.")
             pass
         except StaleElementReferenceException:
+            self.logger.warning("'feed' TimeoutException: 3. Continuing to the next step.")
+            pass
+        except TimeoutException:
+            self.logger.warning("'feed' TimeoutException: 3. Continuing to the next step.")
+            pass
+        except Exception as e:
+            self.logger.error("'feed' Exception: 3. Continuing to the next step. {e}")
             pass
 
         initialization_state = self.driver.execute_script("return window.APP_INITIALIZATION_STATE")
