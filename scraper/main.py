@@ -4,7 +4,6 @@ from src.scraper import BusinessScraper
 from src.googlePlacesScraper import google_places_scraper
 from config import LAPTOP_NAME, sourceValues
 import logging
-import datetime
 from dotenv import load_dotenv
 from src.services.auth import login
 from src.services.queue import get_queue, update_queue, create_city_queue
@@ -15,29 +14,100 @@ from src.utils.general import is_internet_available
 import requests
 from requests.exceptions import Timeout
 import os
+from datetime import datetime
 
 # Load environment variables from .env file
 load_dotenv()
 
 
+def sanitize_search_query(query):
+    """Sanitize the search query to avoid special characters and overly long filenames."""
+    return ''.join(e for e in query if e.isalnum() or e in ['-', '_']).strip()
+
+
+def setup_logger(city_name, stateCode, countryCode, lat, long, queue):
+    """Setup logger to save logs into a file based on the directory structure."""
+    # Get the directory of the current script
+    script_directory = os.path.dirname(os.path.realpath(__file__))
+    # parent_directory = os.path.dirname(script_directory)
+
+    # Define the base folder for Google Places logs
+    log_base_folder = os.path.join(script_directory, "places")
+
+    # Create the log directory structure
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    date_folder = os.path.join(log_base_folder, current_date)
+    state_country_folder = os.path.join(date_folder, f"{stateCode}-{countryCode}")
+    city_folder = os.path.join(state_country_folder, f"{city_name}-{lat}-{long}")
+
+    # Sanitize the search query to use it as part of the filename
+    sanitized_search_query = sanitize_search_query(queue['searchQuery'])
+
+    # Final log file path: {search_query}.log inside the city folder
+    log_file_path = os.path.join(city_folder, f"{sanitized_search_query}.log")
+
+    # Create necessary directories if they don't exist
+    os.makedirs(city_folder, exist_ok=True)
+    # if not os.path.exists(city_folder):
+    #     os.makedirs(city_folder)
+    #     logger.info("Created directory: %s", city_folder)
+    # else:
+    #     logger.info("Directory already exists: %s", city_folder)
+
+    # Create a new logger for this particular thread/task
+    logger_name = f"{city_name}-{lat}-{long}-{sanitized_search_query}"
+    logger = logging.getLogger(logger_name)
+    # if logger.hasHandlers():
+    #     logger.handlers.clear()  # Remove existing handlers
+    
+    # Avoid adding duplicate handlers if the logger has already been initialized
+    if len(logger.handlers) == 0:
+        logger.setLevel(logging.INFO)  # Set the logger level to INFO
+        
+        # Setup logging to file using FileHandler
+        file_handler = logging.FileHandler(log_file_path)
+        file_handler.setLevel(logging.INFO)
+        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(module)s - %(message)s")
+        file_handler.setFormatter(formatter)
+
+        # Add the file handler to the logger
+        logger.addHandler(file_handler)
+
+        # Optional: Add a stream handler if you want to see logs on console as well
+        stream_handler = logging.StreamHandler()
+        stream_handler.setFormatter(formatter)
+        logger.addHandler(stream_handler)
+
+    logger.info("Logger initialized for search query: %s", sanitized_search_query)
+    return logger  # Return this logger to be used in the thread/task
+
+
 def process_queue(queue, city, scraper):
-    # Set up logging for the current search query and laptop name
-    current_date = datetime.datetime.now().strftime("%m-%d-%Y")
-    current_time = datetime.datetime.now().strftime("%H:%M")
-    log_file = f"scraper/logs/scraper__{current_date}__{current_time}__{queue['searchQuery'].replace(' ', '-')}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
-    logger = logging.getLogger(log_file)
-    logger.setLevel(logging.INFO)
+    # # Set up logging for the current search query and laptop name
+    # current_date = datetime.datetime.now().strftime("%m-%d-%Y")
+    # current_time = datetime.datetime.now().strftime("%H:%M")
+    # log_file = f"scraper/logs/scraper__{current_date}__{current_time}__{queue['searchQuery'].replace(' ', '-')}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
+    # logger = logging.getLogger(log_file)
+    # logger.setLevel(logging.INFO)
 
-    # Add a file handler with the specific log file name
-    file_handler = logging.FileHandler(log_file)
-    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(module)s - %(message)s")
-    file_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
+    # # Add a file handler with the specific log file name
+    # file_handler = logging.FileHandler(log_file)
+    # formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(module)s - %(message)s")
+    # file_handler.setFormatter(formatter)
+    # logger.addHandler(file_handler)
 
-    # Add a stream handler to display logs on the console
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(formatter)
-    logger.addHandler(stream_handler)
+    # # Add a stream handler to display logs on the console
+    # stream_handler = logging.StreamHandler()
+    # stream_handler.setFormatter(formatter)
+    # logger.addHandler(stream_handler)
+
+    city_name = city['name']
+    city_stateCode = city['stateCode']
+    city_countryCode = city['countryCode']
+    lat = city['latitude']
+    long = city['longitude']
+    # Setup the logger for the current queue processing
+    logger = setup_logger(city_name, city_stateCode, city_countryCode, lat, long, queue)
 
     while True:
         try:
@@ -143,7 +213,7 @@ if __name__ == "__main__":
         else:
             print("Main")
             # Set up logging for the main script
-            current_date = datetime.datetime.now().strftime("%m-%d-%Y")
+            current_date = datetime.now().strftime("%m-%d-%Y")
             log_file = f"scraper/logs/main__{current_date}__{LAPTOP_NAME.replace(' ', '-')}.log".lower()
             logging.basicConfig(filename=log_file,level=logging.INFO,format="%(asctime)s - %(levelname)s - %(module)s - %(message)s")
             main()

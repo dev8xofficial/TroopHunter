@@ -13,6 +13,7 @@ from config import BASE_URL
 from dotenv import load_dotenv
 import os
 import random
+from datetime import datetime
 import json
 import urllib.parse
 
@@ -454,6 +455,87 @@ class BusinessScraper:
                     combined_data = combined_data + data[0][1][1:]
         return combined_data
 
+    def sanitize_search_query(self, query):
+        """Sanitize the search query to avoid special characters and overly long filenames."""
+        return ''.join(e for e in query if e.isalnum() or e in ['-', '_']).strip()
+
+    def save_data_to_file(self, logger, city_name, stateCode, countryCode, lat, long, new_data, queue):
+        """Save API response to a file or merge with existing data, and track place_ids to avoid duplication"""
+
+        logger.info("Starting to save data for city: %s", city_name)
+
+        # Get the directory of the current script
+        script_directory = os.path.dirname(os.path.realpath(__file__))
+
+        # Move one directory back
+        parent_directory = os.path.dirname(script_directory)
+
+        # Define the folder path based on the new structure
+        # Date (YYYY-MM-DD)
+        current_date = datetime.now().strftime('%Y-%m-%d')
+        date_folder = os.path.join(parent_directory, "places", current_date)
+
+        # StateCode-CountryCode folder
+        state_country_folder = os.path.join(date_folder, f"{stateCode}-{countryCode}")
+
+        # City-Lat-Long folder
+        city_folder = os.path.join(state_country_folder, f"{city_name}-{lat}-{long}")
+
+        # Sanitize the search query to use it as part of the filename
+        search_query = self.sanitize_search_query(queue)
+
+        # Final file path: {queue}.json inside the city folder
+        file_name = f"{search_query}.json"
+        file_path = os.path.join(city_folder, file_name)
+
+        logger.info("File path for saving data: %s", file_path)
+
+        # Create the necessary directories if they don't exist
+        if not os.path.exists(city_folder):
+            os.makedirs(city_folder)
+            logger.info("Created directory: %s", city_folder)
+        else:
+            logger.info("Directory already exists: %s", city_folder)
+
+        # Initialize the data structure
+        data = {"results": [], "place_ids": [], "results_length": 0}
+
+        # If the file exists, read the existing data and merge
+        if os.path.exists(file_path):
+            logger.info("File exists. Reading existing data from: %s", file_path)
+            with open(file_path, "r") as file:
+                existing_data = json.load(file)
+                data["results"] = existing_data.get("results", [])
+                data["place_ids"] = existing_data.get("place_ids", [])
+                logger.info("Loaded %d existing results and %d place_ids.", len(data["results"]), len(data["place_ids"]))
+        else:
+            logger.info("File does not exist. Will create a new one.")
+
+        # Extract place_ids from new_data
+        new_places = []
+        for place in new_data.get("results", []):
+            place_id = place.get("place_id")
+
+            # Only add places that are not already in place_ids
+            if place_id not in data["place_ids"]:
+                new_places.append(place)
+                data["place_ids"].append(place_id)  # Track the new place_id
+
+        logger.info("Found %d new places to add.", len(new_places))
+
+        # Add new places to results
+        data["results"].extend(new_places)
+
+        # Update the results_length field with the new length of the results array
+        data["results_length"] = len(data["results"])
+
+        # Write merged or new data to file
+        with open(file_path, "w") as file:
+            json.dump(data, file, indent=2)
+            logger.info("Saved %d total results to file: %s", data["results_length"], file_path)
+
+        logger.info("Data saving process completed for city: %s", city_name)
+
     def scroll_and_parse_data(self, query: str, city: str):
         def scroll_till_the_end_of_list(self, query: str, city: str):
             self.logger.info("Scrolling into feed.")
@@ -479,62 +561,96 @@ class BusinessScraper:
                 try:
                     if current_business_anchor:
                         print(f"{query} - 1: \n")
+                        self.logger.info(f"{query} - 1: \n")
                         current_business_anchor_is_article_or_not = current_business_anchor.find_element(By.XPATH, ".//div[contains(@class, 'Nv2PK')]//a[contains(@class, 'hfpxzc')]")
                 except NoSuchElementException:
+                    self.logger.info(f"{query} - 1: NoSuchElementException \n")
                     pass
                 except StaleElementReferenceException:
+                    self.logger.info(f"{query} - 1: StaleElementReferenceException \n")
+                    pass
+                except Exception as e:
+                    self.logger.info(f"{query} - 1: Exception {e} \n")
                     pass
 
                 try:
                     if current_business_anchor:
                         print(f"{query} - 2: \n")
+                        self.logger.info(f"{query} - 2: \n")
                         current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
                 except NoSuchElementException:
+                    self.logger.info(f"{query} - 2: NoSuchElementException \n")
                     pass
                 except StaleElementReferenceException:
+                    self.logger.info(f"{query} - 2: StaleElementReferenceException \n")
+                    pass
+                except Exception as e:
+                    self.logger.info(f"{query} - 2: Exception {e} \n")
                     pass
 
                 try:
                     if current_business_anchor:
                         print(f"{query} - 3: \n")
+                        self.logger.info(f"{query} - 3: \n")
                         current_business_anchor_is_end_of_list_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='PbZDve ']")
                 except NoSuchElementException:
+                    self.logger.info(f"{query} - 3: NoSuchElementException \n")
                     pass
                 except StaleElementReferenceException:
+                    self.logger.info(f"{query} - 3: StaleElementReferenceException \n")
+                    pass
+                except Exception as e:
+                    self.logger.info(f"{query} - 3: Exception {e} \n")
                     pass
 
                 if feed is None:
                     print(f"{query} - 4: \n")
+                    self.logger.info(f"{query} - 4: \n")
                     break
                 elif len(business_anchor_tags) <= counter:
+                    self.logger.info(f"{query} - 5: \n")
                     print(f"{query} - 5: \n")
                     break
 
                 if not current_business_anchor_is_article_or_not and not current_business_anchor_is_loader_or_not and not current_business_anchor_is_end_of_list_or_not:
                     print(f"{query} - 6: \n")
+                    self.logger.info(f"{query} - 6: \n")
                     counter = counter + 1
                     continue
                 if current_business_anchor_is_loader_or_not:
                     print(f"{query} - 7: \n")
+                    self.logger.info(f"{query} - 7: \n")
                     while True:
                         try:
                             print(f"{query} - 8: \n")
+                            self.logger.info(f"{query} - 8: \n")
                             business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
                             current_business_anchor = business_anchor_tags[counter]
                             current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
                         except NoSuchElementException:
+                            self.logger.info(f"{query} - 8: NoSuchElementException \n")
                             break
                         except StaleElementReferenceException:
+                            self.logger.info(f"{query} - 8: StaleElementReferenceException \n")
+                            pass
+                        except Exception as e:
+                            self.logger.info(f"{query} - 8: Exception {e} \n")
                             pass
 
                         if current_business_anchor_is_loader_or_not:
                             print(f"{query} - 9: \n")
+                            self.logger.info(f"{query} - 9: \n")
                             wait = WebDriverWait(self.driver, 5)
                             try:
                                 wait.until(EC.invisibility_of_element_located((By.XPATH, "//div[@class='qjESne veYFef']")))
                             except NoSuchElementException:
+                                self.logger.info(f"{query} - 9: NoSuchElementException \n")
                                 pass
                             except TimeoutException:
+                                self.logger.info(f"{query} - 9: StaleElementReferenceException \n")
+                                pass
+                            except Exception as e:
+                                self.logger.info(f"{query} - 9: Exception {e} \n")
                                 pass
                             continue
                         else:
@@ -543,6 +659,7 @@ class BusinessScraper:
                     continue
                 if current_business_anchor_is_end_of_list_or_not:
                     print(f"{query} - 10: \n")
+                    self.logger.info(f"{query} - 10: \n")
                     counter = counter + 1
                     break
 
@@ -608,6 +725,7 @@ class BusinessScraper:
                     self.logger.info("~~~~~~~~ Basic Info ~~~~~~~~")
                     # soup = BeautifulSoup(self.driver.page_source, "html.parser")
                     # h1_text = soup.find("h1", class_="DUwDvf").text
+                    current_business_data["place_id"] = current_business_maps_data[78]
                     current_business_data["name"] = current_business_maps_data[11]
                     self.logger.info(f"Title: {current_business_maps_data[11]}")
                     current_business_data["businessDomain"] = current_business_maps_data[13][0]
@@ -768,7 +886,14 @@ class BusinessScraper:
             counter = counter + 1
             businesses.append(current_business_data)
             if counter >= len(initialization_state_and_requests):
-                return create_businesses(businesses)
+                # return create_businesses(businesses)
+                response_object = { "results": businesses, "place_ids": [], "results_length": 0 }
+                city_name = city['name']
+                city_stateCode = city['stateCode']
+                city_countryCode = city['countryCode']
+                lat = city['latitude']
+                long = city['longitude']
+                return self.save_data_to_file(self.logger, city_name, city_stateCode, city_countryCode, lat, long, response_object, query)
 
     def close(self):
         self.driver.quit()
