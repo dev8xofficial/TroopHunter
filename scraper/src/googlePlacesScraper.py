@@ -19,7 +19,7 @@ import random
 load_dotenv()
 API_KEY = os.getenv("PLACE_API_KEY")
 logger = logging.getLogger()
-MOCK_MODE = os.getenv("MOCK_MODE", "False").lower() == "true"
+MOCK_MODE = os.getenv("MOCK_MODE", "False").lower() == "True"
 
 
 def get_mock_nearby_places():
@@ -408,7 +408,7 @@ def process_queue(queue, city, business_source_id):
             time.sleep(2)
         except Exception as e:
             while True:
-                if is_internet_available():
+                if is_internet_available(logger):
                     logger.error("Internet connection is working. Retrying...: %s", e)
                     break
                 else:

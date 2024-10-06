@@ -132,12 +132,12 @@ def process_queue(queue, city, scraper):
             break
         except (Timeout, requests.exceptions.RequestException, Exception) as e:
             while True:
-                if is_internet_available():
-                    logger.info("Internet connection is working. Retrying...")
+                if is_internet_available(logger):
+                    logger.info("Internet connection is working. Retrying... {e}")
                     # scraper.close()
                     break
                 else:
-                    logger.info("Internet connection is not available. Retrying in 5 seconds...")
+                    logger.info("Internet connection is not available. Retrying in 5 seconds... {e}")
 
 
 def main():
@@ -207,7 +207,7 @@ def main():
 
 if __name__ == "__main__":
     try:
-        findPlaceMain = os.environ.get("FINDPLACEMAIN")
+        findPlaceMain = os.environ.get("FIND_PLACE_MAIN")
         if findPlaceMain == "True":
             google_places_scraper()
         else:
