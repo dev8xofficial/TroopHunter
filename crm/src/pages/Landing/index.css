@@ -6,18 +6,6 @@ html {
   overflow: hidden;
 }
 
-.aspect-x-1452 {
-  --aspect-x: 1452;
-}
-
-.aspect-x-710 {
-  --aspect-x: 710;
-}
-
-.aspect-y-890 {
-  --aspect-y: 890;
-}
-
 .progress-0 {
   --progress: 0;
 }
