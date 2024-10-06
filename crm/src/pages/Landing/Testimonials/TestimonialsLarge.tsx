@@ -12,22 +12,22 @@ const TestimonialsLarge: React.FC = (): JSX.Element => {
         <div className="w-full grid-cols-[repeat(1,1fr)] justify-items-start gap-[0.875rem] leading-[1.5294117647] text-[clamp(1.25rem,1.3227513228vw,1.6625rem)] pointer-events-none self-center mt-[clamp(1rem,1.0582010582vw,1.33rem)] grid row-start-[columns] col-start-[columns] row-end-[columns] col-end-[columns] lg:justify-items-center sm:grid-cols-[repeat(2,1fr)] sm:gap-[3.125rem] lg:mb-[clamp(5.625rem,5.9523809524vw,7.48125rem)] xl:gap-[clamp(1.875rem,1.9841269841vw,2.49375rem)_clamp(4.375rem,4.6296296296vw,5.81875rem)] xl:col-start-1 xl:col-end-2 xl:grid-cols-3 2xl:grid-cols-[repeat(4,auto)]">
           <div className="pointer-events-auto xl:max-2xl:row-start-2 xl:max-2xl:row-end-2">
             <h3 className="text-[inherit] leading-[inherit] mb-[.125rem] mt-0 flex items-center">
-              <CheckBadgeIcon className="w-8 mr-3 lg:w-10 lg:mr-5" /> Zero Manual Research Needed
+              <CheckBadgeIcon className="w-6 mr-3 lg:w-10 lg:mr-5" /> Zero Manual Research Needed
             </h3>
           </div>
           <div className="pointer-events-auto xl:max-2xl:row-start-2 xl:max-2xl:row-end-2">
             <h3 className="text-[inherit] leading-[inherit] mb-[.125rem] mt-0 flex items-center">
-              <CheckBadgeIcon className="w-8 mr-3 lg:w-10 lg:mr-5" /> Complete Version with All Features
+              <CheckBadgeIcon className="w-6 mr-3 lg:w-10 lg:mr-5" /> Complete Version with All Features
             </h3>
           </div>
           <div className="pointer-events-auto xl:max-2xl:row-start-2 xl:max-2xl:row-end-2">
             <h3 className="text-[inherit] leading-[inherit] mb-[.125rem] mt-0 flex items-center">
-              <CheckBadgeIcon className="w-8 mr-3 lg:w-10 lg:mr-5" /> No Marketing Expertise Required
+              <CheckBadgeIcon className="w-6 mr-3 lg:w-10 lg:mr-5" /> No Marketing Expertise Required
             </h3>
           </div>
           <div className="pointer-events-auto xl:max-2xl:row-start-2 xl:max-2xl:row-end-2">
             <h3 className="text-[inherit] leading-[inherit] mb-[.125rem] mt-0 flex items-center">
-              <CheckBadgeIcon className="w-8 mr-3 lg:w-10 lg:mr-5" /> No Tech Skills Required
+              <CheckBadgeIcon className="w-6 mr-3 lg:w-10 lg:mr-5" /> No Tech Skills Required
             </h3>
           </div>
         </div>

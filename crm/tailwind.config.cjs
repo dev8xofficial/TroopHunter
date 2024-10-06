@@ -3,9 +3,53 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{html,js,ts,jsx,tsx}'],
-  plugins: [require('daisyui')],
+  plugins: [require('daisyui'), require('@mertasan/tailwindcss-variables')],
   dark: 'class',
   theme: {
+    variables: {
+      '.aspect-x-1452': {
+        aspect: {
+          x: 1452
+        }
+      },
+      '.aspect-x-710': {
+        aspect: {
+          x: 710
+        }
+      },
+      '.aspect-y-890': {
+        aspect: {
+          y: 890
+        }
+      },
+      '.aspect-y-1250': {
+        aspect: {
+          y: 1250
+        }
+      }
+    },
+    darkVariables: {
+      '.aspect-x-1452': {
+        aspect: {
+          x: 1452
+        }
+      },
+      '.aspect-x-710': {
+        aspect: {
+          x: 710
+        }
+      },
+      '.aspect-y-890': {
+        aspect: {
+          y: 890
+        }
+      },
+      '.aspect-y-1250': {
+        aspect: {
+          y: 1250
+        }
+      }
+    },
     extend: {
       colors: {
         transparent: 'transparent',
