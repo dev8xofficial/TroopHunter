@@ -15,12 +15,14 @@ from selenium.common.exceptions import TimeoutException
 import time
 
 
-def is_internet_available():
+def is_internet_available(logger=None):
     try:
         # Send a request to Google to check internet availability
         requests.get("https://www.google.com")
+        logger.info("is_internet_available True")
         return True
     except requests.exceptions.RequestException:
+        logger.error("is_internet_available False")
         return False
 
 
@@ -31,7 +33,7 @@ def handle_timeout_with_retry(dynamic_code_for_try, dynamic_code_for_catch=None,
             break
         except (Timeout, TimeoutException, requests.exceptions.RequestException, Exception) as e:
             while True:
-                if is_internet_available():
+                if is_internet_available(logger):
                     if dynamic_code_for_catch:
                         try:
                             dynamic_code_for_catch()
