@@ -41,7 +41,7 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
                 </div>
                 <div className="h-auto grid transform -translate-y-2/4 -translate-x-2/4 left-2/4 top-2/4 absolute w-[38.0281690141%]">
                   <picture className="max-w-full leading-[0] block rounded-[20px] row-start-1 -col-start-1 row-end-auto col-end-auto">
-                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/images/placeholder/3040.png`}></img>
+                    <img className="max-w-full m-0 object-cover w-full h-full scale-[1.75] rounded-[inherit]" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/images/placeholder/3040.png`}></img>
                   </picture>
                   <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.75] sm:h-full sm:scale-[1.15] object-center object-contain dark:hidden" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/light/sort-mobile.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
                   <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.75] sm:h-full sm:scale-[1.15] object-center object-contain hidden dark:block" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/dark/sort-mobile.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
@@ -62,7 +62,7 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
                 </div>
                 <div className="h-auto grid transform -translate-y-2/4 -translate-x-2/4 left-2/4 top-2/4 absolute w-[38.0281690141%]">
                   <picture className="max-w-full leading-[0] block rounded-[20px] row-start-1 -col-start-1 row-end-auto col-end-auto">
-                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/images/placeholder/3040.png`}></img>
+                    <img className="max-w-full m-0 object-cover w-full h-full scale-[1.75] rounded-[inherit]" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/images/placeholder/3040.png`}></img>
                   </picture>
                   <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.75] sm:h-full sm:scale-[1.15] object-center object-contain dark:hidden" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/light/call-mobile.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
                   <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.75] sm:h-full sm:scale-[1.15] object-center object-contain hidden dark:block" src={`${import.meta.env.VITE_TROOPHUNTER_PUBLIC_URL}/videos/troophunter/dark/call-mobile.mp4`} preload="none" loop controls={false} autoPlay muted playsInline></video>
