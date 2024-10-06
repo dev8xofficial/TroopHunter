@@ -1,6 +1,7 @@
 # Logs
 logs/*.log
 googlePlaces
+places
 driver/chromedriver
 venv
 __pycache__
