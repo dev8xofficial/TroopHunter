@@ -918,7 +918,8 @@ class BusinessScraper:
                 city_countryCode = city['countryCode']
                 lat = city['latitude']
                 long = city['longitude']
-                return self.save_data_to_file(self.logger, city_name, city_stateCode, city_countryCode, lat, long, response_object, query)
+                self.save_data_to_file(self.logger, city_name, city_stateCode, city_countryCode, lat, long, response_object, query)
+                return response_object
 
     def close(self):
         self.driver.quit()
