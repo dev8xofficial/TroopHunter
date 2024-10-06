@@ -664,7 +664,14 @@ class BusinessScraper:
                                 self.logger.info(f"{query} - 9: NoSuchElementException \n")
                                 pass
                             except TimeoutException:
-                                self.logger.info(f"{query} - 9: StaleElementReferenceException \n")
+                                try:
+                                    next_business_anchor = business_anchor_tags[counter + 1]
+                                    next_business_anchor_is_end_of_list_or_not = next_business_anchor.find_element(By.XPATH, ".//div[@class='PbZDve ']")
+                                    if next_business_anchor_is_end_of_list_or_not:
+                                        break
+                                except Exception as e:
+                                    self.logger.info(f"{query} - 9: TimeoutException => Exception {e} \n")
+                                self.logger.info(f"{query} - 9: TimeoutException \n")
                                 pass
                             except Exception as e:
                                 self.logger.info(f"{query} - 9: Exception {e} \n")
@@ -918,7 +925,8 @@ class BusinessScraper:
                 city_countryCode = city['countryCode']
                 lat = city['latitude']
                 long = city['longitude']
-                return self.save_data_to_file(self.logger, city_name, city_stateCode, city_countryCode, lat, long, response_object, query)
+                self.save_data_to_file(self.logger, city_name, city_stateCode, city_countryCode, lat, long, response_object, query)
+                return response_object
 
     def close(self):
         self.driver.quit()
