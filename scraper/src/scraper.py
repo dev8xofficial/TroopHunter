@@ -138,6 +138,9 @@ class BusinessScraper:
             try:
                 wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
                 wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
+            except NoSuchElementException:
+                self.logger.warning("'feed' NoSuchElementException: 1. Continuing to the next step.")
+                return { "results": [], "place_ids": [], "results_length": 0 }
             except TimeoutException:
                 self.logger.warning("'feed' TimeoutException: 1. Continuing to the next step.")
             except Exception as e:
@@ -563,15 +566,17 @@ class BusinessScraper:
             try:
                 feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
             except NoSuchElementException:
-                self.logger.warning("'feed' TimeoutException: 2. Continuing to the next step.")
-                return
+                self.logger.warning("'feed' NoSuchElementException: 1. Continuing to the next step.")
+                return { "results": [], "place_ids": [], "results_length": 0 }
             except StaleElementReferenceException:
                 self.logger.warning("'feed' TimeoutException: 2. Continuing to the next step.")
-                return
+                return { "results": [], "place_ids": [], "results_length": 0 }
             except TimeoutException:
                 self.logger.warning("'feed' TimeoutException: 2. Continuing to the next step.")
+                return { "results": [], "place_ids": [], "results_length": 0 }
             except Exception as e:
                 self.logger.warning("'feed' Exception: 2. Continuing to the next step. {e}")
+                return
 
             print(f"{query} - while loop: \n")
             while True:
@@ -746,14 +751,14 @@ class BusinessScraper:
             if feed != None:
                 scroll_till_the_end_of_list(self, query, city)
         except NoSuchElementException:
-            self.logger.warning("'feed' TimeoutException: 3. Continuing to the next step.")
-            pass
+            self.logger.warning("'feed' NoSuchElementException: 3. Continuing to the next step.")
+            return { "results": [], "place_ids": [], "results_length": 0 }
         except StaleElementReferenceException:
-            self.logger.warning("'feed' TimeoutException: 3. Continuing to the next step.")
-            pass
+            self.logger.warning("'feed' StaleElementReferenceException: 3. Continuing to the next step.")
+            return  { "results": [], "place_ids": [], "results_length": 0 }
         except TimeoutException:
             self.logger.warning("'feed' TimeoutException: 3. Continuing to the next step.")
-            pass
+            return  { "results": [], "place_ids": [], "results_length": 0 }
         except Exception as e:
             self.logger.warning("'feed' Exception: 3. Continuing to the next step. {e}")
             pass
