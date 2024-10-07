@@ -458,15 +458,18 @@ class BusinessScraper:
             encoded_text = urllib.parse.quote(self.searchQuery)
             for request in self.driver.requests:                        
                 if target_url in request.url and encoded_text in request.url:
-                    data = decode(request.response.body, request.response.headers.get('Content-Encoding', 'identity'))
-                    data = data.decode("utf8")
-                    if "/place" in target_url:
-                        data = json.loads(data.lstrip(")]}'\n").rstrip(','))
-                    elif "/search" in target_url:
-                        data = json.loads(json.loads(data.replace('/*""*/', ""))['d'].lstrip(")]}'\n").rstrip(','))
-                        combined_data = combined_data + data[0][1][1:]
+                    if request.response is not None:
+                        data = decode(request.response.body, request.response.headers.get('Content-Encoding', 'identity'))
+                        data = data.decode("utf8")
+                        if "/place" in target_url:
+                            data = json.loads(data.lstrip(")]}'\n").rstrip(','))
+                        elif "/search" in target_url:
+                            data = json.loads(json.loads(data.replace('/*""*/', ""))['d'].lstrip(")]}'\n").rstrip(','))
+                            combined_data = combined_data + data[0][1][1:]
+                    else:
+                        self.logger.warning("parse_network_traffic: No response for request {request.url}")
         except Exception as e:
-            self.logger.warning("parse_network_traffic: {e}")
+            self.logger.warning("parse_network_traffic Exception {e}")
         return combined_data
 
     def sanitize_search_query(self, query):
@@ -555,6 +558,7 @@ class BusinessScraper:
         def scroll_till_the_end_of_list(self, query: str, city: str):
             self.logger.info("Scrolling into feed.")
             counter = 0
+            counter_for_business_anchor_loader = 0
 
             try:
                 feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
@@ -576,8 +580,13 @@ class BusinessScraper:
                 current_business_anchor_is_article_or_not = None
                 current_business_anchor_is_loader_or_not = None
                 current_business_anchor_is_end_of_list_or_not = None
+                counter_for_business_anchor_loader = 0
 
-                current_business_anchor = business_anchor_tags[counter]
+                try:
+                    current_business_anchor = business_anchor_tags[counter]
+                except IndexError:
+                    self.logger.info(f"{query} - IndexError - scroll_till_the_end_of_list: while \n")
+                    break
 
                 try:
                     if current_business_anchor:
@@ -675,12 +684,19 @@ class BusinessScraper:
                                 pass
                             except TimeoutException:
                                 try:
+                                    if len(business_anchor_tags) == counter:
+                                        self.logger.info(f"{query} - 9: IndexError len(business_anchor_tags) == counter \n")
+                                        break
                                     next_business_anchor = business_anchor_tags[counter + 1]
                                     next_business_anchor_is_end_of_list_or_not = next_business_anchor.find_element(By.XPATH, ".//div[@class='PbZDve ']")
                                     if next_business_anchor_is_end_of_list_or_not:
                                         break
                                 except IndexError:
-                                    self.logger.info(f"{query} - 9: IndexError End of list not found \n")
+                                    counter_for_business_anchor_loader = counter_for_business_anchor_loader + 1
+                                    self.logger.info(f"{query} - 9: IndexError End of list not found. Counter = {counter_for_business_anchor_loader} \n")
+                                    time.sleep(5)
+                                    if counter_for_business_anchor_loader > 50:
+                                        break
                                     pass
                                 except Exception as e:
                                     self.logger.warning(f"{query} - 9: TimeoutException => Exception {e} \n")
