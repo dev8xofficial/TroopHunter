@@ -82,7 +82,7 @@ def setup_logger(city_name, stateCode, countryCode, lat, long, queue):
     return logger  # Return this logger to be used in the thread/task
 
 
-def process_queue(queue, city, scraper):
+def process_queue(queue, city, business_source_id, scraper):
     # # Set up logging for the current search query and laptop name
     # current_date = datetime.datetime.now().strftime("%m-%d-%Y")
     # current_time = datetime.datetime.now().strftime("%H:%M")
@@ -122,6 +122,7 @@ def process_queue(queue, city, scraper):
             city_queue = {
                 "cityId": city["id"],
                 "queueId": queue["id"],
+                "businessSourceId": business_source_id,
                 "status": "Completed",
             }
             if new_businesses is None:
@@ -189,7 +190,7 @@ def main():
                             continue
 
                         # Submit each search task to the ThreadPoolExecutor
-                        future = executor.submit(process_queue, queue, city, browsers[city["id"]])
+                        future = executor.submit(process_queue, queue, city, business_source["id"], browsers[city["id"]])
                         futures.append(future)
                     # break
 
