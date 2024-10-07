@@ -454,16 +454,19 @@ class BusinessScraper:
     
     def parse_network_traffic(self, target_url):
         combined_data = []
-        encoded_text = urllib.parse.quote(self.searchQuery)
-        for request in self.driver.requests:                        
-            if target_url in request.url and encoded_text in request.url:
-                data = decode(request.response.body, request.response.headers.get('Content-Encoding', 'identity'))
-                data = data.decode("utf8")
-                if "/place" in target_url:
-                    data = json.loads(data.lstrip(")]}'\n").rstrip(','))
-                elif "/search" in target_url:
-                    data = json.loads(json.loads(data.replace('/*""*/', ""))['d'].lstrip(")]}'\n").rstrip(','))
-                    combined_data = combined_data + data[0][1][1:]
+        try:
+            encoded_text = urllib.parse.quote(self.searchQuery)
+            for request in self.driver.requests:                        
+                if target_url in request.url and encoded_text in request.url:
+                    data = decode(request.response.body, request.response.headers.get('Content-Encoding', 'identity'))
+                    data = data.decode("utf8")
+                    if "/place" in target_url:
+                        data = json.loads(data.lstrip(")]}'\n").rstrip(','))
+                    elif "/search" in target_url:
+                        data = json.loads(json.loads(data.replace('/*""*/', ""))['d'].lstrip(")]}'\n").rstrip(','))
+                        combined_data = combined_data + data[0][1][1:]
+        except Exception as e:
+            self.logger.warning("parse_network_traffic: {e}")
         return combined_data
 
     def sanitize_search_query(self, query):
@@ -653,9 +656,9 @@ class BusinessScraper:
                             pass
                         except IndexError:
                             if len(business_anchor_tags) == counter:
-                                self.logger.info(f"{query} - 8: IndexError len(business_anchor_tags) == counter {e} \n")
+                                self.logger.info(f"{query} - 8: IndexError len(business_anchor_tags) == counter \n")
                                 break
-                            self.logger.info(f"{query} - 8: IndexError {e} \n")
+                            self.logger.info(f"{query} - 8: IndexError \n")
                             pass
                         except Exception as e:
                             self.logger.warning(f"{query} - 8: Exception {e} \n")
@@ -677,7 +680,7 @@ class BusinessScraper:
                                     if next_business_anchor_is_end_of_list_or_not:
                                         break
                                 except IndexError:
-                                    self.logger.info(f"{query} - 9: IndexError End of list not found {e} \n")
+                                    self.logger.info(f"{query} - 9: IndexError End of list not found \n")
                                     pass
                                 except Exception as e:
                                     self.logger.warning(f"{query} - 9: TimeoutException => Exception {e} \n")
