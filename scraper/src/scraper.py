@@ -653,9 +653,9 @@ class BusinessScraper:
                             pass
                         except IndexError:
                             if len(business_anchor_tags) == counter:
-                                self.logger.info(f"{query} - 8: IndexError len(business_anchor_tags) == counter {e} \n")
+                                self.logger.info(f"{query} - 8: IndexError len(business_anchor_tags) == counter \n")
                                 break
-                            self.logger.info(f"{query} - 8: IndexError {e} \n")
+                            self.logger.info(f"{query} - 8: IndexError \n")
                             pass
                         except Exception as e:
                             self.logger.warning(f"{query} - 8: Exception {e} \n")
@@ -677,7 +677,7 @@ class BusinessScraper:
                                     if next_business_anchor_is_end_of_list_or_not:
                                         break
                                 except IndexError:
-                                    self.logger.info(f"{query} - 9: IndexError End of list not found {e} \n")
+                                    self.logger.info(f"{query} - 9: IndexError End of list not found \n")
                                     pass
                                 except Exception as e:
                                     self.logger.warning(f"{query} - 9: TimeoutException => Exception {e} \n")
