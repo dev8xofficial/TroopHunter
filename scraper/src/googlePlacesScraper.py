@@ -91,9 +91,9 @@ def setup_city_logger(city_name, stateCode, countryCode, lat, long):
     log_base_folder = os.path.join(parent_directory, "googlePlaces")
 
     # Create the log directory structure
-    current_date = datetime.now().strftime("%Y-%m-%d")
-    date_folder = os.path.join(log_base_folder, current_date)
-    state_country_folder = os.path.join(date_folder, f"{stateCode}-{countryCode}")
+    # current_date = datetime.now().strftime("%Y-%m-%d")
+    # date_folder = os.path.join(log_base_folder, current_date)
+    state_country_folder = os.path.join(log_base_folder, f"{stateCode}-{countryCode}")
     city_folder = os.path.join(state_country_folder, f"{city_name}-{lat}-{long}")
 
     # Path for the city log file beside the folder
@@ -138,9 +138,9 @@ def setup_logger(city_name, stateCode, countryCode, lat, long, queue):
     log_base_folder = os.path.join(parent_directory, "googlePlaces")
 
     # Create the log directory structure
-    current_date = datetime.now().strftime("%Y-%m-%d")
-    date_folder = os.path.join(log_base_folder, current_date)
-    state_country_folder = os.path.join(date_folder, f"{stateCode}-{countryCode}")
+    # current_date = datetime.now().strftime("%Y-%m-%d")
+    # date_folder = os.path.join(log_base_folder, current_date)
+    state_country_folder = os.path.join(log_base_folder, f"{stateCode}-{countryCode}")
     city_folder = os.path.join(state_country_folder, f"{city_name}-{lat}-{long}")
 
     # Sanitize the search query to use it as part of the filename
@@ -299,8 +299,9 @@ def save_data_to_file(logger, city_name, stateCode, countryCode, lat, long, new_
 
     # Define the folder path based on the new structure
     # Date (YYYY-MM-DD)
-    current_date = datetime.now().strftime('%Y-%m-%d')
-    date_folder = os.path.join(parent_directory, "googlePlaces", current_date)
+    # current_date = datetime.now().strftime('%Y-%m-%d')
+    # date_folder = os.path.join(parent_directory, "googlePlaces", current_date)
+    date_folder = os.path.join(parent_directory, "googlePlaces")
 
     # StateCode-CountryCode folder
     state_country_folder = os.path.join(date_folder, f"{stateCode}-{countryCode}")
