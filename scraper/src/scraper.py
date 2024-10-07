@@ -651,6 +651,12 @@ class BusinessScraper:
                         except StaleElementReferenceException:
                             self.logger.warning(f"{query} - 8: StaleElementReferenceException \n")
                             pass
+                        except IndexError:
+                            if len(business_anchor_tags) == counter:
+                                self.logger.info(f"{query} - 8: IndexError len(business_anchor_tags) == counter {e} \n")
+                                break
+                            self.logger.info(f"{query} - 8: IndexError {e} \n")
+                            pass
                         except Exception as e:
                             self.logger.warning(f"{query} - 8: Exception {e} \n")
                             pass
