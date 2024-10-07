@@ -35,9 +35,9 @@ def setup_logger(city_name, stateCode, countryCode, lat, long, queue):
     log_base_folder = os.path.join(script_directory, "places")
 
     # Create the log directory structure
-    current_date = datetime.now().strftime("%Y-%m-%d")
-    date_folder = os.path.join(log_base_folder, current_date)
-    state_country_folder = os.path.join(date_folder, f"{stateCode}-{countryCode}")
+    # current_date = datetime.now().strftime("%Y-%m-%d")
+    # date_folder = os.path.join(log_base_folder, current_date)
+    state_country_folder = os.path.join(log_base_folder, f"{stateCode}-{countryCode}")
     city_folder = os.path.join(state_country_folder, f"{city_name}-{lat}-{long}")
 
     # Sanitize the search query to use it as part of the filename

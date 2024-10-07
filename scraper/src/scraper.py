@@ -483,8 +483,9 @@ class BusinessScraper:
 
         # Define the folder path based on the new structure
         # Date (YYYY-MM-DD)
-        current_date = datetime.now().strftime('%Y-%m-%d')
-        date_folder = os.path.join(parent_directory, "places", current_date)
+        # current_date = datetime.now().strftime('%Y-%m-%d')
+        # date_folder = os.path.join(parent_directory, "places", current_date)
+        date_folder = os.path.join(parent_directory, "places")
 
         # StateCode-CountryCode folder
         state_country_folder = os.path.join(date_folder, f"{stateCode}-{countryCode}")
@@ -563,7 +564,7 @@ class BusinessScraper:
             except TimeoutException:
                 self.logger.warning("'feed' TimeoutException: 2. Continuing to the next step.")
             except Exception as e:
-                self.logger.error("'feed' Exception: 2. Continuing to the next step. {e}")
+                self.logger.warning("'feed' Exception: 2. Continuing to the next step. {e}")
 
             print(f"{query} - while loop: \n")
             while True:
@@ -584,10 +585,10 @@ class BusinessScraper:
                     self.logger.info(f"{query} - 1: NoSuchElementException \n")
                     pass
                 except StaleElementReferenceException:
-                    self.logger.info(f"{query} - 1: StaleElementReferenceException \n")
+                    self.logger.warning(f"{query} - 1: StaleElementReferenceException \n")
                     pass
                 except Exception as e:
-                    self.logger.info(f"{query} - 1: Exception {e} \n")
+                    self.logger.warning(f"{query} - 1: Exception {e} \n")
                     pass
 
                 try:
@@ -599,10 +600,10 @@ class BusinessScraper:
                     self.logger.info(f"{query} - 2: NoSuchElementException \n")
                     pass
                 except StaleElementReferenceException:
-                    self.logger.info(f"{query} - 2: StaleElementReferenceException \n")
+                    self.logger.warning(f"{query} - 2: StaleElementReferenceException \n")
                     pass
                 except Exception as e:
-                    self.logger.info(f"{query} - 2: Exception {e} \n")
+                    self.logger.warning(f"{query} - 2: Exception {e} \n")
                     pass
 
                 try:
@@ -614,10 +615,10 @@ class BusinessScraper:
                     self.logger.info(f"{query} - 3: NoSuchElementException \n")
                     pass
                 except StaleElementReferenceException:
-                    self.logger.info(f"{query} - 3: StaleElementReferenceException \n")
+                    self.logger.warning(f"{query} - 3: StaleElementReferenceException \n")
                     pass
                 except Exception as e:
-                    self.logger.info(f"{query} - 3: Exception {e} \n")
+                    self.logger.warning(f"{query} - 3: Exception {e} \n")
                     pass
 
                 if feed is None:
@@ -648,10 +649,10 @@ class BusinessScraper:
                             self.logger.info(f"{query} - 8: NoSuchElementException \n")
                             break
                         except StaleElementReferenceException:
-                            self.logger.info(f"{query} - 8: StaleElementReferenceException \n")
+                            self.logger.warning(f"{query} - 8: StaleElementReferenceException \n")
                             pass
                         except Exception as e:
-                            self.logger.info(f"{query} - 8: Exception {e} \n")
+                            self.logger.warning(f"{query} - 8: Exception {e} \n")
                             pass
 
                         if current_business_anchor_is_loader_or_not:
@@ -669,12 +670,16 @@ class BusinessScraper:
                                     next_business_anchor_is_end_of_list_or_not = next_business_anchor.find_element(By.XPATH, ".//div[@class='PbZDve ']")
                                     if next_business_anchor_is_end_of_list_or_not:
                                         break
+                                except IndexError:
+                                    self.logger.info(f"{query} - 9: IndexError End of list not found {e} \n")
+                                    pass
                                 except Exception as e:
-                                    self.logger.info(f"{query} - 9: TimeoutException => Exception {e} \n")
-                                self.logger.info(f"{query} - 9: TimeoutException \n")
+                                    self.logger.warning(f"{query} - 9: TimeoutException => Exception {e} \n")
+                                    pass
+                                self.logger.warning(f"{query} - 9: TimeoutException \n")
                                 pass
                             except Exception as e:
-                                self.logger.info(f"{query} - 9: Exception {e} \n")
+                                self.logger.warning(f"{query} - 9: Exception {e} \n")
                                 pass
                             continue
                         else:
@@ -725,7 +730,7 @@ class BusinessScraper:
             self.logger.warning("'feed' TimeoutException: 3. Continuing to the next step.")
             pass
         except Exception as e:
-            self.logger.error("'feed' Exception: 3. Continuing to the next step. {e}")
+            self.logger.warning("'feed' Exception: 3. Continuing to the next step. {e}")
             pass
 
         initialization_state = self.driver.execute_script("return window.APP_INITIALIZATION_STATE")
