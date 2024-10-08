@@ -37,11 +37,7 @@ def get_states(code, country_code):
             if jsonResponse["status"] == 406:
                 refreshToken()
                 get_states(code, country_code)
-            logging.error(
-                "Failed to retrieve states. Status code: %s, Response: %s",
-                jsonResponse["status"],
-                jsonResponse["error"],
-            )
+            logging.error("Failed to retrieve states. Status code: %s, Response: %s", jsonResponse["status"], jsonResponse["error"])
             return None
     except requests.exceptions.RequestException as e:
         # Request encountered an error
