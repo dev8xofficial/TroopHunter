@@ -64,6 +64,8 @@ class BusinessScraper:
         ]
         chrome_options.add_argument(f"user-agent={random.choice(user_agents)}")
         # chrome_options.add_argument("--auto-open-devtools-for-tabs")
+        prefs = {"profile.managed_default_content_settings.images": 2}
+        chrome_options.add_experimental_option("prefs", prefs)
 
         try:
             # logger.info("Initiating chrome web driver.")
@@ -562,6 +564,7 @@ class BusinessScraper:
             self.logger.info(f"{query} - {city['name']} - Scrolling into feed.")
             counter = 0
             counter_for_business_anchor_loader = 0
+            counter_for_business_anchor = 0
 
             try:
                 feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
@@ -586,6 +589,7 @@ class BusinessScraper:
                 current_business_anchor_is_loader_or_not = None
                 current_business_anchor_is_end_of_list_or_not = None
                 counter_for_business_anchor_loader = 0
+                counter_for_business_anchor = 0
 
                 try:
                     current_business_anchor = business_anchor_tags[counter]
@@ -672,7 +676,11 @@ class BusinessScraper:
                             if len(business_anchor_tags) == counter:
                                 self.logger.info("%s - %s - 8: IndexError len(business_anchor_tags) == counter: ", query, city['name'])
                                 break
-                            self.logger.info("%s - %s - 8: IndexError: ", query, city['name'])
+                            counter_for_business_anchor = counter_for_business_anchor + 1
+                            self.logger.info("%s - %s - 8: IndexError. Counter = %s: ", query, city['name'], query)
+                            time.sleep(5)
+                            if counter_for_business_anchor > 30:
+                                break
                             pass
                         except Exception as e:
                             self.logger.exception("%s - %s - 8: Exception: %s", query, city['name'], e)
