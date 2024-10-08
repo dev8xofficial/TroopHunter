@@ -138,6 +138,7 @@ class BusinessScraper:
             try:
                 wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
                 wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
+                self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
             except NoSuchElementException:
                 self.logger.warning("'feed' NoSuchElementException: 1. Continuing to the next step.")
                 return { "results": [], "place_ids": [], "results_length": 0 }
@@ -159,7 +160,7 @@ class BusinessScraper:
         except StaleElementReferenceException:
             return
 
-        print(f"{query} - while loop: \n")
+        print(f"{query} - {city['name']} - while loop: \n")
         while True:
             business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
             current_business_anchor = None
@@ -172,7 +173,7 @@ class BusinessScraper:
 
             try:
                 if current_business_anchor:
-                    print(f"{query} - 1: \n")
+                    print(f"{query} - {city['name']} - 1: \n")
                     current_business_anchor_is_article_or_not = current_business_anchor.find_element(By.XPATH, ".//div[contains(@class, 'Nv2PK')]//a[contains(@class, 'hfpxzc')]")
             except NoSuchElementException:
                 pass
@@ -181,7 +182,7 @@ class BusinessScraper:
 
             try:
                 if current_business_anchor:
-                    print(f"{query} - 2: \n")
+                    print(f"{query} - {city['name']} - 2: \n")
                     current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
             except NoSuchElementException:
                 pass
@@ -190,7 +191,7 @@ class BusinessScraper:
 
             try:
                 if current_business_anchor:
-                    print(f"{query} - 3: \n")
+                    print(f"{query} - {city['name']} - 3: \n")
                     current_business_anchor_is_end_of_list_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='PbZDve ']")
             except NoSuchElementException:
                 pass
@@ -198,21 +199,21 @@ class BusinessScraper:
                 pass
 
             if feed is None:
-                print(f"{query} - 4: \n")
+                print(f"{query} - {city['name']} - 4: \n")
                 break
             elif len(business_anchor_tags) <= counter:
-                print(f"{query} - 5: \n")
+                print(f"{query} - {city['name']} - 5: \n")
                 break
 
             if not current_business_anchor_is_article_or_not and not current_business_anchor_is_loader_or_not and not current_business_anchor_is_end_of_list_or_not:
-                print(f"{query} - 6: \n")
+                print(f"{query} - {city['name']} - 6: \n")
                 counter = counter + 1
                 continue
             if current_business_anchor_is_loader_or_not:
-                print(f"{query} - 7: \n")
+                print(f"{query} - {city['name']} - 7: \n")
                 while True:
                     try:
-                        print(f"{query} - 8: \n")
+                        print(f"{query} - {city['name']} - 8: \n")
                         business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
                         current_business_anchor = business_anchor_tags[counter]
                         current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
@@ -222,7 +223,7 @@ class BusinessScraper:
                         pass
 
                     if current_business_anchor_is_loader_or_not:
-                        print(f"{query} - 9: \n")
+                        print(f"{query} - {city['name']} - 9: \n")
                         wait = WebDriverWait(self.driver, 5)
                         try:
                             wait.until(EC.invisibility_of_element_located((By.XPATH, "//div[@class='qjESne veYFef']")))
@@ -236,7 +237,7 @@ class BusinessScraper:
                 counter = counter + 1
                 continue
             if current_business_anchor_is_end_of_list_or_not:
-                print(f"{query} - 10: \n")
+                print(f"{query} - {city['name']} - 10: \n")
                 counter = counter + 1
                 break
 
@@ -557,28 +558,28 @@ class BusinessScraper:
 
         logger.info("Data saving process completed for city: %s", city_name)
 
-    def scroll_and_parse_data(self, query: str, city: str):
+    def scroll_and_parse_data(self, query: str, city: str, state: str, country: str):
         def scroll_till_the_end_of_list(self, query: str, city: str):
-            self.logger.info("Scrolling into feed.")
+            self.logger.info(f"{query} - {city['name']} - Scrolling into feed.")
             counter = 0
             counter_for_business_anchor_loader = 0
 
             try:
                 feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
             except NoSuchElementException:
-                self.logger.warning("'feed' NoSuchElementException: 1. Continuing to the next step.")
+                self.logger.info("%s - %s - 'feed' NoSuchElementException: 2. Continuing to the next step: ", query, city['name'])
                 return { "results": [], "place_ids": [], "results_length": 0 }
             except StaleElementReferenceException:
-                self.logger.warning("'feed' TimeoutException: 2. Continuing to the next step.")
+                self.logger.info("%s - %s - 'feed' StaleElementReferenceException: 2. Continuing to the next step: ", query, city['name'])
                 return { "results": [], "place_ids": [], "results_length": 0 }
             except TimeoutException:
-                self.logger.warning("'feed' TimeoutException: 2. Continuing to the next step.")
+                self.logger.info("%s - %s - 'feed' TimeoutException: 2. Continuing to the next step: ", query, city['name'])
                 return { "results": [], "place_ids": [], "results_length": 0 }
             except Exception as e:
-                self.logger.warning("'feed' Exception: 2. Continuing to the next step. {e}")
+                self.logger.exception("%s - %s - 'feed' Exception: 2. Continuing to the next step: %s", query, city['name'], e)
                 return
 
-            print(f"{query} - while loop: \n")
+            print(f"{query} - {city['name']} - while loop: \n")
             while True:
                 business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
                 current_business_anchor = None
@@ -590,107 +591,109 @@ class BusinessScraper:
                 try:
                     current_business_anchor = business_anchor_tags[counter]
                 except IndexError:
-                    self.logger.info(f"{query} - IndexError - scroll_till_the_end_of_list: while \n")
+                    self.logger.info("%s - %s - IndexError - scroll_till_the_end_of_list while loop", query, city['name'])
                     break
 
                 try:
                     if current_business_anchor:
-                        print(f"{query} - 1: \n")
-                        self.logger.info(f"{query} - 1: \n")
+                        print(f"{query} - {city['name']} - 1: \n")
+                        self.logger.info(f"{query} - {city['name']} - 1: \n")
                         current_business_anchor_is_article_or_not = current_business_anchor.find_element(By.XPATH, ".//div[contains(@class, 'Nv2PK')]//a[contains(@class, 'hfpxzc')]")
                 except NoSuchElementException:
-                    self.logger.info(f"{query} - 1: NoSuchElementException \n")
+                    self.logger.info("%s - %s - 1: NoSuchElementException: ", query, city['name'])
                     pass
                 except StaleElementReferenceException:
-                    self.logger.warning(f"{query} - 1: StaleElementReferenceException \n")
+                    self.logger.info("%s - %s - 1: StaleElementReferenceException: ", query, city['name'])
                     pass
                 except Exception as e:
-                    self.logger.warning(f"{query} - 1: Exception {e} \n")
+                    self.logger.exception("%s - %s - 1: Exception: %s", query, city['name'], e)
                     pass
 
                 try:
                     if current_business_anchor:
-                        print(f"{query} - 2: \n")
-                        self.logger.info(f"{query} - 2: \n")
+                        print(f"{query} - {city['name']} - 2: \n")
+                        self.logger.info(f"{query} - {city['name']} - 2: \n")
                         current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
                 except NoSuchElementException:
-                    self.logger.info(f"{query} - 2: NoSuchElementException \n")
+                    self.logger.info("%s - %s - 2: NoSuchElementException: ", query, city['name'])
                     pass
                 except StaleElementReferenceException:
-                    self.logger.warning(f"{query} - 2: StaleElementReferenceException \n")
+                    self.logger.info("%s - %s - 2: StaleElementReferenceException: ", query, city['name'])
                     pass
                 except Exception as e:
-                    self.logger.warning(f"{query} - 2: Exception {e} \n")
+                    self.logger.exception("%s - %s - 2: Exception: %s", query, city['name'], e)
                     pass
 
                 try:
                     if current_business_anchor:
-                        print(f"{query} - 3: \n")
-                        self.logger.info(f"{query} - 3: \n")
+                        print(f"{query} - {city['name']} - 3: \n")
+                        self.logger.info(f"{query} - {city['name']} - 3: \n")
                         current_business_anchor_is_end_of_list_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='PbZDve ']")
                 except NoSuchElementException:
-                    self.logger.info(f"{query} - 3: NoSuchElementException \n")
+                    self.logger.info("%s - %s - 3: NoSuchElementException: ", query, city['name'])
                     pass
                 except StaleElementReferenceException:
-                    self.logger.warning(f"{query} - 3: StaleElementReferenceException \n")
+                    self.logger.info("%s - %s - 3: StaleElementReferenceException: ", query, city['name'])
                     pass
                 except Exception as e:
-                    self.logger.warning(f"{query} - 3: Exception {e} \n")
+                    self.logger.exception("%s - %s - 3: Exception: %s", query, city['name'], e)
                     pass
 
                 if feed is None:
-                    print(f"{query} - 4: \n")
-                    self.logger.info(f"{query} - 4: \n")
+                    print(f"{query} - {city['name']} - 4: \n")
+                    self.logger.info(f"{query} - {city['name']} - 4: \n")
                     break
                 elif len(business_anchor_tags) <= counter:
-                    self.logger.info(f"{query} - 5: \n")
-                    print(f"{query} - 5: \n")
+                    self.logger.info(f"{query} - {city['name']} - 5: \n")
+                    print(f"{query} - {city['name']} - 5: \n")
                     break
 
                 if not current_business_anchor_is_article_or_not and not current_business_anchor_is_loader_or_not and not current_business_anchor_is_end_of_list_or_not:
-                    print(f"{query} - 6: \n")
-                    self.logger.info(f"{query} - 6: \n")
+                    print(f"{query} - {city['name']} - 6: \n")
+                    self.logger.info(f"{query} - {city['name']} - 6: \n")
+                    self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
                     counter = counter + 1
                     continue
                 if current_business_anchor_is_loader_or_not:
-                    print(f"{query} - 7: \n")
-                    self.logger.info(f"{query} - 7: \n")
+                    print(f"{query} - {city['name']} - 7: \n")
+                    self.logger.info(f"{query} - {city['name']} - 7: \n")
+                    self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
                     while True:
                         try:
-                            print(f"{query} - 8: \n")
-                            self.logger.info(f"{query} - 8: \n")
+                            print(f"{query} - {city['name']} - 8: \n")
+                            self.logger.info(f"{query} - {city['name']} - 8: \n")
                             business_anchor_tags = feed.find_elements(By.XPATH, "./child::*")
                             current_business_anchor = business_anchor_tags[counter]
                             current_business_anchor_is_loader_or_not = current_business_anchor.find_element(By.XPATH, ".//div[@class='qjESne veYFef']")
                         except NoSuchElementException:
-                            self.logger.info(f"{query} - 8: NoSuchElementException \n")
+                            self.logger.info("%s - %s - 8: NoSuchElementException: ", query, city['name'])
                             break
                         except StaleElementReferenceException:
-                            self.logger.warning(f"{query} - 8: StaleElementReferenceException \n")
+                            self.logger.info("%s - %s - 8: StaleElementReferenceException: ", query, city['name'])
                             pass
                         except IndexError:
                             if len(business_anchor_tags) == counter:
-                                self.logger.info(f"{query} - 8: IndexError len(business_anchor_tags) == counter \n")
+                                self.logger.info("%s - %s - 8: IndexError len(business_anchor_tags) == counter: ", query, city['name'])
                                 break
-                            self.logger.info(f"{query} - 8: IndexError \n")
+                            self.logger.info("%s - %s - 8: IndexError: ", query, city['name'])
                             pass
                         except Exception as e:
-                            self.logger.warning(f"{query} - 8: Exception {e} \n")
+                            self.logger.exception("%s - %s - 8: Exception: %s", query, city['name'], e)
                             pass
 
                         if current_business_anchor_is_loader_or_not:
-                            print(f"{query} - 9: \n")
-                            self.logger.info(f"{query} - 9: \n")
+                            print(f"{query} - {city['name']} - 9: \n")
+                            self.logger.info(f"{query} - {city['name']} - 9: \n")
                             wait = WebDriverWait(self.driver, 5)
                             try:
                                 wait.until(EC.invisibility_of_element_located((By.XPATH, "//div[@class='qjESne veYFef']")))
                             except NoSuchElementException:
-                                self.logger.info(f"{query} - 9: NoSuchElementException \n")
+                                self.logger.info("%s - %s - 9: NoSuchElementException: ", query, city['name'])
                                 pass
                             except TimeoutException:
                                 try:
                                     if len(business_anchor_tags) == counter:
-                                        self.logger.info(f"{query} - 9: IndexError len(business_anchor_tags) == counter \n")
+                                        self.logger.info("%s - %s - 9: IndexError len(business_anchor_tags) == counter: ", query, city['name'])
                                         break
                                     next_business_anchor = business_anchor_tags[counter + 1]
                                     next_business_anchor_is_end_of_list_or_not = next_business_anchor.find_element(By.XPATH, ".//div[@class='PbZDve ']")
@@ -698,18 +701,18 @@ class BusinessScraper:
                                         break
                                 except IndexError:
                                     counter_for_business_anchor_loader = counter_for_business_anchor_loader + 1
-                                    self.logger.info(f"{query} - 9: IndexError End of list not found. Counter = {counter_for_business_anchor_loader} \n")
+                                    self.logger.info("%s - %s - 9: IndexError End of list not found. Counter = %s: ", query, city['name'], counter_for_business_anchor_loader)
                                     time.sleep(5)
-                                    if counter_for_business_anchor_loader > 50:
+                                    if counter_for_business_anchor_loader > 30:
                                         break
                                     pass
                                 except Exception as e:
-                                    self.logger.warning(f"{query} - 9: TimeoutException => Exception {e} \n")
+                                    self.logger.exception("%s - %s - 9: TimeoutException => Exception: ", query, city['name'])
                                     pass
-                                self.logger.warning(f"{query} - 9: TimeoutException \n")
+                                self.logger.info("%s - %s - 9: TimeoutException: ", query, city['name'])
                                 pass
                             except Exception as e:
-                                self.logger.warning(f"{query} - 9: Exception {e} \n")
+                                self.logger.exception("%s - %s - 9: Exception: %s", query, city['name'], e)
                                 pass
                             continue
                         else:
@@ -717,8 +720,8 @@ class BusinessScraper:
                     counter = counter + 1
                     continue
                 if current_business_anchor_is_end_of_list_or_not:
-                    print(f"{query} - 10: \n")
-                    self.logger.info(f"{query} - 10: \n")
+                    print(f"{query} - {city['name']} - 10: \n")
+                    self.logger.info(f"{query} - {city['name']} - 10: \n")
                     counter = counter + 1
                     break
 
@@ -743,39 +746,48 @@ class BusinessScraper:
 
                     self.logger.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
                 except Exception as e:
-                    self.logger.exception("An error occurred while scrolling and extracting data: %s", e)
+                    self.logger.exception(f"{query} - {city['name']} - An error occurred while scrolling and extracting data: %s", e)
         # End of scrolling loop
 
         try:
             feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
+            self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
             if feed != None:
                 scroll_till_the_end_of_list(self, query, city)
+                self.logger.info(f"{query} - {city['name']} - scroll_till_the_end_of_list finished successfully.")
         except NoSuchElementException:
-            self.logger.warning("'feed' NoSuchElementException: 3. Continuing to the next step.")
+            self.logger.info("%s - %s - 'feed' NoSuchElementException: 3. Continuing to the next step: ", query, city['name'])
             return { "results": [], "place_ids": [], "results_length": 0 }
         except StaleElementReferenceException:
-            self.logger.warning("'feed' StaleElementReferenceException: 3. Continuing to the next step.")
+            self.logger.info("%s - %s - 'feed' StaleElementReferenceException: 3. Continuing to the next step: ", query, city['name'])
             return  { "results": [], "place_ids": [], "results_length": 0 }
         except TimeoutException:
-            self.logger.warning("'feed' TimeoutException: 3. Continuing to the next step.")
+            self.logger.info("%s - %s - 'feed' TimeoutException: 3. Continuing to the next step: ", query, city['name'])
             return  { "results": [], "place_ids": [], "results_length": 0 }
         except Exception as e:
-            self.logger.warning("'feed' Exception: 3. Continuing to the next step. {e}")
+            self.logger.exception("%s - %s - 'feed' Exception: 3. Continuing to the next step: %s", query, city['name'], e)
             pass
 
-        initialization_state = self.driver.execute_script("return window.APP_INITIALIZATION_STATE")
-        json_initialization_state = json.loads(initialization_state[3][2].lstrip(")]}'\n").rstrip(','))
+        try:
+            initialization_state = self.driver.execute_script("return window.APP_INITIALIZATION_STATE")
+            json_initialization_state = json.loads(initialization_state[3][2].lstrip(")]}'\n").rstrip(','))
+            self.logger.info(f"{query} - {city['name']} - json_initialization_state initiated.")
+            businesses = []
 
-        businesses = []
-        state = get_states(code=city['stateCode'], country_code=city['countryCode'])['states'][0]
-        country = get_countries(code=city['countryCode'])['countries'][0]
-
-        #Parse place endpoint data
-        initialization_state_and_requests = None
-        if len(json_initialization_state[0][1]) > 0:
-            initialization_state_and_requests = json_initialization_state[0][1] + self.parse_network_traffic("https://www.google.com/search")
-        elif len(json_initialization_state[64]) > 0:
-            initialization_state_and_requests = json_initialization_state[64] + self.parse_network_traffic("https://www.google.com/search")
+            #Parse place endpoint data
+            initialization_state_and_requests = None
+            self.logger.info(f"{query} - {city['name']} - len(json_initialization_state[0][1]) > 0 == {len(json_initialization_state[0][1]) > 0}")
+            if len(json_initialization_state[0][1]) > 0:
+                self.logger.info(f"{query} - {city['name']} - initialization_state_and_requests 1 initiated.")
+                initialization_state_and_requests = json_initialization_state[0][1] + self.parse_network_traffic("https://www.google.com/search")
+            elif len(json_initialization_state[64]) > 0:
+                self.logger.info(f"{query} - {city['name']} - initialization_state_and_requests 2 initiated.")
+                initialization_state_and_requests = json_initialization_state[64] + self.parse_network_traffic("https://www.google.com/search")
+            else:
+                self.logger.info(f"{query} - {city['name']} - initialization_state_and_requests else statement")
+        except Exception as e:
+            self.logger.exception("%s - %s - initialization_state got error: %s", query, city['name'], e)
+            return { "results": [], "place_ids": [], "results_length": 0 }
 
         counter = 1
         while True:
@@ -785,7 +797,7 @@ class BusinessScraper:
                     current_business_data = {}
                     current_business_maps_data = initialization_state_and_requests[counter][14]
                 except Exception as e:
-                    self.logger.info(f"An error occurred in while loop where current_business_maps_data is seeding: {e}")
+                    self.logger.info(f"{query} - {city['name']} - An error occurred in while loop where current_business_maps_data is seeding: {e}")
                 
                 #Heading
                 try:
