@@ -9,6 +9,8 @@ from src.services.auth import login
 from src.services.queue import get_queue, update_queue, create_city_queue
 from src.services.businessSource import get_business_source
 from src.services.city import get_cities
+from src.services.state import get_states
+from src.services.country import get_countries
 from concurrent.futures import ThreadPoolExecutor, wait
 from src.utils.general import is_internet_available
 import requests
@@ -82,7 +84,7 @@ def setup_logger(city_name, stateCode, countryCode, lat, long, queue):
     return logger  # Return this logger to be used in the thread/task
 
 
-def process_queue(queue, city, business_source_id, scraper):
+def process_queue(queue, city, business_source_id, scraper, state, country):
     # # Set up logging for the current search query and laptop name
     # current_date = datetime.datetime.now().strftime("%m-%d-%Y")
     # current_time = datetime.datetime.now().strftime("%H:%M")
@@ -117,7 +119,8 @@ def process_queue(queue, city, business_source_id, scraper):
             scraper.set_search_query(searchQuery)
             scraper.search(searchQuery)
             # scraper.scroll_and_extract_data(queue["searchQuery"], city)
-            new_businesses = scraper.scroll_and_parse_data(queue["searchQuery"], city)
+            new_businesses = scraper.scroll_and_parse_data(queue["searchQuery"], city, state, country)
+            logger.info(f"process_queue scroll_and_parse_data returned new_businesses.")
 
             city_queue = {
                 "cityId": city["id"],
@@ -173,6 +176,8 @@ def main():
                 futures = []
                 for city in cities_response["cities"]:
                     queues_response = get_queue(city_id=city['id'], business_source_Id=business_source['id'], page=queue_page, limit=1)
+                    state = get_states(code=city['stateCode'], country_code=city['countryCode'])['states'][0]
+                    country = get_countries(code=city['countryCode'])['countries'][0]
                     if len(queues_response["queues"]) < 1:
                         queue_is_empty = True
                         break
@@ -190,7 +195,7 @@ def main():
                             continue
 
                         # Submit each search task to the ThreadPoolExecutor
-                        future = executor.submit(process_queue, queue, city, business_source["id"], browsers[city["id"]])
+                        future = executor.submit(process_queue, queue, city, business_source["id"], browsers[city["id"]], state, country)
                         futures.append(future)
                     # break
 
