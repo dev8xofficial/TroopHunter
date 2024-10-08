@@ -64,6 +64,8 @@ class BusinessScraper:
         ]
         chrome_options.add_argument(f"user-agent={random.choice(user_agents)}")
         # chrome_options.add_argument("--auto-open-devtools-for-tabs")
+        prefs = {"profile.managed_default_content_settings.images": 2}
+        chrome_options.add_experimental_option("prefs", prefs)
 
         try:
             # logger.info("Initiating chrome web driver.")
@@ -138,7 +140,6 @@ class BusinessScraper:
             try:
                 wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
                 wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
-                self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
             except NoSuchElementException:
                 self.logger.warning("'feed' NoSuchElementException: 1. Continuing to the next step.")
                 return { "results": [], "place_ids": [], "results_length": 0 }
@@ -563,6 +564,7 @@ class BusinessScraper:
             self.logger.info(f"{query} - {city['name']} - Scrolling into feed.")
             counter = 0
             counter_for_business_anchor_loader = 0
+            counter_for_business_anchor = 0
 
             try:
                 feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
@@ -587,6 +589,7 @@ class BusinessScraper:
                 current_business_anchor_is_loader_or_not = None
                 current_business_anchor_is_end_of_list_or_not = None
                 counter_for_business_anchor_loader = 0
+                counter_for_business_anchor = 0
 
                 try:
                     current_business_anchor = business_anchor_tags[counter]
@@ -651,13 +654,11 @@ class BusinessScraper:
                 if not current_business_anchor_is_article_or_not and not current_business_anchor_is_loader_or_not and not current_business_anchor_is_end_of_list_or_not:
                     print(f"{query} - {city['name']} - 6: \n")
                     self.logger.info(f"{query} - {city['name']} - 6: \n")
-                    self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
                     counter = counter + 1
                     continue
                 if current_business_anchor_is_loader_or_not:
                     print(f"{query} - {city['name']} - 7: \n")
                     self.logger.info(f"{query} - {city['name']} - 7: \n")
-                    self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
                     while True:
                         try:
                             print(f"{query} - {city['name']} - 8: \n")
@@ -675,7 +676,11 @@ class BusinessScraper:
                             if len(business_anchor_tags) == counter:
                                 self.logger.info("%s - %s - 8: IndexError len(business_anchor_tags) == counter: ", query, city['name'])
                                 break
-                            self.logger.info("%s - %s - 8: IndexError: ", query, city['name'])
+                            counter_for_business_anchor = counter_for_business_anchor + 1
+                            self.logger.info("%s - %s - 8: IndexError. Counter = %s: ", query, city['name'], query)
+                            time.sleep(5)
+                            if counter_for_business_anchor > 30:
+                                break
                             pass
                         except Exception as e:
                             self.logger.exception("%s - %s - 8: Exception: %s", query, city['name'], e)
@@ -751,7 +756,6 @@ class BusinessScraper:
 
         try:
             feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
-            self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
             if feed != None:
                 scroll_till_the_end_of_list(self, query, city)
                 self.logger.info(f"{query} - {city['name']} - scroll_till_the_end_of_list finished successfully.")
