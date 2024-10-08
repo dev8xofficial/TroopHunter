@@ -138,7 +138,6 @@ class BusinessScraper:
             try:
                 wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
                 wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
-                self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
             except NoSuchElementException:
                 self.logger.warning("'feed' NoSuchElementException: 1. Continuing to the next step.")
                 return { "results": [], "place_ids": [], "results_length": 0 }
@@ -651,13 +650,11 @@ class BusinessScraper:
                 if not current_business_anchor_is_article_or_not and not current_business_anchor_is_loader_or_not and not current_business_anchor_is_end_of_list_or_not:
                     print(f"{query} - {city['name']} - 6: \n")
                     self.logger.info(f"{query} - {city['name']} - 6: \n")
-                    self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
                     counter = counter + 1
                     continue
                 if current_business_anchor_is_loader_or_not:
                     print(f"{query} - {city['name']} - 7: \n")
                     self.logger.info(f"{query} - {city['name']} - 7: \n")
-                    self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
                     while True:
                         try:
                             print(f"{query} - {city['name']} - 8: \n")
@@ -751,7 +748,6 @@ class BusinessScraper:
 
         try:
             feed = self.driver.find_element(By.XPATH, "//div[@role='feed']")
-            self.driver.execute_script("document.querySelectorAll('img').forEach(img => img.style.display = 'none');")
             if feed != None:
                 scroll_till_the_end_of_list(self, query, city)
                 self.logger.info(f"{query} - {city['name']} - scroll_till_the_end_of_list finished successfully.")
