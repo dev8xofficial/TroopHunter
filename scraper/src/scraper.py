@@ -123,20 +123,20 @@ class BusinessScraper:
 
     def search(self, query):
         try:
-            original_window = self.driver.current_window_handle
-            self.driver.execute_script("window.open('');")
-            new_tab = self.driver.window_handles[-1]
-            self.driver.switch_to.window(new_tab)
+            # original_window = self.driver.current_window_handle
+            # self.driver.execute_script("window.open('');")
+            # new_tab = self.driver.window_handles[-1]
+            # self.driver.switch_to.window(new_tab)
             
             self.logger.info(f"Searching for query: {query}")
             self.driver.get(f"{BASE_URL}/{quote_plus(query)}")
             wait = WebDriverWait(self.driver, self.long_wait)
 
-            if len(self.driver.window_handles) > 1:
-                self.driver.switch_to.window(original_window)
-                self.driver.close()
+            # if len(self.driver.window_handles) > 1:
+            #     self.driver.switch_to.window(original_window)
+            #     self.driver.close()
 
-            self.driver.switch_to.window(self.driver.window_handles[-1])
+            # self.driver.switch_to.window(self.driver.window_handles[-1])
             try:
                 wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//div[@role='feed']")))
                 wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='qBF1Pd fontHeadlineSmall ']")))
@@ -457,7 +457,7 @@ class BusinessScraper:
             except Exception as e:
                 self.logger.exception("An error occurred while scrolling and extracting data: %s", e)
     
-    def parse_network_traffic(self, target_url):
+    def parse_network_traffic(self, target_url, query, city):
         combined_data = []
         try:
             encoded_text = urllib.parse.quote(self.searchQuery)
@@ -472,9 +472,10 @@ class BusinessScraper:
                             data = json.loads(json.loads(data.replace('/*""*/', ""))['d'].lstrip(")]}'\n").rstrip(','))
                             combined_data = combined_data + data[0][1][1:]
                     else:
-                        self.logger.warning("parse_network_traffic: No response for request {request.url}")
+                        self.logger.warning("%s - %s - parse_network_traffic: No response for request %s", query, city['name'], request.url)
         except Exception as e:
-            self.logger.warning("parse_network_traffic Exception {e}")
+            self.logger.exception("%s - %s - parse_network_traffic Exception %s", query, city['name'], e)
+            pass
         return combined_data
 
     def sanitize_search_query(self, query):
@@ -747,7 +748,7 @@ class BusinessScraper:
 
                 try:
                     if has_scrolled:
-                        time.sleep(0.5)
+                        time.sleep(0.0)
 
                     self.logger.info("~~~~~~~~~~~~~~~~~ Scrolling ~~~~~~~~~~~~~~~~~~~~~~~~~")
                 except Exception as e:
@@ -775,20 +776,26 @@ class BusinessScraper:
         try:
             initialization_state = self.driver.execute_script("return window.APP_INITIALIZATION_STATE")
             json_initialization_state = json.loads(initialization_state[3][2].lstrip(")]}'\n").rstrip(','))
-            self.logger.info(f"{query} - {city['name']} - json_initialization_state initiated.")
+            self.logger.info("%s - %s - json_initialization_state initiated.", query, city['name'])
             businesses = []
 
             #Parse place endpoint data
             initialization_state_and_requests = None
-            self.logger.info(f"{query} - {city['name']} - len(json_initialization_state[0][1]) > 0 == {len(json_initialization_state[0][1]) > 0}")
+            self.logger.info("%s - %s - len(json_initialization_state[0][1]) > 0 == %s", query, city['name'], len(json_initialization_state[0][1]) > 0)
             if len(json_initialization_state[0][1]) > 0:
-                self.logger.info(f"{query} - {city['name']} - initialization_state_and_requests 1 initiated.")
-                initialization_state_and_requests = json_initialization_state[0][1] + self.parse_network_traffic("https://www.google.com/search")
+                self.logger.info("%s - %s - initialization_state_and_requests 1 start initiating.", query, city['name'])
+                self.logger.info("%s - %s - %s ", query, city['name'], json_initialization_state[0][1])
+                self.logger.info("%s - %s - %s ", query, city['name'], self.parse_network_traffic("https://www.google.com/search", query, city))
+                initialization_state_and_requests = json_initialization_state[0][1] + self.parse_network_traffic("https://www.google.com/search", query, city)
+                self.logger.info("%s - %s - initialization_state_and_requests 1 initiated.", query, city['name'])
             elif len(json_initialization_state[64]) > 0:
-                self.logger.info(f"{query} - {city['name']} - initialization_state_and_requests 2 initiated.")
-                initialization_state_and_requests = json_initialization_state[64] + self.parse_network_traffic("https://www.google.com/search")
+                self.logger.info("%s - %s - initialization_state_and_requests 2 start initiating.", query, city['name'])
+                self.logger.info("%s - %s - %s", query, city['name'], json_initialization_state[64])
+                self.logger.info("%s - %s - %s", query, city['name'], self.parse_network_traffic("https://www.google.com/search", query, city))
+                initialization_state_and_requests = json_initialization_state[64] + self.parse_network_traffic("https://www.google.com/search", query, city)
+                self.logger.info("%s - %s - initialization_state_and_requests 2 initiated.", query, city['name'])
             else:
-                self.logger.info(f"{query} - {city['name']} - initialization_state_and_requests else statement")
+                self.logger.info(f"{query} - {city['name']} - initialization_state_and_requests else statement", query, city['name'])
         except Exception as e:
             self.logger.exception("%s - %s - initialization_state got error: %s", query, city['name'], e)
             return { "results": [], "place_ids": [], "results_length": 0 }
@@ -801,7 +808,7 @@ class BusinessScraper:
                     current_business_data = {}
                     current_business_maps_data = initialization_state_and_requests[counter][14]
                 except Exception as e:
-                    self.logger.info(f"{query} - {city['name']} - An error occurred in while loop where current_business_maps_data is seeding: {e}")
+                    self.logger.exception("%s - %s - An error occurred in while loop where current_business_maps_data is seeding: %s", query, city['name'], e)
                 
                 #Heading
                 try:
@@ -813,7 +820,7 @@ class BusinessScraper:
                     self.logger.info(f"Title: {current_business_maps_data[11]}")
                     current_business_data["businessDomain"] = current_business_maps_data[13][0]
                 except Exception as e:
-                    self.logger.info(f"Basic Info: An error occurred while searching basic information: {e}")
+                    self.logger.exception("%s - %s - Basic Info: An error occurred while searching basic information: %s", query, city['name'], e)
                 # try:
                 #     # Find the element by its CSS selector
                 #     element = current_business_anchor.find_element(By.XPATH, ".//div[@class='hHbUWd']//h1")
@@ -964,7 +971,7 @@ class BusinessScraper:
                 except Exception as e:
                     self.logger.info(f"Phone: An error occurred while searching phone: {e}")
             except Exception as e:
-                self.logger.info("An error occurred in while loop of scroll_and_parse_data function: {e}")
+                self.logger.exception("An error occurred in while loop of scroll_and_parse_data function: {e}")
             
             counter = counter + 1
             businesses.append(current_business_data)
