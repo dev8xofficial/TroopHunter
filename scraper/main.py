@@ -17,6 +17,8 @@ import requests
 from requests.exceptions import Timeout
 import os
 from datetime import datetime
+import psutil
+import gc
 
 # Load environment variables from .env file
 load_dotenv()
@@ -203,6 +205,19 @@ def main():
 
             # Wait for all tasks on this page to complete
             wait(futures)
+
+            mem = psutil.virtual_memory()
+            total_mem = mem.total / (1024 ** 2)
+            used_mem = mem.used / (1024 ** 2)
+            used_percent = mem.percent
+            logging.info(f"Total memory: {total_mem:.2f} MB")
+            logging.info(f"Used memory: {used_mem:.2f} MB ({used_percent}%)")
+            threshold = 45
+            if used_percent > threshold:
+                logging.info(f"Memory usage exceeds {threshold}%! Running garbage collection.")
+                gc.collect()
+            else:
+                logging.info("Memory usage is within safe limits.")
 
             if queue_is_empty is True:
                 break
