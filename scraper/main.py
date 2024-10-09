@@ -212,7 +212,7 @@ def main():
             used_percent = mem.percent
             logging.info(f"Total memory: {total_mem:.2f} MB")
             logging.info(f"Used memory: {used_mem:.2f} MB ({used_percent}%)")
-            threshold = 75
+            threshold = 45
             if used_percent > threshold:
                 logging.info(f"Memory usage exceeds {threshold}%! Running garbage collection.")
                 gc.collect()
