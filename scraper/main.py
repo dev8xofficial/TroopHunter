@@ -84,7 +84,8 @@ def setup_logger(city_name, stateCode, countryCode, lat, long, queue):
     return logger  # Return this logger to be used in the thread/task
 
 
-def process_queue(queue, city, business_source_id, scraper, state, country):
+# def process_queue(queue, city, business_source_id, scraper, state, country):
+def process_queue(queue, city, business_source_id, state, country):
     # # Set up logging for the current search query and laptop name
     # current_date = datetime.datetime.now().strftime("%m-%d-%Y")
     # current_time = datetime.datetime.now().strftime("%H:%M")
@@ -114,13 +115,13 @@ def process_queue(queue, city, business_source_id, scraper, state, country):
     while True:
         try:
             searchQuery = f"{queue['searchQuery'].replace('_', ' ')} near {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'gdpInBillionUsd' and key != 'year' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())}"
-            # scraper = BusinessScraper(searchQuery=searchQuery, logger=logger)
-            scraper.set_logger(logger)
-            scraper.set_search_query(searchQuery)
+            scraper = BusinessScraper(searchQuery=searchQuery, logger=logger)
+            # scraper.set_logger(logger)
+            # scraper.set_search_query(searchQuery)
             scraper.search(searchQuery)
             # scraper.scroll_and_extract_data(queue["searchQuery"], city)
             new_businesses = scraper.scroll_and_parse_data(queue["searchQuery"], city, state, country)
-            logger.info(f"process_queue scroll_and_parse_data returned new_businesses.")
+            logger.info("%s - %s: process_queue scroll_and_parse_data returned new_businesses.", searchQuery, new_businesses['results_length'])
 
             city_queue = {
                 "cityId": city["id"],
@@ -132,13 +133,13 @@ def process_queue(queue, city, business_source_id, scraper, state, country):
                 city_queue["status"] = "Failed"
             create_city_queue(request=city_queue)
             logger.info(f"Search for '{queue['searchQuery'].replace('_', ' ')}' near {', '.join(dict((key, value) for key, value in city.items() if key != 'id' and key != 'stateCode' and key != 'countryCode' and key != 'gdpInBillionUsd' and key != 'year' and key != 'longitude' and key != 'latitude' and key != 'createdAt' and key != 'updatedAt').values())} completed.")
-            # scraper.close()
+            scraper.close()
             break
         except (Timeout, requests.exceptions.RequestException, Exception) as e:
             while True:
                 if is_internet_available(logger):
                     logger.info("Internet connection is working. Retrying... {e}")
-                    # scraper.close()
+                    scraper.close()
                     break
                 else:
                     logger.info("Internet connection is not available. Retrying in 5 seconds... {e}")
@@ -156,14 +157,14 @@ def main():
 
     for city_page in range(1, total_pages_cities + 1):
         cities_response = get_cities(page=city_page, limit=LIMIT)
-        browsers = {}
+        # browsers = {}
         if not cities_response["totalRecords"] > 0:
             logging.error("Failed to retrieve cities for city page %d.", city_page)
             continue
 
-        for city in cities_response["cities"]:
-            scraper = BusinessScraper()
-            browsers[city["id"]] = scraper
+        # for city in cities_response["cities"]:
+        #     scraper = BusinessScraper()
+        #     browsers[city["id"]] = scraper
 
         for queue_page in range(1, total_pages_queues + 1):
             # queues_response = get_queue(city_id=cities_response["cities"][city_page - 1]['id'], page=queue_page, limit=LIMIT)
@@ -195,7 +196,8 @@ def main():
                             continue
 
                         # Submit each search task to the ThreadPoolExecutor
-                        future = executor.submit(process_queue, queue, city, business_source["id"], browsers[city["id"]], state, country)
+                        # future = executor.submit(process_queue, queue, city, business_source["id"], browsers[city["id"]], state, country)
+                        future = executor.submit(process_queue, queue, city, business_source["id"], state, country)
                         futures.append(future)
                     # break
 
@@ -205,8 +207,8 @@ def main():
             if queue_is_empty is True:
                 break
 
-        for city in cities_response["cities"]:
-            browsers[city["id"]].close()
+        # for city in cities_response["cities"]:
+        #     browsers[city["id"]].close()
 
     logging.info("Scraping process completed.")
 
