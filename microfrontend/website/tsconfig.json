@@ -1,0 +1,12 @@
+{
+  "extends": "@repo/tsconfig-frontend/tsconfig.json",
+  "include": ["next-env.d.ts", "next.config.mjs", ".eslintrc.cjs", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  }
+}

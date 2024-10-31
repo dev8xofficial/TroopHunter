@@ -1,0 +1,6 @@
+---
+- name: Remove port 4040.
+  ufw:
+    rule: delete
+    port: 4040
+    proto: tcp

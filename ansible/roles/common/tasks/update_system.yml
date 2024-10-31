@@ -1,0 +1,5 @@
+---
+- name: Update package cache and upgrade the system
+  apt:
+    update_cache: yes
+    upgrade: yes

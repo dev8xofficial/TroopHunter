@@ -1,0 +1,48 @@
+services:
+  crm_prod:
+    container_name: crm_prod
+    build:
+      context: .
+      dockerfile: ./crm/Dockerfile
+      target: development
+    env_file:
+      - ./crm/.env
+    ports:
+      - '5173:5173'
+    depends_on:
+      - postgres_prod
+      - backend_prod
+    networks:
+      - custom_network
+
+  crm_stag:
+    container_name: crm_stag
+    build:
+      context: .
+      dockerfile: ./crm/Dockerfile
+      target: development
+    env_file:
+      - ./crm/.env
+    ports:
+      - '5174:5173'
+    depends_on:
+      - postgres_stag
+      - backend_stag
+    networks:
+      - custom_network
+
+  crm_dev:
+    container_name: crm_dev
+    build:
+      context: .
+      dockerfile: ./crm/Dockerfile
+      target: development
+    env_file:
+      - ./crm/.env
+    ports:
+      - '5175:5173'
+    depends_on:
+      - postgres_dev
+      - backend_dev
+    networks:
+      - custom_network

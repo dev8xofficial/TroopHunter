@@ -1,0 +1,27 @@
+---
+- hosts: ubuntu
+  # user: ubuntu-server
+  become: true
+  become_method: sudo
+  become_user: root
+  vars_files:
+    - /ansible/secrets/github_token
+  vars:
+    USER: ubuntu-server
+    NODE_VERSION: 20.12.2
+    GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/TroopHunter.git"
+    GIT_BRANCH: main
+    PROJECT_NAME: TroopHunter
+    ENVIRONMENT: prod
+    ENV_PATH: "/ansible/secrets"
+    # PROTONVPN_USERNAME: 49bFnqbhzhVjOm5Z
+    # PROTONVPN_PASSWORD: e2yzCr6pKNc1fHXpwvujNalsIatnnrGU
+    # PROTONVPN_SERVER: US-NY#627
+  gather_facts: true
+  roles:
+    # - proton
+    - common
+    - nvm
+    - docker
+    - github
+    - project

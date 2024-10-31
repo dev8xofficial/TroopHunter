@@ -1,0 +1,38 @@
+name: 'troophunter_stag'
+services:
+  ci:
+    extends:
+      file: docker-compose.ci.yml
+      service: ci_stag
+
+  postgres_stag:
+    extends:
+      file: docker-compose.base.yml
+      service: postgres_stag
+
+  # pgadmin_stag:
+  #   extends:
+  #     file: docker-compose.pgadmin.yml
+  #     service: pgadmin_stag
+
+  backend_stag:
+    extends:
+      file: docker-compose.backend.yml
+      service: backend_stag
+
+  crm_stag:
+    extends:
+      file: docker-compose.crm.yml
+      service: crm_stag
+
+  cloudflare_stag:
+    extends:
+      file: docker-compose.cloudflare.yml
+      service: cloudflare_stag
+
+volumes:
+  pgadmin-data:
+
+networks:
+  custom_network:
+    driver: bridge

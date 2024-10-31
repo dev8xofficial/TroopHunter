@@ -1,0 +1,7 @@
+---
+- name: Install Auth Backend
+  hosts: auth
+  become: true
+  roles:
+    - common
+    - auth

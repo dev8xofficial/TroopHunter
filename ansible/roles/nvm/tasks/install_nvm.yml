@@ -1,0 +1,10 @@
+---
+- name: Install NVM (Node Version Manager)
+  become_user: "{{ USER }}"
+  shell: |
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+    source ~/.nvm/nvm.sh
+    export NVM_DIR="/home/{{ USER }}/.nvm"
+    export PATH="$NVM_DIR/versions/node/{{ NODE_VERSION }}/bin:$PATH"
+  args:
+    executable: /bin/bash

@@ -1,0 +1,4 @@
+networks:
+  custom_network:
+    name: custom_network
+    driver: bridge

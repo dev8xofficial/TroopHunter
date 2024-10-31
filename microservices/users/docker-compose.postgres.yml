@@ -1,0 +1,49 @@
+services:
+  postgres_users_prod:
+    container_name: postgres_users_prod
+    build:
+      context: .
+      dockerfile: ./Dockerfile.postgres
+    restart: always
+    ports:
+      - '5447:5432'
+    env_file:
+      - ./.env
+    volumes:
+      - ./postgres/postgres_users_prod:/var/lib/postgresql/data
+    networks:
+      - custom_network
+
+  postgres_users_stag:
+    container_name: postgres_users_stag
+    build:
+      context: .
+      dockerfile: ./Dockerfile.postgres
+    restart: always
+    ports:
+      - '5448:5432'
+    env_file:
+      - ./.env
+    volumes:
+      - ./postgres/postgres_users_stag:/var/lib/postgresql/data
+    networks:
+      - custom_network
+
+  postgres_users_dev:
+    container_name: postgres_users_dev
+    build:
+      context: .
+      dockerfile: ./Dockerfile.postgres
+    restart: always
+    ports:
+      - '5449:5432'
+    env_file:
+      - ./.env
+    volumes:
+      - ./postgres/postgres_users_dev:/var/lib/postgresql/data
+    networks:
+      - custom_network
+
+networks:
+  custom_network:
+    driver: bridge

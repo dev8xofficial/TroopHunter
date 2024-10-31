@@ -1,0 +1,44 @@
+{
+  "name": "@repo/utils",
+  "version": "1.0.0",
+  "private": true,
+  "description": "This repository is a shared resource among microservices.",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "express": "^4.18.2",
+    "google-libphonenumber": "^3.2.32",
+    "jsonwebtoken": "^9.0.0",
+    "nodemailer": "^6.9.15",
+    "pg-hstore": "^2.3.4",
+    "pg-pool": "^3.6.0",
+    "pg-promise": "^11.5.0",
+    "sequelize": "^6.33.0",
+    "@repo/eslint-config": "*",
+    "@repo/tsconfig-backend": "*",
+    "@repo/validator": "*",
+    "@repo/sequelize": "*",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/google-libphonenumber": "^7.4.23",
+    "@types/jest": "^29.5.2",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/node": "^20.2.5",
+    "@types/nodemailer": "^6.4.15",
+    "@types/pg": "^8.10.1",
+    "@types/sequelize": "^4.28.15",
+    "jest": "^29.5.0",
+    "pg": "^8.11.0",
+    "sequelize-cli": "^6.6.1",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
+  }
+}

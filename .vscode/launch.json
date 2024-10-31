@@ -1,0 +1,198 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Scraper",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scraper/main.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "python": "${workspaceFolder}/scraper/venv/bin/python"
+    },
+    {
+      "name": "Google API",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scraper/main.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "python": "${workspaceFolder}/scraper/venv/bin/python"
+    },
+    {
+      "name": "Backend",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/node_modules/ts-node/dist/bin.js",
+      "runtimeArgs": [
+        "--inspect"
+      ],
+      "args": ["${workspaceFolder}/backend/src/server.ts"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/backend/.env",
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Auth",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/services/auth/node_modules/ts-node/dist/bin.js",
+      "runtimeArgs": [
+        "--inspect"
+      ],
+      "args": ["${workspaceFolder}/services/auth/src/server.ts"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/services/auth/.env",
+      "cwd": "${workspaceFolder}/services/auth",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "MicroBackend",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
+      "runtimeArgs": [
+        "--inspect"
+      ],
+      "args": ["${workspaceFolder}/microservices/backend/src/server.ts"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/microservices/backend/.env",
+      "cwd": "${workspaceFolder}/microservices/backend",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "MciroMain",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
+      "runtimeArgs": [
+        "--inspect"
+      ],
+      "args": ["${workspaceFolder}/microservices/main/src/server.ts"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/microservices/main/.env",
+      "cwd": "${workspaceFolder}/microservices/main",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "MciroAuth",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
+      "runtimeArgs": [
+        "--inspect"
+      ],
+      "args": ["${workspaceFolder}/microservices/auth/src/server.ts"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/microservices/auth/.env",
+      "cwd": "${workspaceFolder}/microservices/auth",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "MciroUsers",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
+      "runtimeArgs": [
+        "--inspect"
+      ],
+      "args": ["${workspaceFolder}/microservices/users/src/server.ts"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/microservices/users/.env",
+      "cwd": "${workspaceFolder}/microservices/users",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "MciroBusinesses",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
+      "runtimeArgs": [
+        "--inspect"
+      ],
+      "args": ["${workspaceFolder}/microservices/businesses/src/server.ts"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/microservices/businesses/.env",
+      "cwd": "${workspaceFolder}/microservices/businesses",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "MciroQueues",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
+      "runtimeArgs": [
+        "--inspect"
+      ],
+      "args": ["${workspaceFolder}/microservices/queues/src/server.ts"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/microservices/queues/.env",
+      "cwd": "${workspaceFolder}/microservices/queues",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "MciroCountries",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
+      "runtimeArgs": [
+        "--inspect"
+      ],
+      "args": ["${workspaceFolder}/microservices/countries/src/server.ts"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/microservices/countries/.env",
+      "cwd": "${workspaceFolder}/microservices/countries",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "TroopHunter",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/crm/node_modules/vite/bin/vite.js",
+      "cwd": "${workspaceFolder}/crm",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  ]
+}

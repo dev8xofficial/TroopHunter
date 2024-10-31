@@ -1,0 +1,2 @@
+---
+- include_tasks: clone_git_repo.yml

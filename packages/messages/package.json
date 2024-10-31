@@ -1,0 +1,23 @@
+{
+  "name": "@repo/messages",
+  "version": "1.0.0",
+  "private": true,
+  "description": "This repository is a shared resource among microservices.",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@repo/tsconfig-backend": "*",
+    "@repo/eslint-config": "*"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.2.5",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
+  }
+}

@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Neue Montreal', sans-serif;
+  src: url(/fonts/bold.otf) format('opentype');
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Neue Montreal', sans-serif;
+  src: url(/fonts/bold-italic.otf) format('opentype');
+  font-display: swap;
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Neue Montreal', sans-serif;
+  src: url(/fonts/medium.otf) format('opentype');
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Neue Montreal', sans-serif;
+  src: url(/fonts/medium-italic.otf) format('opentype');
+  font-display: swap;
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Neue Montreal', sans-serif;
+  src: url(/fonts/regular.otf) format('opentype');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Neue Montreal', sans-serif;
+  src: url(/fonts/italic.otf) format('opentype');
+  font-display: swap;
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Neue Montreal', sans-serif;
+  src: url(/fonts/light.otf) format('opentype');
+  font-display: swap;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Neue Montreal', sans-serif;
+  src: url(/fonts/light-italic.otf) format('opentype');
+  font-display: swap;
+  font-weight: 300;
+  font-style: italic;
+}
+
+*,
+html {
+  font-family: 'Neue Montreal', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 500;
+  scroll-behavior: smooth !important;
+}
+
+:root {
+  --default-primary: #4e46e5; /*  Changed from #90f188 */
+  --default-primary-text: #23bb16;
+  --default-secondary: #0f1d07;
+  --default-text: rgba(15, 29, 7, 0.7);
+  --default-tertiary: #f3f3e9;
+  --green-primary: #90f188;
+  --green-primary-text: #23bb16;
+  --green-secondary: #0f1d07;
+  --green-text: rgba(15, 29, 7, 0.7);
+  --green-tertiary: #e9ffe8;
+  --purple-primary: #a5b3fc; /*  Changed from #b488f1 */
+  --purple-primary-text: #5b16bb;
+  --purple-secondary: #12032a;
+  --purple-text: rgba(18, 3, 42, 0.7);
+  --purple-tertiary: #efe3ff;
+  --pink-primary: #fd589e;
+  --pink-primary-text: #ab024a;
+  --pink-secondary: #38001b;
+  --pink-text: rgba(56, 0, 27, 0.7);
+  --pink-tertiary: #ffedf5;
+  --yellow-primary: #ffd029;
+  --yellow-primary-text: #806400;
+  --yellow-secondary: #322606;
+  --yellow-text: rgba(50, 38, 6, 0.7);
+  --yellow-tertiary: #fff8e4;
+  --blue-primary: #82d7ff;
+  --blue-primary-text: #0093d9;
+  --blue-secondary: #070035;
+  --blue-text: rgba(7, 0, 53, 0.7);
+  --blue-tertiary: #ebf8ff;
+  --cyan-primary: #85efe3;
+  --cyan-primary-text: #18b4a2;
+  --cyan-secondary: #1c3232;
+  --cyan-text: rgba(28, 50, 50, 0.7);
+  --cyan-tertiary: #dcf5f2;
+  --xmas-primary: #f10000;
+  --xmas-primary-text: #d80000;
+  --xmas-secondary: #380000;
+  --xmas-text: rgba(56, 0, 0, 0.7);
+  --xmas-tertiary: #f3f3e9;
+  --theme-primary: var(--default-primary);
+  --theme-primary-text: var(--default-primary-text);
+  --theme-secondary: var(--default-secondary);
+  --theme-text: var(--default-text);
+  --theme-background: var(--default-tertiary);
+  --theme-logo: var(--default-secondary);
+  --theme-header-face: var(--default-primary);
+  --header-height: 5.3125rem;
+  --container-gutter: 20px;
+  --bottom-fixed-offset: 0;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-gutter: clamp(2.5rem, 2.6455026455vw, 3.325rem);
+  }
+}
+
+html {
+  overflow: hidden;
+}

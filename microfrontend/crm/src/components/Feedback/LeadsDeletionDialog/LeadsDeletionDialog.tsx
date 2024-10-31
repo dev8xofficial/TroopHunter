@@ -1,0 +1,83 @@
+import React, { Fragment } from 'react';
+
+import { Transition, Dialog } from '@headlessui/react';
+import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { type LeadsDeletionDialogAttributes } from './LeadsDeletionDialog.interfaces';
+import { deleteLeadsAction } from '../../../store/actions/leadActions';
+import { type IAuthState } from '../../../store/reducers/authReducer';
+import { type ILeadsState } from '../../../store/reducers/leadsPageReducer';
+import Button from '../../Inputs/Button/Button';
+
+const LeadsDeletionDialog: React.FC<LeadsDeletionDialogAttributes> = ({ isOpen, closeModal }: LeadsDeletionDialogAttributes): JSX.Element => {
+  const dispatch = useDispatch();
+  const auth = useSelector((state: { auth: IAuthState }) => state.auth);
+  const leads = useSelector((state: { leads: ILeadsState }) => state.leads);
+
+  const selectedLeadIds: string[] = leads.selectedLeadIds;
+
+  const handleDelete = (): void => {
+    closeModal();
+    dispatch(
+      deleteLeadsAction({
+        accessToken: auth.accessToken,
+        userId: auth.userId,
+        selectedLeadIds
+      })
+    );
+  };
+
+  return (
+    <>
+      {/* Advanced search filters */}
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-20" onClose={closeModal}>
+          <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
+            <div className="fixed inset-0 bg-white/10 backdrop-blur-md" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg dark:bg-charcoal-300">
+                  <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
+                    <button type="button" className="text-gray-400 outline-none hover:text-gray-500 dark:hover:text-primary-text" onClick={closeModal}>
+                      <span className="sr-only">Close</span>
+                      <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                    </button>
+                  </div>
+                  <div className="px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <div className="sm:flex sm:items-start">
+                      <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                        <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                      </div>
+                      <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                        <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900 dark:hover:text-primary-text">
+                          Delete Lead
+                        </Dialog.Title>
+                        <div className="mt-2">
+                          <p className="text-sm text-gray-500 dark:text-secondary-text">Are you sure you want to delete this lead? All associated data will be permanently removed. This action cannot be undone.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 dark:bg-charcoal-500">
+                    <Button variant="contained" color="red" onClick={handleDelete}>
+                      Delete
+                    </Button>
+                    <Button variant="outlined" color="gray" className="mr-4" onClick={closeModal}>
+                      Cancel
+                    </Button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+    </>
+  );
+};
+
+export default LeadsDeletionDialog;

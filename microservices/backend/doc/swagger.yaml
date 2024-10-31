@@ -1,0 +1,138 @@
+openapi: 3.0.0
+info:
+  title: Backend
+  version: 1.0.0
+  description: API documentation for Your Backend
+servers:
+  - url: http://localhost:50001
+
+tags:
+  - name: Authentication
+    description: Endpoints for user authentication
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user
+        firstName:
+          type: string
+          description: The first name of the user
+        lastName:
+          type: string
+          description: The last name of the user
+        email:
+          type: string
+          format: email
+          description: The email address of the user
+        password:
+          type: string
+          description: The password of the user
+        role:
+          type: string
+          enum: [guest, user, admin]
+          description: The role of the user (guest, user, or admin)
+      required:
+        - firstName
+        - lastName
+        - email
+        - password
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        data:
+          type: object
+          example: false
+        message:
+          type: string
+          example: ''
+        error:
+          type: string
+          example: "Invalid include parameter. The correct include parameter should be in the format '['Leads']'."
+        status:
+          type: number
+          example: 400
+    ErrorResponse1:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        data:
+          type: object
+          example: false
+        message:
+          type: string
+          example: ''
+        error:
+          type: string
+          example: 'Invalid email address.'
+        status:
+          type: number
+          example: 400
+    ErrorResponse2:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        data:
+          type: object
+          example: false
+        message:
+          type: string
+          example: ''
+        error:
+          type: string
+          example: 'Invalid password. Password should be at least 8 characters long and contain letters, numbers, and special characters.'
+        status:
+          type: number
+          example: 401
+    ErrorResponse3:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        data:
+          type: object
+          example: false
+        message:
+          type: string
+          example: ''
+        error:
+          type: string
+          example: "Invalid include parameter. The correct include parameter should be in the format '['Leads']'."
+        status:
+          type: number
+          example: 402
+    ErrorResponse4:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        data:
+          type: object
+          example: false
+        message:
+          type: string
+          example: ''
+        error:
+          type: string
+          example: 'Failed to login. Please try again later or contact support.'
+        status:
+          type: number
+          example: 500
+paths:
+  # Include paths from authentication.yaml
+  /auth/signin:
+    $ref: './authentication.yaml#/paths/signin'
+  /auth/signup:
+    $ref: './authentication.yaml#/paths/signup'

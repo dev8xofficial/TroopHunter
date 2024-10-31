@@ -1,0 +1,9 @@
+{
+  "extends": "@repo/tsconfig-backend/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+  },
+  "include": ["src", "examples", "doc", "sequelize", ".eslintrc.cjs",],
+  "exclude": ["node_modules", "dist"]
+}

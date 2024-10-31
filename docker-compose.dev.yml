@@ -1,0 +1,93 @@
+name: 'troophunter_dev'
+services:
+  # ci:
+  #   extends:
+  #     file: docker-compose.ci.yml
+  #     service: ci_dev
+
+  # postgres_dev:
+  #   extends:
+  #     file: docker-compose.base.yml
+  #     service: postgres_dev
+
+  postgres_auth_dev:
+    extends:
+      file: ./microservices/auth/docker-compose.postgres.yml
+      service: postgres_auth_dev
+
+  # postgres_countries_dev:
+  #   extends:
+  #     file: ./microservices/countries/docker-compose.postgres.yml
+  #     service: postgres_countries_dev
+
+  # postgres_businesses_dev:
+  #   extends:
+  #     file: ./microservices/businesses/docker-compose.postgres.yml
+  #     service: postgres_businesses_dev
+
+  # postgres_queues_dev:
+  #   extends:
+  #     file: ./microservices/queues/docker-compose.postgres.yml
+  #     service: postgres_queues_dev
+
+  # pgadmin_dev:
+  #   extends:
+  #     file: docker-compose.pgadmin.yml
+  #     service: pgadmin_dev
+
+  # backend_dev:
+  #   extends:
+  #     file: docker-compose.backend.yml
+  #     service: backend_dev
+
+  auth_dev:
+    extends:
+      file: ./microservices/auth/docker-compose.backend.yml
+      service: auth_dev
+    depends_on:
+      postgres_auth_dev:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:50003/"]
+      interval: 10s
+      timeout: 5s
+      retries: 50
+
+  # countries_dev:
+  #   extends:
+  #     file: ./microservices/countries/docker-compose.backend.yml
+  #     service: countries_dev
+
+  # businesses_dev:
+  #   extends:
+  #     file: ./microservices/businesses/docker-compose.backend.yml
+  #     service: businesses_dev
+  #   depends_on:
+  #     postgres_auth_dev:
+  #       condition: service_started
+  #     postgres_businesses_dev:
+  #       condition: service_started
+  #     auth_dev:
+  #       condition: service_started
+
+  # queues_dev:
+  #   extends:
+  #     file: ./microservices/queues/docker-compose.backend.yml
+  #     service: queues_dev
+
+  # crm_dev:
+  #   extends:
+  #     file: docker-compose.crm.yml
+  #     service: crm_dev
+
+  # cloudflare_dev:
+  #   extends:
+  #     file: docker-compose.cloudflare.yml
+  #     service: cloudflare_dev
+
+volumes:
+  pgadmin-data:
+
+networks:
+  custom_network:
+    driver: bridge

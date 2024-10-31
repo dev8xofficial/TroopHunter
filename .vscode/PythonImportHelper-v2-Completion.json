@@ -1,0 +1,211 @@
+[
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "webdriver",
+        "importPath": "selenium",
+        "description": "selenium",
+        "isExtraImport": true,
+        "detail": "selenium",
+        "documentation": {}
+    },
+    {
+        "label": "ChromeDriverManager",
+        "importPath": "webdriver_manager.chrome",
+        "description": "webdriver_manager.chrome",
+        "isExtraImport": true,
+        "detail": "webdriver_manager.chrome",
+        "documentation": {}
+    },
+    {
+        "label": "Keys",
+        "importPath": "selenium.webdriver.common.keys",
+        "description": "selenium.webdriver.common.keys",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.keys",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "NoSuchElementException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "Options",
+        "importPath": "selenium.webdriver.chrome.options",
+        "description": "selenium.webdriver.chrome.options",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.chrome.options",
+        "documentation": {}
+    },
+    {
+        "label": "Service",
+        "importPath": "selenium.webdriver.chrome.service",
+        "description": "selenium.webdriver.chrome.service",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.chrome.service",
+        "documentation": {}
+    },
+    {
+        "label": "BeautifulSoup",
+        "importPath": "bs4",
+        "description": "bs4",
+        "isExtraImport": true,
+        "detail": "bs4",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "urllib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib",
+        "description": "urllib",
+        "detail": "urllib",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_URL",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "QUERIES",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "OUTPUT_FILE",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "BusinessScraper",
+        "importPath": "src.scraper",
+        "description": "src.scraper",
+        "isExtraImport": true,
+        "detail": "src.scraper",
+        "documentation": {}
+    },
+    {
+        "label": "HeightZeroCondition",
+        "kind": 6,
+        "importPath": "scraper.src.scraper",
+        "description": "scraper.src.scraper",
+        "peekOfCode": "class HeightZeroCondition:\n    def __init__(self, locator):\n        self.locator = locator\n    def __call__(self, driver):\n        element = driver.find_element(*self.locator)\n        return element.size[\"height\"] == 0\nclass BusinessScraper:\n    def __init__(self):\n        chrome_options = Options()\n        # Enable headless mode",
+        "detail": "scraper.src.scraper",
+        "documentation": {}
+    },
+    {
+        "label": "BusinessScraper",
+        "kind": 6,
+        "importPath": "scraper.src.scraper",
+        "description": "scraper.src.scraper",
+        "peekOfCode": "class BusinessScraper:\n    def __init__(self):\n        chrome_options = Options()\n        # Enable headless mode\n        # chrome_options.add_argument(\"--headless\")\n        # Configure network throttling\n        chrome_options.add_argument(\"--disable-network\")\n        chrome_options.add_argument(\"--force-effective-connection-type=slow-3g\")\n        # Set window size to full width\n        chrome_options.add_argument(\"--start-maximized\")",
+        "detail": "scraper.src.scraper",
+        "documentation": {}
+    },
+    {
+        "label": "QUERIES",
+        "kind": 5,
+        "importPath": "scraper.config",
+        "description": "scraper.config",
+        "peekOfCode": "QUERIES = [\"restaurants\", \"hotels\", \"gyms\"]  # Example list of queries\nOUTPUT_FILE = \"data/output.csv\"  # Path to the output CSV file\nCHROME_DRIVER_PATH=\"\"\nBASE_URL = \"https://www.google.com/maps/search\"",
+        "detail": "scraper.config",
+        "documentation": {}
+    },
+    {
+        "label": "OUTPUT_FILE",
+        "kind": 5,
+        "importPath": "scraper.config",
+        "description": "scraper.config",
+        "peekOfCode": "OUTPUT_FILE = \"data/output.csv\"  # Path to the output CSV file\nCHROME_DRIVER_PATH=\"\"\nBASE_URL = \"https://www.google.com/maps/search\"",
+        "detail": "scraper.config",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_URL",
+        "kind": 5,
+        "importPath": "scraper.config",
+        "description": "scraper.config",
+        "peekOfCode": "BASE_URL = \"https://www.google.com/maps/search\"",
+        "detail": "scraper.config",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "scraper.main",
+        "description": "scraper.main",
+        "peekOfCode": "def main():\n    # Create an instance of the BusinessScraper\n    scraper = BusinessScraper()\n    # Scrape data for each query\n    for query in QUERIES:\n        scraper.search(query)\n        scraper.scroll_and_extract_data()\n    # Save the extracted data to a CSV file\n    scraper.save_to_csv(output_file=OUTPUT_FILE)\nif __name__ == \"__main__\":",
+        "detail": "scraper.main",
+        "documentation": {}
+    }
+]

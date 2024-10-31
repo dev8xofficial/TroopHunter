@@ -1,0 +1,116 @@
+import { CityMessageKey, getCityMessage } from '@repo/messages';
+import { logger } from '@repo/utils';
+import { type ApiResponse, createApiResponse, type ICityFetchByIdRequestAttributes, type ICityFetchRequestAttributes, type IPaginationAttributes } from '@repo/validator';
+import { type Request, type Response } from 'express';
+import { type ParsedQs } from 'qs';
+import { Op } from 'sequelize';
+
+import { City } from '../../models';
+
+// Get cities by name and state
+export const getCitiesByQuery = async (req: Request, res: Response): Promise<Response> => {
+  const { name, stateCode, countryCode } = req.query as ICityFetchRequestAttributes;
+  const { page, limit, sort } = req.query as ParsedQs & IPaginationAttributes;
+
+  // Pagination
+  const pageNumber = parseInt(String(page)) ?? 1;
+  const limitNumber = parseInt(String(limit)) ?? 10;
+  let order: Array<[string, 'ASC' | 'ASC NULLS FIRST' | 'ASC NULLS LAST' | 'DESC' | 'DESC NULLS FIRST' | 'DESC NULLS LAST']> = [];
+
+  const offset = (pageNumber - 1) * limitNumber;
+
+  // Where clause
+  const whereClause: Record<string, unknown> = {};
+
+  if (name != null) {
+    whereClause.name = { [Op.eq]: String(name) };
+  }
+
+  if (stateCode != null) {
+    whereClause.stateCode = { [Op.eq]: String(stateCode) };
+  }
+
+  if (countryCode != null) {
+    whereClause.countryCode = { [Op.eq]: String(countryCode) };
+  }
+
+  // Sorting
+  if (sort === 'gdpAscending') {
+    order = [['gdpInBillionUsd', 'ASC NULLS LAST']];
+  }
+  if (sort === 'gdpDescending') {
+    order = [['gdpInBillionUsd', 'DESC NULLS LAST']];
+  }
+
+  try {
+    const { count, rows: cities } = await City.findAndCountAll({
+      where: whereClause,
+      order,
+      offset,
+      limit: limitNumber,
+    });
+
+    if (cities.length === 0) {
+      logger.warn(`No cities found for city: ${name ?? ''}`);
+      const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.CITY_NOT_FOUND).message, status: getCityMessage(CityMessageKey.CITY_NOT_FOUND).code });
+      return res.json(response);
+    }
+
+    const totalPages = Math.ceil(count / limitNumber);
+
+    logger.info('Successfully retrieved cities.');
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; cities: City[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, cities }, message: getCityMessage(CityMessageKey.CITIES_RETRIEVED).message, status: getCityMessage(CityMessageKey.CITIES_RETRIEVED).code });
+    return res.json(response);
+  } catch (error) {
+    logger.error('Error while retrieving cities:', error);
+    const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.FAILED_TO_RETRIEVE_CITIES).message, status: getCityMessage(CityMessageKey.FAILED_TO_RETRIEVE_CITIES).code });
+    return res.json(response);
+  }
+};
+
+// Get all cities
+export const getCities = async (req: Request, res: Response): Promise<Response> => {
+  const { page, limit } = req.query as ParsedQs & IPaginationAttributes;
+
+  const pageNumber = parseInt(String(page)) ?? 1;
+  const limitNumber = parseInt(String(limit)) ?? 10;
+
+  const offset = (pageNumber - 1) * limitNumber;
+
+  try {
+    const { count, rows: cities } = await City.findAndCountAll({
+      offset,
+      limit: limitNumber,
+    });
+
+    const totalPages = Math.ceil(count / limitNumber);
+
+    logger.info('Successfully retrieved cities');
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; cities: City[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, cities }, message: getCityMessage(CityMessageKey.CITIES_RETRIEVED).message, status: getCityMessage(CityMessageKey.CITIES_RETRIEVED).code });
+    return res.json(response);
+  } catch (error) {
+    logger.error('Error while retrieving cities:', error);
+    const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.FAILED_TO_RETRIEVE_CITIES).message, status: getCityMessage(CityMessageKey.FAILED_TO_RETRIEVE_CITIES).code });
+    return res.json(response);
+  }
+};
+
+// Get a city by ID
+export const getCityById = async (req: Request, res: Response): Promise<Response> => {
+  const { id } = req.params as ICityFetchByIdRequestAttributes;
+  try {
+    const city = await City.findOne({ where: { id } });
+    if (city == null) {
+      logger.warn(`City with ID ${id} not found`);
+      const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.CITY_NOT_FOUND).message, status: getCityMessage(CityMessageKey.CITY_NOT_FOUND).code });
+      return res.json(response);
+    }
+    logger.info(`Successfully retrieved city with ID ${id}`);
+    const response: ApiResponse<City> = createApiResponse({ success: true, data: city, message: getCityMessage(CityMessageKey.CITY_RETRIEVED).message, status: getCityMessage(CityMessageKey.CITY_RETRIEVED).code });
+    return res.json(response);
+  } catch (error) {
+    logger.error(`Error while retrieving city with ID ${id}:`, error);
+    const response: ApiResponse<null> = createApiResponse({ error: getCityMessage(CityMessageKey.FAILED_TO_RETRIEVE_CITY).message, status: getCityMessage(CityMessageKey.FAILED_TO_RETRIEVE_CITY).code });
+    return res.json(response);
+  }
+};

@@ -1,0 +1,49 @@
+services:
+  postgres_auth_prod:
+    container_name: postgres_auth_prod
+    build:
+      context: .
+      dockerfile: ./Dockerfile.postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    env_file:
+      - ./.env
+    volumes:
+      - ./postgres/postgres_auth_prod:/var/lib/postgresql/data
+    networks:
+      - custom_network
+
+  postgres_auth_stag:
+    container_name: postgres_auth_stag
+    build:
+      context: .
+      dockerfile: ./Dockerfile.postgres
+    restart: always
+    ports:
+      - '5433:5432'
+    env_file:
+      - ./.env
+    volumes:
+      - ./postgres/postgres_auth_stag:/var/lib/postgresql/data
+    networks:
+      - custom_network
+
+  postgres_auth_dev:
+    container_name: postgres_auth_dev
+    build:
+      context: .
+      dockerfile: ./Dockerfile.postgres
+    restart: always
+    ports:
+      - '5434:5432'
+    env_file:
+      - ./.env
+    volumes:
+      - ./postgres/postgres_auth_dev:/var/lib/postgresql/data
+    networks:
+      - custom_network
+
+networks:
+  custom_network:
+    driver: bridge
