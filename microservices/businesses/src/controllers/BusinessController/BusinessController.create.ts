@@ -38,13 +38,14 @@ export const createBusiness = async (req: Request, res: Response): Promise<Respo
       closingHoursAndIds[closingHour.time] = { id: closingHour.id };
     });
 
-  const { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, operatingHours } = req.body as IBusinessCreateRequestAttributes;
+  const { name, businessDomain, placeId, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, operatingHours } = req.body as IBusinessCreateRequestAttributes;
 
   const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
   const payload: Omit<IBusinessAttributes, 'BusinessPhone'> = {
     id: uuidv4(),
     name,
     businessDomain: businessDomain?.toLocaleLowerCase(),
+    placeId,
     address,
     cityId,
     stateId,
@@ -184,13 +185,14 @@ export const createBusinesses = async (req: Request, res: Response): Promise<Res
 
     const createdBusinesses = await Promise.all(
       newBusinessRequests.map(async (businessData) => {
-        const { name, businessDomain, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, operatingHours }: IBusinessCreateRequestAttributes = businessData;
+        const { name, businessDomain, placeId, category, address, cityId, stateId, countryId, longitude, latitude, postalCode, phone, email, website, rating, reviews, timezone, source, socialMediaId, sponsoredAd, operatingHours }: IBusinessCreateRequestAttributes = businessData;
 
         const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
         const payload: Omit<IBusinessAttributes, 'BusinessPhone'> = {
           id: uuidv4(),
           name,
           businessDomain: businessDomain?.toLocaleLowerCase(),
+          placeId,
           address,
           cityId,
           stateId,

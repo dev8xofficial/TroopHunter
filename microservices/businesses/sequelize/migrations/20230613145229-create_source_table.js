@@ -10,7 +10,7 @@ module.exports = {
         unique: true,
       },
       sourceName: {
-        type: Sequelize.STRING(20),
+        type: Sequelize.ENUM('google-maps', 'google-places-api'),
         allowNull: false,
         unique: true,
       },

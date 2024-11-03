@@ -20,6 +20,7 @@ export class Business extends Model<Omit<IBusinessAttributes, 'BusinessPhone'>> 
   public id!: string;
   public name!: string;
   public businessDomain?: string;
+  public placeId!: string;
   public categoryId!: string;
   public address?: string;
   public cityId!: string;
@@ -60,6 +61,14 @@ Business.init(
     businessDomain: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    placeId: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+      unique: true,
+      validate: {
+        len: [1, 255],
+      },
     },
     categoryId: {
       type: DataTypes.UUID,
@@ -140,7 +149,24 @@ Business.init(
     indexes: [
       // Create a composite index for faster searching
       {
-        unique: true,
+        fields: ['name'],
+      },
+      {
+        fields: ['address'],
+      },
+      {
+        fields: ['businessDomain'],
+      },
+      {
+        fields: ['email'],
+      },
+      {
+        fields: ['website'],
+      },
+      {
+        fields: ['sponsoredAd'],
+      },
+      {
         fields: ['name', 'address'], // Add the name and address fields to the composite index
       },
       {

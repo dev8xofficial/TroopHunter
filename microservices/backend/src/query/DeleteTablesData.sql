@@ -1,3 +1,8 @@
+DELETE FROM "UserTokens";
+DELETE FROM "Users";
+DELETE FROM "Countries";
+DELETE FROM "States";
+DELETE FROM "Cities";
 DELETE FROM "BusinessPhotos";
 DELETE FROM "Businesses";
 DELETE FROM "BusinessCategories";
@@ -16,5 +21,5 @@ DELETE FROM "Leads";
 DELETE FROM "PostalCodes";
 -- DELETE FROM "SequelizeMeta";
 DELETE FROM "Timezones";
--- DELETE FROM "Queues";
--- DELETE FROM "CityQueues";
+DELETE FROM "Queues";
+DELETE FROM "CityQueues";

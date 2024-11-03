@@ -12,6 +12,7 @@ export const BusinessSchema = z.object({
     .string()
     .transform((val) => val.toLowerCase())
     .optional(),
+  placeId: z.string().min(1, 'placeId must have at least 1 character').max(255, 'placeId cannot exceed 255 characters'),
   categoryId: z.string().uuid().optional(),
   address: z.string().optional(),
   cityId: z.string().uuid(),

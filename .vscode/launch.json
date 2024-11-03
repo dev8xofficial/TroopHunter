@@ -56,6 +56,24 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
+      "name": "Migration",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/production/database-migration/node_modules/ts-node/dist/bin.js",
+      "runtimeArgs": [
+        "--inspect"
+      ],
+      "args": ["${workspaceFolder}/production/database-migration/migrateData.ts"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      // "envFile": "${workspaceFolder}/production/database-migration/auth/.env",
+      "cwd": "${workspaceFolder}/production/database-migration",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
       "name": "MicroBackend",
       "type": "node",
       "request": "launch",

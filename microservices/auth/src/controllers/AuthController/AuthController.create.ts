@@ -30,7 +30,7 @@ export const register = async (req: Request, res: Response): Promise<Response> =
 
     // const existingUser = await User.findOne({ where: { email } });
     const existingUserResponse: ApiResponse<IUserAttributes | null> = await getUserByEmail({ email, ...httpsAgent });
-    if (existingUserResponse.data == null) {
+    if (existingUserResponse.data != null) {
       logger.error(`User with email ${email} already exists.`);
       const response: ApiResponse<null> = createApiResponse({ error: getUserMessage(UserMessageKey.DUPLICATE_USER).message, status: getUserMessage(UserMessageKey.DUPLICATE_USER).code });
       return res.json(response);

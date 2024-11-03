@@ -19,6 +19,14 @@ module.exports = {
         allowNull: true,
         lowercase: true,
       },
+      placeId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          len: [1, 255], // assuming a max length of 255 for placeId
+        },
+      },
       categoryId: {
         type: Sequelize.UUID,
         allowNull: true,
@@ -162,11 +170,14 @@ module.exports = {
         defaultValue: Sequelize.literal('NOW()'),
       },
     });
-
+    await queryInterface.addIndex('Businesses', ['name']);
+    await queryInterface.addIndex('Businesses', ['address']);
+    await queryInterface.addIndex('Businesses', ['businessDomain']);
+    await queryInterface.addIndex('Businesses', ['email']);
+    await queryInterface.addIndex('Businesses', ['website']);
+    await queryInterface.addIndex('Businesses', ['sponsoredAd']);
+    await queryInterface.addIndex('Businesses', ['name', 'address']);
     await queryInterface.addIndex('Businesses', ['businessDomain', 'email', 'website', 'sponsoredAd']);
-    await queryInterface.addIndex('Businesses', ['name', 'address'], {
-      unique: true,
-    });
 
     // Define foreign key constraints
     await queryInterface.addConstraint('Businesses', {
@@ -181,47 +192,47 @@ module.exports = {
       onUpdate: 'CASCADE',
     });
 
-    await queryInterface.addConstraint('Businesses', {
-      fields: ['cityId'],
-      // type: 'foreign key',
-      // name: 'fk_business_city',
-      type: 'unique',
-      name: 'unique_business_city',
-      // references: {
-      //   table: 'Cities',
-      //   field: 'id',
-      // },
-      onDelete: 'SET NULL',
-      onUpdate: 'CASCADE',
-    });
+    // await queryInterface.addConstraint('Businesses', {
+    //   fields: ['cityId'],
+    //   // type: 'foreign key',
+    //   // name: 'fk_business_city',
+    //   type: 'unique',
+    //   name: 'unique_business_city',
+    //   // references: {
+    //   //   table: 'Cities',
+    //   //   field: 'id',
+    //   // },
+    //   onDelete: 'SET NULL',
+    //   onUpdate: 'CASCADE',
+    // });
 
-    await queryInterface.addConstraint('Businesses', {
-      fields: ['stateId'],
-      // type: 'foreign key',
-      // name: 'fk_business_state',
-      type: 'unique',
-      name: 'unique_business_state',
-      // references: {
-      //   table: 'States',
-      //   field: 'id',
-      // },
-      onDelete: 'SET NULL',
-      onUpdate: 'CASCADE',
-    });
+    // await queryInterface.addConstraint('Businesses', {
+    //   fields: ['stateId'],
+    //   // type: 'foreign key',
+    //   // name: 'fk_business_state',
+    //   type: 'unique',
+    //   name: 'unique_business_state',
+    //   // references: {
+    //   //   table: 'States',
+    //   //   field: 'id',
+    //   // },
+    //   onDelete: 'SET NULL',
+    //   onUpdate: 'CASCADE',
+    // });
 
-    await queryInterface.addConstraint('Businesses', {
-      fields: ['countryId'],
-      // type: 'foreign key',
-      // name: 'fk_business_country',
-      type: 'unique',
-      name: 'unique_business_country',
-      // references: {
-      //   table: 'Countries',
-      //   field: 'id',
-      // },
-      onDelete: 'SET NULL',
-      onUpdate: 'CASCADE',
-    });
+    // await queryInterface.addConstraint('Businesses', {
+    //   fields: ['countryId'],
+    //   // type: 'foreign key',
+    //   // name: 'fk_business_country',
+    //   type: 'unique',
+    //   name: 'unique_business_country',
+    //   // references: {
+    //   //   table: 'Countries',
+    //   //   field: 'id',
+    //   // },
+    //   onDelete: 'SET NULL',
+    //   onUpdate: 'CASCADE',
+    // });
 
     await queryInterface.addConstraint('Businesses', {
       fields: ['postalCodeId'],
@@ -298,8 +309,14 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     // Drop indexes
-    await queryInterface.removeIndex('Businesses', ['businessDomain', 'email', 'website', 'sponsoredAd']);
+    await queryInterface.removeIndex('Businesses', ['name']);
+    await queryInterface.removeIndex('Businesses', ['address']);
+    await queryInterface.removeIndex('Businesses', ['businessDomain']);
+    await queryInterface.removeIndex('Businesses', ['email']);
+    await queryInterface.removeIndex('Businesses', ['website']);
+    await queryInterface.removeIndex('Businesses', ['sponsoredAd']);
     await queryInterface.removeIndex('Businesses', ['name', 'address']);
+    await queryInterface.removeIndex('Businesses', ['businessDomain', 'email', 'website', 'sponsoredAd']);
     // Drop foreign key constraints
     await queryInterface.removeConstraint('Businesses', 'fk_business_category');
     await queryInterface.removeConstraint('Businesses', 'unique_business_city');

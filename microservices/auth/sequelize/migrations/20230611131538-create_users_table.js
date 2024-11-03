@@ -31,6 +31,11 @@ module.exports = {
         allowNull: true,
         type: Sequelize.ENUM('guest', 'user', 'admin'),
       },
+      verified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

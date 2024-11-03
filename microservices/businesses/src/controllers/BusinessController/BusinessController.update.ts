@@ -8,7 +8,7 @@ import { Business } from '../../models';
 export const updateBusiness = async (req: Request, res: Response): Promise<Response> => {
   const { id } = req.params as IBusinessFetchByIdRequestAttributes;
   try {
-    const { name, businessDomain, categoryId, address, cityId, stateId, countryId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd } = req.body as IBusinessAttributes;
+    const { name, businessDomain, placeId, categoryId, address, cityId, stateId, countryId, longitude, latitude, postalCodeId, phoneId, email, website, ratingId, reviews, timezoneId, sourceId, socialMediaId, sponsoredAd } = req.body as IBusinessAttributes;
     // const geoPoint = { type: 'Point', coordinates: [longitude, latitude], crs: { type: 'name', properties: { name: 'EPSG:4326' } } };
 
     const business = await Business.findByPk(id);
@@ -16,6 +16,7 @@ export const updateBusiness = async (req: Request, res: Response): Promise<Respo
     if (business != null) {
       if (name != null) business.name = name;
       if (businessDomain != null) business.businessDomain = businessDomain;
+      if (placeId != null) business.placeId = placeId;
       if (categoryId != null) business.categoryId = categoryId;
       if (address != null) business.address = address;
       if (cityId != null) business.cityId = cityId;
