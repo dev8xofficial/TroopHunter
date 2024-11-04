@@ -1,5 +1,0 @@
-{
-  "extends": "@repo/tsconfig-frontend/tsconfig.json",
-  "include": ["src/**/*", "src/lib.d.ts", ".eslintrc.cjs", "vite.config.ts"],
-  "exclude": ["submitToIndexNow.js"]
-}

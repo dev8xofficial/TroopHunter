@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
+export const viewport = 'width=device-width, initial-scale=1';
+export const themeColor = '#000000';
+
 export const metadata: Metadata = {
-  // Optional: Additional metadata settings
   charset: 'utf-8',
-  viewport: 'width=device-width, initial-scale=1.0',
 
   // Progressive Web Application Settings
   manifest: `${process.env.NEXT_PUBLIC_TROOPHUNTER_URL}/webmanifest/site.webmanifest`,
-  themeColor: '#f3f4f6',
 
   // Icons for various devices and browsers
   icons: {
