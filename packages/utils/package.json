@@ -22,7 +22,6 @@
     "@repo/eslint-config": "*",
     "@repo/tsconfig-backend": "*",
     "@repo/validator": "*",
-    "@repo/sequelize": "*",
     "winston": "^3.10.0"
   },
   "devDependencies": {

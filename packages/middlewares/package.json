@@ -15,7 +15,6 @@
     "@repo/messages": "*",
     "@repo/utils": "*",
     "@repo/validator": "*",
-    "@repo/sequelize": "*",
     "@repo/services": "*",
     "@repo/tsconfig-backend": "*",
     "@repo/eslint-config": "*"

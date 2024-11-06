@@ -15,7 +15,8 @@ export const UserSchema = z.object({
     .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'Password must contain at least one letter, one number, and one special character'),
   role: z.enum(['guest', 'user', 'admin']).optional(),
   verified: z.boolean(),
-  Leads: z.array(LeadSchema).default([]).optional(),
+  Leads: z.array(LeadSchema).default([]),
+  // Leads: z.array(LeadSchema).default([]).optional(),
 });
 
 export const SendVerificationTokenSchema = UserSchema.pick({ email: true });
@@ -33,8 +34,8 @@ export const LoginRequestSchema = UserSchema.pick({ email: true, password: true 
 export const UserFetchRequestSchema = UserSchema.omit({ id: true }).partial();
 export const UserFetchByIdRequestSchema = UserSchema.pick({ id: true });
 export const UserFetchByEmailRequestSchema = UserSchema.pick({ email: true });
-// export const UserCreateRequestSchema = UserSchema.omit({ id: true, verified: true, Leads: true, role: true });
-export const UserCreateRequestSchema = UserSchema.omit({ id: true, verified: true, role: true });
+export const UserCreateRequestSchema = UserSchema.omit({ id: true, verified: true, Leads: true, role: true });
+// export const UserCreateRequestSchema = UserSchema.omit({ id: true, verified: true, role: true });
 export const UserUpdateNameRequestSchema = UserSchema.pick({ firstName: true, lastName: true });
 export const UserUpdatePasswordRequestSchema = UserSchema.pick({ password: true })
   .extend({

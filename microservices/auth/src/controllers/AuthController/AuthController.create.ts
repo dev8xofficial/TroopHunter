@@ -36,15 +36,15 @@ export const register = async (req: Request, res: Response): Promise<Response> =
       return res.json(response);
     }
 
-    // const requestData: Omit<IUserAttributes, 'Leads'> = { id: uuidv4(), firstName, lastName, email, password, verified: false };
-    const requestData: IUserAttributes = { id: uuidv4(), firstName, lastName, email, password, verified: false };
+    const requestData: Omit<IUserAttributes, 'Leads'> = { id: uuidv4(), firstName, lastName, email, password, verified: false };
+    // const requestData: IUserAttributes = { id: uuidv4(), firstName, lastName, email, password, verified: false };
 
     // Hash the password
     // const hashedPassword = await bcrypt.hash(password, 10);
     // requestData.password = hashedPassword;
 
     // Create the user
-    const userResponse: ApiResponse<IUserAttributes | null> = await createUser({ ...requestData, ...httpsAgent });
+    const userResponse: ApiResponse<Omit<IUserAttributes, 'Leads'> | null> = await createUser({ ...requestData, ...httpsAgent });
     if (userResponse.data == null) {
       const response: ApiResponse<null> = createApiResponse({ success: userResponse.success, data: userResponse.data, message: userResponse.message, status: userResponse.status });
       return res.json(response);
@@ -52,7 +52,7 @@ export const register = async (req: Request, res: Response): Promise<Response> =
 
     logger.info(`User with email ${email} registered successfully.`);
 
-    const response: ApiResponse<IUserAttributes> = createApiResponse({ success: true, data: userResponse.data, message: getUserMessage(UserMessageKey.USER_CREATED).message, status: getUserMessage(UserMessageKey.USER_CREATED).code });
+    const response: ApiResponse<Omit<IUserAttributes, 'Leads'>> = createApiResponse({ success: true, data: userResponse.data, message: getUserMessage(UserMessageKey.USER_CREATED).message, status: getUserMessage(UserMessageKey.USER_CREATED).code });
     return res.json(response);
   } catch (error) {
     logger.error('Failed to create user:', error);

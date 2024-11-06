@@ -10,7 +10,7 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
   const { id, firstName, lastName, email, password, verified } = req.body as IUserAttributes;
 
   try {
-    const requestData: IUserAttributes = { id, firstName, lastName, email, password, verified };
+    const requestData: Omit<IUserAttributes, 'Leads'> = { id, firstName, lastName, email, password, verified };
 
     const hashedPassword = await bcrypt.hash(password, 10);
     requestData.password = hashedPassword;

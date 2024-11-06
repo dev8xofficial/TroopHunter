@@ -5,8 +5,8 @@ import { DataTypes, Model } from 'sequelize';
 // import { Lead } from './Lead';
 import sequelize from '../config/database';
 
-// export class User extends Model<Omit<IUserAttributes, 'Leads'>> implements Omit<IUserAttributes, 'Leads'> {
-export class User extends Model<IUserAttributes> implements IUserAttributes {
+export class User extends Model<Omit<IUserAttributes, 'Leads'>> implements Omit<IUserAttributes, 'Leads'> {
+  // export class User extends Model<IUserAttributes> implements IUserAttributes {
   public id!: string;
   public firstName!: string;
   public lastName!: string;
