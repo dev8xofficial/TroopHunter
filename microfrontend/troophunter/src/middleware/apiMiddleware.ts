@@ -8,6 +8,7 @@ import { refreshTokenService } from '../services/apiService';
 import { ApiRequestAction } from '../store/actions/apiActions';
 import { refreshTokenSuccessAction } from '../store/actions/authActions';
 import { type IRootState } from '../store/rootReducer';
+import { getBackendUrl } from '../utils/helpers';
 
 const apiMiddleware: Middleware =
   ({ getState, dispatch }) =>
@@ -25,7 +26,7 @@ const apiMiddleware: Middleware =
         return;
       }
 
-      axios.defaults.baseURL = process.env.VITE_BACKEND_URL;
+      axios.defaults.baseURL = getBackendUrl();
       axios.defaults.headers.common['Content-Type'] = 'application/json';
       const axiosInstance: AxiosInstance = axios.create();
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;

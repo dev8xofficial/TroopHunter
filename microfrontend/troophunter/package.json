@@ -8,8 +8,9 @@
     "build:start": "cd dist && PORT=5175 npx serve",
     "build:css": "webpack --mode development --config webpack.css.config.js",
     "dev": "webpack serve --mode development",
+    "start:prod": "webpack serve --mode production --live-reload --hot",
     "start:live": "webpack serve --mode production --live-reload --hot",
-    "start": "npx serve -s dist -p 5175"
+    "start": "npx serve -s dist -p 5175 --mode production"
   },
   "license": "MIT",
   "author": {

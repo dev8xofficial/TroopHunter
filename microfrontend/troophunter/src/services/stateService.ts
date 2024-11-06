@@ -3,7 +3,7 @@ import axios, { type AxiosResponse } from 'axios';
 
 import { type IStatesResponseAttributes, type IStateResponseAttributes } from '../components/Inputs/Combobox/Combobox';
 
-const BASE_URL = process.env.VITE_BACKEND_URL;
+const BASE_URL = process.env.BACKEND_URL;
 
 interface IGetStatesByQueryAttributes extends IStateFetchRequestAttributes, IPaginationAttributes {}
 

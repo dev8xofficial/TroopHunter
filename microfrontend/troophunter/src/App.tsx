@@ -24,7 +24,7 @@
 //   }, [loading]);
 
 //   useEffect(() => {
-//     if (process.env.VITE_GOOGLE_ANALYTICS != null) initializeGA(process.env.VITE_GOOGLE_ANALYTICS);
+//     if (process.env.GOOGLE_ANALYTICS != null) initializeGA(process.env.GOOGLE_ANALYTICS);
 //   }, []);
 
 //   useEffect(() => {
@@ -80,7 +80,7 @@ const App: React.FC = () => {
   }, [loading]);
 
   useEffect(() => {
-    if (process.env.VITE_GOOGLE_ANALYTICS != null) initializeGA(process.env.VITE_GOOGLE_ANALYTICS);
+    if (process.env.GOOGLE_ANALYTICS != null) initializeGA(process.env.GOOGLE_ANALYTICS);
   }, []);
 
   useEffect(() => {

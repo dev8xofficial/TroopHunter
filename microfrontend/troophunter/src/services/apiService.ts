@@ -1,7 +1,7 @@
 import { type ApiResponse } from '@repo/validator';
 import { type AxiosInstance, type AxiosResponse } from 'axios';
 
-const BASE_URL = process.env.VITE_BACKEND_URL;
+const BASE_URL = process.env.BACKEND_URL;
 
 export const refreshTokenService = async (axiosInstance: AxiosInstance, refreshToken: string): Promise<ApiResponse<{ accessToken: string }>> => {
   try {
