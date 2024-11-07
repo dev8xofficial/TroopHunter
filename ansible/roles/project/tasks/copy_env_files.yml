@@ -1,23 +1,48 @@
 ---
-- name: Copy .env file from backend into host backend.
+- name: Copy .env file from microservices/main into host microservices/main.
   copy:
-    src: "{{ ENV_PATH }}/backend/.env-{{ ENVIRONMENT }}"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/backend/.env
+    src: "{{ ENV_PATH }}/microservices/main/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/main/.env
 
-- name: Copy .env file from auth into host services/auth.
+- name: Copy .env file from microservices/auth into host microservices/auth.
   copy:
-    src: "{{ ENV_PATH }}/auth/.env-{{ ENVIRONMENT }}"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/services/auth/.env
+    src: "{{ ENV_PATH }}/microservices/auth/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/auth/.env
+
+- name: Copy .env file from microservices/countries into host microservices/countries.
+  copy:
+    src: "{{ ENV_PATH }}/microservices/countries/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/countries/.env
+
+- name: Copy .env file from microservices/businesses into host microservices/businesses.
+  copy:
+    src: "{{ ENV_PATH }}/microservices/businesses/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/businesses/.env
+
+- name: Copy .env file from microservices/queues into host microservices/queues.
+  copy:
+    src: "{{ ENV_PATH }}/microservices/queues/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/queues/.env
+
+- name: Copy .env file from microservices/users into host microservices/users.
+  copy:
+    src: "{{ ENV_PATH }}/microservices/users/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/users/.env
+
+- name: Copy .env file from microfrontend/troophunter into host microfrontend/troophunter.
+  copy:
+    src: "{{ ENV_PATH }}/microfrontend/troophunter/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/troophunter/.env
+
+- name: Copy .env file from microfrontend/troophunter-landing into host microfrontend/troophunter-landing.
+  copy:
+    src: "{{ ENV_PATH }}/microfrontend/troophunter-landing/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/troophunter-landing/.env
 
 - name: Copy .env file from ci into host ci.
   copy:
     src: "{{ ENV_PATH }}/ci/.env-{{ ENVIRONMENT }}"
     dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/ci/.env
-
-- name: Copy .env file from crm into host crm.
-  copy:
-    src: "{{ ENV_PATH }}/crm/.env-{{ ENVIRONMENT }}"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/crm/.env
 
 - name: Copy .env file from cloudflare into host cloudflare.
   copy:
