@@ -21,8 +21,17 @@ module.exports = (_, argv) => {
       extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
     },
 
+    performance: {
+      hints: false,
+      maxEntrypointSize: 512000,
+      maxAssetSize: 512000
+    },
+
     devServer: {
       port: 5175,
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
       historyApiFallback: true,
       watchFiles: [path.resolve(__dirname, 'src')],
       onListening: function (devServer) {
