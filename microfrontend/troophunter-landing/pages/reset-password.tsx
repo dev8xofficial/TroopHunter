@@ -5,6 +5,7 @@ import React, { lazy, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
+import Loader from '../components/Feedback/Loader/Loader';
 import { getTroopHunterPublicUrl } from '../utils/helpers';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-return
@@ -43,7 +44,7 @@ export const ResetPassword: React.FC = (): JSX.Element => {
         <meta name="twitter:site" content="@TroopHunter" />
       </Head>
       <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <App />
         </Suspense>
       </BrowserRouter>

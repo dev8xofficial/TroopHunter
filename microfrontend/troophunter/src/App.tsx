@@ -73,7 +73,7 @@ const App: React.FC = () => {
       setTimeout(() => {
         preloader.classList.toggle('hidden');
         setLoading(false);
-      }, 2000);
+      }, 1000);
     } else {
       setLoading(false);
     }
