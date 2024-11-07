@@ -1,6 +1,19 @@
 # Logs
 package-lock.json
 node_modules
-cert
+
+# certs/
+certs
+
+# production/
 production
+
+# postgress/
+postgres_dev
+postgres_stag
+postgres_prod
+
+# pgadmin/
+pgadmin/pgadmin
+
 .turbo

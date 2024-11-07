@@ -6,11 +6,11 @@ import { logger } from '@repo/utils';
 
 import app from './index';
 
-const port = process.env.PORT ?? 50004;
+const port = process.env.PORT ?? 50012;
 
-const privateKey = fs.readFileSync(path.resolve(__dirname, './cert/queues-key.pem'));
-const certificate = fs.readFileSync(path.resolve(__dirname, './cert/queues-cert.pem'));
-const caCertificate = fs.readFileSync(path.resolve(__dirname, './cert/ca-cert.pem'));
+const privateKey = fs.readFileSync(path.resolve(__dirname, './certs/queues-key.pem'));
+const certificate = fs.readFileSync(path.resolve(__dirname, './certs/queues-cert.pem'));
+const caCertificate = fs.readFileSync(path.resolve(__dirname, './certs/ca-cert.pem'));
 
 const options = {
   key: privateKey,

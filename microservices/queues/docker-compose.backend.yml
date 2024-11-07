@@ -9,7 +9,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50013:50013'
+      - '50012:50012'
     depends_on:
       postgres_queues_prod:
         condition: service_started
@@ -28,7 +28,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50014:50013'
+      - '50013:50012'
     depends_on:
       postgres_queues_stag:
         condition: service_started
@@ -47,7 +47,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50015:50013'
+      - '50014:50012'
     depends_on:
       postgres_queues_dev:
         condition: service_started

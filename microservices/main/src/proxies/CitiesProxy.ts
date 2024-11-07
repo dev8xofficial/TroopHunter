@@ -6,9 +6,9 @@ import { microservicesBaseUrls } from '@repo/utils';
 import { type RequestHandler, type Request } from 'express';
 import { createProxyMiddleware, type Options } from 'http-proxy-middleware';
 
-const privateKey = fs.readFileSync(path.resolve(__dirname, '../cert/cities-key.pem'));
-const certificate = fs.readFileSync(path.resolve(__dirname, '../cert/cities-cert.pem'));
-const caCertificate = fs.readFileSync(path.resolve(__dirname, '../cert/ca-cert.pem'));
+const privateKey = fs.readFileSync(path.resolve(__dirname, '../certs/cities-key.pem'));
+const certificate = fs.readFileSync(path.resolve(__dirname, '../certs/cities-cert.pem'));
+const caCertificate = fs.readFileSync(path.resolve(__dirname, '../certs/ca-cert.pem'));
 
 const options = {
   key: privateKey,

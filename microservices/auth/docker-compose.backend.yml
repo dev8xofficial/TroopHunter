@@ -9,7 +9,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50001:50001'
+      - '50003:50003'
     depends_on:
       postgres_auth_prod:
         condition: service_started
@@ -28,7 +28,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50002:50001'
+      - '50004:50003'
     depends_on:
       postgres_auth_stag:
         condition: service_started
@@ -47,7 +47,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50003:50001'
+      - '50005:50003'
     volumes:
       - ./logs/:/microservices/auth/logs/
     networks:

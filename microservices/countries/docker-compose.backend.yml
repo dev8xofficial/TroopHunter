@@ -9,7 +9,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50007:50007'
+      - '50009:50009'
     depends_on:
       postgres_countries_prod:
         condition: service_started
@@ -28,7 +28,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50008:50007'
+      - '50010:50009'
     depends_on:
       postgres_countries_stag:
         condition: service_started
@@ -47,7 +47,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50009:50007'
+      - '50011:50009'
     depends_on:
       postgres_countries_dev:
         condition: service_started
