@@ -6,5 +6,5 @@ export const getTroopHunterPublicUrl = (): string => {
   if (process.env.NODE_ENV === 'production') {
     return process.env.NEXT_TROOPHUNTER_PUBLIC_URL ?? 'https://www.troophunter.com';
   }
-  return process.env.NEXT_TROOPHUNTER_PUBLIC_URL ?? 'http://localhost:5175';
+  return process.env.NEXT_TROOPHUNTER_PUBLIC_URL ?? 'http://localhost:3000';
 };
