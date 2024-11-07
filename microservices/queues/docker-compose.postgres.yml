@@ -6,7 +6,7 @@ services:
       dockerfile: ./Dockerfile.postgres
     restart: always
     ports:
-      - '5444:5444'
+      - '5441:5432'
     env_file:
       - ./.env
     volumes:
@@ -21,7 +21,7 @@ services:
       dockerfile: ./Dockerfile.postgres
     restart: always
     ports:
-      - '5445:5444'
+      - '5442:5432'
     env_file:
       - ./.env
     volumes:
@@ -36,7 +36,7 @@ services:
       dockerfile: ./Dockerfile.postgres
     restart: always
     ports:
-      - '5446:5444'
+      - '5443:5432'
     env_file:
       - ./.env
     volumes:

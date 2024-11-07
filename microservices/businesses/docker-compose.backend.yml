@@ -9,7 +9,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50006:50006'
+      - '50009:50009'
     depends_on:
       postgres_businesses_prod:
         condition: service_started
@@ -28,7 +28,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50007:50006'
+      - '50010:50009'
     depends_on:
       postgres_businesses_stag:
         condition: service_started
@@ -47,7 +47,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50008:50006'
+      - '50011:50009'
     volumes:
       - ./logs/:/microservices/businesses/logs/
     networks:

@@ -12,9 +12,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { emailTemplate } from '../../templates/emailTemplate';
 
-const privateKey = fs.readFileSync(path.resolve(__dirname, '../../cert/auth-key.pem'));
-const certificate = fs.readFileSync(path.resolve(__dirname, '../../cert/auth-cert.pem'));
-const caCertificate = fs.readFileSync(path.resolve(__dirname, '../../cert/ca-cert.pem'));
+const privateKey = fs.readFileSync(path.resolve(__dirname, '../../certs/auth-key.pem'));
+const certificate = fs.readFileSync(path.resolve(__dirname, '../../certs/auth-cert.pem'));
+const caCertificate = fs.readFileSync(path.resolve(__dirname, '../../certs/ca-cert.pem'));
 
 const httpsAgent: IHttpsAgentOptions = {
   key: privateKey,

@@ -10,14 +10,15 @@
     "test": "jest"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
+    "@repo/eslint-config": "*",
     "@repo/messages": "*",
-    "@repo/utils": "*",
-    "@repo/validator": "*",
     "@repo/services": "*",
     "@repo/tsconfig-backend": "*",
-    "@repo/eslint-config": "*"
+    "@repo/utils": "*",
+    "@repo/validator": "*",
+    "axios": "^1.7.7",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",

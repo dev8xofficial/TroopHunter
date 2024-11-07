@@ -5,18 +5,15 @@ services:
       context: ../../
       dockerfile: microservices/main/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/main/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50000:50000'
-    depends_on:
-      postgres_main_prod:
-        condition: service_started
     volumes:
       - ./logs/:/microservices/main/logs/
     networks:
       - custom_network
+    command: npm run dev
 
   main_stag:
     container_name: main_stag
@@ -24,18 +21,15 @@ services:
       context: ../../
       dockerfile: microservices/main/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/main/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50001:50000'
-    depends_on:
-      postgres_main_stag:
-        condition: service_started
     volumes:
       - ./logs/:/microservices/main/logs/
     networks:
       - custom_network
+    command: npm run dev
 
   main_dev:
     container_name: main_dev
@@ -43,7 +37,6 @@ services:
       context: ../../
       dockerfile: microservices/main/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/main/entrypoint.sh']
     env_file:
       - ./.env
     ports:
@@ -52,3 +45,4 @@ services:
       - ./logs/:/microservices/main/logs/
     networks:
       - custom_network
+    command: npm run dev

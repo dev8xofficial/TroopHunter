@@ -1,34 +1,160 @@
 name: 'troophunter_stag'
 services:
-  ci:
-    extends:
-      file: docker-compose.ci.yml
-      service: ci_stag
+  # ci:
+  #   extends:
+  #     file: docker-compose.ci.yml
+  #     service: ci_stag
 
-  postgres_stag:
+  postgres_auth_stag:
     extends:
-      file: docker-compose.base.yml
-      service: postgres_stag
+      file: ./microservices/auth/docker-compose.postgres.yml
+      service: postgres_auth_stag
+
+  postgres_countries_stag:
+    extends:
+      file: ./microservices/countries/docker-compose.postgres.yml
+      service: postgres_countries_stag
+
+  postgres_businesses_stag:
+    extends:
+      file: ./microservices/businesses/docker-compose.postgres.yml
+      service: postgres_businesses_stag
+
+  postgres_queues_stag:
+    extends:
+      file: ./microservices/queues/docker-compose.postgres.yml
+      service: postgres_queues_stag
+
+  postgres_users_stag:
+    extends:
+      file: ./microservices/users/docker-compose.postgres.yml
+      service: postgres_users_stag
 
   # pgadmin_stag:
   #   extends:
   #     file: docker-compose.pgadmin.yml
   #     service: pgadmin_stag
 
-  backend_stag:
+  main_stag:
     extends:
-      file: docker-compose.backend.yml
-      service: backend_stag
+      file: ./microservices/main/docker-compose.backend.yml
+      service: main_stag
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50000/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  crm_stag:
+  auth_stag:
     extends:
-      file: docker-compose.crm.yml
-      service: crm_stag
+      file: ./microservices/auth/docker-compose.backend.yml
+      service: auth_stag
+    depends_on:
+      postgres_auth_stag:
+        condition: service_started
+      main_stag:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50003/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  cloudflare_stag:
+  countries_stag:
     extends:
-      file: docker-compose.cloudflare.yml
-      service: cloudflare_stag
+      file: ./microservices/countries/docker-compose.backend.yml
+      service: countries_stag
+    depends_on:
+      postgres_countries_stag:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50006/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
+
+  businesses_stag:
+    extends:
+      file: ./microservices/businesses/docker-compose.backend.yml
+      service: businesses_stag
+    depends_on:
+      postgres_auth_stag:
+        condition: service_started
+      postgres_countries_stag:
+        condition: service_started
+      postgres_businesses_stag:
+        condition: service_started
+      auth_stag:
+        condition: service_started
+      countries_stag:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50009/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
+
+  queues_stag:
+    extends:
+      file: ./microservices/queues/docker-compose.backend.yml
+      service: queues_stag
+    depends_on:
+      postgres_auth_stag:
+        condition: service_started
+      postgres_countries_stag:
+        condition: service_started
+      postgres_businesses_stag:
+        condition: service_started
+      postgres_queues_stag:
+        condition: service_started
+      auth_stag:
+        condition: service_started
+      countries_stag:
+        condition: service_started
+      businesses_stag:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50012/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
+
+  users_stag:
+    extends:
+      file: ./microservices/users/docker-compose.backend.yml
+      service: users_stag
+    depends_on:
+      postgres_auth_stag:
+        condition: service_started
+      postgres_countries_stag:
+        condition: service_started
+      postgres_businesses_stag:
+        condition: service_started
+      postgres_queues_stag:
+        condition: service_started
+      auth_stag:
+        condition: service_started
+      countries_stag:
+        condition: service_started
+      businesses_stag:
+        condition: service_started
+      queues_stag:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50015/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
+
+  # crm_stag:
+  #   extends:
+  #     file: docker-compose.crm.yml
+  #     service: crm_stag
+
+  # cloudflare_stag:
+  #   extends:
+  #     file: docker-compose.cloudflare.yml
+  #     service: cloudflare_stag
 
 volumes:
   pgadmin-data:
