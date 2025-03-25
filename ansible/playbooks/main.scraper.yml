@@ -7,7 +7,7 @@
     - /ansible/secrets/github_token
   vars:
     USER: ubuntu-server
-    GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/TroopHunter.git"
+    GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/TroopHunterNew.git"
     GIT_BRANCH: main
     PROJECT_NAME: TroopHunter
     ENVIRONMENT: prod

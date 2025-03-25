@@ -9,7 +9,7 @@
   vars:
     USER: ubuntu-server
     NODE_VERSION: 20.12.2
-    GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/TroopHunter.git"
+    GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/TroopHunterNew.git"
     GIT_BRANCH: develop
     PROJECT_NAME: TroopHunter
     ENVIRONMENT: dev
