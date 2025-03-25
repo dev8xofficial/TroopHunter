@@ -127,3 +127,17 @@ cloudflared service uninstall
 # To remove cloudflare package
 
 sudo apt-get remove cloudflared
+
+# ------------------------------------------------------------------------------------------------------------
+# ------------ Administrative commands of Ubuntu -------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
+
+# Switch to root user
+sudo su
+
+# Change Permissions
+sudo chmod -R u+rwx /TroopHunter
+
+# Force Delete the Folder
+sudo rm -rf /TroopHunter
+
