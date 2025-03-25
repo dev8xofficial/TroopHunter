@@ -6,12 +6,12 @@ import express, { type Request, type Response } from 'express';
 import { requestLogger } from './middlewares/requestLogger';
 import { authProxyMiddleware } from './proxies/AuthProxy';
 import { businessesProxyMiddleware } from './proxies/BusinessesProxy';
-import { citiesProxyMiddleware } from './proxies/CitiesProxy';
-import { cityQueuesProxyMiddleware } from './proxies/CityQueuesProxy';
+// import { citiesProxyMiddleware } from './proxies/CitiesProxy';
+// import { cityQueuesProxyMiddleware } from './proxies/CityQueuesProxy';
 import { countriesProxyMiddleware } from './proxies/CountriesProxy';
-import { leadsProxyMiddleware } from './proxies/LeadsProxy';
+// import { leadsProxyMiddleware } from './proxies/LeadsProxy';
 import { queuesProxyMiddleware } from './proxies/QueuesProxy';
-import { statesProxyMiddleware } from './proxies/StatesProxy';
+// import { statesProxyMiddleware } from './proxies/StatesProxy';
 import { usersProxyMiddleware } from './proxies/UsersProxy';
 
 const app = express();
@@ -27,13 +27,13 @@ app.use(requestLogger);
 
 app.use('/auth', authProxyMiddleware);
 app.use('/countries', countriesProxyMiddleware);
-app.use('/states', statesProxyMiddleware);
-app.use('/cities', citiesProxyMiddleware);
+// app.use('/states', statesProxyMiddleware);
+// app.use('/cities', citiesProxyMiddleware);
 app.use('/users', usersProxyMiddleware);
 app.use('/businesses', businessesProxyMiddleware);
-app.use('/leads', leadsProxyMiddleware);
+// app.use('/leads', leadsProxyMiddleware);
 app.use('/queues', queuesProxyMiddleware);
-app.use('/city-queues', cityQueuesProxyMiddleware);
+// app.use('/city-queues', cityQueuesProxyMiddleware);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Main Service (API Gateway) is running');

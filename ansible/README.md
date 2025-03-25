@@ -15,7 +15,7 @@
 
 # Step 3 - Add static ip in the router.
 
-    192.168.0.200
+    192.168.1.200
     Install Linux ProtonVPN
     sudo apt install curl
     Install pgadmin 4 (apt)
@@ -26,17 +26,21 @@
 # Step 4 - Run below commands in ansible container to copy public key in ubuntu server
 
     Go to /etc/ansible directory and run below command.
-    ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-server@192.168.0.200
+    ssh-copy-id -i secrets/id_ed25519_ubuntu ubuntu-server@192.168.1.200
 
 # Step 5 - RUn this command to execute the initial setup.
 
     ansible-playbook --ask-vault-pass playbooks/main.yml
 
-# Step 5 - After deplying git code and before building project build.
+# Step 5 - After deplying git code and before building project build. Add docker group in linux.
 
     sudo groupadd docker
     sudo usermod -aG docker $USER
     newgrp docker
+
+# Step 6 - Make sure to allow backend ports required to communicate with cloudflare
+
+    sudo ufw allow 50000/tcp
 
 # To find .ssh directory go to home/your-username/.ssh
 
@@ -69,7 +73,7 @@
 # Step 6 - Run below commands in ansible container to copy public key in lxc container
 
     Go to /etc/ansible directory and run below command.
-    ssh-copy-id -i secrets/id_ed25519_ubuntu nginx@192.168.0.202
+    ssh-copy-id -i secrets/id_ed25519_ubuntu nginx@192.168.1.202
 
 # Step 7 - Run this command to execute the initial setup for nginx.
 
@@ -114,7 +118,7 @@ sudo nautilus
 
 # To remove known_hosts
 
-ssh-keygen -f "/root/.ssh/known_hosts" -R "192.168.0.202"
+ssh-keygen -f "/root/.ssh/known_hosts" -R "192.168.1.202"
 
 # To remove cloudflared service
 
