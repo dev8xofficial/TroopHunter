@@ -3,6 +3,7 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
+const webpack = require('webpack');
 const deps = require('./package.json').dependencies;
 const printCompilationMessage = require('./compilation.config.js');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -149,6 +150,12 @@ module.exports = (_, argv) => {
         filename: 'index.html'
       }),
       new Dotenv(),
+      new webpack.DefinePlugin({
+        'process.env.ENCRYPTION_KEY': JSON.stringify(process.env.ENCRYPTION_KEY),
+        'process.env.GOOGLE_ANALYTICS': JSON.stringify(process.env.GOOGLE_ANALYTICS),
+        'process.env.BACKEND_URL': JSON.stringify(process.env.BACKEND_URL),
+        'process.env.NEXT_TROOPHUNTER_APP_URL': JSON.stringify(process.env.NEXT_TROOPHUNTER_APP_URL)
+      }),
       new MiniCssExtractPlugin({
         filename: 'public/website.css'
       })
