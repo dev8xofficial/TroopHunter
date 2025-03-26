@@ -21,7 +21,7 @@ WORKDIR /app
 COPY microservices/businesses ./microservices/businesses
 WORKDIR /app/microservices/businesses
 
-EXPOSE 50006
+EXPOSE 50009
 
 # ---- Second Stage ----
 FROM development as builder
@@ -31,7 +31,7 @@ RUN npm ci --only=production
 WORKDIR /app/microservices/businesses
 RUN rm -rf node_modules
 RUN npm ci --only=production
-EXPOSE 50018
+EXPOSE 50009
 
 # ---- Final Stage ----
 FROM alpine:latest as production

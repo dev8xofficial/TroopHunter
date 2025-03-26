@@ -21,7 +21,7 @@ WORKDIR /app
 COPY microservices/users ./microservices/users
 WORKDIR /app/microservices/users
 
-EXPOSE 50018
+EXPOSE 50015
 
 # ---- Second Stage ----
 FROM development as builder
@@ -31,7 +31,7 @@ RUN npm ci --only=production
 WORKDIR /app/microservices/users
 RUN rm -rf node_modules
 RUN npm ci --only=production
-EXPOSE 50018
+EXPOSE 50015
 
 # ---- Final Stage ----
 FROM alpine:latest as production

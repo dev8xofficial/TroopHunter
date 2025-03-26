@@ -21,7 +21,7 @@ WORKDIR /app
 COPY microservices/queues ./microservices/queues
 WORKDIR /app/microservices/queues
 
-EXPOSE 50015
+EXPOSE 50012
 
 # ---- Second Stage ----
 FROM development as builder
@@ -31,7 +31,7 @@ RUN npm ci --only=production
 WORKDIR /app/microservices/queues
 RUN rm -rf node_modules
 RUN npm ci --only=production
-EXPOSE 50015
+EXPOSE 50012
 
 # ---- Final Stage ----
 FROM alpine:latest as production
