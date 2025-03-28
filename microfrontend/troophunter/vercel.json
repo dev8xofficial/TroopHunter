@@ -4,5 +4,6 @@
       "source": "/(.*)",
       "destination": "/"
     }
-  ]
+  ],
+  "builds": [{ "src": "remoteEntry.js", "use": "@vercel/node" }]
 }
