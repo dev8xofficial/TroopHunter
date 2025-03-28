@@ -13,9 +13,11 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 module.exports = (_, argv) => {
   const isProduction = argv.mode === 'production';
 
+  const publicPath = process.env.NEXT_TROOPHUNTER_APP_URL;
+
   return {
     output: {
-      publicPath: 'http://localhost:5175/'
+      publicPath: publicPath
     },
 
     resolve: {

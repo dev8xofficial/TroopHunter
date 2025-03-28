@@ -5,11 +5,13 @@ const nextConfig = {
     const { isServer } = options;
     const remoteDir = isServer ? 'ssr' : 'chunks';
 
+    const remoteUrl = process.env.NEXT_TROOPHUNTER_APP_URL;
+
     config.plugins.push(
       new NextFederationPlugin({
         name: 'troophunter-landing',
         remotes: {
-          troophunter: 'troophunter@http://localhost:5175/remoteEntry.js'
+          troophunter: `troophunter@${remoteUrl}/remoteEntry.js`
         },
         filename: `static/${remoteDir}/remoteEntry.js`,
         exposes: {},
@@ -31,6 +33,9 @@ const nextConfig = {
     );
 
     return config;
+  },
+  env: {
+    NEXT_PUBLIC_TROOPHUNTER_URL: process.env.NEXT_PUBLIC_TROOPHUNTER_URL
   }
 };
 
