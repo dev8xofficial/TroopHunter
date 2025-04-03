@@ -27,4 +27,4 @@ Important Information:
 
 To access other macbook db:
   1: Assign macbook 2020 ip address in env file.
-  2: Open pg_hba.conf file. Change 192.168.100.64 to macbook 2017 pro ip address in `host all postgres 192.168.100.64/32 trust`
+  2: Open pg_hba.conf file. Change 192.168.1.64 to macbook 2017 pro ip address in `host all postgres 192.168.1.64/32 trust`
