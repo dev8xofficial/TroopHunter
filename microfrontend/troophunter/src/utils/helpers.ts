@@ -41,11 +41,11 @@ export const removeEmptyStringValues = <T extends Record<string, string | boolea
   return newObj as T;
 };
 
-export const getBackendUrl = (): string => {
+export const getBackendUrl = (): string | undefined => {
   if (process.env.NODE_ENV === 'production') {
     return process.env.BACKEND_URL ?? 'https://nginx.troophunter.com';
   }
-  return process.env.BACKEND_URL ?? 'http://localhost:50000';
+  return process.env.BACKEND_URL ?? 'http://localhost:50002';
 };
 
 export const getTroopHunterPublicUrl = (): string => {
