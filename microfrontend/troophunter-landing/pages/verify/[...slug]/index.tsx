@@ -5,8 +5,8 @@ import React, { lazy, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
-import Loader from '../components/Feedback/Loader/Loader';
-import { getTroopHunterPublicUrl } from '../utils/helpers';
+import Loader from '../../../components/Feedback/Loader/Loader';
+import { getTroopHunterPublicUrl } from '../../../utils/helpers';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-return
 const App = lazy(async () => await import('troophunter/src/App'));
@@ -18,7 +18,7 @@ const BrowserRouter = dynamic(
   { ssr: false } // Disable SSR for this component
 );
 
-export const Lead: React.FC = (): JSX.Element => {
+export const Verify: React.FC = (): JSX.Element => {
   return (
     <>
       <Head>
@@ -52,4 +52,4 @@ export const Lead: React.FC = (): JSX.Element => {
   );
 };
 
-export default Lead;
+export default Verify;
