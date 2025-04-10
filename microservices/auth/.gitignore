@@ -13,6 +13,7 @@ dist
 postgres
 dist-ssr
 *.local
+*.docker
 
 # Editor directories and files
 .vscode/*
