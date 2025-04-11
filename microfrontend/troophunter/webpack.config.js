@@ -101,7 +101,7 @@ module.exports = (_, argv) => {
     plugins: [
       new ModuleFederationPlugin({
         name: 'troophunter',
-        filename: 'remoteEntry.js?t=1744328838040',
+        filename: 'remoteEntry.js',
         remotes: {},
         exposes: {
           './App': './src/App.tsx'
