@@ -1,9 +1,14 @@
 {
-  "rewrites": [
+  "builds": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "src": "dist/**",
+      "use": "@vercel/static"
     }
   ],
-  "builds": [{ "src": "remoteEntry.js", "use": "@vercel/node" }]
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/dist/$1"
+    }
+  ]
 }
