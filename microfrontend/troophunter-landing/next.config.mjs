@@ -11,7 +11,7 @@ const nextConfig = {
       new NextFederationPlugin({
         name: 'troophunter-landing',
         remotes: {
-          troophunter: `troophunter@${remoteUrl}/remoteEntry.js`
+          remote: `remote@${remoteUrl}/remoteEntry.js`
         },
         filename: `static/${remoteDir}/remoteEntry.js`,
         exposes: {},

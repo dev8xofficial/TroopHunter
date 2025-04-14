@@ -9,7 +9,7 @@ import Loader from '../components/Feedback/Loader/Loader';
 import { getTroopHunterPublicUrl } from '../utils/helpers';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-const App = lazy(async () => await import('troophunter/App'));
+const App = lazy(async () => await import('troophunter/src/App'));
 
 // Dynamically import BrowserRouter only on the client side
 const BrowserRouter = dynamic(

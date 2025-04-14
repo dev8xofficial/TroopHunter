@@ -18,7 +18,7 @@ module.exports = (_, argv) => {
   return {
     output: {
       publicPath: publicPath,
-      filename: '[name].[contenthash].js',
+      filename: '[name].js',
       chunkFilename: '[name].[contenthash].js' // Keeps cache-busting to chunks only
     },
 
