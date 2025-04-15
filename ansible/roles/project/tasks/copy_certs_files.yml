@@ -42,7 +42,7 @@
 - name: Copy certs file from certs/countries into host microservices/countries.
   copy:
     src: "{{ ENV_PATH }}/certs/{{ item }}"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/countries/src/certs
+    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/countries/src/certs/"
   with_items:
     - "countries/countries-cert.pem"
     - "countries/countries-key.pem"
@@ -51,7 +51,7 @@
 - name: Copy certs file from certs/businesses into host microservices/businesses.
   copy:
     src: "{{ ENV_PATH }}/certs/{{ item }}"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/businesses/src/certs
+    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/businesses/src/certs/"
   with_items:
     - "businesses/businesses-cert.pem"
     - "businesses/businesses-key.pem"
@@ -60,7 +60,7 @@
 - name: Copy certs file from certs/queues into host microservices/queues.
   copy:
     src: "{{ ENV_PATH }}/certs/{{ item }}"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/queues/src/certs
+    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/queues/src/certs/"
   with_items:
     - "queues/queues-cert.pem"
     - "queues/queues-key.pem"
@@ -69,7 +69,7 @@
 - name: Copy certs file from certs/users into host microservices/users.
   copy:
     src: "{{ ENV_PATH }}/certs/{{ item }}"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/users/src/certs
+    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/users/src/certs/"
   with_items:
     - "users/users-cert.pem"
     - "users/users-key.pem"
