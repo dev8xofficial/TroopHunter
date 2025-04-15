@@ -53,10 +53,10 @@ export const getBackendUrl = (): string | undefined => {
 
 export const getTroopHunterPublicUrl = (): string => {
   if (process.env.NODE_ENV === 'production') {
-    return process.env.NEXT_TROOPHUNTER_APP_URL ?? 'https://www.troophunter.com';
+    return process.env.NEXT_TROOPHUNTER_PUBLIC_URL ?? 'https://troophunter.com';
   }
   if (process.env.NODE_ENV === 'staging') {
-    return process.env.NEXT_TROOPHUNTER_APP_URL ?? 'https://www.troophunter.com';
+    return process.env.NEXT_TROOPHUNTER_PUBLIC_URL ?? 'https://troophunter.com';
   }
-  return process.env.NEXT_TROOPHUNTER_APP_URL ?? 'https://www.troophunter.com';
+  return process.env.NEXT_TROOPHUNTER_PUBLIC_URL ?? 'https://troophunter.com';
 };
