@@ -43,7 +43,10 @@ export const removeEmptyStringValues = <T extends Record<string, string | boolea
 
 export const getBackendUrl = (): string | undefined => {
   if (process.env.NODE_ENV === 'production') {
-    return process.env.BACKEND_URL ?? 'https://nginx.troophunter.com';
+    return process.env.BACKEND_URL ?? 'https://production.troophunter.com';
+  }
+  if (process.env.NODE_ENV === 'staging') {
+    return process.env.BACKEND_URL ?? 'https://staging.troophunter.com';
   }
   return process.env.BACKEND_URL ?? 'http://localhost:50002';
 };
@@ -52,5 +55,8 @@ export const getTroopHunterPublicUrl = (): string => {
   if (process.env.NODE_ENV === 'production') {
     return process.env.NEXT_TROOPHUNTER_APP_URL ?? 'https://www.troophunter.com';
   }
-  return process.env.NEXT_TROOPHUNTER_APP_URL ?? 'http://localhost:5175';
+  if (process.env.NODE_ENV === 'staging') {
+    return process.env.NEXT_TROOPHUNTER_APP_URL ?? 'https://www.troophunter.com';
+  }
+  return process.env.NEXT_TROOPHUNTER_APP_URL ?? 'https://www.troophunter.com';
 };
