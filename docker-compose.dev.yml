@@ -146,10 +146,13 @@ services:
       timeout: 5s
       retries: 50
 
-  # crm_dev:
-  #   extends:
-  #     file: docker-compose.crm.yml
-  #     service: crm_dev
+  troophunter_dev:
+    extends:
+      file: ./microfrontend/troophunter-landing/docker-compose.troophunter.yml
+      service: troophunter_dev
+    depends_on:
+      main_dev:
+        condition: service_started
 
   # cloudflare_dev:
   #   extends:
