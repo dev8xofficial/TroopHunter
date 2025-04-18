@@ -6,7 +6,7 @@ import { logger } from '@repo/utils';
 
 import app from './index';
 
-const port = process.env.PORT ?? 50009;
+const port = process.env.PORT ?? 50011;
 
 const privateKey = fs.readFileSync(path.resolve(__dirname, './certs/businesses-key.pem'));
 const certificate = fs.readFileSync(path.resolve(__dirname, './certs/businesses-cert.pem'));

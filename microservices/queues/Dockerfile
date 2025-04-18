@@ -21,7 +21,7 @@ WORKDIR /app
 COPY microservices/queues ./microservices/queues
 WORKDIR /app/microservices/queues
 
-EXPOSE 50012
+EXPOSE 50014
 
 # ---- Second Stage ----
 FROM development as builder

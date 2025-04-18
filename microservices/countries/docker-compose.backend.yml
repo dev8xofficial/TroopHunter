@@ -28,7 +28,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50007:50006'
+      - '50007:50007'
     depends_on:
       postgres_countries_stag:
         condition: service_started
@@ -47,7 +47,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50008:50006'
+      - '50008:50008'
     depends_on:
       postgres_countries_dev:
         condition: service_started

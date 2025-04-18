@@ -21,7 +21,7 @@ WORKDIR /app
 COPY microservices/businesses ./microservices/businesses
 WORKDIR /app/microservices/businesses
 
-EXPOSE 50009
+EXPOSE 50011
 
 # ---- Second Stage ----
 FROM development as builder

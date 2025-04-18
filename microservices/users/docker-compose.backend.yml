@@ -28,7 +28,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50016:50015'
+      - '50016:50016'
     depends_on:
       postgres_users_stag:
         condition: service_started
@@ -47,7 +47,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50017:50015'
+      - '50017:50017'
     volumes:
       - ./logs/:/microservices/users/logs/
     networks:

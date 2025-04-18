@@ -21,7 +21,7 @@ WORKDIR /app
 COPY microservices/users ./microservices/users
 WORKDIR /app/microservices/users
 
-EXPOSE 50015
+EXPOSE 50017
 
 # ---- Second Stage ----
 FROM development as builder

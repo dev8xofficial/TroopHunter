@@ -24,7 +24,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50001:50000'
+      - '50001:50001'
     volumes:
       - ./logs/:/microservices/main/logs/
     networks:
@@ -40,7 +40,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '50002:50000'
+      - '50002:50002'
     volumes:
       - ./logs/:/microservices/main/logs/
     networks:

@@ -21,7 +21,7 @@ WORKDIR /app
 COPY microservices/main ./microservices/main
 WORKDIR /app/microservices/main
 
-EXPOSE 50000
+EXPOSE 50002
 
 # ---- Second Stage ----
 FROM development as builder

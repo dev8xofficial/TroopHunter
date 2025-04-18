@@ -21,7 +21,7 @@ WORKDIR /app
 COPY microservices/auth ./microservices/auth
 WORKDIR /app/microservices/auth
 
-EXPOSE 50003
+EXPOSE 50005
 
 # ---- Second Stage ----
 FROM development as builder

@@ -21,7 +21,7 @@ WORKDIR /app
 COPY microservices/countries ./microservices/countries
 WORKDIR /app/microservices/countries
 
-EXPOSE 50006
+EXPOSE 50008
 
 # ---- Second Stage ----
 FROM development as builder
