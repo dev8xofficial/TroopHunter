@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "MciroMain",
+      "name": "MicroMain",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
@@ -18,7 +18,7 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "MciroAuth",
+      "name": "MicroAuth",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
@@ -34,7 +34,7 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "MciroCountries",
+      "name": "MicroCountries",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
@@ -50,7 +50,7 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "MciroBusinesses",
+      "name": "MicroBusinesses",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
@@ -66,7 +66,7 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "MciroQueues",
+      "name": "MicroQueues",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
@@ -82,7 +82,7 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "MciroUsers",
+      "name": "MicroUsers",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
