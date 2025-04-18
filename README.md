@@ -70,6 +70,10 @@ Ports in .env, Dockerfile, inner ports in docker-compose would stay same. Only o
 
     docker exec -it container_name bash
 
+# To check the container ip address
+
+    docker inspect container_name | grep -i ipaddress
+
 # To see the docker resource usage
 
     docker stats
