@@ -48,7 +48,7 @@ export const getBackendUrl = (): string | undefined => {
   if (process.env.NODE_ENV === 'staging') {
     return process.env.BACKEND_URL ?? 'https://staging.troophunter.com';
   }
-  return process.env.BACKEND_URL ?? 'http://localhost:50002';
+  return process.env.BACKEND_URL ?? 'https://develop.troophunter.com';
 };
 
 export const getTroopHunterPublicUrl = (): string => {
