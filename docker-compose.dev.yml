@@ -35,12 +35,22 @@ services:
   #     file: docker-compose.pgadmin.yml
   #     service: pgadmin_dev
 
+  # main_dev:
+  #   extends:
+  #     file: ./microservices/docker-compose.microservices.yml
+  #     service: main_dev
+  #   healthcheck:
+  #     test: ['CMD', 'curl', '-f', 'http://localhost:50002/']
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 50
+
   main_dev:
     extends:
       file: ./microservices/main/docker-compose.backend.yml
       service: main_dev
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:50000/']
+      test: ['CMD', 'curl', '-f', 'http://localhost:50002/']
       interval: 10s
       timeout: 5s
       retries: 50
@@ -55,7 +65,7 @@ services:
       main_dev:
         condition: service_started
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:50003/']
+      test: ['CMD', 'curl', '-f', 'http://localhost:50005/']
       interval: 10s
       timeout: 5s
       retries: 50
@@ -68,7 +78,7 @@ services:
       postgres_countries_dev:
         condition: service_started
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:50006/']
+      test: ['CMD', 'curl', '-f', 'http://localhost:50008/']
       interval: 10s
       timeout: 5s
       retries: 50
@@ -89,7 +99,7 @@ services:
       countries_dev:
         condition: service_started
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:50009/']
+      test: ['CMD', 'curl', '-f', 'http://localhost:50011/']
       interval: 10s
       timeout: 5s
       retries: 50
@@ -114,7 +124,7 @@ services:
       businesses_dev:
         condition: service_started
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:50012/']
+      test: ['CMD', 'curl', '-f', 'http://localhost:50014/']
       interval: 10s
       timeout: 5s
       retries: 50
@@ -141,7 +151,7 @@ services:
       queues_dev:
         condition: service_started
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:50015/']
+      test: ['CMD', 'curl', '-f', 'http://localhost:50017/']
       interval: 10s
       timeout: 5s
       retries: 50
