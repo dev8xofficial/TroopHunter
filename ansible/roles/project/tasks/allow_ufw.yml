@@ -1,0 +1,35 @@
+---
+- name: Ensure UFW is installed
+  apt:
+    name: ufw
+    state: present
+    update_cache: yes
+
+- name: Allow port 3000
+  ufw:
+    rule: allow
+    port: 3000
+    proto: tcp
+
+- name: Allow port 50002
+  ufw:
+    rule: allow
+    port: 50002
+    proto: tcp
+
+- name: Allow port 5175
+  ufw:
+    rule: allow
+    port: 5175
+    proto: tcp
+
+- name: Allow SSH
+  ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+
+- name: Enable UFW
+  ufw:
+    state: enabled
+    policy: deny
