@@ -8,8 +8,8 @@ interface IMicroservicesBaseUrls {
 
 export const microservicesBaseUrls: IMicroservicesBaseUrls = {
   auth: 'https://localhost:50005',
-  users: 'https://localhost:50015',
-  queues: 'https://localhost:50012',
-  countries: 'https://localhost:50006',
-  businesses: 'https://localhost:50009',
+  users: 'https://localhost:50017',
+  queues: 'https://localhost:50014',
+  countries: 'https://localhost:50008',
+  businesses: 'https://localhost:50011',
 };
