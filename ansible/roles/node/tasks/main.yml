@@ -1,0 +1,36 @@
+---
+- name: Download Node.js binary
+  become: true
+  get_url:
+    url: "https://nodejs.org/dist/v{{ NODE_VERSION }}/node-v{{ NODE_VERSION }}-linux-x64.tar.xz"
+    dest: "/tmp/node-v{{ NODE_VERSION }}-linux-x64.tar.xz"
+
+- name: Extract Node.js binary
+  become: true
+  unarchive:
+    src: "/tmp/node-v{{ NODE_VERSION }}-linux-x64.tar.xz"
+    dest: "/usr/local/"
+    remote_src: yes
+
+- name: Create symlinks for node and npm
+  become: true
+  file:
+    src: "/usr/local/node-v{{ NODE_VERSION }}-linux-x64/bin/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+    force: true
+  loop:
+    - node
+    - npm
+
+- name: Verify Node.js and npm installation
+  become: true
+  shell: |
+    node -v
+    npm -v
+  register: node_versions
+  changed_when: false
+
+- name: Debug node and npm versions
+  debug:
+    var: node_versions.stdout_lines
