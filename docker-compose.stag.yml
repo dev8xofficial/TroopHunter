@@ -35,6 +35,16 @@ services:
   #     file: docker-compose.pgadmin.yml
   #     service: pgadmin_stag
 
+  # main_stag:
+  #   extends:
+  #     file: ./microservices/docker-compose.microservices.yml
+  #     service: main_stag
+  #   healthcheck:
+  #     test: ['CMD', 'curl', '-f', 'http://localhost:50002/']
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 50
+
   main_stag:
     extends:
       file: ./microservices/main/docker-compose.backend.yml
@@ -146,10 +156,13 @@ services:
       timeout: 5s
       retries: 50
 
-  # crm_stag:
-  #   extends:
-  #     file: docker-compose.crm.yml
-  #     service: crm_stag
+  troophunter_stag:
+    extends:
+      file: ./microfrontend/troophunter-landing/docker-compose.troophunter.yml
+      service: troophunter_stag
+    depends_on:
+      main_stag:
+        condition: service_started
 
   # cloudflare_stag:
   #   extends:

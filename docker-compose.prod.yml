@@ -35,6 +35,16 @@ services:
   #     file: docker-compose.pgadmin.yml
   #     service: pgadmin_prod
 
+  # main_prod:
+  #   extends:
+  #     file: ./microservices/docker-compose.microservices.yml
+  #     service: main_prod
+  #   healthcheck:
+  #     test: ['CMD', 'curl', '-f', 'http://localhost:50002/']
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 50
+
   main_prod:
     extends:
       file: ./microservices/main/docker-compose.backend.yml
@@ -146,10 +156,13 @@ services:
       timeout: 5s
       retries: 50
 
-  # crm_prod:
-  #   extends:
-  #     file: docker-compose.crm.yml
-  #     service: crm_prod
+  troophunter_prod:
+    extends:
+      file: ./microfrontend/troophunter-landing/docker-compose.troophunter.yml
+      service: troophunter_prod
+    depends_on:
+      main_prod:
+        condition: service_started
 
   # cloudflare_prod:
   #   extends:
