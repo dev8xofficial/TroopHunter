@@ -23,6 +23,8 @@
     "start:stag": "docker compose -f docker-compose.stag.yml up -d",
     "start:prod": "docker compose -f docker-compose.prod.yml up -d",
     "start:ansible": "docker compose -f docker-compose.ansible.yml up",
+    "start:microfrontend": "npm run dev -- --filter=troophunter --filter=troophunter-landing",
+    "start:microservices": "npm run dev -- --filter=main --filter=auth --filter=businesses --filter=countries --filter=queues --filter=users",
     "restart:dev": "docker compose -f docker-compose.dev.yml restart",
     "restart:stag": "docker compose -f docker-compose.stag.yml restart -d",
     "restart:prod": "docker compose -f docker-compose.prod.yml restart -d",
@@ -31,6 +33,8 @@
     "build:stag": "docker compose -f docker-compose.stag.yml build",
     "build:prod": "docker compose -f docker-compose.prod.yml build",
     "build:ansible": "docker compose -f docker-compose.ansible.yml build",
+    "build:troophunter-landing": "npm run build -- --filter=troophunter-landing",
+    "build:microservices": "npm run build -- --filter=main --filter=auth --filter=businesses --filter=countries --filter=queues --filter=users",
     "stop:dev": "docker-compose -f docker-compose.dev.yml stop",
     "stop:stag": "docker-compose -f docker-compose.stag.yml stop",
     "stop:prod": "docker-compose -f docker-compose.prod.yml stop",
@@ -47,7 +51,9 @@
     "remove:images": "docker image prune -a -f"
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "rimraf": "^5.0.1",
+    "serve": "^14.2.4",
     "turbo": "^2.1.3"
   },
   "dependencies": {
