@@ -2,7 +2,6 @@ import fs from 'fs';
 import https from 'https';
 import path from 'path';
 
-import { microservicesBaseUrls } from '@repo/utils';
 import { type RequestHandler, type Request } from 'express';
 import { createProxyMiddleware, type Options } from 'http-proxy-middleware';
 
@@ -17,7 +16,7 @@ const options = {
 };
 
 const proxyOptions: Options = {
-  target: microservicesBaseUrls.queues,
+  target: process.env.QUEUES_MICROSERVICE_URL,
   changeOrigin: true,
   secure: true,
   agent: new https.Agent(options),
