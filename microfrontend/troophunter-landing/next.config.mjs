@@ -1,6 +1,9 @@
 import NextFederationPlugin from '@module-federation/nextjs-mf';
 
 const nextConfig = {
+  devIndicators: {
+    loading: false
+  },
   webpack(config, options) {
     const { isServer } = options;
     const remoteDir = isServer ? 'ssr' : 'chunks';
@@ -33,7 +36,7 @@ const nextConfig = {
     );
 
     return config;
-  },
+  }
 };
 
 export default nextConfig;
