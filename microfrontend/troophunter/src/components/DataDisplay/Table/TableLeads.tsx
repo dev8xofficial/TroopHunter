@@ -21,7 +21,7 @@ import { type IMenuOption } from '../../Navigation/Menu/Menu.interfaces';
 import Avatar from '../Avatar/Avatar';
 
 // Get the encryption key from the environment variable
-const encryptionKey = process.env.ENCRYPTION_KEY != null ? process.env.ENCRYPTION_KEY : 'AgE34bNmLB9wOThIJ2WR79/cmtMdjqCbpk61w/ucZnviE1Te0IY7c1e2G5qi42h+';
+const encryptionKey = process.env.ENCRYPTION_KEY != null ? process.env.ENCRYPTION_KEY : process.env.NEXT_PUBLIC_ENCRYPTION_KEY != null ? process.env.NEXT_PUBLIC_ENCRYPTION_KEY : 'AgE34bNmLB9wOThIJ2WR79/cmtMdjqCbpk61w/ucZnviE1Te0IY7c1e2G5qi42h+';
 
 const Table: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();

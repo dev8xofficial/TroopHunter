@@ -81,6 +81,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (process.env.GOOGLE_ANALYTICS != null) initializeGA(process.env.GOOGLE_ANALYTICS);
+    else if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS != null) initializeGA(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS);
   }, []);
 
   useEffect(() => {

@@ -5,7 +5,7 @@ const nextConfig = {
     const { isServer } = options;
     const remoteDir = isServer ? 'ssr' : 'chunks';
 
-    const remoteUrl = process.env.NEXT_TROOPHUNTER_APP_URL;
+    const remoteUrl = process.env.NEXT_PUBLIC_TROOPHUNTER_APP_URL;
 
     config.plugins.push(
       new NextFederationPlugin({
@@ -34,9 +34,6 @@ const nextConfig = {
 
     return config;
   },
-  env: {
-    NEXT_PUBLIC_TROOPHUNTER_URL: process.env.NEXT_PUBLIC_TROOPHUNTER_URL
-  }
 };
 
 export default nextConfig;

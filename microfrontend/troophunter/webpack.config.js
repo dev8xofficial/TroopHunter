@@ -13,7 +13,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 module.exports = (_, argv) => {
   const isProduction = argv.mode === 'production';
 
-  const publicPath = process.env.NEXT_TROOPHUNTER_APP_URL;
+  const publicPath = process.env.NEXT_PUBLIC_TROOPHUNTER_APP_URL;
 
   return {
     output: {
@@ -154,12 +154,6 @@ module.exports = (_, argv) => {
         filename: 'index.html'
       }),
       new Dotenv(),
-      // new webpack.DefinePlugin({
-      //   'process.env.ENCRYPTION_KEY': JSON.stringify(process.env.ENCRYPTION_KEY),
-      //   'process.env.GOOGLE_ANALYTICS': JSON.stringify(process.env.GOOGLE_ANALYTICS),
-      //   'process.env.BACKEND_URL': JSON.stringify(process.env.BACKEND_URL),
-      //   'process.env.NEXT_TROOPHUNTER_APP_URL': JSON.stringify(process.env.NEXT_TROOPHUNTER_APP_URL)
-      // }),
       new MiniCssExtractPlugin({
         filename: 'public/website.css'
       })

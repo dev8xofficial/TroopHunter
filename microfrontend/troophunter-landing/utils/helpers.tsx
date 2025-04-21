@@ -3,5 +3,5 @@ export function classNames(...classes: string[]): string {
 }
 
 export const getTroopHunterPublicUrl = (): string => {
-  return process.env.NEXT_TROOPHUNTER_PUBLIC_URL ?? 'https://troophunter.com';
+  return process.env.NEXT_PUBLIC_TROOPHUNTER_URL ?? 'https://troophunter.com';
 };

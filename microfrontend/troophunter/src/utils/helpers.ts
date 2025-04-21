@@ -41,13 +41,6 @@ export const removeEmptyStringValues = <T extends Record<string, string | boolea
   return newObj as T;
 };
 
-export const getBackendUrl = (): string | undefined => {
-  if (process.env.NODE_ENV === 'production') {
-    return process.env.BACKEND_URL ?? 'https://production.troophunter.com';
-  }
-  return process.env.BACKEND_URL ?? 'https://develop.troophunter.com';
-};
-
 export const getTroopHunterPublicUrl = (): string => {
-  return process.env.NEXT_TROOPHUNTER_PUBLIC_URL ?? 'https://troophunter.com';
+  return process.env.NEXT_PUBLIC_TROOPHUNTER_URL ?? 'https://troophunter.com';
 };
