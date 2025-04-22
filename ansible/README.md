@@ -91,9 +91,9 @@
 # ------------ Commands to execute automation for ubuntu and nginx -------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
 
-# To edit github_token secret
+# To edit github_token secret, go to /etc/ansible
 
-ansible-vault edit
+ansible-vault edit secrets/github_token
 
 # To run ansible script
 
