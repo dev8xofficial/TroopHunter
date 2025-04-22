@@ -1,35 +1,53 @@
 ---
-- name: Ensure UFW is installed
-  apt:
-    name: ufw
-    state: present
-    update_cache: yes
-
-- name: Allow port 3000
-  ufw:
-    rule: allow
-    port: 3000
-    proto: tcp
-
-- name: Allow port 50002
-  ufw:
-    rule: allow
-    port: 50002
-    proto: tcp
-
-- name: Allow port 5175
-  ufw:
-    rule: allow
-    port: 5175
-    proto: tcp
-
-- name: Allow SSH
-  ufw:
-    rule: allow
-    port: 22
-    proto: tcp
-
 - name: Enable UFW
   ufw:
     state: enabled
     policy: deny
+
+- name: Allow prod ports
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  with_items:
+    - 50000
+    - 50003
+    - 50006
+    - 50009
+    - 50012
+    - 50015
+    - 3000    
+    - 5175
+  when: ENVIRONMENT == "prod"
+
+- name: Allow stag ports
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  with_items:
+    - 50001
+    - 50004
+    - 50007
+    - 50010
+    - 50013
+    - 50016
+    - 3001    
+    - 5175
+  when: ENVIRONMENT == "stag"
+
+- name: Allow dev ports
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  with_items:
+    - 50002
+    - 50005
+    - 50008
+    - 50011
+    - 50014
+    - 50017
+    - 3002    
+    - 5175
+  when: ENVIRONMENT == "dev"

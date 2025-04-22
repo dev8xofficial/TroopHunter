@@ -23,7 +23,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '3001:3000'
+      - '3001:3001'
     depends_on:
       - main_stag
     networks:
@@ -38,7 +38,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - '3002:3000'
+      - '3002:3002'
     depends_on:
       - main_dev
     networks:
