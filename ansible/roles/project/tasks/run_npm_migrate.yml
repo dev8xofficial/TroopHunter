@@ -1,11 +1,11 @@
 ---
 - name: Move into the TroopHunter Microservices Auth directory and run npm run migrate
-  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/auth/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run migrate"
+  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/auth && source /home/{{ USER }}/.nvm/nvm.sh && nohup npm run migrate > dev.log 2>&1 &"
 - name: Move into the TroopHunter Microservices Businesses directory and run npm run migrate
-  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/businesses/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run migrate"
+  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/businesses && source /home/{{ USER }}/.nvm/nvm.sh && nohup npm run migrate > dev.log 2>&1 &"
 - name: Move into the TroopHunter Microservices Countries directory and run npm run migrate
-  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/countries/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run migrate"
+  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/countries && source /home/{{ USER }}/.nvm/nvm.sh && nohup npm run migrate > dev.log 2>&1 &"
 - name: Move into the TroopHunter Microservices Queues directory and run npm run migrate
-  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/queues/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run migrate"
+  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/queues && source /home/{{ USER }}/.nvm/nvm.sh && nohup npm run migrate > dev.log 2>&1 &"
 - name: Move into the TroopHunter Microservices Users directory and run npm run migrate
-  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/users/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run migrate"
+  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/users && source /home/{{ USER }}/.nvm/nvm.sh && nohup npm run migrate > dev.log 2>&1 &"

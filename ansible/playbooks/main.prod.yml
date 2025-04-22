@@ -11,7 +11,7 @@
     NODE_VERSION: 20.12.2
     GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/TroopHunterNew.git"
     GIT_BRANCH: main
-    PROJECT_NAME: TroopHunterNew
+    PROJECT_NAME: TroopHunter
     ENVIRONMENT: prod
     ENV_PATH: "/ansible/secrets"
     # PROTONVPN_USERNAME: 49bFnqbhzhVjOm5Z
@@ -22,6 +22,7 @@
     # - proton
     - common
     - nvm
+    # - node
     - docker
     - github
     - project
