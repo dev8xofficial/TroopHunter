@@ -5,8 +5,8 @@ import path from 'path';
 import { type RequestHandler, type Request } from 'express';
 import { createProxyMiddleware, type Options } from 'http-proxy-middleware';
 
-const privateKey = fs.readFileSync(path.resolve(__dirname, '../certs/leads-key.pem'));
-const certificate = fs.readFileSync(path.resolve(__dirname, '../certs/leads-cert.pem'));
+const privateKey = fs.readFileSync(path.resolve(__dirname, '../certs/businesses-key.pem'));
+const certificate = fs.readFileSync(path.resolve(__dirname, '../certs/businesses-cert.pem'));
 const caCertificate = fs.readFileSync(path.resolve(__dirname, '../certs/ca-cert.pem'));
 
 const options = {
