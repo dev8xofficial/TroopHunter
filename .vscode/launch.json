@@ -104,6 +104,34 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
+      "name": "TroopHunter",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/microfrontend/troophunter",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],    
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "TroopHunter-Landing",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/microfrontend/troophunter-landing",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],    
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
       "name": "Scraper",
       "type": "debugpy",
       "request": "launch",
@@ -188,19 +216,6 @@
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "skipFiles": ["<node_internals>/**"]
-    },
-    {
-      "name": "TroopHunter",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/crm/node_modules/vite/bin/vite.js",
-      "cwd": "${workspaceFolder}/crm",
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**"],
-      "env": {
-        "NODE_ENV": "development"
-      }
     }
   ]
 }
