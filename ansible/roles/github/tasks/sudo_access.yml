@@ -1,0 +1,25 @@
+---
+- name: Ensure project environment directory exists
+  file:
+    path: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}"
+    state: directory
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    mode: '0755'
+  become: true
+
+- name: Add ubuntu-server user to sudo group
+  user:
+    name: ubuntu-server
+    groups: sudo
+    append: yes
+
+- name: Ensure ubuntu-server has correct ownership on current project directory
+  become_user: ubuntu-server
+  ansible.builtin.command: chown -R {{ USER }}:{{ USER }} /home/{{ USER }}/{{ PROJECT_NAME }}
+
+# - name: Reboot the machine
+#   ansible.builtin.reboot:
+#     msg: "Reboot triggered by Ansible after sudo group change"
+#     connect_timeout: 5
+#     reboot_timeout: 300
