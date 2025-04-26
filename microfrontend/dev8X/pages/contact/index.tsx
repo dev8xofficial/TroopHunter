@@ -6,9 +6,8 @@ import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
 
 import Hero from './Hero/Hero';
-import Footer from './Footer/Footer';
+// import Footer from './Footer/Footer';
 import Header from './Header/Header';
-import { getDev8xPublicUrl } from '../../utils/helpers';
 
 // import './index.css';
 
@@ -170,15 +169,15 @@ const Contact: React.FC = (): JSX.Element => {
       <Head>
         <title>Dev8X - Solutions Made Simple!</title>
         <meta name="description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <link rel="canonical" href={`${getDev8xPublicUrl()}`} />
+        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_DEV8X_URL}`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Dev8X - Solutions Made Simple!"></meta>
         <meta property="og:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <meta property="og:url" content={`${getDev8xPublicUrl()}`}></meta>
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_DEV8X_URL}`}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={`${getDev8xPublicUrl()}/logo/logo-social.png`}></meta>
-        <meta property="og:image:secure_url" content={`${getDev8xPublicUrl()}/logo/logo-social.png`}></meta>
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DEV8X_URL}/logo/logo-social.png`}></meta>
+        <meta property="og:image:secure_url" content={`${process.env.NEXT_PUBLIC_DEV8X_URL}/logo/logo-social.png`}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -186,20 +185,20 @@ const Contact: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content="Dev8X - Solutions Made Simple!"></meta>
         <meta name="twitter:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <meta name="twitter:image" content={`${getDev8xPublicUrl()}/logo/logo-social.png`}></meta>
+        <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_DEV8X_URL}/logo/logo-social.png`}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       {/* Main container with smooth-scrollbar */}
       <main className="relative h-full max-h-screen min-h-screen font-medium leading-relaxed transition-colors duration-500 ease-in-out dark:bg-charcoal-300" id="smooth-scrollbar">
         <Header />
-        <section id="hero-section">
+        <div>
           <Hero />
-        </section>
-        <div className="grid">
+        </div>
+        {/* <div className="grid">
           <section id="footer-section">
             <Footer />
           </section>
-        </div>
+        </div> */}
       </main>
     </>
   );
