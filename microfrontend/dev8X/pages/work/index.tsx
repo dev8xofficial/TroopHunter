@@ -10,8 +10,8 @@ import Head from 'next/head';
 import Footer from './Footer/Footer';
 import Hero from './Hero/Hero';
 // import TestimonialsLarge from './Testimonials/TestimonialsLarge';
-import WorkWithVideos from './Work/WorkWithVideos';
 import Header from '../contact/Header/Header';
+import { WorkWithVideos } from '@repo/components';
 
 // import './index.css';
 
@@ -51,6 +51,56 @@ const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, 
 };
 
 const Work: React.FC = (): JSX.Element => {
+  const headVideo = [
+    {
+      title: 'Find Businesses Quickly',
+      bgColor: "#dcf5f2",
+      video: (
+        <>
+          <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
+            <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+          </picture>
+          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/crm.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+        </>
+      )
+    },
+    {
+      title: 'Find Businesses Quickly',
+      bgColor: "#efe3ff",
+      video: (
+        <>
+          <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
+            <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+          </picture>
+          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/honeydu.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+        </>
+      )
+    },
+    {
+      title: 'Find Businesses Quickly',
+      bgColor: "#d8e7ee",
+      video: (
+        <>
+          <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
+            <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+          </picture>
+          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/coral.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+        </>
+      )
+    },
+    {
+      title: 'Find Businesses Quickly',
+      bgColor: "#dcf5f2",
+      video: (
+        <>
+          <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
+            <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+          </picture>
+          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/golden-dao.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+        </>
+      )
+    }
+  ];
   useEffect(() => {
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
@@ -199,7 +249,7 @@ const Work: React.FC = (): JSX.Element => {
           <Hero />
         </section>
         <section id="work-section">
-          <WorkWithVideos />
+          <WorkWithVideos headVideo={headVideo}/>
         </section>
         <div className="grid">
           <section id="footer-section">

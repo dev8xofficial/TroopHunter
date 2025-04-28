@@ -7,16 +7,16 @@ import Hero from './home/Hero/Hero';
 import Header from '../components/Surfaces/Header/Header';
 import FeatureVideoResponsive from './home/FeatureVideo/FeatureVideoResponsive';
 import TestimonialsLarge from './home/Testimonials/TestimonialsLarge';
-import WorkWithVideos from './home/Work/WorkWithVideos';
 import About from './home/About/About';
 import Footer from './home/Footer/Footer';
 import Problems from './home/Problems/Problems';
 import Steps from './home/Steps/Steps';
 import { getDev8xPublicUrl } from '../utils/helpers';
+import { WorkWithVideos } from '@repo/components';
 
 type ScrollTriggerCallback = () => void;
 
-const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter: ScrollTriggerCallback = () => { }, onLeave: ScrollTriggerCallback = () => { }, onLeaveBack: ScrollTriggerCallback = () => { }, onEnterBack: ScrollTriggerCallback = () => { }) => {
+const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter: ScrollTriggerCallback = () => {}, onLeave: ScrollTriggerCallback = () => {}, onLeaveBack: ScrollTriggerCallback = () => {}, onEnterBack: ScrollTriggerCallback = () => {}) => {
   ScrollTrigger.create({
     trigger: sectionId,
     scroller: '#smooth-scrollbar',
@@ -38,6 +38,60 @@ const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, 
 };
 
 export default function Home() {
+  const headVideo = [
+    {
+      title: 'Find Businesses Quickly',
+      bgColor: '#dcf5f2',
+
+      video: (
+        <>
+          <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
+            <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+          </picture>
+          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/crm.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+        </>
+      )
+    },
+    {
+      title: 'Find Businesses Quickly',
+      bgColor: '#efe3ff',
+
+      video: (
+        <>
+          <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
+            <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+          </picture>
+          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/honeydu.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+        </>
+      )
+    },
+    {
+      title: 'Find Businesses Quickly',
+      bgColor: '#d8e7ee',
+
+      video: (
+        <>
+          <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
+            <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+          </picture>
+          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/coral.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+        </>
+      )
+    },
+    {
+      title: 'Find Businesses Quickly',
+      bgColor: '#dcf5f2',
+
+      video: (
+        <>
+          <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
+            <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+          </picture>
+          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/golden-dao.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+        </>
+      )
+    }
+  ];
   useEffect(() => {
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
@@ -140,7 +194,7 @@ export default function Home() {
             mainTag.style.backgroundColor = '';
           }
         },
-        () => { },
+        () => {},
         () => {
           if (mainTag) {
             mainTag.style.backgroundColor = '#f3f3e9';
@@ -167,7 +221,7 @@ export default function Home() {
         <meta property="og:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
         <meta property="og:url" content={`${getDev8xPublicUrl()}`}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>  
+        <meta property="og:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta property="og:image:secure_url" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
@@ -198,7 +252,7 @@ export default function Home() {
         </section> */}
         <div className="grid">
           <section id="work-section">
-            <WorkWithVideos />
+            <WorkWithVideos headVideo={headVideo} />
           </section>
           <section id="about-section">
             <About />

@@ -115,7 +115,7 @@ const Hero: React.FC = (): JSX.Element => {
           </div>
         </div>
         <div className="w-full px-[clamp(2.5rem,2.6455vw,3.325rem)] max-w-[calc(clamp(87.5rem,92.5926vw,116.375rem)+var(--container-gutter)*2)] text-[#070035] grid mt-[clamp(8rem,9vw,10rem)] mb-[clamp(9.375rem,9.92vw,12.46875rem)] ml-1">
-          <h2 className="text-[clamp(1.875rem,3.90625vw,2.49375rem)] leading-[1.2] max-w-[clamp(71.25rem,75.3968vw,94.7625rem)] lg:text-[clamp(2.5rem,5.2083vw,3.325rem)] 2xl:text-[clamp(3.75rem,3.9682vw,4.9875rem)] font-extrabold">
+          <h2 className="text-[clamp(1.875rem,3.90625vw,2.49375rem)] leading-[1] max-w-[clamp(71.25rem,75.3968vw,94.7625rem)] lg:text-[clamp(2.5rem,5.2083vw,3.325rem)] 2xl:text-[clamp(3.75rem,3.9682vw,4.9875rem)] font-extrabold">
             <span className="inline-block whitespace-pre font-extrabold">
               <span className="inline-block">Above</span>
               <span className="inline-block"> </span>
@@ -178,8 +178,8 @@ const Hero: React.FC = (): JSX.Element => {
             </span>
           </h2>
           <div className="text-[#070035] m-[clamp(6.25rem,6.6137566138vw,8.3125rem)_auto_clamp(9.375rem,9.9206349206vw,12.46875rem)] gap-[clamp(5rem,5.291005291vw,6.65rem)] max-w-[clamp(71.25rem,75.3968253968vw,94.7625rem)] mt-[110px] grid xl:gap-[clamp(11.25rem,11.9047619048vw,14.9625rem)] xl:grid-cols-[repeat(2,1fr)] xl:justify-between ml-2">
-            <section className="text-[#070035] content-start gap-[clamp(2.125rem,2.2486772487vw,2.82625rem)] grid translate-x-0 opacity-100">
-              <h3 className="text-[clamp(1.5rem,1.5873015873vw,1.995rem)] ml-0 mt-0 col-span-full md:text-[clamp(1.5rem,1.5873015873vw,1.995rem)] font-semibold">What we do</h3>
+            <section className="text-[#070035] content-start gap-[clamp(2.125rem,2.2486772487vw,2.82625rem)] grid translate-x-0 opacity-100  mt-[-100px] ">
+              <h3 className="text-[clamp(1.5rem,1.5873015873vw,1.995rem)] ml-0col-span-full md:text-[clamp(1.5rem,1.5873015873vw,1.995rem)] font-semibold">What we do</h3>
               <ul className="text-[#070035] text-[clamp(1.125rem,1.1904761905vw,1.49625rem)] gap-[.8em] grid list-none opacity-[.7] p-0 m-0 gap-x-[clamp(2.5rem, 2.6455026455vw, 3.325rem)] grid-cols-[1fr_1fr] justify-between sm:gap-x-[clamp(2.5rem,2.6455026455vw,3.325rem)] md:text-[clamp(1.25rem,1.3227513228vw,1.6625rem)] lg:gap-x-[clamp(5rem,5.291005291vw,6.65rem)] lg:grid-cols-[1fr_1fr_1fr] xl:gap-x-[clamp(6.25rem,6.6137566138vw,8.3125rem)] xl:grid-cols-[auto_auto]">
                 <li className="md:text-[clamp(1.25rem,1.3227513228vw,1.6625rem)]">World-class digital</li>
                 <li className="md:text-[clamp(1.25rem,1.3227513228vw,1.6625rem)]">Expect creativity</li>
@@ -195,8 +195,8 @@ const Hero: React.FC = (): JSX.Element => {
                 <li className="md:text-[clamp(1.25rem,1.3227513228vw,1.6625rem)]">Party</li>
               </ul>
             </section>
-            <section className="text-[#070035] content-start gap-[clamp(2.125rem,2.2486772487vw,2.82625rem)] grid translate-x-0 opacity-100">
-              <h3 className="text-[clamp(1.5rem,1.5873015873vw,1.995rem)] m-0 mt-0 col-span-full md:text-[clamp(1.5rem,1.5873015873vw,1.995rem)] font-semibold">What we don't</h3>
+            <section className="text-[#070035] content-start gap-[clamp(2.125rem,2.2486772487vw,2.82625rem)] grid translate-x-0 opacity-100  mt-[-100px]">
+              <h3 className="text-[clamp(1.5rem,1.5873015873vw,1.995rem)] m-0 mt-0 col-span-full md:text-[clamp(1.5rem,1.5873015873vw,1.995rem)] font-semibold line-through">What we don't</h3>
               <ul className="text-[#070035] text-[clamp(1.125rem,1.1904761905vw,1.49625rem)] gap-[.8em] grid list-none opacity-[.7] p-0 m-0 gap-x-[clamp(2.5rem, 2.6455026455vw, 3.325rem)] grid-cols-[1fr_1fr] justify-between sm:gap-x-[clamp(2.5rem,2.6455026455vw,3.325rem)] md:text-[clamp(1.25rem,1.3227513228vw,1.6625rem)] lg:gap-x-[clamp(5rem,5.291005291vw,6.65rem)] lg:grid-cols-[1fr_1fr_1fr] xl:gap-x-[clamp(6.25rem,6.6137566138vw,8.3125rem)] xl:grid-cols-[auto_auto]">
                 <li className="md:text-[clamp(1.25rem,1.3227513228vw,1.6625rem)] text-[#070035] font-medium">Work weekends</li>
                 <li className="md:text-[clamp(1.25rem,1.3227513228vw,1.6625rem)]">Outsource</li>
