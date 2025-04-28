@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { getDev8xPublicUrl } from '../utils/helpers';
 import Scrollbar from 'smooth-scrollbar';
-import Hero from './home/Hero/Hero';
+import Hero from '../components/Feedback/Hero/Hero';
 import Header from '../components/Surfaces/Header/Header';
 import FeatureVideoResponsive from './home/FeatureVideo/FeatureVideoResponsive';
 import TestimonialsLarge from './home/Testimonials/TestimonialsLarge';
@@ -12,11 +13,14 @@ import About from './home/About/About';
 import Footer from './home/Footer/Footer';
 import Problems from './home/Problems/Problems';
 import Steps from './home/Steps/Steps';
-import { getDev8xPublicUrl } from '../utils/helpers';
+import FooterRevealPageWrap from '../components/Surfaces/FooterRevealPageWrap';
+import PurpleChange from '../components/Surfaces/PurpleChange/PurpleChange';
+
+import styles from './index.module.css';
 
 type ScrollTriggerCallback = () => void;
 
-const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter: ScrollTriggerCallback = () => { }, onLeave: ScrollTriggerCallback = () => { }, onLeaveBack: ScrollTriggerCallback = () => { }, onEnterBack: ScrollTriggerCallback = () => { }) => {
+const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter: ScrollTriggerCallback = () => {}, onLeave: ScrollTriggerCallback = () => {}, onLeaveBack: ScrollTriggerCallback = () => {}, onEnterBack: ScrollTriggerCallback = () => {}) => {
   ScrollTrigger.create({
     trigger: sectionId,
     scroller: '#smooth-scrollbar',
@@ -60,25 +64,25 @@ export default function Home() {
 
       scrollbar.addListener(ScrollTrigger.update);
 
-      const sections = document.querySelectorAll('section');
-      sections.forEach((section) => {
-        gsap.fromTo(
-          section,
-          { y: 50 },
-          {
-            y: 0,
-            scrollTrigger: {
-              trigger: section,
-              scroller: '#smooth-scrollbar',
-              start: 'top 80%',
-              end: 'bottom 20%',
-              scrub: 2
-            },
-            ease: 'power2.in',
-            duration: 2
-          }
-        );
-      });
+      // const sections = document.querySelectorAll('div[id$="-section"]');
+      // sections.forEach((section) => {
+      //   gsap.fromTo(
+      //     section,
+      //     { y: 0 }, // This would give text and other items move up animation for 50px.
+      //     {
+      //       y: 0,
+      //       scrollTrigger: {
+      //         trigger: section,
+      //         scroller: '#smooth-scrollbar',
+      //         start: 'top 80%',
+      //         end: 'bottom 20%',
+      //         scrub: 2
+      //       },
+      //       ease: 'power2.in',
+      //       duration: 2
+      //     }
+      //   );
+      // });
 
       const mainTag = document.querySelector('main');
 
@@ -140,7 +144,7 @@ export default function Home() {
             mainTag.style.backgroundColor = '';
           }
         },
-        () => { },
+        () => {},
         () => {
           if (mainTag) {
             mainTag.style.backgroundColor = '#f3f3e9';
@@ -167,7 +171,7 @@ export default function Home() {
         <meta property="og:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
         <meta property="og:url" content={`${getDev8xPublicUrl()}`}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>  
+        <meta property="og:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta property="og:image:secure_url" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
@@ -179,35 +183,25 @@ export default function Home() {
         <meta name="twitter:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
-      {/* Main container with smooth-scrollbar */}
-      <main className="relative min-h-screen leading-relaxed font-medium h-full max-h-screen transition-colors duration-500 ease-in-out" id="smooth-scrollbar">
-        <header className="relative w-full h-screen overflow-hidden">
-          <Header />
-        </header>
-        <section id="problems-section">
-          <Problems />
-        </section>
-        {/* <section id="hero-section">
-          <Hero />
-        </section>
-        <section id="feature-video-section">
-          <FeatureVideoResponsive />
-        </section> */}
-        {/* <section id="testimonials-section">
-          <TestimonialsLarge />
-        </section> */}
-        <div className="grid">
-          <section id="work-section">
-            <WorkWithVideos />
-          </section>
-          <section id="about-section">
-            <About />
-          </section>
-          <section id="footer-section">
+      <FooterRevealPageWrap variant="frame">
+        <Header />
+        <FooterRevealPageWrap variant="page">
+          {/* Main container with smooth-scrollbar */}
+          <main className={styles['homepage']}>
+            <Hero />
+            <PurpleChange />
+            <Problems />
+            {/* <Hero />
+            <FeatureVideoResponsive />
+            <TestimonialsLarge /> */}
+            <div className="grid">
+              <WorkWithVideos />
+              <About />
+            </div>
             <Footer />
-          </section>
-        </div>
-      </main>
+          </main>
+        </FooterRevealPageWrap>
+      </FooterRevealPageWrap>
     </>
   );
 }

@@ -29,9 +29,11 @@ export default function Document() {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-      <body className="font-poppins text-zinc-700">
-        <Main />
-        <NextScript />
+      <body className="m-0 min-h-full flex flex-col text-[var(--theme-text)] font-medium text-[0.9375rem] overflow-x-hidden overscroll-none">
+        <div className="relative min-h-screen leading-relaxed font-medium h-full max-h-screen transition-colors duration-500 ease-in-out" id="smooth-scrollbar">
+          <Main />
+          <NextScript />
+        </div>
       </body>
     </Html>
   );

@@ -1,0 +1,7 @@
+.homepage {
+  display: block;
+}
+
+.homepage__showreel {
+  grid-area: top / bottom;
+}
