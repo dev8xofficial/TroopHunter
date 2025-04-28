@@ -8,11 +8,9 @@ import Hero from '../components/Feedback/Hero/Hero';
 import Header from '../components/Surfaces/Header/Header';
 import FeatureVideoResponsive from './home/FeatureVideo/FeatureVideoResponsive';
 import TestimonialsLarge from './home/Testimonials/TestimonialsLarge';
-import About from './home/About/About';
-import Footer from './home/Footer/Footer';
 import Problems from './home/Problems/Problems';
 import Steps from './home/Steps/Steps';
-import { WorkWithVideos } from '@repo/components';
+import { Footer, WhyDev8X, WorkWithVideos } from '@repo/components';
 import FooterRevealPageWrap from '../components/Surfaces/FooterRevealPageWrap';
 import PurpleChange from '../components/Surfaces/PurpleChange/PurpleChange';
 
@@ -42,6 +40,71 @@ const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, 
 };
 
 export default function Home() {
+  const mainContent = {
+    link: '/contact',
+    start: 'Let’s find',
+    svgIcon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" className="block min-h-0 min-w-0 stroke-1 transform translate-y-[10%] h-[.65em] transition-[color_.4s,transform_.15s] text-[var(--theme-primary)] w-auto var-w-14 var-h-13 lg:stroke-2">
+        <path fill="currentColor" stroke="currentColor" d="M1 5.816H.75v1.326h10.014l-4.008 3.907-.173.168.162.179.563.62.174.191.186-.18 5.506-5.37.184-.178-.184-.18L7.668.932l-.186-.18-.174.191-.563.62-.162.178.173.169 4.008 3.907H1Z" vectorEffect="non-scaling-stroke"></path>
+      </svg>
+    ),
+    end: 'your next client!'
+  };
+
+  const footerContent = {
+    logo: {
+      src: '/logo.svg',
+      alt: 'Dev8X'
+    },
+    privacy: {
+      text: 'Privacy',
+      href: '#'
+    },
+    button: {
+      text: 'Acknowledgement of Country'
+    }
+  };
+
+  const socialLinks = [
+    {
+      title: (
+        <>
+          <s>Twitter</s> X
+        </>
+      ),
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" fill="none" viewBox="0 0 13 14" className="var-w-13 var-h-14">
+          <path fill="currentColor" fillRule="evenodd" d="M7.121.87H5.874v4.123L2.96 2.078l-.882.882 2.92 2.919H.864v1.247h4.133l-2.919 2.919.882.882 2.913-2.913v4.122h1.247V8.004l2.923 2.923.882-.882-2.919-2.919h4.125V5.88H8.009l2.919-2.919-.882-.882-2.925 2.925V.869Z" clipRule="evenodd" />
+        </svg>
+      ),
+      href: '#'
+    },
+    {
+      title: 'Instagram',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" fill="none" viewBox="0 0 13 14" className="var-w-13 var-h-14">
+          <path fill="currentColor" fillRule="evenodd" d="M7.121.87H5.874v4.123L2.96 2.078l-.882.882 2.92 2.919H.864v1.247h4.133l-2.919 2.919.882.882 2.913-2.913v4.122h1.247V8.004l2.923 2.923.882-.882-2.919-2.919h4.125V5.88H8.009l2.919-2.919-.882-.882-2.925 2.925V.869Z" clipRule="evenodd" />
+        </svg>
+      ),
+      href: '#'
+    },
+    {
+      title: 'LinkedIn',
+      href: '#'
+    }
+  ];
+  const whyDev = {
+    heading: 'Why Dev8X',
+
+    para1: 'Dev8X is your trusted IT partner, here to help your business succeed in the digital world. We create custom solutions for websites, backend systems, and mobile apps that make your work easier, improve customer experiences, and help you reach your goals.',
+    para2: 'By working with Dev8X, you gain access to smart solutions that make a real difference. We help you save time with automation, grow faster with reliable systems, and stay ahead of your competition. Whatever challenges you face, we’re here to help you succeed today and in the future.',
+    image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)',
+    whyinfo: [
+      { title: '100+', paragraph: 'In-house & independent' },
+      { title: '5', paragraph: 'Years revolutionizing lead generation' },
+      { title: '50+', paragraph: 'Success stories and counting' }
+    ]
+  };
   const headVideo = [
     {
       title: 'Find Businesses Quickly',
@@ -250,9 +313,9 @@ export default function Home() {
             <TestimonialsLarge /> */}
             <div className="grid">
               <WorkWithVideos headVideo={headVideo} />
-              <About />
+              <WhyDev8X {...whyDev} />
             </div>
-            <Footer />
+            <Footer mainContent={mainContent} footerContent={footerContent} socialLinks={socialLinks} />
           </main>
         </FooterRevealPageWrap>
       </FooterRevealPageWrap>
