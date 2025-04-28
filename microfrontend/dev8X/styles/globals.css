@@ -77,6 +77,27 @@ html {
   scroll-behavior: smooth !important;
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
 :root {
   --default-primary: #4e46e5; /*  Changed from #90f188 */
   --default-primary-text: #23bb16;
@@ -153,7 +174,7 @@ html {
 html {
   box-sizing: border-box;
   height: 100%;
-  text-rendering: geometricPrecision
+  text-rendering: geometricPrecision;
 }
 
 body {
@@ -162,49 +183,75 @@ body {
   flex-direction: column;
   color: var(--theme-text);
   font-weight: 500;
-  font-size: .9375rem;
+  font-size: 0.9375rem;
   overflow-x: hidden;
-  overscroll-behavior: none
+  overscroll-behavior: none;
 }
 
 body ::selection {
   color: var(--theme-secondary);
-  background-color: var(--theme-primary)
+  background-color: var(--theme-primary);
 }
 
-*,:after,:before {
-  box-sizing: inherit
+*,
+:after,
+:before {
+  box-sizing: inherit;
 }
 
-img,picture {
-  display: block
+img,
+picture {
+  display: block;
 }
 
 img {
   max-width: 100%;
-  margin: 0
+  margin: 0;
 }
 
 svg {
   min-height: 0;
   min-width: 0;
-  display: block
+  display: block;
 }
 
-h1,h2,h3,h4,h5,h6,p {
-  margin: 1em 0
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 1em 0;
 }
 
-h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:first-child,p:first-child {
-  margin-top: 0
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child,
+p:first-child {
+  margin-top: 0;
 }
 
-h1:last-child,h2:last-child,h3:last-child,h4:last-child,h5:last-child,h6:last-child,p:last-child {
-  margin-bottom: 0
+h1:last-child,
+h2:last-child,
+h3:last-child,
+h4:last-child,
+h5:last-child,
+h6:last-child,
+p:last-child {
+  margin-bottom: 0;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  font-weight: 500
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
 }
 
 .aspect-x-1452 {

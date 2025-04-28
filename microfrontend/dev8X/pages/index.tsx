@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+// import { gsap } from 'gsap';
+// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import Lenis from 'lenis';
 import { getDev8xPublicUrl } from '../utils/helpers';
-import Scrollbar from 'smooth-scrollbar';
+// import Scrollbar from 'smooth-scrollbar';
 import Hero from '../components/Feedback/Hero/Hero';
 import Header from '../components/Surfaces/Header/Header';
 import FeatureVideoResponsive from './home/FeatureVideo/FeatureVideoResponsive';
@@ -18,33 +19,33 @@ import PurpleChange from '../components/Surfaces/PurpleChange/PurpleChange';
 
 import styles from './index.module.css';
 
-type ScrollTriggerCallback = () => void;
+// type ScrollTriggerCallback = () => void;
 
-const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter: ScrollTriggerCallback = () => {}, onLeave: ScrollTriggerCallback = () => {}, onLeaveBack: ScrollTriggerCallback = () => {}, onEnterBack: ScrollTriggerCallback = () => {}) => {
-  ScrollTrigger.create({
-    trigger: sectionId,
-    scroller: '#smooth-scrollbar',
-    start: startTrigger,
-    end: endTrigger,
-    onEnter: () => {
-      onEnter();
-    },
-    onLeave: () => {
-      onLeave();
-    },
-    onLeaveBack: () => {
-      onLeaveBack();
-    },
-    onEnterBack: () => {
-      onEnterBack();
-    }
-  });
-};
+// const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter: ScrollTriggerCallback = () => {}, onLeave: ScrollTriggerCallback = () => {}, onLeaveBack: ScrollTriggerCallback = () => {}, onEnterBack: ScrollTriggerCallback = () => {}) => {
+//   ScrollTrigger.create({
+//     trigger: sectionId,
+//     scroller: '#smooth-scrollbar',
+//     start: startTrigger,
+//     end: endTrigger,
+//     onEnter: () => {
+//       onEnter();
+//     },
+//     onLeave: () => {
+//       onLeave();
+//     },
+//     onLeaveBack: () => {
+//       onLeaveBack();
+//     },
+//     onEnterBack: () => {
+//       onEnterBack();
+//     }
+//   });
+// };
 
 export default function Home() {
   const headVideo = [
     {
-      title: 'Find Businesses Quickly',
+      title: 'Total Health Dental Care',
       bgColor: '#dcf5f2',
 
       video: (
@@ -57,7 +58,7 @@ export default function Home() {
       )
     },
     {
-      title: 'Find Businesses Quickly',
+      title: 'Honeydu',
       bgColor: '#efe3ff',
 
       video: (
@@ -70,7 +71,7 @@ export default function Home() {
       )
     },
     {
-      title: 'Find Businesses Quickly',
+      title: 'Coral',
       bgColor: '#d8e7ee',
 
       video: (
@@ -83,7 +84,7 @@ export default function Home() {
       )
     },
     {
-      title: 'Find Businesses Quickly',
+      title: 'Golden Dao',
       bgColor: '#dcf5f2',
 
       video: (
@@ -96,121 +97,131 @@ export default function Home() {
       )
     }
   ];
+
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     gsap.registerPlugin(ScrollTrigger);
+
+  //     const scrollbar = Scrollbar.init(document.querySelector('#smooth-scrollbar') as HTMLElement, {
+  //       damping: 0.05
+  //     });
+
+  //     ScrollTrigger.scrollerProxy('#smooth-scrollbar', {
+  //       scrollTop(value) {
+  //         if (arguments.length) {
+  //           scrollbar.scrollTop = value;
+  //         }
+  //         return scrollbar.scrollTop;
+  //       },
+  //       getBoundingClientRect() {
+  //         return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+  //       }
+  //     });
+
+  //     scrollbar.addListener(ScrollTrigger.update);
+
+  //     // const sections = document.querySelectorAll('div[id$="-section"]');
+  //     // sections.forEach((section) => {
+  //     //   gsap.fromTo(
+  //     //     section,
+  //     //     { y: 0 }, // This would give text and other items move up animation for 50px.
+  //     //     {
+  //     //       y: 0,
+  //     //       scrollTrigger: {
+  //     //         trigger: section,
+  //     //         scroller: '#smooth-scrollbar',
+  //     //         start: 'top 80%',
+  //     //         end: 'bottom 20%',
+  //     //         scrub: 2
+  //     //       },
+  //     //       ease: 'power2.in',
+  //     //       duration: 2
+  //     //     }
+  //     //   );
+  //     // });
+
+  //     const mainTag = document.querySelector('main');
+
+  //     // Code for FeatureVideo
+  //     // const triggerElment = document.getElementById('hero-section');
+  //     // const featureVideoWrapperElement = document.getElementById('feature-video-wrapper');
+  //     // let featureVideoElement = document.getElementById('feature-video');
+
+  //     // scrollbar.addListener(function (status) {
+  //     //   var offset = status.offset;
+
+  //     //   console.log('offset.y: ', offset.y);
+  //     //   featureVideoElement.style.top = `calc(${offset.y + 'px' + ' - 5vh'})`;
+  //     // });
+
+  //     // ScrollTrigger.create({
+  //     //   trigger: featureVideoElement,
+  //     //   scroller: '#smooth-scrollbar',
+  //     //   start: 'top 50%',
+  //     //   end: 'bottom bottom',
+  //     //   scrub: true, // Enable smooth scrubbing (this will automatically reverse the animation on scroll up)
+  //     //   onUpdate: (self) => {
+  //     //     featureVideoElement.style.setProperty('--progress', self.progress.toString());
+  //     //   }
+  //     // });
+
+  //     createBackgroundScrollTrigger(
+  //       '#feature-video-section',
+  //       'top 10%',
+  //       'top 10%',
+  //       () => {
+  //         if (mainTag) {
+  //           mainTag.style.backgroundColor = '#f3f3e9';
+  //         }
+  //       },
+  //       () => {
+  //         if (mainTag) {
+  //           mainTag.style.backgroundColor = '#f3f3e9';
+  //         }
+  //       },
+  //       () => {
+  //         if (mainTag) {
+  //           mainTag.style.backgroundColor = '';
+  //         }
+  //       },
+  //       () => {
+  //         if (mainTag) {
+  //           mainTag.style.backgroundColor = '#f3f3e9';
+  //         }
+  //       }
+  //     );
+
+  //     createBackgroundScrollTrigger(
+  //       '#about-section',
+  //       'top top',
+  //       'bottom top',
+  //       () => {
+  //         if (mainTag) {
+  //           mainTag.style.backgroundColor = '';
+  //         }
+  //       },
+  //       () => {},
+  //       () => {
+  //         if (mainTag) {
+  //           mainTag.style.backgroundColor = '#f3f3e9';
+  //         }
+  //       }
+  //     );
+
+  //     return () => {
+  //       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  //       scrollbar.destroy();
+  //     };
+  //   }
+  // }, []);
+
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
-
-      const scrollbar = Scrollbar.init(document.querySelector('#smooth-scrollbar') as HTMLElement, {
-        damping: 0.05
-      });
-
-      ScrollTrigger.scrollerProxy('#smooth-scrollbar', {
-        scrollTop(value) {
-          if (arguments.length) {
-            scrollbar.scrollTop = value;
-          }
-          return scrollbar.scrollTop;
-        },
-        getBoundingClientRect() {
-          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-        }
-      });
-
-      scrollbar.addListener(ScrollTrigger.update);
-
-      // const sections = document.querySelectorAll('div[id$="-section"]');
-      // sections.forEach((section) => {
-      //   gsap.fromTo(
-      //     section,
-      //     { y: 0 }, // This would give text and other items move up animation for 50px.
-      //     {
-      //       y: 0,
-      //       scrollTrigger: {
-      //         trigger: section,
-      //         scroller: '#smooth-scrollbar',
-      //         start: 'top 80%',
-      //         end: 'bottom 20%',
-      //         scrub: 2
-      //       },
-      //       ease: 'power2.in',
-      //       duration: 2
-      //     }
-      //   );
-      // });
-
-      const mainTag = document.querySelector('main');
-
-      // Code for FeatureVideo
-      // const triggerElment = document.getElementById('hero-section');
-      // const featureVideoWrapperElement = document.getElementById('feature-video-wrapper');
-      // let featureVideoElement = document.getElementById('feature-video');
-
-      // scrollbar.addListener(function (status) {
-      //   var offset = status.offset;
-
-      //   console.log('offset.y: ', offset.y);
-      //   featureVideoElement.style.top = `calc(${offset.y + 'px' + ' - 5vh'})`;
-      // });
-
-      // ScrollTrigger.create({
-      //   trigger: featureVideoElement,
-      //   scroller: '#smooth-scrollbar',
-      //   start: 'top 50%',
-      //   end: 'bottom bottom',
-      //   scrub: true, // Enable smooth scrubbing (this will automatically reverse the animation on scroll up)
-      //   onUpdate: (self) => {
-      //     featureVideoElement.style.setProperty('--progress', self.progress.toString());
-      //   }
-      // });
-
-      createBackgroundScrollTrigger(
-        '#feature-video-section',
-        'top 10%',
-        'top 10%',
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '#f3f3e9';
-          }
-        },
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '#f3f3e9';
-          }
-        },
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '';
-          }
-        },
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '#f3f3e9';
-          }
-        }
-      );
-
-      createBackgroundScrollTrigger(
-        '#about-section',
-        'top top',
-        'bottom top',
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '';
-          }
-        },
-        () => {},
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '#f3f3e9';
-          }
-        }
-      );
-
-      return () => {
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        scrollbar.destroy();
-      };
+    const lenis = new Lenis();
+    function raf(time: any) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
     }
+    requestAnimationFrame(raf);
   }, []);
 
   return (
