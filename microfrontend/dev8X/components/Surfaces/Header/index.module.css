@@ -1,0 +1,124 @@
+.header__inner {
+  height: 5.3125rem;
+  width: 100%;
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: 3.75rem;
+  gap: 3.75rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.header__logo {
+  color: var(--theme-logo, var(--theme-secondary));
+  z-index: 10;
+  transition: color 0.4s ease-in-out;
+}
+
+/* a {
+  background-color: transparent;
+} */
+
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px !important;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+}
+
+.menu {
+  position: relative;
+  z-index: 0;
+  position: fixed;
+  bottom: 1.875rem;
+  z-index: 101;
+  border-radius: 100vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+}
+
+@media (min-width: 768px) {
+  .menu {
+    top: 1.25rem;
+    bottom: auto;
+  }
+}
+
+.menu::before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  border-radius: inherit;
+  background: hsla(0, 0%, 100%, 0.7);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: background 0.15s ease-in-out;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  z-index: -1;
+  animation: Header_replace-bg-after-submenu-close__Ub52C 0.6s ease-in-out;
+}
+
+.menu__list {
+  grid-area: 1 / -1;
+  list-style: none;
+  margin: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 1fr;
+  padding: 0.4375rem;
+  transition: box-shadow 0.15s;
+  position: relative;
+  border-radius: inherit;
+}
+
+.menu__link {
+  background: none;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--theme-secondary);
+  position: relative;
+  transition: color 0.3s ease;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.menu__link--active {
+  --theme-primary: #90f188;
+  color: var(--theme-primary);
+  border-radius: 50px;
+  background-color: #000;
+}
+
+.menu__link:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  top: -0.4375rem;
+  bottom: -0.4375rem;
+}
+
+.menu__item:first-of-type .menu__link:before {
+  left: -0.4375rem;
+}
