@@ -6,7 +6,6 @@ import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
 
 import Hero from './Hero/Hero';
-// import Footer from './Footer/Footer';
 import Header from './Header/Header';
 
 // import './index.css';
@@ -191,14 +190,10 @@ const Contact: React.FC = (): JSX.Element => {
       {/* Main container with smooth-scrollbar */}
       <main className="relative h-full max-h-screen min-h-screen font-medium leading-relaxed transition-colors duration-500 ease-in-out dark:bg-charcoal-300" id="smooth-scrollbar">
         <Header />
+
         <div>
           <Hero />
         </div>
-        {/* <div className="grid">
-          <section id="footer-section">
-            <Footer />
-          </section>
-        </div> */}
       </main>
     </>
   );
