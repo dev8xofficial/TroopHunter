@@ -6,11 +6,11 @@ import Lenis from 'lenis';
 import { getDev8xPublicUrl } from '../utils/helpers';
 // import Scrollbar from 'smooth-scrollbar';
 import Hero from '../components/Feedback/Hero/Hero';
-import Header from '../components/Surfaces/Header/Header';
+// import Header from '../components/Surfaces/Header/Header';
 import FeatureVideoResponsive from './home/FeatureVideo/FeatureVideoResponsive';
 import TestimonialsLarge from './home/Testimonials/TestimonialsLarge';
 import Problems from './home/Problems/Problems';
-import { Footer, WhyDev8X, WorkWithVideos } from '@repo/components';
+import { Header, Footer, WhyDev8X, WorkWithVideos } from '@repo/components';
 import FooterRevealPageWrap from '../components/Surfaces/FooterRevealPageWrap';
 import PurpleChange from '../components/Surfaces/PurpleChange/PurpleChange';
 
