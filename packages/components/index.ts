@@ -5,4 +5,4 @@ export * from './src/Surfaces/Problems';
 export * from './src/Surfaces/Steps';
 export * from './src/Surfaces/WorkWithVideos';
 export * from './src/Surfaces/WhyDev8X'
-export * from './src/Surfaces/Footer'
+export * from './src/Surfaces/Footer/Footer'

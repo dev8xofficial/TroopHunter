@@ -10,7 +10,6 @@ import Header from '../components/Surfaces/Header/Header';
 import FeatureVideoResponsive from './home/FeatureVideo/FeatureVideoResponsive';
 import TestimonialsLarge from './home/Testimonials/TestimonialsLarge';
 import Problems from './home/Problems/Problems';
-import Steps from './home/Steps/Steps';
 import { Footer, WhyDev8X, WorkWithVideos } from '@repo/components';
 import FooterRevealPageWrap from '../components/Surfaces/FooterRevealPageWrap';
 import PurpleChange from '../components/Surfaces/PurpleChange/PurpleChange';
@@ -44,14 +43,8 @@ export default function Home() {
   const mainContent = {
     link: '/contact',
     start: 'Let’s find',
-    svgIcon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" className="block min-h-0 min-w-0 stroke-1 transform translate-y-[10%] h-[.65em] transition-[color_.4s,transform_.15s] text-[var(--theme-primary)] w-auto var-w-14 var-h-13 lg:stroke-2">
-        <path fill="currentColor" stroke="currentColor" d="M1 5.816H.75v1.326h10.014l-4.008 3.907-.173.168.162.179.563.62.174.191.186-.18 5.506-5.37.184-.178-.184-.18L7.668.932l-.186-.18-.174.191-.563.62-.162.178.173.169 4.008 3.907H1Z" vectorEffect="non-scaling-stroke"></path>
-      </svg>
-    ),
     end: 'your next client!'
   };
-
   const footerContent = {
     logo: {
       src: '/logo.svg',
@@ -65,7 +58,6 @@ export default function Home() {
       text: 'Acknowledgement of Country'
     }
   };
-
   const socialLinks = [
     {
       title: (
@@ -326,9 +318,9 @@ export default function Home() {
               <WorkWithVideos headVideo={headVideo} />
               <WhyDev8X {...whyDev} />
             </div>
-            <Footer mainContent={mainContent} footerContent={footerContent} socialLinks={socialLinks} />
           </main>
         </FooterRevealPageWrap>
+        <Footer mainContent={mainContent} footerContent={footerContent} socialLinks={socialLinks} />
       </FooterRevealPageWrap>
     </>
   );

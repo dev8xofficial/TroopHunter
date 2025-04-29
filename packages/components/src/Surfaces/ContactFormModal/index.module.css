@@ -1,0 +1,23 @@
+.contact-form-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+  background-color: initial;
+  padding: 2px 0 6px;
+  margin: 0;
+}
+
+.contact-form-button svg {
+  transition: all 0.3s ease-in-out;
+  transform: translateX(0);
+  margin-top: 2px;
+}
