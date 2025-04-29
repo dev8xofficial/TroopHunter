@@ -87,8 +87,8 @@ const WebApplications: React.FC = (): JSX.Element => {
       description: 'We put your website at the heart of your digital ecosystem, providing secure API integrations and automated solutions across your business systems',
       icon: (
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19.8793 14.43C19.8793 19.0233 16.1526 22.75 11.5593 22.75C6.96595 22.75 3.23926 19.0233 3.23926 14.43C3.23926 9.83666 6.96595 6.10999 11.5593 6.10999" stroke="var(--theme-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>{' '}
-          <path d="M21.7642 11.0066H15.9684C15.4267 11.0066 14.9934 10.5733 14.9934 10.0316V4.23579C14.9934 3.63995 15.5242 3.17411 16.1092 3.26078C19.5434 3.74828 22.2517 6.46745 22.7501 9.90161C22.8367 10.4866 22.3709 11.0174 21.7751 11.0174L21.7642 11.0066Z" stroke="var(--theme-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M19.8793 14.43C19.8793 19.0233 16.1526 22.75 11.5593 22.75C6.96595 22.75 3.23926 19.0233 3.23926 14.43C3.23926 9.83666 6.96595 6.10999 11.5593 6.10999" stroke="var(--theme-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>{' '}
+          <path d="M21.7642 11.0066H15.9684C15.4267 11.0066 14.9934 10.5733 14.9934 10.0316V4.23579C14.9934 3.63995 15.5242 3.17411 16.1092 3.26078C19.5434 3.74828 22.2517 6.46745 22.7501 9.90161C22.8367 10.4866 22.3709 11.0174 21.7751 11.0174L21.7642 11.0066Z" stroke="var(--theme-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
         </svg>
       )
     }
