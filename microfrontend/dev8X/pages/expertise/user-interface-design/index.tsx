@@ -5,45 +5,44 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
 import Footer from './Footer/Footer';
-import Header from '../../contact/Header/Header';
-import { Hero } from '@repo/components';
+import { Header, Hero } from '@repo/components';
 import { Problems } from '@repo/components';
 import { Steps } from '@repo/components';
 
-type ScrollTriggerCallback = () => void;
+// type ScrollTriggerCallback = () => void;
 
-const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter?: ScrollTriggerCallback, onLeave?: ScrollTriggerCallback, onLeaveBack?: ScrollTriggerCallback, onEnterBack?: ScrollTriggerCallback): void => {
-  ScrollTrigger.create({
-    trigger: sectionId,
-    scroller: '#smooth-scrollbar',
-    start: startTrigger,
-    end: endTrigger,
-    onEnter:
-      onEnter != null
-        ? () => {
-            onEnter();
-          }
-        : undefined,
-    onLeave:
-      onLeave != null
-        ? () => {
-            onLeave();
-          }
-        : undefined,
-    onLeaveBack:
-      onLeaveBack != null
-        ? () => {
-            onLeaveBack();
-          }
-        : undefined,
-    onEnterBack:
-      onEnterBack != null
-        ? () => {
-            onEnterBack();
-          }
-        : undefined
-  });
-};
+// const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter?: ScrollTriggerCallback, onLeave?: ScrollTriggerCallback, onLeaveBack?: ScrollTriggerCallback, onEnterBack?: ScrollTriggerCallback): void => {
+//   ScrollTrigger.create({
+//     trigger: sectionId,
+//     scroller: '#smooth-scrollbar',
+//     start: startTrigger,
+//     end: endTrigger,
+//     onEnter:
+//       onEnter != null
+//         ? () => {
+//             onEnter();
+//           }
+//         : undefined,
+//     onLeave:
+//       onLeave != null
+//         ? () => {
+//             onLeave();
+//           }
+//         : undefined,
+//     onLeaveBack:
+//       onLeaveBack != null
+//         ? () => {
+//             onLeaveBack();
+//           }
+//         : undefined,
+//     onEnterBack:
+//       onEnterBack != null
+//         ? () => {
+//             onEnterBack();
+//           }
+//         : undefined
+//   });
+// };
 
 const UI: React.FC = (): JSX.Element => {
   const stepsList = [
@@ -134,122 +133,123 @@ const UI: React.FC = (): JSX.Element => {
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/eb4021775e/scitechui.png'
     }
   ];
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
 
-      const scrollbar = Scrollbar.init(document.querySelector('#smooth-scrollbar') as HTMLElement, {
-        damping: 0.05
-      });
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     gsap.registerPlugin(ScrollTrigger);
 
-      ScrollTrigger.scrollerProxy('#smooth-scrollbar', {
-        scrollTop(value) {
-          if (arguments.length) {
-            scrollbar.scrollTop = value;
-          }
-          return scrollbar.scrollTop;
-        },
-        getBoundingClientRect() {
-          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-        }
-      });
+  //     const scrollbar = Scrollbar.init(document.querySelector('#smooth-scrollbar') as HTMLElement, {
+  //       damping: 0.05
+  //     });
 
-      scrollbar.addListener(ScrollTrigger.update);
+  //     ScrollTrigger.scrollerProxy('#smooth-scrollbar', {
+  //       scrollTop(value) {
+  //         if (arguments.length) {
+  //           scrollbar.scrollTop = value;
+  //         }
+  //         return scrollbar.scrollTop;
+  //       },
+  //       getBoundingClientRect() {
+  //         return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+  //       }
+  //     });
 
-      const sections = document.querySelectorAll('section');
-      sections.forEach((section) => {
-        gsap.fromTo(
-          section,
-          { y: 50 },
-          {
-            y: 0,
-            scrollTrigger: {
-              trigger: section,
-              scroller: '#smooth-scrollbar',
-              start: 'top 80%',
-              end: 'bottom 20%',
-              scrub: 2
-            },
-            ease: 'power2.in',
-            duration: 2
-          }
-        );
-      });
+  //     scrollbar.addListener(ScrollTrigger.update);
 
-      const mainTag = document.querySelector('main') as HTMLElement;
+  //     const sections = document.querySelectorAll('section');
+  //     sections.forEach((section) => {
+  //       gsap.fromTo(
+  //         section,
+  //         { y: 50 },
+  //         {
+  //           y: 0,
+  //           scrollTrigger: {
+  //             trigger: section,
+  //             scroller: '#smooth-scrollbar',
+  //             start: 'top 80%',
+  //             end: 'bottom 20%',
+  //             scrub: 2
+  //           },
+  //           ease: 'power2.in',
+  //           duration: 2
+  //         }
+  //       );
+  //     });
 
-      // Code for FeatureVideo
-      // const triggerElment = document.getElementById('hero-section');
-      // const featureVideoWrapperElement = document.getElementById('feature-video-wrapper');
-      // let featureVideoElement = document.getElementById('feature-video');
+  //     const mainTag = document.querySelector('main') as HTMLElement;
 
-      // scrollbar.addListener(function (status) {
-      //   var offset = status.offset;
+  //     // Code for FeatureVideo
+  //     // const triggerElment = document.getElementById('hero-section');
+  //     // const featureVideoWrapperElement = document.getElementById('feature-video-wrapper');
+  //     // let featureVideoElement = document.getElementById('feature-video');
 
-      //   console.log('offset.y: ', offset.y);
-      //   featureVideoElement.style.top = `calc(${offset.y + 'px' + ' - 5vh'})`;
-      // });
+  //     // scrollbar.addListener(function (status) {
+  //     //   var offset = status.offset;
 
-      // ScrollTrigger.create({
-      //   trigger: featureVideoElement,
-      //   scroller: '#smooth-scrollbar',
-      //   start: 'top 50%',
-      //   end: 'bottom bottom',
-      //   scrub: true, // Enable smooth scrubbing (this will automatically reverse the animation on scroll up)
-      //   onUpdate: (self) => {
-      //     featureVideoElement.style.setProperty('--progress', self.progress.toString());
-      //   }
-      // });
+  //     //   console.log('offset.y: ', offset.y);
+  //     //   featureVideoElement.style.top = `calc(${offset.y + 'px' + ' - 5vh'})`;
+  //     // });
 
-      createBackgroundScrollTrigger(
-        '#footer-section',
-        'top 10%',
-        'top 10%',
-        () => {
-          if (mainTag != null) {
-            mainTag.style.backgroundColor = '#dcf5f2';
-          }
-        },
-        () => {
-          if (mainTag != null) {
-            mainTag.style.backgroundColor = '#dcf5f2';
-          }
-        },
-        () => {
-          if (mainTag != null) {
-            mainTag.style.backgroundColor = '';
-          }
-        },
-        () => {
-          if (mainTag != null) {
-            mainTag.style.backgroundColor = '#dcf5f2';
-          }
-        }
-      );
+  //     // ScrollTrigger.create({
+  //     //   trigger: featureVideoElement,
+  //     //   scroller: '#smooth-scrollbar',
+  //     //   start: 'top 50%',
+  //     //   end: 'bottom bottom',
+  //     //   scrub: true, // Enable smooth scrubbing (this will automatically reverse the animation on scroll up)
+  //     //   onUpdate: (self) => {
+  //     //     featureVideoElement.style.setProperty('--progress', self.progress.toString());
+  //     //   }
+  //     // });
 
-      createBackgroundScrollTrigger(
-        '#footer-section',
-        'top top',
-        'bottom top',
-        () => {
-          if (mainTag != null) {
-            mainTag.style.backgroundColor = '';
-          }
-        },
-        () => {},
-        () => {
-          if (mainTag != null) {
-            mainTag.style.backgroundColor = '#f3f3e9';
-          }
-        }
-      );
+  //     createBackgroundScrollTrigger(
+  //       '#footer-section',
+  //       'top 10%',
+  //       'top 10%',
+  //       () => {
+  //         if (mainTag != null) {
+  //           mainTag.style.backgroundColor = '#dcf5f2';
+  //         }
+  //       },
+  //       () => {
+  //         if (mainTag != null) {
+  //           mainTag.style.backgroundColor = '#dcf5f2';
+  //         }
+  //       },
+  //       () => {
+  //         if (mainTag != null) {
+  //           mainTag.style.backgroundColor = '';
+  //         }
+  //       },
+  //       () => {
+  //         if (mainTag != null) {
+  //           mainTag.style.backgroundColor = '#dcf5f2';
+  //         }
+  //       }
+  //     );
 
-      return () => {
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        scrollbar.destroy();
-      };
-    }
-  }, []);
+  //     createBackgroundScrollTrigger(
+  //       '#footer-section',
+  //       'top top',
+  //       'bottom top',
+  //       () => {
+  //         if (mainTag != null) {
+  //           mainTag.style.backgroundColor = '';
+  //         }
+  //       },
+  //       () => {},
+  //       () => {
+  //         if (mainTag != null) {
+  //           mainTag.style.backgroundColor = '#f3f3e9';
+  //         }
+  //       }
+  //     );
+
+  //     return () => {
+  //       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  //       scrollbar.destroy();
+  //     };
+  //   }
+  // }, []);
 
   return (
     <>
@@ -285,7 +285,7 @@ const UI: React.FC = (): JSX.Element => {
           <Problems title="Bespoke user interfaces" paragraph="Combining human aesthetics with functional design, we take a systematised approach to designing practical and intuitive user interfaces." stepsList={stepsList} />
         </section>
         <section id="steps-section">
-          <Steps stepInfo={stepInfo}/>
+          <Steps stepInfo={stepInfo} />
         </section>
         <div className="grid">
           <section id="footer-section">
