@@ -1,3 +1,15 @@
+.button--bg-transparent {
+  --text-color: var(--theme-secondary);
+  --icon-color: var(--theme-secondary);
+  --background-color: transparent;
+}
+
+.button--bg-secondary {
+  --text-color: #fff !important;
+  --icon-color: #b488f1 !important;
+  --background-color: #12032a !important;
+}
+
 .button-wrapper {
   display: inline-block;
   text-decoration: none;
@@ -43,8 +55,28 @@
   inset: -0.3125rem;
 }
 
-.button--bg-transparent {
-  --text-color: var(--theme-secondary);
-  --icon-color: var(--theme-secondary);
-  --background-color: transparent;
+.button--icon {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .6666666667em;
 }
+
+.button>.contact-button {
+  font-size: clamp(.9375rem, .9920634921vw, 1.246875rem);
+  padding: 1em .9em;
+  gap: .5em;
+}
+
+.button>.ContactFormModal_contact-button {
+  font-size: clamp(.9375rem, .9920634921vw, 1.246875rem);
+  padding: 1em .9em;
+  gap: .5em;
+}
+
+.button--icon svg {
+  height: .9333333333em;
+  width: auto;
+  color: var(--icon-color, --theme-primary);
+  transition: color .15s;
+}
+

@@ -1,0 +1,10 @@
+.picture {
+  display: block;
+  line-height: 0;
+  max-width: 100%;
+}
+.contact-bg-mobile{
+  width: 80%;
+  height: 80%;
+  grid-area: 1 / -1;
+}

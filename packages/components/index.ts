@@ -5,5 +5,6 @@ export * from './src/Surfaces/Hero';
 export * from './src/Surfaces/Problems';
 export * from './src/Surfaces/Steps';
 export * from './src/Surfaces/WorkWithVideos';
-export * from './src/Surfaces/WhyDev8X'
-export * from './src/Surfaces/Footer/Footer'
+export * from './src/Surfaces/WhyDev8X';
+export * from './src/Surfaces/FooterInternationalContents/FooterInternationalContents';
+export * from './src/Surfaces/Footer/Footer';

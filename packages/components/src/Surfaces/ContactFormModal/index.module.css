@@ -21,3 +21,13 @@
   transform: translateX(0);
   margin-top: 2px;
 }
+
+.button>.contact-button {
+  font-size: clamp(.9375rem, .9920634921vw, 1.246875rem);
+  padding: 1em .9em;
+  gap: .5em;
+}
+
+.button>.contact-button svg {
+  font-size: 1em;
+}
