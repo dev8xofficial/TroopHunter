@@ -9,6 +9,38 @@ export const Header: React.FC = (): JSX.Element => {
   const currentPath = router.pathname;
   const [dataSubmenuOpen, setDataSubmenuOpen] = useState(false);
   const [height, setHeight] = useState(45);
+  const getActiveColumn = (path: string): number => {
+    if (path === '/') return 1;
+    if (path === '/about') return 2;
+    if (path === '/work') return 3;
+    if (
+      path.startsWith('/expertise/websites') ||
+      path.startsWith('/expertise/web-applications') ||
+      path.startsWith('/expertise/mobile-apps') ||
+      path.startsWith('/expertise/ecommerce') ||
+      path.startsWith('/expertise/data-visualisation') ||
+      path.startsWith('/expertise/user-research-validation') ||
+      path.startsWith('/expertise/user-experience-design') ||
+      path.startsWith('/expertise/user-interface-design') ||
+      path.startsWith('/expertise/prototyping') ||
+      path.startsWith('/expertise/design-systems') ||
+      path.startsWith('/expertise/headless') ||
+      path.startsWith('/expertise/react-js') ||
+      path.startsWith('/expertise/payload-cms') ||
+      path.startsWith('/expertise/laravel') ||
+      path.startsWith('/expertise/wordpress-development') ||
+      path.startsWith('/expertise/commercial') ||
+      path.startsWith('/expertise/not-for-profit') ||
+      path.startsWith('/expertise/startups') ||
+      path.startsWith('/expertise/education') ||
+      path.startsWith('/expertise/community')
+    ) {
+      return 4;
+    }
+    if (path === '/contact') return 5;
+    return 1; // fallback
+  };
+  const activeColumn = getActiveColumn(currentPath);
 
   const handleExpertiseClick = () => {
     setDataSubmenuOpen((prev) => !prev);
@@ -42,7 +74,7 @@ export const Header: React.FC = (): JSX.Element => {
               </li>
               <li className={styles['menu__item']}>
                 <div className="link-wrap">
-                  <button className={styles['menu__link']} data-faitracker-form-bind="true" onClick={handleExpertiseClick}>
+                  <button className={`${styles['menu__link']} ${currentPath.includes('/expertise') ? styles['menu__link--active'] : ''}`} data-faitracker-form-bind="true" onClick={handleExpertiseClick}>
                     Expertise
                   </button>
                   <HeaderSubmenu height={height} />
@@ -70,8 +102,8 @@ export const Header: React.FC = (): JSX.Element => {
               <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 5 }}>
                 Contact
               </span>
-              <div className={`${styles['menu__hover-pill']}`} style={{ position: 'relative', gridColumn: 1, borderRadius: '100px', transform: 'none', transformOrigin: '50% 50% 0px', left: '0px' }}></div>
-              <div className={`${styles['menu__active-pill']}`} style={{ position: 'relative', gridColumn: 1, borderRadius: '100px', transform: 'none', transformOrigin: '50% 50% 0px', left: '0px' }}></div>
+              <div className={`${styles['menu__hover-pill']}`} style={{ position: 'relative', gridColumn: activeColumn, borderRadius: '100px', transform: 'none', transformOrigin: '50% 50% 0px', left: '0px' }}></div>
+              <div className={`${styles['menu__active-pill']}`} style={{ position: 'relative', gridColumn: activeColumn, borderRadius: '100px', transform: 'none', transformOrigin: '50% 50% 0px', left: '0px' }}></div>
             </div>
           </nav>
         </div>
