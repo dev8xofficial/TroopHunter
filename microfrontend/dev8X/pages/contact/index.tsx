@@ -5,15 +5,13 @@ import React, { useEffect } from 'react';
 // import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
 
-import Hero from './Hero/Hero';
-import { Header } from '@repo/components';
+import { Header, FooterRevealPageWrap, FooterInternationalContents } from '@repo/components';
 
-import styles from './index.module.css';
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import TextStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
 import ButtonStyles from '../../components/Surfaces/Button/index.module.css';
 import ContactFormModalStyles from '../../components/Surfaces/ContactFormModal/index.module.css';
-import { FooterRevealPageWrap, FooterInternationalContents } from '@repo/components';
+import styles from './index.module.css';
 // type ScrollTriggerCallback = () => void;
 
 // const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter?: ScrollTriggerCallback, onLeave?: ScrollTriggerCallback, onLeaveBack?: ScrollTriggerCallback, onEnterBack?: ScrollTriggerCallback): void => {

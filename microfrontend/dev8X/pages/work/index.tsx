@@ -7,11 +7,8 @@ import Head from 'next/head';
 
 // import About from './About/About';
 // import FeatureVideoResponsive from './FeatureVideo/FeatureVideoResponsive';
-// import Hero from '../../components/Feedback/Hero/Hero';
 // import TestimonialsLarge from './Testimonials/TestimonialsLarge';
-import { FooterRevealPageWrap, Footer, Header } from '@repo/components';
-import { WorkGrid } from '../../components/Surfaces/WorkGrid/WorkGrid';
-import { WorkCategories } from '../../components/Surfaces/WorkCategories/WorkCategories';
+import { FooterRevealPageWrap, Footer, Header, WorkGrid, WorkCategories } from '@repo/components';
 
 // import styles from './index.module.css';
 import TextAnimateUpStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
