@@ -1,0 +1,23 @@
+.modular-blocks {
+  display: grid;
+  grid-gap: var(--gap);
+  gap: var(--gap);
+  margin-top: var(--gap);
+  margin-bottom: var(--gap);
+  --gap: 5rem;
+}
+
+/***************************************************** Responsive Styles *****************************************************/
+/*****************************************************************************************************************************/
+
+@media (min-width: 768px) {
+  .modular-blocks {
+    --gap: 6.25rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .modular-blocks {
+    --gap: 9.375rem;
+  }
+}

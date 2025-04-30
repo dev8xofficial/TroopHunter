@@ -10,7 +10,7 @@ type StepsProps = {
   stepInfo: StepItem[];
 };
 
-export const Steps: React.FC<StepsProps> = ({stepInfo}): JSX.Element => {
+export const Steps: React.FC<StepsProps> = ({ stepInfo }): JSX.Element => {
   return (
     <>
       <div className="my-[5rem] gap-[5rem] grid px-[var(--container-gutter)] md:gap-[6.25rem] lg:gap-[9.375rem]">

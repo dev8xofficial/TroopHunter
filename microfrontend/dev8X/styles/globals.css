@@ -254,6 +254,12 @@ h6 {
   font-weight: 500;
 }
 
+.container-full {
+  width: 100%;
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+}
+
 .hidden {
   border: 0;
   clip: rect(0 0 0 0);

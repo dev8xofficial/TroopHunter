@@ -5,10 +5,10 @@ import React, { useEffect } from 'react';
 // import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
 
-import Footer from './Footer/Footer';
-import { Header, Hero } from '@repo/components';
-import { Problems } from '@repo/components';
-import { Steps } from '@repo/components';
+import { ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards } from '@repo/components';
+import FooterRevealPageWrap from '../../../components/Surfaces/FooterRevealPageWrap';
+
+import styles from './index.module.css';
 
 // type ScrollTriggerCallback = () => void;
 
@@ -46,6 +46,52 @@ import { Steps } from '@repo/components';
 // };
 
 const Websites: React.FC = (): JSX.Element => {
+  const mainContent = {
+    link: '/contact',
+    start: 'Let’s find',
+    end: 'your next client!'
+  };
+  const footerContent = {
+    logo: {
+      src: '/logo.svg',
+      alt: 'Dev8X'
+    },
+    privacy: {
+      text: 'Privacy',
+      href: '#'
+    },
+    button: {
+      text: 'Acknowledgement of Country'
+    }
+  };
+  const socialLinks = [
+    {
+      title: (
+        <>
+          <s>Twitter</s> X
+        </>
+      ),
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" fill="none" viewBox="0 0 13 14" className="var-w-13 var-h-14">
+          <path fill="currentColor" fillRule="evenodd" d="M7.121.87H5.874v4.123L2.96 2.078l-.882.882 2.92 2.919H.864v1.247h4.133l-2.919 2.919.882.882 2.913-2.913v4.122h1.247V8.004l2.923 2.923.882-.882-2.919-2.919h4.125V5.88H8.009l2.919-2.919-.882-.882-2.925 2.925V.869Z" clipRule="evenodd" />
+        </svg>
+      ),
+      href: '#'
+    },
+    {
+      title: 'Instagram',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" fill="none" viewBox="0 0 13 14" className="var-w-13 var-h-14">
+          <path fill="currentColor" fillRule="evenodd" d="M7.121.87H5.874v4.123L2.96 2.078l-.882.882 2.92 2.919H.864v1.247h4.133l-2.919 2.919.882.882 2.913-2.913v4.122h1.247V8.004l2.923 2.923.882-.882-2.919-2.919h4.125V5.88H8.009l2.919-2.919-.882-.882-2.925 2.925V.869Z" clipRule="evenodd" />
+        </svg>
+      ),
+      href: '#'
+    },
+    {
+      title: 'LinkedIn',
+      href: '#'
+    }
+  ];
   const stepsList = [
     {
       title: 'Idea to Execution',
@@ -255,24 +301,22 @@ const Websites: React.FC = (): JSX.Element => {
         <meta name="twitter:image" content={`${process.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`}></meta>
         <meta name="twitter:site" content="@TroopHunter"></meta>
       </Head>
-      {/* Main container with smooth-scrollbar */}
-      <main className="relative h-full max-h-screen min-h-screen font-medium leading-relaxed transition-colors duration-500 ease-in-out" id="smooth-scrollbar">
+      <FooterRevealPageWrap variant="frame">
         <Header />
-        <section id="hero-section">
-          <Hero tagBgColor="#e7d8bc" tagText="Websites" heading={['World-class', 'websites', 'for', 'forward-thinking', 'brands']} image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
-        </section>
-        <section id="problems-section">
-          <Problems title="Extraordinary digital products" paragraph="We play to our strengths: For over 14 years we've been ideating, creating and shipping wonderful things on the internet." stepsList={stepsList} />
-        </section>
-        <section id="steps-section">
-          <Steps stepInfo={stepInfo} />
-        </section>
-        <div className="grid">
-          <section id="footer-section">
-            <Footer />
-          </section>
-        </div>
-      </main>
+        <FooterRevealPageWrap variant="page">
+          {/* Main container with smooth-scrollbar */}
+          <main className={`${styles['expertise-single']} container-full`}>
+            <Hero tagText="Websites" heading="World-class websites for forward-thinking brands" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <div>
+              <ModularBlocks>
+                <IconCards title="Extraordinary digital products" paragraph="We play to our strengths: For over 14 years we've been ideating, creating and shipping wonderful things on the internet." stepsList={stepsList} />
+                <ContentAsideImage stepInfo={stepInfo} />
+              </ModularBlocks>
+            </div>
+          </main>
+        </FooterRevealPageWrap>
+        <Footer mainContent={mainContent} footerContent={footerContent} socialLinks={socialLinks} />
+      </FooterRevealPageWrap>
     </>
   );
 };

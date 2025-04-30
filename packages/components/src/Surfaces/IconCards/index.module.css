@@ -1,0 +1,112 @@
+.icon-cards {
+  display: grid;
+  grid-gap: 1.625rem;
+  gap: 1.625rem;
+  --container-gutter: 0px;
+  max-width: calc(clamp(76.25rem, 80.6878306878vw, 101.4125rem) + var(--container-gutter) * 2);
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.icon-cards__heading {
+  color: #0f1d07;
+  margin: 0;
+  max-width: clamp(51.875rem, 54.8941798942vw, 68.99375rem);
+  line-height: 1;
+  text-wrap: balance;
+  font-size: 1.875rem;
+}
+
+.icon-cards__intro {
+  color: var(--theme-text);
+  font-size: clamp(1.25rem, 1.3227513228vw, 1.6625rem);
+  line-height: clamp(1.875rem, 1.9841269841vw, 2.49375rem);
+  max-width: clamp(45.625rem, 48.2804232804vw, 60.68125rem);
+  margin: 0;
+}
+
+.icon-cards__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-gap: clamp(3.125rem, 3.3068783069vw, 4.15625rem) clamp(2rem, 2.1164021164vw, 2.66rem);
+  gap: clamp(3.125rem, 3.3068783069vw, 4.15625rem) clamp(2rem, 2.1164021164vw, 2.66rem);
+  grid-template-columns: 1fr;
+  align-items: flex-start;
+}
+
+.icon-card {
+  display: grid;
+  grid-gap: clamp(1.25rem, 1.3227513228vw, 1.6625rem);
+  gap: clamp(1.25rem, 1.3227513228vw, 1.6625rem);
+}
+
+.icon-card__icon-wrapper {
+  height: clamp(1.625rem, 1.7195767196vw, 2.16125rem);
+  position: relative;
+}
+
+.icon-card__icon-wrapper svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(var(--width, 25) / 16 * 1rem, var(--width, 25) / 1512 * 100vw, calc(var(--width, 25) * 1.33) / 16 * 1rem);
+  height: clamp(var(--height, 25) / 16 * 1rem, var(--height, 25) / 1512 * 100vw, calc(var(--height, 25) * 1.33) / 16 * 1rem);
+}
+
+.icon-card__hr {
+  margin: 0;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid;
+  opacity: 0.05;
+}
+
+.icon-card__heading {
+  color: var(--theme-secondary);
+  margin: 0;
+  font-size: clamp(1.125rem, 1.1904761905vw, 1.49625rem);
+  line-height: clamp(1.5rem, 1.5873015873vw, 1.995rem);
+}
+
+.icon-card__body {
+  margin: 0;
+  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
+  line-height: clamp(1.5625rem, 1.6534391534vw, 2.078125rem);
+}
+
+/***************************************************** Responsive Styles *****************************************************/
+/*****************************************************************************************************************************/
+
+@media (min-width: 480px) {
+  .icon-cards__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+  .icon-cards {
+    gap: 2.5rem;
+  }
+
+  .icon-cards__heading {
+    font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
+  }
+
+  .icon-cards__list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .icon-cards {
+    gap: 3.125rem;
+  }
+}

@@ -1,0 +1,10 @@
+.wysiwyg {
+  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
+  line-height: 1.6;
+}
+
+.wysiwyg:after {
+  content: '';
+  clear: both;
+  display: table;
+}

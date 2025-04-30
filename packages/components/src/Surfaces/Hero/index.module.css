@@ -1,0 +1,36 @@
+.expertise-hero-container {
+  margin: 0 auto;
+}
+
+.expertise-heading-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.expertise-heading {
+  max-width: clamp(76.25rem, 80.6878306878vw, 101.4125rem);
+  line-height: 1;
+  color: var(--theme-secondary);
+  font-size: 2.5rem;
+  margin: 2.5rem 0;
+}
+
+.expertise-image {
+  overflow: hidden;
+  border-radius: 30px;
+  position: relative;
+  flex: 1 0;
+}
+
+/***************************************************** Responsive Styles *****************************************************/
+/*****************************************************************************************************************************/
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+  .expertise-heading {
+    font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
+    margin: clamp(5rem, 5.291005291vw, 6.65rem) 0 !important;
+  }
+}
