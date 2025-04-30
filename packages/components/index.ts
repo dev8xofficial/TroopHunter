@@ -15,3 +15,12 @@ export * from './src/Surfaces/PurpleChange/PurpleChange';
 export * from './src/Surfaces/WorkCard/WorkCard';
 export * from './src/Surfaces/WorkCategories/WorkCategories';
 export * from './src/Surfaces/WorkGrid/WorkGrid';
+export * from './src/Surfaces/Button/Button';
+export * from './src/Surfaces/FieldWrapper/FieldWrapper';
+export * from './src/Surfaces/Fieldset/Fieldset';
+export * from './src/Surfaces/Input/Input';
+export * from './src/Surfaces/Textarea/Textarea';
+export * from './src/Surfaces/ContactFormModal/ContactFormModal';
+export * from './src/Surfaces/ModalCloseButton/ModalCloseButton';
+export * from './src/Surfaces/SmoothModal/SmoothModal';
+

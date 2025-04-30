@@ -80,3 +80,8 @@
   transition: color .15s;
 }
 
+.button--bg-primary {
+  --text-color: #12032a;
+  --icon-color: #12032a;
+  --background-color: #b488f1;
+}

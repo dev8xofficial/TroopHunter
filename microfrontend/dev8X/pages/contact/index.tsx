@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import { gsap } from 'gsap';
 // import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 
 import { Header, FooterRevealPageWrap, FooterInternationalContents } from '@repo/components';
+import SmoothModal from '@repo/components/src/Surfaces/SmoothModal/SmoothModal';
 
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import TextStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
@@ -94,6 +95,15 @@ const Contact: React.FC = (): JSX.Element => {
       href: '#'
     }
   ];
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   // useEffect(() => {
   //   if (typeof window !== 'undefined') {
@@ -266,7 +276,7 @@ const Contact: React.FC = (): JSX.Element => {
                 </h1>
                 <div>
                   <div>
-                    <button className={ButtonStyles['button-wrapper']}>
+                    <button className={ButtonStyles['button-wrapper']} onClick={handleOpenModal}>
                       <span className={`${ButtonStyles['button']} ${ButtonStyles['button--icon']} ${ButtonStyles['button--bg-secondary']} ${ContactFormModalStyles['contact-button']} ${styles['contact-button']}}`}>
                         Submit a brief
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" fill="none" stroke-width="0.5" viewBox="0 0 14 13" className={styles['button--icon']}>
@@ -287,6 +297,7 @@ const Contact: React.FC = (): JSX.Element => {
           </main>
         </FooterRevealPageWrap>
       </FooterRevealPageWrap>
+      {showModal && <SmoothModal />}
     </>
   );
 };
