@@ -13,6 +13,7 @@ import Problems from './home/Problems/Problems';
 import { Header, Footer, WhyDev8X, WorkWithVideos } from '@repo/components';
 import FooterRevealPageWrap from '../components/Surfaces/FooterRevealPageWrap';
 import PurpleChange from '../components/Surfaces/PurpleChange/PurpleChange';
+import { WorkGrid } from '../components/Surfaces/WorkGrid/WorkGrid';
 
 import styles from './index.module.css';
 
@@ -314,8 +315,8 @@ export default function Home() {
             {/* <Hero />
             <FeatureVideoResponsive />
             <TestimonialsLarge /> */}
-            <div className="grid">
-              <WorkWithVideos headVideo={headVideo} />
+            <div className={styles['homepage__section']}>
+              <WorkGrid workGridCSSClass={styles['work-grid']} />
               <WhyDev8X {...whyDev} />
             </div>
           </main>

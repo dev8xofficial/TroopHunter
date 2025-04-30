@@ -7,12 +7,17 @@ import Head from 'next/head';
 
 // import About from './About/About';
 // import FeatureVideoResponsive from './FeatureVideo/FeatureVideoResponsive';
-import Footer from './Footer/Footer';
-import Hero from './Hero/Hero';
+// import Hero from '../../components/Feedback/Hero/Hero';
 // import TestimonialsLarge from './Testimonials/TestimonialsLarge';
-import { Header, WorkWithVideos } from '@repo/components';
+import { Footer, Header } from '@repo/components';
+import FooterRevealPageWrap from '../../components/Surfaces/FooterRevealPageWrap';
+import { WorkGrid } from '../../components/Surfaces/WorkGrid/WorkGrid';
+import { WorkCategories } from '../../components/Surfaces/WorkCategories/WorkCategories';
 
-// import './index.css';
+// import styles from './index.module.css';
+import TextAnimateUpStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
+import LayoutStyles from '../../components/Surfaces/Layout/layout.module.css';
+import WorkGridStyles from '../../components/Surfaces/WorkGrid/index.module.css';
 
 // type ScrollTriggerCallback = () => void;
 
@@ -50,6 +55,52 @@ import { Header, WorkWithVideos } from '@repo/components';
 // };
 
 const Work: React.FC = (): JSX.Element => {
+  const mainContent = {
+    link: '/contact',
+    start: 'Let’s find',
+    end: 'your next client!'
+  };
+  const footerContent = {
+    logo: {
+      src: '/logo.svg',
+      alt: 'Dev8X'
+    },
+    privacy: {
+      text: 'Privacy',
+      href: '#'
+    },
+    button: {
+      text: 'Acknowledgement of Country'
+    }
+  };
+  const socialLinks = [
+    {
+      title: (
+        <>
+          <s>Twitter</s> X
+        </>
+      ),
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" fill="none" viewBox="0 0 13 14" className="var-w-13 var-h-14">
+          <path fill="currentColor" fillRule="evenodd" d="M7.121.87H5.874v4.123L2.96 2.078l-.882.882 2.92 2.919H.864v1.247h4.133l-2.919 2.919.882.882 2.913-2.913v4.122h1.247V8.004l2.923 2.923.882-.882-2.919-2.919h4.125V5.88H8.009l2.919-2.919-.882-.882-2.925 2.925V.869Z" clipRule="evenodd" />
+        </svg>
+      ),
+      href: '#'
+    },
+    {
+      title: 'Instagram',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" fill="none" viewBox="0 0 13 14" className="var-w-13 var-h-14">
+          <path fill="currentColor" fillRule="evenodd" d="M7.121.87H5.874v4.123L2.96 2.078l-.882.882 2.92 2.919H.864v1.247h4.133l-2.919 2.919.882.882 2.913-2.913v4.122h1.247V8.004l2.923 2.923.882-.882-2.919-2.919h4.125V5.88H8.009l2.919-2.919-.882-.882-2.925 2.925V.869Z" clipRule="evenodd" />
+        </svg>
+      ),
+      href: '#'
+    },
+    {
+      title: 'LinkedIn',
+      href: '#'
+    }
+  ];
   const headVideo = [
     {
       title: 'Find Businesses Quickly',
@@ -242,21 +293,42 @@ const Work: React.FC = (): JSX.Element => {
         <meta name="twitter:image" content={`${process.env.VITE_TROOPHUNTER_PUBLIC_URL}/logo/logo-social.png`}></meta>
         <meta name="twitter:site" content="@TroopHunter"></meta>
       </Head>
-      {/* Main container with smooth-scrollbar */}
-      <main className="relative h-full max-h-screen min-h-screen font-medium leading-relaxed transition-colors duration-500 ease-in-out" id="smooth-scrollbar">
+      <FooterRevealPageWrap variant="frame">
         <Header />
-        <section id="hero-section">
-          <Hero />
-        </section>
-        <section id="work-section">
-          <WorkWithVideos headVideo={headVideo} />
-        </section>
-        <div className="grid">
-          <section id="footer-section">
-            <Footer />
-          </section>
-        </div>
-      </main>
+        <FooterRevealPageWrap variant="page">
+          {/* Main container with smooth-scrollbar */}
+          <main className={LayoutStyles['work-page']}>
+            <div className={LayoutStyles['work-header']}>
+              <h1 className={LayoutStyles['work-header__heading']} aria-label="World-class digital products, idea to execution.">
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  World-class{' '}
+                </span>
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  digital{' '}
+                </span>
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  products,{' '}
+                </span>
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  idea{' '}
+                </span>
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  to{' '}
+                </span>
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  execution.
+                </span>
+              </h1>
+            </div>
+            <WorkCategories />
+            <div>
+              <h2 className="hidden">Featured</h2>
+              <WorkGrid workGridCSSClass={WorkGridStyles['work-grid']} />
+            </div>
+          </main>
+        </FooterRevealPageWrap>
+        <Footer mainContent={mainContent} footerContent={footerContent} socialLinks={socialLinks} />
+      </FooterRevealPageWrap>
     </>
   );
 };

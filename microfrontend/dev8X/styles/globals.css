@@ -254,6 +254,17 @@ h6 {
   font-weight: 500;
 }
 
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px !important;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+}
+
 .aspect-x-1452 {
   --aspect-x: 1452;
 }
