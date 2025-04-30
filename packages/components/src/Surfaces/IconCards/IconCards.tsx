@@ -13,22 +13,22 @@ type StepItem = {
 type IconCardsProps = {
   title: string;
   paragraph: string;
-  stepsList: StepItem[];
+  IconCardsItems: StepItem[];
 };
 
-export const IconCards: React.FC<IconCardsProps> = ({ title, paragraph, stepsList }): JSX.Element => {
+export const IconCards: React.FC<IconCardsProps> = ({ title, paragraph, IconCardsItems }): JSX.Element => {
   return (
     <>
       <section className={styles['icon-cards']}>
         <h2 className={styles['icon-cards__heading']} aria-label="Extraordinary digital products">
           {title}
         </h2>
-        <p className={styles['icon-cards__intro']} style={{ opacity: 1, transform: 'translateY(0px);' }}>
+        <p className={styles['icon-cards__intro']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
           {paragraph}
         </p>
         <ul className={styles['icon-cards__list']}>
-          {stepsList.map((item) => (
-            <li className={styles['icon-card']} style={{ opacity: 1, transform: 'translateX(0px);' }}>
+          {IconCardsItems.map((item, index) => (
+            <li className={styles['icon-card']} style={{ opacity: 1, transform: 'translateX(0px)' }} key={index}>
               <div className={styles['icon-card__icon-wrapper']}>{item.icon}</div>
               <hr className={styles['icon-card__hr']} />
               <h3 className={styles['icon-card__heading']}>{item.title}</h3>

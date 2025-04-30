@@ -7,6 +7,7 @@ import Head from 'next/head';
 
 import { Header, FooterRevealPageWrap, FooterInternationalContents } from '@repo/components';
 import SmoothModal from '@repo/components/src/Surfaces/SmoothModal/SmoothModal';
+import { PageData } from './index.d';
 
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import TextStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
@@ -279,8 +280,8 @@ const Contact: React.FC = (): JSX.Element => {
                     <button className={ButtonStyles['button-wrapper']} onClick={handleOpenModal}>
                       <span className={`${ButtonStyles['button']} ${ButtonStyles['button--icon']} ${ButtonStyles['button--bg-secondary']} ${ContactFormModalStyles['contact-button']} ${styles['contact-button']}}`}>
                         Submit a brief
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" fill="none" stroke-width="0.5" viewBox="0 0 14 13" className={styles['button--icon']}>
-                          <path fill="currentColor" stroke="currentColor" d="M1 5.816H.75v1.326h10.014l-4.008 3.907-.173.168.162.179.563.62.174.191.186-.18 5.506-5.37.184-.178-.184-.18L7.668.932l-.186-.18-.174.191-.563.62-.162.178.173.169 4.008 3.907H1Z" vector-effect="non-scaling-stroke"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" className={styles['button--icon']}>
+                          <path fill="currentColor" stroke="currentColor" d="M1 5.816H.75v1.326h10.014l-4.008 3.907-.173.168.162.179.563.62.174.191.186-.18 5.506-5.37.184-.178-.184-.18L7.668.932l-.186-.18-.174.191-.563.62-.162.178.173.169 4.008 3.907H1Z" vectorEffect="non-scaling-stroke"></path>
                         </svg>
                       </span>
                     </button>
@@ -292,7 +293,7 @@ const Contact: React.FC = (): JSX.Element => {
               </div>
             </div>
             <footer className={styles['contact-footer']}>
-              <FooterInternationalContents />
+              <FooterInternationalContents footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
             </footer>
           </main>
         </FooterRevealPageWrap>

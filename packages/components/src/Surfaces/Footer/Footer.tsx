@@ -1,54 +1,50 @@
 import React from 'react';
-
-import styles from './index.module.css';
 import { FooterInternationalContents } from '../FooterInternationalContents/FooterInternationalContents';
 
-type mainContent = {
+import styles from './index.module.css';
+
+type FooterMainContent = {
   link: string;
   start: string;
   end: string;
 };
 
-type footerContent = {
-  logo: {
-    src: string;
-    alt?: string;
-  };
+export type FooterForm = {
   privacy: {
+    year: string;
     text: string;
-    href: string;
   };
   button?: {
     text: string;
   };
 };
 
-type socialLinks = {
+export type FooterSocialLinks = {
   title: string | React.ReactNode;
   href: string;
   icon?: React.ReactNode;
 };
 
 type FooterProps = {
-  mainContent: mainContent;
-  footerContent: footerContent;
-  socialLinks: socialLinks[];
+  footerMainContent: FooterMainContent;
+  footerForm: FooterForm;
+  footerSocialLinks: FooterSocialLinks[];
 };
 
-export const Footer: React.FC<FooterProps> = ({ mainContent, footerContent, socialLinks }): JSX.Element => {
+export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, footerSocialLinks }): JSX.Element => {
   return (
     <>
       <footer className={styles['footer']}>
         <div className={styles['sticky-inner']} style={{ transform: 'none' }}>
           <p className={styles['footer__heading']}>
-            <a className={styles['footer__heading-link']} target="_tab" href={mainContent.link}>
-              <span>{mainContent.start}</span>
+            <a className={styles['footer__heading-link']} target="_tab" href={footerMainContent.link}>
+              <span>{footerMainContent.start}</span>
               <br />
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" className={styles['arrow']} style={{ '--width': 14, '--height': 13 } as React.CSSProperties}>
                 <path fill="currentColor" stroke="currentColor" d="M1 5.816H.75v1.326h10.014l-4.008 3.907-.173.168.162.179.563.62.174.191.186-.18 5.506-5.37.184-.178-.184-.18L7.668.932l-.186-.18-.174.191-.563.62-.162.178.173.169 4.008 3.907H1Z" vectorEffect="non-scaling-stroke"></path>
               </svg>
               <span className={styles['word-ticker-wrapper']}>
-                {mainContent.end.split('client!')[0]}
+                {footerMainContent.end.split('client!')[0]}
                 <span className={styles['word-ticker']}>
                   <span style={{ opacity: 1 }}>client!</span>
                 </span>
@@ -66,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ mainContent, footerContent, soci
           <div className={styles['footer__ballpit-wrapper']}>
             <canvas className={styles['ballpit']} width="1500" height="1157" style={{ background: '0% 0% / contain transparent' }}></canvas>
           </div>
-          <FooterInternationalContents />
+          <FooterInternationalContents footerForm={footerForm} footerSocialLinks={footerSocialLinks} />
         </div>
       </footer>
     </>
