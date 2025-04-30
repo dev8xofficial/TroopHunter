@@ -10,9 +10,7 @@ import Hero from '../components/Feedback/Hero/Hero';
 import FeatureVideoResponsive from './home/FeatureVideo/FeatureVideoResponsive';
 import TestimonialsLarge from './home/Testimonials/TestimonialsLarge';
 import Problems from './home/Problems/Problems';
-import { Header, Footer, WhyDev8X, WorkWithVideos } from '@repo/components';
-import FooterRevealPageWrap from '../components/Surfaces/FooterRevealPageWrap';
-import PurpleChange from '../components/Surfaces/PurpleChange/PurpleChange';
+import { FooterRevealPageWrap, Header, PurpleChange, Footer, WhyDev8X, WorkWithVideos } from '@repo/components';
 import { WorkGrid } from '../components/Surfaces/WorkGrid/WorkGrid';
 
 import styles from './index.module.css';
@@ -310,7 +308,7 @@ export default function Home() {
           {/* Main container with smooth-scrollbar */}
           <main className={styles['homepage']}>
             <Hero />
-            <PurpleChange />
+            <PurpleChange purpleChangeCSSClass={styles['homepage__showreel']} />
             <Problems />
             {/* <Hero />
             <FeatureVideoResponsive />

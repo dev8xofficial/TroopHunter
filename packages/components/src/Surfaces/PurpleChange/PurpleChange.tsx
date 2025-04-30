@@ -1,18 +1,17 @@
-// import { Menu, Transition } from '@headlessui/react';
-// import Link from 'next/link';
-import React, { Fragment, useEffect, useState } from 'react';
-// import { Bars2Icon, Bars3Icon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/20/solid';
-// import { classNames } from '../../../utils/helpers';
+import React from 'react';
 
 import styles from './index.module.css';
-import homepageStyles from '../../../pages/index.module.css';
 
-const PurpleChange = () => {
+type PurpleChangeProps = {
+  purpleChangeCSSClass: string;
+};
+
+export const PurpleChange: React.FC<PurpleChangeProps> = ({ purpleChangeCSSClass }: PurpleChangeProps): JSX.Element => {
   return (
     <>
       <div className={styles['purple-change']}>
         <div></div>
-        <div className={`${styles['showreel-wrapper']} ${homepageStyles['homepage__showreel']}`}>
+        <div className={`${styles['showreel-wrapper']} ${purpleChangeCSSClass}`}>
           <div className={styles['showreel']}>
             <div className={styles['showreel__inner']}>
               <picture className={`${styles['picture']} ${styles['picture--responsive']} ${styles['showreel__image']}`}>
@@ -29,5 +28,3 @@ const PurpleChange = () => {
     </>
   );
 };
-
-export default PurpleChange;

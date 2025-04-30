@@ -9,8 +9,7 @@ import Head from 'next/head';
 // import FeatureVideoResponsive from './FeatureVideo/FeatureVideoResponsive';
 // import Hero from '../../components/Feedback/Hero/Hero';
 // import TestimonialsLarge from './Testimonials/TestimonialsLarge';
-import { Footer, Header } from '@repo/components';
-import FooterRevealPageWrap from '../../components/Surfaces/FooterRevealPageWrap';
+import { FooterRevealPageWrap, Footer, Header } from '@repo/components';
 import { WorkGrid } from '../../components/Surfaces/WorkGrid/WorkGrid';
 import { WorkCategories } from '../../components/Surfaces/WorkCategories/WorkCategories';
 

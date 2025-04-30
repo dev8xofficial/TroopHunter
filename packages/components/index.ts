@@ -1,5 +1,6 @@
 export * from './src/Feedback/VideoDialog';
 // export * from './src/Surfaces/Header';
+export * from './src/Surfaces/FooterRevealPageWrap/FooterRevealPageWrap';
 export * from './src/Surfaces/Header/Header';
 export * from './src/Surfaces/Hero/Hero';
 export * from './src/Surfaces/IconCards/IconCards';
@@ -10,3 +11,4 @@ export * from './src/Surfaces/FooterInternationalContents/FooterInternationalCon
 export * from './src/Surfaces/Footer/Footer';
 export * from './src/Surfaces/ModularBlocks/ModularBlocks';
 export * from './src/Surfaces/ContentAsideImage/ContentAsideImage';
+export * from './src/Surfaces/PurpleChange/PurpleChange';

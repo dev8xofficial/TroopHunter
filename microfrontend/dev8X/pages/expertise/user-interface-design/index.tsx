@@ -4,8 +4,7 @@ import React, { useEffect } from 'react';
 // import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 // import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
-import { ContentAsideImage, Footer, Header, Hero, IconCards, ModularBlocks } from '@repo/components';
-import FooterRevealPageWrap from '../../../components/Surfaces/FooterRevealPageWrap';
+import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, IconCards, ModularBlocks } from '@repo/components';
 
 import styles from './index.module.css';
 

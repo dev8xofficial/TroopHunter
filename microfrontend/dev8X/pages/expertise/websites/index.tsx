@@ -5,8 +5,7 @@ import React, { useEffect } from 'react';
 // import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
 
-import { ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards } from '@repo/components';
-import FooterRevealPageWrap from '../../../components/Surfaces/FooterRevealPageWrap';
+import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards } from '@repo/components';
 
 import styles from './index.module.css';
 
