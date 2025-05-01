@@ -11,7 +11,7 @@ export * from './src/Surfaces/FooterInternationalContents/FooterInternationalCon
 export * from './src/Surfaces/Footer/Footer';
 export * from './src/Surfaces/ModularBlocks/ModularBlocks';
 export * from './src/Surfaces/ContentAsideImage/ContentAsideImage';
-export * from './src/Surfaces/PurpleChange/PurpleChange';
+export * from './src/Surfaces/HomepageShowreel/HomepageShowreel';
 export * from './src/Surfaces/WorkCard/WorkCard';
 export * from './src/Surfaces/WorkCategories/WorkCategories';
 export * from './src/Surfaces/WorkGrid/WorkGrid';
