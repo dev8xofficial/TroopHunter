@@ -4,6 +4,8 @@ import React, { useEffect } from 'react';
 // import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 // import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
+import Lenis from 'lenis';
+
 import { AboutGallery, Footer, FooterRevealPageWrap, Header, LogoGrid } from '@repo/components';
 import Capabilities from './Capabilities/Capabilities';
 import { PageData } from './index.d';
@@ -164,6 +166,15 @@ const Contact: React.FC = (): JSX.Element => {
   //     };
   //   }
   // }, []);
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time: any) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }, []);
 
   return (
     <>
