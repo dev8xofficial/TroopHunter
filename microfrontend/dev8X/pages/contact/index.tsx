@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Head from 'next/head';
+import { useSetAtom, useAtom } from 'jotai';
+import { isSmoothModalOpenAtom, toggleSmoothModalAtom } from '../../store/smoothModalAtom';
 
 // import { gsap } from 'gsap';
 // import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 // import Scrollbar from 'smooth-scrollbar';
-import Head from 'next/head';
 
 import { Header, FooterRevealPageWrap, FooterInternationalContents } from '@repo/components';
-import SmoothModal from '@repo/components/src/Surfaces/SmoothModal/SmoothModal';
+import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import { PageData } from './index.d';
 
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
@@ -14,6 +16,7 @@ import TextStyles from '../../components/Surfaces/TextAnimateUp/index.module.css
 import ButtonStyles from '../../components/Surfaces/Button/index.module.css';
 import ContactFormModalStyles from '../../components/Surfaces/ContactFormModal/index.module.css';
 import styles from './index.module.css';
+
 // type ScrollTriggerCallback = () => void;
 
 // const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter?: ScrollTriggerCallback, onLeave?: ScrollTriggerCallback, onLeaveBack?: ScrollTriggerCallback, onEnterBack?: ScrollTriggerCallback): void => {
@@ -50,61 +53,8 @@ import styles from './index.module.css';
 // };
 
 const Contact: React.FC = (): JSX.Element => {
-  const mainContent = {
-    link: '/contact',
-    start: 'Let’s find',
-    end: 'your next client!'
-  };
-  const footerContent = {
-    logo: {
-      src: '/logo.svg',
-      alt: 'Dev8X'
-    },
-    privacy: {
-      text: 'Privacy',
-      href: '#'
-    },
-    button: {
-      text: 'Acknowledgement of Country'
-    }
-  };
-  const socialLinks = [
-    {
-      title: (
-        <>
-          <s>Twitter</s> X
-        </>
-      ),
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" fill="none" viewBox="0 0 13 14" className="var-w-13 var-h-14">
-          <path fill="currentColor" fillRule="evenodd" d="M7.121.87H5.874v4.123L2.96 2.078l-.882.882 2.92 2.919H.864v1.247h4.133l-2.919 2.919.882.882 2.913-2.913v4.122h1.247V8.004l2.923 2.923.882-.882-2.919-2.919h4.125V5.88H8.009l2.919-2.919-.882-.882-2.925 2.925V.869Z" clipRule="evenodd" />
-        </svg>
-      ),
-      href: '#'
-    },
-    {
-      title: 'Instagram',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" fill="none" viewBox="0 0 13 14" className="var-w-13 var-h-14">
-          <path fill="currentColor" fillRule="evenodd" d="M7.121.87H5.874v4.123L2.96 2.078l-.882.882 2.92 2.919H.864v1.247h4.133l-2.919 2.919.882.882 2.913-2.913v4.122h1.247V8.004l2.923 2.923.882-.882-2.919-2.919h4.125V5.88H8.009l2.919-2.919-.882-.882-2.925 2.925V.869Z" clipRule="evenodd" />
-        </svg>
-      ),
-      href: '#'
-    },
-    {
-      title: 'LinkedIn',
-      href: '#'
-    }
-  ];
-  const [showModal, setShowModal] = useState(false);
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+  const toggleModal = useSetAtom(toggleSmoothModalAtom);
+  const [show] = useAtom(isSmoothModalOpenAtom);
 
   // useEffect(() => {
   //   if (typeof window !== 'undefined') {
@@ -277,7 +227,7 @@ const Contact: React.FC = (): JSX.Element => {
                 </h1>
                 <div>
                   <div>
-                    <button className={ButtonStyles['button-wrapper']} onClick={handleOpenModal}>
+                    <button className={ButtonStyles['button-wrapper']} onClick={toggleModal}>
                       <span className={`${ButtonStyles['button']} ${ButtonStyles['button--icon']} ${ButtonStyles['button--bg-secondary']} ${ContactFormModalStyles['contact-button']} ${styles['contact-button']}}`}>
                         Submit a brief
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" className={styles['button--icon']}>
@@ -298,7 +248,7 @@ const Contact: React.FC = (): JSX.Element => {
           </main>
         </FooterRevealPageWrap>
       </FooterRevealPageWrap>
-      {showModal && <SmoothModal />}
+      {show && <SmoothModalWrapper toggle={toggleModal} />}
     </>
   );
 };
