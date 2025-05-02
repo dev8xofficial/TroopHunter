@@ -1,18 +1,15 @@
-<<<<<<< HEAD
-.button--bg-transparent {
-  --text-color: var(--theme-secondary);
-  --icon-color: var(--theme-secondary);
-  --background-color: transparent;
-}
-
 .button--bg-secondary {
   --text-color: #fff !important;
   --icon-color: #b488f1 !important;
   --background-color: #271f33 !important;
 }
 
-=======
->>>>>>> 9462275350fb529763d78a19c2c16cfdb2111e94
+.button--bg-transparent {
+  --text-color: var(--theme-secondary);
+  --icon-color: var(--theme-secondary);
+  --background-color: transparent;
+}
+
 .button-wrapper {
   display: inline-block;
   text-decoration: none;
@@ -64,34 +61,31 @@
   column-gap: 0.6666666667em;
 }
 
-.button > .contact-button {
+.button>.contact-button {
   font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
   padding: 1em 0.9em;
   gap: 0.5em;
 }
 
-.button > .ContactFormModal_contact-button {
-  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
-  padding: 1em 0.9em;
-  gap: 0.5em;
-}
 
 .button--icon svg {
   height: 0.9333333333em;
   width: auto;
-<<<<<<< HEAD
-  color: var(--icon-color, --icons-color, --theme-primary);
-  transition: color .15s;
-=======
   color: var(--icon-color, --theme-primary);
   transition: color 0.15s;
->>>>>>> 9462275350fb529763d78a19c2c16cfdb2111e94
 }
+
+.button>.ContactFormModal_contact-button {
+  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
+  padding: 1em 0.9em;
+  gap: 0.5em;
+}
+
 
 .button--bg-primary {
   --text-color: #12032a;
   --icon-color: #12032a;
-  --icons-color: #85efe3  ;
+  --icons-color: #85efe3;
   --background-color: #b488f1;
 }
 

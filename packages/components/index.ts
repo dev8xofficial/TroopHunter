@@ -25,10 +25,7 @@ export * from './src/Surfaces/ModalCloseButton/ModalCloseButton';
 export * from './src/Surfaces/SmoothModal/SmoothModal';
 export * from './src/Surfaces/AboutGallery/AboutGallery';
 export * from './src/Surfaces/LogoGrid/LogoGrid';
-<<<<<<< HEAD
-export * from './src/Surfaces/ExpertiseCard/ExpertiseCard';
-=======
 export * from './src/Surfaces/CardStack/CardStack';
 export * from './src/Surfaces/AwardsBlock/AwardsBlock';
->>>>>>> 9462275350fb529763d78a19c2c16cfdb2111e94
+export * from './src/Surfaces/ExpertiseCard/ExpertiseCard';
 
