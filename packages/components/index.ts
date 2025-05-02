@@ -11,7 +11,7 @@ export * from './src/Surfaces/FooterInternationalContents/FooterInternationalCon
 export * from './src/Surfaces/Footer/Footer';
 export * from './src/Surfaces/ModularBlocks/ModularBlocks';
 export * from './src/Surfaces/ContentAsideImage/ContentAsideImage';
-export * from './src/Surfaces/PurpleChange/PurpleChange';
+export * from './src/Surfaces/HomepageShowreel/HomepageShowreel';
 export * from './src/Surfaces/WorkCard/WorkCard';
 export * from './src/Surfaces/WorkCategories/WorkCategories';
 export * from './src/Surfaces/WorkGrid/WorkGrid';
@@ -25,5 +25,10 @@ export * from './src/Surfaces/ModalCloseButton/ModalCloseButton';
 export * from './src/Surfaces/SmoothModal/SmoothModal';
 export * from './src/Surfaces/AboutGallery/AboutGallery';
 export * from './src/Surfaces/LogoGrid/LogoGrid';
+<<<<<<< HEAD
 export * from './src/Surfaces/ExpertiseCard/ExpertiseCard';
+=======
+export * from './src/Surfaces/CardStack/CardStack';
+export * from './src/Surfaces/AwardsBlock/AwardsBlock';
+>>>>>>> 9462275350fb529763d78a19c2c16cfdb2111e94
 

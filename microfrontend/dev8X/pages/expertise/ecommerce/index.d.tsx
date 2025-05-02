@@ -30,10 +30,10 @@ export const PageData = {
       description: 'We can connect and configure your business systems and payment solutions to ensure data integrity throughout your entire infrastructure.',
       icon: (
         <svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ '--width': 24, '--height': 26 } as CSSProperties}>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1416 10.6343C16.5321 11.0248 16.5321 11.658 16.1416 12.0485L11.6492 16.5409C11.26 16.93 10.6296 16.9316 10.2385 16.5445L8.73094 15.0521C8.33844 14.6636 8.33523 14.0304 8.72376 13.6379C9.1123 13.2454 9.74546 13.2422 10.138 13.6307L10.9385 14.4231L14.7273 10.6343C15.1179 10.2438 15.751 10.2438 16.1416 10.6343Z" fill="var(--theme-primary)"></path>{' '}
+          <path fill-rule="evenodd" clipRule="evenodd" d="M16.1416 10.6343C16.5321 11.0248 16.5321 11.658 16.1416 12.0485L11.6492 16.5409C11.26 16.93 10.6296 16.9316 10.2385 16.5445L8.73094 15.0521C8.33844 14.6636 8.33523 14.0304 8.72376 13.6379C9.1123 13.2454 9.74546 13.2422 10.138 13.6307L10.9385 14.4231L14.7273 10.6343C15.1179 10.2438 15.751 10.2438 16.1416 10.6343Z" fill="var(--theme-primary)"></path>{' '}
           <path
             fill-rule="evenodd"
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M10.3098 0.594436C11.1516 -0.19932 12.4609 -0.198144 13.3012 0.597966C13.3298 0.625079 13.3566 0.653609 13.3814 0.68337C14.9696 2.15065 18.4337 5.09121 22.2183 6.70201M11.8829 2.01935C11.8176 1.98574 11.7385 1.99591 11.6816 2.04987L11.6752 2.05594L11.6752 2.05591C10.0958 3.52596 6.35655 6.75643 2.14732 8.54267C2.05869 8.58034 1.99572 8.66946 1.99916 8.78397C2.1078 10.5948 2.55027 14.5342 4.33498 17.162L4.33703 17.165C6.47174 20.333 10.2065 22.9633 11.7165 23.97C11.7532 23.9944 11.7827 24 11.8037 24C11.8247 24 11.8542 23.9944 11.8908 23.97L11.9031 23.9619C13.4109 22.9884 17.0763 20.4043 19.1869 17.284C20.9904 14.6116 21.4655 10.5861 21.5851 8.76838L21.5853 8.76601C21.5909 8.6836 21.543 8.58815 21.436 8.54267L21.4355 8.54248C17.2386 6.75629 13.4995 3.52587 11.9202 2.05591C11.9074 2.044 11.8949 2.03181 11.8829 2.01935ZM10.3098 0.594436C8.76866 2.02862 5.23984 5.05781 1.36556 6.70179L1.36504 6.70201C0.495108 7.07173 -0.0412858 7.94046 0.00139524 8.87944L0.00129582 8.87944L0.0021353 8.89353C0.110388 10.7098 0.557131 15.1579 2.67939 18.284C5.05567 21.8097 9.09411 24.6254 10.6071 25.6341C11.3366 26.1204 12.2626 26.122 12.9934 25.6387C14.5365 24.6418 18.4944 21.8778 20.8439 18.404L20.8445 18.4032C22.9754 15.2458 23.4602 10.7309 23.5807 8.90087C23.6465 7.92821 23.0709 7.0646 22.2187 6.70221"
             fill="var(--theme-secondary"
           ></path>
@@ -109,6 +109,35 @@ export const PageData = {
     {
       title: 'LinkedIn',
       href: 'https://www.linkedin.com/company/dev8x/posts/'
+    }
+  ],
+  testimonials: [
+    {
+      name: 'Henry Luong',
+      company: 'Unios',
+      bgColor: '#ffffff',
+      color: '#111111',
+      transformOrigin: 'center top',
+      image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+      comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+    },
+    {
+      name: 'Paula McCarville',
+      company: 'Curtin University',
+      bgColor: '#4C21E2',
+      color: '#F0EBFF',
+      transformOrigin: 'center top',
+      image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+      comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
+    },
+    {
+      name: 'Steph Jojart',
+      company: 'Schrole',
+      bgColor: '#1665A3',
+      color: '#E8F5FF',
+      transformOrigin: 'top center',
+      image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+      comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
     }
   ]
 };

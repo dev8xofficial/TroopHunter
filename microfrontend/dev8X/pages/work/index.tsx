@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 // import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 // import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
+import Lenis from 'lenis';
 
 // import About from './About/About';
 // import FeatureVideoResponsive from './FeatureVideo/FeatureVideoResponsive';
@@ -219,6 +220,15 @@ const Work: React.FC = (): JSX.Element => {
   //     };
   //   }
   // }, []);
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time: any) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }, []);
 
   return (
     <>

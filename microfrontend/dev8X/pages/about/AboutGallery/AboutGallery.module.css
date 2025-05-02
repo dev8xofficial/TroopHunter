@@ -1,0 +1,42 @@
+.gallery-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: nowrap;
+  user-select: none;
+  will-change: transform;
+}
+
+.gallery__item {
+  flex: 0 0 auto;
+  margin-right: 16px;
+  transition: transform 0.3s ease;
+}
+
+.gallery__shrink-drag {
+  transition: transform 0.2s ease;
+}
+
+.gallery__shrink-drag--dragging {
+  transform: scale(0.98);
+}
+
+.gallery__image {
+  border-radius: 16px;
+  object-fit: cover;
+  width: auto;
+}
+
+.gallery__image--short {
+  height: 347px;
+}
+
+.gallery__image--tall {
+  height: 495px;
+}

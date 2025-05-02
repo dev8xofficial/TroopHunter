@@ -34,7 +34,7 @@ type FooterProps = {
 export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, footerSocialLinks }): JSX.Element => {
   return (
     <>
-      <footer className={styles['footer']}>
+      <footer className={styles['footer']} id="footer-animation">
         <div className={styles['sticky-inner']} style={{ transform: 'none' }}>
           <p className={styles['footer__heading']}>
             <a className={styles['footer__heading-link']} target="_tab" href={footerMainContent.link}>
