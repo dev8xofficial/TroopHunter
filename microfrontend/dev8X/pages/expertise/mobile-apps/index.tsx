@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 // import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
 
-import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, IconCards, ModularBlocks } from '@repo/components';
+import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, IconCards, ModularBlocks, Button, ExpertiseCard } from '@repo/components';
 import { PageData } from './index.d';
 
 import styles from './index.module.css';
@@ -198,6 +198,17 @@ const Contact: React.FC = (): JSX.Element => {
                 <IconCards title="Built to touch" paragraph="Bespoke iOS and Android App Development – delivered entirely in-house." IconCardsItems={PageData.IconCardsItems} />
                 <ContentAsideImage ContentAsideImageItems={PageData.ContentAsideImageItems} />
               </ModularBlocks>
+              <div className={styles['expertise-container']}>
+                <footer className={styles['expertise-cta']}>
+                  <h2 className={styles['expertise-cta__content']}>
+                    <span>Extraordinary Digital Experiences</span>
+                  </h2>
+                  <div>
+                    <Button>Submit a brief</Button>
+                  </div>
+                </footer>
+                <ExpertiseCard />
+              </div>
             </div>
           </main>
         </FooterRevealPageWrap>

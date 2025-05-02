@@ -91,6 +91,13 @@
   padding: 1.1em;
 }
 
+.large-button {
+  scale: 1.5 !important;
+  padding: 18px 24px !important;
+  margin-block: 20px;
+  margin-inline: 2.375rem;
+}
+
 /***************************************************** Responsive Styles *****************************************************/
 /*****************************************************************************************************************************/
 
@@ -109,10 +116,12 @@
     margin-bottom: clamp(5.625rem, 5.9523809524vw, 7.48125rem);
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-}
 
-@media (min-width: 992px) {
   .modal-heading {
     font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
+  }
+
+  .large-button {
+    padding: 24px 28px !important;
   }
 }

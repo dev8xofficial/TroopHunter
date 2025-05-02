@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 // import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 // import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
-import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, IconCards, ModularBlocks } from '@repo/components';
+import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, IconCards, ModularBlocks, Button, ExpertiseCard } from '@repo/components';
 import { PageData } from './index.d';
 
 import styles from './index.module.css';
@@ -197,6 +197,17 @@ const Contact: React.FC = (): JSX.Element => {
                 <IconCards title="High impact for NFPs and charities" paragraph="Our in-depth experience with NFPs across health, charity and government ensures our digital products deliver for our clients and help those most in need." IconCardsItems={PageData.IconCardsItems} />
                 <ContentAsideImage ContentAsideImageItems={PageData.ContentAsideImageItems} />
               </ModularBlocks>
+              <div className={styles['expertise-container']}>
+                <footer className={styles['expertise-cta']}>
+                  <h2 className={styles['expertise-cta__content']}>
+                    <span>Extraordinary Digital Experiences</span>
+                  </h2>
+                  <div>
+                    <Button>Submit a brief</Button>
+                  </div>
+                </footer>
+                <ExpertiseCard />
+              </div>
             </div>
           </main>
         </FooterRevealPageWrap>

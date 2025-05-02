@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 // import Scrollbar from 'smooth-scrollbar';
 import Head from 'next/head';
 
-import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards } from '@repo/components';
+import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards, Button, ExpertiseCard } from '@repo/components';
 import { PageData } from './index.d';
 
 import styles from './index.module.css';
@@ -192,12 +192,23 @@ const Websites: React.FC = (): JSX.Element => {
         <FooterRevealPageWrap variant="page">
           {/* Main container with smooth-scrollbar */}
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero tagText="Websites" heading="World-class websites for forward-thinking brands" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero tagText="Websites" heading="World-className websites for forward-thinking brands" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
             <div>
               <ModularBlocks>
                 <IconCards title="Extraordinary digital products" paragraph="We play to our strengths: For over 14 years we've been ideating, creating and shipping wonderful things on the internet." IconCardsItems={PageData.IconCardsItems} />
                 <ContentAsideImage ContentAsideImageItems={PageData.ContentAsideImageItems} />
               </ModularBlocks>
+              <div className={styles['expertise-container']}>
+                <footer className={styles['expertise-cta']}>
+                  <h2 className={styles['expertise-cta__content']}>
+                    <span>Extraordinary Digital Experiences</span>
+                  </h2>
+                  <div>
+                    <Button>Submit a brief</Button>
+                  </div>
+                </footer>
+                <ExpertiseCard />
+              </div>
             </div>
           </main>
         </FooterRevealPageWrap>
