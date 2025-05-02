@@ -6,13 +6,14 @@ import styles from './index.module.css';
 
 type ButtonProps = {
   children: ReactNode;
+  bgClass?: string;
 };
 
-export const Button: React.FC<ButtonProps> = ({ children }): JSX.Element => {
+export const Button: React.FC<ButtonProps> = ({ children, bgClass }): JSX.Element => {
   return (
     <>
       <button className={`${styles['button-wrapper']} col-full`} data-faitracker-form-bind="true">
-        <span className={`${styles['button']} ${styles['button--bg-primary']} ${ContactFormModalStyles['contact-submit']}`} style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0px);' }}>
+        <span className={`${styles['button']} ${bgClass ? bgClass : styles['button--bg-primary']} ${ContactFormModalStyles['contact-submit']}`} style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0px);' }}>
           {children}
         </span>
       </button>

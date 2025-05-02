@@ -1,167 +1,13 @@
-import React, { useEffect } from 'react';
-
-// import { gsap } from 'gsap';
-// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-// import Scrollbar from 'smooth-scrollbar';
+import React from 'react';
 import Head from 'next/head';
-import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, IconCards, ModularBlocks } from '@repo/components';
+
+import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards, CardStack, AwardsBlock } from '@repo/components';
 import { PageData } from './index.d';
 
+import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from './index.module.css';
 
-// type ScrollTriggerCallback = () => void;
-
-// const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter?: ScrollTriggerCallback, onLeave?: ScrollTriggerCallback, onLeaveBack?: ScrollTriggerCallback, onEnterBack?: ScrollTriggerCallback): void => {
-//   ScrollTrigger.create({
-//     trigger: sectionId,
-//     scroller: '#smooth-scrollbar',
-//     start: startTrigger,
-//     end: endTrigger,
-//     onEnter:
-//       onEnter != null
-//         ? () => {
-//             onEnter();
-//           }
-//         : undefined,
-//     onLeave:
-//       onLeave != null
-//         ? () => {
-//             onLeave();
-//           }
-//         : undefined,
-//     onLeaveBack:
-//       onLeaveBack != null
-//         ? () => {
-//             onLeaveBack();
-//           }
-//         : undefined,
-//     onEnterBack:
-//       onEnterBack != null
-//         ? () => {
-//             onEnterBack();
-//           }
-//         : undefined
-//   });
-// };
-
 const Contact: React.FC = (): JSX.Element => {
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     gsap.registerPlugin(ScrollTrigger);
-
-  //     const scrollbar = Scrollbar.init(document.querySelector('#smooth-scrollbar') as HTMLElement, {
-  //       damping: 0.05
-  //     });
-
-  //     ScrollTrigger.scrollerProxy('#smooth-scrollbar', {
-  //       scrollTop(value) {
-  //         if (arguments.length) {
-  //           scrollbar.scrollTop = value;
-  //         }
-  //         return scrollbar.scrollTop;
-  //       },
-  //       getBoundingClientRect() {
-  //         return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-  //       }
-  //     });
-
-  //     scrollbar.addListener(ScrollTrigger.update);
-
-  //     const sections = document.querySelectorAll('section');
-  //     sections.forEach((section) => {
-  //       gsap.fromTo(
-  //         section,
-  //         { y: 50 },
-  //         {
-  //           y: 0,
-  //           scrollTrigger: {
-  //             trigger: section,
-  //             scroller: '#smooth-scrollbar',
-  //             start: 'top 80%',
-  //             end: 'bottom 20%',
-  //             scrub: 2
-  //           },
-  //           ease: 'power2.in',
-  //           duration: 2
-  //         }
-  //       );
-  //     });
-
-  //     const mainTag = document.querySelector('main') as HTMLElement;
-
-  //     // Code for FeatureVideo
-  //     // const triggerElment = document.getElementById('hero-section');
-  //     // const featureVideoWrapperElement = document.getElementById('feature-video-wrapper');
-  //     // let featureVideoElement = document.getElementById('feature-video');
-
-  //     // scrollbar.addListener(function (status) {
-  //     //   var offset = status.offset;
-
-  //     //   console.log('offset.y: ', offset.y);
-  //     //   featureVideoElement.style.top = `calc(${offset.y + 'px' + ' - 5vh'})`;
-  //     // });
-
-  //     // ScrollTrigger.create({
-  //     //   trigger: featureVideoElement,
-  //     //   scroller: '#smooth-scrollbar',
-  //     //   start: 'top 50%',
-  //     //   end: 'bottom bottom',
-  //     //   scrub: true, // Enable smooth scrubbing (this will automatically reverse the animation on scroll up)
-  //     //   onUpdate: (self) => {
-  //     //     featureVideoElement.style.setProperty('--progress', self.progress.toString());
-  //     //   }
-  //     // });
-
-  //     createBackgroundScrollTrigger(
-  //       '#footer-section',
-  //       'top 10%',
-  //       'top 10%',
-  //       () => {
-  //         if (mainTag != null) {
-  //           mainTag.style.backgroundColor = '#dcf5f2';
-  //         }
-  //       },
-  //       () => {
-  //         if (mainTag != null) {
-  //           mainTag.style.backgroundColor = '#dcf5f2';
-  //         }
-  //       },
-  //       () => {
-  //         if (mainTag != null) {
-  //           mainTag.style.backgroundColor = '';
-  //         }
-  //       },
-  //       () => {
-  //         if (mainTag != null) {
-  //           mainTag.style.backgroundColor = '#dcf5f2';
-  //         }
-  //       }
-  //     );
-
-  //     createBackgroundScrollTrigger(
-  //       '#footer-section',
-  //       'top top',
-  //       'bottom top',
-  //       () => {
-  //         if (mainTag != null) {
-  //           mainTag.style.backgroundColor = '';
-  //         }
-  //       },
-  //       () => {},
-  //       () => {
-  //         if (mainTag != null) {
-  //           mainTag.style.backgroundColor = '#f3f3e9';
-  //         }
-  //       }
-  //     );
-
-  //     return () => {
-  //       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-  //       scrollbar.destroy();
-  //     };
-  //   }
-  // }, []);
-
   return (
     <>
       <Head>
@@ -197,6 +43,31 @@ const Contact: React.FC = (): JSX.Element => {
                 <IconCards title="High performing apps and websites" paragraph="Partner with our expert team of React developers to bring your project to life. We’ve built websites, apps, and more for clients across a range of industries." IconCardsItems={PageData.IconCardsItems} />
                 <ContentAsideImage ContentAsideImageItems={PageData.ContentAsideImageItems} />
               </ModularBlocks>
+              <AwardsBlock />
+              <div className={styles['expertise-container']}>
+                <h2 className="hidden">Testimonials:</h2>
+                <CardStack variant="Stack">
+                  {PageData.testimonials.map((item, index) => (
+                    <CardStack variant="Card" index={index}>
+                      <figure className={styles['testimonial-card']} style={{ backgroundColor: `${item.bgColor}`, color: `${item.color}` }}>
+                        <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['testimonial-card__image']}`}>
+                          <source srcSet={`${item.image}/m/390x360/filters:quality(80) 1x, ${item.image}/m/780x720/filters:quality(80) 2x`} media="(min-width: 0px) and (max-width: 479px)" />
+                          <source srcSet={`${item.image}/m/872x806/filters:quality(80) 1x, ${item.image}/m/1744x1612/filters:quality(80) 2x`} media="(min-width: 480px) and (max-width: 991px)" />
+                          <source srcSet={`${item.image}/m/667x609/filters:quality(80) 1x, ${item.image}/m/1334x1218/filters:quality(80) 2x`} media="(min-width: 992px)" />
+                          <img src={`${item.image}/m/390x360/filters:quality(80)`} loading="lazy" width="390" height="360" alt="" className="" draggable="false" />
+                        </picture>
+                        <blockquote className={styles['testimonial-card__quote']}>{`“${item.comment}”`}</blockquote>
+                        <figcaption className={styles['testimonial-card__author']}>
+                          <dl className={styles['testimonial-card__author-details']}>
+                            <dt className={styles['testimonial-card__author-name']}>{item.name}</dt>
+                            <dd className={styles['testimonial-card__author-title']}>{item.company}</dd>
+                          </dl>
+                        </figcaption>
+                      </figure>
+                    </CardStack>
+                  ))}
+                </CardStack>
+              </div>
             </div>
           </main>
         </FooterRevealPageWrap>

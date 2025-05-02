@@ -1,0 +1,23 @@
+.card-stack {
+  display: grid;
+}
+
+.card-twin[data-index='0'],
+.card[data-index='0'] {
+  grid-row: 1;
+}
+
+.card-twin[data-index='1'],
+.card[data-index='1'] {
+  grid-row: 2;
+}
+
+.card-twin[data-index='2'],
+.card[data-index='2'] {
+  grid-row: 3;
+}
+
+.card-twin,
+.card {
+  grid-column: 1;
+}

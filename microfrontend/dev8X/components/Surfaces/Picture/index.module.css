@@ -8,7 +8,12 @@
   object-fit: cover;
 }
 
+.picture--responsive img {
+  width: 100%;
+  height: auto;
+}
+
 .gallery__image img {
-  border: .5px solid transparent;
+  border: 0.5px solid transparent;
   border-radius: inherit;
 }

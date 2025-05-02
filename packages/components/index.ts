@@ -25,4 +25,6 @@ export * from './src/Surfaces/ModalCloseButton/ModalCloseButton';
 export * from './src/Surfaces/SmoothModal/SmoothModal';
 export * from './src/Surfaces/AboutGallery/AboutGallery';
 export * from './src/Surfaces/LogoGrid/LogoGrid';
+export * from './src/Surfaces/CardStack/CardStack';
+export * from './src/Surfaces/AwardsBlock/AwardsBlock';
 
