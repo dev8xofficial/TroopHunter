@@ -1,0 +1,78 @@
+.homepage-bottom {
+    max-width: calc(clamp(89.5rem, 94.708994709vw, 119.035rem) + clamp(2.5rem, 2.6455026455vw, 3.325rem) * 2);
+    padding-left: clamp(2.5rem, 2.6455026455vw, 3.325rem);
+    padding-right: clamp(2.5rem, 2.6455026455vw, 3.325rem);
+    width: 100%;
+    display: grid;
+    margin: clamp(5rem, 5.291005291vw, 6.65rem) auto;
+    grid-template-areas:
+        "heading"
+        "content"
+        "image"
+        "stats";
+}
+
+.homepage-bottom__heading {
+    grid-area: heading;
+    color: var(--theme-secondary);
+    max-width: 7.5em;
+    margin: 0 0 .75em;
+    font-size: clamp(2.5rem, 8.3333333333vw, 3.325rem);
+}
+
+.homepage-bottom__content {
+    grid-area: content;
+}
+
+.homepage-botto0m .homepage-bottom__wysiwyg {
+    color: var(--theme-secondary);
+    font-size: clamp(1rem, 1.6129032258vw, 1.33rem);
+}
+
+.homepage-bottom__image-wrapper {
+    grid-area: image;
+}
+
+.homepage-bottom__image {
+    border-radius: 30px;
+    overflow: hidden;
+    margin-top: clamp(3.75rem, 12.5vw, 4.9875rem);
+}
+
+.homepage-bottom__stats {
+    grid-area: stats;
+    display: grid;
+    margin-top: clamp(3.125rem, 3.3068783069vw, 4.15625rem);
+    align-self: flex-end;
+}
+
+/***************************************************** Responsive Styles *****************************************************/
+/*****************************************************************************************************************************/
+@media (min-width: 992px) {
+    .homepage-bottom {
+        grid-template-areas:
+            "heading heading"
+            "content image"
+            "stats image";
+        grid-template-columns: 2fr 3fr;
+        grid-template-rows: auto auto 1fr;
+        margin-top: clamp(8.125rem, 8.5978835979vw, 10.80625rem);
+        margin-bottom: clamp(8.125rem, 8.5978835979vw, 10.80625rem);
+        gap: clamp(3.125rem, 3.3068783069vw, 4.15625rem);
+    }
+
+    .homepage-bottom__heading {
+        font-size: clamp(8.125rem, 8.5978835979vw, 10.80625rem);
+        line-height: .75;
+    }
+
+    .homepage-bottom__image {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .homepage-bottom .homepage-bottom__wysiwyg {
+        font-size: clamp(1.25rem, 1.3227513228vw, 1.6625rem);
+    }
+}

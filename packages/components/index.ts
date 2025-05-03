@@ -6,7 +6,7 @@ export * from './src/Surfaces/Hero/Hero';
 export * from './src/Surfaces/IconCards/IconCards';
 export * from './src/Surfaces/Steps';
 export * from './src/Surfaces/WorkWithVideos';
-export * from './src/Surfaces/WhyDev8X';
+export * from './src/Surfaces/WhyDev8X/WhyDev8X';
 export * from './src/Surfaces/FooterInternationalContents/FooterInternationalContents';
 export * from './src/Surfaces/Footer/Footer';
 export * from './src/Surfaces/ModularBlocks/ModularBlocks';

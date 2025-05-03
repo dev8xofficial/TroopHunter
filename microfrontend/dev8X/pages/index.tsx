@@ -16,12 +16,7 @@ export default function Home() {
     heading: 'Why Dev8X',
     para1: 'Dev8X is your trusted IT partner, here to help your business succeed in the digital world. We create custom solutions for websites, backend systems, and mobile apps that make your work easier, improve customer experiences, and help you reach your goals.',
     para2: 'By working with Dev8X, you gain access to smart solutions that make a real difference. We help you save time with automation, grow faster with reliable systems, and stay ahead of your competition. Whatever challenges you face, we’re here to help you succeed today and in the future.',
-    image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)',
-    whyinfo: [
-      { title: '100+', paragraph: 'In-house & independent' },
-      { title: '5', paragraph: 'Years revolutionizing lead generation' },
-      { title: '50+', paragraph: 'Success stories and counting' }
-    ]
+    image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)'
   };
 
   useEffect(() => {

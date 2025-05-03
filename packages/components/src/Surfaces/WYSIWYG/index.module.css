@@ -8,3 +8,15 @@
   clear: both;
   display: table;
 }
+
+.wysiwyg p {
+  margin-bottom: 1em;
+}
+
+.wysiwyg>:first-child {
+  margin-top: 0;
+}
+
+.wysiwyg>:last-child {
+  margin-bottom: 0;
+}
