@@ -5,12 +5,13 @@ import styles from './index.module.css';
 
 type PillProps = {
   children: ReactNode;
+  variant?: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
 };
 
-export const Pill: React.FC<PillProps> = ({ children }): JSX.Element => {
+export const Pill: React.FC<PillProps> = ({ children, variant }): JSX.Element => {
   return (
     <>
-      <h1 className={`${styles['pill']} ${styles['pill--cyan']}`}>{children}</h1>
+      <h1 className={`${styles['pill']} ${styles[`pill--${variant}`]}`}>{children}</h1>
     </>
   );
 };

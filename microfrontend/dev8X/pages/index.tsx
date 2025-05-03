@@ -111,6 +111,17 @@ export default function Home() {
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
+        <style jsx global>{`
+          :root {
+            --theme-primary: var(--default-primary);
+            --theme-primary-text: var(--default-primary-text);
+            --theme-secondary: var(--default-secondary);
+            --theme-text: var(--default-text);
+            --theme-background: var(--default-tertiary);
+            --theme-logo: var(--default-secondary);
+            --theme-header-face: var(--default-primary);
+          }
+        `}</style>
         <Header />
         <FooterRevealPageWrap variant="page">
           {/* Main container with smooth-scrollbar */}

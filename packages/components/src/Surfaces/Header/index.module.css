@@ -106,7 +106,6 @@
 }
 
 .menu__link--active {
-  --theme-primary: #90f188;
   color: var(--theme-primary);
 }
 

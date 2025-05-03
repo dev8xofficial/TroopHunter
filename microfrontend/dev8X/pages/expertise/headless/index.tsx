@@ -34,10 +34,21 @@ const Websites: React.FC = (): JSX.Element => {
       </Head>
 
       <FooterRevealPageWrap variant="frame">
+        <style jsx global>{`
+          :root {
+            --theme-primary: var(--purple-primary);
+            --theme-primary-text: var(--purple-primary-text);
+            --theme-secondary: var(--purple-secondary);
+            --theme-text: var(--purple-text);
+            --theme-background: var(--purple-tertiary);
+            --theme-logo: var(--purple-secondary);
+            --theme-header-face: var(--purple-primary);
+          }
+        `}</style>
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero tagText="Websites" heading="World-class websites for forward-thinking brands" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="purple" tagText="Websites" heading="World-class websites for forward-thinking brands" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
 
             <ModularBlocks>
               <IconCards title="Extraordinary digital products" paragraph="We play to our strengths: For over 14 years we've been ideating, creating and shipping wonderful things on the internet." IconCardsItems={PageData.IconCardsItems} />

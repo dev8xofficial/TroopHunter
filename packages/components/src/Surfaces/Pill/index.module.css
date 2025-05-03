@@ -12,3 +12,28 @@
   background: var(--cyan-primary);
   color: var(--cyan-secondary);
 }
+
+.pill--pink {
+  background: var(--pink-primary);
+  color: var(--pink-secondary);
+}
+
+.pill--blue {
+  background: var(--blue-primary);
+  color: var(--blue-secondary);
+}
+
+.pill--green {
+  background: var(--green-primary);
+  color: var(--green-secondary);
+}
+
+.pill--purple {
+  background: var(--purple-primary);
+  color: var(--purple-secondary);
+}
+
+.pill--yellow {
+  background: var(--yellow-primary);
+  color: var(--yellow-secondary);
+}

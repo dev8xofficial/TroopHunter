@@ -9,9 +9,10 @@ type HeroProps = {
   tagText: string;
   heading: string;
   image: string;
+  variant?: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
 };
 
-export const Hero: React.FC<HeroProps> = ({ tagText, heading, image }): JSX.Element => {
+export const Hero: React.FC<HeroProps> = ({ tagText, heading, image, variant }): JSX.Element => {
   return (
     <>
       <div>
@@ -19,7 +20,7 @@ export const Hero: React.FC<HeroProps> = ({ tagText, heading, image }): JSX.Elem
           <div className={styles['expertise-hero-container']} data-new-theme="false">
             <div className={styles['expertise-heading-container']} data-new-theme="false">
               <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
-                <Pill>{tagText}</Pill>
+                <Pill variant={variant}>{tagText}</Pill>
                 <h2 className={styles['expertise-heading']}>{heading}</h2>
               </div>
             </div>

@@ -99,7 +99,7 @@ html.lenis body {
 }
 
 :root {
-  --default-primary: #4e46e5; /*  Changed from #90f188 */
+  --default-primary: #90f188; /*  Changed from #90f188 */
   --default-primary-text: #23bb16;
   --default-secondary: #0f1d07;
   --default-text: rgba(15, 29, 7, 0.7);
@@ -109,7 +109,7 @@ html.lenis body {
   --green-secondary: #0f1d07;
   --green-text: rgba(15, 29, 7, 0.7);
   --green-tertiary: #e9ffe8;
-  --purple-primary: #a5b3fc; /*  Changed from #b488f1 */
+  --purple-primary: #b488f1; /*  Changed from #b488f1 */
   --purple-primary-text: #5b16bb;
   --purple-secondary: #12032a;
   --purple-text: rgba(18, 3, 42, 0.7);
@@ -155,16 +155,6 @@ html.lenis body {
   :root {
     --container-gutter: clamp(2.5rem, 2.6455026455vw, 3.325rem);
   }
-}
-
-:root {
-  --theme-primary: var(--default-primary);
-  --theme-primary-text: var(--default-primary-text);
-  --theme-secondary: var(--default-secondary);
-  --theme-text: var(--default-text);
-  --theme-background: var(--default-tertiary);
-  --theme-logo: var(--default-secondary);
-  --theme-header-face: var(--default-primary);
 }
 
 .var-container-gutter-0px {

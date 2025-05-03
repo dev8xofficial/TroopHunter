@@ -203,6 +203,17 @@ const Contact: React.FC = (): JSX.Element => {
       <FooterRevealPageWrap variant="frame">
         <Header />
         <FooterRevealPageWrap variant="page">
+          <style jsx global>{`
+            :root {
+              --theme-primary: var(--blue-primary);
+              --theme-primary-text: var(--blue-primary-text);
+              --theme-secondary: var(--blue-secondary);
+              --theme-text: var(--blue-text);
+              --theme-background: #d8e7ee;
+              --theme-logo: var(--blue-secondary);
+              --theme-header-face: var(--blue-primary);
+            }
+          `}</style>
           {/* Main container with smooth-scrollbar */}
           <main className={styles['about']}>
             <div className={AboutHeroStyles['about-hero']} style={{ '--scrollY': '0' } as React.CSSProperties}>

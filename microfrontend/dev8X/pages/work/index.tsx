@@ -257,6 +257,17 @@ const Work: React.FC = (): JSX.Element => {
       <FooterRevealPageWrap variant="frame">
         <Header />
         <FooterRevealPageWrap variant="page">
+          <style jsx global>{`
+            :root {
+              --theme-primary: var(--default-primary);
+              --theme-primary-text: var(--default-primary-text);
+              --theme-secondary: var(--default-secondary);
+              --theme-text: var(--default-text);
+              --theme-background: var(--default-tertiary);
+              --theme-logo: var(--default-secondary);
+              --theme-header-face: var(--default-primary);
+            }
+          `}</style>
           {/* Main container with smooth-scrollbar */}
           <main className={LayoutStyles['work-page']}>
             <div className={LayoutStyles['work-header']}>

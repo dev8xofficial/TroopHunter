@@ -200,6 +200,17 @@ const Contact: React.FC = (): JSX.Element => {
       <FooterRevealPageWrap variant="frame">
         <Header />
         <FooterRevealPageWrap variant="page">
+          <style jsx global>{`
+            :root {
+              --theme-primary: var(--purple-primary);
+              --theme-primary-text: var(--purple-primary-text);
+              --theme-secondary: var(--purple-secondary);
+              --theme-text: var(--purple-text);
+              --theme-background: #b8afc6;
+              --theme-logo: #ffffff;
+              --theme-header-face: #ffd9b6;
+            }
+          `}</style>
           {/* Main container with smooth-scrollbar */}
           <main className={styles['contact-page']}>
             <div className={styles['contact-bg-desktop']}>
