@@ -26,7 +26,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({ variant, space, bgColor, nam
       <div className={styles['work-card-wrapper']} style={getWorkCardWrapperStyle() as React.CSSProperties}>
         <a className={`${styles['work-card']} ${variant === 'landscape' ? styles['work-card--landscape'] : styles['work-card--portrait']}`} href="/work/sussex-taps">
           <div className={styles['work-card__thumbnail-wrapper']}>
-            <div className={`${styles['work-card__thumbnail-outer']} ${space === 'inner' ? `bg-[${bgColor}]` : ''}`} style={{ height: '100%' }}>
+            <div className={`${styles['work-card__thumbnail-outer']} ${space === 'inner' ? `${styles[`bg--${bgColor}`]}` : ''}`} style={{ height: '100%' }}>
               {space === 'outer' && (
                 <picture className={`${PictureStyles['picture']} ${styles['work-card__picture']}`} style={{ height: '100%' }}>
                   <source srcSet={`${image} 1x, ${image} 2x`} media="(min-width: 0px) and (max-width: 479px)" />

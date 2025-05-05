@@ -55,16 +55,16 @@ export const WorkGrid: React.FC<WorkGridProps> = ({ workGridCSSClass }: WorkGrid
     <>
       <div className={`${styles['work-grid']} ${workGridCSSClass}`}>
         <WorkGridRowLandscape>
-          <WorkCard variant="landscape" space="inner" bgColor="#dcf5f2" name={portfolio['thdc'].name} image={portfolio['thdc'].image} video={portfolio['thdc'].video} />
+          <WorkCard variant="landscape" space="inner" bgColor="cyan" name={portfolio['thdc'].name} image={portfolio['thdc'].image} video={portfolio['thdc'].video} />
         </WorkGridRowLandscape>
         <WorkGridRowLandscape>
-          <WorkCard variant="landscape" space="inner" bgColor="#efe3ff" name={portfolio['honeydu'].name} image={portfolio['honeydu'].image} video={portfolio['honeydu'].video} />
+          <WorkCard variant="landscape" space="inner" bgColor="green" name={portfolio['honeydu'].name} image={portfolio['honeydu'].image} video={portfolio['honeydu'].video} />
         </WorkGridRowLandscape>
         <WorkGridRowLandscape>
-          <WorkCard variant="landscape" space="inner" bgColor="#d8e7ee" name={portfolio['coral'].name} image={portfolio['coral'].image} video={portfolio['coral'].video} />
+          <WorkCard variant="landscape" space="inner" bgColor="blue" name={portfolio['coral'].name} image={portfolio['coral'].image} video={portfolio['coral'].video} />
         </WorkGridRowLandscape>
         <WorkGridRowLandscape>
-          <WorkCard variant="landscape" space="inner" bgColor="#dcf5f2" name={portfolio['goldenDao'].name} image={portfolio['goldenDao'].image} video={portfolio['goldenDao'].video} />
+          <WorkCard variant="landscape" space="inner" bgColor="yellow" name={portfolio['goldenDao'].name} image={portfolio['goldenDao'].image} video={portfolio['goldenDao'].video} />
         </WorkGridRowLandscape>
         {/* <WorkGridRowPortrait>
           <WorkCard variant="portrait" space="inner" name={portfolio['thdc'].name} image={portfolio['thdc'].image} video={portfolio['thdc'].video} />

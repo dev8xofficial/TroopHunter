@@ -4,8 +4,11 @@ import { Provider } from 'jotai';
 import { Analytics } from '@vercel/analytics/react';
 
 import '../styles/globals.css';
+import { usePageAnimations } from '../hooks/usePageAnimations';
 
 export default function App({ Component, pageProps }) {
+  usePageAnimations();
+
   return (
     <>
       <ReactLenis

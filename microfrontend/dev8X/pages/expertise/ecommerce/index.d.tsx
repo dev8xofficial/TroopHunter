@@ -71,8 +71,8 @@ export const PageData = {
   ],
   footerMainContent: {
     link: '/contact',
-    start: 'Let’s find',
-    end: 'your next client!'
+    start: 'Let’s make',
+    end: 'something wonderful'
   },
   footerForm: {
     privacy: {

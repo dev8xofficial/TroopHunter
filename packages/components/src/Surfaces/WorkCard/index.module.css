@@ -84,6 +84,30 @@
   font-size: clamp(1rem, 2.0833333333vw, 1.33rem);
 }
 
+.bg--cyan {
+  background: var(--cyan-tertiary);
+}
+
+.bg--pink {
+  background: var(--pink-tertiary);
+}
+
+.bg--blue {
+  background: var(--blue-tertiary);
+}
+
+.bg--green {
+  background: var(--green-tertiary);
+}
+
+.bg--purple {
+  background: var(--purple-tertiary);
+}
+
+.bg--yellow {
+  background: var(--yellow-tertiary);
+}
+
 /***************************************************** Responsive Styles *****************************************************/
 /*****************************************************************************************************************************/
 
