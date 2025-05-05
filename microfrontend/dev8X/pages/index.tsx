@@ -14,9 +14,14 @@ import styles from './index.module.css';
 export default function Home() {
   const whyDev = {
     heading: 'Why Dev8X',
-    para1: 'Dev8X is your trusted IT partner, here to help your business succeed in the digital world. We create custom solutions for websites, backend systems, and mobile apps that make your work easier, improve customer experiences, and help you reach your goals.',
-    para2: 'By working with Dev8X, you gain access to smart solutions that make a real difference. We help you save time with automation, grow faster with reliable systems, and stay ahead of your competition. Whatever challenges you face, we’re here to help you succeed today and in the future.',
-    image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)'
+    para1: 'We believe that meaningful design starts with empathy. Every product we create is centered around improving real lives—helping people achieve more with less friction.',
+    para2: 'By combining strategy, creativity, and technology, we unlock opportunities, transform businesses, and make experiences that truly matter. As an independent team, our agility and passion shape every project into something exceptional.',
+    image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)',
+    stats: [
+      { title: '100%', paragraph: 'In-house & independent' },
+      { title: '6+', paragraph: 'Years crafting digital experiences' },
+      { title: '20+', paragraph: 'Digital solutions launched worldwide' }
+    ]
   };
 
   useEffect(() => {

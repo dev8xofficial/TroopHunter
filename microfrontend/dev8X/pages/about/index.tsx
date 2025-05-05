@@ -228,17 +228,17 @@ const Contact: React.FC = (): JSX.Element => {
                     </span>
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
-                        Products.{' '}
+                        Craft.{' '}
                       </span>
                     </span>
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
-                        Human{' '}
+                        Real{' '}
                       </span>
                     </span>
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
-                        Experiences.
+                        Impact.
                       </span>
                     </span>
                   </h1>
@@ -252,7 +252,7 @@ const Contact: React.FC = (): JSX.Element => {
                       </span>
                       <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                         <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                          Products.{' '}
+                          Craft.{' '}
                         </span>
                       </span>
                     </span>
@@ -260,12 +260,12 @@ const Contact: React.FC = (): JSX.Element => {
                       <span aria-label="Human Experiences.">
                         <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                           <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                            Human{' '}
+                            Real{' '}
                           </span>
                         </span>
                         <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                           <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                            Experiences.
+                            Impact.
                           </span>
                         </span>
                       </span>
@@ -277,33 +277,33 @@ const Contact: React.FC = (): JSX.Element => {
                     <span className={styles['format']}>
                       <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                         <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                          Human experiences{' '}
+                          Human-focused{' '}
                         </span>
                       </span>
                     </span>
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        are the foundation of everything
+                        experiences shape everything we create — from{' '}
                       </span>
                     </span>
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        we do – client relationships, team collaboration and an{' '}
+                        how we collaborate as a team, to the partnerships we build, and the{' '}
                       </span>
                     </span>
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        unwavering focus on the end user. This philosophy is{' '}
+                        digital solutions we deliver. This belief{' '}
                       </span>
                     </span>
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        in our name, our core values and underpins our{' '}
+                        lives in our culture, fuels our curiosity, and{' '}
                       </span>
                     </span>
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        approach to every engagement.
+                        drives how we approach every project from start to finish.
                       </span>
                     </span>
                   </p>

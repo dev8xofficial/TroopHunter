@@ -1,24 +1,20 @@
 import React from 'react';
+import { HomepageStat, HomepageStats } from '../HomepageStats/HomepageStats';
+
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import WYSIWYGStyle from '../WYSIWYG/index.module.css';
 import PictureStyle from '../Picture/index.module.css';
 import styles from './index.module.css';
-import { HomepageStats } from '../HomepageStats/HomepageStats';
 
 type WhyProps = {
   heading: string;
   para1: string;
   para2: string;
   image: string;
+  stats: HomepageStat[];
 };
 
-export const WhyDev8X: React.FC<WhyProps> = ({ heading, para1, para2, image }): JSX.Element => {
-  const whyinfo = [
-    { title: '100%', paragraph: 'In-house & independent' },
-    { title: '15', paragraph: 'Years revolutionizing lead generation' },
-    { title: '80+', paragraph: 'Success stories and counting' }
-  ];
-
+export const WhyDev8X: React.FC<WhyProps> = ({ heading, para1, para2, image, stats }): JSX.Element => {
   return (
     <div className={styles['homepage-bottom']}>
       <span
@@ -26,7 +22,7 @@ export const WhyDev8X: React.FC<WhyProps> = ({ heading, para1, para2, image }): 
         aria-label="Great work for great people."
         style={{
           opacity: 1,
-          transform: 'translateY(0px)', 
+          transform: 'translateY(0px)',
           transition: 'all 0.8s ease'
         }}
       >
@@ -78,7 +74,7 @@ export const WhyDev8X: React.FC<WhyProps> = ({ heading, para1, para2, image }): 
           transition: 'all 0.8s ease 0.6s'
         }}
       >
-        <HomepageStats whyinfo={whyinfo} />
+        <HomepageStats stats={stats} />
       </div>
     </div>
   );

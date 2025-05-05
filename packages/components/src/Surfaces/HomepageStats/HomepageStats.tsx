@@ -3,13 +3,13 @@ import CountUp from 'react-countup';
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import styles from './index.module.css';
 
-type WhyDev = {
+export type HomepageStat = {
   title: string;
   paragraph: string;
 };
 
 type HomepageStatsProps = {
-  whyinfo: WhyDev[];
+  stats: HomepageStat[];
 };
 
 const extractNumberAndSuffix = (value: string) => {
@@ -21,11 +21,11 @@ const extractNumberAndSuffix = (value: string) => {
   };
 };
 
-export const HomepageStats: React.FC<HomepageStatsProps> = ({ whyinfo }) => {
+export const HomepageStats: React.FC<HomepageStatsProps> = ({ stats }) => {
   return (
     <ul className={styles['homepage-stats']}>
-      {whyinfo.map((item, index) => {
-        const { number, suffix } = extractNumberAndSuffix(item.title);
+      {stats.map((stat, index) => {
+        const { number, suffix } = extractNumberAndSuffix(stat.title);
 
         return (
           <li key={index} className={styles['homepage-stats__item']}>
@@ -34,7 +34,7 @@ export const HomepageStats: React.FC<HomepageStatsProps> = ({ whyinfo }) => {
               {suffix}
             </span>
             <span className={styles['homepage-stats__label']}>
-              <span className={TextAnimateStyles['word']}>{item.paragraph}</span>
+              <span className={TextAnimateStyles['word']}>{stat.paragraph}</span>
             </span>
           </li>
         );
