@@ -1,44 +1,52 @@
 const PageData = {
   IconCardsItems: [
     {
-      title: 'Insight Rich',
-      description: 'Once the problem has been defined, we validate the proposed solutions in the form of user journeys, IA, wireframing and prototyping.',
-      icon: (
-        <svg className="block m-h-0 min-w-0 left-0 top-0 absolute var-w-22 var-h-22" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 3.00001C8 4.65834 9.34169 6 11 6C12.6584 6 14 4.65834 14 3.00001C14 1.34167 12.6584 -5.86451e-08 11 -1.31133e-07C9.34169 -2.03621e-07 8 1.34167 8 3.00001Z" fill="var(--theme-primary)"></path> <path d="M8 18.9997C8 20.6581 9.34164 21.9998 11 21.9998C12.6583 21.9998 14 20.6581 14 18.9997C14 17.3414 12.6583 15.9998 11 15.9998C9.34164 15.9998 8 17.3414 8 18.9997Z" fill="var(--theme-primary)"></path>{' '}
-          <path fillRule="evenodd" clipRule="evenodd" d="M17.8013 7.25C19.9376 7.25 21.75 8.88285 21.75 11C21.75 13.1171 19.9376 14.75 17.8013 14.75C15.6649 14.75 13.8525 13.1171 13.8525 11C13.8525 8.88284 15.6649 7.25 17.8013 7.25ZM20.25 11C20.25 9.80047 19.2013 8.75 17.8013 8.75C16.4012 8.75 15.3525 9.80048 15.3525 11C15.3525 12.1995 16.4012 13.25 17.8013 13.25C19.2013 13.25 20.25 12.1995 20.25 11Z" fill="var(--theme-secondary)"></path>{' '}
-          <path fillRule="evenodd" clipRule="evenodd" d="M4.19875 7.4928C6.33511 7.4928 8.14755 9.12565 8.14755 11.2428C8.14755 13.36 6.33511 14.9928 4.19875 14.9928C2.06237 14.9928 0.250001 13.3599 0.250001 11.2428C0.250001 9.12567 2.06237 7.4928 4.19875 7.4928ZM6.64755 11.2428C6.64755 10.0433 5.5988 8.9928 4.19875 8.9928C2.79871 8.9928 1.75 10.0433 1.75 11.2428C1.75 12.4423 2.79871 13.4928 4.19875 13.4928C5.59881 13.4928 6.64755 12.4423 6.64755 11.2428Z" fill="var(--theme-secondary)"></path>{' '}
-        </svg>
-      )
-    },
-    {
-      title: 'Structured Foundations',
-      description: 'We combine audience insights with our strategic expertise to fuel intensive periods of conceptual thinking, creating solutions that keep your brand moving forward.',
-      icon: (
-        <svg className="block m-h-0 min-w-0 left-0 top-0 absolute var-w-26 var-h-26" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14.0616 6.14248V3.25" stroke="var(--theme-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M19.8575 11.9166H22.75" stroke="var(--theme-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M20.2042 18.0483L18.1567 16.0009" stroke="var(--theme-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M9.97751 7.82164L7.92999 5.78503" stroke="var(--theme-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>{' '}
-          <path d="M18.1567 7.81082L20.2042 5.76331" stroke="var(--theme-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M14.0942 14.9824C14.9392 14.1374 14.9392 12.7616 14.0942 11.9166C13.2383 11.0716 11.8733 11.0716 11.0175 11.9166L3.88919 19.0558C3.03336 19.9008 3.03336 21.2766 3.88919 22.1216C4.73419 22.9666 6.10998 22.9666 6.95498 22.1216L14.0942 14.9824Z" stroke="var(--theme-secondary)" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"></path>{' '}
-        </svg>
-      )
-    },
-    {
-      title: 'Strategic Execution',
-      description: 'Our strategic solutions unlock opportunities and solve business problems. We create the best possible experience and the right conditions to deliver.',
-      icon: (
-        <svg className="block m-h-0 min-w-0 left-0 top-0 absolute var-w-24 var-h-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9.95999 5.49005L12.03 6.32006C12.57 6.54006 12.57 6.89004 12.03 7.11004L9.95999 7.94006L9.12999 10.02C8.90999 10.54 8.55999 10.54 8.33999 10.02L7.50999 7.94006L5.43999 7.11004C4.91999 6.89004 4.91999 6.54006 5.43999 6.32006L7.50999 5.49005L8.33999 3.41006C8.55999 2.86006 8.90999 2.86006 9.12999 3.41006L9.95999 5.49005Z" stroke="var(--theme-secondary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>{' '}
-          <path d="M17.52 11.8401L19.59 12.6702C20.13 12.8902 20.13 13.2401 19.59 13.4601L17.52 14.2902L16.69 16.3701C16.47 16.8901 16.12 16.8901 15.9 16.3701L15.07 14.2902L13 13.4601C12.48 13.2401 12.48 12.8902 13 12.6702L15.07 11.8401L15.9 9.76016C16.12 9.21016 16.47 9.21016 16.69 9.76016L17.52 11.8401Z" fill="var(--theme-primary)" stroke="var(--theme-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>{' '}
-          <path d="M8.21 16.78L9.99 17.49C10.46 17.68 10.46 17.98 9.99 18.17L8.21 18.88L7.5 20.66C7.31 21.11 7.01 21.11 6.82 20.66L6.11 18.88L4.33 18.17C3.89 17.98 3.89 17.68 4.33 17.49L6.11 16.78L6.82 15C7.01 14.53 7.31 14.53 7.5 15L8.21 16.78Z" stroke="var(--theme-secondary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>{' '}
-        </svg>
-      )
-    },
-    {
-      title: 'Integrated',
-      description: 'We put your website at the heart of your digital ecosystem, providing secure API integrations and automated solutions across your business systems',
+      title: 'Tailor Made',
+      description: 'We combine insights, data and our deep expertise to align with your vision, creating an entirely bespoke platform to suit your business and audience needs.',
       icon: (
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19.8793 14.43C19.8793 19.0233 16.1526 22.75 11.5593 22.75C6.96595 22.75 3.23926 19.0233 3.23926 14.43C3.23926 9.83666 6.96595 6.10999 11.5593 6.10999" stroke="var(--theme-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>{' '}
-          <path d="M21.7642 11.0066H15.9684C15.4267 11.0066 14.9934 10.5733 14.9934 10.0316V4.23579C14.9934 3.63995 15.5242 3.17411 16.1092 3.26078C19.5434 3.74828 22.2517 6.46745 22.7501 9.90161C22.8367 10.4866 22.3709 11.0174 21.7751 11.0174L21.7642 11.0066Z" stroke="var(--theme-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M12.4445 0.0365884C12.8132 -0.0121963 13.1868 -0.0121962 13.5555 0.0365889C15.3397 0.27265 16.6729 1.79393 16.6729 3.59365V4.76081C18.7017 5.6664 20.3336 7.2983 21.2392 9.32707H22.4063C24.2061 9.32707 25.7273 10.6603 25.9634 12.4445C26.0122 12.8132 26.0122 13.1868 25.9634 13.5555C25.7273 15.3397 24.2061 16.6729 22.4063 16.6729H21.2392C20.3336 18.7017 18.7017 20.3336 16.6729 21.2392V22.4064C16.6729 24.2061 15.3397 25.7274 13.5555 25.9634C13.1868 26.0122 12.8132 26.0122 12.4445 25.9634C10.6603 25.7274 9.32707 24.2061 9.32707 22.4063V21.2392C7.2983 20.3336 5.6664 18.7017 4.76081 16.6729H3.59364C1.79393 16.6729 0.272649 15.3397 0.0365886 13.5555L1.02732 13.4244L0.0365884 13.5555C-0.0121962 13.1868 -0.012196 12.8132 0.0365882 12.4445L1.02795 12.5757L0.0365884 12.4445C0.272649 10.6603 1.79394 9.32707 3.59366 9.32707H4.76081C5.6664 7.2983 7.2983 5.6664 9.32707 4.76081V3.59367C9.32707 1.79394 10.6603 0.272648 12.4445 0.0365884ZM13.2932 2.01931C13.0986 1.99356 12.9014 1.99356 12.7068 2.01931C11.9172 2.12379 11.3271 2.79711 11.3271 3.59367V5.43749C11.3271 5.86131 11.0599 6.23909 10.6603 6.38033C8.66672 7.08496 7.08496 8.66672 6.38033 10.6603C6.23909 11.0599 5.86131 11.3271 5.43749 11.3271H3.59366C2.79711 11.3271 2.12379 11.9172 2.01931 12.7068C1.99356 12.9014 1.99356 13.0986 2.01931 13.2932C2.12379 14.0828 2.7971 14.6729 3.59364 14.6729H5.43749C5.86131 14.6729 6.23909 14.9401 6.38033 15.3397C7.08496 17.3333 8.66672 18.915 10.6603 19.6197C11.0599 19.7609 11.3271 20.1387 11.3271 20.5625V22.4063C11.3271 23.2029 11.9172 23.8762 12.7068 23.9807C12.9014 24.0064 13.0986 24.0064 13.2932 23.9807C14.0828 23.8762 14.6729 23.2029 14.6729 22.4064V20.5625C14.6729 20.1387 14.9401 19.7609 15.3397 19.6197C17.3333 18.915 18.915 17.3333 19.6197 15.3397C19.7609 14.9401 20.1387 14.6729 20.5625 14.6729H22.4063C23.2029 14.6729 23.8762 14.0828 23.9807 13.2932C24.0064 13.0986 24.0064 12.9014 23.9807 12.7068C23.8762 11.9172 23.2029 11.3271 22.4063 11.3271H20.5625C20.1387 11.3271 19.7609 11.0599 19.6197 10.6603C18.915 8.66672 17.3333 7.08496 15.3397 6.38033C14.9401 6.23909 14.6729 5.86131 14.6729 5.43749V3.59365C14.6729 2.7971 14.0828 2.12379 13.2932 2.01931Z"
+            fill="var(--theme-secondary)"
+          ></path>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M8.6665 13C8.6665 10.6067 10.6066 8.66663 12.9998 8.66663C15.3931 8.66663 17.3332 10.6067 17.3332 13C17.3332 15.3932 15.3931 17.3333 12.9998 17.3333C10.6066 17.3333 8.6665 15.3932 8.6665 13ZM12.9998 10.6666C11.7112 10.6666 10.6665 11.7113 10.6665 13C10.6665 14.2886 11.7112 15.3333 12.9998 15.3333C14.2885 15.3333 15.3332 14.2886 15.3332 13C15.3332 11.7113 14.2885 10.6666 12.9998 10.6666Z" fill="var(--theme-primary)"></path>
+        </svg>
+      )
+    },
+    {
+      title: 'World-class UX & Design',
+      description: 'Our award-winning UX and design approach informs every concept, creative solution, key decision, and prototype to help drive your brand forward.',
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.25 12.545C9.69583 13.7367 16.3042 13.7367 22.75 12.545" stroke="var(--theme-secondary)" stroke-width="1.5" stroke-miterlimit="10"></path> <path d="M13 22.75C15.3942 22.75 17.3334 18.3842 17.3334 13C17.3334 7.61583 15.3942 3.25 13 3.25C10.6059 3.25 8.66669 7.61583 8.66669 13C8.66669 18.3842 10.6059 22.75 13 22.75Z" stroke="var(--theme-primary)" stroke-width="1.5" stroke-miterlimit="10"></path>
+          <path d="M13 22.75C18.3842 22.75 22.75 18.3842 22.75 13C22.75 7.61583 18.3842 3.25 13 3.25C7.61583 3.25 3.25 7.61583 3.25 13C3.25 18.3842 7.61583 22.75 13 22.75Z" stroke="var(--theme-secondary)" stroke-width="1.5" stroke-miterlimit="10"></path>
+        </svg>
+      )
+    },
+    {
+      title: 'Robust, Secure, Flexible',
+      description: 'Our core stack of preferred technologies aims for maximum flexibility, security, and performance, ensuring the end results continues to meet your needs in the long term.',
+      icon: (
+        <svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1416 10.6343C16.5321 11.0248 16.5321 11.658 16.1416 12.0485L11.6492 16.5409C11.26 16.93 10.6296 16.9316 10.2385 16.5445L8.73094 15.0521C8.33844 14.6636 8.33523 14.0304 8.72376 13.6379C9.1123 13.2454 9.74546 13.2422 10.138 13.6307L10.9385 14.4231L14.7273 10.6343C15.1179 10.2438 15.751 10.2438 16.1416 10.6343Z" fill="var(--theme-primary)"></path>
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M10.3098 0.594436C11.1516 -0.19932 12.4609 -0.198144 13.3012 0.597966C13.3298 0.625079 13.3566 0.653609 13.3814 0.68337C14.9696 2.15065 18.4337 5.09121 22.2183 6.70201M11.8829 2.01935C11.8176 1.98574 11.7385 1.99591 11.6816 2.04987L11.6752 2.05594L11.6752 2.05591C10.0958 3.52596 6.35655 6.75643 2.14732 8.54267C2.05869 8.58034 1.99572 8.66946 1.99916 8.78397C2.1078 10.5948 2.55027 14.5342 4.33498 17.162L4.33703 17.165C6.47174 20.333 10.2065 22.9633 11.7165 23.97C11.7532 23.9944 11.7827 24 11.8037 24C11.8247 24 11.8542 23.9944 11.8908 23.97L11.9031 23.9619C13.4109 22.9884 17.0763 20.4043 19.1869 17.284C20.9904 14.6116 21.4655 10.5861 21.5851 8.76838L21.5853 8.76601C21.5909 8.6836 21.543 8.58815 21.436 8.54267L21.4355 8.54248C17.2386 6.75629 13.4995 3.52587 11.9202 2.05591C11.9074 2.044 11.8949 2.03181 11.8829 2.01935ZM10.3098 0.594436C8.76866 2.02862 5.23984 5.05781 1.36556 6.70179L1.36504 6.70201C0.495108 7.07173 -0.0412858 7.94046 0.00139524 8.87944L0.00129582 8.87944L0.0021353 8.89353C0.110388 10.7098 0.557131 15.1579 2.67939 18.284C5.05567 21.8097 9.09411 24.6254 10.6071 25.6341C11.3366 26.1204 12.2626 26.122 12.9934 25.6387C14.5365 24.6418 18.4944 21.8778 20.8439 18.404L20.8445 18.4032C22.9754 15.2458 23.4602 10.7309 23.5807 8.90087C23.6465 7.92821 23.0709 7.0646 22.2187 6.70221"
+            fill="var(--theme-secondary"
+          ></path>
+        </svg>
+      )
+    },
+    {
+      title: 'Digital Partners',
+      description: 'We believe in extraordinary client relationships, service and support. We’re in it for the long haul to maintain your advantage and ensure ongoing success.',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.9 22.9483H6.65001C4.91168 22.9483 3.5 21.56 3.5 19.845V18.8066C3.5 18.235 3.97833 17.7683 4.54999 17.7683H8.31834C8.59834 17.7683 8.86665 17.885 9.06499 18.0716L10.5467 19.53C10.745 19.7283 11.0133 19.8333 11.2933 19.8333H11.9" stroke="var(--theme-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M5.0752 17.5583V6.31167C5.0752 4.76 6.53353 3.5 8.31853 3.5H19.1452C20.9419 3.5 22.3885 4.76 22.3885 6.31167V10.01" stroke="var(--theme-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M22.1665 10.01H17.3831C16.0945 10.01 15.0498 11.0547 15.0498 12.3433V22.1667C15.0498 23.4554 16.0945 24.5 17.3831 24.5H22.1665C23.4551 24.5 24.4998 23.4554 24.4998 22.1667V12.3433C24.4998 11.0547 23.4551 10.01 22.1665 10.01Z" stroke="var(--theme-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M19.25 21.3967H20.3" stroke="var(--theme-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       )
     }
