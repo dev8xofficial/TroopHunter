@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { AboutGallery, Footer, FooterRevealPageWrap, Header, LogoGrid } from '@repo/components';
 import Capabilities from './Capabilities/Capabilities';
-import { PageData } from './index.d';
+import PageData from '../../data/about/index.d';
 
 import AboutHeroStyles from '../../components/Surfaces/AboutHero/index.module.css';
 import TextAnimateStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';

@@ -22,13 +22,13 @@
   margin-top: 2px;
 }
 
-.button>.contact-button {
-  font-size: clamp(.9375rem, .9920634921vw, 1.246875rem);
-  padding: 1em .9em;
-  gap: .5em;
+.button > .contact-button {
+  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
+  padding: 1em 0.9em;
+  gap: 0.5em;
 }
 
-.button>.contact-button svg {
+.button > .contact-button svg {
   font-size: 1em;
 }
 
@@ -49,14 +49,14 @@
 .modal-header {
   display: none;
   color: var(--theme-secondary);
-  font-size: clamp(.875rem, .9259259259vw, 1.16375rem);
+  font-size: clamp(0.875rem, 0.9259259259vw, 1.16375rem);
 }
 
 .modal-heading {
   font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
   margin: 0 0 clamp(3.25rem, 3.4391534392vw, 4.3225rem);
   color: #b488f1;
-  line-height: .9;
+  line-height: 0.9;
   font-size: clamp(2.5rem, 5.2083333333vw, 3.325rem);
 }
 
@@ -72,25 +72,24 @@
   margin: 0;
 }
 
-.modal-intro>p:first-child {
+.modal-intro > p:first-child {
   font-weight: 500;
   font-size: inherit;
   color: var(--error, var(--theme-secondary));
 }
 
-.modal-intro>p:last-child {
-  margin-top: .5em;
+.modal-intro > p:last-child {
+  margin-top: 0.5em;
   display: block;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .contact-form .contact-submit {
   text-align: center;
   justify-content: center;
-  font-size: clamp(.9375rem, .9920634921vw, 1.246875rem);
+  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
   padding: 1.1em;
 }
-
 .large-button {
   scale: 1.5 !important;
   padding: 18px 24px !important;
@@ -116,12 +115,13 @@
     margin-bottom: clamp(5.625rem, 5.9523809524vw, 7.48125rem);
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-
-  .modal-heading {
-    font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
-  }
-
   .large-button {
     padding: 24px 28px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-heading {
+    font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
   }
 }

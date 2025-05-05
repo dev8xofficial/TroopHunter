@@ -9,7 +9,7 @@ import Head from 'next/head';
 // import FeatureVideoResponsive from './FeatureVideo/FeatureVideoResponsive';
 // import TestimonialsLarge from './Testimonials/TestimonialsLarge';
 import { FooterRevealPageWrap, Footer, Header, WorkGrid, WorkCategories } from '@repo/components';
-import { PageData } from './index.d';
+import PageData from '../../data/not-found/index.d';
 
 import styles from './index.module.css';
 

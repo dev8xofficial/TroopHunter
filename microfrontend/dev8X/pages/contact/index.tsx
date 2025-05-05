@@ -9,7 +9,7 @@ import { isSmoothModalOpenAtom, toggleSmoothModalAtom } from '../../store/smooth
 
 import { Header, FooterRevealPageWrap, FooterInternationalContents } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
-import { PageData } from './index.d';
+import PageData from '../../data/contact/index.d';
 
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import TextStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';

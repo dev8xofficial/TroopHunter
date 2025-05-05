@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { FooterRevealPageWrap, Footer, Header, WorkGrid, WorkCategories } from '@repo/components';
-import { PageData } from './index.d';
+import PageData from '../../data/work/index.d';
 
 import TextAnimateUpStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
 import LayoutStyles from '../../components/Surfaces/Layout/layout.module.css';

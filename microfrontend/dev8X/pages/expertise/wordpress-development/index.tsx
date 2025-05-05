@@ -2,10 +2,10 @@ import React from 'react';
 import Head from 'next/head';
 
 import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards, Button, ExpertiseCard, AwardsBlock, CardStack } from '@repo/components';
+import PageData from '../../../data/expertise/wordpress-development/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from './index.module.css';
-import { PageData } from './index.d';
 
 const Websites: React.FC = (): JSX.Element => {
   return (

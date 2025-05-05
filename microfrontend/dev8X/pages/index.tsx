@@ -3,7 +3,7 @@ import { getDev8xPublicUrl } from '../utils/helpers';
 import Hero from '../components/Surfaces/Hero/Hero';
 import Problems from './home/Problems/Problems';
 import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDev8X } from '@repo/components';
-import { PageData } from './index.d';
+import PageData from '../data/index.d';
 
 import styles from './index.module.css';
 
