@@ -380,12 +380,12 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
       <div className={styles['submenu-container']} style={{ '--height': height } as React.CSSProperties}>
         <div className={styles['submenu-inner']}>
           <nav className={styles['submenu']}>
-            {submenus.map((menu) => (
-              <div className={styles['submenu__group']}>
+            {submenus.map((menu, menuIndex) => (
+              <div key={`submenu-group-${menuIndex}`} className={styles['submenu__group']}>
                 <h2 className={styles['submenu__heading']}>{menu.heading}</h2>
                 <ul className={styles['submenu__list']}>
-                  {menu.list.map((item) => (
-                    <li style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0)' }}>
+                  {menu.list.map((item, itemIndex) => (
+                    <li style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0)' }} key={`nav-anchor-${menuIndex}-${itemIndex}`}>
                       <a className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`} href={item.href}>
                         <>
                           {item.icon}

@@ -5,7 +5,7 @@ import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularB
 import PageData from '../../../data/expertise/orm-sequelize-prisma/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
-import styles from './index.module.css';
+import styles from '../index.module.css';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
