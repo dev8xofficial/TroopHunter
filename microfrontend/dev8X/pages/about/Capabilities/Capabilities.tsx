@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../index.module.css';
 // import AboutHero from '../../../components/Surfaces/AboutHero/index.module.css';
 
-const Hero: React.FC = (): JSX.Element => {
+const Capabilities: React.FC = (): JSX.Element => {
   return (
     <>
       <div className={styles['about-capabilities__grid']}>
@@ -47,4 +47,4 @@ const Hero: React.FC = (): JSX.Element => {
   );
 };
 
-export default Hero;
+export default Capabilities;
