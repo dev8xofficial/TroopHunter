@@ -43,11 +43,14 @@
 
 .submenu {
   display: grid;
-  grid-auto-flow: column;
+  /* grid-auto-flow: column; */
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto auto;
   z-index: -1;
   overflow: visible;
-  grid-gap: 2.5rem;
-  gap: 2.5rem;
+  /* grid-gap: 2.5rem; */
+  /* gap: 2.5rem; */
+  column-gap: 2.5rem;
   transition: width ease-in-out;
 }
 
@@ -183,7 +186,8 @@
   }
 
   [data-submenu-open='true'][data-columns='4'] .submenu-container {
-    width: 180%;
+    /* width: 180%; */
+    width: 200%;
     left: -40%;
   }
 
@@ -213,5 +217,10 @@
   .submenu__group {
     margin-bottom: 20px;
     margin-top: 3.75rem;
+  }
+
+  .submenu__group:nth-child(4),
+  .submenu__group:nth-child(5) {
+    margin-top: 0;
   }
 }

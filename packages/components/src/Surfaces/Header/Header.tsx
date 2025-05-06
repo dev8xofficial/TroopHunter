@@ -44,7 +44,7 @@ export const Header: React.FC = (): JSX.Element => {
 
   const handleExpertiseClick = () => {
     setDataSubmenuOpen((prev) => !prev);
-    setHeight((prev) => (prev === 45 ? 361 : 45));
+    setHeight((prev) => (prev === 45 ? 661 : 45));
   };
 
   return (
