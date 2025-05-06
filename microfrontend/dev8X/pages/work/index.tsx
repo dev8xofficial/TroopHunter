@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { FooterRevealPageWrap, Footer, Header, WorkGrid, WorkCategories } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, WorkGrid } from '@repo/components';
 import PageData from '../../data/work/index.d';
 
 import TextAnimateUpStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
@@ -70,7 +70,7 @@ const Work: React.FC = (): JSX.Element => {
                 </span>
               </h1>
             </div>
-            <WorkCategories />
+            {/* <WorkCategories /> */}
             <div>
               <h2 className="hidden">Featured</h2>
               <WorkGrid workGridCSSClass={WorkGridStyles['work-grid']} />
