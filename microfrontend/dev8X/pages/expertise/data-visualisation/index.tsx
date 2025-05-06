@@ -48,10 +48,10 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="purple" tagText="Websites" heading="World-class websites for forward-thinking brands" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="purple" tagText="Data Visualisation & Storytelling" heading="Compelling data storytelling through impactful visualisations" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
 
             <ModularBlocks>
-              <IconCards title="Extraordinary digital products" paragraph="We play to our strengths: For over 14 years we've been ideating, creating and shipping wonderful things on the internet." IconCardsItems={PageData.IconCardsItems} />
+              <IconCards title="Information is beautiful" paragraph="Distinctive visuals, intuitive narratives, and engaging experiences driven by your data." IconCardsItems={PageData.IconCardsItems} />
               <ContentAsideImage ContentAsideImageItems={PageData.ContentAsideImageItems} />
             </ModularBlocks>
 

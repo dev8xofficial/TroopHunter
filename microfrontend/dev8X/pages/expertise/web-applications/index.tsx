@@ -48,10 +48,10 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="pink" tagText="Web Applications" heading="Custom digital platforms, idea to execution" image="https://a-us.storyblok.com/f/1017006/3810x2036/457fa6467b/trails-3810-x-2040.jpg" />
+            <Hero variant="pink" tagText="Web Applications" heading="Tailored digital solutions, from concept to launch" image="https://a-us.storyblok.com/f/1017006/3810x2036/457fa6467b/trails-3810-x-2040.jpg" />
 
             <ModularBlocks>
-              <IconCards title="Built to spec" paragraph="We design and build bespoke web-based applications to meet the needs of business operations." IconCardsItems={PageData.IconCardsItems} />
+              <IconCards title="Built for your needs" paragraph="We craft custom web applications designed specifically to support and enhance your unique business operations." IconCardsItems={PageData.IconCardsItems} />
               <ContentAsideImage ContentAsideImageItems={PageData.ContentAsideImageItems} />
             </ModularBlocks>
 

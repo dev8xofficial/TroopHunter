@@ -34,7 +34,7 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
             </svg>
           ),
           color: 'pink',
-          href: '/expertise/web-apps'
+          href: '/expertise/web-applications'
         },
         {
           title: 'Mobile Apps',
@@ -72,7 +72,7 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
             </svg>
           ),
           color: 'purple',
-          href: '/expertise/data-visualization'
+          href: '/expertise/data-visualisation'
         }
       ]
     },
@@ -212,7 +212,7 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
             </svg>
           ),
           color: 'pink',
-          href: '/expertise/express-js'
+          href: '/expertise/express-nest'
         },
         {
           title: 'Supabase',
@@ -295,7 +295,7 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
             </svg>
           ),
           color: 'pink',
-          href: '/expertise/orm'
+          href: '/expertise/orm-sequelize-prisma'
         }
       ]
     },
@@ -386,7 +386,7 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
                 <ul className={styles['submenu__list']}>
                   {menu.list.map((item) => (
                     <li style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0)' }}>
-                      <a className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`} href="/expertise/websites">
+                      <a className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`} href={item.href}>
                         <>
                           {item.icon}
                           {item.title}

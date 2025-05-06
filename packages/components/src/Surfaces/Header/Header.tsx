@@ -24,16 +24,21 @@ export const Header: React.FC = (): JSX.Element => {
       path.startsWith('/expertise/user-interface-design') ||
       path.startsWith('/expertise/prototyping') ||
       path.startsWith('/expertise/design-systems') ||
-      path.startsWith('/expertise/headless') ||
       path.startsWith('/expertise/react-js') ||
-      path.startsWith('/expertise/payload-cms') ||
-      path.startsWith('/expertise/laravel') ||
-      path.startsWith('/expertise/wordpress-development') ||
-      path.startsWith('/expertise/commercial') ||
-      path.startsWith('/expertise/not-for-profit') ||
-      path.startsWith('/expertise/startups') ||
-      path.startsWith('/expertise/education') ||
-      path.startsWith('/expertise/community')
+      path.startsWith('/expertise/next-js') ||
+      path.startsWith('/expertise/node-js') ||
+      path.startsWith('/expertise/express-nest') ||
+      path.startsWith('/expertise/supabase') ||
+      path.startsWith('/expertise/backend') ||
+      path.startsWith('/expertise/real-time-apps') ||
+      path.startsWith('/expertise/saas') ||
+      path.startsWith('/expertise/postgresql') ||
+      path.startsWith('/expertise/orm-sequelize-prisma') ||
+      path.startsWith('/expertise/docker') ||
+      path.startsWith('/expertise/virtualization') ||
+      path.startsWith('/expertise/ansible-web-servers') ||
+      path.startsWith('/expertise/aws-vercel-digitalocean') ||
+      path.startsWith('/expertise/ci-cd')
     ) {
       return 4;
     }

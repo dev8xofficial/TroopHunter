@@ -85,6 +85,11 @@ const PageData = {
       title: 'Human interfaces',
       paragraph: 'Tune into how people work. From eCommerce checkouts to detailed customisation tools, our systematic UI design approach has produced dynamic, future-ready outcomes across traditional and emergent industries. With over 15 years’ experience making digital products for people, we know the details that make the difference.',
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/eb4021775e/scitechui.png'
+    },
+    {
+      title: 'Your UI Design Partner',
+      paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. Everything we craft is entirely bespoke, as unique as the story you tell. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless user interface experiences, and a truly collaborative design and delivery process.',
+      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/eb4021775e/scitechui.png'
     }
   ],
   footerMainContent: {

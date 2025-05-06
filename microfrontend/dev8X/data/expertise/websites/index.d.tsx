@@ -58,13 +58,18 @@ const PageData = {
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/902dc5f50c/face_a5.jpg'
     },
     {
-      title: 'Robust, Secure, Flexible ',
-      paragraph: 'Every website we build is backed by secure and performant infrastructure, tailored to the needs of the organisation. This ensures that your digital presence can scale with demand and offer flexibility to meet the needs of your business over time.',
+      title: 'Human experiences',
+      paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive navigation to immersive storytelling, every website is meticulously crafted to command attention and leave a lasting impression.',
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/bdd8cbb924/face_a3.jpg'
     },
     {
-      title: 'Human experiences',
-      paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive navigation to immersive storytelling, every website is meticulously crafted to command attention and leave a lasting impression.',
+      title: 'Robust, Secure, Flexible',
+      paragraph: 'Every website we build is backed by secure and performant infrastructure, tailored to the needs of the organisation. This ensures that your digital presence can scale with demand and offer flexibility to meet the needs of your business over time.',
+      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/ab4ffa21a5/face_a8.jpg'
+    },
+    {
+      title: 'Rewarding partnerships',
+      paragraph: 'Behind every best-in-class website is a collaborative agency–client partnership. We work in close collaboration with you to ensure outcomes that offer extraordinary experiences while delivering results. Awards are nice, but your success means so much more.',
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/ab4ffa21a5/face_a8.jpg'
     }
   ],

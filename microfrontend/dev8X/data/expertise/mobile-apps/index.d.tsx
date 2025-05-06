@@ -20,7 +20,7 @@ const PageData = {
     },
     {
       title: 'Handy Experience',
-      description: '>We design engaging and immersive mobile experiences, delighting users while solving business problems and keeping your brand at the forefront.',
+      description: 'We design engaging and immersive mobile experiences, delighting users while solving business problems and keeping your brand at the forefront.',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.3599 14.84L11.0399 15.99C11.3399 16.49 11.7599 16.9 12.2699 17.19C12.7799 17.48 13.3499 17.63 13.9299 17.63H20.9899" stroke="var(--theme-secondary)" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"></path> <path d="M3 6.37H3.35999C3.93999 6.37 4.50999 6.52 5.01999 6.81C5.52999 7.1 5.95 7.51001 6.25 8.01001L6.92001 9.13" stroke="var(--theme-secondary)" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"></path>{' '}

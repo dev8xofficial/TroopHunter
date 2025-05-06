@@ -3,8 +3,8 @@ import React from 'react';
 const PageData = {
   IconCardsItems: [
     {
-      title: 'Compelling experiences',
-      description: 'We create compelling, interactive visualisations and creative experiences to engage your audience and connect them with your data.',
+      title: 'UX Specialists',
+      description: 'Our award-winning UX design approach informs every concept, prototype, key decision and creative solution to help drive your brand forward.',
       icon: (
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -19,8 +19,8 @@ const PageData = {
       )
     },
     {
-      title: 'Visualise complexity',
-      description: 'Leverage best-practice UX and human-centred design thinking to create simple and intuitive experiences for complex data and scenarios.',
+      title: 'Catering for all',
+      description: 'As with any digital product, performance, accessibility and usability are paramount. We go to great lengths to offer experiences that meet the needs of each audience.',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.3599 14.84L11.0399 15.99C11.3399 16.49 11.7599 16.9 12.2699 17.19C12.7799 17.48 13.3499 17.63 13.9299 17.63H20.9899" stroke="var(--theme-secondary)" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"></path> <path d="M3 6.37H3.35999C3.93999 6.37 4.50999 6.52 5.01999 6.81C5.52999 7.1 5.95 7.51001 6.25 8.01001L6.92001 9.13" stroke="var(--theme-secondary)" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"></path>{' '}
@@ -30,8 +30,8 @@ const PageData = {
       )
     },
     {
-      title: 'Dashboards and internal platforms',
-      description: 'Build better data platforms, from single-page applications through to highly bespoke online systems, bringing data management and visualisation together.',
+      title: 'Evidence based',
+      description: 'Baked into our process is a suite of research and validation to ensure every UX design decision and recommendation is informed by data.',
       icon: (
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M18.1416 3.5H20.2999C22.6099 3.5 24.4999 5.39001 24.4999 7.70001V9.695" stroke="var(--theme-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
@@ -46,8 +46,8 @@ const PageData = {
       )
     },
     {
-      title: 'Powerful tools',
-      description: 'Provide powerful digital tools, tailored to the complexities and idiosyncrasies of your organisation’s data, processes and systems.',
+      title: 'Leaders in Digital',
+      description: 'We push the boundaries of design and technology to achieve new levels in practical, delightful and meaningful online experiences.',
       icon: (
         <svg width="28" height="14" viewBox="0 0 28 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M11.6252 3.36759C10.3692 2.57359 8.85336 1 6.90445 1C3.64181 1 1 3.58412 1 6.77457C1 9.96501 3.65625 12.5491 6.90445 12.5491C9.09878 12.5491 11.1344 11.4231 12.2748 9.57524L14.0072 6.77457L15.7252 3.9739C16.8512 2.14047 18.8867 1 21.0955 1C24.3581 1 27 3.58412 27 6.77457C27 9.96501 24.3437 12.5491 21.0955 12.5491C19.1466 12.5491 18.0782 11.1921 16.3747 10.1815" stroke="var(--theme-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
@@ -57,18 +57,18 @@ const PageData = {
   ],
   ContentAsideImageItems: [
     {
-      title: 'Tell a story with data',
-      paragraph: 'Transform complex datasets into immersive narratives that inform and inspire action. Our approach combines rich visuals with insightful analysis, creating a seamless and engaging experience. Whether you aim to drive change, highlight trends, or demonstrate impact, curate your data in the best possible way for powerful digital experiences with lasting impact.',
+      title: 'Connect with your audience',
+      paragraph: 'We draw from over 15 years in building and shipping wonderful things for people, accelerating conversion, generating revenue, amplifying awareness, and boosting ROI for clients big and small across a range of industries. Our first-hand knowledge of what works helps users achieve their objectives, while building emotional connections between brands and people.',
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
     },
     {
-      title: 'Engaging reports and dashboards',
-      paragraph: 'Surface insights from raw data with visually compelling, interactive experiences and consolidated touchpoints. We design and create data-driven interfaces to suit any objective, from immersive reports for public consumption to bespoke internal tools and dashboards that support and inform stakeholders.',
+      title: 'Digital that resonates',
+      paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive information architecture to immersive storytelling, every website and web app is meticulously crafted to command attention and leave a lasting impression.',
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
     },
     {
-      title: 'Your data, our expertise',
-      paragraph: 'Leverage our expertise and transform your data into unique and compelling experiences that educate, inspire and delight. By blending your data with our experience in information graphics, data visualisation and modern interface design, we help unlock the full potential and create digital experiences with lasting impact.',
+      title: 'Elevate your brand experience',
+      paragraph: 'Each customer engagement is part of the bigger picture of an overall brand experience. Our approach to ethical UX and conversion design draws from this philosophy, ensuring better customer experiences that last long after the user achieves their goal.',
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
     }
   ],

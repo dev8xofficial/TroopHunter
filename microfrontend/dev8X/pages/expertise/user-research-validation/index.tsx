@@ -51,7 +51,7 @@ const Websites: React.FC = (): JSX.Element => {
             <Hero variant="purple" tagText="User Research & Validation" heading="Strategic foundations lead to better outcomes" image="https://a-us.storyblok.com/f/1017006/3810x2036/e3c7f6fa18/strategyux.jpg" />
 
             <ModularBlocks>
-              <IconCards title="User research & validation" paragraph="Integral to our approach is a comprehensive user research phase, discovering general and niche audience needs through quantitative and qualitative research." IconCardsItems={PageData.IconCardsItems} />
+              <IconCards title="User research & validation" paragraph="Our process begins with thorough user research—uncovering broad and specific audience needs through a mix of qualitative and quantitative methods." IconCardsItems={PageData.IconCardsItems} />
               <ContentAsideImage ContentAsideImageItems={PageData.ContentAsideImageItems} />
             </ModularBlocks>
 

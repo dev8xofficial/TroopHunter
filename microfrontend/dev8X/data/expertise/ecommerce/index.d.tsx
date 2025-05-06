@@ -56,18 +56,18 @@ const PageData = {
   ],
   ContentAsideImageItems: [
     {
-      title: 'Tell a story with data',
-      paragraph: 'Transform complex datasets into immersive narratives that inform and inspire action. Our approach combines rich visuals with insightful analysis, creating a seamless and engaging experience. Whether you aim to drive change, highlight trends, or demonstrate impact, curate your data in the best possible way for powerful digital experiences with lasting impact.',
+      title: 'Elevate your brand experience',
+      paragraph: 'Every customer engagement forms the bigger picture of an overall brand experience. Our approach to ethical UX and conversion design draws from this philosophy, ensuring better customer experiences that last long after the final sale.',
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
     },
     {
-      title: 'Engaging reports and dashboards',
-      paragraph: 'Surface insights from raw data with visually compelling, interactive experiences and consolidated touchpoints. We design and create data-driven interfaces to suit any objective, from immersive reports for public consumption to bespoke internal tools and dashboards that support and inform stakeholders.',
+      title: 'Comprehensive eCommerce functionality',
+      paragraph: 'We offer a holistic suite of features designed to streamline every aspect of your online store. From product management and secure payment gateways to personalised recommendations and seamless checkout processes, we equip your eCommerce platform with all the tools to operate efficiently, adapt to market changes, and deliver an exceptional shopping experience.',
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
     },
     {
-      title: 'Your data, our expertise',
-      paragraph: 'Leverage our expertise and transform your data into unique and compelling experiences that educate, inspire and delight. By blending your data with our experience in information graphics, data visualisation and modern interface design, we help unlock the full potential and create digital experiences with lasting impact.',
+      title: 'Bring your products to life online',
+      paragraph: 'We work hard translating your tangible and tactile product experiences to the digital medium, reaching a new customer base through visually engaging interfaces that hero your products and convert attention into sales. From 360-degree product views to augmented reality, we encourage customers to explore and interact with products in a rich, immersive way.',
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
     }
   ],
