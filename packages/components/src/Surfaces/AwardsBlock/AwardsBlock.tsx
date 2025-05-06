@@ -57,12 +57,7 @@ export const AwardsBlock: React.FC = (): JSX.Element => {
         <LogoGrid />
         <div>
           <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
-            <Button bgClass={ButtonStyles['button--bg-white']}>
-              <i className={styles['awards-block__button-icon']}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18" className="" style={{ '--width': 18, '--height': 18 } as CSSProperties}>
-                  <path stroke="currentColor" stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M2.332 15.667 15.665 2.333m0 13.334L2.332 2.333" vector-effect="non-scaling-stroke"></path>
-                </svg>
-              </i>
+            <Button iconType="i" icon={<i className="fa fa-plus" />} bgClass={ButtonStyles['button--bg-white']}>
               See all awards
             </Button>
           </div>

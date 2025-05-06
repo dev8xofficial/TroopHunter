@@ -90,7 +90,17 @@ const Websites: React.FC = (): JSX.Element => {
                     <span>Extraordinary Digital Experiences</span>
                   </h2>
                   <div>
-                    <Button>Submit a brief</Button>
+                    <Button
+                      iconType="svg"
+                      icon={
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" style={{ '--width': '14rem', '--height': '13rem' } as React.CSSProperties}>
+                          <path fill="currentColor" stroke="currentColor" d="M1 5.816H.75v1.326h10.014l-4.008 3.907-.173.168.162.179.563.62.174.191.186-.18 5.506-5.37.184-.178-.184-.18L7.668.932l-.186-.18-.174.191-.563.62-.162.178.173.169 4.008 3.907H1Z" vectorEffect="non-scaling-stroke" />
+                        </svg>
+                      }
+                      bgClass={Button['button--bg-secondary']}
+                    >
+                      See all awards
+                    </Button>
                   </div>
                 </footer>
 
