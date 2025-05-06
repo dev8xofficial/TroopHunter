@@ -10,8 +10,8 @@
 
 .about-hero__heading {
     width: 100%;
-    padding-left: clamp(2.5rem, 2.6455026455vw, 3.325rem);
-    padding-right: clamp(2.5rem, 2.6455026455vw, 3.325rem);
+    padding-left: var(--container-gutter);
+    padding-right: var(--container-gutter);
     box-sizing: content-box;
     margin: 0;
     color: #fff;
@@ -37,9 +37,9 @@
 }
 
 .about-hero__container {
-    max-width: calc(clamp(89.5rem, 94.708994709vw, 119.035rem) + clamp(2.5rem, 2.6455026455vw, 3.325rem) * 2);
-    padding-left: clamp(2.5rem, 2.6455026455vw, 3.325rem);
-    padding-right: clamp(2.5rem, 2.6455026455vw, 3.325rem);
+    max-width: calc(clamp(89.5rem, 94.708994709vw, 119.035rem) +var(--container-gutter) * 2);
+    padding-left: var(--container-gutter);
+    padding-right: var(--container-gutter);
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -63,50 +63,34 @@
 /***************************************************** Responsive Styles *****************************************************/
 /*****************************************************************************************************************************/
 
-@media (min-width: 992px) {
-    .about-hero {
-        --image-top: max(13.2275132275vw, 30vh);
-    }
-}
-
 @media (min-width: 768px) {
     .about-hero__heading--mobile {
         display: none;
     }
-}
 
-@media (min-width: 992px) {
-    .about-hero__heading {
-        transform: translate3d(0, calc(var(--scrollY) * .1px), 0);
-    }
-}
-
-@media (min-width: 768px) {
     .about-hero__heading--desktop {
         display: block;
     }
+
+    .about-hero .about-hero__intro {
+        margin-top: 29.9100529101vw;
+        margin-bottom: 29.9100529101vw;
+    }
 }
 
 @media (min-width: 992px) {
+    .about-hero {
+        --image-top: max(13.2275132275vw, 30vh);
+    }
+
     .about-hero__heading {
         transform: translate3d(0, calc(var(--scrollY) * .1px), 0);
     }
-}
 
-@media (min-width: 768px) {
-    .about-hero .about-hero__intro {
-        margin-top: 24vw;
-        margin-bottom: 23vw;
-    }
-}
-
-@media (min-width: 992px) {
     .about-hero .about-hero__intro {
         font-size: clamp(2.5rem, 5.2083333333vw, 3.325rem);
     }
-}
 
-@media (min-width: 992px) {
     .about-hero .about-hero__intro {
         transform: translate3d(0, calc(var(--scrollY) * .2px), 0);
     }

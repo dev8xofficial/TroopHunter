@@ -218,7 +218,7 @@ const Contact: React.FC = (): JSX.Element => {
                 <source srcSet="https://a-us.storyblok.com/f/1017006/3024x2000/8c579e2bc5/contact-video-frame.jpg/m/1512x1000/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/3024x2000/8c579e2bc5/contact-video-frame.jpg/m/2268x1500/filters:quality(80) 1.5x" media="(min-width: 0px)" />
                 <img src="https://a-us.storyblok.com/f/1017006/3024x2000/8c579e2bc5/contact-video-frame.jpg/m/1512x1000/filters:quality(80)" loading="eager" width="1512" height="1000" alt="" className="" draggable="false" />
               </picture>
-              <video className={styles['contact-video']} src="https://player.vimeo.com/progressive_redirect/download/900999111/rendition/source/contact-video-2268-optim%20%28Original%29.mp4?loc=external&amp;signature=a6fbf829cabe7579d4163dd6f73e42f254934d5ef8b41213be671a0547004cf5" width="1512" height="1000" autoPlay loop playsInline></video>
+              <video className={styles['contact-video']} src="https://player.vimeo.com/progressive_redirect/download/900999111/rendition/source/contact-video-2268-optim%20%28Original%29.mp4?loc=external&amp;signature=a6fbf829cabe7579d4163dd6f73e42f254934d5ef8b41213be671a0547004cf5" width="1512" height="1000" autoPlay muted  loop playsInline></video>
             </div>
             <div className={styles['contact-container']}>
               <div className={styles['contact-content']}>
@@ -248,9 +248,14 @@ const Contact: React.FC = (): JSX.Element => {
                     </button>
                   </div>
                 </div>
-                <div className="page_contact-bg-mobile__cCEP8">
-                  <picture className="Picture_picture__X3Eos page_contact-image__TRw2w"></picture>
+                <div className={styles['contact-bg-mobile']}>
+                  <picture className={`${PictureStyles['picture']} ${styles['contact-image']}`}>
+                    <source srcSet="https://a-us.storyblok.com/f/1017006/900x900/9298fb8569/contact-video-frame-square-mobile.jpg/m/450x450/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/900x900/9298fb8569/contact-video-frame-square-mobile.jpg/m/900x900/filters:quality(80) 2x" media="(min-width: 0px) and (max-width: 479px)" />
+                    <source srcSet="https://a-us.storyblok.com/f/1017006/900x900/9298fb8569/contact-video-frame-square-mobile.jpg/m/900x900/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/900x900/9298fb8569/contact-video-frame-square-mobile.jpg/m/1800x1800/filters:quality(80) 2x" media="(min-width: 480px)" />
+                    <img src="https://a-us.storyblok.com/f/1017006/900x900/9298fb8569/contact-video-frame-square-mobile.jpg/m/450x450/filters:quality(80)" loading="eager" width="450" height="450" alt="" className="" draggable="false" />
+                  </picture>
                 </div>
+                {/* <video className={styles['contact-video']} src="https://player.vimeo.com/progressive_redirect/download/900999010/rendition/source/contact-video-square-900-optim%20%28Original%29.mp4?loc=external&amp;signature=9ddaa105361e9d771885fde1b0e756156e958c058d7a2523f32cf8a7bea4895a" width="900" height="900" autoPlay muted  loop playsInline></video> */}
               </div>
             </div>
             <footer className={styles['contact-footer']}>

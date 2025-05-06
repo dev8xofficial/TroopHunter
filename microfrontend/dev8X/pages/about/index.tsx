@@ -86,7 +86,7 @@ const Contact: React.FC = (): JSX.Element => {
                       </span>
                       <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                         <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                          Craft.{'    '}
+                          Craft.{'   '}
                         </span>
                       </span>
                     </span>
@@ -151,7 +151,7 @@ const Contact: React.FC = (): JSX.Element => {
             </div>
             <div className="">
               <AboutGallery />
-              <div className={styles['about-logos']}>
+              {/* <div className={styles['about-logos']}>
                 <h2 className={styles['about-logos__intro']} aria-label="Since 2010 we’ve been working with amazing [clients] to create meaningful impact and compelling experiences.">
                   <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                     <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
@@ -182,7 +182,7 @@ const Contact: React.FC = (): JSX.Element => {
                   </span>
                 </h2>
                 <LogoGrid />
-              </div>
+              </div> */}
               <div className={styles['about-capabilities']}>
                 <h2 className={styles['about-capabilities__intro']} aria-label="Our [capabilities] are centred around our ability to deliver world-className websites and apps. We’re 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.">
                   <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
