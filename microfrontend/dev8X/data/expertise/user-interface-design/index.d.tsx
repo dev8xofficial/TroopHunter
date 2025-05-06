@@ -83,7 +83,7 @@ const PageData = {
     },
     {
       title: 'Human interfaces',
-      paragraph: 'Tune into how people work. From eCommerce checkouts to detailed customisation tools, our systematic UI design approach has produced dynamic, future-ready outcomes across traditional and emergent industries. With over 15 years’ experience making digital products for people, we know the details that make the difference.',
+      paragraph: 'Tune into how people work. From eCommerce checkouts to detailed customisation tools, our systematic UI design approach has produced dynamic, future-ready outcomes across traditional and emergent industries. With over 6 years’ experience making digital products for people, we know the details that make the difference.',
       image: 'https://a-us.storyblok.com/f/1017006/1864x1314/eb4021775e/scitechui.png'
     },
     {
