@@ -96,9 +96,9 @@
 }
 
 .button--bg-secondary {
-  --text-color: #fff !important;
-  --icon-color: #b488f1 !important;
-  --background-color: #12032a !important;
+  --text-color: #fff;
+  --icon-color: var(--theme-primary);
+  --background-color: var(--theme-secondary);
 }
 
 .button--bg-white {

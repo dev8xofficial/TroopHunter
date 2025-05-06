@@ -86,7 +86,7 @@ const Contact: React.FC = (): JSX.Element => {
                       </span>
                       <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                         <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                          Craft.{' '}
+                          Craft.{'    '}
                         </span>
                       </span>
                     </span>
@@ -107,37 +107,42 @@ const Contact: React.FC = (): JSX.Element => {
                   </h1>
                 </div>
                 <div className={AboutHeroStyles['about-hero__container']}>
-                  <p className={AboutHeroStyles['about-hero__intro']} aria-label="[Human experiences] are the foundation of everything we do – client relationships, team collaboration and an unwavering focus on the end user. This philosophy is in our name, our core values and underpins our approach to every engagement.">
+                  <p className={AboutHeroStyles['about-hero__intro']} aria-label="Human experiences are the foundation of everything we do – client relationships, team collaboration, and an unwavering focus on the end user. This philosophy is in our name, our core values and underpins our approach to every engagement.">
                     <span className={styles['format']}>
-                      <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
+                      <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
                         <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
                           Human-focused{' '}
                         </span>
                       </span>
                     </span>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
+                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        experiences shape everything we create — from{' '}
+                        experiences shape everything we{' '}
                       </span>
                     </span>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
+                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        how we collaborate as a team, to the partnerships we build, and the{' '}
+                        create – from how we collaborate as a team, to the{' '}
                       </span>
                     </span>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
+                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        digital solutions we deliver. This belief{' '}
+                        partnerships we build, and the digital solutions we{' '}
                       </span>
                     </span>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
+                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        lives in our culture, fuels our curiosity, and{' '}
+                        deliver. This belief lives in our culture, fuels our{' '}
                       </span>
                     </span>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
+                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        drives how we approach every project from start to finish.
+                        curiosity, and drives how we approach every project{''}
+                      </span>
+                    </span>
+                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
+                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
+                        from start to finish.
                       </span>
                     </span>
                   </p>
