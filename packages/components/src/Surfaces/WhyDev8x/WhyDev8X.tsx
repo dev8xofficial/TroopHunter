@@ -2,8 +2,8 @@ import React from 'react';
 import { HomepageStat, HomepageStats } from '../HomepageStats/HomepageStats';
 
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
-import WYSIWYGStyle from '../WYSIWYG/index.module.css';
 import PictureStyle from '../Picture/index.module.css';
+import WYSIWYGStyle from '../WYSIWYG/index.module.css';
 import styles from './index.module.css';
 
 type WhyProps = {

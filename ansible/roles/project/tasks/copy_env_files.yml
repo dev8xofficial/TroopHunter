@@ -39,6 +39,16 @@
     src: "{{ ENV_PATH }}/microfrontend/troophunter-landing/.env-{{ ENVIRONMENT }}"
     dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/troophunter-landing/.env
 
+- name: Copy .env file from microfrontend/dev8X into host microfrontend/dev8X.
+  copy:
+    src: "{{ ENV_PATH }}/microfrontend/dev8X/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/dev8X/.env
+
+- name: Copy .env file from microfrontend/helloabdul into host microfrontend/helloabdul.
+  copy:
+    src: "{{ ENV_PATH }}/microfrontend/helloabdul/.env-{{ ENVIRONMENT }}"
+    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/helloabdul/.env
+
 - name: Copy .env file from ci into host ci.
   copy:
     src: "{{ ENV_PATH }}/ci/.env-{{ ENVIRONMENT }}"
