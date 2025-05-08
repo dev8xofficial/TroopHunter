@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContactFormModal, ModalCloseButton } from '@repo/components';
+import { ContactFormModal, ModalCloseButton, ProjectsFormModal } from '@repo/components';
 
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 import styles from './index.module.css';
@@ -22,6 +22,7 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle }): JSX.Element => {
               <ModalCloseButton onClick={toggle} />
               <main className={styles['modal-content']}>
                 <ContactFormModal />
+                {/* <ProjectsFormModal /> */}
               </main>
             </div>
           </div>
