@@ -6,7 +6,7 @@ export * from './src/Surfaces/Hero/Hero';
 export * from './src/Surfaces/IconCards/IconCards';
 export * from './src/Surfaces/Steps';
 export * from './src/Surfaces/WorkWithVideos';
-export * from './src/Surfaces/WhyDev8X/WhyDev8X';
+export * from './src/Surfaces/WhyDev8x/WhyDev8X';
 export * from './src/Surfaces/FooterInternationalContents/FooterInternationalContents';
 export * from './src/Surfaces/Footer/Footer';
 export * from './src/Surfaces/ModularBlocks/ModularBlocks';
@@ -28,6 +28,9 @@ export * from './src/Surfaces/LogoGrid/LogoGrid';
 export * from './src/Surfaces/CardStack/CardStack';
 export * from './src/Surfaces/AwardsBlock/AwardsBlock';
 export * from './src/Surfaces/ExpertiseCard/ExpertiseCard';
+export * from './src/Surfaces/CaseStudySidebar/CaseStudySidebar';
+export * from './src/Surfaces/ProjectContents/ProjectContents';
+export * from './src/Surfaces/TestimonialSlider/TestimonialSlider';
 
 export * from './src/Icons/AIBrain';
 export * from './src/Icons/Analysis';
