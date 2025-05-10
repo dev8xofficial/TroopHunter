@@ -57,19 +57,22 @@ const Contact: React.FC = (): JSX.Element => {
                   <h1 className={`${AboutHeroStyles['about-hero__heading']} ${['about-hero__heading--mobile']}`} aria-label="Digital Products. Human Experiences.">
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
-                        Digital{' '}
+                        Digital
                       </span>
                     </span>
+                    <br />
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
-                        Craft.{' '}
+                        Craft.
                       </span>
                     </span>
+                    <br />
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
-                        Real{' '}
+                        Real
                       </span>
                     </span>
+                    <br />
                     <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
                       <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
                         Impact.
@@ -81,22 +84,25 @@ const Contact: React.FC = (): JSX.Element => {
                     <span aria-label="Digital Products.">
                       <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                         <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                          Digital{' '}
+                          Digital
                         </span>
                       </span>
+                      <br />
                       <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                         <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                          Craft.{'   '}
+                          Craft.
                         </span>
                       </span>
                     </span>
+                    <br />
                     <span className="AboutHero_about-hero__heading-opacity__BrOA2">
                       <span aria-label="Human Experiences.">
                         <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                           <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                            Real{' '}
+                            Real
                           </span>
                         </span>
+                        <br />
                         <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                           <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
                             Impact.
