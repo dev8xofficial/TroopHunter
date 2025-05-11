@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import { AboutGallery, Footer, FooterRevealPageWrap, Header, LogoGrid } from '@repo/components';
 import Capabilities from './Capabilities/Capabilities';
+import { getDev8xPublicUrl } from '../../utils/helpers';
 import PageData from '../../data/about/index.d';
 
 import AboutHeroStyles from '../../components/Surfaces/AboutHero/index.module.css';
@@ -15,15 +16,15 @@ const Contact: React.FC = (): JSX.Element => {
       <Head>
         <title>Dev8X - Solutions Made Simple!</title>
         <meta name="description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_DEV8X_URL}`} />
+        <link rel="canonical" href={`${getDev8xPublicUrl()}/about`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Dev8X - Solutions Made Simple!"></meta>
         <meta property="og:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_DEV8X_URL}`}></meta>
+        <meta property="og:url" content={`${getDev8xPublicUrl()}/about`}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DEV8X_URL}/logo/logo-social.png`}></meta>
-        <meta property="og:image:secure_url" content={`${process.env.NEXT_PUBLIC_DEV8X_URL}/logo/logo-social.png`}></meta>
+        <meta property="og:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
+        <meta property="og:image:secure_url" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -31,7 +32,7 @@ const Contact: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content="Dev8X - Solutions Made Simple!"></meta>
         <meta name="twitter:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_DEV8X_URL}/logo/logo-social.png`}></meta>
+        <meta name="twitter:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
