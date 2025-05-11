@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import PictureStyles from '../Picture/index.module.css';
 import styles from './index.module.css';

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import CountUp from 'react-countup';
 import { gsap } from 'gsap';
+
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import styles from './index.module.css';
 
