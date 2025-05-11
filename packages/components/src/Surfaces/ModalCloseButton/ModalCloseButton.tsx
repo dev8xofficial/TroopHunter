@@ -20,7 +20,7 @@ export const ModalCloseButton: React.FC<ModalCloseButtonProps> = ({ onClick }): 
         onClick={onClick}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18" className={styles['modal-close-button_svg']}>
-          <path stroke="currentColor" strokeLinecap="square" stroke-linejoin="round" strokeWidth="2" d="M2.332 15.667 15.665 2.333m0 13.334L2.332 2.333" vector-effect="non-scaling-stroke"></path>
+          <path stroke="currentColor" strokeLinecap="square" strokeLinejoin="round" strokeWidth="2" d="M2.332 15.667 15.665 2.333m0 13.334L2.332 2.333" vectorEffect="non-scaling-stroke"></path>
         </svg>
       </button>
     </>
