@@ -1,13 +1,16 @@
 import Head from 'next/head';
 import { getDev8xPublicUrl } from '../utils/helpers';
+import { useProjectModal } from '../hooks/useProjectModal';
 import Hero from '../components/Surfaces/Hero/Hero';
 import Problems from './home/Problems/Problems';
-import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDev8X } from '@repo/components';
+import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDev8X, ProjectsFormModal } from '@repo/components';
+import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../data/index.d';
 
 import styles from './index.module.css';
 
 export default function Home() {
+  const { modalSlug, openModal, closeModal } = useProjectModal();
   const whyDev = {
     heading: 'Why Dev8X',
     para1: 'We believe that meaningful design starts with empathy. Every product we create is centered around improving real lives—helping people achieve more with less friction.',
@@ -69,13 +72,14 @@ export default function Home() {
             <FeatureVideoResponsive />
             <TestimonialsLarge /> */}
             <div className={styles['homepage__section']}>
-              <WorkGrid workGridCSSClass={styles['work-grid']} />
+              <WorkGrid workGridCSSClass={styles['work-grid']} openModal={openModal} />
               <WhyDev8X {...whyDev} />
             </div>
           </main>
         </FooterRevealPageWrap>
         <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
       </FooterRevealPageWrap>
+      <SmoothModalWrapper toggle={closeModal}>{modalSlug && <ProjectsFormModal />}</SmoothModalWrapper>
     </>
   );
 }

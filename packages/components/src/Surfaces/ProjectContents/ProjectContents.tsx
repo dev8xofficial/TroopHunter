@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import styles from './index.module.css';
-import PictureStyles from '../Picture/index.module.css';
-import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 
 import { CaseStudySideBar } from '../CaseStudySidebar/CaseStudySidebar';
 import { TestimonialSlider } from '../TestimonialSlider/TestimonialSlider';
+
+import PictureStyles from '../Picture/index.module.css';
+import TextAnimateStyles from '../TextAnimateUp/index.module.css';
+import styles from './index.module.css';
 
 export const ProjectsFormModal: React.FC = (): JSX.Element => {
   return (

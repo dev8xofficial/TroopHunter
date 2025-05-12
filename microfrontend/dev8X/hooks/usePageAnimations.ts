@@ -5,7 +5,7 @@ import Lenis from 'lenis';
 
 export function usePageAnimations() {
   useEffect(() => {
-    const lenis = new Lenis();
+    const lenis = new Lenis({ autoRaf: true });
 
     function raf(time: number) {
       lenis.raf(time);

@@ -10,9 +10,11 @@ interface WorkCardProps {
   name: string;
   image: string;
   video?: string;
+  href?: string;
+  openModal?: (slug: string) => void;
 }
 
-export const WorkCard: React.FC<WorkCardProps> = ({ variant, space, bgColor, name, image, video }: WorkCardProps): JSX.Element => {
+export const WorkCard: React.FC<WorkCardProps> = ({ variant, space, bgColor, name, image, video, href, openModal }: WorkCardProps): JSX.Element => {
   const getWorkCardWrapperStyle = () => {
     if (variant === 'landscape') {
       return { '--aspect-x': 1452, '--aspect-y': 890, opacity: 1, transform: 'translateY(0px)' };
@@ -24,7 +26,14 @@ export const WorkCard: React.FC<WorkCardProps> = ({ variant, space, bgColor, nam
   return (
     <>
       <div className={styles['work-card-wrapper']} style={getWorkCardWrapperStyle() as React.CSSProperties}>
-        <a className={`${styles['work-card']} ${variant === 'landscape' ? styles['work-card--landscape'] : styles['work-card--portrait']}`} href="/work/sussex-taps">
+        <a
+          className={`${styles['work-card']} ${variant === 'landscape' ? styles['work-card--landscape'] : styles['work-card--portrait']}`}
+          href={href}
+          onClick={(e) => {
+            e.preventDefault();
+            openModal?.(href);
+          }}
+        >
           <div className={styles['work-card__thumbnail-wrapper']}>
             <div className={`${styles['work-card__thumbnail-outer']} ${space === 'inner' ? `${styles[`bg--${bgColor}`]}` : ''}`} style={{ height: '100%' }}>
               {space === 'outer' && (

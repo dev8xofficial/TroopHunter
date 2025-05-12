@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { useSetAtom, useAtom } from 'jotai';
-import { isSmoothModalOpenAtom, toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { useSetAtom } from 'jotai';
+import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
 
-import { Header, FooterRevealPageWrap, FooterInternationalContents } from '@repo/components';
+import { Header, FooterRevealPageWrap, FooterInternationalContents, ContactFormModal } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import { getDev8xPublicUrl } from '../../utils/helpers';
+
 import PageData from '../../data/contact/index.d';
 
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
@@ -17,7 +18,6 @@ import styles from './index.module.css';
 
 const Contact: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
-  const [show] = useAtom(isSmoothModalOpenAtom);
 
   return (
     <>
@@ -58,7 +58,7 @@ const Contact: React.FC = (): JSX.Element => {
             }
           `}</style>
           {/* Main container with smooth-scrollbar */}
-          <main className={styles['contact-page']}>
+          <main className={`${styles['contact-page']}`}>
             <div className={styles['contact-bg-desktop']}>
               <picture className={`${PictureStyles['picture']} ${styles['contact-image']}`}>
                 <source srcSet="https://a-us.storyblok.com/f/1017006/3024x2000/8c579e2bc5/contact-video-frame.jpg/m/1512x1000/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/3024x2000/8c579e2bc5/contact-video-frame.jpg/m/2268x1500/filters:quality(80) 1.5x" media="(min-width: 0px)" />
@@ -108,7 +108,9 @@ const Contact: React.FC = (): JSX.Element => {
           </main>
         </FooterRevealPageWrap>
       </FooterRevealPageWrap>
-      {show && <SmoothModalWrapper toggle={toggleModal} />}
+      <SmoothModalWrapper toggle={toggleModal}>
+        <ContactFormModal />
+      </SmoothModalWrapper>
     </>
   );
 };

@@ -7,32 +7,93 @@ type WorkGridRowProps = {
   children: ReactNode;
 };
 
-type WorkGridProps = {
-  workGridCSSClass: string;
+type CommonWorkCardProps = {
+  space: 'inner' | 'outer';
+  bgColor: string;
+  name: string;
+  image: string;
+  video: string;
+  href: string;
 };
 
-const portfolio = {
-  thdc: {
-    name: 'Total Health Dental Care',
-    image: '/images/placeholder/1080.png',
-    video: '/videos/work/crm.mp4'
-  },
-  honeydu: {
-    name: 'Honeydu',
-    image: '/images/placeholder/1080.png',
-    video: '/videos/work/honeydu.mp4'
-  },
-  coral: {
-    name: 'Coral',
-    image: '/images/placeholder/1080.png',
-    video: '/videos/work/coral.mp4'
-  },
-  goldenDao: {
-    name: 'Golden Dao',
-    image: '/images/placeholder/1080.png',
-    video: '/videos/work/golden-dao.mp4'
-  }
+type LandscapeWorkCardProps = CommonWorkCardProps & {
+  variant: 'landscape';
 };
+
+type PortraitWorkCardProps = CommonWorkCardProps & {
+  variant: 'portrait';
+};
+
+type WorkGridDataProps = {
+  landscape: LandscapeWorkCardProps[];
+  portrait: PortraitWorkCardProps[];
+};
+
+type WorkGridProps = {
+  workGridCSSClass: string;
+  // workGridData: WorkGridDataProps;
+  openModal?: (slug: string) => void;
+};
+
+const workGridData = {
+  landscape: [
+    {
+      variant: 'landscape',
+      space: 'inner',
+      bgColor: 'cyan',
+      name: 'Total Health Dental Care',
+      image: '/images/placeholder/1080.png',
+      video: '/videos/work/crm.mp4',
+      href: 'crm'
+    },
+    {
+      variant: 'landscape',
+      space: 'inner',
+      bgColor: 'green',
+      name: 'Honeydu',
+      image: '/images/placeholder/1080.png',
+      video: '/videos/work/honeydu.mp4',
+      href: 'honeydu'
+    },
+    {
+      variant: 'landscape',
+      space: 'inner',
+      bgColor: 'blue',
+      name: 'Coral',
+      image: '/images/placeholder/1080.png',
+      video: '/videos/work/coral.mp4',
+      href: 'coral'
+    },
+    {
+      variant: 'landscape',
+      space: 'inner',
+      bgColor: 'yellow',
+      name: 'Golden Dao',
+      image: '/images/placeholder/1080.png',
+      video: '/videos/work/golden-dao.mp4',
+      href: 'golden-dao'
+    }
+  ],
+  portrait: [
+    {
+      variant: 'portrait',
+      space: 'inner',
+      name: 'Total Health Dental Care',
+      image: '/images/placeholder/1080.png',
+      video: '/videos/work/crm.mp4',
+      href: 'crm'
+    },
+    {
+      variant: 'portrait',
+      space: 'inner',
+      bgColor: 'cyan',
+      name: 'Golden Dao',
+      image: '/images/placeholder/1080.png',
+      video: '/videos/work/golden-dao.mp4',
+      href: 'crm'
+    }
+  ]
+} as const;
 
 export const WorkGridRowLandscape: React.FC<WorkGridRowProps> = ({ children }: WorkGridRowProps): JSX.Element => {
   return (
@@ -50,25 +111,19 @@ export const WorkGridRowPortrait: React.FC<WorkGridRowProps> = ({ children }: Wo
   );
 };
 
-export const WorkGrid: React.FC<WorkGridProps> = ({ workGridCSSClass }: WorkGridProps): JSX.Element => {
+export const WorkGrid: React.FC<WorkGridProps> = ({ workGridCSSClass, openModal }: WorkGridProps): JSX.Element => {
   return (
     <>
       <div className={`${styles['work-grid']} ${workGridCSSClass}`}>
-        <WorkGridRowLandscape>
-          <WorkCard variant="landscape" space="inner" bgColor="cyan" name={portfolio['thdc'].name} image={portfolio['thdc'].image} video={portfolio['thdc'].video} />
-        </WorkGridRowLandscape>
-        <WorkGridRowLandscape>
-          <WorkCard variant="landscape" space="inner" bgColor="green" name={portfolio['honeydu'].name} image={portfolio['honeydu'].image} video={portfolio['honeydu'].video} />
-        </WorkGridRowLandscape>
-        <WorkGridRowLandscape>
-          <WorkCard variant="landscape" space="inner" bgColor="blue" name={portfolio['coral'].name} image={portfolio['coral'].image} video={portfolio['coral'].video} />
-        </WorkGridRowLandscape>
-        <WorkGridRowLandscape>
-          <WorkCard variant="landscape" space="inner" bgColor="yellow" name={portfolio['goldenDao'].name} image={portfolio['goldenDao'].image} video={portfolio['goldenDao'].video} />
-        </WorkGridRowLandscape>
+        {workGridData.landscape.map((item, index) => (
+          <WorkGridRowLandscape key={`landscape-${index}`}>
+            <WorkCard variant={item.variant} space={item.space} bgColor={item.bgColor} name={item.name} image={item.image} video={item.video} href={item.href} openModal={openModal} />
+          </WorkGridRowLandscape>
+        ))}
         {/* <WorkGridRowPortrait>
-          <WorkCard variant="portrait" space="inner" name={portfolio['thdc'].name} image={portfolio['thdc'].image} video={portfolio['thdc'].video} />
-          <WorkCard variant="portrait" space="inner" name={portfolio['goldenDao'].name} image={portfolio['goldenDao'].image} video={portfolio['goldenDao'].video} />
+          {workGridData.portrait.map((item, index) => (
+            <WorkCard variant={item.variant} space={item.space} bgColor={item.bgColor} name={item.name} image={item.image} video={item.video} href={item.href} openModal={openModal} />
+          ))}
         </WorkGridRowPortrait> */}
       </div>
     </>
