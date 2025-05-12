@@ -2,12 +2,12 @@ import React from 'react';
 import Head from 'next/head';
 
 import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards, Button, ExpertiseCard, AwardsBlock, CardStack } from '@repo/components';
+import NestjsIcon from '@repo/components/src/Icons/Nestjs';
 import { getDev8xPublicUrl } from '../../../utils/helpers';
 import PageData from '../../../data/expertise/express-nest/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
-import NextjsIcon from '@repo/components/src/Icons/Nextjs';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="pink" tagText="Express.js/Nest.js" heading="Build fast, scalable APIs with precision" icon={<NextjsIcon width="120" />} />
+            <Hero variant="pink" tagText="Express.js/Nest.js" heading="Build fast, scalable APIs with precision" icon={<NestjsIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Efficient server-side solutions" paragraph="Harness the power of Express.js and Nest.js to create lightweight, scalable backend applications. Whether you need a quick REST API or a robust GraphQL server, our team helps you build efficient, maintainable solutions." IconCardsItems={PageData.IconCardsItems} />
