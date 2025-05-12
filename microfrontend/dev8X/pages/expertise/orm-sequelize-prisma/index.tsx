@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="cyan" tagText="ORM (Sequelize/Prisma)" heading="Efficient data management with Sequelize ORM" icon={<SequelizeIcon width="64" />} />
+            <Hero variant="cyan" tagText="ORM (Sequelize/Prisma)" heading="Efficient data management with Sequelize ORM" icon={<SequelizeIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Seamless database interactions" paragraph="Leverage the power of Sequelize to streamline database operations. With its robust set of features, it simplifies complex queries, models, and migrations, ensuring smooth data flow within your application." IconCardsItems={PageData.IconCardsItems} />

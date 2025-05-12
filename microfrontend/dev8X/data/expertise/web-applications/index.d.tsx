@@ -1,4 +1,5 @@
 import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
+import CardIcon from '@repo/components/src/Icons/Card';
 import DevicesIcon from '@repo/components/src/Icons/Devices';
 import GlobeIcon from '@repo/components/src/Icons/Globe';
 import GPSIcon from '@repo/components/src/Icons/GPS';
@@ -31,17 +32,17 @@ const PageData = {
     {
       title: 'Ready for scale',
       paragraph: 'As your business evolves, so will your technological requirements. We implement a practical blend of proven solutions and latest technologies to produce applications that effortlessly adapt and expand. Be relevant now, stay relevant in the future.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/68a40c6f0e/trails2-1864-x-1316.jpg'
+      icon: <CardIcon width="64" />
     },
     {
       title: 'From startups to enterprise',
       paragraph: 'We work with clients of all size, from startups poised for rapid growth or established enterprises looking to enhance their digital infrastructure. Our custom-designed and purpose-built web applications support and drive business success at every stage.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/828a82ab3e/growag.jpg'
+      icon: <CardIcon width="64" />
     },
     {
       title: 'Entirely bespoke',
       paragraph: 'Unique businesses demand unique solutions. From marketplaces to automation, we work with each partner to strategise, design and execute web applications that are built to spec and integrate with your existing business systems.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/828a82ab3e/growag.jpg'
+      icon: <CardIcon width="64" />
     }
   ],
   footerMainContent: {

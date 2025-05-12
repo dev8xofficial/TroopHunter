@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="green" tagText="eCommerce" heading="Beautiful online stores that engage and convert" icon={<BasketIcon width="64" />} />
+            <Hero variant="green" tagText="eCommerce" heading="Beautiful online stores that engage and convert" icon={<BasketIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="From 1 product to 100+" paragraph="High-performing eCommerce experiences that turn visitors into loyal customers." IconCardsItems={PageData.IconCardsItems} />

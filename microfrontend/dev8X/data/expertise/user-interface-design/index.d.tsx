@@ -32,22 +32,22 @@ const PageData = {
     {
       title: 'Engaging Reports & Dashboards',
       paragraph: 'Surface insights from raw data with visually compelling, interactive experiences and consolidated touchpoints. We design and create data-driven user interfaces to suit any objective, from immersive reports for public consumption to bespoke internal tools and dashboards that support and inform your stakeholders.',
-       icon: <SelectionIcon width="26" />
+       icon: <SelectionIcon width="64" />
     },
     {
       title: 'An intuitive product experience',
       paragraph: 'Data informs every interface design decision we make, a vital strategy when crafting digital tools to serve complex information workflows. Using quantitative and qualitative research methods, we can determine the clearest and most intuitive UI designs for your purpose, and find the optimal path to achieving user goals.',
-       icon: <SelectionIcon width="26" />
+       icon: <SelectionIcon width="64" />
     },
     {
       title: 'Human interfaces',
       paragraph: 'Tune into how people work. From eCommerce checkouts to detailed customisation tools, our systematic UI design approach has produced dynamic, future-ready outcomes across traditional and emergent industries. With over 6 years’ experience making digital products for people, we know the details that make the difference.',
-      icon: <SelectionIcon width="26" />
+      icon: <SelectionIcon width="64" />
     },
     {
       title: 'Your UI Design Partner',
       paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. Everything we craft is entirely bespoke, as unique as the story you tell. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless user interface experiences, and a truly collaborative design and delivery process.',
-      icon: <SelectionIcon width="26" />
+      icon: <SelectionIcon width="64" />
     }
   ],
   footerMainContent: {

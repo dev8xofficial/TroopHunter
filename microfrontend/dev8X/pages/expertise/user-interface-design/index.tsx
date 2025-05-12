@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="pink" tagText="User Interface Design" heading="Next-gen UI tailored to your application" icon={<SelectionIcon width="64" />} />
+            <Hero variant="pink" tagText="User Interface Design" heading="Next-gen UI tailored to your application" icon={<SelectionIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Bespoke user interfaces" paragraph="Blending human-centric aesthetics with purposeful design, we follow a structured approach to build intuitive and highly functional user interfaces." IconCardsItems={PageData.IconCardsItems} />

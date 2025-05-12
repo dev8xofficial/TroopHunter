@@ -33,22 +33,22 @@ const PageData = {
     {
       title: 'Diverse user research and testing',
       paragraph: 'Our team employs a diverse and bespoke selection of quantitative and qualitative research methods, tailored to the needs of your project. This may include user interviews, surveys, stakeholder workshops, focus groups, and data analysis in the early discovery stages, followed by usability testing, concept testing, card sorting, and more at key implementation milestones.',
-      icon: <MyspaceIcon width="26" />
+      icon: <MyspaceIcon width="64" />
     },
     {
       title: 'Design an intuitive product experience',
       paragraph: 'Data informs every design decision we make, a vital strategy when creating eCommerce websites, functional webapps, and conversion-focused journeys like signups, enrolments and checkouts. Using validation methods such as tree testing, targeted A/B testing, and usability testing, we can determine the clearest and most intuitive user workflows for your audience.',
-      icon: <MyspaceIcon width="26" />
+      icon: <MyspaceIcon width="64" />
     },
     {
       title: 'Meaningful data analysis and reporting',
       paragraph: 'We can prepare a report of our research findings, written to suit the requirements of your project, stakeholders and organisation. Most of our clients request design concepts, complemented by supporting insights and statistics, but our team can also provide a comprehensive review and analysis, with a full best-practice list of recommendations.',
-      icon: <MyspaceIcon width="26" />
+      icon: <MyspaceIcon width="64" />
     },
     {
       title: 'Rewarding partnerships',
       paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless end results, and a truly collaborative process, no matter what industry you’re in.',
-      icon: <MyspaceIcon width="26" />
+      icon: <MyspaceIcon width="64" />
     }
   ],
   footerMainContent: {

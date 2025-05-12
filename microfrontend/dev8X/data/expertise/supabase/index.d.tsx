@@ -44,17 +44,17 @@ const PageData = {
     {
       title: 'Real-time data at your fingertips',
       paragraph: 'Harness the power of real-time data updates with Supabase’s scalable, open-source database solution. Our approach ensures that your application can effortlessly handle live data feeds, user interactions, and notifications, creating responsive, engaging experiences for your users. Whether building collaborative apps, live dashboards, or dynamic content, Supabase enables you to turn data into immediate action.',
-      icon: <SupabaseIcon width="26" />
+      icon: <SupabaseIcon width="64" />
     },
     {
       title: 'Seamless integrations for modern applications',
       paragraph: 'Integrate effortlessly with your existing infrastructure. Supabase supports a wide range of out-of-the-box integrations, including APIs, webhooks, authentication, and storage, making it an ideal choice for developers looking to build and scale their applications quickly and efficiently.',
-      icon: <SupabaseIcon width="26" />
+      icon: <SupabaseIcon width="64" />
     },
     {
       title: 'Your data, our expertise',
       paragraph: 'Supabase gives you all the tools needed to manage your databases at scale with ease. From authentication and authorization to real-time capabilities, Supabase simplifies complex tasks and empowers your team to focus on building great applications. We bring our expertise in backend development and cloud-native technologies to help you unlock the full potential of Supabase, creating highly performant and secure experiences.',
-      icon: <SupabaseIcon width="26" />
+      icon: <SupabaseIcon width="64" />
     }
   ],
   footerMainContent: {

@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="purple" tagText="Next.js" heading="Building fast, scalable, and dynamic web applications" icon={<NextjsIcon width="64" />} />
+            <Hero variant="purple" tagText="Next.js" heading="Building fast, scalable, and dynamic web applications" icon={<NextjsIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Next.js for seamless performance" paragraph="Harness the power of Next.js to build optimized, lightning-fast web applications. With server-side rendering, static site generation, and API routes, we help teams create high-performing websites that scale effortlessly across devices." IconCardsItems={PageData.IconCardsItems} />

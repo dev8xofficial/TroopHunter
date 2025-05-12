@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="pink" tagText="Express.js/Nest.js" heading="Build fast, scalable APIs with precision" icon={<NextjsIcon width="64" />} />
+            <Hero variant="pink" tagText="Express.js/Nest.js" heading="Build fast, scalable APIs with precision" icon={<NextjsIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Efficient server-side solutions" paragraph="Harness the power of Express.js and Nest.js to create lightweight, scalable backend applications. Whether you need a quick REST API or a robust GraphQL server, our team helps you build efficient, maintainable solutions." IconCardsItems={PageData.IconCardsItems} />

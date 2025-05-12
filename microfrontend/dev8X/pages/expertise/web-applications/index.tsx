@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/web-applications/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import CardIcon from '@repo/components/src/Icons/Card';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="pink" tagText="Web Applications" heading="Tailored digital solutions, from concept to launch" image="https://a-us.storyblok.com/f/1017006/3810x2036/457fa6467b/trails-3810-x-2040.jpg" />
+            <Hero variant="pink" tagText="Web Applications" heading="Tailored digital solutions, from concept to launch" icon={<CardIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Built for your needs" paragraph="We craft custom web applications designed specifically to support and enhance your unique business operations." IconCardsItems={PageData.IconCardsItems} />

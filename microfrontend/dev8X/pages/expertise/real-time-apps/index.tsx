@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="pink" tagText="Real-Time Applications" heading="Engage users in the moment with real-time experiences" icon={<SeismometerIcon width="64" />} />
+            <Hero variant="pink" tagText="Real-Time Applications" heading="Engage users in the moment with real-time experiences" icon={<SeismometerIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Instant, seamless interaction" paragraph="We create real-time applications that enable immediate, meaningful communication. From live updates to instant messaging and collaborative tools, our real-time solutions keep users connected and engaged, effortlessly." IconCardsItems={PageData.IconCardsItems} />

@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="green" tagText="Design Systems" heading="Scalable Design Solutions" icon={<PlanetRingIcon width="64" />} />
+            <Hero variant="green" tagText="Design Systems" heading="Scalable Design Solutions" icon={<PlanetRingIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Boost your product development" paragraph="We build robust design systems that empower product teams to move quicker. Develop your own collection of reusable components and patterns to ensure a cohesive and consistent design across your entire digital ecosystem." IconCardsItems={PageData.IconCardsItems} />

@@ -2,6 +2,7 @@ import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
 import BackendIcon from '@repo/components/src/Icons/Backend';
 import MonitorIcon from '@repo/components/src/Icons/Monitor';
 import PieChartIcon from '@repo/components/src/Icons/PieChart';
+import PointerIcon from '@repo/components/src/Icons/Pointer';
 import VoltageIcon from '@repo/components/src/Icons/Voltage';
 import React from 'react';
 
@@ -32,22 +33,22 @@ const PageData = {
     {
       title: 'Elevate your brand',
       paragraph: 'We blend innovative design, cutting-edge technology, and strategic content to deliver websites that are visually appealing and highly functional. Harness the power of deeply engaging digital experiences to take your brand to the next level.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/902dc5f50c/face_a5.jpg'
+     icon: <PointerIcon width="64" />
     },
     {
       title: 'Human experiences',
       paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive navigation to immersive storytelling, every website is meticulously crafted to command attention and leave a lasting impression.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/bdd8cbb924/face_a3.jpg'
+      icon: <PointerIcon width="64" />
     },
     {
       title: 'Robust, Secure, Flexible',
       paragraph: 'Every website we build is backed by secure and performant infrastructure, tailored to the needs of the organisation. This ensures that your digital presence can scale with demand and offer flexibility to meet the needs of your business over time.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/ab4ffa21a5/face_a8.jpg'
+      icon: <PointerIcon width="64" />
     },
     {
       title: 'Rewarding partnerships',
       paragraph: 'Behind every best-in-class website is a collaborative agency–client partnership. We work in close collaboration with you to ensure outcomes that offer extraordinary experiences while delivering results. Awards are nice, but your success means so much more.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/ab4ffa21a5/face_a8.jpg'
+      icon: <PointerIcon width="64" />
     }
   ],
   footerMainContent: {

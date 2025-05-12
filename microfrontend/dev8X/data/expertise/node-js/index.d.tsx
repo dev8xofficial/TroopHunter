@@ -32,22 +32,22 @@ const PageData = {
     {
       title: 'Powerful, Scalable Backend Solutions',
       paragraph: 'Harness the power of Node.js to build fast, scalable, and reliable backend systems. From high-performance APIs to real-time applications, our expertise in Node.js allows us to deliver flexible solutions that scale with your business needs, ensuring seamless performance even as your user base grows.',
-      icon: <NodejsIcon width="28" />
+      icon: <NodejsIcon width="64" />
     },
     {
       title: 'Real-time, Event-driven Architecture',
       paragraph: "Leverage the full potential of Node.js’s event-driven architecture to handle real-time data with low-latency performance. Whether it's live data streaming, instant messaging, or real-time analytics, we create systems that deliver dynamic and interactive experiences for your users.",
-      icon: <NodejsIcon width="28" />
+      icon: <NodejsIcon width="64" />
     },
     {
       title: 'Custom APIs & Microservices',
       paragraph: 'Unlock the flexibility of microservices with Node.js. We craft efficient, maintainable APIs that integrate effortlessly with third-party systems and allow you to scale parts of your application independently, empowering your team to focus on what truly matters while improving your development speed.',
-      icon: <NodejsIcon width="28" />
+      icon: <NodejsIcon width="64" />
     },
     {
       title: 'Your Node.js Development Partner',
       paragraph: 'We don’t just build Node.js applications; we become your trusted partner in delivering custom backend solutions that drive your product forward. With our deep knowledge of Node.js and its ecosystem, we provide comprehensive solutions, from initial planning to deployment, with ongoing support and optimization.',
-      icon: <NodejsIcon width="28" />
+      icon: <NodejsIcon width="64" />
     }
   ],
   footerMainContent: {

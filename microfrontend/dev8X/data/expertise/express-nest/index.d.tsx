@@ -39,22 +39,22 @@ const PageData = {
     {
       title: 'Fast, Scalable APIs',
       paragraph: "Harness the power of Express.js and Nest.js to build lightning-fast, scalable APIs that serve your application needs. Whether you're crafting a lightweight API with Express or a full-fledged enterprise solution with Nest.js, we deliver performance-driven backend solutions that adapt as your business grows.",
-       icon: <NextjsIcon width="28" />
+       icon: <NextjsIcon width="64" />
     },
     {
       title: 'Modular, Maintainable Architecture',
       paragraph: 'With Nest.js, we help you structure your backend using modular, scalable architecture that makes it easier to maintain and extend. For lightweight, minimal overhead solutions, we tailor Express.js for high performance, ensuring your application remains agile and responsive.',
-      icon: <NextjsIcon width="28" />
+      icon: <NextjsIcon width="64" />
     },
     {
       title: 'Efficient Development Cycles',
       paragraph: 'Accelerate your development cycles by leveraging the simplicity and efficiency of Express.js alongside the powerful features of Nest.js. We implement RESTful APIs, GraphQL, WebSockets, and more, ensuring your application can handle anything your users throw at it—quickly and reliably.',
-       icon: <NextjsIcon width="28" />
+       icon: <NextjsIcon width="64" />
     },
     {
       title: 'Your Backend Design Partner',
       paragraph: 'Behind every scalable backend is a collaborative agency-client partnership. Whether you choose Express.js or Nest.js, we guide you every step of the way, delivering robust, future-proof solutions. Our team of strategists, designers, and backend experts will collaborate closely with your team to achieve seamless integration and provide custom backend solutions that fit your project perfectly.',
-     icon: <NextjsIcon width="28" />
+     icon: <NextjsIcon width="64" />
     }
   ],
   footerMainContent: {

@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Supabase" heading="World-class websites for forward-thinking brands" icon={<SupabaseIcon width="64" />} />
+            <Hero variant="blue" tagText="Supabase" heading="World-class websites for forward-thinking brands" icon={<SupabaseIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Extraordinary digital products" paragraph="We play to our strengths: For over 6 years we've been ideating, creating and shipping wonderful things on the internet." IconCardsItems={PageData.IconCardsItems} />

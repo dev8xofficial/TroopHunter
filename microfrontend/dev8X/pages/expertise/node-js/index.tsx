@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="purple" tagText="Node.js" heading="Powerful, scalable applications with Node.js" icon={<NodejsIcon width="64" />} />
+            <Hero variant="purple" tagText="Node.js" heading="Powerful, scalable applications with Node.js" icon={<NodejsIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Streamline backend development" paragraph="Harness the full potential of Node.js to build fast, scalable applications. Whether you’re building real-time services, APIs, or complex enterprise solutions, Node.js helps you power up with efficiency and speed." IconCardsItems={PageData.IconCardsItems} />

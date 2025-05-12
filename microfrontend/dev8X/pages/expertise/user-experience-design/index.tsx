@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="cyan" tagText="User Experience Design" heading="Inspire, enable, captivate" icon={<MapIcon width="64" />} />
+            <Hero variant="cyan" tagText="User Experience Design" heading="Inspire, enable, captivate" icon={<MapIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Human-centred digital experiences" paragraph="User Experience Design sits at the heart of everything we do. From strategy to information architecture and seamless workflows, every choice is made to ensure users can accomplish their goals with ease—and a touch of delight." IconCardsItems={PageData.IconCardsItems} />

@@ -32,22 +32,22 @@ const PageData = {
     {
       title: 'Robust & Scalable Architectures',
       paragraph: 'We build backend systems that scale with your business, supporting high performance and reliability. From database management to server-side logic, we ensure your infrastructure is robust, flexible, and able to handle growth seamlessly.',
-      icon: <BackendIcon width="26" />
+      icon: <BackendIcon width="64" />
     },
     {
       title: 'Streamline Data Flow',
       paragraph: 'Transform complex data processes into smooth, efficient workflows. Our backend solutions integrate various data sources, ensuring your systems communicate effectively, reducing friction and enabling timely insights for better decision-making.',
-      icon: <BackendIcon width="26" />
+      icon: <BackendIcon width="64" />
     },
     {
       title: 'Seamless Integrations',
       paragraph: "We specialize in building custom backend solutions that integrate effortlessly with third-party services, APIs, and platforms. Whether it's payment gateways, CRM systems, or cloud services, we ensure your application connects smoothly and securely with the tools that power your business.",
-      icon: <BackendIcon width="26" />
+      icon: <BackendIcon width="64" />
     },
     {
       title: 'Your Backend Development Partner',
       paragraph: 'Behind every powerful backend system is a collaborative agency–client partnership. Our team of strategists, developers, and project managers work together to understand your unique needs and deliver tailored backend solutions that drive long-term success. We’re committed to helping you build a system that supports your entire business ecosystem.',
-      icon: <BackendIcon width="26" />
+      icon: <BackendIcon width="64" />
     }
   ],
   footerMainContent: {

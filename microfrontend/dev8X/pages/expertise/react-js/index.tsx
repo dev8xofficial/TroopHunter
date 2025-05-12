@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="purple" tagText="React.js" heading="Build dynamic web applications with React.js" icon={<ReactjsIcon width="64" />} />
+            <Hero variant="purple" tagText="React.js" heading="Build dynamic web applications with React.js" icon={<ReactjsIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Modern, efficient, and scalable" paragraph="Harness the power of React.js to create fast, interactive, and scalable web applications. From component-based architecture to seamless state management, React ensures your app performs efficiently and delivers a smooth user experience." IconCardsItems={PageData.IconCardsItems} />

@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="yellow" tagText="PostgreSQL" heading="Powerful, reliable data management with PostgreSQL" icon={<PostgresqlIcon width="64" />} />
+            <Hero variant="yellow" tagText="PostgreSQL" heading="Powerful, reliable data management with PostgreSQL" icon={<PostgresqlIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Robust data handling" paragraph="Leverage the advanced capabilities of PostgreSQL to manage and store your data with precision. With strong consistency, scalability, and extensibility, PostgreSQL ensures your data is always at its best." IconCardsItems={PageData.IconCardsItems} />

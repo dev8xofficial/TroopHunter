@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Prototyping" heading="Turn your ideas into digital prototypes" icon={<MagicWandIcon width="64" />} />
+            <Hero variant="blue" tagText="Prototyping" heading="Turn your ideas into digital prototypes" icon={<MagicWandIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Design, prototype, test" paragraph="Validate your concepts before developing your MVP. With over 6 years of expertise in digital prototyping, our team ensures it's an integral part of a complete product development and design process." IconCardsItems={PageData.IconCardsItems} />

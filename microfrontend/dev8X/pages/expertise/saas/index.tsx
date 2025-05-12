@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="SaaS" heading="Empower your business with scalable SaaS solutions" icon={<SaaSIcon width="64" />} />
+            <Hero variant="blue" tagText="SaaS" heading="Empower your business with scalable SaaS solutions" icon={<SaaSIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Seamless cloud integration" paragraph="We design SaaS platforms that drive growth and efficiency. Whether you're building a new product or optimizing an existing one, we create scalable and secure solutions that align with your business goals and user needs." IconCardsItems={PageData.IconCardsItems} />

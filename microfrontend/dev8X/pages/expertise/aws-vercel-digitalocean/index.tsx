@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="AWS, Vercel, DigitalOcean" heading="Empowering scalable cloud solutions" icon={<WebServersIcon width="64" />} />
+            <Hero variant="blue" tagText="AWS, Vercel, DigitalOcean" heading="Empowering scalable cloud solutions" icon={<WebServersIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Cloud infrastructure at its finest" paragraph="Build reliable, secure, and scalable cloud infrastructures that grow with your business. Our AWS expertise ensures your cloud services are optimized for speed, security, and efficiency." IconCardsItems={PageData.IconCardsItems} />

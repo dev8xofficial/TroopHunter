@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Ansible & Web Servers" heading="Seamless Automation, Effortless Management" icon={<AnsibleIcon width="64" />} />
+            <Hero variant="blue" tagText="Ansible & Web Servers" heading="Seamless Automation, Effortless Management" icon={<AnsibleIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Simplify Infrastructure Operations" paragraph="We specialize in automating and managing your infrastructure with Ansible. From configuration management to application deployment, our solutions help streamline your workflows, reduce manual intervention, and improve system consistency." IconCardsItems={PageData.IconCardsItems} />

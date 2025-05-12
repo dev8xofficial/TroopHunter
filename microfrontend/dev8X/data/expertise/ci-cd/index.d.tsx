@@ -33,27 +33,27 @@ const PageData = {
     {
       title: 'Seamless Integration & Deployment',
       paragraph: 'Transform your development pipeline into a fluid and efficient process. With our CI/CD expertise, we streamline the integration of code, automate testing, and deploy with confidence. We help you establish a continuous flow from development to production, ensuring faster time to market with higher quality.',
-      icon: <InfinityIcon width="26" />
+      icon: <InfinityIcon width="64" />
     },
     {
       title: 'Automated Pipelines for Continuous Success',
       paragraph: 'Take the guesswork out of deployment. By automating your workflows, we ensure that each code change is tested, validated, and deployed seamlessly. Whether you’re handling a monolithic application or microservices, our CI/CD pipelines are built to suit your needs and scale with your growth.',
-      icon: <InfinityIcon width="26" />
+      icon: <InfinityIcon width="64" />
     },
     {
       title: 'Collaborative Development for Faster Delivery',
       paragraph: 'Integrating your development, testing, and operations teams into a unified workflow is key to delivering quality products. We design and implement CI/CD pipelines that foster collaboration, enabling teams to iterate quickly while maintaining high standards across every stage of development.',
-      icon: <InfinityIcon width="26" />
+      icon: <InfinityIcon width="64" />
     },
     {
       title: 'Ensure Quality at Every Stage',
       paragraph: 'Quality assurance is integral to our CI/CD approach. With automated testing and continuous integration, we ensure that each change is thoroughly tested before it reaches production. Our process catches errors early, giving you confidence that your code is always in top shape.',
-      icon: <InfinityIcon width="26" />
+      icon: <InfinityIcon width="64" />
     },
     {
       title: 'Your CI/CD Partner',
       paragraph: 'Behind every efficient CI/CD pipeline is a collaborative partnership. From setup to maintenance, our in-house team of DevOps engineers, developers, and project managers will work with you to create a pipeline tailored to your needs. Together, we ensure faster releases, higher quality, and a streamlined development process.',
-      icon: <InfinityIcon width="26" />
+      icon: <InfinityIcon width="64" />
     }
   ],
   footerMainContent: {

@@ -32,27 +32,27 @@ const PageData = {
     {
       title: 'Optimized Database Solutions',
       paragraph: 'Transform your data into a powerful, scalable resource with PostgreSQL. We specialize in setting up and optimizing PostgreSQL databases that ensure high performance, reliability, and security for your applications, regardless of scale.',
-      icon: <PostgresqlIcon width="28" />
+      icon: <PostgresqlIcon width="64" />
     },
     {
       title: 'Scalable Data Management',
       paragraph: 'As your business grows, so do your data needs. We design PostgreSQL database architectures that scale with your operations, enabling your team to manage complex datasets with ease, while maintaining lightning-fast access times.',
-      icon: <PostgresqlIcon width="28" />
+      icon: <PostgresqlIcon width="64" />
     },
     {
       title: 'Custom Queries & Optimizations',
       paragraph: 'Our team excels at creating custom queries, building efficient data models, and optimizing database performance to meet your unique business requirements. From complex joins to stored procedures, we ensure your database works efficiently.',
-      icon: <PostgresqlIcon width="28" />
+      icon: <PostgresqlIcon width="64" />
     },
     {
       title: 'Seamless Integration',
       paragraph: 'Whether you’re integrating PostgreSQL with your existing tech stack or building a new application, we provide seamless database integration that enhances functionality and simplifies your operations. We ensure your PostgreSQL solution works effortlessly with your environment.',
-      icon: <PostgresqlIcon width="28" />
+      icon: <PostgresqlIcon width="64" />
     },
     {
       title: 'Your PostgreSQL Experts',
       paragraph: 'Leverage our expertise to unlock the full potential of PostgreSQL for your business. With years of experience in building robust, high-performance database solutions, we help you craft a digital infrastructure that empowers your business to thrive.',
-      icon: <PostgresqlIcon width="28" />
+      icon: <PostgresqlIcon width="64" />
     }
   ],
   footerMainContent: {

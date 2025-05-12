@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Backend" heading="Building powerful, scalable backends" icon={<BackendIcon width="64" />} />
+            <Hero variant="blue" tagText="Backend" heading="Building powerful, scalable backends" icon={<BackendIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Efficient, reliable systems" paragraph="We design and build backend architectures that scale with your business needs. Our solutions are engineered for performance, reliability, and ease of integration, ensuring your data flows seamlessly through your applications." IconCardsItems={PageData.IconCardsItems} />

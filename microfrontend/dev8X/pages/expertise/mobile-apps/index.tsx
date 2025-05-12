@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Mobile Apps" heading="We create, craft and launch exceptional mobile apps" icon={<MobileIcon width="64" />} />
+            <Hero variant="blue" tagText="Mobile Apps" heading="We create, craft and launch exceptional mobile apps" icon={<MobileIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Built to touch" paragraph="Bespoke iOS and Android applications – designed and developed entirely in-house." IconCardsItems={PageData.IconCardsItems} />

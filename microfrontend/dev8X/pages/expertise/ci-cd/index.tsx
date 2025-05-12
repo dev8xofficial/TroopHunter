@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="CI/CD" heading="Streamlined delivery with continuous integration and deployment" icon={<InfinityIcon width="64" />} />
+            <Hero variant="blue" tagText="CI/CD" heading="Streamlined delivery with continuous integration and deployment" icon={<InfinityIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Automation that empowers" paragraph="Leverage the power of CI/CD to automate your development pipeline, ensuring fast, consistent, and reliable software delivery. Our approach optimizes the workflow, from code commit to deployment, for seamless updates and faster time-to-market." IconCardsItems={PageData.IconCardsItems} />

@@ -50,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Docker" heading="Streamline your development with Docker" icon={<DockerIcon width="64" />} />
+            <Hero variant="blue" tagText="Docker" heading="Streamline your development with Docker" icon={<DockerIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Effortless containerization" paragraph="Docker enables fast, consistent, and scalable application deployment. We empower your development teams to package and deploy apps with ease, ensuring a seamless experience across environments." IconCardsItems={PageData.IconCardsItems} />

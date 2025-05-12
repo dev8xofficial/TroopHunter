@@ -32,22 +32,22 @@ const PageData = {
     {
       title: 'Seamless, Instant Connectivity',
       paragraph: 'Create applications that provide real-time updates and instantaneous interaction. Whether you’re building live chat platforms, collaborative tools, or online gaming experiences, our approach ensures a smooth, responsive, and engaging experience for your users—every time they interact.',
-      icon: <SeismometerIcon width="26" />
+      icon: <SeismometerIcon width="64" />
     },
     {
       title: 'Transformative User Experiences',
       paragraph: 'We specialize in designing and developing real-time applications that push the boundaries of user interaction. From real-time notifications to live data feeds, we create dynamic systems that engage users in meaningful, real-time experiences while maintaining optimal performance and reliability.',
-      icon: <SeismometerIcon width="26" />
+      icon: <SeismometerIcon width="64" />
     },
     {
       title: 'Scalable Solutions for Every Need',
       paragraph: 'We build scalable architectures to support real-time data processing, ensuring that your app can grow as your user base expands. Whether handling hundreds or millions of simultaneous users, we leverage cutting-edge technologies to guarantee performance under pressure, offering seamless scalability for your real-time application needs.',
-      icon: <SeismometerIcon width="26" />
+      icon: <SeismometerIcon width="64" />
     },
     {
       title: 'Powerful Real-Time Systems',
       paragraph: 'Our expertise goes beyond simple integrations—we develop sophisticated back-end systems that allow for secure, real-time communication between users and devices. From instant messaging apps to real-time dashboards, we ensure your application remains fast, reliable, and always connected.',
-      icon: <SeismometerIcon width="26" />
+      icon: <SeismometerIcon width="64" />
     }
   ],
   footerMainContent: {

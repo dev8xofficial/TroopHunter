@@ -32,22 +32,22 @@ const PageData = {
     {
       title: 'An on-brand design language',
       paragraph: 'Develop your own design language, built around your brand. With a bespoke component library of modular UI elements and interface design patterns, you can offer your audience a consistent visual and interactive experience no matter where they are in your digital ecosystem. Foster brand trust and encourage flow by removing unnecessary barriers to getting visitors where they need to go.',
-      icon: <PlanetRingIcon width="28" />
+      icon: <PlanetRingIcon width="64" />
     },
     {
       title: 'Simplify your design & development efforts',
       paragraph: 'Free up your teams to focus on solving more complex problems. With a wealth of design resources on hand, your design, development and content teams can create and replication components & patterns quickly and at scale, saving hours on re-thinking ideas, re-doing work, and repairing accidental inconsistencies.',
-      icon: <PlanetRingIcon width="28" />
+      icon: <PlanetRingIcon width="64" />
     },
     {
       title: 'Style that lasts',
       paragraph: 'As part of your design system, we can deliver a comprehensive style guide covering best-practice use of the resources in your component library and pattern library, including the rationale behind design decisions particular to your brand. The aim is to create a style that lasts, no matter whose hands are on the tools or where they are in the world.',
-      icon: <PlanetRingIcon width="28" />
+      icon: <PlanetRingIcon width="64" />
     },
     {
       title: 'Made for humans, with Humaan',
       paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. Everything we craft is entirely bespoke, as unique as the story you tell. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless end results, and a truly collaborative design and delivery process.',
-      icon: <PlanetRingIcon width="28" />
+      icon: <PlanetRingIcon width="64" />
     }
   ],
   footerMainContent: {

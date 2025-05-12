@@ -51,8 +51,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Virtualization" heading="Empowering seamless digital transformation through virtualization" icon={<VirtualMachinesIcon
-             width="64" />} />
+            <Hero variant="blue" tagText="Virtualization" heading="Empowering seamless digital transformation through virtualization" icon={<VirtualMachinesIcon width="120" />} />
 
             <ModularBlocks>
               <IconCards title="Virtualization made simple" paragraph="Harness the power of virtual environments to optimize infrastructure, improve scalability, and drive efficiency. Our approach helps you streamline operations while reducing complexity and cost." IconCardsItems={PageData.IconCardsItems} />

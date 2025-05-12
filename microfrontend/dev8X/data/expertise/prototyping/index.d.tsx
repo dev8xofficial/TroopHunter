@@ -32,22 +32,22 @@ const PageData = {
     {
       title: 'Mockups, wireframes & interactive prototypes',
       paragraph: 'No matter the size of your business, we can help prepare high-fidelity concepts and digital prototypes to support your product development journey. Power up your stakeholder and investor pitches with clickable, interactive prototypes that demonstrate key concepts that define your initiative.',
-      icon: <MagicWandIcon width="26" />
+      icon: <MagicWandIcon width="64" />
     },
     {
       title: 'Unite multidisciplinary product teams',
       paragraph: 'Digital prototyping channels your high-level concepts into single, high-impact points of reference, bringing together multi-faceted product teams and stakeholders, leaving less room for ambiguity and miscommunication. Provide definitive documentation that your people can refer to throughout the lifespan of the project.',
-      icon: <MagicWandIcon width="26" />
+      icon: <MagicWandIcon width="64" />
     },
     {
       title: 'Get real audience feedback',
       paragraph: 'Use digital prototypes to test with real users, whether an existing audience or inviting new users from a target demographic. Validate key product assumptions and see how your users understand the platform to find the right solution before committing to a full project rollout.',
-      icon: <MagicWandIcon width="26" />
+      icon: <MagicWandIcon width="64" />
     },
     {
       title: 'Your Product Design Partner',
       paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. We’ll collaborate with you to deliver just the essential prototypes for your early-stage project, or partner with you throughout the entire product development journey. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless prototyping and product builds, and a truly collaborative design and delivery process.',
-      icon: <MagicWandIcon width="26" />
+      icon: <MagicWandIcon width="64" />
     }
   ],
   footerMainContent: {
