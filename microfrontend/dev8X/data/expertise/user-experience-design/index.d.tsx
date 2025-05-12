@@ -1,3 +1,4 @@
+import { MapIcon } from '@heroicons/react/24/outline';
 import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
 import EyeIcon from '@repo/components/src/Icons/Eye';
 import MonitorIcon from '@repo/components/src/Icons/Monitor';
@@ -32,17 +33,17 @@ const PageData = {
     {
       title: 'Connect with your audience',
       paragraph: 'We draw from over 6 years in building and shipping wonderful things for people, accelerating conversion, generating revenue, amplifying awareness, and boosting ROI for clients big and small across a range of industries. Our first-hand knowledge of what works helps users achieve their objectives, while building emotional connections between brands and people.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+      icon: <MapIcon width="26" />
     },
     {
       title: 'Digital that resonates',
       paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive information architecture to immersive storytelling, every website and web app is meticulously crafted to command attention and leave a lasting impression.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <MapIcon width="26" />
     },
     {
       title: 'Elevate your brand experience',
       paragraph: 'Each customer engagement is part of the bigger picture of an overall brand experience. Our approach to ethical UX and conversion design draws from this philosophy, ensuring better customer experiences that last long after the user achieves their goal.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <MapIcon width="26" />
     }
   ],
   footerMainContent: {

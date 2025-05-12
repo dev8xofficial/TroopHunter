@@ -2,6 +2,7 @@ import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
 import FaceIdIcon from '@repo/components/src/Icons/FaceId';
 import InfinityIcon from '@repo/components/src/Icons/Infinity';
 import LaptopIcon from '@repo/components/src/Icons/Laptop';
+import MobileIcon from '@repo/components/src/Icons/Mobile';
 import ShuffleIcon from '@repo/components/src/Icons/Shuffle';
 import React from 'react';
 
@@ -32,17 +33,17 @@ const PageData = {
     {
       title: 'From MVP to fully featured',
       paragraph: "Whether you're a startup looking to disrupt the market or an established enterprise seeking to expand your digital footprint, we can build a scalable, robust, and secure mobile app that serves and delights your users.",
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/29a2856a60/communityapp.jpeg'
+      icon: <MobileIcon width="64" />
     },
     {
       title: 'Tailored customer experiences',
       paragraph: 'Our apps are tailored to the needs of the audience, offering compelling journeys to match their behaviour and usage. With a focus on exceptional user experiences, we transform ideas into powerful tools for customer engagement and brand loyalty.',
-      image: 'https://a-us.storyblok.com/f/1017006/3728x2628/a06188a927/talk-n-walk-1864-x-1314.jpg'
+      icon: <MobileIcon width="64" />
     },
     {
       title: 'iOS and Android',
       paragraph: 'Blending innovative design, robust functionality, and seamless UX thinking, we create create world-class iOS and Android apps, utilising both native technologies and mobile frameworks to suit the unique requirements of every product.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/633f43cde7/mideasttunes2.jpeg'
+      icon: <MobileIcon width="64" />
     }
   ],
   footerMainContent: {

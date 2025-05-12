@@ -1,4 +1,5 @@
 import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
+import DataIcon from '@repo/components/src/Icons/Data';
 import DevicesIcon from '@repo/components/src/Icons/Devices';
 import EyeIcon from '@repo/components/src/Icons/Eye';
 import PieChartIcon from '@repo/components/src/Icons/PieChart';
@@ -32,17 +33,17 @@ const PageData = {
     {
       title: 'Tell a story with data',
       paragraph: 'Transform complex datasets into immersive narratives that inform and inspire action. Our approach combines rich visuals with insightful analysis, creating a seamless and engaging experience. Whether you aim to drive change, highlight trends, or demonstrate impact, curate your data in the best possible way for powerful digital experiences with lasting impact.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+     icon: <DataIcon width="64" />
     },
     {
       title: 'Engaging reports and dashboards',
       paragraph: 'Surface insights from raw data with visually compelling, interactive experiences and consolidated touchpoints. We design and create data-driven interfaces to suit any objective, from immersive reports for public consumption to bespoke internal tools and dashboards that support and inform stakeholders.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <DataIcon width="64" />
     },
     {
       title: 'Your data, our expertise',
       paragraph: 'Leverage our expertise and transform your data into unique and compelling experiences that educate, inspire and delight. By blending your data with our experience in information graphics, data visualisation and modern interface design, we help unlock the full potential and create digital experiences with lasting impact.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <DataIcon width="64" />
     }
   ],
   footerMainContent: {

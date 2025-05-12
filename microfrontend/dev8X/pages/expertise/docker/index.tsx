@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/docker/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import DockerIcon from '@repo/components/src/Icons/Docker';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Docker" heading="Streamline your development with Docker" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="blue" tagText="Docker" heading="Streamline your development with Docker" icon={<DockerIcon width="64" />} />
 
             <ModularBlocks>
               <IconCards title="Effortless containerization" paragraph="Docker enables fast, consistent, and scalable application deployment. We empower your development teams to package and deploy apps with ease, ensuring a seamless experience across environments." IconCardsItems={PageData.IconCardsItems} />

@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/user-experience-design/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import { MapIcon } from '@heroicons/react/24/outline';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="cyan" tagText="User Experience Design" heading="Inspire, enable, captivate" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="cyan" tagText="User Experience Design" heading="Inspire, enable, captivate" icon={<MapIcon width="64" />} />
 
             <ModularBlocks>
               <IconCards title="Human-centred digital experiences" paragraph="User Experience Design sits at the heart of everything we do. From strategy to information architecture and seamless workflows, every choice is made to ensure users can accomplish their goals with ease—and a touch of delight." IconCardsItems={PageData.IconCardsItems} />

@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/virtualization/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import VirtualMachinesIcon from '@repo/components/src/Icons/VirtualMachines';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -28,6 +29,7 @@ const Websites: React.FC = (): JSX.Element => {
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image"></meta>
+        
         <meta name="twitter:title" content="Dev8X - Solutions Made Simple!"></meta>
         <meta name="twitter:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
         <meta name="twitter:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
@@ -49,7 +51,8 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Virtualization" heading="Empowering seamless digital transformation through virtualization" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="blue" tagText="Virtualization" heading="Empowering seamless digital transformation through virtualization" icon={<VirtualMachinesIcon
+             width="64" />} />
 
             <ModularBlocks>
               <IconCards title="Virtualization made simple" paragraph="Harness the power of virtual environments to optimize infrastructure, improve scalability, and drive efficiency. Our approach helps you streamline operations while reducing complexity and cost." IconCardsItems={PageData.IconCardsItems} />

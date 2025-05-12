@@ -1,6 +1,7 @@
 import AnalysisIcon from '@repo/components/src/Icons/Analysis';
 import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
 import FourDotIcon from '@repo/components/src/Icons/FourDot';
+import MyspaceIcon from '@repo/components/src/Icons/Myspace';
 import SparklerIcon from '@repo/components/src/Icons/Sparkler';
 import WandIcon from '@repo/components/src/Icons/Wand';
 import React from 'react';
@@ -32,22 +33,22 @@ const PageData = {
     {
       title: 'Diverse user research and testing',
       paragraph: 'Our team employs a diverse and bespoke selection of quantitative and qualitative research methods, tailored to the needs of your project. This may include user interviews, surveys, stakeholder workshops, focus groups, and data analysis in the early discovery stages, followed by usability testing, concept testing, card sorting, and more at key implementation milestones.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+      icon: <MyspaceIcon width="26" />
     },
     {
       title: 'Design an intuitive product experience',
       paragraph: 'Data informs every design decision we make, a vital strategy when creating eCommerce websites, functional webapps, and conversion-focused journeys like signups, enrolments and checkouts. Using validation methods such as tree testing, targeted A/B testing, and usability testing, we can determine the clearest and most intuitive user workflows for your audience.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <MyspaceIcon width="26" />
     },
     {
       title: 'Meaningful data analysis and reporting',
       paragraph: 'We can prepare a report of our research findings, written to suit the requirements of your project, stakeholders and organisation. Most of our clients request design concepts, complemented by supporting insights and statistics, but our team can also provide a comprehensive review and analysis, with a full best-practice list of recommendations.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <MyspaceIcon width="26" />
     },
     {
       title: 'Rewarding partnerships',
       paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless end results, and a truly collaborative process, no matter what industry you’re in.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <MyspaceIcon width="26" />
     }
   ],
   footerMainContent: {

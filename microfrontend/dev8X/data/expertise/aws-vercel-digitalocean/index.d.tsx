@@ -4,6 +4,7 @@ import LightningIcon from '@repo/components/src/Icons/Lightning';
 import PlanetRingIcon from '@repo/components/src/Icons/PlanetRing';
 import PuzzlePieceIcon from '@repo/components/src/Icons/PuzzlePiece';
 import ShieldIcon from '@repo/components/src/Icons/Shield';
+import WebServersIcon from '@repo/components/src/Icons/WebServers';
 
 const PageData = {
   IconCardsItems: [
@@ -37,32 +38,32 @@ const PageData = {
     {
       title: 'Scalable, Secure, and Cost-Efficient Infrastructure',
       paragraph: "Whether you're running a small application or managing complex enterprise systems, we help you leverage the best of cloud infrastructure. From AWS’s powerful cloud services and Vercel’s high-performance platform to DigitalOcean’s reliable and affordable hosting solutions, we provide the tools to build, scale, and secure your digital products.",
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+      icon: <WebServersIcon width="26" />
     },
     {
       title: 'Optimized for Performance & Speed',
       paragraph: 'Speed is essential in today’s digital landscape. Vercel’s global CDN ensures lightning-fast delivery of your content worldwide, while AWS offers flexible services that scale with your business. DigitalOcean provides cost-effective, high-performance hosting that ensures your website or application delivers fast load times for users around the globe.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <WebServersIcon width="26" />
     },
     {
       title: 'Comprehensive Cloud Services',
       paragraph: 'AWS delivers a wide range of services, from computing power and storage to machine learning and databases, ensuring you have everything you need to build a flexible and scalable infrastructure. Vercel focuses on seamless deployment and integration, optimizing your developer experience with automated workflows. DigitalOcean offers simplicity and reliability, giving you straightforward cloud hosting that lets you focus on your product, not your infrastructure.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <WebServersIcon width="26" />
     },
     {
       title: 'Security and Reliability Built-In',
       paragraph: 'Security is a priority, and each platform provides best-in-class security features. AWS’s robust security tools help safeguard your data, Vercel’s platform is optimized for secure deployments, and DigitalOcean ensures that your cloud environment remains protected with top-notch security measures. With our expertise in these platforms, we ensure your cloud infrastructure is secure, reliable, and compliant.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <WebServersIcon width="26" />
     },
     {
       title: 'Streamlined Development & Deployment',
       paragraph: 'Develop, deploy, and scale faster with the help of AWS, Vercel, and DigitalOcean. Vercel’s integration with frameworks like Next.js and its seamless deployment features help streamline your development process. AWS provides the flexibility to manage any infrastructure requirement with ease, while DigitalOcean’s intuitive dashboard and cost-effective solutions make it simple to launch and manage applications.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <WebServersIcon width="26" />
     },
     {
       title: 'Expert Guidance & Support',
       paragraph: 'With years of experience across AWS, Vercel, and DigitalOcean, our team is equipped to guide you through every stage of your cloud journey. Whether you need to scale your infrastructure, optimize performance, or implement secure solutions, we offer proactive support and ensure that your cloud environment is always running at its best.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <WebServersIcon width="26" />
     }
   ],
   footerMainContent: {

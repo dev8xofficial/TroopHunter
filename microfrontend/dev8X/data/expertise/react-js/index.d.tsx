@@ -3,6 +3,7 @@ import FrameIcon from '@repo/components/src/Icons/Frame';
 import GPSIcon from '@repo/components/src/Icons/GPS';
 import HandPalmIcon from '@repo/components/src/Icons/HandPalm';
 import HandshakeIcon from '@repo/components/src/Icons/Handshake';
+import ReactjsIcon from '@repo/components/src/Icons/Reactjs';
 import TargetIcon from '@repo/components/src/Icons/Target';
 import React from 'react';
 
@@ -38,27 +39,27 @@ const PageData = {
     {
       title: 'Dynamic user experiences',
       paragraph: 'Build fast, dynamic, and highly interactive user interfaces with React.js. Our approach combines the power of reusable components with seamless state management, ensuring smooth and engaging digital experiences that scale effortlessly.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+      icon: <ReactjsIcon width="26" />
     },
     {
       title: 'Component-based architecture',
       paragraph: 'With React’s component-based structure, we help you break down complex user interfaces into modular, reusable components. This simplifies both development and maintenance, allowing your teams to deliver faster and more efficiently.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <ReactjsIcon width="26" />
     },
     {
       title: 'Scalable web applications',
       paragraph: 'Harness the full potential of React to build scalable, high-performance web applications. Whether it’s a single-page app (SPA) or a complex enterprise solution, our React development expertise ensures your app will scale as your user base grows, without sacrificing performance.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <ReactjsIcon width="26" />
     },
     {
       title: 'Seamless state management',
       paragraph: 'Leverage modern tools like Redux, Context API, and React Query for robust state management across your application. Our approach ensures that your app remains responsive and consistent, no matter how dynamic the data or interactions may be.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <ReactjsIcon width="26" />
     },
     {
       title: 'Your React Partner',
       paragraph: 'Behind every world-class React application is a collaborative agency-client partnership. We work alongside your team to create bespoke solutions, tailored to your business needs, using React as the backbone for modern, interactive user interfaces.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <ReactjsIcon width="26" />
     }
   ],
   footerMainContent: {

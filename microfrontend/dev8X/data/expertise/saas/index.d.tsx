@@ -31,22 +31,22 @@ const PageData = {
     {
       title: 'Transform your business with SaaS',
       paragraph: 'Elevate your operations with tailored SaaS solutions that streamline workflows and boost efficiency. We design and build robust platforms that meet your specific business needs, delivering intuitive, scalable, and secure tools to enhance your digital transformation journey.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+      icon: <SaaSIcon width="26" />
     },
     {
       title: 'Intuitive user experiences at scale',
       paragraph: 'Every successful SaaS product needs a seamless user experience. Our focus is on simplifying complex workflows, ensuring that every interaction is intuitive and easy, even as your product scales. Whether it’s for internal teams or external customers, we ensure your users stay engaged and productive.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <SaaSIcon width="26" />
     },
     {
       title: 'Tailored for your growth',
       paragraph: 'From start-ups to enterprises, we design SaaS platforms that evolve with your business. With an agile approach and a deep understanding of industry-specific needs, we help you develop a product that grows with your users, fostering long-term success and scalability.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <SaaSIcon width="26" />
     },
     {
       title: 'End-to-end SaaS development',
       paragraph: 'We partner with you through every stage of your SaaS journey—strategy, design, development, and deployment. Whether building from scratch or refining an existing product, our team ensures every feature serves its purpose, supporting your goals and delivering exceptional user experiences.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <SaaSIcon width="26" />
     }
   ],
   footerMainContent: {

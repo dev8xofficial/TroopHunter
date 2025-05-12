@@ -3,6 +3,7 @@ import DataIcon from '@repo/components/src/Icons/Data';
 import EditIcon from '@repo/components/src/Icons/Edit';
 import GraphAnalysisIcon from '@repo/components/src/Icons/GraphAnalysis';
 import PuzzlePieceIcon from '@repo/components/src/Icons/PuzzlePiece';
+import SequelizeIcon from '@repo/components/src/Icons/Sequelize';
 
 const PageData = {
   IconCardsItems: [
@@ -31,22 +32,22 @@ const PageData = {
     {
       title: 'Efficient Data Management',
       paragraph: "Unlock the power of streamlined data management with advanced ORM frameworks like Sequelize and Prisma. Our expertise helps you design and implement seamless database interactions that are both intuitive and high-performance, whether you're building a single application or scaling to enterprise-level systems.",
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+      icon: <SequelizeIcon width="28" />
     },
     {
       title: 'Powerful Querying & Relationships',
       paragraph: 'Leverage the full potential of relational databases by building complex queries and managing relationships effortlessly. With tools like Sequelize and Prisma, we enable you to express even the most intricate data relationships in clean, readable, and efficient code, simplifying your workflows and speeding up development.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <SequelizeIcon width="28" />
     },
     {
       title: 'Optimized for Performance',
       paragraph: "We focus on creating highly efficient and optimized database queries to ensure your applications perform at their best. Whether you're managing simple CRUD operations or complex aggregations, we help you optimize for speed, reduce latency, and maintain robust data integrity.",
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <SequelizeIcon width="28" />
     },
     {
       title: 'Your ORM Experts',
       paragraph: 'With our deep experience in Sequelize and Prisma, we help you unlock the full potential of ORM systems. Our team crafts tailored solutions to ensure your data models are scalable, maintainable, and easy to work with, empowering your developers to focus on delivering value instead of wrestling with database queries.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <SequelizeIcon width="28" />
     }
   ],
   footerMainContent: {

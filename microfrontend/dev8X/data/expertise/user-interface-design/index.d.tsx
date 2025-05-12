@@ -2,6 +2,7 @@ import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
 import HandPalmIcon from '@repo/components/src/Icons/HandPalm';
 import MonitorIcon from '@repo/components/src/Icons/Monitor';
 import PaintSwatchIcon from '@repo/components/src/Icons/PaintSwatch';
+import SelectionIcon from '@repo/components/src/Icons/Selection';
 import WandIcon from '@repo/components/src/Icons/Wand';
 
 const PageData = {
@@ -31,22 +32,22 @@ const PageData = {
     {
       title: 'Engaging Reports & Dashboards',
       paragraph: 'Surface insights from raw data with visually compelling, interactive experiences and consolidated touchpoints. We design and create data-driven user interfaces to suit any objective, from immersive reports for public consumption to bespoke internal tools and dashboards that support and inform your stakeholders.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d2d347719e/ui.png'
+       icon: <SelectionIcon width="26" />
     },
     {
       title: 'An intuitive product experience',
       paragraph: 'Data informs every interface design decision we make, a vital strategy when crafting digital tools to serve complex information workflows. Using quantitative and qualitative research methods, we can determine the clearest and most intuitive UI designs for your purpose, and find the optimal path to achieving user goals.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d5dcfbe2c5/pentanetui.png'
+       icon: <SelectionIcon width="26" />
     },
     {
       title: 'Human interfaces',
       paragraph: 'Tune into how people work. From eCommerce checkouts to detailed customisation tools, our systematic UI design approach has produced dynamic, future-ready outcomes across traditional and emergent industries. With over 6 years’ experience making digital products for people, we know the details that make the difference.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/eb4021775e/scitechui.png'
+      icon: <SelectionIcon width="26" />
     },
     {
       title: 'Your UI Design Partner',
       paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. Everything we craft is entirely bespoke, as unique as the story you tell. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless user interface experiences, and a truly collaborative design and delivery process.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/eb4021775e/scitechui.png'
+      icon: <SelectionIcon width="26" />
     }
   ],
   footerMainContent: {

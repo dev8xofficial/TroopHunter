@@ -1,5 +1,6 @@
 import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
 import HandshakeIcon from '@repo/components/src/Icons/Handshake';
+import PostgresqlIcon from '@repo/components/src/Icons/Postgresql';
 import PuzzlePieceIcon from '@repo/components/src/Icons/PuzzlePiece';
 import ShieldIcon from '@repo/components/src/Icons/Shield';
 import ShuffleIcon from '@repo/components/src/Icons/Shuffle';
@@ -31,27 +32,27 @@ const PageData = {
     {
       title: 'Optimized Database Solutions',
       paragraph: 'Transform your data into a powerful, scalable resource with PostgreSQL. We specialize in setting up and optimizing PostgreSQL databases that ensure high performance, reliability, and security for your applications, regardless of scale.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+      icon: <PostgresqlIcon width="28" />
     },
     {
       title: 'Scalable Data Management',
       paragraph: 'As your business grows, so do your data needs. We design PostgreSQL database architectures that scale with your operations, enabling your team to manage complex datasets with ease, while maintaining lightning-fast access times.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <PostgresqlIcon width="28" />
     },
     {
       title: 'Custom Queries & Optimizations',
       paragraph: 'Our team excels at creating custom queries, building efficient data models, and optimizing database performance to meet your unique business requirements. From complex joins to stored procedures, we ensure your database works efficiently.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <PostgresqlIcon width="28" />
     },
     {
       title: 'Seamless Integration',
       paragraph: 'Whether you’re integrating PostgreSQL with your existing tech stack or building a new application, we provide seamless database integration that enhances functionality and simplifies your operations. We ensure your PostgreSQL solution works effortlessly with your environment.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <PostgresqlIcon width="28" />
     },
     {
       title: 'Your PostgreSQL Experts',
       paragraph: 'Leverage our expertise to unlock the full potential of PostgreSQL for your business. With years of experience in building robust, high-performance database solutions, we help you craft a digital infrastructure that empowers your business to thrive.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <PostgresqlIcon width="28" />
     }
   ],
   footerMainContent: {

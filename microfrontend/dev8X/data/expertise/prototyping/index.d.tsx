@@ -2,6 +2,7 @@ import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
 import FrameIcon from '@repo/components/src/Icons/Frame';
 import GPSIcon from '@repo/components/src/Icons/GPS';
 import HandPalmIcon from '@repo/components/src/Icons/HandPalm';
+import MagicWandIcon from '@repo/components/src/Icons/MagicWand';
 import TargetIcon from '@repo/components/src/Icons/Target';
 
 const PageData = {
@@ -31,22 +32,22 @@ const PageData = {
     {
       title: 'Mockups, wireframes & interactive prototypes',
       paragraph: 'No matter the size of your business, we can help prepare high-fidelity concepts and digital prototypes to support your product development journey. Power up your stakeholder and investor pitches with clickable, interactive prototypes that demonstrate key concepts that define your initiative.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+      icon: <MagicWandIcon width="26" />
     },
     {
       title: 'Unite multidisciplinary product teams',
       paragraph: 'Digital prototyping channels your high-level concepts into single, high-impact points of reference, bringing together multi-faceted product teams and stakeholders, leaving less room for ambiguity and miscommunication. Provide definitive documentation that your people can refer to throughout the lifespan of the project.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <MagicWandIcon width="26" />
     },
     {
       title: 'Get real audience feedback',
       paragraph: 'Use digital prototypes to test with real users, whether an existing audience or inviting new users from a target demographic. Validate key product assumptions and see how your users understand the platform to find the right solution before committing to a full project rollout.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <MagicWandIcon width="26" />
     },
     {
       title: 'Your Product Design Partner',
       paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. We’ll collaborate with you to deliver just the essential prototypes for your early-stage project, or partner with you throughout the entire product development journey. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless prototyping and product builds, and a truly collaborative design and delivery process.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <MagicWandIcon width="26" />
     }
   ],
   footerMainContent: {

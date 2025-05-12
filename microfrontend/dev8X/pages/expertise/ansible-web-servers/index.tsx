@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/ansible-web-servers/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import AnsibleIcon from '@repo/components/src/Icons/Ansible';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Ansible & Web Servers" heading="Seamless Automation, Effortless Management" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="blue" tagText="Ansible & Web Servers" heading="Seamless Automation, Effortless Management" icon={<AnsibleIcon width="64" />} />
 
             <ModularBlocks>
               <IconCards title="Simplify Infrastructure Operations" paragraph="We specialize in automating and managing your infrastructure with Ansible. From configuration management to application deployment, our solutions help streamline your workflows, reduce manual intervention, and improve system consistency." IconCardsItems={PageData.IconCardsItems} />

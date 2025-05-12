@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/aws-vercel-digitalocean/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import WebServersIcon from '@repo/components/src/Icons/WebServers';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="AWS, Vercel, DigitalOcean" heading="Empowering scalable cloud solutions" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="blue" tagText="AWS, Vercel, DigitalOcean" heading="Empowering scalable cloud solutions" icon={<WebServersIcon width="64" />} />
 
             <ModularBlocks>
               <IconCards title="Cloud infrastructure at its finest" paragraph="Build reliable, secure, and scalable cloud infrastructures that grow with your business. Our AWS expertise ensures your cloud services are optimized for speed, security, and efficiency." IconCardsItems={PageData.IconCardsItems} />

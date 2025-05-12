@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/ecommerce/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import BasketIcon from '@repo/components/src/Icons/Basket';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="green" tagText="eCommerce" heading="Beautiful online stores that engage and convert" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="green" tagText="eCommerce" heading="Beautiful online stores that engage and convert" icon={<BasketIcon width="64" />} />
 
             <ModularBlocks>
               <IconCards title="From 1 product to 100+" paragraph="High-performing eCommerce experiences that turn visitors into loyal customers." IconCardsItems={PageData.IconCardsItems} />

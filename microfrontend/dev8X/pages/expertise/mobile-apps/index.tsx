@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/mobile-apps/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import MobileIcon from '@repo/components/src/Icons/Mobile';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Mobile Apps" heading="We create, craft and launch exceptional mobile apps" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="blue" tagText="Mobile Apps" heading="We create, craft and launch exceptional mobile apps" icon={<MobileIcon width="64" />} />
 
             <ModularBlocks>
               <IconCards title="Built to touch" paragraph="Bespoke iOS and Android applications – designed and developed entirely in-house." IconCardsItems={PageData.IconCardsItems} />

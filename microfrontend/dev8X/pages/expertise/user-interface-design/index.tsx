@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/user-interface-design/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import SelectionIcon from '@repo/components/src/Icons/Selection';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="pink" tagText="User Interface Design" heading="Next-gen UI tailored to your application" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="pink" tagText="User Interface Design" heading="Next-gen UI tailored to your application" icon={<SelectionIcon width="64" />} />
 
             <ModularBlocks>
               <IconCards title="Bespoke user interfaces" paragraph="Blending human-centric aesthetics with purposeful design, we follow a structured approach to build intuitive and highly functional user interfaces." IconCardsItems={PageData.IconCardsItems} />

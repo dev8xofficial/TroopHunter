@@ -1,4 +1,5 @@
 import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
+import BasketIcon from '@repo/components/src/Icons/Basket';
 import ShieldIcon from '@repo/components/src/Icons/Shield';
 import ShoppingBagIcon from '@repo/components/src/Icons/ShoppingBag';
 import ShoppingCartIcon from '@repo/components/src/Icons/ShoppingCart';
@@ -33,17 +34,17 @@ const PageData = {
     {
       title: 'Elevate your brand experience',
       paragraph: 'Every customer engagement forms the bigger picture of an overall brand experience. Our approach to ethical UX and conversion design draws from this philosophy, ensuring better customer experiences that last long after the final sale.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+      icon: <BasketIcon width="64" />
     },
     {
       title: 'Comprehensive eCommerce functionality',
       paragraph: 'We offer a holistic suite of features designed to streamline every aspect of your online store. From product management and secure payment gateways to personalised recommendations and seamless checkout processes, we equip your eCommerce platform with all the tools to operate efficiently, adapt to market changes, and deliver an exceptional shopping experience.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <BasketIcon width="64" />
     },
     {
       title: 'Bring your products to life online',
       paragraph: 'We work hard translating your tangible and tactile product experiences to the digital medium, reaching a new customer base through visually engaging interfaces that hero your products and convert attention into sales. From 360-degree product views to augmented reality, we encourage customers to explore and interact with products in a rich, immersive way.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <BasketIcon width="64" />
     }
   ],
   footerMainContent: {

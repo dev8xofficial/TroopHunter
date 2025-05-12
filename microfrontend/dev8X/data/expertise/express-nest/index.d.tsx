@@ -1,5 +1,6 @@
 import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
 import BackendIcon from '@repo/components/src/Icons/Backend';
+import NextjsIcon from '@repo/components/src/Icons/Nextjs';
 import PuzzlePieceIcon from '@repo/components/src/Icons/PuzzlePiece';
 import ShieldIcon from '@repo/components/src/Icons/Shield';
 import VoltageIcon from '@repo/components/src/Icons/Voltage';
@@ -38,22 +39,22 @@ const PageData = {
     {
       title: 'Fast, Scalable APIs',
       paragraph: "Harness the power of Express.js and Nest.js to build lightning-fast, scalable APIs that serve your application needs. Whether you're crafting a lightweight API with Express or a full-fledged enterprise solution with Nest.js, we deliver performance-driven backend solutions that adapt as your business grows.",
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+       icon: <NextjsIcon width="28" />
     },
     {
       title: 'Modular, Maintainable Architecture',
       paragraph: 'With Nest.js, we help you structure your backend using modular, scalable architecture that makes it easier to maintain and extend. For lightweight, minimal overhead solutions, we tailor Express.js for high performance, ensuring your application remains agile and responsive.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <NextjsIcon width="28" />
     },
     {
       title: 'Efficient Development Cycles',
       paragraph: 'Accelerate your development cycles by leveraging the simplicity and efficiency of Express.js alongside the powerful features of Nest.js. We implement RESTful APIs, GraphQL, WebSockets, and more, ensuring your application can handle anything your users throw at it—quickly and reliably.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+       icon: <NextjsIcon width="28" />
     },
     {
       title: 'Your Backend Design Partner',
       paragraph: 'Behind every scalable backend is a collaborative agency-client partnership. Whether you choose Express.js or Nest.js, we guide you every step of the way, delivering robust, future-proof solutions. Our team of strategists, designers, and backend experts will collaborate closely with your team to achieve seamless integration and provide custom backend solutions that fit your project perfectly.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+     icon: <NextjsIcon width="28" />
     }
   ],
   footerMainContent: {

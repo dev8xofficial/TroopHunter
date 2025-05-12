@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/backend/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import BackendIcon from '@repo/components/src/Icons/Backend';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="blue" tagText="Backend" heading="Building powerful, scalable backends" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="blue" tagText="Backend" heading="Building powerful, scalable backends" icon={<BackendIcon width="64" />} />
 
             <ModularBlocks>
               <IconCards title="Efficient, reliable systems" paragraph="We design and build backend architectures that scale with your business needs. Our solutions are engineered for performance, reliability, and ease of integration, ensuring your data flows seamlessly through your applications." IconCardsItems={PageData.IconCardsItems} />

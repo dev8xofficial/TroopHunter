@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/design-systems/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import PlanetRingIcon from '@repo/components/src/Icons/PlanetRing';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="green" tagText="Design Systems" heading="Scalable Design Solutions" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="green" tagText="Design Systems" heading="Scalable Design Solutions" icon={<PlanetRingIcon width="64" />} />
 
             <ModularBlocks>
               <IconCards title="Boost your product development" paragraph="We build robust design systems that empower product teams to move quicker. Develop your own collection of reusable components and patterns to ensure a cohesive and consistent design across your entire digital ecosystem." IconCardsItems={PageData.IconCardsItems} />

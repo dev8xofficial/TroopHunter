@@ -31,22 +31,22 @@ const PageData = {
     {
       title: 'Effortless Containerization',
       paragraph: 'Simplify your application deployment by containerizing your environments with Docker. We streamline your development and deployment processes, ensuring a consistent experience across all platforms, from development to production.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+       icon: <DockerIcon width="28" />
     },
     {
       title: 'Scalable, Reusable Solutions',
       paragraph: 'With Docker, you can scale your applications effortlessly and reuse components across projects. We help you create modular and highly portable solutions that work anywhere, ensuring you maximize efficiency and minimize redundant efforts.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+       icon: <DockerIcon width="28" />
     },
     {
       title: 'Optimize Development Workflows',
       paragraph: 'Improve collaboration and streamline workflows with Docker’s containerized environments. By isolating dependencies and minimizing configuration discrepancies, we empower your teams to work faster and more reliably across different stages of the product lifecycle.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+       icon: <DockerIcon width="28" />
     },
     {
       title: 'Your Docker Expert Partner',
       paragraph: "Transform your development and deployment processes with our expertise in Docker. Whether you’re just getting started or optimizing your existing containers, we’ll guide you through building scalable, efficient, and reliable containerized solutions. Let us help you take full advantage of Docker's capabilities to enhance your operations and product delivery.",
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <DockerIcon width="28" />
     }
   ],
   footerMainContent: {

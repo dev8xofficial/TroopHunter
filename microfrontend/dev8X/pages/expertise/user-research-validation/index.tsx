@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/user-research-validation/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import MyspaceIcon from '@repo/components/src/Icons/Myspace';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="purple" tagText="User Research & Validation" heading="Strategic foundations lead to better outcomes" image="https://a-us.storyblok.com/f/1017006/3810x2036/e3c7f6fa18/strategyux.jpg" />
+            <Hero variant="purple" tagText="User Research & Validation" heading="Strategic foundations lead to better outcomes"  icon={<MyspaceIcon width="64" />}/>
 
             <ModularBlocks>
               <IconCards title="User research & validation" paragraph="Our process begins with thorough user research—uncovering broad and specific audience needs through a mix of qualitative and quantitative methods." IconCardsItems={PageData.IconCardsItems} />

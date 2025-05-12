@@ -1,5 +1,6 @@
 import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
 import LightningIcon from '@repo/components/src/Icons/Lightning';
+import NodejsIcon from '@repo/components/src/Icons/Nodejs';
 import PointerIcon from '@repo/components/src/Icons/Pointer';
 import PuzzlePieceIcon from '@repo/components/src/Icons/PuzzlePiece';
 import SeismometerIcon from '@repo/components/src/Icons/Seismometer';
@@ -31,22 +32,22 @@ const PageData = {
     {
       title: 'Powerful, Scalable Backend Solutions',
       paragraph: 'Harness the power of Node.js to build fast, scalable, and reliable backend systems. From high-performance APIs to real-time applications, our expertise in Node.js allows us to deliver flexible solutions that scale with your business needs, ensuring seamless performance even as your user base grows.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+      icon: <NodejsIcon width="28" />
     },
     {
       title: 'Real-time, Event-driven Architecture',
       paragraph: "Leverage the full potential of Node.js’s event-driven architecture to handle real-time data with low-latency performance. Whether it's live data streaming, instant messaging, or real-time analytics, we create systems that deliver dynamic and interactive experiences for your users.",
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <NodejsIcon width="28" />
     },
     {
       title: 'Custom APIs & Microservices',
       paragraph: 'Unlock the flexibility of microservices with Node.js. We craft efficient, maintainable APIs that integrate effortlessly with third-party systems and allow you to scale parts of your application independently, empowering your team to focus on what truly matters while improving your development speed.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <NodejsIcon width="28" />
     },
     {
       title: 'Your Node.js Development Partner',
       paragraph: 'We don’t just build Node.js applications; we become your trusted partner in delivering custom backend solutions that drive your product forward. With our deep knowledge of Node.js and its ecosystem, we provide comprehensive solutions, from initial planning to deployment, with ongoing support and optimization.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <NodejsIcon width="28" />
     }
   ],
   footerMainContent: {

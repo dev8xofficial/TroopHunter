@@ -22,11 +22,33 @@
   flex: 1 0;
 }
 
+.expertise-icon {
+  overflow: hidden;
+  border-radius: 30px;
+  position: relative;
+  flex: 1 0;
+  height: 900px;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: var(--theme-header-face);
+  border-radius: 30px;
+}
+
+.icon {
+  width: 104px;
+  height: 104px;
+}
+
 /***************************************************** Responsive Styles *****************************************************/
 /*****************************************************************************************************************************/
 
-@media (min-width: 768px) {
-}
+@media (min-width: 768px) {}
 
 @media (min-width: 992px) {
   .expertise-heading {

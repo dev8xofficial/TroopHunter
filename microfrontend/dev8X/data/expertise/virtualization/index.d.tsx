@@ -31,22 +31,22 @@ const PageData = {
     {
       title: 'Transform your infrastructure',
       paragraph: 'Leverage virtualization technology to optimize and scale your IT environment. Our approach helps streamline resource management, maximize hardware utilization, and simplify the deployment of virtual machines, ensuring your infrastructure is agile, efficient, and future-ready.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/d3a8753394/golden-pipeline.jpg'
+      icon: <VirtualMachinesIcon width="26" />
     },
     {
       title: 'Virtualize with flexibility',
       paragraph: "Whether you're looking to optimize server workloads, run multiple environments on a single host, or enhance your disaster recovery capabilities, we design custom solutions that bring flexibility and scalability to your business. Virtualization allows you to consolidate resources while maintaining the performance your applications demand.",
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/aec4c6cecc/data.png'
+      icon: <VirtualMachinesIcon width="26" />
     },
     {
       title: 'Streamline your operations',
       paragraph: 'Integrate virtualization into your workflow to simplify system administration and improve the efficiency of your IT operations. With streamlined management tools and automated processes, we help you reduce complexity, enhance security, and scale your infrastructure with ease.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <VirtualMachinesIcon width="26" />
     },
     {
       title: 'Your virtualization partner',
       paragraph: 'At the heart of every successful virtualization project is a strong, collaborative partnership. Our in-house team of engineers and IT specialists work closely with you to design and implement solutions that align with your unique requirements. Together, we’ll create a virtualized environment that supports your organization’s growth and technological ambitions.',
-      image: 'https://a-us.storyblok.com/f/1017006/1864x1314/c1a8cc32bd/fluidity.jpg'
+      icon: <VirtualMachinesIcon width="26" />
     }
   ],
   footerMainContent: {

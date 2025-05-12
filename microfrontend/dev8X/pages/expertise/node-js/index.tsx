@@ -7,6 +7,7 @@ import PageData from '../../../data/expertise/node-js/index.d';
 
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
+import NodejsIcon from '@repo/components/src/Icons/Nodejs';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -49,7 +50,7 @@ const Websites: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="purple" tagText="Node.js" heading="Powerful, scalable applications with Node.js" image="https://a-us.storyblok.com/f/1017006/3810x2036/6fe5a4bbe5/sussex-3810-x-2039.jpg" />
+            <Hero variant="purple" tagText="Node.js" heading="Powerful, scalable applications with Node.js" icon={<NodejsIcon width="64" />} />
 
             <ModularBlocks>
               <IconCards title="Streamline backend development" paragraph="Harness the full potential of Node.js to build fast, scalable applications. Whether you’re building real-time services, APIs, or complex enterprise solutions, Node.js helps you power up with efficiency and speed." IconCardsItems={PageData.IconCardsItems} />
