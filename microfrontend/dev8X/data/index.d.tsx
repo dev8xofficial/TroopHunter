@@ -1,9 +1,6 @@
-import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
-import React from 'react';
+import { ExpertiseContent } from '@repo/components';
 
-const PageData = {
-  IconCardsItems: [],
-  ContentAsideImageItems: [],
+const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading' | 'iconCards' | 'contentAsideImageItems' | 'testimonials'> = {
   footerMainContent: {
     link: '/contact',
     start: 'Let’s make',
@@ -20,17 +17,13 @@ const PageData = {
   },
   footerSocialLinks: [
     {
-      title: (
-        <>
-          <s>Twitter</s> X
-        </>
-      ),
-      icon: <AsteriskIcon width="13" />,
+      title: 'Twitter',
+      icon: { name: 'AsteriskIcon', width: 13 },
       href: 'https://x.com/dev8x'
     },
     {
       title: 'Instagram',
-      icon: <AsteriskIcon width="13" />,
+      icon: { name: 'AsteriskIcon', width: 13 },
       href: 'https://instagram.com/dev8x'
     },
     {

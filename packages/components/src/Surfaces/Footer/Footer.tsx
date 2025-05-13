@@ -1,49 +1,29 @@
 import React from 'react';
+import { ExpertiseFooterForm, ExpertiseFooterMainContent, ExpertiseFooterSocialLink } from '../../Interfaces/Expertise/Expertise';
 import { FooterInternationalContents } from '../FooterInternationalContents/FooterInternationalContents';
 import RightArrowIcon from '../../Icons/RightArrow';
 
 import styles from './index.module.css';
 
-type FooterMainContent = {
-  link: string;
-  start: string;
-  end: string;
-};
-
-export type FooterForm = {
-  privacy: {
-    year: string;
-    text: string;
-  };
-  button?: {
-    text: string;
-  };
-};
-
-export type FooterSocialLinks = {
-  title: string | React.ReactNode;
-  href: string;
-  icon?: React.ReactNode;
-};
-
 type FooterProps = {
-  footerMainContent: FooterMainContent;
-  footerForm: FooterForm;
-  footerSocialLinks: FooterSocialLinks[];
+  footerMainContent: ExpertiseFooterMainContent;
+  footerForm: ExpertiseFooterForm;
+  footerSocialLinks: ExpertiseFooterSocialLink[];
 };
 
 export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, footerSocialLinks }): JSX.Element => {
+  console.log(footerMainContent, footerForm, footerSocialLinks);
   return (
     <>
       <footer className={styles['footer']} id="footer-animation">
         <div className={styles['sticky-inner']} style={{ transform: 'none' }}>
           <p className={styles['footer__heading']}>
-            <a className={styles['footer__heading-link']} target="_tab" href={footerMainContent.link}>
-              <span>{footerMainContent.start}</span>
+            <a className={styles['footer__heading-link']} target="_tab" href={footerMainContent?.link}>
+              <span>{footerMainContent?.start}</span>
               <br />
               <RightArrowIcon width="14" className={styles['arrow']} />
               <span className={styles['word-ticker-wrapper']}>
-                {footerMainContent.end}
+                {footerMainContent?.end}
                 {/* <span className={styles['word-ticker']}>
                   <span style={{ opacity: 1 }}>client!</span>
                 </span> */}

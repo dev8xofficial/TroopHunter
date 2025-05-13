@@ -1,27 +1,28 @@
 import React from 'react';
 import Head from 'next/head';
-
-import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards, Button, ExpertiseCard, AwardsBlock, CardStack } from '@repo/components';
-import { getDev8xPublicUrl } from '../../../utils/helpers';
-import PageData from '../../../data/expertise/websites/index.d';
-
-import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
-import styles from '../index.module.css';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import PointerIcon from '@repo/components/src/Icons/Pointer';
+import EXPERTISES from '../../data/expertise/index.d';
 
-const Websites: React.FC = (): JSX.Element => {
+import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards, Button, ExpertiseCard, AwardsBlock, CardStack, WorkDetail, ExpertiseContent } from '@repo/components';
+import { getDev8xPublicUrl } from '../../utils/helpers';
+
+import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
+import styles from './index.module.css';
+
+const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): JSX.Element => {
+  console.log(slug, variant, PageData);
   return (
     <>
       <Head>
         <title>Dev8X - Solutions Made Simple!</title>
         <meta name="description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <link rel="canonical" href={`${getDev8xPublicUrl()}/websites`} />
+        <link rel="canonical" href={`${getDev8xPublicUrl()}/expertise/${slug}`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Dev8X - Solutions Made Simple!"></meta>
         <meta property="og:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <meta property="og:url" content={`${getDev8xPublicUrl()}/websites`}></meta>
+        <meta property="og:url" content={`${getDev8xPublicUrl()}/expertise/${slug}`}></meta>
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta property="og:image:secure_url" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
@@ -39,23 +40,23 @@ const Websites: React.FC = (): JSX.Element => {
       <FooterRevealPageWrap variant="frame">
         <style jsx global>{`
           :root {
-            --theme-primary: var(--cyan-primary);
-            --theme-primary-text: var(--cyan-primary-text);
-            --theme-secondary: var(--cyan-secondary);
-            --theme-text: var(--cyan-text);
-            --theme-background: var(--cyan-tertiary);
-            --theme-logo: var(--cyan-secondary);
-            --theme-header-face: var(--cyan-primary);
+            --theme-primary: var(--${variant}-primary);
+            --theme-primary-text: var(--${variant}-primary-text);
+            --theme-secondary: var(--${variant}-secondary);
+            --theme-text: var(--${variant}-text);
+            --theme-background: var(--${variant}-tertiary);
+            --theme-logo: var(--${variant}-secondary);
+            --theme-header-face: var(--${variant}-primary);
           }
         `}</style>
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant="cyan" tagText="Websites" heading="Exceptional websites for ambitious, modern brands" icon={<PointerIcon width="120" />} />
+            <Hero variant={variant} tagText={PageData.tagText} heading={PageData.heading} icon={<PointerIcon width="120" />} />
 
             <ModularBlocks>
-              <IconCards title="Remarkable digital experiences" paragraph="We focus on what we do best: For more than 6 years, we've been imagining, crafting, and launching inspiring work on the web." IconCardsItems={PageData.IconCardsItems} />
-              <ContentAsideImage ContentAsideImageItems={PageData.ContentAsideImageItems} />
+              <IconCards title={PageData.iconCards?.title} paragraph={PageData.iconCards?.paragraph} items={PageData.iconCards?.items} />
+              <ContentAsideImage contentAsideImageItems={PageData.contentAsideImageItems} />
             </ModularBlocks>
 
             <div className={styles['expertise-container']}>
@@ -65,7 +66,7 @@ const Websites: React.FC = (): JSX.Element => {
                 <h2 className="hidden">Testimonials:</h2>
 
                 <CardStack variant="Stack">
-                  {PageData.testimonials.map((item, index) => (
+                  {PageData?.testimonials?.map((item, index) => (
                     <CardStack variant="Card" index={index} key={index}>
                       <figure className={styles['testimonial-card']} style={{ backgroundColor: item.bgColor, color: item.color }}>
                         <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['testimonial-card__image']}`}>
@@ -120,3 +121,24 @@ const Websites: React.FC = (): JSX.Element => {
 };
 
 export default Websites;
+
+export async function getStaticPaths() {
+  const paths = EXPERTISES.map((project) => ({
+    params: { slug: project.slug }
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+  const PageData = EXPERTISES.find((p) => p.slug === params.slug);
+  const { slug, variant, tagText, heading, iconCards, contentAsideImageItems, footerMainContent, footerForm, footerSocialLinks, testimonials } = PageData;
+
+  if (!PageData) {
+    return { notFound: true };
+  }
+
+  return {
+    props: { slug, variant, tagText, heading, iconCards, contentAsideImageItems, footerMainContent, footerForm, footerSocialLinks, testimonials }
+  };
+}

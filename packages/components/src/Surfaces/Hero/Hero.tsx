@@ -1,18 +1,15 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import { Pill } from '../Pill/Pill';
+import { ExpertiseContent } from '../../Interfaces/Expertise/Expertise';
 
 import styles from './index.module.css';
 
-type HeroProps = {
-  tagText: string;
-  heading: string;
+interface HeroProps extends Omit<ExpertiseContent, 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'> {
   image?: string;
   icon?: React.ReactNode;
-  variant?: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
-};
+}
 
-export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, image}): JSX.Element => { 
+export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, image }): JSX.Element => {
   return (
     <>
       <div>

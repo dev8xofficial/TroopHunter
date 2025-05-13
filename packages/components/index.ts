@@ -98,5 +98,6 @@ export * from './src/Icons/WebServers';
 export * from './src/Icons/Wordpress';
 
 export * from './src/Interfaces/Work/WorkProjectTypes';
+export * from './src/Interfaces/Expertise/Expertise';
 
 export * from './src/Constants/Work/WorkProjects';

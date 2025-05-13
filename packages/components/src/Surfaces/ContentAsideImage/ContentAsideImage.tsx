@@ -1,23 +1,19 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import { WYSIWYG } from '../WYSIWYG/WYSIWYG';
+import { ICON_MAP } from '../IconCards/IconMap';
+import { ExpertiseContentAsideImageItem } from '../../Interfaces/Expertise/Expertise';
+
 import styles from './index.module.css';
 
-type ContentAsideImageItem = {
-  title: string;
-  paragraph: string;
-  image?: string;
-  icon: React.ReactNode;
-};
-
 type ContentAsideImageProps = {
-  ContentAsideImageItems: ContentAsideImageItem[];
+  contentAsideImageItems: ExpertiseContentAsideImageItem[];
 };
 
-export const ContentAsideImage: React.FC<ContentAsideImageProps> = ({ ContentAsideImageItems }): JSX.Element => {
+export const ContentAsideImage: React.FC<ContentAsideImageProps> = ({ contentAsideImageItems }): JSX.Element => {
   return (
     <>
-      {ContentAsideImageItems.map((item, index) => {
+      {contentAsideImageItems?.map((item, index) => {
         return (
           <React.Fragment key={index}>
             {index % 2 === 0 ? (
@@ -31,7 +27,7 @@ export const ContentAsideImage: React.FC<ContentAsideImageProps> = ({ ContentAsi
                   </picture>
                 </div> */}
                 <div className={`${styles['content-aside-image__icon']} ${styles['content-aside-image--image-left']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-                  <div className={styles['icon-wrapper']}>{item.icon}</div>
+                  <div className={styles['icon-wrapper']}>{ICON_MAP[item.icon.name]?.(item.icon.width)}</div>
                 </div>
 
                 <div className={styles['content-aside-image__content']}>
@@ -62,7 +58,7 @@ export const ContentAsideImage: React.FC<ContentAsideImageProps> = ({ ContentAsi
                   </div>
                 </div>
                 <div className={`${styles['content-aside-image__icon']} ${styles['content-aside-image--image-right']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-                  <div className={styles['icon-wrapper']}>{item.icon}</div>
+                  <div className={styles['icon-wrapper']}>{ICON_MAP[item.icon.name]?.(item.icon.width)}</div>
                 </div>
 
                 {/* <div className={styles['content-aside-image__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
