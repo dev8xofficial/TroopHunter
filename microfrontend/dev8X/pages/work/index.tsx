@@ -1,17 +1,18 @@
 import React from 'react';
 import Head from 'next/head';
-import { FooterRevealPageWrap, Footer, Header, WorkGrid, ProjectsFormModal } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, WorkGrid, ProjectsFormModal, WORK_PROJECTS } from '@repo/components';
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import { useProjectModal } from '../../hooks/useProjectModal';
+import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../../data/work/index.d';
 
 import TextAnimateUpStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
 import LayoutStyles from '../../components/Surfaces/Layout/layout.module.css';
 import WorkGridStyles from '../../components/Surfaces/WorkGrid/index.module.css';
-import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 
 const Work: React.FC = (): JSX.Element => {
   const { modalSlug, openModal, closeModal } = useProjectModal();
+  const project = WORK_PROJECTS.find((project) => project.path === modalSlug) ?? WORK_PROJECTS[0];
 
   return (
     <>
@@ -84,7 +85,7 @@ const Work: React.FC = (): JSX.Element => {
         </FooterRevealPageWrap>
         <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
       </FooterRevealPageWrap>
-      <SmoothModalWrapper toggle={closeModal}>{modalSlug && <ProjectsFormModal />}</SmoothModalWrapper>
+      <SmoothModalWrapper toggle={closeModal}>{modalSlug && <ProjectsFormModal {...project} />}</SmoothModalWrapper>
     </>
   );
 };

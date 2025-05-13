@@ -12,7 +12,7 @@ export const Header: React.FC = (): JSX.Element => {
   const getActiveColumn = (path: string): number => {
     if (path === '/') return 1;
     if (path === '/about') return 2;
-    if (path === '/work') return 3;
+    if (path.startsWith('/work')) return 3;
     if (
       path.startsWith('/expertise/websites') ||
       path.startsWith('/expertise/web-applications') ||
@@ -91,7 +91,7 @@ export const Header: React.FC = (): JSX.Element => {
                 </a>
               </li>
               <li className={styles['menu__item']}>
-                <a className={`${styles['menu__link']} ${currentPath === '/work' ? styles['menu__link--active'] : ''}`} href="/work">
+                <a className={`${styles['menu__link']} ${currentPath.includes('/work') ? styles['menu__link--active'] : ''}`} href="/work">
                   Work
                 </a>
               </li>

@@ -1,32 +1,23 @@
-import React from 'react';
 import Head from 'next/head';
-import { FooterRevealPageWrap, Footer, Header, WorkGrid, ProjectsFormModal } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, ProjectsFormModal, WorkDetail, WORK_PROJECTS } from '@repo/components';
 import { getDev8xPublicUrl } from '../../utils/helpers';
-import { useProjectModal } from '../../hooks/useProjectModal';
 import PageData from '../../data/work/index.d';
 
-import TextAnimateUpStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
 import LayoutStyles from '../../components/Surfaces/Layout/layout.module.css';
-import WorkGridStyles from '../../components/Surfaces/WorkGrid/index.module.css';
-import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 
-const Work: React.FC = (): JSX.Element => {
-  const { modalSlug, openModal, closeModal } = useProjectModal();
-
+const WorkPage: React.FC<WorkDetail> = ({ slug, ...project }: WorkDetail): JSX.Element => {
   return (
     <>
       <Head>
         <title>Dev8X - Solutions Made Simple!</title>
         <meta name="description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <link rel="canonical" href={`${getDev8xPublicUrl()}/work`} />
+        <link rel="canonical" href={`${getDev8xPublicUrl()}/work/${slug}`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Dev8X - Solutions Made Simple!"></meta>
         <meta property="og:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <meta property="og:url" content={`${getDev8xPublicUrl()}/work`}></meta>
-        <meta property="og:locale" content="en_US"></meta>
+        <meta property="og:url" content={`${getDev8xPublicUrl()}/work/${slug}`}></meta>
         <meta property="og:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
-        <meta property="og:image:secure_url" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -53,14 +44,34 @@ const Work: React.FC = (): JSX.Element => {
           `}</style>
           {/* Main container with smooth-scrollbar */}
           <main className={LayoutStyles['work-page']}>
-            <ProjectsFormModal />
+            <ProjectsFormModal {...project} />
           </main>
         </FooterRevealPageWrap>
         <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
       </FooterRevealPageWrap>
-      <SmoothModalWrapper toggle={closeModal}>{modalSlug && <ProjectsFormModal />}</SmoothModalWrapper>
     </>
   );
 };
 
-export default Work;
+export default WorkPage;
+
+export async function getStaticPaths() {
+  const paths = WORK_PROJECTS.map((project) => ({
+    params: { slug: project.slug }
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+  const project = WORK_PROJECTS.find((p) => p.slug === params.slug);
+  const { slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions } = project;
+
+  if (!project) {
+    return { notFound: true };
+  }
+
+  return {
+    props: { slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions }
+  };
+}

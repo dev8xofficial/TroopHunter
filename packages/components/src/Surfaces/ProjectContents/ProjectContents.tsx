@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
+import { WorkDetail } from '../../Interfaces/Work/WorkProjectTypes';
 
 import { CaseStudySideBar } from '../CaseStudySidebar/CaseStudySidebar';
 import { TestimonialSlider } from '../TestimonialSlider/TestimonialSlider';
@@ -8,12 +9,12 @@ import PictureStyles from '../Picture/index.module.css';
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import styles from './index.module.css';
 
-export const ProjectsFormModal: React.FC = (): JSX.Element => {
+export const ProjectsFormModal: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'path' | 'placeholderImage' | 'images' | 'bgColor'>> = ({ title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions }): JSX.Element => {
   return (
     <>
       <div className={`${styles['project-content']} project-content}`}>
         <div className={styles['project-content__body']}>
-          <CaseStudySideBar />
+          <CaseStudySideBar title={title} websiteUrl={websiteUrl} industry={industry} shortIntro={shortIntro} overview={overview} approach={approach} impact={impact} keyContributions={keyContributions} />
           <div className={styles['project-content__blocks']}>
             <div className={styles['project-content__block-image']}>
               <div className={styles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>

@@ -1,14 +1,16 @@
 import React from 'react';
-import styles from './index.module.css';
-import ButtonStyles from '../Button/index.module.css';
+import { WorkDetail } from '../../Interfaces/Work/WorkProjectTypes';
 
-export const CaseStudySideBar: React.FC = (): JSX.Element => {
+import ButtonStyles from '../Button/index.module.css';
+import styles from './index.module.css';
+
+export const CaseStudySideBar: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'path' | 'placeholderImage' | 'images' | 'bgColor'>> = ({ title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions }): JSX.Element => {
   return (
     <>
       <div className={styles['sidebar__inner']}>
         <div className={styles['sidebar__header']}>
-          <h1 className={styles['sidebar__title']}>Sussex Taps</h1>
-          <a className={ButtonStyles['button-wrapper']} target="_blank" href="https://sussextaps.com.au">
+          <h1 className={styles['sidebar__title']}>{title}</h1>
+          <a className={ButtonStyles['button-wrapper']} target="_blank" href={websiteUrl}>
             <span className={`${ButtonStyles['button']} ${ButtonStyles['button--icon']} ${ButtonStyles['button--bg-secondary']}`} style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0px)' }}>
               Visit Website
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" className="" style={{ '--width': '14', '--height': '13' } as any}>
@@ -16,15 +18,15 @@ export const CaseStudySideBar: React.FC = (): JSX.Element => {
               </svg>
             </span>
           </a>
-          <p className={styles['sidebar__industry']}>Manufacturing</p>
+          <p className={styles['sidebar__industry']}>{industry}</p>
         </div>
         <div className={styles['sidebar__intro']}>
-          <p>Sussex Taps is a manufacturer of premium tapware with a deep heritage in Australian manufacturing.</p>
+          <p>{shortIntro}</p>
         </div>
         <div className={styles['sidebar__body']}>
-          <p>Following a brand repositioning, Sussex Taps engaged Humaan to design an immersive digital experience that communicated the brand's core proposition of quality, heritage and craftsmanship.</p>
-          <p>The visual content and product suite played a hero role within the website, which was augmented by bleeding-edge interactivity and animation treatments to give the audiences a tangible and tactile digital showroom experience.</p>
-          <p>The result is a sensory-rich experience that pushes the boundaries of UI design and interactive development and which has strengthened the brand’s category-leading position in the market. </p>
+          <p>{overview}</p>
+          <p>{approach}</p>
+          <p>{impact}</p>
         </div>
         <ul className={styles['custom-icon-list']}>
           <li>Digital Strategy &amp; UX</li>

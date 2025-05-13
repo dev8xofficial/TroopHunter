@@ -1,20 +1,16 @@
 import React from 'react';
+import { CommonWorkCardProps } from '../../Interfaces/Work/WorkProjectTypes';
 
 import PictureStyles from '../Picture/index.module.css';
 import styles from './index.module.css';
 
-interface WorkCardProps {
+interface WorkCardProps extends Omit<CommonWorkCardProps, 'images'> {
   variant: 'landscape' | 'portrait';
-  space: 'outer' | 'inner';
-  bgColor: string;
-  name: string;
   image: string;
-  video?: string;
-  href?: string;
   openModal?: (slug: string) => void;
 }
 
-export const WorkCard: React.FC<WorkCardProps> = ({ variant, space, bgColor, name, image, video, href, openModal }: WorkCardProps): JSX.Element => {
+export const WorkCard: React.FC<WorkCardProps> = ({ variant, space, bgColor, title, image, video, path, openModal }: WorkCardProps): JSX.Element => {
   const getWorkCardWrapperStyle = () => {
     if (variant === 'landscape') {
       return { '--aspect-x': 1452, '--aspect-y': 890, opacity: 1, transform: 'translateY(0px)' };
@@ -28,10 +24,10 @@ export const WorkCard: React.FC<WorkCardProps> = ({ variant, space, bgColor, nam
       <div className={styles['work-card-wrapper']} style={getWorkCardWrapperStyle() as React.CSSProperties}>
         <a
           className={`${styles['work-card']} ${variant === 'landscape' ? styles['work-card--landscape'] : styles['work-card--portrait']}`}
-          href={href}
+          href={path}
           onClick={(e) => {
             e.preventDefault();
-            openModal?.(href);
+            openModal?.(path);
           }}
         >
           <div className={styles['work-card__thumbnail-wrapper']}>
@@ -62,7 +58,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({ variant, space, bgColor, nam
           </div>
           <div className={`${styles['work-card__content']} ${styles['work-card__content--white']}`}>
             <div className={styles['work-card__content-inner']}>
-              <h3 className={styles['work-card__title']}>{name}</h3>
+              <h3 className={styles['work-card__title']}>{title}</h3>
             </div>
           </div>
         </a>
