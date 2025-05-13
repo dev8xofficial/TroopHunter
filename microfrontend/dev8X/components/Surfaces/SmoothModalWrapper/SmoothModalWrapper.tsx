@@ -23,7 +23,6 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ toggle, childre
   }, []);
 
   useEffect(() => {
-    console.log('Show: ', show);
     if (show) {
       document.body.classList.toggle('overflow-hidden');
       lenis.stop();

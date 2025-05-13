@@ -11,7 +11,17 @@ import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import styles from './index.module.css';
 
 const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): JSX.Element => {
-  console.log(slug, variant, PageData);
+  const getNextExpertise = (currentSlug: string) => {
+    const currentIndex = EXPERTISES.findIndex((e) => e.slug === currentSlug);
+
+    if (currentIndex === -1) return null; // if slug not found
+
+    const nextIndex = (currentIndex + 1) % EXPERTISES.length;
+    return EXPERTISES[nextIndex];
+  };
+
+  const nextExpertise = getNextExpertise(slug);
+
   return (
     <>
       <Head>
@@ -108,7 +118,7 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
                   </div>
                 </footer>
 
-                <ExpertiseCard />
+                <ExpertiseCard variant={nextExpertise.variant} tagText={nextExpertise.tagText} heading={nextExpertise.iconCards.paragraph} />
               </div>
             </div>
           </main>
