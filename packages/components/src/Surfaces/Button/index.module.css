@@ -105,3 +105,11 @@
   --icon-color: var(--theme-secondary);
   --background-color: #fff;
 }
+
+@media (hover: hover) {
+  .button-wrapper:hover .button--bg-primary:hover, .button-wrapper:hover  .button--bg-transparent:hover {
+    --text-color: #fff;
+    --icon-color: var(--theme-primary);
+    --background-color: var(--theme-secondary);
+  }
+}

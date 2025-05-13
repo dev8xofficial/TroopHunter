@@ -1,14 +1,17 @@
 .field {
     display: grid;
+    transition: border 0.3s ease;
+
     align-items: flex-start;
 }
+
 .field__label {
     font-weight: 500;
     font-size: inherit;
     color: var(--error, var(--theme-secondary));
 }
 
-.field__asterisk{
+.field__asterisk {
     color: #f05644;
 }
 
@@ -23,36 +26,12 @@
     width: 1px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.field--error {
+    border-left: 4px solid #d53827;
+    padding-left: 0.5rem;
+    background-color: rgba(240, 86, 68, 0.05);
+    border-radius: 0.375rem;
+}
 
 /* =========================== Responsive Style ========================= */
 @media (min-width: 768px) {

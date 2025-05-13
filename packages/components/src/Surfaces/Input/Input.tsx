@@ -8,9 +8,11 @@ type InputProps = {
   id: string;
   name: string;
   placeholder?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
 
-export const Input: React.FC<InputProps> = ({ type, id, name, placeholder }): JSX.Element => {
+export const Input: React.FC<InputProps> = ({ type, id, name, placeholder, value, onChange }): JSX.Element => {
   return (
     <>
       <div className={styles['input-wrapper']}>

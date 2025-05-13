@@ -1,7 +1,7 @@
 .expertise-single {
-  max-width: calc(clamp(89.5rem, 94.708994709vw, 119.035rem) +clamp(2.5rem, 2.6455026455vw, 3.325rem) * 2);
-  padding-left: clamp(2.5rem, 2.6455026455vw, 3.325rem);
-  padding-right: clamp(2.5rem, 2.6455026455vw, 3.325rem);
+  max-width: calc(clamp(89.5rem, 94.708994709vw, 119.035rem) + var(--container-gutter)*2);
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
   margin: 4.0625rem auto;
   width: 100%;
 }

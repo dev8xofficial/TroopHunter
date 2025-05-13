@@ -50,4 +50,8 @@
     font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
     margin: clamp(5rem, 5.291005291vw, 6.65rem) 0 !important;
   }
+
+  .expertise-heading-container {
+    margin-bottom: 2.5rem;
+  }
 }

@@ -26,3 +26,18 @@
     color: var(--error, #b488f1);
     opacity: 0.6;
 }
+
+.input--error {
+    border-bottom: 1px solid #d53827;
+    color: #f05644;
+}
+
+.input--error:focus {
+    border-color: #f05644;
+    box-shadow: 0 1px 0 0#d53827;
+}
+
+.input--error::placeholder {
+    color: #d53827;
+    opacity: 0.6;
+}

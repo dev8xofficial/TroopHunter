@@ -5,7 +5,7 @@
     padding: 0;
     grid-gap: clamp(.25rem, .2645502646vw, .3325rem);
     gap: clamp(.25rem, .2645502646vw, .3325rem);
-    grid-template-columns: repeat(3, minmax(auto, 1fr));
+    grid-template-columns: repeat(2, minmax(auto, 1fr)); 
 }
 
 .logo-grid__item {
