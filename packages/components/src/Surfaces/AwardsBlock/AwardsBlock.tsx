@@ -18,7 +18,7 @@ export const AwardsBlock: React.FC = (): JSX.Element => {
       <div className={styles['awards-block']}>
         <h2 className={styles['awards-block__intro']} aria-label="80+ awards globally and continually recognised by the best of the best.">
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            80+{' '}
+            5+{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
             awards{' '}
@@ -55,13 +55,13 @@ export const AwardsBlock: React.FC = (): JSX.Element => {
           </span>
         </h2>
         <LogoGrid />
-        <div>
+        {/* <div>
           <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
             <Button iconType="i" icon={<i className="fa fa-plus" />} bgClass={ButtonStyles['button--bg-white']}>
               See all awards
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

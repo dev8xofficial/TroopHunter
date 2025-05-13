@@ -1,7 +1,7 @@
 .button--bg-secondary {
   --text-color: #fff !important;
-  --icon-color: #b488f1 !important;
-  --background-color: #271f33 !important;
+  --icon-color: var(--theme-primary);
+  --background-color: var(--theme-secondary);
 }
 
 .button--bg-transparent {
@@ -83,10 +83,9 @@
 
 
 .button--bg-primary {
-  --text-color: #12032a;
-  --icon-color: #12032a;
-  --icons-color: #85efe3;
-  --background-color: #b488f1;
+  --text-color: #fff;
+  --icon-color: var(--theme-primary);
+  --background-color: var(--theme-secondary);
 }
 
 .button--bg-transparent {

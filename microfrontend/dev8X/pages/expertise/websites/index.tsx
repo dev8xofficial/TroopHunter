@@ -62,8 +62,7 @@ const Websites: React.FC = (): JSX.Element => {
               <AwardsBlock />
 
               <div className={styles['expertise-container']}>
-                <h2 className="hidden">Testimonials:</h2>
-
+                {/* <h2 className="hidden">Testimonials:</h2>
                 <CardStack variant="Stack">
                   {PageData.testimonials.map((item, index) => (
                     <CardStack variant="Card" index={index} key={index}>
@@ -86,7 +85,7 @@ const Websites: React.FC = (): JSX.Element => {
                       </figure>
                     </CardStack>
                   ))}
-                </CardStack>
+                </CardStack> */}
 
                 <footer className={styles['expertise-cta']}>
                   <h2 className={styles['expertise-cta__content']}>
@@ -102,7 +101,7 @@ const Websites: React.FC = (): JSX.Element => {
                       }
                       bgClass={Button['button--bg-secondary']}
                     >
-                      See all awards
+                      Submit a brief
                     </Button>
                   </div>
                 </footer>

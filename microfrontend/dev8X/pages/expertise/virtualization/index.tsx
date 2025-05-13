@@ -8,6 +8,7 @@ import PageData from '../../../data/expertise/virtualization/index.d';
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
 import VirtualMachinesIcon from '@repo/components/src/Icons/VirtualMachines';
+import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -29,7 +30,7 @@ const Websites: React.FC = (): JSX.Element => {
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image"></meta>
-        
+
         <meta name="twitter:title" content="Dev8X - Solutions Made Simple!"></meta>
         <meta name="twitter:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
         <meta name="twitter:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
@@ -62,7 +63,7 @@ const Websites: React.FC = (): JSX.Element => {
               <AwardsBlock />
 
               <div className={styles['expertise-container']}>
-                <h2 className="hidden">Testimonials:</h2>
+                {/* <h2 className="hidden">Testimonials:</h2>
 
                 <CardStack variant="Stack">
                   {PageData.testimonials.map((item, index) => (
@@ -86,14 +87,24 @@ const Websites: React.FC = (): JSX.Element => {
                       </figure>
                     </CardStack>
                   ))}
-                </CardStack>
+                </CardStack> */}
 
                 <footer className={styles['expertise-cta']}>
                   <h2 className={styles['expertise-cta__content']}>
                     <span>Extraordinary Digital Experiences</span>
                   </h2>
                   <div>
-                    <Button>Submit a brief</Button>
+                    <Button
+                      iconType="svg"
+                      icon={
+                        <>
+                          <RightArrowIcon width="14" className={styles['button--icon']} />
+                        </>
+                      }
+                      bgClass={Button['button--bg-secondary']}
+                    >
+                      Submit a brief
+                    </Button>
                   </div>
                 </footer>
 

@@ -8,6 +8,7 @@ import PageData from '../../../data/expertise/web-applications/index.d';
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
 import CardIcon from '@repo/components/src/Icons/Card';
+import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 
 const Websites: React.FC = (): JSX.Element => {
   return (
@@ -61,7 +62,7 @@ const Websites: React.FC = (): JSX.Element => {
               <AwardsBlock />
 
               <div className={styles['expertise-container']}>
-                <h2 className="hidden">Testimonials:</h2>
+                {/* <h2 className="hidden">Testimonials:</h2>
 
                 <CardStack variant="Stack">
                   {PageData.testimonials.map((item, index) => (
@@ -85,14 +86,24 @@ const Websites: React.FC = (): JSX.Element => {
                       </figure>
                     </CardStack>
                   ))}
-                </CardStack>
+                </CardStack> */}
 
                 <footer className={styles['expertise-cta']}>
                   <h2 className={styles['expertise-cta__content']}>
                     <span>Extraordinary Digital Experiences</span>
                   </h2>
                   <div>
-                    <Button>Submit a brief</Button>
+                    <Button
+                      iconType="svg"
+                      icon={
+                        <>
+                          <RightArrowIcon width="14" className={styles['button--icon']} />
+                        </>
+                      }
+                      bgClass={Button['button--bg-secondary']}
+                    >
+                      Submit a brief
+                    </Button>
                   </div>
                 </footer>
 
