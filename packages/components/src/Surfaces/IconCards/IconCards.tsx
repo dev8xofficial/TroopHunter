@@ -1,22 +1,11 @@
-/* eslint-disable prettier/prettier */
 import React, { ReactNode } from 'react';
+import { ICON_MAP } from './IconMap';
+import { ExpertiseIconCards } from '../../Interfaces/Expertise/Expertise';
 
 // import TextAnimateUp from '../TextAnimateUp/index.module.css';
 import styles from './index.module.css';
 
-type StepItem = {
-  title: string;
-  description: string;
-  icon: ReactNode;
-};
-
-type IconCardsProps = {
-  title: string;
-  paragraph: string;
-  IconCardsItems: StepItem[];
-};
-
-export const IconCards: React.FC<IconCardsProps> = ({ title, paragraph, IconCardsItems }): JSX.Element => {
+export const IconCards: React.FC<ExpertiseIconCards> = ({ title, paragraph, items }): JSX.Element => {
   return (
     <>
       <section className={styles['icon-cards']}>
@@ -27,9 +16,9 @@ export const IconCards: React.FC<IconCardsProps> = ({ title, paragraph, IconCard
           {paragraph}
         </p>
         <ul className={styles['icon-cards__list']}>
-          {IconCardsItems.map((item, index) => (
+          {items?.map((item, index) => (
             <li className={styles['icon-card']} style={{ opacity: 1, transform: 'translateX(0px)' }} key={index}>
-              <div className={styles['icon-card__icon-wrapper']}>{item.icon}</div>
+              <div className={styles['icon-card__icon-wrapper']}>{ICON_MAP[item.icon.name]?.(item.icon.width)}</div>
               <hr className={styles['icon-card__hr']} />
               <h3 className={styles['icon-card__heading']}>{item.title}</h3>
               <p className={styles['icon-card__body']}>{item.description}</p>

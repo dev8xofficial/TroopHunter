@@ -8,6 +8,7 @@ import PageData from '../../../data/expertise/ci-cd/index.d';
 import PictureStyles from '../../../components/Surfaces/Picture/index.module.css';
 import styles from '../index.module.css';
 import InfinityIcon from '@repo/components/src/Icons/Infinity';
+import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 
 const Websites: React.FC = (): JSX.Element => {
   return (

@@ -1,13 +1,14 @@
 import React from 'react';
-import { FooterForm, FooterSocialLinks } from '../Footer/Footer';
+import { ICON_MAP } from '../IconCards/IconMap';
+import { ExpertiseFooterForm, ExpertiseFooterSocialLink } from '../../Interfaces/Expertise/Expertise';
 
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 import ButtonStyles from '../Button/index.module.css';
 import styles from './index.module.css';
 
 type FooterInternationalContentsProps = {
-  footerForm: FooterForm;
-  footerSocialLinks: FooterSocialLinks[];
+  footerForm: ExpertiseFooterForm;
+  footerSocialLinks: ExpertiseFooterSocialLink[];
 };
 
 export const FooterInternationalContents: React.FC<FooterInternationalContentsProps> = ({ footerForm, footerSocialLinks }): JSX.Element => {
@@ -24,7 +25,7 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
           </div>
           <div>
             <button className={`${ContactFormModalStyles['contact-form-button']} ${styles['footer-contact-button']}`} data-international-footer-cta="true" data-faitracker-form-bind="true">
-              {footerForm.button.text}
+              {footerForm?.button?.text}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" className="" style={{ '--width': 12, '--height': 13 } as React.CSSProperties}>
                 <path fill="currentColor" stroke="currentColor" d="M1 5.816H.75v1.326h10.014l-4.008 3.907-.173.168.162.179.563.62.174.191.186-.18 5.506-5.37.184-.178-.184-.18L7.668.932l-.186-.18-.174.191-.563.62-.162.178.173.169 4.008 3.907H1Z" vectorEffect="non-scaling-stroke"></path>
               </svg>
@@ -55,18 +56,18 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
             />
           </svg>
           <span>
-            © {footerForm.privacy.year} <a href="/privacy">{footerForm.privacy.text}</a>
+            © {footerForm?.privacy?.year} <a href="/privacy">{footerForm?.privacy?.text}</a>
           </span>
         </div>
         <ul className={styles['footer-socials']}>
-          {footerSocialLinks.map((item, index) => (
+          {footerSocialLinks?.map((item, index) => (
             <li className={styles['footer-socials__item']} key={index}>
               <a className={ButtonStyles['button-wrapper']} target="_blank" href={item.href}>
                 <span className={`${ButtonStyles['button']} ${ButtonStyles['button--bg-transparent']}`} style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0px)' }}>
                   <span>{item.title}</span>
                 </span>
               </a>
-              {item.icon}
+              {ICON_MAP[item.icon?.name]?.(item.icon?.width)}
             </li>
           ))}
         </ul>

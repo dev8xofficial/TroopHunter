@@ -13,33 +13,7 @@ export const Header: React.FC = (): JSX.Element => {
     if (path === '/') return 1;
     if (path === '/about') return 2;
     if (path.startsWith('/work')) return 3;
-    if (
-      path.startsWith('/expertise/websites') ||
-      path.startsWith('/expertise/web-applications') ||
-      path.startsWith('/expertise/mobile-apps') ||
-      path.startsWith('/expertise/ecommerce') ||
-      path.startsWith('/expertise/data-visualisation') ||
-      path.startsWith('/expertise/user-research-validation') ||
-      path.startsWith('/expertise/user-experience-design') ||
-      path.startsWith('/expertise/user-interface-design') ||
-      path.startsWith('/expertise/prototyping') ||
-      path.startsWith('/expertise/design-systems') ||
-      path.startsWith('/expertise/react-js') ||
-      path.startsWith('/expertise/next-js') ||
-      path.startsWith('/expertise/node-js') ||
-      path.startsWith('/expertise/express-nest') ||
-      path.startsWith('/expertise/supabase') ||
-      path.startsWith('/expertise/backend') ||
-      path.startsWith('/expertise/real-time-apps') ||
-      path.startsWith('/expertise/saas') ||
-      path.startsWith('/expertise/postgresql') ||
-      path.startsWith('/expertise/orm-sequelize-prisma') ||
-      path.startsWith('/expertise/docker') ||
-      path.startsWith('/expertise/virtualization') ||
-      path.startsWith('/expertise/ansible-web-servers') ||
-      path.startsWith('/expertise/aws-vercel-digitalocean') ||
-      path.startsWith('/expertise/ci-cd')
-    ) {
+    if (path.startsWith('/expertise')) {
       return 4;
     }
     if (path === '/contact') return 5;
