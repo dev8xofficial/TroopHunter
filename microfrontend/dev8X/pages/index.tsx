@@ -4,11 +4,11 @@ import { useProjectModal } from '../hooks/useProjectModal';
 import Hero from '../components/Surfaces/Hero/Hero';
 import Problems from './home/Problems/Problems';
 import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDev8X, ProjectsFormModal } from '@repo/components';
-import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
+import { useBreakpoint } from '../hooks/useBreakpoint';
+// import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../data/index.d';
 
 import styles from './index.module.css';
-import { useBreakpoint } from '../hooks/useBreakpoint';
 
 export default function Home() {
   const { modalSlug, openModal, closeModal } = useProjectModal();

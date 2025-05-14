@@ -7,7 +7,7 @@ import EXPERTISES from '../../data/expertise/index.d';
 import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards, Button, ExpertiseCard, AwardsBlock, CardStack, WorkDetail, ExpertiseContent } from '@repo/components';
 import { getDev8xPublicUrl } from '../../utils/helpers';
 
-import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
+// import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import styles from './index.module.css';
 
 const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): JSX.Element => {
@@ -104,16 +104,9 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
                       <span>Extraordinary Digital Experiences</span>
                     </h2>
                     <div>
-                      <Button
-                        iconType="svg"
-                        icon={
-                          <>
-                            <RightArrowIcon width="14" className={styles['button--icon']} />
-                          </>
-                        }
-                        bgClass={Button['button--bg-secondary']}
-                      >
+                      <Button variant="secondary" size="large" icon={true} page="contact" className={styles['contact-button']}>
                         Submit a brief
+                        <RightArrowIcon width="14" className={styles['button--icon']} />
                       </Button>
                     </div>
                   </footer>

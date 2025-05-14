@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useSetAtom } from 'jotai';
 import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
 
-import { Header, FooterRevealPageWrap, FooterInternationalContents, ContactFormModal } from '@repo/components';
+import { Header, FooterRevealPageWrap, FooterInternationalContents, ContactFormModal, Button } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import { getDev8xPublicUrl } from '../../utils/helpers';
@@ -116,12 +116,10 @@ const Contact: React.FC = (): JSX.Element => {
                 </h1>
                 <div>
                   <div>
-                    <button className={ButtonStyles['button-wrapper']} onClick={toggleModal}>
-                      <span className={`${ButtonStyles['button']} ${ButtonStyles['button--icon']} ${ButtonStyles['button--bg-secondary']} ${ContactFormModalStyles['contact-button']} ${styles['contact-button']}}`}>
-                        Submit a brief
-                        <RightArrowIcon width="14" className={styles['button--icon']} />
-                      </span>
-                    </button>
+                    <Button variant="secondary" icon={true} page="contact" className={styles['contact-button']} onClick={toggleModal}>
+                      Submit a brief
+                      <RightArrowIcon width="14" className={styles['button--icon']} />
+                    </Button>
                   </div>
                 </div>
               </div>

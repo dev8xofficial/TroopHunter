@@ -1,5 +1,7 @@
 import React from 'react';
 import { HomepageStat, HomepageStats } from '../HomepageStats/HomepageStats';
+import { Button } from '../Button/Button';
+import RightArrowIcon from '../../Icons/RightArrow';
 
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import PictureStyle from '../Picture/index.module.css';
@@ -26,6 +28,10 @@ export const WhyDev8X: React.FC<WhyProps> = ({ heading, para1, para2, image, sta
         <div className={`${WYSIWYGStyle['wysiwyg']} ${styles['homepage-bottom__wysiwyg']}`}>
           <p>{para1}</p>
           <p>{para2}</p>
+          <Button variant="secondary" icon={true} buttonClassName={styles['homepage-bottom__link']}>
+            About Us
+            <RightArrowIcon width="14" className={styles['button--icon']} />
+          </Button>
         </div>
       </div>
       <div className={styles['homepage-bottom__image-wrapper']}>

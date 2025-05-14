@@ -1,16 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React, { CSSProperties, ReactNode } from 'react';
 import { LogoGrid } from '../LogoGrid/LogoGrid';
-// import { Button } from '../Button/Button';
+import { Button } from '../Button/Button';
+import CrossIcon from '../../Icons/Cross';
 
-// import ButtonStyles from '../Button/index.module.css';
 import styles from './index.module.css';
-
-type AwardsBlockProps = {
-  children: ReactNode;
-  variant: 'Stack' | 'Card';
-  index?: number;
-};
 
 export const AwardsBlock: React.FC = (): JSX.Element => {
   return (
@@ -55,13 +49,16 @@ export const AwardsBlock: React.FC = (): JSX.Element => {
           </span>
         </h2>
         <LogoGrid />
-        {/* <div>
+        <div>
           <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
-            <Button iconType="i" icon={<i className="fa fa-plus" />} bgClass={ButtonStyles['button--bg-white']}>
+            <Button variant="white" icon={true}>
+              <i className={styles['awards-block__button-icon']} style={{ '--icon-color': '#fff' } as CSSProperties}>
+                <CrossIcon width="14" />
+              </i>
               See all awards
             </Button>
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );
