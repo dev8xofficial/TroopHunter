@@ -11,6 +11,18 @@
   width: 100%;
 }
 
+@media (min-width: 992px) {
+  .icon-cards {
+    gap: 2.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .icon-cards {
+    gap: 3.125rem;
+  }
+}
+
 .icon-cards__heading {
   color: #0f1d07;
   margin: 0;
@@ -18,6 +30,12 @@
   line-height: 1;
   text-wrap: balance;
   font-size: 1.875rem;
+}
+
+@media (min-width: 992px) {
+  .icon-cards__heading {
+    font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
+  }
 }
 
 .icon-cards__intro {
@@ -37,6 +55,18 @@
   gap: clamp(3.125rem, 3.3068783069vw, 4.15625rem) clamp(2rem, 2.1164021164vw, 2.66rem);
   grid-template-columns: 1fr;
   align-items: flex-start;
+}
+
+@media (min-width: 480px) {
+  .icon-cards__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .icon-cards__list {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .icon-card {
@@ -77,36 +107,4 @@
   margin: 0;
   font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
   line-height: clamp(1.5625rem, 1.6534391534vw, 2.078125rem);
-}
-
-/***************************************************** Responsive Styles *****************************************************/
-/*****************************************************************************************************************************/
-
-@media (min-width: 480px) {
-  .icon-cards__list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 768px) {
-}
-
-@media (min-width: 992px) {
-  .icon-cards {
-    gap: 2.5rem;
-  }
-
-  .icon-cards__heading {
-    font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
-  }
-
-  .icon-cards__list {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 1200px) {
-  .icon-cards {
-    gap: 3.125rem;
-  }
 }

@@ -26,7 +26,7 @@ export const ContentAsideImage: React.FC<ContentAsideImageProps> = ({ contentAsi
                     <img className="m-0 max-w-full border border-transparent object-cover h-auto w-full" src={`${item.image}/m/450x317/filters:quality(80)`} loading="lazy" width="450" height="317" alt="" draggable="false" />
                   </picture>
                 </div> */}
-                <div className={`${styles['content-aside-image__icon']} ${styles['content-aside-image--image-left']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+                <div className={`${styles['content-aside-image__icon']} ${styles['content-aside-image__image']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
                   <div className={styles['icon-wrapper']}>{ICON_MAP[item.icon.name]?.(item.icon.width)}</div>
                 </div>
 
@@ -57,7 +57,7 @@ export const ContentAsideImage: React.FC<ContentAsideImageProps> = ({ contentAsi
                     </WYSIWYG>
                   </div>
                 </div>
-                <div className={`${styles['content-aside-image__icon']} ${styles['content-aside-image--image-right']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+                <div className={`${styles['content-aside-image__icon']} ${styles['content-aside-image__image']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
                   <div className={styles['icon-wrapper']}>{ICON_MAP[item.icon.name]?.(item.icon.width)}</div>
                 </div>
 

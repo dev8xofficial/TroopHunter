@@ -10,11 +10,29 @@
   margin: clamp(9.375rem, 19.53125vw, 12.46875rem) auto;
 }
 
+@media (min-width: 992px) {
+  .awards-block {
+    margin: clamp(12.5rem, 26.0416666667vw, 16.625rem) auto;
+  }
+}
+
 .awards-block__intro {
   max-width: clamp(66.25rem, 70.1058201058vw, 88.1125rem);
   line-height: 1;
   font-size: clamp(1.875rem, 3.90625vw, 2.49375rem);
   margin: 0 0 clamp(3.75rem, 3.9682539683vw, 4.9875rem);
+}
+
+@media (min-width: 992px) {
+  .awards-block__intro {
+    font-size: clamp(2.5rem, 5.2083333333vw, 3.325rem);
+  }
+}
+
+@media (min-width: 1400px) {
+  .awards-block__intro {
+    font-size: clamp(3.75rem, 3.9682539683vw, 4.9875rem);
+  }
 }
 
 .awards-block__button-icon {
@@ -37,21 +55,6 @@
   height: 1em;
 }
 
-/***************************************************** Responsive Styles *****************************************************/
-/*****************************************************************************************************************************/
-
-@media (min-width: 992px) {
-  .awards-block {
-    margin: clamp(12.5rem, 26.0416666667vw, 16.625rem) auto;
-  }
-
-  .awards-block__intro {
-    font-size: clamp(2.5rem, 5.2083333333vw, 3.325rem);
-  }
-}
-
-@media (min-width: 1400px) {
-  .awards-block__intro {
-    font-size: clamp(3.75rem, 3.9682539683vw, 4.9875rem);
-  }
+.awards-block__logo {
+  background-color: hsla(0, 0%, 100%, 0.5);
 }

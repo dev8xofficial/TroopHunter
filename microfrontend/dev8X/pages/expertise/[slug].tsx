@@ -64,16 +64,17 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
           <main className={`${styles['expertise-single']} container-full`}>
             <Hero variant={variant} tagText={PageData.tagText} heading={PageData.heading} icon={<PointerIcon width="120" />} />
 
-            <ModularBlocks>
-              <IconCards title={PageData.iconCards?.title} paragraph={PageData.iconCards?.paragraph} items={PageData.iconCards?.items} />
-              <ContentAsideImage contentAsideImageItems={PageData.contentAsideImageItems} />
-            </ModularBlocks>
-
-            <div className={styles['expertise-container']}>
-              <AwardsBlock />
+            <div>
+              <ModularBlocks>
+                <IconCards title={PageData.iconCards?.title} paragraph={PageData.iconCards?.paragraph} items={PageData.iconCards?.items} />
+                <ContentAsideImage contentAsideImageItems={PageData.contentAsideImageItems} />
+              </ModularBlocks>
 
               <div className={styles['expertise-container']}>
-                {/* <h2 className="hidden">Testimonials:</h2>
+                <AwardsBlock />
+
+                <div className={styles['expertise-container']}>
+                  {/* <h2 className="hidden">Testimonials:</h2>
                 <CardStack variant="Stack">
                   {PageData?.testimonials?.map((item, index) => (
                     <CardStack variant="Card" index={index} key={index}>
@@ -98,26 +99,27 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
                   ))}
                 </CardStack> */}
 
-                <footer className={styles['expertise-cta']}>
-                  <h2 className={styles['expertise-cta__content']}>
-                    <span>Extraordinary Digital Experiences</span>
-                  </h2>
-                  <div>
-                    <Button
-                      iconType="svg"
-                      icon={
-                        <>
-                          <RightArrowIcon width="14" className={styles['button--icon']} />
-                        </>
-                      }
-                      bgClass={Button['button--bg-secondary']}
-                    >
-                      Submit a brief
-                    </Button>
-                  </div>
-                </footer>
+                  <footer className={styles['expertise-cta']}>
+                    <h2 className={styles['expertise-cta__content']}>
+                      <span>Extraordinary Digital Experiences</span>
+                    </h2>
+                    <div>
+                      <Button
+                        iconType="svg"
+                        icon={
+                          <>
+                            <RightArrowIcon width="14" className={styles['button--icon']} />
+                          </>
+                        }
+                        bgClass={Button['button--bg-secondary']}
+                      >
+                        Submit a brief
+                      </Button>
+                    </div>
+                  </footer>
 
-                <ExpertiseCard variant={nextExpertise.variant} tagText={nextExpertise.tagText} heading={nextExpertise.iconCards.paragraph} />
+                  <ExpertiseCard variant={nextExpertise.variant} tagText={nextExpertise.tagText} heading={nextExpertise.iconCards.paragraph} />
+                </div>
               </div>
             </div>
           </main>

@@ -30,8 +30,8 @@ export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, ima
                 <img src={`${image}/m/450x240/filters:quality(80)`} loading="eager" width="450" height="240" alt="Sussex Image" className="max-w-full h-auto w-full" draggable="false" />
               </picture>
             </div> */}
-            <div className={styles['expertise-icon']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-              <div className={styles['icon-wrapper']}>{icon} </div>
+            <div className={`${styles['expertise-image']} ${styles['expertise-icon-wrapper']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+              {icon}
             </div>
           </div>
         </div>
