@@ -40,6 +40,13 @@
   }
 }
 
+@media (max-width: 479px) {
+  [data-submenu-open='true'] .submenu-container {
+    width: 115%;
+    left: -7.5%;
+  }
+}
+
 @media (min-width: 768px) {
   .submenu-container {
     top: 0;

@@ -16,21 +16,19 @@ export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, f
   return (
     <>
       <footer className={styles['footer']} id="footer-animation">
-        <div className={styles['sticky-inner']} style={{ transform: 'none' }}>
+        <div className={styles['footer__sticky-inner']} style={{ transform: 'none' }}>
           <p className={styles['footer__heading']}>
             <a className={styles['footer__heading-link']} target="_tab" href={footerMainContent?.link}>
               <span>{footerMainContent?.start}</span>
               <br />
               <RightArrowIcon width="14" className={styles['arrow']} />
-              <span className={styles['word-ticker-wrapper']}>
-                {footerMainContent?.end}
-                {/* <span className={styles['word-ticker']}>
-                  <span style={{ opacity: 1 }}>client!</span>
-                </span> */}
+              <span className={styles['footer__word-ticker-wrapper']}>
+                {footerMainContent?.end.split(' ')[0] + ' '}
+                <span className={styles['word-ticker']}>{footerMainContent?.end.split(' ')[1]}</span>
               </span>
             </a>
           </p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="289" height="311" fill="none" viewBox="0 0 289 311" className={styles['face']} style={{ '--width': 289, '--height': 311 } as React.CSSProperties}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="289" height="311" fill="none" viewBox="0 0 289 311" className={styles['face']} style={{ '--width': 289, '--height': 311, display: 'none' } as React.CSSProperties}>
             <path
               fill="currentColor"
               fillRule="evenodd"

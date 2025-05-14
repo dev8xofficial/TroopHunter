@@ -4,7 +4,7 @@ const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading
   footerMainContent: {
     link: '/contact',
     start: 'Let’s make',
-    end: 'something wonderful'
+    end: 'something wonderful!'
   },
   footerForm: {
     privacy: {
