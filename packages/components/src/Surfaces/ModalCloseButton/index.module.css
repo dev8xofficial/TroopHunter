@@ -24,7 +24,7 @@
     backdrop-filter: blur(10px);
     position: -webkit-sticky;
     position: sticky;
-    top: 30px;
+    top: 30px
 }
 
 .modal-close-button:before {
@@ -38,21 +38,42 @@
     right: 0;
     bottom: 0;
     z-index: -1;
-    transition: background .15s ease-in-out;
+    transition: background .15s ease-in-out
 }
 
-.modal-close-button_svg {
-    font-size: 1.125rem;
-    min-height: 0;
-    min-width: 0;
-    display: block;
-}
-
-/***************************************************** Responsive Styles *****************************************************/
-/*****************************************************************************************************************************/
-
-@media (min-width: 992px) {
+@media(min-width: 992px) {
     .modal-close-button {
-        top: 45px;
+        top: 45px
     }
+}
+
+.modal-close-button svg {
+    font-size: 1.125rem
+}
+
+.modal-close-button:focus {
+    outline: none
+}
+
+.modal-close-button:focus-visible {
+    outline: 2px dashed #000;
+    outline-offset: 2px
+}
+
+@media(hover: hover) {
+    .modal-close-button:hover {
+        color: #000
+    }
+
+    .modal-close-button:hover:before {
+        background-color: #fff
+    }
+}
+
+.modal-close-button:focus-visible {
+    color: #000
+}
+
+.modal-close-button:focus-visible:before {
+    background-color: #fff
 }

@@ -1,41 +1,40 @@
 .field {
     display: grid;
-    transition: border 0.3s ease;
-
-    align-items: flex-start;
+    align-items: flex-start
 }
 
 .field__label {
     font-weight: 500;
     font-size: inherit;
-    color: var(--error, var(--theme-secondary));
-}
-
-.field__asterisk {
-    color: #f05644;
+    color: var(--error,var(--theme-secondary))
 }
 
 .field__label--hidden {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
-    margin: -1px !important;
+    margin: -1px!important;
     overflow: hidden;
     padding: 0;
-    position: absolute !important;
-    width: 1px;
+    position: absolute!important;
+    width: 1px
+}
+
+.field__asterisk {
+    color: #f05644
 }
 
 .field--error {
-    border-left: 4px solid #d53827;
-    padding-left: 0.5rem;
-    background-color: rgba(240, 86, 68, 0.05);
-    border-radius: 0.375rem;
+    --error: #d53827
 }
 
-/* =========================== Responsive Style ========================= */
-@media (min-width: 768px) {
-    .col-sm-1 {
-        grid-column: span 1;
-    }
+.field__error {
+    font-size: clamp(.8125rem,.8597883598vw,1.080625rem);
+    display: grid;
+    color: #f05644;
+    margin-top: .5em
+}
+
+._field__error__SRPFf p {
+    margin: .5em 0
 }

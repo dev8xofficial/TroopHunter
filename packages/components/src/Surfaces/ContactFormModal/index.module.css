@@ -1,3 +1,17 @@
+.modal-bg {
+  background-color: #fff !important
+}
+
+button>.contact-button {
+  font-size: clamp(.9375rem, .9920634921vw, 1.246875rem);
+  padding: 1em .9em;
+  gap: .5em
+}
+
+button>.contact-button svg {
+  font-size: 1em
+}
+
 .contact-form-button {
   cursor: pointer;
   display: flex;
@@ -13,51 +27,164 @@
   border: none;
   background-color: initial;
   padding: 2px 0 6px;
-  margin: 0;
+  margin: 0
 }
 
 .contact-form-button svg {
-  transition: all 0.3s ease-in-out;
+  transition: all .3s ease-in-out;
   transform: translateX(0);
-  margin-top: 2px;
+  margin-top: 2px
 }
 
-.button>.contact-button {
-  font-size: clamp(.9375rem, .9920634921vw, 1.246875rem);
-  padding: 1em .9em;
-  gap: .5em;
+.contact-form-button:hover svg {
+  transform: translateX(4px)
 }
 
-.button>.contact-button svg {
-  font-size: 1em;
+.large-button__BuIA_ {
+  scale: 1.5 !important;
+  padding: 18px 24px !important;
+  margin-block: 20px;
+  margin-inline: 2.375rem
+}
+
+@media(min-width: 992px) {
+  .large-button {
+    padding: 24px 28px !important
+  }
 }
 
 .modal-container {
   display: flex;
   flex-direction: column;
-  max-width: calc(clamp(60.625rem, 64.1534391534vw, 80.63125rem) + var(--container-gutter) * 2);
-  padding-left: clamp(1.875rem, 1.9841269841vw, 2.49375rem);
-  padding-right: clamp(1.875rem, 1.9841269841vw, 2.49375rem);
+  max-width: calc(clamp(60.625rem, 64.1534391534vw, 80.63125rem) + var(--container-gutter)*2);
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   height: 100%;
   padding-top: 1.875rem;
-  padding-bottom: 1.875rem;
+  padding-bottom: 1.875rem
+}
+
+@media(min-width: 768px) {
+  .modal-container {
+    padding-top: 0;
+    padding-bottom: clamp(3.75rem, 3.9682539683vw, 4.9875rem)
+  }
 }
 
 .modal-header {
   display: none;
   color: var(--theme-secondary);
-  font-size: clamp(.875rem, .9259259259vw, 1.16375rem);
+  font-size: clamp(.875rem, .9259259259vw, 1.16375rem)
+}
+
+@media(min-width: 992px) {
+  .modal-header {
+    grid-gap: clamp(2.25rem, 2.380952381vw, 2.9925rem);
+    gap: clamp(2.25rem, 2.380952381vw, 2.9925rem);
+    display: grid;
+    margin-bottom: clamp(5.625rem, 5.9523809524vw, 7.48125rem);
+    grid-template-columns: 1fr 1fr 1fr 1fr
+  }
+
+  .modal-header>:nth-child(2n) {
+    justify-self: flex-end
+  }
+}
+
+.modal-header a {
+  display: inline-block;
+  color: inherit;
+  font-weight: 500;
+  -webkit-text-decoration-color: transparent;
+  text-decoration-color: transparent;
+  transition: .15s ease-in-out
+}
+
+@media(hover: hover) {
+  .modal-header a:hover {
+    color: var(--theme-primary);
+    -webkit-text-decoration-color: currentColor;
+    text-decoration-color: currentColor
+  }
+}
+
+.modal-header a:focus-visible {
+  color: var(--theme-primary);
+  -webkit-text-decoration-color: currentColor;
+  text-decoration-color: currentColor
+}
+
+.modal-header .modal-contact-details {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: clamp(1rem, 1.0582010582vw, 1.33rem)
+}
+
+.modal-header .modal-contact-details dt {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px !important;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px
+}
+
+.modal-header .modal-contact-details dd {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center
+}
+
+.modal-header .modal-contact-details dd+dd {
+  position: relative
+}
+
+.modal-header .modal-contact-details dd+dd:before {
+  content: "";
+  position: absolute;
+  background-color: var(--theme-primary);
+  height: clamp(.25rem, .2645502646vw, .3325rem);
+  width: clamp(.25rem, .2645502646vw, .3325rem);
+  left: calc(clamp(1rem, 1.0582010582vw, 1.33rem) * -.5);
+  transform: translateX(-50%);
+  border-radius: 100vw
 }
 
 .modal-heading {
   font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
   margin: 0 0 clamp(3.25rem, 3.4391534392vw, 4.3225rem);
-  color: #b488f1;
+  color: var(--theme-primary);
   line-height: .9;
-  font-size: clamp(2.5rem, 5.2083333333vw, 3.325rem);
+  font-size: clamp(2.5rem, 5.2083333333vw, 3.325rem)
+}
+
+@media(min-width: 992px) {
+  .modal-heading {
+    font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem)
+  }
+}
+
+.modal-intro p {
+  margin: 0
+}
+
+.modal-intro>p:first-child {
+  font-weight: 500;
+  font-size: inherit;
+  color: var(--error, var(--theme-secondary))
+}
+
+.modal-intro>p:last-child {
+  margin-top: .5em;
+  display: block;
+  opacity: .5
 }
 
 .contact-form {
@@ -65,63 +192,21 @@
   align-items: flex-start;
   grid-gap: clamp(3.125rem, 3.3068783069vw, 4.15625rem) clamp(1.25rem, 1.3227513228vw, 1.6625rem);
   gap: clamp(3.125rem, 3.3068783069vw, 4.15625rem) clamp(1.25rem, 1.3227513228vw, 1.6625rem);
-  font-size: clamp(1rem, 1.0582010582vw, 1.33rem);
+  font-size: clamp(1rem, 1.0582010582vw, 1.33rem)
 }
 
-.modal-intro p {
-  margin: 0;
-}
-
-.modal-intro>p:first-child {
-  font-weight: 500;
-  font-size: inherit;
-  color: var(--error, var(--theme-secondary));
-}
-
-.modal-intro>p:last-child {
-  margin-top: .5em;
-  display: block;
-  opacity: .5;
-}
-
-.contact-form .contact-submit {
+.contact-form .contact-submit__EBoOI {
   text-align: center;
   justify-content: center;
   font-size: clamp(.9375rem, .9920634921vw, 1.246875rem);
-  padding: 1.1em;
-}
-.large-button {
-  scale: 1.5 !important;
-  padding: 18px 24px !important;
-  margin-block: 20px;
-  margin-inline: 2.375rem;
+  padding: 1.1em
 }
 
-/***************************************************** Responsive Styles *****************************************************/
-/*****************************************************************************************************************************/
-
-@media (min-width: 768px) {
-  .modal-container {
-    padding-top: 0;
-    padding-bottom: clamp(3.75rem, 3.9682539683vw, 4.9875rem);
-  }
+.success {
+  margin: auto 0;
+  text-align: center
 }
 
-@media (min-width: 992px) {
-  .modal-header {
-    grid-gap: clamp(2.25rem, 2.380952381vw, 2.9925rem);
-    gap: clamp(2.25rem, 2.380952381vw, 2.9925rem);
-    display: grid;
-    margin-bottom: clamp(5.625rem, 5.9523809524vw, 7.48125rem);
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-  .large-button {
-    padding: 24px 28px !important;
-}
-}
-
-@media (min-width: 992px) {
-  .modal-heading {
-    font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
-  }
+.success__message {
+  font-size: clamp(1.5rem, 1.5873015873vw, 1.995rem)
 }

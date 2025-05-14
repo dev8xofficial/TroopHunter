@@ -3,24 +3,27 @@
     padding: .8em;
     font-size: inherit;
     border: none;
-    border: 1px solid rgba(0, 0, 0, .2);
-    color: var(--error, var(--theme-text));
+    border: 1px solid rgba(0,0,0,.2);
+    color: var(--error,var(--theme-text));
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: clamp(.625rem, .6613756614vw, .83125rem);
+    border-radius: clamp(.625rem,.6613756614vw,.83125rem);
     resize: none;
-    margin-top: 1em;
-    overflow: auto;
+    margin-top: 1em
+}
+
+.textarea::placeholder {
+    opacity: .5;
+    color: var(--error,var(--theme-text))
 }
 
 .textarea:focus {
     outline: none;
-    border-color: var(--error, #b488f1);
-    box-shadow: 0 0 0 1px var(--error, #b488f1);
+    border-color: var(--error,var(--theme-primary));
+    box-shadow: 0 0 0 1px var(--error,var(--theme-primary))
 }
 
 .textarea:focus::placeholder {
-    color: var(--error, #b488f1);
-    opacity: 0.6;
+    color: var(--error,var(--theme-primary))
 }

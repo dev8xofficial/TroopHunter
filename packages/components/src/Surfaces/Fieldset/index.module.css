@@ -1,16 +1,20 @@
 .fieldset {
     display: grid;
-    align-items: flex-start;
+    align-items: flex-start
 }
 
 .fieldset__legend {
     font-weight: 500;
     font-size: inherit;
-    color: var(--error, var(--theme-secondary));
+    color: var(--error, var(--theme-secondary))
 }
 
 .fieldset__asterisk {
-    color: #f05644;
+    color: #f05644
+}
+
+.fieldset--error .fieldset__legend {
+    --error: #d53827
 }
 
 .fieldset__inner {
