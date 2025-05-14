@@ -29,6 +29,12 @@
     bottom: 0;
   }
 
+  [data-submenu-open='true'] .submenu-container {
+    border: 1px solid #fff;
+    width: 130%;
+    left: -15%;
+  }
+
   .submenu-container [data-submenu-open='true'][data-columns='4'] {
     height: 80vh;
   }
@@ -45,7 +51,7 @@
 
   [data-submenu-open='true'][data-columns='4'] .submenu-container {
     width: 210%;
-    left: -40%;
+    left: -55%;
   }
 }
 

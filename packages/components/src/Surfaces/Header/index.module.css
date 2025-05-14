@@ -202,9 +202,9 @@
 /*****************************************************************************************************************************/
 
 @media (max-width: 767px) {
-  .menu[data-submenu-open='true'] .menu__list {
+  /* .menu[data-submenu-open='true'] .menu__list {
     box-shadow: 0 -10px 24px 0 rgba(0, 0, 0, 0.05);
-  }
+  } */
 
   .menu__link {
     padding: 0.5rem 0.59375rem;
