@@ -8,6 +8,7 @@ import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/Smooth
 import PageData from '../data/index.d';
 
 import styles from './index.module.css';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 export default function Home() {
   const { modalSlug, openModal, closeModal } = useProjectModal();
@@ -17,11 +18,12 @@ export default function Home() {
     para2: 'By combining strategy, creativity, and technology, we unlock opportunities, transform businesses, and make experiences that truly matter. As an independent team, our agility and passion shape every project into something exceptional.',
     image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)',
     stats: [
-      { title: '100%', paragraph: 'In-house & independent' },
-      { title: '6+', paragraph: 'Years crafting digital experiences' },
-      { title: '20+', paragraph: 'Digital solutions launched worldwide' }
+      { title: '100%', span: ['In-house ', '& ', 'independent'] },
+      { title: '6+', span: ['Years ', 'crafting ', 'digital ', 'experiences'] },
+      { title: '20+', span: ['Digital ', 'solutions ', 'launched ', 'worldwide'] }
     ]
   };
+  const isMobile = useBreakpoint();
 
   return (
     <>
@@ -65,7 +67,7 @@ export default function Home() {
           <main className={styles['homepage']}>
             <Hero />
             <div className={styles['homepage__purple-change']}>
-              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} />
+              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} isMobile={isMobile} />
             </div>
             <Problems />
             {/* <Hero />

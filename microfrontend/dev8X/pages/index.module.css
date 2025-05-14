@@ -8,9 +8,15 @@
   padding-right: var(--container-gutter);
   display: grid;
   grid-template-rows: 50% 50%;
-  grid-template-areas:
-    'top'
-    'bottom';
+  grid-template-areas: 'top' 'bottom';
+}
+
+.homepage__purple-change > :first-child {
+  grid-area: top;
+}
+
+.homepage__purple-change > :last-child {
+  grid-area: bottom;
 }
 
 .homepage__showreel {

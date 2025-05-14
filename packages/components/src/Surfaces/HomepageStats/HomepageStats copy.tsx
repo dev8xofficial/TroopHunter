@@ -7,7 +7,7 @@ import styles from './index.module.css';
 
 export type HomepageStat = {
   title: string;
-  span: string[];
+  paragraph: string;
 };
 
 type HomepageStatsProps = {
@@ -54,9 +54,7 @@ export const HomepageStats: React.FC<HomepageStatsProps> = ({ stats }) => {
               {suffix}
             </span>
             <span className={styles['homepage-stats__label']}>
-              {stat.span.map((item) => (
-                <span className={TextAnimateStyles['word']}>{item}</span>
-              ))}
+              <span className={TextAnimateStyles['word']}>{stat.paragraph}</span>
             </span>
           </li>
         );

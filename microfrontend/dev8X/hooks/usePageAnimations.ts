@@ -33,13 +33,17 @@ export function usePageAnimations() {
         }
       });
 
-      gsap.to(showreelInner, {
-        borderRadius: '0px',
-        scrollTrigger: {
-          trigger: element,
-          start: 'top 50%',
-          end: 'bottom bottom',
-          scrub: true
+      ScrollTrigger.matchMedia({
+        '(min-width: 769px)': function () {
+          gsap.to(showreelInner, {
+            borderRadius: '0px',
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 50%',
+              end: 'bottom bottom',
+              scrub: true
+            }
+          });
         }
       });
     }

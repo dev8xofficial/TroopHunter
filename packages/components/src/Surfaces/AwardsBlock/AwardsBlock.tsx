@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React, { CSSProperties, ReactNode } from 'react';
 import { LogoGrid } from '../LogoGrid/LogoGrid';
-import { Button } from '../Button/Button';
+// import { Button } from '../Button/Button';
 
-import ButtonStyles from '../Button/index.module.css';
+// import ButtonStyles from '../Button/index.module.css';
 import styles from './index.module.css';
 
 type AwardsBlockProps = {

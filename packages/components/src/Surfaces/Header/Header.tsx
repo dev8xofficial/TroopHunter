@@ -83,7 +83,7 @@ export const Header: React.FC = (): JSX.Element => {
                 </a>
               </li>
             </ul>
-            <div className={`${styles['menu__list__h']} ${styles['menu__list--twin__w']}`} style={{ transform: 'none', transformOrigin: '50% 50% 0px' }}>
+            <div className={`${styles['menu__list']} ${styles['menu__list--twin']}`} style={{ transform: 'none', transformOrigin: '50% 50% 0px' }}>
               <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 1 }}>
                 Home
               </span>

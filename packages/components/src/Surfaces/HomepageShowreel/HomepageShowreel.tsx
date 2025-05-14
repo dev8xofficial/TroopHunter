@@ -5,9 +5,10 @@ import styles from './index.module.css';
 
 type HomepageShowreelProps = {
   homepageShowreelCSSClass: string;
+  isMobile: boolean;
 };
 
-export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ homepageShowreelCSSClass }: HomepageShowreelProps): JSX.Element => {
+export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ homepageShowreelCSSClass, isMobile }: HomepageShowreelProps): JSX.Element => {
   return (
     <>
       <div></div>
@@ -19,7 +20,7 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ homepageShow
               <source className={styles['picture']} srcSet="/images/header/1080.png 1x, /images/header/1080.png 2x" media="(min-width: 480px)" />
               <img src="/images/header/1080.png" loading="eager" width="450" height="364" alt="" className="" draggable="false" />
             </picture>
-            <video className={`${styles['showreel__video']} ${styles['showreel__video--desktop']}`} src="/videos/header/header.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+            <video className={`${styles['showreel__video']} ${isMobile ? styles['showreel__video--mobile'] : styles['showreel__video--desktop']}`} src="/videos/header/header.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
           </div>
         </div>
       </div>

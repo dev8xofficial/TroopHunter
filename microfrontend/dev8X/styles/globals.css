@@ -178,6 +178,10 @@ body {
   overscroll-behavior: none;
 }
 
+main {
+  display: block;
+}
+
 body ::selection {
   color: var(--theme-secondary);
   background-color: var(--theme-primary);
