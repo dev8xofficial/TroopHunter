@@ -5,8 +5,8 @@ import PictureStyles from '../Picture/index.module.css';
 import styles from './index.module.css';
 
 interface WorkCardProps extends Omit<CommonWorkCardProps, 'images'> {
-  variant: 'landscape' | 'portrait';
-  image: string;
+  variant?: 'landscape' | 'portrait';
+  image?: string;
   openModal?: (slug: string) => void;
 }
 

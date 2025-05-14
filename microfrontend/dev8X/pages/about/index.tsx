@@ -1,16 +1,22 @@
 import React from 'react';
 import Head from 'next/head';
 
-import { AboutGallery, Footer, FooterRevealPageWrap, Header, LogoGrid } from '@repo/components';
+import { AboutGallery, AwardsBlock, Footer, FooterRevealPageWrap, Header, LogoGrid } from '@repo/components';
 import Capabilities from './Capabilities/Capabilities';
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import PageData from '../../data/about/index.d';
 
 import AboutHeroStyles from '../../components/Surfaces/AboutHero/index.module.css';
 import TextAnimateStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
+import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
+
 import styles from './index.module.css';
 
 const Contact: React.FC = (): JSX.Element => {
+  const above = 'Above all, we believe in human relationships, exceptional outcomes, and having fun along the way.';
+  const paragraph = 'Human-focused experiences shape everything we create – from how we collaborate as a team, to the partnerships we build, and the digital solutions we deliver. This belief lives in our culture, fuels our curiosity, and drives how we approach every project from start to finish.';
+  const headingText = 'Since 2010 we’ve been working with amazing clients to create meaningful impact and compelling experiences.';
+  const heading = 'Our capabilities are centred around our ability to deliver world-class websites and apps. We’re 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.';
   return (
     <>
       <Head>
@@ -112,151 +118,186 @@ const Contact: React.FC = (): JSX.Element => {
                       </span>
                     </span>
                   </h1>
+                  <div className={AboutHeroStyles['about-hero__image-wrapper']}>
+                    <picture className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}>
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80) 1x" media="(min-width: 0px) and (max-width: 479px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/992x1000/filters:quality(80) 1x" media="(min-width: 480px) and (max-width: 991px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1500x1512/filters:quality(80) 1x" media="(min-width: 992px) and (max-width: 1679px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1680x1693/filters:quality(80) 1x" media="(min-width: 1680px)" />
+                      <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="eager" width="450" height="454" alt="" className="" draggable="false" />
+                    </picture>
+                    <picture
+                      className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}
+                      style={{
+                        maskSize: '100%',
+                        maskImage: 'url("https://a-us.storyblok.com/f/1017006/3360x3386/eacf69343b/humaanabout_mask.png")',
+                        zIndex: 1
+                      }}
+                    >
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80) 1x" media="(min-width: 0px) and (max-width: 479px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/992x1000/filters:quality(80) 1x" media="(min-width: 480px) and (max-width: 991px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1500x1512/filters:quality(80) 1x" media="(min-width: 992px) and (max-width: 1679px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1680x1693/filters:quality(80) 1x" media="(min-width: 1680px)" />
+                      <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="lazy" width="450" height="454" alt="" className="" draggable="false" />
+                    </picture>
+                    <picture className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}>
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/900x908/filters:quality(80) 2x" media="(min-width: 0px) and (max-width: 479px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1984x2000/filters:quality(80) 2x" media="(min-width: 480px) and (max-width: 991px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3000x3024/filters:quality(80) 2x" media="(min-width: 992px) and (max-width: 1679px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3360x3386/filters:quality(80) 2x" media="(min-width: 1680px)" />
+                      <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="lazy" width="450" height="454" alt="" className="" draggable="false" />
+                    </picture>
+                    <picture
+                      className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}
+                      style={{
+                        maskSize: '100%',
+                        maskImage: 'url("https://a-us.storyblok.com/f/1017006/3360x3386/eacf69343b/humaanabout_mask.png")',
+                        zIndex: 1
+                      }}
+                    >
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/900x908/filters:quality(80) 2x" media="(min-width: 0px) and (max-width: 479px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1984x2000/filters:quality(80) 2x" media="(min-width: 480px) and (max-width: 991px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3000x3024/filters:quality(80) 2x" media="(min-width: 992px) and (max-width: 1679px)" />
+                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3360x3386/filters:quality(80) 2x" media="(min-width: 1680px)" />
+                      <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="lazy" width="450" height="454" alt="" className="" draggable="false" />
+                    </picture>
+                  </div>
                 </div>
                 <div className={AboutHeroStyles['about-hero__container']}>
-                  <p className={AboutHeroStyles['about-hero__intro']} aria-label="Human experiences are the foundation of everything we do – client relationships, team collaboration, and an unwavering focus on the end user. This philosophy is in our name, our core values and underpins our approach to every engagement.">
-                    <span className={styles['format']}>
-                      <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
-                        <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                          Human-focused{' '}
+                  <p className={AboutHeroStyles['about-hero__intro']} aria-label={paragraph}>
+                    {paragraph.split(' ').map((word, index) => {
+                      const isSpecial = word.toLowerCase().includes('Human-focused');
+                      return (
+                        <span
+                          key={index}
+                          className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
+                          aria-hidden="true"
+                          style={{
+                            display: 'inline-block',
+                            whiteSpace: 'pre',
+                            transform: 'translate3d(0px, 0%, 0px)',
+                            opacity: 1,
+                            transitionDelay: `${index * 0.05}s`
+                          }}
+                        >
+                          <span
+                            aria-hidden="true"
+                            style={{
+                              display: 'inline-block',
+                              whiteSpace: 'pre',
+                              opacity: 1
+                            }}
+                          >
+                            {word + ' '}
+                          </span>
                         </span>
-                      </span>
-                    </span>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        experiences shape everything we{' '}
-                      </span>
-                    </span>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        create – from how we collaborate as a team, to the{' '}
-                      </span>
-                    </span>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        partnerships we build, and the digital solutions we{' '}
-                      </span>
-                    </span>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        deliver. This belief lives in our culture, fuels our{' '}
-                      </span>
-                    </span>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        curiosity, and drives how we approach every project{''}
-                      </span>
-                    </span>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        from start to finish.
-                      </span>
-                    </span>
+                      );
+                    })}
                   </p>
                 </div>
               </div>
             </div>
             <div className="">
-              <AboutGallery />
-              {/* <div className={styles['about-logos']}>
-                <h2 className={styles['about-logos__intro']} aria-label="Since 2010 we’ve been working with amazing [clients] to create meaningful impact and compelling experiences.">
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      Since 2010 we’ve been working with
-                    </span>
-                  </span>
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      amazing{' '}
-                    </span>
-                  </span>
-                  <span className={styles['format']}>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        clients{' '}
+              <AboutGallery /> 
+              <div className={styles['about-logos']}>
+                <h2 className={styles['about-logos__intro']} aria-label={headingText}>
+                  {headingText.split(' ').map((word, index) => {
+                    const isSpecial = word.toLowerCase().includes('clients');
+                    return (
+                      <span
+                        key={index}
+                        className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
+                        aria-hidden="true"
+                        style={{
+                          display: 'inline-block',
+                          whiteSpace: 'pre',
+                          transform: 'translate3d(0px, 0%, 0px)',
+                          opacity: 1,
+                          transitionDelay: `${index * 0.05}s`
+                        }}
+                      >
+                        <span
+                          aria-hidden="true"
+                          style={{
+                            display: 'inline-block',
+                            whiteSpace: 'pre',
+                            opacity: 1
+                          }}
+                        >
+                          {word + ' '}
+                        </span>
                       </span>
-                    </span>
-                  </span>
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      to create meaningful
-                    </span>
-                  </span>
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      impact and compelling experiences.
-                    </span>
-                  </span>
+                    );
+                  })}
                 </h2>
                 <LogoGrid />
-              </div> */}
+              </div>
               <div className={styles['about-capabilities']}>
-                <h2 className={styles['about-capabilities__intro']} aria-label="Our [capabilities] are centred around our ability to deliver world-className websites and apps. We’re 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.">
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      Our{' '}
-                    </span>
-                  </span>
-                  <span className={styles['format']}>
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                        capabilities{' '}
+                <h2 className={styles['about-capabilities__intro']} aria-label={heading}>
+                  {heading.split(' ').map((word, index) => {
+                    const isSpecial = word.toLowerCase().includes('capabilities');
+                    return (
+                      <span
+                        key={index}
+                        className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
+                        aria-hidden="true"
+                        style={{
+                          display: 'inline-block',
+                          whiteSpace: 'pre',
+                          transform: 'translate3d(0px, 0%, 0px)',
+                          opacity: 1,
+                          transitionDelay: `${index * 0.05}s`
+                        }}
+                      >
+                        <span
+                          aria-hidden="true"
+                          style={{
+                            display: 'inline-block',
+                            whiteSpace: 'pre',
+                            opacity: 1
+                          }}
+                        >
+                          {word + ' '}
+                        </span>
                       </span>
-                    </span>
-                  </span>
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      are centred around our
-                    </span>
-                  </span>
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      ability to deliver world-className websites and
-                    </span>
-                  </span>
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      apps. We’re 100% in-house and work
-                    </span>
-                  </span>
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      end-to-end,{''} ensuring each project is
-                    </span>
-                  </span>
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      delivered to the highest standard.
-                    </span>
-                  </span>
+                    );
+                  })}
                 </h2>
+
                 <Capabilities />
               </div>
             </div>
             <div className="">
+              <AwardsBlock/>
               <div className={styles['about-dos-donts']}>
-                <h2 className={styles['about-dos-donts__intro']} aria-label="Above all, we believe in human relationships, exceptional outcomes, and having fun along the way.">
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      Above{''} all,
+                <h2 className={styles['about-dos-donts__intro']} aria-label={above}>
+                  {above.split(' ').map((word, index) => (
+                    <span
+                      key={index}
+                      className={TextAnimateStyles['word']}
+                      aria-hidden="true"
+                      style={{
+                        display: 'inline-block',
+                        whiteSpace: 'pre',
+                        transform: 'translate3d(0px, 0%, 0px)',
+                        opacity: 1,
+                        transitionDelay: `${index * 0.05}s`
+                      }}
+                    >
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          display: 'inline-block',
+                          whiteSpace: 'pre',
+                          opacity: 1
+                        }}
+                      >
+                        {word + ' '}
+                      </span>
                     </span>
-                  </span>
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      we believe in human{''}
-                    </span>
-                  </span>
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      relationships, exceptional outcomes, and {''}
-                    </span>
-                  </span>
-                  <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                    <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                      having fun along the way.
-                    </span>
-                  </span>
+                  ))}
                 </h2>
+
                 <div className={styles['about-dos-donts__grid']}>
                   <section className={styles['about-column']} style={{ opacity: 1, transform: 'translateX(0px)' }}>
                     <h3 className={styles['about-column__heading']}>What we do</h3>

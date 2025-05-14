@@ -1,5 +1,5 @@
 @media(min-width: 768px) {
-    .word {
+    /* .word {
         -webkit-clip-path:inset(0 0 100%);
         clip-path: inset(0 0 100%)
     }
@@ -9,5 +9,5 @@
             -webkit-clip-path: inset(0 0 -50%);
             clip-path: inset(0 0 -50%)
         }
-    }
+    } */
 }
