@@ -22,7 +22,15 @@ const Capabilities: React.FC = (): JSX.Element => {
           },
           {
             heading: 'Technology',
-            items: ['Vue & React.js', 'Headless Content Management', 'WordPress & WooCommerce', 'Laravel', 'Shopify']
+            items: ['React.js', 'Next.js', 'Node.js', 'Express.js / Nest.js', 'Supabase']
+          },
+          {
+            heading: 'Backend & Databases',
+            items: ['Backend', 'Real-Time Apps', 'SaaS', 'PostgreSQL', 'ORM (Sequelize, Prisma)']
+          },
+          {
+            heading: 'DevOps & Cloud',
+            items: ['Docker', 'Virtualization', 'Ansible & Web Servers', 'AWS, Vercel, DigitalOcean', 'CI/CD']
           },
           {
             heading: 'Optimisation',
