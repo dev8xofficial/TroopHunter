@@ -1,14 +1,11 @@
 import Head from 'next/head';
 import { Provider } from 'jotai';
 import { Analytics } from '@vercel/analytics/react';
-import { usePageAnimations } from '../hooks/usePageAnimations';
 import { LenisProvider } from '../hooks/LenisContext';
 
 import '../styles/globals.css';
 
 export default function App({ Component, pageProps }) {
-  usePageAnimations();
-
   return (
     <>
       <LenisProvider>

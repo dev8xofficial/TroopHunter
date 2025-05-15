@@ -7,15 +7,12 @@ import { Header, FooterRevealPageWrap, FooterInternationalContents, ContactFormM
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import { getDev8xPublicUrl } from '../../utils/helpers';
-
+import { useBreakpoint } from '../../hooks/useBreakpoint';
 import PageData from '../../data/contact/index.d';
 
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import TextStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
-import ButtonStyles from '../../components/Surfaces/Button/index.module.css';
-import ContactFormModalStyles from '../../components/Surfaces/ContactFormModal/index.module.css';
 import styles from './index.module.css';
-import { useBreakpoint } from '../../hooks/useBreakpoint';
 
 const Contact: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
