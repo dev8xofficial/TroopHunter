@@ -13,7 +13,7 @@ export const Header: React.FC = (): JSX.Element => {
     if (path === '/') return 1;
     if (path === '/about') return 2;
     if (path.startsWith('/work')) return 3;
-    if (path.startsWith('/expertise')) {
+    if (path.startsWith('/expertise') || path.startsWith('/offers')) {
       return 4;
     }
     if (path === '/contact') return 5;
@@ -71,7 +71,7 @@ export const Header: React.FC = (): JSX.Element => {
               </li>
               <li className={styles['menu__item']}>
                 <div className="link-wrap">
-                  <button className={`${styles['menu__link']} ${currentPath.includes('/expertise') ? styles['menu__link--active'] : ''}`} data-faitracker-form-bind="true" onClick={handleExpertiseClick}>
+                  <button className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') ? styles['menu__link--active'] : ''}`} data-faitracker-form-bind="true" onClick={handleExpertiseClick}>
                     Expertise
                   </button>
                   <HeaderSubmenu height={height} />

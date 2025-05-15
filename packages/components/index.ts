@@ -23,6 +23,7 @@ export * from './src/Surfaces/Link/Link';
 export * from './src/Surfaces/Textarea/Textarea';
 export * from './src/Surfaces/ContactFormModal/ContactFormModal';
 export * from './src/Surfaces/ModalCloseButton/ModalCloseButton';
+export * from './src/Surfaces/OffersReel/OffersReel';
 export * from './src/Surfaces/SmoothModal/SmoothModal';
 export * from './src/Surfaces/AboutGallery/AboutGallery';
 export * from './src/Surfaces/LogoGrid/LogoGrid';

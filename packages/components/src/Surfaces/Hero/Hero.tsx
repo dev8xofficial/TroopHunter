@@ -8,6 +8,7 @@ import styles from './index.module.css';
 interface HeroProps extends Omit<ExpertiseContent, 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'> {
   image?: string;
   icon?: { name: string; width: number };
+  placeholder?: boolean;
 }
 
 export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, image }): JSX.Element => {
@@ -19,7 +20,14 @@ export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, ima
             <div className={styles['expertise-heading-container']} data-new-theme="false">
               <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
                 <Pill variant={variant}>{tagText}</Pill>
-                <h2 className={styles['expertise-heading']}>{heading}</h2>
+                <h2 className={styles['expertise-heading']}>
+                  {heading.split('\n').map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      <br />
+                    </React.Fragment>
+                  ))}
+                </h2>
               </div>
             </div>
             {/* <div className={styles['expertise-image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
@@ -31,9 +39,11 @@ export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, ima
                 <img src={`${image}/m/450x240/filters:quality(80)`} loading="eager" width="450" height="240" alt="Sussex Image" className="max-w-full h-auto w-full" draggable="false" />
               </picture>
             </div> */}
-            <div className={`${styles['expertise-image']} ${styles['expertise-icon-wrapper']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-              {ICON_MAP[icon.name]?.(120)}
-            </div>
+            {icon && (
+              <div className={`${styles['expertise-image']} ${styles['expertise-icon-wrapper']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+                {ICON_MAP[icon.name]?.(120)}
+              </div>
+            )}
           </div>
         </div>
       </div>
