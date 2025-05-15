@@ -188,7 +188,7 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
               <Input type="text" id="referral" placeholder="From a friend? From Google?" {...register('referral')} />
             </FieldWrapper>
 
-            <Button type="submit" variant="primary" context="contact" fullWidth>
+            <Button type="submit" variant="primary" context="contact" fullWidth isLoading={isSubmitting} disabled={isSubmitting}>
               Submit
             </Button>
           </form>
