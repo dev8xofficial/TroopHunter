@@ -1,12 +1,13 @@
 import React from 'react';
 import { Pill } from '../Pill/Pill';
 import { ExpertiseContent } from '../../Interfaces/Expertise/Expertise';
+import { ICON_MAP } from '../IconCards/IconMap';
 
 import styles from './index.module.css';
 
 interface HeroProps extends Omit<ExpertiseContent, 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'> {
   image?: string;
-  icon?: React.ReactNode;
+  icon?: { name: string; width: number };
 }
 
 export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, image }): JSX.Element => {
@@ -31,7 +32,7 @@ export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, ima
               </picture>
             </div> */}
             <div className={`${styles['expertise-image']} ${styles['expertise-icon-wrapper']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-              {icon}
+              {ICON_MAP[icon.name]?.(120)}
             </div>
           </div>
         </div>

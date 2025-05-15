@@ -62,7 +62,7 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant={variant} tagText={PageData.tagText} heading={PageData.heading} icon={<PointerIcon width="120" />} />
+            <Hero variant={variant} tagText={PageData.tagText} heading={PageData.heading} icon={PageData.contentAsideImageItems[Object.keys(PageData.contentAsideImageItems)[0]].icon} />
 
             <div>
               <ModularBlocks>
