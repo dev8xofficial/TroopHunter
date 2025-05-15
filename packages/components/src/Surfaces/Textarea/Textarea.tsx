@@ -1,17 +1,13 @@
-/* eslint-disable prettier/prettier */
-import React, { ReactNode } from 'react';
-
+import React from 'react';
 import styles from './index.module.css';
 
-type TextareaProps = {
-  id: string;
-  name: string;
-};
+interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  id?: string;
+  name?: string;
+}
 
-export const Textarea: React.FC<TextareaProps> = ({ id, name }): JSX.Element => {
-  return (
-    <>
-      <textarea className={styles['textarea']} id={id} aria-invalid="false" aria-required="false" aria-describedby=":rm:-help :rm:-error" name={name}></textarea>
-    </>
-  );
-};
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({ id, name, ...rest }, ref): JSX.Element => {
+  return <textarea className={styles['textarea']} id={id} name={name} ref={ref} aria-invalid="false" aria-required="false" aria-describedby=":rm:-help :rm:-error" {...rest} />;
+});
+
+Textarea.displayName = 'Textarea';

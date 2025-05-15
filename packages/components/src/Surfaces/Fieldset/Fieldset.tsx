@@ -11,7 +11,6 @@ type FieldsetProps = {
 };
 
 export const Fieldset: React.FC<FieldsetProps> = ({ children, style, label, error }): JSX.Element => {
-  console.log('error: ', error);
   return (
     <>
       <div className={`${styles['fieldset']} ${error?.length > 0 && styles['fieldset--error']} col-full ${style}`} role="group" aria-labelledby=":rh:">

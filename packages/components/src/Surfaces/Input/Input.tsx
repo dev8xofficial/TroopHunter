@@ -1,23 +1,19 @@
-/* eslint-disable prettier/prettier */
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import styles from './index.module.css';
 
-type InputProps = {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type: string;
-  id: string;
-  name: string;
-  placeholder?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-};
+  id?: string;
+  name?: string;
+}
 
-export const Input: React.FC<InputProps> = ({ type, id, name, placeholder, value, onChange }): JSX.Element => {
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(({ type, id, name, ...rest }, ref): JSX.Element => {
   return (
-    <>
-      <div className={styles['input-wrapper']}>
-        <input className={styles['input']} placeholder={placeholder} id={id} aria-invalid="false" aria-required="false" aria-describedby=":rp:-help :rp:-error " type={type} name={name} />
-      </div>
-    </>
+    <div className={styles['input-wrapper']}>
+      <input className={styles['input']} type={type} id={id} name={name} ref={ref} aria-invalid="false" aria-required="false" aria-describedby=":rp:-help :rp:-error " {...rest} />
+    </div>
   );
-};
+});
+
+Input.displayName = 'Input';
