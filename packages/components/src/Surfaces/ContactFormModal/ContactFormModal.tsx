@@ -58,33 +58,28 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
           <p>Just want to chat? Call or email, we're a nice bunch.</p>
         </div>
 
-        <FieldWrappper style="col-sm-1" label="What's your name?">
+        <FieldWrappper className="col-sm-1" label="What's your name?" error={errors.name}>
           <Input type="text" id=":r2:" name="name" placeholder="Your name here" value={formData.name} onChange={handleChange} />
-          {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
         </FieldWrappper>
 
-        <FieldWrappper style="col-sm-1" label="Name of your company?">
+        <FieldWrappper className="col-sm-1" label="Name of your company?" error={errors.company}>
           <Input type="text" id=":r2:" name="company" placeholder="Company name" value={formData.company} onChange={handleChange} />
-          {errors.company && <p className="text-red-500 text-sm">{errors.company}</p>}
         </FieldWrappper>
 
-        <Fieldset label="How shall we contact you?">
-          <FieldWrappper style="col-sm-1">
+        <Fieldset label="How shall we contact you?" error={errors.phone || errors.email || errors.budget}>
+          <FieldWrappper className="col-sm-1" error={errors.phone}>
             <Input type="tel" id=":ri:" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} />
-            {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
           </FieldWrappper>
 
-          <FieldWrappper style="col-sm-1">
+          <FieldWrappper className="col-sm-1" error={errors.email}>
             <Input type="email" id=":rj:" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} />
-            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </FieldWrappper>
 
-          <FieldWrappper style="col-sm-1" label="Budget expectation" message="A transparent budget will help us ensure expectations are met.">
+          <FieldWrappper className="col-sm-1" label="Budget expectation" message="A transparent budget will help us ensure expectations are met." error={errors.budget}>
             <Input type="text" id=":rk:" name="budget" value={formData.budget} onChange={handleChange} />
-            {errors.budget && <p className="text-red-500 text-sm">{errors.budget}</p>}
           </FieldWrappper>
 
-          <FieldWrappper style="col-sm-1" label="Timeline" message="If you have an ideal timeline or deadline, please let us know." messageId=":rl:">
+          <FieldWrappper className="col-sm-1" label="Timeline" message="If you have an ideal timeline or deadline, please let us know." messageId=":rl:">
             <Input type="text" id=":rl:" name="timeline" placeholder="Optional" />
           </FieldWrappper>
         </Fieldset>

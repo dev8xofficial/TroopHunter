@@ -1,40 +1,40 @@
 .field {
-    display: grid;
-    align-items: flex-start
+  display: grid;
+  align-items: flex-start;
 }
 
 .field__label {
-    font-weight: 500;
-    font-size: inherit;
-    color: var(--error,var(--theme-secondary))
+  font-weight: 500;
+  font-size: inherit;
+  color: var(--error, var(--theme-secondary));
 }
 
 .field__label--hidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px!important;
-    overflow: hidden;
-    padding: 0;
-    position: absolute!important;
-    width: 1px
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px !important;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
 }
 
 .field__asterisk {
-    color: #f05644
+  color: #f05644;
 }
 
 .field--error {
-    --error: #d53827
+  --error: #d53827;
 }
 
 .field__error {
-    font-size: clamp(.8125rem,.8597883598vw,1.080625rem);
-    display: grid;
-    color: #f05644;
-    margin-top: .5em
+  font-size: clamp(0.8125rem, 0.8597883598vw, 1.080625rem);
+  display: grid;
+  color: #f05644;
+  margin-top: 0.5em;
 }
 
-._field__error__SRPFf p {
-    margin: .5em 0
+.field__error p {
+  margin: 0.5em 0;
 }

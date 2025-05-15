@@ -6,16 +6,17 @@ import styles from './index.module.css';
 
 type FieldWrappperProps = {
   children: ReactNode;
-  style?: string;
+  className?: string;
   label?: string;
   messageId?: string;
   message?: string;
+  error?: string;
 };
 
-export const FieldWrappper: React.FC<FieldWrappperProps> = ({ children, style, label, messageId, message }): JSX.Element => {
+export const FieldWrappper: React.FC<FieldWrappperProps> = ({ children, className, label, messageId, message, error }): JSX.Element => {
   return (
     <>
-      <div className={`${styles['field']} col-full ${style}`}>
+      <div className={`${styles['field']} ${error?.length > 0 && styles['field--error']} col-full ${className}`}>
         <div>
           <label className={styles['field__label']} htmlFor=":rp:">
             {label}
@@ -24,6 +25,9 @@ export const FieldWrappper: React.FC<FieldWrappperProps> = ({ children, style, l
           {message && <HelpMessage id={messageId}>{message}</HelpMessage>}
         </div>
         {children}
+        <div className={styles['field__error']}>
+          <p>{error}</p>
+        </div>
       </div>
     </>
   );
