@@ -71,7 +71,7 @@ export default function Home() {
           <main className={styles['homepage']}>
             <Hero />
             <div className={styles['homepage__purple-change']}>
-              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} isMobile={isMobile} />
+              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src="/videos/header/header.mp4" isMobile={isMobile} />
             </div>
             <Problems />
             {/* <Hero />

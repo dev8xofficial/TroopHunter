@@ -11,7 +11,7 @@ export type WorkDetail = {
   placeholderImage: string;
   images: string[];
   video: string;
-  bgColor: 'cyan' | 'green' | 'blue';
+  bgColor: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
   path: string;
 };
 
