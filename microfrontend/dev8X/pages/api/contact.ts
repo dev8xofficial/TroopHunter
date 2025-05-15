@@ -1,43 +1,66 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
+import formidable, { File as FormidableFile } from 'formidable';
+
+export const config = {
+  api: {
+    bodyParser: false // Required for formidable
+  }
+};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { name, company, phone, email, budget } = req.body;
+  const form = formidable({ multiples: true });
 
-  if (!name || !company || !phone || !email || !budget) {
-    return res.status(400).json({ message: 'Missing required fields' });
-  }
+  form.parse(req, async (err, fields, files) => {
+    if (err) {
+      console.error('Form parsing error:', err);
+      return res.status(500).json({ message: 'File parsing failed' });
+    }
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+    const { name, company, phone, email, budget, timeline, project, referral } = fields;
+
+    const fileArray = Array.isArray(files.upload) ? files.upload : [files.upload];
+    const attachments = fileArray.map((file: FormidableFile) => ({
+      filename: file.originalFilename || 'attachment',
+      path: file.filepath,
+      contentType: file.mimetype
+    }));
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, // or whoever you want to receive it
+      subject: `New Contact Form Submission from ${name}`,
+      text: `
+        Name: ${name}
+        Company: ${company}
+        Phone: ${phone}
+        Email: ${email}
+        Budget: ${budget}
+        Timeline: ${timeline}
+        Project: ${project}
+        Referral: ${referral}
+      `,
+      attachments
+    };
+
+    try {
+      await transporter.sendMail(mailOptions);
+      return res.status(200).json({ message: 'Email sent with attachments' });
+    } catch (error) {
+      console.error('Email sending error:', error);
+      return res.status(500).json({ message: 'Failed to send email' });
     }
   });
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: `New Contact Form Submission from ${name}`,
-    text: `
-      Name: ${name}
-      Company: ${company}
-      Phone: ${phone}
-      Email: ${email}
-      Budget: ${budget}
-    `
-  };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    return res.status(200).json({ message: 'Email sent successfully' });
-  } catch (error) {
-    console.error('Email sending error:', error);
-    return res.status(500).json({ message: 'Failed to send email' });
-  }
 }

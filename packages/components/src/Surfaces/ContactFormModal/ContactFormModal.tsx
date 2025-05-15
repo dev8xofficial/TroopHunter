@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
-import { FieldWrappper } from '../FieldWrapper/FieldWrapper';
+import { FileUpload } from '../FileUpload/FileUpload';
+import { FieldWrapper } from '../FieldWrapper/FieldWrapper';
 import { Input } from '../Input/Input';
 import { Fieldset } from '../Fieldset/Fieldset';
 import { Textarea } from '../Textarea/Textarea';
@@ -17,6 +18,7 @@ interface IFormInputs {
   budget: string;
   timeline?: string;
   project?: string;
+  upload?: string;
   referral?: string;
 }
 
@@ -28,7 +30,8 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    reset
+    reset,
+    control
   } = useForm<IFormInputs>({
     mode: 'onChange',
     defaultValues: {
@@ -39,16 +42,30 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
       budget: '',
       timeline: '',
       project: '',
+      upload: '',
       referral: ''
     }
   });
+
   const onSubmit = async (data: IFormInputs) => {
     setIsSubmitting(true);
+
+    const formData = new FormData();
+
+    Object.entries(data).forEach(([key, value]) => {
+      if (key === 'upload' && Array.isArray(value)) {
+        value.forEach((file: File) => {
+          formData.append('upload', file);
+        });
+      } else {
+        formData.append(key, value ?? '');
+      }
+    });
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: formData // 🔁 no content-type needed, browser sets it
       });
 
       if (response.ok) {
@@ -82,32 +99,32 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
               <p>Just want to chat? Call or email, we're a nice bunch.</p>
             </div>
 
-            <FieldWrappper className="col-sm-1" label="What's your name?" error={errors.name?.message}>
+            <FieldWrapper className="col-sm-1" label="What's your name?" error={errors.name?.message}>
               <Input
                 type="text"
                 id="name"
                 placeholder="Your name here"
                 {...register('name', {
                   required: 'Please enter your name',
-                  maxLength: { value: 5, message: 'Name cannot exceed 5 characters' }
+                  maxLength: { value: 20, message: 'Name cannot exceed 20 characters' }
                 })}
               />
-            </FieldWrappper>
+            </FieldWrapper>
 
-            <FieldWrappper className="col-sm-1" label="Name of your company?" error={errors.company?.message}>
+            <FieldWrapper className="col-sm-1" label="Name of your company?" error={errors.company?.message}>
               <Input
                 type="text"
                 id="company"
                 placeholder="Company name"
                 {...register('company', {
                   required: 'Please enter your company name',
-                  maxLength: { value: 5, message: 'Company name cannot exceed 5 characters' }
+                  maxLength: { value: 20, message: 'Company name cannot exceed 5 characters' }
                 })}
               />
-            </FieldWrappper>
+            </FieldWrapper>
 
             <Fieldset label="How shall we contact you?">
-              <FieldWrappper className="col-sm-1" error={errors.phone?.message}>
+              <FieldWrapper className="col-sm-1" error={errors.phone?.message}>
                 <Input
                   type="tel"
                   id="phone"
@@ -120,9 +137,9 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
                     }
                   })}
                 />
-              </FieldWrappper>
+              </FieldWrapper>
 
-              <FieldWrappper className="col-sm-1" error={errors.email?.message}>
+              <FieldWrapper className="col-sm-1" error={errors.email?.message}>
                 <Input
                   type="email"
                   id="email"
@@ -135,9 +152,9 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
                     }
                   })}
                 />
-              </FieldWrappper>
+              </FieldWrapper>
 
-              <FieldWrappper className="col-sm-1" label="Budget expectation" message="A transparent budget will help us ensure expectations are met." error={errors.budget?.message}>
+              <FieldWrapper className="col-sm-1" label="Budget expectation" message="A transparent budget will help us ensure expectations are met." error={errors.budget?.message}>
                 <Input
                   type="text"
                   id="budget"
@@ -146,20 +163,30 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
                     maxLength: { value: 10, message: 'Budget text is too long' }
                   })}
                 />
-              </FieldWrappper>
+              </FieldWrapper>
 
-              <FieldWrappper className="col-sm-1" label="Timeline" message="If you have an ideal timeline or deadline, please let us know." messageId="timeline">
-                <Input type="text" id="timeline" placeholder="Optional" {...register('timeline')} />
-              </FieldWrappper>
+              <FieldWrapper className="col-sm-1" label="Timeline" message="If you have an ideal timeline or deadline, please let us know." messageId="timeline">
+                <Input type="text" id="timeline" placeholder="Timeline" />
+              </FieldWrapper>
             </Fieldset>
 
-            <FieldWrappper label="Tell us about the project">
+            <FieldWrapper label="Tell us about the project">
               <Textarea id="project" {...register('project')} />
-            </FieldWrappper>
+            </FieldWrapper>
 
-            <FieldWrappper label="How did you hear about us?">
+            <Controller
+              name="upload"
+              control={control}
+              render={({ field: { onChange, name } }) => (
+                <FieldWrapper id="upload" label="Please attach any relevant documents" message="Maximum 10 files of 25MB each. Maximum 100MB total." messageId="upload-help" error="">
+                  <FileUpload onChange={onChange} name={name} />
+                </FieldWrapper>
+              )}
+            />
+
+            <FieldWrapper label="How did you hear about us?">
               <Input type="text" id="referral" placeholder="From a friend? From Google?" {...register('referral')} />
-            </FieldWrappper>
+            </FieldWrapper>
 
             <Button type="submit" variant="primary" context="contact" fullWidth>
               Submit
