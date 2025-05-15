@@ -1,6 +1,8 @@
 import React from 'react';
 import { ICON_MAP } from '../IconCards/IconMap';
 import { ExpertiseFooterForm, ExpertiseFooterSocialLink } from '../../Interfaces/Expertise/Expertise';
+import { Button } from '../Button/Button';
+import RightArrowIcon from '../../Icons/RightArrow';
 
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 import ButtonStyles from '../Button/index.module.css';

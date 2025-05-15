@@ -19,6 +19,7 @@ export * from './src/Surfaces/Button/Button';
 export * from './src/Surfaces/FieldWrapper/FieldWrapper';
 export * from './src/Surfaces/Fieldset/Fieldset';
 export * from './src/Surfaces/Input/Input';
+export * from './src/Surfaces/Link/Link';
 export * from './src/Surfaces/Textarea/Textarea';
 export * from './src/Surfaces/ContactFormModal/ContactFormModal';
 export * from './src/Surfaces/ModalCloseButton/ModalCloseButton';

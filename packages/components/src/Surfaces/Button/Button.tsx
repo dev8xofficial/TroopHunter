@@ -13,8 +13,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: ButtonVariant;
   size?: ButtonSize;
-  icon?: boolean;
-  page?: Page;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
+  context?: Page;
+  fullWidth?: boolean;
   buttonClassName?: string;
   spanClassName?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -22,12 +24,17 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, variant, size, icon, page, buttonClassName, spanClassName, onClick, type, disabled }): JSX.Element => {
-  const spanClassNames = clsx(styles.button, icon && styles['button--icon'], styles[`button--bg-${variant}`], page === 'contact' && ContactFormModalStyles['contact-button'], size === 'large' && ContactFormModalStyles['large-button'], spanClassName);
+export const Button: React.FC<ButtonProps> = ({ children, variant, size, startIcon, endIcon, context, fullWidth, buttonClassName, spanClassName, onClick, type = 'button', disabled }): JSX.Element => {
+  const buttonWrapperClassNames = clsx(styles['button-wrapper'], fullWidth && 'col-full', buttonClassName);
+  const spanClassNames = clsx(styles.button, (startIcon || endIcon) && styles['button--icon'], styles[`button--bg-${variant}`], context === 'contact' && (type === 'submit' ? ContactFormModalStyles['contact-submit'] : ContactFormModalStyles['contact-button']), size === 'large' && ContactFormModalStyles['large-button'], spanClassName);
 
   return (
-    <button className={`${styles['button-wrapper']} ${buttonClassName}`} onClick={onClick} type={type} disabled={disabled}>
-      <span className={spanClassNames}>{children}</span>
+    <button className={buttonWrapperClassNames} onClick={onClick} type={type} disabled={disabled}>
+      <span className={spanClassNames}>
+        {startIcon && startIcon}
+        {children}
+        {endIcon && endIcon}
+      </span>
     </button>
   );
 };

@@ -8,12 +8,25 @@
   gap: 2.5rem clamp(2.8125rem, 2.9761904762vw, 3.740625rem);
 }
 
+@media (min-width: 1200px) {
+  .expertise-card {
+    padding: 0;
+    flex-direction: row;
+  }
+}
+
 .expertise-card__content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-items: flex-start;
   gap: clamp(1.875rem, 1.9841269841vw, 2.49375rem);
+}
+
+@media (min-width: 1200px) {
+  .expertise-card__content {
+    padding: clamp(4.375rem, 4.6296296296vw, 5.81875rem) 0 clamp(4.375rem, 4.6296296296vw, 5.81875rem) clamp(4.6875rem, 4.9603174603vw, 6.234375rem);
+  }
 }
 
 .expertise-card__pill {
@@ -33,20 +46,6 @@
   font-size: clamp(2.5rem, 8.3333333333vw, 3.325rem);
 }
 
-.expertise-card__body {
-  opacity: 0.5;
-  font-size: clamp(1.25rem, 1.3227513228vw, 1.6625rem);
-  line-height: 1.5;
-  max-width: clamp(29.875rem, 31.6137566138vw, 39.73375rem);
-  margin: 0;
-}
-
-.expertise-card .expertise-card__image {
-  width: 100%;
-}
-
-/***************************************************** Responsive Styles *****************************************************/
-/*****************************************************************************************************************************/
 @media (min-width: 768px) {
   .expertise-card__heading {
     font-size: clamp(3.4375rem, 7.1614583333vw, 4.571875rem);
@@ -59,24 +58,32 @@
   }
 }
 
-.expertise-card .expertise-card__image img {
-  border-radius: 12px;
+.expertise-card__body {
+  opacity: 0.5;
+  font-size: clamp(1.25rem, 1.3227513228vw, 1.6625rem);
+  line-height: 1.5;
+  max-width: clamp(29.875rem, 31.6137566138vw, 39.73375rem);
+  margin: 0;
+}
+
+.expertise-card .expertise-card__button {
+  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
+  --background-color: hsla(0, 0%, 100%, 0.1);
+}
+
+.expertise-card .expertise-card__image {
+  width: 100%;
 }
 
 @media (min-width: 1200px) {
-  .expertise-card {
-    padding: 0;
-    flex-direction: row;
-  }
-
-  .expertise-card__content {
-    padding: clamp(4.375rem, 4.6296296296vw, 5.81875rem) 0 clamp(4.375rem, 4.6296296296vw, 5.81875rem) clamp(4.6875rem, 4.9603174603vw, 6.234375rem);
-  }
-
   .expertise-card .expertise-card__image {
     padding: 1.875rem;
     height: 100%;
     margin-left: auto;
     max-width: 50%;
   }
+}
+
+.expertise-card .expertise-card__image img {
+  border-radius: 12px;
 }

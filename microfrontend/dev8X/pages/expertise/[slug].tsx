@@ -104,14 +104,13 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
                       <span>Extraordinary Digital Experiences</span>
                     </h2>
                     <div>
-                      <Button variant="secondary" size="large" icon={true} page="contact" className={styles['contact-button']}>
+                      <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} spanClassName={styles['contact-button']}>
                         Submit a brief
-                        <RightArrowIcon width="14" className={styles['button--icon']} />
                       </Button>
                     </div>
                   </footer>
 
-                  <ExpertiseCard variant={nextExpertise.variant} tagText={nextExpertise.tagText} heading={nextExpertise.iconCards.paragraph} />
+                  <ExpertiseCard variant={nextExpertise.variant} tagText={nextExpertise.tagText} heading={nextExpertise.iconCards.paragraph} slug={nextExpertise.slug} />
                 </div>
               </div>
             </div>

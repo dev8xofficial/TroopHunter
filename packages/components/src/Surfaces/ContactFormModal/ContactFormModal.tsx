@@ -70,21 +70,21 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
 
         <Fieldset label="How shall we contact you?">
           <FieldWrappper style="col-sm-1">
-            <Input type="tel" id=":ri:" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange}  />
+            <Input type="tel" id=":ri:" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} />
             {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
           </FieldWrappper>
 
           <FieldWrappper style="col-sm-1">
-            <Input type="email" id=":rj:" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange}  />
+            <Input type="email" id=":rj:" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} />
             {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </FieldWrappper>
 
-          <FieldWrappper style="col-sm-1" label="Budget expectation" message='A transparent budget will help us ensure expectations are met.'>
-            <Input type="text" id=":rk:" name="budget" value={formData.budget} onChange={handleChange}  />
+          <FieldWrappper style="col-sm-1" label="Budget expectation" message="A transparent budget will help us ensure expectations are met.">
+            <Input type="text" id=":rk:" name="budget" value={formData.budget} onChange={handleChange} />
             {errors.budget && <p className="text-red-500 text-sm">{errors.budget}</p>}
           </FieldWrappper>
 
-          <FieldWrappper style="col-sm-1" label="Timeline" message='If you have an ideal timeline or deadline, please let us know.' messageId=":rl:">
+          <FieldWrappper style="col-sm-1" label="Timeline" message="If you have an ideal timeline or deadline, please let us know." messageId=":rl:">
             <Input type="text" id=":rl:" name="timeline" placeholder="Optional" />
           </FieldWrappper>
         </Fieldset>
@@ -97,7 +97,9 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
           <Input type="text" id=":rc:" name="referral" placeholder="From a friend? From Google?" />
         </FieldWrappper>
 
-        <Button>Submit</Button>
+        <Button type="submit" variant="primary" context="contact" fullWidth>
+          Submit
+        </Button>
       </form>
     </div>
   );

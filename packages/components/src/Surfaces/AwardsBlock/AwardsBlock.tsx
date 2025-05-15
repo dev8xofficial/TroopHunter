@@ -51,10 +51,14 @@ export const AwardsBlock: React.FC = (): JSX.Element => {
         <LogoGrid />
         <div>
           <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
-            <Button variant="white" icon={true}>
-              <i className={styles['awards-block__button-icon']} style={{ '--icon-color': '#fff' } as CSSProperties}>
-                <CrossIcon width="14" />
-              </i>
+            <Button
+              variant="white"
+              startIcon={
+                <i className={styles['awards-block__button-icon']} style={{ '--icon-color': 'var(--theme-primary)' } as CSSProperties}>
+                  <CrossIcon width="14" />
+                </i>
+              }
+            >
               See all awards
             </Button>
           </div>
