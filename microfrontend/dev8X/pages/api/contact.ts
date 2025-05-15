@@ -13,15 +13,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: process.env.MAIL_HOST,
+    port: Number(process.env.MAIL_PORT), // 2525
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS
     }
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: process.env.EMAIL_SENDER,
     to: email,
     subject: `New Contact Form Submission from ${name}`,
     text: `
