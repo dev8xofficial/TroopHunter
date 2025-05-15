@@ -1,9 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
-
-import { AboutGallery, AwardsBlock, Footer, FooterRevealPageWrap, Header, LogoGrid } from '@repo/components';
+import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { useSetAtom } from 'jotai';
+import { AboutGallery, AwardsBlock, ContactFormModal, Footer, FooterRevealPageWrap, Header, LogoGrid } from '@repo/components';
 import Capabilities from './Capabilities/Capabilities';
 import { getDev8xPublicUrl } from '../../utils/helpers';
+import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../../data/about/index.d';
 
 import AboutHeroStyles from '../../components/Surfaces/AboutHero/index.module.css';
@@ -13,6 +15,7 @@ import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import styles from './index.module.css';
 
 const Contact: React.FC = (): JSX.Element => {
+  const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const above = 'Above all, we believe in human relationships, exceptional outcomes, and having fun along the way.';
   const paragraph = 'Human-focused experiences shape everything we create – from how we collaborate as a team, to the partnerships we build, and the digital solutions we deliver. This belief lives in our culture, fuels our curiosity, and drives how we approach every project from start to finish.';
   const headingText = 'Since 2010 we’ve been working with amazing clients to create meaningful impact and compelling experiences.';
@@ -198,7 +201,7 @@ const Contact: React.FC = (): JSX.Element => {
               </div>
             </div>
             <div className="">
-              <AboutGallery /> 
+              <AboutGallery />
               <div className={styles['about-logos']}>
                 <h2 className={styles['about-logos__intro']} aria-label={headingText}>
                   {headingText.split(' ').map((word, index) => {
@@ -268,7 +271,7 @@ const Contact: React.FC = (): JSX.Element => {
               </div>
             </div>
             <div className="">
-              <AwardsBlock/>
+              <AwardsBlock />
               <div className={styles['about-dos-donts']}>
                 <h2 className={styles['about-dos-donts__intro']} aria-label={above}>
                   {above.split(' ').map((word, index) => (
@@ -340,8 +343,11 @@ const Contact: React.FC = (): JSX.Element => {
             </div>
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
+        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
+      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
+        <ContactFormModal />
+      </SmoothModalWrapper>
     </>
   );
 };

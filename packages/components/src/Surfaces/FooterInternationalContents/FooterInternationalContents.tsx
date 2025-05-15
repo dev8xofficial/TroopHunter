@@ -1,8 +1,7 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { ICON_MAP } from '../IconCards/IconMap';
 import { ExpertiseFooterForm, ExpertiseFooterSocialLink } from '../../Interfaces/Expertise/Expertise';
-import { Button } from '../Button/Button';
-import RightArrowIcon from '../../Icons/RightArrow';
 
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 import ButtonStyles from '../Button/index.module.css';
@@ -11,9 +10,13 @@ import styles from './index.module.css';
 type FooterInternationalContentsProps = {
   footerForm: ExpertiseFooterForm;
   footerSocialLinks: ExpertiseFooterSocialLink[];
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-export const FooterInternationalContents: React.FC<FooterInternationalContentsProps> = ({ footerForm, footerSocialLinks }): JSX.Element => {
+export const FooterInternationalContents: React.FC<FooterInternationalContentsProps> = ({ footerForm, footerSocialLinks, onClick }): JSX.Element => {
+  const router = useRouter();
+  const currentPath = router.pathname;
+
   return (
     <>
       <div className={`${styles['footer-columns']} footer-columns`}>
@@ -26,12 +29,14 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
             <h3>We work globally</h3>
           </div>
           <div>
-            <button className={`${ContactFormModalStyles['contact-form-button']} ${styles['footer-contact-button']}`} data-international-footer-cta="true" data-faitracker-form-bind="true">
-              {footerForm?.button?.text}
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" className="" style={{ '--width': 12, '--height': 13 } as React.CSSProperties}>
-                <path fill="currentColor" stroke="currentColor" d="M1 5.816H.75v1.326h10.014l-4.008 3.907-.173.168.162.179.563.62.174.191.186-.18 5.506-5.37.184-.178-.184-.18L7.668.932l-.186-.18-.174.191-.563.62-.162.178.173.169 4.008 3.907H1Z" vectorEffect="non-scaling-stroke"></path>
-              </svg>
-            </button>
+            {!currentPath.startsWith('/contact') && (
+              <button className={`${ContactFormModalStyles['contact-form-button']} ${styles['footer-contact-button']}`} data-international-footer-cta="true" data-faitracker-form-bind="true" onClick={onClick}>
+                {footerForm?.button?.text}
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" className="" style={{ '--width': 12, '--height': 13 } as React.CSSProperties}>
+                  <path fill="currentColor" stroke="currentColor" d="M1 5.816H.75v1.326h10.014l-4.008 3.907-.173.168.162.179.563.62.174.191.186-.18 5.506-5.37.184-.178-.184-.18L7.668.932l-.186-.18-.174.191-.563.62-.162.178.173.169 4.008 3.907H1Z" vectorEffect="non-scaling-stroke"></path>
+                </svg>
+              </button>
+            )}
           </div>
           <a href="mailto:contact@dev8x.com">contact@dev8x.com</a>
         </div>

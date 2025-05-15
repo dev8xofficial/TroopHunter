@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSetAtom } from 'jotai';
-import { toggleSmoothModalAtom } from '../store/smoothModalAtom';
+import { toggleSmoothModalAtom, closeSmoothModalAtom } from '../store/smoothModalAtom';
 
 export const useProjectModal = () => {
   const router = useRouter();
-  const [modalSlug, setModalSlug] = useState(null);
+  const [modalSlug, setModalSlug] = useState<string | null>(null);
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
+  const closeModal = useSetAtom(closeSmoothModalAtom);
 
   useEffect(() => {
     if (router.query.project) {
@@ -14,19 +15,19 @@ export const useProjectModal = () => {
     } else {
       setModalSlug(null);
     }
-  }, [router.query.project, setModalSlug]);
+  }, [router.query.project]);
 
   const openModal = (slug: string) => {
     setModalSlug(slug);
     router.push(`/work?project=${slug}`, `/work/${slug}`, { shallow: true });
-    toggleModal();
+    toggleModal('project');
   };
 
-  const closeModal = () => {
+  const closeProjectModal = () => {
     setModalSlug(null);
     router.push('/work', undefined, { shallow: true });
-    toggleModal();
+    closeModal();
   };
 
-  return { modalSlug, openModal, closeModal };
+  return { modalSlug, openModal, closeProjectModal };
 };

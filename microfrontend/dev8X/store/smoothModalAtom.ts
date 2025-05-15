@@ -1,7 +1,14 @@
+// store/smoothModalAtom.ts
 import { atom } from 'jotai';
 
-export const isSmoothModalOpenAtom = atom(false);
-export const toggleSmoothModalAtom = atom(
-  (get) => get(isSmoothModalOpenAtom),
-  (get, set) => set(isSmoothModalOpenAtom, !get(isSmoothModalOpenAtom))
-);
+export type ModalType = 'none' | 'project' | 'contact';
+
+export const openSmoothModalAtom = atom<ModalType>('none');
+
+export const toggleSmoothModalAtom = atom(null, (get, set, modal: ModalType) => {
+  set(openSmoothModalAtom, (current) => (current === modal ? 'none' : modal));
+});
+
+export const closeSmoothModalAtom = atom(null, (get, set) => {
+  set(openSmoothModalAtom, 'none');
+});

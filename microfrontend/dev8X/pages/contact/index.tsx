@@ -113,7 +113,7 @@ const Contact: React.FC = (): JSX.Element => {
                 </h1>
                 <div>
                   <div>
-                    <Button variant="secondary" context="contact" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} spanClassName={styles['contact-button']} onClick={toggleModal}>
+                    <Button variant="secondary" context="contact" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} spanClassName={styles['contact-button']} onClick={() => toggleModal('contact')}>
                       Submit a brief
                     </Button>
                   </div>
@@ -126,7 +126,7 @@ const Contact: React.FC = (): JSX.Element => {
           </main>
         </FooterRevealPageWrap>
       </FooterRevealPageWrap>
-      <SmoothModalWrapper toggle={toggleModal}>
+      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
         <ContactFormModal />
       </SmoothModalWrapper>
     </>

@@ -9,9 +9,10 @@ type FooterProps = {
   footerMainContent: ExpertiseFooterMainContent;
   footerForm: ExpertiseFooterForm;
   footerSocialLinks: ExpertiseFooterSocialLink[];
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, footerSocialLinks }): JSX.Element => {
+export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, footerSocialLinks, onClick }): JSX.Element => {
   console.log(footerMainContent, footerForm, footerSocialLinks);
   return (
     <>
@@ -39,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, f
           <div className={styles['footer__ballpit-wrapper']}>
             <canvas className={styles['ballpit']} width="1500" height="1157" style={{ background: '0% 0% / contain transparent' }}></canvas>
           </div>
-          <FooterInternationalContents footerForm={footerForm} footerSocialLinks={footerSocialLinks} />
+          <FooterInternationalContents footerForm={footerForm} footerSocialLinks={footerSocialLinks} onClick={onClick} />
         </div>
       </footer>
     </>

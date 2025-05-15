@@ -1,16 +1,18 @@
 import React from 'react';
 import Head from 'next/head';
+import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { useSetAtom } from 'jotai';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
-import PointerIcon from '@repo/components/src/Icons/Pointer';
 import EXPERTISES from '../../data/expertise/index.d';
-
-import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards, Button, ExpertiseCard, AwardsBlock, CardStack, WorkDetail, ExpertiseContent } from '@repo/components';
+import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards, Button, ExpertiseCard, AwardsBlock, CardStack, WorkDetail, ExpertiseContent, ContactFormModal } from '@repo/components';
 import { getDev8xPublicUrl } from '../../utils/helpers';
+import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 
 // import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import styles from './index.module.css';
 
 const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): JSX.Element => {
+  const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const getNextExpertise = (currentSlug: string) => {
     const currentIndex = EXPERTISES.findIndex((e) => e.slug === currentSlug);
 
@@ -104,7 +106,7 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
                       <span>Extraordinary Digital Experiences</span>
                     </h2>
                     <div>
-                      <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} spanClassName={styles['contact-button']}>
+                      <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} spanClassName={styles['contact-button']} onClick={() => toggleModal('contact')}>
                         Submit a brief
                       </Button>
                     </div>
@@ -117,8 +119,11 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
           </main>
         </FooterRevealPageWrap>
 
-        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
+        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
+      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
+        <ContactFormModal />
+      </SmoothModalWrapper>
     </>
   );
 };

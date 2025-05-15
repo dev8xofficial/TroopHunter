@@ -1,17 +1,21 @@
 import Head from 'next/head';
 import { getDev8xPublicUrl } from '../utils/helpers';
+import { useSetAtom } from 'jotai';
+import { toggleSmoothModalAtom } from '../store/smoothModalAtom';
 import { useProjectModal } from '../hooks/useProjectModal';
 import Hero from '../components/Surfaces/Hero/Hero';
 import Problems from './home/Problems/Problems';
-import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDev8X, ProjectsFormModal } from '@repo/components';
+import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDev8X, ProjectsFormModal, ContactFormModal, WORK_PROJECTS } from '@repo/components';
 import { useBreakpoint } from '../hooks/useBreakpoint';
-// import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
+import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../data/index.d';
 
 import styles from './index.module.css';
 
 export default function Home() {
-  const { modalSlug, openModal, closeModal } = useProjectModal();
+  const toggleModal = useSetAtom(toggleSmoothModalAtom);
+  const { modalSlug, openModal } = useProjectModal();
+  const project = WORK_PROJECTS.find((project) => project.path === modalSlug) ?? WORK_PROJECTS[0];
   const whyDev = {
     heading: 'Why Dev8X',
     para1: 'We believe that meaningful design starts with empathy. Every product we create is centered around improving real lives—helping people achieve more with less friction.',
@@ -79,9 +83,14 @@ export default function Home() {
             </div>
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
+        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
-      {/* <SmoothModalWrapper toggle={closeModal}>{modalSlug && <ProjectsFormModal />}</SmoothModalWrapper> */}
+      <SmoothModalWrapper modalType="project" toggle={() => toggleModal('project')}>
+        {modalSlug && <ProjectsFormModal {...project} />}
+      </SmoothModalWrapper>
+      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
+        <ContactFormModal />
+      </SmoothModalWrapper>
     </>
   );
 }

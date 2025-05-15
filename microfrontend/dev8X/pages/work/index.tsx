@@ -1,9 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
-import { FooterRevealPageWrap, Footer, Header, WorkGrid, ProjectsFormModal, WORK_PROJECTS } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, WorkGrid, ProjectsFormModal, WORK_PROJECTS, ContactFormModal } from '@repo/components';
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import { useProjectModal } from '../../hooks/useProjectModal';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
+import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { useSetAtom } from 'jotai';
 import PageData from '../../data/work/index.d';
 
 import TextAnimateUpStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
@@ -11,7 +13,8 @@ import LayoutStyles from '../../components/Surfaces/Layout/layout.module.css';
 import WorkGridStyles from '../../components/Surfaces/WorkGrid/index.module.css';
 
 const Work: React.FC = (): JSX.Element => {
-  const { modalSlug, openModal, closeModal } = useProjectModal();
+  const toggleModal = useSetAtom(toggleSmoothModalAtom);
+  const { modalSlug, openModal } = useProjectModal();
   const project = WORK_PROJECTS.find((project) => project.path === modalSlug) ?? WORK_PROJECTS[0];
 
   return (
@@ -83,9 +86,14 @@ const Work: React.FC = (): JSX.Element => {
             </div>
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
+        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
-      <SmoothModalWrapper toggle={closeModal}>{modalSlug && <ProjectsFormModal {...project} />}</SmoothModalWrapper>
+      <SmoothModalWrapper modalType="project" toggle={() => toggleModal('project')}>
+        {modalSlug && <ProjectsFormModal {...project} />}
+      </SmoothModalWrapper>
+      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
+        <ContactFormModal />
+      </SmoothModalWrapper>
     </>
   );
 };

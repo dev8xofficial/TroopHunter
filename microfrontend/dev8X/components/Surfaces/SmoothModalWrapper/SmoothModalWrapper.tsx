@@ -1,56 +1,55 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useAtom } from 'jotai';
 import Lenis from 'lenis';
-import { isSmoothModalOpenAtom } from '../../../store/smoothModalAtom';
+import { openSmoothModalAtom, ModalType } from '../../../store/smoothModalAtom';
 import { createPortal } from 'react-dom';
 import SmoothModal from '@repo/components/src/Surfaces/SmoothModal/SmoothModal';
 import { useLenis } from '../../../hooks/LenisContext';
 
 type SmoothModalWrapperProps = {
+  modalType: ModalType;
   toggle: React.MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode;
 };
 
-const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ toggle, children }): JSX.Element => {
+const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, toggle, children }): JSX.Element | null => {
   const [isMounted, setIsMounted] = useState(false);
-  const [show] = useAtom(isSmoothModalOpenAtom);
+  const [currentModal] = useAtom(openSmoothModalAtom);
   const modalRef = useRef<HTMLDivElement>(null);
   const modalInnerRef = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
+
+  const isVisible = currentModal === modalType;
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    if (show) {
-      document.body.classList.toggle('overflow-hidden');
-      lenis.stop();
-    }
+    if (!isVisible) return;
 
-    if (!show) return;
+    document.body.classList.add('overflow-hidden');
+    lenis.stop();
 
     const modalLenis = new Lenis({
       autoRaf: true,
-      wrapper: modalRef?.current,
-      content: modalInnerRef?.current
+      wrapper: modalRef.current!,
+      content: modalInnerRef.current!
     });
 
     return () => {
-      document.body.classList.toggle('overflow-hidden');
-      modalLenis?.destroy();
+      document.body.classList.remove('overflow-hidden');
+      modalLenis.destroy();
       lenis.start();
     };
-  }, [show]);
+  }, [isVisible]);
 
-  if (!isMounted || !show) return null;
+  if (!isMounted || !isVisible) return null;
 
   return createPortal(
-    <>
-      <SmoothModal toggle={toggle} modalRef={modalRef} modalInnerRef={modalInnerRef}>
-        {children}
-      </SmoothModal>
-    </>,
+    <SmoothModal toggle={toggle} modalRef={modalRef} modalInnerRef={modalInnerRef}>
+      {children}
+    </SmoothModal>,
     document.getElementById('smooth-modal')!
   );
 };
