@@ -68,76 +68,6 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
       ]
     },
     {
-      heading: 'Design & UX',
-      list: [
-        {
-          title: 'User Research',
-          icon: <MyspaceIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'purple',
-          href: '/expertise/user-research-validation'
-        },
-        {
-          title: 'UX Design',
-          icon: <MapIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'cyan',
-          href: '/expertise/user-experience-design'
-        },
-        {
-          title: 'UI Design',
-          icon: <SelectionIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'pink',
-          href: '/expertise/user-interface-design'
-        },
-        {
-          title: 'Prototyping',
-          icon: <MagicWandIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'blue',
-          href: '/expertise/prototyping'
-        },
-        {
-          title: 'Design Systems',
-          icon: <PlanetRingIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'purple',
-          href: '/expertise/design-systems'
-        }
-      ]
-    },
-    {
-      heading: 'Technology',
-      list: [
-        {
-          title: 'React.js',
-          icon: <ReactjsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'purple',
-          href: '/expertise/react-js'
-        },
-        {
-          title: 'Next.js',
-          icon: <NextjsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'cyan',
-          href: '/expertise/next-js'
-        },
-        {
-          title: 'Node.js',
-          icon: <NodejsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'blue',
-          href: '/expertise/node-js'
-        },
-        {
-          title: 'Express.js / Nest.js',
-          icon: <NextjsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'pink',
-          href: '/expertise/express-nest'
-        },
-        {
-          title: 'Supabase',
-          icon: <SupabaseIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'green',
-          href: '/expertise/supabase'
-        }
-      ]
-    },
-    {
       heading: 'Backend & Databases',
       list: [
         {
@@ -173,6 +103,41 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
       ]
     },
     {
+      heading: 'Design & UX',
+      list: [
+        {
+          title: 'User Research',
+          icon: <MyspaceIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'purple',
+          href: '/expertise/user-research-validation'
+        },
+        {
+          title: 'UX Design',
+          icon: <MapIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'cyan',
+          href: '/expertise/user-experience-design'
+        },
+        {
+          title: 'UI Design',
+          icon: <SelectionIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'pink',
+          href: '/expertise/user-interface-design'
+        },
+        {
+          title: 'Prototyping',
+          icon: <MagicWandIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'blue',
+          href: '/expertise/prototyping'
+        },
+        {
+          title: 'Design Systems',
+          icon: <PlanetRingIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'purple',
+          href: '/expertise/design-systems'
+        }
+      ]
+    },
+    {
       heading: 'DevOps & Cloud',
       list: [
         {
@@ -204,6 +169,41 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
           icon: <InfinityIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
           color: 'green',
           href: '/expertise/ci-cd'
+        }
+      ]
+    },
+    {
+      heading: 'Technology',
+      list: [
+        {
+          title: 'React.js',
+          icon: <ReactjsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'purple',
+          href: '/expertise/react-js'
+        },
+        {
+          title: 'Next.js',
+          icon: <NextjsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'cyan',
+          href: '/expertise/next-js'
+        },
+        {
+          title: 'Node.js',
+          icon: <NodejsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'blue',
+          href: '/expertise/node-js'
+        },
+        {
+          title: 'Express.js / Nest.js',
+          icon: <NextjsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'pink',
+          href: '/expertise/express-nest'
+        },
+        {
+          title: 'Supabase',
+          icon: <SupabaseIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'green',
+          href: '/expertise/supabase'
         }
       ]
     }
