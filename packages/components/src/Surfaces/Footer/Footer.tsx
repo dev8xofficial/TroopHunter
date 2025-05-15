@@ -19,7 +19,7 @@ export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, f
       <footer className={styles['footer']} id="footer-animation">
         <div className={styles['footer__sticky-inner']} style={{ transform: 'none' }}>
           <p className={styles['footer__heading']}>
-            <a className={styles['footer__heading-link']} target="_tab" href={footerMainContent?.link}>
+            <a className={styles['footer__heading-link']} href={footerMainContent?.link}>
               <span>{footerMainContent?.start}</span>
               <br />
               <RightArrowIcon width="14" className={styles['arrow']} />
