@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom } from 'jotai';
-import { AboutGallery, AwardsBlock, ContactFormModal, Footer, FooterRevealPageWrap, Header, LogoGrid } from '@repo/components';
+import { AboutGallery, AwardsBlock, ContactFormModal, Footer, FooterRevealPageWrap, Header, LogoGrid, TestimonialAbout } from '@repo/components';
 import Capabilities from './Capabilities/Capabilities';
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
@@ -269,6 +269,9 @@ const Contact: React.FC = (): JSX.Element => {
 
                 <Capabilities />
               </div>
+            </div>
+            <div className={`${styles['about-midpage-banner']} ${styles['about-midpage-banner--visible']}`}>
+              <TestimonialAbout />
             </div>
             <div className="">
               <AwardsBlock />

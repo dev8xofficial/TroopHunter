@@ -103,3 +103,5 @@ export * from './src/Interfaces/Work/WorkProjectTypes';
 export * from './src/Interfaces/Expertise/Expertise';
 
 export * from './src/Constants/Work/WorkProjects';
+export * from './src/Surfaces/HomepageLogos/HomepageLogos';
+export * from './src/Surfaces/TestimonialAbout/TestimonialAbout';

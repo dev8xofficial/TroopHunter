@@ -4,12 +4,13 @@ import { useSetAtom } from 'jotai';
 import { toggleSmoothModalAtom } from '../store/smoothModalAtom';
 import { useProjectModal } from '../hooks/useProjectModal';
 import Hero from '../components/Surfaces/Hero/Hero';
-import Problems from './home/Problems/Problems';
+// import Problems from './home/Problems/Problems';
 import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDev8X, ProjectsFormModal, ContactFormModal, WORK_PROJECTS } from '@repo/components';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../data/index.d';
 
+import TextAnimateStyles from '../components/Surfaces/TextAnimateUp/index.module.css';
 import styles from './index.module.css';
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       { title: '20+', span: ['Digital ', 'solutions ', 'launched ', 'worldwide'] }
     ]
   };
+  const headingText = 'We design, build and ship world-class digital products for forward-thinking brands.';
   const isMobile = useBreakpoint();
 
   return (
@@ -73,7 +75,39 @@ export default function Home() {
             <div className={styles['homepage__purple-change']}>
               <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src="/videos/header/header.mp4" isMobile={isMobile} />
             </div>
-            <Problems />
+            {/* <Problems /> */}
+            <section className={styles['showcase']}>
+              <h2 className={styles['showcase__heading']} aria-label={headingText}>
+                {headingText.split(' ').map((word, index) => {
+                  return (
+                    <span
+                      key={index}
+                      className={TextAnimateStyles['word']}
+                      aria-hidden="true"
+                      style={{
+                        display: 'inline-block',
+                        whiteSpace: 'pre',
+                        transform: 'translate3d(0px, 0%, 0px)',
+                        opacity: 1,
+                        transitionDelay: `${index * 0.05}s`
+                      }}
+                    >
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          display: 'inline-block',
+                          whiteSpace: 'pre',
+                          opacity: 1
+                        }}
+                      >
+                        {word + ' '}
+                      </span>
+                    </span>
+                  );
+                })}
+              </h2>
+              {/* <HomePageLogos /> */}
+            </section>
             {/* <Hero />
             <FeatureVideoResponsive />
             <TestimonialsLarge /> */}

@@ -25,11 +25,12 @@ interface IFormInputs {
 export const ContactFormModal: React.FC = (): JSX.Element => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
     reset,
     control
   } = useForm<IFormInputs>({
@@ -65,19 +66,23 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        body: formData // 🔁 no content-type needed, browser sets it
+        body: formData
       });
 
       if (response.ok) {
         console.log('Email sent successfully!');
         setShowSuccess(true);
+        setShowError(false);
         reset();
       } else {
-        console.log('Email sending failed. Please try again.');
+        console.log('Email sending failed.');
+        setShowError(true);
+        setShowSuccess(false);
       }
     } catch (error) {
       console.error('Error sending email:', error);
-      console.log('Something went wrong. Please try again later.');
+      setShowError(true);
+      setShowSuccess(false);
     } finally {
       setIsSubmitting(false);
     }
@@ -89,6 +94,11 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
         <div className={styles['success']}>
           <h1 className={styles['modal-heading']}>Message received!</h1>
           <p className={styles['success__message']}>Thanks for considering Dev8x for your project, we'll be in touch very soon.</p>
+        </div>
+      ) : showError ? (
+        <div className={styles['error']}>
+          <h1 className={styles['modal-error']}>Message failed.</h1>
+          <p className={styles['error__message']}>Please try again later or contact us directly.</p>
         </div>
       ) : (
         <>
@@ -118,7 +128,7 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
                 placeholder="Company name"
                 {...register('company', {
                   required: 'Please enter your company name',
-                  maxLength: { value: 20, message: 'Company name cannot exceed 5 characters' }
+                  maxLength: { value: 20, message: 'Company name cannot exceed 20 characters' }
                 })}
               />
             </FieldWrapper>
@@ -166,7 +176,7 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
               </FieldWrapper>
 
               <FieldWrapper className="col-sm-1" label="Timeline" message="If you have an ideal timeline or deadline, please let us know." messageId="timeline">
-                <Input type="text" id="timeline" placeholder="Timeline" />
+                <Input type="text" id="timeline" placeholder="Timeline" {...register('timeline')} />
               </FieldWrapper>
             </Fieldset>
 
