@@ -195,19 +195,3 @@
 .testimonial__author-position:nth-child(3) {
     margin-top: -.25em
 }
-
-.about .about-testimonials {
-    color: #fff;
-    max-width: calc(clamp(64.375rem, 68.1216931217vw, 85.61875rem) + var(--container-gutter)*2);
-    padding-left: var(--container-gutter);
-    padding-right: var(--container-gutter);
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%
-}
-
-@media(min-width: 992px) {
-    .about .about-testimonials {
-        margin-top: clamp(6.25rem, 6.6137566138vw, 8.3125rem)
-    }
-}
