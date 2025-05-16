@@ -2,13 +2,13 @@
   background-color: #fff !important;
 }
 
-button > .contact-button {
+button>.contact-button {
   font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
   padding: 1em 0.9em;
   gap: 0.5em;
 }
 
-button > .contact-button svg {
+button>.contact-button svg {
   font-size: 1em;
 }
 
@@ -89,7 +89,7 @@ button > .contact-button svg {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
-  .modal-header > :nth-child(2n) {
+  .modal-header> :nth-child(2n) {
     justify-self: flex-end;
   }
 }
@@ -142,11 +142,11 @@ button > .contact-button svg {
   align-items: center;
 }
 
-.modal-header .modal-contact-details dd + dd {
+.modal-header .modal-contact-details dd+dd {
   position: relative;
 }
 
-.modal-header .modal-contact-details dd + dd:before {
+.modal-header .modal-contact-details dd+dd:before {
   content: '';
   position: absolute;
   background-color: var(--theme-primary);
@@ -175,13 +175,13 @@ button > .contact-button svg {
   margin: 0;
 }
 
-.modal-intro > p:first-child {
+.modal-intro>p:first-child {
   font-weight: 500;
   font-size: inherit;
   color: var(--error, var(--theme-secondary));
 }
 
-.modal-intro > p:last-child {
+.modal-intro>p:last-child {
   margin-top: 0.5em;
   display: block;
   opacity: 0.5;
@@ -209,4 +209,27 @@ button > .contact-button svg {
 
 .success__message {
   font-size: clamp(1.5rem, 1.5873015873vw, 1.995rem);
+}
+
+.error {
+  margin: auto 0;
+  text-align: center;
+}
+
+.error__message {
+  font-size: clamp(1.5rem, 1.5873015873vw, 1.995rem);
+}
+
+.modal-error {
+  font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
+  margin: 0 0 clamp(3.25rem, 3.4391534392vw, 4.3225rem);
+  color: #f05644;
+  line-height: 0.9;
+  font-size: clamp(2.5rem, 5.2083333333vw, 3.325rem);
+}
+
+@media (min-width: 992px) {
+  .modal-error {
+    font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
+  }
 }
