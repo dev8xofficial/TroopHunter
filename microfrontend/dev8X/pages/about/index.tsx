@@ -271,10 +271,10 @@ const Contact: React.FC = (): JSX.Element => {
               </div>
             </div>
             <div className={`${styles['about-midpage-banner']} ${styles['about-midpage-banner--visible']}`}>
-              <TestimonialAbout />
+              <TestimonialAbout testimonialCSSClass={styles['about-testimonials']} />
             </div>
             <div className="">
-              <AwardsBlock />
+              {/* <AwardsBlock /> */}
               <div className={styles['about-dos-donts']}>
                 <h2 className={styles['about-dos-donts__intro']} aria-label={above}>
                   {above.split(' ').map((word, index) => (
