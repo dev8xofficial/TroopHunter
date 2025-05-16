@@ -54,6 +54,10 @@ const OFFERS: ExpertiseContent[] = [
         icon: { name: 'PointerIcon', width: 64 }
       }
     ],
+    meta: {
+      title: 'Offer — Dev8X | Dev8X: World class digital products',
+      description: 'World-class digital products, idea to execution.'
+    },
     footerMainContent: {
       link: '/contact',
       start: 'Let’s make',

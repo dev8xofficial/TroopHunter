@@ -1,6 +1,10 @@
 import { ExpertiseContent } from '@repo/components';
 
 const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading' | 'iconCards' | 'contentAsideImageItems' | 'testimonials'> = {
+  meta: {
+    title: '',
+    description: ''
+  },
   footerMainContent: {
     link: '/contact',
     start: 'Let’s make',

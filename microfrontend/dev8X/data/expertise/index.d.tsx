@@ -59,6 +59,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Web Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Exceptional websites for ambitious, modern brands'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -92,7 +96,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -110,7 +114,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -167,6 +171,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Web App Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Tailored digital solutions, from concept to launch'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -200,7 +208,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -218,7 +226,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -275,6 +283,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Mobile App Developers | Our Expertise — Humaan | Humaan: World class digital products',
+      description: 'We create, craft and launch exceptional mobile apps for iOS and Android.'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -308,7 +320,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -326,7 +338,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -383,6 +395,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'eCommerce Shopify Website Development | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Beautiful online stores that engage and convert'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -416,7 +432,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -434,7 +450,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -491,6 +507,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Data Visualisation & Storytelling | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Compelling data storytelling through impactful visualisations'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -524,7 +544,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -542,7 +562,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -604,6 +624,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'User Research & Validation | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Strategic foundations lead to better outcomes'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -637,7 +661,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -655,7 +679,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -712,6 +736,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'User Experience Design | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Inspire, enable, captivate'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -745,7 +773,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -763,7 +791,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -825,6 +853,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'User Interface Design | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Next-gen UI tailored to your application'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -858,7 +890,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -876,7 +908,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -938,6 +970,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Prototyping | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Turn your ideas into digital prototypes'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -971,7 +1007,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -989,7 +1025,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -1041,7 +1077,7 @@ const EXPERTISES: ExpertiseContent[] = [
         icon: { name: 'PlanetRingIcon', width: 64 }
       },
       {
-        title: 'Made for humans, with Humaan',
+        title: 'Made for humans, with Dev8X',
         paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. Everything we craft is entirely bespoke, as unique as the story you tell. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless end results, and a truly collaborative design and delivery process.',
         icon: { name: 'PlanetRingIcon', width: 64 }
       }
@@ -1050,6 +1086,10 @@ const EXPERTISES: ExpertiseContent[] = [
       link: '/contact',
       start: 'Let’s make',
       end: 'something wonderful'
+    },
+    meta: {
+      title: 'Design Systems | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Scalable Design Solutions'
     },
     footerForm: {
       privacy: {
@@ -1084,7 +1124,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -1102,7 +1142,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -1174,6 +1214,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'React Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'React development specialists'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -1207,7 +1251,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -1225,7 +1269,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -1292,6 +1336,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Next Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Next development specialists'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -1325,7 +1373,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -1343,7 +1391,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -1405,6 +1453,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Node Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Powerful, scalable applications with Node.js'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -1438,7 +1490,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -1456,7 +1508,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -1523,6 +1575,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Express Nest Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Build fast, scalable APIs with precision'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -1556,7 +1612,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -1574,7 +1630,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -1641,6 +1697,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Supabase Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'World-class websites for forward-thinking brands'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -1674,7 +1734,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -1692,7 +1752,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -1754,6 +1814,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Backend Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Building powerful, scalable backends'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -1787,7 +1851,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -1805,7 +1869,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -1867,6 +1931,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Real-Time Systems & Application Development | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Engage users in the moment with real-time experiences'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -1900,7 +1968,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -1918,7 +1986,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -1980,6 +2048,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'SaaS Solutions Development | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Empower your business with scalable SaaS solutions'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -2013,7 +2085,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -2031,7 +2103,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -2098,6 +2170,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'PostgreSQL Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Powerful, reliable data management with PostgreSQL'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -2131,7 +2207,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -2149,7 +2225,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -2211,6 +2287,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'ORM (Sequelize/Prisma) Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Efficient data management with Sequelize ORM'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -2244,7 +2324,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -2262,7 +2342,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -2324,6 +2404,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Docker Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Streamline your development with Docker'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -2357,7 +2441,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -2375,7 +2459,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -2437,6 +2521,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Virtualization Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Empowering seamless digital transformation through virtualization'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -2470,7 +2558,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -2488,7 +2576,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -2555,6 +2643,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'Ansible & Web Servers Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Seamless Automation, Effortless Management'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -2588,7 +2680,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -2606,7 +2698,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -2683,6 +2775,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'AWS, Vercel, DigitalOcean Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Empowering scalable cloud solutions'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -2716,7 +2812,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -2734,7 +2830,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   },
@@ -2801,6 +2897,10 @@ const EXPERTISES: ExpertiseContent[] = [
       start: 'Let’s make',
       end: 'something wonderful'
     },
+    meta: {
+      title: 'CI/CD Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Streamlined delivery with continuous integration and deployment'
+    },
     footerForm: {
       privacy: {
         year: '2025',
@@ -2834,7 +2934,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -2852,7 +2952,7 @@ const EXPERTISES: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   }

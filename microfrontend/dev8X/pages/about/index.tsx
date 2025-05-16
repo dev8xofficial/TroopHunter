@@ -23,13 +23,13 @@ const Contact: React.FC = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Dev8X - Solutions Made Simple!</title>
-        <meta name="description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
+        <title>{PageData.meta.title}</title>
+        <meta name="description" content={PageData.meta.description}></meta>
         <link rel="canonical" href={`${getDev8xPublicUrl()}/about`} />
 
         {/* Open Graph Tags */}
-        <meta property="og:title" content="Dev8X - Solutions Made Simple!"></meta>
-        <meta property="og:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
+        <meta property="og:title" content={PageData.meta.title}></meta>
+        <meta property="og:description" content={PageData.meta.description}></meta>
         <meta property="og:url" content={`${getDev8xPublicUrl()}/about`}></meta>
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
@@ -39,8 +39,8 @@ const Contact: React.FC = (): JSX.Element => {
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image"></meta>
-        <meta name="twitter:title" content="Dev8X - Solutions Made Simple!"></meta>
-        <meta name="twitter:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
+        <meta name="twitter:title" content={PageData.meta.title}></meta>
+        <meta name="twitter:description" content={PageData.meta.description}></meta>
         <meta name="twitter:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>

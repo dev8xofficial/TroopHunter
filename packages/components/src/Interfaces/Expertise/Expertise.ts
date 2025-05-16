@@ -24,6 +24,11 @@ export interface ExpertiseFooterMainContent {
   end: string;
 }
 
+export interface ExpertiseMetaContent {
+  title: string;
+  description: string;
+}
+
 export interface ExpertiseFooterForm {
   privacy: {
     year: string;
@@ -57,6 +62,7 @@ export interface ExpertiseContent {
   heading: string;
   iconCards: ExpertiseIconCards;
   contentAsideImageItems: ExpertiseContentAsideImageItem[];
+  meta?: ExpertiseMetaContent;
   footerMainContent: ExpertiseFooterMainContent;
   footerForm: ExpertiseFooterForm;
   footerSocialLinks: ExpertiseFooterSocialLink[];

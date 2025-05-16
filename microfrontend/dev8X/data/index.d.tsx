@@ -1,6 +1,10 @@
 import { ExpertiseContent } from '@repo/components';
 
 const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading' | 'iconCards' | 'contentAsideImageItems' | 'testimonials'> = {
+  meta: {
+    title: 'Solutions Made Simple! — Dev8X',
+    description: 'We design, launch, and scale digital products for ambitious brands. Dev8X combines strategy, design, and technology to create meaningful, frictionless experiences.'
+  },
   footerMainContent: {
     link: '/contact',
     start: 'Let’s make',

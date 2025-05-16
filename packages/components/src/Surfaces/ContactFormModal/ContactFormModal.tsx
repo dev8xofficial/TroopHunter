@@ -69,15 +69,15 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
       });
 
       if (response.ok) {
-        alert('Email sent successfully!');
+        console.log('Email sent successfully!');
         setShowSuccess(true);
         reset();
       } else {
-        alert('Email sending failed. Please try again.');
+        console.log('Email sending failed. Please try again.');
       }
     } catch (error) {
       console.error('Error sending email:', error);
-      alert('Something went wrong. Please try again later.');
+      console.log('Something went wrong. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }

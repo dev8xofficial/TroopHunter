@@ -9,13 +9,11 @@ const WorkPage: React.FC<WorkDetail> = ({ slug, ...project }: WorkDetail): JSX.E
   return (
     <>
       <Head>
-        <title>Dev8X - Solutions Made Simple!</title>
-        <meta name="description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
+        <title>{PageData.meta.title.replace('Our Work', project.title)}</title>
         <link rel="canonical" href={`${getDev8xPublicUrl()}/work/${slug}`} />
 
         {/* Open Graph Tags */}
-        <meta property="og:title" content="Dev8X - Solutions Made Simple!"></meta>
-        <meta property="og:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
+        <meta property="og:title" content={PageData.meta.title.replace('Our Work', project.title)}></meta>
         <meta property="og:url" content={`${getDev8xPublicUrl()}/work/${slug}`}></meta>
         <meta property="og:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta property="og:type" content="website"></meta>
@@ -23,8 +21,7 @@ const WorkPage: React.FC<WorkDetail> = ({ slug, ...project }: WorkDetail): JSX.E
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image"></meta>
-        <meta name="twitter:title" content="Dev8X - Solutions Made Simple!"></meta>
-        <meta name="twitter:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
+        <meta name="twitter:title" content={PageData.meta.title.replace('Our Work', project.title)}></meta>
         <meta name="twitter:image" content={`${getDev8xPublicUrl()}/logo-social.png`}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
