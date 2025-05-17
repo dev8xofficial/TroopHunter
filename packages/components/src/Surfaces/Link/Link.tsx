@@ -2,6 +2,7 @@
 import React, { ReactNode } from 'react';
 import clsx from 'clsx';
 import { Magnet } from '../../Animations/Magnet';
+
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 import styles from './index.module.css';
 
@@ -28,14 +29,12 @@ export const Link: React.FC<LinkProps> = ({ children, variant, size, startIcon, 
   const isExternal = href?.startsWith('http');
 
   return (
-    <Magnet>
-      <a className={buttonWrapperClassNames} href={href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noopener noreferrer' : undefined}>
-        <span className={spanClassNames}>
-          {startIcon && startIcon}
-          {children}
-          {endIcon && endIcon}
-        </span>
-      </a>
-    </Magnet>
+    <a className={buttonWrapperClassNames} href={href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noopener noreferrer' : undefined}>
+      <Magnet className={spanClassNames} disabled={fullWidth}>
+        {startIcon && startIcon}
+        {children}
+        {endIcon && endIcon}
+      </Magnet>
+    </a>
   );
 };
