@@ -31,8 +31,9 @@
 
   [data-submenu-open='true'] .submenu-container {
     border: 1px solid #fff;
-    width: 130%;
-    left: -15%;
+    width: 100%;
+    /* width: 130%;
+    left: -15%; */
   }
 
   .submenu-container [data-submenu-open='true'][data-columns='4'] {
