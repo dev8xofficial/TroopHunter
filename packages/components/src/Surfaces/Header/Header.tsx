@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { CSSProperties, useState } from 'react';
 import { useRouter } from 'next/router';
 import { HeaderSubmenu } from '../HeaderSubmenu/HeaderSubmenu';
 
@@ -93,6 +93,38 @@ export const Header: React.FC = (): JSX.Element => {
               <div className={`${styles['menu__active-pill']}`} style={{ position: 'relative', gridColumn: activeColumn, borderRadius: '100px', transform: 'none', transformOrigin: '50% 50% 0px', left: '0px' }}></div>
             </div>
           </nav>
+          <div className={styles['face']}>
+            <div>
+              <div>
+                <svg width="40" height="40" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" className="" style={{ '--width': 40, '--height': 40 } as CSSProperties}>
+                  <g filter="url(#filter0_d_80_102)">
+                    <path
+                      d="M510.4 878.75C373.55 878.75 310.3 798.25 310.3 715.45C310.3 611.95 383.9 552.15 434.5 508.45V506.15C383.9 462.45 310.3 403.8 310.3 300.3C310.3 217.5 373.55 137 510.4 137C646.1 137 709.35 217.5 709.35 300.3C709.35 403.8 624.25 462.45 573.65 506.15V508.45C624.25 552.15 709.35 611.95 709.35 715.45C709.35 798.25 646.1 878.75 510.4 878.75ZM616.2 695.9C616.2 632.65 549.5 586.65 509.25 554.45C469 586.65 401.15 632.65 401.15 695.9C401.15 748.8 434.5 786.75 509.25 786.75C584 786.75 616.2 748.8 616.2 695.9ZM616.2 319.85C616.2 266.95 584 229 509.25 229C434.5 229 401.15 266.95 401.15 319.85C401.15 383.1 469 429.1 509.25 461.3C549.5 429.1 616.2 383.1 616.2 319.85Z"
+                      fill="#3C3C3C"
+                    />
+                  </g>
+                  <defs>
+                    <filter id="filter0_d_80_102" x="260.3" y="91" width="499.05" height="841.75" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                      <feOffset dy="4" />
+                      <feGaussianBlur stdDeviation="25" />
+                      <feComposite in2="hardAlpha" operator="out" />
+                      <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0" />
+                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_80_102" />
+                      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_80_102" result="shape" />
+                    </filter>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            <div className={styles['nothing-wrapper']} aria-hidden="true">
+              <div className={styles['nothing']}>
+                {/* <img src="/nothing/nothing-2.gif" alt="" width="81" height="200" /> */}
+                {/* <audio src="/nothing/nothing.mp3" preload="auto"></audio> */}
+              </div>
+            </div>
+          </div>
         </div>
       </header>
     </>
