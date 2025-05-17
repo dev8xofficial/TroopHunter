@@ -18,7 +18,7 @@ interface IFormInputs {
   budget: string;
   timeline?: string;
   project?: string;
-  upload?: string;
+  upload?: File[]; // Changed from string to File[] for proper typing
   referral?: string;
 }
 
@@ -43,7 +43,6 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
       budget: '',
       timeline: '',
       project: '',
-      upload: '',
       referral: ''
     }
   });
@@ -54,10 +53,13 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
     const formData = new FormData();
 
     Object.entries(data).forEach(([key, value]) => {
-      if (key === 'upload' && Array.isArray(value)) {
-        value.forEach((file: File) => {
-          formData.append('upload', file);
-        });
+      if (key === 'upload') {
+        if (Array.isArray(value) && value.length > 0) {
+          value.forEach((file: File) => {
+            formData.append('upload', file);
+          });
+        }
+        // If upload is empty or undefined, do nothing here
       } else {
         formData.append(key, value ?? '');
       }
@@ -70,17 +72,14 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
       });
 
       if (response.ok) {
-        console.log('Email sent successfully!');
         setShowSuccess(true);
         setShowError(false);
         reset();
       } else {
-        console.log('Email sending failed.');
         setShowError(true);
         setShowSuccess(false);
       }
     } catch (error) {
-      console.error('Error sending email:', error);
       setShowError(true);
       setShowSuccess(false);
     } finally {

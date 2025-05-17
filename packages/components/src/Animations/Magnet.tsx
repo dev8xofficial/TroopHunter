@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from 'react';
 import { useMotionValue, useSpring, useTransform, motion } from 'framer-motion';
 
 interface MagnetProps {
-  className: string;
-  children: React.ReactNode;
+  className?: string;
+  children?: React.ReactNode;
   radius?: number;
   strength?: number;
   disabled?: boolean;

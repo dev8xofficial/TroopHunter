@@ -23,6 +23,7 @@ import AnsibleIcon from '../../Icons/Ansible';
 import InfinityIcon from '../../Icons/Infinity';
 import WebServersIcon from '../../Icons/WebServers';
 import SeismometerIcon from '../../Icons/Seismometer';
+import { Magnet } from '../../Animations/Magnet';
 
 import styles from './index.module.css';
 
@@ -218,14 +219,16 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
                 <h2 className={styles['submenu__heading']}>{menu.heading}</h2>
                 <ul className={styles['submenu__list']}>
                   {menu.list.map((item, itemIndex) => (
-                    <li style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0)' }} key={`nav-anchor-${menuIndex}-${itemIndex}`}>
-                      <a className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`} href={item.href}>
-                        <>
-                          {item.icon}
-                          {item.title}
-                        </>
-                      </a>
-                    </li>
+                    <Magnet>
+                      <li style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0)' }} key={`nav-anchor-${menuIndex}-${itemIndex}`}>
+                        <a className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`} href={item.href}>
+                          <>
+                            {item.icon}
+                            {item.title}
+                          </>
+                        </a>
+                      </li>
+                    </Magnet>
                   ))}
                 </ul>
               </div>

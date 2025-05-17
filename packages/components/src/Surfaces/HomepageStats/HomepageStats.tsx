@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import CountUp from 'react-countup';
-import { gsap } from 'gsap';
+import { useInView } from 'framer-motion';
 
-import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import styles from './index.module.css';
+import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 
 export type HomepageStat = {
   title: string;
@@ -24,38 +24,30 @@ const extractNumberAndSuffix = (value: string) => {
 };
 
 export const HomepageStats: React.FC<HomepageStatsProps> = ({ stats }) => {
-  const statsRef = useRef<HTMLUListElement>(null);
-
-  useEffect(() => {
-    if (statsRef.current) {
-      gsap.fromTo(
-        statsRef.current.children,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.79,
-          ease: 'power3.out',
-          stagger: 0.2
-        }
-      );
-    }
-  }, []);
-
   return (
-    <ul className={styles['homepage-stats']} ref={statsRef}>
+    <ul className={styles['homepage-stats']}>
       {stats.map((stat, index) => {
         const { number, suffix } = extractNumberAndSuffix(stat.title);
+        const ref = useRef(null);
+        const isInView = useInView(ref, { once: true, margin: '-100px' });
+        const [start, setStart] = useState(false);
+
+        // Start counting when visible
+        if (isInView && !start) setStart(true);
 
         return (
           <li key={index} className={styles['homepage-stats__item']}>
-            <span className={styles['homepage-stats__value']}>
-              <CountUp end={number} duration={3} delay={0.2 * index} />
+            <span className={styles['homepage-stats__value']} ref={ref}>
+              {start && <CountUp end={number} duration={2.5} />}
+              {!start && <span>0</span>}
               {suffix}
             </span>
+
             <span className={styles['homepage-stats__label']}>
-              {stat.span.map((item) => (
-                <span className={TextAnimateStyles['word']}>{item}</span>
+              {stat.span.map((item, i) => (
+                <span key={i} className={TextAnimateStyles['word']}>
+                  {item}
+                </span>
               ))}
             </span>
           </li>

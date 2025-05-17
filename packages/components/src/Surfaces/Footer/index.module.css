@@ -1,10 +1,10 @@
 .footer {
   color: var(--theme-secondary);
-  transition: color 0.4s;
+  transition: color .4s;
   max-height: 100vh;
   max-height: 100svh;
   z-index: 0;
-  background-color: #fff;
+  background-color: #fff
 }
 
 .footer__sticky-inner {
@@ -15,36 +15,36 @@
   margin-left: auto;
   margin-right: auto;
   display: grid;
-  grid-template-areas: 'heading' 'columns' 'bottom' 'face';
+  grid-template-areas: "heading" "columns" "bottom" "face";
   grid-gap: 3.75rem;
   gap: 3.75rem;
   padding-top: 3.875rem;
   padding-bottom: 6.25rem;
   position: relative;
-  z-index: 0;
+  z-index: 0
 }
 
-@media (min-width: 768px) {
+@media(min-width: 768px) {
   .footer__sticky-inner {
     max-width: 37.5rem;
     padding-top: 6.25rem;
-    padding-bottom: 3.875rem;
+    padding-bottom: 3.875rem
   }
 }
 
-@media (min-width: 992px) {
+@media(min-width: 992px) {
   .footer__sticky-inner {
     gap: 0;
     max-width: none;
-    grid-template-areas: 'heading face' 'columns face' 'bottom bottom';
-    padding: 3.875rem clamp(5rem, 5.291005291vw, 6.65rem) clamp(3.875rem, 4.1005291005vw, 5.15375rem);
+    grid-template-areas: "heading face" "columns face" "bottom bottom";
+    padding: 3.875rem clamp(5rem, 5.291005291vw, 6.65rem) clamp(3.875rem, 4.1005291005vw, 5.15375rem)
   }
 }
 
-@media (min-width: 1200px) {
+@media(min-width: 1200px) {
   .footer__sticky-inner {
     padding-top: clamp(6rem, 6.3492063492vw, 7.98rem);
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto
   }
 }
 
@@ -54,38 +54,38 @@
   align-self: flex-end;
   position: relative;
   height: 100%;
-  z-index: -1;
+  z-index: -1
 }
 
-@media (max-width: 991px) {
+@media(max-width: 991px) {
   .footer__ballpit-wrapper {
-    display: none;
+    display: none
   }
 }
 
-.footer__ballpit-wrapper > * {
+.footer__ballpit-wrapper>* {
   position: absolute;
   right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1500px
 }
 
 .footer__heading {
   grid-area: heading;
-  margin: 0;
+  margin: 0
 }
 
-@media (min-width: 992px) {
+@media(min-width: 992px) {
   .footer__heading {
     margin-bottom: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
-    width: min-content;
+    width: min-content
   }
 }
 
-@media (min-width: 1200px) {
+@media(min-width: 1200px) {
   .footer__heading {
-    margin-bottom: clamp(7.1875rem, 7.6058201058vw, 9.559375rem);
+    margin-bottom: clamp(7.1875rem, 7.6058201058vw, 9.559375rem)
   }
 }
 
@@ -97,80 +97,78 @@
   align-self: flex-start;
   color: inherit;
   line-height: 1;
-  column-gap: 0.3125rem;
+  column-gap: .3125rem;
   font-size: 2.5rem;
-  transition: color 0.15s;
+  transition: color .15s
 }
 
-@media (hover: hover) {
+@media(hover: hover) {
   .footer__heading-link:hover {
-    color: var(--theme-primary);
+    color: var(--theme-primary)
   }
 
-  .footer__heading-link:hover .arrow__kw0yI {
-    transform: translate(25%, 10%);
+  .footer__heading-link:hover .arrow {
+    transform: translate(25%, 10%)
   }
 }
 
 .footer__heading-link:focus-visible {
-  color: var(--theme-primary);
+  color: var(--theme-primary)
 }
 
 .footer__heading-link:focus-visible .arrow {
-  transform: translate(25%, 10%);
+  transform: translate(25%, 10%)
 }
 
-@media (min-width: 992px) {
+@media(min-width: 992px) {
   .footer__heading-link {
-    column-gap: clamp(0.3125rem, 0.3306878307vw, 0.415625rem);
+    column-gap: clamp(.3125rem, .3306878307vw, .415625rem);
     font-size: clamp(4.375rem, 4.6296296296vw, 5.81875rem);
-    padding: clamp(2.25rem, 2.380952381vw, 2.9925rem) 0;
+    padding: clamp(2.25rem, 2.380952381vw, 2.9925rem) 0
   }
 }
 
 .footer__heading .arrow {
   width: auto;
   color: var(--theme-primary);
-  transition:
-    color 0.4s,
-    transform 0.15s;
-  height: 0.65em;
+  transition: color .4s, transform .15s;
+  height: .65em;
   transform: translateY(10%);
-  stroke-width: 1;
+  stroke-width: 1
 }
 
-@media (min-width: 992px) {
+@media(min-width: 992px) {
   .footer__heading .arrow {
-    stroke-width: 2;
+    stroke-width: 2
   }
 }
 
 .footer__heading span:not(:first-of-type) {
-  width: 100%;
+  width: 100%
 }
 
-@media (min-width: 992px) {
+@media(min-width: 992px) {
   .footer__word-ticker-wrapper {
-    white-space: nowrap;
+    white-space: nowrap
   }
 }
 
 .footer .face {
   grid-area: face;
   color: var(--theme-primary);
-  transition: color 0.4s;
+  transition: color .4s;
   align-self: center;
   justify-self: center;
   height: 3.875rem;
-  width: auto;
+  width: auto
 }
 
-@media (min-width: 992px) {
+@media(min-width: 992px) {
   .footer .face {
-    display: none;
+    display: none
   }
 }
 
 .footer__content {
-  display: flex;
+  display: flex
 }
