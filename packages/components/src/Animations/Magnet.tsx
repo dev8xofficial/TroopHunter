@@ -1,14 +1,16 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useMotionValue, useSpring, useTransform, motion } from 'framer-motion';
 
 interface MagnetProps {
+  className: string;
   children: React.ReactNode;
   radius?: number;
   strength?: number;
+  disabled?: boolean;
 }
 
-export const Magnet: React.FC<MagnetProps> = ({ children, radius = 0.5, strength = 0.15 }) => {
+export const Magnet: React.FC<MagnetProps> = ({ className, children, radius = 10, strength = 0.05, disabled }) => {
   const ref = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -18,6 +20,14 @@ export const Magnet: React.FC<MagnetProps> = ({ children, radius = 0.5, strength
 
   const transformX = useTransform(springX, (val) => `${val}px`);
   const transformY = useTransform(springY, (val) => `${val}px`);
+
+  useEffect(() => {
+    if (disabled) {
+      mouseX.set(0);
+      mouseY.set(0);
+      return;
+    }
+  }, [radius, disabled, strength]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const bounds = ref.current?.getBoundingClientRect();
@@ -47,8 +57,8 @@ export const Magnet: React.FC<MagnetProps> = ({ children, radius = 0.5, strength
   };
 
   return (
-    <motion.div ref={ref} style={{ x: transformX, y: transformY, display: 'inline-block' }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+    <motion.span ref={ref} className={className} style={{ x: transformX, y: transformY }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       {children}
-    </motion.div>
+    </motion.span>
   );
 };
