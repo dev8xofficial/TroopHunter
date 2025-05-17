@@ -25,13 +25,11 @@ export const CaseStudySideBar: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'pat
           <p>{impact}</p>
         </div>
         <ul className={styles['custom-icon-list']}>
-          <li>Digital Strategy &amp; UX</li>
-          <li>Interaction Design</li>
-          <li>3D Product Visualisation</li>
-          <li>Animation and Interaction</li>
-          <li>Custom eCommerce</li>
+          {keyContributions.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
         </ul>
-        <table className={styles['sidebar__awards']} summary="A list of awards won for this project. The award organisation is shown in the first column, the award category in the second column, and the year of the award is in the third column.">
+        {/* <table className={styles['sidebar__awards']} summary="A list of awards won for this project. The award organisation is shown in the first column, the award category in the second column, and the year of the award is in the third column.">
           <caption>Awards</caption>
           <thead>
             <tr>
@@ -72,7 +70,7 @@ export const CaseStudySideBar: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'pat
               <td>2022</td>
             </tr>
           </tbody>
-        </table>
+        </table> */}
       </div>
     </>
   );
