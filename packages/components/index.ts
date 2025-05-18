@@ -105,3 +105,9 @@ export * from './src/Interfaces/Expertise/Expertise';
 export * from './src/Constants/Work/WorkProjects';
 export * from './src/Surfaces/HomepageLogos/HomepageLogos';
 export * from './src/Surfaces/TestimonialAbout/TestimonialAbout';
+
+export * from './src/Logos/totalhealthdentalcare';
+export * from './src/Logos/coral';
+export * from './src/Logos/goldendao';
+export * from './src/Logos/honeydu';
+export * from './src/Logos/society1';

@@ -1,5 +1,4 @@
-/* eslint-disable prettier/prettier */
-import React, { CSSProperties, ReactNode } from 'react';
+import React, { CSSProperties } from 'react';
 import { LogoGrid } from '../LogoGrid/LogoGrid';
 import { Button } from '../Button/Button';
 import CrossIcon from '../../Icons/Cross';
