@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+type MotionValues = {
+  y?: string | number;
+  opacity?: number;
+  [key: string]: any; // for flexibility
+};
+
 type RotatingTextProps = {
   texts: string[];
   mainClassName?: string;
   staggerFrom?: 'first' | 'last';
-  initial?: object;
-  animate?: object;
-  exit?: object;
+  initial?: MotionValues;
+  animate?: MotionValues;
+  exit?: MotionValues;
   staggerDuration?: number;
   splitLevelClassName?: string;
   transition?: object;
