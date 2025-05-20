@@ -174,7 +174,7 @@
 }
 
 .menu__link--active {
-  color: var(--theme-primary);
+  color: var(--theme-header-face);
 }
 
 .menu__active-pill,

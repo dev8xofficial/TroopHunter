@@ -22,7 +22,7 @@ const Appear = ({ children, delay = 0 }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
+      initial={{ opacity: 0, y: 20, }}
       animate={controls}
     >
       {children}

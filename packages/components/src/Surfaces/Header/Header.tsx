@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { HeaderSubmenu } from '../HeaderSubmenu/HeaderSubmenu';
 
 import styles from './index.module.css';
+import { Magnet } from '../../Animations/Magnet';
 
 export const Header: React.FC = (): JSX.Element => {
   const router = useRouter();
@@ -44,21 +45,27 @@ export const Header: React.FC = (): JSX.Element => {
           </a>
           <nav className={styles['menu']} data-columns="4" data-submenu-open={`${dataSubmenuOpen}`}>
             <ul className={styles['menu__list']}>
-              <li className={styles['menu__item']}>
-                <a className={`${styles['menu__link']} ${currentPath === '/' ? styles['menu__link--active'] : ''}`} href="/">
-                  Home
-                </a>
-              </li>
-              <li className={styles['menu__item']}>
-                <a className={`${styles['menu__link']} ${currentPath === '/about' ? styles['menu__link--active'] : ''}`} href="/about">
-                  About
-                </a>
-              </li>
-              <li className={styles['menu__item']}>
-                <a className={`${styles['menu__link']} ${currentPath.includes('/work') ? styles['menu__link--active'] : ''}`} href="/work">
-                  Work
-                </a>
-              </li>
+              <Magnet>
+                <li className={styles['menu__item']}>
+                  <a className={`${styles['menu__link']} ${currentPath === '/' ? styles['menu__link--active'] : ''}`} href="/">
+                    Home
+                  </a>
+                </li>
+              </Magnet>
+              <Magnet>
+                <li className={styles['menu__item']}>
+                  <a className={`${styles['menu__link']} ${currentPath === '/about' ? styles['menu__link--active'] : ''}`} href="/about">
+                    About
+                  </a>
+                </li>
+              </Magnet>
+              <Magnet>
+                <li className={styles['menu__item']}>
+                  <a className={`${styles['menu__link']} ${currentPath.includes('/work') ? styles['menu__link--active'] : ''}`} href="/work">
+                    Work
+                  </a>
+                </li>
+              </Magnet>
               <li className={styles['menu__item']}>
                 <div className="link-wrap">
                   <button className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') ? styles['menu__link--active'] : ''}`} data-faitracker-form-bind="true" onClick={handleExpertiseClick}>
@@ -67,11 +74,13 @@ export const Header: React.FC = (): JSX.Element => {
                   <HeaderSubmenu height={height} />
                 </div>
               </li>
-              <li className={styles['menu__item']}>
-                <a className={`${styles['menu__link']} ${currentPath === '/contact' ? styles['menu__link--active'] : ''}`} href="/contact">
-                  Contact
-                </a>
-              </li>
+              <Magnet>
+                <li className={styles['menu__item']}>
+                  <a className={`${styles['menu__link']} ${currentPath === '/contact' ? styles['menu__link--active'] : ''}`} href="/contact">
+                    Contact
+                  </a>
+                </li>
+              </Magnet>
             </ul>
             <div className={`${styles['menu__list']} ${styles['menu__list--twin']}`} style={{ transform: 'none', transformOrigin: '50% 50% 0px' }}>
               <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 1 }}>

@@ -7,6 +7,7 @@ import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import PictureStyle from '../Picture/index.module.css';
 import WYSIWYGStyle from '../WYSIWYG/index.module.css';
 import styles from './index.module.css';
+import { AppearOnScroll } from '../../../../../../TroopHunterNew/microfrontend/dev8X/components/Animations/AppearOnScroll';
 
 type WhyProps = {
   heading: string;
@@ -16,31 +17,56 @@ type WhyProps = {
   stats: HomepageStat[];
 };
 
-export const WhyDev8X: React.FC<WhyProps> = ({ heading, para1, para2, image, stats }): JSX.Element => {
+export const WhyDev8X: React.FC<WhyProps> = ({ heading, para1, para2, image, stats }) => {
   return (
     <div className={styles['homepage-bottom']}>
-      <span className={styles['homepage-bottom__heading']} aria-label="Great work for great people.">
-        <span className={TextAnimateStyles['word']} aria-hidden="true">
-          {heading}
-        </span>
+      {/* Animate each word of heading */}
+      <span className={styles['homepage-bottom__heading']} aria-label={heading}>
+        {heading.split(' ').map((word, index) => (
+          <AppearOnScroll
+            key={index}
+            custom={index}
+            delay={index * 0.05} // stagger words nicely
+            duration={0.6}
+            yOffset={10}
+            as="span"
+            className={TextAnimateStyles['word']}
+          >
+            <span aria-hidden="true">{word + ' '}</span>
+          </AppearOnScroll>
+        ))}
       </span>
+
       <div className={styles['homepage-bottom__content']}>
         <div className={`${WYSIWYGStyle['wysiwyg']} ${styles['homepage-bottom__wysiwyg']}`}>
-          <p>{para1}</p>
-          <p>{para2}</p>
-          <Link variant="secondary" href="/about" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} anchorClassName={styles['homepage-bottom__link']}>
-            About Us
-          </Link>
+          {/* Animate paragraphs and link with delays */}
+          <AppearOnScroll delay={0.1} as="div">
+            <p>{para1}</p>
+          </AppearOnScroll>
+          <AppearOnScroll delay={0.3} as="div">
+            <p>{para2}</p>
+          </AppearOnScroll>
+          <AppearOnScroll delay={0.5} as="div">
+            <Link variant="secondary" href="/about" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} anchorClassName={styles['homepage-bottom__link']}>
+              About Us
+            </Link>
+          </AppearOnScroll>
         </div>
       </div>
-      <div className={styles['homepage-bottom__image-wrapper']}>
+
+      {/* Animate image wrapper only */}
+      <AppearOnScroll delay={0.2} as="div" className={styles['homepage-bottom__image-wrapper']}>
         <picture className={`${PictureStyle['picture']} ${PictureStyle['picture--responsive']} ${styles['homepage-bottom__image']}`}>
           <img src={image} loading="lazy" width="450" height="548" alt="" draggable="false" />
         </picture>
-      </div>
-      <div className={styles['homepage-bottom__stats']}>
-        <HomepageStats stats={stats} />
-      </div>
+      </AppearOnScroll>
+
+      {/* Animate stats */}
+      <AppearOnScroll delay={0.3} as="div">
+        <div className={styles['homepage-bottom__stats']}>
+          <HomepageStats stats={stats} />
+        </div>
+      </AppearOnScroll>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import PageData from '../data/index.d';
 
 import TextAnimateStyles from '../components/Surfaces/TextAnimateUp/index.module.css';
 import styles from './index.module.css';
+import { AppearOnScroll } from '../components/Animations/AppearOnScroll';
 
 export default function Home() {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
@@ -78,33 +79,19 @@ export default function Home() {
             {/* <Problems /> */}
             <section className={styles['showcase']}>
               <h2 className={styles['showcase__heading']} aria-label={headingText}>
-                {headingText.split(' ').map((word, index) => {
-                  return (
+                {headingText.split(' ').map((word, index) => (
+                  <AppearOnScroll key={index} custom={index} delay={0.2} duration={0.2} yOffset={20} as="span" className={TextAnimateStyles['word']}>
                     <span
-                      key={index}
-                      className={TextAnimateStyles['word']}
                       aria-hidden="true"
                       style={{
                         display: 'inline-block',
-                        whiteSpace: 'pre',
-                        transform: 'translate3d(0px, 0%, 0px)',
-                        opacity: 1,
-                        transitionDelay: `${index * 0.05}s`
+                        whiteSpace: 'pre'
                       }}
                     >
-                      <span
-                        aria-hidden="true"
-                        style={{
-                          display: 'inline-block',
-                          whiteSpace: 'pre',
-                          opacity: 1
-                        }}
-                      >
-                        {word + ' '}
-                      </span>
+                      {word + ' '}
                     </span>
-                  );
-                })}
+                  </AppearOnScroll>
+                ))}
               </h2>
               {/* <HomePageLogos /> */}
             </section>

@@ -13,6 +13,7 @@ import TextAnimateStyles from '../../components/Surfaces/TextAnimateUp/index.mod
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 
 import styles from './index.module.css';
+import { AppearOnScroll } from '../../components/Animations/AppearOnScroll';
 
 const Contact: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
@@ -62,114 +63,155 @@ const Contact: React.FC = (): JSX.Element => {
           <main className={styles['about']}>
             <div className={AboutHeroStyles['about-hero']} style={{ '--scrollY': '0' } as React.CSSProperties}>
               <div>
-                <div className={AboutHeroStyles['about-hero__hero-wrapper']}>
-                  {/* Mobile Heading */}
-                  <h1 className={`${AboutHeroStyles['about-hero__heading']} ${['about-hero__heading--mobile']}`} aria-label="Digital Products. Human Experiences.">
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
-                        Digital
-                      </span>
-                    </span>
-                    <br />
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
-                        Craft.
-                      </span>
-                    </span>
-                    <br />
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
-                        Real
-                      </span>
-                    </span>
-                    <br />
-                    <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
-                      <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
-                        Impact.
-                      </span>
-                    </span>
-                  </h1>
-                  {/* Desktop Heading */}
-                  <h1 className={`${AboutHeroStyles['about-hero__heading']} ${['about-hero__heading--desktop']}`}>
-                    <span aria-label="Digital Products.">
-                      <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                        <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
+                <AppearOnScroll>
+                  <div className={AboutHeroStyles['about-hero__hero-wrapper']}>
+                    {/* Mobile Heading */}
+                    <h1 className={`${AboutHeroStyles['about-hero__heading']} ${['about-hero__heading--mobile']}`} aria-label="Digital Products. Human Experiences.">
+                      <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
+                        <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
                           Digital
                         </span>
                       </span>
                       <br />
-                      <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
-                        <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
+                      <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
+                        <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
                           Craft.
                         </span>
                       </span>
-                    </span>
-                    <br />
-                    <span className="AboutHero_about-hero__heading-opacity__BrOA2">
-                      <span aria-label="Human Experiences.">
+                      <br />
+                      <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
+                        <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
+                          Real
+                        </span>
+                      </span>
+                      <br />
+                      <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 80%, 0px)' }}>
+                        <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 0 }}>
+                          Impact.
+                        </span>
+                      </span>
+                    </h1>
+                    {/* Desktop Heading */}
+                    <h1 className={`${AboutHeroStyles['about-hero__heading']} ${['about-hero__heading--desktop']}`}>
+                      <span aria-label="Digital Products.">
                         <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                           <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                            Real
+                            Digital
                           </span>
                         </span>
                         <br />
                         <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
                           <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
-                            Impact.
+                            Craft.
                           </span>
                         </span>
                       </span>
-                    </span>
-                  </h1>
-                  <div className={AboutHeroStyles['about-hero__image-wrapper']}>
-                    <picture className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}>
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80) 1x" media="(min-width: 0px) and (max-width: 479px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/992x1000/filters:quality(80) 1x" media="(min-width: 480px) and (max-width: 991px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1500x1512/filters:quality(80) 1x" media="(min-width: 992px) and (max-width: 1679px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1680x1693/filters:quality(80) 1x" media="(min-width: 1680px)" />
-                      <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="eager" width="450" height="454" alt="" className="" draggable="false" />
-                    </picture>
-                    <picture
-                      className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}
-                      style={{
-                        maskSize: '100%',
-                        maskImage: 'url("https://a-us.storyblok.com/f/1017006/3360x3386/eacf69343b/humaanabout_mask.png")',
-                        zIndex: 1
-                      }}
-                    >
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80) 1x" media="(min-width: 0px) and (max-width: 479px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/992x1000/filters:quality(80) 1x" media="(min-width: 480px) and (max-width: 991px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1500x1512/filters:quality(80) 1x" media="(min-width: 992px) and (max-width: 1679px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1680x1693/filters:quality(80) 1x" media="(min-width: 1680px)" />
-                      <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="lazy" width="450" height="454" alt="" className="" draggable="false" />
-                    </picture>
-                    <picture className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}>
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/900x908/filters:quality(80) 2x" media="(min-width: 0px) and (max-width: 479px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1984x2000/filters:quality(80) 2x" media="(min-width: 480px) and (max-width: 991px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3000x3024/filters:quality(80) 2x" media="(min-width: 992px) and (max-width: 1679px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3360x3386/filters:quality(80) 2x" media="(min-width: 1680px)" />
-                      <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="lazy" width="450" height="454" alt="" className="" draggable="false" />
-                    </picture>
-                    <picture
-                      className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}
-                      style={{
-                        maskSize: '100%',
-                        maskImage: 'url("https://a-us.storyblok.com/f/1017006/3360x3386/eacf69343b/humaanabout_mask.png")',
-                        zIndex: 1
-                      }}
-                    >
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/900x908/filters:quality(80) 2x" media="(min-width: 0px) and (max-width: 479px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1984x2000/filters:quality(80) 2x" media="(min-width: 480px) and (max-width: 991px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3000x3024/filters:quality(80) 2x" media="(min-width: 992px) and (max-width: 1679px)" />
-                      <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3360x3386/filters:quality(80) 2x" media="(min-width: 1680px)" />
-                      <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="lazy" width="450" height="454" alt="" className="" draggable="false" />
-                    </picture>
+                      <br />
+                      <span className="AboutHero_about-hero__heading-opacity__BrOA2">
+                        <span aria-label="Human Experiences.">
+                          <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
+                            <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
+                              Real
+                            </span>
+                          </span>
+                          <br />
+                          <span className={TextAnimateStyles['word']} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)' }}>
+                            <span aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', opacity: 1 }}>
+                              Impact.
+                            </span>
+                          </span>
+                        </span>
+                      </span>
+                    </h1>
+                    <div className={AboutHeroStyles['about-hero__image-wrapper']}>
+                      <picture className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}>
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80) 1x" media="(min-width: 0px) and (max-width: 479px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/992x1000/filters:quality(80) 1x" media="(min-width: 480px) and (max-width: 991px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1500x1512/filters:quality(80) 1x" media="(min-width: 992px) and (max-width: 1679px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1680x1693/filters:quality(80) 1x" media="(min-width: 1680px)" />
+                        <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="eager" width="450" height="454" alt="" className="" draggable="false" />
+                      </picture>
+                      <picture
+                        className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}
+                        style={{
+                          maskSize: '100%',
+                          maskImage: 'url("https://a-us.storyblok.com/f/1017006/3360x3386/eacf69343b/humaanabout_mask.png")',
+                          zIndex: 1
+                        }}
+                      >
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80) 1x" media="(min-width: 0px) and (max-width: 479px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/992x1000/filters:quality(80) 1x" media="(min-width: 480px) and (max-width: 991px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1500x1512/filters:quality(80) 1x" media="(min-width: 992px) and (max-width: 1679px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1680x1693/filters:quality(80) 1x" media="(min-width: 1680px)" />
+                        <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="lazy" width="450" height="454" alt="" className="" draggable="false" />
+                      </picture>
+                      <picture className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}>
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/900x908/filters:quality(80) 2x" media="(min-width: 0px) and (max-width: 479px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1984x2000/filters:quality(80) 2x" media="(min-width: 480px) and (max-width: 991px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3000x3024/filters:quality(80) 2x" media="(min-width: 992px) and (max-width: 1679px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3360x3386/filters:quality(80) 2x" media="(min-width: 1680px)" />
+                        <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="lazy" width="450" height="454" alt="" className="" draggable="false" />
+                      </picture>
+                      <picture
+                        className={`${AboutHeroStyles['about-hero__image']} ${PictureStyles['picture']} ${PictureStyles['picture--responsive']}`}
+                        style={{
+                          maskSize: '100%',
+                          maskImage: 'url("https://a-us.storyblok.com/f/1017006/3360x3386/eacf69343b/humaanabout_mask.png")',
+                          zIndex: 1
+                        }}
+                      >
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/900x908/filters:quality(80) 2x" media="(min-width: 0px) and (max-width: 479px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/1984x2000/filters:quality(80) 2x" media="(min-width: 480px) and (max-width: 991px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3000x3024/filters:quality(80) 2x" media="(min-width: 992px) and (max-width: 1679px)" />
+                        <source srcSet="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/3360x3386/filters:quality(80) 2x" media="(min-width: 1680px)" />
+                        <img src="https://a-us.storyblok.com/f/1017006/3360x3386/d6ac5adeb6/humaanabout.jpg/m/450x454/filters:quality(80)" loading="lazy" width="450" height="454" alt="" className="" draggable="false" />
+                      </picture>
+                    </div>
                   </div>
-                </div>
-                <div className={AboutHeroStyles['about-hero__container']}>
-                  <p className={AboutHeroStyles['about-hero__intro']} aria-label={paragraph}>
-                    {paragraph.split(' ').map((word, index) => {
-                      const isSpecial = word.toLowerCase().includes('Human-focused');
+                </AppearOnScroll>
+                <AppearOnScroll>
+                  <div className={AboutHeroStyles['about-hero__container']}>
+                    <p className={AboutHeroStyles['about-hero__intro']} aria-label={paragraph}>
+                      {paragraph.split(' ').map((word, index) => {
+                        const isSpecial = word.toLowerCase().includes('Human-focused');
+                        return (
+                          <span
+                            key={index}
+                            className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
+                            aria-hidden="true"
+                            style={{
+                              display: 'inline-block',
+                              whiteSpace: 'pre',
+                              transform: 'translate3d(0px, 0%, 0px)',
+                              opacity: 1,
+                              transitionDelay: `${index * 0.05}s`
+                            }}
+                          >
+                            <span
+                              aria-hidden="true"
+                              style={{
+                                display: 'inline-block',
+                                whiteSpace: 'pre',
+                                opacity: 1
+                              }}
+                            >
+                              {word + ' '}
+                            </span>
+                          </span>
+                        );
+                      })}
+                    </p>
+                  </div>
+                </AppearOnScroll>
+              </div>
+            </div>
+            <div className="">
+              <AboutGallery />
+              <AppearOnScroll>
+                <div className={styles['about-logos']}>
+                  <h2 className={styles['about-logos__intro']} aria-label={headingText}>
+                    {headingText.split(' ').map((word, index) => {
+                      const isSpecial = word.toLowerCase().includes('clients');
                       return (
                         <span
                           key={index}
@@ -196,124 +238,95 @@ const Contact: React.FC = (): JSX.Element => {
                         </span>
                       );
                     })}
-                  </p>
+                  </h2>
+                  <LogoGrid />
                 </div>
-              </div>
-            </div>
-            <div className="">
-              <AboutGallery />
-              <div className={styles['about-logos']}>
-                <h2 className={styles['about-logos__intro']} aria-label={headingText}>
-                  {headingText.split(' ').map((word, index) => {
-                    const isSpecial = word.toLowerCase().includes('clients');
-                    return (
-                      <span
-                        key={index}
-                        className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
-                        aria-hidden="true"
-                        style={{
-                          display: 'inline-block',
-                          whiteSpace: 'pre',
-                          transform: 'translate3d(0px, 0%, 0px)',
-                          opacity: 1,
-                          transitionDelay: `${index * 0.05}s`
-                        }}
-                      >
+              </AppearOnScroll>
+              <AppearOnScroll>
+                <div className={styles['about-capabilities']}>
+                  <h2 className={styles['about-capabilities__intro']} aria-label={heading}>
+                    {heading.split(' ').map((word, index) => {
+                      const isSpecial = word.toLowerCase().includes('capabilities');
+                      return (
                         <span
+                          key={index}
+                          className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
                           aria-hidden="true"
                           style={{
                             display: 'inline-block',
                             whiteSpace: 'pre',
-                            opacity: 1
+                            transform: 'translate3d(0px, 0%, 0px)',
+                            opacity: 1,
+                            transitionDelay: `${index * 0.05}s`
                           }}
                         >
-                          {word + ' '}
+                          <span
+                            aria-hidden="true"
+                            style={{
+                              display: 'inline-block',
+                              whiteSpace: 'pre',
+                              opacity: 1
+                            }}
+                          >
+                            {word + ' '}
+                          </span>
                         </span>
-                      </span>
-                    );
-                  })}
-                </h2>
-                <LogoGrid />
-              </div>
-              <div className={styles['about-capabilities']}>
-                <h2 className={styles['about-capabilities__intro']} aria-label={heading}>
-                  {heading.split(' ').map((word, index) => {
-                    const isSpecial = word.toLowerCase().includes('capabilities');
-                    return (
-                      <span
-                        key={index}
-                        className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
-                        aria-hidden="true"
-                        style={{
-                          display: 'inline-block',
-                          whiteSpace: 'pre',
-                          transform: 'translate3d(0px, 0%, 0px)',
-                          opacity: 1,
-                          transitionDelay: `${index * 0.05}s`
-                        }}
-                      >
-                        <span
-                          aria-hidden="true"
-                          style={{
-                            display: 'inline-block',
-                            whiteSpace: 'pre',
-                            opacity: 1
-                          }}
-                        >
-                          {word + ' '}
-                        </span>
-                      </span>
-                    );
-                  })}
-                </h2>
+                      );
+                    })}
+                  </h2>
 
-                <Capabilities />
-              </div>
+                  <Capabilities />
+                </div>
+              </AppearOnScroll>
             </div>
+
             <div className={`${styles['about-midpage-banner']} ${styles['about-midpage-banner--visible']}`}>
               <TestimonialAbout testimonialCSSClass={styles['about-testimonials']} />
             </div>
             <div className="">
               {/* <AwardsBlock /> */}
+
               <div className={styles['about-dos-donts']}>
-                <h2 className={styles['about-dos-donts__intro']} aria-label={above}>
-                  {above.split(' ').map((word, index) => (
-                    <span
-                      key={index}
-                      className={TextAnimateStyles['word']}
-                      aria-hidden="true"
-                      style={{
-                        display: 'inline-block',
-                        whiteSpace: 'pre',
-                        transform: 'translate3d(0px, 0%, 0px)',
-                        opacity: 1,
-                        transitionDelay: `${index * 0.05}s`
-                      }}
-                    >
+                <AppearOnScroll>
+                  <h2 className={styles['about-dos-donts__intro']} aria-label={above}>
+                    {above.split(' ').map((word, index) => (
                       <span
+                        key={index}
+                        className={TextAnimateStyles['word']}
                         aria-hidden="true"
                         style={{
                           display: 'inline-block',
                           whiteSpace: 'pre',
-                          opacity: 1
+                          transform: 'translate3d(0px, 0%, 0px)',
+                          opacity: 1,
+                          transitionDelay: `${index * 0.05}s`
                         }}
                       >
-                        {word + ' '}
+                        <span
+                          aria-hidden="true"
+                          style={{
+                            display: 'inline-block',
+                            whiteSpace: 'pre',
+                            opacity: 1
+                          }}
+                        >
+                          {word + ' '}
+                        </span>
                       </span>
-                    </span>
-                  ))}
-                </h2>
-
-                <div className={styles['about-dos-donts__grid']}>
-                  <section className={styles['about-column']} style={{ opacity: 1, transform: 'translateX(0px)' }}>
-                    <h3 className={styles['about-column__heading']}>What we do</h3>
-                    <ul className={styles['about-column__list']}>
-                      <li>World-className </li>
-                      <li>Expect creativity</li>
-                      <li>Celebrate success</li>
-                      <li>Obsess over detail</li>
-                      <li>Pub lunch Fridays</li>
-                      <li>Embrace change</li>
+                    ))}
+                  </h2>
+                </AppearOnScroll>
+                <AppearOnScroll>
+                  <div className={styles['about-dos-donts__grid']}>
+                    <section className={styles['about-column']} style={{ opacity: 1, transform: 'translateX(0px)' }}>
+                      <h3 className={styles['about-column__heading']}>What we do</h3>
+                      <ul className={styles['about-column__list']}>
+                        <li>World-className </li>
+                        <li>Expect creativity</li>
+                        <li>Celebrate success</li>
+                        <li>Obsess over detail</li>
+                        <li>Pub lunch Fridays</li>
+                        <li>Embrace change</li>
                       <li>Unlock potential</li>
                       <li>High-five</li>
                       <li>Outstanding service</li>
@@ -342,6 +355,7 @@ const Contact: React.FC = (): JSX.Element => {
                     </ul>
                   </section>
                 </div>
+                </AppearOnScroll>
               </div>
             </div>
           </main>
