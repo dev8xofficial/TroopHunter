@@ -84,6 +84,8 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
+/public/videos/
+/public/images/
 
 # Gatsby files
 .cache/
