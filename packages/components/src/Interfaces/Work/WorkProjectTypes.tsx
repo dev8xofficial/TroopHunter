@@ -1,3 +1,8 @@
+export type Video = {
+  originalFile: string;
+  sequences: string[];
+};
+
 export type WorkDetail = {
   slug: string;
   title: string;
@@ -10,7 +15,7 @@ export type WorkDetail = {
   keyContributions: string[];
   placeholderImage: string;
   images: string[];
-  video: string;
+  video: Video;
   bgColor: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
   path: string;
 };

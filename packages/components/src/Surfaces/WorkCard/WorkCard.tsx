@@ -41,7 +41,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({ variant, space, bgColor, tit
                   <img src={`${image}`} loading="lazy" width="450" height={variant === 'landscape' ? '330' : '677'} alt="" className="" draggable="false" />
                 </picture>
               )}
-              {video && space === 'outer' ? <video className={styles['work-card__video']} autoPlay loop playsInline src={video}></video> : <></>}
+              {video && space === 'outer' ? <video className={styles['work-card__video']} autoPlay loop playsInline src={video.originalFile}></video> : <></>}
             </div>
             {space === 'inner' && (
               <div className={styles['work-card__thumbnail-inner']}>
@@ -52,7 +52,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({ variant, space, bgColor, tit
                   <source srcSet={`${image} 1x, ${image} 2x`} media="(min-width: 1513px)" />
                   <img src={`${image}`} loading="lazy" width={variant === 'landscape' ? '312' : '171'} height={variant === 'landscape' ? '178' : '369'} alt="" className="" draggable="false" />
                 </picture>
-                {video ? <video className={styles['work-card__video']} autoPlay loop playsInline src={video}></video> : <></>}
+                {video ? <video className={styles['work-card__video']} autoPlay loop playsInline src={video.originalFile}></video> : <></>}
               </div>
             )}
           </div>

@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import { WorkDetail } from '../../Interfaces/Work/WorkProjectTypes';
 
@@ -9,7 +8,7 @@ import PictureStyles from '../Picture/index.module.css';
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import styles from './index.module.css';
 
-export const ProjectsFormModal: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'path' | 'placeholderImage' | 'images' | 'bgColor'>> = ({ title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions }): JSX.Element => {
+export const ProjectsFormModal: React.FC<Omit<WorkDetail, 'slug' | 'path' | 'placeholderImage' | 'images' | 'bgColor'>> = ({ title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, video }): JSX.Element => {
   return (
     <>
       <div className={`${styles['project-content']} project-content}`}>
@@ -18,7 +17,7 @@ export const ProjectsFormModal: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'pa
           <div className={styles['project-content__blocks']}>
             <div className={styles['project-content__block-image']}>
               <div className={styles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-                <video className={styles['project-content__video']} autoPlay playsInline loop preload="none" src="https://player.vimeo.com/progressive_redirect/playback/745004855/rendition/720p/file.mp4?loc=external&amp;signature=1dd35b7b1001be056347f1aa639461cf56f40fc35b3f0ad75170809e8ca7d4e4" aria-describedby="video-description-0-0"></video>
+                <video className={styles['project-content__video']} autoPlay playsInline loop preload="none" src={video?.sequences[0]} aria-describedby="video-description-0-0"></video>
                 <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['project-content__picture']}`}>
                   <source srcSet="https://a-us.storyblok.com/f/1017006/2520x1554/ddf28d429b/sussex-landscape-1.jpg/m/460x284/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/2520x1554/ddf28d429b/sussex-landscape-1.jpg/m/920x568/filters:quality(80) 2x" media="(min-width: 0px) and (max-width: 479px)" />
                   <source srcSet="https://a-us.storyblok.com/f/1017006/2520x1554/ddf28d429b/sussex-landscape-1.jpg/m/940x580/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/2520x1554/ddf28d429b/sussex-landscape-1.jpg/m/1880x1160/filters:quality(80) 2x" media="(min-width: 480px) and (max-width: 1512px)" />
@@ -45,7 +44,7 @@ export const ProjectsFormModal: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'pa
             </div>
             <div className={styles['project-content__block-image']}>
               <div className={styles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-                <video className={styles['project-content__video']} autoPlay playsInline loop preload="none" src="https://player.vimeo.com/progressive_redirect/playback/759804705/rendition/720p/file.mp4?loc=external&log_user=0&signature=e183b012e9a5b0b4e4d3f2616ec4ba7f74e0c1cba69a5ef81aeac012deb7f98c" aria-describedby="video-description-0-0"></video>
+                <video className={styles['project-content__video']} autoPlay playsInline loop preload="none" src={video?.sequences[1]} aria-describedby="video-description-0-0"></video>
                 <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['project-content__picture']}`}>
                   <source srcSet="https://a-us.storyblok.com/f/1017006/2520x1554/e20e8748c5/sussex-landscape-4.jpg/m/460x284/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/2520x1554/e20e8748c5/sussex-landscape-4.jpg/m/920x568/filters:quality(80) 2x" media="(min-width: 0px) and (max-width: 479px)" />
                   <source srcSet="https://a-us.storyblok.com/f/1017006/2520x1554/e20e8748c5/sussex-landscape-4.jpg/m/940x580/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/2520x1554/e20e8748c5/sussex-landscape-4.jpg/m/1880x1160/filters:quality(80) 2x" media="(min-width: 480px) and (max-width: 1512px)" />
@@ -73,7 +72,7 @@ export const ProjectsFormModal: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'pa
             </div>
             <div className={styles['project-content__block-image']}>
               <div className={styles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-                <video className={styles['project-content__video']} autoPlay playsInline loop preload="none" src="https://player.vimeo.com/progressive_redirect/playback/759804705/rendition/720p/file.mp4?loc=external&log_user=0&signature=e183b012e9a5b0b4e4d3f2616ec4ba7f74e0c1cba69a5ef81aeac012deb7f98c" aria-describedby="video-description-0-0"></video>
+                <video className={styles['project-content__video']} autoPlay playsInline loop preload="none" src={video?.sequences[2]} aria-describedby="video-description-0-0"></video>
                 <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['project-content__picture']}`}>
                   <source srcSet="https://a-us.storyblok.com/f/1017006/2520x1554/e20e8748c5/sussex-landscape-4.jpg/m/460x284/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/2520x1554/e20e8748c5/sussex-landscape-4.jpg/m/920x568/filters:quality(80) 2x" media="(min-width: 0px) and (max-width: 479px)" />
                   <source srcSet="https://a-us.storyblok.com/f/1017006/2520x1554/e20e8748c5/sussex-landscape-4.jpg/m/940x580/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/2520x1554/e20e8748c5/sussex-landscape-4.jpg/m/1880x1160/filters:quality(80) 2x" media="(min-width: 480px) and (max-width: 1512px)" />

@@ -13,7 +13,10 @@ export const WORK_PROJECTS: WorkDetail[] = [
     keyContributions: ['API Development & Integration', 'Flutter Mobile Features', 'Workflow Automation Scripts', 'Custom CRM Module Development', 'Virtual Consultation Tools'],
     placeholderImage: '/images/placeholder/1080.png',
     images: [''],
-    video: '/videos/work/crm.mp4',
+    video: {
+      originalFile: '/videos/work/totalhealthdentalcare.mp4',
+      sequences: ['/videos/work/totalhealthdentalcare/part-01-export.mp4', '/videos/work/totalhealthdentalcare/part-03-export.mp4', '/videos/work/totalhealthdentalcare/part-05-export.mp4', '/videos/work/totalhealthdentalcare/part-02-export.mp4', '/videos/work/totalhealthdentalcare/part-04-export.mp4', '/videos/work/totalhealthdentalcare/part-06-export.mp4']
+    },
     bgColor: 'cyan',
     path: 'totalhealthdentalcare'
   },
@@ -29,7 +32,10 @@ export const WORK_PROJECTS: WorkDetail[] = [
     keyContributions: ['Built responsive UI with React', 'Created APIs using Node.js', 'Integrated payment systems', 'Optimized mobile performance', 'Set up CI/CD pipelines'],
     placeholderImage: '/images/placeholder/1080.png',
     images: [''],
-    video: '/videos/work/honeydu.mp4',
+    video: {
+      originalFile: '/videos/work/honeydu.mp4',
+      sequences: ['/videos/work/honeydu/part-01-export.mp4', '/videos/work/honeydu/part-02-export.mp4', '/videos/work/honeydu/part-04-export.mp4', '/videos/work/honeydu/part-03-export.mp4']
+    },
     bgColor: 'green',
     path: 'honeydu'
   },
@@ -45,7 +51,10 @@ export const WORK_PROJECTS: WorkDetail[] = [
     keyContributions: ['Digital Strategy & UX', 'Brand-Driven UI Design', 'Interactive Prototyping', 'Agile Web Development', 'Technology Consulting'],
     placeholderImage: '/images/placeholder/1080.png',
     images: [''],
-    video: '/videos/work/coral.mp4',
+    video: {
+      originalFile: '/videos/work/coral.mp4',
+      sequences: ['/videos/work/coral/part-01-export.mp4', '/videos/work/coral/part-02-export.mp4', '/videos/work/coral/part-03-export.mp4', '/videos/work/coral/part-04-export.mp4']
+    },
     bgColor: 'blue',
     path: 'coral'
   },
@@ -61,7 +70,10 @@ export const WORK_PROJECTS: WorkDetail[] = [
     keyContributions: ['React & Node.js development', 'Ethereum smart contracts', 'NFT access controls', 'Real-time event features', 'Decentralized app design'],
     placeholderImage: '/images/placeholder/1080.png',
     images: [''],
-    video: '/videos/work/golden-dao.mp4',
+    video: {
+      originalFile: '/videos/work/goldendao.mp4',
+      sequences: ['/videos/work/goldendao/part-01-export.mp4', '/videos/work/goldendao/part-02-export.mp4', '/videos/work/goldendao/part-03-export.mp4', '/videos/work/goldendao/part-04-export.mp4', '/videos/work/goldendao/part-05-export.mp4']
+    },
     bgColor: 'cyan',
     path: 'goldendao'
   }
