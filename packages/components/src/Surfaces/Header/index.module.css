@@ -174,7 +174,12 @@
 }
 
 .menu__link--active {
-  color: var(--theme-header-face);
+  color: var(--theme-primary);
+}
+.menu__link:hover{
+  background: #efefef;
+  border-radius: 200px;
+  color: none;
 }
 
 .menu__active-pill,
