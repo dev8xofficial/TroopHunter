@@ -29,11 +29,6 @@
     src: "{{ ENV_PATH }}/microservices/users/.env-{{ ENVIRONMENT }}"
     dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/users/.env
 
-- name: Copy .env file from microservices/resizer into host microservices/resizer.
-  copy:
-    src: "{{ ENV_PATH }}/microservices/resizer/.env-{{ ENVIRONMENT }}"
-    dest: /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/resizer/.env
-
 - name: Copy .env file from microfrontend/troophunter into host microfrontend/troophunter.
   copy:
     src: "{{ ENV_PATH }}/microfrontend/troophunter/.env-{{ ENVIRONMENT }}"

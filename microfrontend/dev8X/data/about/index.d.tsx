@@ -1,6 +1,6 @@
 import { ExpertiseContent } from '@repo/components';
 
-const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading' | 'iconCards' | 'contentAsideImageItems' | 'testimonials'> = {
+const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading' | 'image' | 'iconCards' | 'contentAsideImageItems' | 'testimonials'> = {
   meta: {
     title: 'About Us — Dev8X | Dev8X: Digital Craft Real Impact',
     description: 'Discover how Dev8X crafts, launches, and scales impactful digital solutions for ambitious businesses. 100% independent and purpose-driven, we design with empathy to transform ideas into meaningful experiences.'

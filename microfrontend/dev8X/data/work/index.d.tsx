@@ -1,6 +1,6 @@
 import { ExpertiseContent } from '@repo/components';
 
-const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading' | 'iconCards' | 'contentAsideImageItems' | 'testimonials'> = {
+const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading' | 'image' | 'iconCards' | 'contentAsideImageItems' | 'testimonials'> = {
   meta: {
     title: 'Our Work — Dev8X | Dev8X: World class digital products',
     description: 'World-class digital products, idea to execution.'

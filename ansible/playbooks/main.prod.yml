@@ -20,9 +20,9 @@
   gather_facts: true
   roles:
     # - proton
-    - common
-    - nvm
+    # - common
+    # - nvm
     # - node
-    - docker
-    - github
+    # - docker
+    # - github
     - project

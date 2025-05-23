@@ -6,6 +6,7 @@ const OFFERS: ExpertiseContent[] = [
     variant: 'cyan',
     tagText: 'Website',
     heading: 'One Video, One Offer \n THDC, This is for You',
+    image: '',
     iconCards: {
       title: 'Remarkable digital experiences',
       paragraph: "We focus on what we do best: For more than 6 years, we've been imagining, crafting, and launching inspiring work on the web.",

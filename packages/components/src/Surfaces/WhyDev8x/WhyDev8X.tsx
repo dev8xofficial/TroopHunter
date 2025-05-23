@@ -2,12 +2,12 @@ import React from 'react';
 import { HomepageStat, HomepageStats } from '../HomepageStats/HomepageStats';
 import { Link } from '../Link/Link';
 import RightArrowIcon from '../../Icons/RightArrow';
+import { AppearOnScroll } from '../../../../../../TroopHunterNew/microfrontend/dev8X/components/Animations/AppearOnScroll';
 
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import PictureStyle from '../Picture/index.module.css';
 import WYSIWYGStyle from '../WYSIWYG/index.module.css';
 import styles from './index.module.css';
-import { AppearOnScroll } from '../../../../../../TroopHunterNew/microfrontend/dev8X/components/Animations/AppearOnScroll';
 
 type WhyProps = {
   heading: string;
@@ -25,7 +25,6 @@ export const WhyDev8X: React.FC<WhyProps> = ({ heading, para1, para2, image, sta
         {heading.split(' ').map((word, index) => (
           <AppearOnScroll
             key={index}
-            custom={index}
             delay={index * 0.05} // stagger words nicely
             duration={0.6}
             yOffset={10}

@@ -80,7 +80,7 @@ export default function Home() {
             <section className={styles['showcase']}>
               <h2 className={styles['showcase__heading']} aria-label={headingText}>
                 {headingText.split(' ').map((word, index) => (
-                  <AppearOnScroll key={index} custom={index} delay={0.2} duration={0.2} yOffset={20} as="span" className={TextAnimateStyles['word']}>
+                  <AppearOnScroll key={index} delay={0.2} duration={0.2} yOffset={20} as="span" className={TextAnimateStyles['word']}>
                     <span
                       aria-hidden="true"
                       style={{

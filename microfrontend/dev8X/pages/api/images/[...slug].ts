@@ -43,7 +43,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (fs.existsSync(cachePath)) {
-    return res.setHeader('Content-Type', 'image/png').sendFile(cachePath);
+    res.setHeader('Content-Type', 'image/png');
+    const fileStream = fs.createReadStream(cachePath);
+    return fileStream.pipe(res);
   }
 
   try {

@@ -68,13 +68,13 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant={variant} tagText={PageData.tagText} heading={PageData.heading} />
+            <Hero variant={variant} tagText={PageData.tagText} heading={PageData.heading} image="" />
 
             <div className={styles['homepage__purple-change']}>
               <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src="/videos/work/crm.mp4" isMobile={isMobile}>
                 <div className={`${styles['work-grid']} ${HomePageStyles['work-grid']}`}>
                   <WorkGridRowLandscape>
-                    <OffersReel bgColor="cyan" title={PageData.tagText} image="/images/placeholder/1080.png" video="/videos/work/crm.mp4" />
+                    <OffersReel bgColor="cyan" title={PageData.tagText} image="/images/placeholder/1080.png" video="/videos/work/totalhealthdentalcare.mp4" />
                   </WorkGridRowLandscape>
                 </div>
               </HomepageShowreel>

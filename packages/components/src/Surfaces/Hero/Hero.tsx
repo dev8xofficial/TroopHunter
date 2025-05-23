@@ -41,9 +41,11 @@ export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, ima
                 </picture>
               </div>
             ) : (
-              <div className={`${styles['expertise-image']} ${styles['expertise-icon-wrapper']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-                {ICON_MAP[icon.name]?.(120)}
-              </div>
+              icon && (
+                <div className={`${styles['expertise-image']} ${styles['expertise-icon-wrapper']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+                  {ICON_MAP[icon.name]?.(120)}
+                </div>
+              )
             )}
           </div>
         </div>

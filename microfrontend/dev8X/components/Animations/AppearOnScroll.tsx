@@ -17,7 +17,7 @@ const revealVariants: Variants = {
   hidden: (custom: { yOffset: number; blurAmount: number }) => ({
     opacity: 0,
     y: custom.yOffset,
-    filter: `blur(${custom.blurAmount}px)`,
+    filter: `blur(${custom.blurAmount}px)`
   }),
   visible: {
     opacity: 1,
@@ -25,21 +25,12 @@ const revealVariants: Variants = {
     filter: 'blur(0px)',
     transition: {
       duration: 1.2,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
 };
 
-export const AppearOnScroll: React.FC<RevealTextProps> = ({
-  children,
-  delay = 0,
-  duration = 1.2,
-  yOffset = 30,
-  blurAmount = 10,
-  once = true,
-  className = '',
-  as = 'div',
-}) => {
+export const AppearOnScroll: React.FC<RevealTextProps> = ({ children, delay = 0, duration = 1.2, yOffset = 30, blurAmount = 10, once = true, className = '', as = 'div' }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: once });
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -54,15 +45,7 @@ export const AppearOnScroll: React.FC<RevealTextProps> = ({
   const Tag = motion[as] || motion.div;
 
   return (
-    <Tag
-      ref={ref}
-      className={className}
-      custom={{ yOffset, blurAmount }}
-      variants={revealVariants}
-      initial="hidden"
-      animate={controls}
-      transition={{ delay, duration }}
-    >
+    <Tag ref={ref} className={className} custom={{ yOffset, blurAmount }} variants={revealVariants} initial="hidden" animate={controls} transition={{ delay, duration }}>
       {children}
     </Tag>
   );
