@@ -6,7 +6,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'cyan',
     tagText: 'Websites',
     heading: 'Exceptional websites for ambitious, modern brands',
-    image: `${process.env.NEXT_PUBLIC_RESIZER_URL}/images/work/totalhealthdentalcare/mobile/1.png`,
+    image: '/api/images/work/totalhealthdentalcare/mobile/1.png',
     iconCards: {
       title: 'Remarkable digital experiences',
       paragraph: "We focus on what we do best: For more than 6 years, we've been imagining, crafting, and launching inspiring work on the web.",
@@ -38,25 +38,25 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Elevate your brand',
         paragraph: 'We blend innovative design, cutting-edge technology, and strategic content to deliver websites that are visually appealing and highly functional. Harness the power of deeply engaging digital experiences to take your brand to the next level.',
         icon: { name: 'PointerIcon', width: 64 },
-        image: `${process.env.NEXT_PUBLIC_RESIZER_URL}/images/work/honeydu/desktop/1.png`
+        image: '/api/images/work/honeydu/desktop/1.png'
       },
       {
         title: 'Human experiences',
         paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive navigation to immersive storytelling, every website is meticulously crafted to command attention and leave a lasting impression.',
         icon: { name: 'PointerIcon', width: 64 },
-        image: `${process.env.NEXT_PUBLIC_RESIZER_URL}/images/work/totalhealthdentalcare/mobile/1.png`
+        image: '/api/images/work/totalhealthdentalcare/mobile/1.png'
       },
       {
         title: 'Robust, Secure, Flexible',
         paragraph: 'Every website we build is backed by secure and performant infrastructure, tailored to the needs of the organisation. This ensures that your digital presence can scale with demand and offer flexibility to meet the needs of your business over time.',
         icon: { name: 'PointerIcon', width: 64 },
-        image: `${process.env.NEXT_PUBLIC_RESIZER_URL}/images/work/goldendao/desktop/14.png`
+        image: '/api/images/work/goldendao/desktop/14.png'
       },
       {
         title: 'Rewarding partnerships',
         paragraph: 'Behind every best-in-class website is a collaborative agency–client partnership. We work in close collaboration with you to ensure outcomes that offer extraordinary experiences while delivering results. Awards are nice, but your success means so much more.',
         icon: { name: 'PointerIcon', width: 64 },
-        image: `${process.env.NEXT_PUBLIC_RESIZER_URL}/images/work/coral/desktop/9.png`
+        image: '/api/images/work/coral/desktop/9.png'
       }
     ],
     footerMainContent: {

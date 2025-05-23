@@ -104,21 +104,18 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "Resizer",
+      "name": "Dev8X",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
-      "runtimeArgs": ["--inspect"],
-      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
-      "args": ["${workspaceFolder}/microservices/resizer/src/server.ts"],
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "envFile": "${workspaceFolder}/microservices/resizer/.env",
-      "cwd": "${workspaceFolder}/microservices/resizer",
+      "cwd": "${workspaceFolder}/microfrontend/dev8X",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**"]
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development"
+      }
     },
     {
       "name": "TroopHunter",
@@ -126,7 +123,7 @@
       "request": "launch",
       "cwd": "${workspaceFolder}/microfrontend/troophunter",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],    
+      "runtimeArgs": ["run", "dev"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "skipFiles": ["<node_internals>/**"],
@@ -140,7 +137,7 @@
       "request": "launch",
       "cwd": "${workspaceFolder}/microfrontend/troophunter-landing",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],    
+      "runtimeArgs": ["run", "dev"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "skipFiles": ["<node_internals>/**"],
