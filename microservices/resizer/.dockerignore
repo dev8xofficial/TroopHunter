@@ -1,7 +1,7 @@
 logs
 node_modules
 cache
-assets/images
+assets
 pgadmin-data
 postgres-data
 .env.example

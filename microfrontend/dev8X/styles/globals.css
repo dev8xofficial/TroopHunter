@@ -73,11 +73,6 @@ html {
   scroll-behavior: smooth !important;
 }
 
-html {
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-}
-
 html.lenis,
 html.lenis body {
   height: auto;
@@ -166,6 +161,15 @@ html {
   box-sizing: border-box;
   height: 100%;
   text-rendering: geometricPrecision;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
 }
 
 body {

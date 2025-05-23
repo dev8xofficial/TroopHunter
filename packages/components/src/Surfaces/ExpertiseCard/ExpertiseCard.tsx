@@ -5,7 +5,7 @@ import RightArrowIcon from '../../Icons/RightArrow';
 import PictureStyles from '../Picture/index.module.css';
 import styles from './index.module.css';
 
-export const ExpertiseCard: React.FC<Omit<ExpertiseContent, 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'>> = ({ variant, tagText, heading, slug }): JSX.Element => {
+export const ExpertiseCard: React.FC<Omit<ExpertiseContent, 'image' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'>> = ({ variant, tagText, heading, slug }): JSX.Element => {
   return (
     <>
       <section className={styles['expertise-card']} style={{ '--theme-primary': `var(--${variant}-primary)`, '--theme-secondary': `var(--${variant}-secondary)`, '--theme-background': `var(--${variant}-tertiary)`, '--theme-text': `var(--${variant}-text)` } as React.CSSProperties}>

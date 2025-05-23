@@ -64,7 +64,7 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${styles['expertise-single']} container-full`}>
-            <Hero variant={variant} tagText={PageData.tagText} heading={PageData.heading} icon={PageData.contentAsideImageItems[Object.keys(PageData.contentAsideImageItems)[0]].icon} />
+            <Hero variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} icon={PageData.contentAsideImageItems[Object.keys(PageData.contentAsideImageItems)[0]].icon} />
 
             <div>
               <ModularBlocks>
@@ -140,13 +140,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const PageData = EXPERTISES.find((p) => p.slug === params.slug);
-  const { slug, variant, tagText, heading, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials } = PageData;
+  const { slug, variant, tagText, heading, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials } = PageData;
 
   if (!PageData) {
     return { notFound: true };
   }
 
   return {
-    props: { slug, variant, tagText, heading, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials }
+    props: { slug, variant, tagText, heading, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials }
   };
 }

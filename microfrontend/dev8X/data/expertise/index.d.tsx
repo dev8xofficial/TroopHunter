@@ -6,6 +6,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'cyan',
     tagText: 'Websites',
     heading: 'Exceptional websites for ambitious, modern brands',
+    image: `${process.env.NEXT_PUBLIC_RESIZER_URL}/images/work/totalhealthdentalcare/mobile/1.png`,
     iconCards: {
       title: 'Remarkable digital experiences',
       paragraph: "We focus on what we do best: For more than 6 years, we've been imagining, crafting, and launching inspiring work on the web.",
@@ -36,22 +37,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Elevate your brand',
         paragraph: 'We blend innovative design, cutting-edge technology, and strategic content to deliver websites that are visually appealing and highly functional. Harness the power of deeply engaging digital experiences to take your brand to the next level.',
-        icon: { name: 'PointerIcon', width: 64 }
+        icon: { name: 'PointerIcon', width: 64 },
+        image: `${process.env.NEXT_PUBLIC_RESIZER_URL}/images/work/honeydu/desktop/1.png`
       },
       {
         title: 'Human experiences',
         paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive navigation to immersive storytelling, every website is meticulously crafted to command attention and leave a lasting impression.',
-        icon: { name: 'PointerIcon', width: 64 }
+        icon: { name: 'PointerIcon', width: 64 },
+        image: `${process.env.NEXT_PUBLIC_RESIZER_URL}/images/work/totalhealthdentalcare/mobile/1.png`
       },
       {
         title: 'Robust, Secure, Flexible',
         paragraph: 'Every website we build is backed by secure and performant infrastructure, tailored to the needs of the organisation. This ensures that your digital presence can scale with demand and offer flexibility to meet the needs of your business over time.',
-        icon: { name: 'PointerIcon', width: 64 }
+        icon: { name: 'PointerIcon', width: 64 },
+        image: `${process.env.NEXT_PUBLIC_RESIZER_URL}/images/work/goldendao/desktop/14.png`
       },
       {
         title: 'Rewarding partnerships',
         paragraph: 'Behind every best-in-class website is a collaborative agency–client partnership. We work in close collaboration with you to ensure outcomes that offer extraordinary experiences while delivering results. Awards are nice, but your success means so much more.',
-        icon: { name: 'PointerIcon', width: 64 }
+        icon: { name: 'PointerIcon', width: 64 },
+        image: `${process.env.NEXT_PUBLIC_RESIZER_URL}/images/work/coral/desktop/9.png`
       }
     ],
     footerMainContent: {
@@ -123,6 +128,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'pink',
     tagText: 'Web Applications',
     heading: 'Tailored digital solutions, from concept to launch',
+    image: '',
     iconCards: {
       title: 'Built for your needs',
       paragraph: 'We craft custom web applications designed specifically to support and enhance your unique business operations.',
@@ -235,6 +241,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Mobile Apps',
     heading: 'We create, craft and launch exceptional mobile apps',
+    image: '',
     iconCards: {
       title: 'Built to touch',
       paragraph: 'Bespoke iOS and Android applications – designed and developed entirely in-house.',
@@ -347,6 +354,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'green',
     tagText: 'eCommerce',
     heading: 'Beautiful online stores that engage and convert',
+    image: '',
     iconCards: {
       title: 'From 1 product to 100+',
       paragraph: 'High-performing eCommerce experiences that turn visitors into loyal customers.',
@@ -459,6 +467,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'purple',
     tagText: 'Data Visualisation & Storytelling',
     heading: 'Compelling data storytelling through impactful visualisations',
+    image: '',
     iconCards: {
       title: 'Information is beautiful',
       paragraph: 'Distinctive visuals, intuitive narratives, and engaging experiences driven by your data.',
@@ -571,6 +580,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'purple',
     tagText: 'User Research & Validation',
     heading: 'Strategic foundations lead to better outcomes',
+    image: '',
     iconCards: {
       title: 'User research & validation',
       paragraph: 'Our process begins with thorough user research—uncovering broad and specific audience needs through a mix of qualitative and quantitative methods.',
@@ -688,6 +698,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'cyan',
     tagText: 'User Experience Design',
     heading: 'Inspire, enable, captivate',
+    image: '',
     iconCards: {
       title: 'Human-centred digital experiences',
       paragraph: 'User Experience Design sits at the heart of everything we do. From strategy to information architecture and seamless workflows, every choice is made to ensure users can accomplish their goals with ease—and a touch of delight.',
@@ -800,6 +811,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'pink',
     tagText: 'User Interface Design',
     heading: 'Next-gen UI tailored to your application',
+    image: '',
     iconCards: {
       title: 'Bespoke user interfaces',
       paragraph: 'Blending human-centric aesthetics with purposeful design, we follow a structured approach to build intuitive and highly functional user interfaces.',
@@ -917,6 +929,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Prototyping',
     heading: 'Turn your ideas into digital prototypes',
+    image: '',
     iconCards: {
       title: 'Design, prototype, test',
       paragraph: "Validate your concepts before developing your MVP. With over 6 years of expertise in digital prototyping, our team ensures it's an integral part of a complete product development and design process.",
@@ -1034,6 +1047,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'green',
     tagText: 'Design Systems',
     heading: 'Scalable Design Solutions',
+    image: '',
     iconCards: {
       title: 'Boost your product development',
       paragraph: 'We build robust design systems that empower product teams to move quicker. Develop your own collection of reusable components and patterns to ensure a cohesive and consistent design across your entire digital ecosystem.',
@@ -1151,6 +1165,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'purple',
     tagText: 'React.js',
     heading: 'Build dynamic web applications with React.js',
+    image: '',
     iconCards: {
       title: 'Modern, efficient, and scalable',
       paragraph: 'Harness the power of React.js to create fast, interactive, and scalable web applications. From component-based architecture to seamless state management, React ensures your app performs efficiently and delivers a smooth user experience.',
@@ -1278,6 +1293,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'purple',
     tagText: 'Next.js',
     heading: 'Building fast, scalable, and dynamic web applications',
+    image: '',
     iconCards: {
       title: 'Next.js for seamless performance',
       paragraph: 'Harness the power of Next.js to build optimized, lightning-fast web applications. With server-side rendering, static site generation, and API routes, we help teams create high-performing websites that scale effortlessly across devices.',
@@ -1400,6 +1416,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'purple',
     tagText: 'Node.js',
     heading: 'Powerful, scalable applications with Node.js',
+    image: '',
     iconCards: {
       title: 'Streamline backend development',
       paragraph: 'Harness the full potential of Node.js to build fast, scalable applications. Whether you’re building real-time services, APIs, or complex enterprise solutions, Node.js helps you power up with efficiency and speed.',
@@ -1517,6 +1534,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'pink',
     tagText: 'Express.js/Nest.js',
     heading: 'Build fast, scalable APIs with precision',
+    image: '',
     iconCards: {
       title: 'Efficient server-side solutions',
       paragraph: 'Harness the power of Express.js and Nest.js to create lightweight, scalable backend applications. Whether you need a quick REST API or a robust GraphQL server, our team helps you build efficient, maintainable solutions.',
@@ -1639,6 +1657,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Supabase',
     heading: 'World-class websites for forward-thinking brands',
+    image: '',
     iconCards: {
       title: 'Extraordinary digital products',
       paragraph: "We play to our strengths: For over 6 years we've been ideating, creating and shipping wonderful things on the internet.",
@@ -1761,6 +1780,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Backend',
     heading: 'Building powerful, scalable backends',
+    image: '',
     iconCards: {
       title: 'Efficient, reliable systems',
       paragraph: 'We design and build backend architectures that scale with your business needs. Our solutions are engineered for performance, reliability, and ease of integration, ensuring your data flows seamlessly through your applications.',
@@ -1878,6 +1898,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'pink',
     tagText: 'Real-Time Applications',
     heading: 'Engage users in the moment with real-time experiences',
+    image: '',
     iconCards: {
       title: 'Instant, seamless interaction',
       paragraph: 'We create real-time applications that enable immediate, meaningful communication. From live updates to instant messaging and collaborative tools, our real-time solutions keep users connected and engaged, effortlessly.',
@@ -1995,6 +2016,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'SaaS',
     heading: 'Empower your business with scalable SaaS solutions',
+    image: '',
     iconCards: {
       title: 'Seamless cloud integration',
       paragraph: "We design SaaS platforms that drive growth and efficiency. Whether you're building a new product or optimizing an existing one, we create scalable and secure solutions that align with your business goals and user needs.",
@@ -2112,6 +2134,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'yellow',
     tagText: 'PostgreSQL',
     heading: 'Powerful, reliable data management with PostgreSQL',
+    image: '',
     iconCards: {
       title: 'Robust data handling',
       paragraph: 'Leverage the advanced capabilities of PostgreSQL to manage and store your data with precision. With strong consistency, scalability, and extensibility, PostgreSQL ensures your data is always at its best.',
@@ -2234,6 +2257,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'cyan',
     tagText: 'ORM (Sequelize/Prisma)',
     heading: 'Efficient data management with Sequelize ORM',
+    image: '',
     iconCards: {
       title: 'Seamless database interactions',
       paragraph: 'Leverage the power of Sequelize to streamline database operations. With its robust set of features, it simplifies complex queries, models, and migrations, ensuring smooth data flow within your application.',
@@ -2351,6 +2375,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Docker',
     heading: 'Streamline your development with Docker',
+    image: '',
     iconCards: {
       title: 'Effortless containerization',
       paragraph: 'Docker enables fast, consistent, and scalable application deployment. We empower your development teams to package and deploy apps with ease, ensuring a seamless experience across environments.',
@@ -2468,6 +2493,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Virtualization',
     heading: 'Empowering seamless digital transformation through virtualization',
+    image: '',
     iconCards: {
       title: 'Virtualization made simple',
       paragraph: 'Harness the power of virtual environments to optimize infrastructure, improve scalability, and drive efficiency. Our approach helps you streamline operations while reducing complexity and cost.',
@@ -2585,6 +2611,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Ansible & Web Servers',
     heading: 'Seamless Automation, Effortless Management',
+    image: '',
     iconCards: {
       title: 'Simplify Infrastructure Operations',
       paragraph: 'We specialize in automating and managing your infrastructure with Ansible. From configuration management to application deployment, our solutions help streamline your workflows, reduce manual intervention, and improve system consistency.',
@@ -2707,6 +2734,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'AWS, Vercel, DigitalOcean',
     heading: 'Empowering scalable cloud solutions',
+    image: '',
     iconCards: {
       title: 'Cloud infrastructure at its finest',
       paragraph: 'Build reliable, secure, and scalable cloud infrastructures that grow with your business. Our AWS expertise ensures your cloud services are optimized for speed, security, and efficiency.',
@@ -2839,6 +2867,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'CI/CD',
     heading: 'Streamlined delivery with continuous integration and deployment',
+    image: '',
     iconCards: {
       title: 'Automation that empowers',
       paragraph: 'Leverage the power of CI/CD to automate your development pipeline, ensuring fast, consistent, and reliable software delivery. Our approach optimizes the workflow, from code commit to deployment, for seamless updates and faster time-to-market.',
