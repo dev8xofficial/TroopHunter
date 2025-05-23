@@ -15,7 +15,8 @@ export interface ExpertiseIconCards {
 export interface ExpertiseContentAsideImageItem {
   title: string;
   paragraph: string;
-  icon: { name: string; width: number };
+  icon?: { name: string; width: number };
+  image?: string;
 }
 
 export interface ExpertiseFooterMainContent {
@@ -60,6 +61,7 @@ export interface ExpertiseContent {
   variant: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
   tagText: string;
   heading: string;
+  image: string;
   iconCards: ExpertiseIconCards;
   contentAsideImageItems: ExpertiseContentAsideImageItem[];
   meta?: ExpertiseMetaContent;

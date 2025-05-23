@@ -15,6 +15,22 @@
     owner: "{{ USER }}"
     group: "{{ USER }}"
 
+- name: Ensure microservices/assets/images directory exists
+  file:
+    path: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/assets/images"
+    state: directory
+    mode: '0755'
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+
+- name: Ensure microservices/cache directory exists
+  file:
+    path: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/cache"
+    state: directory
+    mode: '0755'
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+
 - name: Copy public/videos directory
   copy:
     src: "{{ ENV_PATH }}/microfrontend/dev8X/public/videos/"
@@ -28,6 +44,24 @@
   copy:
     src: "{{ ENV_PATH }}/microfrontend/dev8X/public/images/"
     dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/dev8X/public/images/"
+    mode: '0755'
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    remote_src: no
+
+- name: Copy microservices/assets/images directory
+  copy:
+    src: "{{ ENV_PATH }}/microservices/assets/images/"
+    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/assets/images/"
+    mode: '0755'
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    remote_src: no
+
+- name: Copy microservices/cache directory
+  copy:
+    src: "{{ ENV_PATH }}/microservices/cache/"
+    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/cache/"
     mode: '0755'
     owner: "{{ USER }}"
     group: "{{ USER }}"

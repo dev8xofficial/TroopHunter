@@ -104,6 +104,23 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
+      "name": "Resizer",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
+      "runtimeArgs": ["--inspect"],
+      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
+      "args": ["${workspaceFolder}/microservices/resizer/src/server.ts"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/microservices/resizer/.env",
+      "cwd": "${workspaceFolder}/microservices/resizer",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
       "name": "TroopHunter",
       "type": "node",
       "request": "launch",

@@ -1,0 +1,14 @@
+logs
+node_modules
+cache
+assets/images
+pgadmin-data
+postgres-data
+.env.example
+.gitignore
+.prettierrc
+class.diagram.drawio
+cmd.txt
+package-lock.json
+README.md
+SRS.txt

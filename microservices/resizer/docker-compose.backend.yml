@@ -1,0 +1,48 @@
+services:
+  resizer_prod:
+    container_name: resizer_prod
+    build:
+      context: ../../
+      dockerfile: microservices/resizer/Dockerfile
+      target: development
+    env_file:
+      - ./.env
+    ports:
+      - '40000:40000'
+    volumes:
+      - ./logs/:/microservices/resizer/logs/
+    networks:
+      - custom_network
+    command: npm run dev
+
+  resizer_stag:
+    container_name: resizer_stag
+    build:
+      context: ../../
+      dockerfile: microservices/resizer/Dockerfile
+      target: development
+    env_file:
+      - ./.env
+    ports:
+      - '40001:40001'
+    volumes:
+      - ./logs/:/microservices/resizer/logs/
+    networks:
+      - custom_network
+    command: npm run dev
+
+  resizer_dev:
+    container_name: resizer_dev
+    build:
+      context: ../../
+      dockerfile: microservices/resizer/Dockerfile
+      target: development
+    env_file:
+      - ./.env
+    ports:
+      - '40002:40002'
+    volumes:
+      - ./logs/:/microservices/resizer/logs/
+    networks:
+      - custom_network
+    command: npm run dev
