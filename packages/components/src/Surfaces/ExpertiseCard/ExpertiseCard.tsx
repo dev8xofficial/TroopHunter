@@ -5,7 +5,7 @@ import RightArrowIcon from '../../Icons/RightArrow';
 import PictureStyles from '../Picture/index.module.css';
 import styles from './index.module.css';
 
-export const ExpertiseCard: React.FC<Omit<ExpertiseContent, 'image' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'>> = ({ variant, tagText, heading, slug }): JSX.Element => {
+export const ExpertiseCard: React.FC<Omit<ExpertiseContent, 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'>> = ({ variant, tagText, heading, slug, image }): JSX.Element => {
   return (
     <>
       <section className={styles['expertise-card']} style={{ '--theme-primary': `var(--${variant}-primary)`, '--theme-secondary': `var(--${variant}-secondary)`, '--theme-background': `var(--${variant}-tertiary)`, '--theme-text': `var(--${variant}-text)` } as React.CSSProperties}>
@@ -18,8 +18,17 @@ export const ExpertiseCard: React.FC<Omit<ExpertiseContent, 'image' | 'iconCards
           </Link>
         </div>
         <picture className={`${PictureStyles['picture ']} ${PictureStyles['picture--responsive']} ${styles['expertise-card__image']}`}>
-          <source srcSet="https://a-us.storyblok.com/f/1017006/1864x1314/4a72965f86/headless_fgf.jpg/m/600x500/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/1864x1314/4a72965f86/headless_fgf.jpg/m/1200x1000/filters:quality(80) 2x" media="(min-width: 0px)" />
-          <img src="https://a-us.storyblok.com/f/1017006/1864x1314/4a72965f86/headless_fgf.jpg/m/600x500/filters:quality(80)" loading="lazy" width="600" height="500" alt="" className="" draggable="false" />
+          {image ? (
+            <>
+              <source srcSet={`${image}/m/600x500/filters:quality(80) 1x, ${image}/m/1200x1000/filters:quality(80) 2x`} media="(min-width: 0px)" />
+              <img src={`${image}/m/600x500/filters:quality(80)`} loading="lazy" width="600" height="500" alt="" className="" draggable="false" />
+            </>
+          ) : (
+            <>
+              <source srcSet="https://a-us.storyblok.com/f/1017006/1864x1314/4a72965f86/headless_fgf.jpg/m/600x500/filters:quality(80) 1x, https://a-us.storyblok.com/f/1017006/1864x1314/4a72965f86/headless_fgf.jpg/m/1200x1000/filters:quality(80) 2x" media="(min-width: 0px)" />
+              <img src="https://a-us.storyblok.com/f/1017006/1864x1314/4a72965f86/headless_fgf.jpg/m/600x500/filters:quality(80)" loading="lazy" width="600" height="500" alt="" className="" draggable="false" />
+            </>
+          )}
         </picture>
       </section>
     </>

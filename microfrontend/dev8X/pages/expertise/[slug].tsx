@@ -112,7 +112,7 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
                     </div>
                   </footer>
 
-                  <ExpertiseCard variant={nextExpertise.variant} tagText={nextExpertise.tagText} heading={nextExpertise.iconCards.paragraph} slug={nextExpertise.slug} />
+                  <ExpertiseCard variant={nextExpertise.variant} tagText={nextExpertise.tagText} heading={nextExpertise.iconCards.paragraph} slug={nextExpertise.slug} image={nextExpertise.image} />
                 </div>
               </div>
             </div>

@@ -128,7 +128,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'pink',
     tagText: 'Web Applications',
     heading: 'Tailored digital solutions, from concept to launch',
-    image: '',
+    image: '/api/images/work/totalhealthdentalcare/desktop/20.png',
     iconCards: {
       title: 'Built for your needs',
       paragraph: 'We craft custom web applications designed specifically to support and enhance your unique business operations.',
@@ -159,17 +159,20 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Ready for scale',
         paragraph: 'As your business evolves, so will your technological requirements. We implement a practical blend of proven solutions and latest technologies to produce applications that effortlessly adapt and expand. Be relevant now, stay relevant in the future.',
-        icon: { name: 'CardIcon', width: 64 }
+        icon: { name: 'CardIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/14.png'
       },
       {
         title: 'From startups to enterprise',
         paragraph: 'We work with clients of all size, from startups poised for rapid growth or established enterprises looking to enhance their digital infrastructure. Our custom-designed and purpose-built web applications support and drive business success at every stage.',
-        icon: { name: 'CardIcon', width: 64 }
+        icon: { name: 'CardIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/mobile/2.png'
       },
       {
         title: 'Entirely bespoke',
         paragraph: 'Unique businesses demand unique solutions. From marketplaces to automation, we work with each partner to strategise, design and execute web applications that are built to spec and integrate with your existing business systems.',
-        icon: { name: 'CardIcon', width: 64 }
+        icon: { name: 'CardIcon', width: 64 },
+        image: '/api/images/work/goldendao/desktop/1.png'
       }
     ],
     footerMainContent: {
@@ -241,7 +244,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Mobile Apps',
     heading: 'We create, craft and launch exceptional mobile apps',
-    image: '',
+    image: '/api/images/work/coral/mobile/1.png',
     iconCards: {
       title: 'Built to touch',
       paragraph: 'Bespoke iOS and Android applications – designed and developed entirely in-house.',
@@ -272,17 +275,20 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'From MVP to fully featured',
         paragraph: "Whether you're a startup looking to disrupt the market or an established enterprise seeking to expand your digital footprint, we can build a scalable, robust, and secure mobile app that serves and delights your users.",
-        icon: { name: 'MobileIcon', width: 64 }
+        icon: { name: 'MobileIcon', width: 64 },
+        image: '/api/images/work/coral/mobile/2.png'
       },
       {
         title: 'Tailored customer experiences',
         paragraph: 'Our apps are tailored to the needs of the audience, offering compelling journeys to match their behaviour and usage. With a focus on exceptional user experiences, we transform ideas into powerful tools for customer engagement and brand loyalty.',
-        icon: { name: 'MobileIcon', width: 64 }
+        icon: { name: 'MobileIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/mobile/5.png'
       },
       {
         title: 'iOS and Android',
         paragraph: 'Blending innovative design, robust functionality, and seamless UX thinking, we create create world-class iOS and Android apps, utilising both native technologies and mobile frameworks to suit the unique requirements of every product.',
-        icon: { name: 'MobileIcon', width: 64 }
+        icon: { name: 'MobileIcon', width: 64 },
+        image: '/api/images/work/coral/mobile/3.png'
       }
     ],
     footerMainContent: {
