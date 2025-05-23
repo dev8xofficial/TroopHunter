@@ -111,3 +111,9 @@ export * from './src/Logos/coral';
 export * from './src/Logos/goldendao';
 export * from './src/Logos/honeydu';
 export * from './src/Logos/society1';
+
+export * from './src/Animations/Appear';
+export * from './src/Animations/AppearOnScroll';
+export * from './src/Animations/Magnet';
+export * from './src/Animations/RotatingText';
+export * from './src/Animations/Spotlight';

@@ -6,13 +6,13 @@ import { useProjectModal } from '../hooks/useProjectModal';
 import Hero from '../components/Surfaces/Hero/Hero';
 // import Problems from './home/Problems/Problems';
 import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDev8X, ProjectsFormModal, ContactFormModal, WORK_PROJECTS } from '@repo/components';
+import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../data/index.d';
 
 import TextAnimateStyles from '../components/Surfaces/TextAnimateUp/index.module.css';
 import styles from './index.module.css';
-import { AppearOnScroll } from '../components/Animations/AppearOnScroll';
 
 export default function Home() {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);

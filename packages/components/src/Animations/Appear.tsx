@@ -13,18 +13,14 @@ const Appear = ({ children, delay = 0 }) => {
         opacity: 1,
         y: 0,
         filter: 'blur(0px)',
-        transition: { duration: 0.8, ease: 'easeOut', delay },
+        transition: { duration: 0.8, ease: 'easeOut', delay }
       });
       setHasAnimated(true);
     }
   }, [inView, controls, hasAnimated, delay]);
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
-      animate={controls}
-    >
+    <motion.div ref={ref} initial={{ opacity: 0, y: 20 }} animate={controls}>
       {children}
     </motion.div>
   );

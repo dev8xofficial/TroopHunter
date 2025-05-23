@@ -1,8 +1,8 @@
 import React from 'react';
 import { HomepageStat, HomepageStats } from '../HomepageStats/HomepageStats';
+import { AppearOnScroll } from '../../Animations/AppearOnScroll';
 import { Link } from '../Link/Link';
 import RightArrowIcon from '../../Icons/RightArrow';
-import { AppearOnScroll } from '../../../../../../TroopHunterNew/microfrontend/dev8X/components/Animations/AppearOnScroll';
 
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import PictureStyle from '../Picture/index.module.css';

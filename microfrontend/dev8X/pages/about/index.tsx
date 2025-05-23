@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom } from 'jotai';
 import { AboutGallery, AwardsBlock, ContactFormModal, Footer, FooterRevealPageWrap, Header, LogoGrid, TestimonialAbout } from '@repo/components';
+import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import Capabilities from './Capabilities/Capabilities';
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
@@ -11,9 +12,7 @@ import PageData from '../../data/about/index.d';
 import AboutHeroStyles from '../../components/Surfaces/AboutHero/index.module.css';
 import TextAnimateStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
-
 import styles from './index.module.css';
-import { AppearOnScroll } from '../../components/Animations/AppearOnScroll';
 
 const Contact: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);

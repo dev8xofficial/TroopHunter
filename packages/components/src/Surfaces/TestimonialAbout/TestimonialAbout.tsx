@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import styles from './index.module.css';
+import { AppearOnScroll } from '../../Animations/AppearOnScroll';
+
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
-import { AppearOnScroll } from '../../../../../microfrontend/dev8X/components/Animations/AppearOnScroll';
+import styles from './index.module.css';
 
 type TestimonialAboutProps = {
   testimonialCSSClass: string;

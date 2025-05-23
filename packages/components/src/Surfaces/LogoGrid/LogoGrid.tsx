@@ -41,7 +41,7 @@ export const LogoGrid: React.FC = (): JSX.Element => {
             <Tilt tiltMaxAngleX={25} tiltMaxAngleY={25} transitionSpeed={4000} glareEnable={false}>
               <li className={styles['logo-grid__item']} style={{ perspective: '1500px', opacity: 1, transform: 'translateX(0px)' }}>
                 <span className="sr-only">{item.name}</span>
-                <div className={styles['logo-grid__card']} style={{ '--borderTopColor': 'rgba(255, 255, 255, 0)', '--borderLeftColor': 'rgba(255, 255, 255, 0)', backgroundColor: 'rgba(255, 255, 255, 0.3)' } as React.CSSProperties}>
+                <div className={styles['logo-grid__card']} style={{ '--borderTopColor': 'rgba(255, 255, 255, 0)', '--borderLeftColor': 'rgba(255, 255, 255, 0)', backgroundColor: 'rgba(255, 255, 255, 0.3)' } as CSSProperties}>
                   <div className={styles['logo-grid__specular']} />
                 </div>
                 <div>{item.logo}</div>

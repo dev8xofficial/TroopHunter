@@ -1,9 +1,9 @@
 import React, { CSSProperties, useState } from 'react';
 import { useRouter } from 'next/router';
+import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenu } from '../HeaderSubmenu/HeaderSubmenu';
 
 import styles from './index.module.css';
-import { Magnet } from '../../Animations/Magnet';
 
 export const Header: React.FC = (): JSX.Element => {
   const router = useRouter();

@@ -1,5 +1,5 @@
 import React from 'react';
-import Appear from '../../Animations/Appear';
+import Appear from '@repo/components/src/Animations/Appear';
 import styles from './index.module.css';
 
 const Hero = () => {
