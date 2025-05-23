@@ -15,9 +15,9 @@
     owner: "{{ USER }}"
     group: "{{ USER }}"
 
-- name: Ensure microfrontend/dev8X/public/cache directory exists
+- name: Ensure public/images/cache directory exists
   file:
-    path: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/dev8X/public/cache"
+    path: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/dev8X/public/images/cache"
     state: directory
     mode: '0755'
     owner: "{{ USER }}"
@@ -36,6 +36,15 @@
   copy:
     src: "{{ ENV_PATH }}/microfrontend/dev8X/public/images/"
     dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/dev8X/public/images/"
+    mode: '0755'
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    remote_src: no
+
+- name: Copy public/images/cache directory
+  copy:
+    src: "{{ ENV_PATH }}/microfrontend/dev8X/public/images/cache/"
+    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/dev8X/public/images/cache/"
     mode: '0755'
     owner: "{{ USER }}"
     group: "{{ USER }}"

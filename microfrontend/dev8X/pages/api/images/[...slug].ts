@@ -4,7 +4,7 @@ import sharp from 'sharp';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const imagesDir = path.resolve(process.cwd(), 'public/images');
-const cacheDir = path.resolve(process.cwd(), 'public/cache');
+const cacheDir = path.resolve(process.cwd(), 'public/images/cache');
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const slug = req.query.slug;
