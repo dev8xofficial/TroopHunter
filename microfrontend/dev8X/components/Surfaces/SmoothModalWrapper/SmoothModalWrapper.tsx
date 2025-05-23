@@ -6,6 +6,8 @@ import { createPortal } from 'react-dom';
 import SmoothModal from '@repo/components/src/Surfaces/SmoothModal/SmoothModal';
 import { useLenis } from '../../../hooks/LenisContext';
 
+import ContactFormModalStyles from '../ContactFormModal/index.module.css';
+
 type SmoothModalWrapperProps = {
   modalType: ModalType;
   toggle: React.MouseEventHandler<HTMLButtonElement>;
@@ -47,7 +49,7 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
   if (!isMounted || !isVisible) return null;
 
   return createPortal(
-    <SmoothModal toggle={toggle} modalRef={modalRef} modalInnerRef={modalInnerRef}>
+    <SmoothModal toggle={toggle} modalRef={modalRef} modalBGClassName={modalType === 'contact' ? ContactFormModalStyles['modal-bg'] : ''} modalInnerRef={modalInnerRef}>
       {children}
     </SmoothModal>,
     document.getElementById('smooth-modal')!

@@ -91,16 +91,19 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
     <div className={styles['modal-container']}>
       {showSuccess ? (
         <div className={styles['success']}>
+          <div className={styles['modal-header']}></div>
           <h1 className={styles['modal-heading']}>Message received!</h1>
           <p className={styles['success__message']}>Thanks for considering Dev8x for your project, we'll be in touch very soon.</p>
         </div>
       ) : showError ? (
         <div className={styles['error']}>
+          <div className={styles['modal-header']}></div>
           <h1 className={styles['modal-error']}>Message failed.</h1>
           <p className={styles['error__message']}>Please try again later or contact us directly.</p>
         </div>
       ) : (
         <>
+          <div className={styles['modal-header']}></div>
           <h1 className={styles['modal-heading']}>Let's get started.</h1>
           <form onSubmit={handleSubmit(onSubmit)} className={`${styles['contact-form']} grid-cols-2`}>
             <div className={`col-full ${styles['modal-intro']}`}>
@@ -124,7 +127,7 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
               <Input
                 type="text"
                 id="company"
-                placeholder="Company name"
+                placeholder="Widgets, Inc"
                 {...register('company', {
                   required: 'Please enter your company name',
                   maxLength: { value: 20, message: 'Company name cannot exceed 20 characters' }
@@ -175,7 +178,7 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
               </FieldWrapper>
 
               <FieldWrapper className="col-sm-1" label="Timeline" message="If you have an ideal timeline or deadline, please let us know." messageId="timeline">
-                <Input type="text" id="timeline" placeholder="Timeline" {...register('timeline')} />
+                <Input type="text" id="timeline" {...register('timeline')} />
               </FieldWrapper>
             </Fieldset>
 

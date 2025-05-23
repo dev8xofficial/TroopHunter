@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @font-face {
   font-family: 'Neue Montreal', sans-serif;
   src: url(/fonts/bold.otf) format('opentype');
@@ -75,6 +71,11 @@ html {
   font-style: normal;
   font-weight: 500;
   scroll-behavior: smooth !important;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
 }
 
 html.lenis,
