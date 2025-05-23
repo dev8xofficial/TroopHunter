@@ -11,47 +11,26 @@ export const AboutGallery: React.FC = (): JSX.Element => {
     const gallery = galleryRef.current;
     if (!gallery) return;
 
-    let isDown = false;
-    let startX: number;
-    let scrollLeft: number;
+    // Auto scroll variables
+    const scrollSpeed = 3; // pixels per frame
+    const delay = 10; // milliseconds
 
-    const mouseDown = (e: MouseEvent) => {
-      isDown = true;
-      gallery.classList.add(styles.dragging); // use a CSS module class
-      startX = e.pageX - gallery.offsetLeft;
-      scrollLeft = gallery.scrollLeft;
+    const autoScroll = () => {
+      if (!gallery) return;
+
+      // Check if scrolled to end
+      if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth) {
+        gallery.scrollLeft = 0; // Reset to start
+      } else {
+        gallery.scrollLeft += scrollSpeed;
+      }
     };
 
-    const mouseLeave = () => {
-      isDown = false;
-      gallery.classList.remove(styles.dragging);
-    };
+    const intervalId = setInterval(autoScroll, delay);
 
-    const mouseUp = () => {
-      isDown = false;
-      gallery.classList.remove(styles.dragging);
-    };
-
-    const mouseMove = (e: MouseEvent) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - gallery.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      gallery.scrollLeft = scrollLeft - walk;
-    };
-
-    gallery.addEventListener('mousedown', mouseDown);
-    gallery.addEventListener('mouseleave', mouseLeave);
-    gallery.addEventListener('mouseup', mouseUp);
-    gallery.addEventListener('mousemove', mouseMove);
-
-    return () => {
-      gallery.removeEventListener('mousedown', mouseDown);
-      gallery.removeEventListener('mouseleave', mouseLeave);
-      gallery.removeEventListener('mouseup', mouseUp);
-      gallery.removeEventListener('mousemove', mouseMove);
-    };
+    return () => clearInterval(intervalId); // cleanup on unmount
   }, []);
+
   return (
     <>
       <div className={`${styles['gallery-wrapper']} ${styles['about-gallery']}`} ref={galleryRef}>
