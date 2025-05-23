@@ -1,0 +1,34 @@
+---
+- name: Ensure public/videos directory exists
+  file:
+    path: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/dev8X/public/videos"
+    state: directory
+    mode: '0755'
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+
+- name: Ensure public/images directory exists
+  file:
+    path: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/dev8X/public/images"
+    state: directory
+    mode: '0755'
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+
+- name: Copy public/videos directory
+  copy:
+    src: "{{ ENV_PATH }}/microfrontend/dev8X/public/videos/"
+    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/dev8X/public/videos/"
+    mode: '0755'
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    remote_src: no
+
+- name: Copy public/images directory
+  copy:
+    src: "{{ ENV_PATH }}/microfrontend/dev8X/public/images/"
+    dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/dev8X/public/images/"
+    mode: '0755'
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    remote_src: no
