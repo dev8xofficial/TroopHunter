@@ -360,7 +360,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'green',
     tagText: 'eCommerce',
     heading: 'Beautiful online stores that engage and convert',
-    image: '',
+    image: '/api/images/work/other/fac.png',
     iconCards: {
       title: 'From 1 product to 100+',
       paragraph: 'High-performing eCommerce experiences that turn visitors into loyal customers.',
@@ -391,17 +391,20 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Elevate your brand experience',
         paragraph: 'Every customer engagement forms the bigger picture of an overall brand experience. Our approach to ethical UX and conversion design draws from this philosophy, ensuring better customer experiences that last long after the final sale.',
-        icon: { name: 'BasketIcon', width: 64 }
+        icon: { name: 'BasketIcon', width: 64 },
+        image: '/api/images/work/other/c-bco.png'
       },
       {
         title: 'Comprehensive eCommerce functionality',
         paragraph: 'We offer a holistic suite of features designed to streamline every aspect of your online store. From product management and secure payment gateways to personalised recommendations and seamless checkout processes, we equip your eCommerce platform with all the tools to operate efficiently, adapt to market changes, and deliver an exceptional shopping experience.',
-        icon: { name: 'BasketIcon', width: 64 }
+        icon: { name: 'BasketIcon', width: 64 },
+        image: '/api/images/work/other/sandygray.png'
       },
       {
         title: 'Bring your products to life online',
         paragraph: 'We work hard translating your tangible and tactile product experiences to the digital medium, reaching a new customer base through visually engaging interfaces that hero your products and convert attention into sales. From 360-degree product views to augmented reality, we encourage customers to explore and interact with products in a rich, immersive way.',
-        icon: { name: 'BasketIcon', width: 64 }
+        icon: { name: 'BasketIcon', width: 64 },
+        image: '/api/images/work/coral/mobile/1.png'
       }
     ],
     footerMainContent: {
@@ -704,7 +707,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'cyan',
     tagText: 'User Experience Design',
     heading: 'Inspire, enable, captivate',
-    image: '',
+    image: '/api/images/work/other/sussexthumb.png',
     iconCards: {
       title: 'Human-centred digital experiences',
       paragraph: 'User Experience Design sits at the heart of everything we do. From strategy to information architecture and seamless workflows, every choice is made to ensure users can accomplish their goals with ease—and a touch of delight.',
@@ -735,17 +738,20 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Connect with your audience',
         paragraph: 'We draw from over 6 years in building and shipping wonderful things for people, accelerating conversion, generating revenue, amplifying awareness, and boosting ROI for clients big and small across a range of industries. Our first-hand knowledge of what works helps users achieve their objectives, while building emotional connections between brands and people.',
-        icon: { name: 'MapIcon', width: 64 }
+        icon: { name: 'MapIcon', width: 64 },
+        image: '/api/images/work/other/cocos.png'
       },
       {
         title: 'Digital that resonates',
         paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive information architecture to immersive storytelling, every website and web app is meticulously crafted to command attention and leave a lasting impression.',
-        icon: { name: 'MapIcon', width: 64 }
+        icon: { name: 'MapIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/2.png'
       },
       {
         title: 'Elevate your brand experience',
         paragraph: 'Each customer engagement is part of the bigger picture of an overall brand experience. Our approach to ethical UX and conversion design draws from this philosophy, ensuring better customer experiences that last long after the user achieves their goal.',
-        icon: { name: 'MapIcon', width: 64 }
+        icon: { name: 'MapIcon', width: 64 },
+        image: '/api/images/work/goldendao/desktop/9.png'
       }
     ],
     footerMainContent: {
@@ -817,7 +823,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'pink',
     tagText: 'User Interface Design',
     heading: 'Next-gen UI tailored to your application',
-    image: '',
+    image: '/api/images/work/other/04-landscape.png',
     iconCards: {
       title: 'Bespoke user interfaces',
       paragraph: 'Blending human-centric aesthetics with purposeful design, we follow a structured approach to build intuitive and highly functional user interfaces.',
@@ -848,22 +854,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Engaging Reports & Dashboards',
         paragraph: 'Surface insights from raw data with visually compelling, interactive experiences and consolidated touchpoints. We design and create data-driven user interfaces to suit any objective, from immersive reports for public consumption to bespoke internal tools and dashboards that support and inform your stakeholders.',
-        icon: { name: 'SelectionIcon', width: 64 }
+        icon: { name: 'SelectionIcon', width: 64 },
+        image: '/api/images/work/other/ui.png'
       },
       {
         title: 'An intuitive product experience',
         paragraph: 'Data informs every interface design decision we make, a vital strategy when crafting digital tools to serve complex information workflows. Using quantitative and qualitative research methods, we can determine the clearest and most intuitive UI designs for your purpose, and find the optimal path to achieving user goals.',
-        icon: { name: 'SelectionIcon', width: 64 }
+        icon: { name: 'SelectionIcon', width: 64 },
+        image: '/api/images/work/other/pentanetui.png'
       },
       {
         title: 'Human interfaces',
         paragraph: 'Tune into how people work. From eCommerce checkouts to detailed customisation tools, our systematic UI design approach has produced dynamic, future-ready outcomes across traditional and emergent industries. With over 6 years’ experience making digital products for people, we know the details that make the difference.',
-        icon: { name: 'SelectionIcon', width: 64 }
+        icon: { name: 'SelectionIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/26.png'
       },
       {
         title: 'Your UI Design Partner',
         paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. Everything we craft is entirely bespoke, as unique as the story you tell. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless user interface experiences, and a truly collaborative design and delivery process.',
-        icon: { name: 'SelectionIcon', width: 64 }
+        icon: { name: 'SelectionIcon', width: 64 },
+        image: '/api/images/work/goldendao/desktop/9.png'
       }
     ],
     footerMainContent: {
@@ -935,7 +945,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Prototyping',
     heading: 'Turn your ideas into digital prototypes',
-    image: '',
+    image: '/api/images/work/other/tourismprototype.png',
     iconCards: {
       title: 'Design, prototype, test',
       paragraph: "Validate your concepts before developing your MVP. With over 6 years of expertise in digital prototyping, our team ensures it's an integral part of a complete product development and design process.",
@@ -966,22 +976,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Mockups, wireframes & interactive prototypes',
         paragraph: 'No matter the size of your business, we can help prepare high-fidelity concepts and digital prototypes to support your product development journey. Power up your stakeholder and investor pitches with clickable, interactive prototypes that demonstrate key concepts that define your initiative.',
-        icon: { name: 'MagicWandIcon', width: 64 }
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: '/api/images/work/other/studyplanner.png'
       },
       {
         title: 'Unite multidisciplinary product teams',
         paragraph: 'Digital prototyping channels your high-level concepts into single, high-impact points of reference, bringing together multi-faceted product teams and stakeholders, leaving less room for ambiguity and miscommunication. Provide definitive documentation that your people can refer to throughout the lifespan of the project.',
-        icon: { name: 'MagicWandIcon', width: 64 }
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: '/api/images/work/other/pentanetui.png'
       },
       {
         title: 'Get real audience feedback',
         paragraph: 'Use digital prototypes to test with real users, whether an existing audience or inviting new users from a target demographic. Validate key product assumptions and see how your users understand the platform to find the right solution before committing to a full project rollout.',
-        icon: { name: 'MagicWandIcon', width: 64 }
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: '/api/images/work/other/talk-n-walk.png'
       },
       {
         title: 'Your Product Design Partner',
         paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. We’ll collaborate with you to deliver just the essential prototypes for your early-stage project, or partner with you throughout the entire product development journey. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless prototyping and product builds, and a truly collaborative design and delivery process.',
-        icon: { name: 'MagicWandIcon', width: 64 }
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/2.png'
       }
     ],
     footerMainContent: {
@@ -1053,7 +1067,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'green',
     tagText: 'Design Systems',
     heading: 'Scalable Design Solutions',
-    image: '',
+    image: '/api/images/work/other/design-systems_dev-effort.png',
     iconCards: {
       title: 'Boost your product development',
       paragraph: 'We build robust design systems that empower product teams to move quicker. Develop your own collection of reusable components and patterns to ensure a cohesive and consistent design across your entire digital ecosystem.',
@@ -1084,22 +1098,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'An on-brand design language',
         paragraph: 'Develop your own design language, built around your brand. With a bespoke component library of modular UI elements and interface design patterns, you can offer your audience a consistent visual and interactive experience no matter where they are in your digital ecosystem. Foster brand trust and encourage flow by removing unnecessary barriers to getting visitors where they need to go.',
-        icon: { name: 'PlanetRingIcon', width: 64 }
+        icon: { name: 'PlanetRingIcon', width: 64 },
+        image: '/api/images/work/other/design-systems_branded.png'
       },
       {
         title: 'Simplify your design & development efforts',
         paragraph: 'Free up your teams to focus on solving more complex problems. With a wealth of design resources on hand, your design, development and content teams can create and replication components & patterns quickly and at scale, saving hours on re-thinking ideas, re-doing work, and repairing accidental inconsistencies.',
-        icon: { name: 'PlanetRingIcon', width: 64 }
+        icon: { name: 'PlanetRingIcon', width: 64 },
+        image: '/api/images/work/other/design-systems_dev-effort.png'
       },
       {
         title: 'Style that lasts',
         paragraph: 'As part of your design system, we can deliver a comprehensive style guide covering best-practice use of the resources in your component library and pattern library, including the rationale behind design decisions particular to your brand. The aim is to create a style that lasts, no matter whose hands are on the tools or where they are in the world.',
-        icon: { name: 'PlanetRingIcon', width: 64 }
+        icon: { name: 'PlanetRingIcon', width: 64 },
+        image: '/api/images/work/other/design-systems_style-guide.png'
       },
       {
         title: 'Made for humans, with Dev8X',
         paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. Everything we craft is entirely bespoke, as unique as the story you tell. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless end results, and a truly collaborative design and delivery process.',
-        icon: { name: 'PlanetRingIcon', width: 64 }
+        icon: { name: 'PlanetRingIcon', width: 64 },
+        image: '/api/images/work/other/design-systems_fourby-humans.png'
       }
     ],
     footerMainContent: {
