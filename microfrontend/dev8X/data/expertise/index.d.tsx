@@ -1450,7 +1450,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'purple',
     tagText: 'Node.js',
     heading: 'Powerful, scalable applications with Node.js',
-    image: '',
+    image: '/api/images/work/other/macbook-node.png',
     iconCards: {
       title: 'Streamline backend development',
       paragraph: 'Harness the full potential of Node.js to build fast, scalable applications. Whether you’re building real-time services, APIs, or complex enterprise solutions, Node.js helps you power up with efficiency and speed.',
@@ -1481,22 +1481,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Powerful, Scalable Backend Solutions',
         paragraph: 'Harness the power of Node.js to build fast, scalable, and reliable backend systems. From high-performance APIs to real-time applications, our expertise in Node.js allows us to deliver flexible solutions that scale with your business needs, ensuring seamless performance even as your user base grows.',
-        icon: { name: 'NodejsIcon', width: 64 }
+        icon: { name: 'NodejsIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
       },
       {
         title: 'Real-time, Event-driven Architecture',
         paragraph: "Leverage the full potential of Node.js’s event-driven architecture to handle real-time data with low-latency performance. Whether it's live data streaming, instant messaging, or real-time analytics, we create systems that deliver dynamic and interactive experiences for your users.",
-        icon: { name: 'NodejsIcon', width: 64 }
+        icon: { name: 'NodejsIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/9.png'
       },
       {
         title: 'Custom APIs & Microservices',
         paragraph: 'Unlock the flexibility of microservices with Node.js. We craft efficient, maintainable APIs that integrate effortlessly with third-party systems and allow you to scale parts of your application independently, empowering your team to focus on what truly matters while improving your development speed.',
-        icon: { name: 'NodejsIcon', width: 64 }
+        icon: { name: 'NodejsIcon', width: 64 },
+        image: '/api/images/work/other/payload_search2.png'
       },
       {
         title: 'Your Node.js Development Partner',
         paragraph: 'We don’t just build Node.js applications; we become your trusted partner in delivering custom backend solutions that drive your product forward. With our deep knowledge of Node.js and its ecosystem, we provide comprehensive solutions, from initial planning to deployment, with ongoing support and optimization.',
-        icon: { name: 'NodejsIcon', width: 64 }
+        icon: { name: 'NodejsIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/23.png'
       }
     ],
     footerMainContent: {
@@ -1568,7 +1572,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'pink',
     tagText: 'Express.js/Nest.js',
     heading: 'Build fast, scalable APIs with precision',
-    image: '',
+    image: '/api/images/work/other/macbook-node.png',
     iconCards: {
       title: 'Efficient server-side solutions',
       paragraph: 'Harness the power of Express.js and Nest.js to create lightweight, scalable backend applications. Whether you need a quick REST API or a robust GraphQL server, our team helps you build efficient, maintainable solutions.',
@@ -1604,22 +1608,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Fast, Scalable APIs',
         paragraph: "Harness the power of Express.js and Nest.js to build lightning-fast, scalable APIs that serve your application needs. Whether you're crafting a lightweight API with Express or a full-fledged enterprise solution with Nest.js, we deliver performance-driven backend solutions that adapt as your business grows.",
-        icon: { name: 'NestjsIcon', width: 64 }
+        icon: { name: 'NestjsIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
       },
       {
         title: 'Modular, Maintainable Architecture',
         paragraph: 'With Nest.js, we help you structure your backend using modular, scalable architecture that makes it easier to maintain and extend. For lightweight, minimal overhead solutions, we tailor Express.js for high performance, ensuring your application remains agile and responsive.',
-        icon: { name: 'NestjsIcon', width: 64 }
+        icon: { name: 'NestjsIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/9.png'
       },
       {
         title: 'Efficient Development Cycles',
         paragraph: 'Accelerate your development cycles by leveraging the simplicity and efficiency of Express.js alongside the powerful features of Nest.js. We implement RESTful APIs, GraphQL, WebSockets, and more, ensuring your application can handle anything your users throw at it—quickly and reliably.',
-        icon: { name: 'NestjsIcon', width: 64 }
+        icon: { name: 'NestjsIcon', width: 64 },
+        image: '/api/images/work/other/payload_search2.png'
       },
       {
         title: 'Your Backend Design Partner',
         paragraph: 'Behind every scalable backend is a collaborative agency-client partnership. Whether you choose Express.js or Nest.js, we guide you every step of the way, delivering robust, future-proof solutions. Our team of strategists, designers, and backend experts will collaborate closely with your team to achieve seamless integration and provide custom backend solutions that fit your project perfectly.',
-        icon: { name: 'NestjsIcon', width: 64 }
+        icon: { name: 'NestjsIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/23.png'
       }
     ],
     footerMainContent: {
@@ -1690,8 +1698,8 @@ const EXPERTISES: ExpertiseContent[] = [
     slug: 'supabase',
     variant: 'blue',
     tagText: 'Supabase',
-    heading: 'World-class websites for forward-thinking brands',
-    image: '',
+    heading: 'Powerful, scalable applications with Supabase',
+    image: '/api/images/work/other/c-bco.png',
     iconCards: {
       title: 'Extraordinary digital products',
       paragraph: "We play to our strengths: For over 6 years we've been ideating, creating and shipping wonderful things on the internet.",
@@ -1732,17 +1740,20 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Real-time data at your fingertips',
         paragraph: 'Harness the power of real-time data updates with Supabase’s scalable, open-source database solution. Our approach ensures that your application can effortlessly handle live data feeds, user interactions, and notifications, creating responsive, engaging experiences for your users. Whether building collaborative apps, live dashboards, or dynamic content, Supabase enables you to turn data into immediate action.',
-        icon: { name: 'SupabaseIcon', width: 64 }
+        icon: { name: 'SupabaseIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/6.png'
       },
       {
         title: 'Seamless integrations for modern applications',
         paragraph: 'Integrate effortlessly with your existing infrastructure. Supabase supports a wide range of out-of-the-box integrations, including APIs, webhooks, authentication, and storage, making it an ideal choice for developers looking to build and scale their applications quickly and efficiently.',
-        icon: { name: 'SupabaseIcon', width: 64 }
+        icon: { name: 'SupabaseIcon', width: 64 },
+        image: '/api/images/work/other/pentanetui.png'
       },
       {
         title: 'Your data, our expertise',
         paragraph: 'Supabase gives you all the tools needed to manage your databases at scale with ease. From authentication and authorization to real-time capabilities, Supabase simplifies complex tasks and empowers your team to focus on building great applications. We bring our expertise in backend development and cloud-native technologies to help you unlock the full potential of Supabase, creating highly performant and secure experiences.',
-        icon: { name: 'SupabaseIcon', width: 64 }
+        icon: { name: 'SupabaseIcon', width: 64 },
+        image: '/api/images/work/other/ui.png'
       }
     ],
     footerMainContent: {
