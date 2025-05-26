@@ -1189,7 +1189,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'purple',
     tagText: 'React.js',
     heading: 'Build dynamic web applications with React.js',
-    image: '',
+    image: '/api/images/work/totalhealthdentalcare/desktop/20.png',
     iconCards: {
       title: 'Modern, efficient, and scalable',
       paragraph: 'Harness the power of React.js to create fast, interactive, and scalable web applications. From component-based architecture to seamless state management, React ensures your app performs efficiently and delivers a smooth user experience.',
@@ -1225,27 +1225,32 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Dynamic user experiences',
         paragraph: 'Build fast, dynamic, and highly interactive user interfaces with React.js. Our approach combines the power of reusable components with seamless state management, ensuring smooth and engaging digital experiences that scale effortlessly.',
-        icon: { name: 'ReactjsIcon', width: 64 }
+        icon: { name: 'ReactjsIcon', width: 64 },
+        image: '/api/images/work/other/react_garvan.png'
       },
       {
         title: 'Component-based architecture',
         paragraph: 'With React’s component-based structure, we help you break down complex user interfaces into modular, reusable components. This simplifies both development and maintenance, allowing your teams to deliver faster and more efficiently.',
-        icon: { name: 'ReactjsIcon', width: 64 }
+        icon: { name: 'ReactjsIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/12.png'
       },
       {
         title: 'Scalable web applications',
         paragraph: 'Harness the full potential of React to build scalable, high-performance web applications. Whether it’s a single-page app (SPA) or a complex enterprise solution, our React development expertise ensures your app will scale as your user base grows, without sacrificing performance.',
-        icon: { name: 'ReactjsIcon', width: 64 }
+        icon: { name: 'ReactjsIcon', width: 64 },
+        image: '/api/images/work/coral/mobile/11.png'
       },
       {
         title: 'Seamless state management',
         paragraph: 'Leverage modern tools like Redux, Context API, and React Query for robust state management across your application. Our approach ensures that your app remains responsive and consistent, no matter how dynamic the data or interactions may be.',
-        icon: { name: 'ReactjsIcon', width: 64 }
+        icon: { name: 'ReactjsIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/3.png'
       },
       {
         title: 'Your React Partner',
         paragraph: 'Behind every world-class React application is a collaborative agency-client partnership. We work alongside your team to create bespoke solutions, tailored to your business needs, using React as the backbone for modern, interactive user interfaces.',
-        icon: { name: 'ReactjsIcon', width: 64 }
+        icon: { name: 'ReactjsIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/14.png'
       }
     ],
     footerMainContent: {
@@ -1317,7 +1322,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'purple',
     tagText: 'Next.js',
     heading: 'Building fast, scalable, and dynamic web applications',
-    image: '',
+    image: '/api/images/work/totalhealthdentalcare/desktop/23.png',
     iconCards: {
       title: 'Next.js for seamless performance',
       paragraph: 'Harness the power of Next.js to build optimized, lightning-fast web applications. With server-side rendering, static site generation, and API routes, we help teams create high-performing websites that scale effortlessly across devices.',
@@ -1348,27 +1353,32 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Dynamic & Scalable Web Applications',
         paragraph: 'Leverage the power of Next.js to build fast, scalable, and dynamic web applications. From static sites to complex applications, Next.js enables seamless routing, fast rendering, and enhanced SEO capabilities, allowing you to create an optimized digital experience.',
-        icon: { name: 'NextjsIcon', width: 64 }
+        icon: { name: 'NextjsIcon', width: 64 },
+        image: '/api/images/work/coral/mobile/11.png'
       },
       {
         title: 'Optimized Performance',
         paragraph: 'Next.js provides automatic server-side rendering (SSR) and static site generation (SSG), ensuring your applications load fast and perform well across all devices. We take full advantage of these features to deliver an unparalleled user experience with minimal latency.',
-        icon: { name: 'NextjsIcon', width: 64 }
+        icon: { name: 'NextjsIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/6.png'
       },
       {
         title: 'Powerful API Routes & Flexibility',
         paragraph: 'Streamline your backend by integrating API routes directly into your Next.js application. Whether you need to fetch data or integrate with third-party services, Next.js makes it easy to handle server-side logic seamlessly, with no extra overhead.',
-        icon: { name: 'NextjsIcon', width: 64 }
+        icon: { name: 'NextjsIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/3.png'
       },
       {
         title: 'Seamless User Experiences',
         paragraph: "With Next.js, we can create user-centric experiences that blend dynamic content with static elements, allowing for seamless transitions, real-time updates, and an overall smooth performance. Whether you're building an e-commerce site, blog, or complex SaaS application, Next.js scales effortlessly.",
-        icon: { name: 'NextjsIcon', width: 64 }
+        icon: { name: 'NextjsIcon', width: 64 },
+        image: '/api/images/work/other/react_garvan.png'
       },
       {
         title: 'Collaborative Development',
         paragraph: 'Building with Next.js requires collaboration at every stage. Our team works closely with you to ensure that every aspect of your project, from component libraries to deployment, is well-aligned with your product roadmap and business goals. With an experienced in-house team of strategists, developers, and designers, we deliver high-quality Next.js solutions that are both efficient and scalable.',
-        icon: { name: 'NextjsIcon', width: 64 }
+        icon: { name: 'NextjsIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/14.png'
       }
     ],
     footerMainContent: {
