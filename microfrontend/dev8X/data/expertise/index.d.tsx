@@ -1825,7 +1825,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Backend',
     heading: 'Building powerful, scalable backends',
-    image: '',
+    image: '/api/images/work/other/scalable-backends.png',
     iconCards: {
       title: 'Efficient, reliable systems',
       paragraph: 'We design and build backend architectures that scale with your business needs. Our solutions are engineered for performance, reliability, and ease of integration, ensuring your data flows seamlessly through your applications.',
@@ -1856,22 +1856,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Robust & Scalable Architectures',
         paragraph: 'We build backend systems that scale with your business, supporting high performance and reliability. From database management to server-side logic, we ensure your infrastructure is robust, flexible, and able to handle growth seamlessly.',
-        icon: { name: 'BackendIcon', width: 64 }
+        icon: { name: 'BackendIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
       },
       {
         title: 'Streamline Data Flow',
         paragraph: 'Transform complex data processes into smooth, efficient workflows. Our backend solutions integrate various data sources, ensuring your systems communicate effectively, reducing friction and enabling timely insights for better decision-making.',
-        icon: { name: 'BackendIcon', width: 64 }
+        icon: { name: 'BackendIcon', width: 64 },
+        image: '/api/images/work/other/ui.png'
       },
       {
         title: 'Seamless Integrations',
         paragraph: "We specialize in building custom backend solutions that integrate effortlessly with third-party services, APIs, and platforms. Whether it's payment gateways, CRM systems, or cloud services, we ensure your application connects smoothly and securely with the tools that power your business.",
-        icon: { name: 'BackendIcon', width: 64 }
+        icon: { name: 'BackendIcon', width: 64 },
+        image: '/api/images/work/other/payload_search2.png'
       },
       {
         title: 'Your Backend Development Partner',
         paragraph: 'Behind every powerful backend system is a collaborative agency–client partnership. Our team of strategists, developers, and project managers work together to understand your unique needs and deliver tailored backend solutions that drive long-term success. We’re committed to helping you build a system that supports your entire business ecosystem.',
-        icon: { name: 'BackendIcon', width: 64 }
+        icon: { name: 'BackendIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/23.png'
       }
     ],
     footerMainContent: {
@@ -1943,7 +1947,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'pink',
     tagText: 'Real-Time Applications',
     heading: 'Engage users in the moment with real-time experiences',
-    image: '',
+    image: '/api/images/work/other/developer-identifying-server-issues.png',
     iconCards: {
       title: 'Instant, seamless interaction',
       paragraph: 'We create real-time applications that enable immediate, meaningful communication. From live updates to instant messaging and collaborative tools, our real-time solutions keep users connected and engaged, effortlessly.',
@@ -1974,22 +1978,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Seamless, Instant Connectivity',
         paragraph: 'Create applications that provide real-time updates and instantaneous interaction. Whether you’re building live chat platforms, collaborative tools, or online gaming experiences, our approach ensures a smooth, responsive, and engaging experience for your users—every time they interact.',
-        icon: { name: 'SeismometerIcon', width: 64 }
+        icon: { name: 'SeismometerIcon', width: 64 },
+        image: '/api/images/work/other/payload_search2.png'
       },
       {
         title: 'Transformative User Experiences',
         paragraph: 'We specialize in designing and developing real-time applications that push the boundaries of user interaction. From real-time notifications to live data feeds, we create dynamic systems that engage users in meaningful, real-time experiences while maintaining optimal performance and reliability.',
-        icon: { name: 'SeismometerIcon', width: 64 }
+        icon: { name: 'SeismometerIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/9.png'
       },
       {
         title: 'Scalable Solutions for Every Need',
         paragraph: 'We build scalable architectures to support real-time data processing, ensuring that your app can grow as your user base expands. Whether handling hundreds or millions of simultaneous users, we leverage cutting-edge technologies to guarantee performance under pressure, offering seamless scalability for your real-time application needs.',
-        icon: { name: 'SeismometerIcon', width: 64 }
+        icon: { name: 'SeismometerIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
       },
       {
         title: 'Powerful Real-Time Systems',
         paragraph: 'Our expertise goes beyond simple integrations—we develop sophisticated back-end systems that allow for secure, real-time communication between users and devices. From instant messaging apps to real-time dashboards, we ensure your application remains fast, reliable, and always connected.',
-        icon: { name: 'SeismometerIcon', width: 64 }
+        icon: { name: 'SeismometerIcon', width: 64 },
+        image: '/api/images/work/other/developer-identifying-server-issues.png'
       }
     ],
     footerMainContent: {
@@ -2061,7 +2069,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'SaaS',
     heading: 'Empower your business with scalable SaaS solutions',
-    image: '',
+    image: '/api/images/work/honeydu/desktop/2.png',
     iconCards: {
       title: 'Seamless cloud integration',
       paragraph: "We design SaaS platforms that drive growth and efficiency. Whether you're building a new product or optimizing an existing one, we create scalable and secure solutions that align with your business goals and user needs.",
@@ -2092,22 +2100,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Transform your business with SaaS',
         paragraph: 'Elevate your operations with tailored SaaS solutions that streamline workflows and boost efficiency. We design and build robust platforms that meet your specific business needs, delivering intuitive, scalable, and secure tools to enhance your digital transformation journey.',
-        icon: { name: 'SaaSIcon', width: 64 }
+        icon: { name: 'SaaSIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/14.png'
       },
       {
         title: 'Intuitive user experiences at scale',
         paragraph: 'Every successful SaaS product needs a seamless user experience. Our focus is on simplifying complex workflows, ensuring that every interaction is intuitive and easy, even as your product scales. Whether it’s for internal teams or external customers, we ensure your users stay engaged and productive.',
-        icon: { name: 'SaaSIcon', width: 64 }
+        icon: { name: 'SaaSIcon', width: 64 },
+        image: '/api/images/work/other/react_garvan.png'
       },
       {
         title: 'Tailored for your growth',
         paragraph: 'From start-ups to enterprises, we design SaaS platforms that evolve with your business. With an agile approach and a deep understanding of industry-specific needs, we help you develop a product that grows with your users, fostering long-term success and scalability.',
-        icon: { name: 'SaaSIcon', width: 64 }
+        icon: { name: 'SaaSIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/9.png'
       },
       {
         title: 'End-to-end SaaS development',
         paragraph: 'We partner with you through every stage of your SaaS journey—strategy, design, development, and deployment. Whether building from scratch or refining an existing product, our team ensures every feature serves its purpose, supporting your goals and delivering exceptional user experiences.',
-        icon: { name: 'SaaSIcon', width: 64 }
+        icon: { name: 'SaaSIcon', width: 64 },
+        image: '/api/images/work/other/pentanetui.png'
       }
     ],
     footerMainContent: {
@@ -2179,7 +2191,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'yellow',
     tagText: 'PostgreSQL',
     heading: 'Powerful, reliable data management with PostgreSQL',
-    image: '',
+    image: '/api/images/work/totalhealthdentalcare/desktop/2.png',
     iconCards: {
       title: 'Robust data handling',
       paragraph: 'Leverage the advanced capabilities of PostgreSQL to manage and store your data with precision. With strong consistency, scalability, and extensibility, PostgreSQL ensures your data is always at its best.',
@@ -2210,27 +2222,32 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Optimized Database Solutions',
         paragraph: 'Transform your data into a powerful, scalable resource with PostgreSQL. We specialize in setting up and optimizing PostgreSQL databases that ensure high performance, reliability, and security for your applications, regardless of scale.',
-        icon: { name: 'PostgresqlIcon', width: 64 }
+        icon: { name: 'PostgresqlIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/12.png'
       },
       {
         title: 'Scalable Data Management',
         paragraph: 'As your business grows, so do your data needs. We design PostgreSQL database architectures that scale with your operations, enabling your team to manage complex datasets with ease, while maintaining lightning-fast access times.',
-        icon: { name: 'PostgresqlIcon', width: 64 }
+        icon: { name: 'PostgresqlIcon', width: 64 },
+        image: '/api/images/work/other/c-bco.png'
       },
       {
         title: 'Custom Queries & Optimizations',
         paragraph: 'Our team excels at creating custom queries, building efficient data models, and optimizing database performance to meet your unique business requirements. From complex joins to stored procedures, we ensure your database works efficiently.',
-        icon: { name: 'PostgresqlIcon', width: 64 }
+        icon: { name: 'PostgresqlIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
       },
       {
         title: 'Seamless Integration',
         paragraph: 'Whether you’re integrating PostgreSQL with your existing tech stack or building a new application, we provide seamless database integration that enhances functionality and simplifies your operations. We ensure your PostgreSQL solution works effortlessly with your environment.',
-        icon: { name: 'PostgresqlIcon', width: 64 }
+        icon: { name: 'PostgresqlIcon', width: 64 },
+        image: '/api/images/work/other/payload_search2.png'
       },
       {
         title: 'Your PostgreSQL Experts',
         paragraph: 'Leverage our expertise to unlock the full potential of PostgreSQL for your business. With years of experience in building robust, high-performance database solutions, we help you craft a digital infrastructure that empowers your business to thrive.',
-        icon: { name: 'PostgresqlIcon', width: 64 }
+        icon: { name: 'PostgresqlIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/23.png'
       }
     ],
     footerMainContent: {
@@ -2302,7 +2319,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'cyan',
     tagText: 'ORM (Sequelize/Prisma)',
     heading: 'Efficient data management with Sequelize ORM',
-    image: '',
+    image: '/api/images/work/other/ui.png',
     iconCards: {
       title: 'Seamless database interactions',
       paragraph: 'Leverage the power of Sequelize to streamline database operations. With its robust set of features, it simplifies complex queries, models, and migrations, ensuring smooth data flow within your application.',
@@ -2333,22 +2350,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Efficient Data Management',
         paragraph: "Unlock the power of streamlined data management with advanced ORM frameworks like Sequelize and Prisma. Our expertise helps you design and implement seamless database interactions that are both intuitive and high-performance, whether you're building a single application or scaling to enterprise-level systems.",
-        icon: { name: 'SequelizeIcon', width: 64 }
+        icon: { name: 'SequelizeIcon', width: 64 },
+        image: '/api/images/work/other/c-bco.png'
       },
       {
         title: 'Powerful Querying & Relationships',
         paragraph: 'Leverage the full potential of relational databases by building complex queries and managing relationships effortlessly. With tools like Sequelize and Prisma, we enable you to express even the most intricate data relationships in clean, readable, and efficient code, simplifying your workflows and speeding up development.',
-        icon: { name: 'SequelizeIcon', width: 64 }
+        icon: { name: 'SequelizeIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
       },
       {
         title: 'Optimized for Performance',
         paragraph: "We focus on creating highly efficient and optimized database queries to ensure your applications perform at their best. Whether you're managing simple CRUD operations or complex aggregations, we help you optimize for speed, reduce latency, and maintain robust data integrity.",
-        icon: { name: 'SequelizeIcon', width: 64 }
+        icon: { name: 'SequelizeIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/21.png'
       },
       {
         title: 'Your ORM Experts',
         paragraph: 'With our deep experience in Sequelize and Prisma, we help you unlock the full potential of ORM systems. Our team crafts tailored solutions to ensure your data models are scalable, maintainable, and easy to work with, empowering your developers to focus on delivering value instead of wrestling with database queries.',
-        icon: { name: 'SequelizeIcon', width: 64 }
+        icon: { name: 'SequelizeIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/23.png'
       }
     ],
     footerMainContent: {
