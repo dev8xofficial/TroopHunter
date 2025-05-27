@@ -2598,16 +2598,16 @@ const EXPERTISES: ExpertiseContent[] = [
         image: '/api/images/work/other/proxmox-virtualization.png'
       },
       {
-        title: 'Virtualize with flexibility',
-        paragraph: "Whether you're looking to optimize server workloads, run multiple environments on a single host, or enhance your disaster recovery capabilities, we design custom solutions that bring flexibility and scalability to your business. Virtualization allows you to consolidate resources while maintaining the performance your applications demand.",
-        icon: { name: 'VirtualMachinesIcon', width: 64 },
-        image: '/api/images/work/other/proxmox-virtualization-graphes.png'
-      },
-      {
         title: 'Streamline your operations',
         paragraph: 'Integrate virtualization into your workflow to simplify system administration and improve the efficiency of your IT operations. With streamlined management tools and automated processes, we help you reduce complexity, enhance security, and scale your infrastructure with ease.',
         icon: { name: 'VirtualMachinesIcon', width: 64 },
         image: '/api/images/work/other/ansible-ci-cd.png'
+      },
+      {
+        title: 'Virtualize with flexibility',
+        paragraph: "Whether you're looking to optimize server workloads, run multiple environments on a single host, or enhance your disaster recovery capabilities, we design custom solutions that bring flexibility and scalability to your business. Virtualization allows you to consolidate resources while maintaining the performance your applications demand.",
+        icon: { name: 'VirtualMachinesIcon', width: 64 },
+        image: '/api/images/work/other/proxmox-virtualization-graphes.png'
       },
       {
         title: 'Your virtualization partner',
@@ -2685,7 +2685,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Ansible & Web Servers',
     heading: 'Seamless Automation, Effortless Management',
-    image: '/api/images/work/other/ansible-ci-cd.png',
+    image: '/api/images/work/other/ansible-automation.png',
     iconCards: {
       title: 'Simplify Infrastructure Operations',
       paragraph: 'We specialize in automating and managing your infrastructure with Ansible. From configuration management to application deployment, our solutions help streamline your workflows, reduce manual intervention, and improve system consistency.',
@@ -2716,27 +2716,32 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Automate Infrastructure with Ansible',
         paragraph: "Leverage the power of Ansible to automate your infrastructure and streamline server management. With efficient playbooks and modules, we ensure your environments are consistent, repeatable, and scalable, saving you time and reducing human error. Whether you're deploying web servers, databases, or complex multi-tier applications, Ansible makes it easy to manage and configure at scale.",
-        icon: { name: 'AnsibleIcon', width: 64 }
+        icon: { name: 'AnsibleIcon', width: 64 },
+        image: '/api/images/work/other/ansible-ci-cd.png'
       },
       {
         title: 'Scalable Web Server Management',
         paragraph: "Optimise and scale your web servers with streamlined configuration management. We implement industry best practices for configuring and maintaining web servers, ensuring high availability, load balancing, and secure deployment. From Nginx to Apache, we tailor configurations to meet your application's specific needs, ensuring maximum performance and reliability.",
-        icon: { name: 'AnsibleIcon', width: 64 }
+        icon: { name: 'AnsibleIcon', width: 64 },
+        image: '/api/images/work/other/proxmox-virtualization.png'
       },
       {
         title: 'Seamless Deployment & Orchestration',
         paragraph: 'From automated deployment to orchestration across multiple environments, Ansible integrates seamlessly into your CI/CD pipeline. We help you automate every stage of your development lifecycle, from testing and staging to production. With Ansible’s simple yet powerful playbooks, you can deploy, configure, and manage your web servers with minimal effort and maximum efficiency.',
-        icon: { name: 'AnsibleIcon', width: 64 }
+        icon: { name: 'AnsibleIcon', width: 64 },
+        image: '/api/images/work/other/ansible-automation.png'
       },
       {
         title: 'Secure, Reliable, and Efficient',
         paragraph: 'Security and reliability are at the core of our approach. With Ansible, we implement robust security measures across your web servers, including automated patch management, firewall configuration, and secure communications. Our solutions ensure your infrastructure is protected and your web servers remain highly available, resilient, and efficient.',
-        icon: { name: 'AnsibleIcon', width: 64 }
+        icon: { name: 'AnsibleIcon', width: 64 },
+        image: '/api/images/work/other/proxmox-virtualization-graphes.png'
       },
       {
         title: 'Your Infrastructure, Our Expertise',
         paragraph: 'Leverage our deep expertise in Ansible and web server management to optimise your infrastructure and deployment strategies. Our team works closely with you to understand your specific requirements, tailoring solutions that scale with your business. We guide you through every step, from initial configuration to ongoing management, ensuring that your infrastructure evolves smoothly and efficiently as your business grows.',
-        icon: { name: 'AnsibleIcon', width: 64 }
+        icon: { name: 'AnsibleIcon', width: 64 },
+        image: '/api/images/work/other/developer-identifying-server-issues.png'
       }
     ],
     footerMainContent: {
@@ -2808,7 +2813,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'AWS, Vercel, DigitalOcean',
     heading: 'Empowering scalable cloud solutions',
-    image: '',
+    image: '/api/images/work/other/developer-identifying-server-issues.png',
     iconCards: {
       title: 'Cloud infrastructure at its finest',
       paragraph: 'Build reliable, secure, and scalable cloud infrastructures that grow with your business. Our AWS expertise ensures your cloud services are optimized for speed, security, and efficiency.',
@@ -2844,32 +2849,38 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Scalable, Secure, and Cost-Efficient Infrastructure',
         paragraph: "Whether you're running a small application or managing complex enterprise systems, we help you leverage the best of cloud infrastructure. From AWS’s powerful cloud services and Vercel’s high-performance platform to DigitalOcean’s reliable and affordable hosting solutions, we provide the tools to build, scale, and secure your digital products.",
-        icon: { name: 'WebServersIcon', width: 64 }
+        icon: { name: 'WebServersIcon', width: 64 },
+        image: '/api/images/work/other/team-developers-doing-brainstorming.png'
       },
       {
         title: 'Optimized for Performance & Speed',
         paragraph: 'Speed is essential in today’s digital landscape. Vercel’s global CDN ensures lightning-fast delivery of your content worldwide, while AWS offers flexible services that scale with your business. DigitalOcean provides cost-effective, high-performance hosting that ensures your website or application delivers fast load times for users around the globe.',
-        icon: { name: 'WebServersIcon', width: 64 }
+        icon: { name: 'WebServersIcon', width: 64 },
+        image: '/api/images/work/other/proxmox-virtualization.png'
       },
       {
         title: 'Comprehensive Cloud Services',
         paragraph: 'AWS delivers a wide range of services, from computing power and storage to machine learning and databases, ensuring you have everything you need to build a flexible and scalable infrastructure. Vercel focuses on seamless deployment and integration, optimizing your developer experience with automated workflows. DigitalOcean offers simplicity and reliability, giving you straightforward cloud hosting that lets you focus on your product, not your infrastructure.',
-        icon: { name: 'WebServersIcon', width: 64 }
+        icon: { name: 'WebServersIcon', width: 64 },
+        image: '/api/images/work/other/ansible-automation.png'
       },
       {
         title: 'Security and Reliability Built-In',
         paragraph: 'Security is a priority, and each platform provides best-in-class security features. AWS’s robust security tools help safeguard your data, Vercel’s platform is optimized for secure deployments, and DigitalOcean ensures that your cloud environment remains protected with top-notch security measures. With our expertise in these platforms, we ensure your cloud infrastructure is secure, reliable, and compliant.',
-        icon: { name: 'WebServersIcon', width: 64 }
+        icon: { name: 'WebServersIcon', width: 64 },
+        image: '/api/images/work/other/proxmox-virtualization-graphes.png'
       },
       {
         title: 'Streamlined Development & Deployment',
         paragraph: 'Develop, deploy, and scale faster with the help of AWS, Vercel, and DigitalOcean. Vercel’s integration with frameworks like Next.js and its seamless deployment features help streamline your development process. AWS provides the flexibility to manage any infrastructure requirement with ease, while DigitalOcean’s intuitive dashboard and cost-effective solutions make it simple to launch and manage applications.',
-        icon: { name: 'WebServersIcon', width: 64 }
+        icon: { name: 'WebServersIcon', width: 64 },
+        image: '/api/images/work/other/developer-identifying-server-issues.png'
       },
       {
         title: 'Expert Guidance & Support',
         paragraph: 'With years of experience across AWS, Vercel, and DigitalOcean, our team is equipped to guide you through every stage of your cloud journey. Whether you need to scale your infrastructure, optimize performance, or implement secure solutions, we offer proactive support and ensure that your cloud environment is always running at its best.',
-        icon: { name: 'WebServersIcon', width: 64 }
+        icon: { name: 'WebServersIcon', width: 64 },
+        image: '/api/images/work/other/team-developers-doing-brainstorming.png'
       }
     ],
     footerMainContent: {
@@ -2972,27 +2983,32 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Seamless Integration & Deployment',
         paragraph: 'Transform your development pipeline into a fluid and efficient process. With our CI/CD expertise, we streamline the integration of code, automate testing, and deploy with confidence. We help you establish a continuous flow from development to production, ensuring faster time to market with higher quality.',
-        icon: { name: 'InfinityIcon', width: 64 }
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: '/api/images/work/other/ansible-automation.png'
       },
       {
         title: 'Automated Pipelines for Continuous Success',
         paragraph: 'Take the guesswork out of deployment. By automating your workflows, we ensure that each code change is tested, validated, and deployed seamlessly. Whether you’re handling a monolithic application or microservices, our CI/CD pipelines are built to suit your needs and scale with your growth.',
-        icon: { name: 'InfinityIcon', width: 64 }
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: '/api/images/work/other/ansible-ci-cd.png'
       },
       {
         title: 'Collaborative Development for Faster Delivery',
         paragraph: 'Integrating your development, testing, and operations teams into a unified workflow is key to delivering quality products. We design and implement CI/CD pipelines that foster collaboration, enabling teams to iterate quickly while maintaining high standards across every stage of development.',
-        icon: { name: 'InfinityIcon', width: 64 }
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: '/api/images/work/other/team-developers-doing-brainstorming.png'
       },
       {
         title: 'Ensure Quality at Every Stage',
         paragraph: 'Quality assurance is integral to our CI/CD approach. With automated testing and continuous integration, we ensure that each change is thoroughly tested before it reaches production. Our process catches errors early, giving you confidence that your code is always in top shape.',
-        icon: { name: 'InfinityIcon', width: 64 }
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/2.png'
       },
       {
         title: 'Your CI/CD Partner',
         paragraph: 'Behind every efficient CI/CD pipeline is a collaborative partnership. From setup to maintenance, our in-house team of DevOps engineers, developers, and project managers will work with you to create a pipeline tailored to your needs. Together, we ensure faster releases, higher quality, and a streamlined development process.',
-        icon: { name: 'InfinityIcon', width: 64 }
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/23.png'
       }
     ],
     footerMainContent: {
