@@ -2441,7 +2441,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Docker',
     heading: 'Streamline your development with Docker',
-    image: '',
+    image: '/api/images/work/other/docker-containerization.png',
     iconCards: {
       title: 'Effortless containerization',
       paragraph: 'Docker enables fast, consistent, and scalable application deployment. We empower your development teams to package and deploy apps with ease, ensuring a seamless experience across environments.',
@@ -2472,22 +2472,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Effortless Containerization',
         paragraph: 'Simplify your application deployment by containerizing your environments with Docker. We streamline your development and deployment processes, ensuring a consistent experience across all platforms, from development to production.',
-        icon: { name: 'DockerIcon', width: 64 }
+        icon: { name: 'DockerIcon', width: 64 },
+        image: '/api/images/work/other/ansible-ci-cd.png'
       },
       {
         title: 'Scalable, Reusable Solutions',
         paragraph: 'With Docker, you can scale your applications effortlessly and reuse components across projects. We help you create modular and highly portable solutions that work anywhere, ensuring you maximize efficiency and minimize redundant efforts.',
-        icon: { name: 'DockerIcon', width: 64 }
+        icon: { name: 'DockerIcon', width: 64 },
+        image: '/api/images/work/totalhealthdentalcare/desktop/2.png'
       },
       {
         title: 'Optimize Development Workflows',
         paragraph: 'Improve collaboration and streamline workflows with Docker’s containerized environments. By isolating dependencies and minimizing configuration discrepancies, we empower your teams to work faster and more reliably across different stages of the product lifecycle.',
-        icon: { name: 'DockerIcon', width: 64 }
+        icon: { name: 'DockerIcon', width: 64 },
+        image: '/api/images/work/other/developer-identifying-server-issues.png'
       },
       {
         title: 'Your Docker Expert Partner',
         paragraph: "Transform your development and deployment processes with our expertise in Docker. Whether you’re just getting started or optimizing your existing containers, we’ll guide you through building scalable, efficient, and reliable containerized solutions. Let us help you take full advantage of Docker's capabilities to enhance your operations and product delivery.",
-        icon: { name: 'DockerIcon', width: 64 }
+        icon: { name: 'DockerIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/23.png'
       }
     ],
     footerMainContent: {
@@ -2559,7 +2563,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Virtualization',
     heading: 'Empowering seamless digital transformation through virtualization',
-    image: '',
+    image: '/api/images/work/other/proxmox-virtualization-ubuntu.png',
     iconCards: {
       title: 'Virtualization made simple',
       paragraph: 'Harness the power of virtual environments to optimize infrastructure, improve scalability, and drive efficiency. Our approach helps you streamline operations while reducing complexity and cost.',
@@ -2590,22 +2594,26 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Transform your infrastructure',
         paragraph: 'Leverage virtualization technology to optimize and scale your IT environment. Our approach helps streamline resource management, maximize hardware utilization, and simplify the deployment of virtual machines, ensuring your infrastructure is agile, efficient, and future-ready.',
-        icon: { name: 'VirtualMachinesIcon', width: 64 }
+        icon: { name: 'VirtualMachinesIcon', width: 64 },
+        image: '/api/images/work/other/proxmox-virtualization.png'
       },
       {
         title: 'Virtualize with flexibility',
         paragraph: "Whether you're looking to optimize server workloads, run multiple environments on a single host, or enhance your disaster recovery capabilities, we design custom solutions that bring flexibility and scalability to your business. Virtualization allows you to consolidate resources while maintaining the performance your applications demand.",
-        icon: { name: 'VirtualMachinesIcon', width: 64 }
+        icon: { name: 'VirtualMachinesIcon', width: 64 },
+        image: '/api/images/work/other/proxmox-virtualization-graphes.png'
       },
       {
         title: 'Streamline your operations',
         paragraph: 'Integrate virtualization into your workflow to simplify system administration and improve the efficiency of your IT operations. With streamlined management tools and automated processes, we help you reduce complexity, enhance security, and scale your infrastructure with ease.',
-        icon: { name: 'VirtualMachinesIcon', width: 64 }
+        icon: { name: 'VirtualMachinesIcon', width: 64 },
+        image: '/api/images/work/other/ansible-ci-cd.png'
       },
       {
         title: 'Your virtualization partner',
         paragraph: 'At the heart of every successful virtualization project is a strong, collaborative partnership. Our in-house team of engineers and IT specialists work closely with you to design and implement solutions that align with your unique requirements. Together, we’ll create a virtualized environment that supports your organization’s growth and technological ambitions.',
-        icon: { name: 'VirtualMachinesIcon', width: 64 }
+        icon: { name: 'VirtualMachinesIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/23.png'
       }
     ],
     footerMainContent: {
@@ -2677,7 +2685,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Ansible & Web Servers',
     heading: 'Seamless Automation, Effortless Management',
-    image: '',
+    image: '/api/images/work/other/ansible-ci-cd.png',
     iconCards: {
       title: 'Simplify Infrastructure Operations',
       paragraph: 'We specialize in automating and managing your infrastructure with Ansible. From configuration management to application deployment, our solutions help streamline your workflows, reduce manual intervention, and improve system consistency.',
@@ -2933,7 +2941,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'CI/CD',
     heading: 'Streamlined delivery with continuous integration and deployment',
-    image: '',
+    image: '/api/images/work/other/ansible-ci-cd.png',
     iconCards: {
       title: 'Automation that empowers',
       paragraph: 'Leverage the power of CI/CD to automate your development pipeline, ensuring fast, consistent, and reliable software delivery. Our approach optimizes the workflow, from code commit to deployment, for seamless updates and faster time-to-market.',
