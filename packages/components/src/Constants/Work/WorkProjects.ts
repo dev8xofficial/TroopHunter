@@ -2,6 +2,25 @@ import { WorkDetail, WorkGridCard } from '../../Interfaces/Work/WorkProjectTypes
 
 export const WORK_PROJECTS: WorkDetail[] = [
   {
+    slug: 'troophunter',
+    title: 'TroopHunter',
+    websiteUrl: 'https://troophunter.com',
+    industry: 'Sales / Lead Generation',
+    shortIntro: 'TroopHunter is a modern lead generation platform empowering businesses to find high-quality prospects without any manual research.',
+    overview: 'With a mission to revolutionize client acquisition, TroopHunter delivers a complete, no-code solution that simplifies lead generation for growing companies. Through automation and intuitive design, businesses can access accurate contact data and instantly connect with potential clients—without the need for marketing expertise or technical skills.',
+    approach: 'From powerful search capabilities to enriched business profiles, TroopHunter combines automation, clean UI, and thoughtful UX to create a seamless prospecting experience. The platform enables users to focus on what matters most: closing deals and scaling impact.',
+    impact: 'Trusted by over 50 growing businesses, TroopHunter continues to redefine how companies generate leads. By putting smart tools into the hands of ambitious teams, it drives measurable growth while saving time, reducing overhead, and eliminating guesswork.',
+    keyContributions: ['B2B Lead Generation Engine', 'Business Data Aggregation & Enrichment', 'User-Centric Dashboard Design', 'Search & Filter Capabilities', 'Automation of Outreach Pipelines'],
+    placeholderImage: '/images/placeholder/1080.png',
+    images: [''],
+    video: {
+      originalFile: '/videos/troophunter-lead-gen/1080.mp4',
+      sequences: ['/videos/troophunter-lead-gen/1080.mp4', '/videos/troophunter-lead-gen/1080.mp4', '/videos/troophunter-lead-gen/1080.mp4', '/videos/troophunter-lead-gen/1080.mp4', '/videos/troophunter-lead-gen/1080.mp4', '/videos/troophunter-lead-gen/1080.mp4']
+    },
+    bgColor: 'blue',
+    path: 'troophunter'
+  },
+  {
     slug: 'totalhealthdentalcare',
     title: 'Total Health Dental Care',
     websiteUrl: 'https://www.totalhealthdentalcare.com',
