@@ -40,6 +40,25 @@ export const WORK_PROJECTS: WorkDetail[] = [
     path: 'totalhealthdentalcare'
   },
   {
+    slug: 'scheduler',
+    title: 'Scheduler',
+    websiteUrl: 'https://schedule.totalhealthdentalcare.com',
+    industry: 'Healthcare / Dental Service',
+    shortIntro: 'Scheduler is an intelligent appointment management tool built to simplify and optimize patient booking across Total Health Dental Care’s digital platform.',
+    overview: 'As part of Total Health Dental Care’s integrated ecosystem, Scheduler was developed to address the need for efficient and patient-friendly scheduling. It enables real-time availability, calendar synchronization, and streamlined workflows for both patients and care providers.',
+    approach: 'Built with a focus on automation and user experience, Scheduler allows patients to book, reschedule, or cancel appointments effortlessly while empowering staff with tools to manage high volumes efficiently. The system integrates tightly with backend services and mobile apps to deliver a seamless experience.',
+    impact: 'Scheduler has significantly improved operational efficiency and patient satisfaction by reducing scheduling friction and minimizing no-shows. It plays a crucial role in Total Health Dental Care’s mission to deliver modern, tech-enabled dental care at scale.',
+    keyContributions: ['Smart Booking Engine', 'Calendar Sync & Availability Management', 'Patient Notification System', 'Staff Workflow Automation', 'Integration with Mobile & CRM Tools'],
+    placeholderImage: '/images/placeholder/1080.png',
+    images: [''],
+    video: {
+      originalFile: '/videos/work/scheduler.mp4',
+      sequences: ['/videos/work/scheduler/part-01-export.mp4', '/videos/work/scheduler/part-02-export.mp4', '/videos/work/scheduler/part-03-export.mp4', '/videos/work/scheduler/part-04-export.mp4']
+    },
+    bgColor: 'blue',
+    path: 'scheduler'
+  },
+  {
     slug: 'honeydu',
     title: 'Honeydu',
     websiteUrl: 'https://www.honeydu.io',
@@ -55,7 +74,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
       originalFile: '/videos/work/honeydu.mp4',
       sequences: ['/videos/work/honeydu/part-01-export.mp4', '/videos/work/honeydu/part-02-export.mp4', '/videos/work/honeydu/part-04-export.mp4', '/videos/work/honeydu/part-03-export.mp4']
     },
-    bgColor: 'green',
+    bgColor: 'cyan',
     path: 'honeydu'
   },
   {
