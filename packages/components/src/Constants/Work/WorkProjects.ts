@@ -14,8 +14,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     placeholderImage: '/images/placeholder/1080.png',
     images: [''],
     video: {
-      originalFile: '/videos/troophunter-lead-gen/1080.mp4',
-      sequences: ['/videos/troophunter-lead-gen/1080.mp4', '/videos/troophunter-lead-gen/1080.mp4', '/videos/troophunter-lead-gen/1080.mp4', '/videos/troophunter-lead-gen/1080.mp4', '/videos/troophunter-lead-gen/1080.mp4', '/videos/troophunter-lead-gen/1080.mp4']
+      originalFile: '/videos/work/troophunter/1080.mp4',
+      sequences: ['/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4']
     },
     bgColor: 'blue',
     path: 'troophunter'
