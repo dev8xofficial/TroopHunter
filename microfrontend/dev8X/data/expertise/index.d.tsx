@@ -38,25 +38,25 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Elevate your brand',
         paragraph: 'We blend innovative design, cutting-edge technology, and strategic content to deliver websites that are visually appealing and highly functional. Harness the power of deeply engaging digital experiences to take your brand to the next level.',
         icon: { name: 'PointerIcon', width: 64 },
-        image: '/api/images/work/honeydu/desktop/1.png'
+        image: '/api/images/work/scheduler/mobile/2.png'
       },
       {
         title: 'Human experiences',
         paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive navigation to immersive storytelling, every website is meticulously crafted to command attention and leave a lasting impression.',
         icon: { name: 'PointerIcon', width: 64 },
-        image: '/api/images/work/totalhealthdentalcare/mobile/1.png'
+        image: '/api/images/work/troophunter/mobile/1.png'
       },
       {
         title: 'Robust, Secure, Flexible',
         paragraph: 'Every website we build is backed by secure and performant infrastructure, tailored to the needs of the organisation. This ensures that your digital presence can scale with demand and offer flexibility to meet the needs of your business over time.',
         icon: { name: 'PointerIcon', width: 64 },
-        image: '/api/images/work/goldendao/desktop/14.png'
+        image: '/api/images/work/totalhealthdentalcare/desktop/26.png'
       },
       {
         title: 'Rewarding partnerships',
         paragraph: 'Behind every best-in-class website is a collaborative agency–client partnership. We work in close collaboration with you to ensure outcomes that offer extraordinary experiences while delivering results. Awards are nice, but your success means so much more.',
         icon: { name: 'PointerIcon', width: 64 },
-        image: '/api/images/work/coral/desktop/9.png'
+        image: '/api/images/work/goldendao/desktop/14.png'
       }
     ],
     footerMainContent: {
@@ -160,13 +160,13 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Ready for scale',
         paragraph: 'As your business evolves, so will your technological requirements. We implement a practical blend of proven solutions and latest technologies to produce applications that effortlessly adapt and expand. Be relevant now, stay relevant in the future.',
         icon: { name: 'CardIcon', width: 64 },
-        image: '/api/images/work/honeydu/desktop/14.png'
+        image: '/api/images/work/troophunter/desktop/5.png'
       },
       {
         title: 'From startups to enterprise',
         paragraph: 'We work with clients of all size, from startups poised for rapid growth or established enterprises looking to enhance their digital infrastructure. Our custom-designed and purpose-built web applications support and drive business success at every stage.',
         icon: { name: 'CardIcon', width: 64 },
-        image: '/api/images/work/totalhealthdentalcare/mobile/2.png'
+        image: '/api/images/work/scheduler/mobile/2.png'
       },
       {
         title: 'Entirely bespoke',
@@ -244,7 +244,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Mobile Apps',
     heading: 'We create, craft and launch exceptional mobile apps',
-    image: '/api/images/work/coral/mobile/1.png',
+    image: '/api/images/work/scheduler/mobile/1.png',
     iconCards: {
       title: 'Built to touch',
       paragraph: 'Bespoke iOS and Android applications – designed and developed entirely in-house.',
@@ -276,7 +276,7 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'From MVP to fully featured',
         paragraph: "Whether you're a startup looking to disrupt the market or an established enterprise seeking to expand your digital footprint, we can build a scalable, robust, and secure mobile app that serves and delights your users.",
         icon: { name: 'MobileIcon', width: 64 },
-        image: '/api/images/work/coral/mobile/2.png'
+        image: '/api/images/work/troophunter/mobile/2.png'
       },
       {
         title: 'Tailored customer experiences',
@@ -288,7 +288,7 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'iOS and Android',
         paragraph: 'Blending innovative design, robust functionality, and seamless UX thinking, we create create world-class iOS and Android apps, utilising both native technologies and mobile frameworks to suit the unique requirements of every product.',
         icon: { name: 'MobileIcon', width: 64 },
-        image: '/api/images/work/coral/mobile/3.png'
+        image: '/api/images/work/scheduler/mobile/11.png'
       }
     ],
     footerMainContent: {
@@ -404,7 +404,7 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Bring your products to life online',
         paragraph: 'We work hard translating your tangible and tactile product experiences to the digital medium, reaching a new customer base through visually engaging interfaces that hero your products and convert attention into sales. From 360-degree product views to augmented reality, we encourage customers to explore and interact with products in a rich, immersive way.',
         icon: { name: 'BasketIcon', width: 64 },
-        image: '/api/images/work/coral/mobile/1.png'
+        image: '/api/images/work/scheduler/mobile/1.png'
       }
     ],
     footerMainContent: {
@@ -751,7 +751,7 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Elevate your brand experience',
         paragraph: 'Each customer engagement is part of the bigger picture of an overall brand experience. Our approach to ethical UX and conversion design draws from this philosophy, ensuring better customer experiences that last long after the user achieves their goal.',
         icon: { name: 'MapIcon', width: 64 },
-        image: '/api/images/work/goldendao/desktop/9.png'
+        image: '/api/images/work/scheduler/mobile/11.png'
       }
     ],
     footerMainContent: {
@@ -873,7 +873,7 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Your UI Design Partner',
         paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. Everything we craft is entirely bespoke, as unique as the story you tell. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless user interface experiences, and a truly collaborative design and delivery process.',
         icon: { name: 'SelectionIcon', width: 64 },
-        image: '/api/images/work/goldendao/desktop/9.png'
+        image: '/api/images/work/scheduler/mobile/2.png'
       }
     ],
     footerMainContent: {
