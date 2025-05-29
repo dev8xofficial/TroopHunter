@@ -1482,19 +1482,19 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Powerful, Scalable Backend Solutions',
         paragraph: 'Harness the power of Node.js to build fast, scalable, and reliable backend systems. From high-performance APIs to real-time applications, our expertise in Node.js allows us to deliver flexible solutions that scale with your business needs, ensuring seamless performance even as your user base grows.',
         icon: { name: 'NodejsIcon', width: 64 },
-        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
+        image: '/api/images/work/scheduler/mobile/2.png'
       },
       {
         title: 'Real-time, Event-driven Architecture',
         paragraph: "Leverage the full potential of Node.js’s event-driven architecture to handle real-time data with low-latency performance. Whether it's live data streaming, instant messaging, or real-time analytics, we create systems that deliver dynamic and interactive experiences for your users.",
         icon: { name: 'NodejsIcon', width: 64 },
-        image: '/api/images/work/honeydu/desktop/9.png'
+        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
       },
       {
         title: 'Custom APIs & Microservices',
         paragraph: 'Unlock the flexibility of microservices with Node.js. We craft efficient, maintainable APIs that integrate effortlessly with third-party systems and allow you to scale parts of your application independently, empowering your team to focus on what truly matters while improving your development speed.',
         icon: { name: 'NodejsIcon', width: 64 },
-        image: '/api/images/work/other/payload_search2.png'
+        image: '/api/images/work/troophunter/desktop/8.png'
       },
       {
         title: 'Your Node.js Development Partner',
@@ -1615,13 +1615,13 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Modular, Maintainable Architecture',
         paragraph: 'With Nest.js, we help you structure your backend using modular, scalable architecture that makes it easier to maintain and extend. For lightweight, minimal overhead solutions, we tailor Express.js for high performance, ensuring your application remains agile and responsive.',
         icon: { name: 'NestjsIcon', width: 64 },
-        image: '/api/images/work/honeydu/desktop/9.png'
+        image: '/api/images/work/troophunter/desktop/8.png'
       },
       {
         title: 'Efficient Development Cycles',
         paragraph: 'Accelerate your development cycles by leveraging the simplicity and efficiency of Express.js alongside the powerful features of Nest.js. We implement RESTful APIs, GraphQL, WebSockets, and more, ensuring your application can handle anything your users throw at it—quickly and reliably.',
         icon: { name: 'NestjsIcon', width: 64 },
-        image: '/api/images/work/other/payload_search2.png'
+        image: '/api/images/work/scheduler/mobile/2.png'
       },
       {
         title: 'Your Backend Design Partner',
@@ -1741,13 +1741,13 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Real-time data at your fingertips',
         paragraph: 'Harness the power of real-time data updates with Supabase’s scalable, open-source database solution. Our approach ensures that your application can effortlessly handle live data feeds, user interactions, and notifications, creating responsive, engaging experiences for your users. Whether building collaborative apps, live dashboards, or dynamic content, Supabase enables you to turn data into immediate action.',
         icon: { name: 'SupabaseIcon', width: 64 },
-        image: '/api/images/work/totalhealthdentalcare/desktop/6.png'
+        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
       },
       {
         title: 'Seamless integrations for modern applications',
         paragraph: 'Integrate effortlessly with your existing infrastructure. Supabase supports a wide range of out-of-the-box integrations, including APIs, webhooks, authentication, and storage, making it an ideal choice for developers looking to build and scale their applications quickly and efficiently.',
         icon: { name: 'SupabaseIcon', width: 64 },
-        image: '/api/images/work/other/pentanetui.png'
+        image: '/api/images/work/troophunter/mobile/2.png'
       },
       {
         title: 'Your data, our expertise',
@@ -1869,7 +1869,7 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Seamless Integrations',
         paragraph: "We specialize in building custom backend solutions that integrate effortlessly with third-party services, APIs, and platforms. Whether it's payment gateways, CRM systems, or cloud services, we ensure your application connects smoothly and securely with the tools that power your business.",
         icon: { name: 'BackendIcon', width: 64 },
-        image: '/api/images/work/other/payload_search2.png'
+        image: '/api/images/work/troophunter/mobile/2.png'
       },
       {
         title: 'Your Backend Development Partner',
@@ -1979,13 +1979,13 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Seamless, Instant Connectivity',
         paragraph: 'Create applications that provide real-time updates and instantaneous interaction. Whether you’re building live chat platforms, collaborative tools, or online gaming experiences, our approach ensures a smooth, responsive, and engaging experience for your users—every time they interact.',
         icon: { name: 'SeismometerIcon', width: 64 },
-        image: '/api/images/work/other/payload_search2.png'
+        image: '/api/images/work/troophunter/mobile/2.png'
       },
       {
         title: 'Transformative User Experiences',
         paragraph: 'We specialize in designing and developing real-time applications that push the boundaries of user interaction. From real-time notifications to live data feeds, we create dynamic systems that engage users in meaningful, real-time experiences while maintaining optimal performance and reliability.',
         icon: { name: 'SeismometerIcon', width: 64 },
-        image: '/api/images/work/honeydu/desktop/9.png'
+        image: '/api/images/work/scheduler/mobile/11.png'
       },
       {
         title: 'Scalable Solutions for Every Need',
@@ -1997,7 +1997,7 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Powerful Real-Time Systems',
         paragraph: 'Our expertise goes beyond simple integrations—we develop sophisticated back-end systems that allow for secure, real-time communication between users and devices. From instant messaging apps to real-time dashboards, we ensure your application remains fast, reliable, and always connected.',
         icon: { name: 'SeismometerIcon', width: 64 },
-        image: '/api/images/work/other/developer-identifying-server-issues.png'
+        image: '/api/images/work/honeydu/desktop/3.png'
       }
     ],
     footerMainContent: {
@@ -2069,7 +2069,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'SaaS',
     heading: 'Empower your business with scalable SaaS solutions',
-    image: '/api/images/work/honeydu/desktop/2.png',
+    image: '/api/images/work/troophunter/desktop/2.png',
     iconCards: {
       title: 'Seamless cloud integration',
       paragraph: "We design SaaS platforms that drive growth and efficiency. Whether you're building a new product or optimizing an existing one, we create scalable and secure solutions that align with your business goals and user needs.",
@@ -2113,13 +2113,13 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Tailored for your growth',
         paragraph: 'From start-ups to enterprises, we design SaaS platforms that evolve with your business. With an agile approach and a deep understanding of industry-specific needs, we help you develop a product that grows with your users, fostering long-term success and scalability.',
         icon: { name: 'SaaSIcon', width: 64 },
-        image: '/api/images/work/honeydu/desktop/9.png'
+        image: '/api/images/work/scheduler/mobile/2.png'
       },
       {
         title: 'End-to-end SaaS development',
         paragraph: 'We partner with you through every stage of your SaaS journey—strategy, design, development, and deployment. Whether building from scratch or refining an existing product, our team ensures every feature serves its purpose, supporting your goals and delivering exceptional user experiences.',
         icon: { name: 'SaaSIcon', width: 64 },
-        image: '/api/images/work/other/pentanetui.png'
+        image: '/api/images/work/honeydu/desktop/21.png'
       }
     ],
     footerMainContent: {
@@ -2223,19 +2223,19 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Optimized Database Solutions',
         paragraph: 'Transform your data into a powerful, scalable resource with PostgreSQL. We specialize in setting up and optimizing PostgreSQL databases that ensure high performance, reliability, and security for your applications, regardless of scale.',
         icon: { name: 'PostgresqlIcon', width: 64 },
-        image: '/api/images/work/honeydu/desktop/12.png'
+        image: '/api/images/work/scheduler/mobile/2.png'
       },
       {
         title: 'Scalable Data Management',
         paragraph: 'As your business grows, so do your data needs. We design PostgreSQL database architectures that scale with your operations, enabling your team to manage complex datasets with ease, while maintaining lightning-fast access times.',
         icon: { name: 'PostgresqlIcon', width: 64 },
-        image: '/api/images/work/other/c-bco.png'
+        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
       },
       {
         title: 'Custom Queries & Optimizations',
         paragraph: 'Our team excels at creating custom queries, building efficient data models, and optimizing database performance to meet your unique business requirements. From complex joins to stored procedures, we ensure your database works efficiently.',
         icon: { name: 'PostgresqlIcon', width: 64 },
-        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
+        image: '/api/images/work/troophunter/desktop/14.png'
       },
       {
         title: 'Seamless Integration',
@@ -2351,13 +2351,13 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Efficient Data Management',
         paragraph: "Unlock the power of streamlined data management with advanced ORM frameworks like Sequelize and Prisma. Our expertise helps you design and implement seamless database interactions that are both intuitive and high-performance, whether you're building a single application or scaling to enterprise-level systems.",
         icon: { name: 'SequelizeIcon', width: 64 },
-        image: '/api/images/work/other/c-bco.png'
+        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
       },
       {
         title: 'Powerful Querying & Relationships',
         paragraph: 'Leverage the full potential of relational databases by building complex queries and managing relationships effortlessly. With tools like Sequelize and Prisma, we enable you to express even the most intricate data relationships in clean, readable, and efficient code, simplifying your workflows and speeding up development.',
         icon: { name: 'SequelizeIcon', width: 64 },
-        image: '/api/images/work/totalhealthdentalcare/desktop/5.png'
+        image: '/api/images/work/troophunter/desktop/14.png'
       },
       {
         title: 'Optimized for Performance',
@@ -2485,7 +2485,7 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Optimize Development Workflows',
         paragraph: 'Improve collaboration and streamline workflows with Docker’s containerized environments. By isolating dependencies and minimizing configuration discrepancies, we empower your teams to work faster and more reliably across different stages of the product lifecycle.',
         icon: { name: 'DockerIcon', width: 64 },
-        image: '/api/images/work/other/developer-identifying-server-issues.png'
+        image: '/api/images/work/troophunter/desktop/23.png'
       },
       {
         title: 'Your Docker Expert Partner',
@@ -2850,7 +2850,7 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Scalable, Secure, and Cost-Efficient Infrastructure',
         paragraph: "Whether you're running a small application or managing complex enterprise systems, we help you leverage the best of cloud infrastructure. From AWS’s powerful cloud services and Vercel’s high-performance platform to DigitalOcean’s reliable and affordable hosting solutions, we provide the tools to build, scale, and secure your digital products.",
         icon: { name: 'WebServersIcon', width: 64 },
-        image: '/api/images/work/other/team-developers-doing-brainstorming.png'
+        image: '/api/images/work/troophunter/mobile/2.png'
       },
       {
         title: 'Optimized for Performance & Speed',
