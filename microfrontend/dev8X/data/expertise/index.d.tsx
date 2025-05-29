@@ -1229,22 +1229,22 @@ const EXPERTISES: ExpertiseContent[] = [
         image: '/api/images/work/other/react_garvan.png'
       },
       {
-        title: 'Component-based architecture',
-        paragraph: 'With React’s component-based structure, we help you break down complex user interfaces into modular, reusable components. This simplifies both development and maintenance, allowing your teams to deliver faster and more efficiently.',
-        icon: { name: 'ReactjsIcon', width: 64 },
-        image: '/api/images/work/honeydu/desktop/12.png'
-      },
-      {
         title: 'Scalable web applications',
         paragraph: 'Harness the full potential of React to build scalable, high-performance web applications. Whether it’s a single-page app (SPA) or a complex enterprise solution, our React development expertise ensures your app will scale as your user base grows, without sacrificing performance.',
         icon: { name: 'ReactjsIcon', width: 64 },
-        image: '/api/images/work/coral/mobile/11.png'
+        image: '/api/images/work/scheduler/mobile/11.png'
       },
       {
         title: 'Seamless state management',
         paragraph: 'Leverage modern tools like Redux, Context API, and React Query for robust state management across your application. Our approach ensures that your app remains responsive and consistent, no matter how dynamic the data or interactions may be.',
         icon: { name: 'ReactjsIcon', width: 64 },
-        image: '/api/images/work/totalhealthdentalcare/desktop/3.png'
+        image: '/api/images/work/troophunter/mobile/2.png'
+      },
+      {
+        title: 'Component-based architecture',
+        paragraph: 'With React’s component-based structure, we help you break down complex user interfaces into modular, reusable components. This simplifies both development and maintenance, allowing your teams to deliver faster and more efficiently.',
+        icon: { name: 'ReactjsIcon', width: 64 },
+        image: '/api/images/work/honeydu/desktop/12.png'
       },
       {
         title: 'Your React Partner',
@@ -1354,19 +1354,19 @@ const EXPERTISES: ExpertiseContent[] = [
         title: 'Dynamic & Scalable Web Applications',
         paragraph: 'Leverage the power of Next.js to build fast, scalable, and dynamic web applications. From static sites to complex applications, Next.js enables seamless routing, fast rendering, and enhanced SEO capabilities, allowing you to create an optimized digital experience.',
         icon: { name: 'NextjsIcon', width: 64 },
-        image: '/api/images/work/coral/mobile/11.png'
+        image: '/api/images/work/scheduler/mobile/11.png'
+      },
+      {
+        title: 'Powerful API Routes & Flexibility',
+        paragraph: 'Streamline your backend by integrating API routes directly into your Next.js application. Whether you need to fetch data or integrate with third-party services, Next.js makes it easy to handle server-side logic seamlessly, with no extra overhead.',
+        icon: { name: 'NextjsIcon', width: 64 },
+        image: '/api/images/work/troophunter/mobile/2.png'
       },
       {
         title: 'Optimized Performance',
         paragraph: 'Next.js provides automatic server-side rendering (SSR) and static site generation (SSG), ensuring your applications load fast and perform well across all devices. We take full advantage of these features to deliver an unparalleled user experience with minimal latency.',
         icon: { name: 'NextjsIcon', width: 64 },
         image: '/api/images/work/honeydu/desktop/6.png'
-      },
-      {
-        title: 'Powerful API Routes & Flexibility',
-        paragraph: 'Streamline your backend by integrating API routes directly into your Next.js application. Whether you need to fetch data or integrate with third-party services, Next.js makes it easy to handle server-side logic seamlessly, with no extra overhead.',
-        icon: { name: 'NextjsIcon', width: 64 },
-        image: '/api/images/work/totalhealthdentalcare/desktop/3.png'
       },
       {
         title: 'Seamless User Experiences',
