@@ -38,13 +38,13 @@ export const WorkGrid: React.FC<WorkGridProps> = ({ workGridCSSClass, openModal 
           if (Array.isArray(work)) {
             work.map((item, index) => (
               <WorkGridRowPortrait key={`portrait-card-${index}`}>
-                <WorkCard variant={item.variant} space={item.space} bgColor={item.bgColor} title={item.title} image={item.images[index]} placeholderImage={item.placeholderImage} video={item.video} path={item.path} openModal={openModal} />
+                <WorkCard variant={item.variant} space={item.space} bgColor={item.bgColor} title={item.title} image="" placeholderImage={item.placeholderImage} video={item.video} path={item.path} openModal={openModal} />
               </WorkGridRowPortrait>
             ));
           } else {
             return (
               <WorkGridRowLandscape key={`landscape-${index}`}>
-                <WorkCard variant={work.variant} space={work.space} bgColor={work.bgColor} title={work.title} image={work.images[0]} placeholderImage={work.placeholderImage} video={work.video} path={work.path} openModal={openModal} />
+                <WorkCard variant={work.variant} space={work.space} bgColor={work.bgColor} title={work.title} image="" placeholderImage={work.placeholderImage} video={work.video} path={work.path} openModal={openModal} />
               </WorkGridRowLandscape>
             );
           }
