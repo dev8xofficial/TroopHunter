@@ -11,8 +11,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     approach: 'From powerful search capabilities to enriched business profiles, TroopHunter combines automation, clean UI, and thoughtful UX to create a seamless prospecting experience. The platform enables users to focus on what matters most: closing deals and scaling impact.',
     impact: 'Trusted by over 50 growing businesses, TroopHunter continues to redefine how companies generate leads. By putting smart tools into the hands of ambitious teams, it drives measurable growth while saving time, reducing overhead, and eliminating guesswork.',
     keyContributions: ['B2B Lead Generation Engine', 'Business Data Aggregation & Enrichment', 'User-Centric Dashboard Design', 'Search & Filter Capabilities', 'Automation of Outreach Pipelines'],
-    placeholderImage: '/images/placeholder/1080.png',
-    images: [''],
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
+    images: ['/api/images/work/troophunter/mobile/7.png', '/api/images/work/troophunter/mobile/8.png', '/api/images/work/troophunter/mobile/9.png', '/api/images/work/troophunter/mobile/10.png'],
     video: {
       originalFile: '/videos/work/troophunter/1080.mp4',
       sequences: ['/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4']
@@ -30,8 +30,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     approach: 'From a custom mobile app to powerful backend tools, every element of the platform was designed to enhance accessibility, streamline operations, and elevate the dental care experience for over 15,000 active patients.',
     impact: 'The result is a future-forward healthcare platform that merges technology with care, enabling Total Health Dental Care to lead with innovation and expand its impact in a competitive market.',
     keyContributions: ['API Development & Integration', 'Flutter Mobile Features', 'Workflow Automation Scripts', 'Custom CRM Module Development', 'Virtual Consultation Tools'],
-    placeholderImage: '/images/placeholder/1080.png',
-    images: [''],
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
+    images: ['/api/images/work/totalhealthdentalcare/mobile/7.png', '/api/images/work/totalhealthdentalcare/mobile/8.png', '/api/images/work/totalhealthdentalcare/mobile/9.png', '/api/images/work/totalhealthdentalcare/mobile/10.png'],
     video: {
       originalFile: '/videos/work/totalhealthdentalcare.mp4',
       sequences: ['/videos/work/totalhealthdentalcare/part-01-export.mp4', '/videos/work/totalhealthdentalcare/part-03-export.mp4', '/videos/work/totalhealthdentalcare/part-05-export.mp4', '/videos/work/totalhealthdentalcare/part-02-export.mp4', '/videos/work/totalhealthdentalcare/part-04-export.mp4', '/videos/work/totalhealthdentalcare/part-06-export.mp4']
@@ -49,8 +49,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     approach: 'Built with a focus on automation and user experience, Scheduler allows patients to book, reschedule, or cancel appointments effortlessly while empowering staff with tools to manage high volumes efficiently. The system integrates tightly with backend services and mobile apps to deliver a seamless experience.',
     impact: 'Scheduler has significantly improved operational efficiency and patient satisfaction by reducing scheduling friction and minimizing no-shows. It plays a crucial role in Total Health Dental Care’s mission to deliver modern, tech-enabled dental care at scale.',
     keyContributions: ['Smart Booking Engine', 'Calendar Sync & Availability Management', 'Patient Notification System', 'Staff Workflow Automation', 'Integration with Mobile & CRM Tools'],
-    placeholderImage: '/images/placeholder/1080.png',
-    images: [''],
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
+    images: ['/api/images/work/scheduler/mobile/7.png', '/api/images/work/scheduler/mobile/8.png', '/api/images/work/scheduler/mobile/9.png', '/api/images/work/scheduler/mobile/10.png'],
     video: {
       originalFile: '/videos/work/scheduler.mp4',
       sequences: ['/videos/work/scheduler/part-01-export.mp4', '/videos/work/scheduler/part-02-export.mp4', '/videos/work/scheduler/part-03-export.mp4', '/videos/work/scheduler/part-04-export.mp4']
@@ -68,7 +68,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     approach: 'Designed from the ground up with simplicity and usability in mind, the app’s interface emphasizes clarity, while custom workflows remove unnecessary complexity. The result is a lightweight financial companion that lets users focus on what matters most—their craft.',
     impact: 'With thoughtful engineering, strategic partnerships, and an obsessive attention to design, Honeydu delivers a purpose-built platform that evolves with its users and stands apart in a crowded fintech landscape.',
     keyContributions: ['Built responsive UI with React', 'Created APIs using Node.js', 'Integrated payment systems', 'Optimized mobile performance', 'Set up CI/CD pipelines'],
-    placeholderImage: '/images/placeholder/1080.png',
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
     images: [''],
     video: {
       originalFile: '/videos/work/honeydu.mp4',
@@ -87,8 +87,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     approach: 'The team, which includes former Instagram employees, provides deep expertise in strategy, design, and engineering.',
     impact: 'By aligning business goals with innovative technology, Coral enables clients to adapt and thrive in the digital age.',
     keyContributions: ['Digital Strategy & UX', 'Brand-Driven UI Design', 'Interactive Prototyping', 'Agile Web Development', 'Technology Consulting'],
-    placeholderImage: '/images/placeholder/1080.png',
-    images: [''],
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
+    images: ['/api/images/work/coral/mobile/7.png', '/api/images/work/coral/mobile/8.png', '/api/images/work/coral/mobile/9.png', '/api/images/work/coral/mobile/10.png'],
     video: {
       originalFile: '/videos/work/coral.mp4',
       sequences: ['/videos/work/coral/part-01-export.mp4', '/videos/work/coral/part-02-export.mp4', '/videos/work/coral/part-03-export.mp4', '/videos/work/coral/part-04-export.mp4']
@@ -106,7 +106,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     approach: 'The user experience was anchored by an NFT-gated interface, enabling exclusive access to events and gatherings while also offering a sense of digital belonging. Dev8X’s role extended beyond design and engineering — shaping community rituals, facilitating in-person activations, and helping establish GoldenDAO as a hub of purpose-driven engagement.',
     impact: 'The result is a bold and meaningful experience that seamlessly blends real-world connection with blockchain-powered membership, fostering a new era of cultural leadership and solidarity.',
     keyContributions: ['React & Node.js development', 'Ethereum smart contracts', 'NFT access controls', 'Real-time event features', 'Decentralized app design'],
-    placeholderImage: '/images/placeholder/1080.png',
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
     images: [''],
     video: {
       originalFile: '/videos/work/goldendao.mp4',
@@ -118,13 +118,14 @@ export const WORK_PROJECTS: WorkDetail[] = [
 ];
 
 export const WORK_PROJECTS_GRID_DATA: WorkGridCard[] = WORK_PROJECTS.map((item) => {
-  if (item.images.length < 2) {
+  if (item.images.length < 5) {
     return {
       variant: 'landscape',
       space: 'inner',
       bgColor: item.bgColor,
       title: item.title,
       images: item.images,
+      placeholderImage: item.placeholderImage,
       video: item.video,
       path: item.path
     };
@@ -135,6 +136,7 @@ export const WORK_PROJECTS_GRID_DATA: WorkGridCard[] = WORK_PROJECTS.map((item) 
       bgColor: item.bgColor,
       title: item.title,
       images: item.images,
+      placeholderImage: item.placeholderImage,
       video: item.video,
       path: item.path
     }));

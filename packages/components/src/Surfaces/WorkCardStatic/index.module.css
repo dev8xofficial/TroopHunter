@@ -108,30 +108,6 @@
   background: var(--yellow-tertiary);
 }
 
-.bg--troophunter-light {
-  background: var(--troophunter-light);
-}
-
-.bg--totalhealthdentalcare-light {
-  background: var(--totalhealthdentalcare-light);
-}
-
-.bg--scheduler-light {
-  background: var(--scheduler-light);
-}
-
-.bg--honeydu-light {
-  background: var(--honeydu-light);
-}
-
-.bg--coral-light {
-  background: var(--coral-light);
-}
-
-.bg--goldendao-light {
-  background: var(--goldendao-light);
-}
-
 /***************************************************** Responsive Styles *****************************************************/
 /*****************************************************************************************************************************/
 

@@ -3,9 +3,20 @@ import { FooterRevealPageWrap, Footer, Header, ProjectsFormModal, WorkDetail, WO
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import PageData from '../../data/work/index.d';
 
-import LayoutStyles from '../../components/Surfaces/Layout/layout.module.css';
+import styles from './index.module.css';
 
 const WorkPage: React.FC<WorkDetail> = ({ slug, ...project }: WorkDetail): JSX.Element => {
+  const getNextWorkProject = (currentSlug: string) => {
+    const currentIndex = WORK_PROJECTS.findIndex((e) => e.slug === currentSlug);
+
+    if (currentIndex === -1) return null;
+
+    const nextIndex = (currentIndex + 1) % WORK_PROJECTS.length;
+    return WORK_PROJECTS[nextIndex];
+  };
+
+  const nextWorkProject = getNextWorkProject(slug);
+
   return (
     <>
       <Head>
@@ -40,8 +51,8 @@ const WorkPage: React.FC<WorkDetail> = ({ slug, ...project }: WorkDetail): JSX.E
             }
           `}</style>
           {/* Main container with smooth-scrollbar */}
-          <main className={LayoutStyles['work-page']}>
-            <ProjectsFormModal {...project} />
+          <main className={styles['project-page']}>
+            <ProjectsFormModal slug={slug} {...project} nextWorkProject={nextWorkProject} />
           </main>
         </FooterRevealPageWrap>
         <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
@@ -62,13 +73,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const project = WORK_PROJECTS.find((p) => p.slug === params.slug);
-  const { slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, video } = project;
+  const { slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, placeholderImage, video, images } = project;
 
   if (!project) {
     return { notFound: true };
   }
 
   return {
-    props: { slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, video }
+    props: { slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, placeholderImage, video, images }
   };
 }

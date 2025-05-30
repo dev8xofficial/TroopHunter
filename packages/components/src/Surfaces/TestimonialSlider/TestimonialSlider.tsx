@@ -44,7 +44,7 @@ export const TestimonialSlider: React.FC = (): JSX.Element => {
               </span>
             </blockquote>
             <figcaption className={styles['testimonial__author']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-              <span className={styles['testimonial__author-name']}>Vanessa Katsanevakis</span>
+              <span className={styles['testimonial__author-name']}>Abdul Rehman</span>
               <span className={styles['testimonial__author-position']}>CEO</span>
             </figcaption>
           </figure>

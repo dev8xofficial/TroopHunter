@@ -147,6 +147,15 @@ html.lenis body {
   --bottom-fixed-offset: 0;
 }
 
+:root {
+  --troophunter-light: #DFDEFF;
+  --totalhealthdentalcare-light: #E9FCEC;
+  --scheduler-light: #EAEAEA;
+  --honeydu-light: #E9FFF5;
+  --coral-light: #EEFFFE;
+  --goldendao-light: #FFFAED;
+}
+
 @media (min-width: 768px) {
   :root {
     --container-gutter: clamp(2.5rem, 2.6455026455vw, 3.325rem);

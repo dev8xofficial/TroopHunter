@@ -16,11 +16,11 @@ export type WorkDetail = {
   placeholderImage: string;
   images: string[];
   video: Video;
-  bgColor: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
+  bgColor: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow' | 'troophunter-light' | 'totalhealthdentalcare-light' | 'scheduler-light' | 'honeydu-light' | 'coral-light' | 'goldendao-light';
   path: string;
 };
 
-export type CommonWorkCardProps = Omit<WorkDetail, 'slug' | 'websiteUrl' | 'industry' | 'shortIntro' | 'overview' | 'approach' | 'impact' | 'keyContributions' | 'placeholderImage'> & {
+export type CommonWorkCardProps = Omit<WorkDetail, 'slug' | 'websiteUrl' | 'industry' | 'shortIntro' | 'overview' | 'approach' | 'impact' | 'keyContributions'> & {
   space: 'inner' | 'outer';
 };
 
