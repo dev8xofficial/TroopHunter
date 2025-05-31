@@ -7,7 +7,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
       "runtimeArgs": ["--inspect"],
-      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
+      "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/main/src/server.ts"],
       "env": {
         "NODE_ENV": "development"
@@ -24,7 +24,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
       "runtimeArgs": ["--inspect"],
-      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
+      "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/auth/src/server.ts"],
       "env": {
         "NODE_ENV": "development"
@@ -41,7 +41,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
       "runtimeArgs": ["--inspect"],
-      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
+      "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/countries/src/server.ts"],
       "env": {
         "NODE_ENV": "development"
@@ -58,7 +58,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
       "runtimeArgs": ["--inspect"],
-      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
+      "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/businesses/src/server.ts"],
       "env": {
         "NODE_ENV": "development"
@@ -75,7 +75,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
       "runtimeArgs": ["--inspect"],
-      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
+      "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/queues/src/server.ts"],
       "env": {
         "NODE_ENV": "development"
@@ -92,7 +92,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
       "runtimeArgs": ["--inspect"],
-      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
+      "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/users/src/server.ts"],
       "env": {
         "NODE_ENV": "development"
@@ -169,7 +169,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/backend/node_modules/ts-node/dist/bin.js",
       "runtimeArgs": ["--inspect"],
-      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
+      "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/backend/src/server.ts"],
       "env": {
         "NODE_ENV": "development"
@@ -186,7 +186,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/services/auth/node_modules/ts-node/dist/bin.js",
       "runtimeArgs": ["--inspect"],
-      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
+      "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/services/auth/src/server.ts"],
       "env": {
         "NODE_ENV": "development"
@@ -203,7 +203,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/production/database-migration/node_modules/ts-node/dist/bin.js",
       "runtimeArgs": ["--inspect"],
-      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
+      "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/production/database-migration/migrateData.ts"],
       "env": {
         "NODE_ENV": "development"
@@ -220,7 +220,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
       "runtimeArgs": ["--inspect"],
-      "runtimeExecutable": "/Users/abdulrehman/.nvm/versions/node/v20.8.0/bin/node",
+      "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/backend/src/server.ts"],
       "env": {
         "NODE_ENV": "development"
