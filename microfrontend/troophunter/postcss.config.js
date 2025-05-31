@@ -1,14 +1,15 @@
 module.exports = {
-  plugins: [
-    require('tailwindcss'),
-    require('autoprefixer'),
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
     ...(process.env.NODE_ENV === 'production'
-      ? [
-          require('@fullhuman/postcss-purgecss')({
-            content: ['./src/**/*.tsx', './src/**/*.html'],
+      ? {
+          '@fullhuman/postcss-purgecss': {
+            content: ['./src/**/*.{js,jsx,ts,tsx}', './src/**/*.html', './public/**/*.html'],
             defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
-          }),
-        ]
-      : []),
-  ],
+            safelist: ['html', 'body']
+          }
+        }
+      : {})
+  }
 };

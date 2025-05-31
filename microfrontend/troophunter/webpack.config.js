@@ -17,7 +17,7 @@ module.exports = (_, argv) => {
 
   return {
     output: {
-      publicPath: publicPath,
+      publicPath: 'auto',
       filename: '[name].js',
       chunkFilename: '[name].[contenthash].js' // Keeps cache-busting to chunks only
     },
@@ -66,15 +66,30 @@ module.exports = (_, argv) => {
           }
         },
         {
-          test: /\.(css|s[ac]ss)$/i,
-          use: [isProduction ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'postcss-loader']
+          test: /\.(ts|tsx)$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
+              }
+            }
+          ]
         },
         {
-          test: /\.(ts|tsx|js|jsx)$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react']
+            }
           }
+        },
+        {
+          test: /\.(css|s[ac]ss)$/i,
+          use: [isProduction ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'postcss-loader']
         },
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -104,48 +119,33 @@ module.exports = (_, argv) => {
         filename: 'remoteEntry.js',
         remotes: {},
         exposes: {
-          './App': './src/App.tsx'
+          './src/App': './src/App.tsx'
         },
         shared: {
-          ...deps,
           react: {
             singleton: true,
-            requiredVersion: deps['react']
+            requiredVersion: deps.react,
+            eager: true
           },
           'react-dom': {
             singleton: true,
-            requiredVersion: deps['react-dom']
+            requiredVersion: deps['react-dom'],
+            eager: true
+          },
+          'react-router-dom': {
+            singleton: true,
+            requiredVersion: deps['react-router-dom'],
+            eager: true
           },
           'react-redux': {
             singleton: true,
-            version: deps['react-redux']
-          },
-          redux: {
-            singleton: true,
-            version: deps['redux']
+            requiredVersion: deps['react-redux'],
+            eager: true
           },
           'redux-persist': {
             singleton: true,
-            version: deps['redux-persist']
-          },
-          'redux-saga': {
-            singleton: true,
-            version: deps['redux-saga']
-          },
-          // process: { singleton: true, eager: true },
-          tailwindcss: {
-            eager: true,
-            singleton: true,
-            requiredVersion: deps['tailwindcss']
-          },
-          'style-loader': {
-            singleton: true
-          },
-          'css-loader': {
-            singleton: true
-          },
-          'postcss-loader': {
-            singleton: true
+            requiredVersion: deps['redux-persist'],
+            eager: true
           }
         }
       }),

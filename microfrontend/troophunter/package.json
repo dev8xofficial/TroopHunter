@@ -10,7 +10,7 @@
     "dev": "webpack serve --mode development",
     "start:prod": "webpack serve --mode production --live-reload --hot",
     "start:live": "webpack serve --mode production --live-reload --hot",
-    "start": "npx serve -s dist -p 5175 --mode production"
+    "start": "npx serve -s dist -p 5175"
   },
   "license": "MIT",
   "author": {

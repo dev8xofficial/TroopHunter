@@ -38,39 +38,47 @@ let existingSitemapContent = '';
 
 // Function to generate the sitemap based on updated paths
 const generateSitemap = async (updatedPaths = new Set(Object.values(componentToUrlMap))) => {
-  console.log('Generating sitemap...');
+  try {
+    console.log('Generating sitemap...');
 
-  const sitemapStream = new SitemapStream({ hostname: `${process.env.NEXT_PUBLIC_TROOPHUNTER_APP_URL}` });
-  const writeStream = createWriteStream('./public/sitemap.xml');
+    if (!process.env.NEXT_PUBLIC_TROOPHUNTER_APP_URL) {
+      console.warn('Warning: NEXT_PUBLIC_TROOPHUNTER_APP_URL is not defined');
+      return;
+    }
 
-  sitemapStream.pipe(writeStream);
+    const sitemapStream = new SitemapStream({ hostname: process.env.NEXT_PUBLIC_TROOPHUNTER_APP_URL });
+    const writeStream = createWriteStream('./public/sitemap.xml');
 
-  for (const [componentName, urlPath] of Object.entries(componentToUrlMap)) {
-    const lastmod = updatedPaths.has(urlPath) ? getCurrentDate() : undefined;
-    const changefreq = urlPath === '/lead' ? 'daily' : 'monthly'; // Customize based on page type
+    sitemapStream.pipe(writeStream);
 
-    sitemapStream.write({
-      url: urlPath,
-      changefreq,
-      priority: 0.8,
-      lastmod
-    });
-  }
+    for (const [componentName, urlPath] of Object.entries(componentToUrlMap)) {
+      if (urlPath === '*') continue; // Skip 404 routes
 
-  sitemapStream.end();
+      const lastmod = updatedPaths.has(urlPath) ? getCurrentDate() : undefined;
+      const changefreq = urlPath === '/lead' ? 'daily' : 'monthly';
 
-  // Convert the stream to a string and check if it differs from the existing content
-  const sitemapBuffer = await streamToPromise(sitemapStream);
-  const newSitemapContent = sitemapBuffer.toString();
+      sitemapStream.write({
+        url: urlPath,
+        changefreq,
+        priority: 0.8,
+        lastmod
+      });
+    }
 
-  console.log('New Sitemap Content:', newSitemapContent);
+    sitemapStream.end();
 
-  if (newSitemapContent !== existingSitemapContent) {
-    fs.writeFileSync('./public/sitemap.xml', newSitemapContent, 'utf-8');
-    existingSitemapContent = newSitemapContent;
-    console.log('Sitemap updated.');
-  } else {
-    console.log('Sitemap content has not changed.');
+    const sitemapBuffer = await streamToPromise(sitemapStream);
+    const newSitemapContent = sitemapBuffer.toString();
+
+    if (newSitemapContent !== existingSitemapContent) {
+      fs.writeFileSync('./public/sitemap.xml', newSitemapContent, 'utf-8');
+      existingSitemapContent = newSitemapContent;
+      console.log('Sitemap updated successfully.');
+    } else {
+      console.log('Sitemap content unchanged.');
+    }
+  } catch (error) {
+    console.error('Error generating sitemap:', error);
   }
 };
 
@@ -126,7 +134,12 @@ const startFileWatcher = () => {
 };
 
 // Only trigger the watcher in production and generate the initial sitemap
-if (process.env.NODE_ENV === 'production') {
-  generateSitemap(); // Generate sitemap on startup
+const isProduction = process.env.NODE_ENV === 'production';
+
+if (isProduction) {
+  console.log('Starting sitemap generation in production mode...');
+  generateSitemap().catch(console.error);
   startFileWatcher();
+} else {
+  console.log('Skipping sitemap generation in development mode.');
 }

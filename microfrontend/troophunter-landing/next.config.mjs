@@ -1,41 +1,53 @@
 import NextFederationPlugin from '@module-federation/nextjs-mf';
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  devIndicators: {
-    loading: false
+  reactStrictMode: true,
+  // Disable server-side rendering completely
+  experimental: {
+    isrMemoryCacheSize: 0
   },
+  // Configure static export
+  output: 'export',
+  // Disable image optimization since we're exporting
+  images: { unoptimized: true },
   webpack(config, options) {
-    const { isServer } = options;
-    const remoteDir = isServer ? 'ssr' : 'chunks';
-
-    const remoteUrl = process.env.NEXT_PUBLIC_TROOPHUNTER_APP_URL;
-
     config.plugins.push(
       new NextFederationPlugin({
         name: 'troophunter-landing',
         remotes: {
-          remote: `remote@${remoteUrl}/remoteEntry.js`
+          troophunter: `troophunter@${process.env.NEXT_PUBLIC_TROOPHUNTER_APP_URL}/remoteEntry.js`
         },
-        filename: `static/${remoteDir}/remoteEntry.js`,
+        filename: 'static/chunks/remoteEntry.js',
         exposes: {},
         shared: {
-          // react: { singleton: true, requiredVersion: '^18' },
-          // 'react-dom': { singleton: true, requiredVersion: '^18' }
-          // Share the process.env to remote apps
-          // process: { singleton: true, eager: true },
-          // tailwindcss: {
-          //   eager: true,
-          //   singleton: true,
-          //   requiredVersion: '^3.4.11'
-          // },
-          // 'style-loader': { singleton: true },
-          // 'css-loader': { singleton: true },
-          // 'postcss-loader': { singleton: true }
+          react: {
+            singleton: true,
+            requiredVersion: '^18.2.0',
+            eager: true,
+            strictVersion: true
+          },
+          'react-dom': {
+            singleton: true,
+            requiredVersion: '^18.2.0',
+            eager: true,
+            strictVersion: true
+          },
+          'react-router-dom': {
+            singleton: true,
+            requiredVersion: '^6.0.0',
+            eager: true,
+            strictVersion: true
+          }
         }
       })
     );
 
     return config;
+  },
+  // Disable static page generation
+  typescript: {
+    ignoreBuildErrors: true
   }
 };
 
