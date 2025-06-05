@@ -4,11 +4,16 @@
     path: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/main/src/certs"
     state: directory
     mode: '0755'
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
 
 - name: Copy cert files into the certs folder under microservices/main
   copy:
     src: "{{ ENV_PATH }}/certs/{{ item.src }}"
     dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/main/src/certs/{{ item.dest }}"
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    mode: '0644'
   with_items:
     - { src: "auth/auth-cert.pem", dest: "auth-cert.pem" }
     - { src: "auth/auth-key.pem", dest: "auth-key.pem" }
@@ -34,6 +39,9 @@
   copy:
     src: "{{ ENV_PATH }}/certs/{{ item }}"
     dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/auth/src/certs/"
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    mode: '0644'
   with_items:
     - "auth/auth-cert.pem"
     - "auth/auth-key.pem"
@@ -43,6 +51,9 @@
   copy:
     src: "{{ ENV_PATH }}/certs/{{ item }}"
     dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/countries/src/certs/"
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    mode: '0644'
   with_items:
     - "countries/countries-cert.pem"
     - "countries/countries-key.pem"
@@ -52,6 +63,9 @@
   copy:
     src: "{{ ENV_PATH }}/certs/{{ item }}"
     dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/businesses/src/certs/"
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    mode: '0644'
   with_items:
     - "businesses/businesses-cert.pem"
     - "businesses/businesses-key.pem"
@@ -61,6 +75,9 @@
   copy:
     src: "{{ ENV_PATH }}/certs/{{ item }}"
     dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/queues/src/certs/"
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    mode: '0644'
   with_items:
     - "queues/queues-cert.pem"
     - "queues/queues-key.pem"
@@ -70,6 +87,9 @@
   copy:
     src: "{{ ENV_PATH }}/certs/{{ item }}"
     dest: "/home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microservices/users/src/certs/"
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    mode: '0644'
   with_items:
     - "users/users-cert.pem"
     - "users/users-key.pem"
