@@ -1,0 +1,10 @@
+---
+- name: Install npm dependencies and build project
+  win_shell: |
+    $env:USERPROFILE = "C:\Users\{{ USER }}"
+    $projectPath = "C:\Users\{{ USER }}\{{ PROJECT_NAME }}\{{ ENVIRONMENT }}"
+    Set-Location -Path $projectPath
+    npm install
+    npm run build:{{ ENVIRONMENT }}
+  args:
+    executable: powershell.exe

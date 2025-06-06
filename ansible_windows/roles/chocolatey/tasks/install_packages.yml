@@ -1,0 +1,12 @@
+# roles/chocolatey/tasks/install_packages.yml
+
+---
+# Install required packages using Chocolatey
+
+- name: Install packages using Chocolatey
+  win_chocolatey:
+    name: "{{ item.name }}"
+    version: "{{ item.version | default(omit) }}"
+    state: present
+  loop: "{{ chocolatey_packages }}"
+  notify: refresh environment

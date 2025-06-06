@@ -1,0 +1,40 @@
+---
+- name: Run migrations for auth microservice
+  win_shell: |
+    $projectPath = "C:\Users\{{ USER }}\{{ PROJECT_NAME }}\{{ ENVIRONMENT }}\microservices\auth"
+    Set-Location -Path $projectPath
+    npm run migrate
+  args:
+    executable: powershell.exe
+
+- name: Run migrations for businesses microservice
+  win_shell: |
+    $projectPath = "C:\Users\{{ USER }}\{{ PROJECT_NAME }}\{{ ENVIRONMENT }}\microservices\businesses"
+    Set-Location -Path $projectPath
+    npm run migrate
+  args:
+    executable: powershell.exe
+
+- name: Run migrations for countries microservice
+  win_shell: |
+    $projectPath = "C:\Users\{{ USER }}\{{ PROJECT_NAME }}\{{ ENVIRONMENT }}\microservices\countries"
+    Set-Location -Path $projectPath
+    npm run migrate
+  args:
+    executable: powershell.exe
+
+- name: Run migrations for queues microservice
+  win_shell: |
+    $projectPath = "C:\Users\{{ USER }}\{{ PROJECT_NAME }}\{{ ENVIRONMENT }}\microservices\queues"
+    Set-Location -Path $projectPath
+    npm run migrate
+  args:
+    executable: powershell.exe
+
+- name: Run migrations for users microservice
+  win_shell: |
+    $projectPath = "C:\Users\{{ USER }}\{{ PROJECT_NAME }}\{{ ENVIRONMENT }}\microservices\users"
+    Set-Location -Path $projectPath
+    npm run migrate
+  args:
+    executable: powershell.exe

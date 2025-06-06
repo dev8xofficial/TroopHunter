@@ -1,0 +1,28 @@
+---
+# roles/github/tasks/clone_git_repo_windows.yml
+
+- name: Ensure git is installed
+  win_package:
+    name: Git
+    state: present
+  register: git_install
+
+- name: Create directory for repository
+  win_file:
+    path: "{{ GIT_REPO }}"
+    state: directory
+
+- name: Check if repository already cloned
+  win_stat:
+    path: "{{ GIT_REPO }}\.git"
+  register: git_repo_present
+
+- name: Clone git repository (if not present)
+  win_command: >
+    git clone {{ github_repo_url }} "{{ GIT_REPO }}"
+  when: not git_repo_present.stat.exists
+
+- name: Pull latest changes (if repo present)
+  win_command: >
+    git -C "{{ GIT_REPO }}" pull
+  when: git_repo_present.stat.exists

@@ -1,0 +1,4 @@
+---
+# Main entry point for the Docker role on Windows
+- name: Install Docker on Windows
+  include_tasks: install_docker_windows.yml

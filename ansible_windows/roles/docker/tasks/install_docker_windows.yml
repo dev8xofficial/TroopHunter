@@ -1,0 +1,33 @@
+---
+- name: Ensure required Windows features are enabled (Containers & Hyper-V)
+  win_feature:
+    name:
+      - Containers
+      - Hyper-V
+    state: present
+    include_sub_features: yes
+    restart: yes
+
+- name: Download DockerMsftProvider module
+  win_psmodule:
+    name: DockerMsftProvider
+    state: present
+
+- name: Install Docker package using DockerMsftProvider
+  win_package:
+    name: Docker
+    provider: DockerMsftProvider
+    state: present
+
+- name: Ensure Docker service is started and enabled
+  win_service:
+    name: docker
+    start_mode: auto
+    state: started
+
+- name: Add user to docker-users group
+  win_group_membership:
+    name: docker-users
+    members:
+      - "{{ ansible_user }}"
+    state: present

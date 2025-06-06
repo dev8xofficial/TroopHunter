@@ -1,0 +1,8 @@
+# roles/common/tasks/update_system.yml
+---
+- name: Install all available Windows updates
+  win_updates:
+    category_names:
+      - SecurityUpdates
+      - CriticalUpdates
+    reboot: yes

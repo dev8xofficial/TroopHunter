@@ -1,0 +1,3 @@
+---
+- name: Configure Windows Firewall settings
+  import_tasks: configure_firewall.yml

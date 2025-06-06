@@ -1,0 +1,14 @@
+---
+- name: Provision Windows Staging Server
+  hosts: windows
+  vars:
+    env: staging
+  roles:
+    - role: common
+    - role: chocolatey
+    - role: nvm
+    - role: docker
+    - role: github
+    - role: project
+    - role: iis
+    - role: windows_firewall

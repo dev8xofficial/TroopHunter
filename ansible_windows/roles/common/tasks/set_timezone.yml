@@ -1,0 +1,5 @@
+# roles/common/tasks/set_timezone.yml
+---
+- name: Set the timezone to "UTC"
+  win_timezone:
+    timezone: UTC

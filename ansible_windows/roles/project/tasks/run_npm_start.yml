@@ -1,0 +1,10 @@
+---
+- name: Start microservices project in background job
+  win_shell: |
+    $projectPath = "C:\Users\{{ USER }}\{{ PROJECT_NAME }}\{{ ENVIRONMENT }}"
+    Set-Location -Path $projectPath
+    Start-Job -ScriptBlock {
+        npm run start:microservices > C:\Users\{{ USER }}\{{ PROJECT_NAME }}\{{ ENVIRONMENT }}\dev.log 2>&1
+    }
+  args:
+    executable: powershell.exe

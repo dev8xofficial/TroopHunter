@@ -1,0 +1,13 @@
+# roles/common/tasks/main.yml
+---
+- name: Enable WinRM
+  include_tasks: enable_winrm.yml
+
+- name: Install Chocolatey
+  include_tasks: install_chocolatey.yml
+
+- name: Update system
+  include_tasks: update_system.yml
+
+- name: Set timezone
+  include_tasks: set_timezone.yml

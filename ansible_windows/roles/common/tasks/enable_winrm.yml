@@ -1,0 +1,7 @@
+# roles/common/tasks/enable_winrm.yml
+---
+- name: Enable and configure WinRM
+  winrm:
+    allow_unencrypted: yes
+    certificate_validation: ignore
+  when: ansible_connection == 'winrm'

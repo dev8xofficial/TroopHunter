@@ -1,0 +1,12 @@
+services:
+  ansible_windows_dev:
+    container_name: ansible_windows_dev
+    build:
+      context: .
+      dockerfile: ./ansible_windows/Dockerfile
+    volumes:
+      - ./ansible_windows:/etc/ansible
+      - ./ansible_windows:/ansible
+    stdin_open: true
+    tty: true
+    command: /bin/bash
