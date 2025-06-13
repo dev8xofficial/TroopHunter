@@ -14,6 +14,8 @@ button>.contact-button svg {
 
 .contact-form-button {
   cursor: pointer;
+    font-size: 21px;
+  font-weight: 500;
   display: flex;
   align-items: center;
   gap: 6px;
