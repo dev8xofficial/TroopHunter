@@ -111,6 +111,7 @@ export * from './src/Logos/coral';
 export * from './src/Logos/goldendao';
 export * from './src/Logos/honeydu';
 export * from './src/Logos/society1';
+export * from './src/Logos/troophunter';
 
 export * from './src/Animations/Appear';
 export * from './src/Animations/AppearOnScroll';

@@ -18,7 +18,7 @@ const Contact: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const above = 'Above all, we believe in human relationships, exceptional outcomes, and having fun along the way.';
   const paragraph = 'Human-focused experiences shape everything we create – from how we collaborate as a team, to the partnerships we build, and the digital solutions we deliver. This belief lives in our culture, fuels our curiosity, and drives how we approach every project from start to finish.';
-  const headingText = 'Since 2019 we’ve been working with amazing clients to create meaningful impact and compelling experiences.';
+  const headingText = 'Since 2024, Dev8X has been partnering with leading brands to deliver meaningful impact through thoughtful digital experiences.';
   const heading = 'Our capabilities are centred around our ability to deliver world-class websites and apps. We’re 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.';
   return (
     <>
@@ -172,7 +172,8 @@ const Contact: React.FC = (): JSX.Element => {
                   <div className={AboutHeroStyles['about-hero__container']}>
                     <p className={AboutHeroStyles['about-hero__intro']} aria-label={paragraph}>
                       {paragraph.split(' ').map((word, index) => {
-                        const isSpecial = word.toLowerCase().includes('Human-focused');
+                               const cleanWord = word.replace(/[.,]/g, '').toLowerCase();
+                      const isSpecial = cleanWord === 'human-focused';
                         return (
                           <span
                             key={index}
@@ -210,7 +211,10 @@ const Contact: React.FC = (): JSX.Element => {
                 <div className={styles['about-logos']}>
                   <h2 className={styles['about-logos__intro']} aria-label={headingText}>
                     {headingText.split(' ').map((word, index) => {
-                      const isSpecial = word.toLowerCase().includes('clients');
+                      // Clean word for accurate comparison (remove punctuation, make lowercase)
+                      const cleanWord = word.replace(/[.,]/g, '').toLowerCase();
+                      const isSpecial = cleanWord === 'dev8x';
+
                       return (
                         <span
                           key={index}
@@ -326,34 +330,34 @@ const Contact: React.FC = (): JSX.Element => {
                         <li>Obsess over detail</li>
                         <li>Pub lunch Fridays</li>
                         <li>Embrace change</li>
-                      <li>Unlock potential</li>
-                      <li>High-five</li>
-                      <li>Outstanding service</li>
-                      <li>Value relationships</li>
-                      <li>Exceed expectations</li>
-                      <li>Party</li>
-                    </ul>
-                  </section>
-                  <section className={styles['about-column']} style={{ opacity: 1, transform: 'translateX(0px)' }}>
-                    <h3 className={styles['about-column__heading']}>
-                      <span>What we don't</span>
-                    </h3>
-                    <ul className={styles['about-column__list']}>
-                      <li>Work weekends</li>
-                      <li>Outsource</li>
-                      <li>Resist cake</li>
-                      <li>Lose at Mario Kart</li>
-                      <li>‘Make it pop’</li>
-                      <li>Free pitches</li>
-                      <li>Sacrifice quality</li>
-                      <li>Egos</li>
-                      <li>Overpromise</li>
-                      <li>Cut corners</li>
-                      <li>Accept mediocrity</li>
-                      <li>Decaf</li>
-                    </ul>
-                  </section>
-                </div>
+                        <li>Unlock potential</li>
+                        <li>High-five</li>
+                        <li>Outstanding service</li>
+                        <li>Value relationships</li>
+                        <li>Exceed expectations</li>
+                        <li>Party</li>
+                      </ul>
+                    </section>
+                    <section className={styles['about-column']} style={{ opacity: 1, transform: 'translateX(0px)' }}>
+                      <h3 className={styles['about-column__heading']}>
+                        <span>What we don't</span>
+                      </h3>
+                      <ul className={styles['about-column__list']}>
+                        <li>Work weekends</li>
+                        <li>Outsource</li>
+                        <li>Resist cake</li>
+                        <li>Lose at Mario Kart</li>
+                        <li>‘Make it pop’</li>
+                        <li>Free pitches</li>
+                        <li>Sacrifice quality</li>
+                        <li>Egos</li>
+                        <li>Overpromise</li>
+                        <li>Cut corners</li>
+                        <li>Accept mediocrity</li>
+                        <li>Decaf</li>
+                      </ul>
+                    </section>
+                  </div>
                 </AppearOnScroll>
               </div>
             </div>

@@ -8,6 +8,7 @@ import Society1Logo from '../../Logos/society1';
 import GoldendaoLogo from '../../Logos/goldendao';
 
 import styles from './index.module.css';
+import TroopHunterLogo from '../../Logos/troophunter';
 
 export const LogoGrid: React.FC = (): JSX.Element => {
   const awards = [
@@ -30,6 +31,10 @@ export const LogoGrid: React.FC = (): JSX.Element => {
     {
       name: 'GoldenDao',
       logo: <GoldendaoLogo width={150} height={40} className={`SVG_svg-raw-wrap ${styles['logo-grid__logo']}`} />
+    },
+    {
+      name: 'TroopHunter',
+      logo: <TroopHunterLogo width={150} height={40} className={`SVG_svg-raw-wrap ${styles['logo-grid__logo']}`} />
     }
   ];
 

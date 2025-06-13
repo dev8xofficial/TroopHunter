@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { LogoGrid } from '../LogoGrid/LogoGrid';
-import { Button } from '../Button/Button';
-import CrossIcon from '../../Icons/Cross';
+// import { Button } from '../Button/Button';
+// import CrossIcon from '../../Icons/Cross';
 
 import styles from './index.module.css';
 
@@ -11,44 +11,56 @@ export const AwardsBlock: React.FC = (): JSX.Element => {
       <div className={styles['awards-block']}>
         <h2 className={styles['awards-block__intro']} aria-label="80+ awards globally and continually recognised by the best of the best.">
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            5+{' '}
+            Since{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            awards{' '}
+            2024,{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            globally{' '}
+            Dev8X{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            and{' '}
+            has been{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            continually{' '}
+            partnering{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            recognised{' '}
+            with{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            by{' '}
+            leading{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            the{' '}
+            brands{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            best{' '}
+            to{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            of{' '}
+            deliver{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            the{' '}
+            meaningful{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            best.
+            impact{' '}
+          </span>
+          <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
+            through{' '}
+          </span>
+          <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
+            thoughtful{' '}
+          </span>
+          <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
+            digital{' '}
+          </span>
+          <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
+            experiences.{' '}
           </span>
         </h2>
         <LogoGrid />
-        <div>
+        {/* <div>
           <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
             <Button
               variant="white"
@@ -61,7 +73,7 @@ export const AwardsBlock: React.FC = (): JSX.Element => {
               See all awards
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

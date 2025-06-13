@@ -8,13 +8,18 @@ type TestimonialAboutProps = {
   testimonialCSSClass: string;
 };
 
-const testimonials = ['“It was one of the most extraordinary experiences we have had in 24 years of business. Why? Because you challenged us and helped us articulate something very special.”', '“The team was very professional and delivered results beyond our expectations. Their support and guidance made all the difference.”', '“Working with them was a game-changer for our business. Their expertise and dedication are unmatched.”'];
+const testimonials = [
+  '“They simplified the entire process and made tech feel less overwhelming. Really happy with the results.”',
+  '“We had a vague idea — they turned it into a working solution without any stress. Great experience!”',
+  '“Working with them was a game-changer for our business. Their expertise and dedication are unmatched.”'
+];
 
 const authors = [
-  { name: 'Prof. Dan Haagman', position: 'Chaleit' },
-  { name: 'Ms. Jane Doe', position: 'CEO, ExampleCorp' },
+  { name: 'Sepand Hokmabadi', position: 'CEO, Total Health Dental Care' },
+  { name: 'Devin Picciolini', position: 'CEO, Coral' },
   { name: 'Mr. John Smith', position: 'Founder, StartupX' }
 ];
+
 
 export const TestimonialAbout: React.FC<TestimonialAboutProps> = ({ testimonialCSSClass }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

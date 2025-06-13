@@ -16,7 +16,7 @@
 
 @media (min-width: 992px) {
   .logo-grid {
-    grid-template-columns: repeat(5, minmax(auto, 1fr));
+    grid-template-columns: repeat(6, minmax(auto, 1fr));
   }
 }
 
