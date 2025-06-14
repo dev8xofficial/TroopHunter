@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 type MotionValues = {
   y?: string | number;
   opacity?: number;
-  [key: string]: any; // for flexibility
+  [key: string]: any;
 };
 
 type RotatingTextProps = {
@@ -20,7 +20,18 @@ type RotatingTextProps = {
   rotationInterval?: number;
 };
 
-export const RotatingText: React.FC<RotatingTextProps> = ({ texts, mainClassName = '', staggerFrom = 'first', initial = { y: '200%', opacity: 0 }, animate = { y: 0, opacity: 1 }, exit = { y: '-200%', opacity: 0 }, staggerDuration = 0.025, splitLevelClassName = '', transition = { type: 'spring', damping: 20, stiffness: 200 }, rotationInterval = 4000 }) => {
+export const RotatingText: React.FC<RotatingTextProps> = ({
+  texts,
+  mainClassName = '',
+  staggerFrom = 'first',
+  initial = { y: '120%', opacity: 0 },           // ✅ smoother entry from bottom
+  animate = { y: '0%', opacity: 1 },             // ✅ center position
+  exit = { y: '-120%', opacity: 0 },             // ✅ smoother exit to top
+  staggerDuration = 0.025,
+  splitLevelClassName = '',
+  transition = { duration: 0.6, ease: 'easeInOut' }, // ✅ smooth transition
+  rotationInterval = 2000                          // ✅ faster like humaan
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -33,12 +44,11 @@ export const RotatingText: React.FC<RotatingTextProps> = ({ texts, mainClassName
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % texts.length);
         setVisible(true);
-      }, 400); // delay before showing next text
+      }, 400);
     }, rotationInterval);
     return () => clearInterval(timer);
   }, [texts.length, rotationInterval]);
 
-  // Treat the full text as one animation block
   const splitText = (text: string) => [text];
 
   const letterVariants = {
@@ -85,7 +95,12 @@ export const RotatingText: React.FC<RotatingTextProps> = ({ texts, mainClassName
             }}
           >
             {splitText(currentText).map((text, i) => (
-              <motion.span key={i} custom={i} variants={letterVariants} style={{ display: 'inline-block', whiteSpace: 'pre' }}>
+              <motion.span
+                key={i}
+                custom={i}
+                variants={letterVariants}
+                style={{ display: 'inline-block', whiteSpace: 'pre' }}
+              >
                 {text}
               </motion.span>
             ))}
@@ -95,3 +110,4 @@ export const RotatingText: React.FC<RotatingTextProps> = ({ texts, mainClassName
     </span>
   );
 };
+export default RotatingText;

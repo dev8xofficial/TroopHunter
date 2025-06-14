@@ -172,3 +172,12 @@
 .footer__content {
   display: flex
 }
+.word-ticker {
+  perspective: 1000px;
+  perspective-origin: center;
+}
+
+.word-ticker-inner {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
