@@ -18,7 +18,7 @@ const Contact: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const above = 'Above all, we believe in human relationships, exceptional outcomes, and having fun along the way.';
   const paragraph = 'Human-focused experiences shape everything we create – from how we collaborate as a team, to the partnerships we build, and the digital solutions we deliver. This belief lives in our culture, fuels our curiosity, and drives how we approach every project from start to finish.';
-  const headingText = 'Since 2024, Dev8X has been partnering with leading brands to deliver meaningful impact through thoughtful digital experiences.';
+  const headingText = 'Since 2019 we’ve been working with amazing clients to create meaningful impact and compelling experiences.';
   const heading = 'Our capabilities are centred around our ability to deliver world-class websites and apps. We’re 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.';
   return (
     <>
