@@ -13,6 +13,10 @@ import TroopHunterLogo from '../../Logos/troophunter';
 export const LogoGrid: React.FC = (): JSX.Element => {
   const awards = [
     {
+      name: 'TroopHunter',
+      logo: <TroopHunterLogo width={150} height={40} className={`SVG_svg-raw-wrap ${styles['logo-grid__logo']}`} />
+    },
+    {
       name: 'TotalHealthDentalCare',
       logo: <TotalhealthdentalcareLogo width={150} height={40} className={`SVG_svg-raw-wrap ${styles['logo-grid__logo']}`} />
     },
@@ -31,10 +35,6 @@ export const LogoGrid: React.FC = (): JSX.Element => {
     {
       name: 'GoldenDao',
       logo: <GoldendaoLogo width={150} height={40} className={`SVG_svg-raw-wrap ${styles['logo-grid__logo']}`} />
-    },
-    {
-      name: 'TroopHunter',
-      logo: <TroopHunterLogo width={150} height={40} className={`SVG_svg-raw-wrap ${styles['logo-grid__logo']}`} />
     }
   ];
 
