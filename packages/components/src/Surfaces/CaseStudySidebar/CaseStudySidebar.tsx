@@ -5,7 +5,7 @@ import RightArrowIcon from '../../Icons/RightArrow';
 
 import styles from './index.module.css';
 
-export const CaseStudySideBar: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'path' | 'placeholderImage' | 'images' | 'bgColor'>> = ({ title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions }): JSX.Element => {
+export const CaseStudySideBar: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'path' | 'placeholderImage' | 'images' | 'bgColor' | 'testimonial' | 'testimonialAuthor' | 'testimonialAuthorPosition'>> = ({ title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions }): JSX.Element => {
   return (
     <>
       <div className={styles['sidebar']}>

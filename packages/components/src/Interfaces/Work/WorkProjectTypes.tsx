@@ -23,7 +23,7 @@ export type WorkDetail = {
   testimonialAuthorPosition: string;
 };
 
-export type CommonWorkCardProps = Omit<WorkDetail, 'slug' | 'websiteUrl' | 'industry' | 'shortIntro' | 'overview' | 'approach' | 'impact' | 'keyContributions'> & {
+export type CommonWorkCardProps = Omit<WorkDetail, 'slug' | 'websiteUrl' | 'industry' | 'shortIntro' | 'overview' | 'approach' | 'impact' | 'keyContributions' | 'testimonial' | 'testimonialAuthor' | 'testimonialAuthorPosition'> & {
   space: 'inner' | 'outer';
 };
 
