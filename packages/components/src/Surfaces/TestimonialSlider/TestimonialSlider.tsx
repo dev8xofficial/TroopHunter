@@ -3,8 +3,7 @@ import styles from './index.module.css';
 import ProjectContactStyles from '../ProjectContents//index.module.css';
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 
-export const TestimonialSlider: React.FC = (): JSX.Element => {
-  const testimonialLines = ['Dev8x are true professionals, masters in their field, with meticulous attention to detail. With our dream website complete, we have an asset that can evolve with us for many years to come. Thank you amazing Dev8x!'];
+export const TestimonialSlider: React.FC<{ testimonial: string; testimonialAuthor: string; testimonialAuthorPosition: string }> = ({ testimonial, testimonialAuthor, testimonialAuthorPosition }): JSX.Element => {
   return (
     <>
       <div className={`${styles['testimonials']} ${ProjectContactStyles['project-content__block-testimonials']}`}>
@@ -13,7 +12,7 @@ export const TestimonialSlider: React.FC = (): JSX.Element => {
           <figure className={`${styles['testimonial']} ${styles['testimonial--active']}`} style={{ opacity: 1, zIndex: 1, transform: 'none' }}>
             <blockquote className={styles['testimonial__quote']}>
               <span aria-label="Humaan are true professionals, masters in their field, with meticulous attention to detail. With our dream website complete, we have an asset that can evolve with us for many years to come. Thank you amazing Dev8x!">
-                {testimonialLines.map((line, lineIndex) => (
+                {testimonial.split('\n').map((line, lineIndex) => (
                   <span key={lineIndex} style={{ display: 'block' }}>
                     {line.split(' ').map((word, wordIndex) => (
                       <span
@@ -44,8 +43,8 @@ export const TestimonialSlider: React.FC = (): JSX.Element => {
               </span>
             </blockquote>
             <figcaption className={styles['testimonial__author']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-              <span className={styles['testimonial__author-name']}>Abdul Rehman</span>
-              <span className={styles['testimonial__author-position']}>CEO</span>
+              <span className={styles['testimonial__author-name']}>{testimonialAuthor}</span>
+              <span className={styles['testimonial__author-position']}>{testimonialAuthorPosition}</span>
             </figcaption>
           </figure>
         </div>

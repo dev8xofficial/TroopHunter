@@ -56,7 +56,7 @@ const Footer: React.FC = (): JSX.Element => {
             <div className="flex items-center gap-[clamp(1rem,1.0582010582vw,1.33rem)]">
               <img className="mx-auto h-5" src={`${process.env.VITE_DEV8X_PUBLIC_URL}/logo/logo.svg`} alt="Dev8X" />
               <span className="text-[var(--theme-secondary)] opacity-50 dark:text-gray-300">
-                © 2024{' '}
+                © 2025{' '}
                 <a href="" className="text-inherit underline  dark:text-gray-300">
                   Privacy
                 </a>

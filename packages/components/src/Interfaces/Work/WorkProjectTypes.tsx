@@ -18,6 +18,9 @@ export type WorkDetail = {
   video: Video;
   bgColor: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow' | 'troophunter-light' | 'totalhealthdentalcare-light' | 'scheduler-light' | 'honeydu-light' | 'coral-light' | 'goldendao-light';
   path: string;
+  testimonial: string;
+  testimonialAuthor: string;
+  testimonialAuthorPosition: string;
 };
 
 export type CommonWorkCardProps = Omit<WorkDetail, 'slug' | 'websiteUrl' | 'industry' | 'shortIntro' | 'overview' | 'approach' | 'impact' | 'keyContributions'> & {

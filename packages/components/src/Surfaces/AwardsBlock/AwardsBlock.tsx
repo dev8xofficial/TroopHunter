@@ -14,7 +14,7 @@ export const AwardsBlock: React.FC = (): JSX.Element => {
             Since{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
-            2024,{' '}
+            2019,{' '}
           </span>
           <span className="TextAnimateUp_word__Yvn5A" aria-hidden="true">
             Dev8X{' '}

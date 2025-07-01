@@ -97,7 +97,7 @@ const OFFERS: ExpertiseContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Humaan.'
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
       },
       {
         name: 'Paula McCarville',
@@ -115,7 +115,7 @@ const OFFERS: ExpertiseContent[] = [
         color: '#E8F5FF',
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Humaan team has been nothing short of amazing. I wouldn’t hesitate to recommend Humaan to any business.'
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
   }

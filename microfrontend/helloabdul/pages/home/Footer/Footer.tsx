@@ -55,7 +55,7 @@ const Footer: React.FC = (): JSX.Element => {
             <div className="gap-[clamp(1rem,1.0582010582vw,1.33rem)] items-center flex">
               <img className="mx-auto h-5" src="/logo.svg" alt="Dev8X" />
               <span className="opacity-50 text-[var(--theme-secondary)]">
-                © 2024{' '}
+                © 2025{' '}
                 <a href="" className="text-inherit underline">
                   Privacy
                 </a>

@@ -297,7 +297,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Mobile App Developers | Our Expertise — Humaan | Humaan: World class digital products',
+      title: 'Mobile App Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
       description: 'We create, craft and launch exceptional mobile apps for iOS and Android.'
     },
     footerForm: {

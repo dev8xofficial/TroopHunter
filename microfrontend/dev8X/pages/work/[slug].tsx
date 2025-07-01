@@ -73,13 +73,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const project = WORK_PROJECTS.find((p) => p.slug === params.slug);
-  const { slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, placeholderImage, video, images } = project;
+  const { slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, placeholderImage, video, images, testimonial, testimonialAuthor, testimonialAuthorPosition } = project;
 
   if (!project) {
     return { notFound: true };
   }
 
   return {
-    props: { slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, placeholderImage, video, images }
+    props: { slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, placeholderImage, video, images, testimonial, testimonialAuthor, testimonialAuthorPosition }
   };
 }

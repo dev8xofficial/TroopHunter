@@ -13,7 +13,7 @@ type WorkDetailWithoutMeta = Omit<WorkDetail, 'path' | 'bgColor'> & {
   nextWorkProject?: WorkDetail;
 };
 
-export const ProjectsFormModal: React.FC<WorkDetailWithoutMeta> = ({ slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, placeholderImage, video, nextWorkProject, images }): JSX.Element => {
+export const ProjectsFormModal: React.FC<WorkDetailWithoutMeta> = ({ slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, placeholderImage, video, nextWorkProject, images, testimonial, testimonialAuthor, testimonialAuthorPosition }): JSX.Element => {
   const safeBgColor = `${slug}-light` as WorkDetail['bgColor'];
   const safeBgColorNextWorkProject = `${nextWorkProject.slug}-light` as WorkDetail['bgColor'];
 
@@ -77,7 +77,7 @@ export const ProjectsFormModal: React.FC<WorkDetailWithoutMeta> = ({ slug, title
                 />
               </div>
             </div>
-            <TestimonialSlider />
+            <TestimonialSlider testimonial={testimonial} testimonialAuthor={testimonialAuthor} testimonialAuthorPosition={testimonialAuthorPosition} />
             {images[0] && (
               <div className={styles['project-content__block-image']}>
                 <div className={`${styles['project-content__image']} ${styles['project-content__image--half']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>

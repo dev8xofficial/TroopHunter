@@ -18,7 +18,10 @@ export const WORK_PROJECTS: WorkDetail[] = [
       sequences: ['/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4']
     },
     bgColor: 'blue',
-    path: 'troophunter'
+    path: 'troophunter',
+    testimonial: 'Dev8x are true professionals, masters in their field, with meticulous attention to detail. With our dream website complete, we have an asset that can evolve with us for many years to come. Thank you amazing Dev8x!',
+    testimonialAuthor: 'Abdul Rehman',
+    testimonialAuthorPosition: 'CEO, Dev8X'
   },
   {
     slug: 'totalhealthdentalcare',
@@ -37,7 +40,10 @@ export const WORK_PROJECTS: WorkDetail[] = [
       sequences: ['/videos/work/totalhealthdentalcare/part-01-export.mp4', '/videos/work/totalhealthdentalcare/part-03-export.mp4', '/videos/work/totalhealthdentalcare/part-05-export.mp4', '/videos/work/totalhealthdentalcare/part-02-export.mp4', '/videos/work/totalhealthdentalcare/part-04-export.mp4', '/videos/work/totalhealthdentalcare/part-06-export.mp4']
     },
     bgColor: 'cyan',
-    path: 'totalhealthdentalcare'
+    path: 'totalhealthdentalcare',
+    testimonial: "We came to Dev8X with an idea and a massive datasheet. They supported us through every step of the creative process, helping us understand the reasoning behind each decision, and we couldn't be happier with the result.",
+    testimonialAuthor: 'Sepand Hokmabadi',
+    testimonialAuthorPosition: 'CEO, Total Health Dental Care'
   },
   {
     slug: 'scheduler',
@@ -56,7 +62,10 @@ export const WORK_PROJECTS: WorkDetail[] = [
       sequences: ['/videos/work/scheduler/part-01-export.mp4', '/videos/work/scheduler/part-02-export.mp4', '/videos/work/scheduler/part-03-export.mp4', '/videos/work/scheduler/part-04-export.mp4']
     },
     bgColor: 'blue',
-    path: 'scheduler'
+    path: 'scheduler',
+    testimonial: 'We are more than happy with the finished product and have seen improvements in conversion rate, bounce rate and time on page almost instantly. We would recommend Dev8X to anyone!',
+    testimonialAuthor: 'Sepand Hokmabadi',
+    testimonialAuthorPosition: 'CEO, Total Health Dental Care'
   },
   {
     slug: 'honeydu',
@@ -75,7 +84,10 @@ export const WORK_PROJECTS: WorkDetail[] = [
       sequences: ['/videos/work/honeydu/part-01-export.mp4', '/videos/work/honeydu/part-02-export.mp4', '/videos/work/honeydu/part-04-export.mp4', '/videos/work/honeydu/part-03-export.mp4']
     },
     bgColor: 'cyan',
-    path: 'honeydu'
+    path: 'honeydu',
+    testimonial: "Dev8X has elevated the standards of customer service and website delivery and taken it to the next level. Throughout our journey from initial research to concept designs and final website delivery, we have been consistently impressed by their exceptional quality, speed, and professionalism.",
+    testimonialAuthor: 'Devin Picciolini',
+    testimonialAuthorPosition: 'CEO, Coral'
   },
   {
     slug: 'coral',
@@ -94,7 +106,10 @@ export const WORK_PROJECTS: WorkDetail[] = [
       sequences: ['/videos/work/coral/part-01-export.mp4', '/videos/work/coral/part-02-export.mp4', '/videos/work/coral/part-03-export.mp4', '/videos/work/coral/part-04-export.mp4']
     },
     bgColor: 'blue',
-    path: 'coral'
+    path: 'coral',
+    testimonial: "Working with Dev8X was seamless from start to finish. Their team truly listened to our needs and delivered a digital solution that exceeded our expectations.",
+    testimonialAuthor: 'Devin Picciolini',
+    testimonialAuthorPosition: 'CEO, Coral'
   },
   {
     slug: 'goldendao',
@@ -113,7 +128,10 @@ export const WORK_PROJECTS: WorkDetail[] = [
       sequences: ['/videos/work/goldendao/part-01-export.mp4', '/videos/work/goldendao/part-02-export.mp4', '/videos/work/goldendao/part-03-export.mp4', '/videos/work/goldendao/part-04-export.mp4', '/videos/work/goldendao/part-05-export.mp4']
     },
     bgColor: 'cyan',
-    path: 'goldendao'
+    path: 'goldendao',
+    testimonial: "Dev8X brought our vision to life with creativity and care. Their dedication and collaborative approach made the entire process enjoyable and rewarding.",
+    testimonialAuthor: 'Andrew Yang',
+    testimonialAuthorPosition: 'CEO, Golden DAO'
   }
 ];
 
@@ -127,7 +145,10 @@ export const WORK_PROJECTS_GRID_DATA: WorkGridCard[] = WORK_PROJECTS.map((item) 
       images: item.images,
       placeholderImage: item.placeholderImage,
       video: item.video,
-      path: item.path
+      path: item.path,
+      testimonial: item.testimonial,
+      testimonialAuthor: item.testimonialAuthor,
+      testimonialAuthorPosition: item.testimonialAuthorPosition
     };
   } else {
     return item.images.map((image) => ({
@@ -138,7 +159,10 @@ export const WORK_PROJECTS_GRID_DATA: WorkGridCard[] = WORK_PROJECTS.map((item) 
       images: item.images,
       placeholderImage: item.placeholderImage,
       video: item.video,
-      path: item.path
+      path: item.path,
+      testimonial: item.testimonial,
+      testimonialAuthor: item.testimonialAuthor,
+      testimonialAuthorPosition: item.testimonialAuthorPosition
     }));
   }
 });
