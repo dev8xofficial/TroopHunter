@@ -240,7 +240,7 @@
 
 .about-dos-donts__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     max-width: clamp(71.25rem, 75.3968253968vw, 94.7625rem);
     grid-gap: clamp(5rem, 5.291005291vw, 6.65rem);
     gap: clamp(5rem, 5.291005291vw, 6.65rem)

@@ -27,7 +27,7 @@ export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, f
             <RightArrowIcon width="14" className={styles['arrow']} />
             <span className={styles['footer__word-ticker-wrapper']}>
               {endWords[0] + ' '}
-              <RotatingText texts={rotatingWords} mainClassName={styles['word-ticker']} staggerFrom="last" initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '-120%' }} staggerDuration={0.025} splitLevelClassName={styles['word-ticker-inner']} transition={{ type: 'spring', damping: 30, stiffness: 400 }} rotationInterval={2000} />
+              <RotatingText texts={rotatingWords} mainClassName={styles['word-ticker']} staggerFrom="first" initial={{ y: '100%', opacity: 0 }} animate={{ y: '0%', opacity: 1 }} exit={{ y: '-100%', opacity: 0 }} staggerDuration={0.05} transition={{ duration: 0.5, ease: 'easeInOut' }} rotationInterval={3000} />
             </span>
           </a>
         </p>

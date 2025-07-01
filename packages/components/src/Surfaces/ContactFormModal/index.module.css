@@ -14,11 +14,11 @@ button>.contact-button svg {
 
 .contact-form-button {
   cursor: pointer;
-    font-size: 21px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 200;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 1px;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -41,6 +41,13 @@ button>.contact-button svg {
 .contact-form-button:hover svg {
   transform: translateX(4px);
 }
+
+@media (max-width: 768px) {
+  .contact-form-button {
+    font-size: 16px;
+  }
+}
+
 
 .large-button {
   scale: 1.5 !important;

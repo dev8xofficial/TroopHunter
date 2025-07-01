@@ -47,7 +47,7 @@
 .menu {
   position: fixed;
   bottom: 1.875rem;
-  z-index: 101;
+  z-index: 100;
   border-radius: 100vh;
   left: 50%;
   transform: translateX(-50%);
