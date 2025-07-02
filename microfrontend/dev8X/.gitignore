@@ -86,6 +86,7 @@ out
 dist
 /public/videos/
 /public/images/
+/public/offers/
 
 # Gatsby files
 .cache/
