@@ -8,6 +8,7 @@ import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularB
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
+import VideoPlayer from '@repo/components/src/Surfaces/VideoPlayer/VideoPlayer';
 
 // import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import HomePageStyles from '../../pages//index.module.css';
@@ -74,7 +75,8 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
               <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src="/videos/work/crm.mp4" isMobile={isMobile}>
                 <div className={`${styles['work-grid']} ${HomePageStyles['work-grid']}`}>
                   <WorkGridRowLandscape>
-                    <OffersReel bgColor="cyan" title={PageData.tagText} image="/images/placeholder/1080.png" video="/videos/work/totalhealthdentalcare.mp4" />
+                    {/* <OffersReel bgColor="cyan" title={PageData.tagText} image="/images/placeholder/1080-transparent.png" poster="/videos/dev8x/thumbnail.jpg" src="/videos/dev8x/master.m3u8" /> */}
+                    <VideoPlayer src={`/videos/offers/${slug}/master.m3u8`} poster={`/videos/offers/${slug}/thumbnail.jpg`} />
                   </WorkGridRowLandscape>
                 </div>
               </HomepageShowreel>

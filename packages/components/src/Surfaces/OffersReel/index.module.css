@@ -62,17 +62,19 @@
   border-radius: 20px;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: 2;
 }
 
 .work-card__content {
   align-content: flex-end;
   display: grid;
+  pointer-events: none;
 }
 
 .work-card__content-inner {
   padding: clamp(0.75rem, 0.7936507937vw, 0.9975rem) 0 0;
   display: grid;
+  pointer-events: none;
 }
 
 .work-card__title {
