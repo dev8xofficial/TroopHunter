@@ -69,7 +69,6 @@ html {
   font-family: 'Neue Montreal', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  font-weight: 500;
   scroll-behavior: smooth !important;
 }
 
@@ -148,12 +147,12 @@ html.lenis body {
 }
 
 :root {
-  --troophunter-light: #DFDEFF;
-  --totalhealthdentalcare-light: #E9FCEC;
-  --scheduler-light: #EAEAEA;
-  --honeydu-light: #E9FFF5;
-  --coral-light: #EEFFFE;
-  --goldendao-light: #FFFAED;
+  --troophunter-light: #dfdeff;
+  --totalhealthdentalcare-light: #e9fcec;
+  --scheduler-light: #eaeaea;
+  --honeydu-light: #e9fff5;
+  --coral-light: #eefffe;
+  --goldendao-light: #fffaed;
 }
 
 @media (min-width: 768px) {
@@ -215,6 +214,27 @@ picture {
 img {
   max-width: 100%;
   margin: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
 }
 
 svg {
