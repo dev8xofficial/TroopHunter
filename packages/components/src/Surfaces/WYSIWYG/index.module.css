@@ -1,22 +1,167 @@
 .wysiwyg {
-  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
-  line-height: 1.6;
+  font-size: clamp(.9375rem, .9920634921vw, 1.246875rem);
+  line-height: 1.6
 }
 
 .wysiwyg:after {
-  content: '';
+  content: "";
   clear: both;
-  display: table;
-}
-
-.wysiwyg p {
-  margin-bottom: 1em;
+  display: table
 }
 
 .wysiwyg>:first-child {
-  margin-top: 0;
+  margin-top: 0
 }
 
 .wysiwyg>:last-child {
-  margin-bottom: 0;
+  margin-bottom: 0
+}
+
+.wysiwyg p {
+  margin-bottom: 1em
+}
+
+.wysiwyg code,
+.wysiwyg pre {
+  background-color: #f5f5f5;
+  padding: .2em .5em;
+  border-radius: 5px;
+  white-space: pre-line
+}
+
+.wysiwyg blockquote,
+.wysiwyg pre,
+.wysiwyg table {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em
+}
+
+.wysiwyg a {
+  text-decoration: underline;
+  color: var(--theme-primary-text);
+  font-weight: 500
+}
+
+.wysiwyg blockquote {
+  border-left: 2px solid var(--theme-primary);
+  margin-left: 0;
+  padding: .5em 0 .5em 1.5em
+}
+
+.wysiwyg img {
+  border-radius: 5px;
+  object-fit: contain
+}
+
+.wysiwyg figcaption {
+  margin-top: .6875rem;
+  font-size: .875rem
+}
+
+.wysiwyg ol,
+.wysiwyg ul {
+  margin-bottom: 1em
+}
+
+.wysiwyg li {
+  margin-top: .5em;
+  padding-left: .5em
+}
+
+.wysiwyg li::marker {
+  font-weight: 500;
+  color: var(--theme-primary-text)
+}
+
+.wysiwyg li p {
+  margin: 0
+}
+
+.wysiwyg li *+p {
+  margin-top: 1em
+}
+
+.wysiwyg table {
+  font-size: .875rem;
+  line-height: 1.2;
+  border-collapse: collapse
+}
+
+.wysiwyg table tbody tr {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0
+}
+
+.wysiwyg table td,
+.wysiwyg table th {
+  text-align: left;
+  padding-left: 1em;
+  padding-right: 1em
+}
+
+.wysiwyg table td:first-child,
+.wysiwyg table th:first-child {
+  padding-left: 0
+}
+
+.wysiwyg table td:last-child,
+.wysiwyg table th:last-child {
+  padding-right: 0
+}
+
+.wysiwyg table th {
+  font-weight: 500;
+  padding-bottom: 1rem
+}
+
+.wysiwyg table td {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  vertical-align: top
+}
+
+.wysiwyg img {
+  max-width: 100%;
+  height: auto;
+  display: block
+}
+
+.wysiwyg hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 2em 0
+}
+
+.wysiwyg h1,
+.wysiwyg h2,
+.wysiwyg h3,
+.wysiwyg h4,
+.wysiwyg h5,
+.wysiwyg h6 {
+  color: var(--theme-secondary);
+  line-height: 1.2
+}
+
+.wysiwyg h1 {
+  font-size: 2.986em
+}
+
+.wysiwyg h2 {
+  font-size: 2.488em
+}
+
+.wysiwyg h3 {
+  font-size: 2.074em
+}
+
+.wysiwyg h4 {
+  font-size: 1.728em
+}
+
+.wysiwyg h5 {
+  font-size: 1.44em
+}
+
+.wysiwyg h6 {
+  font-size: 1.2em
 }

@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { FooterRevealPageWrap, Footer, Header } from '@repo/components';
 import { getDev8xPublicUrl } from '../../utils/helpers';
-import PageData from '../../data/not-found/index.d';
+import PageData from '../../data/404/index.d';
 
 import styles from './index.module.css';
 
@@ -36,6 +36,17 @@ const Work: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <div className={styles['not-found']}>
+            <style jsx global>{`
+              :root {
+                --theme-primary: var(--blue-primary);
+                --theme-primary-text: var(--blue-primary-text);
+                --theme-secondary: var(--blue-secondary);
+                --theme-text: var(--blue-text);
+                --theme-background: var(--blue-tertiary);
+                --theme-logo: var(--blue-secondary);
+                --theme-header-face: var(--blue-primary);
+              }
+            `}</style>
             <h1 className={styles['not-found__heading']}>Whoops!</h1>
             <h2 className={styles['not-found__error']}>This page does not exist.</h2>
             <img className={styles['not-found__image']} src="https://www.humaan.com/assets/404.gif" alt="Sad James, Sad Balloon" width="440" height="400" />

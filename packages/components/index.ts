@@ -34,6 +34,7 @@ export * from './src/Surfaces/ExpertiseCard/ExpertiseCard';
 export * from './src/Surfaces/CaseStudySidebar/CaseStudySidebar';
 export * from './src/Surfaces/ProjectContents/ProjectContents';
 export * from './src/Surfaces/TestimonialSlider/TestimonialSlider';
+// export * from './src/Surfaces/FeedSilder/FeedSilder';
 
 export * from './src/Icons/AIBrain';
 export * from './src/Icons/Analysis';

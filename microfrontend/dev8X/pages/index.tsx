@@ -101,6 +101,11 @@ export default function Home() {
             <div className={styles['homepage__section']}>
               <WorkGrid workGridCSSClass={styles['work-grid']} openModal={openModal} />
               <WhyDev8X {...whyDev} />
+              {/* <div className={styles['homepage__feed-wrapper']}>
+                <div className={styles['homepage__feed-wrapper-inner']}>
+                  <FeedSlider  />
+                </div>
+              </div> */}
             </div>
           </main>
         </FooterRevealPageWrap>
