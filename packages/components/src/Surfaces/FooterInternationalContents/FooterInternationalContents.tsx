@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { ICON_MAP } from '../IconCards/IconMap';
 import { ExpertiseFooterForm, ExpertiseFooterSocialLink } from '../../Interfaces/Expertise/Expertise';
+import RightArrowIcon from '../../Icons/RightArrow';
 
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 import ButtonStyles from '../Button/index.module.css';
@@ -56,6 +57,14 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
           <address>Lahore, Punjab</address>
           <a href="tel:+923292947777" className={styles['footer-columns__column--email']}>
             +92 (329) 294-7777
+          </a>
+        </div>
+
+        <div className={`${styles['footer-columns__column']} ${styles['footer-columns__column--address']}`}>
+          <h3>We’re Growing – Join Our Team</h3>
+          <address>Let’s build the future, together.</address>
+          <a href="/careers" className={styles['footer-columns__column--email']}>
+            Explore Careers <RightArrowIcon width="14" className={styles['arrow']} />
           </a>
         </div>
       </div>

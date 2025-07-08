@@ -1,11 +1,28 @@
 import Head from 'next/head';
-import { FooterRevealPageWrap, Footer, Header, CareerContentsModal } from '@repo/components';
+import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { useSetAtom } from 'jotai';
+import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
+import { FooterRevealPageWrap, Footer, Header, CareerContentsModal, ExpertiseCard, Button, AwardsBlock } from '@repo/components';
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import PageData from '../../data/careers/index.d';
+import EXPERTISES from '../../data/expertise/index.d';
 
 import WorkStyles from '../work/index.module.css';
+import ExpertiseStyles from '../expertise/index.module.css';
 
 const WorkPage: React.FC = (): JSX.Element => {
+  const toggleModal = useSetAtom(toggleSmoothModalAtom);
+  const getNextExpertise = (currentSlug: string) => {
+    const currentIndex = EXPERTISES.findIndex((e) => e.slug === currentSlug);
+
+    if (currentIndex === -1) return null; // if slug not found
+
+    const nextIndex = (currentIndex + 1) % EXPERTISES.length;
+    return EXPERTISES[nextIndex];
+  };
+
+  const nextExpertise = getNextExpertise('web-applications');
+
   return (
     <>
       <Head>
@@ -47,6 +64,13 @@ const WorkPage: React.FC = (): JSX.Element => {
           {/* Main container with smooth-scrollbar */}
           <main className={WorkStyles['project-page']}>
             <CareerContentsModal />
+
+            <div className={ExpertiseStyles['expertise-container']}>
+              <AwardsBlock />
+              <div className={ExpertiseStyles['expertise-container']}>
+                <ExpertiseCard variant={nextExpertise.variant} tagText={nextExpertise.tagText} heading={nextExpertise.iconCards.paragraph} slug={nextExpertise.slug} image={nextExpertise.image} />
+              </div>
+            </div>
           </main>
         </FooterRevealPageWrap>
         <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />

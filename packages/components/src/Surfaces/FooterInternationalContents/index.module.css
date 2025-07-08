@@ -97,7 +97,8 @@
 }
 
 .footer-columns__column a {
-  display: block;
+  display: flex;
+  align-items: center;
   color: inherit;
   -webkit-text-decoration-color: transparent;
   text-decoration-color: transparent;
@@ -128,6 +129,11 @@
 
 .footer-columns__column--email {
   transition: opacity 0.4s;
+  gap: 0.5rem;
+}
+
+.footer-columns__column--email svg {
+  transform: rotate(-45deg);
 }
 
 .footer-columns__column--email:not(:hover):not(:focus) {
