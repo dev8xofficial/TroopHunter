@@ -1,8 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-
 import { UserMessageKey, getUserMessage, AuthMessageKey, getAuthMessage } from '@repo/messages';
-import { type IHttpsAgentOptions } from '@repo/middlewares';
 import { getLeadsByUserId, getUserByEmail } from '@repo/services';
 import { logger } from '@repo/utils';
 import { type ApiResponse, type IUserTokenRequestAttributes, type IUserAttributes, createApiResponse, type IUserFetchByIdRequestAttributes, type IRefreshTokenAttributes, type ILeadAttributes } from '@repo/validator';
@@ -13,25 +9,13 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { UserToken } from '../../models';
 
-const privateKey = fs.readFileSync(path.resolve(__dirname, '../../certs/auth-key.pem'));
-const certificate = fs.readFileSync(path.resolve(__dirname, '../../certs/auth-cert.pem'));
-const caCertificate = fs.readFileSync(path.resolve(__dirname, '../../certs/ca-cert.pem'));
-
-const httpsAgent: IHttpsAgentOptions = {
-  key: privateKey,
-  cert: certificate,
-  ca: caCertificate,
-  requestCert: true,
-  rejectUnauthorized: true,
-};
-
 export const login = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { email, password } = req.body as IUserAttributes;
 
     // Check if the user exists
     // const user: User | null = await User.findOne({ where: { email }, include: [{ model: Lead }] });
-    const userResponse: ApiResponse<IUserAttributes | null> = await getUserByEmail({ email, ...httpsAgent });
+    const userResponse: ApiResponse<IUserAttributes | null> = await getUserByEmail({ email });
     if (userResponse.data == null) {
       logger.error(`User with email ${email} does not exist.`);
       const response: ApiResponse<null> = createApiResponse({ error: userResponse.message, status: userResponse.status });
@@ -57,7 +41,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '30m' });
     const refreshToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '60m' });
 
-    const leads: ApiResponse<ILeadAttributes[] | null> = await getLeadsByUserId({ userId: user.id, ...httpsAgent });
+    const leads: ApiResponse<ILeadAttributes[] | null> = await getLeadsByUserId({ userId: user.id });
     user.Leads = leads.data ?? [];
 
     let userToken: UserToken | null = await UserToken.findOne({ where: { userId: user.id } });

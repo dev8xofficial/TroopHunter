@@ -1,8 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-
 import { UserMessageKey, getUserMessage } from '@repo/messages';
-import { type IHttpsAgentOptions } from '@repo/middlewares';
 import { createUser, getUserByEmail, getUserById, updateUserPassword, updateUserVerified } from '@repo/services';
 import { logger, checkToken, generateToken, sendEmail } from '@repo/utils';
 import { type ApiResponse, type IResetPasswordAttributes, type IResetPasswordVerificationAttributes, type ISendVerificationTokenAttributes, type IUserAttributes, type IVerifyUserAttributes, createApiResponse } from '@repo/validator';
@@ -12,24 +8,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { emailTemplate } from '../../templates/emailTemplate';
 
-const privateKey = fs.readFileSync(path.resolve(__dirname, '../../certs/auth-key.pem'));
-const certificate = fs.readFileSync(path.resolve(__dirname, '../../certs/auth-cert.pem'));
-const caCertificate = fs.readFileSync(path.resolve(__dirname, '../../certs/ca-cert.pem'));
-
-const httpsAgent: IHttpsAgentOptions = {
-  key: privateKey,
-  cert: certificate,
-  ca: caCertificate,
-  requestCert: true,
-  rejectUnauthorized: true,
-};
-
 export const register = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { firstName, lastName, email, password } = req.body as IUserAttributes;
 
     // const existingUser = await User.findOne({ where: { email } });
-    const existingUserResponse: ApiResponse<IUserAttributes | null> = await getUserByEmail({ email, ...httpsAgent });
+    const existingUserResponse: ApiResponse<IUserAttributes | null> = await getUserByEmail({ email });
     if (existingUserResponse.data != null) {
       logger.error(`User with email ${email} already exists.`);
       const response: ApiResponse<null> = createApiResponse({ error: getUserMessage(UserMessageKey.DUPLICATE_USER).message, status: getUserMessage(UserMessageKey.DUPLICATE_USER).code });
@@ -44,7 +28,7 @@ export const register = async (req: Request, res: Response): Promise<Response> =
     // requestData.password = hashedPassword;
 
     // Create the user
-    const userResponse: ApiResponse<Omit<IUserAttributes, 'Leads'> | null> = await createUser({ ...requestData, ...httpsAgent });
+    const userResponse: ApiResponse<Omit<IUserAttributes, 'Leads'> | null> = await createUser({ ...requestData });
     if (userResponse.data == null) {
       const response: ApiResponse<null> = createApiResponse({ success: userResponse.success, data: userResponse.data, message: userResponse.message, status: userResponse.status });
       return res.json(response);
@@ -66,7 +50,7 @@ export const sendVerificationToken = async (req: Request, res: Response): Promis
   try {
     const { email } = req.body as ISendVerificationTokenAttributes;
 
-    const existingUserResponse: ApiResponse<IUserAttributes | null> = await getUserByEmail({ email, ...httpsAgent });
+    const existingUserResponse: ApiResponse<IUserAttributes | null> = await getUserByEmail({ email });
     if (existingUserResponse.data == null) {
       logger.error(`User not found.`);
       const response: ApiResponse<null> = createApiResponse({ error: existingUserResponse.message, status: existingUserResponse.status });
@@ -134,7 +118,7 @@ export const verifyUser = async (req: Request, res: Response): Promise<Response>
   try {
     const { id, token } = req.params as IVerifyUserAttributes;
 
-    const userResponse: ApiResponse<IUserAttributes | null> = await getUserById({ id, ...httpsAgent });
+    const userResponse: ApiResponse<IUserAttributes | null> = await getUserById({ id });
     if (userResponse.data == null) {
       logger.error(`User not found.`);
       const response: ApiResponse<null> = createApiResponse({ error: userResponse.message, status: userResponse.status });
@@ -154,7 +138,7 @@ export const verifyUser = async (req: Request, res: Response): Promise<Response>
       }
     }
 
-    const updatedUserResponse: ApiResponse<IUserAttributes | null> = await updateUserVerified({ id, verified: true, ...httpsAgent });
+    const updatedUserResponse: ApiResponse<IUserAttributes | null> = await updateUserVerified({ id, verified: true });
     if (updatedUserResponse.data == null) {
       logger.info(`User's ${id} email verification failed!`);
       const response: ApiResponse<null> = createApiResponse({ success: true, data: null, message: updatedUserResponse.message, status: updatedUserResponse.status });
@@ -178,7 +162,7 @@ export const forgotPassword = async (req: Request, res: Response): Promise<Respo
     const { email } = req.body as ISendVerificationTokenAttributes;
 
     // const existingUser = await User.findOne({ where: { email } });
-    const existingUserResponse: ApiResponse<IUserAttributes | null> = await getUserByEmail({ email, ...httpsAgent });
+    const existingUserResponse: ApiResponse<IUserAttributes | null> = await getUserByEmail({ email });
     if (existingUserResponse.data == null) {
       logger.error(`User not found.`);
       const response: ApiResponse<null> = createApiResponse({ error: existingUserResponse.message, status: existingUserResponse.status });
@@ -253,7 +237,7 @@ export const resetPassword = async (req: Request, res: Response): Promise<Respon
     }
 
     // const user = await User.findByPk(id);
-    const userResponse: ApiResponse<IUserAttributes | null> = await getUserById({ id, ...httpsAgent });
+    const userResponse: ApiResponse<IUserAttributes | null> = await getUserById({ id });
     if (userResponse.data == null) {
       logger.error(`User not found.`);
       const response: ApiResponse<null> = createApiResponse({ error: userResponse.message, status: userResponse.status });
@@ -276,7 +260,7 @@ export const resetPassword = async (req: Request, res: Response): Promise<Respon
     // const hashedPassword = await bcrypt.hash(newPassword, 10);
 
     // await user.update({ password: hashedPassword });
-    const updatedUserResponse: ApiResponse<IUserAttributes | null> = await updateUserPassword({ id, password, newPassword, confirmPassword, ...httpsAgent });
+    const updatedUserResponse: ApiResponse<IUserAttributes | null> = await updateUserPassword({ id, password, newPassword, confirmPassword });
     if (updatedUserResponse.data == null) {
       logger.info(`User's ${id} password failed to reset!`);
       const response: ApiResponse<null> = createApiResponse({ success: true, data: null, message: updatedUserResponse.message, status: updatedUserResponse.status });
@@ -300,7 +284,7 @@ export const resetPasswordVerification = async (req: Request, res: Response): Pr
     const { id, token } = req.params as IResetPasswordVerificationAttributes;
 
     // const user = await User.findByPk(id);
-    const userResponse: ApiResponse<IUserAttributes | null> = await getUserById({ id, ...httpsAgent });
+    const userResponse: ApiResponse<IUserAttributes | null> = await getUserById({ id });
     if (userResponse.data == null) {
       logger.error(`User not found.`);
       const response: ApiResponse<null> = createApiResponse({ error: userResponse.message, status: userResponse.status });

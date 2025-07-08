@@ -1,20 +1,9 @@
-import https, { type AgentOptions } from 'https';
-
 import { type ApiResponse } from '@repo/validator';
 import axios, { type AxiosResponse, type AxiosError } from 'axios';
-
-export interface IHttpsAgentOptions extends AgentOptions {
-  key: Buffer | string;
-  cert: Buffer | string;
-  ca: Buffer | string;
-  requestCert: boolean;
-  rejectUnauthorized: boolean;
-}
 
 export interface ApiRequestOptions {
   baseURL: string;
   url: string;
-  httpsAgent: IHttpsAgentOptions;
   headers?: Record<string, string>;
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   params?: Record<string, unknown>;
@@ -29,15 +18,16 @@ export const apiRequest = async <T>(options: ApiRequestOptions): Promise<ApiResp
     ...options.headers,
     ...headers,
   };
-  const httpsAgent = new https.Agent(options.httpsAgent);
-  const axiosInstance = axios.create({
-    httpsAgent,
+  const axiosConfig: {
+    baseURL: string;
+    headers: Record<string, string>;
+    validateStatus: (status: number) => boolean;
+  } = {
     baseURL: options.baseURL,
     headers: mergedHeaders,
-    validateStatus: (status) => {
-      return status >= 200 && status < 500;
-    },
-  });
+    validateStatus: (status: number) => status >= 200 && status < 500,
+  };
+  const axiosInstance = axios.create(axiosConfig);
 
   try {
     const response: AxiosResponse<ApiResponse<T>> = await axiosInstance.request({

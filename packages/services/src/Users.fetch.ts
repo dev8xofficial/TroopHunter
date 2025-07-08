@@ -1,14 +1,16 @@
-import { apiRequest, type IHttpsAgentOptions } from '@repo/middlewares';
+import { apiRequest } from '@repo/middlewares';
 import { type ApiResponse, type IUserAttributes } from '@repo/validator';
 
-type IGetUserById = { id: string; headers?: Record<string, string> } & IHttpsAgentOptions;
+interface IGetUserById {
+  id: string;
+  headers?: Record<string, string>;
+}
 
-export const getUserById = async ({ id, headers, key, cert, ca, requestCert, rejectUnauthorized }: IGetUserById): Promise<ApiResponse<IUserAttributes | null>> => {
+export const getUserById = async ({ id, headers }: IGetUserById): Promise<ApiResponse<IUserAttributes | null>> => {
   const options = {
     url: `/users/${id}`,
     method: 'GET' as const,
     headers,
-    httpsAgent: { key, cert, ca, requestCert, rejectUnauthorized },
     baseURL: process.env.MAIN_MICROSERVICE_URL ?? '',
   };
 
@@ -16,14 +18,16 @@ export const getUserById = async ({ id, headers, key, cert, ca, requestCert, rej
   return apiResponse;
 };
 
-type IGetUserByEmail = { email: string; headers?: Record<string, string> } & IHttpsAgentOptions;
+interface IGetUserByEmail {
+  email: string;
+  headers?: Record<string, string>;
+}
 
-export const getUserByEmail = async ({ email, headers, key, cert, ca, requestCert, rejectUnauthorized }: IGetUserByEmail): Promise<ApiResponse<IUserAttributes | null>> => {
+export const getUserByEmail = async ({ email, headers }: IGetUserByEmail): Promise<ApiResponse<IUserAttributes | null>> => {
   const options = {
     url: `/users/email/${email}`,
     method: 'GET' as const,
     headers,
-    httpsAgent: { key, cert, ca, requestCert, rejectUnauthorized },
     baseURL: process.env.MAIN_MICROSERVICE_URL ?? '',
   };
 
