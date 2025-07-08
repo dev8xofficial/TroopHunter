@@ -16,14 +16,13 @@ type Role = {
 
 /**
  * Sequence of Roles by Departments
- *  - Product Design
- *  - Application Development
+ *  - UI/UX Design
+ *  - Flutter Development
  *  - Frontend Development
  *  - Backend Development
  *  - DevOps Engineering
  *  - AI Engineering
  *  - Business Development
- *  - Marketing & Sales
  *  - Customer Support
  *  - Human Resources
  */
@@ -40,7 +39,7 @@ const roles: Role[] = [
         </p>
         <p>Are you passionate about crafting delightful user experiences and elegant user interfaces? Looking to gain hands-on experience in real-world projects that users love?</p>
         <p>
-          <strong>Dev8X</strong> invites you to join our team as a <strong>UI/UX Designer Intern</strong> for a 3–6 month remote internship where you'll sharpen your design skills, contribute to exciting product interfaces, and work with developers & product teams in a real-world setup.
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote UI/UX Designer internship</strong> where you’ll grow, build, and innovate alongside a talented team!
         </p>
 
         <h4>What’s in it for you?</h4>
@@ -57,7 +56,7 @@ const roles: Role[] = [
             <strong>Position:</strong> UI/UX Designer Intern
           </li>
           <li>
-            <strong>Duration:</strong> 3–6 Months
+            <strong>Duration:</strong> 6 Months
           </li>
           <li>
             <strong>Location:</strong> Remote / Lahore
@@ -114,7 +113,7 @@ const roles: Role[] = [
         </p>
         <p>Are you a Flutter enthusiast with a passion for building beautiful, high-performance mobile apps? Looking to take your cross-platform development skills to the next level in a real-world setting?</p>
         <p>
-          <strong>Dev8X</strong> invites you to be part of an exciting <strong>3–6 month remote Flutter internship</strong> where you’ll grow, build, and innovate alongside a talented team!
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Flutter internship</strong> where you’ll grow, build, and innovate alongside a talented team!
         </p>
 
         <h4>What’s in it for you?</h4>
@@ -130,7 +129,7 @@ const roles: Role[] = [
             <strong>Position:</strong> Flutter Developer Intern
           </li>
           <li>
-            <strong>Duration:</strong> 3–6 Months
+            <strong>Duration:</strong> 6 Months
           </li>
           <li>
             <strong>Location:</strong> Remote / Lahore
@@ -168,6 +167,156 @@ const roles: Role[] = [
           <li>Work on meaningful, real-world projects</li>
           <li>Receive mentorship and constructive feedback from experienced developers</li>
           <li>Build a standout portfolio to launch your career in tech</li>
+          <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
+        </ul>
+      </div>
+    )
+  },
+  {
+    title: 'Frontend Developer Internship',
+    type: 'Internship',
+    salary: 'Unpaid',
+    location: 'Remote / Lahore',
+    description: (
+      <div>
+        <p>
+          <strong>Kickstart Your Career with Dev8X – Remote Frontend Developer Internship Opportunity!</strong>
+        </p>
+        <p>Are you passionate about crafting sleek, responsive web interfaces with React and Next.js? Ready to sharpen your skills in a real-world development environment?</p>
+        <p>
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Frontend Development internship</strong> where you’ll grow, build, and innovate alongside a talented team!
+        </p>
+
+        <h4>What’s in it for you?</h4>
+        <ul>
+          <li>Build and enhance modern web applications using React.js, Next.js, and TailwindCSS</li>
+          <li>Strengthen your portfolio with real-world projects</li>
+          <li>Collaborate with a skilled, remote-first development team</li>
+        </ul>
+
+        <h4>Internship Details:</h4>
+        <ul>
+          <li>
+            <strong>Position:</strong> Web Frontend Developer Intern
+          </li>
+          <li>
+            <strong>Duration:</strong> 6 Months
+          </li>
+          <li>
+            <strong>Location:</strong> Remote / Lahore
+          </li>
+          <li>
+            <strong>Timings:</strong> 8:00 PM to 2:00 AM (PKT)
+          </li>
+          <li>
+            <strong>Internship Type:</strong> Unpaid
+          </li>
+        </ul>
+
+        <h4>Key Responsibilities:</h4>
+        <ul>
+          <li>Develop responsive UI components with React.js and Next.js</li>
+          <li>Style web applications using TailwindCSS</li>
+          <li>Work closely with backend developers and designers to implement new features</li>
+          <li>Fix UI/UX bugs and optimize frontend performance</li>
+          <li>Stay updated on the latest frontend trends and tools</li>
+        </ul>
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>
+            <strong>Location:</strong> Open to remote applicants
+          </li>
+          <li>
+            <strong>Skills:</strong> Strong understanding of React.js, Next.js, TailwindCSS, and Git
+          </li>
+          <li>Familiarity with component-based design and modern web standards</li>
+          <li>
+            <strong>Soft Skills:</strong> Self-driven, detail-oriented, and eager to learn
+          </li>
+          <li>Portfolio or GitHub projects showcasing your frontend work (preferred)</li>
+        </ul>
+
+        <h4>Why Join Dev8X?</h4>
+        <ul>
+          <li>Contribute to impactful, user-facing web applications</li>
+          <li>Receive hands-on mentorship from experienced frontend engineers</li>
+          <li>Build a standout portfolio for your future in web development</li>
+          <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
+        </ul>
+      </div>
+    )
+  },
+  {
+    title: 'Backend Developer Internship',
+    type: 'Internship',
+    salary: 'Unpaid',
+    location: 'Remote / Lahore',
+    description: (
+      <div>
+        <p>
+          <strong>Kickstart Your Career with Dev8X – Remote Backend Developer Internship Opportunity!</strong>
+        </p>
+        <p>Are you passionate about building robust and scalable backend systems using Node.js and PostgreSQL? Ready to dive deep into real-world backend development with modern ORMs like Sequelize and Prisma?</p>
+        <p>
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Backend Development internship</strong> where you’ll grow, build, and innovate alongside a talented team!
+        </p>
+
+        <h4>What’s in it for you?</h4>
+        <ul>
+          <li>Work on real-world web applications using Node.js, PostgreSQL, and modern ORMs</li>
+          <li>Enhance your coding skills and contribute to meaningful backend systems</li>
+          <li>Collaborate with a passionate, fast-paced remote team</li>
+        </ul>
+
+        <h4>Internship Details:</h4>
+        <ul>
+          <li>
+            <strong>Position:</strong> Web Backend Developer Intern
+          </li>
+          <li>
+            <strong>Duration:</strong> 6 Months
+          </li>
+          <li>
+            <strong>Location:</strong> Remote / Lahore
+          </li>
+          <li>
+            <strong>Timings:</strong> 8:00 PM to 2:00 AM (PKT)
+          </li>
+          <li>
+            <strong>Internship Type:</strong> Unpaid
+          </li>
+        </ul>
+
+        <h4>Key Responsibilities:</h4>
+        <ul>
+          <li>Design and develop RESTful APIs and backend services using Node.js</li>
+          <li>Model and manage relational data in PostgreSQL using Sequelize or Prisma</li>
+          <li>Fix bugs, optimize database performance, and write clean, maintainable code</li>
+          <li>Collaborate in code reviews, planning discussions, and sprints</li>
+          <li>Stay updated with best practices in backend architecture and database design</li>
+        </ul>
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>
+            <strong>Location:</strong> Open to remote applicants
+          </li>
+          <li>
+            <strong>Skills:</strong> Proficient in Node.js, PostgreSQL, and Git
+          </li>
+          <li>Experience with at least one ORM (Sequelize or Prisma)</li>
+          <li>Familiarity with Express.js and backend development tools</li>
+          <li>A passion for clean code, learning, and solving real-world problems</li>
+          <li>Portfolio or GitHub showcasing backend work (preferred)</li>
+        </ul>
+
+        <h4>Why Join Dev8X?</h4>
+        <ul>
+          <li>Work on impactful backend systems used by real users</li>
+          <li>Gain mentorship from skilled engineers and receive practical feedback</li>
+          <li>Build a strong backend portfolio that gets attention in the tech industry</li>
+          <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
         </ul>
       </div>
     )
@@ -184,7 +333,7 @@ const roles: Role[] = [
         </p>
         <p>Are you passionate about AI, automation, and building intelligent agents that solve real-world problems? Looking to get hands-on experience with cutting-edge tools like OpenAI and n8n?</p>
         <p>
-          <strong>Dev8X</strong> invites you to be part of an exciting <strong>3–6 month remote AI internship</strong> where you’ll innovate, automate, and grow alongside a forward-thinking tech team!
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote AI Engineer internship</strong> where you’ll grow, build, and innovate alongside a talented team!
         </p>
 
         <h4>What’s in it for you?</h4>
@@ -201,7 +350,7 @@ const roles: Role[] = [
             <strong>Position:</strong> AI Engineer Intern
           </li>
           <li>
-            <strong>Duration:</strong> 3–6 Months
+            <strong>Duration:</strong> 6 Months
           </li>
           <li>
             <strong>Location:</strong> Remote / Lahore
@@ -241,7 +390,7 @@ const roles: Role[] = [
           <li>Work on meaningful, production-level automation projects</li>
           <li>Learn directly from experienced engineers and AI developers</li>
           <li>Build a standout portfolio to launch your AI/Automation career</li>
-          <li>Get a recommendation letter and internship certificate upon completion</li>
+          <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
         </ul>
       </div>
     )
@@ -258,7 +407,7 @@ const roles: Role[] = [
         </p>
         <p>Are you a persuasive communicator with a passion for connecting with people and growing businesses? Looking to gain hands-on experience in client acquisition, outreach, and tech sales?</p>
         <p>
-          <strong>Dev8X</strong> invites you to be part of an exciting <strong>3–6 month remote Business Development internship</strong>, where you'll work directly with the leadership team to drive new growth opportunities across platforms like Upwork, LinkedIn, Email, and Cold Calling!
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Business Development internship</strong> where you’ll grow, build, and innovate alongside a talented team!
         </p>
 
         <h4>What’s in it for you?</h4>
@@ -275,7 +424,7 @@ const roles: Role[] = [
             <strong>Position:</strong> Business Development Intern
           </li>
           <li>
-            <strong>Duration:</strong> 3–6 Months
+            <strong>Duration:</strong> 6 Months
           </li>
           <li>
             <strong>Location:</strong> Remote / Lahore
@@ -318,7 +467,7 @@ const roles: Role[] = [
           <li>Receive 1-on-1 mentorship from seasoned business developers</li>
           <li>Learn end-to-end sales workflows in the IT services space</li>
           <li>Build a portfolio that makes you stand out in tech business roles</li>
-          <li>Get an internship certificate, recommendation letter, and potential for full-time hiring</li>
+          <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
         </ul>
       </div>
     )
