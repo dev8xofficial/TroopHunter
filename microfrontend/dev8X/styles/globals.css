@@ -97,6 +97,7 @@ html.lenis body {
   --default-primary: #90f188; /*  Changed from #90f188 */
   --default-primary-text: #23bb16;
   --default-secondary: #0f1d07;
+  --default-secondary-rgb: 15, 29, 7;
   --default-text: rgba(15, 29, 7, 0.7);
   --default-tertiary: #f3f3e9;
   --green-primary: #90f188;
@@ -137,6 +138,7 @@ html.lenis body {
   --theme-primary: var(--default-primary);
   --theme-primary-text: var(--default-primary-text);
   --theme-secondary: var(--default-secondary);
+  --theme-secondary-rgb: var(--default-secondary-rgb);
   --theme-text: var(--default-text);
   --theme-background: var(--default-tertiary);
   --theme-logo: var(--default-secondary);

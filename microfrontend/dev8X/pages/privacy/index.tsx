@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { FooterRevealPageWrap, Footer, Header } from '@repo/components';
 import { getDev8xPublicUrl } from '../../utils/helpers';
-import PageData from '../../data/404/index.d';
+import PageData from '../../data/privacy/index.d';
 
 import styles from './index.module.css';
 import WYSIWYGStyles from '../../../../packages/components/src/Surfaces/WYSIWYG/index.module.css';
@@ -106,22 +106,6 @@ const Work: React.FC = (): JSX.Element => {
                 <p>Dev8X may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service.</p>
                 <h3>8. Governing Law</h3>
                 <p>These terms and conditions are governed by and construed in accordance with the laws of Lahore, Pakistan, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.</p>
-
-                <h2>Privacy Policy</h2>
-                <p>
-                  Your privacy is important to us. It is our policy to respect your privacy regarding any data we may collect from you across our website (
-                  <a href="https://dev8x.com">
-                    <u>dev8x.com</u>
-                  </a>
-                  ), and throughout your engagement with us.
-                </p>
-
-                {/* The rest of Privacy Policy from here should be similarly adapted */}
-                <p>
-                  <i>... [Let me know if you'd like the full "Privacy Policy" section replaced here too — it's long and I can generate it fully adapted if needed]</i>
-                </p>
-
-                <p>This policy is effective as of 03 July 2025.</p>
               </div>
             </div>
           </main>

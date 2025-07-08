@@ -75,18 +75,23 @@ const OFFERS: ExpertiseContent[] = [
     },
     footerSocialLinks: [
       {
-        title: 'Twitter',
+        title: 'LinkedIn',
         icon: { name: 'AsteriskIcon', width: 13 },
-        href: 'https://x.com/dev8x'
+        href: 'https://www.linkedin.com/company/dev8x/'
       },
       {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', width: 13 },
-        href: 'https://instagram.com/dev8x'
+        href: 'https://www.instagram.com/dev8xofficial/'
       },
       {
-        title: 'LinkedIn',
-        href: 'https://www.linkedin.com/company/dev8x/posts/'
+        title: 'Facebook',
+        icon: { name: 'AsteriskIcon', width: 13 },
+        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      },
+      {
+        title: 'Youtube',
+        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
     ],
     testimonials: [

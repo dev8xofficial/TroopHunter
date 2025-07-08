@@ -2,8 +2,8 @@ import { ExpertiseContent } from '@repo/components';
 
 const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading' | 'image' | 'iconCards' | 'contentAsideImageItems' | 'testimonials'> = {
   meta: {
-    title: 'Contact Us — Dev8X | Dev8X: World class digital products',
-    description: "Ready to create something extraordinary? We've got a great feeling about this. Lets get started! "
+    title: 'Careers — Dev8X | Dev8X: World class digital products',
+    description: 'World-class digital products, idea to execution.'
   },
   footerMainContent: {
     link: '/contact',
@@ -23,7 +23,7 @@ const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading
     {
       title: 'LinkedIn',
       icon: { name: 'AsteriskIcon', width: 13 },
-      href: 'https://www.linkedin.com/company/dev8x/'
+      href: 'https://www.linkedin.com/company/dev8xofficial/'
     },
     {
       title: 'Instagram',

@@ -34,7 +34,12 @@ export * from './src/Surfaces/ExpertiseCard/ExpertiseCard';
 export * from './src/Surfaces/CaseStudySidebar/CaseStudySidebar';
 export * from './src/Surfaces/ProjectContents/ProjectContents';
 export * from './src/Surfaces/TestimonialSlider/TestimonialSlider';
-// export * from './src/Surfaces/FeedSilder/FeedSilder';
+// export * from './src/Surfaces/FeedSilder/FeedSilder
+export * from './src/Surfaces/CareerContents/CareerContents';
+export * from './src/Surfaces/CareerStudySidebar/CareerStudySidebar';
+export * from './src/Surfaces/OpenRolesList/OpenRolesList';
+
+
 
 export * from './src/Icons/AIBrain';
 export * from './src/Icons/Analysis';
@@ -100,6 +105,8 @@ export * from './src/Icons/Voltage';
 export * from './src/Icons/Wand';
 export * from './src/Icons/WebServers';
 export * from './src/Icons/Wordpress';
+export * from './src/Icons/CaretDown';
+export * from './src/Icons/CaretUp';
 
 export * from './src/Interfaces/Work/WorkProjectTypes';
 export * from './src/Interfaces/Expertise/Expertise';
