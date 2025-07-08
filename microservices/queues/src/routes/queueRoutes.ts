@@ -1,4 +1,4 @@
-import { verifyToken } from '@repo/middlewares';
+// import { verifyToken } from '@repo/middlewares';
 import { QueueFetchByIdRequestValidationMiddleware, QueueUpdateRequestValidationMiddleware, PaginationRequestValidationMiddleware, CityQueueFetchRequestValidationMiddleware } from '@repo/validator';
 import express from 'express';
 
@@ -7,7 +7,7 @@ import { getQueues, getQueueById, updateQueue } from '../controllers/QueueContro
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-router.use(verifyToken);
+// router.use(verifyToken);
 
 // Define business routes
 router.get('/:id', QueueFetchByIdRequestValidationMiddleware, getQueueById);

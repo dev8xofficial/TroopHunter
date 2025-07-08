@@ -1,4 +1,4 @@
-import { verifyToken } from '@repo/middlewares';
+// import { verifyToken } from '@repo/middlewares';
 import { UserFetchByIdRequestValidationMiddleware, UserUpdatePasswordRequestValidationMiddleware, UserUpdateNameRequestValidationMiddleware, RequestValidationMiddleware, PaginationRequestValidationMiddleware, UserFetchByEmailRequestValidationMiddleware, UserCreateRequestValidationMiddleware, UserUpdateVerifiedRequestValidationMiddleware } from '@repo/validator';
 import express from 'express';
 
@@ -7,7 +7,7 @@ import { getUsers, getUserWithInclude, getUserById, updateUserName, deleteUser, 
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-router.use(verifyToken);
+// router.use(verifyToken);
 
 // Define user routes
 router.post('/create', UserCreateRequestValidationMiddleware, createUser);

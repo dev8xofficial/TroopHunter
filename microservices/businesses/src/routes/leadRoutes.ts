@@ -1,4 +1,4 @@
-import { verifyToken } from '@repo/middlewares';
+// import { verifyToken } from '@repo/middlewares';
 import { LeadFetchByIdRequestValidationMiddleware, LeadCreateRequestValidationMiddleware, LeadUpdateRequestValidationMiddleware, LeadBulkDeleteRequestValidationMiddleware, LeadsFetchByUserIdRequestValidationMiddleware, PaginationRequestValidationMiddleware } from '@repo/validator';
 import express from 'express';
 
@@ -7,7 +7,7 @@ import { getLeads, getLeadById, createLead, updateLead, deleteLead, deleteLeads,
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-router.use(verifyToken);
+// router.use(verifyToken);
 
 // Define leads routes
 router.delete('/bulk', LeadBulkDeleteRequestValidationMiddleware, deleteLeads);

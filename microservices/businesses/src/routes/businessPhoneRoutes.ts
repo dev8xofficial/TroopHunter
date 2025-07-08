@@ -1,4 +1,4 @@
-import { verifyToken } from '@repo/middlewares';
+// import { verifyToken } from '@repo/middlewares';
 import { BusinessPhoneFetchByIdRequestValidationMiddleware, BusinessPhoneFetchRequestValidationMiddleware, BusinessPhoneCreateRequestValidationMiddleware, BusinessPhoneUpdateRequestValidationMiddleware, PaginationRequestValidationMiddleware } from '@repo/validator';
 import express from 'express';
 
@@ -7,7 +7,7 @@ import { getBusinessPhonesByNumber, getBusinessPhones, getBusinessPhoneById, cre
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-router.use(verifyToken);
+// router.use(verifyToken);
 
 // Define businessPhone routes
 router.get('/search', BusinessPhoneFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getBusinessPhonesByNumber);
