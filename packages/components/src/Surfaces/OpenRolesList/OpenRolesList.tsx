@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Button } from '../Button/Button';
 import RightArrowIcon from '../../Icons/RightArrow';
 import CaretDownIcon from '../../Icons/CaretDown';
 import CaretUpIcon from '../../Icons/CaretUp';
+import { atom, useSetAtom } from 'jotai';
+import { toggleSmoothModalAtom } from '../../../../..//microfrontend/dev8X/store/smoothModalAtom';
 
 import styles from './index.module.css';
 
@@ -26,6 +29,7 @@ type Role = {
  *  - Customer Support
  *  - Human Resources
  */
+
 const roles: Role[] = [
   {
     title: 'UI/UX Designer Internship',
@@ -39,10 +43,10 @@ const roles: Role[] = [
         </p>
         <p>Are you passionate about crafting delightful user experiences and elegant user interfaces? Looking to gain hands-on experience in real-world projects that users love?</p>
         <p>
-          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote UI/UX Designer internship</strong> where you’ll grow, build, and innovate alongside a talented team!
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote UI/UX Designer internship</strong> where you'll grow, build, and innovate alongside a talented team!
         </p>
 
-        <h4>What’s in it for you?</h4>
+        <h4>What's in it for you?</h4>
         <ul>
           <li>Work on real client projects with full UI/UX design cycle experience</li>
           <li>Enhance your design portfolio with modern web and mobile UIs</li>
@@ -113,10 +117,10 @@ const roles: Role[] = [
         </p>
         <p>Are you a Flutter enthusiast with a passion for building beautiful, high-performance mobile apps? Looking to take your cross-platform development skills to the next level in a real-world setting?</p>
         <p>
-          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Flutter internship</strong> where you’ll grow, build, and innovate alongside a talented team!
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Flutter internship</strong> where you'll grow, build, and innovate alongside a talented team!
         </p>
 
-        <h4>What’s in it for you?</h4>
+        <h4>What's in it for you?</h4>
         <ul>
           <li>Work on real-world mobile applications using Flutter & Dart</li>
           <li>Strengthen your portfolio and sharpen your coding skills</li>
@@ -184,10 +188,10 @@ const roles: Role[] = [
         </p>
         <p>Are you passionate about crafting sleek, responsive web interfaces with React and Next.js? Ready to sharpen your skills in a real-world development environment?</p>
         <p>
-          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Frontend Development internship</strong> where you’ll grow, build, and innovate alongside a talented team!
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Frontend Development internship</strong> where you'll grow, build, and innovate alongside a talented team!
         </p>
 
-        <h4>What’s in it for you?</h4>
+        <h4>What's in it for you?</h4>
         <ul>
           <li>Build and enhance modern web applications using React.js, Next.js, and TailwindCSS</li>
           <li>Strengthen your portfolio with real-world projects</li>
@@ -259,10 +263,10 @@ const roles: Role[] = [
         </p>
         <p>Are you passionate about building robust and scalable backend systems using Node.js and PostgreSQL? Ready to dive deep into real-world backend development with modern ORMs like Sequelize and Prisma?</p>
         <p>
-          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Backend Development internship</strong> where you’ll grow, build, and innovate alongside a talented team!
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Backend Development internship</strong> where you'll grow, build, and innovate alongside a talented team!
         </p>
 
-        <h4>What’s in it for you?</h4>
+        <h4>What's in it for you?</h4>
         <ul>
           <li>Work on real-world web applications using Node.js, PostgreSQL, and modern ORMs</li>
           <li>Enhance your coding skills and contribute to meaningful backend systems</li>
@@ -333,10 +337,10 @@ const roles: Role[] = [
         </p>
         <p>Are you passionate about AI, automation, and building intelligent agents that solve real-world problems? Looking to get hands-on experience with cutting-edge tools like OpenAI and n8n?</p>
         <p>
-          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote AI Engineer internship</strong> where you’ll grow, build, and innovate alongside a talented team!
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote AI Engineer internship</strong> where you'll grow, build, and innovate alongside a talented team!
         </p>
 
-        <h4>What’s in it for you?</h4>
+        <h4>What's in it for you?</h4>
         <ul>
           <li>Build AI agents for customer support and business automation</li>
           <li>Work with real-world tools like n8n, OpenAI, and LangChain</li>
@@ -407,10 +411,10 @@ const roles: Role[] = [
         </p>
         <p>Are you a persuasive communicator with a passion for connecting with people and growing businesses? Looking to gain hands-on experience in client acquisition, outreach, and tech sales?</p>
         <p>
-          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Business Development internship</strong> where you’ll grow, build, and innovate alongside a talented team!
+          <strong>Dev8X</strong> invites you to be part of an exciting <strong>6 month remote Business Development internship</strong> where you'll grow, build, and innovate alongside a talented team!
         </p>
 
-        <h4>What’s in it for you?</h4>
+        <h4>What's in it for you?</h4>
         <ul>
           <li>Get real-world experience in B2B tech sales and lead generation</li>
           <li>Learn how to pitch, negotiate, and close deals</li>
@@ -473,39 +477,146 @@ const roles: Role[] = [
     )
   }
 ];
-export const OpenRolesList: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const handleToggle = (index: number) => {
-    setActiveIndex((prev) => (prev === index ? null : index));
+export const selectedRoleAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleAtom, newValue));
+export const selectedRoleFirstParagraphAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleFirstParagraphAtom, newValue));
+export const selectedRoleThirdParagraphAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleThirdParagraphAtom, newValue));
+
+const firstRoleDescription = (description: React.ReactNode): string => {
+  if (React.isValidElement(description)) {
+    const element = description as React.ReactElement<{ children?: React.ReactNode }>;
+
+    if (element.props?.children) {
+      const children = React.Children.toArray(element.props.children);
+
+      const firstMatchingParagraph = children.find((child) => {
+        if (React.isValidElement(child) && child.type === 'p') {
+          const childContent = React.Children.toArray(child.props.children);
+          return childContent.some((content) => {
+            return React.isValidElement(content) && content.type === 'strong' && String(content.props.children).includes('Dev8X');
+          });
+        }
+        return false;
+      });
+
+      if (firstMatchingParagraph && React.isValidElement(firstMatchingParagraph)) {
+        const extractTextFromChildren = (children: React.ReactNode): string => {
+          if (typeof children === 'string') return children;
+          if (React.isValidElement(children) && children.props?.children) {
+            return extractTextFromChildren(children.props.children);
+          }
+          if (Array.isArray(children)) {
+            return children.map((child) => extractTextFromChildren(child)).join('');
+          }
+          return '';
+        };
+
+        return extractTextFromChildren(firstMatchingParagraph.props.children);
+      }
+    }
+  }
+
+  return '';
+};
+
+const extractRoleDescription = (description: React.ReactNode): string => {
+  if (React.isValidElement(description)) {
+    const element = description as React.ReactElement<{ children?: React.ReactNode }>;
+
+    if (element.props && element.props.children) {
+      const children = React.Children.toArray(element.props.children);
+
+      const thirdParagraph = children.find((child, index) => index === 2 && React.isValidElement(child) && child.type === 'p');
+
+      if (thirdParagraph && React.isValidElement(thirdParagraph)) {
+        const paragraphElement = thirdParagraph as React.ReactElement<{ children?: React.ReactNode }>;
+
+        const extractTextFromChildren = (children: React.ReactNode): string => {
+          if (typeof children === 'string') return children;
+          if (React.isValidElement(children) && children.props?.children) {
+            return extractTextFromChildren(children.props.children);
+          }
+          if (Array.isArray(children)) {
+            return children.map((child) => extractTextFromChildren(child)).join('');
+          }
+          return '';
+        };
+
+        return extractTextFromChildren(paragraphElement.props.children);
+      }
+    }
+  }
+  return '';
+};
+
+const formatRoleTitle = (title: string) => {
+  const cleaned = title.replace(/Internship/i, '').trim();
+
+  return cleaned
+    .split(' ')
+    .map((word) => {
+      if (word.toUpperCase() === 'UI/UX') return 'UI/UX';
+      if (word.toUpperCase() === 'AI') return 'AI';
+      if (word.toUpperCase() === 'HR') return 'HR';
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(' ');
+};
+
+export const OpenRolesList: React.FC = () => {
+  const toggleModal = useSetAtom(toggleSmoothModalAtom);
+  const setSelectedRole = useSetAtom(selectedRoleAtom);
+  const setFirstParagraph = useSetAtom(selectedRoleFirstParagraphAtom);
+  const setThirdParagraph = useSetAtom(selectedRoleThirdParagraphAtom);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const handleApplyClick = (roleTitle: string) => {
+    const cleanTitle = formatRoleTitle(roleTitle);
+    const role = roles.find((r) => r.title === roleTitle);
+
+    setSelectedRole(cleanTitle);
+
+    if (role) {
+      const para1 = firstRoleDescription(role.description);
+      const para3 = extractRoleDescription(role.description);
+      setFirstParagraph(para1);
+      setThirdParagraph(para3);
+    }
+
+    toggleModal('contact');
   };
 
   return (
     <section className={styles['rolesSection']}>
       <div className={styles['rolesContainer']}>
         {roles.map((role, index) => {
-          const isExpanded = activeIndex === index;
+          const isOpen = openIndex === index;
 
           return (
-            <>
-              <div key={index} className={styles['roleCard']}>
-                <p className={styles['roleLabel']}>OPEN ROLES</p>
+            <Disclosure key={index}>
+              <>
+                <div className={styles['roleCard']}>
+                  <p className={styles['roleLabel']}>OPEN ROLES</p>
 
-                <div className={styles['roleHeader']}>
-                  <h3 className={styles['roleTitle']}>{role.title}</h3>
+                  <div className={styles['roleHeader']}>
+                    <h3 className={styles['roleTitle']}>{role.title}</h3>
 
-                  <div className={styles['roleHeaderInner']}>
-                    <button type="button" aria-label={isExpanded ? 'Collapse details' : 'Expand details'} onClick={() => handleToggle(index)} className={styles['toggleButton']}>
-                      {isExpanded ? <CaretUpIcon width={24} height={24} className={styles['buttonIcon']} /> : <CaretDownIcon width={24} height={24} className={styles['buttonIcon']} />}
-                    </button>
+                    <div className={styles['roleHeaderInner']}>
+                      <DisclosureButton
+                        className={styles['toggleButton']}
+                        aria-label={isOpen ? 'Collapse details' : 'Expand details'}
+                        onClick={() => setOpenIndex(isOpen ? null : index)} // toggle open state
+                      >
+                        {isOpen ? <CaretUpIcon width={24} height={24} className={styles['buttonIcon']} /> : <CaretDownIcon width={24} height={24} className={styles['buttonIcon']} />}
+                      </DisclosureButton>
 
-                    <Button variant="secondary" context="contact" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} spanClassName={styles['contact-button']}>
-                      Submit Application
-                    </Button>
+                      <Button variant="secondary" context="contact" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} spanClassName={styles['contact-button']} onClick={() => handleApplyClick(role.title)}>
+                        Submit Application
+                      </Button>
+                    </div>
                   </div>
-                </div>
 
-                <div className={styles['roleDetails']}>
+                  <div className={styles['roleDetails']}>
                   <span>{role.type}</span>
                   <span>
                     <svg width="11" height="auto" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -520,9 +631,15 @@ export const OpenRolesList: React.FC = () => {
                   </span>
                   <span>{role.location}</span>
                 </div>
-              </div>
-              <div className={`${styles['jobDescriptionWrapper']} ${isExpanded ? styles['expanded'] : styles['collapsed']}`}>{isExpanded && <div className={styles['jobDescription']}>{role.description}</div>}</div>
-            </>
+                </div>
+
+                {isOpen && (
+                  <DisclosurePanel className={`${styles['jobDescriptionWrapper']} ${styles['expanded']}`}>
+                    <div className={styles['jobDescription']}>{role.description}</div>
+                  </DisclosurePanel>
+                )}
+              </>
+            </Disclosure>
           );
         })}
       </div>
