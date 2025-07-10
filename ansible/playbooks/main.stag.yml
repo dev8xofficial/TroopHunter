@@ -24,5 +24,8 @@
     - nvm
     # - node
     - docker
+    - kubectl
+    - minikube
+    - istioctl
     - github
     - project

@@ -1,0 +1,37 @@
+---
+- name: Download minikube binary
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    dest: /usr/local/bin/minikube
+    mode: '0755'
+    force: yes
+
+- name: Create minikube systemd service file
+  copy:
+    dest: /etc/systemd/system/minikube.service
+    content: |
+      [Unit]
+      Description=Minikube
+      After=docker.service
+      Requires=docker.service
+
+      [Service]
+      Type=simple
+      User={{ USER }}
+      Environment=HOME=/home/{{ USER }}
+      ExecStart=/usr/local/bin/minikube start --driver=docker --cpus=4 --memory=6144
+      ExecStop=/usr/local/bin/minikube stop
+      Restart=on-failure
+
+      [Install]
+      WantedBy=multi-user.target
+    mode: '0644'
+
+- name: Reload systemd
+  command: systemctl daemon-reload
+
+- name: Enable and start minikube service
+  systemd:
+    name: minikube
+    enabled: yes
+    state: started 
