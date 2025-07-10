@@ -38,8 +38,7 @@ export * from './src/Surfaces/TestimonialSlider/TestimonialSlider';
 export * from './src/Surfaces/CareerContents/CareerContents';
 export * from './src/Surfaces/CareerStudySidebar/CareerStudySidebar';
 export * from './src/Surfaces/OpenRolesList/OpenRolesList';
-
-
+export * from './src/Surfaces/SubmitApplicationModal/SubmitApplicationModal';
 
 export * from './src/Icons/AIBrain';
 export * from './src/Icons/Analysis';

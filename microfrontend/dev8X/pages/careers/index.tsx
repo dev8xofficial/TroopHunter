@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom } from 'jotai';
-import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
-import { FooterRevealPageWrap, Footer, Header, CareerContentsModal, ExpertiseCard, Button, AwardsBlock } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, CareerContentsModal, ExpertiseCard, AwardsBlock, SubmitApplicationModal } from '@repo/components';
+import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import PageData from '../../data/careers/index.d';
 import EXPERTISES from '../../data/expertise/index.d';
@@ -75,6 +75,9 @@ const WorkPage: React.FC = (): JSX.Element => {
         </FooterRevealPageWrap>
         <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
       </FooterRevealPageWrap>
+      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
+        <SubmitApplicationModal />
+      </SmoothModalWrapper>
     </>
   );
 };
