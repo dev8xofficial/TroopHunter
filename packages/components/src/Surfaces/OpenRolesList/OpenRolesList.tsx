@@ -595,49 +595,52 @@ export const OpenRolesList: React.FC = () => {
           return (
             <Disclosure key={index}>
               <>
-                <div className={styles['roleCard']}>
+                <DisclosureButton as="div" className={styles['roleCard']} aria-label={isOpen ? 'Collapse details' : 'Expand details'} onClick={() => setOpenIndex(isOpen ? null : index)}>
                   <p className={styles['roleLabel']}>OPEN ROLES</p>
 
                   <div className={styles['roleHeader']}>
                     <h3 className={styles['roleTitle']}>{role.title}</h3>
 
                     <div className={styles['roleHeaderInner']}>
-                      <DisclosureButton
-                        className={styles['toggleButton']}
-                        aria-label={isOpen ? 'Collapse details' : 'Expand details'}
-                        onClick={() => setOpenIndex(isOpen ? null : index)} // toggle open state
-                      >
+                      <button type="button" className={styles['toggleButton']}>
                         {isOpen ? <CaretUpIcon width={24} height={24} className={styles['buttonIcon']} /> : <CaretDownIcon width={24} height={24} className={styles['buttonIcon']} />}
-                      </DisclosureButton>
+                      </button>
 
-                      <Button variant="secondary" context="contact" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} spanClassName={styles['contact-button']} onClick={() => handleApplyClick(role.title)}>
+                      <Button
+                        variant="secondary"
+                        context="contact"
+                        endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />}
+                        spanClassName={styles['contact-button']}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          handleApplyClick(role.title);
+                        }}
+                      >
                         Submit Application
                       </Button>
                     </div>
                   </div>
 
                   <div className={styles['roleDetails']}>
-                  <span>{role.type}</span>
-                  <span>
-                    <svg width="11" height="auto" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M38.8737 0.00621275H31.1263V25.6217L13.0221 7.51132L7.54238 12.991L25.6839 31.1263H0V38.8737H25.6776L7.54238 57.009L13.0221 62.4887L31.1201 44.3907V70H38.8675V44.3286L57.0276 62.4887L62.5073 57.009L44.3721 38.8737H70V31.1325H44.3907L62.526 12.9972L57.0462 7.51753L38.8737 25.6901V0.00621275Z" fill="currentColor"></path>
-                    </svg>
-                  </span>
-                  <span>{role.salary}</span>
-                  <span>
-                    <svg width="11" height="auto" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M38.8737 0.00621275H31.1263V25.6217L13.0221 7.51132L7.54238 12.991L25.6839 31.1263H0V38.8737H25.6776L7.54238 57.009L13.0221 62.4887L31.1201 44.3907V70H38.8675V44.3286L57.0276 62.4887L62.5073 57.009L44.3721 38.8737H70V31.1325H44.3907L62.526 12.9972L57.0462 7.51753L38.8737 25.6901V0.00621275Z" fill="currentColor"></path>
-                    </svg>
-                  </span>
-                  <span>{role.location}</span>
-                </div>
-                </div>
+                    <span>{role.type}</span>
+                    <span>
+                      <svg width="11" height="auto" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M38.8737 0.00621275H31.1263V25.6217L13.0221 7.51132L7.54238 12.991L25.6839 31.1263H0V38.8737H25.6776L7.54238 57.009L13.0221 62.4887L31.1201 44.3907V70H38.8675V44.3286L57.0276 62.4887L62.5073 57.009L44.3721 38.8737H70V31.1325H44.3907L62.526 12.9972L57.0462 7.51753L38.8737 25.6901V0.00621275Z" fill="currentColor"></path>
+                      </svg>
+                    </span>
+                    <span>{role.salary}</span>
+                    <span>
+                      <svg width="11" height="auto" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M38.8737 0.00621275H31.1263V25.6217L13.0221 7.51132L7.54238 12.991L25.6839 31.1263H0V38.8737H25.6776L7.54238 57.009L13.0221 62.4887L31.1201 44.3907V70H38.8675V44.3286L57.0276 62.4887L62.5073 57.009L44.3721 38.8737H70V31.1325H44.3907L62.526 12.9972L57.0462 7.51753L38.8737 25.6901V0.00621275Z" fill="currentColor"></path>
+                      </svg>
+                    </span>
+                    <span>{role.location}</span>
+                  </div>
+                </DisclosureButton>
 
-                {isOpen && (
-                  <DisclosurePanel className={`${styles['jobDescriptionWrapper']} ${styles['expanded']}`}>
-                    <div className={styles['jobDescription']}>{role.description}</div>
-                  </DisclosurePanel>
-                )}
+                <DisclosurePanel className={`${styles['jobDescriptionWrapper']} ${styles['expanded']}`}>
+                  <div className={styles['jobDescription']}>{role.description}</div>
+                </DisclosurePanel>
               </>
             </Disclosure>
           );

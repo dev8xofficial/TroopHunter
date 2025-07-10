@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-      const { name, phone, email, project, referral, address, position, preferredDate, salary, linkedin, portfolio, opportunity, whyJoin } = fields;
+      const { name, phone, email, project, location, position, startDate, salary, linkedin, portfolio, opportunity, whyJoin } = fields;
 
       const fileArray = Array.isArray(files.upload) ? files.upload : [files.upload].filter(Boolean);
 
@@ -43,23 +43,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
 
       const mailOptions = {
-        from: process.env.EMAIL_SENDER,
-        to: process.env.EMAIL_SENDER,
+        from: process.env.CAREERS_EMAIL_SENDER,
+        to: process.env.CAREERS_EMAIL_SENDER,
         subject: `New Application from ${name}`,
         text: `
           Name: ${name}
           Email: ${email}
           Phone: ${phone}
-          Address: ${address}
+          Location: ${location}
 
           Position: ${position}
-          Preferred Start Date: ${preferredDate}
+          Start Date: ${startDate}
           Expected Salary: ${salary}
           LinkedIn: ${linkedin}
           Portfolio: ${portfolio}
 
-          Referral: ${referral}
-          Why Join: ${whyJoin}
+          Why Join Us: ${whyJoin}
           Project: ${project}
           Opportunity Source: ${opportunity}
         `,

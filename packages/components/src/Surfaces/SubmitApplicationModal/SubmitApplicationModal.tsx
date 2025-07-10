@@ -18,10 +18,9 @@ interface IFormInputs {
   email: string;
   project?: string;
   upload?: File[];
-  referral?: string;
-  address?: string;
+  location?: string;
   position?: string;
-  preferredDate?: string;
+  startDate?: string;
   salary?: string;
   linkedin?: string;
   portfolio?: string;
@@ -52,10 +51,9 @@ export const SubmitApplicationModal: React.FC = () => {
       phone: '',
       email: '',
       project: '',
-      referral: '',
-      address: '',
+      location: '',
       position: '',
-      preferredDate: '',
+      startDate: '',
       salary: '',
       linkedin: '',
       portfolio: '',
@@ -134,11 +132,11 @@ export const SubmitApplicationModal: React.FC = () => {
               <p>{selectedRoleThirdParagraph}</p>
             </div>
 
-            <FieldWrapper label="What's your name?" className="col-sm-1" error={errors.name?.message}>
+            <FieldWrapper label="Your good name, please" required={true} className="col-sm-1" error={errors.name?.message}>
               <Input
                 type="text"
                 id="name"
-                placeholder="Your name here"
+                placeholder="Type your name here"
                 {...register('name', {
                   required: 'Please enter your name',
                   maxLength: { value: 20, message: 'Name cannot exceed 20 characters' }
@@ -146,28 +144,28 @@ export const SubmitApplicationModal: React.FC = () => {
               />
             </FieldWrapper>
 
-            <FieldWrapper label="What's your email?" className="col-sm-1" error={errors.email?.message}>
+            <FieldWrapper label="Best email to reach you" required={true} className="col-sm-1" error={errors.email?.message}>
               <Input
                 type="email"
                 id="email"
-                placeholder="Email Address"
+                placeholder="Enter your email"
                 {...register('email', {
-                  required: 'Please enter your email address',
+                  required: "Email can't be blank",
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: 'Invalid email address'
+                    message: 'That doesn’t look like an email'
                   }
                 })}
               />
             </FieldWrapper>
 
-            <FieldWrapper label="How shall we contact you?" className="col-sm-1" error={errors.phone?.message}>
+            <FieldWrapper label="Preferred contact number" required={true} className="col-sm-1" error={errors.phone?.message}>
               <Input
                 type="tel"
                 id="phone"
                 placeholder="Phone Number"
                 {...register('phone', {
-                  required: 'Please enter your phone number',
+                  required: 'Phone number needed',
                   pattern: {
                     value: /^[0-9+\-()\s]*$/,
                     message: 'Invalid phone number format'
@@ -176,78 +174,75 @@ export const SubmitApplicationModal: React.FC = () => {
               />
             </FieldWrapper>
 
-            <FieldWrapper label="Where are you located?" className="col-sm-1" error={errors.address?.message}>
+            <FieldWrapper label="Where are you located?" required={true} className="col-sm-1" error={errors.location?.message}>
               <Input
                 type="text"
-                id="address"
-                placeholder="Current Location"
-                {...register('address', {
-                  required: 'Please enter your address',
-                  maxLength: { value: 100, message: 'Address cannot exceed 100 characters' }
+                id="location"
+                placeholder="City or country"
+                {...register('location', {
+                  required: "Location can't be empty",
+                  maxLength: { value: 100, message: 'Location cannot exceed 100 characters' }
                 })}
               />
             </FieldWrapper>
 
             <Fieldset>
-              <FieldWrapper label="What position are you applying for?" className="col-sm-1" error={errors.position?.message}>
+              <FieldWrapper label="Role you're applying for" required={true} className="col-sm-1" error={errors.position?.message}>
                 <Input
                   type="text"
                   id="position"
-                  placeholder="Tell about the position"
+                  placeholder="e.g., UI/UX Designer"
                   {...register('position', {
-                    required: 'Please enter the position'
+                    required: 'Let us know the position'
                   })}
                 />
               </FieldWrapper>
 
-              <FieldWrapper className="col-sm-1" label="Preferred Start Date">
+              <FieldWrapper label="When can you start?" required={true} className="col-sm-1" error={errors.startDate?.message}>
                 <Input
                   type="text"
-                  id="preferredDate"
-                  placeholder="Enter the preferred start date"
-                  {...register('preferredDate', {
-                    required: 'Please enter the Date'
+                  id="startDate"
+                  placeholder="DD-MM-YYYY format, please"
+                  {...register('startDate', {
+                    required: 'Date is required'
                   })}
                 />
               </FieldWrapper>
 
-              <FieldWrapper className="col-sm-1" label="Expected Salary (optional)">
-                <Input type="text" id="salary" placeholder="Enter Your Salary" {...register('salary')} />
+              <FieldWrapper className="col-sm-1" label="Expected salary">
+                <Input type="text" id="salary" placeholder="Share your amount" {...register('salary')} />
               </FieldWrapper>
 
-              <FieldWrapper className="col-sm-1" label="LinkedIn Profile (optional)">
-                <Input type="url" id="linkedin" placeholder="Enter Your LinkedIn Profile" {...register('linkedin')} />
+              <FieldWrapper className="col-sm-1" label="LinkedIn profile link">
+                <Input type="url" id="linkedin" placeholder="Paste LinkedIn URL" {...register('linkedin')} />
               </FieldWrapper>
 
-              <FieldWrapper className="col-sm-1" label="Portfolio / Website (optional)">
-                <Input type="url" id="portfolio" placeholder="Enter Your Portfolio / Website" {...register('portfolio')} />
+              <FieldWrapper className="col-sm-1" label="Portfolio or website link">
+                <Input type="url" id="portfolio" placeholder="Paste website/portfolio URL" {...register('portfolio')} />
               </FieldWrapper>
             </Fieldset>
 
             <Controller
               name="upload"
               control={control}
+              rules={{ required: 'File is required' }}
               render={({ field: { onChange, name } }) => (
-                <FieldWrapper id="upload" label="Upload Resume / CV" messageId="upload-help" error="">
+                <FieldWrapper id="upload" label="Upload your Resume/CV" required={true} messageId="upload-help" error={errors.upload?.message}>
                   <FileUpload onChange={onChange} name={name} />
                 </FieldWrapper>
               )}
             />
 
-            <FieldWrapper label="How did you hear about us?">
-              <Input type="text" id="referral" placeholder="From a friend? From Google?" {...register('referral')} />
+            <FieldWrapper label="Why you'd like to join us?">
+              <Textarea id="whyJoin" placeholder="Share your thoughts" {...register('whyJoin')} />
             </FieldWrapper>
 
-            <FieldWrapper label="Why do you want to join us?">
-              <Textarea id="whyJoin" {...register('whyJoin')} />
+            <FieldWrapper label="Project you're proud of">
+              <Textarea id="project" placeholder="Briefly describe your work" {...register('project')} />
             </FieldWrapper>
 
-            <FieldWrapper label="Briefly us about the project you're proud of">
-              <Textarea id="project" {...register('project')} />
-            </FieldWrapper>
-
-            <FieldWrapper label="How did you hear about this opportunity?">
-              <Textarea id="opportunity" {...register('opportunity')} />
+            <FieldWrapper label="How did you find us?">
+              <Textarea id="opportunity" placeholder="e.g., LinkedIn, Google, a friend" {...register('opportunity')} />
             </FieldWrapper>
 
             <Button type="submit" variant="primary" context="contact" fullWidth isLoading={isSubmitting} disabled={isSubmitting}>
