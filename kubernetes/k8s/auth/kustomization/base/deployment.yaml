@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: ['sh', '-c', 'until nc -z auth-db 5432; do echo waiting for db; sleep 2; done;']
+      containers:
+        - name: auth
+          image: auth:latest  # overridden in overlays
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/bash", "/app/microservices/auth/entrypoint.sh"]
+          ports:
+            - containerPort: 50003  # overridden in overlays
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: port
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: dbname
+          volumeMounts:
+            - name: logs
+              mountPath: /microservices/auth/logs/
+      volumes:
+        - name: logs
+          emptyDir: {}

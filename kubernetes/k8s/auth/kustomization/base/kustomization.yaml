@@ -1,0 +1,5 @@
+resources:
+  - db-statefulset.yaml
+  - deployment.yaml
+  - service.yaml
+  - secret.yaml

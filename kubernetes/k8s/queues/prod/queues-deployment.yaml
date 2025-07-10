@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queues-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queues-prod
+  template:
+    metadata:
+      labels:
+        app: queues-prod
+    spec:
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: ['sh', '-c', 'until nc -z queues-db 5432; do echo waiting for db; sleep 2; done;']
+      containers:
+        - name: queues-prod
+          image: queues-prod:latest
+          imagePullPolicy: Never
+          command: ["/bin/bash", "/app/microservices/queues/entrypoint.sh"]
+          ports:
+            - containerPort: 50012
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: port
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: dbname
+          volumeMounts:
+            - name: logs
+              mountPath: /microservices/queues/logs
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: queues-prod
+spec:
+  selector:
+    app: queues-prod
+  ports:
+    - protocol: TCP
+      port: 50012
+      targetPort: 50012

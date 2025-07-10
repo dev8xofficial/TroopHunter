@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: businesses-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: businesses-dev
+  template:
+    metadata:
+      labels:
+        app: businesses-dev
+    spec:
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: ['sh', '-c', 'until nc -z businesses-db 5432; do echo waiting for db; sleep 2; done;']
+      containers:
+        - name: businesses-dev
+          image: businesses-dev:latest
+          imagePullPolicy: Never
+          command: ["/bin/bash", "/app/microservices/businesses/entrypoint.sh"]
+          ports:
+            - containerPort: 50011
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: businesses-db-secret
+                  key: host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: businesses-db-secret
+                  key: port
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: businesses-db-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: businesses-db-secret
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: businesses-db-secret
+                  key: dbname
+          volumeMounts:
+            - name: logs
+              mountPath: /microservices/businesses/logs
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: businesses-dev
+spec:
+  selector:
+    app: businesses-dev
+  ports:
+    - protocol: TCP
+      port: 50011
+      targetPort: 50011

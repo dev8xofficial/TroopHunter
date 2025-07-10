@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: ['sh', '-c', 'until nc -z auth-db 5432; do echo waiting for db; sleep 2; done;']
+      containers:
+        - name: users
+          image: users:latest  # overridden in overlays
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/bash", "/app/microservices/users/entrypoint.sh"]
+          ports:
+            - containerPort: 50015  # overridden in overlays
+          envFrom:
+            - secretRef:
+                name: users-secret
+          volumeMounts:
+            - name: logs
+              mountPath: /microservices/users/logs/
+      volumes:
+        - name: logs
+          emptyDir: {}
