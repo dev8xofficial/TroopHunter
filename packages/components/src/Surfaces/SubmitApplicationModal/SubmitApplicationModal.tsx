@@ -113,8 +113,10 @@ export const SubmitApplicationModal: React.FC = () => {
       {showSuccess ? (
         <div className={ContactFormModalStyles['success']}>
           <div className={ContactFormModalStyles['modal-header']}></div>
-          <h1 className={ContactFormModalStyles['modal-heading']}>Message received!</h1>
-          <p className={ContactFormModalStyles['success__message']}>Thanks for considering Dev8x for your project, we'll be in touch very soon.</p>
+          <h1 className={ContactFormModalStyles['modal-heading']}>Application submitted</h1>
+          <p className={ContactFormModalStyles['success__message']}>
+            Thank you for your interest in joining <strong>Dev8X</strong>. We’ve received your application and will review your submission shortly. If your profile aligns with our needs, a member of our team will be in touch.
+          </p>
         </div>
       ) : showError ? (
         <div className={ContactFormModalStyles['error']}>
