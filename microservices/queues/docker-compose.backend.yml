@@ -1,57 +1,36 @@
 services:
-  queues_prod:
-    container_name: queues_prod
+  queues-prod:
+    container_name: queues-prod
+    image: queues-prod
     build:
       context: ../../
       dockerfile: microservices/queues/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/queues/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50012:50012'
-    depends_on:
-      postgres_queues_prod:
-        condition: service_started
-    volumes:
-      - ./logs/:/microservices/queues/logs/
-    networks:
-      - custom_network
 
-  queues_stag:
-    container_name: queues_stag
+  queues-stag:
+    container_name: queues-stag
+    image: queues-stag
     build:
       context: ../../
       dockerfile: microservices/queues/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/queues/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50013:50013'
-    depends_on:
-      postgres_queues_stag:
-        condition: service_started
-    volumes:
-      - ./logs/:/microservices/queues/logs/
-    networks:
-      - custom_network
 
-  queues_dev:
-    container_name: queues_dev
+  queues-dev:
+    container_name: queues-dev
+    image: queues-dev
     build:
       context: ../../
       dockerfile: microservices/queues/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/queues/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50014:50014'
-    depends_on:
-      postgres_queues_dev:
-        condition: service_started
-    volumes:
-      - ./logs/:/microservices/queues/logs/
-    networks:
-      - custom_network

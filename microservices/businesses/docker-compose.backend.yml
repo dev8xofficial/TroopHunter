@@ -1,54 +1,36 @@
 services:
-  businesses_prod:
-    container_name: businesses_prod
+  businesses-prod:
+    container_name: businesses-prod
+    image: businesses-prod
     build:
       context: ../../
       dockerfile: microservices/businesses/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/businesses/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50009:50009'
-    depends_on:
-      postgres_businesses_prod:
-        condition: service_started
-    volumes:
-      - ./logs/:/microservices/businesses/logs/
-    networks:
-      - custom_network
 
-  businesses_stag:
-    container_name: businesses_stag
+  businesses-stag:
+    container_name: businesses-stag
+    image: businesses-stag
     build:
       context: ../../
       dockerfile: microservices/businesses/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/businesses/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50010:50010'
-    depends_on:
-      postgres_businesses_stag:
-        condition: service_started
-    volumes:
-      - ./logs/:/microservices/businesses/logs/
-    networks:
-      - custom_network
 
-  businesses_dev:
-    container_name: businesses_dev
+  businesses-dev:
+    container_name: businesses-dev
+    image: businesses-dev
     build:
       context: ../../
       dockerfile: microservices/businesses/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/businesses/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50011:50011'
-    volumes:
-      - ./logs/:/microservices/businesses/logs/
-    networks:
-      - custom_network

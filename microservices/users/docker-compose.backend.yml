@@ -1,54 +1,34 @@
 services:
-  users_prod:
-    container_name: users_prod
+  users-prod:
+    container_name: users-prod
+    image: users-prod
     build:
       context: ../../
       dockerfile: microservices/users/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/users/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50015:50015'
-    depends_on:
-      postgres_users_prod:
-        condition: service_started
-    volumes:
-      - ./logs/:/microservices/users/logs/
-    networks:
-      - custom_network
 
-  users_stag:
-    container_name: users_stag
+  users-stag:
+    container_name: users-stag
+    image: users-stag
     build:
       context: ../../
       dockerfile: microservices/users/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/users/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50016:50016'
-    depends_on:
-      postgres_users_stag:
-        condition: service_started
-    volumes:
-      - ./logs/:/microservices/users/logs/
-    networks:
-      - custom_network
 
-  users_dev:
-    container_name: users_dev
+  users-dev:
+    container_name: users-dev
+    image: users-dev
     build:
       context: ../../
       dockerfile: microservices/users/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/users/entrypoint.sh']
     env_file:
       - ./.env
-    ports:
-      - '50017:50017'
-    volumes:
-      - ./logs/:/microservices/users/logs/
-    networks:
-      - custom_network
