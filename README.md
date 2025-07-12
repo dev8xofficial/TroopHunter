@@ -48,11 +48,16 @@ Ports in .env, Dockerfile, inner ports in docker-compose would stay same. Only o
 # Run the following command to remove containers in your docker.
 
     docker system prune -f
+    docker container prune
+    docker container prune -f
 
 # Run the following command to remove images in your docker.
 
     docker image prune -a -f
+    docker image prune
+    docker image prune -f
     docker rmi $(docker images -q)
+    docker rmi auth-dev:latest
 
 # Run the following command to remove all dangling images.
 
