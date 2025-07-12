@@ -90,13 +90,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -211,13 +211,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -332,13 +332,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -453,13 +453,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -571,13 +571,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -694,13 +694,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -815,13 +815,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -942,13 +942,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -1069,13 +1069,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -1196,13 +1196,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -1334,13 +1334,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -1467,13 +1467,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -1594,13 +1594,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -1726,13 +1726,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -1857,13 +1857,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -1984,13 +1984,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -2111,13 +2111,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -2238,13 +2238,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -2371,13 +2371,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -2498,13 +2498,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -2625,13 +2625,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -2752,13 +2752,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -2885,13 +2885,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -3029,13 +3029,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
@@ -3162,13 +3162,13 @@ const EXPERTISES: ExpertiseContent[] = [
       },
       {
         title: 'Facebook',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
-      {
-        title: 'Youtube',
-        href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
       }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
     testimonials: [
       {
