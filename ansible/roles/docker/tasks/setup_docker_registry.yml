@@ -1,0 +1,42 @@
+---
+- name: Create registry data directory
+  file:
+    path: /opt/registry/data
+    state: directory
+    mode: '0755'
+
+- name: Check if registry container already exists
+  shell: docker ps -a --format '{{'{{'}}.Names{{'}}'}}' | grep -w registry
+  register: registry_exists
+  failed_when: false
+  changed_when: false
+  become: false
+
+- name: Run Docker registry container using docker CLI (only if not running)
+  shell: |
+    docker run -d \
+      -p 5000:5000 \
+      --restart=always \
+      --name registry \
+      registry:2
+  when: registry_exists.rc != 0
+  become: false
+
+- name: Ensure Docker is configured for insecure registry
+  copy:
+    dest: /etc/docker/daemon.json
+    content: |
+      {
+        "insecure-registries" : ["{{ SERVER_IP }}:5000"]
+      }
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Docker
+
+- name: Allow port 5000 through UFW (if UFW is enabled)
+  ufw:
+    rule: allow
+    port: 5000
+    proto: tcp
+  when: ansible_facts.packages.ufw is defined
