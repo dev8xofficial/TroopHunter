@@ -64,7 +64,7 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
         <div className={`${styles['footer-columns__column']} ${styles['footer-columns__column--address']}`}>
           <h3>We’re Growing – Join Our Team</h3>
           <address>Let’s build the future, together.</address>
-          <a href="/careers" className={styles['footer-columns__column--email']}>
+          <a href="/careers" className={styles['footer-columns__column--email']} target="_blank">
             Explore Careers <RightArrowIcon width="14" className={styles['arrow']} />
           </a>
         </div>

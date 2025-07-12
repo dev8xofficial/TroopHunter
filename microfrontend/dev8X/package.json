@@ -32,6 +32,7 @@
     "react-hook-form": "^7.56.3",
     "react-intersection-observer": "^9.16.0",
     "react-parallax-tilt": "^1.7.295",
+    "react-responsive": "^10.0.1",
     "react-scroll-parallax": "^3.4.5",
     "serve": "^14.2.3",
     "sharp": "^0.34.2",

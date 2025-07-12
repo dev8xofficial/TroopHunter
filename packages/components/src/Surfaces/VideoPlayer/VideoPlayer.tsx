@@ -29,6 +29,25 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster }) => {
   const [height, setHeight] = useState(45);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 991);
+    };
+
+    checkMobile();
+
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
   const handleFullscreen = () => {
     const video = videoRef.current;
     if (!video) return;
@@ -70,6 +89,20 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster }) => {
       document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
+    if (isMobile && dataSubmenuOpen) {
+      setHeight(160);
+    } else if (!isMobile && dataSubmenuOpen) {
+      setHeight(200);
+    } else if (isMobile && !dataSubmenuOpen) {
+      setHeight(34);
+    } else {
+      setHeight(45);
+    }
+  }, [isMobile, dataSubmenuOpen, isClient]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -170,7 +203,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster }) => {
       hlsRef.current.currentLevel = levelIndex;
       setCurrentQuality(levelIndex);
       setShowQualityMenu(false);
-      setHeight(45);
+      setHeight(isMobile ? 34 : 45);
       setDataSubmenuOpen(false);
     }
   };
@@ -179,7 +212,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster }) => {
     e.stopPropagation();
     setShowQualityMenu((prev) => !prev);
     setDataSubmenuOpen((prev) => !prev);
-    setHeight((prev) => (prev === 45 ? 200 : 45));
+
+    if (!dataSubmenuOpen) {
+      setHeight(isMobile ? 170 : 200);
+    } else {
+      setHeight(isMobile ? 34 : 45);
+    }
   };
 
   const getCurrentQualityLabel = () => {
@@ -208,8 +246,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster }) => {
       stroke="currentColor"
       className="size-6"
       style={{
-        width: '26px',
-        height: '26px',
+        width: isMobile ? '20px' : '26px',
+        height: isMobile ? '20px' : '20px',
         color: 'white',
         cursor: 'pointer'
       }}
@@ -240,8 +278,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster }) => {
       strokeWidth="1.5"
       stroke="currentColor"
       style={{
-        width: '26px',
-        height: '26px',
+        width: isMobile ? '20px' : '26px',
+        height: isMobile ? '20px' : '20px',
         color: 'white',
         cursor: 'pointer'
       }}
@@ -273,26 +311,30 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster }) => {
   const renderCheckIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width={isMobile ? '14' : '16'}
+      height={isMobile ? '14' : '16'}
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth="2"
       stroke="currentColor"
       style={{
         color: 'white',
-        marginLeft: '8px'
+        marginLeft: isMobile ? '6px' : '8px',
+        flexShrink: 0
       }}
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
     </svg>
   );
 
+  if (!isClient) {
+    return <video ref={videoRef} controls={false} loop playsInline muted={true} poster={poster} style={{ width: '100%', borderRadius: '8px' }} />;
+  }
+
   return (
     <>
       <video ref={videoRef} controls={false} loop playsInline muted={true} poster={poster} style={{ width: '100%', borderRadius: '8px' }} />
       <div className={`${HomepageShowreelStyles['showreel__controls']} ${isPlaying ? HomepageShowreelStyles['showreel__controls--playing'] : HomepageShowreelStyles['showreel__controls--paused']} ${dataSubmenuOpen ? `${HomepageShowreelStyles['showreel__controls-submenu-transition']}` : ''} ${dataSubmenuOpen ? `${HomepageShowreelStyles['showreel__controls-submenu-open']}` : ''}`} data-submenu-open={`${dataSubmenuOpen}`} style={{ '--height': height } as React.CSSProperties}>
-        {/* 👇 Resolution options */}
         <div className={HomepageShowreelStyles['showreel__controls-menu']}>
           {qualityLevels.map((level) => (
             <button key={level.index} onClick={() => handleQualityChange(level.index)} className={HomepageShowreelStyles['showreel__controls-resolution-button']}>
@@ -302,13 +344,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster }) => {
           ))}
         </div>
 
-        {/* 👇 Icon buttons */}
         <div className={HomepageShowreelStyles['showreel__icons']}>
           <button onClick={handleResolutionClick}>
             <div style={{ position: 'relative' }}>{renderResolutionIcon()}</div>
           </button>
-          <button onClick={handlePlayPause}>{isPlaying ? renderPauseIcon() : renderPlayIcon()}</button>
-          <button onClick={handleMuteUnmute}>{isMuted ? renderUnmuteIcon() : renderMuteIcon()}</button>
+          {!isMobile && <button onClick={handlePlayPause}>{isPlaying ? renderPauseIcon() : renderPlayIcon()}</button>}
+          {!isMobile && <button onClick={handleMuteUnmute}>{isMuted ? renderUnmuteIcon() : renderMuteIcon()}</button>}
           <button onClick={handleFullscreen}>{isFullscreen ? renderExitFullscreenIcon() : renderFullScreenIcon()}</button>
         </div>
       </div>
