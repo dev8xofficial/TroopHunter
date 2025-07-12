@@ -18,8 +18,8 @@ spec:
           command: ['sh', '-c', 'until nc -z businesses-db 5432; do echo waiting for db; sleep 2; done;']
       containers:
         - name: businesses-dev
-          image: businesses-dev:latest
-          imagePullPolicy: Never
+          image: 192.168.1.200:5000/businesses-dev:latest
+          imagePullPolicy: IfNotPresent
           command: ["/bin/bash", "/app/microservices/businesses/entrypoint.sh"]
           ports:
             - containerPort: 50011

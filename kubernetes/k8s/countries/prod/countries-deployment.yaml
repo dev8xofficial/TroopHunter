@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: businesses-prod
+  name: countries-prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: businesses-prod
+      app: countries-prod
   template:
     metadata:
       labels:
-        app: businesses-prod
+        app: countries-prod
     spec:
       initContainers:
         - name: wait-for-db
           image: busybox
           command: ['sh', '-c', 'until nc -z countries-db 5432; do echo waiting for db; sleep 2; done;']
       containers:
-        - name: businesses-prod
-          image: businesses-prod:latest
-          imagePullPolicy: Never
+        - name: countries-prod
+          image: 192.168.1.200:5000/countries-prod:latest
+          imagePullPolicy: IfNotPresent
           command: ["/bin/bash", "/app/microservices/countries/entrypoint.sh"]
           ports:
             - containerPort: 50006
@@ -59,10 +59,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: businesses-prod
+  name: countries-prod
 spec:
   selector:
-    app: businesses-prod
+    app: countries-prod
   ports:
     - protocol: TCP
       port: 50006
