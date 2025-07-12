@@ -1,0 +1,38 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: main_prod
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - microservices-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /auth/
+        - uri:
+            prefix: /business-phones/
+        - uri:
+            prefix: /business-sources/
+        - uri:
+            prefix: /businesses/
+        - uri:
+            prefix: /leads/
+        - uri:
+            prefix: /countries/
+        - uri:
+            prefix: /states/
+        - uri:
+            prefix: /cities/
+        - uri:
+            prefix: /queues/
+        - uri:
+            prefix: /city-queues/
+        - uri:
+            prefix: /users/
+      route:
+        - destination:
+            host: main_prod
+            port:
+              number: 50002 

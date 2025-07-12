@@ -1,0 +1,9 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: main_stag
+spec:
+  host: main_stag
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL 
