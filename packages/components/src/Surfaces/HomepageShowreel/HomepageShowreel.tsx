@@ -27,13 +27,11 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, ho
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // HLS related states
   const hlsRef = useRef<Hls | null>(null);
   const [qualityLevels, setQualityLevels] = useState<QualityLevel[]>([]);
   const [currentQuality, setCurrentQuality] = useState<number>(0);
   const [height, setHeight] = useState(45);
 
-  // HLS Setup Effect
   useEffect(() => {
     if (!enableHLS) return;
 
@@ -60,7 +58,7 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, ho
 
         setQualityLevels(levels);
 
-        // Set default to 1080p if available
+        // Set default 1080p section
         const default1080 = levels.find((level) => level.height === 1080);
         if (default1080) {
           hls.currentLevel = default1080.index;
@@ -94,6 +92,19 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, ho
     }
   }, [src, enableHLS]);
 
+  // Mobile Video Auto-play Functionality
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video && !enableHLS) {
+      video
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => {
+          console.warn('Autoplay failed:', err);
+        });
+    }
+  }, [enableHLS]);
+
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
@@ -117,21 +128,12 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, ho
     setIsMuted(!isMuted);
   };
 
-  const handleShowreelClick = () => {
-    const video = videoRef.current;
-    if (video) {
-      video.muted = false;
-      video
-        .play()
-        .then(() => {
-          setIsPlaying(true);
-          setIsMuted(false);
-        })
-        .catch((err) => console.warn('Manual play failed:', err));
+  const handleQualityChange = (qualityIndex: number) => {
+    if (hlsRef.current) {
+      hlsRef.current.currentLevel = qualityIndex;
+      setCurrentQuality(qualityIndex);
     }
   };
-
-  // HLS Quality Contr
 
   const renderPlayIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" viewBox="0 0 26 26" className="" style={{ '--width': '26', '--height': '26' } as React.CSSProperties as any}>
@@ -172,13 +174,7 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, ho
                   <source className={styles['picture']} srcSet="/images/header/1080.png 1x, /images/header/1080.png 2x" media="(min-width: 480px)" />
                   <img src="/images/header/1080.png" loading="eager" width="450" height="364" alt="" className="" draggable="false" />
                 </picture>
-                <video ref={videoRef} className={`${styles['showreel__video']} ${isMobile ? styles['showreel__video--mobile'] : styles['showreel__video--desktop']}`} src={!enableHLS ? src : undefined} poster={poster} preload="none" loop controls={false} autoPlay muted playsInline />
-                <button className={`${ButtonStyles['button-wrapper']} ${styles['showreel__fullscreen-button']}`} data-faitracker-form-bind="true" onClick={handleShowreelClick}>
-                  <span className={`${ButtonStyles['button']} ${ButtonStyles['button--bg-secondary']} ${styles['showreel__fullscreen-button-inner']}`} style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0px)' } as React.CSSProperties as any}>
-                    {renderPlayIcon()}
-                    <span>See Showreel</span>
-                  </span>
-                </button>
+                <video ref={videoRef} className={`${styles['showreel__video']} ${isMobile ? styles['showreel__video--mobile'] : styles['showreel__video--desktop']}`} src={!enableHLS ? src : undefined} poster={poster} preload="metadata" loop controls={false} autoPlay muted={isMuted} playsInline />
                 <div className={`${styles['showreel__controls']} ${isPlaying ? styles['showreel__controls--playing'] : styles['showreel__controls--paused']}`} style={{ '--height': height } as React.CSSProperties}>
                   <div className={styles['showreel__icons']}>
                     <button aria-label={isPlaying ? 'Pause Showreel Video' : 'Play Showreel Video'} data-faitracker-form-bind="true" onClick={handlePlayPause}>
@@ -189,6 +185,23 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, ho
                       {isMuted ? renderUnmuteIcon() : renderMuteIcon()}
                     </button>
                   </div>
+
+                  {enableHLS && qualityLevels.length > 0 && (
+                    <div className={styles['showreel__controls-menu']}>
+                      {qualityLevels.map((level) => (
+                        <button
+                          key={level.index}
+                          className={styles['showreel__controls-resolution-button']}
+                          onClick={() => handleQualityChange(level.index)}
+                          style={{
+                            backgroundColor: currentQuality === level.index ? 'hsla(0, 0%, 100%, .3)' : 'transparent'
+                          }}
+                        >
+                          {level.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </>
             )}
