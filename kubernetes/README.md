@@ -9,7 +9,7 @@ brew install kubectl
 kubectl version --client
 brew install minikube
 minikube version
-minikube start --cpus 6 --memory 4000 --driver=docker
+minikube start --cpus 4 --memory 6000 --driver=docker
 minikube status
 minikube dashboard
 kubectl get nodes
@@ -25,9 +25,9 @@ kubectl get ns default --show-labels
 
 ## Step 2: Commands for normal environment based setup
 
-minikube start --cpus 6 --memory 4000 --driver=docker
+minikube start --cpus 4 --memory 6000 --driver=docker
 
-eval $(minikube docker-env)
+eval $(minikube docker-env) OR minikube ssh -- docker images
 minikube status
 
 docker build -t main-dev:latest -f microservices/main/Dockerfile --target development .
@@ -36,21 +36,23 @@ docker build -t businesses-dev:latest -f microservices/businesses/Dockerfile --t
 docker build -t countries-dev:latest -f microservices/countries/Dockerfile --target development .
 docker build -t queues-dev:latest -f microservices/queues/Dockerfile --target development .
 docker build -t users-dev:latest -f microservices/users/Dockerfile --target development .
+minikube image load main-dev:latest
 
-kubectl delete -f kubernetes/k8s/main/dev
-kubectl apply -f kubernetes/k8s/main/dev
+kubectl delete -f kubernetes/k8s/main/dev/
+kubectl apply -f kubernetes/k8s/main/dev/
 kubectl apply -f kubernetes/istio/
 kubectl get pods
 kubectl port-forward service/main-dev 50002:50002
 kubectl logs deployment/main-dev -c main-dev
 kubectl logs auth-db-0 -c postgres
 kubectl logs auth-db-0
+kubectl describe pod main-prod-645558854c-mwr8b // ErrImageNeverPull error
 
 ## Step 3: Commands for kustomization environment based setup
 
-minikube start --cpus 6 --memory 4000 --driver=docker
+minikube start --cpus 4 --memory 6000 --driver=docker
 
-eval $(minikube docker-env)
+eval $(minikube docker-env) OR minikube ssh -- docker images
 minikube status
 
 docker build -t main-dev:latest -f microservices/main/Dockerfile --target development .
@@ -59,12 +61,14 @@ docker build -t businesses-dev:latest -f microservices/businesses/Dockerfile --t
 docker build -t countries-dev:latest -f microservices/countries/Dockerfile --target development .
 docker build -t queues-dev:latest -f microservices/queues/Dockerfile --target development .
 docker build -t users-dev:latest -f microservices/users/Dockerfile --target development .
+minikube image load main-dev:latest
 
-kubectl delete -k kubernetes/k8s/main/overlays/dev
-kubectl apply -k kubernetes/k8s/main/overlays/dev
+kubectl delete -k kubernetes/k8s/main/overlays/dev/
+kubectl apply -k kubernetes/k8s/main/overlays/dev/
 kubectl apply -f kubernetes/istio/
 kubectl get pods
 kubectl port-forward service/main-dev 50002:50002
 kubectl logs deployment/main-dev -c main
 kubectl logs auth-db-0 -c postgres
 kubectl logs auth-db-0
+kubectl describe pod main-prod-645558854c-mwr8b // ErrImageNeverPull error
