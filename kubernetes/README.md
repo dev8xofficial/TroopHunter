@@ -9,7 +9,7 @@ brew install kubectl
 kubectl version --client
 brew install minikube
 minikube version
-minikube start --cpus 4 --memory 6000 --driver=docker
+minikube start --cpus 4 --memory 6144 --driver=docker
 minikube status
 minikube dashboard
 kubectl get nodes
@@ -25,7 +25,7 @@ kubectl get ns default --show-labels
 
 ## Step 2: Commands for normal environment based setup
 
-minikube start --cpus 4 --memory 6000 --driver=docker
+minikube start --cpus 4 --memory 6144 --driver=docker
 
 eval $(minikube docker-env) OR minikube ssh -- docker images
 minikube status
@@ -50,7 +50,7 @@ kubectl describe pod main-prod-645558854c-mwr8b // ErrImageNeverPull error
 
 ## Step 3: Commands for kustomization environment based setup
 
-minikube start --cpus 4 --memory 6000 --driver=docker
+minikube start --cpus 4 --memory 6144 --driver=docker
 
 eval $(minikube docker-env) OR minikube ssh -- docker images
 minikube status

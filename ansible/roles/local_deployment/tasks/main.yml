@@ -1,0 +1,7 @@
+---
+- include_tasks: ../../common/tasks/allow_ufw.yml
+- include_tasks: ../../common/tasks/copy_env_files.yml
+- include_tasks: ../../common/tasks/copy_public_files.yml
+- include_tasks: run_npm_install.yml
+- include_tasks: run_npm_migrate.yml
+- include_tasks: run_npm_start.yml

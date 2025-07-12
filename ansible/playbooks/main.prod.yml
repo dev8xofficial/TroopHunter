@@ -14,6 +14,7 @@
     PROJECT_NAME: TroopHunter
     ENVIRONMENT: prod
     ENV_PATH: "/ansible/secrets"
+    SERVER_IP: "192.168.1.200"
     # PROTONVPN_USERNAME: 49bFnqbhzhVjOm5Z
     # PROTONVPN_PASSWORD: e2yzCr6pKNc1fHXpwvujNalsIatnnrGU
     # PROTONVPN_SERVER: US-NY#627
@@ -28,4 +29,5 @@
     - minikube
     - istioctl
     - github
-    - project
+    - docker_deployment
+    - local_deployment

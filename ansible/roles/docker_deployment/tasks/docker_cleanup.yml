@@ -1,0 +1,44 @@
+---
+# - name: Ensure Docker is installed
+#   package:
+#     name: docker.io
+#     state: present
+
+- name: Prune unused Docker build cache
+  shell: d
+  register: builder_prune
+  changed_when: "'Deleted build cache' in builder_prune.stdout"
+
+- name: Prune unused Docker images
+  shell: docker image prune -af
+  register: image_prune
+  changed_when: "'Deleted Images' in image_prune.stdout"
+
+- name: Prune all unused Docker resources
+  shell: docker system prune -af --volumes
+  register: full_prune
+  changed_when: "'Deleted' in full_prune.stdout"
+
+- name: Set Docker log rotation limits
+  copy:
+    dest: /etc/docker/daemon.json
+    content: |
+      {
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Docker
+
+- name: Create Docker cleanup cron job
+  cron:
+    name: "Daily Docker cleanup"
+    minute: "0"
+    hour: "3"
+    user: root
+    job: "/usr/bin/docker system prune -af --volumes > /var/log/docker-prune.log 2>&1"

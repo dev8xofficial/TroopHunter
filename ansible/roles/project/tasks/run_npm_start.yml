@@ -1,7 +1,0 @@
----
-# - name: Move into the TroopHunter Landing project and serve production build
-#   command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/microfrontend/troophunter-landing/dist && npx serve -s . -l 3000"
-# - name: Move into the TroopHunter directory and run npm run start:microfrontend
-#   command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/ && source /home/{{ USER }}/.nvm/nvm.sh && nohup npm run start:microfrontend > dev.log 2>&1 &"
-- name: Move into the TroopHunter directory and run npm run start:microservices
-  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/ && source /home/{{ USER }}/.nvm/nvm.sh && nohup npm run start:microservices > dev.log 2>&1 &"

@@ -1,0 +1,3 @@
+---
+- name: Move into the TroopHunter directory and run npm run install:workspace
+  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/ && source /home/{{ USER }}/.nvm/nvm.sh && npm run install:workspace"
