@@ -82,8 +82,10 @@
 }
 
 .showreel__video--mobile {
-  opacity: 0;
-  z-index: -1
+  opacity: 1;
+  /* Changed from 0 to 1 to make mobile video visible */
+  z-index: 1;
+  /* Changed from -1 to 1 to bring mobile video forward */
 }
 
 @media(max-width: 991px) {
@@ -98,32 +100,7 @@
   }
 }
 
-.showreel .showreel__fullscreen-button {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: .625rem
-}
-
-@media(min-width: 992px) {
-  .showreel .showreel__fullscreen-button {
-    display: none
-  }
-}
-
-.showreel .showreel__fullscreen-button-inner {
-  color: #000;
-  background-color: hsla(0, 0%, 100%, .5);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  padding: .4375rem;
-  white-space: pre
-}
-
-.showreel .showreel__fullscreen-button-inner span {
-  margin-right: .5em
-}
+/* Removed the fullscreen button section entirely */
 
 .showreel__controls {
   --height: 46;
@@ -151,11 +128,7 @@
   overflow: hidden;
 }
 
-@media(max-width: 991px) {
-  .showreel__controls {
-    display: none
-  }
-}
+/* Removed the mobile display: none rule to make controls visible on mobile */
 
 .showreel__controls-submenu-transition {
   border-radius: 20px;
@@ -181,15 +154,6 @@
     opacity: .33
   }
 }
-
-/* .showreel__controls:before {
-  content: "";
-  display: block;
-  width: 1px;
-  height: 1em;
-  background: hsla(0, 0%, 100%, .2);
-  transition: opacity .1s;
-} */
 
 @media(hover: hover) {
   .showreel__controls:hover {
@@ -232,10 +196,13 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-height: 0;
-  opacity: 0;
+  max-height: 200px;
+  /* Set a reasonable max height */
+  opacity: 1;
+  /* Changed from 0 to 1 to make menu visible */
   overflow: hidden;
-  transform: translateY(10px);
+  transform: translateY(0);
+  /* Changed from translateY(10px) to 0 */
   transition: opacity 1s ease, transform 1s ease, max-height 1s ease;
 }
 
@@ -276,7 +243,6 @@
   .showreel__controls-resolution-button:hover {
     background-color: hsla(0, 0%, 100%, .2);
     color: rgba(255, 255, 255, 0.95);
-    /* transform: translateX(5px) scale(1.02); */
   }
 
   .showreel__controls-resolution-button:active {
@@ -315,4 +281,28 @@
 
 .showreel__icons button:focus-visible {
   background-color: hsla(0, 0%, 100%, .2)
+}
+
+/* Mobile-specific adjustments */
+@media(max-width: 991px) {
+  .showreel__controls {
+    margin: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .showreel__icons button {
+    padding: 0.5rem 0.625rem;
+    font-size: 1.25rem;
+  }
+
+  .showreel__controls-resolution-button {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .is-mobile-fullscreen {
+    height: 170px !important;
+  }
 }

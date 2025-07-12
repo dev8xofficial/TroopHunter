@@ -291,12 +291,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster }) => {
   return (
     <>
       <video ref={videoRef} controls={false} loop playsInline muted={true} poster={poster} style={{ width: '100%', borderRadius: '8px' }} />
-      <button className={`${ButtonStyles['button-wrapper']} ${HomepageShowreelStyles['showreel__fullscreen-button']}`} data-faitracker-form-bind="true" onClick={handleShowreelClick}>
-        <span className={`${ButtonStyles['button']} ${ButtonStyles['button--bg-secondary']} ${HomepageShowreelStyles['showreel__fullscreen-button-inner']}`} style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0px)' }}>
-          {renderPlayIcon()}
-          <span>See Showreel</span>
-        </span>
-      </button>
       <div className={`${HomepageShowreelStyles['showreel__controls']} ${isPlaying ? HomepageShowreelStyles['showreel__controls--playing'] : HomepageShowreelStyles['showreel__controls--paused']} ${dataSubmenuOpen ? `${HomepageShowreelStyles['showreel__controls-submenu-transition']}` : ''} ${dataSubmenuOpen ? `${HomepageShowreelStyles['showreel__controls-submenu-open']}` : ''}`} data-submenu-open={`${dataSubmenuOpen}`} style={{ '--height': height } as React.CSSProperties}>
         {/* 👇 Resolution options */}
         <div className={HomepageShowreelStyles['showreel__controls-menu']}>
