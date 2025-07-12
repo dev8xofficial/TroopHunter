@@ -7,6 +7,7 @@ import RightArrowIcon from '../../Icons/RightArrow';
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 import ButtonStyles from '../Button/index.module.css';
 import styles from './index.module.css';
+import { Magnet } from '../../Animations/Magnet';
 
 type FooterInternationalContentsProps = {
   footerForm: ExpertiseFooterForm;
@@ -84,14 +85,17 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
             © {footerForm?.privacy?.year} <a href="/privacy">{footerForm?.privacy?.text}</a>
           </span>
         </div>
+
         <ul className={styles['footer-socials']}>
           {footerSocialLinks?.map((item, index) => (
             <li className={styles['footer-socials__item']} key={index}>
-              <a className={ButtonStyles['button-wrapper']} target="_blank" href={item.href}>
-                <span className={`${ButtonStyles['button']} ${ButtonStyles['button--bg-transparent']}`} style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0px)' }}>
-                  <span>{item.title}</span>
-                </span>
-              </a>
+              <Magnet>
+                <a className={ButtonStyles['button-wrapper']} target="_blank" href={item.href}>
+                  <span className={`${ButtonStyles['button']} ${ButtonStyles['button--bg-transparent']}`} style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0px)' }}>
+                    <span>{item.title}</span>
+                  </span>
+                </a>
+              </Magnet>
               {ICON_MAP[item.icon?.name]?.(item.icon?.width)}
             </li>
           ))}
