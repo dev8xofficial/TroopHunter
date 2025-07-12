@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Button } from '../Button/Button';
 import RightArrowIcon from '../../Icons/RightArrow';
@@ -16,7 +16,6 @@ type Role = {
   location: string;
   description: React.ReactNode;
 };
-
 /**
  * Sequence of Roles by Departments
  *  - UI/UX Design
@@ -478,97 +477,65 @@ const roles: Role[] = [
   }
 ];
 
+// Atoms
 export const selectedRoleAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleAtom, newValue));
 export const selectedRoleFirstParagraphAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleFirstParagraphAtom, newValue));
 export const selectedRoleThirdParagraphAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleThirdParagraphAtom, newValue));
 
+// Helper: extract paragraph with <strong>Dev8X</strong>
 const firstRoleDescription = (description: React.ReactNode): string => {
   if (React.isValidElement(description)) {
-    const element = description as React.ReactElement<{ children?: React.ReactNode }>;
-
-    if (element.props?.children) {
-      const children = React.Children.toArray(element.props.children);
-
-      const firstMatchingParagraph = children.find((child) => {
-        if (React.isValidElement(child) && child.type === 'p') {
-          const childContent = React.Children.toArray(child.props.children);
-          return childContent.some((content) => {
-            return React.isValidElement(content) && content.type === 'strong' && String(content.props.children).includes('Dev8X');
-          });
-        }
-        return false;
-      });
-
-      if (firstMatchingParagraph && React.isValidElement(firstMatchingParagraph)) {
-        const extractTextFromChildren = (children: React.ReactNode): string => {
-          if (typeof children === 'string') return children;
-          if (React.isValidElement(children) && children.props?.children) {
-            return extractTextFromChildren(children.props.children);
-          }
-          if (Array.isArray(children)) {
-            return children.map((child) => extractTextFromChildren(child)).join('');
-          }
-          return '';
-        };
-
-        return extractTextFromChildren(firstMatchingParagraph.props.children);
-      }
+    const children = React.Children.toArray(description.props.children);
+    const firstMatchingParagraph = children.find((child) => React.isValidElement(child) && child.type === 'p' && React.Children.toArray(child.props.children).some((content) => React.isValidElement(content) && content.type === 'strong' && String(content.props.children).includes('Dev8X')));
+    if (firstMatchingParagraph && React.isValidElement(firstMatchingParagraph)) {
+      const extractText = (children: React.ReactNode): string => {
+        if (typeof children === 'string') return children;
+        if (Array.isArray(children)) return children.map(extractText).join('');
+        if (React.isValidElement(children) && children.props?.children) return extractText(children.props.children);
+        return '';
+      };
+      return extractText(firstMatchingParagraph.props.children);
     }
   }
-
   return '';
 };
 
+// Helper: extract third <p>
 const extractRoleDescription = (description: React.ReactNode): string => {
   if (React.isValidElement(description)) {
-    const element = description as React.ReactElement<{ children?: React.ReactNode }>;
-
-    if (element.props && element.props.children) {
-      const children = React.Children.toArray(element.props.children);
-
-      const thirdParagraph = children.find((child, index) => index === 2 && React.isValidElement(child) && child.type === 'p');
-
-      if (thirdParagraph && React.isValidElement(thirdParagraph)) {
-        const paragraphElement = thirdParagraph as React.ReactElement<{ children?: React.ReactNode }>;
-
-        const extractTextFromChildren = (children: React.ReactNode): string => {
-          if (typeof children === 'string') return children;
-          if (React.isValidElement(children) && children.props?.children) {
-            return extractTextFromChildren(children.props.children);
-          }
-          if (Array.isArray(children)) {
-            return children.map((child) => extractTextFromChildren(child)).join('');
-          }
-          return '';
-        };
-
-        return extractTextFromChildren(paragraphElement.props.children);
-      }
+    const children = React.Children.toArray(description.props.children);
+    const thirdParagraph = children.find((child, idx) => idx === 2 && React.isValidElement(child) && child.type === 'p');
+    if (thirdParagraph && React.isValidElement(thirdParagraph)) {
+      const extractText = (children: React.ReactNode): string => {
+        if (typeof children === 'string') return children;
+        if (Array.isArray(children)) return children.map(extractText).join('');
+        if (React.isValidElement(children) && children.props?.children) return extractText(children.props.children);
+        return '';
+      };
+      return extractText(thirdParagraph.props.children);
     }
   }
   return '';
 };
 
+// Format role title nicely
 const formatRoleTitle = (title: string) => {
-  const cleaned = title.replace(/Internship/i, '').trim();
-
-  return cleaned
+  return title
+    .replace(/Internship/i, '')
+    .trim()
     .split(' ')
     .map((word) => {
-      if (word.toUpperCase() === 'UI/UX') return 'UI/UX';
-      if (word.toUpperCase() === 'AI') return 'AI';
-      if (word.toUpperCase() === 'HR') return 'HR';
+      const upper = word.toUpperCase();
+      if (['UI/UX', 'AI', 'HR'].includes(upper)) return upper;
       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     })
     .join(' ');
 };
-
 export const OpenRolesList: React.FC = () => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const setSelectedRole = useSetAtom(selectedRoleAtom);
   const setFirstParagraph = useSetAtom(selectedRoleFirstParagraphAtom);
   const setThirdParagraph = useSetAtom(selectedRoleThirdParagraphAtom);
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleApplyClick = (roleTitle: string) => {
     const cleanTitle = formatRoleTitle(roleTitle);
@@ -577,10 +544,8 @@ export const OpenRolesList: React.FC = () => {
     setSelectedRole(cleanTitle);
 
     if (role) {
-      const para1 = firstRoleDescription(role.description);
-      const para3 = extractRoleDescription(role.description);
-      setFirstParagraph(para1);
-      setThirdParagraph(para3);
+      setFirstParagraph(firstRoleDescription(role.description));
+      setThirdParagraph(extractRoleDescription(role.description));
     }
 
     toggleModal('contact');
@@ -589,13 +554,11 @@ export const OpenRolesList: React.FC = () => {
   return (
     <section className={styles['rolesSection']}>
       <div className={styles['rolesContainer']}>
-        {roles.map((role, index) => {
-          const isOpen = openIndex === index;
-
-          return (
-            <Disclosure key={index}>
+        {roles.map((role, index) => (
+          <Disclosure key={index}>
+            {({ open }) => (
               <>
-                <DisclosureButton as="div" className={styles['roleCard']} aria-label={isOpen ? 'Collapse details' : 'Expand details'} onClick={() => setOpenIndex(isOpen ? null : index)}>
+                <DisclosureButton as="div" className={styles['roleCard']} aria-label={open ? 'Collapse details' : 'Expand details'}>
                   <p className={styles['roleLabel']}>OPEN ROLES</p>
 
                   <div className={styles['roleHeader']}>
@@ -603,7 +566,7 @@ export const OpenRolesList: React.FC = () => {
 
                     <div className={styles['roleHeaderInner']}>
                       <button type="button" className={styles['toggleButton']}>
-                        {isOpen ? <CaretUpIcon width={24} height={24} className={styles['buttonIcon']} /> : <CaretDownIcon width={24} height={24} className={styles['buttonIcon']} />}
+                        {open ? <CaretUpIcon width={24} height={24} className={styles['buttonIcon']} /> : <CaretDownIcon width={24} height={24} className={styles['buttonIcon']} />}
                       </button>
 
                       <Button
@@ -638,13 +601,13 @@ export const OpenRolesList: React.FC = () => {
                   </div>
                 </DisclosureButton>
 
-                <DisclosurePanel className={`${styles['jobDescriptionWrapper']} ${styles['expanded']}`}>
+                <DisclosurePanel className={`${styles['jobDescriptionWrapper']} ${open ? styles['expanded'] : ''}`}>
                   <div className={styles['jobDescription']}>{role.description}</div>
                 </DisclosurePanel>
               </>
-            </Disclosure>
-          );
-        })}
+            )}
+          </Disclosure>
+        ))}
       </div>
     </section>
   );
