@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: main_prod
+  name: main-prod
 spec:
   hosts:
     - "*"
@@ -33,6 +33,6 @@ spec:
             prefix: /users/
       route:
         - destination:
-            host: main_prod
+            host: main-prod
             port:
               number: 50002 
