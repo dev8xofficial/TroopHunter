@@ -1,6 +1,7 @@
 services:
-  main_prod:
-    container_name: main_prod
+  main-prod:
+    container_name: main-prod
+    image: main-prod:latest
     build:
       context: ../../
       dockerfile: microservices/main/Dockerfile
@@ -9,14 +10,10 @@ services:
       - ./.env
     ports:
       - '50000:50000'
-    volumes:
-      - ./logs/:/microservices/main/logs/
-    networks:
-      - custom_network
-    command: npm run dev
 
-  main_stag:
-    container_name: main_stag
+  main-stag:
+    container_name: main-stag
+    image: main-stag
     build:
       context: ../../
       dockerfile: microservices/main/Dockerfile
@@ -25,14 +22,10 @@ services:
       - ./.env
     ports:
       - '50001:50001'
-    volumes:
-      - ./logs/:/microservices/main/logs/
-    networks:
-      - custom_network
-    command: npm run dev
 
-  main_dev:
-    container_name: main_dev
+  main-dev:
+    container_name: main-dev
+    image: main-dev
     build:
       context: ../../
       dockerfile: microservices/main/Dockerfile
@@ -41,8 +34,3 @@ services:
       - ./.env
     ports:
       - '50002:50002'
-    volumes:
-      - ./logs/:/microservices/main/logs/
-    networks:
-      - custom_network
-    command: npm run dev

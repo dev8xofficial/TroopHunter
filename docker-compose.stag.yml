@@ -5,163 +5,136 @@ services:
   #     file: docker-compose.ci.yml
   #     service: ci_stag
 
-  postgres_auth_stag:
-    extends:
-      file: ./microservices/auth/docker-compose.postgres.yml
-      service: postgres_auth_stag
+  # postgres_auth-stag:
+  #   extends:
+  #     file: ./microservices/auth/docker-compose.postgres.yml
+  #     service: postgres_auth-stag
 
-  postgres_countries_stag:
-    extends:
-      file: ./microservices/countries/docker-compose.postgres.yml
-      service: postgres_countries_stag
+  # postgres_countries-stag:
+  #   extends:
+  #     file: ./microservices/countries/docker-compose.postgres.yml
+  #     service: postgres_countries-stag
 
-  postgres_businesses_stag:
-    extends:
-      file: ./microservices/businesses/docker-compose.postgres.yml
-      service: postgres_businesses_stag
+  # postgres_businesses-stag:
+  #   extends:
+  #     file: ./microservices/businesses/docker-compose.postgres.yml
+  #     service: postgres_businesses-stag
 
-  postgres_queues_stag:
-    extends:
-      file: ./microservices/queues/docker-compose.postgres.yml
-      service: postgres_queues_stag
+  # postgres_queues-stag:
+  #   extends:
+  #     file: ./microservices/queues/docker-compose.postgres.yml
+  #     service: postgres_queues-stag
 
-  postgres_users_stag:
-    extends:
-      file: ./microservices/users/docker-compose.postgres.yml
-      service: postgres_users_stag
+  # postgres_users-stag:
+  #   extends:
+  #     file: ./microservices/users/docker-compose.postgres.yml
+  #     service: postgres_users-stag
 
   # pgadmin_stag:
   #   extends:
   #     file: docker-compose.pgadmin.yml
   #     service: pgadmin_stag
 
-  # main_stag:
+  # main-stag:
   #   extends:
   #     file: ./microservices/docker-compose.microservices.yml
-  #     service: main_stag
+  #     service: main-stag
   #   healthcheck:
   #     test: ['CMD', 'curl', '-f', 'http://localhost:50002/']
   #     interval: 10s
   #     timeout: 5s
   #     retries: 50
 
-  # main_stag:
-  #   extends:
-  #     file: ./microservices/main/docker-compose.backend.yml
-  #     service: main_stag
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50000/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  main-stag:
+    extends:
+      file: ./microservices/main/docker-compose.backend.yml
+      service: main-stag
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50000/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  # auth_stag:
-  #   extends:
-  #     file: ./microservices/auth/docker-compose.backend.yml
-  #     service: auth_stag
-  #   depends_on:
-  #     postgres_auth_stag:
-  #       condition: service_started
-  #     main_stag:
-  #       condition: service_started
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50003/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  auth-stag:
+    extends:
+      file: ./microservices/auth/docker-compose.backend.yml
+      service: auth-stag
+    depends_on:
+      main-stag:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50003/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  # countries_stag:
-  #   extends:
-  #     file: ./microservices/countries/docker-compose.backend.yml
-  #     service: countries_stag
-  #   depends_on:
-  #     postgres_countries_stag:
-  #       condition: service_started
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50006/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  countries-stag:
+    extends:
+      file: ./microservices/countries/docker-compose.backend.yml
+      service: countries-stag
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50006/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  # businesses_stag:
-  #   extends:
-  #     file: ./microservices/businesses/docker-compose.backend.yml
-  #     service: businesses_stag
-  #   depends_on:
-  #     postgres_auth_stag:
-  #       condition: service_started
-  #     postgres_countries_stag:
-  #       condition: service_started
-  #     postgres_businesses_stag:
-  #       condition: service_started
-  #     auth_stag:
-  #       condition: service_started
-  #     countries_stag:
-  #       condition: service_started
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50009/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  businesses-stag:
+    extends:
+      file: ./microservices/businesses/docker-compose.backend.yml
+      service: businesses-stag
+    depends_on:
+      auth-stag:
+        condition: service_started
+      countries-stag:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50009/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  # queues_stag:
-  #   extends:
-  #     file: ./microservices/queues/docker-compose.backend.yml
-  #     service: queues_stag
-  #   depends_on:
-  #     postgres_auth_stag:
-  #       condition: service_started
-  #     postgres_countries_stag:
-  #       condition: service_started
-  #     postgres_businesses_stag:
-  #       condition: service_started
-  #     postgres_queues_stag:
-  #       condition: service_started
-  #     auth_stag:
-  #       condition: service_started
-  #     countries_stag:
-  #       condition: service_started
-  #     businesses_stag:
-  #       condition: service_started
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50012/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  queues-stag:
+    extends:
+      file: ./microservices/queues/docker-compose.backend.yml
+      service: queues-stag
+    depends_on:
+      auth-stag:
+        condition: service_started
+      countries-stag:
+        condition: service_started
+      businesses-stag:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50012/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  # users_stag:
-  #   extends:
-  #     file: ./microservices/users/docker-compose.backend.yml
-  #     service: users_stag
-  #   depends_on:
-  #     postgres_auth_stag:
-  #       condition: service_started
-  #     postgres_countries_stag:
-  #       condition: service_started
-  #     postgres_businesses_stag:
-  #       condition: service_started
-  #     postgres_queues_stag:
-  #       condition: service_started
-  #     auth_stag:
-  #       condition: service_started
-  #     countries_stag:
-  #       condition: service_started
-  #     businesses_stag:
-  #       condition: service_started
-  #     queues_stag:
-  #       condition: service_started
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50015/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  users-stag:
+    extends:
+      file: ./microservices/users/docker-compose.backend.yml
+      service: users-stag
+    depends_on:
+      auth-stag:
+        condition: service_started
+      countries-stag:
+        condition: service_started
+      businesses-stag:
+        condition: service_started
+      queues-stag:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50015/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
   # troophunter_stag:
   #   extends:
   #     file: ./microfrontend/troophunter-landing/docker-compose.troophunter.yml
   #     service: troophunter_stag
   #   depends_on:
-  #     main_stag:
+  #     main-stag:
   #       condition: service_started
 
   # cloudflare_stag:

@@ -1,57 +1,36 @@
 services:
-  countries_prod:
-    container_name: countries_prod
+  countries-prod:
+    container_name: countries-prod
+    image: countries-prod
     build:
       context: ../../
       dockerfile: microservices/countries/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/countries/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50006:50006'
-    depends_on:
-      postgres_countries_prod:
-        condition: service_started
-    volumes:
-      - ./logs/:/microservices/countries/logs/
-    networks:
-      - custom_network
 
-  countries_stag:
-    container_name: countries_stag
+  countries-stag:
+    container_name: countries-stag
+    image: countries-stag
     build:
       context: ../../
       dockerfile: microservices/countries/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/countries/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50007:50007'
-    depends_on:
-      postgres_countries_stag:
-        condition: service_started
-    volumes:
-      - ./logs/:/microservices/countries/logs/
-    networks:
-      - custom_network
 
-  countries_dev:
-    container_name: countries_dev
+  countries-dev:
+    container_name: countries-dev
+    image: countries-dev
     build:
       context: ../../
       dockerfile: microservices/countries/Dockerfile
       target: development
-    entrypoint: ['/bin/bash', '/app/microservices/countries/entrypoint.sh']
     env_file:
       - ./.env
     ports:
       - '50008:50008'
-    depends_on:
-      postgres_countries_dev:
-        condition: service_started
-    volumes:
-      - ./logs/:/microservices/countries/logs/
-    networks:
-      - custom_network

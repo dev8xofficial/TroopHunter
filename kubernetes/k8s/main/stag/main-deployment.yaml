@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: main-stag
-          image: main-stag:latest
-          imagePullPolicy: Never
+          image: 192.168.1.200:5000/main-stag:latest
+          imagePullPolicy: IfNotPresent
           command: ["npm", "run", "dev"]
           ports:
             - containerPort: 50001

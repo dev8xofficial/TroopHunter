@@ -5,163 +5,136 @@ services:
   #     file: docker-compose.ci.yml
   #     service: ci_prod
 
-  postgres_auth_prod:
-    extends:
-      file: ./microservices/auth/docker-compose.postgres.yml
-      service: postgres_auth_prod
+  # postgres_auth_prod:
+  #   extends:
+  #     file: ./microservices/auth/docker-compose.postgres.yml
+  #     service: postgres_auth_prod
 
-  postgres_countries_prod:
-    extends:
-      file: ./microservices/countries/docker-compose.postgres.yml
-      service: postgres_countries_prod
+  # postgres_countries_prod:
+  #   extends:
+  #     file: ./microservices/countries/docker-compose.postgres.yml
+  #     service: postgres_countries_prod
 
-  postgres_businesses_prod:
-    extends:
-      file: ./microservices/businesses/docker-compose.postgres.yml
-      service: postgres_businesses_prod
+  # postgres_businesses_prod:
+  #   extends:
+  #     file: ./microservices/businesses/docker-compose.postgres.yml
+  #     service: postgres_businesses_prod
 
-  postgres_queues_prod:
-    extends:
-      file: ./microservices/queues/docker-compose.postgres.yml
-      service: postgres_queues_prod
+  # postgres_queues_prod:
+  #   extends:
+  #     file: ./microservices/queues/docker-compose.postgres.yml
+  #     service: postgres_queues_prod
 
-  postgres_users_prod:
-    extends:
-      file: ./microservices/users/docker-compose.postgres.yml
-      service: postgres_users_prod
+  # postgres_users-prod:
+  #   extends:
+  #     file: ./microservices/users/docker-compose.postgres.yml
+  #     service: postgres_users-prod
 
   # pgadmin_prod:
   #   extends:
   #     file: docker-compose.pgadmin.yml
   #     service: pgadmin_prod
 
-  # main_prod:
+  # main-prod:
   #   extends:
   #     file: ./microservices/docker-compose.microservices.yml
-  #     service: main_prod
+  #     service: main-prod
   #   healthcheck:
   #     test: ['CMD', 'curl', '-f', 'http://localhost:50002/']
   #     interval: 10s
   #     timeout: 5s
   #     retries: 50
 
-  # main_prod:
-  #   extends:
-  #     file: ./microservices/main/docker-compose.backend.yml
-  #     service: main_prod
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50000/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  main-prod:
+    extends:
+      file: ./microservices/main/docker-compose.backend.yml
+      service: main-prod
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50000/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  # auth_prod:
-  #   extends:
-  #     file: ./microservices/auth/docker-compose.backend.yml
-  #     service: auth_prod
-  #   depends_on:
-  #     postgres_auth_prod:
-  #       condition: service_started
-  #     main_prod:
-  #       condition: service_started
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50003/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  auth-prod:
+    extends:
+      file: ./microservices/auth/docker-compose.backend.yml
+      service: auth-prod
+    depends_on:
+      main-prod:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50003/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  # countries_prod:
-  #   extends:
-  #     file: ./microservices/countries/docker-compose.backend.yml
-  #     service: countries_prod
-  #   depends_on:
-  #     postgres_countries_prod:
-  #       condition: service_started
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50006/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  countries-prod:
+    extends:
+      file: ./microservices/countries/docker-compose.backend.yml
+      service: countries-prod
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50006/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  # businesses_prod:
-  #   extends:
-  #     file: ./microservices/businesses/docker-compose.backend.yml
-  #     service: businesses_prod
-  #   depends_on:
-  #     postgres_auth_prod:
-  #       condition: service_started
-  #     postgres_countries_prod:
-  #       condition: service_started
-  #     postgres_businesses_prod:
-  #       condition: service_started
-  #     auth_prod:
-  #       condition: service_started
-  #     countries_prod:
-  #       condition: service_started
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50009/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  businesses-prod:
+    extends:
+      file: ./microservices/businesses/docker-compose.backend.yml
+      service: businesses-prod
+    depends_on:
+      auth-prod:
+        condition: service_started
+      countries-prod:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50009/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  # queues_prod:
-  #   extends:
-  #     file: ./microservices/queues/docker-compose.backend.yml
-  #     service: queues_prod
-  #   depends_on:
-  #     postgres_auth_prod:
-  #       condition: service_started
-  #     postgres_countries_prod:
-  #       condition: service_started
-  #     postgres_businesses_prod:
-  #       condition: service_started
-  #     postgres_queues_prod:
-  #       condition: service_started
-  #     auth_prod:
-  #       condition: service_started
-  #     countries_prod:
-  #       condition: service_started
-  #     businesses_prod:
-  #       condition: service_started
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50012/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  queues-prod:
+    extends:
+      file: ./microservices/queues/docker-compose.backend.yml
+      service: queues-prod
+    depends_on:
+      auth-prod:
+        condition: service_started
+      countries-prod:
+        condition: service_started
+      businesses-prod:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50012/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  # users_prod:
-  #   extends:
-  #     file: ./microservices/users/docker-compose.backend.yml
-  #     service: users_prod
-  #   depends_on:
-  #     postgres_auth_prod:
-  #       condition: service_started
-  #     postgres_countries_prod:
-  #       condition: service_started
-  #     postgres_businesses_prod:
-  #       condition: service_started
-  #     postgres_queues_prod:
-  #       condition: service_started
-  #     auth_prod:
-  #       condition: service_started
-  #     countries_prod:
-  #       condition: service_started
-  #     businesses_prod:
-  #       condition: service_started
-  #     queues_prod:
-  #       condition: service_started
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:50015/']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  users-prod:
+    extends:
+      file: ./microservices/users/docker-compose.backend.yml
+      service: users-prod
+    depends_on:
+      auth-prod:
+        condition: service_started
+      countries-prod:
+        condition: service_started
+      businesses-prod:
+        condition: service_started
+      queues-prod:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:50015/']
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
   # troophunter_prod:
   #   extends:
   #     file: ./microfrontend/troophunter-landing/docker-compose.troophunter.yml
   #     service: troophunter_prod
   #   depends_on:
-  #     main_prod:
+  #     main-prod:
   #       condition: service_started
 
   # cloudflare_prod:
