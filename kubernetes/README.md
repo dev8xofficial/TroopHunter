@@ -48,6 +48,11 @@ kubectl logs auth-db-0 -c postgres
 kubectl logs auth-db-0
 kubectl describe pod main-prod-645558854c-mwr8b // ErrImageNeverPull error
 
+minikube ssh
+docker pull 192.168.1.200:5000/auth-prod
+cat /etc/docker/daemon.json
+docker info | grep -A1 'Insecure Registries'
+
 ## Step 3: Commands for kustomization environment based setup
 
 minikube start --cpus 4 --memory 6144 --driver=docker
@@ -72,3 +77,8 @@ kubectl logs deployment/main-dev -c main
 kubectl logs auth-db-0 -c postgres
 kubectl logs auth-db-0
 kubectl describe pod main-prod-645558854c-mwr8b // ErrImageNeverPull error
+
+minikube ssh
+docker pull 192.168.1.200:5000/auth-prod
+cat /etc/docker/daemon.json
+docker info | grep -A1 'Insecure Registries'
