@@ -239,6 +239,10 @@
   color: rgba(0, 0, 0, 0.6);
 }
 
+.submenu__link--rotate-45deg {
+  transform: rotate(-45deg);
+}
+
 .submenu__link:before {
   content: '';
   pointer-events: none;

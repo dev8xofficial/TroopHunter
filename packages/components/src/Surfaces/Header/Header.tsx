@@ -68,8 +68,8 @@ export const Header: React.FC = (): JSX.Element => {
               </Magnet>
               <li className={styles['menu__item']}>
                 <div className="link-wrap">
-                  <button className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') ? styles['menu__link--active'] : ''}`} data-faitracker-form-bind="true" onClick={handleExpertiseClick}>
-                    Expertise
+                  <button className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') || currentPath.includes('/careers') || currentPath.includes('/our-process') ? styles['menu__link--active'] : ''}`} data-faitracker-form-bind="true" onClick={handleExpertiseClick}>
+                    Explore
                   </button>
                   <HeaderSubmenu height={height} />
                 </div>
@@ -93,7 +93,7 @@ export const Header: React.FC = (): JSX.Element => {
                 Work
               </span>
               <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 4 }}>
-                Expertise
+                Explore
               </span>
               <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 5 }}>
                 Contact

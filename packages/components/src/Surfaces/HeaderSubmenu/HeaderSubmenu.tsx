@@ -23,6 +23,7 @@ import AnsibleIcon from '../../Icons/Ansible';
 import InfinityIcon from '../../Icons/Infinity';
 import WebServersIcon from '../../Icons/WebServers';
 import SeismometerIcon from '../../Icons/Seismometer';
+import RightArrowIcon from '../../Icons/RightArrow';
 import { Magnet } from '../../Animations/Magnet';
 
 import styles from './index.module.css';
@@ -205,6 +206,23 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
           icon: <SupabaseIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
           color: 'green',
           href: '/expertise/supabase'
+        }
+      ]
+    },
+    {
+      heading: 'Work With Us',
+      list: [
+        {
+          title: 'Careers',
+          icon: <RightArrowIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']} ${styles['submenu__link--rotate-45deg']}`} />,
+          color: 'cyan',
+          href: '/careers'
+        },
+        {
+          title: 'Our Process',
+          icon: <DataIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'blue',
+          href: '/our-process'
         }
       ]
     }

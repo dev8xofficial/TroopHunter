@@ -40,7 +40,7 @@ export const ContentAsideImage: React.FC<ContentAsideImageProps> = ({ contentAsi
                   <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
                     <WYSIWYG>
                       <p>
-                        <span style={{ color: 'rgb(0, 0, 0)' }}>{item.paragraph}</span>
+                        <span style={{ color: 'rgb(0, 0, 0)' }} dangerouslySetInnerHTML={{ __html: item.paragraph }} />
                       </p>
                     </WYSIWYG>
                   </div>
@@ -55,7 +55,7 @@ export const ContentAsideImage: React.FC<ContentAsideImageProps> = ({ contentAsi
                   <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
                     <WYSIWYG>
                       <p>
-                        <span style={{ color: 'rgb(0, 0, 0)' }}>{item.paragraph}</span>
+                        <span style={{ color: 'rgb(0, 0, 0)' }} dangerouslySetInnerHTML={{ __html: item.paragraph }}/>
                       </p>
                     </WYSIWYG>
                   </div>

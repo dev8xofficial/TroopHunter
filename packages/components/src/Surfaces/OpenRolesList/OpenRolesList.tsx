@@ -1,11 +1,12 @@
 import React from 'react';
+import { atom, useSetAtom } from 'jotai';
+import { toggleSmoothModalAtom } from '../../../../..//microfrontend/dev8X/store/smoothModalAtom';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Button } from '../Button/Button';
 import RightArrowIcon from '../../Icons/RightArrow';
 import CaretDownIcon from '../../Icons/CaretDown';
 import CaretUpIcon from '../../Icons/CaretUp';
-import { atom, useSetAtom } from 'jotai';
-import { toggleSmoothModalAtom } from '../../../../..//microfrontend/dev8X/store/smoothModalAtom';
+import { useMediaQuery } from 'react-responsive';
 
 import styles from './index.module.css';
 
@@ -536,6 +537,7 @@ export const OpenRolesList: React.FC = () => {
   const setSelectedRole = useSetAtom(selectedRoleAtom);
   const setFirstParagraph = useSetAtom(selectedRoleFirstParagraphAtom);
   const setThirdParagraph = useSetAtom(selectedRoleThirdParagraphAtom);
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1199px)' });
 
   const handleApplyClick = (roleTitle: string) => {
     const cleanTitle = formatRoleTitle(roleTitle);
@@ -579,7 +581,7 @@ export const OpenRolesList: React.FC = () => {
                           handleApplyClick(role.title);
                         }}
                       >
-                        Submit Application
+                        {!isTabletOrMobile && 'Submit Application'}
                       </Button>
                     </div>
                   </div>
