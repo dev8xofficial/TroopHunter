@@ -21,7 +21,7 @@
       --name registry \
       registry:2
   when: registry_exists.rc != 0
-  become: false
+  become: true
 
 - name: Ensure Docker is configured for insecure registry
   copy:
