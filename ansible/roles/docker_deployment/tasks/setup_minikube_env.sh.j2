@@ -3,9 +3,6 @@
 # Load Docker environment from Minikube
 eval $(minikube docker-env)
 
-# Show current Docker images
-docker images
-
 # Run a build using nvm and npm
 cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/
 export NVM_DIR="/home/{{ USER }}/.nvm"
