@@ -6,7 +6,6 @@ export * from './category';
 export * from './closingHour';
 // export * from './csvParser';
 export * from './day';
-export * from './emailVerification';
 export * from './helper';
 export * from './jwt';
 export * from './logger';
