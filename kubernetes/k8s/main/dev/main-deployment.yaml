@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: main-dev
-          image: 192.168.1.200:5000/main-dev:latest
+          image: main-dev:latest
           imagePullPolicy: IfNotPresent
           command: ["npm", "run", "dev"]
           ports:

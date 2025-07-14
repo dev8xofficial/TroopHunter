@@ -18,7 +18,7 @@ spec:
           command: ['sh', '-c', 'until nc -z auth-db 5432; do echo waiting for db; sleep 2; done;']
       containers:
         - name: auth-stag
-          image: 192.168.1.200:5000/auth-stag:latest
+          image: auth-stag:latest
           imagePullPolicy: IfNotPresent
           command: ["/bin/bash", "/app/microservices/auth/entrypoint.sh"]
           ports:
