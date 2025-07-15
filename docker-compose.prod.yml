@@ -59,9 +59,6 @@ services:
     extends:
       file: ./microservices/auth/docker-compose.backend.yml
       service: auth-prod
-    depends_on:
-      main-prod:
-        condition: service_started
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:50003/']
       interval: 10s
@@ -82,11 +79,6 @@ services:
     extends:
       file: ./microservices/businesses/docker-compose.backend.yml
       service: businesses-prod
-    depends_on:
-      auth-prod:
-        condition: service_started
-      countries-prod:
-        condition: service_started
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:50009/']
       interval: 10s
@@ -97,13 +89,6 @@ services:
     extends:
       file: ./microservices/queues/docker-compose.backend.yml
       service: queues-prod
-    depends_on:
-      auth-prod:
-        condition: service_started
-      countries-prod:
-        condition: service_started
-      businesses-prod:
-        condition: service_started
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:50012/']
       interval: 10s
@@ -114,15 +99,6 @@ services:
     extends:
       file: ./microservices/users/docker-compose.backend.yml
       service: users-prod
-    depends_on:
-      auth-prod:
-        condition: service_started
-      countries-prod:
-        condition: service_started
-      businesses-prod:
-        condition: service_started
-      queues-prod:
-        condition: service_started
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:50015/']
       interval: 10s
