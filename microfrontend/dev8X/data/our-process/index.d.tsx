@@ -6,7 +6,7 @@ const PROCESS: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'Our Process',
     heading: 'A thoughtful process for building impactful digital experiences',
-    image: '/api/images/ours-process/1.png',
+    image: '/api/images/our-process/1.png',
     iconCards: {
       title: 'Remarkable digital experiences',
       paragraph: "We focus on what we do best: For more than 6 years, we've been imagining, crafting, and launching inspiring work on the web.",
@@ -48,57 +48,50 @@ const PROCESS: ExpertiseContent[] = [
         }
       ]
     },
-contentAsideImageItems: [
-  {
-    title: 'Discovery Phase',
-    paragraph:
-      '<strong>Research & Analysis</strong> – We assess business needs, conduct competitor and user research, review analytics, and evaluate conversions using tools like Google Analytics, Crazy Egg, and FullStory.<br /> <strong>User Experience Planning</strong> – We create user personas, review site goals, map user journeys, and develop sitemaps and low-fidelity wireframes to shape the structure and flow.<br /> <strong>Technical Requirements</strong> – We define key functionality and document everything in a clear technical specification to guide the website build.',
-    icon: { name: 'PointerIcon', width: 64 },
-    image: '/api/images/ours-process/2.png',
-  },
-  {
-    title: 'Content and SEO',
-    paragraph:
-      '<strong>Content review</strong> – We assess messaging, tone, and media balance to ensure your content tells a clear brand story.<br /> <strong>Content plan creation</strong> – We collaborate with clients or stakeholders to write and structure effective content that supports design and brand goals.<br /> <strong>SEO audit and strategy</strong> – Using tools like SEMRush and Google Webmasters, we audit current rankings and create a launch and long-term SEO plan covering site audits, content, and link building.',
-    icon: { name: 'PointerIcon', width: 64 },
-    image: '/api/images/ours-process/3.png',
-  },
-  {
-    title: 'Creative and User Interface (UI)',
-    paragraph:
-      '<strong>High fidelity wireframes</strong> – We build detailed layouts with fonts, buttons, and spacing to visualize structure before applying visuals.<br /> <strong>UX and UI design</strong> – We apply brand guidelines and optimize user journeys using visuals, animations, and intuitive design.<br /> <strong>Prototypes and mockups</strong> – With clickable prototypes and animated previews, we refine interactions and collaborate closely with clients for feedback.',
-    icon: { name: 'PointerIcon', width: 64 },
-    image: '/api/images/ours-process/4.png',
-  },
-  {
-    title: 'Website Development',
-    paragraph:
-      '<strong>Version control & hosting</strong> – We use GitHub for collaboration and Google Cloud with Nginx for fast, secure hosting.<br /> <strong>CMS, database & integrations</strong> – We set up WordPress or Laravel, create custom fields, and integrate plugins or CRMs like HubSpot and Salesforce.<br /> <strong>Testing & optimisation</strong> – We optimise code, ensure responsive design, test across devices, and complete two feedback rounds before launch.',
-    icon: { name: 'PointerIcon', width: 64 },
-    image: '/api/images/ours-process/5.png',
-  },
-  {
-    title: 'Website Launch',
-    paragraph:
-      '<strong>Final SEO and tracking</strong> – We run audits and install tools like Google Analytics and Audience Tracker for performance insights.<br /> <strong>Client training</strong> – We provide hands-on CMS training and a user-friendly manual for easy content updates.<br /> <strong>Post-launch support</strong> – Includes two weeks of free bug tracking to ensure a smooth transition.',
-    icon: { name: 'PointerIcon', width: 64 },
-    image: '/api/images/ours-process/6.png',
-  },
-  {
-    title: 'Website Maintenance',
-    paragraph:
-      '<strong>CMS & plugin updates</strong> – Regular updates keep your site secure and prevent vulnerabilities.<br /> <strong>Security checks</strong> – We run routine scans using tools like Securi to detect and block threats.<br /> <strong>Backups</strong> – Local backups are created to safely restore your site if needed.<br /> <strong>Bug reporting</strong> – Clients can report issues through our bug tracker for quick resolution.',
-    icon: { name: 'PointerIcon', width: 64 },
-    image: '/api/images/ours-process/7.png',
-  },
-  {
-    title: 'Website Evaluation and Improvement',
-    paragraph:
-      '<strong>Performance analysis</strong> – We review site behavior using tools like FullStory and LookBack.<br /> <strong>Conversion review</strong> – We assess key actions and optimize underperforming areas.<br /> <strong>Link building</strong> – Ongoing SEO is supported through blog content and outreach strategies.',
-    icon: { name: 'ShuffleIcon', width: 64 },
-    image: '/api/images/ours-process/8.png',
-  },
-],
+    contentAsideImageItems: [
+      {
+        title: 'Discovery Phase',
+        paragraph: '<strong>Research & Analysis</strong> – We assess business needs, conduct competitor and user research, review analytics, and evaluate conversions using tools like Google Analytics, Crazy Egg, and FullStory.<br /> <strong>User Experience Planning</strong> – We create user personas, review site goals, map user journeys, and develop sitemaps and low-fidelity wireframes to shape the structure and flow.<br /> <strong>Technical Requirements</strong> – We define key functionality and document everything in a clear technical specification to guide the website build.',
+        icon: { name: 'PointerIcon', width: 64 },
+        image: '/api/images/our-process/2.png'
+      },
+      {
+        title: 'Content and SEO',
+        paragraph: '<strong>Content review</strong> – We assess messaging, tone, and media balance to ensure your content tells a clear brand story.<br /> <strong>Content plan creation</strong> – We collaborate with clients or stakeholders to write and structure effective content that supports design and brand goals.<br /> <strong>SEO audit and strategy</strong> – Using tools like SEMRush and Google Webmasters, we audit current rankings and create a launch and long-term SEO plan covering site audits, content, and link building.',
+        icon: { name: 'PointerIcon', width: 64 },
+        image: '/api/images/our-process/3.png'
+      },
+      {
+        title: 'Creative and User Interface (UI)',
+        paragraph: '<strong>High fidelity wireframes</strong> – We build detailed layouts with fonts, buttons, and spacing to visualize structure before applying visuals.<br /> <strong>UX and UI design</strong> – We apply brand guidelines and optimize user journeys using visuals, animations, and intuitive design.<br /> <strong>Prototypes and mockups</strong> – With clickable prototypes and animated previews, we refine interactions and collaborate closely with clients for feedback.',
+        icon: { name: 'PointerIcon', width: 64 },
+        image: '/api/images/our-process/4.png'
+      },
+      {
+        title: 'Website Development',
+        paragraph: '<strong>Version control & hosting</strong> – We use GitHub for collaboration and Google Cloud with Nginx for fast, secure hosting.<br /> <strong>CMS, database & integrations</strong> – We set up WordPress or Laravel, create custom fields, and integrate plugins or CRMs like HubSpot and Salesforce.<br /> <strong>Testing & optimisation</strong> – We optimise code, ensure responsive design, test across devices, and complete two feedback rounds before launch.',
+        icon: { name: 'PointerIcon', width: 64 },
+        image: '/api/images/our-process/5.png'
+      },
+      {
+        title: 'Website Launch',
+        paragraph: '<strong>Final SEO and tracking</strong> – We run audits and install tools like Google Analytics and Audience Tracker for performance insights.<br /> <strong>Client training</strong> – We provide hands-on CMS training and a user-friendly manual for easy content updates.<br /> <strong>Post-launch support</strong> – Includes two weeks of free bug tracking to ensure a smooth transition.',
+        icon: { name: 'PointerIcon', width: 64 },
+        image: '/api/images/our-process/6.png'
+      },
+      {
+        title: 'Website Maintenance',
+        paragraph: '<strong>CMS & plugin updates</strong> – Regular updates keep your site secure and prevent vulnerabilities.<br /> <strong>Security checks</strong> – We run routine scans using tools like Securi to detect and block threats.<br /> <strong>Backups</strong> – Local backups are created to safely restore your site if needed.<br /> <strong>Bug reporting</strong> – Clients can report issues through our bug tracker for quick resolution.',
+        icon: { name: 'PointerIcon', width: 64 },
+        image: '/api/images/our-process/7.png'
+      },
+      {
+        title: 'Website Evaluation and Improvement',
+        paragraph: '<strong>Performance analysis</strong> – We review site behavior using tools like FullStory and LookBack.<br /> <strong>Conversion review</strong> – We assess key actions and optimize underperforming areas.<br /> <strong>Link building</strong> – Ongoing SEO is supported through blog content and outreach strategies.',
+        icon: { name: 'ShuffleIcon', width: 64 },
+        image: '/api/images/our-process/8.png'
+      }
+    ],
 
     footerMainContent: {
       link: '/contact',
