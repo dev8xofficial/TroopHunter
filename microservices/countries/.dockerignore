@@ -1,5 +1,9 @@
+.turbo
+dist
 logs
 node_modules
+.env.docker
+.env.local
 pgadmin-data
 postgres-data
 .env.example

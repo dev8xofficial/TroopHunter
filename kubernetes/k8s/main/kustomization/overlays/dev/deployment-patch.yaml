@@ -18,7 +18,7 @@ spec:
         - name: main
           image: main-dev:latest
           imagePullPolicy: Never
-          command: ["npm", "run", "dev"]
+          command: ["npm", "run", "start"]
           ports:
             - containerPort: 50002
           resources:

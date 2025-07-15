@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "description": "This repository is a shared resource among microservices.",
-  "main": "index.ts",
-  "types": "index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
-    "build": "tsc --traceResolution",
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "dev": "tsc -w",
+    "lint": "eslint \"src/**/*.ts*\" --max-warnings 0",
     "test": "jest"
   },
   "dependencies": {

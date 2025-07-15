@@ -16,7 +16,7 @@ spec:
         - name: main-prod
           image: main-prod:latest
           imagePullPolicy: IfNotPresent
-          command: ["npm", "run", "dev"]
+          command: ["npm", "run", "start"]
           ports:
             - containerPort: 50000
           env:

@@ -1,43 +1,40 @@
-# Use an official Node.js runtime as a parent image
-FROM node:20.12.2 as development
-
-# Install the PostgreSQL client tools
-RUN apt-get update && \
-    apt-get install -y postgresql-client iputils-ping curl
+# ---- Base Node Image for Build ----
+FROM node:20.12.2-alpine as builder
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy package files for better caching
+COPY package.json ./
 COPY microservices/users/package.json ./microservices/users/package.json
 COPY packages ./packages
-COPY package.json ./
 COPY turbo.json ./
 
-RUN [ -d "node_modules" ] || npm install
-# WORKDIR /app/usersç
-# RUN [ -d "node_modules" ] || npm install
+# Install ALL dependencies (including dev) for build
+RUN npm install --workspaces --include-workspace-root
 
-WORKDIR /app
+# Copy source code
 COPY microservices/users ./microservices/users
+
 WORKDIR /app/microservices/users
 
-EXPOSE 50017
+# Build step (TypeScript)
+RUN npm run build
 
-# ---- Second Stage ----
-FROM development as builder
-WORKDIR /app
-RUN rm -rf node_modules
-RUN npm ci --only=production
-WORKDIR /app/microservices/users
-RUN rm -rf node_modules
-RUN npm ci --only=production
-EXPOSE 50015
+# Remove devDependencies after build
+RUN npm prune --omit=dev
 
-# ---- Final Stage ----
-FROM alpine:latest as production
-# RUN apk --no-cache add nodejs ca-certificates bash  # Install bash
-RUN apk --no-cache add nodejs npm ca-certificates bash postgresql-client
-WORKDIR /app
-COPY --from=builder /app ./
+# ---- Production Image ----
+FROM node:20.12.2-alpine
+
 WORKDIR /app/microservices/users
+
+COPY --from=builder /app/node_modules /app/node_modules
+COPY --from=builder /app/microservices/users /app/microservices/users
+COPY --from=builder /app/packages /app/packages
+COPY --from=builder /app/package.json /app/
+COPY --from=builder /app/turbo.json /app/
+
+RUN apk --no-cache add postgresql-client
+
+# CMD ["npm", "start"]
 

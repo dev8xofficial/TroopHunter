@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     es2021: true,
-    node: true
+    node: true,
   },
   extends: [
     'eslint:recommended',
@@ -11,14 +11,14 @@ module.exports = {
     'standard-with-typescript',
     'plugin:prettier/recommended', // Add this line
     'prettier', // Add this line
-    'eslint-config-prettier'
+    'eslint-config-prettier',
   ],
   // parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
     project: './tsconfig.json',
-    tsconfigRootDir: __dirname
+    tsconfigRootDir: __dirname,
   },
   plugins: ['@typescript-eslint'],
   rules: {
@@ -31,19 +31,20 @@ module.exports = {
           {
             pattern: 'react',
             group: 'external',
-            position: 'before'
-          }
+            position: 'before',
+          },
         ],
         pathGroupsExcludedImportTypes: ['react'],
         'newlines-between': 'always',
         alphabetize: {
           order: 'asc',
-          caseInsensitive: true
-        }
-      }
+          caseInsensitive: true,
+        },
+      },
     ],
     // ... other rules
-    '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }]
+    '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
+    '@typescript-eslint/no-unsafe-call': '',
   },
-  ignorePatterns: ['node_modules', 'dist', 'build', 'sequelize']
+  ignorePatterns: ['node_modules', 'dist', 'build', 'sequelize'],
 };
