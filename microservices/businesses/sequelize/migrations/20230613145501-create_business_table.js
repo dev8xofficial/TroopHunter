@@ -2,6 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    await queryInterface.sequelize.query('CREATE EXTENSION IF NOT EXISTS postgis;');
     await queryInterface.createTable('Businesses', {
       id: {
         type: Sequelize.UUID,
@@ -308,6 +309,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.sequelize.query('DROP EXTENSION IF EXISTS postgis;');
     // Drop indexes
     await queryInterface.removeIndex('Businesses', ['name']);
     await queryInterface.removeIndex('Businesses', ['address']);
