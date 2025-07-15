@@ -25,7 +25,7 @@ while [ $attempts -lt $MAX_ATTEMPTS ]; do
 
     echo "Connection to PostgreSQL database is successful. $POSTGRES_HOST $POSTGRES_PORT $POSTGRES_DB $POSTGRES_USER"
     npm run migrate
-    npm run dev
+    npm run start
     break
   else
     echo "Connection attempt $((attempts + 1)) failed. Retrying in $SLEEP_INTERVAL seconds... $POSTGRES_HOST, $POSTGRES_PORT, $POSTGRES_DB, $POSTGRES_USER"

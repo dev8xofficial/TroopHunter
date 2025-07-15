@@ -1,8 +1,10 @@
 {
   "extends": "@repo/tsconfig-backend/tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "types": ["jest", "node"]
   },
   "include": ["src", ".eslintrc.cjs"],
   "exclude": ["node_modules", "dist"]

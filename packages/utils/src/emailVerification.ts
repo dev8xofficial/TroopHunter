@@ -1,4 +1,4 @@
-import nodemailer, { type SentMessageInfo } from 'nodemailer';
+import { type SentMessageInfo, createTransport } from 'nodemailer';
 
 export const sendEmail = async ({ to, subject, html, text }: { to: string; subject: string; html: string; text: string }): Promise<SentMessageInfo> => {
   try {
@@ -26,7 +26,7 @@ export const sendEmail = async ({ to, subject, html, text }: { to: string; subje
       text,
     };
 
-    const transporter = nodemailer.createTransport(transporterPayload);
+    const transporter = createTransport(transporterPayload);
 
     const info = await transporter.sendMail(infoPayload);
 

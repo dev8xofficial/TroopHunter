@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+    "lint": "turbo run lint",
     "install:workspace": "npm install",
     "install:projects": "npm install --prefix website && npm install --prefix crm && npm install --prefix backend npm install --prefix services/auth",
     "install:website": "npm install --prefix website",
@@ -17,7 +18,6 @@
     "install:auth": "npm install --prefix services/auth",
     "clean": "docker compose -f docker-compose.dev.yml down -v && docker compose -f docker-compose.dev.yml rm -f && rm -rf website/.next crm/dist backend/dist services/auth/dist && find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + && rm -rf package-lock.json",
     "clean:prod": "docker compose -f docker-compose.prod.yml down -v && docker compose -f docker-compose.prod.yml rm -f && rm -rf website/.next crm/dist backend/dist services/auth/dist && find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + && rm -rf package-lock.json",
-    "lint": "eslint .",
     "remove:logs": "rimraf backend/logs/* scraper/logs/*",
     "istio:dev": "kubectl apply -f kubernetes/istio/dev/",
     "istio:stag": "kubectl apply -f kubernetes/istio/stag/",
@@ -61,7 +61,7 @@
     "concurrently": "^9.1.2",
     "rimraf": "^5.0.1",
     "serve": "^14.2.4",
-    "turbo": "^2.1.3"
+    "turbo": "^2.5.4"
   },
   "dependencies": {
     "force": "^0.0.3",

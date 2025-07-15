@@ -1,8 +1,9 @@
 {
   "extends": "@repo/tsconfig-backend/tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
     "typeRoots": ["./node_modules/@types", "./@types", "./**/@types"]
   },
   "include": ["src", ".eslintrc.cjs", "@types", "**/*.d.ts"],
