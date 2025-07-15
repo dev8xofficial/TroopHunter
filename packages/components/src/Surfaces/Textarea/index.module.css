@@ -10,7 +10,8 @@
     appearance: none;
     border-radius: clamp(.625rem,.6613756614vw,.83125rem);
     resize: none;
-    margin-top: 1em
+    margin-top: 1em;
+    background: transparent;
 }
 
 .textarea::placeholder {
