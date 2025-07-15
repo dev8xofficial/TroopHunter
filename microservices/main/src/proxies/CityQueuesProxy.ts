@@ -2,7 +2,7 @@ import { type RequestHandler, type Request } from 'express';
 import { createProxyMiddleware, type Options } from 'http-proxy-middleware';
 
 const proxyOptions: Options = {
-  target: process.env.CITY_QUEUES_MICROSERVICE_URL,
+  target: process.env.CITY_QUEUES_MICROSERVICE_URL ?? 'http://localhost:50014',
   changeOrigin: true,
   secure: false,
   pathRewrite: function (path: string, req): string {
