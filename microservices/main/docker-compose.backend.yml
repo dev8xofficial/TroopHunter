@@ -12,7 +12,7 @@ services:
 
   main-stag:
     container_name: main-stag
-    image: main-stag
+    image: main-stag:latest
     build:
       context: ../../
       dockerfile: microservices/main/Dockerfile
@@ -23,7 +23,7 @@ services:
 
   main-dev:
     container_name: main-dev
-    image: main-dev
+    image: main-dev:latest
     build:
       context: ../../
       dockerfile: microservices/main/Dockerfile
