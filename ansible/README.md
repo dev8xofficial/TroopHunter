@@ -142,6 +142,20 @@ sudo chmod -R u+rwx /TroopHunter
 sudo rm -rf /TroopHunter
 
 # ------------------------------------------------------------------------------------------------------------
+# ------------ Verdicco Setup --------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
+
+## Run below command in ubuntu vm
+docker run -d --name verdaccio -p 4873:4873 verdaccio/verdaccio
+
+## Create .npmrc file in root directory of monorepo and paste below content
+registry=http://192.168.1.100:4873
+
+## Run below command in ubuntu vm to check verdicco storage size for node_modules
+docker exec -it verdaccio sh
+du -sh /verdaccio/storage
+
+# ------------------------------------------------------------------------------------------------------------
 # ------------ PostgreSQL Extensions -------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
 
