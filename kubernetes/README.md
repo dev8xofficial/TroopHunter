@@ -49,7 +49,7 @@ kubectl apply -f kubernetes/istio/
 kubectl get pods
 kubectl port-forward service/main-prod 50002:50002
 kubectl port-forward svc/countries-db 5432:5432
-kubectl logs deployment/main-prod -c main-prod
+kubectl logs deployment/main-prod -c main-prod -f
 kubectl logs auth-db-0 -c postgres
 kubectl logs auth-db-0
 kubectl describe pod main-prod-645558854c-mwr8b // ErrImageNeverPull error
@@ -92,7 +92,7 @@ kubectl apply -f kubernetes/istio/
 kubectl get pods
 kubectl port-forward service/main-prod 50002:50002
 kubectl port-forward svc/countries-db 5432:5432
-kubectl logs deployment/main-prod -c main-prod
+kubectl logs deployment/main-prod -c main-prod -f
 kubectl logs auth-db-0 -c postgres
 kubectl logs auth-db-0
 kubectl describe pod main-prod-645558854c-mwr8b // ErrImageNeverPull error
