@@ -1,7 +1,7 @@
 services:
   countries-prod:
     container_name: countries-prod
-    image: countries-prod
+    image: countries-prod:latest
     build:
       context: ../../
       dockerfile: microservices/countries/Dockerfile
@@ -12,7 +12,7 @@ services:
 
   countries-stag:
     container_name: countries-stag
-    image: countries-stag
+    image: countries-stag:latest
     build:
       context: ../../
       dockerfile: microservices/countries/Dockerfile
@@ -23,7 +23,7 @@ services:
 
   countries-dev:
     container_name: countries-dev
-    image: countries-dev
+    image: countries-dev:latest
     build:
       context: ../../
       dockerfile: microservices/countries/Dockerfile

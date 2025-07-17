@@ -1,7 +1,7 @@
 services:
   businesses-prod:
     container_name: businesses-prod
-    image: businesses-prod
+    image: businesses-prod:latest
     build:
       context: ../../
       dockerfile: microservices/businesses/Dockerfile
@@ -12,7 +12,7 @@ services:
 
   businesses-stag:
     container_name: businesses-stag
-    image: businesses-stag
+    image: businesses-stag:latest
     build:
       context: ../../
       dockerfile: microservices/businesses/Dockerfile
@@ -23,7 +23,7 @@ services:
 
   businesses-dev:
     container_name: businesses-dev
-    image: businesses-dev
+    image: businesses-dev:latest
     build:
       context: ../../
       dockerfile: microservices/businesses/Dockerfile

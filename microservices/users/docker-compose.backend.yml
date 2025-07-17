@@ -1,7 +1,7 @@
 services:
   users-prod:
     container_name: users-prod
-    image: users-prod
+    image: users-prod:latest
     build:
       context: ../../
       dockerfile: microservices/users/Dockerfile
@@ -12,7 +12,7 @@ services:
 
   users-stag:
     container_name: users-stag
-    image: users-stag
+    image: users-stag:latest
     build:
       context: ../../
       dockerfile: microservices/users/Dockerfile
@@ -23,7 +23,7 @@ services:
 
   users-dev:
     container_name: users-dev
-    image: users-dev
+    image: users-dev:latest
     build:
       context: ../../
       dockerfile: microservices/users/Dockerfile

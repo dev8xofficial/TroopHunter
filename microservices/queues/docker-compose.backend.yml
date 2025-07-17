@@ -1,7 +1,7 @@
 services:
   queues-prod:
     container_name: queues-prod
-    image: queues-prod
+    image: queues-prod:latest
     build:
       context: ../../
       dockerfile: microservices/queues/Dockerfile
@@ -12,7 +12,7 @@ services:
 
   queues-stag:
     container_name: queues-stag
-    image: queues-stag
+    image: queues-stag:latest
     build:
       context: ../../
       dockerfile: microservices/queues/Dockerfile
@@ -23,7 +23,7 @@ services:
 
   queues-dev:
     container_name: queues-dev
-    image: queues-dev
+    image: queues-dev:latest
     build:
       context: ../../
       dockerfile: microservices/queues/Dockerfile

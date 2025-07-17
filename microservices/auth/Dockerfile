@@ -1,10 +1,14 @@
 # ---- Base Node Image for Build ----
 FROM node:20.12.2-alpine as builder
 
+RUN apk --no-cache add bash postgresql-client
+
 WORKDIR /app
 
 # Copy package files for better caching
 COPY package.json ./
+COPY package-lock.json ./
+COPY .npmrc ./
 COPY microservices/auth/package.json ./microservices/auth/package.json
 COPY packages ./packages
 COPY turbo.json ./
@@ -34,7 +38,7 @@ COPY --from=builder /app/packages /app/packages
 COPY --from=builder /app/package.json /app/
 COPY --from=builder /app/turbo.json /app/
 
-RUN apk --no-cache add postgresql-client
+RUN apk --no-cache add bash postgresql-client
 
 # CMD ["npm", "start"]
 
