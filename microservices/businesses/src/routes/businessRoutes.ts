@@ -1,4 +1,4 @@
-// import { verifyToken } from '@repo/middlewares';
+import { verifyToken } from '@repo/middlewares';
 import { BulkBusinessCreateRequestValidationMiddleware, BusinessCreateRequestValidationMiddleware, BusinessFetchByIdRequestValidationMiddleware, BusinessFetchRequestValidationMiddleware, BusinessUpdateRequestValidationMiddleware, PaginationRequestValidationMiddleware } from '@repo/validator';
 import express from 'express';
 
@@ -7,7 +7,7 @@ import { getBusinessesByQuery, getBusinesses, getBusinessById, createBusiness, u
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-// router.use(verifyToken);
+router.use(verifyToken);
 
 // Define business routes
 router.get('/search', BusinessFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getBusinessesByQuery);

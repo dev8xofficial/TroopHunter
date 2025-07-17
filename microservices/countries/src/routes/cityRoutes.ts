@@ -1,4 +1,4 @@
-// import { verifyToken } from '@repo/middlewares';
+import { verifyToken } from '@repo/middlewares';
 import { CityCreateRequestValidationMiddleware, CityFetchByIdRequestValidationMiddleware, CityFetchRequestValidationMiddleware, CityUpdateRequestValidationMiddleware, PaginationRequestValidationMiddleware } from '@repo/validator';
 import express from 'express';
 
@@ -7,7 +7,7 @@ import { getCities, getCityById, getCitiesByQuery, createCity, updateCity, delet
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-// router.use(verifyToken);
+router.use(verifyToken);
 
 // Define city routes
 router.get('/search', CityFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getCitiesByQuery);

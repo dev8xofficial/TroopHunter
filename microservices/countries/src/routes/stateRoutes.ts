@@ -1,4 +1,4 @@
-// import { verifyToken } from '@repo/middlewares';
+import { verifyToken } from '@repo/middlewares';
 import { StateFetchByIdRequestValidationMiddleware, StateFetchRequestValidationMiddleware, StateCreateRequestValidationMiddleware, StateUpdateRequestValidationMiddleware, PaginationRequestValidationMiddleware } from '@repo/validator';
 import express from 'express';
 
@@ -7,7 +7,7 @@ import { getStates, getStateById, getStatesByQuery, createState, updateState, de
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-// router.use(verifyToken);
+router.use(verifyToken);
 
 // Define state routes
 router.get('/search', StateFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getStatesByQuery);

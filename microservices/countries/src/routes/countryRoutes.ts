@@ -1,4 +1,4 @@
-// import { verifyToken } from '@repo/middlewares';
+import { verifyToken } from '@repo/middlewares';
 import { CountryFetchByIdRequestValidationMiddleware, CountryFetchRequestValidationMiddleware, CountryCreateRequestValidationMiddleware, CountryUpdateRequestValidationMiddleware, PaginationRequestValidationMiddleware } from '@repo/validator';
 import express from 'express';
 
@@ -7,7 +7,7 @@ import { getCountries, getCountryById, getCountriesByQuery, createCountry, updat
 const router = express.Router();
 
 // Apply the authMiddleware to secure the routes
-// router.use(verifyToken);
+router.use(verifyToken);
 
 // Define country routes
 router.get('/search', CountryFetchRequestValidationMiddleware, PaginationRequestValidationMiddleware, getCountriesByQuery);
