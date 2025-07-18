@@ -10,7 +10,7 @@ import EXPERTISES from '../../data/expertise/index.d';
 import WorkStyles from '../work/index.module.css';
 import ExpertiseStyles from '../expertise/index.module.css';
 
-const WorkPage: React.FC = (): JSX.Element => {
+const CareerPage: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const getNextExpertise = (currentSlug: string) => {
     const currentIndex = EXPERTISES.findIndex((e) => e.slug === currentSlug);
@@ -82,4 +82,4 @@ const WorkPage: React.FC = (): JSX.Element => {
   );
 };
 
-export default WorkPage;
+export default CareerPage;
