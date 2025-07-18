@@ -132,8 +132,15 @@
   background: var(--goldendao-light);
 }
 
+
+
 /***************************************************** Responsive Styles *****************************************************/
 /*****************************************************************************************************************************/
+@media (min-width: 290px) {
+  .work-card--landscape .work-card__thumbnail-inner {
+    width: 89.4214876033%;
+  }
+}
 
 @media (min-width: 768px) {
   .work-card__content {
@@ -167,8 +174,6 @@
   }
 }
 
-@media (min-width: 1200px) {
-}
+@media (min-width: 1200px) {}
 
-@media (min-width: 1400px) {
-}
+@media (min-width: 1400px) {}
