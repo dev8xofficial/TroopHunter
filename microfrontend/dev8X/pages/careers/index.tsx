@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, CareerContentsModal, ExpertiseCard, AwardsBlock, SubmitApplicationModal } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, CareerContentsModal, ExpertiseCard, AwardsBlock, SubmitApplicationModal, ContactFormModal } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import PageData from '../../data/careers/index.d';
@@ -52,13 +52,13 @@ const CareerPage: React.FC = (): JSX.Element => {
         <FooterRevealPageWrap variant="page">
           <style jsx global>{`
             :root {
-              --theme-primary: var(--default-primary);
-              --theme-primary-text: var(--default-primary-text);
-              --theme-secondary: var(--default-secondary);
-              --theme-text: var(--default-text);
-              --theme-background: var(--default-tertiary);
-              --theme-logo: var(--default-secondary);
-              --theme-header-face: var(--default-primary);
+              --theme-primary: var(--cyan-primary);
+              --theme-primary-text: var(--cyan-primary-text);
+              --theme-secondary: var(--cyan-secondary);
+              --theme-text: var(--cyan-text);
+              --theme-background: var(--cyan-tertiary);
+              --theme-logo: var(--cyan-secondary);
+              --theme-header-face: var(--cyan-primary);
             }
           `}</style>
           {/* Main container with smooth-scrollbar */}
@@ -73,10 +73,13 @@ const CareerPage: React.FC = (): JSX.Element => {
             </div>
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
+        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
-      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
+      <SmoothModalWrapper modalType="career" toggle={() => toggleModal('career')}>
         <SubmitApplicationModal />
+      </SmoothModalWrapper>
+      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
+        <ContactFormModal />
       </SmoothModalWrapper>
     </>
   );

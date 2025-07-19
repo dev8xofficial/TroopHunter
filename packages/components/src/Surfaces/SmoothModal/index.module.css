@@ -64,7 +64,7 @@
   right: 0;
   bottom: 0;
   overflow: hidden;
-  background: #f3f3e9;
+  background: #ffffff;
   grid-area: auto;
   z-index: -1;
 }

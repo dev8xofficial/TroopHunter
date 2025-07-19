@@ -550,7 +550,7 @@ export const OpenRolesList: React.FC = () => {
       setThirdParagraph(extractRoleDescription(role.description));
     }
 
-    toggleModal('contact');
+    toggleModal('career');
   };
 
   return (

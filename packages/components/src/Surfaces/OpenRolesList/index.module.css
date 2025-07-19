@@ -79,7 +79,7 @@
 }
 
 .jobDescriptionWrapper {
-    overflow: hidden;
+    overflow: visible;
     max-height: 0;
     opacity: 0;
     transition: max-height 1s ease, opacity 1s ease;
