@@ -68,7 +68,7 @@ export const Header: React.FC = (): JSX.Element => {
               </Magnet>
               <li className={styles['menu__item']}>
                 <div className="link-wrap">
-                  <button className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') || currentPath.includes('/careers') || currentPath.includes('/our-process') ? styles['menu__link--active'] : ''}`} data-faitracker-form-bind="true" onClick={handleExpertiseClick}>
+                  <button className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') || currentPath.includes('/careers') || currentPath.includes('/plan-and-pricing') || currentPath.includes('/our-process') ? styles['menu__link--active'] : ''}`} data-faitracker-form-bind="true" onClick={handleExpertiseClick}>
                     Explore
                   </button>
                   <HeaderSubmenu height={height} />

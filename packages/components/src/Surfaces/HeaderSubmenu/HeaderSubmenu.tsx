@@ -223,7 +223,13 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
           icon: <DataIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
           color: 'blue',
           href: '/our-process'
-        }
+        },
+        {
+          title: 'Plan & Pricing',
+          icon: <SaaSIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
+          color: 'green',
+          href: '/plan-and-pricing'
+        },
       ]
     }
   ];
@@ -237,8 +243,8 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
                 <h2 className={styles['submenu__heading']}>{menu.heading}</h2>
                 <ul className={styles['submenu__list']}>
                   {menu.list.map((item, itemIndex) => (
-                    <Magnet>
-                      <li style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0)' }} key={`nav-anchor-${menuIndex}-${itemIndex}`}>
+                    <Magnet key={`nav-anchor-${menuIndex}-${itemIndex}`}>
+                      <li style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0)' }}>
                         <a className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`} href={item.href}>
                           <>
                             {item.icon}

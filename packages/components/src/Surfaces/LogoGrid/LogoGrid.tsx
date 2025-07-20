@@ -41,8 +41,8 @@ export const LogoGrid: React.FC = (): JSX.Element => {
   return (
     <>
       <ul className={styles['logo-grid']}>
-        {awards.map((item) => (
-          <Spotlight strength={0.4}>
+        {awards.map((item, index) => (
+          <Spotlight strength={0.4} key={index}>
             <Tilt tiltMaxAngleX={25} tiltMaxAngleY={25} transitionSpeed={4000} glareEnable={false}>
               <li className={styles['logo-grid__item']} style={{ perspective: '1500px', opacity: 1, transform: 'translateX(0px)' }}>
                 <span className="sr-only">{item.name}</span>

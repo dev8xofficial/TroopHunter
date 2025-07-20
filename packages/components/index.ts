@@ -39,6 +39,10 @@ export * from './src/Surfaces/CareerContents/CareerContents';
 export * from './src/Surfaces/CareerStudySidebar/CareerStudySidebar';
 export * from './src/Surfaces/OpenRolesList/OpenRolesList';
 export * from './src/Surfaces/SubmitApplicationModal/SubmitApplicationModal';
+export * from './src/Surfaces/PricingContents/PricingContents';
+export * from './src/Surfaces/PricingStudySidebar/PricingStudySidebar';
+export * from './src/Surfaces/PricingList/PricingList';
+export * from './src/Surfaces/PricingCategories/PricingCategories';
 
 export * from './src/Icons/AIBrain';
 export * from './src/Icons/Analysis';
