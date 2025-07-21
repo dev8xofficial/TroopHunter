@@ -8,8 +8,21 @@
     --color-border: var(--theme-border, #e0e0e0);
     align-self: flex-start;
     top: 0;
+    pointer-events: auto;
+    color: var(--color-text);
+    overflow: hidden;
+}
+
+.sidebar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: transparent;
     pointer-events: none;
-    color: var(--color-text)
 }
 
 @media(min-width: 992px) {

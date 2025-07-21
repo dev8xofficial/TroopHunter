@@ -39,12 +39,7 @@ export const ListboxField: React.FC<ListboxProps> = ({ options, selected, setSel
       <Field>
         <Label className="sr-only">Select an option</Label>
         <div className="relative">
-          <Select
-            value={selected && selected.value ? String(selected.value) : ''}
-            onChange={handleChange}
-            className={`${TextAreastyles['textarea']} ${InputStyles['input']}`}
-            style={{ background: 'transparent' }}
-          >
+          <Select value={selected && selected.value ? String(selected.value) : ''} onChange={handleChange} className={`${TextAreastyles['textarea']} ${InputStyles['input']}`} style={{ background: 'transparent' }}>
             <option value="" disabled hidden>
               Select an option
             </option>
