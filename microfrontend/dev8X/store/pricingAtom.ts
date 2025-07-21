@@ -15,6 +15,7 @@ export interface Role {
 }
 
 const peopleOptions: ListboxOptionType[] = [
+  { id: 0, name: '0', value: 0 },
   { id: 1, name: '1', value: 1 },
   { id: 2, name: '2', value: 2 },
   { id: 3, name: '3', value: 3 },
@@ -38,7 +39,7 @@ const initialRoles: Role[] = [
   {
     title: 'UI/UX Designer',
     skills: {
-      Figma: true,
+      Figma: false,
       AdobeXD: false,
       Sketch: false,
       Illustrator: false,
@@ -64,7 +65,7 @@ const initialRoles: Role[] = [
   {
     title: 'Frontend Developer',
     skills: {
-      HTML: true,
+      HTML: false,
       CSS: false,
       JavaScript: false,
       TypeScript: false,
@@ -91,7 +92,7 @@ const initialRoles: Role[] = [
   {
     title: 'Flutter Developer',
     skills: {
-      Dart: true,
+      Dart: false,
       Flutter: false,
       Firebase: false,
       Riverpod: false,
@@ -118,7 +119,7 @@ const initialRoles: Role[] = [
   {
     title: 'Backend Developer',
     skills: {
-      NodeJS: true,
+      NodeJS: false,
       ExpressJS: false,
       NestJS: false,
       MongoDB: false,
@@ -145,7 +146,7 @@ const initialRoles: Role[] = [
   {
     title: 'AI Engineer',
     skills: {
-      Python: true,
+      Python: false,
       NumPy: false,
       Pandas: false,
       TensorFlow: false,
@@ -172,7 +173,7 @@ const initialRoles: Role[] = [
   {
     title: 'Business Development',
     skills: {
-      CRM: true,
+      CRM: false,
       SalesStrategy: false,
       MarketResearch: false,
       LeadGeneration: false,

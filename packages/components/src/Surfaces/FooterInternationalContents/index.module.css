@@ -28,6 +28,7 @@
   gap: 3.125rem;
   justify-items: flex-start;
   grid-template-columns: repeat(2, 1fr);
+  pointer-events: auto;
 }
 
 @media (min-width: 992px) {

@@ -522,7 +522,6 @@ const extractRoleDescription = (description: React.ReactNode): string => {
 // Format role title nicely
 const formatRoleTitle = (title: string) => {
   return title
-    .replace(/Internship/i, '')
     .trim()
     .split(' ')
     .map((word) => {
@@ -532,6 +531,7 @@ const formatRoleTitle = (title: string) => {
     })
     .join(' ');
 };
+
 export const OpenRolesList: React.FC = () => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const setSelectedRole = useSetAtom(selectedRoleAtom);

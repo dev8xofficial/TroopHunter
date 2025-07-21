@@ -211,9 +211,11 @@ export const SubmitApplicationModal: React.FC = () => {
                 />
               </FieldWrapper>
 
-              <FieldWrapper className="col-sm-1" label="Expected salary">
-                <Input type="text" id="salary" placeholder="Share your amount" {...register('salary')} />
-              </FieldWrapper>
+              {selectedRole && !selectedRole.trim().toLowerCase().includes('intern') && (
+                <FieldWrapper className="col-sm-1" label="Expected salary">
+                  <Input type="text" id="salary" placeholder="Share your amount" {...register('salary')} />
+                </FieldWrapper>
+              )}
 
               <FieldWrapper className="col-sm-1" label="LinkedIn profile link">
                 <Input type="url" id="linkedin" placeholder="Paste LinkedIn URL" {...register('linkedin')} />
