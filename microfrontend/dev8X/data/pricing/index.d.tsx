@@ -4,9 +4,9 @@ const PRICING: ExpertiseContent[] = [
   {
     slug: '',
     variant: 'green',
-    tagText: 'Our Process',
-    heading: 'A thoughtful process for building impactful digital experiences',
-    image: '/api/images/our-process/1.png',
+    tagText: '',
+    heading: '',
+    image: '',
     iconCards: {
       title: 'Remarkable digital experiences',
       paragraph: "We focus on what we do best: For more than 6 years, we've been imagining, crafting, and launching inspiring work on the web.",
@@ -98,9 +98,9 @@ const PRICING: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Our Process — Dev8X | Dev8X: World class digital products',
-      description: 'A thoughtful process for building impactful digital experiences'
-    },
+      title: 'Plans & Pricing — Dev8X | Build Digital Products with Confidence',
+      description: 'Explore Dev8X’s flexible plans designed for startups, teams, and enterprises. Get the right support to build exceptional digital products.'
+    },    
     footerForm: {
       privacy: {
         year: '2025',

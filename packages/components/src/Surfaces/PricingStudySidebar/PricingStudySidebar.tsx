@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Magnet } from '../../Animations/Magnet';
 import { Button } from '../Button/Button';
@@ -10,6 +10,42 @@ import CaseStudySidebarStyles from '../CaseStudySidebar/index.module.css';
 import OpenRolesStyles from '../OpenRolesList/index.module.css';
 
 export const PricingStudySidebar: React.FC<{ onBookNow?: () => void }> = ({ onBookNow }) => {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Example data, replace with actual form state
+  // const formData = {
+  //   selectedRole: { title: 'Developer' },
+  //   selectedSkills: { React: true, Node: true },
+  //   selectedPeople: { name: '3' },
+  //   selectedPriceType: { name: 'Hourly' }
+  // };
+  const formData = new FormData();
+
+  const handleSendRequest = async () => {
+    debugger;
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+    // try {
+    //   const res = await fetch('/api/pricing', {
+    //     method: 'POST',
+    //     body: formData
+    //   });
+    //   if (res.ok) {
+    //     setSuccess(true);
+    //   } else {
+    //     const data = await res.json();
+    //     setError(data.message || 'Failed to send request');
+    //   }
+    // } catch (err: any) {
+    //   setError(err.message || 'Failed to send request');
+    // } finally {
+    //   setLoading(false);
+    // }
+  };
+
   return (
     <div className={CaseStudySidebarStyles['sidebar']}>
       <div className={HeroStyles['homepage__hero']}>
@@ -30,13 +66,22 @@ export const PricingStudySidebar: React.FC<{ onBookNow?: () => void }> = ({ onBo
           <a href="mailto:contact@dev8x.com">contact@dev8x.com</a>
         </div>
       </div>
-
       <div className={`${FooterStyles['footer-columns']} footer-columns`}>
         <Magnet>
-          <Button variant="secondary" context="contact" endIcon={<RightArrowIcon width="14" className={OpenRolesStyles['button--icon']} />} spanClassName={OpenRolesStyles['contact-button']} onClick={onBookNow}>
-            Send Request
+          <Button variant="secondary" context="contact" endIcon={<RightArrowIcon width="14" />} onClick={handleSendRequest} disabled={loading}>
+            {loading ? 'Sending...' : 'Send Request'}
           </Button>
         </Magnet>
+        {success && (
+          <div className={HeroStyles['homepage__hero']} style={{ color: 'green' }}>
+            Request sent!
+          </div>
+        )}
+        {error && (
+          <div className={FooterStyles['footer-columns__globally']} style={{ color: 'red' }}>
+            {error}
+          </div>
+        )}
       </div>
     </div>
   );
