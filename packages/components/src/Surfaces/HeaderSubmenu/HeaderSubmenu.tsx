@@ -225,7 +225,7 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
           href: '/our-process'
         },
         {
-          title: 'Plan & Pricing',
+          title: 'Plans & Pricing',
           icon: <SaaSIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
           color: 'green',
           href: '/plan-and-pricing'
