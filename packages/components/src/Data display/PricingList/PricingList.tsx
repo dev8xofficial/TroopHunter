@@ -2,7 +2,7 @@ import React from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import CaretDownIcon from '../../Icons/CaretDown';
 import CaretUpIcon from '../../Icons/CaretUp';
-import { PricingCategories } from '../PricingCategories/PricingCategories';
+import { PricingCategories } from '../../Surfaces/PricingCategories/PricingCategories';
 import { ListboxField, ListboxOptionType } from '../../Input/ListboxField/ListboxField';
 import { useBreakpoint } from '../../../hooks/useBreakpoint';
 import { UserIcon, CurrencyDollarIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline';

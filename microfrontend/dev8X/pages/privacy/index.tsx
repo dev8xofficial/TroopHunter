@@ -8,8 +8,8 @@ import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/Smo
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import PageData from '../../data/privacy/index.d';
 
+import WYSIWYGStyles from '../../components/Surfaces/WYSIWYG/index.module.css';
 import styles from './index.module.css';
-import WYSIWYGStyles from '../../../../packages/components/src/Surfaces/WYSIWYG/index.module.css';
 
 const Privacy: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);

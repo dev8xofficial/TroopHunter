@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import Lenis from 'lenis';
 import { openSmoothModalAtom, ModalType } from '../../../store/smoothModalAtom';
 import { createPortal } from 'react-dom';
-import SmoothModal from '@repo/components/src/Surfaces/SmoothModal/SmoothModal';
+import SmoothModal from '@repo/components/src/Modals/SmoothModal/SmoothModal';
 import { useLenis } from '../../../hooks/LenisContext';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';

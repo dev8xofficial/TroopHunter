@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useAtomValue } from 'jotai';
-import { selectedRoleAtom, selectedRoleFirstParagraphAtom, selectedRoleThirdParagraphAtom } from '../OpenRolesList/OpenRolesList';
+import { selectedRoleAtom, selectedRoleFirstParagraphAtom, selectedRoleThirdParagraphAtom } from '../../Data display/OpenRolesList/OpenRolesList';
 
-import { FileUpload } from '../FileUpload/FileUpload';
-import { FieldWrapper } from '../FieldWrapper/FieldWrapper';
-import { Input } from '../Input/Input';
-import { Fieldset } from '../Fieldset/Fieldset';
-import { Textarea } from '../Textarea/Textarea';
-import { Button } from '../Button/Button';
+import { FileUpload } from '../../Input/FileUpload/FileUpload';
+import { FieldWrapper } from '../../Input/FieldWrapper/FieldWrapper';
+import { Input } from '../../Input/TextField/Input';
+import { Fieldset } from '../../Input/Fieldset/Fieldset';
+import { Textarea } from '../../Input/Textarea/Textarea';
+import { Button } from '../../Input/Button/Button';
 
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 

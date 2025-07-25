@@ -1,9 +1,9 @@
 import React from 'react';
-import { WYSIWYG } from '../WYSIWYG/WYSIWYG';
-import { ICON_MAP } from '../IconCards/IconMap';
+import { WYSIWYG } from '../../Surfaces/WYSIWYG/WYSIWYG';
+import { ICON_MAP } from '../../Surfaces/IconCards/IconMap';
 import { ExpertiseContentAsideImageItem } from '../../Interfaces/Expertise/Expertise';
 
-import PictureStyles from '../Picture/index.module.css';
+import PictureStyles from '../../Surfaces/Picture/index.module.css';
 import styles from './index.module.css';
 
 type ContentAsideImageProps = {
@@ -55,7 +55,7 @@ export const ContentAsideImage: React.FC<ContentAsideImageProps> = ({ contentAsi
                   <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
                     <WYSIWYG>
                       <p>
-                        <span style={{ color: 'rgb(0, 0, 0)' }} dangerouslySetInnerHTML={{ __html: item.paragraph }}/>
+                        <span style={{ color: 'rgb(0, 0, 0)' }} dangerouslySetInnerHTML={{ __html: item.paragraph }} />
                       </p>
                     </WYSIWYG>
                   </div>

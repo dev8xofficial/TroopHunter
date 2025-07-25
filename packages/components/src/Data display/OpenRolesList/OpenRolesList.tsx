@@ -2,7 +2,7 @@ import React from 'react';
 import { atom, useSetAtom } from 'jotai';
 import { toggleSmoothModalAtom } from '../../../../..//microfrontend/dev8X/store/smoothModalAtom';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
-import { Button } from '../Button/Button';
+import { Button } from '../../Input/Button/Button';
 import RightArrowIcon from '../../Icons/RightArrow';
 import CaretDownIcon from '../../Icons/CaretDown';
 import CaretUpIcon from '../../Icons/CaretUp';

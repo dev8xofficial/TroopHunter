@@ -1,8 +1,8 @@
 import React from 'react';
 import { Field, Label, Select } from '@headlessui/react';
 
-import TextAreastyles from '../../Surfaces/Textarea/index.module.css';
-import InputStyles from '../../Surfaces/Input/index.module.css';
+import InputStyles from '../TextField/index.module.css';
+import TextAreastyles from '../Textarea/index.module.css';
 
 export interface ListboxOptionType {
   id: number;

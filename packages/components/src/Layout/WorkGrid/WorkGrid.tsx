@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { WorkCard } from '../WorkCard/WorkCard';
+import { WorkCard } from '../../Surfaces/WorkCard/WorkCard';
 import { WORK_PROJECTS_GRID_DATA } from '../../Constants/Work/WorkProjects';
 import { WorkGridCard } from '../../Interfaces/Work/WorkProjectTypes';
 

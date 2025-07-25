@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FooterStyles from '../FooterInternationalContents/index.module.css';
-import HeroStyles from '../Hero/index.module.css';
+import HeroStyles from '..//Hero/index.module.css';
 import CaseStudySidebarStyles from '../CaseStudySidebar/index.module.css';
 
 export const CareerStudySidebar: React.FC = () => {

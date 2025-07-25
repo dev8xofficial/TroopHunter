@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 
 import { Magnet } from '../../Animations/Magnet';
-import { Button } from '../Button/Button';
+import { Button } from '../../Input/Button/Button';
 import RightArrowIcon from '../../Icons/RightArrow';
 
 import FooterStyles from '../FooterInternationalContents/index.module.css';
-import HeroStyles from '../Hero/index.module.css';
+import HeroStyles from '..//Hero/index.module.css';
 import CaseStudySidebarStyles from '../CaseStudySidebar/index.module.css';
-import OpenRolesStyles from '../OpenRolesList/index.module.css';
 
 export const PricingStudySidebar: React.FC<{ onBookNow?: () => void }> = ({ onBookNow }) => {
   const [loading, setLoading] = useState(false);

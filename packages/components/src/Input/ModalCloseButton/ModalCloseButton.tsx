@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SmoothModalStyles from '../SmoothModal/index.module.css';
+import SmoothModalStyles from '../../Modals/SmoothModal/index.module.css';
 import styles from './index.module.css';
 
 type ModalCloseButtonProps = {

@@ -1,33 +1,16 @@
 export * from './src/Feedback/VideoDialog';
 
 export * from './src/Surfaces/FooterRevealPageWrap/FooterRevealPageWrap';
-export * from './src/Surfaces/Header/Header';
-export * from './src/Surfaces/Hero/Hero';
 export * from './src/Surfaces/IconCards/IconCards';
 export * from './src/Surfaces/Steps';
 export * from './src/Surfaces/WorkWithVideos';
-export * from './src/Surfaces/WhyDev8x/WhyDev8X';
 export * from './src/Surfaces/FooterInternationalContents/FooterInternationalContents';
-export * from './src/Surfaces/Footer/Footer';
 export * from './src/Surfaces/ModularBlocks/ModularBlocks';
-export * from './src/Surfaces/ContentAsideImage/ContentAsideImage';
 export * from './src/Surfaces/HomepageShowreel/HomepageShowreel';
 export * from './src/Surfaces/WorkCard/WorkCard';
 export * from './src/Surfaces/WorkCategories/WorkCategories';
-export * from './src/Surfaces/WorkGrid/WorkGrid';
-export * from './src/Surfaces/Button/Button';
-export * from './src/Surfaces/FieldWrapper/FieldWrapper';
-export * from './src/Surfaces/Fieldset/Fieldset';
-export * from './src/Surfaces/Input/Input';
-export * from './src/Surfaces/Link/Link';
-export * from './src/Surfaces/Textarea/Textarea';
 export * from './src/Surfaces/VideoPlayer/VideoPlayer';
-export * from './src/Surfaces/ContactFormModal/ContactFormModal';
-export * from './src/Surfaces/ModalCloseButton/ModalCloseButton';
 export * from './src/Surfaces/OffersReel/OffersReel';
-export * from './src/Surfaces/SmoothModal/SmoothModal';
-export * from './src/Surfaces/AboutGallery/AboutGallery';
-export * from './src/Surfaces/LogoGrid/LogoGrid';
 export * from './src/Surfaces/CardStack/CardStack';
 export * from './src/Surfaces/AwardsBlock/AwardsBlock';
 export * from './src/Surfaces/ExpertiseCard/ExpertiseCard';
@@ -37,12 +20,12 @@ export * from './src/Surfaces/TestimonialSlider/TestimonialSlider';
 // export * from './src/Surfaces/FeedSilder/FeedSilder
 export * from './src/Surfaces/CareerContents/CareerContents';
 export * from './src/Surfaces/CareerStudySidebar/CareerStudySidebar';
-export * from './src/Surfaces/OpenRolesList/OpenRolesList';
-export * from './src/Surfaces/SubmitApplicationModal/SubmitApplicationModal';
 export * from './src/Surfaces/PricingContents/PricingContents';
 export * from './src/Surfaces/PricingStudySidebar/PricingStudySidebar';
-export * from './src/Surfaces/PricingList/PricingList';
 export * from './src/Surfaces/PricingCategories/PricingCategories';
+export * from './src/Surfaces/WhyDev8x/WhyDev8X';
+export * from './src/Surfaces/Footer/Footer';
+export * from './src/Surfaces/Hero/Hero';
 
 export * from './src/Icons/AIBrain';
 export * from './src/Icons/Analysis';
@@ -130,3 +113,26 @@ export * from './src/Animations/AppearOnScroll';
 export * from './src/Animations/Magnet';
 export * from './src/Animations/RotatingText';
 export * from './src/Animations/Spotlight';
+
+export * from './src/Navigation/Link/Link';
+export * from './src/Navigation/Header/Header';
+export * from './src/Navigation/HeaderSubmenu/HeaderSubmenu';
+
+export * from './src/Input/Button/Button';
+export * from './src/Input/FieldWrapper/FieldWrapper';
+export * from './src/Input/Fieldset/Fieldset';
+export * from './src/Input/ModalCloseButton/ModalCloseButton';
+export * from './src/Input/TextField/Input';
+export * from './src/Input/Textarea/Textarea';
+
+export * from './src/Layout/ContentAsideImage/ContentAsideImage';
+export * from './src/Layout/WorkGrid/WorkGrid';
+export * from './src/Layout/AboutGallery/AboutGallery';
+export * from './src/Layout/LogoGrid/LogoGrid';
+
+export * from './src/Data display/OpenRolesList/OpenRolesList';
+export * from './src/Data display/PricingList/PricingList';
+
+export * from './src/Modals/SmoothModal/SmoothModal';
+export * from './src/Modals/SubmitApplicationModal/SubmitApplicationModal';
+export * from './src/Modals/ContactFormModal/ContactFormModal';

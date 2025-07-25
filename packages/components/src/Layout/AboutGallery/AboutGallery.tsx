@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRef, useEffect } from 'react';
 
-import PictureStyles from '../Picture/index.module.css';
+import PictureStyles from '../../Surfaces/Picture/index.module.css';
 import styles from './index.module.css';
 
 export const AboutGallery: React.FC = (): JSX.Element => {

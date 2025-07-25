@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import clsx from 'clsx';
 import { Magnet } from '../../Animations/Magnet';
 
-import ContactFormModalStyles from '../ContactFormModal/index.module.css';
+import ContactFormModalStyles from '../../Modals/ContactFormModal/index.module.css';
 import styles from './index.module.css';
 
 type ButtonVariant = 'primary' | 'secondary' | 'white' | 'transparent';

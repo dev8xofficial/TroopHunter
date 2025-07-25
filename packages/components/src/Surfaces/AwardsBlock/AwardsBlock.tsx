@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { LogoGrid } from '../LogoGrid/LogoGrid';
+import { LogoGrid } from '../../Layout/LogoGrid/LogoGrid';
 // import { Button } from '../Button/Button';
 // import CrossIcon from '../../Icons/Cross';
 

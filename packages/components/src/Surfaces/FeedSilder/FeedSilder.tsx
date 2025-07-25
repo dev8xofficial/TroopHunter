@@ -2,18 +2,16 @@ import React from 'react';
 import { ExpertiseContent } from '../../Interfaces/Expertise/Expertise';
 
 import PictureStyles from '../Picture/index.module.css';
-import ButtonStyle from '../Button/index.module.css';
+import ButtonStyle from '../../Input/Button/index.module.css';
 
 import styles from './index.module.css';
-
-
 
 export const FeedSlider: React.FC = (): JSX.Element => {
   return (
     <>
       <div className={`${styles['feed']} homepage__feed`} data-new-theme="false">
         <h2 className={styles['feed__heading']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-            Offers
+          Offers
         </h2>
 
         <div

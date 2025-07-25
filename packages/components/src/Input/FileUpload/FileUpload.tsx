@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-import InputStyles from '../Input/index.module.css';
+import InputStyles from '../TextField/index.module.css';
 import styles from './index.module.css';
 
 interface FileUploadProps {
