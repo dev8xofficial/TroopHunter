@@ -219,6 +219,12 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
           href: '/careers'
         },
         {
+          title: 'Internships',
+          icon: <PlanetRingIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />   ,
+          color: 'purple',
+          href: '/internships'
+        },
+        {
           title: 'Our Process',
           icon: <DataIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
           color: 'blue',
