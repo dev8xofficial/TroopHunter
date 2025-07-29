@@ -36,6 +36,7 @@ export const PricingList: React.FC<PricingListProps> = ({ roles, peopleOptions, 
             {({ open }) => (
               <>
                 <DisclosureButton as="div" className={OpenRolesListStyles['roleCard']} aria-label={open ? 'Collapse details' : 'Expand details'}>
+                  <p className={OpenRolesListStyles['roleLabel']}>SELECT SERVICE</p>
                   <div className={OpenRolesListStyles['roleHeader']}>
                     <h3 className={OpenRolesListStyles['roleTitle']}>{roles[key].title}</h3>
                     <div className={OpenRolesListStyles['roleHeaderInner']}>

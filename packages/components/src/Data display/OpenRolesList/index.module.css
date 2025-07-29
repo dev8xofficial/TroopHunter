@@ -108,48 +108,33 @@
     box-sizing: border-box;
 }
 
-.jobDescription h4 {
-    color: var(--theme-secondary);
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 1.5rem 0 0.75rem 0;
-    line-height: 1.4;
-    word-wrap: break-word;
-}
 
 .jobDescription p {
-    margin: 0 0 1rem 0;
-    color: var(--theme-text);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    margin: 0 0 clamp(1.875rem, 1.9841269841vw, 2.49375rem);
 }
 
-.jobDescription ul {
-    margin: 0 0 1rem 0;
-    padding-left: 1.5rem;
+.jobDescription .mb-0 {
+    margin-bottom: 0;
 }
 
-.jobDescription li {
-    margin: 0.5rem 0;
-    color: var(--theme-text);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+.jobDescription .inline-block {
+    display: inline-block;
 }
 
-.jobDescription strong {
-    color: var(--theme-secondary);
-    font-weight: 600;
+.jobDescription .flex {
+    display: flex;
 }
 
-.jobDescription a {
-    color: var(--theme-primary);
-    text-decoration: none;
-    font-weight: 500;
-    word-wrap: break-word;
+.jobDescription .align-items-end {
+    align-items: end;
 }
 
-.jobDescription a:hover {
-    text-decoration: underline;
+.jobDescription .pb-0 {
+    padding-bottom: 0;
+}
+
+.jobDescription .block-image-spacing {
+    padding: clamp(3.125rem, 3.3068783069vw, 4.15625rem) 0;
 }
 
 /* Smooth fade-in animation for better UX */

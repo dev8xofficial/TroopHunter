@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useAtomValue } from 'jotai';
-import { selectedRoleAtom, selectedRoleFirstParagraphAtom, selectedRoleThirdParagraphAtom } from '../../Data display/OpenRolesList/OpenRolesList';
+import { selectedRoleAtom, selectedRoleFirstParagraphAtom, selectedRoleThirdParagraphAtom, isInternshipAtom } from '../../Data display/OpenRolesList/OpenRolesList';
 
 import { FileUpload } from '../../Input/FileUpload/FileUpload';
 import { FieldWrapper } from '../../Input/FieldWrapper/FieldWrapper';
@@ -36,6 +36,7 @@ export const SubmitApplicationModal: React.FC = () => {
   const selectedRole = useAtomValue(selectedRoleAtom);
   const selectedRoleFirstParagraph = useAtomValue(selectedRoleFirstParagraphAtom);
   const selectedRoleThirdParagraph = useAtomValue(selectedRoleThirdParagraphAtom);
+  const isInternship = useAtomValue(isInternshipAtom);
 
   const {
     register,
@@ -211,7 +212,7 @@ export const SubmitApplicationModal: React.FC = () => {
                 />
               </FieldWrapper>
 
-              {selectedRole && !selectedRole.trim().toLowerCase().includes('intern') && (
+              {!isInternship && (
                 <FieldWrapper className="col-sm-1" label="Expected salary">
                   <Input type="text" id="salary" placeholder="Share your amount" {...register('salary')} />
                 </FieldWrapper>

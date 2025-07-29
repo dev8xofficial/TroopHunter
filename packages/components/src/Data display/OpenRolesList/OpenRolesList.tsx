@@ -16,38 +16,68 @@ import styles from './index.module.css';
 export const selectedRoleAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleAtom, newValue));
 export const selectedRoleFirstParagraphAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleFirstParagraphAtom, newValue));
 export const selectedRoleThirdParagraphAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleThirdParagraphAtom, newValue));
+export const isInternshipAtom = atom<boolean, [boolean], void>(false, (get, set, newValue) => set(isInternshipAtom, newValue));
 
-// Helper: extract paragraph with <strong>Dev8X</strong>
 const firstRoleDescription = (description: React.ReactNode): string => {
   if (React.isValidElement(description)) {
     const children = React.Children.toArray(description.props.children);
-    const firstMatchingParagraph = children.find((child) => React.isValidElement(child) && child.type === 'p' && React.Children.toArray(child.props.children).some((content) => React.isValidElement(content) && content.type === 'strong' && String(content.props.children).includes('Dev8X')));
-    if (firstMatchingParagraph && React.isValidElement(firstMatchingParagraph)) {
-      const extractText = (children: React.ReactNode): string => {
-        if (typeof children === 'string') return children;
-        if (Array.isArray(children)) return children.map(extractText).join('');
-        if (React.isValidElement(children) && children.props?.children) return extractText(children.props.children);
-        return '';
-      };
-      return extractText(firstMatchingParagraph.props.children);
+
+    // First, try to find the sidebar__intro div for the first paragraph
+    const sidebarIntro = children.find((child) => React.isValidElement(child) && child.type === 'div' && child.props.className && child.props.className.includes('sidebar__intro'));
+
+    if (sidebarIntro && React.isValidElement(sidebarIntro)) {
+      const introChildren = React.Children.toArray(sidebarIntro.props.children);
+      const firstParagraph = introChildren.find((child) => React.isValidElement(child) && child.type === 'p');
+
+      if (firstParagraph && React.isValidElement(firstParagraph)) {
+        const extractText = (children: React.ReactNode): string => {
+          if (typeof children === 'string') return children;
+          if (Array.isArray(children)) return children.map(extractText).join('');
+          if (React.isValidElement(children) && children.props?.children) return extractText(children.props.children);
+          return '';
+        };
+        return extractText(firstParagraph.props.children);
+      }
+    }
+    const sidebarBody = children.find((child) => React.isValidElement(child) && child.type === 'div' && child.props.className && child.props.className.includes('sidebar__body'));
+
+    if (sidebarBody && React.isValidElement(sidebarBody)) {
+      const bodyChildren = React.Children.toArray(sidebarBody.props.children);
+      const firstMatchingParagraph = bodyChildren.find((child) => React.isValidElement(child) && child.type === 'p' && React.Children.toArray(child.props.children).some((content) => React.isValidElement(content) && content.type === 'caption' && String(content.props.children).includes('Dev8X')));
+
+      if (firstMatchingParagraph && React.isValidElement(firstMatchingParagraph)) {
+        const extractText = (children: React.ReactNode): string => {
+          if (typeof children === 'string') return children;
+          if (Array.isArray(children)) return children.map(extractText).join('');
+          if (React.isValidElement(children) && children.props?.children) return extractText(children.props.children);
+          return '';
+        };
+        return extractText(firstMatchingParagraph.props.children);
+      }
     }
   }
   return '';
 };
 
-// Helper: extract third <p>
 const extractRoleDescription = (description: React.ReactNode): string => {
   if (React.isValidElement(description)) {
     const children = React.Children.toArray(description.props.children);
-    const thirdParagraph = children.find((child, idx) => idx === 2 && React.isValidElement(child) && child.type === 'p');
-    if (thirdParagraph && React.isValidElement(thirdParagraph)) {
-      const extractText = (children: React.ReactNode): string => {
-        if (typeof children === 'string') return children;
-        if (Array.isArray(children)) return children.map(extractText).join('');
-        if (React.isValidElement(children) && children.props?.children) return extractText(children.props.children);
-        return '';
-      };
-      return extractText(thirdParagraph.props.children);
+    const sidebarBody = children.find((child) => React.isValidElement(child) && child.type === 'div' && child.props.className && child.props.className.includes('sidebar__body'));
+
+    if (sidebarBody && React.isValidElement(sidebarBody)) {
+      const bodyChildren = React.Children.toArray(sidebarBody.props.children);
+      // Find the second paragraph (index 1) which is the third paragraph overall
+      const thirdParagraph = bodyChildren.find((child, idx) => idx === 1 && React.isValidElement(child) && child.type === 'p');
+
+      if (thirdParagraph && React.isValidElement(thirdParagraph)) {
+        const extractText = (children: React.ReactNode): string => {
+          if (typeof children === 'string') return children;
+          if (Array.isArray(children)) return children.map(extractText).join('');
+          if (React.isValidElement(children) && children.props?.children) return extractText(children.props.children);
+          return '';
+        };
+        return extractText(thirdParagraph.props.children);
+      }
     }
   }
   return '';
@@ -71,6 +101,7 @@ export const OpenRolesList: React.FC = () => {
   const setSelectedRole = useSetAtom(selectedRoleAtom);
   const setFirstParagraph = useSetAtom(selectedRoleFirstParagraphAtom);
   const setThirdParagraph = useSetAtom(selectedRoleThirdParagraphAtom);
+  const setIsInternship = useSetAtom(isInternshipAtom);
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1199px)' });
   const router = useRouter();
 
@@ -87,6 +118,7 @@ export const OpenRolesList: React.FC = () => {
     const role = roles.find((r) => r.title === roleTitle);
 
     setSelectedRole(cleanTitle);
+    setIsInternship(isInternship);
 
     if (role) {
       setFirstParagraph(firstRoleDescription(role.description));
@@ -104,7 +136,7 @@ export const OpenRolesList: React.FC = () => {
             {({ open }) => (
               <>
                 <DisclosureButton as="div" className={styles['roleCard']} aria-label={open ? 'Collapse details' : 'Expand details'}>
-                  <p className={styles['roleLabel']}>OPEN ROLES</p>
+                  <p className={styles['roleLabel']}>{role.subTitle}</p>
 
                   <div className={styles['roleHeader']}>
                     <h3 className={styles['roleTitle']}>{role.title}</h3>
@@ -147,7 +179,7 @@ export const OpenRolesList: React.FC = () => {
                 </DisclosureButton>
 
                 <DisclosurePanel className={`${styles['jobDescriptionWrapper']} ${open ? styles['expanded'] : ''}`}>
-                  <div className={styles['jobDescription']}>{role.description}</div>
+                  <div className={`${styles['jobDescription']}`}>{role.description}</div>
                 </DisclosurePanel>
               </>
             )}

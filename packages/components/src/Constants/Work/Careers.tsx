@@ -1,5 +1,10 @@
 import { RoleProject } from '../../Interfaces/Work/RoleProjectTypes';
 
+import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
+import WorkCardStyles from '../../Surfaces/WorkCard/index.module.css';
+import ProjectContentStyles from '../../Surfaces/ProjectContents/index.module.css';
+import styles from './../../Data display/OpenRolesList/index.module.css';
+
 export const CAREER_ROLES: RoleProject[] = [
   /**
    * Sequence of Roles by Departments
@@ -13,493 +18,545 @@ export const CAREER_ROLES: RoleProject[] = [
    *  - Customer Support
    *  - Human Resources
    **/
-
   {
-    title: 'Junior UI/UX Designer',
+    subTitle: 'OPEN ROLES',
+    title: 'UI/UX Designer',
     type: 'Junior',
     experience: '0–2 Year',
     location: 'Remote / Lahore',
-    video: {
-      originalFile: '/api/videos/careers/ui-ux-design-team.mp4',
-      sequences: ['/api/videos/careers/ui-ux-design-team.mp4']
-    },
     description: (
       <div>
-        <p>
-          <strong>Kickstart Your UI/UX Career with Dev8X – Junior Designer Role</strong>
-        </p>
-        <p>Are you a design enthusiast ready to take your first big step into the world of UI/UX? Do you love creating beautiful, user-friendly interfaces and want to work on meaningful real-world products?</p>
-        <p>
-          <strong>Dev8X</strong> is hiring a <strong>Junior UI/UX Designer</strong> to join our remote-first team. You'll be working alongside experienced designers and developers, contributing to real projects that impact users and brands.
-        </p>
+        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+          <p>Kickstart Your UI/UX Career with Dev8X – Junior Designer Role</p>
+        </div>
 
-        <h4>What's in it for you?</h4>
-        <ul>
-          <li>Work on actual client projects and build end-to-end UI/UX solutions</li>
-          <li>Grow your portfolio with modern web and mobile designs</li>
-          <li>Learn how to think like a product designer and solve real problems</li>
-          <li>Collaborate in a team-focused, feedback-driven environment</li>
-        </ul>
+        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+          <p>Are you a design enthusiast ready to take your first big step into the world of UI/UX? Do you love creating beautiful, user-friendly interfaces and want to work on meaningful real-world products?</p>
 
-        <h4>Position Details:</h4>
-        <ul>
-          <li>
-            <strong>Role:</strong> Junior UI/UX Designer
-          </li>
-          <li>
-            <strong>Experience:</strong> 0–2 year (fresh graduates and self-learners welcome)
-          </li>
-          <li>
-            <strong>Location:</strong> Remote / Lahore
-          </li>
-          <li>
-            <strong>Timing:</strong> 7:00 PM to 1:00 AM (PKT)
-          </li>
-          <li>
-            <strong>Compensation:</strong> Entry-level salary + Growth Path
-          </li>
-        </ul>
+          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> is hiring a<caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Junior UI/UX Designer</caption> to join our remote-first team and contribute to real products that impact users and brands.
+          </p>
 
-        <h4>Key Responsibilities:</h4>
-        <ul>
-          <li>Design intuitive and elegant user interfaces for mobile and web applications</li>
-          <li>Create wireframes, mockups, and interactive prototypes using Figma or Adobe XD</li>
-          <li>Conduct user research and apply findings to improve UX design</li>
-          <li>Collaborate with developers to ensure accurate design implementation</li>
-          <li>Participate in product discussions and suggest UX improvements</li>
-          <li>Maintain design consistency across all projects</li>
-        </ul>
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Work on real client projects and ship actual designs</li>
+              <li>Grow your portfolio with modern web and mobile UI/UX</li>
+              <li>Learn how to think like a product designer and solve real-world UX challenges</li>
+              <li>Collaborate in a team-focused, feedback-driven environment</li>
+            </ul>
+          </div>
 
-        <h4>What We're Looking For:</h4>
-        <ul>
-          <li>
-            <strong>Location:</strong> Open to remote applicants
-          </li>
-          <li>
-            <strong>Tools:</strong> Figma (must), Adobe XD, Illustrator (bonus)
-          </li>
-          <li>
-            <strong>Skills:</strong> Design systems, typography, layout, color theory
-          </li>
-          <li>Good sense of aesthetics and attention to detail</li>
-          <li>A portfolio or Dribbble/Behance link showing past design work</li>
-          <li>Proactive attitude and willingness to learn</li>
-        </ul>
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Position Details:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Role:</caption> Junior UI/UX Designer
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Experience:</caption> 0–2 years (Fresh graduates welcome)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 5:00 PM to 2:00 AM (PKT)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Compensation:</caption> Entry-level salary + Growth Opportunities
+              </li>
+            </ul>
+          </div>
 
-        <h4>Perks & Growth:</h4>
-        <ul>
-          <li>Design for real products, not just concepts</li>
-          <li>Receive 1-on-1 design feedback and mentorship</li>
-          <li>Build a job-ready portfolio and gain confidence in real-world UI/UX</li>
-          <li>Growth-focused work environment with clear milestones</li>
-          <li>Pathway to senior designer role and leadership opportunities</li>
-        </ul>
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>Design clean and functional UIs for web and mobile products</li>
+              <li>Create wireframes, mockups, and prototypes in Figma or Adobe XD</li>
+              <li>Apply UX best practices and translate research into usable interfaces</li>
+              <li>Work closely with developers to ensure design accuracy in implementation</li>
+              <li>Participate in design reviews and bring creative ideas to the team</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Tools:</caption> Figma (required), Adobe XD, Illustrator (bonus)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Knowledge:</caption> Layout, color theory, typography, spacing, and design systems
+              </li>
+              <li>Good sense of visual detail and creative problem-solving</li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Portfolio:</caption> Projects on Dribbble or Behance showcasing UI/UX work
+              </li>
+              <li>Positive attitude, eagerness to learn, and openness to feedback</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Design for real-world products — not just concepts</li>
+              <li>Get mentorship and structured design feedback</li>
+              <li>Build a job-ready UI/UX portfolio that gets noticed</li>
+              <li>Room to grow: promotions, performance bonuses, and long-term career options</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  {
+    subTitle: 'OPEN ROLES',
+    title: 'Flutter Developer',
+    type: 'Junior',
+    experience: '0–2 Year',
+    location: 'Remote / Lahore',
+    description: (
+      <div>
+        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+          <p>Launch Your Career at Dev8X – Junior Flutter Developer Role</p>
+        </div>
+
+        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+          <p>Are you passionate about building high-quality mobile apps with Flutter? Ready to bring your cross-platform skills to real-world projects that users actually use?</p>
+
+          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> is hiring a <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Junior Flutter Developer</caption> to join our fast-paced, collaborative team. You'll get the opportunity to work on real products, learn from experienced developers, and take your Flutter skills to the next level.
+          </p>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Work on live, real-world mobile apps built with Flutter & Dart</li>
+              <li>Gain practical experience across the full app development lifecycle</li>
+              <li>Enhance your portfolio and grow with structured mentorship</li>
+              <li>Work remotely with a modern, collaborative team culture</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Position Details:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Role:</caption> Junior Flutter Developer
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Experience:</caption> 0–2 years (Fresh graduates welcome)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 5:00 PM to 2:00 AM (PKT)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Compensation:</caption> Entry-level salary + Growth Path
+              </li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>Develop and maintain cross-platform mobile apps using Flutter</li>
+              <li>Fix bugs, improve performance, and ship polished features</li>
+              <li>Collaborate with designers and backend developers to deliver user-centric solutions</li>
+              <li>Participate in product discussions and team meetings</li>
+              <li>Stay updated with Flutter trends and best practices</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Core Skills:</caption> Flutter, Dart, Git
+              </li>
+              <li>Comfortable with tools like Android Studio, VS Code, or Cursor</li>
+              <li>Understanding of mobile architecture & performance optimization</li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Portfolio:</caption> GitHub repo or app demo links (preferred)
+              </li>
+              <li>Strong desire to learn, grow, and build impactful apps</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Contribute to meaningful mobile apps used by real users</li>
+              <li>Mentorship from experienced developers and product leads</li>
+              <li>Build a strong portfolio and advance your mobile dev career</li>
+              <li>Career progression, bonuses, and full-time opportunities</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  {
+    subTitle: 'OPEN ROLES',
+    title: 'Frontend Developer',
+    type: 'Junior',
+    experience: '0–2 Year',
+    location: 'Remote / Lahore',
+    description: (
+      <div>
+        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+          <p>Join Dev8X as a Junior Frontend Developer – Build Real Web Products That Matter</p>
+        </div>
+
+        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+          <p>Are you passionate about creating fast, responsive, and visually stunning web interfaces with React and Next.js? Looking to grow your frontend skills in a real-world development environment?</p>
+
+          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> is hiring a <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Junior Frontend Developer</caption> to join our remote-first engineering team. You'll get to work on live client projects, collaborate with experienced developers and designers, and take your frontend skills to the next level.
+          </p>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Build and optimize real web applications using React.js, Next.js, and TailwindCSS</li>
+              <li>Gain hands-on experience in a professional development workflow</li>
+              <li>Enhance your portfolio and learn best practices from skilled mentors</li>
+              <li>Be part of a modern, collaborative, and remote-first team</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Position Details:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Role:</caption> Junior Frontend Developer
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Experience:</caption> 0–2 year (fresh grads and self-taught devs welcome)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timing:</caption> 5:00 PM to 2:00 AM (PKT)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Compensation:</caption> Entry-level salary + Growth Potential
+              </li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>Develop responsive, reusable UI components with React.js and Next.js</li>
+              <li>Style interfaces using TailwindCSS and follow modern design patterns</li>
+              <li>Work closely with the design and backend teams to implement new features</li>
+              <li>Fix UI bugs, improve performance, and maintain code quality</li>
+              <li>Stay up to date with frontend trends, tools, and best practices</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Core Skills:</caption> Proficient in React.js, Next.js, TailwindCSS, Git
+              </li>
+              <li>Experience with component-based design and modern frontend architecture</li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Soft Skills:</caption> Proactive, detail-oriented, strong communication skills
+              </li>
+              <li>Portfolio or GitHub repo with relevant projects (preferred)</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Work on live projects with real-world impact</li>
+              <li>Receive code reviews and mentorship from experienced engineers</li>
+              <li>Grow your confidence and build a job-ready frontend portfolio</li>
+              <li>Performance bonuses, full-time growth opportunities, and team culture you'll love</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  {
+    subTitle: 'OPEN ROLES',
+    title: 'Backend Developer',
+    type: 'Junior',
+    experience: '0–2 Year',
+    location: 'Remote / Lahore',
+    description: (
+      <div>
+        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+          <p>Join Dev8X as a Junior Backend Developer – Build Real APIs & Scalable Systems</p>
+        </div>
+
+        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+          <p>Do you enjoy solving complex problems, managing databases, and building robust backend systems with Node.js and PostgreSQL? Want to launch your backend career by working on real projects from day one?</p>
+
+          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> is hiring a <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Junior Backend Developer</caption> to join our remote-first team. You'll get hands-on experience with production APIs, modern ORMs like Sequelize/Prisma, and learn backend best practices through mentorship and collaboration.
+          </p>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Build backend systems and APIs using Node.js, PostgreSQL, and Express</li>
+              <li>Work with Sequelize or Prisma for modern data modeling</li>
+              <li>Improve your backend logic, database design, and performance optimization</li>
+              <li>Collaborate in a remote-first, fast-paced engineering team</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Position Details:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Role:</caption> Junior Backend Developer
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Experience:</caption> 0–2 year (fresh graduates and self-taught devs welcome)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timing:</caption> 5:00 PM to 2:00 AM (PKT)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Compensation:</caption> Entry-level salary + Growth Opportunities
+              </li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>Develop and maintain RESTful APIs and backend services using Node.js</li>
+              <li>Design and manage relational databases with PostgreSQL</li>
+              <li>Use Sequelize or Prisma for data modeling and querying</li>
+              <li>Write clean, testable, and maintainable backend code</li>
+              <li>Participate in code reviews, sprint planning, and technical discussions</li>
+              <li>Contribute to backend architecture decisions and continuous improvement</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Core Skills:</caption> Proficient in Node.js, PostgreSQL, Git
+              </li>
+              <li>Hands-on experience with Sequelize or Prisma ORM</li>
+              <li>Familiar with Express.js and backend tooling</li>
+              <li>Understanding of REST principles and database relationships</li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Soft Skills:</caption> Curious, disciplined, and a problem-solving mindset
+              </li>
+              <li>Portfolio or GitHub showcasing backend work (preferred)</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Work on real backend systems powering modern web apps</li>
+              <li>Receive mentorship and practical feedback from senior engineers</li>
+              <li>Build a strong, job-ready portfolio and backend engineering experience</li>
+              <li>Path to full-time promotions, performance bonuses, and leadership growth</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  {
+    subTitle: 'OPEN ROLES',
+    title: 'AI Engineer',
+    type: 'Junior',
+    experience: '0–2 Year',
+    location: 'Remote / Lahore',
+    description: (
+      <div>
+        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+          <p>Start Your Career with Dev8X – Junior AI Engineer Role (Remote)</p>
+        </div>
+
+        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+          <p>Are you excited about building intelligent agents, automating workflows, and working with cutting-edge AI tools like OpenAI and n8n? Ready to turn your passion into real-world impact?</p>
+
+          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> is hiring a <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Junior AI Engineer</caption> to join our remote team. You'll work on building automation systems, integrating APIs, and creating smart agents for business and customer operations.
+          </p>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Build AI-powered agents for customer support and internal automation</li>
+              <li>Work with tools like OpenAI, n8n, LangChain, and modern APIs</li>
+              <li>Create intelligent automation pipelines that solve real business problems</li>
+              <li>Collaborate with an experienced, remote-first AI and engineering team</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Position Details:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Role:</caption> Junior AI Engineer
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Experience:</caption> 0–2 year (fresh graduates and self-learners welcome)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timing:</caption> 5:00 PM to 2:00 AM (PKT)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Compensation:</caption> Entry-level salary + Growth Path
+              </li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>Design and implement AI workflows for customer queries and business ops</li>
+              <li>Integrate APIs like OpenAI, LinkedIn, and SMTP for messaging and automation</li>
+              <li>Develop n8n-based automation pipelines and custom scripts using Node.js or Python</li>
+              <li>Automate tasks like job applicant responses and LinkedIn content posting</li>
+              <li>Ensure system reliability with logging, error handling, and testing</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Core Skills:</caption> Familiarity with APIs, automation tools, and AI/LLM systems
+              </li>
+              <li>Experience with n8n, OpenAI APIs, LangChain, Node.js or Python</li>
+              <li>Understanding of REST APIs, Webhooks, and OAuth (bonus)</li>
+              <li>Self-driven mindset and strong interest in automation and intelligent systems</li>
+              <li>GitHub or portfolio showing relevant work (preferred)</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Work on real automation and AI projects with business impact</li>
+              <li>Learn hands-on from engineers building next-gen tools</li>
+              <li>Gain confidence, skill, and a strong AI/automation portfolio</li>
+              <li>Growth path toward mid-level engineering, bonuses, and leadership roles</li>
+            </ul>
+          </div>
+        </div>
       </div>
     )
   },
   {
-    title: 'Junior Flutter Developer',
+    subTitle: 'OPEN ROLES',
+    title: 'Business Development',
     type: 'Junior',
-    experience: '0–2 Year',
+    experience: '0–2 Years',
     location: 'Remote / Lahore',
-    video: {
-      originalFile: '/api/videos/careers/flutter-development.mp4',
-      sequences: ['/api/videos/careers/flutter-development.mp4']
-    },
     description: (
       <div>
-        <p>
-          <strong>Kickstart Your Mobile Development Career with Dev8X – Junior Flutter Developer Role</strong>
-        </p>
-        <p>Are you a Flutter enthusiast with a passion for building beautiful, high-performance mobile apps? Ready to take your cross-platform development skills to the next level in a real-world setting?</p>
-        <p>
-          <strong>Dev8X</strong> is hiring a <strong>Junior Flutter Developer</strong> to join our remote-first team. You'll work on real-world mobile applications, collaborate with experienced developers, and build apps that users love.
-        </p>
+        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+          <p>Kickstart Your Tech Sales Career with Dev8X — Junior Business Development Executive (Remote)</p>
+        </div>
 
-        <h4>What's in it for you?</h4>
-        <ul>
-          <li>Work on real-world mobile applications using Flutter & Dart</li>
-          <li>Strengthen your portfolio and sharpen your coding skills</li>
-          <li>Collaborate with a supportive, forward-thinking remote team</li>
-          <li>Learn from experienced mobile developers and architects</li>
-        </ul>
+        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+          <p>Are you ready for a real and impactful sales role? If you've had hands-on experience with outreach, proposals, or client communication — this opportunity is made for you!</p>
 
-        <h4>Position Details:</h4>
-        <ul>
-          <li>
-            <strong>Role:</strong> Junior Flutter Developer
-          </li>
-          <li>
-            <strong>Experience:</strong> 0–2 year (fresh graduates and self-learners welcome)
-          </li>
-          <li>
-            <strong>Location:</strong> Remote / Lahore
-          </li>
-          <li>
-            <strong>Timing:</strong> 7:00 PM to 1:00 AM (PKT)
-          </li>
-          <li>
-            <strong>Compensation:</strong> Entry-level salary + Growth Path
-          </li>
-        </ul>
+          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> is hiring a <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Junior Business Development Executive</caption> to help drive our global B2B growth. You'll work alongside senior strategists, directly engage with international clients, and build high-performing lead generation campaigns across platforms like Upwork, LinkedIn, and Email.
+          </p>
 
-        <h4>Key Responsibilities:</h4>
-        <ul>
-          <li>Design, develop, and test cross-platform mobile applications using Flutter</li>
-          <li>Optimize app performance and resolve bugs</li>
-          <li>Participate in team discussions and contribute innovative solutions</li>
-          <li>Stay updated with the latest Flutter & Dart trends and best practices</li>
-          <li>Collaborate with designers and backend developers</li>
-          <li>Write clean, maintainable, and well-documented code</li>
-        </ul>
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Step into a full-time sales role with growth, mentorship, and client interaction</li>
+              <li>Gain hands-on experience in prospecting, pitching, and closing deals</li>
+              <li>Join a mission-driven and performance-focused remote team</li>
+              <li>Work with global clients across diverse industries</li>
+            </ul>
+          </div>
 
-        <h4>What We're Looking For:</h4>
-        <ul>
-          <li>
-            <strong>Location:</strong> Open to remote applicants
-          </li>
-          <li>
-            <strong>Skills:</strong> Proficient in Flutter, Dart, and Git
-          </li>
-          <li>Familiarity with tools like Android Studio, VS Code, Cursor or other Flutter development environments</li>
-          <li>A proactive attitude and genuine passion for mobile development</li>
-          <li>Portfolio or GitHub projects showcasing Flutter work (preferred)</li>
-        </ul>
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Role Overview:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Role:</caption> Junior Business Development Executive
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 5:00 PM to 2:00 AM (PKT)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Experience:</caption> 0–2 Years (junior professionals and recent graduates welcome)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Compensation:</caption> Monthly stipend and/or performance-based bonus (discussed in interview)
+              </li>
+            </ul>
+          </div>
 
-        <h4>Perks & Growth:</h4>
-        <ul>
-          <li>Work on meaningful, real-world projects</li>
-          <li>Receive mentorship and constructive feedback from experienced developers</li>
-          <li>Build a standout portfolio to launch your career in tech</li>
-          <li>Growth-focused work environment with clear milestones</li>
-          <li>Pathway to senior developer role and technical leadership</li>
-        </ul>
-      </div>
-    )
-  },
-  {
-    title: 'Junior Frontend Developer',
-    type: 'Junior',
-    experience: '0–2 Year',
-    location: 'Remote / Lahore',
-    video: {
-      originalFile: '/api/videos/careers/frontend-development.mp4',
-      sequences: ['/api/videos/careers/frontend-development.mp4']
-    },
-    description: (
-      <div>
-        <p>
-          <strong>Kickstart Your Web Development Career with Dev8X – Junior Frontend Developer Role</strong>
-        </p>
-        <p>Are you passionate about crafting sleek, responsive web interfaces with React and Next.js? Ready to sharpen your skills in a real-world development environment?</p>
-        <p>
-          <strong>Dev8X</strong> is hiring a <strong>Junior Frontend Developer</strong> to join our remote-first team. You'll work on modern web applications, collaborate with experienced developers, and build interfaces that users love.
-        </p>
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What You'll Do:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>Identify and qualify B2B leads across tech and service sectors</li>
+              <li>Create and send winning proposals on platforms like Upwork</li>
+              <li>Initiate outreach via LinkedIn, email campaigns, and cold calls</li>
+              <li>Conduct intro calls and present solutions to prospective clients</li>
+              <li>Maintain CRM, update dashboards, and track outreach KPIs</li>
+              <li>Support the sales team in converting leads into paying clients</li>
+            </ul>
+          </div>
 
-        <h4>What's in it for you?</h4>
-        <ul>
-          <li>Build and enhance modern web applications using React.js, Next.js, and TailwindCSS</li>
-          <li>Strengthen your portfolio with real-world projects</li>
-          <li>Collaborate with a skilled, remote-first development team</li>
-          <li>Learn from experienced frontend engineers and architects</li>
-        </ul>
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What We're Looking For:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Preferably based in Pakistan
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Experience:</caption> Internship or junior-level role in B2B sales, tech outreach, or client-facing positions
+              </li>
+              <li>Excellent command of English (spoken and written)</li>
+              <li>Confidence in cold calling and leading Zoom presentations</li>
+              <li>Hands-on knowledge of LinkedIn, Upwork, and/or email outreach tools</li>
+              <li>Self-motivated, fast learner, and results-oriented attitude</li>
+            </ul>
+          </div>
 
-        <h4>Position Details:</h4>
-        <ul>
-          <li>
-            <strong>Role:</strong> Junior Frontend Developer
-          </li>
-          <li>
-            <strong>Experience:</strong> 0–2 year (fresh graduates and self-learners welcome)
-          </li>
-          <li>
-            <strong>Location:</strong> Remote / Lahore
-          </li>
-          <li>
-            <strong>Timing:</strong> 8:00 PM to 2:00 AM (PKT)
-          </li>
-          <li>
-            <strong>Compensation:</strong> Entry-level salary + Growth Path
-          </li>
-        </ul>
-
-        <h4>Key Responsibilities:</h4>
-        <ul>
-          <li>Develop responsive UI components with React.js and Next.js</li>
-          <li>Style web applications using TailwindCSS</li>
-          <li>Work closely with backend developers and designers to implement new features</li>
-          <li>Fix UI/UX bugs and optimize frontend performance</li>
-          <li>Stay updated on the latest frontend trends and tools</li>
-          <li>Write clean, maintainable, and well-documented code</li>
-        </ul>
-
-        <h4>What We're Looking For:</h4>
-        <ul>
-          <li>
-            <strong>Location:</strong> Open to remote applicants
-          </li>
-          <li>
-            <strong>Skills:</strong> Strong understanding of React.js, Next.js, TailwindCSS, and Git
-          </li>
-          <li>Familiarity with component-based design and modern web standards</li>
-          <li>
-            <strong>Soft Skills:</strong> Self-driven, detail-oriented, and eager to learn
-          </li>
-          <li>Portfolio or GitHub projects showcasing your frontend work (preferred)</li>
-        </ul>
-
-        <h4>Perks & Growth:</h4>
-        <ul>
-          <li>Contribute to impactful, user-facing web applications</li>
-          <li>Receive hands-on mentorship from experienced frontend engineers</li>
-          <li>Build a standout portfolio for your future in web development</li>
-          <li>Growth-focused work environment with clear milestones</li>
-          <li>Pathway to senior developer role and technical leadership</li>
-        </ul>
-      </div>
-    )
-  },
-  {
-    title: 'Junior Backend Developer',
-    type: 'Junior',
-    experience: '0–2 Year',
-    location: 'Remote / Lahore',
-    video: {
-      originalFile: '/api/videos/careers/backend-development.mp4',
-      sequences: ['/api/videos/careers/backend-development.mp4']
-    },
-    description: (
-      <div>
-        <p>
-          <strong>Kickstart Your Backend Development Career with Dev8X – Junior Backend Developer Role</strong>
-        </p>
-        <p>Are you passionate about building robust and scalable backend systems using Node.js and PostgreSQL? Ready to dive deep into real-world backend development with modern ORMs like Sequelize and Prisma?</p>
-        <p>
-          <strong>Dev8X</strong> is hiring a <strong>Junior Backend Developer</strong> to join our remote-first team. You'll work on real-world web applications, collaborate with experienced developers, and build systems that power modern applications.
-        </p>
-
-        <h4>What's in it for you?</h4>
-        <ul>
-          <li>Work on real-world web applications using Node.js, PostgreSQL, and modern ORMs</li>
-          <li>Enhance your coding skills and contribute to meaningful backend systems</li>
-          <li>Collaborate with a passionate, fast-paced remote team</li>
-          <li>Learn from experienced backend engineers and architects</li>
-        </ul>
-
-        <h4>Position Details:</h4>
-        <ul>
-          <li>
-            <strong>Role:</strong> Junior Backend Developer
-          </li>
-          <li>
-            <strong>Experience:</strong> 0–2 year (fresh graduates and self-learners welcome)
-          </li>
-          <li>
-            <strong>Location:</strong> Remote / Lahore
-          </li>
-          <li>
-            <strong>Timing:</strong> 8:00 PM to 2:00 AM (PKT)
-          </li>
-          <li>
-            <strong>Compensation:</strong> Entry-level salary + Growth Path
-          </li>
-        </ul>
-
-        <h4>Key Responsibilities:</h4>
-        <ul>
-          <li>Design and develop RESTful APIs and backend services using Node.js</li>
-          <li>Model and manage relational data in PostgreSQL using Sequelize or Prisma</li>
-          <li>Fix bugs, optimize database performance, and write clean, maintainable code</li>
-          <li>Collaborate in code reviews, planning discussions, and sprints</li>
-          <li>Stay updated with best practices in backend architecture and database design</li>
-          <li>Work closely with frontend developers to ensure seamless integration</li>
-        </ul>
-
-        <h4>What We're Looking For:</h4>
-        <ul>
-          <li>
-            <strong>Location:</strong> Open to remote applicants
-          </li>
-          <li>
-            <strong>Skills:</strong> Proficient in Node.js, PostgreSQL, and Git
-          </li>
-          <li>Experience with at least one ORM (Sequelize or Prisma)</li>
-          <li>Familiarity with Express.js and backend development tools</li>
-          <li>A passion for clean code, learning, and solving real-world problems</li>
-          <li>Portfolio or GitHub showcasing backend work (preferred)</li>
-        </ul>
-
-        <h4>Perks & Growth:</h4>
-        <ul>
-          <li>Work on impactful backend systems used by real users</li>
-          <li>Gain mentorship from skilled engineers and receive practical feedback</li>
-          <li>Build a strong backend portfolio that gets attention in the tech industry</li>
-          <li>Growth-focused work environment with clear milestones</li>
-          <li>Pathway to senior developer role and technical leadership</li>
-        </ul>
-      </div>
-    )
-  },
-  {
-    title: 'Junior AI Engineer',
-    type: 'Junior',
-    experience: '0–2 Year',
-    location: 'Remote / Lahore',
-    video: {
-      originalFile: '/api/videos/careers/ai-engineering.mp4',
-      sequences: ['/api/videos/careers/ai-engineering.mp4']
-    },
-    description: (
-      <div>
-        <p>
-          <strong>Start Your Career with Dev8X – Junior AI Engineer Role (Remote)</strong>
-        </p>
-        <p>Are you excited about building intelligent agents, automating workflows, and working with cutting-edge AI tools like OpenAI and n8n? Ready to turn your passion into real-world impact?</p>
-        <p>
-          <strong>Dev8X</strong> is hiring a <strong>Junior AI Engineer</strong> to join our remote team. You'll work on building automation systems, integrating APIs, and creating smart agents for business and customer operations.
-        </p>
-
-        <h4>What's in it for you?</h4>
-        <ul>
-          <li>Build AI-powered agents for customer support and internal automation</li>
-          <li>Work with tools like OpenAI, n8n, LangChain, and modern APIs</li>
-          <li>Create intelligent automation pipelines that solve real business problems</li>
-          <li>Collaborate with an experienced, remote-first AI and engineering team</li>
-        </ul>
-
-        <h4>Position Details:</h4>
-        <ul>
-          <li>
-            <strong>Role:</strong> Junior AI Engineer
-          </li>
-          <li>
-            <strong>Experience:</strong> 0–2 year (fresh graduates and self-learners welcome)
-          </li>
-          <li>
-            <strong>Location:</strong> Remote / Lahore
-          </li>
-          <li>
-            <strong>Timing:</strong> 7:00 PM to 1:00 AM (PKT)
-          </li>
-          <li>
-            <strong>Compensation:</strong> Entry-level salary + Growth Path
-          </li>
-        </ul>
-
-        <h4>Key Responsibilities:</h4>
-        <ul>
-          <li>Design and implement AI agents to handle customer queries and internal workflows</li>
-          <li>Integrate APIs such as OpenAI, LinkedIn, and SMTP for personalized communication</li>
-          <li>Build automation pipelines using n8n and custom scripting (Node.js or Python)</li>
-          <li>Develop systems to send messages to job applicants and post content on LinkedIn</li>
-          <li>Maintain and optimize workflows with error handling and logging</li>
-          <li>Stay updated with the latest AI/ML trends and tools</li>
-        </ul>
-
-        <h4>What We're Looking For:</h4>
-        <ul>
-          <li>
-            <strong>Location:</strong> Open to remote applicants
-          </li>
-          <li>
-            <strong>Skills:</strong> Familiarity with APIs, automation platforms, and AI/LLM tools
-          </li>
-          <li>Experience with n8n, OpenAI, LangChain, Node.js, or Python</li>
-          <li>Knowledge of Webhooks, REST APIs, OAuth is a plus</li>
-          <li>A proactive attitude and strong interest in automation & AI systems</li>
-          <li>Portfolio or GitHub showcasing AI/automation work (preferred)</li>
-        </ul>
-
-        <h4>Perks & Growth:</h4>
-        <ul>
-          <li>Work on meaningful, production-level automation projects</li>
-          <li>Learn directly from experienced engineers and AI developers</li>
-          <li>Build a standout portfolio to launch your AI/Automation career</li>
-          <li>Growth-focused work environment with clear milestones</li>
-          <li>Pathway to senior AI engineer role and technical leadership</li>
-        </ul>
-      </div>
-    )
-  },
-  {
-    title: 'Junior Business Developer',
-    type: 'Junior',
-    experience: '0–2 Year',
-    location: 'Remote / Lahore',
-    video: {
-      originalFile: '/api/videos/careers/business-development.mp4',
-      sequences: ['/api/videos/careers/business-development.mp4']
-    },
-    description: (
-      <div>
-        <p>
-          <strong>Launch Your Career in Tech Sales with Dev8X – Junior Business Developer Role</strong>
-        </p>
-        <p>Are you a persuasive communicator with a passion for connecting with people and growing businesses? Looking to gain hands-on experience in client acquisition, outreach, and tech sales?</p>
-        <p>
-          <strong>Dev8X</strong> is hiring a <strong>Junior Business Developer</strong> to join our remote team. You'll work on real client acquisition projects, learn from experienced sales professionals, and help grow our business.
-        </p>
-
-        <h4>What's in it for you?</h4>
-        <ul>
-          <li>Get real-world experience in B2B tech sales and lead generation</li>
-          <li>Learn how to pitch, negotiate, and close deals</li>
-          <li>Build a solid portfolio of sales strategies and client engagement work</li>
-          <li>Collaborate with a growth-driven and supportive remote team</li>
-        </ul>
-
-        <h4>Position Details:</h4>
-        <ul>
-          <li>
-            <strong>Role:</strong> Junior Business Developer
-          </li>
-          <li>
-            <strong>Experience:</strong> 0–2 year (fresh graduates and self-learners welcome)
-          </li>
-          <li>
-            <strong>Location:</strong> Remote / Lahore
-          </li>
-          <li>
-            <strong>Timing:</strong> 7:00 PM to 1:00 AM (PKT)
-          </li>
-          <li>
-            <strong>Compensation:</strong> Entry-level salary + Growth Path
-          </li>
-        </ul>
-
-        <h4>Key Responsibilities:</h4>
-        <ul>
-          <li>Identify, research, and qualify potential leads</li>
-          <li>Write and send winning proposals on Upwork</li>
-          <li>Connect with decision-makers on LinkedIn and build lasting relationships</li>
-          <li>Launch and manage cold email campaigns using tools like Mailshake or Instantly</li>
-          <li>Conduct cold calls and introductory meetings with potential clients</li>
-          <li>Maintain CRM data, track responses, and report weekly performance</li>
-        </ul>
-
-        <h4>What We're Looking For:</h4>
-        <ul>
-          <li>
-            <strong>Location:</strong> Open to remote applicants (preferably Pakistan-based)
-          </li>
-          <li>
-            <strong>Skills:</strong> Excellent written and verbal English communication
-          </li>
-          <li>Confident in making cold calls and presenting over video meetings</li>
-          <li>Familiar with Upwork, LinkedIn, or other B2B platforms</li>
-          <li>Knowledge of CRM tools, email outreach platforms, or lead-gen tools is a bonus</li>
-          <li>Eagerness to learn and a results-driven mindset</li>
-        </ul>
-
-        <h4>Perks & Growth:</h4>
-        <ul>
-          <li>Work on real client acquisition projects from Day 1</li>
-          <li>Receive 1-on-1 mentorship from seasoned business developers</li>
-          <li>Learn end-to-end sales workflows in the IT services space</li>
-          <li>Build a portfolio that makes you stand out in tech business roles</li>
-          <li>Growth-focused work environment with clear milestones</li>
-          <li>Pathway to senior business developer role and leadership opportunities</li>
-        </ul>
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Perks & Growth:</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Real clients and sales experience from day one</li>
+              <li>1-on-1 mentorship from experienced business developers</li>
+              <li>Growth-focused work environment with clear milestones</li>
+              <li>Access to CRM tools, proposal templates, and outreach systems</li>
+              <li>Pathway to full-time role, certification, and recommendation letter</li>
+            </ul>
+          </div>
+        </div>
       </div>
     )
   }
