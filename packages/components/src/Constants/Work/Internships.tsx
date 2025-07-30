@@ -59,7 +59,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                   } as React.CSSProperties
                 }
               >
-                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/ai-roadmaps/uiux-internship" target="_blank">
+                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/r/3-month-uiux-roadmap-for-interns-weekly-focus-ux-basics-ui-tools-wireframes-prototyping-testing-tasks-kpis-format-in-table" target="_blank">
                   <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
                     <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
                     <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
@@ -644,7 +644,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                   } as React.CSSProperties
                 }
               >
-                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/ai-roadmaps/business-development-internship-3-month" target="_blank">
+                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/r/3-month-bd-roadmap-for-interns-weekly-skills-sales-crm-outreach-research-client-comms-tasks-kpis-format-in-bullettable" target="_blank">
                   <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
                     <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
                     <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
