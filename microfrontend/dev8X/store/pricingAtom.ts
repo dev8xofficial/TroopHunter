@@ -12,6 +12,7 @@ export interface Role {
   skills: Record<string, boolean>;
   selectedPeople: ListboxOptionType;
   selectedPriceType: ListboxOptionType;
+  selectedLevel: ListboxOptionType;
 }
 
 const peopleOptions: ListboxOptionType[] = [
@@ -33,6 +34,50 @@ const priceTypesOptions: ListboxOptionType[] = [
   { id: 2, name: 'Fixed Rate', value: 'fixed' },
   { id: 3, name: 'Time & Material', value: 'time-material' }
 ];
+
+const levelOptions: ListboxOptionType[] = [
+  { id: 1, name: 'Junior', value: 'junior' },
+  { id: 2, name: 'Medium', value: 'medium' },
+  { id: 3, name: 'Senior', value: 'senior' }
+];
+
+// Centralized skill mapping function
+export const getSkillsByLevel = (roleTitle: string, level: string) => {
+  const skillMappings: Record<string, Record<string, string[]>> = {
+    'UI/UX Designer': {
+      junior: ['Figma', 'AdobeXD', 'Canva', 'Wireframing', 'Typography', 'ColorTheory'],
+      medium: ['Figma', 'AdobeXD', 'Sketch', 'InVision', 'Zeplin', 'Wireframing', 'Prototyping', 'Typography', 'ColorTheory', 'ResponsiveDesign'],
+      senior: ['Figma', 'AdobeXD', 'Sketch', 'Illustrator', 'Photoshop', 'InVision', 'Zeplin', 'Canva', 'Wireframing', 'Prototyping', 'UserResearch', 'ABTesting', 'DesignSystems', 'Accessibility', 'Typography', 'ColorTheory', 'UXWriting', 'MotionDesign', 'ResponsiveDesign']
+    },
+    'Frontend Developer': {
+      junior: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'ResponsiveDesign'],
+      medium: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'TailwindCSS', 'Bootstrap', 'Sass', 'RESTAPI', 'Git', 'ResponsiveDesign', 'WebAccessibility'],
+      senior: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'NextJS', 'Redux', 'TailwindCSS', 'Bootstrap', 'Sass', 'Webpack', 'Vite', 'RESTAPI', 'GraphQL', 'Git', 'TestingLibrary', 'Cypress', 'Jest', 'ResponsiveDesign', 'WebAccessibility']
+    },
+    'Flutter Developer': {
+      junior: ['Dart', 'Flutter', 'Provider', 'SharedPreferences', 'ResponsiveUI'],
+      medium: ['Dart', 'Flutter', 'Firebase', 'Provider', 'Bloc', 'Hive', 'SQFLite', 'SharedPreferences', 'PushNotifications', 'RESTAPI', 'AppLocalization', 'ResponsiveUI', 'Testing'],
+      senior: ['Dart', 'Flutter', 'Firebase', 'Riverpod', 'Provider', 'Bloc', 'GetX', 'Hive', 'SQFLite', 'SharedPreferences', 'PushNotifications', 'RESTAPI', 'GraphQL', 'AppLocalization', 'FlutterWeb', 'Animations', 'ThemeManagement', 'StateManagement', 'ResponsiveUI', 'Testing']
+    },
+    'Backend Developer': {
+      junior: ['NodeJS', 'ExpressJS', 'MongoDB', 'RESTAPI', 'Git'],
+      medium: ['NodeJS', 'ExpressJS', 'MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'RESTAPI', 'GraphQL', 'JWT', 'Prisma', 'Sequelize', 'Git', 'Testing', 'Nginx'],
+      senior: ['NodeJS', 'ExpressJS', 'NestJS', 'MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'RESTAPI', 'GraphQL', 'JWT', 'OAuth', 'Prisma', 'Sequelize', 'SocketIO', 'WebSockets', 'Docker', 'CICD', 'Testing', 'Nginx', 'APISecurity']
+    },
+    'AI Engineer': {
+      junior: ['Python', 'NumPy', 'Pandas', 'ScikitLearn', 'Matplotlib'],
+      medium: ['Python', 'NumPy', 'Pandas', 'TensorFlow', 'Keras', 'ScikitLearn', 'OpenCV', 'Matplotlib', 'Seaborn', 'NLP', 'MachineLearning', 'DataCleaning'],
+      senior: ['Python', 'NumPy', 'Pandas', 'TensorFlow', 'Keras', 'PyTorch', 'ScikitLearn', 'OpenCV', 'Matplotlib', 'Seaborn', 'NLP', 'HuggingFace', 'Transformers', 'CNNs', 'RNNs', 'LSTMs', 'DeepLearning', 'MachineLearning', 'DataCleaning', 'ModelDeployment']
+    },
+    'Business Development': {
+      junior: ['CRM', 'SalesStrategy', 'EmailMarketing', 'Communication'],
+      medium: ['CRM', 'SalesStrategy', 'MarketResearch', 'LeadGeneration', 'EmailMarketing', 'SEO', 'SocialMedia', 'GoogleAnalytics', 'Negotiation', 'Communication', 'Branding', 'Copywriting'],
+      senior: ['CRM', 'SalesStrategy', 'MarketResearch', 'LeadGeneration', 'EmailMarketing', 'SEO', 'SocialMedia', 'GoogleAnalytics', 'Negotiation', 'Networking', 'CustomerSuccess', 'HubSpot', 'Salesforce', 'PitchDecks', 'Communication', 'Branding', 'Copywriting', 'BusinessAnalysis', 'StrategicPlanning', 'ProjectManagement']
+    }
+  };
+
+  return skillMappings[roleTitle]?.[level] || [];
+};
 
 // ✅ Initial role data
 const initialRoles: Role[] = [
@@ -60,7 +105,8 @@ const initialRoles: Role[] = [
       ResponsiveDesign: false
     },
     selectedPeople: peopleOptions[0],
-    selectedPriceType: priceTypesOptions[0]
+    selectedPriceType: priceTypesOptions[0],
+    selectedLevel: { id: 0, name: '', value: '' }
   },
   {
     title: 'Frontend Developer',
@@ -87,7 +133,8 @@ const initialRoles: Role[] = [
       WebAccessibility: false
     },
     selectedPeople: peopleOptions[0],
-    selectedPriceType: priceTypesOptions[0]
+    selectedPriceType: priceTypesOptions[0],
+    selectedLevel: { id: 0, name: '', value: '' }
   },
   {
     title: 'Flutter Developer',
@@ -114,7 +161,8 @@ const initialRoles: Role[] = [
       Testing: false
     },
     selectedPeople: peopleOptions[0],
-    selectedPriceType: priceTypesOptions[0]
+    selectedPriceType: priceTypesOptions[0],
+    selectedLevel: { id: 0, name: '', value: '' }
   },
   {
     title: 'Backend Developer',
@@ -141,7 +189,8 @@ const initialRoles: Role[] = [
       APISecurity: false
     },
     selectedPeople: peopleOptions[0],
-    selectedPriceType: priceTypesOptions[0]
+    selectedPriceType: priceTypesOptions[0],
+    selectedLevel: { id: 0, name: '', value: '' }
   },
   {
     title: 'AI Engineer',
@@ -168,7 +217,8 @@ const initialRoles: Role[] = [
       ModelDeployment: false
     },
     selectedPeople: peopleOptions[0],
-    selectedPriceType: priceTypesOptions[0]
+    selectedPriceType: priceTypesOptions[0],
+    selectedLevel: { id: 0, name: '', value: '' }
   },
   {
     title: 'Business Development',
@@ -195,7 +245,8 @@ const initialRoles: Role[] = [
       ProjectManagement: false
     },
     selectedPeople: peopleOptions[0],
-    selectedPriceType: priceTypesOptions[0]
+    selectedPriceType: priceTypesOptions[0],
+    selectedLevel: { id: 0, name: '', value: '' }
   }
 ];
 
@@ -220,18 +271,40 @@ export function pricingAtom() {
     );
   };
 
-  const updateRolePricing = (roleIndex: number, key: 'selectedPeople' | 'selectedPriceType', value: ListboxOptionType) => {
+  const updateRolePricing = (roleIndex: number, key: 'selectedPeople' | 'selectedPriceType' | 'selectedLevel', value: ListboxOptionType) => {
     setRoles((prev) =>
-      prev.map((role, idx) =>
-        idx === roleIndex
-          ? {
-              ...role,
-              [key]: value
-            }
-          : role
-      )
+      prev.map((role, idx) => {
+        if (idx === roleIndex) {
+          const updatedRole = {
+            ...role,
+            [key]: value
+          };
+
+          // If level is being updated, auto-select the relevant skills
+          if (key === 'selectedLevel' && value.value) {
+            const availableSkills = getSkillsByLevel(role.title, value.value as string);
+
+            // Auto-select all skills for the chosen level
+            const updatedSkills = Object.keys(role.skills).reduce(
+              (acc, skillKey) => {
+                acc[skillKey] = availableSkills.includes(skillKey);
+                return acc;
+              },
+              {} as Record<string, boolean>
+            );
+
+            return {
+              ...updatedRole,
+              skills: updatedSkills
+            };
+          }
+
+          return updatedRole;
+        }
+        return role;
+      })
     );
   };
 
-  return { roles, peopleOptions, priceTypesOptions, updateRoleSkill, updateRolePricing };
+  return { roles, peopleOptions, priceTypesOptions, levelOptions, updateRoleSkill, updateRolePricing, getSkillsByLevel };
 }

@@ -14,7 +14,7 @@ import ExpertiseStyles from '../expertise/index.module.css';
 
 const PlanAndPricingPage: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
-  const { roles, peopleOptions, priceTypesOptions, updateRoleSkill, updateRolePricing } = pricingAtom();
+  const { roles, peopleOptions, priceTypesOptions, levelOptions, updateRoleSkill, updateRolePricing, getSkillsByLevel } = pricingAtom();
   const PageData = PRICING[0];
   const nextExpertise = EXPERTISES[2];
 
@@ -62,7 +62,7 @@ const PlanAndPricingPage: React.FC = (): JSX.Element => {
           `}</style>
           {/* Main container with smooth-scrollbar */}
           <main className={WorkStyles['project-page']}>
-            <PricingContents roles={roles} peopleOptions={peopleOptions} priceTypesOptions={priceTypesOptions} updateRoleSkill={updateRoleSkill} updateRolePricing={updateRolePricing} />
+            <PricingContents roles={roles} peopleOptions={peopleOptions} priceTypesOptions={priceTypesOptions} levelOptions={levelOptions} updateRoleSkill={updateRoleSkill} updateRolePricing={updateRolePricing} getSkillsByLevel={getSkillsByLevel} />
 
             <div className={ExpertiseStyles['expertise-container']}>
               <AwardsBlock />
