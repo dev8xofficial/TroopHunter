@@ -39,7 +39,7 @@ export const CAREER_ROLES: RoleProject[] = [
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mt-0']}`}>
               <li>Work on real client projects and ship actual designs</li>
               <li>Grow your portfolio with modern web and mobile UI/UX</li>
               <li>Learn how to think like a product designer and solve real-world UX challenges</li>
@@ -131,7 +131,7 @@ export const CAREER_ROLES: RoleProject[] = [
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mt-0']}`}>
               <li>Work on live, real-world mobile apps built with Flutter & Dart</li>
               <li>Gain practical experience across the full app development lifecycle</li>
               <li>Enhance your portfolio and grow with structured mentorship</li>
@@ -221,7 +221,7 @@ export const CAREER_ROLES: RoleProject[] = [
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mt-0']}`}>
               <li>Build and optimize real web applications using React.js, Next.js, and TailwindCSS</li>
               <li>Gain hands-on experience in a professional development workflow</li>
               <li>Enhance your portfolio and learn best practices from skilled mentors</li>
@@ -310,7 +310,7 @@ export const CAREER_ROLES: RoleProject[] = [
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mt-0']}`}>
               <li>Build backend systems and APIs using Node.js, PostgreSQL, and Express</li>
               <li>Work with Sequelize or Prisma for modern data modeling</li>
               <li>Improve your backend logic, database design, and performance optimization</li>
@@ -402,7 +402,7 @@ export const CAREER_ROLES: RoleProject[] = [
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mt-0']}`}>
               <li>Build AI-powered agents for customer support and internal automation</li>
               <li>Work with tools like OpenAI, n8n, LangChain, and modern APIs</li>
               <li>Create intelligent automation pipelines that solve real business problems</li>
@@ -489,7 +489,7 @@ export const CAREER_ROLES: RoleProject[] = [
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mt-0']}`}>
               <li>Step into a full-time sales role with growth, mentorship, and client interaction</li>
               <li>Gain hands-on experience in prospecting, pitching, and closing deals</li>
               <li>Join a mission-driven and performance-focused remote team</li>
