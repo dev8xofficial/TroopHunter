@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { CareerStudySidebar } from '../CareerStudySidebar/CareerStudySidebar';
-import { OpenRolesList } from '../OpenRolesList/OpenRolesList';
+import { OpenRolesList } from '../../Data display/OpenRolesList/OpenRolesList';
 
 import ProjectContentsStyles from '../ProjectContents/index.module.css';
 

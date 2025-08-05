@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
 
-import ButtonStyles from '../Button/index.module.css';
+import ButtonStyles from '../../Input/Button/index.module.css';
 import HomepageShowreelStyles from '../HomepageShowreel/index.module.css';
 
 interface VideoPlayerProps {

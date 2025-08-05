@@ -1,11 +1,11 @@
 import React from 'react';
-import { HomepageStat, HomepageStats } from '../HomepageStats/HomepageStats';
+import { HomepageStat, HomepageStats } from '../../Surfaces/HomepageStats/HomepageStats';
 import { AppearOnScroll } from '../../Animations/AppearOnScroll';
-import { Link } from '../Link/Link';
+import { Link } from '../../Navigation/Link/Link';
 import RightArrowIcon from '../../Icons/RightArrow';
 
-import TextAnimateStyles from '../TextAnimateUp/index.module.css';
-import PictureStyle from '../Picture/index.module.css';
+import TextAnimateStyles from '../../Surfaces/TextAnimateUp/index.module.css';
+import PictureStyle from '../../Surfaces/Picture/index.module.css';
 import WYSIWYGStyle from '../WYSIWYG/index.module.css';
 import styles from './index.module.css';
 

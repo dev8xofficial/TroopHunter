@@ -1,14 +1,19 @@
 import React from 'react';
 import Head from 'next/head';
 
-import { FooterRevealPageWrap, Footer, Header } from '@repo/components';
+import { useSetAtom } from 'jotai';
+import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { FooterRevealPageWrap, Footer, Header, ContactFormModal } from '@repo/components';
+import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import { getDev8xPublicUrl } from '../../utils/helpers';
 import PageData from '../../data/privacy/index.d';
 
+import WYSIWYGStyles from '../../components/Surfaces/WYSIWYG/index.module.css';
 import styles from './index.module.css';
-import WYSIWYGStyles from '../../../../packages/components/src/Surfaces/WYSIWYG/index.module.css';
 
-const Work: React.FC = (): JSX.Element => {
+const Privacy: React.FC = (): JSX.Element => {
+  const toggleModal = useSetAtom(toggleSmoothModalAtom);
+
   return (
     <>
       <Head>
@@ -110,10 +115,13 @@ const Work: React.FC = (): JSX.Element => {
             </div>
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
+        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
+      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
+        <ContactFormModal />
+      </SmoothModalWrapper>
     </>
   );
 };
 
-export default Work;
+export default Privacy;

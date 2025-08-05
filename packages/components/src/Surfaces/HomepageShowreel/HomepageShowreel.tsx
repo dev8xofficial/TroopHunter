@@ -2,7 +2,7 @@ import React, { CSSProperties, ReactNode, useState, useRef, useEffect } from 're
 import Hls from 'hls.js';
 
 import PictureStyles from '../Picture/index.module.css';
-import ButtonStyles from '../Button/index.module.css';
+import ButtonStyles from '../../Input/Button/index.module.css';
 import styles from './index.module.css';
 
 type HomepageShowreelProps = {

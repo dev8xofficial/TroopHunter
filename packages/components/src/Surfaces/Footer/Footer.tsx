@@ -1,6 +1,6 @@
 import React from 'react';
 import { ExpertiseFooterForm, ExpertiseFooterMainContent, ExpertiseFooterSocialLink } from '../../Interfaces/Expertise/Expertise';
-import { FooterInternationalContents } from '../FooterInternationalContents/FooterInternationalContents';
+import { FooterInternationalContents } from '../../Surfaces/FooterInternationalContents/FooterInternationalContents';
 import RightArrowIcon from '../../Icons/RightArrow';
 import { RotatingText } from '../../Animations/RotatingText';
 

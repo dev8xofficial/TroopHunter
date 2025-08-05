@@ -1,6 +1,6 @@
 import React from 'react';
 import { WorkDetail } from '../../Interfaces/Work/WorkProjectTypes';
-import { Link } from '../Link/Link';
+import { Link } from '../../Navigation/Link/Link';
 import RightArrowIcon from '../../Icons/RightArrow';
 
 import styles from './index.module.css';

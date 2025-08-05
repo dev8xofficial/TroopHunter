@@ -1,9 +1,9 @@
 import React from 'react';
-import { Pill } from '../Pill/Pill';
 import { ExpertiseContent } from '../../Interfaces/Expertise/Expertise';
-import { ICON_MAP } from '../IconCards/IconMap';
+import { ICON_MAP } from '../../Surfaces/IconCards/IconMap';
+import { Pill } from '../../Surfaces/Pill/Pill';
 
-import PictureStyles from '../Picture/index.module.css';
+import PictureStyles from '../../Surfaces/Picture/index.module.css';
 import styles from './index.module.css';
 
 interface HeroProps extends Omit<ExpertiseContent, 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'> {

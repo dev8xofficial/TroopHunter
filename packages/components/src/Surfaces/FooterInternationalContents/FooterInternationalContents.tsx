@@ -4,8 +4,8 @@ import { ICON_MAP } from '../IconCards/IconMap';
 import { ExpertiseFooterForm, ExpertiseFooterSocialLink } from '../../Interfaces/Expertise/Expertise';
 import RightArrowIcon from '../../Icons/RightArrow';
 
-import ContactFormModalStyles from '../ContactFormModal/index.module.css';
-import ButtonStyles from '../Button/index.module.css';
+import ContactFormModalStyles from '../../Modals/ContactFormModal/index.module.css';
+import ButtonStyles from '../../Input/Button/index.module.css';
 import styles from './index.module.css';
 import { Magnet } from '../../Animations/Magnet';
 

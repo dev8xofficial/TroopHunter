@@ -10,7 +10,7 @@ interface MagnetProps {
   disabled?: boolean;
 }
 
-export const Magnet: React.FC<MagnetProps> = ({ className, children, radius = 10, strength = 0.05, disabled }) => {
+export const Magnet: React.FC<MagnetProps> = ({ className, children, radius = 10, strength = 0.10, disabled }) => {
   const ref = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
