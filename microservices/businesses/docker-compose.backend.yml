@@ -5,8 +5,11 @@ services:
     build:
       context: ../../
       dockerfile: microservices/businesses/Dockerfile
+      target: production
     env_file:
-      - ./.env
+      - ./.env.production
+    environment:
+      - NODE_ENV=production
     ports:
       - '50009:50009'
 
@@ -16,8 +19,11 @@ services:
     build:
       context: ../../
       dockerfile: microservices/businesses/Dockerfile
+      target: builder
     env_file:
-      - ./.env
+      - ./.env.staging
+    environment:
+      - NODE_ENV=staging
     ports:
       - '50010:50010'
 
@@ -29,6 +35,26 @@ services:
       dockerfile: microservices/businesses/Dockerfile
       target: builder
     env_file:
-      - ./.env
+      - ./.env.development
+    environment:
+      - NODE_ENV=development
     ports:
       - '50011:50011'
+
+  businesses-loc:
+    container_name: businesses-loc
+    image: businesses-loc:latest
+    build:
+      context: ../../
+      dockerfile: microservices/businesses/Dockerfile
+      target: local
+    env_file:
+      - ./.env.development
+    environment:
+      - NODE_ENV=development
+    ports:
+      - '50011:50011'
+    volumes:
+      - ../../microservices/businesses:/app/microservices/businesses
+      - /app/microservices/businesses/node_modules
+    command: ['npm', 'run', 'development']

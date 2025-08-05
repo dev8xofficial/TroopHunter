@@ -4,9 +4,9 @@ metadata:
   name: main-dev
 spec:
   hosts:
-    - "*"
+    - "troophunter.dev"
   gateways:
-    - microservices-gateway
+    - istio-system/main-gateway
   http:
     - match:
         - uri:
@@ -35,4 +35,4 @@ spec:
         - destination:
             host: main-dev
             port:
-              number: 50002 
+              number: 50002

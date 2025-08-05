@@ -1,4 +1,6 @@
 import { formatResponse, sanitizeResponse } from '@repo/middlewares';
+import dotenv from 'dotenv';
+import path from 'path';
 import cors from 'cors';
 import express, { type Request, type Response } from 'express';
 
@@ -15,6 +17,10 @@ import { statesProxyMiddleware } from './proxies/StatesProxy';
 import { usersProxyMiddleware } from './proxies/UsersProxy';
 
 const app = express();
+
+// Load environment-specific .env file
+const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
+dotenv.config({ path: path.resolve(process.cwd(), envFile) });
 
 app.use(cors({ origin: '*', methods: 'GET,POST,PUT,DELETE,OPTIONS', allowedHeaders: 'Content-Type,Authorization' }));
 

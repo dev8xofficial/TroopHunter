@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-loc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: main-loc
+  template:
+    metadata:
+      labels:
+        app: main-loc
+    spec:
+      containers:
+        - name: main-loc
+          image: main-loc:latest
+          imagePullPolicy: IfNotPresent
+          command: ["npm", "run", "development"]
+          ports:
+            - containerPort: 50002
+          env:
+            - name: AUTH_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-loc-secret
+                  key: auth
+            - name: BUSINESSES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-loc-secret
+                  key: businesses
+            - name: LEADS_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-loc-secret
+                  key: leads
+            - name: COUNTRIES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-loc-secret
+                  key: countries
+            - name: STATES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-loc-secret
+                  key: states
+            - name: CITIES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-loc-secret
+                  key: cities
+            - name: QUEUES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-loc-secret
+                  key: queues
+            - name: CITY_QUEUES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-loc-secret
+                  key: city-queues
+            - name: USERS_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-loc-secret
+                  key: users
+          volumeMounts:
+            - name: logs
+              mountPath: /app/microservices/main/logs/
+            # - name: main-src
+            #   mountPath: /app/microservices/main
+            # - name: node-modules
+            #   mountPath: /app/microservices/main/node_modules
+      volumes:
+        - name: logs
+          emptyDir: {}
+        # - name: main-src
+        #   hostPath:
+        #     path: /Users/abdulrehman/Workstation/hellobadul/microservices/TroopHunterNew/microservices/main
+        #     type: Directory
+        # - name: node-modules
+        #   emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: main-loc
+spec:
+  selector:
+    app: main-loc
+  ports:
+    - protocol: TCP
+      port: 50002
+      targetPort: 50002 

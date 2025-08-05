@@ -5,8 +5,11 @@ services:
     build:
       context: ../../
       dockerfile: microservices/queues/Dockerfile
+      target: production
     env_file:
-      - ./.env
+      - ./.env.production
+    environment:
+      - NODE_ENV=production
     ports:
       - '50012:50012'
 
@@ -16,8 +19,11 @@ services:
     build:
       context: ../../
       dockerfile: microservices/queues/Dockerfile
+      target: builder
     env_file:
-      - ./.env
+      - ./.env.staging
+    environment:
+      - NODE_ENV=staging
     ports:
       - '50013:50013'
 
@@ -29,6 +35,26 @@ services:
       dockerfile: microservices/queues/Dockerfile
       target: builder
     env_file:
-      - ./.env
+      - ./.env.development
+    environment:
+      - NODE_ENV=development
     ports:
       - '50014:50014'
+
+  queues-loc:
+    container_name: queues-loc
+    image: queues-loc:latest
+    build:
+      context: ../../
+      dockerfile: microservices/queues/Dockerfile
+      target: local
+    env_file:
+      - ./.env.development
+    environment:
+      - NODE_ENV=development
+    ports:
+      - '50014:50014'
+    volumes:
+      - ../../microservices/queues:/app/microservices/queues
+      - /app/microservices/queues/node_modules
+    command: ['npm', 'run', 'development']

@@ -1,0 +1,58 @@
+name: 'troophunter_dev'
+services:
+  # ci:
+  #   extends:
+  #     file: docker-compose.ci.yml
+  #     service: ci_dev
+
+  # pgadmin_dev:
+  #   extends:
+  #     file: docker-compose.pgadmin.yml
+  #     service: pgadmin_dev
+
+  main-loc:
+    extends:
+      file: ./microservices/main/docker-compose.backend.yml
+      service: main-loc
+
+  auth-loc:
+    extends:
+      file: ./microservices/auth/docker-compose.backend.yml
+      service: auth-loc
+
+  countries-loc:
+    extends:
+      file: ./microservices/countries/docker-compose.backend.yml
+      service: countries-loc
+
+  businesses-loc:
+    extends:
+      file: ./microservices/businesses/docker-compose.backend.yml
+      service: businesses-loc
+
+  queues-loc:
+    extends:
+      file: ./microservices/queues/docker-compose.backend.yml
+      service: queues-loc
+
+  users-loc:
+    extends:
+      file: ./microservices/users/docker-compose.backend.yml
+      service: users-loc
+
+  troophunter-landing-loc:
+    extends:
+      file: ./microfrontend/troophunter-landing/docker-compose.troophunter.yml
+      service: troophunter-landing-loc
+
+  # cloudflare-loc:
+  #   extends:
+  #     file: ./cloudflare/docker-compose.cloudflare.yml
+  #     service: cloudflare-loc
+
+volumes:
+  pgadmin-data:
+
+networks:
+  custom_network:
+    driver: bridge

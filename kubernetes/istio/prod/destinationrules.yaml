@@ -6,4 +6,4 @@ spec:
   host: main-prod
   trafficPolicy:
     tls:
-      mode: ISTIO_MUTUAL 
+      mode: ISTIO_MUTUAL

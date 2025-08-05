@@ -2,7 +2,8 @@
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: microservices-gateway
+  name: main-gateway
+  namespace: istio-system
 spec:
   selector:
     istio: ingressgateway
@@ -12,4 +13,7 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - "*"
+        - "troophunter.local"
+        - "troophunter.dev"
+        - "troophunter.stag"
+        - "troophunter.prod"

@@ -91,6 +91,121 @@ Ports in .env, Dockerfile, inner ports in docker-compose would stay same. Only o
 
     lsof -i -n -P | grep LISTEN
 
+## Copy folders and files from macOS to ubuntu server
+
+    rsync -avz --progress \
+        --exclude 'node_modules/' \
+        --exclude 'production/' \
+        --exclude '.turbo/' \
+        /Users/abdulrehman/Workstation/hellobadul/microservices/TroopHunterNew/ \
+        ubuntu-server@192.168.1.200:/home/ubuntu-server/TroopHunter/prod/
+
 # Copy .env files from macbook to ubuntu server
 
     scp -rp /Users/abdulrehman/Workstation/hellobadul/development/troophunter/backend/.env ubuntu-server@192.168.1.200:/home/ubuntu-server/troophunter
+
+# ------------------------------------------------------------------------------------------------------------
+# ------------ Remove cloudflared from Ubuntu Server ---------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
+
+### 1. 🛑 Stop the Tunnel (if Running as a Service)
+
+Check if it’s running:
+
+```bash
+ps aux | grep cloudflared
+````
+
+If it's running as a systemd service:
+
+```bash
+sudo systemctl stop cloudflared
+sudo systemctl disable cloudflared
+```
+
+---
+
+### 2. 🗑️ Delete the Tunnel Configuration and Certificate
+
+Cloudflared stores its tunnels and certs in:
+
+```bash
+~/.cloudflared/
+```
+
+Remove the directory:
+
+```bash
+rm -rf ~/.cloudflared
+```
+
+If you ran `cloudflared` with `--config /etc/cloudflared/config.yml`, also remove:
+
+```bash
+sudo rm -rf /etc/cloudflared
+```
+
+---
+
+### 3. ❌ Uninstall `cloudflared`
+
+If installed via `.deb` package:
+
+```bash
+sudo apt remove cloudflared
+sudo apt purge cloudflared
+```
+
+If downloaded manually to `/usr/local/bin/cloudflared`:
+
+```bash
+sudo rm -f /usr/local/bin/cloudflared
+```
+
+Also check:
+
+```bash
+which cloudflared
+```
+
+And remove whatever path it shows.
+
+---
+
+### 4. 🧯 Remove Systemd Service File (if Exists)
+
+```bash
+sudo rm -f /etc/systemd/system/cloudflared.service
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+```
+
+---
+
+### 5. 🧹 Clean Up Any Logs (Optional)
+
+```bash
+sudo journalctl --vacuum-time=1s
+```
+
+---
+
+## ✅ Final Check
+
+Ensure nothing is running or installed:
+
+```bash
+which cloudflared
+ps aux | grep cloudflared
+```
+
+---
+
+## ℹ️ Optional
+
+Let me know if you also want to remove the tunnel from the [Cloudflare Zero Trust Dashboard](https://dash.teams.cloudflare.com/) or disassociate it from your domain/DNS settings.
+
+```
+
+Let me know if you want this in downloadable `.md` file or want to add usage history/cleanup from Cloudflare dashboard too.
+```

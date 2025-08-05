@@ -5,8 +5,11 @@ services:
     build:
       context: ../../
       dockerfile: microservices/auth/Dockerfile
+      target: production
     env_file:
-      - ./.env
+      - ./.env.production
+    environment:
+      - NODE_ENV=production
     ports:
       - '50003:50003'
 
@@ -16,8 +19,11 @@ services:
     build:
       context: ../../
       dockerfile: microservices/auth/Dockerfile
+      target: builder
     env_file:
-      - ./.env
+      - ./.env.staging
+    environment:
+      - NODE_ENV=staging
     ports:
       - '50004:50004'
 
@@ -29,6 +35,26 @@ services:
       dockerfile: microservices/auth/Dockerfile
       target: builder
     env_file:
-      - ./.env
+      - ./.env.development
+    environment:
+      - NODE_ENV=development
     ports:
       - '50005:50005'
+
+  auth-loc:
+    container_name: auth-loc
+    image: auth-loc:latest
+    build:
+      context: ../../
+      dockerfile: microservices/auth/Dockerfile
+      target: local
+    env_file:
+      - ./.env.development
+    environment:
+      - NODE_ENV=development
+    ports:
+      - '50005:50005'
+    volumes:
+      - ../../microservices/auth:/app/microservices/auth
+      - /app/microservices/auth/node_modules
+    command: ['npm', 'run', 'development']

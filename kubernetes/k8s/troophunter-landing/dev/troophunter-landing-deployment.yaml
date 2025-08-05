@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: troophunter-landing-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: troophunter-landing-dev
+  template:
+    metadata:
+      labels:
+        app: troophunter-landing-dev
+    spec:
+      containers:
+        - name: troophunter-landing-dev
+          image: troophunter-landing-dev:latest
+          imagePullPolicy: IfNotPresent
+          command: ["/app/start.sh"]
+          ports:
+            - containerPort: 3002
+            - containerPort: 5175
+          env:
+            - name: PORT
+              value: "3002"
+          volumeMounts:
+            - name: logs
+              mountPath: /microfrontend/troophunter-landing/logs
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: troophunter-landing-dev
+spec:
+  selector:
+    app: troophunter-landing-dev
+  ports:
+    - name: landing-http
+      protocol: TCP
+      port: 3002
+      targetPort: 3002
+    - name: troophunter-http
+      protocol: TCP
+      port: 5175
+      targetPort: 5175

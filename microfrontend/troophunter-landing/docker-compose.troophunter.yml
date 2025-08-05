@@ -1,45 +1,54 @@
 services:
-  troophunter_prod:
-    container_name: troophunter_prod
+  troophunter-landing-prod:
+    container_name: troophunter-landing-prod
+    image: troophunter-landing-prod:latest
     build:
       context: ../../
       dockerfile: microfrontend/troophunter-landing/Dockerfile
-      target: development
     env_file:
-      - ./.env
+      - ./.env.production
     ports:
       - '3000:3000'
-    depends_on:
-      - main_prod
-    networks:
-      - custom_network
 
-  troophunter_stag:
-    container_name: troophunter_stag
+  troophunter-landing-stag:
+    container_name: troophunter-landing-stag
+    image: troophunter-landing-stag:latest
     build:
       context: ../../
       dockerfile: microfrontend/troophunter-landing/Dockerfile
-      target: development
     env_file:
-      - ./.env
+      - ./.env.staging
     ports:
       - '3001:3001'
-    depends_on:
-      - main_stag
-    networks:
-      - custom_network
 
-  troophunter_dev:
-    container_name: troophunter_dev
+  troophunter-landing-dev:
+    container_name: troophunter-landing-dev
+    image: troophunter-landing-dev:latest
     build:
       context: ../../
       dockerfile: microfrontend/troophunter-landing/Dockerfile
-      target: development
+      target: builder
     env_file:
-      - ./.env
+      - ./.env.development
     ports:
       - '3002:3002'
-    depends_on:
-      - main_dev
-    networks:
-      - custom_network
+
+  troophunter-landing-loc:
+    container_name: troophunter-landing-loc
+    image: troophunter-landing-loc:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/troophunter-landing/Dockerfile
+      target: local
+    env_file:
+      - ./.env.development
+    environment:
+      - NODE_ENV=development
+    ports:
+      - '3002:3002'
+    volumes:
+      - ../../microfrontend/troophunter-landing:/app/microfrontend/troophunter-landing
+      - ../../microfrontend/troophunter:/app/microfrontend/troophunter
+      - /app/microfrontend/troophunter-landing/node_modules
+      - /app/microfrontend/troophunter/node_modules
+    command: ['npm', 'run', 'development']

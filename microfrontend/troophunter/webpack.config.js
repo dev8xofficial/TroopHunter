@@ -9,11 +9,18 @@ const printCompilationMessage = require('./compilation.config.js');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 // const PurgeCSS = require('@fullhuman/postcss-purgecss');
+const dotenv = require('dotenv');
 
 module.exports = (_, argv) => {
-  const isProduction = argv.mode === 'production';
+  const mode = argv.mode === 'none' ? 'local' : argv.mode;
+  process.env.NODE_ENV = mode;
+  const envFile = `.env.${mode}`;
+  dotenv.config({ path: envFile });
+
+  const isProduction = mode === 'production';
 
   const publicPath = process.env.NEXT_PUBLIC_TROOPHUNTER_APP_URL;
+  const port = process.env.PORT;
 
   return {
     output: {
@@ -33,7 +40,7 @@ module.exports = (_, argv) => {
     },
 
     devServer: {
-      port: 5175,
+      port: port,
       headers: {
         'Access-Control-Allow-Origin': '*'
       },

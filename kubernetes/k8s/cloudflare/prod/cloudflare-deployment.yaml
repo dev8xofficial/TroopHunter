@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudflared-prod
+  template:
+    metadata:
+      labels:
+        app: cloudflared-prod
+    spec:
+      containers:
+        - name: cloudflared-prod
+          image: cloudflared-prod:latest
+          args:
+            - tunnel
+            - --no-autoupdate
+            - run
+            - --token
+            - /etc/cloudflared/token
+          volumeMounts:
+            - name: cloudflared-token
+              mountPath: /etc/cloudflared/token
+              subPath: token
+      volumes:
+        - name: cloudflared-token
+          secret:
+            secretName: cloudflared-token

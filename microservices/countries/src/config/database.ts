@@ -1,21 +1,19 @@
 import dotenv from 'dotenv';
+import path from 'path';
 import { Sequelize } from 'sequelize';
 
-// @ts-ignore
-import dbConfig from '../../sequelize/config/config.js';
+// Load environment-specific .env file
+const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
+dotenv.config({ path: path.resolve(process.cwd(), envFile) });
 
-const conf = dbConfig.development;
-
-dotenv.config();
-
-console.log(`Database: ${conf.database ?? ''} ${conf.username ?? ''} ${conf.password ?? ''} ${conf.host ?? ''}`);
+console.log(`Database: ${process.env.POSTGRES_DB ?? ''} ${process.env.POSTGRES_USER ?? ''} ${process.env.POSTGRES_PASSWORD ?? ''} ${process.env.POSTGRES_HOST ?? ''}`);
 
 const sequelize = new Sequelize({
-  database: conf.database,
-  username: conf.username,
-  password: conf.password,
-  host: conf.host,
-  port: parseInt(conf.port ?? '5432'),
+  database: process.env.POSTGRES_DB,
+  username: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  host: process.env.POSTGRES_HOST,
+  port: parseInt(process.env.POSTGRES_PORT ?? '5432'),
   dialect: 'postgres',
 
   // other configuration options

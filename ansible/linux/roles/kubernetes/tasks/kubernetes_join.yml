@@ -1,0 +1,101 @@
+---
+- name: Ensure join script exists on localhost
+  stat:
+    path: "{{ secrets_dir }}/kubeadm_join_cmd.sh"
+  register: join_cmd_stat
+  delegate_to: localhost
+  run_once: true
+
+- name: Fail if join script is missing
+  fail:
+    msg: "Join script not found on control machine"
+  when: not join_cmd_stat.stat.exists
+  delegate_to: localhost
+  run_once: true
+
+- name: Read join script content on localhost
+  slurp:
+    src: "{{ secrets_dir }}/kubeadm_join_cmd.sh"
+  register: join_script_content
+  delegate_to: localhost
+  run_once: true
+
+- name: Write join script to node
+  copy:
+    content: "{{ join_script_content.content | b64decode }}"
+    dest: /tmp/kubeadm_join_cmd.sh
+    mode: '0755'
+
+- name: Check if node is already part of a cluster
+  stat:
+    path: /etc/kubernetes/kubelet.conf
+  register: kubelet_conf_stat
+
+- name: Attempt kubeadm join
+  block:
+    - name: Run kubeadm join on the node
+      become: true
+      command: bash /tmp/kubeadm_join_cmd.sh
+      register: kubeadm_join_result
+      failed_when: kubeadm_join_result.rc != 0
+      ignore_errors: true
+
+    - name: Check if join failed due to preflight errors
+      set_fact:
+        need_kubeadm_reset: "{{ 'already exists' in kubeadm_join_result.stderr }}"
+
+    - name: Clean up failed Kubernetes join (if needed)
+      block:
+        - name: Reset kubeadm
+          command: kubeadm reset -f
+          become: true
+
+        - name: Stop kubelet
+          systemd:
+            name: kubelet
+            state: stopped
+            enabled: yes
+
+        - name: Stop containerd
+          systemd:
+            name: containerd
+            state: stopped
+            enabled: yes
+
+        - name: Remove Kubernetes and CNI configs
+          file:
+            path: "{{ item }}"
+            state: absent
+          loop:
+            - /etc/cni/net.d
+            - /etc/kubernetes
+            - /var/lib/kubelet
+            - /var/lib/kubeadm.yaml
+
+        - name: Start containerd
+          systemd:
+            name: containerd
+            state: started
+            enabled: yes
+
+        - name: Start kubelet
+          systemd:
+            name: kubelet
+            state: started
+            enabled: yes
+
+      when: need_kubeadm_reset | default(false)
+
+    - name: Retry kubeadm join after cleanup (if needed)
+      command: bash /tmp/kubeadm_join_cmd.sh
+      become: true
+      when: need_kubeadm_reset | default(false)
+
+  when: not kubelet_conf_stat.stat.exists
+
+- name: Label all worker nodes
+  command: >
+    kubectl label node {{ item }} node-role.kubernetes.io/worker=worker --kubeconfig=/etc/kubernetes/admin.conf
+  loop: "{{ groups['k8s_workers'] }}"
+  run_once: true
+  delegate_to: k8s-ctrlr

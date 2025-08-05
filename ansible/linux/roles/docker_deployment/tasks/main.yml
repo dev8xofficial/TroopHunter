@@ -1,0 +1,9 @@
+---
+- include_tasks: ../../common/tasks/allow_ufw.yml
+- include_tasks: ../../common/tasks/copy_env_files.yml
+- include_tasks: ../../common/tasks/copy_public_files.yml
+- include_tasks: setup_minikube.yml
+- include_tasks: apply_istio_k8s.yml
+- include_tasks: ensure_hosts_entries.yml
+# - include_tasks: delete_istio_k8s.yml
+- include_tasks: docker_cleanup.yml

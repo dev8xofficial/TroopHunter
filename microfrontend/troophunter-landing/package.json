@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo -p 3000",
-    "build": "set NODE_ENV=production & next build",
-    "start": "next start -p 3000",
+    "local": "dotenv -e .env.local -- sh -c 'next dev --turbo -p $PORT'",
+    "development": "dotenv -e .env.development -- sh -c 'next dev --turbo -p $PORT'",
+    "staging": "dotenv -e .env.staging -- sh -c 'next dev --turbo -p $PORT'",
+    "production": "dotenv -e .env.production -- next start",
+    "build": "dotenv -e .env.production -- set NODE_ENV=production & next build",
     "lint": "next lint"
   },
   "dependencies": {
@@ -42,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "autoprefixer": "^10.4.20",
+    "dotenv-cli": "^8.0.0",
     "eslint": "^8.47.0",
     "eslint-config-next": "^14.2.6",
     "eslint-config-prettier": "^9.0.0",

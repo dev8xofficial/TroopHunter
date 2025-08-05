@@ -1,5 +1,6 @@
 import { errorHandler, notFoundHandler, formatResponse } from '@repo/middlewares';
 import dotenv from 'dotenv';
+import path from 'path';
 import express, { type Application } from 'express';
 import morgan from 'morgan';
 
@@ -10,7 +11,9 @@ import leadRoutes from './routes/leadRoutes';
 
 const app: Application = express();
 
-dotenv.config();
+// Load environment-specific .env file
+const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
+dotenv.config({ path: path.resolve(process.cwd(), envFile) });
 
 // Middleware
 app.use(morgan('dev'));

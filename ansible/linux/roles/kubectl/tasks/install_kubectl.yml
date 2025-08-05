@@ -1,0 +1,11 @@
+---
+- name: Copy install-kubeadm.sh to remote server
+  become: true
+  copy:
+    src: "{{ script_local_path }}"
+    dest: "{{ script_remote_path }}"
+    mode: '0755'
+
+- name: Execute the install-kubeadm.sh script
+  become: true
+  command: "{{ script_remote_path }}"

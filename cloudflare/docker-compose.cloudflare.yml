@@ -1,0 +1,44 @@
+services:
+  cloudflare-prod:
+    container_name: cloudflare-prod
+    image: cloudflare-prod:latest
+    build:
+      context: ../
+      dockerfile: cloudflare/Dockerfile
+    restart: unless-stopped
+    command: tunnel run
+    env_file:
+      - ./.env
+
+  cloudflare-stag:
+    container_name: cloudflare-stag
+    image: cloudflare-stag:latest
+    build:
+      context: ../
+      dockerfile: cloudflare/Dockerfile
+    restart: unless-stopped
+    command: tunnel run
+    env_file:
+      - ./.env
+
+  cloudflare-dev:
+    container_name: cloudflare-dev
+    image: cloudflare-dev:latest
+    build:
+      context: ../
+      dockerfile: cloudflare/Dockerfile
+    restart: unless-stopped
+    command: tunnel run
+    env_file:
+      - ./.env
+
+  cloudflare-loc:
+    container_name: cloudflare-loc
+    image: cloudflare-loc:latest
+    build:
+      context: ../
+      dockerfile: cloudflare/Dockerfile
+    restart: unless-stopped
+    command: tunnel run
+    env_file:
+      - ./.env

@@ -16,7 +16,7 @@ spec:
         - name: main-stag
           image: main-stag:latest
           imagePullPolicy: IfNotPresent
-          command: ["npm", "run", "start"]
+          command: ["npm", "run", "staging"]
           ports:
             - containerPort: 50001
           env:

@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "build": "webpack --mode production",
-    "build:dev": "webpack --mode development",
-    "build:start": "cd dist && PORT=5175 npx serve",
+    "build:development": "webpack --mode development",
+    "build:production": "cd dist && npx serve",
     "build:css": "webpack --mode development --config webpack.css.config.js",
-    "dev": "webpack serve --mode development",
+    "local": "webpack serve --mode none",
+    "development": "webpack serve --mode development",
+    "staging": "webpack serve --mode staging",
+    "production": "npx serve -s dist",
     "start:prod": "webpack serve --mode production --live-reload --hot",
-    "start:live": "webpack serve --mode production --live-reload --hot",
-    "start": "npx serve -s dist -p 5175"
+    "start:live": "webpack serve --mode production --live-reload --hot"
   },
   "license": "MIT",
   "author": {
@@ -85,6 +87,8 @@
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.14",
     "daisyui": "^3.0.3",
+    "dotenv": "^17.2.0",
+    "dotenv-cli": "^8.0.0",
     "dotenv-webpack": "^8.1.0",
     "file-loader": "^6.2.0",
     "postcss": "^8.4.24",

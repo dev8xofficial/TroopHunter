@@ -1,7 +1,7 @@
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import { type Request, type Response, type NextFunction } from 'express';
 
-dotenv.config();
+// dotenv.config();
 
 interface ApiResponse<T> {
   success: boolean;

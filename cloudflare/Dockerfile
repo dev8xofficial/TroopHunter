@@ -1,1 +1,1 @@
-From cloudflare/cloudflared:latest AS cloudflare
+FROM cloudflare/cloudflared:latest
