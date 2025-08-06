@@ -10,7 +10,7 @@
       "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/main/src/server.ts"],
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "local"
       },
       "envFile": "${workspaceFolder}/microservices/main/.env",
       "cwd": "${workspaceFolder}/microservices/main",
@@ -27,7 +27,7 @@
       "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/auth/src/server.ts"],
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "local"
       },
       "envFile": "${workspaceFolder}/microservices/auth/.env",
       "cwd": "${workspaceFolder}/microservices/auth",
@@ -44,7 +44,7 @@
       "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/countries/src/server.ts"],
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "local"
       },
       "envFile": "${workspaceFolder}/microservices/countries/.env",
       "cwd": "${workspaceFolder}/microservices/countries",
@@ -61,7 +61,7 @@
       "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/businesses/src/server.ts"],
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "local"
       },
       "envFile": "${workspaceFolder}/microservices/businesses/.env",
       "cwd": "${workspaceFolder}/microservices/businesses",
@@ -78,7 +78,7 @@
       "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/queues/src/server.ts"],
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "local"
       },
       "envFile": "${workspaceFolder}/microservices/queues/.env",
       "cwd": "${workspaceFolder}/microservices/queues",
@@ -95,7 +95,7 @@
       "runtimeExecutable": "node",
       "args": ["${workspaceFolder}/microservices/users/src/server.ts"],
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "local"
       },
       "envFile": "${workspaceFolder}/microservices/users/.env",
       "cwd": "${workspaceFolder}/microservices/users",
@@ -132,7 +132,7 @@
       "internalConsoleOptions": "neverOpen",
       "skipFiles": ["<node_internals>/**"],
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "local"
       }
     },
     {
@@ -146,7 +146,7 @@
       "internalConsoleOptions": "neverOpen",
       "skipFiles": ["<node_internals>/**"],
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "local"
       }
     },
     {
