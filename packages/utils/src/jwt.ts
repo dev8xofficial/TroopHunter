@@ -15,7 +15,7 @@ type IGenerateTokenPayload = Record<string, unknown>;
 
 export const generateToken = async (object: IGenerateTokenPayload, options: SignOptions = OPTIONS): Promise<string> => {
   return await new Promise((resolve, reject) => {
-    sign(object, JWT_SECRET as string, options, (error, token) => {
+    sign(object, process.env.JWT_SECRET as string, options, (error, token) => {
       if (error != null) {
         reject(error);
         return;
@@ -27,7 +27,7 @@ export const generateToken = async (object: IGenerateTokenPayload, options: Sign
 
 export const checkToken = async (token: string): Promise<{ payload?: JwtPayload | string; error?: Error }> => {
   return await new Promise((resolve) => {
-    verify(token, JWT_SECRET as string, (error, payload) => {
+    verify(token, process.env.JWT_SECRET as string, (error, payload) => {
       if (error != null) {
         resolve({ error });
         return;
