@@ -1,0 +1,54 @@
+services:
+  troophunter-landing-prod:
+    container_name: troophunter-landing-prod
+    image: troophunter-landing-prod:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/troophunter-landing/Dockerfile
+    env_file:
+      - ./.env.production
+    ports:
+      - '3000:3000'
+
+  troophunter-landing-stag:
+    container_name: troophunter-landing-stag
+    image: troophunter-landing-stag:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/troophunter-landing/Dockerfile
+    env_file:
+      - ./.env.staging
+    ports:
+      - '3001:3001'
+
+  troophunter-landing-dev:
+    container_name: troophunter-landing-dev
+    image: troophunter-landing-dev:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/troophunter-landing/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.development
+    ports:
+      - '3002:3002'
+
+  troophunter-landing-loc:
+    container_name: troophunter-landing-loc
+    image: troophunter-landing-loc:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/troophunter-landing/Dockerfile
+      target: local
+    env_file:
+      - ./.env.development
+    environment:
+      - NODE_ENV=development
+    ports:
+      - '3002:3002'
+    volumes:
+      - ../../microfrontend/troophunter-landing:/app/microfrontend/troophunter-landing
+      - ../../microfrontend/troophunter:/app/microfrontend/troophunter
+      - /app/microfrontend/troophunter-landing/node_modules
+      - /app/microfrontend/troophunter/node_modules
+    command: ['npm', 'run', 'development']

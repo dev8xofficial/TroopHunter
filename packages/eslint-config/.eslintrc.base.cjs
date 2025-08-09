@@ -44,7 +44,7 @@ module.exports = {
     ],
     // ... other rules
     '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
-    '@typescript-eslint/no-unsafe-call': '',
+    '@typescript-eslint/no-unsafe-call': 'warn',
   },
   ignorePatterns: ['node_modules', 'dist', 'build', 'sequelize'],
 };

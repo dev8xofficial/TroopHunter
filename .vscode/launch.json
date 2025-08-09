@@ -150,6 +150,20 @@
       }
     },
     {
+      "name": "TroopHunterNew",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/microfrontend/troophunternew",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "local"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "local"
+      }
+    },
+    {
       "name": "Scraper",
       "type": "debugpy",
       "request": "launch",
