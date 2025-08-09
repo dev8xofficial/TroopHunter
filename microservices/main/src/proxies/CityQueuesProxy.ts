@@ -1,7 +1,10 @@
-import { type RequestHandler, type Request } from 'express';
-import { createProxyMiddleware, type Options } from 'http-proxy-middleware';
+import type { IncomingMessage, ServerResponse } from 'http';
 
-const proxyOptions: Options = {
+import { type RequestHandler, type Request } from 'express';
+import { createProxyMiddleware } from 'http-proxy-middleware';
+import type { Options } from 'http-proxy-middleware';
+
+const proxyOptions: Options<IncomingMessage, ServerResponse> = {
   target: process.env.CITY_QUEUES_MICROSERVICE_URL ?? 'http://localhost:50014',
   changeOrigin: true,
   secure: false,
