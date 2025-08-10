@@ -1,6 +1,7 @@
+import path from 'path';
+
 import { errorHandler, notFoundHandler, formatResponse } from '@repo/middlewares';
 import dotenv from 'dotenv';
-import path from 'path';
 import express, { type Application } from 'express';
 import morgan from 'morgan';
 
@@ -9,7 +10,7 @@ import userRoutes from './routes/userRoutes';
 const app: Application = express();
 
 // Load environment-specific .env file
-const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
+const envFile = `.env.${process.env.NODE_ENV ?? 'development'}`;
 dotenv.config({ path: path.resolve(process.cwd(), envFile) });
 
 // Middleware
