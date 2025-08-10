@@ -6,18 +6,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 
-import AuthLayout from '../../../../layout/AuthLayout';
 import withGuest from '../../../../middleware/withGuest';
 import { authVerifyUserAction } from '../../../../store/actions/authActions';
 import { type IAuthState } from '../../../../store/reducers/authReducer';
 import type { NextPageWithLayout } from '../../../_app';
 
-const PageNotFound: NextPageWithLayout = (): JSX.Element => {
+const Verification: NextPageWithLayout = (): JSX.Element => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { queryId, queryToken } = router.query;
-  const id = Array.isArray(queryId) ? queryId[0] : queryId;
-  const token = Array.isArray(queryToken) ? queryToken[0] : queryToken;
+  const { id, token } = router.query as { id: string; token: string };
   const auth = useSelector((state: { auth: IAuthState }) => state.auth);
 
   useEffect(() => {
@@ -76,8 +73,4 @@ const PageNotFound: NextPageWithLayout = (): JSX.Element => {
   );
 };
 
-PageNotFound.getLayout = (page: React.ReactElement) => {
-  return <AuthLayout>{page}</AuthLayout>;
-};
-
-export default withGuest(PageNotFound);
+export default withGuest(Verification);
