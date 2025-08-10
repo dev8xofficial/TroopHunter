@@ -40,5 +40,5 @@ module.exports = {
       version: '^18.3.1'
     }
   },
-  ignorePatterns: ['tailwind.config.cjs', 'next.config.mjs', 'postcss.config.cjs', 'sitemap.js', 'submitToIndexNow.js']
+  ignorePatterns: ['tailwind.config.cjs', 'next.config.mjs', 'postcss.config.cjs', 'sitemap.mjs', 'submitToIndexNow.js']
 };

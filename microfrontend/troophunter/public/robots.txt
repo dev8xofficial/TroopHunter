@@ -3,7 +3,6 @@ Allow: /
 Allow: /signin
 Allow: /signup
 Allow: /forgot-password
-Allow: /assets/
 Disallow: /lead
 Disallow: /leads
 Disallow: /settings/
