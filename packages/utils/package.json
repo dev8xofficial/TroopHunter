@@ -5,18 +5,34 @@
   "description": "This repository is a shared resource among microservices.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "local": {
+        "types": "./src/index.ts",
+        "import": "./src/index.ts",
+        "require": "./src/index.ts"
+      }
+    }
+  },
   "files": [
     "dist/**"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "node build.config.js && tsc",
     "clean": "rm -rf dist",
     "dev": "tsc -w",
     "lint": "eslint \"src/**/*.ts*\" --max-warnings 0",
-    "test": "jest"
+    "test": "jest",
+    "prebuild": "npm run clean",
+    "postbuild": "npm run type-check",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "csv-parser": "^3.0.0",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "google-libphonenumber": "^3.2.32",
     "jsonwebtoken": "^9.0.0",

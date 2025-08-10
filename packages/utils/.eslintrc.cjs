@@ -20,4 +20,5 @@ module.exports = {
       },
     },
   },
+  ignorePatterns: ['build.config.js'],
 };

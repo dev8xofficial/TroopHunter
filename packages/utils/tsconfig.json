@@ -4,8 +4,18 @@
     "outDir": "dist",
     "rootDir": "src",
     "declaration": true,
-    "types": ["jest", "node"]
+    "declarationMap": true,
+    "sourceMap": true,
+    "types": ["jest", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@repo/utils": ["src/index.ts"],
+      "@repo/utils/*": ["src/*"]
+    },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
-  "include": ["src", ".eslintrc.cjs"],
-  "exclude": ["node_modules"]
+  "include": ["src", ".eslintrc.cjs", "@types", "**/*.d.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
 }

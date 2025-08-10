@@ -5,6 +5,18 @@
   "description": "This repository is a shared resource among backend and crm.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "local": {
+        "types": "./src/index.ts",
+        "import": "./src/index.ts",
+        "require": "./src/index.ts"
+      }
+    }
+  },
   "files": [
     "dist/**"
   ],
@@ -20,11 +32,14 @@
     "url": "git@helloabdul:helloabdul/troophunter.git"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "node build.config.js && tsc",
     "clean": "rm -rf dist",
     "dev": "tsc -w",
     "lint": "eslint \"src/**/*.ts*\" --max-warnings 0",
     "test": "jest",
+    "prebuild": "npm run clean",
+    "postbuild": "npm run type-check",
+    "type-check": "tsc --noEmit",
     "generate-interfaces": "ts-node src/utils/convertZodToTypescript.ts"
   },
   "dependencies": {
