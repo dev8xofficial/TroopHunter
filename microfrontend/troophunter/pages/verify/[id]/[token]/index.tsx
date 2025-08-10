@@ -11,7 +11,7 @@ import { authVerifyUserAction } from '../../../../store/actions/authActions';
 import { type IAuthState } from '../../../../store/reducers/authReducer';
 import type { NextPageWithLayout } from '../../../_app';
 
-const Verification: NextPageWithLayout = (): JSX.Element => {
+const Verify: NextPageWithLayout = (): JSX.Element => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { id, token } = router.query as { id: string; token: string };
@@ -73,4 +73,4 @@ const Verification: NextPageWithLayout = (): JSX.Element => {
   );
 };
 
-export default withGuest(Verification);
+export default withGuest(Verify);
