@@ -1,7 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, type Middleware } from '@reduxjs/toolkit';
 import { persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
-import { Middleware } from '@reduxjs/toolkit';
 
 import persistedReducer from './persistConfig';
 import rootSaga from './rootSaga';
