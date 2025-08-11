@@ -6,7 +6,6 @@
     "declaration": true,
     "typeRoots": ["./node_modules/@types", "./@types", "./**/@types"],
     "sourceMap": true,
-    "types": ["node"],
     "baseUrl": ".",
     "paths": {
       "@repo/middlewares": ["src/index.ts"],
