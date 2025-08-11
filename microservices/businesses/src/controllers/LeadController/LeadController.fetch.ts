@@ -9,8 +9,8 @@ import { Business, Lead } from '../../models';
 export const getLeads = async (req: Request, res: Response): Promise<Response> => {
   const { page, limit } = req.query as ParsedQs & IPaginationAttributes;
 
-  const pageNumber = parseInt(String(page)) ?? 1;
-  const limitNumber = parseInt(String(limit)) ?? 10;
+  const pageNumber = isNaN(parseInt(String(page))) ? 1 : parseInt(String(page));
+  const limitNumber = isNaN(parseInt(String(limit))) ? 10 : parseInt(String(limit));
 
   const offset = (pageNumber - 1) * limitNumber;
 
@@ -78,8 +78,8 @@ export const getLeadsByUserId = async (req: Request, res: Response): Promise<Res
   const { userId } = req.params;
   const { page, limit } = req.query as ParsedQs & IPaginationAttributes;
 
-  const pageNumber = parseInt(String(page)) ?? 1;
-  const limitNumber = parseInt(String(limit)) ?? 10;
+  const pageNumber = isNaN(parseInt(String(page))) ? 1 : parseInt(String(page));
+  const limitNumber = isNaN(parseInt(String(limit))) ? 10 : parseInt(String(limit));
 
   const offset = (pageNumber - 1) * limitNumber;
 

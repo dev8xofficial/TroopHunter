@@ -13,7 +13,7 @@ router.use(verifyToken);
 router.delete('/bulk', LeadBulkDeleteRequestValidationMiddleware, deleteLeads);
 router.get('/', PaginationRequestValidationMiddleware, getLeads);
 router.get('/:id', LeadFetchByIdRequestValidationMiddleware, getLeadById);
-router.get('/:userId', LeadsFetchByUserIdRequestValidationMiddleware, getLeadsByUserId);
+router.get('/user/:userId', LeadsFetchByUserIdRequestValidationMiddleware, getLeadsByUserId);
 router.post('/', LeadCreateRequestValidationMiddleware, createLead);
 router.put('/:id', LeadFetchByIdRequestValidationMiddleware, LeadUpdateRequestValidationMiddleware, updateLead);
 router.delete('/:id', LeadFetchByIdRequestValidationMiddleware, deleteLead);

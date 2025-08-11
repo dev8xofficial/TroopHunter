@@ -53,7 +53,7 @@ function* loginSuccessSaga({ payload }: { payload: IAuthLoginSuccessPayload }): 
       yield put(addUserLocallyAction(loginResponse.user));
 
       toast.success(response.message);
-      request.payload.navigate('/lead');
+      void request.payload.navigate('/lead');
 
       // Perform type check using type assertion
       const loginSuccessPayload = response.data;

@@ -6,14 +6,14 @@ interface IGetLeadsByUserId {
   headers?: Record<string, string>;
 }
 
-export const getLeadsByUserId = async ({ userId, headers }: IGetLeadsByUserId): Promise<ApiResponse<ILeadAttributes[] | null>> => {
+export const getLeadsByUserId = async ({ userId, headers }: IGetLeadsByUserId): Promise<ApiResponse<{ totalRecords: number; totalPages: number; leads: ILeadAttributes[] }>> => {
   const options = {
-    url: `/leads/${userId}`,
+    url: `/leads/user/${userId}`,
     method: 'GET' as const,
     headers,
     baseURL: process.env.MAIN_MICROSERVICE_URL ?? '',
   };
 
-  const apiResponse = await apiRequest<ILeadAttributes[]>(options);
+  const apiResponse = await apiRequest<{ totalRecords: number; totalPages: number; leads: ILeadAttributes[] }>(options);
   return apiResponse;
 };

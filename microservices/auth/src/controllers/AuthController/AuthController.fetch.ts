@@ -13,8 +13,6 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { email, password } = req.body as IUserAttributes;
 
-    // Check if the user exists
-    // const user: User | null = await User.findOne({ where: { email }, include: [{ model: Lead }] });
     const userResponse: ApiResponse<IUserAttributes | null> = await getUserByEmail({ email });
     if (userResponse.data == null) {
       logger.error(`User with email ${email} does not exist.`);
@@ -41,9 +39,6 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '30m' });
     const refreshToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET ?? '', { expiresIn: '60m' });
 
-    const leads: ApiResponse<ILeadAttributes[] | null> = await getLeadsByUserId({ userId: user.id });
-    user.Leads = leads.data ?? [];
-
     let userToken: UserToken | null = await UserToken.findOne({ where: { userId: user.id } });
     if (userToken == null) {
       const payload: IUserTokenRequestAttributes = {
@@ -60,6 +55,9 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     }
 
     logger.info(`User with email ${email} logged in successfully.`);
+
+    const leadsResponse: ApiResponse<{ totalRecords: number; totalPages: number; leads: ILeadAttributes[] }> = await getLeadsByUserId({ userId: user.id, headers: { Authorization: `Bearer ${accessToken}` } });
+    user.Leads = leadsResponse.data?.leads ?? [];
 
     const response: ApiResponse<{ user: IUserAttributes | null; accessToken: string; refreshToken: string }> = createApiResponse({ success: true, data: { user, accessToken, refreshToken }, message: getUserMessage(UserMessageKey.LOGGED_IN).message, status: getUserMessage(UserMessageKey.LOGGED_IN).code });
     return res.json(response);
