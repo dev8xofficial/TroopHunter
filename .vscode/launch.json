@@ -104,24 +104,6 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "type": "node",
-      "request": "launch",
-      "name": "Dev8X",
-      "cwd": "${workspaceFolder}/microfrontend/dev8X",
-      "runtimeExecutable": "node",
-      "runtimeArgs": [
-        "--inspect-brk",
-        "${workspaceFolder}/node_modules/next/dist/bin/next",
-        "dev"
-      ],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**"],
-      "env": {
-        "NODE_ENV": "development"
-      }
-    },
-    {
       "name": "TroopHunter",
       "type": "node",
       "request": "launch",
@@ -133,6 +115,20 @@
       "skipFiles": ["<node_internals>/**"],
       "env": {
         "NODE_ENV": "local"
+      }
+    },
+    {
+      "name": "Dev8X",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/microfrontend/dev8X",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--inspect-brk", "${workspaceFolder}/node_modules/next/dist/bin/next", "dev"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development"
       }
     },
     {
