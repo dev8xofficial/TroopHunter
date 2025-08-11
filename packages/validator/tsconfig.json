@@ -9,8 +9,8 @@
     "types": ["jest", "node"],
     "baseUrl": ".",
     "paths": {
-      "@repo/utils": ["src/index.ts"],
-      "@repo/utils/*": ["src/*"]
+      "@repo/validator": ["src/index.ts"],
+      "@repo/validator/*": ["src/*"]
     },
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

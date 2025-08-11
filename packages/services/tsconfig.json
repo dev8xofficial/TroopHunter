@@ -9,8 +9,8 @@
     "types": ["jest", "node"],
     "baseUrl": ".",
     "paths": {
-      "@repo/utils": ["src/index.ts"],
-      "@repo/utils/*": ["src/*"]
+      "@repo/services": ["src/index.ts"],
+      "@repo/services/*": ["src/*"]
     },
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
