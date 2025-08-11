@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { Menu, Transition } from '@headlessui/react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { type IMenuOption, type IMenuProps } from './Menu.interfaces';
 import { classNames } from '../../../utils/helpers';
@@ -22,7 +22,7 @@ const _Menu: React.FC<IMenuProps> = ({ children, options, className = '', menuIt
             {options.map((item: IMenuOption) => (
               <Menu.Item key={item.name}>
                 {({ active }) => (
-                  <Link to={item.href ?? '#'} onClick={item.onClick} className={classNames(active ? 'bg-gray-100 dark:bg-charcoal-300 dark:text-white dark:hover:bg-charcoal-500 dark:hover:text-white' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-white')}>
+                  <Link href={item.href ?? '#'} onClick={item.onClick} className={classNames(active ? 'bg-gray-100 dark:bg-charcoal-300 dark:text-white dark:hover:bg-charcoal-500 dark:hover:text-white' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-white')}>
                     {item.name}
                   </Link>
                 )}
