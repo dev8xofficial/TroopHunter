@@ -7,6 +7,7 @@ import styles from './../../Data display/OpenRolesList/index.module.css';
 export const INTERNSHIP_ROLES: RoleProject[] = [
   /**
    * Sequence of Roles by Departments
+   *  - Graphic Designer
    *  - UI/UX Design
    *  - Flutter Development
    *  - Frontend Development
@@ -17,7 +18,121 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
    *  - Customer Support
    *  - Human Resources
    **/
+  {
+    subTitle: 'OPEN ROLES',
+    title: 'Graphic Designer',
+    type: 'Internship',
+    salary: 'Unpaid',
+    location: 'Remote / Lahore',
+    description: (
+      <div>
+        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+          <p>Start Your Design Career with Dev8X – Remote Graphic Designer Internship Opportunity!</p>
+        </div>
+        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+          <p>Are you passionate about crafting delightful user experiences and elegant user interfaces? Looking to gain hands-on experience in real-world projects that users love?</p>
 
+          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote Graphic Designer internship</caption> where you'll grow, build, and innovate alongside a talented team!
+          </p>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Work on real client projects with full Graphic design cycle experience</li>
+              <li>Enhance your design portfolio with modern web and mobile Graphics</li>
+              <li>Learn how to think like a product Graphic designer and solve real user problems</li>
+              <li>Collaborate closely with developers and leadership in a remote team</li>
+            </ul>
+          </div>
+
+          <div className={ProjectContentStyles['project-content__block-image']}>
+            <div className={ProjectContentStyles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+              <div
+                className="WorkCard_work-card-wrapper__DfwMI"
+                style={
+                  {
+                    '--aspect-x': 1452,
+                    '--aspect-y': 890,
+                    opacity: 1,
+                    transform: 'translateY(0px)'
+                  } as React.CSSProperties
+                }
+              >
+                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/r/graphic-designer-internship-roadmap--6-months" target="_blank">
+                  <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
+                    <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
+                    <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
+                      <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
+                        <img src="/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)" loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+                      </picture>
+                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src="/videos/work/ai/1080.mp4"></video>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Graphic Designer Intern
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+              </li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
+              <li>Design visual assets for social media (LinkedIn posts, carousels, Instagram stories, banners, ads)</li>
+              <li>Create branding materials like logos, icons, style guides, and pitch decks</li>
+              <li>Develop marketing content such as brochures, infographics, and presentations</li>
+              <li>Ensure brand consistency across all visual designs</li>
+              <li>Collaborate with content writers and marketers for campaign creatives</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Tools:</caption> Adobe Photoshop (must), Adobe Illustrator (must), Figma, Canva(must), Crello(must), etc.
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Skills:</caption> Design systems, typography, layout, color theory, branding, marketing, content writing, logo design, social media post design, animations, etc.
+              </li>
+              <li>Good sense of aesthetics and attention to detail</li>
+              <li>A portfolio or Dribbble/Behance link showing past design work</li>
+              <li>Proactive attitude and willingness to learn</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Design for real products, not just concepts</li>
+              <li>Receive 1-on-1 design feedback and mentorship</li>
+              <li>Build a job-ready portfolio and gain confidence in real-world Graphic Designer</li>
+              <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  },
   {
     subTitle: 'OPEN ROLES',
     title: 'UI/UX Designer',

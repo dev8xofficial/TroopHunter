@@ -148,7 +148,7 @@
 
 .custom-icon-list li {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     column-gap: clamp(.875rem, .9259259259vw, 1.16375rem);
     margin: 0 0 clamp(.25rem, .2645502646vw, .3325rem);
     padding: 0
