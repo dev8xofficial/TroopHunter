@@ -40,8 +40,8 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
               <li>Work on real client projects with full Graphic design cycle experience</li>
-              <li>Enhance your design portfolio with modern web and mobile Graphics</li>
-              <li>Learn how to think like a product Graphic designer and solve real user problems</li>
+              <li>Enhance your portfolio with professional digital & print designs</li>
+              <li>Learn how to design social media campaigns & posts for LinkedIn, Instagram, etc.</li>
               <li>Collaborate closely with developers and leadership in a remote team</li>
             </ul>
           </div>
@@ -109,10 +109,10 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Tools:</caption> Adobe Photoshop (must), Adobe Illustrator (must), Figma, Canva(must), Crello(must), etc.
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Tools:</caption> Canva (must), Adobe Photoshop (basic), Illustrator (basic), Figma (bonus)
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Skills:</caption> Design systems, typography, layout, color theory, branding, marketing, content writing, logo design, social media post design, animations, etc.
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Skills:</caption> Basic logo design, branding, social media post design , color theory, typography, content writing etc.
               </li>
               <li>Good sense of aesthetics and attention to detail</li>
               <li>A portfolio or Dribbble/Behance link showing past design work</li>
