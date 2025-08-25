@@ -1,0 +1,48 @@
+services:
+  main-prod:
+    container_name: main-prod
+    image: main-prod:latest
+    build:
+      context: ../../
+      dockerfile: microservices/main/Dockerfile
+      target: production
+    env_file:
+      - ./.env.production
+    ports:
+      - '50000:50000'
+
+  main-stag:
+    container_name: main-stag
+    image: main-stag:latest
+    build:
+      context: ../../
+      dockerfile: microservices/main/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.staging
+    ports:
+      - '50001:50001'
+
+  main-dev:
+    container_name: main-dev
+    image: main-dev:latest
+    build:
+      context: ../../
+      dockerfile: microservices/main/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.development
+    ports:
+      - '50002:50002'
+
+  main-loc:
+    container_name: main-loc
+    image: main-loc:latest
+    build:
+      context: ../../
+      dockerfile: microservices/main/Dockerfile
+      target: local
+    env_file:
+      - ./.env.local
+    ports:
+      - '50002:50002'

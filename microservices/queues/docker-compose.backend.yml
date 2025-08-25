@@ -1,0 +1,48 @@
+services:
+  queues-prod:
+    container_name: queues-prod
+    image: queues-prod:latest
+    build:
+      context: ../../
+      dockerfile: microservices/queues/Dockerfile
+      target: production
+    env_file:
+      - ./.env.production
+    ports:
+      - '50012:50012'
+
+  queues-stag:
+    container_name: queues-stag
+    image: queues-stag:latest
+    build:
+      context: ../../
+      dockerfile: microservices/queues/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.staging
+    ports:
+      - '50013:50013'
+
+  queues-dev:
+    container_name: queues-dev
+    image: queues-dev:latest
+    build:
+      context: ../../
+      dockerfile: microservices/queues/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.development
+    ports:
+      - '50014:50014'
+
+  queues-loc:
+    container_name: queues-loc
+    image: queues-loc:latest
+    build:
+      context: ../../
+      dockerfile: microservices/queues/Dockerfile
+      target: local
+    env_file:
+      - ./.env.local
+    ports:
+      - '50014:50014'

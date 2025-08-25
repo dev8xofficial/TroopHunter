@@ -1,0 +1,106 @@
+.button--bg-secondary {
+  --text-color: #fff !important;
+  --icon-color: #b488f1 !important;
+  --background-color: #271f33 !important;
+}
+
+.button--bg-transparent {
+  --text-color: var(--theme-secondary);
+  --icon-color: var(--theme-secondary);
+  --background-color: transparent;
+}
+
+.button-wrapper {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-rendering: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.6666666667em 0.8em;
+  line-height: 1;
+  font-weight: 500;
+  background: var(--background-color, --theme-secondary);
+  color: var(--text-color, #fff);
+  border-radius: 6.25rem;
+  text-decoration: none;
+  white-space: pre;
+  transition:
+    color 0.15s,
+    background 0.15s;
+  cursor: pointer;
+  position: relative;
+}
+
+.button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  inset: -0.3125rem;
+}
+
+.button--icon {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.6666666667em;
+}
+
+.button > .contact-button {
+  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
+  padding: 1em 0.9em;
+  gap: 0.5em;
+}
+
+.button--icon svg {
+  height: 0.9333333333em;
+  width: auto;
+  color: var(--icon-color, --theme-primary);
+  transition: color 0.15s;
+}
+
+.button > .ContactFormModal_contact-button {
+  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
+  padding: 1em 0.9em;
+  gap: 0.5em;
+}
+
+.button--bg-primary {
+  --text-color: #12032a;
+  --icon-color: #12032a;
+  --icons-color: #85efe3;
+  --background-color: #b488f1;
+}
+
+.button--bg-transparent {
+  --text-color: var(--theme-secondary);
+  --icon-color: var(--theme-secondary);
+  --background-color: transparent;
+}
+
+.button--bg-secondary {
+  --text-color: #fff;
+  --icon-color: var(--theme-primary);
+  --background-color: var(--theme-secondary);
+}
+
+.button--bg-white {
+  --text-color: var(--theme-secondary);
+  --icon-color: var(--theme-secondary);
+  --background-color: #fff;
+}

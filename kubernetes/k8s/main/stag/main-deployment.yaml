@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-stag
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: main-stag
+  template:
+    metadata:
+      labels:
+        app: main-stag
+    spec:
+      containers:
+        - name: main-stag
+          image: 192.168.1.201/main-stag:latest
+          imagePullPolicy: Always
+          command: ["npm", "run", "staging"]
+          ports:
+            - containerPort: 50001
+          env:
+            - name: NODE_ENV
+              value: staging
+            - name: AUTH_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-stag-secret
+                  key: auth
+            - name: BUSINESSES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-stag-secret
+                  key: businesses
+            - name: LEADS_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-stag-secret
+                  key: leads
+            - name: COUNTRIES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-stag-secret
+                  key: countries
+            - name: STATES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-stag-secret
+                  key: states
+            - name: CITIES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-stag-secret
+                  key: cities
+            - name: QUEUES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-stag-secret
+                  key: queues
+            - name: CITY_QUEUES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-stag-secret
+                  key: city-queues
+            - name: USERS_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-stag-secret
+                  key: users
+          volumeMounts:
+            - name: logs
+              mountPath: /microservices/main/logs/
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: main-stag
+spec:
+  selector:
+    app: main-stag
+  ports:
+    - protocol: TCP
+      port: 50001
+      targetPort: 50001

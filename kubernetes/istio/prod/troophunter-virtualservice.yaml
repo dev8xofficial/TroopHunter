@@ -1,0 +1,50 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: troophunter-prod
+spec:
+  hosts:
+    - "troophunter.com"
+    - "www.troophunter.com"
+    - "troophunter.prod"
+  gateways:
+    - istio-system/main-gateway
+  http:
+    - match:
+        - uri:
+            exact: "/"
+        - uri:
+            exact: "/signin"
+        - uri:
+            exact: "/signup"
+        - uri:
+            exact: "/forgot-password"
+        - uri:
+            exact: "/reset-password"
+        - uri:
+            exact: "/verify"
+        - uri:
+            exact: "/lead"
+        - uri:
+            exact: "/leads"
+        - uri:
+            exact: "/settings"
+      route:
+        - destination:
+            host: troophunter-prod
+            port:
+              number: 3000
+    - match:
+        - uri:
+            prefix: "/"
+      route:
+        - destination:
+            host: troophunter-prod
+            port:
+              number: 3000
+      rewrite:
+        uri: "/"
+      headers:
+        response:
+          add:
+            x-frontend-catchall: "true"

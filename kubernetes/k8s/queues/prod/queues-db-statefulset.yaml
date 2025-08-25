@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: queues-db
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: queues-db
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: queues-db
+spec:
+  serviceName: queues-db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queues-db
+  template:
+    metadata:
+      labels:
+        app: queues-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgis/postgis:15-3.4
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: dbname
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: password
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi

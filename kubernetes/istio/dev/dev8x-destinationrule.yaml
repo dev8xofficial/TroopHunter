@@ -1,0 +1,9 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: dev8x-dev
+spec:
+  host: dev8x-dev
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL

@@ -1,28 +1,51 @@
 {
-  "name": "validator",
+  "name": "@repo/validator",
   "version": "1.0.0",
   "private": true,
   "description": "This repository is a shared resource among backend and crm.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "local": {
+        "types": "./src/index.ts",
+        "import": "./src/index.ts",
+        "require": "./src/index.ts"
+      }
+    }
+  },
+  "files": [
+    "dist/**"
+  ],
   "keywords": [],
   "author": "troophunter <contact@helloabdul.com>",
   "license": "ISC",
-  "main": "lib/validator.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
-  "files": [
-    "lib"
-  ],
   "repository": {
     "type": "git",
     "url": "git@helloabdul:helloabdul/troophunter.git"
   },
   "scripts": {
-    "test": "node ./__tests__/validator.test.js"
+    "build": "node build.config.js && tsc",
+    "clean": "rm -rf dist",
+    "dev": "tsc -w",
+    "lint": "eslint \"src/**/*.ts*\" --max-warnings 0",
+    "test": "jest",
+    "prebuild": "npm run clean",
+    "postbuild": "npm run type-check",
+    "type-check": "tsc --noEmit",
+    "generate-interfaces": "ts-node src/utils/convertZodToTypescript.ts"
   },
   "dependencies": {
     "express": "^4.18.2",
+    "@repo/tsconfig-backend": "*",
+    "@repo/eslint-config": "*",
     "zod": "^3.21.4"
   },
   "devDependencies": {

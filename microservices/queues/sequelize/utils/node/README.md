@@ -1,0 +1,1 @@
+This application used to practice, fix and monitor migration code of countries and cities.

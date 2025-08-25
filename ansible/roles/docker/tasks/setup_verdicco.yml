@@ -1,0 +1,2 @@
+- name: Run Verdaccio container
+  command: docker run -d --name verdaccio -p 4873:4873 verdaccio/verdaccio

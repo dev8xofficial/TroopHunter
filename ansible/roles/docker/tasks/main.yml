@@ -2,4 +2,6 @@
 - include_tasks: install_docker.yml
 - include_tasks: install_docker_compose.yml
 - include_tasks: add_user_to_docker_group.yml
-- include_tasks: ../common/tasks/switch_user.yml
+- include_tasks: ../../common/tasks/switch_user.yml
+- include_tasks: setup_docker_registry.yml
+- include_tasks: setup_verdicco.yml

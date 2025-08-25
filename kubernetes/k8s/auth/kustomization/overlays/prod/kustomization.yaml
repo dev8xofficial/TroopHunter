@@ -1,0 +1,18 @@
+resources:
+  - ../../base
+
+patchesStrategicMerge:
+  - deployment-patch.yaml
+
+secretGenerator:
+  - name: main-secret
+    literals:
+      - AUTH_MICROSERVICE_URL=http://auth:50003
+      - BUSINESSES_MICROSERVICE_URL=http://businesses:50009
+      - LEADS_MICROSERVICE_URL=http://businesses:50009
+      - COUNTRIES_MICROSERVICE_URL=http://countries:50006
+      - STATES_MICROSERVICE_URL=http://countries:50006
+      - CITIES_MICROSERVICE_URL=http://countries:50006
+      - QUEUES_MICROSERVICE_URL=http://queues:50012
+      - CITY_QUEUES_MICROSERVICE_URL=http://queues:50012
+      - USERS_MICROSERVICE_URL=http://users:50015

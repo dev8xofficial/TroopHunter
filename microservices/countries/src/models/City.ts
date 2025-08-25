@@ -1,0 +1,76 @@
+import { type ICityAttributes } from '@repo/validator';
+import { DataTypes, Model } from 'sequelize';
+
+import sequelize from '../config/database';
+
+export class City extends Model<ICityAttributes> implements ICityAttributes {
+  public id!: string;
+  public name!: string;
+  public state!: string;
+  public stateCode!: string;
+  public country!: string;
+  public countryCode!: string;
+  public gdpInBillionUsd!: bigint;
+  public year!: number;
+  public longitude!: number;
+  public latitude!: number;
+}
+
+City.init(
+  {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      unique: true,
+    },
+    name: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    state: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+    },
+    stateCode: {
+      type: DataTypes.STRING(5),
+      allowNull: false,
+    },
+    country: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+    },
+    countryCode: {
+      type: DataTypes.STRING(5),
+      allowNull: false,
+    },
+    gdpInBillionUsd: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
+    year: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    longitude: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
+    },
+    latitude: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
+    },
+  },
+  {
+    sequelize,
+    modelName: 'City',
+    indexes: [
+      {
+        unique: true,
+        fields: ['name', 'stateCode', 'countryCode'],
+      },
+    ],
+  },
+);
+
+void City.sync();

@@ -1,0 +1,99 @@
+import { BusinessPhoneMessageKey, getBusinessPhoneMessage } from '@repo/messages';
+import { logger } from '@repo/utils';
+import { type ApiResponse, createApiResponse, type IBusinessPhoneFetchByIdRequestAttributes, type IBusinessPhoneFetchRequestAttributes, type IPaginationAttributes } from '@repo/validator';
+import { type Request, type Response } from 'express';
+import { type ParsedQs } from 'qs';
+import { Op } from 'sequelize';
+
+import { BusinessPhone } from '../../models';
+
+// Get all business phones
+export const getBusinessPhones = async (req: Request, res: Response): Promise<Response> => {
+  const { page, limit } = req.query as ParsedQs & IPaginationAttributes;
+
+  const pageNumber = parseInt(String(page)) ?? 1;
+  const limitNumber = parseInt(String(limit)) ?? 10;
+
+  const offset = (pageNumber - 1) * limitNumber;
+
+  try {
+    const { count, rows: businessPhones } = await BusinessPhone.findAndCountAll({
+      offset,
+      limit: limitNumber,
+    });
+
+    const totalPages = Math.ceil(count / limitNumber);
+
+    logger.info('Successfully retrieved business phones');
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; businessPhones: BusinessPhone[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businessPhones }, message: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONES_RETRIEVED).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONES_RETRIEVED).code });
+    return res.json(response);
+  } catch (error) {
+    logger.error('Error while retrieving business phones:', error);
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONES).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONES).code });
+    return res.json(response);
+  }
+};
+
+// Get business phones by number
+export const getBusinessPhonesByNumber = async (req: Request, res: Response): Promise<Response> => {
+  const { number } = req.query as IBusinessPhoneFetchRequestAttributes;
+  const { page, limit } = req.query as ParsedQs & IPaginationAttributes;
+
+  // Pagination
+  const pageNumber = parseInt(String(page)) ?? 1;
+  const limitNumber = parseInt(String(limit)) ?? 10;
+
+  const offset = (pageNumber - 1) * limitNumber;
+
+  // Where clause
+  const whereClause: Record<string, unknown> = {};
+
+  if (number != null) {
+    whereClause.number = { [Op.iLike]: `%${number}%` };
+  }
+
+  try {
+    const { count, rows: businessPhones } = await BusinessPhone.findAndCountAll({
+      where: whereClause,
+      offset,
+      limit: limitNumber,
+    });
+
+    if (businessPhones.length === 0) {
+      logger.warn(`No business phones found for number: ${number ?? ''}`);
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).code });
+      return res.json(response);
+    }
+
+    const totalPages = Math.ceil(count / limitNumber);
+
+    logger.info(`Successfully retrieved business phones for number: ${number ?? ''}`);
+    const response: ApiResponse<{ totalRecords: number; totalPages: number; businessPhones: BusinessPhone[] }> = createApiResponse({ success: true, data: { totalRecords: count, totalPages, businessPhones }, message: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONES_RETRIEVED).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONES_RETRIEVED).code });
+    return res.json(response);
+  } catch (error) {
+    logger.error('Error while retrieving business phones:', error);
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONES).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONES).code });
+    return res.json(response);
+  }
+};
+
+// Get a business phone by ID
+export const getBusinessPhoneById = async (req: Request, res: Response): Promise<Response> => {
+  const { id } = req.params as IBusinessPhoneFetchByIdRequestAttributes;
+
+  try {
+    const businessPhone = await BusinessPhone.findOne({ where: { id } });
+    if (businessPhone == null) {
+      logger.warn(`Business phone with ID ${id} not found`);
+      const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_NOT_FOUND).code });
+      return res.json(response);
+    }
+    logger.info(`Successfully retrieved business phone with ID ${id}`);
+    const response: ApiResponse<BusinessPhone> = createApiResponse({ success: true, data: businessPhone, message: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_RETRIEVED).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.BUSINESS_PHONE_RETRIEVED).code });
+    return res.json(response);
+  } catch (error) {
+    logger.error(`Error while retrieving business phone with ID ${id}:`, error);
+    const response: ApiResponse<null> = createApiResponse({ error: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONE).message, status: getBusinessPhoneMessage(BusinessPhoneMessageKey.FAILED_TO_RETRIEVE_BUSINESS_PHONE).code });
+    return res.json(response);
+  }
+};

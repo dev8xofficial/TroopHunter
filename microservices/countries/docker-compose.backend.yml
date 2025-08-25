@@ -1,0 +1,48 @@
+services:
+  countries-prod:
+    container_name: countries-prod
+    image: countries-prod:latest
+    build:
+      context: ../../
+      dockerfile: microservices/countries/Dockerfile
+      target: production
+    env_file:
+      - ./.env.production
+    ports:
+      - '50006:50006'
+
+  countries-stag:
+    container_name: countries-stag
+    image: countries-stag:latest
+    build:
+      context: ../../
+      dockerfile: microservices/countries/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.staging
+    ports:
+      - '50007:50007'
+
+  countries-dev:
+    container_name: countries-dev
+    image: countries-dev:latest
+    build:
+      context: ../../
+      dockerfile: microservices/countries/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.development
+    ports:
+      - '50008:50008'
+
+  countries-loc:
+    container_name: countries-loc
+    image: countries-loc:latest
+    build:
+      context: ../../
+      dockerfile: microservices/countries/Dockerfile
+      target: local
+    env_file:
+      - ./.env.local
+    ports:
+      - '50008:50008'

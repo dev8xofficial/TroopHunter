@@ -1,0 +1,21 @@
+- name: Copy Kubernetes manifests to remote
+  copy:
+    src: "/workspace/ansible/kubernetes/k8s/{{ item }}/{{ deploy_env }}/"
+    dest: "/tmp/k8s/{{ item }}/{{ deploy_env }}/"
+  loop:
+    - troophunter
+    - helloabdul
+    - dev8x
+  when: cluster_action == "apply"
+
+- name: "{{ cluster_action | capitalize }} Kubernetes manifests in all microfrontend"
+  command: kubectl {{ cluster_action }} -f /tmp/k8s/{{ item }}/{{ deploy_env }}/ --kubeconfig=/etc/kubernetes/admin.conf
+  loop:
+    - troophunter
+    - helloabdul
+    - dev8x
+  register: delete_output
+  failed_when: >
+    delete_output.rc != 0 and
+    ("NotFound" not in delete_output.stderr)
+  ignore_errors: false

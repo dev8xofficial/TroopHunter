@@ -1,0 +1,126 @@
+.button-wrapper {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-rendering: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none
+}
+
+@media(hover: hover) {
+
+  .button-wrapper:hover .button--bg-secondary,
+  .button-wrapper:hover .button--bg-white {
+    --text-color: var(--theme-secondary);
+    --icon-color: var(--theme-secondary);
+    --background-color: var(--theme-primary)
+  }
+
+  .button-wrapper:hover .button--bg-primary,
+  .button-wrapper:hover .button--bg-transparent {
+    --text-color: #fff;
+    --icon-color: var(--theme-primary);
+    --background-color: var(--theme-secondary)
+  }
+}
+
+.button-wrapper:focus-visible .button--bg-secondary,
+.button-wrapper:focus-visible .button--bg-white {
+  --text-color: var(--theme-secondary);
+  --icon-color: var(--theme-secondary);
+  --background-color: var(--theme-primary)
+}
+
+.button-wrapper:focus-visible .button--bg-primary {
+  --text-color: #fff;
+  --icon-color: var(--theme-primary);
+  --background-color: var(--theme-secondary)
+}
+
+.button-wrapper:focus-visible .button--bg-transparent {
+  --text-color: #fff;
+  --icon-color: var(--theme-primary);
+  --background-color: var(--theme-secondary)
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  padding: .6666666667em .8em;
+  line-height: 1;
+  font-weight: 500;
+  background: var(--background-color, --theme-secondary);
+  color: var(--text-color, #fff);
+  border-radius: 6.25rem;
+  text-decoration: none;
+  white-space: pre;
+  transition: color .15s, background .15s;
+  cursor: pointer;
+  position: relative
+}
+
+.button--bg-secondary {
+  --text-color: #fff;
+  --icon-color: var(--theme-primary);
+  --background-color: var(--theme-secondary)
+}
+
+.button--bg-white {
+  --text-color: var(--theme-secondary);
+  --icon-color: var(--theme-secondary);
+  --background-color: #fff
+}
+
+.button--bg-primary {
+  --text-color: var(--theme-secondary);
+  --icon-color: var(--theme-secondary);
+  --background-color: var(--theme-primary)
+}
+
+.button--bg-transparent {
+  --text-color: var(--theme-secondary);
+  --icon-color: var(--theme-secondary);
+  --background-color: transparent
+}
+
+:disabled .button {
+  --text-color: rgba(0, 0, 0, .5) !important;
+  --icon-color: rgba(0, 0, 0, .5) !important;
+  --background-color: rgba(0, 0, 0, .1) !important;
+  cursor: normal
+}
+
+.button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  inset: -.3125rem
+}
+
+.button--icon {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .6666666667em
+}
+
+.button--icon svg {
+  height: .9333333333em;
+  width: auto;
+  color: var(--icon-color, --theme-primary);
+  transition: color .15s
+}
+
+.angled {
+  transform: rotate(-45deg)
+}
