@@ -1,7 +1,0 @@
----
-- name: Install IIS Web Server
-  import_tasks: install_iis.yml
-
-- name: Configure IIS website
-  import_tasks: configure_site.yml
-  when: site_name is defined and site_port is defined and local_site_path is defined

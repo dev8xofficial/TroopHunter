@@ -1,0 +1,19 @@
+---
+- name: Ensure the destination directory exists
+  file:
+    path: "/home/{{ user }}/{{ project_name }}/{{ deploy_env }}/"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0755'
+
+- name: Copy scraper files from scraper into host scraper.
+  copy:
+    src: "{{ env_path }}/{{ project_name }}/"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/
+  become: true
+
+- name: Change ownership of the copied files and directories
+  become: true
+  become_user: root
+  command: chown -R {{ user }}:{{ user }} /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/

@@ -1,5 +1,0 @@
-- name: Switch to the ubuntu-server user
-  user:
-    name: "{{ USER }}"
-    state: present
-  become: true

@@ -4,6 +4,8 @@ metadata:
   name: main-prod
 spec:
   hosts:
+    - "troophunter.com"
+    - "www.troophunter.com"
     - "troophunter.prod"
   gateways:
     - istio-system/main-gateway

@@ -1,0 +1,56 @@
+# Resource profiles optimized for your cluster (4 cores, 8GB RAM total)
+resources:
+  profiles:
+    # For lightweight services (sidecars, utilities)
+    tiny:
+      requests:
+        cpu: "50m"
+        memory: "64Mi"
+      limits:
+        cpu: "100m"
+        memory: "128Mi"
+    
+    # For microservices (NodeJS Express)
+    small:
+      requests:
+        cpu: "150m"
+        memory: "256Mi"
+      limits:
+        cpu: "300m"
+        memory: "512Mi"
+    
+    # For main API gateway and critical services
+    medium:
+      requests:
+        cpu: "250m"
+        memory: "384Mi"
+      limits:
+        cpu: "500m"
+        memory: "768Mi"
+    
+    # For databases (PostgreSQL)
+    db:
+      requests:
+        cpu: "300m"
+        memory: "512Mi"
+      limits:
+        cpu: "600m"
+        memory: "1Gi"
+    
+    # For NextJS frontend applications
+    frontend:
+      requests:
+        cpu: "200m"
+        memory: "384Mi"
+      limits:
+        cpu: "400m"
+        memory: "768Mi"
+    
+    # For resource-intensive operations (scraping, processing)
+    large:
+      requests:
+        cpu: "400m"
+        memory: "512Mi"
+      limits:
+        cpu: "800m"
+        memory: "1Gi"

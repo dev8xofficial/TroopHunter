@@ -1,3 +1,0 @@
----
-- name: Move into the TroopHunter directory and run npm run start:microservices
-  command: bash -c "cd /home/{{ USER }}/{{ PROJECT_NAME }}/{{ ENVIRONMENT }}/ && source /home/{{ USER }}/.nvm/nvm.sh && nohup npm run start:microservices > dev.log 2>&1 &"

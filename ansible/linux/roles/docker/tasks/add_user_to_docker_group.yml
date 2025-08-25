@@ -1,6 +1,0 @@
----
-- name: Add user to docker group and switch to user
-  become: true
-  become_user: root
-  command: "usermod -aG docker {{ USER }}"
-  register: usermod_result

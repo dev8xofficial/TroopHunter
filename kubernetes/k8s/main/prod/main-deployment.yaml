@@ -14,12 +14,14 @@ spec:
     spec:
       containers:
         - name: main-prod
-          image: main-prod:latest
-          imagePullPolicy: IfNotPresent
+          image: 192.168.1.201/main-prod:latest
+          imagePullPolicy: Always
           command: ["npm", "run", "production"]
           ports:
             - containerPort: 50000
           env:
+            - name: NODE_ENV
+              value: production
             - name: AUTH_MICROSERVICE_URL
               valueFrom:
                 secretKeyRef:
@@ -68,6 +70,13 @@ spec:
           volumeMounts:
             - name: logs
               mountPath: /microservices/main/logs/
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
       volumes:
         - name: logs
           emptyDir: {}

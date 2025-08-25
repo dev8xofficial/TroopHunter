@@ -1,8 +1,68 @@
-.git
-.vscode
-node_modules
-.env
-.gitignore
-.prettierrc
-cmd.txt
-scraper
+# Ignore everything by default
+*
+# Allow essential root-level files
+!.npmrc
+!package-lock.json
+!package.json
+!turbo.json
+
+# Allow packages structure
+!packages/*/hooks
+!packages/*/src
+!packages/*/store
+!packages/*/utils
+!packages/*/@types
+!packages/*/.eslintrc.base.cjs
+!packages/*/.eslintrc.cjs
+!packages/*/.prettierrc
+!packages/*/index.ts
+!packages/*/package.json
+!packages/*/tsconfig.json
+!packages/*/build.config.js
+
+# Allow microfrontend structure based on actual hierarchy
+!microfrontend/*/components
+!microfrontend/*/layout
+!microfrontend/*/middleware
+!microfrontend/*/pages
+!microfrontend/*/services
+!microfrontend/*/store
+!microfrontend/*/styles
+!microfrontend/*/types
+!microfrontend/*/utils
+!microfrontend/*/data
+!microfrontend/*/hooks
+!microfrontend/*/scripts
+!microfrontend/*/public
+
+# Allow microfrontend config & environment files
+!microfrontend/*/.env.development
+!microfrontend/*/.env.production
+!microfrontend/*/.env.staging
+!microfrontend/*/.eslintignore
+!microfrontend/*/.eslintrc.cjs
+!microfrontend/*/.prettierignore
+!microfrontend/*/.prettierrc
+!microfrontend/*/next-env.d.ts
+!microfrontend/*/next.config.js
+!microfrontend/*/next.config.mjs
+!microfrontend/*/package.json
+!microfrontend/*/postcss.config.js
+!microfrontend/*/postcss.config.mjs
+!microfrontend/*/robots.txt
+!microfrontend/*/tailwind.config.js
+!microfrontend/*/tailwind.config.ts
+!microfrontend/*/tsconfig.json
+
+# Allow microservices structure
+!microservices/*/sequelize
+!microservices/*/src
+!microservices/*/.env.development
+!microservices/*/.env.production
+!microservices/*/.env.staging
+!microservices/*/.eslintrc.cjs
+!microservices/*/.prettierrc
+!microservices/*/.sequelizerc
+!microservices/*/entrypoint.sh
+!microservices/*/package.json
+!microservices/*/tsconfig.json

@@ -1,5 +1,0 @@
----
-# roles/github/tasks/main.yml
-
-- name: Clone or update Git repository on Windows
-  import_tasks: clone_git_repo_windows.yml

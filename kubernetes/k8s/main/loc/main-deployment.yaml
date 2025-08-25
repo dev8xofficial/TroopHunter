@@ -14,12 +14,14 @@ spec:
     spec:
       containers:
         - name: main-loc
-          image: main-loc:latest
-          imagePullPolicy: IfNotPresent
-          command: ["npm", "run", "development"]
+          image: 192.168.1.201/main-loc:latest
+          imagePullPolicy: Always
+          command: ["npm", "run", "local"]
           ports:
             - containerPort: 50002
           env:
+            - name: NODE_ENV
+              value: local
             - name: AUTH_MICROSERVICE_URL
               valueFrom:
                 secretKeyRef:
@@ -68,19 +70,16 @@ spec:
           volumeMounts:
             - name: logs
               mountPath: /app/microservices/main/logs/
-            # - name: main-src
-            #   mountPath: /app/microservices/main
-            # - name: node-modules
-            #   mountPath: /app/microservices/main/node_modules
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
       volumes:
         - name: logs
           emptyDir: {}
-        # - name: main-src
-        #   hostPath:
-        #     path: /Users/abdulrehman/Workstation/hellobadul/microservices/TroopHunterNew/microservices/main
-        #     type: Directory
-        # - name: node-modules
-        #   emptyDir: {}
 ---
 apiVersion: v1
 kind: Service

@@ -17,13 +17,13 @@ export * from './src/Surfaces/ExpertiseCard/ExpertiseCard';
 export * from './src/Surfaces/CaseStudySidebar/CaseStudySidebar';
 export * from './src/Surfaces/ProjectContents/ProjectContents';
 export * from './src/Surfaces/TestimonialSlider/TestimonialSlider';
-// export * from './src/Surfaces/FeedSilder/FeedSilder
+// export * from './Surfaces/FeedSilder/FeedSilder
 export * from './src/Surfaces/CareerContents/CareerContents';
 export * from './src/Surfaces/CareerStudySidebar/CareerStudySidebar';
 export * from './src/Surfaces/PricingContents/PricingContents';
 export * from './src/Surfaces/PricingStudySidebar/PricingStudySidebar';
 export * from './src/Surfaces/PricingCategories/PricingCategories';
-export * from './src/Surfaces/WhyDev8x/WhyDev8X';
+export * from './src/Surfaces/WhyDev8X/WhyDev8X';
 export * from './src/Surfaces/Footer/Footer';
 export * from './src/Surfaces/Hero/Hero';
 

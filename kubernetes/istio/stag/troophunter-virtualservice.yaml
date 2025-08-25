@@ -1,0 +1,48 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: troophunter-stag
+spec:
+  hosts:
+    - "troophunter.stag"
+  gateways:
+    - istio-system/main-gateway
+  http:
+    - match:
+        - uri:
+            exact: "/"
+        - uri:
+            exact: "/signin"
+        - uri:
+            exact: "/signup"
+        - uri:
+            exact: "/forgot-password"
+        - uri:
+            exact: "/reset-password"
+        - uri:
+            exact: "/verify"
+        - uri:
+            exact: "/lead"
+        - uri:
+            exact: "/leads"
+        - uri:
+            exact: "/settings"
+      route:
+        - destination:
+            host: troophunter-stag
+            port:
+              number: 3001
+    - match:
+        - uri:
+            prefix: "/"
+      route:
+        - destination:
+            host: troophunter-stag
+            port:
+              number: 3001
+      rewrite:
+        uri: "/"
+      headers:
+        response:
+          add:
+            x-frontend-catchall: "true"

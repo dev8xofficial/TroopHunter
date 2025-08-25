@@ -1,3 +1,0 @@
----
-- include_tasks: install_istio.yml
-# - include_tasks: metallab.yml

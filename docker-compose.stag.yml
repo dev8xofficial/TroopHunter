@@ -5,11 +5,6 @@ services:
   #     file: docker-compose.ci.yml
   #     service: ci_stag
 
-  # pgadmin_stag:
-  #   extends:
-  #     file: docker-compose.pgadmin.yml
-  #     service: pgadmin_stag
-
   main-stag:
     extends:
       file: ./microservices/main/docker-compose.backend.yml
@@ -40,15 +35,20 @@ services:
       file: ./microservices/users/docker-compose.backend.yml
       service: users-stag
 
-  troophunter-landing-prod:
+  troophunter-stag:
     extends:
-      file: ./microfrontend/troophunter-landing/docker-compose.troophunter.yml
-      service: troophunter-landing-prod
+      file: ./microfrontend/troophunter/docker-compose.troophunter.yml
+      service: troophunter-stag
 
-  # cloudflare-stag:
-  #   extends:
-  #     file: docker-compose.cloudflare.yml
-  #     service: cloudflare-stag
+  dev8x-stag:
+    extends:
+      file: ./microfrontend/dev8x/docker-compose.dev8x.yml
+      service: dev8x-stag
+
+  helloabdul-stag:
+    extends:
+      file: ./microfrontend/helloabdul/docker-compose.helloabdul.yml
+      service: helloabdul-stag
 
 volumes:
   pgadmin-data:

@@ -1,5 +1,4 @@
 # ✅ Provider config
-
 provider "proxmox" {
   pm_api_url          = var.pm_api_url
   pm_user             = var.pm_user

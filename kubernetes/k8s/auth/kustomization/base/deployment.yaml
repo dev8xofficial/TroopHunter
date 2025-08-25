@@ -19,7 +19,7 @@ spec:
       containers:
         - name: auth
           image: auth:latest  # overridden in overlays
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           command: ["/bin/bash", "/app/microservices/auth/entrypoint.sh"]
           ports:
             - containerPort: 50003  # overridden in overlays

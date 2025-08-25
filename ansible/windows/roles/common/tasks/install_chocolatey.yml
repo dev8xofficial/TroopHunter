@@ -1,6 +1,0 @@
-# roles/common/tasks/install_chocolatey.yml
----
-- name: Ensure Chocolatey is installed
-  win_chocolatey:
-    name: chocolatey
-    state: present

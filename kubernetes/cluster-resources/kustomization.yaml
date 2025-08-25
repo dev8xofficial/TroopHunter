@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: cluster-resources
+
+resources:
+  - namespace-quota.yaml
+  - default-limitrange.yaml
+  - resource-profiles.yaml
+  - istio-sidecar-injector.yaml
+  - autoscaling.yaml
+
+commonLabels:
+  app.kubernetes.io/component: cluster-resources
+  app.kubernetes.io/part-of: troophunter

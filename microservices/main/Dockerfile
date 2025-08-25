@@ -19,13 +19,15 @@ RUN npm install --workspaces --include-workspace-root
 # Copy source code
 COPY microservices/main ./microservices/main
 
-# ---- Local Development Stage ----
+# ---- Local (dev) ----
 FROM base as local
 
-WORKDIR /app/microservices/main
+WORKDIR /app
 
-# ---- Builder Stage (for building/staging) ----
+# ---- Builder (for all builds) ----
 FROM base as builder
+
+RUN npm run build:packages
 
 WORKDIR /app/microservices/main
 
@@ -47,7 +49,3 @@ COPY --from=builder /app/turbo.json /app/
 
 # Remove devDependencies
 RUN npm prune --omit=dev
-
-# Default command for production
-# CMD ["npm", "start"]
-

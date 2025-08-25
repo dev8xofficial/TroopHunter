@@ -14,12 +14,14 @@ spec:
     spec:
       containers:
         - name: main-stag
-          image: main-stag:latest
-          imagePullPolicy: IfNotPresent
+          image: 192.168.1.201/main-stag:latest
+          imagePullPolicy: Always
           command: ["npm", "run", "staging"]
           ports:
             - containerPort: 50001
           env:
+            - name: NODE_ENV
+              value: staging
             - name: AUTH_MICROSERVICE_URL
               valueFrom:
                 secretKeyRef:
@@ -68,6 +70,13 @@ spec:
           volumeMounts:
             - name: logs
               mountPath: /microservices/main/logs/
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
       volumes:
         - name: logs
           emptyDir: {}

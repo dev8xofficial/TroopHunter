@@ -5,11 +5,6 @@ services:
   #     file: docker-compose.ci.yml
   #     service: ci_prod
 
-  # pgadmin_prod:
-  #   extends:
-  #     file: docker-compose.pgadmin.yml
-  #     service: pgadmin_prod
-
   main-prod:
     extends:
       file: ./microservices/main/docker-compose.backend.yml
@@ -40,15 +35,20 @@ services:
       file: ./microservices/users/docker-compose.backend.yml
       service: users-prod
 
-  troophunter-landing-prod:
+  troophunter-prod:
     extends:
-      file: ./microfrontend/troophunter-landing/docker-compose.troophunter.yml
-      service: troophunter-landing-prod
+      file: ./microfrontend/troophunter/docker-compose.troophunter.yml
+      service: troophunter-prod
 
-  # cloudflare-prod:
-  #   extends:
-  #     file: docker-compose.cloudflare.yml
-  #     service: cloudflare-prod
+  dev8x-prod:
+    extends:
+      file: ./microfrontend/dev8x/docker-compose.dev8x.yml
+      service: dev8x-prod
+
+  helloabdul-prod:
+    extends:
+      file: ./microfrontend/helloabdul/docker-compose.helloabdul.yml
+      service: helloabdul-prod
 
 volumes:
   pgadmin-data:

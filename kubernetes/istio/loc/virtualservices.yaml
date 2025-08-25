@@ -4,7 +4,7 @@ metadata:
   name: main-loc
 spec:
   hosts:
-    - "troophunter.local"
+    - "troophunter.loc"
   gateways:
     - istio-system/main-gateway
   http:

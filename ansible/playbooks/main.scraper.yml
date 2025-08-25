@@ -1,0 +1,19 @@
+---
+- hosts: scraper
+  become: true
+  become_method: sudo
+  become_user: root
+  vars_files:
+    - /ansible/secrets/github_token
+  vars:
+    user: ubuntu-server
+    git_repo: "https://{{ github_token }}@github.com/helloabdul/TroopHunterNew.git"
+    git_branch: main
+    project_name: TroopHunter
+    deploy_env: prod
+    env_path: "/workspace/ansible/secrets"
+  gather_facts: true
+  roles:
+    # - common
+    - github
+    - scraper

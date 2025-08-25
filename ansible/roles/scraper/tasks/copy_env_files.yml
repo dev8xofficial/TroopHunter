@@ -1,0 +1,5 @@
+---
+- name: Copy .env file from scraper into host scraper.
+  copy:
+    src: "{{ env_path }}/scraper/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/scraper/.env

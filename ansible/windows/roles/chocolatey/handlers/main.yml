@@ -1,9 +1,0 @@
-# roles/chocolatey/handlers/main.yml
-
----
-# Handlers triggered after installing or updating packages
-- name: Refresh environment variables
-  win_shell: |
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine")
-    Write-Host "PATH refreshed"
-  listen: refresh environment

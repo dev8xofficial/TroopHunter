@@ -16,14 +16,23 @@ spec:
         - name: wait-for-db
           image: busybox
           command: ['sh', '-c', 'until nc -z businesses-db 5432; do echo waiting for db; sleep 2; done;']
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "32Mi"
+            limits:
+              cpu: "50m"
+              memory: "64Mi"
       containers:
         - name: businesses-loc
-          image: businesses-loc:latest
-          imagePullPolicy: IfNotPresent
+          image: 192.168.1.201/businesses-loc:latest
+          imagePullPolicy: Always
           command: ["/bin/bash", "/app/microservices/businesses/entrypoint.sh"]
           ports:
             - containerPort: 50011
           env:
+            - name: NODE_ENV
+              value: local
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
@@ -52,6 +61,13 @@ spec:
           volumeMounts:
             - name: logs
               mountPath: /microservices/businesses/logs
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
       volumes:
         - name: logs
           emptyDir: {}

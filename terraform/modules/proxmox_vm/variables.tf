@@ -20,6 +20,16 @@ variable "target_node" {
   type = string
 }
 
+variable "base_coid" {
+  type    = number
+  default = 8000
+}
+
+variable "base_drid" {
+  type    = number
+  default = 8001
+}
+
 variable "base_vmid" {
   type    = number
   default = 9000

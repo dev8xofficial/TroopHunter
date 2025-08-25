@@ -16,14 +16,23 @@ spec:
         - name: wait-for-db
           image: busybox
           command: ['sh', '-c', 'until nc -z auth-db 5432; do echo waiting for db; sleep 2; done;']
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "32Mi"
+            limits:
+              cpu: "50m"
+              memory: "64Mi"
       containers:
         - name: auth-loc
-          image: auth-loc:latest
-          imagePullPolicy: IfNotPresent
+          image: 192.168.1.201/auth-loc:latest
+          imagePullPolicy: Always
           command: ["/bin/bash", "/app/microservices/auth/entrypoint.sh"]
           ports:
             - containerPort: 50005
           env:
+            - name: NODE_ENV
+              value: local
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
@@ -52,6 +61,13 @@ spec:
           volumeMounts:
             - name: logs
               mountPath: /microservices/auth/logs
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
       volumes:
         - name: logs
           emptyDir: {}

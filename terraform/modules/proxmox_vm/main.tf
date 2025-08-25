@@ -59,4 +59,12 @@ resource "proxmox_vm_qemu" "k8s" {
     firewall  = false
     link_down = false
   }
+
+  lifecycle {
+    prevent_destroy = true
+    ignore_changes  = [
+      sshkeys,
+      network,
+    ]
+  }
 }

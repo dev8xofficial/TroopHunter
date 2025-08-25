@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: dev8x-prod
+spec:
+  hosts:
+    - "dev8x.com"
+    - "www.dev8x.com"
+    - "dev8x.prod"
+  gateways:
+    - istio-system/main-gateway
+  http:
+    - match:
+        - uri:
+            prefix: "/"
+      route:
+        - destination:
+            host: dev8x-prod
+            port:
+              number: 3003
+      rewrite:
+        uri: "/"
+      headers:
+        response:
+          add:
+            x-frontend-catchall: "true"

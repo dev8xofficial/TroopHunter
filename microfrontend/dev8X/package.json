@@ -3,18 +3,20 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3003",
-    "build": "next build",
-    "start": "next start -p 3003",
+    "local": "cross-env NODE_ENV=local next dev --turbo -p $PORT",
+    "development": "cross-env NODE_ENV=development next dev --turbo -p $PORT",
+    "staging": "cross-env NODE_ENV=staging next dev --turbo -p $PORT",
+    "production": "cross-env NODE_ENV=production next start",
+    "start": "cross-env NODE_ENV=production next start",
+    "build": "cross-env NODE_ENV=production next build",
     "lint": "next lint",
     "generate:hls": "node scripts/generate-hls.js",
-    "generate:sitemap": "node sitemap.js"
+    "generate:sitemap": "node sitemap.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
     "@repo/components": "*",
-    "@vercel/analytics": "^1.3.1",
     "formidable": "^3.5.4",
     "framer-motion": "^12.9.4",
     "gsap": "^3.12.5",

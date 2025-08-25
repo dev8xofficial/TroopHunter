@@ -1,6 +1,0 @@
----
-# Handlers for Docker-related actions
-- name: Restart Docker
-  win_service:
-    name: docker
-    state: restarted

@@ -12,7 +12,6 @@ import About from './home/About/About';
 import Footer from './home/Footer/Footer';
 import Problems from './home/Problems/Problems';
 import Steps from './home/Steps/Steps';
-import { getHelloabdulPublicUrl } from '../utils/helpers';
 
 type ScrollTriggerCallback = () => void;
 
@@ -160,15 +159,15 @@ export default function Home() {
       <Head>
         <title>Dev8X - Solutions Made Simple!</title>
         <meta name="description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <link rel="canonical" href={`${getHelloabdulPublicUrl()}`} />
+        <link rel="canonical" href="" />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content="Dev8X - Solutions Made Simple!"></meta>
         <meta property="og:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <meta property="og:url" content={`${getHelloabdulPublicUrl()}`}></meta>
+        <meta property="og:url" content=""></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={`${getHelloabdulPublicUrl()}/logo-social.png`}></meta>  
-        <meta property="og:image:secure_url" content={`${getHelloabdulPublicUrl()}/logo-social.png`}></meta>
+        <meta property="og:image" content="/logo-social.png"></meta>  
+        <meta property="og:image:secure_url" content="/logo-social.png"></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -176,7 +175,7 @@ export default function Home() {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content="Dev8X - Solutions Made Simple!"></meta>
         <meta name="twitter:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <meta name="twitter:image" content={`${getHelloabdulPublicUrl()}/logo-social.png`}></meta>
+        <meta name="twitter:image" content="/logo-social.png"></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       {/* Main container with smooth-scrollbar */}

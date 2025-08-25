@@ -8,10 +8,9 @@ services:
       target: production
     env_file:
       - ./.env.production
-    environment:
-      - NODE_ENV=production
     ports:
       - '50009:50009'
+    command: ['npm', 'run', 'production']
 
   businesses-stag:
     container_name: businesses-stag
@@ -22,8 +21,6 @@ services:
       target: builder
     env_file:
       - ./.env.staging
-    environment:
-      - NODE_ENV=staging
     ports:
       - '50010:50010'
 
@@ -36,8 +33,6 @@ services:
       target: builder
     env_file:
       - ./.env.development
-    environment:
-      - NODE_ENV=development
     ports:
       - '50011:50011'
 
@@ -49,12 +44,6 @@ services:
       dockerfile: microservices/businesses/Dockerfile
       target: local
     env_file:
-      - ./.env.development
-    environment:
-      - NODE_ENV=development
+      - ./.env.local
     ports:
       - '50011:50011'
-    volumes:
-      - ../../microservices/businesses:/app/microservices/businesses
-      - /app/microservices/businesses/node_modules
-    command: ['npm', 'run', 'development']

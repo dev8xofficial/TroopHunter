@@ -1,9 +1,0 @@
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: troophunter-landing-prod
-spec:
-  host: troophunter-landing-prod
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL

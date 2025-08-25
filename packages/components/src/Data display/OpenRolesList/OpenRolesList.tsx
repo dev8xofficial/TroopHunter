@@ -1,6 +1,6 @@
 import React from 'react';
 import { atom, useSetAtom } from 'jotai';
-import { toggleSmoothModalAtom } from '../../../../..//microfrontend/dev8X/store/smoothModalAtom';
+import { toggleSmoothModalAtom } from '../../../../../microfrontend/dev8x/store/smoothModalAtom';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Button } from '../../Input/Button/Button';
 import RightArrowIcon from '../../Icons/RightArrow';
@@ -165,13 +165,13 @@ export const OpenRolesList: React.FC = () => {
                     <span>{role.type}</span>
                     <span>
                       <svg width="11" height="auto" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M38.8737 0.00621275H31.1263V25.6217L13.0221 7.51132L7.54238 12.991L25.6839 31.1263H0V38.8737H25.6776L7.54238 57.009L13.0221 62.4887L31.1201 44.3907V70H38.8675V44.3286L57.0276 62.4887L62.5073 57.009L44.3721 38.8737H70V31.1325H44.3907L62.526 12.9972L57.0462 7.51753L38.8737 25.6901V0.00621275Z" fill="currentColor"></path>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M38.8737 0.00621275H31.1263V25.6217L13.0221 7.51132L7.54238 12.991L25.6839 31.1263H0V38.8737H25.6776L7.54238 57.009L13.0221 62.4887L31.1201 44.3907V70H38.8675V44.3286L57.0276 62.4887L62.5073 57.009L44.3721 38.8737H70V31.1325H44.3907L62.526 12.9972L57.0462 7.51753L38.8737 25.6901V0.00621275Z" fill="currentColor"></path>
                       </svg>
                     </span>
                     <span>{isInternship ? role.salary : role.experience}</span>
                     <span>
                       <svg width="11" height="auto" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M38.8737 0.00621275H31.1263V25.6217L13.0221 7.51132L7.54238 12.991L25.6839 31.1263H0V38.8737H25.6776L7.54238 57.009L13.0221 62.4887L31.1201 44.3907V70H38.8675V44.3286L57.0276 62.4887L62.5073 57.009L44.3721 38.8737H70V31.1325H44.3907L62.526 12.9972L57.0462 7.51753L38.8737 25.6901V0.00621275Z" fill="currentColor"></path>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M38.8737 0.00621275H31.1263V25.6217L13.0221 7.51132L7.54238 12.991L25.6839 31.1263H0V38.8737H25.6776L7.54238 57.009L13.0221 62.4887L31.1201 44.3907V70H38.8675V44.3286L57.0276 62.4887L62.5073 57.009L44.3721 38.8737H70V31.1325H44.3907L62.526 12.9972L57.0462 7.51753L38.8737 25.6901V0.00621275Z" fill="currentColor"></path>
                       </svg>
                     </span>
                     <span>{role.location}</span>

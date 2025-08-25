@@ -1,0 +1,14 @@
+# roles/local-path/tasks/main.yml
+---
+- name: Deploy local-path-provisioner
+  command: >
+    kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+  environment:
+    KUBECONFIG: /home/{{ user }}/.kube/config
+
+- name: Set local-path as default StorageClass
+  command: >
+    kubectl patch storageclass local-path
+    -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+  environment:
+    KUBECONFIG: /home/{{ user }}/.kube/config

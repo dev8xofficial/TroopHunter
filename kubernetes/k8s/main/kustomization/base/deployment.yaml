@@ -15,7 +15,7 @@ spec:
       containers:
         - name: main
           image: main:latest  # overridden in overlays
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           command: ["npm", "run", "start"]  # overridden in overlays
           ports:
             - containerPort: 50000  # overridden in overlays
