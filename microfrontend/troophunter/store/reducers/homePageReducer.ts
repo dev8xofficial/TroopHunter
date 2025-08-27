@@ -68,6 +68,7 @@ const leadPageReducer = createReducer(initialState, (builder) => {
     })
     .addCase(resetHomePageFiltersAction, (state) => {
       state.filters = initialValue;
+      state.businessIds = [];
     })
     .addCase(restoreHomePageFiltersAction, (state, action: PayloadAction<ILeadAttributes>) => {
       const lead = action.payload;
@@ -86,6 +87,7 @@ const leadPageReducer = createReducer(initialState, (builder) => {
         sponsoredAd: { label: 'Sponsored', name: 'sponsoredAd', value: lead.sponsoredAd }
       };
       state.filters = filterValues;
+      state.businessIds = [];
     })
     .addCase(setHomePageLoadingSuccessAction, (state) => {
       state.isLoading = false;
