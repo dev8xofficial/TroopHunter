@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev8x-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev8x-prod
+  template:
+    metadata:
+      labels:
+        app: dev8x-prod
+    spec:
+      containers:
+        - name: dev8x-prod
+          image: 192.168.1.201/dev8x-prod:latest
+          imagePullPolicy: Always
+          command: ["npm", "run", "production"]
+          ports:
+            - containerPort: 3003
+          env:
+            - name: PORT
+              value: "3003"
+          volumeMounts:
+            - name: logs
+              mountPath: /microfrontend/dev8x/logs
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev8x-prod
+spec:
+  selector:
+    app: dev8x-prod
+  ports:
+    - name: dev8x-http
+      protocol: TCP
+      port: 3003
+      targetPort: 3003

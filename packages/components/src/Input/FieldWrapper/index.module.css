@@ -1,0 +1,40 @@
+.field {
+  display: grid;
+  align-items: flex-start;
+}
+
+.field__label {
+  font-weight: 500;
+  font-size: inherit;
+  color: var(--error, var(--theme-secondary));
+}
+
+.field__label--hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px !important;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+}
+
+.field__asterisk {
+  color: #f05644;
+}
+
+.field--error {
+  --error: #d53827;
+}
+
+.field__error {
+  font-size: clamp(0.8125rem, 0.8597883598vw, 1.080625rem);
+  display: grid;
+  color: #f05644;
+  margin-top: 0.5em;
+}
+
+.field__error p {
+  margin: 0.5em 0;
+}

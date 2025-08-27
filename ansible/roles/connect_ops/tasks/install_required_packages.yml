@@ -1,0 +1,11 @@
+---
+- name: Install prerequisites (curl, gnupg)
+  apt:
+    name:
+      - curl
+      - ca-certificates
+      - gnupg
+      - iproute2
+      - iptables
+      - net-tools
+    state: present

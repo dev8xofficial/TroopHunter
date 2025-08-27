@@ -54,3 +54,8 @@
   pip:
     name: docker
     state: present
+
+- name: Install docker module for Python (required for Ansible)
+  pip:
+    name: docker
+    executable: pip3

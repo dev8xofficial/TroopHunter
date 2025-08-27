@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: main-dev
+  template:
+    metadata:
+      labels:
+        app: main-dev
+    spec:
+      containers:
+        - name: main-dev
+          image: 192.168.1.201/main-dev:latest
+          imagePullPolicy: Always
+          command: ["npm", "run", "development"]
+          ports:
+            - containerPort: 50002
+          env:
+            - name: NODE_ENV
+              value: development
+            - name: AUTH_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-dev-secret
+                  key: auth
+            - name: BUSINESSES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-dev-secret
+                  key: businesses
+            - name: LEADS_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-dev-secret
+                  key: leads
+            - name: COUNTRIES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-dev-secret
+                  key: countries
+            - name: STATES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-dev-secret
+                  key: states
+            - name: CITIES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-dev-secret
+                  key: cities
+            - name: QUEUES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-dev-secret
+                  key: queues
+            - name: CITY_QUEUES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-dev-secret
+                  key: city-queues
+            - name: USERS_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-dev-secret
+                  key: users
+          volumeMounts:
+            - name: logs
+              mountPath: /microservices/main/logs/
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: main-dev
+spec:
+  selector:
+    app: main-dev
+  ports:
+    - protocol: TCP
+      port: 50002
+      targetPort: 50002 

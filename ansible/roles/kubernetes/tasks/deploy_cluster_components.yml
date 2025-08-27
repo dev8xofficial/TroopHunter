@@ -1,0 +1,66 @@
+---
+- name: Ensure /tmp/istio directory exists
+  file:
+    path: /tmp/istio
+    state: directory
+    mode: '0755'
+
+- name: Copy Istio ingress service manifest to remote
+  copy:
+    src: "/workspace/ansible/kubernetes/istio/ingressgateway-service.yaml"
+    dest: "/tmp/istio/ingressgateway-service.yaml"
+  when: cluster_action == "apply"
+
+- name: "{{ cluster_action | capitalize }} Istio ingress service"
+  command: kubectl {{ cluster_action }} -f /tmp/istio/ingressgateway-service.yaml --kubeconfig=/etc/kubernetes/admin.conf
+  register: ingress_output
+  failed_when: >
+    ingress_output.rc != 0 and
+    ("NotFound" not in ingress_output.stderr)
+  ignore_errors: false
+
+- name: "{{ cluster_action | capitalize }} temp ingress service manifest"
+  file:
+    path: "/tmp/istio/ingressgateway-service.yaml"
+    state: absent
+  when: cluster_action == "delete"
+
+- name: Copy Istio gateway manifest to remote
+  copy:
+    src: "/workspace/ansible/kubernetes/istio/gateway.yaml"
+    dest: "/tmp/istio/gateway.yaml"
+  when: cluster_action == "apply"
+
+- name: "{{ cluster_action | capitalize }} Istio gateway"
+  command: kubectl {{ cluster_action }} -f /tmp/istio/gateway.yaml --kubeconfig=/etc/kubernetes/admin.conf
+  register: gateway_output
+  failed_when: >
+    gateway_output.rc != 0 and
+    ("NotFound" not in gateway_output.stderr)
+  ignore_errors: false
+
+- name: "{{ cluster_action | capitalize }} temp gateway manifest"
+  file:
+    path: "/tmp/istio/gateway.yaml"
+    state: absent
+  when: cluster_action == "delete"
+
+- name: Copy Istio manifests to remote
+  copy:
+    src: "/workspace/ansible/kubernetes/istio/{{ deploy_env }}/"
+    dest: "/tmp/istio/{{ deploy_env }}/"
+  when: cluster_action == "apply"
+
+- name: "{{ cluster_action | capitalize }} Istio manifests"
+  command: kubectl {{ cluster_action }} -f /tmp/istio/{{ deploy_env }}/ --kubeconfig=/etc/kubernetes/admin.conf
+  register: delete_output
+  failed_when: >
+    delete_output.rc != 0 and
+    ("NotFound" not in delete_output.stderr)
+  ignore_errors: false
+
+- name: "{{ cluster_action | capitalize }} temp Istio manifests file"
+  file:
+    path: "/tmp/istio/{{ deploy_env }}/"
+    state: "{{ k8s_state_map[cluster_action] }}"
+  when: cluster_action == "delete"

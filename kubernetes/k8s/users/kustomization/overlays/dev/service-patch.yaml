@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: users
+  labels:
+    app: users
+    patch: "true"
+spec:
+  selector:
+    app: users
+  ports:
+    - name: http-dev
+      protocol: TCP
+      port: 50017
+      targetPort: 50017

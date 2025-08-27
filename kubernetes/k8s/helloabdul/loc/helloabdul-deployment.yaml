@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloabdul-loc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloabdul-loc
+  template:
+    metadata:
+      labels:
+        app: helloabdul-loc
+    spec:
+      containers:
+        - name: helloabdul-loc
+          image: 192.168.1.201/helloabdul-loc:latest
+          imagePullPolicy: Always
+          command: ["npm", "run", "local"]
+          ports:
+            - containerPort: 3008
+          env:
+            - name: PORT
+              value: "3008"
+          volumeMounts:
+            - name: logs
+              mountPath: /microfrontend/helloabdul/logs
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloabdul-loc
+spec:
+  selector:
+    app: helloabdul-loc
+  ports:
+    - name: landing-http
+      protocol: TCP
+      port: 3008
+      targetPort: 3008

@@ -1,0 +1,168 @@
+import { WorkDetail, WorkGridCard } from '../../Interfaces/Work/WorkProjectTypes';
+
+export const WORK_PROJECTS: WorkDetail[] = [
+  {
+    slug: 'troophunter',
+    title: 'TroopHunter',
+    websiteUrl: 'https://troophunter.com',
+    industry: 'Sales / Lead Generation',
+    shortIntro: 'TroopHunter is a modern lead generation platform empowering businesses to find high-quality prospects without any manual research.',
+    overview: 'With a mission to revolutionize client acquisition, TroopHunter delivers a complete, no-code solution that simplifies lead generation for growing companies. Through automation and intuitive design, businesses can access accurate contact data and instantly connect with potential clients—without the need for marketing expertise or technical skills.',
+    approach: 'From powerful search capabilities to enriched business profiles, TroopHunter combines automation, clean UI, and thoughtful UX to create a seamless prospecting experience. The platform enables users to focus on what matters most: closing deals and scaling impact.',
+    impact: 'Trusted by over 50 growing businesses, TroopHunter continues to redefine how companies generate leads. By putting smart tools into the hands of ambitious teams, it drives measurable growth while saving time, reducing overhead, and eliminating guesswork.',
+    keyContributions: ['B2B Lead Generation Engine', 'Business Data Aggregation & Enrichment', 'User-Centric Dashboard Design', 'Search & Filter Capabilities', 'Automation of Outreach Pipelines'],
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
+    images: ['/api/images/work/troophunter/mobile/7.png', '/api/images/work/troophunter/mobile/8.png', '/api/images/work/troophunter/mobile/9.png', '/api/images/work/troophunter/mobile/10.png'],
+    video: {
+      originalFile: '/videos/work/troophunter/1080.mp4',
+      sequences: ['/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4', '/videos/work/troophunter/1080.mp4']
+    },
+    bgColor: 'blue',
+    path: 'troophunter',
+    testimonial: 'Dev8x are true professionals, masters in their field, with meticulous attention to detail. With our dream website complete, we have an asset that can evolve with us for many years to come. Thank you amazing Dev8x!',
+    testimonialAuthor: 'Abdul Rehman',
+    testimonialAuthorPosition: 'CEO, Dev8X'
+  },
+  {
+    slug: 'totalhealthdentalcare',
+    title: 'Total Health Dental Care',
+    websiteUrl: 'https://www.totalhealthdentalcare.com',
+    industry: 'Healthcare / Dental Services',
+    shortIntro: 'Total Health Dental Care is a pioneering dental care provider delivering patient-centric solutions across the Bay Area.',
+    overview: 'Following an ambitious digital transformation, Total Health Dental Care partnered with Dev8X to create a connected ecosystem of tools and experiences that redefined patient engagement and operational excellence in modern dentistry.',
+    approach: 'From a custom mobile app to powerful backend tools, every element of the platform was designed to enhance accessibility, streamline operations, and elevate the dental care experience for over 15,000 active patients.',
+    impact: 'The result is a future-forward healthcare platform that merges technology with care, enabling Total Health Dental Care to lead with innovation and expand its impact in a competitive market.',
+    keyContributions: ['API Development & Integration', 'Flutter Mobile Features', 'Workflow Automation Scripts', 'Custom CRM Module Development', 'Virtual Consultation Tools'],
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
+    images: ['/api/images/work/totalhealthdentalcare/mobile/7.png', '/api/images/work/totalhealthdentalcare/mobile/8.png', '/api/images/work/totalhealthdentalcare/mobile/9.png', '/api/images/work/totalhealthdentalcare/mobile/10.png'],
+    video: {
+      originalFile: '/videos/work/totalhealthdentalcare.mp4',
+      sequences: ['/videos/work/totalhealthdentalcare/part-01-export.mp4', '/videos/work/totalhealthdentalcare/part-03-export.mp4', '/videos/work/totalhealthdentalcare/part-05-export.mp4', '/videos/work/totalhealthdentalcare/part-02-export.mp4', '/videos/work/totalhealthdentalcare/part-04-export.mp4', '/videos/work/totalhealthdentalcare/part-06-export.mp4']
+    },
+    bgColor: 'cyan',
+    path: 'totalhealthdentalcare',
+    testimonial: "We came to Dev8X with an idea and a massive datasheet. They supported us through every step of the creative process, helping us understand the reasoning behind each decision, and we couldn't be happier with the result.",
+    testimonialAuthor: 'Sepand Hokmabadi',
+    testimonialAuthorPosition: 'CEO, Total Health Dental Care'
+  },
+  {
+    slug: 'scheduler',
+    title: 'Scheduler',
+    websiteUrl: 'https://schedule.totalhealthdentalcare.com',
+    industry: 'Healthcare / Dental Service',
+    shortIntro: 'Scheduler is an intelligent appointment management tool built to simplify and optimize patient booking across Total Health Dental Care’s digital platform.',
+    overview: 'As part of Total Health Dental Care’s integrated ecosystem, Scheduler was developed to address the need for efficient and patient-friendly scheduling. It enables real-time availability, calendar synchronization, and streamlined workflows for both patients and care providers.',
+    approach: 'Built with a focus on automation and user experience, Scheduler allows patients to book, reschedule, or cancel appointments effortlessly while empowering staff with tools to manage high volumes efficiently. The system integrates tightly with backend services and mobile apps to deliver a seamless experience.',
+    impact: 'Scheduler has significantly improved operational efficiency and patient satisfaction by reducing scheduling friction and minimizing no-shows. It plays a crucial role in Total Health Dental Care’s mission to deliver modern, tech-enabled dental care at scale.',
+    keyContributions: ['Smart Booking Engine', 'Calendar Sync & Availability Management', 'Patient Notification System', 'Staff Workflow Automation', 'Integration with Mobile & CRM Tools'],
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
+    images: ['/api/images/work/scheduler/mobile/7.png', '/api/images/work/scheduler/mobile/8.png', '/api/images/work/scheduler/mobile/9.png', '/api/images/work/scheduler/mobile/10.png'],
+    video: {
+      originalFile: '/videos/work/scheduler.mp4',
+      sequences: ['/videos/work/scheduler/part-01-export.mp4', '/videos/work/scheduler/part-02-export.mp4', '/videos/work/scheduler/part-03-export.mp4', '/videos/work/scheduler/part-04-export.mp4']
+    },
+    bgColor: 'blue',
+    path: 'scheduler',
+    testimonial: 'We are more than happy with the finished product and have seen improvements in conversion rate, bounce rate and time on page almost instantly. We would recommend Dev8X to anyone!',
+    testimonialAuthor: 'Sepand Hokmabadi',
+    testimonialAuthorPosition: 'CEO, Total Health Dental Care'
+  },
+  {
+    slug: 'honeydu',
+    title: 'Honeydu',
+    websiteUrl: 'https://www.honeydu.io',
+    industry: 'Fintech',
+    shortIntro: 'Honeydu is a modern invoicing app crafted specifically for freelancers and creators, redefining how independent professionals manage their finances.',
+    overview: 'Conceived to address the shortcomings of traditional tools, Honeydu offers a streamlined mobile-first experience, making invoicing accessible, intuitive, and tailored to the rhythms of creative work.',
+    approach: 'Designed from the ground up with simplicity and usability in mind, the app’s interface emphasizes clarity, while custom workflows remove unnecessary complexity. The result is a lightweight financial companion that lets users focus on what matters most—their craft.',
+    impact: 'With thoughtful engineering, strategic partnerships, and an obsessive attention to design, Honeydu delivers a purpose-built platform that evolves with its users and stands apart in a crowded fintech landscape.',
+    keyContributions: ['Built responsive UI with React', 'Created APIs using Node.js', 'Integrated payment systems', 'Optimized mobile performance', 'Set up CI/CD pipelines'],
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
+    images: [''],
+    video: {
+      originalFile: '/videos/work/honeydu.mp4',
+      sequences: ['/videos/work/honeydu/part-01-export.mp4', '/videos/work/honeydu/part-02-export.mp4', '/videos/work/honeydu/part-04-export.mp4', '/videos/work/honeydu/part-03-export.mp4']
+    },
+    bgColor: 'cyan',
+    path: 'honeydu',
+    testimonial: "Dev8X has elevated the standards of customer service and website delivery and taken it to the next level. Throughout our journey from initial research to concept designs and final website delivery, we have been consistently impressed by their exceptional quality, speed, and professionalism.",
+    testimonialAuthor: 'Devin Picciolini',
+    testimonialAuthorPosition: 'CEO, Coral'
+  },
+  {
+    slug: 'coral',
+    title: 'Coral',
+    websiteUrl: 'https://www.coral.global',
+    industry: 'Consulting & Venture Studio',
+    shortIntro: 'Empowering businesses through strategic digital solutions.',
+    overview: 'Coral is a digital consulting and venture studio partnering with businesses to build a better digital future.',
+    approach: 'The team, which includes former Instagram employees, provides deep expertise in strategy, design, and engineering.',
+    impact: 'By aligning business goals with innovative technology, Coral enables clients to adapt and thrive in the digital age.',
+    keyContributions: ['Digital Strategy & UX', 'Brand-Driven UI Design', 'Interactive Prototyping', 'Agile Web Development', 'Technology Consulting'],
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
+    images: ['/api/images/work/coral/mobile/7.png', '/api/images/work/coral/mobile/8.png', '/api/images/work/coral/mobile/9.png', '/api/images/work/coral/mobile/10.png'],
+    video: {
+      originalFile: '/videos/work/coral.mp4',
+      sequences: ['/videos/work/coral/part-01-export.mp4', '/videos/work/coral/part-02-export.mp4', '/videos/work/coral/part-03-export.mp4', '/videos/work/coral/part-04-export.mp4']
+    },
+    bgColor: 'blue',
+    path: 'coral',
+    testimonial: "Working with Dev8X was seamless from start to finish. Their team truly listened to our needs and delivered a digital solution that exceeded our expectations.",
+    testimonialAuthor: 'Devin Picciolini',
+    testimonialAuthorPosition: 'CEO, Coral'
+  },
+  {
+    slug: 'goldendao',
+    title: 'Golden DAO',
+    websiteUrl: 'https://www.goldendao.xyz',
+    industry: 'Blockchain',
+    shortIntro: 'GoldenDAO is a pioneering community-led initiative championing AAPI empowerment through Web3, created in collaboration with Dev8X and Andrew Yang.',
+    overview: 'In response to a cultural and technological shift, Dev8X partnered with Yang to craft a digital ecosystem that embodied unity, innovation, and representation. GoldenDAO was envisioned as a tactile, immersive platform where identity meets blockchain infrastructure.',
+    approach: 'The user experience was anchored by an NFT-gated interface, enabling exclusive access to events and gatherings while also offering a sense of digital belonging. Dev8X’s role extended beyond design and engineering — shaping community rituals, facilitating in-person activations, and helping establish GoldenDAO as a hub of purpose-driven engagement.',
+    impact: 'The result is a bold and meaningful experience that seamlessly blends real-world connection with blockchain-powered membership, fostering a new era of cultural leadership and solidarity.',
+    keyContributions: ['React & Node.js development', 'Ethereum smart contracts', 'NFT access controls', 'Real-time event features', 'Decentralized app design'],
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
+    images: [''],
+    video: {
+      originalFile: '/videos/work/goldendao.mp4',
+      sequences: ['/videos/work/goldendao/part-01-export.mp4', '/videos/work/goldendao/part-02-export.mp4', '/videos/work/goldendao/part-03-export.mp4', '/videos/work/goldendao/part-04-export.mp4', '/videos/work/goldendao/part-05-export.mp4']
+    },
+    bgColor: 'cyan',
+    path: 'goldendao',
+    testimonial: "Dev8X brought our vision to life with creativity and care. Their dedication and collaborative approach made the entire process enjoyable and rewarding.",
+    testimonialAuthor: 'Andrew Yang',
+    testimonialAuthorPosition: 'CEO, Golden DAO'
+  }
+];
+
+export const WORK_PROJECTS_GRID_DATA: WorkGridCard[] = WORK_PROJECTS.map((item) => {
+  if (item.images.length < 5) {
+    return {
+      variant: 'landscape',
+      space: 'inner',
+      bgColor: item.bgColor,
+      title: item.title,
+      images: item.images,
+      placeholderImage: item.placeholderImage,
+      video: item.video,
+      path: item.path,
+      testimonial: item.testimonial,
+      testimonialAuthor: item.testimonialAuthor,
+      testimonialAuthorPosition: item.testimonialAuthorPosition
+    };
+  } else {
+    return item.images.map((image) => ({
+      variant: 'portrait',
+      space: 'outer',
+      bgColor: item.bgColor,
+      title: item.title,
+      images: item.images,
+      placeholderImage: item.placeholderImage,
+      video: item.video,
+      path: item.path,
+      testimonial: item.testimonial,
+      testimonialAuthor: item.testimonialAuthor,
+      testimonialAuthorPosition: item.testimonialAuthorPosition
+    }));
+  }
+});

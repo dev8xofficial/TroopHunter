@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queues-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queues-prod
+  template:
+    metadata:
+      labels:
+        app: queues-prod
+    spec:
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: ['sh', '-c', 'until nc -z queues-db 5432; do echo waiting for db; sleep 2; done;']
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "32Mi"
+            limits:
+              cpu: "50m"
+              memory: "64Mi"
+      containers:
+        - name: queues-prod
+          image: 192.168.1.201/queues-prod:latest
+          imagePullPolicy: Always
+          command: ["/bin/bash", "/app/microservices/queues/entrypoint.sh"]
+          ports:
+            - containerPort: 50012
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: port
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: queues-db-secret
+                  key: dbname
+          volumeMounts:
+            - name: logs
+              mountPath: /microservices/queues/logs
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: queues-prod
+spec:
+  selector:
+    app: queues-prod
+  ports:
+    - protocol: TCP
+      port: 50012
+      targetPort: 50012

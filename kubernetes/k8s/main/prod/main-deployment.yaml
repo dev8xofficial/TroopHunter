@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: main-prod
+  template:
+    metadata:
+      labels:
+        app: main-prod
+    spec:
+      containers:
+        - name: main-prod
+          image: 192.168.1.201/main-prod:latest
+          imagePullPolicy: Always
+          command: ["npm", "run", "production"]
+          ports:
+            - containerPort: 50000
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: AUTH_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-prod-secret
+                  key: auth
+            - name: BUSINESSES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-prod-secret
+                  key: businesses
+            - name: LEADS_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-prod-secret
+                  key: leads
+            - name: COUNTRIES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-prod-secret
+                  key: countries
+            - name: STATES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-prod-secret
+                  key: states
+            - name: CITIES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-prod-secret
+                  key: cities
+            - name: QUEUES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-prod-secret
+                  key: queues
+            - name: CITY_QUEUES_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-prod-secret
+                  key: city-queues
+            - name: USERS_MICROSERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-prod-secret
+                  key: users
+          volumeMounts:
+            - name: logs
+              mountPath: /microservices/main/logs/
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: main-prod
+spec:
+  selector:
+    app: main-prod
+  ports:
+    - protocol: TCP
+      port: 50000
+      targetPort: 50000 

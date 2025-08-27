@@ -1,0 +1,111 @@
+import React from 'react';
+import Head from 'next/head';
+import { FooterRevealPageWrap, Footer, Header, WorkGrid, ProjectsFormModal, WORK_PROJECTS, ContactFormModal } from '@repo/components';
+import { useProjectModal } from '../../hooks/useProjectModal';
+import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
+import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { useSetAtom } from 'jotai';
+import PageData from '../../data/work/index.d';
+
+import TextAnimateUpStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
+import LayoutStyles from '../../components/Surfaces/Layout/layout.module.css';
+import WorkGridStyles from '../../components/Surfaces/WorkGrid/index.module.css';
+
+const Work: React.FC = (): JSX.Element => {
+  const toggleModal = useSetAtom(toggleSmoothModalAtom);
+  const { modalSlug, openModal } = useProjectModal();
+  const project = WORK_PROJECTS.find((project) => project.path === modalSlug) ?? WORK_PROJECTS[0];
+
+  const getNextWorkProject = (currentSlug: string) => {
+    const currentIndex = WORK_PROJECTS.findIndex((e) => e.slug === currentSlug);
+
+    if (currentIndex === -1) return null;
+
+    const nextIndex = (currentIndex + 1) % WORK_PROJECTS.length;
+    return WORK_PROJECTS[nextIndex];
+  };
+
+  const nextWorkProject = getNextWorkProject(modalSlug);
+
+  return (
+    <>
+      <Head>
+        <title>{PageData.meta.title}</title>
+        <meta name="description" content={PageData.meta.description}></meta>
+        <link rel="canonical" href="/work" />
+
+        {/* Open Graph Tags */}
+        <meta property="og:title" content={PageData.meta.title}></meta>
+        <meta property="og:description" content={PageData.meta.description}></meta>
+        <meta property="og:url" content="/work"></meta>
+        <meta property="og:locale" content="en_US"></meta>
+        <meta property="og:image" content="/logo-social.png"></meta>
+        <meta property="og:image:secure_url" content="/logo-social.png"></meta>
+        <meta property="og:type" content="website"></meta>
+        <meta property="og:site_name" content="Dev8X"></meta>
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image"></meta>
+        <meta name="twitter:title" content={PageData.meta.title}></meta>
+        <meta name="twitter:description" content={PageData.meta.description}></meta>
+        <meta name="twitter:image" content="/logo-social.png"></meta>
+        <meta name="twitter:site" content="@Dev8X"></meta>
+      </Head>
+      <FooterRevealPageWrap variant="frame">
+        <Header />
+        <FooterRevealPageWrap variant="page">
+          <style jsx global>{`
+            :root {
+              --theme-primary: var(--default-primary);
+              --theme-primary-text: var(--default-primary-text);
+              --theme-secondary: var(--default-secondary);
+              --theme-text: var(--default-text);
+              --theme-background: var(--default-tertiary);
+              --theme-logo: var(--default-secondary);
+              --theme-header-face: var(--default-primary);
+            }
+          `}</style>
+          {/* Main container with smooth-scrollbar */}
+          <main className={LayoutStyles['work-page']}>
+            <div className={LayoutStyles['work-header']}>
+              <h1 className={LayoutStyles['work-header__heading']} aria-label="World-class digital products, idea to execution.">
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  World-class{' '}
+                </span>
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  digital{' '}
+                </span>
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  products,{' '}
+                </span>
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  idea{' '}
+                </span>
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  to{' '}
+                </span>
+                <span className={`${TextAnimateUpStyles['word']}`} aria-hidden="true" style={{ display: 'inline-block', whiteSpace: 'pre', transform: 'translate3d(0px, 0%, 0px)', animation: '0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards running TextAnimateUp_mask-down__TzvI8' }}>
+                  execution.
+                </span>
+              </h1>
+            </div>
+            {/* <WorkCategories /> */}
+            <div>
+              <h2 className="hidden">Featured</h2>
+              <WorkGrid workGridCSSClass={WorkGridStyles['work-grid']} openModal={openModal} />
+            </div>
+          </main>
+        </FooterRevealPageWrap>
+        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
+      </FooterRevealPageWrap>
+      <SmoothModalWrapper modalType="project" toggle={() => toggleModal('project')}>
+        {modalSlug && <ProjectsFormModal {...project} nextWorkProject={nextWorkProject} />}
+      </SmoothModalWrapper>
+      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
+        <ContactFormModal />
+      </SmoothModalWrapper>
+    </>
+  );
+};
+
+export default Work;

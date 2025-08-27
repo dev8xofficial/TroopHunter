@@ -1,27 +1,73 @@
 ---
-- hosts: ubuntu
-  # user: ubuntu-server
+- name: Setup Kubernetes
+  hosts: k8s_controller, k8s_workers
   become: true
-  become_method: sudo
-  become_user: root
-  vars_files:
-    - /ansible/secrets/github_token
   vars:
-    USER: ubuntu-server
-    NODE_VERSION: 20.12.2
-    GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/TroopHunter.git"
-    GIT_BRANCH: main
-    PROJECT_NAME: TroopHunter
-    ENVIRONMENT: prod
-    ENV_PATH: "/ansible/secrets"
-    # PROTONVPN_USERNAME: 49bFnqbhzhVjOm5Z
-    # PROTONVPN_PASSWORD: e2yzCr6pKNc1fHXpwvujNalsIatnnrGU
-    # PROTONVPN_SERVER: US-NY#627
-  gather_facts: true
+    user: k8s-ctrlr
+    containerd_package: containerd
+    containerd_package_state: present
+    containerd_service_state: started
+    containerd_service_enabled: true
+    containerd_config_default_write: true
+    containerd_config_cgroup_driver_systemd: true
+    docker_registry_ip: "{{ hostvars[groups['docker'][0]].ansible_host }}"
+    docker_registry_port: "5000"
   roles:
-    # - proton
-    - common
-    - nvm
-    - docker
-    - github
-    - project
+  - common
+  - kubernetes
+
+- name: Initialize Kubernetes cluster
+  hosts: k8s_controller
+  become: true
+  vars:
+    user: k8s-ctrlr
+    secrets_dir: "/workspace/ansible/secrets"
+    kube_home: "/home/{{ ansible_user }}"
+  tasks:
+    - include_tasks: ../roles/kubernetes/tasks/kubernetes_initialize.yml
+
+- name: Join Kubernetes cluster
+  hosts: k8s_workers
+  become: true
+  vars:
+    secrets_dir: "/workspace/ansible/secrets"
+  tasks:
+    - include_tasks: ../roles/kubernetes/tasks/kubernetes_join.yml
+
+- name: Setup/Cleanup Istio
+  hosts: k8s_controller
+  become: true
+  vars:
+    user: "{{ ansible_user }}"
+  tasks:
+    - include_tasks: ../roles/kubernetes/tasks/istio_setup.yml
+    - include_tasks: ../roles/kubernetes/tasks/local-path.yml
+
+- name: "{{ cluster_action | capitalize }} Default Storage and Pods on Kubernetes"
+  hosts: k8s_controller
+  become: true
+  vars:
+    user: "{{ ansible_user }}"
+    deploy_env: prod
+    cluster_action: apply    # Or delete
+    k8s_state_map:
+      apply: present
+      delete: absent
+  tasks:
+    # --- Order for apply ---
+    - block:
+        - include_tasks: ../roles/kubernetes/tasks/cluster_resources.yml
+        - include_tasks: ../roles/kubernetes/tasks/global-configmap.yml
+        - include_tasks: ../roles/kubernetes/tasks/deploy_microservices.yml
+        - include_tasks: ../roles/kubernetes/tasks/deploy_microfrontend.yml
+        - include_tasks: ../roles/kubernetes/tasks/deploy_cluster_components.yml
+      when: cluster_action == "apply"
+
+    # --- Order for delete ---
+    - block:
+        - include_tasks: ../roles/kubernetes/tasks/deploy_microservices.yml
+        - include_tasks: ../roles/kubernetes/tasks/deploy_microfrontend.yml
+        - include_tasks: ../roles/kubernetes/tasks/deploy_cluster_components.yml
+        - include_tasks: ../roles/kubernetes/tasks/global-configmap.yml
+        - include_tasks: ../roles/kubernetes/tasks/cluster_resources.yml
+      when: cluster_action == "delete"

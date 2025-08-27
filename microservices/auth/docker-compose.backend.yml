@@ -1,0 +1,48 @@
+services:
+  auth-prod:
+    container_name: auth-prod
+    image: auth-prod:latest
+    build:
+      context: ../../
+      dockerfile: microservices/auth/Dockerfile
+      target: production
+    env_file:
+      - ./.env.production
+    ports:
+      - '50003:50003'
+
+  auth-stag:
+    container_name: auth-stag
+    image: auth-stag:latest
+    build:
+      context: ../../
+      dockerfile: microservices/auth/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.staging
+    ports:
+      - '50004:50004'
+
+  auth-dev:
+    container_name: auth-dev
+    image: auth-dev:latest
+    build:
+      context: ../../
+      dockerfile: microservices/auth/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.development
+    ports:
+      - '50005:50005'
+
+  auth-loc:
+    container_name: auth-loc
+    image: auth-loc:latest
+    build:
+      context: ../../
+      dockerfile: microservices/auth/Dockerfile
+      target: local
+    env_file:
+      - ./.env.local
+    ports:
+      - '50005:50005'

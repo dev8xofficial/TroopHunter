@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main
+  labels:
+    app: main  # helps uniquely match during patch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: main
+  template:
+    metadata:
+      labels:
+        app: main
+    spec:
+      containers:
+        - name: main
+          image: main-dev:latest
+          imagePullPolicy: Never
+          command: ["npm", "run", "start"]
+          ports:
+            - containerPort: 50002
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "2"
+              memory: "2Gi"
