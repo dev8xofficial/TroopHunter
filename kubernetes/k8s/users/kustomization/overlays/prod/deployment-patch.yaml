@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: main
+          image: main-prod:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 50000
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "2"
+              memory: "2Gi"

@@ -1,0 +1,52 @@
+services:
+  troophunter-prod:
+    container_name: troophunter-prod
+    image: troophunter-prod:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/troophunter/Dockerfile
+      target: production
+    env_file:
+      - ./.env.production
+    ports:
+      - '3000:3000'
+    command: ['npm', 'run', 'production']
+
+  troophunter-stag:
+    container_name: troophunter-stag
+    image: troophunter-stag:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/troophunter/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.staging
+    ports:
+      - '3001:3001'
+    command: ['npm', 'run', 'staging']
+
+  troophunter-dev:
+    container_name: troophunter-dev
+    image: troophunter-dev:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/troophunter/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.development
+    ports:
+      - '3002:3002'
+    command: ['npm', 'run', 'development']
+
+  troophunter-loc:
+    container_name: troophunter-loc
+    image: troophunter-loc:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/troophunter/Dockerfile
+      target: local
+    env_file:
+      - ./.env.local
+    ports:
+      - '3002:3002'
+    command: ['npm', 'run', 'local']

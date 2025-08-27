@@ -1,0 +1,12 @@
+User-Agent: *
+Allow: /
+Allow: /signin
+Allow: /signup
+Allow: /forgot-password
+Disallow: /lead
+Disallow: /leads
+Disallow: /settings/
+Disallow: /admin
+Disallow: /api
+Disallow: /dashboard
+Sitemap: https://www.troophunter.com/sitemap.xml

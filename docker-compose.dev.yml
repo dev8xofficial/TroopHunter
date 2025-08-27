@@ -1,34 +1,54 @@
 name: 'troophunter_dev'
 services:
-  ci:
-    extends:
-      file: docker-compose.ci.yml
-      service: ci_dev
-
-  postgres_dev:
-    extends:
-      file: docker-compose.base.yml
-      service: postgres_dev
-
-  # pgadmin_dev:
+  # ci:
   #   extends:
-  #     file: docker-compose.pgadmin.yml
-  #     service: pgadmin_dev
+  #     file: docker-compose.ci.yml
+  #     service: ci_dev
 
-  backend_dev:
+  main-dev:
     extends:
-      file: docker-compose.backend.yml
-      service: backend_dev
+      file: ./microservices/main/docker-compose.backend.yml
+      service: main-dev
 
-  crm_dev:
+  auth-dev:
     extends:
-      file: docker-compose.crm.yml
-      service: crm_dev
+      file: ./microservices/auth/docker-compose.backend.yml
+      service: auth-dev
 
-  cloudflare_dev:
+  countries-dev:
     extends:
-      file: docker-compose.cloudflare.yml
-      service: cloudflare_dev
+      file: ./microservices/countries/docker-compose.backend.yml
+      service: countries-dev
+
+  businesses-dev:
+    extends:
+      file: ./microservices/businesses/docker-compose.backend.yml
+      service: businesses-dev
+
+  queues-dev:
+    extends:
+      file: ./microservices/queues/docker-compose.backend.yml
+      service: queues-dev
+
+  users-dev:
+    extends:
+      file: ./microservices/users/docker-compose.backend.yml
+      service: users-dev
+
+  troophunter-dev:
+    extends:
+      file: ./microfrontend/troophunter/docker-compose.troophunter.yml
+      service: troophunter-dev
+
+  dev8x-dev:
+    extends:
+      file: ./microfrontend/dev8x/docker-compose.dev8x.yml
+      service: dev8x-dev
+
+  helloabdul-dev:
+    extends:
+      file: ./microfrontend/helloabdul/docker-compose.helloabdul.yml
+      service: helloabdul-dev
 
 volumes:
   pgadmin-data:

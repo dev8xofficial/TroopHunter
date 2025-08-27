@@ -1,0 +1,33 @@
+.input-wrapper {
+    position: relative
+}
+
+.input {
+    width: 100%;
+    padding: 1em 0;
+    font-size: inherit;
+    border: none;
+    border: solid rgba(0,0,0,.2);
+    border-width: 0 0 1px;
+    color: var(--error,var(--theme-text));
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    height: 64.98px;
+}
+
+.input::placeholder {
+    opacity: .5;
+    color: var(--error,var(--theme-text))
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--error,var(--theme-primary));
+    box-shadow: 0 1px 0 0 var(--error,var(--theme-primary))
+}
+
+.input:focus::placeholder {
+    color: var(--error,var(--theme-primary))
+}

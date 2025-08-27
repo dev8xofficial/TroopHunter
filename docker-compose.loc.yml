@@ -1,0 +1,58 @@
+name: 'troophunter_loc'
+services:
+  # ci:
+  #   extends:
+  #     file: docker-compose.ci.yml
+  #     service: ci_dev
+
+  main-loc:
+    extends:
+      file: ./microservices/main/docker-compose.backend.yml
+      service: main-loc
+
+  auth-loc:
+    extends:
+      file: ./microservices/auth/docker-compose.backend.yml
+      service: auth-loc
+
+  countries-loc:
+    extends:
+      file: ./microservices/countries/docker-compose.backend.yml
+      service: countries-loc
+
+  businesses-loc:
+    extends:
+      file: ./microservices/businesses/docker-compose.backend.yml
+      service: businesses-loc
+
+  queues-loc:
+    extends:
+      file: ./microservices/queues/docker-compose.backend.yml
+      service: queues-loc
+
+  users-loc:
+    extends:
+      file: ./microservices/users/docker-compose.backend.yml
+      service: users-loc
+
+  troophunter-loc:
+    extends:
+      file: ./microfrontend/troophunter/docker-compose.troophunter.yml
+      service: troophunter-loc
+
+  dev8x-loc:
+    extends:
+      file: ./microfrontend/dev8x/docker-compose.dev8x.yml
+      service: dev8x-loc
+
+  helloabdul-loc:
+    extends:
+      file: ./microfrontend/helloabdul/docker-compose.helloabdul.yml
+      service: helloabdul-loc
+
+volumes:
+  pgadmin-data:
+
+networks:
+  custom_network:
+    driver: bridge

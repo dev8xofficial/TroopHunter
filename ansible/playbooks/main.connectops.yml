@@ -1,0 +1,14 @@
+---
+- name: Configure ConnectOps
+  hosts: connect_ops
+  become: true
+  vars:
+    advertise_subnets: ["192.168.1.0/24"]
+    lan_iface: "ens18"
+    use_nftables: true
+    user: "{{ ansible_user }}"
+  vars_files:
+    - "../secrets/connect_ops.yml"
+  roles:
+    - common
+    - connect_ops

@@ -1,34 +1,54 @@
 name: 'troophunter_stag'
 services:
-  ci:
-    extends:
-      file: docker-compose.ci.yml
-      service: ci_stag
-
-  postgres_stag:
-    extends:
-      file: docker-compose.base.yml
-      service: postgres_stag
-
-  # pgadmin_stag:
+  # ci:
   #   extends:
-  #     file: docker-compose.pgadmin.yml
-  #     service: pgadmin_stag
+  #     file: docker-compose.ci.yml
+  #     service: ci_stag
 
-  backend_stag:
+  main-stag:
     extends:
-      file: docker-compose.backend.yml
-      service: backend_stag
+      file: ./microservices/main/docker-compose.backend.yml
+      service: main-stag
 
-  crm_stag:
+  auth-stag:
     extends:
-      file: docker-compose.crm.yml
-      service: crm_stag
+      file: ./microservices/auth/docker-compose.backend.yml
+      service: auth-stag
 
-  cloudflare_stag:
+  countries-stag:
     extends:
-      file: docker-compose.cloudflare.yml
-      service: cloudflare_stag
+      file: ./microservices/countries/docker-compose.backend.yml
+      service: countries-stag
+
+  businesses-stag:
+    extends:
+      file: ./microservices/businesses/docker-compose.backend.yml
+      service: businesses-stag
+
+  queues-stag:
+    extends:
+      file: ./microservices/queues/docker-compose.backend.yml
+      service: queues-stag
+
+  users-stag:
+    extends:
+      file: ./microservices/users/docker-compose.backend.yml
+      service: users-stag
+
+  troophunter-stag:
+    extends:
+      file: ./microfrontend/troophunter/docker-compose.troophunter.yml
+      service: troophunter-stag
+
+  dev8x-stag:
+    extends:
+      file: ./microfrontend/dev8x/docker-compose.dev8x.yml
+      service: dev8x-stag
+
+  helloabdul-stag:
+    extends:
+      file: ./microfrontend/helloabdul/docker-compose.helloabdul.yml
+      service: helloabdul-stag
 
 volumes:
   pgadmin-data:

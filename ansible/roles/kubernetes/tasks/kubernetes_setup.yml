@@ -1,0 +1,241 @@
+---
+# ------------------------------------------------------------------------------------------------------------
+# Optimized Ansible Role: kubernetes_setup
+# Fresh setup of kubeadm-based Kubernetes on Ubuntu VMs (controller and node)
+# ------------------------------------------------------------------------------------------------------------
+
+- name: Update and upgrade apt packages
+  apt:
+    update_cache: true
+    upgrade: dist
+
+- name: Install base dependencies
+  apt:
+    name:
+      - qemu-guest-agent
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+    state: present
+
+- name: Enable and start qemu-guest-agent
+  systemd:
+    name: qemu-guest-agent
+    enabled: yes
+    state: started
+
+- name: Check if containerd config exists
+  stat:
+    path: /etc/containerd/config.toml
+  register: containerd_config_path
+
+- name: Install containerd
+  apt:
+    name: containerd
+    state: present
+
+- name: Configure containerd with SystemdCgroup
+  block:
+    - name: Ensure containerd is installed.
+      package:
+        name: "{{ containerd_package }}"
+        state: "{{ containerd_package_state }}"
+
+    - name: Ensure containerd is started and enabled at boot.
+      service:
+        name: containerd
+        state: "{{ containerd_service_state }}"
+        enabled: "{{ containerd_service_enabled }}"
+
+    - name: Ensure containerd config directory exists.
+      file:
+        path: /etc/containerd
+        state: directory
+      register: containerd_dir
+
+    # - name: Get defaults from containerd.
+    #   command: containerd config default
+    #   register: containerd_config_default
+    #   changed_when: false
+    #   failed_when: containerd_config_default.rc != 0
+    #   when: containerd_config_default_write
+
+    # - name: Prepare containerd/config.toml from default config
+    #   copy:
+    #     dest: /tmp/containerd_config.toml
+    #     content: "{{ containerd_config_default.stdout }}"
+    #   when: containerd_config_default_write and containerd_config_default.stdout | length > 0
+
+    # - name: Set Cgroup driver to systemd
+    #   lineinfile:
+    #     insertafter: '.*\[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options\]$'
+    #     line: '            SystemdCgroup = true'
+    #     state: present
+    #     path: /tmp/containerd_config.toml
+    #   when: containerd_config_default_write and containerd_config_cgroup_driver_systemd
+    #   changed_when: false
+
+    # - name: Make sure  SystemdCgroup = false is not set
+    #   ansible.builtin.lineinfile:
+    #     path: /tmp/containerd_config.toml
+    #     state: absent
+    #     line: '            SystemdCgroup = false'
+    #   notify: restart containerd
+    #   when: containerd_config_default_write and containerd_config_cgroup_driver_systemd
+    #   changed_when: false
+
+    # ===========================
+
+    # - name: Add insecure registry config for {{ docker_registry_ip }}
+    #   blockinfile:
+    #     path: /tmp/containerd_config.toml
+    #     marker: "# {mark} ANSIBLE MANAGED INSECURE REGISTRY CONFIG"
+    #     block: |
+    #           [plugins."io.containerd.grpc.v1.cri".registry.mirrors."{{ docker_registry_ip }}"]
+    #             endpoint = ["http://{{ docker_registry_ip }}"]
+
+    #           [plugins."io.containerd.grpc.v1.cri".registry.configs."{{ docker_registry_ip }}".tls]
+    #             insecure_skip_verify = true
+    #   when: containerd_config_default_write
+    #   notify: restart containerd
+
+    # ===========================
+
+    - name: Deploy containerd config from template
+      template:
+        src: config.toml.j2
+        dest: /etc/containerd/config.toml
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart containerd
+
+    # - name: Copy config.toml to /etc/containerd
+    #   copy:
+    #     remote_src: true
+    #     src: /tmp/containerd_config.toml
+    #     dest: /etc/containerd/config.toml
+    #   notify: restart containerd
+    #   when: containerd_config_default_write
+
+    # - name: Cleanup temporary file
+    #   file:
+    #     path: /tmp/containerd_config.toml
+    #     state: absent
+    #   changed_when: false
+
+    - name: Ensure containerd is restarted immediately if necessary.
+      meta: flush_handlers
+
+- name: Enable and start containerd
+  systemd:
+    name: containerd
+    enabled: yes
+    state: started
+
+- name: Configure crictl for containerd
+  copy:
+    dest: /etc/crictl.yaml
+    content: |
+      runtime-endpoint: unix:///run/containerd/containerd.sock
+      image-endpoint: unix:///run/containerd/containerd.sock
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Disable swap in /etc/fstab
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*\s+swap\s+)'
+    replace: '#\1'
+
+- name: Turn off swap immediately
+  command: swapoff -a
+  when: ansible_swaptotal_mb > 0
+
+- name: Enable IPv4 forwarding in sysctl.conf
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^#net.ipv4.ip_forward=1'
+    line: 'net.ipv4.ip_forward=1'
+    state: present
+    backrefs: yes
+
+- name: Apply sysctl settings
+  shell: sysctl --system
+
+- name: Enable required kernel modules
+  copy:
+    dest: /etc/modules-load.d/k8s.conf
+    content: |
+      br_netfilter
+
+- name: Load kernel modules
+  modprobe:
+    name: "{{ item }}"
+  loop:
+    - br_netfilter
+
+- name: Ensure br_netfilter is loaded now
+  modprobe:
+    name: br_netfilter
+    state: present
+
+- name: Reboot the node to apply all changes
+  reboot:
+    reboot_timeout: 300
+
+- name: Add Kubernetes APT repository (idempotent)
+  block:
+    - name: Create keyring directory
+      file:
+        path: /etc/apt/keyrings
+        state: directory
+
+    - name: Download Kubernetes GPG key (retry with delay)
+      get_url:
+        url: https://pkgs.k8s.io/core:/stable:/v1.33/deb/Release.key
+        dest: /etc/apt/keyrings/kubernetes-apt-keyring.asc
+        mode: '0644'
+        timeout: 60
+      register: kubernetes_key
+      retries: 5
+      delay: 10
+      until: kubernetes_key is succeeded
+
+    - name: Convert GPG key to GPG format
+      command: >
+        gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /etc/apt/keyrings/kubernetes-apt-keyring.asc
+      args:
+        creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+    - name: Add Kubernetes APT source
+      copy:
+        dest: /etc/apt/sources.list.d/kubernetes.list
+        content: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.33/deb/ /"
+        mode: '0644'
+
+- name: Install Kubernetes tools (kubelet, kubeadm, kubectl)
+  apt:
+    name:
+      - kubelet
+      - kubeadm
+      - kubectl
+    state: present
+    update_cache: yes
+
+- name: Hold Kubernetes packages
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  loop:
+    - kubelet
+    - kubeadm
+    - kubectl
+
+- name: Enable kubelet service
+  systemd:
+    name: kubelet
+    enabled: yes
+    state: started

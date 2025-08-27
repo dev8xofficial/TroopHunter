@@ -1,0 +1,20 @@
+{
+  "extends": "@repo/tsconfig-backend/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "typeRoots": ["./node_modules/@types", "./@types", "./**/@types"],
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@repo/middlewares": ["src/index.ts"],
+      "@repo/middlewares/*": ["src/*"]
+    },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
+  },
+  "include": ["src", ".eslintrc.cjs", "@types", "**/*.d.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
+}

@@ -1,0 +1,49 @@
+services:
+  businesses-prod:
+    container_name: businesses-prod
+    image: businesses-prod:latest
+    build:
+      context: ../../
+      dockerfile: microservices/businesses/Dockerfile
+      target: production
+    env_file:
+      - ./.env.production
+    ports:
+      - '50009:50009'
+    command: ['npm', 'run', 'production']
+
+  businesses-stag:
+    container_name: businesses-stag
+    image: businesses-stag:latest
+    build:
+      context: ../../
+      dockerfile: microservices/businesses/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.staging
+    ports:
+      - '50010:50010'
+
+  businesses-dev:
+    container_name: businesses-dev
+    image: businesses-dev:latest
+    build:
+      context: ../../
+      dockerfile: microservices/businesses/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.development
+    ports:
+      - '50011:50011'
+
+  businesses-loc:
+    container_name: businesses-loc
+    image: businesses-loc:latest
+    build:
+      context: ../../
+      dockerfile: microservices/businesses/Dockerfile
+      target: local
+    env_file:
+      - ./.env.local
+    ports:
+      - '50011:50011'

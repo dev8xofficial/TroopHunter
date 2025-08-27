@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloabdul-stag
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloabdul-stag
+  template:
+    metadata:
+      labels:
+        app: helloabdul-stag
+    spec:
+      containers:
+        - name: helloabdul-stag
+          image: 192.168.1.201/helloabdul-stag:latest
+          imagePullPolicy: Always
+          command: ["npm", "run", "staging"]
+          ports:
+            - containerPort: 3007
+          env:
+            - name: PORT
+              value: "3007"
+          volumeMounts:
+            - name: logs
+              mountPath: /microfrontend/helloabdul/logs
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloabdul-stag
+spec:
+  selector:
+    app: helloabdul-stag
+  ports:
+    - name: landing-http
+      protocol: TCP
+      port: 3007
+      targetPort: 3007

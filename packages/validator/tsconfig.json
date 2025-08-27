@@ -1,14 +1,21 @@
 {
+  "extends": "@repo/tsconfig-backend/tsconfig.json",
   "compilerOptions": {
-    "strict": true,
-    "target": "es2017",
-    "module": "commonjs",
-    "lib": ["es2017", "dom"],
-    "allowJs": true,
-    "skipLibCheck": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "types": ["jest", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@repo/validator": ["src/index.ts"],
+      "@repo/validator/*": ["src/*"]
+    },
     "esModuleInterop": true,
-    "jsx": "react"
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
-  "include": ["interfaces", "messages", "middleware", "utils", "validators"],
-  "exclude": ["__tests__", "lib"]
+  "include": ["src", ".eslintrc.cjs", "@types", "**/*.d.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
 }

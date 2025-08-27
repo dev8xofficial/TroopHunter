@@ -1,0 +1,51 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.ts",
+  "scripts": {
+    "local": "cross-env NODE_ENV=local nodemon --watch src --ext ts,js,json --exec ts-node src/server.ts",
+    "development": "cross-env NODE_ENV=development nodemon --watch src --ext ts,js,json --exec ts-node src/server.ts",
+    "staging": "cross-env NODE_ENV=staging node dist/server.js",
+    "production": "cross-env NODE_ENV=production node dist/server.js",
+    "build": "tsc",
+    "test": "jest",
+    "migration:generate": "npx sequelize-cli migration:generate --name=update_models",
+    "migrate:local": "cross-env NODE_ENV=local npx sequelize-cli db:migrate",
+    "migrate:development": "cross-env NODE_ENV=development npx sequelize-cli db:migrate",
+    "migrate:staging": "cross-env NODE_ENV=staging npx sequelize-cli db:migrate",
+    "migrate:production": "cross-env NODE_ENV=production npx sequelize-cli db:migrate",
+    "migrate:undo:local": "cross-env NODE_ENV=local npx sequelize-cli db:migrate:undo",
+    "migrate:undo:development": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo",
+    "migrate:undo:staging": "cross-env NODE_ENV=staging npx sequelize-cli db:migrate:undo",
+    "migrate:undo:production": "cross-env NODE_ENV=production npx sequelize-cli db:migrate:undo",
+    "seed:local": "cross-env NODE_ENV=local npx sequelize-cli db:seed:all",
+    "seed:development": "cross-env NODE_ENV=development npx sequelize-cli db:seed:all",
+    "seed:staging": "cross-env NODE_ENV=staging npx sequelize-cli db:seed:all",
+    "seed:production": "cross-env NODE_ENV=production npx sequelize-cli db:seed:all"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/messages": "*",
+    "@repo/middlewares": "*",
+    "@repo/services": "*",
+    "@repo/tsconfig-backend": "*",
+    "@repo/utils": "*",
+    "@repo/validator": "*",
+    "cors": "^2.8.5",
+    "dotenv": "^16.1.3",
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^3.0.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.2.5",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.6.2"
+  }
+}

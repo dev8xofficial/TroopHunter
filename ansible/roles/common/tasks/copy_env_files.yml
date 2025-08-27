@@ -1,0 +1,65 @@
+---
+- name: Copy .env file from microservices/main into host microservices/main.
+  copy:
+    src: "{{ env_path }}/microservices/main/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/microservices/main/.env
+
+- name: Copy .env file from microservices/auth into host microservices/auth.
+  copy:
+    src: "{{ env_path }}/microservices/auth/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/microservices/auth/.env
+
+- name: Copy .env file from microservices/countries into host microservices/countries.
+  copy:
+    src: "{{ env_path }}/microservices/countries/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/microservices/countries/.env
+
+- name: Copy .env file from microservices/businesses into host microservices/businesses.
+  copy:
+    src: "{{ env_path }}/microservices/businesses/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/microservices/businesses/.env
+
+- name: Copy .env file from microservices/queues into host microservices/queues.
+  copy:
+    src: "{{ env_path }}/microservices/queues/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/microservices/queues/.env
+
+- name: Copy .env file from microservices/users into host microservices/users.
+  copy:
+    src: "{{ env_path }}/microservices/users/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/microservices/users/.env
+
+- name: Copy .env file from microfrontend/troophunter into host microfrontend/troophunter.
+  copy:
+    src: "{{ env_path }}/microfrontend/troophunter/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/microfrontend/troophunter/.env
+
+- name: Copy .env file from microfrontend/dev8x into host microfrontend/dev8x.
+  copy:
+    src: "{{ env_path }}/microfrontend/dev8x/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/microfrontend/dev8x/.env
+
+- name: Copy .env file from microfrontend/helloabdul into host microfrontend/helloabdul.
+  copy:
+    src: "{{ env_path }}/microfrontend/helloabdul/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/microfrontend/helloabdul/.env
+
+- name: Copy .env file from ci into host ci.
+  copy:
+    src: "{{ env_path }}/ci/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/ci/.env
+
+- name: Copy .env file from cloudflare into host cloudflare.
+  copy:
+    src: "{{ env_path }}/cloudflare/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/cloudflare/.env
+
+- name: Copy .env file from scraper into host scraper.
+  copy:
+    src: "{{ env_path }}/scraper/.env-{{ deploy_env }}"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/scraper/.env
+
+- name: Copy chromedriver file from scraper into host scraper.
+  copy:
+    src: "{{ env_path }}/scraper/chromedriver"
+    dest: /home/{{ user }}/{{ project_name }}/{{ deploy_env }}/scraper/driver/chromedriver

@@ -1,0 +1,148 @@
+/* eslint-disable @next/next/no-img-element */
+import React from 'react';
+
+import { Form, FormikProvider, useFormik } from 'formik';
+import Head from 'next/head';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+
+import Button from '../../components/Inputs/Button/Button';
+import TextField from '../../components/Inputs/TextField/TextField';
+import AuthLayout from '../../layout/AuthLayout';
+import withGuest from '../../middleware/withGuest';
+import { authLoginAction } from '../../store/actions/authActions';
+import { type ISignInFormmValues } from '../../types/formik';
+import type { NextPageWithLayout } from '../_app';
+
+const _SignIn: NextPageWithLayout = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const initialValues: ISignInFormmValues = {
+    email: '',
+    password: ''
+  };
+
+  const formik = useFormik({
+    initialValues,
+    enableReinitialize: true,
+    onSubmit: (values) => {
+      dispatch(
+        authLoginAction({
+          email: values.email,
+          password: values.password,
+          navigate: async (path: string) => await router.push(path)
+        })
+      );
+    }
+  });
+
+  return (
+    <>
+      <Head>
+        <title>Sign In - TroopHunter</title>
+        <meta name="description" content="Sign in to TroopHunter to access your account and manage your lead generation activities." />
+        <link rel="canonical" href="/signin" />
+
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Sign In - TroopHunter" />
+        <meta property="og:description" content="Sign in to TroopHunter to access your account and manage your lead generation activities." />
+        <meta property="og:url" content="/signin" />
+        <meta property="og:locale" content="en_US"></meta>
+        <meta property="og:image" content="/logo/logo-social.png" />
+        <meta property="og:image:secure_url" content="/logo/logo-social.png"></meta>
+        <meta property="og:type" content="product" />
+        <meta property="og:site_name" content="TroopHunter"></meta>
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sign In - TroopHunter" />
+        <meta name="twitter:description" content="Sign in to TroopHunter to access your account and manage your lead generation activities." />
+        <meta name="twitter:image" content="/logo/logo-social.png" />
+        <meta name="twitter:site" content="@TroopHunter" />
+      </Head>
+
+      <div>
+        <img className="h-6 lg:h-8" src="/logo/logo.svg" alt="TroopHunter" />
+        {/* <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2> */}
+        <h1 className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
+          Not a member?{' '}
+          <Link href="/signup" className="font-semibold text-indigo-500 hover:text-indigo-600">
+            Register now
+          </Link>
+        </h1>
+      </div>
+
+      <div className="mt-6">
+        <div>
+          <FormikProvider value={formik}>
+            <Form noValidate onSubmit={formik.handleSubmit} className="space-y-2 xl:space-y-6">
+              <TextField label="Email address" type="email" name="email" value={formik.values?.email} onChange={formik.handleChange} required />
+
+              <TextField label="Password" type="password" name="password" value={formik.values?.password} onChange={formik.handleChange} required />
+
+              {/* <div className="flex items-center justify-end">
+                <div className="flex items-center">
+                  <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                  <label htmlFor="remember-me" className="ml-3 block text-sm leading-6 text-gray-700 dark:text-gray-400">
+                    Remember me
+                  </label>
+                </div>
+              </div> */}
+
+              <div className="pt-6">
+                <Button type="submit" variant="contained" color="indigo" className="w-full" disabled={!formik.dirty}>
+                  Sign In
+                </Button>
+              </div>
+            </Form>
+          </FormikProvider>
+        </div>
+
+        {/* <div className="mt-6">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center" aria-hidden="true">
+              <div className="w-full border-t border-gray-600 dark:border-charcoal-100" />
+            </div>
+            <div className="relative flex justify-center text-sm font-medium leading-6">
+              <span className="bg-white px-4 uppercase text-gray-600 dark:bg-charcoal-300 dark:text-gray-100">or</span>
+            </div>
+          </div>
+
+          <div className="mt-2 grid grid-cols-2 gap-4 xl:mt-6">
+            <a href="#" className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent dark:bg-transparent dark:text-white dark:ring-indigo-600 dark:hover:bg-indigo-600 dark:hover:text-white">
+              <svg className="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
+              </svg>
+              <span className="text-sm font-semibold leading-6">Twitter</span>
+            </a>
+
+            <a href="#" className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent dark:bg-transparent dark:text-white dark:ring-indigo-600 dark:hover:bg-indigo-600 dark:hover:text-white">
+              <svg className="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="text-sm font-semibold leading-6 ">GitHub</span>
+            </a>
+          </div>
+        </div> */}
+
+        <div className="mt-6 flex justify-center text-sm leading-6">
+          <Link href="/forgot-password" className="font-semibold text-indigo-400 hover:text-indigo-500">
+            Forgot password?
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+};
+
+_SignIn.getLayout = (page: React.ReactElement) => {
+  return <AuthLayout>{page}</AuthLayout>;
+};
+
+export default withGuest(_SignIn);

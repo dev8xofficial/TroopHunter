@@ -1,0 +1,26 @@
+.fieldset {
+  display: grid;
+  align-items: flex-start;
+}
+
+.fieldset__legend {
+  font-weight: 500;
+  font-size: inherit;
+  color: var(--error, var(--theme-secondary));
+}
+
+.fieldset__asterisk {
+  color: #f05644;
+}
+
+.fieldset--error .fieldset__legend {
+  --error: #d53827;
+}
+
+.fieldset__inner {
+  display: grid;
+  align-items: flex-start;
+  grid-gap: clamp(3.125rem, 3.3068783069vw, 4.15625rem) clamp(1.25rem, 1.3227513228vw, 1.6625rem);
+  gap: clamp(3.125rem, 3.3068783069vw, 4.15625rem) clamp(1.25rem, 1.3227513228vw, 1.6625rem);
+  font-size: clamp(1rem, 1.0582010582vw, 1.33rem);
+}

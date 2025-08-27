@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: countries-stag
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: countries-stag
+  template:
+    metadata:
+      labels:
+        app: countries-stag
+    spec:
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: ['sh', '-c', 'until nc -z countries-db 5432; do echo waiting for db; sleep 2; done;']
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "32Mi"
+            limits:
+              cpu: "50m"
+              memory: "64Mi"
+      containers:
+        - name: countries-stag
+          image: 192.168.1.201/countries-stag:latest
+          imagePullPolicy: Always
+          command: ["/bin/bash", "/app/microservices/countries/entrypoint.sh"]
+          ports:
+            - containerPort: 50007
+          env:
+            - name: NODE_ENV
+              value: staging
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: countries-db-secret
+                  key: host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: countries-db-secret
+                  key: port
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: countries-db-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: countries-db-secret
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: countries-db-secret
+                  key: dbname
+          volumeMounts:
+            - name: logs
+              mountPath: /microservices/countries/logs
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: countries-stag
+spec:
+  selector:
+    app: countries-stag
+  ports:
+    - protocol: TCP
+      port: 50007
+      targetPort: 50007

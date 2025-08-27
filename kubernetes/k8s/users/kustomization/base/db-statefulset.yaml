@@ -1,0 +1,45 @@
+# kubernetes/k8s/users/base/users-db-statefulset.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: users-db
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: users-db
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: users-db
+spec:
+  serviceName: users-db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users-db
+  template:
+    metadata:
+      labels:
+        app: users-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgis/postgis:15-3.4
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - secretRef:
+                name: users-secret
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi 

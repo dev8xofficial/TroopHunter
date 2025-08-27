@@ -1,0 +1,66 @@
+---
+- name: Ensure kubernetes python client is installed
+  ansible.builtin.pip:
+    name: kubernetes
+    state: "{{ k8s_state_map[cluster_action] }}"
+    executable: pip3
+  when: cluster_action == "apply"
+
+- name: Manage VPA CRDs ({{ cluster_action }})
+  kubernetes.core.k8s:
+    kubeconfig: /etc/kubernetes/admin.conf
+    state: "{{ k8s_state_map[cluster_action] }}"
+    src: "https://raw.githubusercontent.com/kubernetes/autoscaler/vpa-release-1.0/vertical-pod-autoscaler/deploy/vpa-v1-crd-gen.yaml"
+
+- name: Manage VPA RBAC ({{ cluster_action }})
+  kubernetes.core.k8s:
+    kubeconfig: /etc/kubernetes/admin.conf
+    state: "{{ k8s_state_map[cluster_action] }}"
+    src: "https://raw.githubusercontent.com/kubernetes/autoscaler/vpa-release-1.0/vertical-pod-autoscaler/deploy/vpa-rbac.yaml"
+
+- name: Copy namespace quota file to remote
+  copy:
+    src: /workspace/ansible/kubernetes/cluster-resources/namespace-quota.yaml
+    dest: /tmp/namespace-quota.yaml
+  when: cluster_action == "apply"
+
+- name: Manage namespace quota ({{ cluster_action }})
+  kubernetes.core.k8s:
+    kubeconfig: /etc/kubernetes/admin.conf
+    state: "{{ k8s_state_map[cluster_action] }}"
+    src: /tmp/namespace-quota.yaml
+
+- name: Copy Istio values file to remote
+  copy:
+    src: /workspace/ansible/kubernetes/cluster-resources/istio-values.yaml
+    dest: /tmp/istio-values.yaml
+  when: cluster_action == "apply"
+
+- name: Install Istio with custom values
+  ansible.builtin.command:
+    cmd: "istioctl install -f /tmp/istio-values.yaml -y --kubeconfig=/etc/kubernetes/admin.conf"
+  when: cluster_action == "apply"
+
+- name: Uninstall Istio
+  ansible.builtin.command:
+    cmd: "istioctl uninstall --purge -y --kubeconfig=/etc/kubernetes/admin.conf"
+  when: cluster_action == "delete"
+
+- name: "{{ cluster_action | capitalize }} temp namespace quota file"
+  file:
+    path: /tmp/namespace-quota.yaml
+    state: "{{ k8s_state_map[cluster_action] }}"
+  when: cluster_action == "delete"
+
+- name: "{{ cluster_action | capitalize }} temp Istio values file"
+  file:
+    path: /tmp/istio-values.yaml
+    state: "{{ k8s_state_map[cluster_action] }}"
+  when: cluster_action == "delete"
+
+- name: "{{ cluster_action | capitalize }} kubernetes python client"
+  ansible.builtin.pip:
+    name: kubernetes
+    state: "{{ k8s_state_map[cluster_action] }}"
+    executable: pip3
+  when: cluster_action == "delete"

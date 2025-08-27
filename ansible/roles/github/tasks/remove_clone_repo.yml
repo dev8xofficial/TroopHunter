@@ -1,5 +1,5 @@
 ---
 - name: Remove the TroopHunter directory.
   file:
-    path: /home//{{ USER }}/{{ PROJECT_NAME }}
+    path: /home//{{ user }}/{{ project_name }}
     state: absent

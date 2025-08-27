@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: main
+  labels:
+    app: main
+    patch: "true"
+spec:
+  selector:
+    app: main
+  ports:
+    - name: http-dev
+      protocol: TCP
+      port: 50002
+      targetPort: 50002

@@ -1,0 +1,9 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: helloabdul-stag
+spec:
+  host: helloabdul-stag
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
