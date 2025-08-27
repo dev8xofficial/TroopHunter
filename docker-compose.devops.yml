@@ -1,0 +1,24 @@
+services:
+  devops:
+    container_name: devops
+    build:
+      context: .
+      dockerfile: ./ansible/Dockerfile
+    volumes:
+      - ./ansible:/workspace/ansible
+      - ./kubernetes:/workspace/ansible/kubernetes
+      - ./ansible/secrets:/workspace/ansible/secrets
+      - ./ansible/secrets/id_ed25519_ubuntu:/root/.ssh/id_ed25519_ubuntu:ro
+      - ./ansible/secrets/id_rsa_k8s_ctrlr:/root/.ssh/id_rsa_k8s_ctrlr:ro
+      - ./ansible/secrets/id_rsa_k8s_node:/root/.ssh/id_rsa_k8s_node:ro
+      - ./ansible/secrets/id_rsa_registry:/root/.ssh/id_rsa_registry:ro
+      - ./ansible/secrets/id_rsa_tailscale:/root/.ssh/id_rsa_tailscale:ro
+      - ./ansible/secrets/id_rsa_cloudflare:/root/.ssh/id_rsa_cloudflare:ro
+      - ./ansible/secrets/id_rsa_connect_ops:/root/.ssh/id_rsa_connect_ops:ro
+      - ./terraform:/workspace/terraform
+      - ./terraform/secrets/id_rsa_k8s_ctrlr:/root/.ssh/id_rsa_k8s_ctrlr:ro
+      - ./terraform/secrets/id_rsa_k8s_node:/root/.ssh/id_rsa_k8s_node:ro
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    command: /bin/bash

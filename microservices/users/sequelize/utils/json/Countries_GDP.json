@@ -1,0 +1,1037 @@
+[
+    {
+      "Country": "United States",
+      "GDP(USD million)": "28,781,083",
+      "Year": 2024
+    },
+    {
+      "Country": "China",
+      "GDP(USD million)": "18,532,633",
+      "Year": 2024
+    },
+    {
+      "Country": "Germany",
+      "GDP(USD million)": "4,591,100",
+      "Year": 2024
+    },
+    {
+      "Country": "Japan",
+      "GDP(USD million)": "4,110,452",
+      "Year": 2024
+    },
+    {
+      "Country": "India",
+      "GDP(USD million)": "3,937,011",
+      "Year": 2024
+    },
+    {
+      "Country": "United Kingdom",
+      "GDP(USD million)": "3,495,261",
+      "Year": 2024
+    },
+    {
+      "Country": "France",
+      "GDP(USD million)": "3,130,014",
+      "Year": 2024
+    },
+    {
+      "Country": "Brazil",
+      "GDP(USD million)": "2,331,391",
+      "Year": 2024
+    },
+    {
+      "Country": "Italy",
+      "GDP(USD million)": "2,328,028",
+      "Year": 2024
+    },
+    {
+      "Country": "Canada",
+      "GDP(USD million)": "2,242,182",
+      "Year": 2024
+    },
+    {
+      "Country": "Russia",
+      "GDP(USD million)": "2,056,844",
+      "Year": 2024
+    },
+    {
+      "Country": "Mexico",
+      "GDP(USD million)": "2,017,025",
+      "Year": 2024
+    },
+    {
+      "Country": "Australia",
+      "GDP(USD million)": "1,790,348",
+      "Year": 2024
+    },
+    {
+      "Country": "Republic of Korea",
+      "GDP(USD million)": "1,760,947",
+      "Year": 2024
+    },
+    {
+      "Country": "Spain",
+      "GDP(USD million)": "1,647,114",
+      "Year": 2024
+    },
+    {
+      "Country": "Indonesia",
+      "GDP(USD million)": "1,475,690",
+      "Year": 2024
+    },
+    {
+      "Country": "Netherlands",
+      "GDP(USD million)": "1,142,513",
+      "Year": 2024
+    },
+    {
+      "Country": "Turkey",
+      "GDP(USD million)": "1,113,561",
+      "Year": 2024
+    },
+    {
+      "Country": "Saudi Arabia",
+      "GDP(USD million)": "1,106,015",
+      "Year": 2024
+    },
+    {
+      "Country": "Switzerland",
+      "GDP(USD million)": "938,458",
+      "Year": 2024
+    },
+    {
+      "Country": "Poland",
+      "GDP(USD million)": "844,623",
+      "Year": 2024
+    },
+    {
+      "Country": "Taiwan",
+      "GDP(USD million)": "802,958",
+      "Year": 2024
+    },
+    {
+      "Country": "Belgium",
+      "GDP(USD million)": "655,192",
+      "Year": 2024
+    },
+    {
+      "Country": "Sweden",
+      "GDP(USD million)": "623,048",
+      "Year": 2024
+    },
+    {
+      "Country": "Argentina",
+      "GDP(USD million)": "604,260",
+      "Year": 2024
+    },
+    {
+      "Country": "Ireland",
+      "GDP(USD million)": "564,020",
+      "Year": 2024
+    },
+    {
+      "Country": "Thailand",
+      "GDP(USD million)": "548,890",
+      "Year": 2024
+    },
+    {
+      "Country": "Austria",
+      "GDP(USD million)": "540,887",
+      "Year": 2024
+    },
+    {
+      "Country": "Israel",
+      "GDP(USD million)": "530,664",
+      "Year": 2024
+    },
+    {
+      "Country": "United Arab Emirates",
+      "GDP(USD million)": "527,796",
+      "Year": 2024
+    },
+    {
+      "Country": "Norway",
+      "GDP(USD million)": "526,951",
+      "Year": 2024
+    },
+    {
+      "Country": "Singapore",
+      "GDP(USD million)": "525,228",
+      "Year": 2024
+    },
+    {
+      "Country": "Philippines",
+      "GDP(USD million)": "471,516",
+      "Year": 2024
+    },
+    {
+      "Country": "Vietnam",
+      "GDP(USD million)": "465,814",
+      "Year": 2024
+    },
+    {
+      "Country": "Iran",
+      "GDP(USD million)": "464,181",
+      "Year": 2024
+    },
+    {
+      "Country": "Bangladesh",
+      "GDP(USD million)": "455,162",
+      "Year": 2024
+    },
+    {
+      "Country": "Malaysia",
+      "GDP(USD million)": "445,519",
+      "Year": 2024
+    },
+    {
+      "Country": "Denmark",
+      "GDP(USD million)": "409,989",
+      "Year": 2024
+    },
+    {
+      "Country": "Hong Kong",
+      "GDP(USD million)": "406,775",
+      "Year": 2024
+    },
+    {
+      "Country": "Colombia",
+      "GDP(USD million)": "386,076",
+      "Year": 2024
+    },
+    {
+      "Country": "South Africa",
+      "GDP(USD million)": "373,233",
+      "Year": 2024
+    },
+    {
+      "Country": "Romania",
+      "GDP(USD million)": "369,971",
+      "Year": 2024
+    },
+    {
+      "Country": "Egypt",
+      "GDP(USD million)": "347,594",
+      "Year": 2024
+    },
+    {
+      "Country": "Pakistan",
+      "GDP(USD million)": "338,237",
+      "Year": 2023
+    },
+    {
+      "Country": "Chile",
+      "GDP(USD million)": "333,760",
+      "Year": 2024
+    },
+    {
+      "Country": "Czech Republic",
+      "GDP(USD million)": "325,880",
+      "Year": 2024
+    },
+    {
+      "Country": "Finland",
+      "GDP(USD million)": "308,055",
+      "Year": 2024
+    },
+    {
+      "Country": "Portugal",
+      "GDP(USD million)": "298,949",
+      "Year": 2024
+    },
+    {
+      "Country": "Kazakhstan",
+      "GDP(USD million)": "296,740",
+      "Year": 2024
+    },
+    {
+      "Country": "Peru",
+      "GDP(USD million)": "282,458",
+      "Year": 2024
+    },
+    {
+      "Country": "Algeria",
+      "GDP(USD million)": "266,780",
+      "Year": 2024
+    },
+    {
+      "Country": "Iraq",
+      "GDP(USD million)": "265,894",
+      "Year": 2024
+    },
+    {
+      "Country": "New Zealand",
+      "GDP(USD million)": "257,625",
+      "Year": 2024
+    },
+    {
+      "Country": "Nigeria",
+      "GDP(USD million)": "252,738",
+      "Year": 2024
+    },
+    {
+      "Country": "Greece",
+      "GDP(USD million)": "250,276",
+      "Year": 2024
+    },
+    {
+      "Country": "Qatar",
+      "GDP(USD million)": "244,686",
+      "Year": 2024
+    },
+    {
+      "Country": "Hungary",
+      "GDP(USD million)": "223,413",
+      "Year": 2024
+    },
+    {
+      "Country": "Ethiopia",
+      "GDP(USD million)": "205,130",
+      "Year": 2024
+    },
+    {
+      "Country": "Ukraine",
+      "GDP(USD million)": "188,943",
+      "Year": 2024
+    },
+    {
+      "Country": "Kuwait",
+      "GDP(USD million)": "160,397",
+      "Year": 2024
+    },
+    {
+      "Country": "Morocco",
+      "GDP(USD million)": "152,377",
+      "Year": 2024
+    },
+    {
+      "Country": "Cuba",
+      "GDP(USD million)": "147,193",
+      "Year": 2022
+    },
+    {
+      "Country": "Slovak Republic",
+      "GDP(USD million)": "140,808",
+      "Year": 2024
+    },
+    {
+      "Country": "Dominican Republic",
+      "GDP(USD million)": "127,356",
+      "Year": 2024
+    },
+    {
+      "Country": "Ecuador",
+      "GDP(USD million)": "121,592",
+      "Year": 2024
+    },
+    {
+      "Country": "Puerto Rico",
+      "GDP(USD million)": "117,763",
+      "Year": 2024
+    },
+    {
+      "Country": "Guatemala",
+      "GDP(USD million)": "110,035",
+      "Year": 2024
+    },
+    {
+      "Country": "Oman",
+      "GDP(USD million)": "108,927",
+      "Year": 2024
+    },
+    {
+      "Country": "Bulgaria",
+      "GDP(USD million)": "107,933",
+      "Year": 2024
+    },
+    {
+      "Country": "Kenya",
+      "GDP(USD million)": "104,001",
+      "Year": 2024
+    },
+    {
+      "Country": "Venezuela",
+      "GDP(USD million)": "102,328",
+      "Year": 2024
+    },
+    {
+      "Country": "Uzbekistan",
+      "GDP(USD million)": "97,956",
+      "Year": 2024
+    },
+    {
+      "Country": "Costa Rica",
+      "GDP(USD million)": "96,058",
+      "Year": 2024
+    },
+    {
+      "Country": "Angola",
+      "GDP(USD million)": "92,123",
+      "Year": 2024
+    },
+    {
+      "Country": "Luxembourg",
+      "GDP(USD million)": "88,556",
+      "Year": 2024
+    },
+    {
+      "Country": "Croatia",
+      "GDP(USD million)": "88,076",
+      "Year": 2024
+    },
+    {
+      "Country": "Panama",
+      "GDP(USD million)": "87,347",
+      "Year": 2024
+    },
+    {
+      "Country": "Ivory Coast",
+      "GDP(USD million)": "86,911",
+      "Year": 2024
+    },
+    {
+      "Country": "Uruguay",
+      "GDP(USD million)": "82,605",
+      "Year": 2024
+    },
+    {
+      "Country": "Turkmenistan",
+      "GDP(USD million)": "81,896",
+      "Year": 2024
+    },
+    {
+      "Country": "Serbia",
+      "GDP(USD million)": "81,873",
+      "Year": 2024
+    },
+    {
+      "Country": "Lithuania",
+      "GDP(USD million)": "81,170",
+      "Year": 2024
+    },
+    {
+      "Country": "Tanzania",
+      "GDP(USD million)": "79,605",
+      "Year": 2024
+    },
+    {
+      "Country": "Azerbaijan",
+      "GDP(USD million)": "78,749",
+      "Year": 2024
+    },
+    {
+      "Country": "Ghana",
+      "GDP(USD million)": "75,244",
+      "Year": 2024
+    },
+    {
+      "Country": "Sri Lanka",
+      "GDP(USD million)": "74,846",
+      "Year": 2022
+    },
+    {
+      "Country": "Democratic Republic of the Congo",
+      "GDP(USD million)": "73,761",
+      "Year": 2024
+    },
+    {
+      "Country": "Slovenia",
+      "GDP(USD million)": "72,101",
+      "Year": 2024
+    },
+    {
+      "Country": "Belarus",
+      "GDP(USD million)": "69,048",
+      "Year": 2024
+    },
+    {
+      "Country": "Myanmar",
+      "GDP(USD million)": "68,006",
+      "Year": 2024
+    },
+    {
+      "Country": "Uganda",
+      "GDP(USD million)": "56,310",
+      "Year": 2024
+    },
+    {
+      "Country": "Tunisia",
+      "GDP(USD million)": "54,708",
+      "Year": 2024
+    },
+    {
+      "Country": "Macau",
+      "GDP(USD million)": "54,677",
+      "Year": 2024
+    },
+    {
+      "Country": "Jordan",
+      "GDP(USD million)": "53,570",
+      "Year": 2024
+    },
+    {
+      "Country": "Cameroon",
+      "GDP(USD million)": "53,205",
+      "Year": 2024
+    },
+    {
+      "Country": "Bolivia",
+      "GDP(USD million)": "49,334",
+      "Year": 2024
+    },
+    {
+      "Country": "Libya",
+      "GDP(USD million)": "48,221",
+      "Year": 2024
+    },
+    {
+      "Country": "Bahrain",
+      "GDP(USD million)": "46,790",
+      "Year": 2024
+    },
+    {
+      "Country": "Paraguay",
+      "GDP(USD million)": "45,817",
+      "Year": 2024
+    },
+    {
+      "Country": "Latvia",
+      "GDP(USD million)": "45,466",
+      "Year": 2024
+    },
+    {
+      "Country": "Cambodia",
+      "GDP(USD million)": "45,150",
+      "Year": 2024
+    },
+    {
+      "Country": "Nepal",
+      "GDP(USD million)": "44,179",
+      "Year": 2024
+    },
+    {
+      "Country": "Estonia",
+      "GDP(USD million)": "43,486",
+      "Year": 2024
+    },
+    {
+      "Country": "Honduras",
+      "GDP(USD million)": "37,355",
+      "Year": 2024
+    },
+    {
+      "Country": "Senegal",
+      "GDP(USD million)": "35,450",
+      "Year": 2024
+    },
+    {
+      "Country": "El Salvador",
+      "GDP(USD million)": "35,333",
+      "Year": 2024
+    },
+    {
+      "Country": "Zimbabwe",
+      "GDP(USD million)": "34,405",
+      "Year": 2024
+    },
+    {
+      "Country": "Cyprus",
+      "GDP(USD million)": "34,221",
+      "Year": 2024
+    },
+    {
+      "Country": "Iceland",
+      "GDP(USD million)": "33,338",
+      "Year": 2024
+    },
+    {
+      "Country": "Georgia",
+      "GDP(USD million)": "32,865",
+      "Year": 2024
+    },
+    {
+      "Country": "Papua New Guinea",
+      "GDP(USD million)": "31,716",
+      "Year": 2024
+    },
+    {
+      "Country": "Zambia",
+      "GDP(USD million)": "29,872",
+      "Year": 2024
+    },
+    {
+      "Country": "Bosnia and Herzegovina",
+      "GDP(USD million)": "29,078",
+      "Year": 2024
+    },
+    {
+      "Country": "Trinidad and Tobago",
+      "GDP(USD million)": "28,365",
+      "Year": 2024
+    },
+    {
+      "Country": "Sudan",
+      "GDP(USD million)": "26,865",
+      "Year": 2024
+    },
+    {
+      "Country": "Guinea",
+      "GDP(USD million)": "25,447",
+      "Year": 2024
+    },
+    {
+      "Country": "Albania",
+      "GDP(USD million)": "25,431",
+      "Year": 2024
+    },
+    {
+      "Country": "Armenia",
+      "GDP(USD million)": "25,408",
+      "Year": 2024
+    },
+    {
+      "Country": "Haiti",
+      "GDP(USD million)": "24,046",
+      "Year": 2024
+    },
+    {
+      "Country": "Mozambique",
+      "GDP(USD million)": "22,975",
+      "Year": 2024
+    },
+    {
+      "Country": "Malta",
+      "GDP(USD million)": "22,737",
+      "Year": 2024
+    },
+    {
+      "Country": "Mongolia",
+      "GDP(USD million)": "21,943",
+      "Year": 2024
+    },
+    {
+      "Country": "Burkina Faso",
+      "GDP(USD million)": "21,902",
+      "Year": 2024
+    },
+    {
+      "Country": "Lebanon",
+      "GDP(USD million)": "21,780",
+      "Year": 2022
+    },
+    {
+      "Country": "Mali",
+      "GDP(USD million)": "21,662",
+      "Year": 2024
+    },
+    {
+      "Country": "Botswana",
+      "GDP(USD million)": "21,418",
+      "Year": 2024
+    },
+    {
+      "Country": "Benin",
+      "GDP(USD million)": "21,371",
+      "Year": 2024
+    },
+    {
+      "Country": "Guyana",
+      "GDP(USD million)": "21,178",
+      "Year": 2024
+    },
+    {
+      "Country": "Gabon",
+      "GDP(USD million)": "21,013",
+      "Year": 2024
+    },
+    {
+      "Country": "Jamaica",
+      "GDP(USD million)": "20,098",
+      "Year": 2024
+    },
+    {
+      "Country": "Nicaragua",
+      "GDP(USD million)": "18,829",
+      "Year": 2024
+    },
+    {
+      "Country": "Niger",
+      "GDP(USD million)": "18,816",
+      "Year": 2024
+    },
+    {
+      "Country": "Chad",
+      "GDP(USD million)": "18,697",
+      "Year": 2024
+    },
+    {
+      "Country": "Palestine",
+      "GDP(USD million)": "18,602",
+      "Year": 2023
+    },
+    {
+      "Country": "Moldova",
+      "GDP(USD million)": "18,356",
+      "Year": 2024
+    },
+    {
+      "Country": "Yemen",
+      "GDP(USD million)": "16,940",
+      "Year": 2024
+    },
+    {
+      "Country": "Madagascar",
+      "GDP(USD million)": "16,465",
+      "Year": 2024
+    },
+    {
+      "Country": "Mauritius",
+      "GDP(USD million)": "16,359",
+      "Year": 2024
+    },
+    {
+      "Country": "North Macedonia",
+      "GDP(USD million)": "15,873",
+      "Year": 2024
+    },
+    {
+      "Country": "Brunei",
+      "GDP(USD million)": "15,510",
+      "Year": 2024
+    },
+    {
+      "Country": "Republic of the Congo",
+      "GDP(USD million)": "15,501",
+      "Year": 2024
+    },
+    {
+      "Country": "Laos",
+      "GDP(USD million)": "15,190",
+      "Year": 2024
+    },
+    {
+      "Country": "Afghanistan",
+      "GDP(USD million)": "14,467",
+      "Year": 2022
+    },
+    {
+      "Country": "Bahamas",
+      "GDP(USD million)": "14,390",
+      "Year": 2024
+    },
+    {
+      "Country": "Rwanda",
+      "GDP(USD million)": "13,701",
+      "Year": 2024
+    },
+    {
+      "Country": "Kyrgyzstan",
+      "GDP(USD million)": "13,599",
+      "Year": 2024
+    },
+    {
+      "Country": "Tajikistan",
+      "GDP(USD million)": "12,953",
+      "Year": 2024
+    },
+    {
+      "Country": "Somalia",
+      "GDP(USD million)": "12,804",
+      "Year": 2024
+    },
+    {
+      "Country": "Namibia",
+      "GDP(USD million)": "12,765",
+      "Year": 2024
+    },
+    {
+      "Country": "Kosovo",
+      "GDP(USD million)": "11,318",
+      "Year": 2024
+    },
+    {
+      "Country": "Malawi",
+      "GDP(USD million)": "11,241",
+      "Year": 2024
+    },
+    {
+      "Country": "Equatorial Guinea",
+      "GDP(USD million)": "10,708",
+      "Year": 2024
+    },
+    {
+      "Country": "Mauritania",
+      "GDP(USD million)": "10,628",
+      "Year": 2024
+    },
+    {
+      "Country": "Togo",
+      "GDP(USD million)": "9,832",
+      "Year": 2024
+    },
+    {
+      "Country": "New Caledonia",
+      "GDP(USD million)": "9,623",
+      "Year": 2022
+    },
+    {
+      "Country": "Syria",
+      "GDP(USD million)": "8,980",
+      "Year": 2021
+    },
+    {
+      "Country": "Monaco",
+      "GDP(USD million)": "8,784",
+      "Year": 2022
+    },
+    {
+      "Country": "Montenegro",
+      "GDP(USD million)": "8,010",
+      "Year": 2024
+    },
+    {
+      "Country": "Liechtenstein",
+      "GDP(USD million)": "7,365",
+      "Year": 2022
+    },
+    {
+      "Country": "Bermuda",
+      "GDP(USD million)": "7,828",
+      "Year": 2022
+    },
+    {
+      "Country": "Maldives",
+      "GDP(USD million)": "7,199",
+      "Year": 2024
+    },
+    {
+      "Country": "Barbados",
+      "GDP(USD million)": "6,863",
+      "Year": 2024
+    },
+    {
+      "Country": "Cayman Islands",
+      "GDP(USD million)": "6,601",
+      "Year": 2022
+    },
+    {
+      "Country": "South Sudan",
+      "GDP(USD million)": "6,517",
+      "Year": 2024
+    },
+    {
+      "Country": "French Polynesia",
+      "GDP(USD million)": "5,815",
+      "Year": 2022
+    },
+    {
+      "Country": "Fiji",
+      "GDP(USD million)": "5,801",
+      "Year": 2024
+    },
+    {
+      "Country": "Eswatini",
+      "GDP(USD million)": "5,085",
+      "Year": 2024
+    },
+    {
+      "Country": "Liberia",
+      "GDP(USD million)": "4,754",
+      "Year": 2024
+    },
+    {
+      "Country": "Sierra Leone",
+      "GDP(USD million)": "4,558",
+      "Year": 2024
+    },
+    {
+      "Country": "Djibouti",
+      "GDP(USD million)": "4,364",
+      "Year": 2024
+    },
+    {
+      "Country": "Suriname",
+      "GDP(USD million)": "4,337",
+      "Year": 2024
+    },
+    {
+      "Country": "Aruba",
+      "GDP(USD million)": "4,069",
+      "Year": 2024
+    },
+    {
+      "Country": "Andorra",
+      "GDP(USD million)": "3,897",
+      "Year": 2024
+    },
+    {
+      "Country": "Belize",
+      "GDP(USD million)": "3,296",
+      "Year": 2024
+    },
+    {
+      "Country": "Greenland",
+      "GDP(USD million)": "3,236",
+      "Year": 2021
+    },
+    {
+      "Country": "Bhutan",
+      "GDP(USD million)": "3,110",
+      "Year": 2024
+    },
+    {
+      "Country": "Curaçao",
+      "GDP(USD million)": "3,074",
+      "Year": 2022
+    },
+    {
+      "Country": "Burundi",
+      "GDP(USD million)": "3,075",
+      "Year": 2024
+    },
+    {
+      "Country": "Central African Republic",
+      "GDP(USD million)": "2,810",
+      "Year": 2024
+    },
+    {
+      "Country": "Cabo Verde",
+      "GDP(USD million)": "2,718",
+      "Year": 2024
+    },
+    {
+      "Country": "The Gambia",
+      "GDP(USD million)": "2,694",
+      "Year": 2024
+    },
+    {
+      "Country": "Saint Lucia",
+      "GDP(USD million)": "2,582",
+      "Year": 2024
+    },
+    {
+      "Country": "Lesotho",
+      "GDP(USD million)": "2,395",
+      "Year": 2024
+    },
+    {
+      "Country": "Eritrea",
+      "GDP(USD million)": "2,383",
+      "Year": 2022
+    },
+    {
+      "Country": "Seychelles",
+      "GDP(USD million)": "2,203",
+      "Year": 2024
+    },
+    {
+      "Country": "Guinea-Bissau",
+      "GDP(USD million)": "2,151",
+      "Year": 2024
+    },
+    {
+      "Country": "Antigua and Barbuda",
+      "GDP(USD million)": "2,127",
+      "Year": 2024
+    },
+    {
+      "Country": "San Marino",
+      "GDP(USD million)": "2,033",
+      "Year": 2024
+    },
+    {
+      "Country": "Timor-Leste",
+      "GDP(USD million)": "1,992",
+      "Year": 2024
+    },
+    {
+      "Country": "Solomon Islands",
+      "GDP(USD million)": "1,707",
+      "Year": 2024
+    },
+    {
+      "Country": "Sint Maarten",
+      "GDP(USD million)": "1,623",
+      "Year": 2023
+    },
+    {
+      "Country": "Comoros",
+      "GDP(USD million)": "1,422",
+      "Year": 2024
+    },
+    {
+      "Country": "Grenada",
+      "GDP(USD million)": "1,406",
+      "Year": 2024
+    },
+    {
+      "Country": "Vanuatu",
+      "GDP(USD million)": "1,289",
+      "Year": 2024
+    },
+    {
+      "Country": "Turks and Caicos Islands",
+      "GDP(USD million)": "1,402",
+      "Year": 2023
+    },
+    {
+      "Country": "Saint Kitts and Nevis",
+      "GDP(USD million)": "1,134",
+      "Year": 2024
+    },
+    {
+      "Country": "Saint Vincent and the Grenadines",
+      "GDP(USD million)": "1,128",
+      "Year": 2024
+    },
+    {
+      "Country": "Samoa",
+      "GDP(USD million)": "1,024",
+      "Year": 2024
+    },
+    {
+      "Country": "São Tomé and Príncipe",
+      "GDP(USD million)": "751",
+      "Year": 2024
+    },
+    {
+      "Country": "Dominica",
+      "GDP(USD million)": "708",
+      "Year": 2024
+    },
+    {
+      "Country": "Tonga",
+      "GDP(USD million)": "581",
+      "Year": 2024
+    },
+    {
+      "Country": "Micronesia",
+      "GDP(USD million)": "484",
+      "Year": 2024
+    },
+    {
+      "Country": "Kiribati",
+      "GDP(USD million)": "311",
+      "Year": 2024
+    },
+    {
+      "Country": "Palau",
+      "GDP(USD million)": "308",
+      "Year": 2024
+    },
+    {
+      "Country": "Marshall Islands",
+      "GDP(USD million)": "305",
+      "Year": 2024
+    },
+    {
+      "Country": "Nauru",
+      "GDP(USD million)": "161",
+      "Year": 2024
+    },
+    {
+      "Country": "Tuvalu",
+      "GDP(USD million)": "66",
+      "Year": 2024
+    }
+   ]

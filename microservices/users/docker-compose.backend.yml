@@ -1,0 +1,48 @@
+services:
+  users-prod:
+    container_name: users-prod
+    image: users-prod:latest
+    build:
+      context: ../../
+      dockerfile: microservices/users/Dockerfile
+      target: production
+    env_file:
+      - ./.env.production
+    ports:
+      - '50015:50015'
+
+  users-stag:
+    container_name: users-stag
+    image: users-stag:latest
+    build:
+      context: ../../
+      dockerfile: microservices/users/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.staging
+    ports:
+      - '50016:50016'
+
+  users-dev:
+    container_name: users-dev
+    image: users-dev:latest
+    build:
+      context: ../../
+      dockerfile: microservices/users/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.development
+    ports:
+      - '50017:50017'
+
+  users-loc:
+    container_name: users-loc
+    image: users-loc:latest
+    build:
+      context: ../../
+      dockerfile: microservices/users/Dockerfile
+      target: local
+    env_file:
+      - ./.env.local
+    ports:
+      - '50017:50017'

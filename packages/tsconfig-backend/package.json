@@ -1,0 +1,6 @@
+{
+  "name": "@repo/tsconfig-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "This repository is a shared resource among microservices."
+}

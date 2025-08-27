@@ -1,0 +1,61 @@
+services:
+  dev8x-prod:
+    platform: ${DOCKER_PLATFORM:-linux/amd64}
+    container_name: dev8x-prod
+    image: dev8x-prod:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/dev8x/Dockerfile
+      target: production
+      platforms:
+        - ${DOCKER_PLATFORM:-linux/amd64}
+    env_file:
+      - ./.env.production
+    ports:
+      - '3003:3003'
+    command: ["npm", "run", "production"]
+
+  dev8x-stag:
+    container_name: dev8x-stag
+    image: dev8x-stag:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/dev8x/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.staging
+    ports:
+      - '3004:3004'
+    command: ["npm", "run", "staging"]
+
+  dev8x-dev:
+    platform: ${DOCKER_PLATFORM:-linux/amd64}
+    container_name: dev8x-dev
+    image: dev8x-dev:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/dev8x/Dockerfile
+      target: builder
+      platforms:
+        - ${DOCKER_PLATFORM:-linux/amd64}
+    env_file:
+      - ./.env.development
+    ports:
+      - '3005:3005'
+    command: ["npm", "run", "development"]
+
+  dev8x-loc:
+    platform: ${DOCKER_PLATFORM:-linux/amd64}
+    container_name: dev8x-loc
+    image: dev8x-loc:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/dev8x/Dockerfile
+      target: local
+      platforms:
+        - ${DOCKER_PLATFORM:-linux/amd64}
+    env_file:
+      - ./.env.local
+    ports:
+      - '3005:3005'
+    command: ["npm", "run", "local"]

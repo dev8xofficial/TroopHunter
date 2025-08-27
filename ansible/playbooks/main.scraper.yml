@@ -6,12 +6,12 @@
   vars_files:
     - /ansible/secrets/github_token
   vars:
-    USER: ubuntu-server
-    GIT_REPO: "https://{{ github_token }}@github.com/helloabdul/TroopHunter.git"
-    GIT_BRANCH: main
-    PROJECT_NAME: TroopHunter
-    ENVIRONMENT: prod
-    ENV_PATH: "/ansible/secrets"
+    user: ubuntu-server
+    git_repo: "https://{{ github_token }}@github.com/helloabdul/TroopHunterNew.git"
+    git_branch: main
+    project_name: TroopHunter
+    deploy_env: prod
+    env_path: "/workspace/ansible/secrets"
   gather_facts: true
   roles:
     # - common

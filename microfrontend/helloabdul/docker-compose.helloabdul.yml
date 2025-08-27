@@ -1,0 +1,52 @@
+services:
+  helloabdul-prod:
+    container_name: helloabdul-prod
+    image: helloabdul-prod:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/helloabdul/Dockerfile
+      target: production
+    env_file:
+      - ./.env.production
+    ports:
+      - '3006:3006'
+    command: ['npm', 'run', 'production']
+
+  helloabdul-stag:
+    container_name: helloabdul-stag
+    image: helloabdul-stag:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/helloabdul/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.staging
+    ports:
+      - '3007:3007'
+    command: ['npm', 'run', 'staging']
+
+  helloabdul-dev:
+    container_name: helloabdul-dev
+    image: helloabdul-dev:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/helloabdul/Dockerfile
+      target: builder
+    env_file:
+      - ./.env.development
+    ports:
+      - '3008:3008'
+    command: ['npm', 'run', 'development']
+
+  helloabdul-loc:
+    container_name: helloabdul-loc
+    image: helloabdul-loc:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/helloabdul/Dockerfile
+      target: local
+    env_file:
+      - ./.env.local
+    ports:
+      - '3008:3008'
+    command: ['npm', 'run', 'local']

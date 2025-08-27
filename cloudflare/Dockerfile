@@ -1,1 +1,0 @@
-From cloudflare/cloudflared:latest AS cloudflare

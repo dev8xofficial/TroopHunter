@@ -5,30 +5,50 @@ services:
   #     file: docker-compose.ci.yml
   #     service: ci_prod
 
-  postgres_prod:
+  main-prod:
     extends:
-      file: docker-compose.base.yml
-      service: postgres_prod
+      file: ./microservices/main/docker-compose.backend.yml
+      service: main-prod
 
-  # pgadmin_prod:
-  #   extends:
-  #     file: docker-compose.pgadmin.yml
-  #     service: pgadmin_prod
-
-  backend_prod:
+  auth-prod:
     extends:
-      file: docker-compose.backend.yml
-      service: backend_prod
+      file: ./microservices/auth/docker-compose.backend.yml
+      service: auth-prod
 
-  # crm_prod:
-  #   extends:
-  #     file: docker-compose.crm.yml
-  #     service: crm_prod
-
-  cloudflare_prod:
+  countries-prod:
     extends:
-      file: docker-compose.cloudflare.yml
-      service: cloudflare_prod
+      file: ./microservices/countries/docker-compose.backend.yml
+      service: countries-prod
+
+  businesses-prod:
+    extends:
+      file: ./microservices/businesses/docker-compose.backend.yml
+      service: businesses-prod
+
+  queues-prod:
+    extends:
+      file: ./microservices/queues/docker-compose.backend.yml
+      service: queues-prod
+
+  users-prod:
+    extends:
+      file: ./microservices/users/docker-compose.backend.yml
+      service: users-prod
+
+  troophunter-prod:
+    extends:
+      file: ./microfrontend/troophunter/docker-compose.troophunter.yml
+      service: troophunter-prod
+
+  dev8x-prod:
+    extends:
+      file: ./microfrontend/dev8x/docker-compose.dev8x.yml
+      service: dev8x-prod
+
+  helloabdul-prod:
+    extends:
+      file: ./microfrontend/helloabdul/docker-compose.helloabdul.yml
+      service: helloabdul-prod
 
 volumes:
   pgadmin-data:

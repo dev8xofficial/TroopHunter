@@ -1,0 +1,46 @@
+---
+- name: Copy global ConfigMap to remote
+  copy:
+    src: /workspace/ansible/kubernetes/k8s/config-map.yml
+    dest: /tmp/config-map.yml
+  when: cluster_action == "apply"
+
+- name: Apply global ConfigMap
+  kubernetes.core.k8s:
+    kubeconfig: /etc/kubernetes/admin.conf
+    state: present
+    src: /tmp/config-map.yml
+  when: cluster_action == "apply"
+
+- name: Get DOCKER_REGISTRY value from ConfigMap
+  ansible.builtin.command:
+    cmd: "kubectl get configmap global-config -o jsonpath='{.data.DOCKER_REGISTRY}' --kubeconfig=/etc/kubernetes/admin.conf"
+  register: docker_registry_value
+  when: cluster_action == "apply"
+
+- name: Set fact for docker registry
+  set_fact:
+    docker_registry: "{{ docker_registry_value.stdout }}"
+  when: cluster_action == "apply"
+
+- name: Apply deployments with env substitution
+  shell: |
+    export DOCKER_REGISTRY="{{ docker_registry }}"
+    for file in $(find /workspace/ansible/kubernetes/k8s/ -name '*-deployment.yaml'); do
+      envsubst < $file | kubectl apply -f - --kubeconfig=/etc/kubernetes/admin.conf
+    done
+  when: cluster_action == "apply"
+
+- name: Delete global ConfigMap
+  kubernetes.core.k8s:
+    kubeconfig: /etc/kubernetes/admin.conf
+    state: absent
+    src: /tmp/config-map.yml
+  when: cluster_action == "delete"
+
+- name: Delete deployments
+  shell: |
+    for file in $(find /workspace/ansible/kubernetes/k8s/ -name '*-deployment.yaml'); do
+      kubectl delete -f $file --ignore-not-found --kubeconfig=/etc/kubernetes/admin.conf
+    done
+  when: cluster_action == "delete"

@@ -1,0 +1,39 @@
+.pill {
+  border-radius: 100vw;
+  padding: clamp(0.625rem, 0.6613756614vw, 0.83125rem) clamp(0.75rem, 0.7936507937vw, 0.9975rem);
+  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
+  line-height: 1;
+  font-weight: 500;
+  display: inline-block;
+  margin: 0;
+}
+
+.pill--cyan {
+  background: var(--cyan-primary);
+  color: var(--cyan-secondary);
+}
+
+.pill--pink {
+  background: var(--pink-primary);
+  color: var(--pink-secondary);
+}
+
+.pill--blue {
+  background: var(--blue-primary);
+  color: var(--blue-secondary);
+}
+
+.pill--green {
+  background: var(--green-primary);
+  color: var(--green-secondary);
+}
+
+.pill--purple {
+  background: var(--purple-primary);
+  color: var(--purple-secondary);
+}
+
+.pill--yellow {
+  background: var(--yellow-primary);
+  color: var(--yellow-secondary);
+}
