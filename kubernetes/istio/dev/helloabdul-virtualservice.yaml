@@ -4,7 +4,9 @@ metadata:
   name: helloabdul-dev
 spec:
   hosts:
-    - "helloabdul.dev"
+    - "dev.helloabdul.com"
+    - "www.dev.helloabdul.com"
+    - "helloabdul.develop"
   gateways:
     - istio-system/main-gateway
   http:
@@ -15,7 +17,7 @@ spec:
         - destination:
             host: helloabdul-dev
             port:
-              number: 3006
+              number: 3008
       rewrite:
         uri: "/"
       headers:

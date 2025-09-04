@@ -1,6 +1,6 @@
 # Terraform SSH keys
 secrets/id_rsa*
-terraform.tfvars
+*.tfvars
 *.auto.tfvars
 .terraform/
 .terraform.lock.hcl

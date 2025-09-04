@@ -32,7 +32,8 @@ RUN npm run build:packages
 WORKDIR /app/microfrontend/troophunter
 
 # Build step (TypeScript)
-RUN npm run build
+ARG NODE_ENV
+RUN sh -c "npm run build:${NODE_ENV}"
 
 # ---- Production Stage ----
 FROM node:20.12.2-alpine as production

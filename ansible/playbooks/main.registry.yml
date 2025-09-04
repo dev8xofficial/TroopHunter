@@ -1,11 +1,11 @@
 ---
 - name: Setup Docker Registry and push microservices images in it
-  hosts: docker
+  hosts: all
   become: true
   vars:
-    deploy_env: prod
+    deploy_env: "{{ env }}"
     user: docker-registry
-    docker_registry_ip: "{{ hostvars[groups['docker'][0]].ansible_host }}:5000"
+    docker_registry_ip: "{{ hostvars[groups['docker_' + deploy_env][0]].ansible_host }}:5000"
   roles:
     - common
     - docker

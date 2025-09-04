@@ -4,6 +4,8 @@ metadata:
   name: main-stag
 spec:
   hosts:
+    - "stag.troophunter.com"
+    - "www.stag.troophunter.com"
     - "troophunter.stag"
   gateways:
     - istio-system/main-gateway

@@ -4,7 +4,9 @@ metadata:
   name: dev8x-dev
 spec:
   hosts:
-    - "dev8x.dev"
+    - "dev.dev8x.com"
+    - "www.dev.dev8x.com"
+    - "dev8x.develop"
   gateways:
     - istio-system/main-gateway
   http:
@@ -15,7 +17,7 @@ spec:
         - destination:
             host: dev8x-dev
             port:
-              number: 3003
+              number: 3005
       rewrite:
         uri: "/"
       headers:

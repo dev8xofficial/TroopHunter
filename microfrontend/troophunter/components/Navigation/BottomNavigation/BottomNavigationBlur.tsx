@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import { ArrowLeftStartOnRectangleIcon as ArrowLeftStartOnRectangleIconSolid, HomeIcon as HomeIconSolid, Bars3CenterLeftIcon as Bars3CenterLeftIconSolid, Cog6ToothIcon as Cog6ToothIconSolid } from '@heroicons/react/20/solid';
-import { MagnifyingGlassIcon, ArrowLeftStartOnRectangleIcon, HomeIcon, Bars3CenterLeftIcon, Cog6ToothIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, ArrowLeftStartOnRectangleIcon, HomeIcon, Bars3CenterLeftIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { resetHomePageDraftLeadIdAction, resetHomePageFiltersAction, resetHomePageBusinessIdsAction } from '../../../store/actions/homePageActions';
-import { type IHomePageState } from '../../../store/reducers/homePageReducer';
 import LeadSaveDialog from '../../Feedback/LeadSaveDialog/LeadSaveDialog';
 
 interface DefaultLayoutProps {
@@ -18,8 +15,6 @@ const BottomNavigationBlur: React.FC<DefaultLayoutProps> = ({ signOut }: Default
   const [isOpenLeadSaveDialog, setIsOpenLeadSaveDialog] = useState(false);
   const [activeTab, setActiveTab] = useState<string>('/lead');
   const router = useRouter();
-  const dispatch = useDispatch();
-  const home = useSelector((state: { home: IHomePageState }) => state.home);
 
   useEffect(() => {
     if (router.pathname.length > 0) {
@@ -29,14 +24,6 @@ const BottomNavigationBlur: React.FC<DefaultLayoutProps> = ({ signOut }: Default
 
   const isActive = (path: string): boolean => {
     return activeTab === path;
-  };
-
-  const isEditingLead = home.draftLeadId.length > 0;
-
-  const handleClearLead = (): void => {
-    dispatch(resetHomePageDraftLeadIdAction(''));
-    dispatch(resetHomePageFiltersAction());
-    dispatch(resetHomePageBusinessIdsAction());
   };
 
   return (
@@ -68,25 +55,19 @@ const BottomNavigationBlur: React.FC<DefaultLayoutProps> = ({ signOut }: Default
           )}
         </Link>
         <>
-          {isEditingLead ? (
-            <button className="group active gap-1 rounded-xl p-2.5" onClick={handleClearLead}>
-              <XMarkIcon className="h-6 w-6 text-red-600 xl:h-7 xl:w-7 dark:text-red-400 dark:group-hover:text-red-300" aria-hidden="true" />
-            </button>
-          ) : (
-            <button
-              className="group active gap-1 rounded-xl p-2.5"
-              onClick={() => {
-                if (!isActive('/lead')) void router.push('/lead');
-                else
-                  setTimeout(() => {
-                    document.getElementById('home-search')?.focus();
-                    document.getElementById('home-search')?.click();
-                  }, 0);
-              }}
-            >
-              <MagnifyingGlassIcon className="h-6 w-6 text-indigo-600 xl:h-7 xl:w-7 dark:text-indigo-300 dark:group-hover:text-primary-text" aria-hidden="true" />
-            </button>
-          )}
+          <button
+            className="group active gap-1 rounded-xl p-2.5"
+            onClick={() => {
+              if (!isActive('/lead')) void router.push('/lead');
+              else
+                setTimeout(() => {
+                  document.getElementById('home-search')?.focus();
+                  document.getElementById('home-search')?.click();
+                }, 0);
+            }}
+          >
+            <MagnifyingGlassIcon className="h-6 w-6 text-indigo-600 xl:h-7 xl:w-7 dark:text-indigo-300 dark:group-hover:text-primary-text" aria-hidden="true" />
+          </button>
           <LeadSaveDialog
             isOpen={isOpenLeadSaveDialog}
             closeModal={() => {
@@ -122,5 +103,4 @@ const BottomNavigationBlur: React.FC<DefaultLayoutProps> = ({ signOut }: Default
     </>
   );
 };
-
 export default BottomNavigationBlur;

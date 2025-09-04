@@ -93,9 +93,9 @@
 
   when: not kubelet_conf_stat.stat.exists
 
-- name: Label all worker nodes
-  command: >
-    kubectl label node {{ item }} node-role.kubernetes.io/worker=worker --kubeconfig=/etc/kubernetes/admin.conf
-  loop: "{{ groups['k8s_workers'] }}"
-  run_once: true
-  delegate_to: k8s-ctrlr
+# - name: Label all worker nodes
+#   command: >
+#     kubectl label node {{ hostvars[item].ansible_hostname }} node-role.kubernetes.io/worker=worker --kubeconfig=/etc/kubernetes/admin.conf
+#   loop: "{{ groups['k8s_workers_' + deploy_env] }}"
+#   run_once: true
+#   delegate_to: k8s-ctrlr

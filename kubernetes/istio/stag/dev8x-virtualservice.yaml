@@ -4,6 +4,8 @@ metadata:
   name: dev8x-stag
 spec:
   hosts:
+    - "stag.dev8x.com"
+    - "www.stag.dev8x.com"
     - "dev8x.stag"
   gateways:
     - istio-system/main-gateway
@@ -15,7 +17,7 @@ spec:
         - destination:
             host: dev8x-stag
             port:
-              number: 3003
+              number: 3004
       rewrite:
         uri: "/"
       headers:

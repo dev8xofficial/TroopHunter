@@ -4,6 +4,8 @@ metadata:
   name: helloabdul-stag
 spec:
   hosts:
+    - "stag.helloabdul.com"
+    - "www.stag.helloabdul.com"
     - "helloabdul.stag"
   gateways:
     - istio-system/main-gateway
@@ -15,7 +17,7 @@ spec:
         - destination:
             host: helloabdul-stag
             port:
-              number: 3006
+              number: 3007
       rewrite:
         uri: "/"
       headers:

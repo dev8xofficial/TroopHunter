@@ -6,7 +6,7 @@ node_modules
 certs
 
 # production/
-production
+/production/
 
 # postgress/
 postgres_dev

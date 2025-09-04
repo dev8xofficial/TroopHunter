@@ -1,3 +1,0 @@
----
-- name: Disconnect from ProtonVPN
-  command: protonvpn-cli d

@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "local": "cross-env NODE_ENV=local next dev --turbo -p $PORT",
-    "development": "cross-env NODE_ENV=development next dev --turbo -p $PORT",
-    "staging": "cross-env NODE_ENV=staging next dev --turbo -p $PORT",
-    "production": "cross-env NODE_ENV=production next start",
-    "start": "cross-env NODE_ENV=production next start",
-    "build": "cross-env NODE_ENV=production next build",
+    "local": "dotenv -e .env.local next dev --turbo -p $PORT",
+    "development": "dotenv -e .env.development next start",
+    "staging": "dotenv -e .env.staging next start",
+    "production": "dotenv -e .env.production next start",
+    "start:development": "dotenv -e .env.development next start",
+    "start:staging": "dotenv -e .env.staging next start",
+    "start:production": "dotenv -e .env.production next start",
+    "build:development": "dotenv -e .env.development next build",
+    "build:staging": "dotenv -e .env.staging next build",
+    "build:production": "dotenv -e .env.production next build",
     "lint": "next lint"
   },
   "dependencies": {

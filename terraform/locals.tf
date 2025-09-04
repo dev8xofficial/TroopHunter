@@ -3,11 +3,11 @@
 locals {
   connect_ops = [
     {
-      name          = "connect-ops"
+      name          = "${var.connect_ops_name}"
       cores         = 1
       memory        = 512
-      ip            = "192.168.1.200"
-      hostname      = "connect-ops"
+      ip            = "${var.connect_ops_ip}"
+      hostname      = "${var.connect_ops_name}"
       startup_order = 0
       up_delay      = 0
       ssh_key_path  = "${var.ssh_keys_dir}id_rsa_connect_ops.pub"
@@ -17,25 +17,25 @@ locals {
 
   docker_registry = [
     {
-      name          = "docker-registry"
+      name          = "${var.docker_registry_name}"
       cores         = 1
       memory        = 1024
-      ip            = "192.168.1.201"
-      hostname      = "docker-registry"
+      ip            = "${var.docker_registry_ip}"
+      hostname      = "${var.docker_registry_name}"
       startup_order = 10
       up_delay      = 30
       ssh_key_path  = "${var.ssh_keys_dir}id_rsa_registry.pub"
-      disk_size     = "40G"
+      disk_size     = "60G"
     }
   ]
 
   k8s_controller = [
     {
-      name          = "k8s-ctrlr"
+      name          = "${var.k8s_controller_name}"
       cores         = 2
       memory        = 2048
-      ip            = "192.168.1.205"
-      hostname      = "k8s-ctrlr"
+      ip            = "${var.k8s_controller_ip}"
+      hostname      = "${var.k8s_controller_name}"
       startup_order = 0
       up_delay      = 0
       ssh_key_path  = "${var.ssh_keys_dir}id_rsa_k8s_ctrlr.pub"
@@ -45,11 +45,11 @@ locals {
 
   k8s_nodes = [
     for i in range(1, 2) : {
-      name          = "k8s-node-${i}"
+      name          = "${var.k8s_nodes_name}-${i}"
       cores         = 4
       memory        = 8192
-      ip            = "192.168.1.20${i + 5}"
-      hostname      = "k8s-node-${i}"
+      ip            = "${var.k8s_nodes_ip}${i + 5}"
+      hostname      = "${var.k8s_nodes_name}-${i}"
       startup_order = i
       up_delay      = 15
       ssh_key_path  = "${var.ssh_keys_dir}id_rsa_k8s_node.pub"

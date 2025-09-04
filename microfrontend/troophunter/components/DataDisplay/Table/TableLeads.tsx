@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { setHomePageDraftLeadIdAction, setHomePageFiltersAction, resetHomePageBusinessIdsAction } from '../../../store/actions/homePageActions';
+import { setHomePageDraftLeadIdAction, setHomePageFiltersAction } from '../../../store/actions/homePageActions';
 import { deleteLeadsAction } from '../../../store/actions/leadActions';
 import { setLeadsPageSelectedLeadIds } from '../../../store/actions/leadsPageActions';
 import { type IAuthState } from '../../../store/reducers/authReducer';
@@ -82,7 +82,6 @@ const Table: React.FC = (): JSX.Element => {
         };
 
         const dispatchActionPromise = new Promise<void>((resolve) => {
-          dispatch(resetHomePageBusinessIdsAction());
           dispatch(setHomePageFiltersAction(updatedFilters));
           dispatch(setHomePageDraftLeadIdAction(selectedLead.id));
           resolve();

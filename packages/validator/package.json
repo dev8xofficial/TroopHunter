@@ -33,7 +33,7 @@
   },
   "scripts": {
     "build": "node build.config.js && tsc",
-    "clean": "rm -rf dist",
+    "clean": "rimraf dist",
     "dev": "tsc -w",
     "lint": "eslint \"src/**/*.ts*\" --max-warnings 0",
     "test": "jest",

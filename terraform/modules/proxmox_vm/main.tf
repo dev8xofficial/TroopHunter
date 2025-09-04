@@ -21,7 +21,9 @@ resource "proxmox_vm_qemu" "k8s" {
   clone       = var.vm_template
   full_clone  = true
 
-  cores       = each.value.data.cores
+  cpu { 
+    cores     = each.value.data.cores
+  }
   memory      = each.value.data.memory
   agent       = 1
   os_type     = "cloud-init"

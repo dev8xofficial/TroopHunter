@@ -1,6 +1,6 @@
 ---
 - name: Configure ConnectOps
-  hosts: connect_ops
+  hosts: all
   become: true
   vars:
     advertise_subnets: ["192.168.1.0/24"]
