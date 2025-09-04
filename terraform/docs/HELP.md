@@ -38,10 +38,14 @@ terraform workspace new staging
 terraform workspace new production
 
 terraform workspace list
+
+# Deploy only to development
 terraform workspace select development && terraform apply -var-file="secrets/development.tfvars" -target=module.k8s_vms
 
+# Deploy only to staging
 terraform workspace select staging && terraform apply -var-file="secrets/staging.tfvars" -target=module.k8s_vms
 
+# Deploy only to production
 terraform workspace select production && terraform apply -var-file="secrets/production.tfvars" -target=module.connect_ops
 terraform workspace select production && terraform apply -var-file="secrets/production.tfvars" -target=module.docker_registry
 terraform workspace select production && terraform apply -var-file="secrets/production.tfvars" -target=module.k8s_vms

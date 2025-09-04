@@ -37,6 +37,7 @@ ansible-playbook --ask-vault-pass playbooks/main.scraper.yml
 # ------------ Accessing K8s from Local Machine --------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
 
+ssh -i secrets/id_rsa_k8s_ctrlr k8s-ctrlr-dev@192.168.1.225
 sudo cp /etc/kubernetes/admin.conf /home/k8s-ctrlr-dev/admin.conf
 sudo chown k8s-ctrlr-dev:k8s-ctrlr-dev /home/k8s-ctrlr-dev/admin.conf
 sudo scp -i terraform/secrets/id_rsa_k8s_ctrlr k8s-ctrlr-dev@192.168.1.225:/home/k8s-ctrlr-dev/admin.conf ~/kubeadm-dev-config
@@ -44,6 +45,7 @@ export KUBECONFIG=~/kubeadm-config
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-config get nodes
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-config get pods
 
+ssh -i secrets/id_rsa_k8s_ctrlr k8s-ctrlr-stag@192.168.1.215
 sudo cp /etc/kubernetes/admin.conf /home/k8s-ctrlr-stag/admin.conf
 sudo chown k8s-ctrlr-stag:k8s-ctrlr-stag /home/k8s-ctrlr-stag/admin.conf
 sudo scp -i terraform/secrets/id_rsa_k8s_ctrlr k8s-ctrlr-stag@192.168.1.215:/home/k8s-ctrlr-stag/admin.conf ~/kubeadm-stag-config
@@ -51,6 +53,7 @@ export KUBECONFIG=~/kubeadm-config
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-config get nodes
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-config get pods
 
+ssh -i secrets/id_rsa_k8s_ctrlr k8s-ctrlr-prod@192.168.1.205
 sudo cp /etc/kubernetes/admin.conf /home/k8s-ctrlr-prod/admin.conf
 sudo chown k8s-ctrlr-prod:k8s-ctrlr-prod /home/k8s-ctrlr-prod/admin.conf
 sudo scp -i terraform/secrets/id_rsa_k8s_ctrlr k8s-ctrlr-prod@192.168.1.205:/home/k8s-ctrlr-prod/admin.conf ~/kubeadm-prod-config
