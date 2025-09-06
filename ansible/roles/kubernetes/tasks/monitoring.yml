@@ -1,0 +1,193 @@
+---
+- name: Verify kubeconfig exists
+  stat:
+    path: "{{ kubeconfig_path }}"
+  register: kubeconfig_stat
+  failed_when: not kubeconfig_stat.stat.exists
+
+- name: Ensure /tmp/monitoring directory exists
+  file:
+    path: /tmp/monitoring
+    state: directory
+    mode: '0755'
+
+- name: Copy monitoring manifests to remote
+  copy:
+    src: "/workspace/ansible/kubernetes/monitoring/"
+    dest: "/tmp/monitoring/"
+
+# --- Apply Operations ---
+- block:
+    - name: Create monitoring namespace
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: "{{ namespace }}"
+            labels:
+              name: "{{ namespace }}"
+
+    - name: Apply RBAC and core components
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: present
+        src: "/tmp/monitoring/rbac-and-core.yaml"
+
+    - name: Apply node-exporter daemonset and service
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: present
+        src: "/tmp/monitoring/node-exporter.yaml"
+
+    - name: Apply kube-state-metrics
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: present
+        src: "/tmp/monitoring/kube-state-metrics.yaml"
+
+    - name: Apply prometheus (configmap + deployment + service)
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: present
+        src: "/tmp/monitoring/prometheus-{{ deploy_env }}.yaml"
+
+    - name: Apply grafana dashboards
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: present
+        src: "/tmp/monitoring/grafana-dashboards.yaml"
+
+    - name: Apply grafana (deployment + svc + datasource)
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: present
+        src: "/tmp/monitoring/grafana-{{ deploy_env }}.yaml"
+  when: cluster_action == "apply"
+
+# --- Delete Operations (in reverse order) ---
+- block:
+    - name: Delete grafana (deployment + svc + datasource)
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: absent
+        src: "/tmp/monitoring/grafana-{{ deploy_env }}.yaml"
+
+    - name: Delete grafana dashboards
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: absent
+        src: "/tmp/monitoring/grafana-dashboards.yaml"
+
+    - name: Delete prometheus (configmap + deployment + service)
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: absent
+        src: "/tmp/monitoring/prometheus-{{ deploy_env }}.yaml"
+
+    - name: Delete kube-state-metrics
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: absent
+        src: "/tmp/monitoring/kube-state-metrics.yaml"
+
+    - name: Delete node-exporter daemonset and service
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: absent
+        src: "/tmp/monitoring/node-exporter.yaml"
+
+    - name: Delete RBAC and core components
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: absent
+        src: "/tmp/monitoring/rbac-and-core.yaml"
+
+    - name: Delete PVCs (if they exist)
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: absent
+        api_version: v1
+        kind: PersistentVolumeClaim
+        name: "{{ item }}"
+        namespace: "{{ namespace }}"
+      loop:
+        - prometheus-pvc
+        - grafana-pvc
+      ignore_errors: true
+
+    - name: Delete monitoring namespace
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_path }}"
+        state: absent
+        definition:
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: "{{ namespace }}"
+  when: cluster_action == "delete"
+
+- name: Wait for prometheus to be available
+  kubernetes.core.k8s_info:
+    kubeconfig: "{{ kubeconfig_path }}"
+    api_version: apps/v1
+    kind: Deployment
+    name: prometheus
+    namespace: "{{ namespace }}"
+    wait: true
+    wait_condition:
+      type: Available
+      status: "True"
+    wait_timeout: 300
+  when: cluster_action == "apply"
+
+- name: Wait for grafana to be available
+  kubernetes.core.k8s_info:
+    kubeconfig: "{{ kubeconfig_path }}"
+    api_version: apps/v1
+    kind: Deployment
+    name: grafana
+    namespace: "{{ namespace }}"
+    wait: true
+    wait_condition:
+      type: Available
+      status: "True"
+    wait_timeout: 300
+  when: cluster_action == "apply"
+
+- name: Get monitoring services
+  kubernetes.core.k8s_info:
+    kubeconfig: "{{ kubeconfig_path }}"
+    api_version: v1
+    kind: Service
+    namespace: "{{ namespace }}"
+  register: monitoring_services
+  when: cluster_action == "apply"
+
+- name: Display monitoring services
+  debug:
+    msg: "Monitoring services deployed: {{ monitoring_services.resources | map(attribute='metadata.name') | list }}"
+  when: cluster_action == "apply"
+
+- name: Get service endpoints
+  kubernetes.core.k8s_info:
+    kubeconfig: "{{ kubeconfig_path }}"
+    api_version: v1
+    kind: Service
+    namespace: "{{ namespace }}"
+  register: service_details
+  when: cluster_action == "apply"
+
+- name: Display service details
+  debug:
+    msg: |
+      Prometheus: http://{{ ansible_host }}:{{ service_details.resources | selectattr('metadata.name', 'equalto', 'prometheus') | map(attribute='spec.ports[0].nodePort') | first | default('NodePort not configured') }}
+      Grafana: http://{{ ansible_host }}:{{ service_details.resources | selectattr('metadata.name', 'equalto', 'grafana') | map(attribute='spec.ports[0].nodePort') | first | default('NodePort not configured') }}
+  when: cluster_action == "apply"
+
+- name: Clean up temporary monitoring manifests
+  file:
+    path: "/tmp/monitoring/"
+    state: absent
