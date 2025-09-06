@@ -55,6 +55,8 @@
     k8s_state_map:
       apply: present
       delete: absent
+    kubeconfig_path: "/home/{{ ansible_user }}/.kube/config"
+    namespace: monitoring
   tasks:
     # --- Order for apply ---
     - block:
@@ -63,10 +65,12 @@
         - include_tasks: ../roles/kubernetes/tasks/deploy_microservices.yml
         - include_tasks: ../roles/kubernetes/tasks/deploy_microfrontend.yml
         - include_tasks: ../roles/kubernetes/tasks/deploy_cluster_components.yml
+        - include_tasks: ../roles/kubernetes/tasks/monitoring_metrics.yml
       when: cluster_action == "apply"
 
     # --- Order for delete ---
     - block:
+        - include_tasks: ../roles/kubernetes/tasks/monitoring_metrics.yml
         - include_tasks: ../roles/kubernetes/tasks/deploy_microservices.yml
         - include_tasks: ../roles/kubernetes/tasks/deploy_microfrontend.yml
         - include_tasks: ../roles/kubernetes/tasks/deploy_cluster_components.yml

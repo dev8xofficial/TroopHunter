@@ -92,18 +92,24 @@ sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-dev-config logs deployment/
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-dev-config describe quota -n default
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-dev-config exec -it troophunter-dev-56bdfdf9bc-xyz -- /bin/sh
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-dev-config port-forward service/troophunter-dev 3002:3002
+sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-dev-config get deployment metrics-server -n kube-system -o wide
+sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-dev-config top pods -A
 
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config get pods
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config logs deployment/troophunter-stag -c troophunter-stag -f
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config describe quota -n default
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config exec -it troophunter-stag-56bdfdf9bc-xyz -- /bin/sh
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config port-forward service/troophunter-stag 3001:3001
+sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config get deployment metrics-server -n kube-system -o wide
+sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config top pods -A
 
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config get pods
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config logs deployment/troophunter-prod -c troophunter-prod -f
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config describe quota -n default
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config exec -it troophunter-prod-56bdfdf9bc-xyz -- /bin/sh
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config port-forward service/troophunter-prod 3000:3000
+sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config get deployment metrics-server -n kube-system -o wide
+sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config top pods -A
 
 ```
 abdulrehman@Abduls-MacBook-Pro-M1 ~ % sudo cat /etc/hosts

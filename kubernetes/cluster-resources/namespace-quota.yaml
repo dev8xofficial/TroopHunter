@@ -5,10 +5,10 @@ metadata:
   namespace: default
 spec:
   hard:
-    requests.cpu: "3000m"         # 3 cores (75% of total 4 cores)
-    requests.memory: "4.5Gi"      # 6GB (75% of total 8GB)
-    limits.cpu: "3500m"           # 3.5 cores (87.5% of total)
-    limits.memory: "5.25Gi"      # 7GB (87.5% of total)
-    pods: "20"                    # Increased for 8 services + overhead
-    persistentvolumeclaims: "10"   # For databases
-    services: "20"                # For services and load balancers
+    requests.cpu: "3000m"           # 3 cores (75% of total 4 cores)
+    requests.memory: "4.5Gi"        # 6GB (75% of total 8GB)
+    limits.cpu: "3500m"             # 3.5 cores (87.5% of total)
+    limits.memory: "5.25Gi"         # 7GB (87.5% of total)
+    pods: "20"                      # Increased for 8 services + overhead
+    persistentvolumeclaims: "10"    # For databases
+    services: "20"                  # For services and load balancers
