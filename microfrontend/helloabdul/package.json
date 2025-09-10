@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "local": "dotenv -e .env.local next dev --turbo -p $PORT",
+    "local": "dotenv -e .env.local next dev",
     "development": "dotenv -e .env.development next start",
     "staging": "dotenv -e .env.staging next start",
     "production": "dotenv -e .env.production next start",
