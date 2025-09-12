@@ -9,6 +9,7 @@ import { type IActionBarProps } from './ActionBar.interfaces';
 import { type IAuthState } from '../../../store/reducers/authReducer';
 import { type ILeadsState } from '../../../store/reducers/leadsPageReducer';
 import { type IUserState } from '../../../store/reducers/userReducer';
+import { prefixed } from '../../../utils/helpers';
 import Avatar from '../../DataDisplay/Avatar/Avatar';
 import LeadsDeletionDialog from '../../Feedback/LeadsDeletionDialog/LeadsDeletionDialog';
 import Progress from '../../Feedback/Progress/Progress';
@@ -67,7 +68,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ title = 'lead', isLoading = fals
           <div className="mx-auto h-full w-full max-w-7xl px-4 py-6 xl:px-8">
             <div className="flex h-full items-center justify-between">
               <div className="min-w-0 flex-1">
-                <img className="mx-auto h-6 lg:h-8" src="/logo/logo.svg" alt="TroopHunter" />
+                <img className="mx-auto h-6 lg:h-8" src={prefixed('/logo/logo.svg')} alt="TroopHunter" />
               </div>
               <div className="hidden h-full items-center text-sm">
                 {title.toLowerCase() === 'lead' && (

@@ -13,7 +13,6 @@ interface WorkCardPictureProps {
 
 export const WorkCardPicture: React.FC<WorkCardPictureProps> = ({ backgroundImage, placeholderImage, variant, space }) => {
   const imageSrc = backgroundImage || placeholderImage;
-  console.log('WorkCardPicture: ', backgroundImage, placeholderImage);
   const landscapeOuterSources = (
     <>
       <source srcSet={`${imageSrc}/m/450x330/filters:quality(80) 1x, ${imageSrc}/m/900x660/filters:quality(80) 2x`} media="(max-width: 479px)" />

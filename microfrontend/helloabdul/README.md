@@ -81,3 +81,11 @@ website/
 ┣ tailwind.config.js # TailwindCSS configuration
 ┣ tsconfig.json # TypeScript configuration
 ┗ vite.config.ts # Vite configuration (if using Vite)
+
+# Regex
+
+Find        ="/([^"]+)"
+Replace     ='prefixed("/$1")'
+
+Find        '/api(.*?)'
+Replace     prefixed('/api$1')

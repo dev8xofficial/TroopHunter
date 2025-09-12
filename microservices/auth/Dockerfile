@@ -1,5 +1,5 @@
 # ---- Local Image ----
-FROM node:20.12.2-alpine as base
+FROM node:20.19.5-alpine as base
 
 RUN apk --no-cache add bash postgresql-client
 
@@ -35,7 +35,7 @@ WORKDIR /app/microservices/auth
 RUN npm run build
 
 # ---- Production Stage ----
-FROM node:20.12.2-alpine as production
+FROM node:20.19.5-alpine as production
 
 WORKDIR /app/microservices/auth
 

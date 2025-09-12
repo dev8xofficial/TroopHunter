@@ -10,7 +10,6 @@ services:
       - ./.env.production
     ports:
       - '3006:3006'
-    command: ['npm', 'run', 'production']
 
   helloabdul-stag:
     container_name: helloabdul-stag
@@ -18,12 +17,11 @@ services:
     build:
       context: ../../
       dockerfile: microfrontend/helloabdul/Dockerfile
-      target: builder
+      target: production
     env_file:
       - ./.env.staging
     ports:
       - '3007:3007'
-    command: ['npm', 'run', 'staging']
 
   helloabdul-dev:
     container_name: helloabdul-dev
@@ -31,12 +29,11 @@ services:
     build:
       context: ../../
       dockerfile: microfrontend/helloabdul/Dockerfile
-      target: builder
+      target: base
     env_file:
       - ./.env.development
     ports:
       - '3008:3008'
-    command: ['npm', 'run', 'development']
 
   helloabdul-loc:
     container_name: helloabdul-loc
@@ -49,4 +46,3 @@ services:
       - ./.env.local
     ports:
       - '3008:3008'
-    command: ['npm', 'run', 'local']

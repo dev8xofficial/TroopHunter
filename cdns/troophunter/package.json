@@ -1,0 +1,28 @@
+{
+	"name": "troophunter-cdn",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"upload": "node src/upload-to-r2.js",
+		"deploy": "wrangler deploy",
+		"deploy:force": "wrangler deploy --force",
+		"delete:next": "node src/delete-next-r2.js",
+		"delete:public": "node src/delete-public-r2.js",
+		"dev": "wrangler dev",
+		"dev:remote": "wrangler dev --remote",
+		"start": "wrangler dev",
+		"test": "vitest"
+	},
+	"devDependencies": {
+		"@cloudflare/vitest-pool-workers": "^0.8.19",
+		"miniflare": "^4.20250906.0",
+		"vitest": "~3.2.0",
+		"wrangler": "^4.35.0"
+	},
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.884.0",
+		"deploy": "^1.0.3",
+		"dotenv": "^17.2.2"
+	}
+}

@@ -68,8 +68,8 @@ export const sendVerificationToken = async (req: Request, res: Response): Promis
     });
 
     const html = emailTemplate({
-      logo: `${process.env.TROOPHUNTER_PUBLIC_URL ?? 'https://www.troophunter.com'}/logo/logo.png`,
-      headerImage: `${process.env.TROOPHUNTER_PUBLIC_URL ?? 'https://www.troophunter.com'}/images/user-verification/user-verification-indigo.png`,
+      logo: `${process.env.ASSET_HOST ?? 'https://www.troophunter.com'}/logo/logo.png`,
+      headerImage: `${process.env.ASSET_HOST ?? 'https://www.troophunter.com'}/images/user-verification/user-verification-indigo.png`,
       link: `${process.env.TROOPHUNTER_PUBLIC_URL ?? 'https://www.troophunter.com'}/verify/${existingUser.id}/${token}`,
       firstName: existingUser.firstName,
       expireTime: `${0.25 * 60} minutes`,
@@ -180,8 +180,8 @@ export const forgotPassword = async (req: Request, res: Response): Promise<Respo
     });
 
     const html = emailTemplate({
-      logo: `${process.env.TROOPHUNTER_PUBLIC_URL ?? 'https://www.troophunter.com'}/logo/logo.png`,
-      headerImage: `${process.env.TROOPHUNTER_PUBLIC_URL ?? 'https://www.troophunter.com'}/images/forgot-password/forgot-password.png`,
+      logo: `${process.env.ASSET_HOST ?? 'https://www.troophunter.com'}/logo/logo.png`,
+      headerImage: `${process.env.ASSET_HOST ?? 'https://www.troophunter.com'}/images/forgot-password/forgot-password.png`,
       link: `${process.env.TROOPHUNTER_PUBLIC_URL ?? 'https://www.troophunter.com'}/reset-password/${existingUser.id}/${token}`,
       firstName: existingUser.firstName,
       expireTime: `${0.25 * 60} minutes`,

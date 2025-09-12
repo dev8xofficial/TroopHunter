@@ -16,7 +16,7 @@ spec:
         - name: helloabdul-prod
           image: 192.168.1.201/helloabdul-prod:latest
           imagePullPolicy: Always
-          command: ["npm", "run", "production"]
+          command: ["npm", "run", "start:production"]
           ports:
             - containerPort: 3006
           env:

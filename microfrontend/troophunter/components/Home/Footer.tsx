@@ -3,6 +3,8 @@ import React from 'react';
 
 import Link from 'next/link';
 
+import { prefixed } from '../../utils/helpers';
+
 const Footer: React.FC = (): JSX.Element => {
   return (
     <>
@@ -56,7 +58,7 @@ const Footer: React.FC = (): JSX.Element => {
           </div> */}
           <div className="col-start-[bottom] col-end-[bottom] row-start-[bottom] row-end-[bottom] mt-[clamp(.5rem,.5291005291vw,.665rem)] flex transform flex-col items-center gap-[1.875rem] border-t border-[var(--theme-primary)] pt-[3.75rem] text-[clamp(.8125rem,.8597883598vw,1.080625rem)] transition-[border-color_.4s] lg:mt-0 lg:flex-row lg:gap-[clamp(2.875rem,3.0423280423vw,3.82375rem)] lg:p-[clamp(1.875rem,1.9841269841vw,2.49375rem)_0]">
             <div className="flex items-center gap-[clamp(1rem,1.0582010582vw,1.33rem)]">
-              <img className="mx-auto !h-6 lg:!h-8" src="/logo/logo.svg" alt="TroopHunter" width={50} height={50} style={{ width: 'auto', height: 'auto' }} />
+              <img className="mx-auto !h-6 lg:!h-8" src={prefixed('/logo/logo.svg')} alt="TroopHunter" width={50} height={50} style={{ width: 'auto', height: 'auto' }} />
               <span className="text-[var(--theme-secondary)] opacity-50">
                 © 2025 <div className="text-inherit underline">Privacy</div>
               </span>

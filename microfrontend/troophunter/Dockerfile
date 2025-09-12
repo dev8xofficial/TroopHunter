@@ -1,5 +1,5 @@
 # ---- Base for dependencies ----
-FROM node:20.12.2-alpine as base
+FROM node:20.19.5-alpine as base
 
 RUN apk --no-cache add bash postgresql-client
 
@@ -27,16 +27,16 @@ WORKDIR /app
 # ---- Builder (for all builds) ----
 FROM base as builder
 
-RUN npm run build:packages
+# RUN npm run build:packages
 
-WORKDIR /app/microfrontend/troophunter
+# WORKDIR /app/microfrontend/troophunter
 
-# Build step (TypeScript)
-ARG NODE_ENV
-RUN sh -c "npm run build:${NODE_ENV}"
+# # Build step (TypeScript)
+# ARG NODE_ENV
+# RUN sh -c "npm run build:${NODE_ENV}"
 
 # ---- Production Stage ----
-FROM node:20.12.2-alpine as production
+FROM node:20.19.5-alpine as production
 
 WORKDIR /app/microfrontend/troophunter
 

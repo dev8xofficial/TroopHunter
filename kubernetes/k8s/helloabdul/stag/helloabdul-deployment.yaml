@@ -16,7 +16,7 @@ spec:
         - name: helloabdul-stag
           image: 192.168.1.201/helloabdul-stag:latest
           imagePullPolicy: Always
-          command: ["npm", "run", "staging"]
+          command: ["npm", "run", "start:staging"]
           ports:
             - containerPort: 3007
           env:

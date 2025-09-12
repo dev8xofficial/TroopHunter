@@ -1,5 +1,6 @@
 import React, { CSSProperties, ReactNode, useState, useRef, useEffect } from 'react';
 import Hls from 'hls.js';
+import { prefixed } from '../../../utils/helpers';
 
 import PictureStyles from '../Picture/index.module.css';
 import ButtonStyles from '../../Input/Button/index.module.css';
@@ -170,9 +171,9 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, ho
             ) : (
               <>
                 <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['showreel__image']}`}>
-                  <source className={styles['picture']} srcSet="/images/header/1080.png 1x, /images/header/1080.png 2x" media="(min-width: 0px) and (max-width: 479px)" />
-                  <source className={styles['picture']} srcSet="/images/header/1080.png 1x, /images/header/1080.png 2x" media="(min-width: 480px)" />
-                  <img src="/images/header/1080.png" loading="eager" width="450" height="364" alt="" className="" draggable="false" />
+                  <source className={styles['picture']} srcSet={`${prefixed('/images/header/1080.png')} 1x, ${prefixed('/images/header/1080.png')} 2x`} media="(min-width: 0px) and (max-width: 479px)" />
+                  <source className={styles['picture']} srcSet={`${prefixed('/images/header/1080.png')} 1x, ${prefixed('/images/header/1080.png')} 2x`} media="(min-width: 480px)" />
+                  <img src={prefixed('/images/header/1080.png')} loading="eager" width="450" height="364" alt="" className="" draggable="false" />
                 </picture>
                 <video ref={videoRef} className={`${styles['showreel__video']} ${isMobile ? styles['showreel__video--mobile'] : styles['showreel__video--desktop']}`} src={!enableHLS ? src : undefined} poster={poster} preload="metadata" loop controls={false} autoPlay muted={isMuted} playsInline />
                 <div className={`${styles['showreel__controls']} ${isPlaying ? styles['showreel__controls--playing'] : styles['showreel__controls--paused']}`} style={{ '--height': height } as React.CSSProperties}>

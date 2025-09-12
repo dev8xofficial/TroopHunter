@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { prefixed } from '../../../utils/helpers';
+
 const WorkWithVideos: React.FC = (): JSX.Element => {
   return (
     <>
@@ -14,9 +16,9 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
 
                 <div className="h-auto grid transform -translate-y-2/4 -translate-x-2/4 left-2/4 top-2/4 absolute w-[69.4214876033%] items-center">
                   <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
-                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={prefixed('/images/placeholder/1080.png')}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/crm.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src={prefixed('/videos/work/crm.mp4')} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
               <div className="grid content-end md:h-full md:w-full md:left-0 md:bottom-0 md:absolute">
@@ -37,9 +39,9 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
 
                 <div className="h-auto grid transform -translate-y-2/4 -translate-x-2/4 left-2/4 top-2/4 absolute w-[69.4214876033%] items-center">
                   <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
-                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={prefixed('/images/placeholder/1080.png')}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/honeydu.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src={prefixed('/videos/work/honeydu.mp4')} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
               <div className="grid content-end md:h-full md:w-full md:left-0 md:bottom-0 md:absolute">
@@ -60,9 +62,9 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
 
                 <div className="h-auto grid transform -translate-y-2/4 -translate-x-2/4 left-2/4 top-2/4 absolute w-[69.4214876033%] items-center">
                   <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
-                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={prefixed('/images/placeholder/1080.png')}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/coral.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src={prefixed('/videos/work/coral.mp4')} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
               <div className="grid content-end md:h-full md:w-full md:left-0 md:bottom-0 md:absolute">
@@ -83,9 +85,9 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
 
                 <div className="h-auto grid transform -translate-y-2/4 -translate-x-2/4 left-2/4 top-2/4 absolute w-[69.4214876033%] items-center">
                   <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
-                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={prefixed('/images/placeholder/1080.png')}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/work/golden-dao.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src={prefixed('/videos/work/golden-dao.mp4')} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
               <div className="grid content-end md:h-full md:w-full md:left-0 md:bottom-0 md:absolute">
@@ -105,9 +107,9 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
                 </div>
                 <div className="h-auto grid transform -translate-y-2/4 -translate-x-2/4 left-2/4 top-2/4 absolute w-[38.0281690141%]">
                   <picture className="max-w-full leading-[0] block rounded-[20px] row-start-1 -col-start-1 row-end-auto col-end-auto">
-                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/3040.png"></img>
+                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={prefixed("/images/placeholder/3040.png")}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain" src="/videos/troophunter/sort.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain" src={prefixed("/videos/troophunter/sort.mp4")} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
               <div className="grid content-end md:h-full md:w-full md:left-0 md:bottom-0 md:absolute">
@@ -125,9 +127,9 @@ const WorkWithVideos: React.FC = (): JSX.Element => {
                 </div>
                 <div className="h-auto grid transform -translate-y-2/4 -translate-x-2/4 left-2/4 top-2/4 absolute w-[38.0281690141%]">
                   <picture className="max-w-full leading-[0] block rounded-[20px] row-start-1 -col-start-1 row-end-auto col-end-auto">
-                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/3040.png"></img>
+                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={prefixed("/images/placeholder/3040.png")}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain" src="/videos/troophunter/call.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto h-full scale-[1.15] object-center object-contain" src={prefixed("/videos/troophunter/call.mp4")} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
               <div className="grid content-end md:h-full md:w-full md:left-0 md:bottom-0 md:absolute">

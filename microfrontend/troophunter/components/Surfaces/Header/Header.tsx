@@ -6,6 +6,8 @@ import React from 'react';
 
 import Link from 'next/link';
 
+import { prefixed } from '../../../utils/helpers';
+
 // import { Bars2Icon, Bars3Icon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/20/solid';
 // import { classNames } from '../../../utils/helpers';
 
@@ -104,7 +106,7 @@ const Header = (): JSX.Element => {
         <div className="items-center gap-[3.75rem] grid-template-columns-auto-1fr-auto grid px-[var(--container-gutter)] w-full h-[5.3125rem]">
           <Link className="transform transition-[color_.4s_ease-in-out] z-10 text-[var(--theme-logo,var(--theme-secondary))]" aria-hidden="true" tabIndex={-1} href="/">
             <span className="hidden">Home</span>
-            <img className="mx-auto !h-6 lg:!h-8" src="/logo.svg" alt="TroopHunter" width={50} height={50} style={{ width: 'auto', height: 'auto' }} />
+            <img className="mx-auto !h-6 lg:!h-8" src={prefixed('/logo/logo.svg')} alt="TroopHunter" width={50} height={50} style={{ width: 'auto', height: 'auto' }} />
           </Link>
           <div></div>
           <div className="transform transition-[color_.4s_ease-in-out] z-10 color-[var(--theme-header-face,var(--theme-secondary))] col-start-3 col-end-auto h-[50px] w-[50px] touch-none relative">

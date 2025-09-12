@@ -16,7 +16,7 @@ spec:
         - name: troophunter-stag
           image: 192.168.1.201/troophunter-stag:latest
           imagePullPolicy: Always
-          command: ["npm", "run", "staging"]
+          command: ["npm", "run", "start:staging"]
           ports:
             - containerPort: 3001
           env:

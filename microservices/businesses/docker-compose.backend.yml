@@ -10,7 +10,6 @@ services:
       - ./.env.production
     ports:
       - '50009:50009'
-    command: ['npm', 'run', 'production']
 
   businesses-stag:
     container_name: businesses-stag

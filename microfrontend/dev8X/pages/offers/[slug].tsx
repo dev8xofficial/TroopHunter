@@ -8,6 +8,7 @@ import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularB
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import VideoPlayer from '@repo/components/src/Surfaces/VideoPlayer/VideoPlayer';
+import { prefixed } from '../../utils/helpers';
 
 // import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import HomePageStyles from '../../pages//index.module.css';
@@ -33,15 +34,15 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
       <Head>
         <title>{PageData.meta.title.replace('Offer', PageData.heading.split('\n')[0])}</title>
         <meta name="description" content={PageData.meta.description}></meta>
-        <link rel="canonical" href="/offers/${slug}" />
+        <link rel="canonical" href={prefixed("/offers/${slug}")} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title.replace('Offer', PageData.heading.split('\n')[0])}></meta>
         <meta property="og:description" content={PageData.meta.description}></meta>
-        <meta property="og:url" content="/offers/${slug}"></meta>
+        <meta property="og:url" content={prefixed("/offers/${slug}")}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content="/logo-social.png"></meta>
-        <meta property="og:image:secure_url" content="/logo-social.png"></meta>
+        <meta property="og:image" content={prefixed("/logo-social.png")}></meta>
+        <meta property="og:image:secure_url" content={prefixed("/logo-social.png")}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -49,7 +50,7 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content={PageData.meta.title.replace('Offer', PageData.heading.split('\n')[0])}></meta>
         <meta name="twitter:description" content={PageData.meta.description}></meta>
-        <meta name="twitter:image" content="/logo-social.png"></meta>
+        <meta name="twitter:image" content={prefixed("/logo-social.png")}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
 
@@ -71,11 +72,11 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
             <Hero variant={variant} tagText={PageData.tagText} heading={PageData.heading} image="" />
 
             <div className={styles['homepage__purple-change']}>
-              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src="/videos/work/crm.mp4" isMobile={isMobile}>
+              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src={prefixed("/videos/work/crm.mp4")} isMobile={isMobile}>
                 <div className={`${styles['work-grid']} ${HomePageStyles['work-grid']}`}>
                   <WorkGridRowLandscape>
-                    {/* <OffersReel bgColor="cyan" title={PageData.tagText} image="/images/placeholder/1080-transparent.png" poster="/videos/dev8x/thumbnail.jpg" src="/videos/dev8x/master.m3u8" /> */}
-                    <VideoPlayer src={`/videos/offers/${slug}/master.m3u8`} poster={`/videos/offers/${slug}/thumbnail.jpg`} />
+                    {/* <OffersReel bgColor="cyan" title={PageData.tagText} image={prefixed("/images/placeholder/1080-transparent.png")} poster={prefixed("/videos/dev8x/thumbnail.jpg")} src={prefixed("/videos/dev8x/master.m3u8")} /> */}
+                    <VideoPlayer src={prefixed(`/videos/offers/${slug}/master.m3u8`)} poster={prefixed(`/videos/offers/${slug}/thumbnail.jpg`)} />
                   </WorkGridRowLandscape>
                 </div>
               </HomepageShowreel>

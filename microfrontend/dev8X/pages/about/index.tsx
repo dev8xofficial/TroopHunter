@@ -7,6 +7,7 @@ import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import Capabilities from './Capabilities/Capabilities';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../../data/about/index.d';
+import { prefixed } from '../../utils/helpers';
 
 import AboutHeroStyles from '../../components/Surfaces/AboutHero/index.module.css';
 import TextAnimateStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
@@ -24,15 +25,15 @@ const Contact: React.FC = (): JSX.Element => {
       <Head>
         <title>{PageData.meta.title}</title>
         <meta name="description" content={PageData.meta.description}></meta>
-        <link rel="canonical" href="/about" />
+        <link rel="canonical" href={prefixed("/about")} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title}></meta>
         <meta property="og:description" content={PageData.meta.description}></meta>
-        <meta property="og:url" content="/about"></meta>
+        <meta property="og:url" content={prefixed("/about")}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content="/logo-social.png"></meta>
-        <meta property="og:image:secure_url" content="/logo-social.png"></meta>
+        <meta property="og:image" content={prefixed("/logo-social.png")}></meta>
+        <meta property="og:image:secure_url" content={prefixed("/logo-social.png")}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -40,7 +41,7 @@ const Contact: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content={PageData.meta.title}></meta>
         <meta name="twitter:description" content={PageData.meta.description}></meta>
-        <meta name="twitter:image" content="/logo-social.png"></meta>
+        <meta name="twitter:image" content={prefixed("/logo-social.png")}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">

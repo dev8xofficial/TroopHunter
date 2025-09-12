@@ -13,6 +13,7 @@ import AuthLayout from '../../layout/AuthLayout';
 import withGuest from '../../middleware/withGuest';
 import { authLoginAction } from '../../store/actions/authActions';
 import { type ISignInFormmValues } from '../../types/formik';
+import { prefixed } from '../../utils/helpers';
 import type { NextPageWithLayout } from '../_app';
 
 const _SignIn: NextPageWithLayout = (): JSX.Element => {
@@ -64,7 +65,7 @@ const _SignIn: NextPageWithLayout = (): JSX.Element => {
       </Head>
 
       <div>
-        <img className="h-6 lg:h-8" src="/logo/logo.svg" alt="TroopHunter" />
+        <img className="h-6 lg:h-8" src={prefixed('/logo/logo.svg')} alt="TroopHunter" />
         {/* <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2> */}
         <h1 className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
           Not a member?{' '}

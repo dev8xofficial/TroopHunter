@@ -94,6 +94,7 @@ sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-dev-config exec -it troophu
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-dev-config port-forward service/troophunter-dev 3002:3002
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-dev-config get deployment metrics-server -n kube-system -o wide
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-dev-config top pods -A
+sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-dev-config delete -f kubernetes/k8s/dev8x/dev/
 
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config get pods
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config logs deployment/troophunter-stag -c troophunter-stag -f
@@ -102,6 +103,7 @@ sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config exec -it trooph
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config port-forward service/troophunter-stag 3001:3001
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config get deployment metrics-server -n kube-system -o wide
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config top pods -A
+sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-stag-config delete -f kubernetes/k8s/dev8x/stag/
 
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config get pods
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config logs deployment/troophunter-prod -c troophunter-prod -f
@@ -110,6 +112,7 @@ sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config exec -it trooph
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config port-forward service/troophunter-prod 3000:3000
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config get deployment metrics-server -n kube-system -o wide
 sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config top pods -A
+sudo kubectl --kubeconfig=/Users/abdulrehman/kubeadm-prod-config delete -f kubernetes/k8s/dev8x/prod/
 
 ```
 abdulrehman@Abduls-MacBook-Pro-M1 ~ % sudo cat /etc/hosts

@@ -121,7 +121,7 @@
       "name": "Dev8X",
       "type": "node",
       "request": "launch",
-      "cwd": "${workspaceFolder}/microfrontend/dev8X",
+      "cwd": "${workspaceFolder}/microfrontend/dev8x",
       "runtimeExecutable": "node",
       "runtimeArgs": ["--inspect-brk", "${workspaceFolder}/node_modules/next/dist/bin/next", "dev"],
       "console": "integratedTerminal",
@@ -130,6 +130,36 @@
       "env": {
         "NODE_ENV": "development"
       }
+    },
+    {
+      "name": "Dev8X Wrangler",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "cwd": "${workspaceFolder}/cdns/dev8x",
+      "resolveSourceMapLocations": null,
+      "attachExistingChildren": false,
+      "autoAttachChildProcesses": false
+    },
+    {
+      "name": "Helloabdul Wrangler",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "cwd": "${workspaceFolder}/cdns/helloabdul",
+      "resolveSourceMapLocations": null,
+      "attachExistingChildren": false,
+      "autoAttachChildProcesses": false
+    },
+    {
+      "name": "TroopHunter Wrangler",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "cwd": "${workspaceFolder}/cdns/troophunter",
+      "resolveSourceMapLocations": null,
+      "attachExistingChildren": false,
+      "autoAttachChildProcesses": false
     },
     {
       "name": "Scraper",

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { prefixed } from '../../../utils/helpers';
+
 const FeatureVideoResponsive: React.FC = (): JSX.Element => {
   return (
     <>
@@ -14,9 +16,9 @@ const FeatureVideoResponsive: React.FC = (): JSX.Element => {
 
                 <div className="h-auto grid transform -translate-y-2/4 -translate-x-2/4 left-2/4 top-2/4 absolute w-[69.4214876033%] items-center">
                   <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
-                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/placeholder/1080.png"></img>
+                    <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={prefixed('/images/placeholder/1080.png')}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/troophunter-lead-gen/1080.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src={prefixed('/videos/troophunter-lead-gen/1080.mp4')} preload="none" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
             </a>

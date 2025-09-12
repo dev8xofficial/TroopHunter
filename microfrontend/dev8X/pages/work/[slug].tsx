@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { FooterRevealPageWrap, Footer, Header, ProjectsFormModal, WorkDetail, WORK_PROJECTS } from '@repo/components';
 import PageData from '../../data/work/index.d';
+import { prefixed } from '../../utils/helpers';
 
 import styles from './index.module.css';
 
@@ -20,19 +21,19 @@ const WorkPage: React.FC<WorkDetail> = ({ slug, ...project }: WorkDetail): JSX.E
     <>
       <Head>
         <title>{PageData.meta.title.replace('Our Work', project.title)}</title>
-        <link rel="canonical" href="/work/${slug}" />
+        <link rel="canonical" href={prefixed("/work/${slug}")} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title.replace('Our Work', project.title)}></meta>
-        <meta property="og:url" content="/work/${slug}"></meta>
-        <meta property="og:image" content="/logo-social.png"></meta>
+        <meta property="og:url" content={prefixed("/work/${slug}")}></meta>
+        <meta property="og:image" content={prefixed("/logo-social.png")}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content={PageData.meta.title.replace('Our Work', project.title)}></meta>
-        <meta name="twitter:image" content="/logo-social.png"></meta>
+        <meta name="twitter:image" content={prefixed("/logo-social.png")}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">

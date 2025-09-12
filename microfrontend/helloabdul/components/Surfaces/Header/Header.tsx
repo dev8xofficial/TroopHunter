@@ -1,6 +1,7 @@
 // import { Menu, Transition } from '@headlessui/react';
 // import Link from 'next/link';
 import React, { Fragment, useEffect, useState } from 'react';
+import { prefixed } from '../../../utils/helpers';
 // import { Bars2Icon, Bars3Icon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/20/solid';
 // import { classNames } from '../../../utils/helpers';
 
@@ -103,14 +104,14 @@ const Header = () => {
         />
         <div className="grid absolute top-0 left-0 w-full h-[100vh] object-cover z-[-1]">
           <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
-            <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src="/images/header/1080.png"></img>
+            <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={prefixed('/images/header/1080.png')}></img>
           </picture>
-          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src="/videos/header/header.mp4" preload="none" loop controls={false} autoPlay muted playsInline></video>
+          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src={prefixed('/videos/header/header.mp4')} preload="none" loop controls={false} autoPlay muted playsInline></video>
         </div>
         <div className="items-center gap-[3.75rem] grid-template-columns-auto-1fr-auto grid px-[var(--container-gutter)] w-full h-[5.3125rem]">
           <a className="transform transition-[color_.4s_ease-in-out] z-10 text-[var(--theme-logo,var(--theme-secondary))]" aria-hidden="true" tabIndex={-1} href="/">
             <span className="hidden">Home</span>
-            <img className="mx-auto h-6 lg:h-8" src="/logo-white.png" alt="Dev8X" />
+            <img className="mx-auto h-6 lg:h-8" src={prefixed('/logo-white.png')} alt="Dev8X" />
           </a>
           <div></div>
           {/* <div className="transform transition-[color_.4s_ease-in-out] z-10 color-[var(--theme-header-face,var(--theme-secondary))] col-start-3 col-end-auto h-[50px] w-[50px] touch-none relative">
@@ -131,7 +132,11 @@ const Header = () => {
         {/* Centered Text */}
         <div className="absolute top-0 left-0 right-0 bottom-0 min-h-[100vh] flex content-center items-center px-[var(--container-gutter)]">
           <h3 className="flex text-left text-6xl lg:text-9xl font-medium">
-            <span className="block lg:inline-block text-white">Solutions<br/> Made<br /> Simple.</span>
+            <span className="block lg:inline-block text-white">
+              Solutions
+              <br /> Made
+              <br /> Simple.
+            </span>
           </h3>
         </div>
       </header>

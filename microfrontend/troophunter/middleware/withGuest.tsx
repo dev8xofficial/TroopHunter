@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
 import { type IAuthState } from '../store/reducers/authReducer';
+import { prefixed } from '../utils/helpers';
 
 const withGuest = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
   const GuestOnlyComponent: React.FC<P> = (props) => {
@@ -20,7 +21,7 @@ const withGuest = <P extends object>(WrappedComponent: React.ComponentType<P>) =
     if (auth.accessToken) {
       return (
         <div className="fixed left-0 top-0 z-50 flex h-screen w-screen flex-col items-center justify-center bg-white">
-          <img className="mx-auto h-8 lg:h-10 2xl:h-12" src="/logo/logo.svg" alt="TroopHunter" />
+          <img className="mx-auto h-8 lg:h-10 2xl:h-12" src={prefixed('/logo/logo.svg')} alt="TroopHunter" />
         </div>
       );
     }

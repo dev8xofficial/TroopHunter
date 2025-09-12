@@ -8,6 +8,7 @@ import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/Smo
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import PageData from '../../data/contact/index.d';
+import { prefixed } from '../../utils/helpers';
 
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import TextStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
@@ -22,15 +23,15 @@ const Contact: React.FC = (): JSX.Element => {
       <Head>
         <title>{PageData.meta.title}</title>
         <meta name="description" content={PageData.meta.description}></meta>
-        <link rel="canonical" href="/contact" />
+        <link rel="canonical" href={prefixed("/contact")} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title}></meta>
         <meta property="og:description" content={PageData.meta.description}></meta>
-        <meta property="og:url" content="/contact"></meta>
+        <meta property="og:url" content={prefixed("/contact")}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content="/logo-social.png"></meta>
-        <meta property="og:image:secure_url" content="/logo-social.png"></meta>
+        <meta property="og:image" content={prefixed("/logo-social.png")}></meta>
+        <meta property="og:image:secure_url" content={prefixed("/logo-social.png")}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -38,7 +39,7 @@ const Contact: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content={PageData.meta.title}></meta>
         <meta name="twitter:description" content={PageData.meta.description}></meta>
-        <meta name="twitter:image" content="/logo-social.png"></meta>
+        <meta name="twitter:image" content={prefixed("/logo-social.png")}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">

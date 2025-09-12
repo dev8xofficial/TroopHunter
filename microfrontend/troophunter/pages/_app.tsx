@@ -11,9 +11,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { store, persistor } from '../store';
 import { initializeGA, logPageView } from '../utils/analytics';
-
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.css';
+import { prefixed } from '../utils/helpers';
 
 export type NextPageWithLayout<P = Record<string, unknown>, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -71,7 +71,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout): JSX.Element => {
 
         {loading && (
           <div className="fixed left-0 top-0 z-50 flex h-screen w-screen flex-col items-center justify-center bg-white" ref={preloaderRef}>
-            <img className="mx-auto h-8 lg:h-10 2xl:h-12" src="/logo/logo.svg" alt="TroopHunter" />
+            <img className="mx-auto h-8 lg:h-10 2xl:h-12" src={prefixed('/logo/logo.svg')} alt="TroopHunter" />
           </div>
         )}
 

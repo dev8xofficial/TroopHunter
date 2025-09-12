@@ -9,6 +9,7 @@ import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../data/index.d';
+import { prefixed } from '../utils/helpers';
 
 import TextAnimateStyles from '../components/Surfaces/TextAnimateUp/index.module.css';
 import styles from './index.module.css';
@@ -43,8 +44,8 @@ export default function Home() {
         <meta property="og:description" content={PageData.meta.description}></meta>
         <meta property="og:url" content="/"></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content="/logo-social.png"></meta>
-        <meta property="og:image:secure_url" content="/logo-social.png"></meta>
+        <meta property="og:image" content={prefixed("/logo-social.png")}></meta>
+        <meta property="og:image:secure_url" content={prefixed("/logo-social.png")}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -52,7 +53,7 @@ export default function Home() {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content={PageData.meta.title}></meta>
         <meta name="twitter:description" content={PageData.meta.description}></meta>
-        <meta name="twitter:image" content="/logo-social.png"></meta>
+        <meta name="twitter:image" content={prefixed("/logo-social.png")}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
@@ -73,7 +74,7 @@ export default function Home() {
           <main className={styles['homepage']}>
             <Hero />
             <div className={styles['homepage__purple-change']}>
-              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src="/videos/header/header.mp4" isMobile={isMobile} />
+              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src={prefixed("/videos/header/header.mp4")} isMobile={isMobile} />
             </div>
             {/* <Problems /> */}
             <section className={styles['showcase']}>

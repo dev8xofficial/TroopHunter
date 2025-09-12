@@ -1,4 +1,6 @@
 import { RoleProject } from '../../Interfaces/Work/RoleProjectTypes';
+import { prefixed } from '../../../utils/helpers';
+
 import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
 import WorkCardStyles from '../../Surfaces/WorkCard/index.module.css';
 import ProjectContentStyles from '../../Surfaces/ProjectContents/index.module.css';
@@ -64,9 +66,9 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                     <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
                     <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
                       <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
-                        <img src="/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)" loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
                       </picture>
-                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src="/videos/work/ai/1080.mp4"></video>
+                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
                     </div>
                   </div>
                 </a>
@@ -179,9 +181,9 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                     <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
                     <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
                       <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
-                        <img src="/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)" loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
                       </picture>
-                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src="/videos/work/ai/1080.mp4"></video>
+                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
                     </div>
                   </div>
                 </a>
@@ -295,9 +297,9 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                     <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
                     <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
                       <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
-                        <img src="/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)" loading="lazy" width={312} height={178} alt="Flutter Project Preview" draggable={false} />
+                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="Flutter Project Preview" draggable={false} />
                       </picture>
-                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src="/videos/work/flutter/1080.mp4"></video>
+                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/flutter/1080.mp4')}></video>
                     </div>
                   </div>
                 </a>
@@ -410,9 +412,9 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                     <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
                     <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
                       <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
-                        <img src="/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)" loading="lazy" width={312} height={178} alt="Frontend Preview" draggable={false} />
+                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="Frontend Preview" draggable={false} />
                       </picture>
-                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src="/videos/work/frontend/1080.mp4"></video>
+                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/frontend/1080.mp4')}></video>
                     </div>
                   </div>
                 </a>
@@ -528,9 +530,9 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                     <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
                     <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
                       <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
-                        <img src="/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)" loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
                       </picture>
-                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src="/videos/work/ai/1080.mp4"></video>
+                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
                     </div>
                   </div>
                 </a>
@@ -648,9 +650,9 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                     <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
                     <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
                       <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
-                        <img src="/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)" loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
                       </picture>
-                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src="/videos/work/ai/1080.mp4"></video>
+                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
                     </div>
                   </div>
                 </a>
@@ -764,9 +766,9 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                     <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
                     <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
                       <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
-                        <img src="/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)" loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
                       </picture>
-                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src="/videos/work/ai/1080.mp4"></video>
+                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
                     </div>
                   </div>
                 </a>
