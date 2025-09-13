@@ -16,7 +16,7 @@ spec:
         - name: dev8x-dev
           image: 192.168.1.201/dev8x-dev:latest
           imagePullPolicy: Always
-          command: ["npm", "run", "start:development"]
+          command: ["npm", "run", "development"]
           ports:
             - containerPort: 3005
           env:
