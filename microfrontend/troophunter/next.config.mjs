@@ -20,31 +20,35 @@ const nextConfig = {
   ],
   assetPrefix: isLocal ? undefined : process.env.NEXT_PUBLIC_ASSET_HOST,
   async rewrites() {
+    const assetHost = process.env.NEXT_PUBLIC_ASSET_HOST;
+    if (!assetHost) {
+      return [];
+    }
     return [
       // Fonts
       {
         source: '/fonts/:path*',
-        destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/fonts/:path*`
+        destination: `${assetHost}/fonts/:path*`
       },
       // Webmanifest
       {
         source: '/webmanifest/:path*',
-        destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/webmanifest/:path*`
+        destination: `${assetHost}/webmanifest/:path*`
       },
       // Robots.txt
       {
         source: '/robots.txt',
-        destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/robots.txt`
+        destination: `${assetHost}/robots.txt`
       },
       // Sitemap.xml
       {
         source: '/sitemap.xml',
-        destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/sitemap.xml`
+        destination: `${assetHost}/sitemap.xml`
       },
       // Search engine verification file
       {
         source: '/433007b64fc144ebab1d16b269c7664f.txt',
-        destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/433007b64fc144ebab1d16b269c7664f.txt`
+        destination: `${assetHost}/433007b64fc144ebab1d16b269c7664f.txt`
       }
     ];
   }
