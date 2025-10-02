@@ -18,9 +18,12 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
    *  - DevOps Engineering
    *  - AI Engineering
    *  - Business Development
+   *  - Lead Generation
+   *  - Upwork Bidder
    *  - Customer Support
    *  - Human Resources
    **/
+
 
   {
     subTitle: 'OPEN ROLES',
@@ -235,7 +238,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
-            <li>
+              <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Open to remote applicants
               </li>
               <li>
@@ -734,8 +737,258 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
         </div>
       </div>
     )
-  }
+  },
 
+
+  // {
+  //   subTitle: 'OPEN ROLES',
+  //   title: 'LinkedIn Lead Generation',
+  //   type: 'Internship',
+  //   salary: 'Unpaid',
+  //   location: 'Remote / Lahore',
+  //   description: (
+  //     <div>
+  //       <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+  //         <p>Kickstart your career in B2B Networking and Client Acquisition with Dev8X – Remote LinkedIn Lead Generation Internship!</p>
+  //       </div>
+
+  //       <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+  //         <p>Are you passionate about building professional connections and identifying new business opportunities? This internship is your chance to gain real-world experience in LinkedIn-based lead generation and contribute directly to our growth journey?</p>
+
+  //         <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6-month remote LinkedIn Lead Generation internship</caption> where you'll work directly with the sales and marketing team to identify, connect, and qualify potential clients on LinkedIn while driving new business opportunities.
+  //         </p>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+  //           <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+  //             <li>Practical training in LinkedIn Sales Navigator and lead generation strategies</li>
+  //             <li>Learn how to craft personalized outreach and connect with decision-makers </li>
+  //             <li>Build your professional network in the global tech and business community</li>
+  //             <li>Exposure to real B2B sales workflows and CRM tools</li>
+  //             <li>Internship certificate and recommendation letter upon successful completion</li>
+  //           </ul>
+  //         </div>
+  //         <div className={ProjectContentStyles['project-content__block-image']}>
+  //           <div className={ProjectContentStyles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+  //             <div
+  //               className="WorkCard_work-card-wrapper__DfwMI"
+  //               style={
+  //                 {
+  //                   '--aspect-x': 1452,
+  //                   '--aspect-y': 890,
+  //                   opacity: 1,
+  //                   transform: 'translateY(0px)'
+  //                 } as React.CSSProperties
+  //               }
+  //             >
+  //               <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="/" target="_blank">
+  //                 <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
+  //                   <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
+  //                   <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
+  //                     <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
+  //                       <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+  //                     </picture>
+  //                     <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
+  //                   </div>
+  //                 </div>
+  //               </a>
+  //             </div>
+  //           </div>
+  //         </div>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
+  //           <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> LinkedIn Lead Generation Intern
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+  //             </li>
+  //           </ul>
+  //         </div>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+  //           <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+  //             <li>Use LinkedIn to identify and connect with potential leads in target industries</li>
+  //             <li>Conduct market research to expand the pool of prospective clients</li>
+  //             <li>Craft and send personalized outreach messages and connection requests</li>
+  //             <li>Qualify leads by assessing their needs, interests, and decision-making processes</li>
+  //             <li>Maintain and update a database of LinkedIn connections and leads</li>
+  //             <li>Assist in LinkedIn content creation and engagement strategies</li>
+  //             <li>Collaborate with sales and marketing teams to align lead generation efforts with company goals </li>
+  //             <li>Provide regular reports and updates on lead generation activities and outcomes</li>
+  //           </ul>
+  //         </div>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+  //           <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Open to remote applicants (preferably Pakistan-based)
+  //             </li>
+  //             <li>
+  //               Currently pursuing or recently completed a degree in Marketing, Business Administration, or a related field
+  //             </li>
+  //             <li>Familiarity with LinkedIn and its features, including Sales Navigator</li>
+  //             <li>Strong research and analytical skills</li>
+  //             <li>Proficiency in Microsoft Office Suite (Excel, Word, PowerPoint) and Google Workspace</li>
+  //             <li>Excellent written and verbal communication skills</li>
+  //             <li>Ability to work independently and manage time effectively</li>
+  //             <li>High level of attention to detail and organization</li>
+  //           </ul>
+  //         </div>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+  //           <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+  //             <li>Hands-on experience with international business development projects</li>
+  //             <li>Learn modern lead generation strategies used by global sales teams</li>
+  //             <li>Receive direct mentorship from industry professionals</li>
+  //             <li>Build a portfolio that will strengthen your career in B2B sales and marketing</li>
+  //             <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
+  //           </ul>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   )
+  // },
+  // {
+  //   subTitle: 'OPEN ROLES',
+  //   title: ' Upwork Bidder',
+  //   type: 'Internship',
+  //   salary: 'Unpaid',
+  //   location: 'Remote / Lahore',
+  //   description: (
+  //     <div>
+  //       <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+  //         <p>Kickstart Your Freelancing & Business Development Career with Dev8X – Remote Upwork Bidder Internship Opportunity!</p>
+  //       </div>
+
+  //       <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+  //         <p>Are you someone who loves exploring freelancing platforms, spotting new opportunities, and building client relationships? Looking to gain real-world experience in proposals, bidding, and client acquisition?</p>
+
+  //         <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6-month remote  Upwork Bidder internship</caption>where you’ll collaborate with our leadership team to explore new growth opportunities across platforms such as Upwork, LinkedIn, Email, and Cold Calling.
+  //         </p>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+  //           <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+  //             <li>Hands-on training in Upwork bidding & proposal writing</li>
+  //             <li>Learn how to research, pitch, and negotiate with clients globally</li>
+  //             <li>Gain real experience in sales, lead generation, and CRM usage</li>
+  //             <li>Work in a growth-driven, supportive, and international team environment</li>
+  //             <li>Collaborate with a growth-driven and supportive remote team</li>
+  //           </ul>
+  //         </div>
+  //         <div className={ProjectContentStyles['project-content__block-image']}>
+  //           <div className={ProjectContentStyles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+  //             <div
+  //               className="WorkCard_work-card-wrapper__DfwMI"
+  //               style={
+  //                 {
+  //                   '--aspect-x': 1452,
+  //                   '--aspect-y': 890,
+  //                   opacity: 1,
+  //                   transform: 'translateY(0px)'
+  //                 } as React.CSSProperties
+  //               }
+  //             >
+  //               <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="/" target="_blank">
+  //                 <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
+  //                   <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
+  //                   <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
+  //                     <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
+  //                       <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+  //                     </picture>
+  //                     <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
+  //                   </div>
+  //                 </div>
+  //               </a>
+  //             </div>
+  //           </div>
+  //         </div>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
+  //           <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Upwork Bidder Intern
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+  //             </li>
+  //           </ul>
+  //         </div>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+  //           <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+  //             <li>Research and analyze trends, competitor activity, and business opportunities on Upwork</li>
+  //             <li>Confident in making cold calls and presenting over video meetings</li>
+  //             <li>Stay updated on Upwork policies, pricing structures, and best practices</li>
+  //             <li>Proactively identify and engage with potential clients on Upwork</li>
+  //             <li>Develop and maintain a robust pipeline of Upwork projects</li>
+  //             <li>Coordinate with the sales team for reporting and strategy building</li>
+  //             <li>Negotiate contract terms with clients and communicate with stakeholders</li>
+  //             <li>Update and manage CRM on a daily basis</li>
+  //             <li>Prepare presentations and introduce Dev8X services to clients</li>
+  //             <li>Track, identify, and add qualified prospects to sales pipeline</li>
+  //             <li>Conduct regular cold calling and outreach activities</li>
+  //             <li>Support the end-to-end sales process with business operations</li>
+  //           </ul>
+  //         </div>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+  //           <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Open to remote applicants (preferably Pakistan-based)
+  //             </li>
+  //             <li>Students / Fresh Graduates in Business, Marketing, IT, or related fields</li>
+  //             <li>Excellent English communication skills (written & spoken)</li>
+  //             <li>Familiarity with freelancing platforms (Upwork, Fiverr, LinkedIn) is a plus</li>
+  //             <li>Confident, organized, and eager to grow in tech sales & client acquisition</li>
+  //             <li>Comfortable with cold calls and direct client communication</li>
+  //           </ul>
+  //         </div>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+  //           <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+  //             <li>Learn real Upwork bidding strategies and client acquisition workflows</li>
+  //             <li>Direct exposure to international clients and IT service sales</li>
+  //             <li>One-on-one mentorship from experienced professionals</li>
+  //             <li>Build a portfolio that makes you stand out in freelancing & business roles</li>
+  //             <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
+  //           </ul>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   )
+  // },
+  
   // {
   //   subTitle: 'OPEN ROLES',
   //   title: 'Graphic Designer',
