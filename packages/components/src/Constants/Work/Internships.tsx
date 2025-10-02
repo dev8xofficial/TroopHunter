@@ -24,122 +24,6 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
    *  - Human Resources
    **/
 
-
-  {
-    subTitle: 'OPEN ROLES',
-    title: 'UI/UX Designer',
-    type: 'Internship',
-    salary: 'Unpaid',
-    location: 'Remote / Lahore',
-    description: (
-      <div>
-        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
-          <p>Start Your Design Career with Dev8X – Remote UI/UX Internship Opportunity!</p>
-        </div>
-        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
-          <p>Are you passionate about crafting delightful user experiences and elegant user interfaces? Looking to gain hands-on experience in real-world projects that users love?</p>
-
-          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote UI/UX Designer internship</caption> where you'll grow, build, and innovate alongside a talented team!
-          </p>
-
-          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
-              <li>Work on real client projects with full UI/UX design cycle experience</li>
-              <li>Enhance your design portfolio with modern web and mobile UIs</li>
-              <li>Learn how to think like a product designer and solve real user problems</li>
-              <li>Collaborate closely with developers and leadership in a remote team</li>
-            </ul>
-          </div>
-
-          <div className={ProjectContentStyles['project-content__block-image']}>
-            <div className={ProjectContentStyles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-              <div
-                className="WorkCard_work-card-wrapper__DfwMI"
-                style={
-                  {
-                    '--aspect-x': 1452,
-                    '--aspect-y': 890,
-                    opacity: 1,
-                    transform: 'translateY(0px)'
-                  } as React.CSSProperties
-                }
-              >
-                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/r/3-month-uiux-roadmap-for-interns-weekly-focus-ux-basics-ui-tools-wireframes-prototyping-testing-tasks-kpis-format-in-table" target="_blank">
-                  <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
-                    <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
-                    <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
-                      <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
-                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
-                      </picture>
-                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> UI/UX Designer Intern
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
-              </li>
-            </ul>
-          </div>
-
-          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
-              <li>Design intuitive and elegant user interfaces for mobile and web</li>
-              <li>Create wireframes, mockups, and interactive prototypes in Figma or Adobe XD</li>
-              <li>Conduct user research and apply findings to UX design</li>
-              <li>Collaborate with developers to ensure accurate design implementation</li>
-              <li>Participate in product discussions and suggest UX improvements</li>
-            </ul>
-          </div>
-
-          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Tools:</caption> Figma (must), Adobe XD, Illustrator (bonus)
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Skills:</caption> Design systems, typography, layout, color theory
-              </li>
-              <li>Good sense of aesthetics and attention to detail</li>
-              <li>A portfolio or Dribbble/Behance link showing past design work</li>
-              <li>Proactive attitude and willingness to learn</li>
-            </ul>
-          </div>
-
-          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
-              <li>Design for real products, not just concepts</li>
-              <li>Receive 1-on-1 design feedback and mentorship</li>
-              <li>Build a job-ready portfolio and gain confidence in real-world UI/UX</li>
-              <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    )
-  },
   {
     subTitle: 'OPEN ROLES',
     title: 'Digital Marketing',
@@ -252,6 +136,121 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
               <li>Work on real apps & campaigns → not just theory.</li>
               <li>Mentorship from experienced growth marketers.</li>
               <li>Build a portfolio covering SEO, ASO, Ads, and Growth Marketing.</li>
+              <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    subTitle: 'OPEN ROLES',
+    title: 'UI/UX Designer',
+    type: 'Internship',
+    salary: 'Unpaid',
+    location: 'Remote / Lahore',
+    description: (
+      <div>
+        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+          <p>Start Your Design Career with Dev8X – Remote UI/UX Internship Opportunity!</p>
+        </div>
+        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+          <p>Are you passionate about crafting delightful user experiences and elegant user interfaces? Looking to gain hands-on experience in real-world projects that users love?</p>
+
+          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote UI/UX Designer internship</caption> where you'll grow, build, and innovate alongside a talented team!
+          </p>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Work on real client projects with full UI/UX design cycle experience</li>
+              <li>Enhance your design portfolio with modern web and mobile UIs</li>
+              <li>Learn how to think like a product designer and solve real user problems</li>
+              <li>Collaborate closely with developers and leadership in a remote team</li>
+            </ul>
+          </div>
+
+          <div className={ProjectContentStyles['project-content__block-image']}>
+            <div className={ProjectContentStyles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+              <div
+                className="WorkCard_work-card-wrapper__DfwMI"
+                style={
+                  {
+                    '--aspect-x': 1452,
+                    '--aspect-y': 890,
+                    opacity: 1,
+                    transform: 'translateY(0px)'
+                  } as React.CSSProperties
+                }
+              >
+                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/r/3-month-uiux-roadmap-for-interns-weekly-focus-ux-basics-ui-tools-wireframes-prototyping-testing-tasks-kpis-format-in-table" target="_blank">
+                  <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
+                    <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
+                    <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
+                      <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
+                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+                      </picture>
+                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> UI/UX Designer Intern
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+              </li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
+              <li>Design intuitive and elegant user interfaces for mobile and web</li>
+              <li>Create wireframes, mockups, and interactive prototypes in Figma or Adobe XD</li>
+              <li>Conduct user research and apply findings to UX design</li>
+              <li>Collaborate with developers to ensure accurate design implementation</li>
+              <li>Participate in product discussions and suggest UX improvements</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Tools:</caption> Figma (must), Adobe XD, Illustrator (bonus)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Skills:</caption> Design systems, typography, layout, color theory
+              </li>
+              <li>Good sense of aesthetics and attention to detail</li>
+              <li>A portfolio or Dribbble/Behance link showing past design work</li>
+              <li>Proactive attitude and willingness to learn</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Design for real products, not just concepts</li>
+              <li>Receive 1-on-1 design feedback and mentorship</li>
+              <li>Build a job-ready portfolio and gain confidence in real-world UI/UX</li>
               <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
             </ul>
           </div>
