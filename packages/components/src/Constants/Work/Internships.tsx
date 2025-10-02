@@ -142,30 +142,35 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
   },
   {
     subTitle: 'OPEN ROLES',
-    title: 'App Store Optimization (ASO)',
+    title: 'Digital Marketing',
     type: 'Internship',
     salary: 'Unpaid',
     location: 'Remote / Lahore',
     description: (
       <div>
         <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
-          <p>Kickstart Your Career with Dev8X – Remote ASO Specialist Internship Opportunity!</p>
+          <p>Launch Your Career with Dev8X – Remote Digital Marketing Internship Opportunity!</p>
         </div>
         <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
-          <p> Are you passionate about mobile apps, curious about how apps grow on the App Store & Google Play, and eager to learn real ASO strategies? Looking to gain hands-on experience in keyword research, competitor analysis, and app growth?</p>
+          <p>Are you curious about how websites and mobile apps grow? Want to gain hands-on experience across SEO, ads, social media, and App Store Optimization (ASO) while working on real campaigns that drive leads, traffic, and app installs?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}> 6-month remote ASO internship</caption> where you’ll learn how to boost app visibility, drive downloads, and contribute to real-world growth projects!
-          </p>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote Digital Marketing internship</caption> where you’ll learn how to manage multi-channel campaigns, optimize app visibility, and contribute to real-world growth projects! </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
-              <li>Work on real-world ASO projects with live apps on iOS & Android.</li>
-              <li>Learn how to use top ASO tools (SensorTower, AppTweak, AppMagic, KeywordTool.io).</li>
-              <li>Gain hands-on experience in keyword strategy, metadata optimization, and creative asset design.</li>
-              <li>Build a strong ASO portfolio that makes you stand out in the mobile growth industry.</li>
-              <li>Collaborate with a supportive, forward-thinking remote team.</li>
+              <li>Digital marketing mindset: SEO, SEM, SMM, Email, Content.</li>
+              <li>Market research, competitor analysis, and consumer psychology.</li>
+              <li>Content & campaign basics (blogs, social media, email).</li>
+              <li>App market research & keyword strategy (SensorTower, AppTweak).</li>
+              <li>Metadata optimization (titles, descriptions, keywords, localization).</li>
+              <li>Creative optimization (icons, screenshots, videos).</li>
+              <li>Reviews, ratings & reputation management.</li>
+              <li>A/B testing & performance tracking for apps.</li>
+              <li>Retention & lifecycle marketing (email flows, push notifications).</li>
+              <li>Creative production for ads & app stores.</li>
+              <li>Community building & review management.</li>
             </ul>
           </div>
 
@@ -200,7 +205,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> ASO Specialist Intern
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Digital Marketing Intern (Mobile Growth Focus)
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
@@ -220,49 +225,34 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
-              <li>Conduct market & competitor analysis to find trending niches and opportunities.
-              </li>
-              <li>Perform keyword research & strategy using ASO tools.
-              </li>
-              <li>Draft metadata (titles, descriptions, subtitles) for iOS & Android apps.</li>
-              <li>Assist in creating creative assets (icons, screenshots, feature graphics).
-              </li>
-              <li>Monitor reviews & ratings, track sentiment, and escalate feedback.
-              </li>
-              <li>Analyze user engagement & retention metrics.
-              </li>
-              <li>Support A/B testing experiments for app creatives & metadata.</li>
+              <li>Assist in SEO, ads, content, and social media execution.</li>
+              <li>Support app store optimization projects (keywords, creatives, reviews).</li>
+              <li>Run market research & competitor benchmarking.</li>
+              <li>Track & analyze performance using Google Analytics, Firebase, and app store consoles.</li>
+              <li>Help design, test & optimize landing pages, creatives, and campaigns.</li>
+              <li>Document results → build case studies for portfolio.</li>
             </ul>
           </div>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Open to remote applicants
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Tools:</caption> SensorTower, AppTweak, AppMagic
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Skills:</caption> Basic understanding of mobile apps, strong research skills, and good written communication.
-              </li>
-              <li>Interest in mobile growth, marketing, or analytics.</li>
-              <li>A proactive attitude and genuine curiosity for app marketing & ASO.</li>
+              <li>Basic understanding of digital marketing concepts (SEO, social, ads).</li>
+              <li>Interest in mobile app growth & ASO.</li>
+              <li>Research skills and analytical mindset.</li>
+              <li>Strong written communication & willingness to learn.</li>
+              <li>Familiarity with GA4, Firebase, Ads Manager, SensorTower, AppTweak (a plus).</li>
             </ul>
           </div>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
-              <li>Work on meaningful ASO projects with real impact.
-              </li>
-              <li>Receive mentorship from experienced ASO specialists.
-              </li>
-              <li>Learn how to rank apps, optimize conversions, and manage app store presence.
-              </li>
-              <li>Internship certificate, recommendation letter, and a potential path to full-time.
-              </li>
+              <li>Structured roadmap-based training → go from foundations to ASO to growth.</li>
+              <li>Work on real apps & campaigns → not just theory.</li>
+              <li>Mentorship from experienced growth marketers.</li>
+              <li>Build a portfolio covering SEO, ASO, Ads, and Growth Marketing.</li>
+              <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
             </ul>
           </div>
         </div>
@@ -988,7 +978,136 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
   //     </div>
   //   )
   // },
-  
+  // {
+  //   subTitle: 'OPEN ROLES',
+  //   title: 'App Store Optimization (ASO)',
+  //   type: 'Internship',
+  //   salary: 'Unpaid',
+  //   location: 'Remote / Lahore',
+  //   description: (
+  //     <div>
+  //       <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+  //         <p>Kickstart Your Career with Dev8X – Remote ASO Specialist Internship Opportunity!</p>
+  //       </div>
+  //       <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+  //         <p> Are you passionate about mobile apps, curious about how apps grow on the App Store & Google Play, and eager to learn real ASO strategies? Looking to gain hands-on experience in keyword research, competitor analysis, and app growth?</p>
+
+  //         <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}> 6-month remote ASO internship</caption> where you’ll learn how to boost app visibility, drive downloads, and contribute to real-world growth projects!
+  //         </p>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+  //           <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+  //             <li>Work on real-world ASO projects with live apps on iOS & Android.</li>
+  //             <li>Learn how to use top ASO tools (SensorTower, AppTweak, AppMagic, KeywordTool.io).</li>
+  //             <li>Gain hands-on experience in keyword strategy, metadata optimization, and creative asset design.</li>
+  //             <li>Build a strong ASO portfolio that makes you stand out in the mobile growth industry.</li>
+  //             <li>Collaborate with a supportive, forward-thinking remote team.</li>
+  //           </ul>
+  //         </div>
+
+  //         <div className={ProjectContentStyles['project-content__block-image']}>
+  //           <div className={ProjectContentStyles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+  //             <div
+  //               className="WorkCard_work-card-wrapper__DfwMI"
+  //               style={
+  //                 {
+  //                   '--aspect-x': 1452,
+  //                   '--aspect-y': 890,
+  //                   opacity: 1,
+  //                   transform: 'translateY(0px)'
+  //                 } as React.CSSProperties
+  //               }
+  //             >
+  //               <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="/" target="_blank">
+  //                 <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
+  //                   <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
+  //                   <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
+  //                     <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
+  //                       <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+  //                     </picture>
+  //                     <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
+  //                   </div>
+  //                 </div>
+  //               </a>
+  //             </div>
+  //           </div>
+  //         </div>
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
+  //           <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> ASO Specialist Intern
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+  //             </li>
+  //           </ul>
+  //         </div>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+  //           <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
+  //             <li>Conduct market & competitor analysis to find trending niches and opportunities.
+  //             </li>
+  //             <li>Perform keyword research & strategy using ASO tools.
+  //             </li>
+  //             <li>Draft metadata (titles, descriptions, subtitles) for iOS & Android apps.</li>
+  //             <li>Assist in creating creative assets (icons, screenshots, feature graphics).
+  //             </li>
+  //             <li>Monitor reviews & ratings, track sentiment, and escalate feedback.
+  //             </li>
+  //             <li>Analyze user engagement & retention metrics.
+  //             </li>
+  //             <li>Support A/B testing experiments for app creatives & metadata.</li>
+  //           </ul>
+  //         </div>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+  //           <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Open to remote applicants
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Tools:</caption> SensorTower, AppTweak, AppMagic
+  //             </li>
+  //             <li>
+  //               <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Skills:</caption> Basic understanding of mobile apps, strong research skills, and good written communication.
+  //             </li>
+  //             <li>Interest in mobile growth, marketing, or analytics.</li>
+  //             <li>A proactive attitude and genuine curiosity for app marketing & ASO.</li>
+  //           </ul>
+  //         </div>
+
+  //         <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+  //           <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+  //           <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+  //             <li>Work on meaningful ASO projects with real impact.
+  //             </li>
+  //             <li>Receive mentorship from experienced ASO specialists.
+  //             </li>
+  //             <li>Learn how to rank apps, optimize conversions, and manage app store presence.
+  //             </li>
+  //             <li>Internship certificate, recommendation letter, and a potential path to full-time.
+  //             </li>
+  //           </ul>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   )
+  // },
+
   // {
   //   subTitle: 'OPEN ROLES',
   //   title: 'Graphic Designer',
