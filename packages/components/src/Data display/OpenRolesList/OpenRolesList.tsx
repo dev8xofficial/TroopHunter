@@ -17,6 +17,7 @@ export const selectedRoleAtom = atom<string | null, [string | null], void>(null,
 export const selectedRoleFirstParagraphAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleFirstParagraphAtom, newValue));
 export const selectedRoleThirdParagraphAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleThirdParagraphAtom, newValue));
 export const isInternshipAtom = atom<boolean, [boolean], void>(false, (get, set, newValue) => set(isInternshipAtom, newValue));
+const HIDDEN_INTERNSHIP_TITLES = ['Graphic Designer', 'App Store Optimization (ASO)', 'AI Engineer', 'LinkedIn Lead Generation', 'Upwork Bidder'];
 
 const firstRoleDescription = (description: React.ReactNode): string => {
   if (React.isValidElement(description)) {
@@ -112,7 +113,9 @@ export const OpenRolesList: React.FC = () => {
   } else if (router.asPath.toLowerCase().includes('career')) {
     roles = CAREER_ROLES;
   }
-
+  if (isInternship) {
+    roles = roles.filter((r) => !HIDDEN_INTERNSHIP_TITLES.includes((r.title || '').trim()));
+  }
   const handleApplyClick = (roleTitle: string) => {
     const cleanTitle = formatRoleTitle(roleTitle);
     const role = roles.find((r) => r.title === roleTitle);
