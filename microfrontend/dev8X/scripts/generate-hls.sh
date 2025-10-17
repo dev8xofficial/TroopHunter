@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_DIR="./public/videos/offers"
+BASE_DIR="./public/videos"
 
 find "$BASE_DIR" -type d | while read -r SUBFOLDER; do
   # Skip if master.m3u8 exists

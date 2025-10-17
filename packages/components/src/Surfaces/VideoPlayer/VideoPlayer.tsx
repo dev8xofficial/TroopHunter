@@ -7,6 +7,10 @@ import HomepageShowreelStyles from '../HomepageShowreel/index.module.css';
 interface VideoPlayerProps {
   src: string;
   poster?: string;
+  hideQualityControls?: boolean;
+  hideFullscreen?: boolean;
+  hidePlayControls?: boolean;
+  hideMuteControls?: boolean;
 }
 
 interface QualityLevel {
@@ -17,7 +21,7 @@ interface QualityLevel {
   label: string;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityControls = false, hideFullscreen = false, hidePlayControls = false, hideMuteControls = false }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<Hls | null>(null);
   const [qualityLevels, setQualityLevels] = useState<QualityLevel[]>([]);
@@ -335,22 +339,26 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster }) => {
     <>
       <video ref={videoRef} controls={false} loop playsInline muted={true} poster={poster} style={{ width: '100%', borderRadius: '8px' }} />
       <div className={`${HomepageShowreelStyles['showreel__controls']} ${isPlaying ? HomepageShowreelStyles['showreel__controls--playing'] : HomepageShowreelStyles['showreel__controls--paused']} ${dataSubmenuOpen ? `${HomepageShowreelStyles['showreel__controls-submenu-transition']}` : ''} ${dataSubmenuOpen ? `${HomepageShowreelStyles['showreel__controls-submenu-open']}` : ''}`} data-submenu-open={`${dataSubmenuOpen}`} style={{ '--height': height } as React.CSSProperties}>
-        <div className={HomepageShowreelStyles['showreel__controls-menu']}>
-          {qualityLevels.map((level) => (
-            <button key={level.index} onClick={() => handleQualityChange(level.index)} className={HomepageShowreelStyles['showreel__controls-resolution-button']}>
-              {level.label}
-              {currentQuality === level.index && renderCheckIcon()}
-            </button>
-          ))}
-        </div>
+        {!hideQualityControls && (
+          <div className={HomepageShowreelStyles['showreel__controls-menu']}>
+            {qualityLevels.map((level) => (
+              <button key={level.index} onClick={() => handleQualityChange(level.index)} className={HomepageShowreelStyles['showreel__controls-resolution-button']}>
+                {level.label}
+                {currentQuality === level.index && renderCheckIcon()}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className={HomepageShowreelStyles['showreel__icons']}>
-          <button onClick={handleResolutionClick}>
-            <div style={{ position: 'relative' }}>{renderResolutionIcon()}</div>
-          </button>
-          {!isMobile && <button onClick={handlePlayPause}>{isPlaying ? renderPauseIcon() : renderPlayIcon()}</button>}
-          {!isMobile && <button onClick={handleMuteUnmute}>{isMuted ? renderUnmuteIcon() : renderMuteIcon()}</button>}
-          <button onClick={handleFullscreen}>{isFullscreen ? renderExitFullscreenIcon() : renderFullScreenIcon()}</button>
+          {!hideQualityControls && (
+            <button onClick={handleResolutionClick}>
+              <div style={{ position: 'relative' }}>{renderResolutionIcon()}</div>
+            </button>
+          )}
+          {!isMobile && !hidePlayControls && <button onClick={handlePlayPause}>{isPlaying ? renderPauseIcon() : renderPlayIcon()}</button>}
+          {!isMobile && !hideMuteControls && <button onClick={handleMuteUnmute}>{isMuted ? renderUnmuteIcon() : renderMuteIcon()}</button>}
+          {!hideFullscreen && <button onClick={handleFullscreen}>{isFullscreen ? renderExitFullscreenIcon() : renderFullScreenIcon()}</button>}
         </div>
       </div>
     </>

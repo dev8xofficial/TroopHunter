@@ -14,7 +14,7 @@
     "build:staging": "dotenv -e .env.staging next build",
     "build:production": "dotenv -e .env.production next build",
     "lint": "next lint",
-    "generate:hls": "node scripts/generate-hls.js",
+    "generate:hls": "bash scripts/generate-hls.sh",
     "generate:sitemap": "node sitemap.mjs"
   },
   "dependencies": {
