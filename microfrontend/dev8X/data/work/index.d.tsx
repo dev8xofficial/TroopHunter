@@ -57,8 +57,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     placeholderImage: prefixed('/api/images/placeholder/1080-transparent.png'),
     images: [prefixed('/api/images/work/troophunter/mobile/7.png'), prefixed('/api/images/work/troophunter/mobile/8.png'), prefixed('/api/images/work/troophunter/mobile/9.png'), prefixed('/api/images/work/troophunter/mobile/10.png')],
     video: {
-      originalFile: prefixed('/videos/work/troophunter/parts/part-03/master.m3u8'),
-      sequences: [prefixed('/videos/work/troophunter/parts/part-03/master.m3u8'), prefixed('/videos/work/troophunter/parts/part-03/master.m3u8'), prefixed('/videos/work/troophunter/parts/part-03/master.m3u8'), prefixed('/videos/work/troophunter/parts/part-03/master.m3u8'), prefixed('/videos/work/troophunter/parts/part-03/master.m3u8'), prefixed('/videos/work/troophunter/parts/part-03/master.m3u8')]
+      originalFile: prefixed('/videos/work/troophunter/1080/master.m3u8'),
+      sequences: [prefixed('/videos/work/troophunter/1080/master.m3u8'), prefixed('/videos/work/troophunter/1080/master.m3u8'), prefixed('/videos/work/troophunter/1080/master.m3u8'), prefixed('/videos/work/troophunter/1080/master.m3u8'), prefixed('/videos/work/troophunter/1080/master.m3u8'), prefixed('/videos/work/troophunter/1080/master.m3u8')]
     },
     bgColor: 'blue',
     path: 'troophunter',
