@@ -53,6 +53,10 @@ import EditIcon from '@repo/components/src/Icons/Edit';
 import SequelizeIcon from '@repo/components/src/Icons/Sequelize';
 import DockerIcon from '@repo/components/src/Icons/Docker';
 import AnsibleIcon from '@repo/components/src/Icons/Ansible';
+import RefreshIcon from '@repo/components/src/Icons/Refresh';
+import AIBrainIcon from '@repo/components/src/Icons/AIBrain';
+import ScaleIcon from '@repo/components/src/Icons/Scale';
+import CreditCardIcon from '@repo/components/src/Icons/CreditCard';
 
 export const ICON_MAP: Record<string, (width: number) => JSX.Element> = {
   AsteriskIcon: (width) => <AsteriskIcon width={width} />,
@@ -109,5 +113,9 @@ export const ICON_MAP: Record<string, (width: number) => JSX.Element> = {
   EditIcon: (width) => <EditIcon width={width} />,
   SequelizeIcon: (width) => <SequelizeIcon width={width} />,
   DockerIcon: (width) => <DockerIcon width={width} />,
-  AnsibleIcon: (width) => <AnsibleIcon width={width} />
+  AnsibleIcon: (width) => <AnsibleIcon width={width} />,
+  RefreshIcon: (width) => <RefreshIcon width={width} />,
+  AIBrainIcon: (width) => <AIBrainIcon width={width} />,
+  ScaleIcon: (width) => <ScaleIcon width={width} />,
+  CreditCardIcon: (width) => <CreditCardIcon width={width} />
 };

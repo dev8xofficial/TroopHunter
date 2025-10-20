@@ -56,11 +56,17 @@ export interface ExpertiseTestimonial {
   comment: string;
 }
 
+export interface ExpertiseFAQS {
+  title: string;
+  description: string;
+}
+
 export interface ExpertiseContent {
   slug: string;
   variant: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
   tagText: string;
   heading: string;
+  paragraph?: string;
   image: string;
   iconCards: ExpertiseIconCards;
   contentAsideImageItems: ExpertiseContentAsideImageItem[];
@@ -69,4 +75,5 @@ export interface ExpertiseContent {
   footerForm: ExpertiseFooterForm;
   footerSocialLinks: ExpertiseFooterSocialLink[];
   testimonials: ExpertiseTestimonial[];
+  faqs?: ExpertiseFAQS[]
 }

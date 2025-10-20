@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useAtomValue } from 'jotai';
-import { selectedRoleAtom, selectedRoleFirstParagraphAtom, selectedRoleThirdParagraphAtom, isInternshipAtom } from '../../Data display/OpenRolesList/OpenRolesList';
+import { selectedRoleAtom, selectedRoleFirstParagraphAtom, selectedRoleThirdParagraphAtom, isInternshipAtom } from '../../DataDisplay/OpenRolesList/OpenRolesList';
 
 import { FileUpload } from '../../Input/FileUpload/FileUpload';
 import { FieldWrapper } from '../../Input/FieldWrapper/FieldWrapper';

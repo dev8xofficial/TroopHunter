@@ -1,11 +1,17 @@
 import React, { ReactNode } from 'react';
 import { ICON_MAP } from './IconMap';
-import { ExpertiseIconCards } from '../../Interfaces/Expertise/Expertise';
+import { ExpertiseIconCardItem } from '../../Interfaces/Expertise/Expertise';
 
 // import TextAnimateUp from '../TextAnimateUp/index.module.css';
 import styles from './index.module.css';
 
-export const IconCards: React.FC<ExpertiseIconCards> = ({ title, paragraph, items }): JSX.Element => {
+interface IconCardProps {
+  title?: string;
+  paragraph?: string;
+  items?: ExpertiseIconCardItem[];
+}
+
+export const IconCards: React.FC<IconCardProps> = ({ title, paragraph, items }): JSX.Element => {
   return (
     <>
       <section className={styles['icon-cards']}>

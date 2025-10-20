@@ -18,6 +18,7 @@ export * from './src/Surfaces/CaseStudySidebar/CaseStudySidebar';
 export * from './src/Surfaces/ProjectContents/ProjectContents';
 export * from './src/Surfaces/TestimonialSlider/TestimonialSlider';
 // export * from './Surfaces/FeedSilder/FeedSilder
+export * from './src/Surfaces/FAQs/FAQs';
 export * from './src/Surfaces/CareerContents/CareerContents';
 export * from './src/Surfaces/CareerStudySidebar/CareerStudySidebar';
 export * from './src/Surfaces/PricingContents/PricingContents';
@@ -35,6 +36,7 @@ export * from './src/Icons/Backend';
 export * from './src/Icons/Basket';
 export * from './src/Icons/Card';
 export * from './src/Icons/Coins';
+export * from './src/Icons/CreditCard';
 export * from './src/Icons/Data';
 export * from './src/Icons/Devices';
 export * from './src/Icons/Docker';
@@ -71,7 +73,9 @@ export * from './src/Icons/Pointer';
 export * from './src/Icons/Postgresql';
 export * from './src/Icons/PuzzlePiece';
 export * from './src/Icons/Reactjs';
+export * from './src/Icons/Refresh';
 export * from './src/Icons/SaaS';
+export * from './src/Icons/Scale';
 export * from './src/Icons/Seismometer';
 export * from './src/Icons/Selection';
 export * from './src/Icons/Sequelize';
@@ -130,8 +134,8 @@ export * from './src/Layout/WorkGrid/WorkGrid';
 export * from './src/Layout/AboutGallery/AboutGallery';
 export * from './src/Layout/LogoGrid/LogoGrid';
 
-export * from './src/Data display/OpenRolesList/OpenRolesList';
-export * from './src/Data display/PricingList/PricingList';
+export * from './src/DataDisplay/OpenRolesList/OpenRolesList';
+export * from './src/DataDisplay/PricingList/PricingList';
 
 export * from './src/Modals/SmoothModal/SmoothModal';
 export * from './src/Modals/SubmitApplicationModal/SubmitApplicationModal';

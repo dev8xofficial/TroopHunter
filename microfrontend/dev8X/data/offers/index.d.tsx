@@ -1,4 +1,5 @@
 import { ExpertiseContent } from '@repo/components';
+import { prefixed } from '../../utils/helpers';
 
 const OFFERS: ExpertiseContent[] = [
   {
@@ -123,7 +124,151 @@ const OFFERS: ExpertiseContent[] = [
         comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
       }
     ]
-  }
+  },
+  {
+    slug: '',
+    variant: 'green',
+    tagText: 'For SaaS Founder',
+    heading: 'One Team. One Process. \n Build Your SaaS faster - \n from $600/month',
+    paragraph: "Vetted React & Next.js developers — or plug-in mini-squads — supervised by senior leads. Start in 7 days with US-friendly overlap and transparent delivery.",
+    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
+    iconCards: {
+      title: 'Start Small Scale Fast',
+      paragraph: "Begin with a single developer and upgrade to a full squad when you're ready. Our onboarding and managed support makes the transition seamless.",
+      items: [
+        {
+          title: 'Replacement Guarantee',
+          description: 'Not the right fit? We’ll provide a vetted replacement developer within 5 business days — no downtime.',
+          icon: { name: 'RefreshIcon', width: 28 }
+        },
+        {
+          title: 'Full Code Ownership',
+          description: 'You own 100% of the code, repositories, and documentation — we just help you build it faster and cleaner.',
+          icon: { name: 'BackendIcon', width: 26 }
+        },
+        {
+          title: 'Technical Supervision',
+          description: 'Every developer is guided by a senior tech lead ensuring code quality, scalability, and architectural consistency.',
+          icon: { name: 'AIBrainIcon', width: 26 }
+        },
+        {
+          title: 'Transparent Reporting',
+          description: 'Stay in control with weekly sprint reports, live Git access, and real-time task tracking in ClickUp or Jira.',
+          icon: { name: 'SeismometerIcon', width: 22 }
+        },
+        {
+          title: 'Quick Onboarding',
+          description: 'Start working within 7 days. We handle setup, tools, and environment so you can focus on product outcomes.',
+          icon: { name: 'VoltageIcon', width: 18 }
+        },
+        {
+          title: 'US Timezone Overlap',
+          description: 'Collaborate smoothly with guaranteed 4-hour overlap with U.S. Eastern Time — perfect for daily syncs and reviews.',
+          icon: { name: 'PlanetRingIcon', width: 26 }
+        },
+        {
+          title: 'Flexible Payments',
+          description: 'Choose your comfort — pay bi-weekly for flexibility or prepay 3 months and enjoy instant savings.',
+          icon: { name: 'CreditCardIcon', width: 26 }
+        },
+        {
+          title: 'Scalable Engagement',
+          description: 'Start with one developer and grow to a full squad anytime — without changing your workflow or vendor.',
+          icon: { name: 'ScaleIcon', width: 26 }
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: 'Vetted Talent',
+        paragraph: 'Our developers are carefully selected through multi-stage assessments for skill, reliability, and communication. Each one is fluent in English and trained to collaborate seamlessly with U.S. startup teams.',
+        icon: { name: 'PointerIcon', width: 64 },
+        image: prefixed('/api/images/work/scheduler/mobile/2.png')
+      },
+      {
+        title: 'Technical Supervision',
+        paragraph: 'Every developer works under the guidance of senior engineers who ensure code quality, scalability, and best practices. This hands-on mentorship keeps projects efficient, maintainable, and future-ready.',
+        icon: { name: 'PointerIcon', width: 64 },
+        image: prefixed('/api/images/work/troophunter/mobile/1.png')
+      },
+      {
+        title: 'Fast Onboarding',
+        paragraph: 'Skip the lengthy hiring process. Share your needs, review vetted profiles, and begin development within a week. Our streamlined onboarding ensures your team starts strong and integrates smoothly.',
+        icon: { name: 'PointerIcon', width: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
+      },
+      {
+        title: 'Full Code Ownership',
+        paragraph: 'We believe in complete transparency and control. You own 100% of your code, repositories, and documentation — with full IP rights securely transferred at every project milestone.',
+        icon: { name: 'PointerIcon', width: 64 },
+        image: prefixed('/api/images/work/goldendao/desktop/14.png')
+      }
+    ],
+    footerMainContent: {
+      link: '/contact',
+      start: 'Ready to ',
+      end: 'get started?'
+    },
+    meta: {
+      title: 'SaaS Development Services | Build Your SaaS Product — Dev8X | Dev8X: World class digital products',
+      description: 'SaaS Development Services | Build Your SaaS Product — Dev8X | Dev8X: World class digital products'
+    },
+    footerForm: {
+      privacy: {
+        year: '2025',
+        text: 'Privacy'
+      },
+      button: {
+        text: 'Submit a brief'
+      }
+    },
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      },
+      {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.instagram.com/dev8xofficial/'
+      },
+      {
+        title: 'Facebook',
+        // icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
+    ],
+    testimonials: [
+      {
+        name: 'Sepand Hokmabadi',
+        company: 'Total Health Dental Care',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: prefixed('/api/images/work/scheduler/mobile/7.png'),
+        comment: 'They simplified the entire process and made tech feel less overwhelming. Really happy with the results.'
+      },
+      {
+        name: 'Devin Picciolini',
+        company: 'Coral',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: prefixed('/api/images/work/honeydu/desktop/24.png'),
+        comment: 'We had a vague idea — they turned it into a working solution without any stress. Great experience!'
+      }
+    ],
+    faqs: [
+      { title: '1. How quickly can I start working with a developer or team?', description: "Most clients begin within 7 days of signing up. Our onboarding process is designed for speed — once we understand your goals, we match you with the right talent and set up your development environment immediately." },
+      { title: '2. What makes your developers “100% vetted”?', description: "Every developer goes through a multi-stage assessment, including technical interviews, live coding tests, and communication evaluations. Only top-performing professionals with proven track records and strong English communication skills are approved." },
+      { title: '3. Do I retain full ownership of the work?', description: "Absolutely. You maintain 100% ownership and intellectual property rights to all code, assets, and deliverables created during the project — no hidden clauses or shared rights." }
+    ]
+  },
 ];
 
 export default OFFERS;

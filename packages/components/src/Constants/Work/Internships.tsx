@@ -4,7 +4,7 @@ import { prefixed } from '../../../utils/helpers';
 import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
 import WorkCardStyles from '../../Surfaces/WorkCard/index.module.css';
 import ProjectContentStyles from '../../Surfaces/ProjectContents/index.module.css';
-import styles from './../../Data display/OpenRolesList/index.module.css';
+import styles from './../../DataDisplay/OpenRolesList/index.module.css';
 
 export const INTERNSHIP_ROLES: RoleProject[] = [
   /**

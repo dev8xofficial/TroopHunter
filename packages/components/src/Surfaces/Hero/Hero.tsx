@@ -2,16 +2,19 @@ import React from 'react';
 import { ExpertiseContent } from '../../Interfaces/Expertise/Expertise';
 import { ICON_MAP } from '../../Surfaces/IconCards/IconMap';
 import { Pill } from '../../Surfaces/Pill/Pill';
+import { OffersCategories } from '../OffersCategories/OffersCategories';
 
 import PictureStyles from '../../Surfaces/Picture/index.module.css';
+import LayoutStyles from '../Layout/layout.module.css';
 import styles from './index.module.css';
 
 interface HeroProps extends Omit<ExpertiseContent, 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'> {
   icon?: { name: string; width: number };
   placeholder?: boolean;
+  paragraph?: string;
 }
 
-export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, image }): JSX.Element => {
+export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, image, paragraph }): JSX.Element => {
   return (
     <>
       <div>
@@ -28,8 +31,20 @@ export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, ima
                     </React.Fragment>
                   ))}
                 </h2>
+                <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
+                  {paragraph && (
+                    <p className={styles['expertise-paragraph']}>
+                      {paragraph}
+                    </p>
+                  )}
+                </div>
+                <div className={LayoutStyles['work-header']}>
+                  <OffersCategories />
+                </div>
+
               </div>
             </div>
+
             {image ? (
               <div className={styles['expertise-image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
                 <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['expertise-image__picture']}`}>

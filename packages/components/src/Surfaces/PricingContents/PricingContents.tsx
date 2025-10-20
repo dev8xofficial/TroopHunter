@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { PricingStudySidebar } from '../PricingStudySidebar/PricingStudySidebar';
-import { PricingList } from '../../Data display/PricingList/PricingList';
+import { PricingList } from '../../DataDisplay/PricingList/PricingList';
 
 import ProjectContentsStyles from '../ProjectContents/index.module.css';
 
