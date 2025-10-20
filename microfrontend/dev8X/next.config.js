@@ -41,6 +41,11 @@ const nextConfig = withTM({
       {
         source: '/sitemap.xml',
         destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/sitemap.xml`
+      },
+      // videos
+      {
+        source: '/videos/:path*',
+        destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/videos/:path*`
       }
     ];
   }

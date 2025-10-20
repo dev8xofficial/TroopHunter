@@ -26,6 +26,7 @@
 !microfrontend/*/layout
 !microfrontend/*/middleware
 !microfrontend/*/pages
+!microfrontend/*/public
 !microfrontend/*/services
 !microfrontend/*/store
 !microfrontend/*/styles
@@ -34,6 +35,9 @@
 !microfrontend/*/data
 !microfrontend/*/hooks
 !microfrontend/*/scripts
+# # Exclude specific folders inside it
+microfrontend/*/public/images
+microfrontend/*/public/videos
 
 # Allow microfrontend config & environment files
 !microfrontend/*/.env.development
