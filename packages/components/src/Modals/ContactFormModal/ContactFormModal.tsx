@@ -7,6 +7,7 @@ import { Input } from '../../Input/TextField/Input';
 import { Fieldset } from '../../Input/Fieldset/Fieldset';
 import { Textarea } from '../../Input/Textarea/Textarea';
 import { Button } from '../../Input/Button/Button';
+// import { ToggleField } from '../../Input/CheckboxField/CheckboxField';
 
 import styles from './index.module.css';
 
@@ -26,6 +27,7 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showError, setShowError] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
 
   const {
     register,
@@ -181,6 +183,10 @@ export const ContactFormModal: React.FC = (): JSX.Element => {
                 <Input type="text" id="timeline" {...register('timeline')} />
               </FieldWrapper>
             </Fieldset>
+
+            {/* <FieldWrapper label="Tell us about the project">
+              <ToggleField label="DevOps Setup (One Time)" secondaryLabel="+ $300.00" checked={isChecked} setChecked={setIsChecked} />
+            </FieldWrapper> */}
 
             <FieldWrapper label="Tell us about the project">
               <Textarea id="project" {...register('project')} />
