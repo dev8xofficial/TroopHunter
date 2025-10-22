@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, Hero, CardStack, FAQs } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import EXPERTISES from '../../data/expertise/index.d';
@@ -58,7 +58,7 @@ const OffersPage: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <main className={`${ExpertiseStyles['expertise-single']} container-full`}>
-            <Hero variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} icon={offersData.contentAsideImageItems[Object.keys(offersData.contentAsideImageItems)[0]].icon} />
+            <OffersHero variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} icon={offersData.contentAsideImageItems[Object.keys(offersData.contentAsideImageItems)[0]].icon} offers={offersData.offersSlider} openDevelopersModal={() => toggleModal('developers')} openMiniSquadsModal={() => toggleModal('minisquads')} openScheduleCallModal={() => toggleModal('schedulecall')} />
             <div>
               <ModularBlocks>
                 <IconCards title={offersData.iconCards?.title} paragraph={offersData.iconCards?.paragraph} items={offersData.iconCards?.items} />
@@ -117,6 +117,15 @@ const OffersPage: React.FC = (): JSX.Element => {
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
         <ContactFormModal />
+      </SmoothModalWrapper>
+      <SmoothModalWrapper modalType="developers" toggle={() => toggleModal('developers')}>
+        <DevelopersModal />
+      </SmoothModalWrapper>
+      <SmoothModalWrapper modalType="minisquads" toggle={() => toggleModal('minisquads')}>
+        <MiniSquadsModal />
+      </SmoothModalWrapper>
+      <SmoothModalWrapper modalType="schedulecall" toggle={() => toggleModal('schedulecall')}>
+        <ScheduleCallContent />
       </SmoothModalWrapper>
     </>
   );

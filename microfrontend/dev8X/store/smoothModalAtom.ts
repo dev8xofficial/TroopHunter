@@ -1,7 +1,7 @@
 // store/smoothModalAtom.ts
 import { atom } from 'jotai';
 
-export type ModalType = 'none' | 'project' | 'contact' | 'career';
+export type ModalType = 'none' | 'project' | 'contact' | 'career' | 'developers' | 'minisquads' | 'schedulecall';
 
 export const openSmoothModalAtom = atom<ModalType>('none');
 

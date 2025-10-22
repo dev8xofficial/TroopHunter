@@ -5,15 +5,15 @@ import InputStyles from '../TextField/index.module.css';
 import TextAreastyles from '../Textarea/index.module.css';
 
 export interface ListboxOptionType {
-  id: number;
-  name: string;
-  value: string | number;
+  id?: number;
+  name?: string;
+  value?: string | number;
 }
 
 interface ListboxProps {
-  options: ListboxOptionType[];
-  selected: ListboxOptionType;
-  setSelected: (value: ListboxOptionType) => void;
+  options?: ListboxOptionType[];
+  selected?: ListboxOptionType;
+  setSelected?: (value: ListboxOptionType) => void;
 }
 
 export const ListboxField: React.FC<ListboxProps> = ({ options, selected, setSelected }) => {

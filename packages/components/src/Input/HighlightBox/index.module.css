@@ -1,0 +1,19 @@
+.highlightBox {
+  width: 100%;
+  padding: 1em;
+  font-size: inherit;
+  color: var(--error, var(--theme-text));
+  height: auto;
+  border-radius: clamp(.625rem, .6613756614vw, .83125rem);
+  resize: none;
+  margin-top: 1em;
+}
+
+.contained {
+  background: rgba(0, 0, 0, .05);
+}
+
+.outlined {
+  border: none;
+  border: 1px solid rgba(0, 0, 0, .2);
+}

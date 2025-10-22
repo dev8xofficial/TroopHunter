@@ -35,4 +35,4 @@ type PortraitWorkCardProps = CommonWorkCardProps & {
   variant: 'portrait';
 };
 
-export type WorkGridCard = LandscapeWorkCardProps | PortraitWorkCardProps[];
+export type WorkGridCard = LandscapeWorkCardProps | PortraitWorkCardProps;

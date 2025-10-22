@@ -60,6 +60,17 @@ export interface ExpertiseFAQS {
   title: string;
   description: string;
 }
+export interface ExpertiseOffersSliderItem {
+  id: string;
+  heading?: string;
+  price: string;
+  description: string;
+  features: string[];
+  categories: string[];
+  href?: string;
+  buttonText?: string;
+  package?: 'developers' | 'mini-squads';
+}
 
 export interface ExpertiseContent {
   slug: string;
@@ -76,4 +87,6 @@ export interface ExpertiseContent {
   footerSocialLinks: ExpertiseFooterSocialLink[];
   testimonials: ExpertiseTestimonial[];
   faqs?: ExpertiseFAQS[]
+  offersSlider?: ExpertiseOffersSliderItem[];
+  video?: string;
 }

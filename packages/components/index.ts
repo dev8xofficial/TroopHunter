@@ -10,14 +10,17 @@ export * from './src/Surfaces/HomepageShowreel/HomepageShowreel';
 export * from './src/Surfaces/WorkCard/WorkCard';
 export * from './src/Surfaces/WorkCategories/WorkCategories';
 export * from './src/Surfaces/VideoPlayer/VideoPlayer';
+export * from './src/Surfaces/OffersHero/OffersHero';
 export * from './src/Surfaces/OffersReel/OffersReel';
 export * from './src/Surfaces/CardStack/CardStack';
 export * from './src/Surfaces/AwardsBlock/AwardsBlock';
 export * from './src/Surfaces/ExpertiseCard/ExpertiseCard';
 export * from './src/Surfaces/CaseStudySidebar/CaseStudySidebar';
 export * from './src/Surfaces/ProjectContents/ProjectContents';
+export * from './src/Surfaces/ScheduleCallContent/ScheduleCallContent';
+export * from './src/Surfaces/OffersSlider/OffersSlider';
 export * from './src/Surfaces/TestimonialSlider/TestimonialSlider';
-// export * from './Surfaces/FeedSilder/FeedSilder
+export * from './src/Surfaces/FeedSilder/FeedSilder';
 export * from './src/Surfaces/FAQs/FAQs';
 export * from './src/Surfaces/CareerContents/CareerContents';
 export * from './src/Surfaces/CareerStudySidebar/CareerStudySidebar';
@@ -102,6 +105,7 @@ export * from './src/Interfaces/Work/WorkProjectTypes';
 export * from './src/Interfaces/Expertise/Expertise';
 
 export * from './src/Constants/Work/WorkProjects';
+export * from './src/Constants/Offers/OffersData';
 export * from './src/Surfaces/HomepageLogos/HomepageLogos';
 export * from './src/Surfaces/TestimonialAbout/TestimonialAbout';
 
@@ -137,6 +141,9 @@ export * from './src/Layout/LogoGrid/LogoGrid';
 export * from './src/DataDisplay/OpenRolesList/OpenRolesList';
 export * from './src/DataDisplay/PricingList/PricingList';
 
+export * from './src/Modals/ContactFormModal/ContactFormModal';
+export * from './src/Modals/DevelopersModal/DevelopersModal';
+export * from './src/Modals/MiniSquadsModal/MiniSquadsModal';
+export * from './src/Modals/ScheduleCallModal/ScheduleCallModal';
 export * from './src/Modals/SmoothModal/SmoothModal';
 export * from './src/Modals/SubmitApplicationModal/SubmitApplicationModal';
-export * from './src/Modals/ContactFormModal/ContactFormModal';
