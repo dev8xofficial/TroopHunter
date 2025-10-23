@@ -89,6 +89,7 @@ export * from './src/Icons/Shuffle';
 export * from './src/Icons/Smile';
 export * from './src/Icons/Sparkler';
 export * from './src/Icons/Squiggle';
+export * from './src/Icons/StarIcon';
 export * from './src/Icons/Supabase';
 export * from './src/Icons/Support';
 export * from './src/Icons/Target';

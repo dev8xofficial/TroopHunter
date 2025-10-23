@@ -3,13 +3,15 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
-import { ExpertiseOffersSliderItem, Link } from '@repo/components';
+import { Button, ExpertiseOffersSliderItem, Link } from '@repo/components';
 import RightArrowIcon from '../../Icons/RightArrow';
+import StarIcon from '../../Icons/StarIcon';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
 import FeedSilderStyles from '../FeedSilder/index.module.css';
+import WorkCategoriesStyles from '../WorkCategories/index.module.css';
 
 export type Offer = {
   heading: string; // :white_check_mark: match data and other interfaces
@@ -60,13 +62,20 @@ export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePa
         {offers.map((offer) => (
           <SwiperSlide key={offer.id} className={FeedSilderStyles['feed__shrink-drag']}>
             <article className={FeedSilderStyles['feed__item']}>
-              <h3 className={FeedSilderStyles['about-column__heading']}>{offer.heading}</h3>
-              <h3 className={FeedSilderStyles['article-card__title']}>{offer.price}</h3>
+              <h2 className={FeedSilderStyles['about-column__heading']}>{offer.heading}</h2>
+              <div>
+                <span className={FeedSilderStyles['article-card__title']}>{offer.price}</span>
+                <span className={FeedSilderStyles['article-card__subtitle']}>/months</span>
+              </div>
               <p className={FeedSilderStyles['article-card__excerpt']}>{offer.description}</p>
               <Link variant="secondary" href="#" endIcon={<RightArrowIcon width="14" className={FeedSilderStyles['button--icon']} />} spanClassName={FeedSilderStyles['expertise-card__button']} onClick={(e) => handleClick(e, offer.package === 'developers' ? openDevelopersModal : openMiniSquadsModal)}>
                 {offer.buttonText}
               </Link>
-              <hr className={FeedSilderStyles['hr-line']} />
+              <div className={FeedSilderStyles['divider']}>
+                <div className={FeedSilderStyles['divider__line']}></div>
+                <StarIcon width={20} height={20} className={FeedSilderStyles['divider__star']} />
+                <div className={FeedSilderStyles['divider__line']}></div>
+              </div>
               {offer.features?.length > 0 && (
                 <ul className={FeedSilderStyles['custom-icon-list']}>
                   {offer.features.map((feature) => (
@@ -76,11 +85,11 @@ export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePa
               )}
               {offer.categories?.length > 0 && (
                 <div className={FeedSilderStyles['categories-wrap']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-                  {offer.categories.map((category) => (
-                    <Link key={category} variant="secondary" href={`/expertise/${category.toLowerCase().replace(/\s+/g, '-')}`} spanClassName={FeedSilderStyles['expertise-card__button']}>
-                      {category}
-                    </Link>
-                  ))}
+                  <ul className={WorkCategoriesStyles['categories']}>
+                    {offer.categories.map((category) => (
+                      <li key={category}>{category}</li>
+                    ))}
+                  </ul>
                 </div>
               )}
             </article>

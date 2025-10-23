@@ -272,7 +272,7 @@ const OFFERS: ExpertiseContent[] = [
       {
         id: '1',
         heading: 'Junior Developer',
-        price: '$600/month',
+        price: '$600',
         description: 'Perfect for MVPs and quick iterations.',
         features: ['1–2 years experience', 'Daily progress updates', 'Tech lead supervision'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
@@ -282,7 +282,7 @@ const OFFERS: ExpertiseContent[] = [
       {
         id: '2',
         heading: 'Mid Developer',
-        price: '$900/month',
+        price: '$900',
         description: 'Reliable full-stack React/Next.js dev.',
         features: ['3–5 years experience', 'API integration & unit tests', 'Weekly sprint reviews'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
@@ -292,7 +292,7 @@ const OFFERS: ExpertiseContent[] = [
       {
         id: '3',
         heading: 'Senior Developer',
-        price: '$1,500/month',
+        price: '$1,500',
         description: 'Architecture, performance & leadership.',
         features: ['5–8 years experience', 'Mentorship & code reviews', 'System design support'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
@@ -302,7 +302,7 @@ const OFFERS: ExpertiseContent[] = [
       {
         id: '4',
         heading: 'MVP Squad',
-        price: '$4,500/month',
+        price: '$4,500',
         description: '2 Developers + QA + PM',
         features: ['Build & launch your MVP in sprints', '4-hour U.S. overlap', 'Managed Agile sprints'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
@@ -312,7 +312,7 @@ const OFFERS: ExpertiseContent[] = [
       {
         id: '5',
         heading: 'Growth Squad',
-        price: '$5,500/month',
+        price: '$5,500',
         description: '2 Full-stack Devs + Designer + QA + PM',
         features: ['Feature scaling & UX improvements', 'Designer-led UI upgrades', 'Continuous delivery (CI/CD)'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
@@ -322,7 +322,7 @@ const OFFERS: ExpertiseContent[] = [
       {
         id: '6',
         heading: 'Pro Squad',
-        price: '$7,000/month',
+        price: '$7,000',
         description: '3 Devs + QA + PM + Senior Lead',
         features: ['High-velocity delivery & architecture', 'Full-stack support + DevOps', 'Dedicated PM & weekly roadmaps'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
