@@ -18,7 +18,7 @@ export const ScheduleCallContent: React.FC<ScheduleCallContentProps> = (): JSX.E
             <div className={CaseStudySidebarStyles['sidebar__inner']}>
               <div className={CaseStudySidebarStyles['sidebar__header']}>
                     <img
-                      src="/images/offers/head-2.jpg"
+                      src="/images/offers/head.jpg"
                       alt="Schedule Call"
                       className={CaseStudySidebarStyles['sidebar__image']}
                     />
