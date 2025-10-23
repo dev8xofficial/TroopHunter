@@ -17,11 +17,16 @@ export const ScheduleCallContent: React.FC<ScheduleCallContentProps> = (): JSX.E
           <div className={CaseStudySidebarStyles['sidebar']}>
             <div className={CaseStudySidebarStyles['sidebar__inner']}>
               <div className={CaseStudySidebarStyles['sidebar__header']}>
-                <h1 className={CaseStudySidebarStyles['sidebar__title']}>Schedule Call</h1>
-                {/* <Link variant="secondary" href={websiteUrl} endIcon={<RightArrowIcon width="14" className={CaseStudySidebarStyles['button--icon']} />} anchorClassName={CaseStudySidebarStyles['homepage-bottom__link']}>
+                    <img
+                      src="/images/offers/head-2.jpg"
+                      alt="Schedule Call"
+                      className={CaseStudySidebarStyles['sidebar__image']}
+                    />
+
+                  {/* <Link variant="secondary" href={websiteUrl} endIcon={<RightArrowIcon width="14" className={CaseStudySidebarStyles['button--icon']} />} anchorClassName={CaseStudySidebarStyles['homepage-bottom__link']}>
                   Visit Website
                 </Link> */}
-                <p className={CaseStudySidebarStyles['sidebar__industry']}></p>
+                  <p className={CaseStudySidebarStyles['sidebar__industry']}></p>
               </div>
               <div className={CaseStudySidebarStyles['sidebar__intro']}>
                 <p>Trusted by 50+ startups</p>

@@ -17,9 +17,19 @@ interface IFormInputs {
   company: string;
   phone: string;
   email: string;
-  budget: string; // Project type
-  project: string; // Add-ons
+  plan: any;
+  projectType: any;
+  addOns: any[];
 }
+
+// ✅ Add-on Data
+const addOnOptions = [
+  { id: 1, label: 'Project Manager (Month)', secondaryLabel: '+ $3K', key: 'projectManager' },
+  { id: 2, label: 'Backend Pairing (Month)', secondaryLabel: '+ $400.00', key: 'backendPairing' },
+  { id: 3, label: 'DevOps Setup (One Time)', secondaryLabel: '+ $300.00', key: 'devOpsSetup' },
+  { id: 4, label: 'Cancel Anytime', secondaryLabel: '', key: 'cancelAnytime' },
+  { id: 5, label: 'Start in 1 Week', secondaryLabel: '', key: 'startInWeek' },
+];
 
 export const DevelopersModal: React.FC = (): JSX.Element => {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -46,6 +56,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
   ];
 
   const [selectedProjectType, setSelectedProjectType] = useState(projectTypeOptions[0]);
+  const [selectedPlan] = useState(plans[0]);
   const [isChecked, setChecked] = useState({
     projectManager: false,
     backendPairing: false,
@@ -53,8 +64,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
     cancelAnytime: false,
     startInWeek: false,
   });
-
-  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+  const [selectedAddOns, setSelectedAddOns] = useState<any[]>([]);
 
   const {
     register,
@@ -70,39 +80,43 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
       company: '',
       phone: '',
       email: '',
-      budget: '',
-      project: '',
+      plan: selectedPlan,
+      projectType: selectedProjectType,
+      addOns: [],
     },
   });
 
-  // 🟢 Sync Add-Ons
+  // 🟢 Sync Add-Ons with state
   useEffect(() => {
-    const selected = Object.entries(isChecked)
-      .filter(([_, value]) => value)
-      .map(([key]) => key);
+    const selected = addOnOptions.filter((item) => isChecked[item.key]);
     setSelectedAddOns(selected);
-    setValue('project', selected.join(', '));
+    setValue('addOns', selected);
   }, [isChecked, setValue]);
 
   // 🟢 Sync Project Type
   useEffect(() => {
-    setValue('budget', selectedProjectType.value);
+    setValue('projectType', selectedProjectType);
   }, [selectedProjectType, setValue]);
+
+  // 🟢 Sync Plan
+  useEffect(() => {
+    setValue('plan', selectedPlan);
+  }, [selectedPlan, setValue]);
 
   const onSubmit = async (data: IFormInputs) => {
     setIsSubmitting(true);
 
     const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      if (key === 'upload' && Array.isArray(value)) {
-        value.forEach((file: File) => formData.append('upload', file));
-      } else {
-        formData.append(key, value ?? '');
-      }
-    });
+    formData.append('name', data.name);
+    formData.append('company', data.company);
+    formData.append('phone', data.phone);
+    formData.append('email', data.email);
+    formData.append('plan', JSON.stringify(data.plan));
+    formData.append('projectType', JSON.stringify(data.projectType));
+    formData.append('addOns', JSON.stringify(data.addOns));
 
     try {
-      const response = await fetch('/api/submit', {
+      const response = await fetch('/api/developers', {
         method: 'POST',
         body: formData,
       });
@@ -116,6 +130,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
         setShowSuccess(false);
       }
     } catch (error) {
+      console.error(error);
       setShowError(true);
       setShowSuccess(false);
     } finally {
@@ -228,10 +243,10 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
                 className="col-sm-2"
                 label="Project Type"
                 message="Select an option to proceed."
-                error={errors.budget?.message}
+                error={errors.projectType?.message}
               >
                 <Controller
-                  name="budget"
+                  name="projectType"
                   control={control}
                   rules={{ required: 'Please select a project type' }}
                   render={({ field }) => (
@@ -240,7 +255,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
                       selected={selectedProjectType}
                       setSelected={(option) => {
                         setSelectedProjectType(option);
-                        field.onChange(option.value);
+                        field.onChange(option);
                       }}
                     />
                   )}
@@ -250,69 +265,30 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
 
             {/* Add-Ons */}
             <Controller
-              name="project"
+              name="addOns"
               control={control}
               rules={{ required: 'Please select at least one Add-On' }}
-              render={({ field }) => (
+              render={() => (
                 <Fieldset>
                   <FieldWrapper
                     label="Add-Ons"
                     message="Review your selected options below:"
-                    error={errors.project?.message}
+                    error={errors.addOns?.message}
                   >
-                    <ToggleField
-                      label="Project Manager (Month)"
-                      secondaryLabel="+ $3K"
-                      checked={isChecked.projectManager}
-                      setChecked={() =>
-                        setChecked((prev) => ({
-                          ...prev,
-                          projectManager: !prev.projectManager,
-                        }))
-                      }
-                    />
-                    <ToggleField
-                      label="Backend Pairing (Month)"
-                      secondaryLabel="+ $400.00"
-                      checked={isChecked.backendPairing}
-                      setChecked={() =>
-                        setChecked((prev) => ({
-                          ...prev,
-                          backendPairing: !prev.backendPairing,
-                        }))
-                      }
-                    />
-                    <ToggleField
-                      label="DevOps Setup (One Time)"
-                      secondaryLabel="+ $300.00"
-                      checked={isChecked.devOpsSetup}
-                      setChecked={() =>
-                        setChecked((prev) => ({
-                          ...prev,
-                          devOpsSetup: !prev.devOpsSetup,
-                        }))
-                      }
-                    />
-                    <ToggleField
-                      label="Cancel Anytime"
-                      checked={isChecked.cancelAnytime}
-                      setChecked={() =>
-                        setChecked((prev) => ({
-                          ...prev,
-                          cancelAnytime: !prev.cancelAnytime,
-                        }))
-                      }
-                    />
-                    <ToggleField
-                      label="Start in 1 Week"
-                      checked={isChecked.startInWeek}
-                      setChecked={() =>
-                        setChecked((prev) => ({
-                          ...prev,
-                          startInWeek: !prev.startInWeek,
-                        }))
-                      }
-                    />
+                    {addOnOptions.map((addon) => (
+                      <ToggleField
+                        key={addon.id}
+                        label={addon.label}
+                        secondaryLabel={addon.secondaryLabel}
+                        checked={isChecked[addon.key as keyof typeof isChecked]}
+                        setChecked={() =>
+                          setChecked((prev) => ({
+                            ...prev,
+                            [addon.key]: !prev[addon.key as keyof typeof prev],
+                          }))
+                        }
+                      />
+                    ))}
                   </FieldWrapper>
                 </Fieldset>
               )}
@@ -352,7 +328,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
               </HighlightBox>
             </FieldWrapper>
 
-            {/* Submit Button */}
+
             <Button
               type="submit"
               variant="primary"

@@ -176,3 +176,23 @@
 .custom-icon-list li:nth-child(4n):before {
     content: url("data:image/svg+xml,%3Csvg viewBox=%220 0 12 12%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill-rule=%22evenodd%22 clip-rule=%22evenodd%22 d=%22m7.414 6 3.293-3.293-1.414-1.414L6 4.586 2.707 1.293 1.293 2.707 4.586 6 1.293 9.293l1.414 1.414L6 7.414l3.293 3.293 1.414-1.414L7.414 6Z%22 fill=%22%23B488F1%22/%3E%3C/svg%3E")
 }
+
+.sidebar__image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+}
+
+@media (min-width: 992px) {
+    .sidebar__image {
+        border-radius: 40px;
+    }
+}
+
+@media (min-width: 768px) {
+    .sidebar__image {
+        border-radius: 30px;
+    }
+}

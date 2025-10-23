@@ -9,6 +9,7 @@ import { Button } from '../../Input/Button/Button';
 import { TimeSlotField, TimeSlotType } from '../../Input/TimeSlotField/TimeSlotField';
 import { FileUpload } from '../../Input/FileUpload/FileUpload';
 
+import CaseStudySidebarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 
 interface IFormInputs {
@@ -132,8 +133,8 @@ export const ScheduleCallModal: React.FC = (): JSX.Element => {
             className={`${ContactFormModalStyles['contact-form']} grid-cols-2`}
           >
             <div className={`col-full ${ContactFormModalStyles['modal-intro']}`}>
-              <h1>Book Your Free 30-Minute Consultation</h1>
-              <p>
+              <h1 className={`col-full ${CaseStudySidebarStyles['sidebar__title']}`}>Book Your Free 30-Minute Consultation</h1>
+              <p className={`col-full ${CaseStudySidebarStyles['sidebar__intro']}`}>
                 Talk directly with our technical lead to discuss your project, team fit, and next
                 steps.
               </p>
