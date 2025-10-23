@@ -27,12 +27,12 @@ export type CommonWorkCardProps = Omit<WorkDetail, 'slug' | 'websiteUrl' | 'indu
   space: 'inner' | 'outer';
 };
 
-type LandscapeWorkCardProps = CommonWorkCardProps & {
+export type LandscapeWorkCardProps = CommonWorkCardProps & {
   variant: 'landscape';
 };
 
-type PortraitWorkCardProps = CommonWorkCardProps & {
+export type PortraitWorkCardProps = CommonWorkCardProps & {
   variant: 'portrait';
 };
 
-export type WorkGridCard = LandscapeWorkCardProps | PortraitWorkCardProps;
+export type WorkGridCard = LandscapeWorkCardProps | PortraitWorkCardProps[];

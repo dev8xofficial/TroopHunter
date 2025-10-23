@@ -6,7 +6,7 @@ import { Input } from '../../Input/TextField/Input';
 import { Fieldset } from '../../Input/Fieldset/Fieldset';
 import { Button } from '../../Input/Button/Button';
 import { ToggleField } from '../../Input/ToggleField/ToggleField';
-import { ListboxField } from '../../Input/ListboxField/ListboxField';
+import { ListboxField, ListboxOptionType } from '../../Input/ListboxField/ListboxField';
 import { HighlightBox } from '../../Input/HighlightBox/HighlightBox';
 
 import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
@@ -28,7 +28,7 @@ const addOnOptions = [
   { id: 2, label: 'Backend Pairing (Month)', secondaryLabel: '+ $400.00', key: 'backendPairing' },
   { id: 3, label: 'DevOps Setup (One Time)', secondaryLabel: '+ $300.00', key: 'devOpsSetup' },
   { id: 4, label: 'Cancel Anytime', secondaryLabel: '', key: 'cancelAnytime' },
-  { id: 5, label: 'Start in 1 Week', secondaryLabel: '', key: 'startInWeek' },
+  { id: 5, label: 'Start in 1 Week', secondaryLabel: '', key: 'startInWeek' }
 ];
 
 export const DevelopersModal: React.FC = (): JSX.Element => {
@@ -42,7 +42,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
     { id: 2, name: 'Backend Development', value: 'backend' },
     { id: 3, name: 'Full-Stack Development', value: 'fullstack' },
     { id: 4, name: 'UI/UX Design', value: 'design' },
-    { id: 5, name: 'Mobile App Development', value: 'mobile' },
+    { id: 5, name: 'Mobile App Development', value: 'mobile' }
   ];
 
   const plans = [
@@ -51,18 +51,18 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
       name: 'Junior Developer',
       price: '$600/month → $900/month after 3 months',
       start: 'Start in 7 days',
-      trial: 'Fully refundable 7-day trial',
-    },
+      trial: 'Fully refundable 7-day trial'
+    }
   ];
 
-  const [selectedProjectType, setSelectedProjectType] = useState(projectTypeOptions[0]);
+  const [selectedProjectType, setSelectedProjectType] = useState<ListboxOptionType>(projectTypeOptions[0]);
   const [selectedPlan] = useState(plans[0]);
   const [isChecked, setChecked] = useState({
     projectManager: false,
     backendPairing: false,
     devOpsSetup: false,
     cancelAnytime: false,
-    startInWeek: false,
+    startInWeek: false
   });
   const [selectedAddOns, setSelectedAddOns] = useState<any[]>([]);
 
@@ -72,7 +72,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
     formState: { errors },
     reset,
     control,
-    setValue,
+    setValue
   } = useForm<IFormInputs>({
     mode: 'onChange',
     defaultValues: {
@@ -82,8 +82,8 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
       email: '',
       plan: selectedPlan,
       projectType: selectedProjectType,
-      addOns: [],
-    },
+      addOns: []
+    }
   });
 
   // 🟢 Sync Add-Ons with state
@@ -118,7 +118,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
     try {
       const response = await fetch('/api/developers', {
         method: 'POST',
-        body: formData,
+        body: formData
       });
 
       if (response.ok) {
@@ -144,38 +144,27 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
         <div className={ContactFormModalStyles['success']}>
           <div className={ContactFormModalStyles['modal-header']} />
           <h1 className={ContactFormModalStyles['modal-heading']}>Message received!</h1>
-          <p className={ContactFormModalStyles['success__message']}>
-            Thanks for considering Dev8x for your project. We'll be in touch very soon.
-          </p>
+          <p className={ContactFormModalStyles['success__message']}>Thanks for considering Dev8x for your project. We'll be in touch very soon.</p>
         </div>
       ) : showError ? (
         <div className={ContactFormModalStyles['error']}>
           <div className={ContactFormModalStyles['modal-header']} />
           <h1 className={ContactFormModalStyles['modal-error']}>Message failed.</h1>
-          <p className={ContactFormModalStyles['error__message']}>
-            Please try again later or contact us directly.
-          </p>
+          <p className={ContactFormModalStyles['error__message']}>Please try again later or contact us directly.</p>
         </div>
       ) : (
         <>
           <div className={ContactFormModalStyles['modal-header']} />
           <h1 className={ContactFormModalStyles['modal-heading']}>Let's Hire Developer</h1>
 
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className={`${ContactFormModalStyles['contact-form']} grid-cols-2`}
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className={`${ContactFormModalStyles['contact-form']} grid-cols-2`}>
             <div className={`col-full ${ContactFormModalStyles['modal-intro']}`}>
               <p>Fill in the blanks and we'll respond in one business day.</p>
               <p>Just want to chat? Call or email — we're a nice bunch.</p>
             </div>
 
             {/* Name */}
-            <FieldWrapper
-              className="col-sm-1"
-              label="What's your name?"
-              error={errors.name?.message}
-            >
+            <FieldWrapper className="col-sm-1" label="What's your name?" error={errors.name?.message}>
               <Input
                 type="text"
                 id="name"
@@ -183,17 +172,13 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
                 {...register('name', {
                   required: 'Please enter your name',
                   minLength: { value: 3, message: 'Name must be at least 3 characters' },
-                  maxLength: { value: 30, message: 'Name cannot exceed 30 characters' },
+                  maxLength: { value: 30, message: 'Name cannot exceed 30 characters' }
                 })}
               />
             </FieldWrapper>
 
             {/* Company */}
-            <FieldWrapper
-              className="col-sm-1"
-              label="Name of your company?"
-              error={errors.company?.message}
-            >
+            <FieldWrapper className="col-sm-1" label="Name of your company?" error={errors.company?.message}>
               <Input
                 type="text"
                 id="company"
@@ -201,7 +186,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
                 {...register('company', {
                   required: 'Please enter your company name',
                   minLength: { value: 2, message: 'Company name must be at least 2 characters' },
-                  maxLength: { value: 40, message: 'Company name cannot exceed 40 characters' },
+                  maxLength: { value: 40, message: 'Company name cannot exceed 40 characters' }
                 })}
               />
             </FieldWrapper>
@@ -217,8 +202,8 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
                     required: 'Please enter your phone number',
                     pattern: {
                       value: /^[0-9+\-()\s]*$/,
-                      message: 'Invalid phone number format',
-                    },
+                      message: 'Invalid phone number format'
+                    }
                   })}
                 />
               </FieldWrapper>
@@ -232,19 +217,14 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
                     required: 'Please enter your email address',
                     pattern: {
                       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: 'Invalid email address',
-                    },
+                      message: 'Invalid email address'
+                    }
                   })}
                 />
               </FieldWrapper>
 
               {/* Project Type */}
-              <FieldWrapper
-                className="col-sm-2"
-                label="Project Type"
-                message="Select an option to proceed."
-                error={errors.projectType?.message}
-              >
+              <FieldWrapper className="col-sm-2" label="Project Type" message="Select an option to proceed." error={errors.projectType?.message as string | undefined}>
                 <Controller
                   name="projectType"
                   control={control}
@@ -270,11 +250,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
               rules={{ required: 'Please select at least one Add-On' }}
               render={() => (
                 <Fieldset>
-                  <FieldWrapper
-                    label="Add-Ons"
-                    message="Review your selected options below:"
-                    error={errors.addOns?.message}
-                  >
+                  <FieldWrapper label="Add-Ons" message="Review your selected options below:" error={errors.addOns?.message}>
                     {addOnOptions.map((addon) => (
                       <ToggleField
                         key={addon.id}
@@ -284,7 +260,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
                         setChecked={() =>
                           setChecked((prev) => ({
                             ...prev,
-                            [addon.key]: !prev[addon.key as keyof typeof prev],
+                            [addon.key]: !prev[addon.key as keyof typeof prev]
                           }))
                         }
                       />
@@ -295,17 +271,11 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
             />
 
             {/* Plans */}
-            <FieldWrapper
-              className="col-sm-2"
-              label="Plans"
-              message="Choose your preferred plan?"
-            >
+            <FieldWrapper className="col-sm-2" label="Plans" message="Choose your preferred plan?">
               {plans.map((plan) => (
                 <HighlightBox key={plan.id} variant="contained">
                   <h4>{plan.name}</h4>
-                  <ul
-                    className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}
-                  >
+                  <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}>
                     <li>{plan.price}</li>
                     <li>{plan.start}</li>
                     <li>{plan.trial}</li>
@@ -317,9 +287,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
             {/* All Plans Include */}
             <FieldWrapper className="col-sm-2" label="All Plans Include">
               <HighlightBox variant="outlined">
-                <ul
-                  className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}
-                >
+                <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}>
                   <li>Tech Lead Supervision</li>
                   <li>Transparent Time Tracking</li>
                   <li>Weekly Code Reports</li>
@@ -328,15 +296,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
               </HighlightBox>
             </FieldWrapper>
 
-
-            <Button
-              type="submit"
-              variant="primary"
-              context="contact"
-              fullWidth
-              isLoading={isSubmitting}
-              disabled={isSubmitting}
-            >
+            <Button type="submit" variant="primary" context="contact" fullWidth isLoading={isSubmitting} disabled={isSubmitting}>
               Submit
             </Button>
           </form>

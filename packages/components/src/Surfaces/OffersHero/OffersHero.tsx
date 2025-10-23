@@ -5,7 +5,7 @@ import { Pill } from '../Pill/Pill';
 import { OffersCategories } from '../OffersCategories/OffersCategories';
 import { WorkCard } from '../WorkCard/WorkCard';
 import { OFFERS_GRID_DATA } from '../../Constants/Offers/OffersData';
-import { WorkGridCard } from '../../Interfaces/Work/WorkProjectTypes';
+import { LandscapeWorkCardProps } from '../../Interfaces/Work/WorkProjectTypes';
 
 import LayoutStyles from '../Layout/layout.module.css';
 import styles from './index.module.css';
@@ -21,7 +21,7 @@ interface OffersHeroProps extends Omit<ExpertiseContent, 'slug' | 'iconCards' | 
 export const OffersHero: React.FC<OffersHeroProps> = ({ tagText, heading, variant, activeCategory, showHowToHireVideo, paragraph, handleCategorySelect, openScheduleCallModal }): JSX.Element => {
   const router = useRouter();
   const isOffersPage = router.pathname.includes('/offers');
-  const offersData: WorkGridCard = OFFERS_GRID_DATA[0];
+  const offersData: LandscapeWorkCardProps = OFFERS_GRID_DATA[0] as LandscapeWorkCardProps;
 
   return (
     <>
