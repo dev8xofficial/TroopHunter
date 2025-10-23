@@ -1,8 +1,10 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 import { ExpertiseFooterForm, ExpertiseFooterMainContent, ExpertiseFooterSocialLink } from '../../Interfaces/Expertise/Expertise';
 import { FooterInternationalContents } from '../../Surfaces/FooterInternationalContents/FooterInternationalContents';
 import RightArrowIcon from '../../Icons/RightArrow';
-import { RotatingText } from '../../Animations/RotatingText';
 
 import styles from './index.module.css';
 
@@ -15,7 +17,51 @@ type FooterProps = {
 
 export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, footerSocialLinks, onClick }): JSX.Element => {
   const endWords = footerMainContent?.end.split(' ') || [];
-  const rotatingWords = [endWords[1], 'epic', 'fun', 'click', 'delightfull', 'beautiful', 'original', 'extraordinary', 'engaging', 'click'].filter(Boolean);
+  const rotatingWords = [endWords[1], 'epic', 'fun', 'click', 'delightful', 'beautiful', 'original', 'extraordinary', 'engaging', 'click'].filter(Boolean);
+
+  const textRef = useRef<HTMLSpanElement>(null);
+  const indexRef = useRef(0);
+
+  useEffect(() => {
+    const el = textRef.current;
+    if (!el) return;
+
+    el.textContent = rotatingWords[0];
+
+    const changeWord = () => {
+      const next = (indexRef.current + 1) % rotatingWords.length;
+      const nextText = rotatingWords[next];
+
+      const tl = gsap.timeline();
+
+      // Animate both current and next word at same time
+      tl.to(el, {
+        yPercent: 20,
+        opacity: 0,
+        duration: 0.28,
+        ease: 'power3.inOut' // smooth & natural
+      });
+
+      tl.add(() => {
+        el.textContent = nextText;
+        gsap.fromTo(
+          el,
+          { yPercent: -10, opacity: 0 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.28,
+            ease: 'power3.inOut'
+          }
+        );
+      });
+
+      indexRef.current = next;
+    };
+
+    const interval = setInterval(changeWord, 3000);
+    return () => clearInterval(interval);
+  }, [rotatingWords]);
 
   return (
     <footer className={styles['footer']} id="footer-animation">
@@ -25,9 +71,28 @@ export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, f
             <span>{footerMainContent?.start}</span>
             <br />
             <RightArrowIcon width="14" className={styles['arrow']} />
-            <span className={styles['footer__word-ticker-wrapper']}>
+            <span
+              className={styles['footer__word-ticker-wrapper']}
+              style={{
+                // position: "relative",
+                display: 'inline-flex',
+                // alignItems: "center",
+                // justifyContent: "center",
+                height: '1.2em' // ✅ slightly taller to fit sliding motion
+                // overflow: "hidden",
+                // verticalAlign: "middle",
+              }}
+            >
               {endWords[0] + ' '}
-              <RotatingText texts={rotatingWords} mainClassName={styles['word-ticker']} staggerFrom="first" initial={{ y: '100%', opacity: 0 }} animate={{ y: '-5%', opacity: 1 }} exit={{ y: '-100%', opacity: 0 }} staggerDuration={0.05} transition={{ duration: 0.5, ease: 'easeInOut' }} rotationInterval={3000} />
+              <span
+                ref={textRef}
+                className={styles['word-ticker']}
+                style={{
+                  display: 'inline-block',
+                  lineHeight: '1.2em', // ✅ prevents clipping
+                  transformOrigin: 'center center'
+                }}
+              />
             </span>
           </a>
         </p>
