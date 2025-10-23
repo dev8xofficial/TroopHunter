@@ -89,7 +89,7 @@ const OFFERS: ExpertiseContent[] = [
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', width: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      },
+      }
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -130,7 +130,7 @@ const OFFERS: ExpertiseContent[] = [
     variant: 'green',
     tagText: 'For SaaS Founder',
     heading: 'One Team. One Process. \n Build Your SaaS faster - \n from $600/month',
-    paragraph: "Vetted React & Next.js developers — or plug-in mini-squads — supervised by senior leads. Start in 7 days with US-friendly overlap and transparent delivery.",
+    paragraph: 'Vetted React & Next.js developers — or plug-in mini-squads — supervised by senior leads. Start in 7 days with US-friendly overlap and transparent delivery.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
     iconCards: {
       title: 'Start Small Scale Fast',
@@ -264,9 +264,9 @@ const OFFERS: ExpertiseContent[] = [
       }
     ],
     faqs: [
-      { title: '1. How quickly can I start working with a developer or team?', description: "Most clients begin within 7 days of signing up. Our onboarding process is designed for speed — once we understand your goals, we match you with the right talent and set up your development environment immediately." },
-      { title: '2. What makes your developers “100% vetted”?', description: "Every developer goes through a multi-stage assessment, including technical interviews, live coding tests, and communication evaluations. Only top-performing professionals with proven track records and strong English communication skills are approved." },
-      { title: '3. Do I retain full ownership of the work?', description: "Absolutely. You maintain 100% ownership and intellectual property rights to all code, assets, and deliverables created during the project — no hidden clauses or shared rights." }
+      { title: '1. How quickly can I start working with a developer or team?', description: 'Most clients begin within 7 days of signing up. Our onboarding process is designed for speed — once we understand your goals, we match you with the right talent and set up your development environment immediately.' },
+      { title: '2. What makes your developers “100% vetted”?', description: 'Every developer goes through a multi-stage assessment, including technical interviews, live coding tests, and communication evaluations. Only top-performing professionals with proven track records and strong English communication skills are approved.' },
+      { title: '3. Do I retain full ownership of the work?', description: 'Absolutely. You maintain 100% ownership and intellectual property rights to all code, assets, and deliverables created during the project — no hidden clauses or shared rights.' }
     ],
     offersSlider: [
       {
@@ -274,13 +274,8 @@ const OFFERS: ExpertiseContent[] = [
         heading: 'Junior Developer',
         price: '$600/month',
         description: 'Perfect for MVPs and quick iterations.',
-        features: [
-          '1–2 years experience',
-          'Daily progress updates',
-          'Tech lead supervision'
-        ],
+        features: ['1–2 years experience', 'Daily progress updates', 'Tech lead supervision'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
-        href: '',
         buttonText: 'Hire Junior',
         package: 'developers'
       },
@@ -289,13 +284,8 @@ const OFFERS: ExpertiseContent[] = [
         heading: 'Mid Developer',
         price: '$900/month',
         description: 'Reliable full-stack React/Next.js dev.',
-        features: [
-          '3–5 years experience',
-          'API integration & unit tests',
-          'Weekly sprint reviews'
-        ],
+        features: ['3–5 years experience', 'API integration & unit tests', 'Weekly sprint reviews'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
-        href: '/pricing/professional',
         buttonText: 'Hire Mid',
         package: 'developers'
       },
@@ -304,11 +294,7 @@ const OFFERS: ExpertiseContent[] = [
         heading: 'Senior Developer',
         price: '$1,500/month',
         description: 'Architecture, performance & leadership.',
-        features: [
-          '5–8 years experience',
-          'Mentorship & code reviews',
-          'System design support'
-        ],
+        features: ['5–8 years experience', 'Mentorship & code reviews', 'System design support'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
         buttonText: 'Hire Senior',
         package: 'developers'
@@ -318,13 +304,8 @@ const OFFERS: ExpertiseContent[] = [
         heading: 'MVP Squad',
         price: '$4,500/month',
         description: '2 Developers + QA + PM',
-        features: [
-          'Build & launch your MVP in sprints',
-          '4-hour U.S. overlap',
-          'Managed Agile sprints'
-        ],
+        features: ['Build & launch your MVP in sprints', '4-hour U.S. overlap', 'Managed Agile sprints'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
-        href: '',
         buttonText: 'Book a Squad Discovery Call',
         package: 'mini-squads'
       },
@@ -333,13 +314,8 @@ const OFFERS: ExpertiseContent[] = [
         heading: 'Growth Squad',
         price: '$5,500/month',
         description: '2 Full-stack Devs + Designer + QA + PM',
-        features: [
-          'Feature scaling & UX improvements',
-          'Designer-led UI upgrades',
-          'Continuous delivery (CI/CD)'
-        ],
+        features: ['Feature scaling & UX improvements', 'Designer-led UI upgrades', 'Continuous delivery (CI/CD)'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
-        href: '',
         buttonText: 'Start Growth Squad',
         package: 'mini-squads'
       },
@@ -348,18 +324,14 @@ const OFFERS: ExpertiseContent[] = [
         heading: 'Pro Squad',
         price: '$7,000/month',
         description: '3 Devs + QA + PM + Senior Lead',
-        features: [
-          'High-velocity delivery & architecture',
-          'Full-stack support + DevOps',
-          'Dedicated PM & weekly roadmaps'
-        ],
+        features: ['High-velocity delivery & architecture', 'Full-stack support + DevOps', 'Dedicated PM & weekly roadmaps'],
         categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
         buttonText: 'Start Pro Squad',
         package: 'mini-squads'
       }
     ],
-    video: prefixed(`/videos/header/header.mp4`),
-  },
+    video: prefixed(`/videos/header/header.mp4`)
+  }
 ];
 
 export default OFFERS;

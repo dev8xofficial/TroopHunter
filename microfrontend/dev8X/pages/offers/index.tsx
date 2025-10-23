@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, ExpertiseOffersSliderItem, WorkCard } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import EXPERTISES from '../../data/expertise/index.d';
 import { prefixed } from '../../utils/helpers';
 import ExpertiseStyles from '../expertise/index.module.css';
 import OFFERS from '../../data/offers/index.d';
+
+import HomePageStyles from '../index.module.css';
+import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
-import styles from "./index.module.css"
+import styles from './index.module.css';
 
 const OffersPage: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
@@ -18,6 +22,11 @@ const OffersPage: React.FC = (): JSX.Element => {
   // Get the first offers data item since PageData is an array
   const offersData = OFFERS[1];
   const variant = offersData.variant;
+
+  const router = useRouter();
+  const isOffersPage = router.pathname.includes('/offers');
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [showHowToHireVideo, setShowHowToHireVideo] = useState<boolean>(false);
 
   const getNextExpertise = (currentSlug: string) => {
     const currentIndex = EXPERTISES.findIndex((e) => e.slug === currentSlug);
@@ -30,20 +39,37 @@ const OffersPage: React.FC = (): JSX.Element => {
 
   const nextExpertise = getNextExpertise('web-applications');
 
+  const filteredOffers = useMemo<ExpertiseOffersSliderItem[]>(() => {
+    if (activeCategory.toLowerCase() !== 'all') {
+      return offersData.offersSlider.filter((o) => o.package.toLowerCase() === activeCategory.toLowerCase());
+    }
+    return offersData.offersSlider;
+  }, [activeCategory, offersData.offersSlider]);
+
+  const handleCategorySelect = (category: string) => {
+    if (category === 'How to Hire') {
+      setShowHowToHireVideo(true);
+      setActiveCategory(category);
+      return;
+    }
+    setActiveCategory(category);
+    setShowHowToHireVideo(false);
+  };
+
   return (
     <>
       <Head>
         <title>{offersData.meta.title}</title>
         <meta name="description" content={offersData.meta.description}></meta>
-        <link rel="canonical" href={prefixed("/offers")} />
+        <link rel="canonical" href={prefixed('/offers')} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={offersData.meta.title}></meta>
         <meta property="og:description" content={offersData.meta.description}></meta>
-        <meta property="og:url" content={prefixed("/offers")}></meta>
+        <meta property="og:url" content={prefixed('/offers')}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={prefixed("/logo-social.png")}></meta>
-        <meta property="og:image:secure_url" content={prefixed("/logo-social.png")}></meta>
+        <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
+        <meta property="og:image:secure_url" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -51,14 +77,26 @@ const OffersPage: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content={offersData.meta.title}></meta>
         <meta name="twitter:description" content={offersData.meta.description}></meta>
-        <meta name="twitter:image" content={prefixed("/logo-social.png")}></meta>
+        <meta name="twitter:image" content={prefixed('/logo-social.png')}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
         <Header />
         <FooterRevealPageWrap variant="page">
+          <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']}`}>
+            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} />
+          </div>
+          {isOffersPage && !showHowToHireVideo && (
+            <div style={{ display: 'grid' }}>
+              <div className={`${HomePageStyles['homepage__feed-wrapper']} ${HomePageStyles['homepage__feed-wrapper-inner--overflow']}`}>
+                <div className={`${HomePageStyles['homepage__feed-wrapper-inner']}`}>
+                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={() => toggleModal('developers')} openMiniSquadsModal={() => toggleModal('minisquads')} />
+                </div>
+              </div>
+            </div>
+          )}
+
           <main className={`${ExpertiseStyles['expertise-single']} container-full`}>
-            <OffersHero variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} icon={offersData.contentAsideImageItems[Object.keys(offersData.contentAsideImageItems)[0]].icon} offers={offersData.offersSlider} openDevelopersModal={() => toggleModal('developers')} openMiniSquadsModal={() => toggleModal('minisquads')} openScheduleCallModal={() => toggleModal('schedulecall')} />
             <div>
               <ModularBlocks>
                 <IconCards title={offersData.iconCards?.title} paragraph={offersData.iconCards?.paragraph} items={offersData.iconCards?.items} />
