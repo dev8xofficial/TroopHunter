@@ -13,6 +13,17 @@
   font-size: clamp(1.5rem, 2.4193548387vw, 1.995rem);
 }
 
+.faqs-stats__value {
+  font-size: clamp(1.25rem, 4.1666666667vw, 1.6625rem);
+}
+
+@media (min-width: 768px) {
+
+  .faqs-stats__value {
+    font-size: clamp(1.875rem, 3.90625vw, 2.49375rem);
+  }
+}
+
 @media (min-width: 1200px) {
   .faqs-stats__value {
     font-size: clamp(2.25rem, 3vw, 2.9925rem)
@@ -20,5 +31,11 @@
 
   .faqs-stats__label {
     font-size: clamp(1.5rem, 1.7vw, 2.1rem);
+  }
+}
+
+@media (min-width: 1512px) {
+  .faqs-stats__value {
+    font-size: clamp(2.625rem, 2.7777777778vw, 3.49125rem);
   }
 }

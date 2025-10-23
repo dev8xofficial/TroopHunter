@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import CaretDown from '../../Icons/CaretDown';
 import CaretUp from '../../Icons/CaretUp';
@@ -19,6 +19,21 @@ type FAQsProps = {
 };
 
 export const FAQs: React.FC<FAQsProps> = ({ faqs }) => {
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 740);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const iconSize = isSmallScreen ? 20 : 32;
+
   return (
     <div className={HomepageStatsStyles['homepage-bottom__stats']}>
       <ul className={HomepageStatsStyles['homepage-stats']}>
@@ -34,14 +49,26 @@ export const FAQs: React.FC<FAQsProps> = ({ faqs }) => {
 
                     <span className={`${styles['homepage-stats__label']} ${styles['faqs-stats__label']}`}>
                       <button type="button" className={OpenRolesListStyles['toggleButton']}>
-                        {open ? <CaretUp width={32} height={32} className={OpenRolesListStyles['buttonIcon']} /> : <CaretDown width={32} height={32} className={OpenRolesListStyles['buttonIcon']} />}
+                        {open ? (
+                          <CaretUp
+                            width={iconSize}
+                            height={iconSize}
+                            className={OpenRolesListStyles['buttonIcon']}
+                          />
+                        ) : (
+                          <CaretDown
+                            width={iconSize}
+                            height={iconSize}
+                            className={OpenRolesListStyles['buttonIcon']}
+                          />
+                        )}
                       </button>
                     </span>
                   </DisclosureButton>
 
                   <DisclosurePanel className={`${OpenRolesListStyles['jobDescriptionWrapper']} ${open ? OpenRolesListStyles['expanded'] : ''}`}>
-                    <div className={`${OpenRolesListStyles['jobDescription']}`}>
-                      <div className={CaseStudySidebarStyles['sidebar__intro']}><p>{stat.description}</p></div>
+                    <div className={OpenRolesListStyles['jobDescription']}>
+                      <div className={`${isSmallScreen ? CaseStudySidebarStyles['sidebar__body'] : CaseStudySidebarStyles['sidebar__intro']}`}><p>{stat.description}</p></div>
                     </div>
                   </DisclosurePanel>
                 </>
