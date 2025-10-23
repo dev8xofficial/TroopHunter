@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-import { FileUpload } from '../../Input/FileUpload/FileUpload';
 import { FieldWrapper } from '../../Input/FieldWrapper/FieldWrapper';
 import { Input } from '../../Input/TextField/Input';
 import { Fieldset } from '../../Input/Fieldset/Fieldset';
 import { Textarea } from '../../Input/Textarea/Textarea';
 import { Button } from '../../Input/Button/Button';
+import { TimeSlotField, TimeSlotType } from '../../Input/TimeSlotField/TimeSlotField';
+import { FileUpload } from '../../Input/FileUpload/FileUpload';
 
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 
@@ -18,8 +19,10 @@ interface IFormInputs {
   budget: string;
   timeline?: string;
   project?: string;
-  upload?: File[]; // Changed from string to File[] for proper typing
+  upload?: File[];
   referral?: string;
+  date?: string;
+  timeSlot?: string;
 }
 
 export const ScheduleCallModal: React.FC = (): JSX.Element => {
@@ -43,23 +46,38 @@ export const ScheduleCallModal: React.FC = (): JSX.Element => {
       budget: '',
       timeline: '',
       project: '',
-      referral: ''
+      referral: '',
+      date: '',
+      timeSlot: ''
     }
   });
 
+  const availableSlots: TimeSlotType[] = [
+    { id: 1, label: '09:00 AM - 09:30 AM', value: '9-9:30' },
+    { id: 2, label: '09:30 AM - 10:00 AM', value: '9:30-10' },
+    { id: 3, label: '10:00 AM - 10:30 AM', value: '10-10:30' },
+    { id: 4, label: '10:30 AM - 11:00 AM', value: '10:30-11' },
+    { id: 5, label: '11:00 AM - 11:30 AM', value: '11-11:30' },
+    { id: 6, label: '11:30 AM - 12:00 PM', value: '11:30-12' },
+    { id: 7, label: '12:00 PM - 12:30 PM', value: '12-12:30' },
+    { id: 8, label: '12:30 PM - 01:00 PM', value: '12:30-1' },
+    { id: 9, label: '01:00 PM - 01:30 PM', value: '1-1:30' },
+    { id: 10, label: '01:30 PM - 02:00 PM', value: '1:30-2' },
+    { id: 11, label: '02:00 PM - 02:30 PM', value: '2-2:30' },
+    { id: 12, label: '02:30 PM - 03:00 PM', value: '2:30-3' },
+    { id: 13, label: '03:00 PM - 03:30 PM', value: '3-3:30' },
+    { id: 14, label: '03:30 PM - 04:00 PM', value: '3:30-4' }
+  ];
+
   const onSubmit = async (data: IFormInputs) => {
     setIsSubmitting(true);
-
     const formData = new FormData();
 
     Object.entries(data).forEach(([key, value]) => {
       if (key === 'upload') {
         if (Array.isArray(value) && value.length > 0) {
-          value.forEach((file: File) => {
-            formData.append('upload', file);
-          });
+          value.forEach((file: File) => formData.append('upload', file));
         }
-        // If upload is empty or undefined, do nothing here
       } else {
         formData.append(key, value ?? '');
       }
@@ -80,6 +98,7 @@ export const ScheduleCallModal: React.FC = (): JSX.Element => {
         setShowSuccess(false);
       }
     } catch (error) {
+      console.error('Form submission error:', error);
       setShowError(true);
       setShowSuccess(false);
     } finally {
@@ -93,65 +112,57 @@ export const ScheduleCallModal: React.FC = (): JSX.Element => {
         <div className={ContactFormModalStyles['success']}>
           <div className={ContactFormModalStyles['modal-header']}></div>
           <h1 className={ContactFormModalStyles['modal-heading']}>Message received!</h1>
-          <p className={ContactFormModalStyles['success__message']}>Thanks for considering Dev8x for your project, we'll be in touch very soon.</p>
+          <p className={ContactFormModalStyles['success__message']}>
+            Thanks for considering Dev8X for your project, we'll be in touch very soon.
+          </p>
         </div>
       ) : showError ? (
         <div className={ContactFormModalStyles['error']}>
           <div className={ContactFormModalStyles['modal-header']}></div>
           <h1 className={ContactFormModalStyles['modal-error']}>Message failed.</h1>
-          <p className={ContactFormModalStyles['error__message']}>Please try again later or contact us directly.</p>
+          <p className={ContactFormModalStyles['error__message']}>
+            Please try again later or contact us directly.
+          </p>
         </div>
       ) : (
         <>
-          <div className={ContactFormModalStyles['modal-header']}></div>
-          <h1 className={ContactFormModalStyles['modal-heading']}>Let's Schedule</h1>
-          <form onSubmit={handleSubmit(onSubmit)} className={`${ContactFormModalStyles['contact-form']} grid-cols-2`}>
+          <div style={{ marginBottom: '50px' }}></div>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={`${ContactFormModalStyles['contact-form']} grid-cols-2`}
+          >
             <div className={`col-full ${ContactFormModalStyles['modal-intro']}`}>
-              <p>Fill in the blanks and we'll respond in one business day.</p>
-              <p>Just want to chat? Call or email, we're a nice bunch.</p>
+              <h1>Book Your Free 30-Minute Consultation</h1>
+              <p>
+                Talk directly with our technical lead to discuss your project, team fit, and next
+                steps.
+              </p>
             </div>
 
-            <FieldWrapper className="col-sm-1" label="What's your name?" error={errors.name?.message}>
+            <FieldWrapper className="col-sm-2" label="What's your name?" error={errors.name?.message}>
               <Input
                 type="text"
                 id="name"
                 placeholder="Your name here"
-                {...register('name', {
-                  required: 'Please enter your name',
-                  maxLength: { value: 20, message: 'Name cannot exceed 20 characters' }
-                })}
+                {...register('name', { required: 'Please enter your name' })}
               />
             </FieldWrapper>
 
-            <FieldWrapper className="col-sm-1" label="Name of your company?" error={errors.company?.message}>
+            <FieldWrapper
+              className="col-sm-2"
+              label="Name of your company?"
+              error={errors.company?.message}
+            >
               <Input
                 type="text"
                 id="company"
                 placeholder="Widgets, Inc"
-                {...register('company', {
-                  required: 'Please enter your company name',
-                  maxLength: { value: 20, message: 'Company name cannot exceed 20 characters' }
-                })}
+                {...register('company', { required: 'Please enter your company name' })}
               />
             </FieldWrapper>
 
             <Fieldset label="How shall we contact you?">
-              <FieldWrapper className="col-sm-1" error={errors.phone?.message}>
-                <Input
-                  type="tel"
-                  id="phone"
-                  placeholder="Phone Number"
-                  {...register('phone', {
-                    required: 'Please enter your phone number',
-                    pattern: {
-                      value: /^[0-9+\-()\s]*$/,
-                      message: 'Invalid phone number format'
-                    }
-                  })}
-                />
-              </FieldWrapper>
-
-              <FieldWrapper className="col-sm-1" error={errors.email?.message}>
+              <FieldWrapper className="col-sm-2" error={errors.email?.message}>
                 <Input
                   type="email"
                   id="email"
@@ -165,42 +176,49 @@ export const ScheduleCallModal: React.FC = (): JSX.Element => {
                   })}
                 />
               </FieldWrapper>
-
-              <FieldWrapper className="col-sm-1" label="Budget expectation" message="A transparent budget will help us ensure expectations are met." error={errors.budget?.message}>
-                <Input
-                  type="text"
-                  id="budget"
-                  {...register('budget', {
-                    required: 'Please enter your budget',
-                    maxLength: { value: 10, message: 'Budget text is too long' }
-                  })}
-                />
-              </FieldWrapper>
-
-              <FieldWrapper className="col-sm-1" label="Timeline" message="If you have an ideal timeline or deadline, please let us know." messageId="timeline">
-                <Input type="text" id="timeline" {...register('timeline')} />
-              </FieldWrapper>
             </Fieldset>
+
+            <FieldWrapper label="Pick Your Date" className="col-sm-2" error={errors.date?.message}>
+              <Input
+                type="date"
+                id="date"
+                {...register('date', { required: 'Please select a date' })}
+              />
+            </FieldWrapper>
+
+            <Controller
+              name="timeSlot"
+              control={control}
+              rules={{ required: 'Please choose a time slot' }}
+              render={({ field }) => (
+                <FieldWrapper
+                  label="Choose Your Time Slot"
+                  className="col-sm-2"
+                  error={errors.timeSlot?.message}
+                >
+                  <TimeSlotField
+                    slots={availableSlots}
+                    selectedSlot={
+                      availableSlots.find((slot) => slot.value === field.value) || undefined
+                    }
+                    setSelectedSlot={(slot) => field.onChange(slot.value)}
+                  />
+                </FieldWrapper>
+              )}
+            />
 
             <FieldWrapper label="Tell us about the project">
               <Textarea id="project" {...register('project')} />
             </FieldWrapper>
 
-            <Controller
-              name="upload"
-              control={control}
-              render={({ field: { onChange, name } }) => (
-                <FieldWrapper id="upload" label="Please attach any relevant documents" message="Maximum 10 files of 25MB each. Maximum 100MB total." messageId="upload-help" error="">
-                  <FileUpload onChange={onChange} name={name} />
-                </FieldWrapper>
-              )}
-            />
-
-            <FieldWrapper label="How did you hear about us?">
-              <Input type="text" id="referral" placeholder="From a friend? From Google?" {...register('referral')} />
-            </FieldWrapper>
-
-            <Button type="button" variant="primary" context="contact" fullWidth isLoading={isSubmitting} disabled={isSubmitting}>
+            <Button
+              type="submit"
+              variant="primary"
+              context="contact"
+              fullWidth
+              isLoading={isSubmitting}
+              disabled={isSubmitting}
+            >
               Submit
             </Button>
           </form>

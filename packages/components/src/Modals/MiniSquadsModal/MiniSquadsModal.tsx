@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-import { FileUpload } from '../../Input/FileUpload/FileUpload';
 import { FieldWrapper } from '../../Input/FieldWrapper/FieldWrapper';
 import { Input } from '../../Input/TextField/Input';
 import { Fieldset } from '../../Input/Fieldset/Fieldset';
 import { Textarea } from '../../Input/Textarea/Textarea';
 import { Button } from '../../Input/Button/Button';
+import { ToggleField } from '../../Input/ToggleField/ToggleField';
+import { HighlightBox } from '../../Input/HighlightBox/HighlightBox';
 
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
+import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
 
 interface IFormInputs {
   name: string;
@@ -18,7 +20,6 @@ interface IFormInputs {
   budget: string;
   timeline?: string;
   project?: string;
-  upload?: File[]; // Changed from string to File[] for proper typing
   referral?: string;
 }
 
@@ -26,13 +27,21 @@ export const MiniSquadsModal: React.FC = (): JSX.Element => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [isChecked, setChecked] = useState({
+    mvp: false,
+    prototype: false,
+    management: false,
+    saas: false,
+    design: false,
+    backend: false,
+    devops: false,
+  });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-    control
   } = useForm<IFormInputs>({
     mode: 'onChange',
     defaultValues: {
@@ -43,45 +52,44 @@ export const MiniSquadsModal: React.FC = (): JSX.Element => {
       budget: '',
       timeline: '',
       project: '',
-      referral: ''
-    }
+      referral: '',
+    },
   });
 
   const onSubmit = async (data: IFormInputs) => {
     setIsSubmitting(true);
 
     const formData = new FormData();
-
     Object.entries(data).forEach(([key, value]) => {
-      if (key === 'upload') {
-        if (Array.isArray(value) && value.length > 0) {
-          value.forEach((file: File) => {
-            formData.append('upload', file);
-          });
-        }
-        // If upload is empty or undefined, do nothing here
-      } else {
-        formData.append(key, value ?? '');
-      }
+      formData.append(key, value ?? '');
     });
 
+    // ✅ Add toggle states
+    formData.append('selectedStages', JSON.stringify(isChecked));
+
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/submit', {
         method: 'POST',
-        body: formData
+        body: formData,
       });
 
       if (response.ok) {
         setShowSuccess(true);
-        setShowError(false);
         reset();
+        setChecked({
+          mvp: false,
+          prototype: false,
+          management: false,
+          saas: false,
+          design: false,
+          backend: false,
+          devops: false,
+        });
       } else {
         setShowError(true);
-        setShowSuccess(false);
       }
-    } catch (error) {
+    } catch {
       setShowError(true);
-      setShowSuccess(false);
     } finally {
       setIsSubmitting(false);
     }
@@ -93,22 +101,30 @@ export const MiniSquadsModal: React.FC = (): JSX.Element => {
         <div className={ContactFormModalStyles['success']}>
           <div className={ContactFormModalStyles['modal-header']}></div>
           <h1 className={ContactFormModalStyles['modal-heading']}>Message received!</h1>
-          <p className={ContactFormModalStyles['success__message']}>Thanks for considering Dev8x for your project, we'll be in touch very soon.</p>
+          <p className={ContactFormModalStyles['success__message']}>
+            Thanks for considering Dev8X for your project — we’ll be in touch soon.
+          </p>
         </div>
       ) : showError ? (
         <div className={ContactFormModalStyles['error']}>
           <div className={ContactFormModalStyles['modal-header']}></div>
           <h1 className={ContactFormModalStyles['modal-error']}>Message failed.</h1>
-          <p className={ContactFormModalStyles['error__message']}>Please try again later or contact us directly.</p>
+          <p className={ContactFormModalStyles['error__message']}>
+            Please try again later or contact us directly.
+          </p>
         </div>
       ) : (
         <>
           <div className={ContactFormModalStyles['modal-header']}></div>
           <h1 className={ContactFormModalStyles['modal-heading']}>Let's Hire Mini Squad</h1>
-          <form onSubmit={handleSubmit(onSubmit)} className={`${ContactFormModalStyles['contact-form']} grid-cols-2`}>
+
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={`${ContactFormModalStyles['contact-form']} grid-cols-2`}
+          >
             <div className={`col-full ${ContactFormModalStyles['modal-intro']}`}>
-              <p>Fill in the blanks and we'll respond in one business day.</p>
-              <p>Just want to chat? Call or email, we're a nice bunch.</p>
+              <p>Fill in the blanks and we’ll respond in one business day.</p>
+              <p>Just want to chat? Call or email — we’re a nice bunch.</p>
             </div>
 
             <FieldWrapper className="col-sm-1" label="What's your name?" error={errors.name?.message}>
@@ -123,11 +139,11 @@ export const MiniSquadsModal: React.FC = (): JSX.Element => {
               />
             </FieldWrapper>
 
-            <FieldWrapper className="col-sm-1" label="Name of your company?" error={errors.company?.message}>
+            <FieldWrapper className="col-sm-1" label="Company name?" error={errors.company?.message}>
               <Input
                 type="text"
                 id="company"
-                placeholder="Widgets, Inc"
+                placeholder="Widgets, Inc."
                 {...register('company', {
                   required: 'Please enter your company name',
                   maxLength: { value: 20, message: 'Company name cannot exceed 20 characters' }
@@ -165,42 +181,85 @@ export const MiniSquadsModal: React.FC = (): JSX.Element => {
                   })}
                 />
               </FieldWrapper>
+            </Fieldset>
 
-              <FieldWrapper className="col-sm-1" label="Budget expectation" message="A transparent budget will help us ensure expectations are met." error={errors.budget?.message}>
-                <Input
-                  type="text"
-                  id="budget"
-                  {...register('budget', {
-                    required: 'Please enter your budget',
-                    maxLength: { value: 10, message: 'Budget text is too long' }
-                  })}
-                />
-              </FieldWrapper>
+            {/* --- Project Details --- */}
+            <FieldWrapper label="Tell us about the project" className="col-sm-2">
+              <Textarea id="project" {...register('project')} style={{ height: '200px' }} />
+            </FieldWrapper>
 
-              <FieldWrapper className="col-sm-1" label="Timeline" message="If you have an ideal timeline or deadline, please let us know." messageId="timeline">
-                <Input type="text" id="timeline" {...register('timeline')} />
+            {/* Stages */}
+            <Fieldset>
+              <FieldWrapper label="Current Stages">
+                {[
+                  { key: 'mvp', label: 'Just an idea / Pre-MVP (Month)', price: '+ $5000.00' },
+                  { key: 'prototype', label: 'Prototype Ready (Month)', price: '+ $6000.00' },
+                  { key: 'management', label: 'Live Products & Improvements (Month)', price: '+ $7000.00' },
+                  { key: 'saas', label: 'Scaling Existing SaaS', price: 'Not sure yet' },
+                ].map((item) => (
+                  <ToggleField
+                    key={item.key}
+                    label={item.label}
+                    secondaryLabel={item.price}
+                    checked={isChecked[item.key as keyof typeof isChecked]}
+                    setChecked={() =>
+                      setChecked((prev) => ({
+                        ...prev,
+                        [item.key]: !prev[item.key as keyof typeof isChecked],
+                      }))
+                    }
+                  />
+                ))}
               </FieldWrapper>
             </Fieldset>
 
-            <FieldWrapper label="Tell us about the project">
-              <Textarea id="project" {...register('project')} />
+            {/* Add-ons */}
+            <Fieldset>
+              <FieldWrapper label="Add-Ons">
+                {[
+                  { key: 'design', label: 'Product Design Support (Month)', price: '+ $500.00' },
+                  { key: 'backend', label: 'Extra Backend Developer (Month)', price: '+ $1200.00' },
+                  { key: 'devops', label: 'DevOps Setup (One Time)', price: '+ $300.00' },
+                ].map((item) => (
+                  <ToggleField
+                    key={item.key}
+                    label={item.label}
+                    secondaryLabel={item.price}
+                    checked={isChecked[item.key as keyof typeof isChecked]}
+                    setChecked={() =>
+                      setChecked((prev) => ({
+                        ...prev,
+                        [item.key]: !prev[item.key as keyof typeof isChecked],
+                      }))
+                    }
+                  />
+                ))}
+              </FieldWrapper>
+            </Fieldset>
+
+            {/* Plan Section */}
+            <FieldWrapper className="col-sm-2" label="Plans">
+              <HighlightBox variant="contained">
+                <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}>
+                  <li>Dedicated Slack Channel for Communication</li>
+                  <li>Weekly Progress & Team Sync Meetings</li>
+                  <li>Complete Project Transparency via ClickUp or Jira</li>
+                  <li>Flexible Month-to-Month Commitment</li>
+                </ul>
+              </HighlightBox>
             </FieldWrapper>
 
-            <Controller
-              name="upload"
-              control={control}
-              render={({ field: { onChange, name } }) => (
-                <FieldWrapper id="upload" label="Please attach any relevant documents" message="Maximum 10 files of 25MB each. Maximum 100MB total." messageId="upload-help" error="">
-                  <FileUpload onChange={onChange} name={name} />
-                </FieldWrapper>
-              )}
-            />
 
-            <FieldWrapper label="How did you hear about us?">
-              <Input type="text" id="referral" placeholder="From a friend? From Google?" {...register('referral')} />
-            </FieldWrapper>
 
-            <Button type="button" variant="primary" context="contact" fullWidth isLoading={isSubmitting} disabled={isSubmitting}>
+            {/* --- Submit --- */}
+            <Button
+              type="submit"
+              variant="primary"
+              context="contact"
+              fullWidth
+              isLoading={isSubmitting}
+              disabled={isSubmitting}
+            >
               Submit
             </Button>
           </form>

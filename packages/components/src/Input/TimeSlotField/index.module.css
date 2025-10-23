@@ -1,0 +1,36 @@
+.formFieldsContainer {
+    /* display: grid;
+    grid-template-columns: 1fr; */
+    gap: 1rem;
+    margin-bottom: 4rem;
+    background: transparent;
+}
+
+@media (min-width: 640px) {
+    .formFieldsContainer {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        margin-bottom: 4rem
+    }
+}
+
+@media (min-width: 768px) {
+    .formFieldsContainer {
+        margin-bottom: 4rem;
+
+    }
+}
+
+@media (min-width: 1024px) {
+    .formFieldsContainer {
+        gap: 0.75rem;
+        margin-bottom: 4rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .formFieldsContainer {
+        gap: 1rem;
+        margin-bottom: 4rem;
+    }
+}
