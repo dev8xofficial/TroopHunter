@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import { Button, ExpertiseOffersSliderItem, Link } from '@repo/components';
@@ -12,15 +12,19 @@ import 'swiper/css/free-mode';
 
 import FeedSilderStyles from '../FeedSilder/index.module.css';
 import WorkCategoriesStyles from '../WorkCategories/index.module.css';
+import ButtonStyles from '../../Input/Button/index.module.css';
+import styles from './index.module.css';
 
 export type Offer = {
-  heading: string; // :white_check_mark: match data and other interfaces
-  price: string;
-  description: string;
-  features: string[];
-  categories: string[];
+  id: string;
+  heading: string;
+  price?: string;
+  description?: string;
+  features?: string[];
+  categories?: string[];
   href?: string;
-  buttonText: string;
+  buttonText?: string;
+  package?: string;
 };
 
 type OffersSliderProps = {
@@ -28,16 +32,12 @@ type OffersSliderProps = {
   homePageFeedWrapperInnerOverflow?: string;
   homePageFeedOverflow?: string;
   offers: ExpertiseOffersSliderItem[];
-  openDevelopersModal?: React.MouseEventHandler<HTMLButtonElement>;
-  openMiniSquadsModal?: React.MouseEventHandler<HTMLButtonElement>;
+  openDevelopersModal?: (selectedPlan: ExpertiseOffersSliderItem) => void;
+  openMiniSquadsModal?: (selectedOffer: ExpertiseOffersSliderItem) => void;
 };
 
-interface Props {
-  items: { id: string; imageUrl: string; title?: string }[];
-}
-
 export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePageFeedWrapperInnerOverflow, homePageFeedOverflow, offers, openDevelopersModal, openMiniSquadsModal }): JSX.Element => {
-  const handleClick = (e: React.MouseEvent, buttonOnClick) => {
+  const handleClick = (e: React.MouseEvent, buttonOnClick?: () => void) => {
     e.preventDefault();
     buttonOnClick?.();
   };
@@ -68,9 +68,11 @@ export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePa
                 <span className={FeedSilderStyles['article-card__subtitle']}>/months</span>
               </div>
               <p className={FeedSilderStyles['article-card__excerpt']}>{offer.description}</p>
-              <Link variant="secondary" href="#" endIcon={<RightArrowIcon width="14" className={FeedSilderStyles['button--icon']} />} spanClassName={FeedSilderStyles['expertise-card__button']} onClick={(e) => handleClick(e, offer.package === 'developers' ? openDevelopersModal : openMiniSquadsModal)}>
-                {offer.buttonText}
-              </Link>
+              <div className={styles['expertise-footer']}>
+                <Button variant="secondary" endIcon={<RightArrowIcon width="14" className={FeedSilderStyles['button--icon']} />} className={`${ButtonStyles['button']} ${ButtonStyles['button--icon']} ${ButtonStyles['button--bg-secondary']}`} spanClassName={FeedSilderStyles['expertise-card__button']} onClick={(e) => { e.preventDefault(); if (offer.package === 'developers') { openDevelopersModal?.(offer); } else { openMiniSquadsModal?.(offer); } }}>
+                  {offer.buttonText}
+                </Button>
+              </div>
               <div className={FeedSilderStyles['divider']}>
                 <div className={FeedSilderStyles['divider__line']}></div>
                 <StarIcon width={20} height={20} className={FeedSilderStyles['divider__star']} />

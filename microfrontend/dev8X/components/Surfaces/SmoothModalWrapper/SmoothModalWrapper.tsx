@@ -23,7 +23,7 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
   const modalInnerRef = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
 
-  const isVisible = currentModal === modalType;
+  const isVisible = currentModal.type === modalType;
 
   useEffect(() => {
     setIsMounted(true);

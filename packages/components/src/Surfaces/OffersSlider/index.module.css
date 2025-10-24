@@ -1,0 +1,19 @@
+.expertise-footer {
+    font-size: clamp(.9375rem, .9920634921vw, 1.246875rem);
+}
+
+@media(max-width: 767px) {
+    .expertise-footer {
+        display: none
+    }
+}
+
+.expertise-footer:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    background: inherit
+}

@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
-import { useSetAtom } from 'jotai';
+import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothModalAtom';
+import { useSetAtom, useAtomValue } from 'jotai';
 import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, ExpertiseOffersSliderItem, WorkCard } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
@@ -18,6 +18,7 @@ import styles from './index.module.css';
 
 const OffersPage: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
+  const currentModal = useAtomValue(openSmoothModalAtom);
 
   // Get the first offers data item since PageData is an array
   const offersData = OFFERS[1];
@@ -90,7 +91,7 @@ const OffersPage: React.FC = (): JSX.Element => {
             <div style={{ display: 'grid' }}>
               <div className={`${HomePageStyles['homepage__feed-wrapper']} ${HomePageStyles['homepage__feed-wrapper-inner--overflow']}`}>
                 <div className={`${HomePageStyles['homepage__feed-wrapper-inner']}`}>
-                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={() => toggleModal('developers')} openMiniSquadsModal={() => toggleModal('minisquads')} />
+                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', selectedOffer)} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', selectedOffer)} />
                 </div>
               </div>
             </div>
@@ -157,10 +158,10 @@ const OffersPage: React.FC = (): JSX.Element => {
         <ContactFormModal />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="developers" toggle={() => toggleModal('developers')}>
-        <DevelopersModal />
+        <DevelopersModal selectedOffer={currentModal.data} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="minisquads" toggle={() => toggleModal('minisquads')}>
-        <MiniSquadsModal />
+        <MiniSquadsModal selectedOffer={currentModal.data} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="schedulecall" toggle={() => toggleModal('schedulecall')}>
         <ScheduleCallContent />

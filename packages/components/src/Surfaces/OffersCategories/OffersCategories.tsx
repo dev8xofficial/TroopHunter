@@ -13,7 +13,7 @@ export const OffersCategories: React.FC<OffersCategoriesProps> = ({ active, onSe
     { label: 'All', href: '#', onClick: () => { } },
     { label: 'Developers', href: '#', onClick: () => { } },
     { label: 'Mini-Squads', href: '#', onClick: () => { } },
-    { label: 'How to Hire', href: '#', onClick: () => { } },
+    // { label: 'How to Hire', href: '#', onClick: () => { } },
     { label: 'Schedule Call', href: '#', onClick: openScheduleCallModal },
   ];
 
