@@ -71,28 +71,18 @@ export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, f
             <span>{footerMainContent?.start}</span>
             <br />
             <RightArrowIcon width="14" className={styles['arrow']} />
-            <span
-              className={styles['footer__word-ticker-wrapper']}
-              style={{
-                // position: "relative",
-                display: 'inline-flex',
-                // alignItems: "center",
-                // justifyContent: "center",
-                height: '1.2em' // ✅ slightly taller to fit sliding motion
-                // overflow: "hidden",
-                // verticalAlign: "middle",
-              }}
-            >
+            <span className={styles['footer__word-ticker-wrapper']}>
               {endWords[0] + ' '}
-              <span
-                ref={textRef}
-                className={styles['word-ticker']}
-                style={{
-                  display: 'inline-block',
-                  lineHeight: '1.2em', // ✅ prevents clipping
-                  transformOrigin: 'center center'
-                }}
-              />
+              <span className={styles['word-ticker']}>
+                <span
+                  ref={textRef}
+                  style={{
+                    display: 'inline-block',
+                    lineHeight: '1.2em', // ✅ prevents clipping
+                    transformOrigin: 'center center'
+                  }}
+                ></span>
+              </span>
             </span>
           </a>
         </p>
