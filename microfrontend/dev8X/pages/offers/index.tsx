@@ -84,7 +84,7 @@ const OffersPage: React.FC = (): JSX.Element => {
       <FooterRevealPageWrap variant="frame">
         <Header />
         <FooterRevealPageWrap variant="page">
-          <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']}`}>
+          <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
             <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} />
           </div>
           {isOffersPage && !showHowToHireVideo && (
