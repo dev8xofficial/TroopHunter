@@ -44,6 +44,7 @@
 
 .feed__shrink-drag {
   transition: transform 0.7s cubic-bezier(0.5, 0.5, 0, 1);
+  transition-delay: 0.1s;
   border-radius: clamp(1.25rem, 1.3227513228vw, 1.6625rem);
   height: 100%;
   border: 2px dashed rgba(0, 0, 0, 0.2);

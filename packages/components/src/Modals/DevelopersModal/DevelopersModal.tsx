@@ -8,6 +8,7 @@ import { Button } from '../../Input/Button/Button';
 import { ToggleField } from '../../Input/ToggleField/ToggleField';
 import { ListboxField, ListboxOptionType } from '../../Input/ListboxField/ListboxField';
 import { HighlightBox } from '../../Input/HighlightBox/HighlightBox';
+import { ExpertiseOffersSliderItem } from '../../Interfaces/Expertise/Expertise';
 
 import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
@@ -31,7 +32,37 @@ const addOnOptions = [
   { id: 5, label: 'Start in 1 Week', secondaryLabel: '', key: 'startInWeek' }
 ];
 
-export const DevelopersModal: React.FC = (): JSX.Element => {
+const getPlanConfig = (selectedOffer: ExpertiseOffersSliderItem | null) => {
+  if (!selectedOffer) {
+    return {
+      name: 'Junior Developer',
+      price: '$600/month  $900/month after 3 months',
+      start: 'Start in 7 days',
+      trial: 'Fully refundable 7-day trial'
+    };
+  }
+  const baseConfig = {
+    name: selectedOffer.heading,
+    price: `${selectedOffer.price}/month`,
+    start: 'Start in 7 days',
+    trial: 'Fully refundable 7-day trial'
+  };
+  if (selectedOffer.heading.includes('Junior')) {
+    baseConfig.price = '$600/month → $900/month after 3 months';
+  } else if (selectedOffer.heading.includes('Mid')) {
+    baseConfig.price = '$900/month → $1,200/month after 3 months';
+  } else if (selectedOffer.heading.includes('Senior')) {
+    baseConfig.price = '$1,500/month → $1,800/month after 3 months';
+  }
+
+  return baseConfig;
+};
+
+interface DevelopersModalProps {
+  selectedOffer?: ExpertiseOffersSliderItem | null;
+}
+
+export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer = null }): JSX.Element => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -45,13 +76,15 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
     { id: 5, name: 'Mobile App Development', value: 'mobile' }
   ];
 
+  // ✅ Get dynamic plan configuration based on selected offer
+  const planConfig = getPlanConfig(selectedOffer);
   const plans = [
     {
       id: 1,
-      name: 'Junior Developer',
-      price: '$600/month → $900/month after 3 months',
-      start: 'Start in 7 days',
-      trial: 'Fully refundable 7-day trial'
+      name: planConfig.name,
+      price: planConfig.price,
+      start: planConfig.start,
+      trial: planConfig.trial
     }
   ];
 
@@ -155,7 +188,7 @@ export const DevelopersModal: React.FC = (): JSX.Element => {
       ) : (
         <>
           <div className={ContactFormModalStyles['modal-header']} />
-          <h1 className={ContactFormModalStyles['modal-heading']}>Let's Hire Developer</h1>
+          <h1 className={ContactFormModalStyles['modal-heading']}>Let's Hire {planConfig.name}</h1>
 
           <form onSubmit={handleSubmit(onSubmit)} className={`${ContactFormModalStyles['contact-form']} grid-cols-2`}>
             <div className={`col-full ${ContactFormModalStyles['modal-intro']}`}>

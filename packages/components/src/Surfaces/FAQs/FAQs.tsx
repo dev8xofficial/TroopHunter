@@ -35,7 +35,7 @@ export const FAQs: React.FC<FAQsProps> = ({ faqs }) => {
   const iconSize = isSmallScreen ? 20 : 32;
 
   return (
-    <div className={HomepageStatsStyles['homepage-bottom__stats']}>
+    <div className={`${HomepageStatsStyles['homepage-bottom__stats']} ${styles['faqs-cta']}`}>
       <ul className={HomepageStatsStyles['homepage-stats']}>
         {faqs.map((stat, index) => {
           return (

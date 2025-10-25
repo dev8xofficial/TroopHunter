@@ -17,10 +17,24 @@
   font-size: clamp(1.25rem, 4.1666666667vw, 1.6625rem);
 }
 
+.faqs-cta {
+  margin: clamp(5rem, 16.6666666667vw, 6.65rem) 0;
+}
+
 @media (min-width: 768px) {
 
   .faqs-stats__value {
     font-size: clamp(1.875rem, 3.90625vw, 2.49375rem);
+  }
+
+  .faqs-cta {
+    margin: clamp(7.5rem, 15.625vw, 9.975rem) 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .faqs-cta {
+    margin: clamp(11.25rem, 11.9047619048vw, 14.9625rem) 0;
   }
 }
 

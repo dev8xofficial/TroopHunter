@@ -8,6 +8,7 @@ import { Textarea } from '../../Input/Textarea/Textarea';
 import { Button } from '../../Input/Button/Button';
 import { ToggleField } from '../../Input/ToggleField/ToggleField';
 import { HighlightBox } from '../../Input/HighlightBox/HighlightBox';
+import { ExpertiseOffersSliderItem } from '../../Interfaces/Expertise/Expertise';
 
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
@@ -22,7 +23,32 @@ interface IFormInputs {
   addOns: any[];
 }
 
-export const MiniSquadsModal: React.FC = () => {
+const getSquadConfig = (selectedOffer: ExpertiseOffersSliderItem | null) => {
+  if (!selectedOffer) {
+    return {
+      name: 'MVP Squad',
+      price: '$4,500',
+      description: '2 Developers + QA + PM',
+      features: ['Build & launch your MVP in sprints', '4-hour U.S. overlap', 'Managed Agile sprints']
+    };
+  }
+
+  const baseConfig = {
+    name: selectedOffer.heading,
+    price: selectedOffer.price,
+    description: selectedOffer.description,
+    features: selectedOffer.features || []
+  };
+
+  return baseConfig;
+};
+
+interface MiniSquadsModalProps {
+  selectedOffer?: ExpertiseOffersSliderItem | null;
+}
+
+export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer = null }) => {
+  const squadConfig = getSquadConfig(selectedOffer);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -156,7 +182,7 @@ export const MiniSquadsModal: React.FC = () => {
       ) : (
         <>
           <div className={ContactFormModalStyles['modal-header']} />
-          <h1 className={ContactFormModalStyles['modal-heading']}>Let's Hire Mini Squad</h1>
+          <h1 className={ContactFormModalStyles['modal-heading']}>Let's Hire {squadConfig.name}</h1>
 
           <form onSubmit={handleSubmit(onSubmit)} className={`${ContactFormModalStyles['contact-form']} grid-cols-2`}>
             {/* Intro */}
