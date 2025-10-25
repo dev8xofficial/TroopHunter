@@ -15,7 +15,8 @@
     "build:production": "dotenv -e .env.production next build",
     "lint": "next lint",
     "generate:hls": "bash scripts/generate-hls.sh",
-    "generate:sitemap": "node sitemap.mjs"
+    "generate:sitemap": "node sitemap.mjs",
+    "ngrok": "npx ngrok http 3005"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.8",

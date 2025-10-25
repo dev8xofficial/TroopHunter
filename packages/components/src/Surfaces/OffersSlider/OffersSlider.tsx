@@ -73,7 +73,7 @@ export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePa
               </Link>
               <div className={FeedSilderStyles['divider']}>
                 <div className={FeedSilderStyles['divider__line']}></div>
-                <StarIcon width={20} height={20} className={FeedSilderStyles['divider__star']} />
+                <StarIcon width={30} height={30} className={FeedSilderStyles['divider__star']} />
                 <div className={FeedSilderStyles['divider__line']}></div>
               </div>
               {offer.features?.length > 0 && (
