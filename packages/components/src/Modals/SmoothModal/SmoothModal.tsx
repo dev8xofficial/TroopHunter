@@ -1,6 +1,6 @@
 'use client';
 
-import React, { CSSProperties, useEffect } from 'react';
+import React, { CSSProperties, useEffect, useRef } from 'react';
 import { ModalCloseButton } from '@repo/components';
 import { gsap } from 'gsap';
 
@@ -14,62 +14,101 @@ type SmoothModalProps = {
   modalBGClassName?: string;
 };
 
-const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, modalInnerRef, modalBGClassName = '' }): JSX.Element => {
+const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, modalInnerRef, modalBGClassName = '' }) => {
+  const modalBackdropRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const el = modalInnerRef.current;
-    if (!el) return;
+    const backdrop = modalBackdropRef.current;
+    if (!el || !backdrop) return;
 
     const tl = gsap.timeline();
 
-    tl.set(el, { y: '50%', opacity: 0.8, scale: 1 })
-      // 🌊 Smooth acceleration up to mid-point
-      .to(el, {
+    // 🏁 Initial states
+    tl.set(backdrop, { opacity: 0 });
+    tl.set(el, { y: '60%', opacity: 0.8, scale: 1 });
+
+    // 🌫️ Backdrop fade-in
+    tl.to(
+      backdrop,
+      {
+        opacity: 0.55,
+        duration: 0.5,
+        ease: 'power2.out'
+      },
+      0
+    );
+
+    // 🌊 Smooth modal motion (your style)
+    tl.to(
+      el,
+      {
         y: '30%',
         opacity: 1,
-        duration: 0.65,
-        ease: 'cubic-bezier(0.35, 0.25, 0.75, 0.9)' // balanced & fluid
-      })
-      // 🧈 Continue seamlessly — no stop, no bump
-      .to(
-        el,
-        {
-          y: '0%',
-          opacity: 1,
-          scale: 1,
-          duration: 0.3,
-          ease: 'cubic-bezier(0.8, 0, 0.2, 1)' // smooth accel → gentle stop
-        },
-        '-=0.22'
-      ); // increased overlap for perfect flow
+        duration: 0.7,
+        ease: 'cubic-bezier(0.55, 0.1, 0.9, 1)'
+      },
+      0
+    );
+
+    // 🌊 Gentle final landing — soft deceleration
+    tl.to(
+      el,
+      {
+        y: '0%',
+        opacity: 1,
+        scale: 1,
+        duration: 0.45,
+        ease: 'cubic-bezier(0.85, 0.05, 0.2, 1)'
+      },
+      '-=0.2'
+    );
   }, [modalInnerRef]);
 
-  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClose = (e: React.MouseEvent<HTMLButtonElement> | MouseEvent) => {
     const el = modalInnerRef.current;
-    if (!el) return;
-
-    // ✅ Disable scrolling immediately
-    // if (modalRef.current) {
-    //   modalRef.current.style.overflow = 'hidden'; // hide scrollbar
-    // }
+    const backdrop = modalBackdropRef.current;
+    if (!el || !backdrop) return;
 
     const tl = gsap.timeline({
-      onComplete: () => toggle(e)
+      onComplete: () => toggle(e as any)
     });
 
     tl.to(el, {
-      y: '75%',
-      opacity: 1,
-      duration: 0.5,
-      ease: 'cubic-bezier(0.7, 0.05, 0.25, 1)'
+      y: '40%',
+      opacity: 0.85,
+      scale: 0.97,
+      duration: 0.45,
+      ease: 'power2.inOut'
     });
+
+    tl.to(
+      backdrop,
+      {
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power1.inOut'
+      },
+      '-=0.25'
+    );
+  };
+
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    debugger;
+    if (e.target === e.currentTarget) {
+      handleClose(e.nativeEvent);
+    }
   };
 
   return (
     <div className={styles['modal-wrapper']}>
-      <div className={styles['modal-backdrop']} style={{ opacity: 0.5, pointerEvents: 'all' }}></div>
+      <div className={styles['modal-backdrop']} ref={modalBackdropRef} onClick={handleBackdropClick}></div>
+
+      {/* Modal body */}
       <div tabIndex={0}></div>
       <div className={styles['modal-tab-trap-start']} tabIndex={-1}></div>
-      <div id="modal" className={`lenis lenis-smooth ${styles['modal']}`} style={{ opacity: 1 }} ref={modalRef}>
+
+      <div id="modal" className={`lenis lenis-smooth ${styles['modal']}`} style={{ opacity: 1 }} ref={modalRef} onClick={handleBackdropClick}>
         <div className="lenis-content" ref={modalInnerRef}>
           <div
             id="modal-inner"
@@ -91,7 +130,9 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
                 right: '0px'
               }}
             ></div>
+
             <ModalCloseButton onClick={handleClose} />
+
             <main id="modal-content" className={styles['modal-content']}>
               {children}
             </main>
