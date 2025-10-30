@@ -94,7 +94,6 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
   };
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    debugger;
     if (e.target === e.currentTarget) {
       handleClose(e.nativeEvent);
     }
@@ -109,7 +108,7 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
       <div className={styles['modal-tab-trap-start']} tabIndex={-1}></div>
 
       <div id="modal" className={`lenis lenis-smooth ${styles['modal']}`} style={{ opacity: 1 }} ref={modalRef} onClick={handleBackdropClick}>
-        <div className="lenis-content" ref={modalInnerRef}>
+        <div className="lenis-content" ref={modalInnerRef} onClick={handleBackdropClick}>
           <div
             id="modal-inner"
             className={styles['modal-inner']}
