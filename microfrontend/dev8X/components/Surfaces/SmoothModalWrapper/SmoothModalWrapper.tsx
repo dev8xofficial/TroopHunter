@@ -25,37 +25,43 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
 
   const isVisible = currentModal.type === modalType;
 
+  // Mounting flag
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // Modal scroll + body scroll-lock
   useEffect(() => {
     if (!isVisible) return;
 
-    document.body.classList.add('overflow-hidden');
+    // Stop global Lenis without locking body
     lenis.stop();
 
+    // Create Lenis for modal content
     const modalLenis = new Lenis({
       autoRaf: true,
       wrapper: modalRef.current!,
       content: modalInnerRef.current!
     });
+    modalLenis.on('scroll', ScrollTrigger.update);
 
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
     }
 
-    modalLenis.on('scroll', ScrollTrigger.update);
-
     return () => {
-      document.body.classList.remove('overflow-hidden');
+      // Destroy modal Lenis first
       modalLenis.destroy();
+
+      // Restart global Lenis without changing scroll
       lenis.start();
     };
   }, [isVisible]);
 
+  // Modal ScrollTrigger animations
   useEffect(() => {
     if (!isVisible) return;
+
     const element = document.querySelector('#modal-inner') as HTMLElement;
     const modalInnerBg = document.querySelector('#modal-inner-bg') as HTMLElement;
     const modal = document.querySelector('#modal') as HTMLElement;
@@ -68,7 +74,7 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
           start: 'top 20%',
           end: 'top top',
           scrub: true,
-          scroller: modalRef.current // <-- Add this!
+          scroller: modalRef.current
         }
       });
 
@@ -79,7 +85,7 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
           start: 'top 20%',
           end: 'top top',
           scrub: true,
-          scroller: modalRef.current // <-- Add this!
+          scroller: modalRef.current
         }
       });
 
@@ -90,20 +96,20 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
           start: 'top 20%',
           end: 'top top',
           scrub: true,
-          scroller: modalRef.current // <-- Add this!
+          scroller: modalRef.current
         }
       });
     }
 
     return () => {
-      ScrollTrigger.killAll();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, [isVisible]);
 
   if (!isMounted || !isVisible) return null;
 
   return createPortal(
-    <SmoothModal toggle={toggle} modalRef={modalRef} modalBGClassName={modalType === 'contact' ? ContactFormModalStyles['modal-bg'] : ''} modalInnerRef={modalInnerRef}>
+    <SmoothModal toggle={toggle} modalRef={modalRef} modalInnerRef={modalInnerRef} modalBGClassName={modalType === 'contact' ? ContactFormModalStyles['modal-bg'] : ''}>
       {children}
     </SmoothModal>,
     document.getElementById('smooth-modal')!
