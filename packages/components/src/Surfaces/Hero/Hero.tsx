@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { ExpertiseContent } from '../../Interfaces/Expertise/Expertise';
 import { ICON_MAP } from '../../Surfaces/IconCards/IconMap';
 import { Pill } from '../../Surfaces/Pill/Pill';
@@ -15,6 +16,8 @@ interface HeroProps extends Omit<ExpertiseContent, 'slug' | 'iconCards' | 'conte
 }
 
 export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, image, paragraph }): JSX.Element => {
+  const router = useRouter();
+  const isOffersPage = router.pathname.includes('/offers');
   return (
     <>
       <div>
@@ -38,9 +41,11 @@ export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, ima
                     </p>
                   )}
                 </div>
-                <div className={LayoutStyles['work-header']}>
-                  <OffersCategories />
-                </div>
+                {isOffersPage && (
+                  <div className={LayoutStyles['work-header']}>
+                    <OffersCategories />
+                  </div>
+                )}
 
               </div>
             </div>

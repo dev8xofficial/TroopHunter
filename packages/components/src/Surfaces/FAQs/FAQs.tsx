@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 
 import CaretDown from '../../Icons/CaretDown';
 import CaretUp from '../../Icons/CaretUp';
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 
 import HomepageStatsStyles from '../HomepageStats/index.module.css';
 import OpenRolesListStyles from '../../DataDisplay/OpenRolesList/index.module.css';
@@ -20,19 +20,20 @@ type FAQsProps = {
 
 export const FAQs: React.FC<FAQsProps> = ({ faqs }) => {
 
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [smallScreen, setSmallScreen] = useState(false);
+  const [iconSize, setIconSize] = useState(32);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 740);
+      const w = window.innerWidth;
+      setIconSize(w < 350 ? 20 : w < 760 ? 16 : 32);
+      setSmallScreen(w < 760);
     };
 
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  const iconSize = isSmallScreen ? 20 : 32;
 
   return (
     <div className={`${HomepageStatsStyles['homepage-bottom__stats']} ${styles['faqs-cta']}`}>
@@ -68,7 +69,7 @@ export const FAQs: React.FC<FAQsProps> = ({ faqs }) => {
 
                   <DisclosurePanel className={`${OpenRolesListStyles['jobDescriptionWrapper']} ${open ? OpenRolesListStyles['expanded'] : ''}`}>
                     <div className={OpenRolesListStyles['jobDescription']}>
-                      <div className={`${isSmallScreen ? CaseStudySidebarStyles['sidebar__body'] : CaseStudySidebarStyles['sidebar__intro']}`}><p>{stat.description}</p></div>
+                      <div className={smallScreen ? CaseStudySidebarStyles['sidebar__body'] : CaseStudySidebarStyles['sidebar__intro']}><p>{stat.description}</p></div>
                     </div>
                   </DisclosurePanel>
                 </>
