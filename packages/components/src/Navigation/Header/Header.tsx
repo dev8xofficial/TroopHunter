@@ -1,8 +1,8 @@
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties, useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import NextLink from 'next/link';
 import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenu } from '../HeaderSubmenu/HeaderSubmenu';
-
 import styles from './index.module.css';
 
 export const Header: React.FC = (): JSX.Element => {
@@ -10,16 +10,18 @@ export const Header: React.FC = (): JSX.Element => {
   const currentPath = router.pathname;
   const [dataSubmenuOpen, setDataSubmenuOpen] = useState(false);
   const [height, setHeight] = useState(45);
+  const submenuRef = useRef<HTMLLIElement | null>(null);
+  const exploreBtnRef = useRef<HTMLButtonElement | null>(null);
+
   const getActiveColumn = (path: string): number => {
     if (path === '/') return 1;
     if (path === '/about') return 2;
     if (path.startsWith('/work')) return 3;
-    if (path.startsWith('/expertise') || path.startsWith('/offers')) {
-      return 4;
-    }
+    if (path.startsWith('/expertise') || path.startsWith('/offers')) return 4;
     if (path === '/contact') return 5;
-    return 1; // fallback
+    return 1;
   };
+
   const activeColumn = getActiveColumn(currentPath);
 
   const handleExpertiseClick = () => {
@@ -27,12 +29,36 @@ export const Header: React.FC = (): JSX.Element => {
     setHeight((prev) => (prev === 45 ? 661 : 45));
   };
 
+  const handleSubmenuLinkClick = () => {
+    setDataSubmenuOpen(false);
+    setHeight(45);
+  };
+
+  // ✅ Close submenu when clicking outside Explore area
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        submenuRef.current &&
+        !submenuRef.current.contains(event.target as Node) &&
+        exploreBtnRef.current &&
+        !exploreBtnRef.current.contains(event.target as Node)
+      ) {
+        setDataSubmenuOpen(false);
+        setHeight(45);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
-    <>
-      <header>
-        <div className={styles['header__inner']}>
-          <a href="/" className={styles['header__logo']}>
+    <header>
+      <div className={styles['header__inner']}>
+        <NextLink href="/" passHref legacyBehavior>
+          <a className={styles['header__logo']}>
             <span className="hidden">Home</span>
+            {/* Logo SVG */}
             <svg height="32" viewBox="0 0 224 77" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6.355 64V24.675H21.645C32.48 24.675 39.135 31.715 39.135 44.365C39.135 57.015 32.7 64 21.81 64H6.355ZM12.9 30.23V58.445H21.315C30.115 58.445 32.59 51.9 32.59 44.365C32.59 36.83 30.115 30.23 21.315 30.23H12.9Z" fill="#3C3C3C" />
               <path d="M68.424 57.746C74.862 57.746 77.452 53.75 78.118 51.456H85.888C83.964 58.634 78.34 64.11 68.646 64.11C56.88 64.11 49.702 55.97 49.702 44.13C49.702 31.846 56.88 24.15 68.276 24.15C80.486 24.15 86.48 32.66 86.48 46.128H57.472C57.472 52.492 61.542 57.746 68.424 57.746ZM68.276 30.292C61.986 30.292 57.472 34.51 57.472 40.356H78.71C78.71 34.51 74.566 30.292 68.276 30.292ZM94.6402 25.186H102.854L112.4 54.786H112.474L122.02 25.186H130.234L116.84 63H108.034L94.6402 25.186Z" fill="#3C3C3C" />
@@ -43,99 +69,161 @@ export const Header: React.FC = (): JSX.Element => {
               <path d="M177.776 25.186H186.582L195.166 38.506H195.314L203.898 25.186H212.704L199.976 43.686L214.11 63H205.082L195.314 48.792H195.166L185.546 63H176.444L190.578 43.686L177.776 25.186Z" fill="#3C3C3C" />
             </svg>
           </a>
-          <nav className={styles['menu']} data-columns="4" data-submenu-open={`${dataSubmenuOpen}`}>
-            <ul className={styles['menu__list']}>
-              <Magnet>
-                <li className={styles['menu__item']}>
-                  <a className={`${styles['menu__link']} ${currentPath === '/' ? styles['menu__link--active'] : ''}`} href="/">
-                    Home
-                  </a>
-                </li>
-              </Magnet>
-              <Magnet>
-                <li className={styles['menu__item']}>
-                  <a className={`${styles['menu__link']} ${currentPath === '/about' ? styles['menu__link--active'] : ''}`} href="/about">
-                    About
-                  </a>
-                </li>
-              </Magnet>
-              <Magnet>
-                <li className={styles['menu__item']}>
-                  <a className={`${styles['menu__link']} ${currentPath.includes('/work') ? styles['menu__link--active'] : ''}`} href="/work">
-                    Work
-                  </a>
-                </li>
-              </Magnet>
+        </NextLink>
+
+        <nav className={styles['menu']} data-columns="4" data-submenu-open={`${dataSubmenuOpen}`}>
+          <ul className={styles['menu__list']}>
+            <Magnet>
               <li className={styles['menu__item']}>
-                <div className="link-wrap">
-                  <button className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') || currentPath.includes('/careers') || currentPath.includes('/internships') || currentPath.includes('/plans-and-pricing') || currentPath.includes('/our-process') ? styles['menu__link--active'] : ''}`} data-faitracker-form-bind="true" onClick={handleExpertiseClick}>
-                    Explore
-                  </button>
-                  <HeaderSubmenu height={height} />
-                </div>
+                <NextLink href="/" passHref legacyBehavior>
+                  <a className={`${styles['menu__link']} ${currentPath === '/' ? styles['menu__link--active'] : ''}`}>Home</a>
+                </NextLink>
               </li>
-              <Magnet>
-                <li className={styles['menu__item']}>
-                  <a className={`${styles['menu__link']} ${currentPath === '/contact' ? styles['menu__link--active'] : ''}`} href="/contact">
-                    Contact
-                  </a>
-                </li>
-              </Magnet>
-            </ul>
-            <div className={`${styles['menu__list']} ${styles['menu__list--twin']}`} style={{ transform: 'none', transformOrigin: '50% 50% 0px' }}>
-              <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 1 }}>
-                Home
-              </span>
-              <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 2 }}>
-                About
-              </span>
-              <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 3 }}>
-                Work
-              </span>
-              <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 4 }}>
-                Explore
-              </span>
-              <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 5 }}>
-                Contact
-              </span>
-              <div className={`${styles['menu__hover-pill']}`} style={{ position: 'relative', gridColumn: activeColumn, borderRadius: '100px', transform: 'none', transformOrigin: '50% 50% 0px', left: '0px' }}></div>
-              <div className={`${styles['menu__active-pill']}`} style={{ position: 'relative', gridColumn: activeColumn, borderRadius: '100px', transform: 'none', transformOrigin: '50% 50% 0px', left: '0px' }}></div>
-            </div>
-          </nav>
-          <div className={styles['face']}>
-            <div>
-              <div>
-                <svg width="40" height="40" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" className="" style={{ '--width': 40, '--height': 40 } as CSSProperties}>
-                  <g filter="url(#filter0_d_80_102)">
-                    <path
-                      d="M510.4 878.75C373.55 878.75 310.3 798.25 310.3 715.45C310.3 611.95 383.9 552.15 434.5 508.45V506.15C383.9 462.45 310.3 403.8 310.3 300.3C310.3 217.5 373.55 137 510.4 137C646.1 137 709.35 217.5 709.35 300.3C709.35 403.8 624.25 462.45 573.65 506.15V508.45C624.25 552.15 709.35 611.95 709.35 715.45C709.35 798.25 646.1 878.75 510.4 878.75ZM616.2 695.9C616.2 632.65 549.5 586.65 509.25 554.45C469 586.65 401.15 632.65 401.15 695.9C401.15 748.8 434.5 786.75 509.25 786.75C584 786.75 616.2 748.8 616.2 695.9ZM616.2 319.85C616.2 266.95 584 229 509.25 229C434.5 229 401.15 266.95 401.15 319.85C401.15 383.1 469 429.1 509.25 461.3C549.5 429.1 616.2 383.1 616.2 319.85Z"
-                      fill="#3C3C3C"
-                    />
-                  </g>
-                  <defs>
-                    <filter id="filter0_d_80_102" x="260.3" y="91" width="499.05" height="841.75" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                      <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                      <feOffset dy="4" />
-                      <feGaussianBlur stdDeviation="25" />
-                      <feComposite in2="hardAlpha" operator="out" />
-                      <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0" />
-                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_80_102" />
-                      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_80_102" result="shape" />
-                    </filter>
-                  </defs>
-                </svg>
+            </Magnet>
+
+            <Magnet>
+              <li className={styles['menu__item']}>
+                <NextLink href="/about" passHref legacyBehavior>
+                  <a className={`${styles['menu__link']} ${currentPath === '/about' ? styles['menu__link--active'] : ''}`}>About</a>
+                </NextLink>
+              </li>
+            </Magnet>
+
+            <Magnet>
+              <li className={styles['menu__item']}>
+                <NextLink href="/work" passHref legacyBehavior>
+                  <a className={`${styles['menu__link']} ${currentPath.includes('/work') ? styles['menu__link--active'] : ''}`}>Work</a>
+                </NextLink>
+              </li>
+            </Magnet>
+
+            <li className={styles['menu__item']} ref={submenuRef}>
+              <div className="link-wrap">
+                <button
+                  ref={exploreBtnRef}
+                  className={`${styles['menu__link']} ${
+                    currentPath.includes('/expertise') ||
+                    currentPath.includes('/offers') ||
+                    currentPath.includes('/careers') ||
+                    currentPath.includes('/internships') ||
+                    currentPath.includes('/plans-and-pricing') ||
+                    currentPath.includes('/our-process')
+                      ? styles['menu__link--active']
+                      : ''
+                  }`}
+                  onClick={handleExpertiseClick}
+                >
+                  Explore
+                </button>
+                {/* ✅ Pass handleSubmenuLinkClick to close dropdown on link click */}
+                <HeaderSubmenu height={height} onLinkClick={handleSubmenuLinkClick} />
               </div>
+            </li>
+
+            <Magnet>
+              <li className={styles['menu__item']}>
+                <NextLink href="/contact" passHref legacyBehavior>
+                  <a className={`${styles['menu__link']} ${currentPath === '/contact' ? styles['menu__link--active'] : ''}`}>Contact</a>
+                </NextLink>
+              </li>
+            </Magnet>
+          </ul>
+
+          {/* Twin menu for active/hover pill */}
+          <div
+            className={`${styles['menu__list']} ${styles['menu__list--twin']}`}
+            style={{ transform: 'none', transformOrigin: '50% 50% 0px' }}
+          >
+            <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 1 }}>
+              Home
+            </span>
+            <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 2 }}>
+              About
+            </span>
+            <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 3 }}>
+              Work
+            </span>
+            <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 4 }}>
+              Explore
+            </span>
+            <span className={`${styles['menu__link']} ${styles['menu__link--twin']}`} style={{ gridColumn: 5 }}>
+              Contact
+            </span>
+
+            <div
+              className={`${styles['menu__hover-pill']}`}
+              style={{
+                position: 'relative',
+                gridColumn: activeColumn,
+                borderRadius: '100px',
+                transform: 'none',
+                transformOrigin: '50% 50% 0px',
+                left: '0px',
+              }}
+            ></div>
+            <div
+              className={`${styles['menu__active-pill']}`}
+              style={{
+                position: 'relative',
+                gridColumn: activeColumn,
+                borderRadius: '100px',
+                transform: 'none',
+                transformOrigin: '50% 50% 0px',
+                left: '0px',
+              }}
+            ></div>
+          </div>
+        </nav>
+
+        {/* Face / nothing wrapper */}
+        <div className={styles['face']}>
+          <div>
+            <div>
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 1024 1024"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ '--width': 40, '--height': 40 } as CSSProperties}
+              >
+                <g filter="url(#filter0_d_80_102)">
+                  <path
+                    d="M510.4 878.75C373.55 878.75 310.3 798.25 310.3 715.45C310.3 611.95 383.9 552.15 434.5 508.45V506.15C383.9 462.45 310.3 403.8 310.3 300.3C310.3 217.5 373.55 137 510.4 137C646.1 137 709.35 217.5 709.35 300.3C709.35 403.8 624.25 462.45 573.65 506.15V508.45C624.25 552.15 709.35 611.95 709.35 715.45C709.35 798.25 646.1 878.75 510.4 878.75ZM616.2 695.9C616.2 632.65 549.5 586.65 509.25 554.45C469 586.65 401.15 632.65 401.15 695.9C401.15 748.8 434.5 786.75 509.25 786.75C584 786.75 616.2 748.8 616.2 695.9ZM616.2 319.85C616.2 266.95 584 229 509.25 229C434.5 229 401.15 266.95 401.15 319.85C401.15 383.1 469 429.1 509.25 461.3C549.5 429.1 616.2 383.1 616.2 319.85Z"
+                    fill="#3C3C3C"
+                  />
+                </g>
+                <defs>
+                  <filter id="filter0_d_80_102" x="260.3" y="91" width="499.05" height="841.75" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset dy="4" />
+                    <feGaussianBlur stdDeviation="25" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"
+                    />
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_80_102" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_80_102" result="shape" />
+                  </filter>
+                </defs>
+              </svg>
             </div>
-            <div className={styles['nothing-wrapper']} aria-hidden="true">
+          </div>
+          <div className={styles['nothing-wrapper']} aria-hidden="true">
               <div className={styles['nothing']}>
                 {/* <img src="/nothing/nothing-2.gif" alt="" width="81" height="200" /> */}
                 {/* <audio src="/nothing/nothing.mp3" preload="auto"></audio> */}
               </div>
-            </div>
           </div>
         </div>
-      </header>
-    </>
+      </div>
+    </header>
   );
 };

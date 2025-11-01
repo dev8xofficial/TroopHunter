@@ -1,4 +1,5 @@
 import React from 'react';
+import NextLink from 'next/link';
 import PointerIcon from '../../Icons/Pointer';
 import CardIcon from '../../Icons/Card';
 import MobileIcon from '../../Icons/Mobile';
@@ -30,9 +31,10 @@ import styles from './index.module.css';
 
 interface HeaderSubmenuProps {
   height: number;
+  onLinkClick?: () => void; // ✅ Added this prop
 }
 
-export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSubmenuProps): JSX.Element => {
+export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height, onLinkClick }) => {
   const submenus = [
     {
       heading: 'What We Do',
@@ -220,7 +222,7 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
         },
         {
           title: 'Internships',
-          icon: <PlanetRingIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />   ,
+          icon: <PlanetRingIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
           color: 'purple',
           href: '/internships'
         },
@@ -235,10 +237,11 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
           icon: <SaaSIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
           color: 'green',
           href: '/plans-and-pricing'
-        },
+        }
       ]
     }
   ];
+
   return (
     <>
       <div className={styles['submenu-container']} style={{ '--height': height } as React.CSSProperties}>
@@ -250,13 +253,16 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height }: HeaderSu
                 <ul className={styles['submenu__list']}>
                   {menu.list.map((item, itemIndex) => (
                     <Magnet key={`nav-anchor-${menuIndex}-${itemIndex}`}>
-                      <li style={{ transform: 'translateX(0%) translateY(0%) rotate(0deg) translateZ(0)' }}>
-                        <a className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`} href={item.href}>
-                          <>
+                      <li>
+                        <NextLink href={item.href} passHref legacyBehavior>
+                          <a
+                            className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`}
+                            onClick={onLinkClick} // ✅ this will close submenu when link clicked
+                          >
                             {item.icon}
                             {item.title}
-                          </>
-                        </a>
+                          </a>
+                        </NextLink>
                       </li>
                     </Magnet>
                   ))}
