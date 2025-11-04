@@ -1,4 +1,6 @@
 // WorkCardPicture.tsx
+'use client';
+
 import React from 'react';
 
 import PictureStyles from '../Picture/index.module.css';

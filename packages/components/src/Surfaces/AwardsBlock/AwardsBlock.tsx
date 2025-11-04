@@ -1,3 +1,5 @@
+'use client';
+
 import React, { CSSProperties } from 'react';
 import { LogoGrid } from '../../Layout/LogoGrid/LogoGrid';
 // import { Button } from '../Button/Button';

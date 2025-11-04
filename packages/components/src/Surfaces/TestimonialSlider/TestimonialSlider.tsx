@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import styles from './index.module.css';
 import ProjectContactStyles from '../ProjectContents//index.module.css';

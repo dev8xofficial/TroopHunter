@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { WorkDetail } from '../../Interfaces/Work/WorkProjectTypes';
 import { Link } from '../../Navigation/Link/Link';

@@ -106,7 +106,7 @@ const Header = () => {
           <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
             <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={prefixed('/images/header/1080.png')}></img>
           </picture>
-          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src={prefixed('/videos/header/header.mp4')} preload="none" loop controls={false} autoPlay muted playsInline></video>
+          <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src={prefixed('/videos/header/header.mp4')} preload="metadata" loop controls={false} autoPlay muted playsInline></video>
         </div>
         <div className="items-center gap-[3.75rem] grid-template-columns-auto-1fr-auto grid px-[var(--container-gutter)] w-full h-[5.3125rem]">
           <a className="transform transition-[color_.4s_ease-in-out] z-10 text-[var(--theme-logo,var(--theme-secondary))]" aria-hidden="true" tabIndex={-1} href="/">

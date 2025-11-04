@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Magnet } from '../../Animations/Magnet';
 import { CheckIcon } from '@heroicons/react/24/outline';

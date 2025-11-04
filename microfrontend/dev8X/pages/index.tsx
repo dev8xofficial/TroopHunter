@@ -1,3 +1,5 @@
+'use client';
+
 import Head from 'next/head';
 import { useSetAtom } from 'jotai';
 import { toggleSmoothModalAtom } from '../store/smoothModalAtom';
@@ -8,7 +10,6 @@ import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDe
 import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
-import VideoPlayer from '@repo/components/src/Surfaces/VideoPlayer/VideoPlayer';
 import PageData from '../data/index.d';
 import { prefixed } from '../utils/helpers';
 
@@ -75,9 +76,7 @@ export default function Home() {
           <main className={styles['homepage']}>
             <Hero />
             <div className={styles['homepage__purple-change']}>
-              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src={prefixed('/videos/header/header.mp4')} isMobile={isMobile}>
-                <VideoPlayer src={prefixed(`/videos/header/master.m3u8`)} poster={prefixed(`/images/header/1080.png`)} hideQualityControls={true} hideFullscreen={true} />
-              </HomepageShowreel>
+              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src={prefixed("/videos/header/header.mp4")} isMobile={isMobile} />
             </div>
             {/* <Problems /> */}
             <section className={styles['showcase']}>

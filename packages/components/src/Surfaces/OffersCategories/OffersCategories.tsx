@@ -1,4 +1,6 @@
 // src/.../OffersCategories/OffersCategories.tsx
+'use client';
+
 import React from 'react';
 import WorkCategoriesStyles from '../WorkCategories/index.module.css';
 

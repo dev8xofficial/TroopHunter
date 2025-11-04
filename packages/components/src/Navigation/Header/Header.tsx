@@ -1,3 +1,5 @@
+'use client';
+
 import React, { CSSProperties, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Magnet } from '../../Animations/Magnet';

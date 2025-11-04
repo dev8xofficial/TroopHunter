@@ -15,8 +15,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     placeholderImage: prefixed('/api/images/placeholder/1080-transparent.png'),
     images: [prefixed('/api/images/work/troophunter/mobile/7.png'), prefixed('/api/images/work/troophunter/mobile/8.png'), prefixed('/api/images/work/troophunter/mobile/9.png'), prefixed('/api/images/work/troophunter/mobile/10.png')],
     video: {
-      originalFile: prefixed('/videos/work/troophunter/1080/master.m3u8'),
-      sequences: [prefixed('/videos/work/troophunter/1080/master.m3u8'), prefixed('/videos/work/troophunter/1080/master.m3u8'), prefixed('/videos/work/troophunter/1080/master.m3u8'), prefixed('/videos/work/troophunter/1080/master.m3u8'), prefixed('/videos/work/troophunter/1080/master.m3u8'), prefixed('/videos/work/troophunter/1080/master.m3u8')]
+      originalFile: prefixed('/videos/work/troophunter/1080.mp4'),
+      sequences: [prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4')]
     },
     bgColor: 'blue',
     path: 'troophunter',
@@ -37,8 +37,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     placeholderImage: prefixed('/api/images/placeholder/1080-transparent.png'),
     images: [prefixed('/api/images/work/totalhealthdentalcare/mobile/7.png'), prefixed('/api/images/work/totalhealthdentalcare/mobile/8.png'), prefixed('/api/images/work/totalhealthdentalcare/mobile/9.png'), prefixed('/api/images/work/totalhealthdentalcare/mobile/10.png')],
     video: {
-      originalFile: prefixed('/videos/work/totalhealthdentalcare/master.m3u8'),
-      sequences: [prefixed('/videos/work/totalhealthdentalcare/parts/part-01/master.m3u8'), prefixed('/videos/work/totalhealthdentalcare/parts/part-03/master.m3u8'), prefixed('/videos/work/totalhealthdentalcare/parts/part-05/master.m3u8'), prefixed('/videos/work/totalhealthdentalcare/parts/part-02/master.m3u8'), prefixed('/videos/work/totalhealthdentalcare/parts/part-04/master.m3u8'), prefixed('/videos/work/totalhealthdentalcare/parts/part-06/master.m3u8')]
+      originalFile: prefixed('/videos/work/totalhealthdentalcare.mp4'),
+      sequences: [prefixed('/videos/work/totalhealthdentalcare/part-01-export.mp4'), prefixed('/videos/work/totalhealthdentalcare/part-03-export.mp4'), prefixed('/videos/work/totalhealthdentalcare/part-05-export.mp4'), prefixed('/videos/work/totalhealthdentalcare/part-02-export.mp4'), prefixed('/videos/work/totalhealthdentalcare/part-04-export.mp4'), prefixed('/videos/work/totalhealthdentalcare/part-06-export.mp4')]
     },
     bgColor: 'cyan',
     path: 'totalhealthdentalcare',
@@ -59,8 +59,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     placeholderImage: prefixed('/api/images/placeholder/1080-transparent.png'),
     images: [prefixed('/api/images/work/scheduler/mobile/7.png'), prefixed('/api/images/work/scheduler/mobile/8.png'), prefixed('/api/images/work/scheduler/mobile/9.png'), prefixed('/api/images/work/scheduler/mobile/10.png')],
     video: {
-      originalFile: prefixed('/videos/work/scheduler/master.m3u8'),
-      sequences: [prefixed('/videos/work/scheduler/parts/part-01/master.m3u8'), prefixed('/videos/work/scheduler/parts/part-02/master.m3u8'), prefixed('/videos/work/scheduler/parts/part-03/master.m3u8'), prefixed('/videos/work/scheduler/parts/part-04/master.m3u8')]
+      originalFile: prefixed('/videos/work/scheduler.mp4'),
+      sequences: [prefixed('/videos/work/scheduler/part-01-export.mp4'), prefixed('/videos/work/scheduler/part-02-export.mp4'), prefixed('/videos/work/scheduler/part-03-export.mp4'), prefixed('/videos/work/scheduler/part-04-export.mp4')]
     },
     bgColor: 'blue',
     path: 'scheduler',
@@ -81,8 +81,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     placeholderImage: prefixed('/api/images/placeholder/1080-transparent.png'),
     images: [''],
     video: {
-      originalFile: prefixed('/videos/work/honeydu/master.m3u8'),
-      sequences: [prefixed('/videos/work/honeydu/parts/part-01/master.m3u8'), prefixed('/videos/work/honeydu/parts/part-02/master.m3u8'), prefixed('/videos/work/honeydu/parts/part-04/master.m3u8'), prefixed('/videos/work/honeydu/parts/part-03/master.m3u8')]
+      originalFile: prefixed('/videos/work/honeydu.mp4'),
+      sequences: [prefixed('/videos/work/honeydu/part-01-export.mp4'), prefixed('/videos/work/honeydu/part-02-export.mp4'), prefixed('/videos/work/honeydu/part-04-export.mp4'), prefixed('/videos/work/honeydu/part-03-export.mp4')]
     },
     bgColor: 'cyan',
     path: 'honeydu',
@@ -103,8 +103,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     placeholderImage: prefixed('/api/images/placeholder/1080-transparent.png'),
     images: [prefixed('/api/images/work/coral/mobile/7.png'), prefixed('/api/images/work/coral/mobile/8.png'), prefixed('/api/images/work/coral/mobile/9.png'), prefixed('/api/images/work/coral/mobile/10.png')],
     video: {
-      originalFile: prefixed('/videos/work/coral/master.m3u8'),
-      sequences: [prefixed('/videos/work/coral/parts/part-01/master.m3u8'), prefixed('/videos/work/coral/parts/part-02/master.m3u8'), prefixed('/videos/work/coral/parts/part-03/master.m3u8'), prefixed('/videos/work/coral/parts/part-04/master.m3u8')]
+      originalFile: prefixed('/videos/work/coral.mp4'),
+      sequences: [prefixed('/videos/work/coral/part-01-export.mp4'), prefixed('/videos/work/coral/part-02-export.mp4'), prefixed('/videos/work/coral/part-03-export.mp4'), prefixed('/videos/work/coral/part-04-export.mp4')]
     },
     bgColor: 'blue',
     path: 'coral',
@@ -125,8 +125,8 @@ export const WORK_PROJECTS: WorkDetail[] = [
     placeholderImage: prefixed('/api/images/placeholder/1080-transparent.png'),
     images: [''],
     video: {
-      originalFile: prefixed('/videos/work/goldendao/master.m3u8'),
-      sequences: [prefixed('/videos/work/goldendao/parts/part-01/master.m3u8'), prefixed('/videos/work/goldendao/parts/part-02/master.m3u8'), prefixed('/videos/work/goldendao/parts/part-03/master.m3u8'), prefixed('/videos/work/goldendao/parts/part-04/master.m3u8'), prefixed('/videos/work/goldendao/parts/part-05/master.m3u8')]
+      originalFile: prefixed('/videos/work/goldendao.mp4'),
+      sequences: [prefixed('/videos/work/goldendao/part-01-export.mp4'), prefixed('/videos/work/goldendao/part-02-export.mp4'), prefixed('/videos/work/goldendao/part-03-export.mp4'), prefixed('/videos/work/goldendao/part-04-export.mp4'), prefixed('/videos/work/goldendao/part-05-export.mp4')]
     },
     bgColor: 'cyan',
     path: 'goldendao',

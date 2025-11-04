@@ -1,3 +1,5 @@
+'use client';
+
 import { RoleProject } from '../../Interfaces/Work/RoleProjectTypes';
 
 import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';

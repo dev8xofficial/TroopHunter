@@ -1,3 +1,5 @@
+'use client';
+
 import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
 import BackendIcon from '@repo/components/src/Icons/Backend';
 import MonitorIcon from '@repo/components/src/Icons/Monitor';

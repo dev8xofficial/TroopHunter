@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { WYSIWYG } from '../../Surfaces/WYSIWYG/WYSIWYG';
 import { ICON_MAP } from '../../Surfaces/IconCards/IconMap';

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode } from 'react';
 import { WorkCard } from '../../Surfaces/WorkCard/WorkCard';
 import { WORK_PROJECTS_GRID_DATA } from '../../Constants/Work/WorkProjects';
