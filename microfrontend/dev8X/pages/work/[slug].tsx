@@ -1,3 +1,5 @@
+'use client';
+
 import Head from 'next/head';
 import { FooterRevealPageWrap, Footer, Header, ProjectsFormModal, WorkDetail, WORK_PROJECTS } from '@repo/components';
 import PageData from '../../data/work/index.d';

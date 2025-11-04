@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode } from 'react';
 import { ICON_MAP } from './IconMap';
 import { ExpertiseIconCardItem } from '../../Interfaces/Expertise/Expertise';

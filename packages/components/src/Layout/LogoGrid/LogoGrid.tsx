@@ -1,3 +1,5 @@
+'use client';
+
 import React, { CSSProperties } from 'react';
 import Tilt from 'react-parallax-tilt';
 import { Spotlight } from '../../Animations/Spotlight';

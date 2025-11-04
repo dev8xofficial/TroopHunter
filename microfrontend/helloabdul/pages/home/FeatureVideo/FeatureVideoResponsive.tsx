@@ -18,7 +18,7 @@ const FeatureVideoResponsive: React.FC = (): JSX.Element => {
                   <picture className="max-w-full leading-[0] block rounded-2xl row-start-1 -col-start-1 row-end-auto col-end-auto absolute">
                     <img className="max-w-full m-0 object-cover w-full h-full rounded-[inherit]" src={prefixed('/images/placeholder/1080.png')}></img>
                   </picture>
-                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src={prefixed('/videos/troophunter-lead-gen/1080.mp4')} preload="none" loop controls={false} autoPlay muted playsInline></video>
+                  <video className="rounded-inherit z-0 aspect-square row-start-1 col-start-1 row-end-auto col-end-auto w-auto object-center object-contain" src={prefixed('/videos/troophunter-lead-gen/1080.mp4')} preload="metadata" loop controls={false} autoPlay muted playsInline></video>
                 </div>
               </div>
             </a>

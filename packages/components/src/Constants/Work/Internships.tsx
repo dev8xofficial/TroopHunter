@@ -1,3 +1,5 @@
+'use client';
+
 import { RoleProject } from '../../Interfaces/Work/RoleProjectTypes';
 import { prefixed } from '../../../utils/helpers';
 

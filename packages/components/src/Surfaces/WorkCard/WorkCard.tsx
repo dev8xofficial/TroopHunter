@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { CommonWorkCardProps } from '../../Interfaces/Work/WorkProjectTypes';
 import { WorkCardWrapper } from './WorkCardWrapper';

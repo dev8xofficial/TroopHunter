@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { HomepageStat, HomepageStats } from '../../Surfaces/HomepageStats/HomepageStats';
 import { AppearOnScroll } from '../../Animations/AppearOnScroll';

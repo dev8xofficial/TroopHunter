@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ExpertiseContent, Link } from '@repo/components';
 import RightArrowIcon from '../../Icons/RightArrow';

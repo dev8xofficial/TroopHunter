@@ -1,3 +1,5 @@
+'use client';
+
 import { WorkDetail, WorkGridCard } from '../../Interfaces/Work/WorkProjectTypes';
 import { prefixed } from '../../../utils/helpers';
 
@@ -15,7 +17,7 @@ export const OFFERS_DATA: WorkDetail[] = [
         placeholderImage: prefixed('/api/images/placeholder/1080-transparent.png'),
         images: [],
         video: {
-            originalFile: prefixed('/videos/work/troophunter/1080/master.m3u8'),
+            originalFile: prefixed('/videos/work/troophunter/1080/1080.mp4'),
             sequences: []
         },
         bgColor: 'blue',

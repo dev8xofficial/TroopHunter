@@ -1,4 +1,6 @@
 // components/PieChartIcon.tsx
+'use client';
+
 import React from 'react';
 
 interface PieChartIconProps {

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import SmoothModalStyles from '../../Modals/SmoothModal/index.module.css';

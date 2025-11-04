@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+'use client';
+
 import React, { ReactNode } from 'react';
 
 type StepItem = {

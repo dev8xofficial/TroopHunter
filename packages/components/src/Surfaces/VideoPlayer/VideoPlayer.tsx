@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
 
@@ -332,7 +334,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityContr
   );
 
   if (!isClient) {
-    return <video ref={videoRef} controls={false} loop playsInline muted={true} poster={poster} style={{ width: '100%', borderRadius: '8px' }} />;
+    return <video ref={videoRef} controls={false} loop playsInline muted={true} poster={poster} style={{ width: '100%', borderRadius: '8px' }} preload='metadata'/>;
   }
 
   return (

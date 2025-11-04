@@ -1,8 +1,11 @@
+'use client';
+
 import React, { CSSProperties, useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenu } from '../HeaderSubmenu/HeaderSubmenu';
+
 import styles from './index.module.css';
 
 export const Header: React.FC = (): JSX.Element => {
@@ -101,16 +104,15 @@ export const Header: React.FC = (): JSX.Element => {
               <div className="link-wrap">
                 <button
                   ref={exploreBtnRef}
-                  className={`${styles['menu__link']} ${
-                    currentPath.includes('/expertise') ||
-                    currentPath.includes('/offers') ||
-                    currentPath.includes('/careers') ||
-                    currentPath.includes('/internships') ||
-                    currentPath.includes('/plans-and-pricing') ||
-                    currentPath.includes('/our-process')
+                  className={`${styles['menu__link']} ${currentPath.includes('/expertise') ||
+                      currentPath.includes('/offers') ||
+                      currentPath.includes('/careers') ||
+                      currentPath.includes('/internships') ||
+                      currentPath.includes('/plans-and-pricing') ||
+                      currentPath.includes('/our-process')
                       ? styles['menu__link--active']
                       : ''
-                  }`}
+                    }`}
                   onClick={handleExpertiseClick}
                 >
                   Explore
@@ -217,10 +219,10 @@ export const Header: React.FC = (): JSX.Element => {
             </div>
           </div>
           <div className={styles['nothing-wrapper']} aria-hidden="true">
-              <div className={styles['nothing']}>
-                {/* <img src="/nothing/nothing-2.gif" alt="" width="81" height="200" /> */}
-                {/* <audio src="/nothing/nothing.mp3" preload="auto"></audio> */}
-              </div>
+            <div className={styles['nothing']}>
+              {/* <img src="/nothing/nothing-2.gif" alt="" width="81" height="200" /> */}
+              {/* <audio src="/nothing/nothing.mp3" preload="auto"></audio> */}
+            </div>
           </div>
         </div>
       </div>

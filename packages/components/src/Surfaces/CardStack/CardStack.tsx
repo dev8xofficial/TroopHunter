@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+'use client';
+
 import React, { CSSProperties, ReactNode } from 'react';
 
 import styles from './index.module.css';
