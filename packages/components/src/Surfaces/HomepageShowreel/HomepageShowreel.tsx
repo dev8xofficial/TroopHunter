@@ -1,11 +1,9 @@
 'use client';
 
 import React, { CSSProperties, ReactNode, useState, useRef, useEffect } from 'react';
-import Hls from 'hls.js';
 import { prefixed } from '../../../utils/helpers';
 
 import PictureStyles from '../Picture/index.module.css';
-import ButtonStyles from '../../Input/Button/index.module.css';
 import styles from './index.module.css';
 
 type HomepageShowreelProps = {
@@ -14,129 +12,63 @@ type HomepageShowreelProps = {
   src: string;
   isMobile: boolean;
   poster?: string;
-  enableHLS?: boolean;
 };
 
-interface QualityLevel {
-  height: number;
-  width: number;
-  bitrate: number;
-  index: number;
-  label: string;
-}
-
-export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, homepageShowreelCSSClass, src, isMobile, poster, enableHLS = false }: HomepageShowreelProps): JSX.Element => {
-  const [isPlaying, setIsPlaying] = useState(true);
+export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, homepageShowreelCSSClass, src, isMobile, poster }: HomepageShowreelProps): JSX.Element => {
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  const hlsRef = useRef<Hls | null>(null);
-  const [qualityLevels, setQualityLevels] = useState<QualityLevel[]>([]);
-  const [currentQuality, setCurrentQuality] = useState<number>(0);
   const [height, setHeight] = useState(45);
 
   useEffect(() => {
-    if (!enableHLS) return;
-
     const video = videoRef.current;
 
-    if (video && Hls.isSupported()) {
-      const hls = new Hls();
-      hlsRef.current = hls;
-      hls.loadSource(src);
-      hls.attachMedia(video);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // When visible → play
+            video
+              .play()
+              .then(() => setIsPlaying(true))
+              .catch((err) => console.warn('Autoplay failed:', err));
+          } else {
+            // When out of view → pause only
+            video.pause();
+            setIsPlaying(false);
+          }
+        });
+      },
+      { threshold: 0.25 } // 25% visibility triggers play/pause
+    );
 
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        const targetResolutions = [1080, 720, 480];
-        const levels = hls.levels
-          .map((level, index) => ({
-            height: level.height,
-            width: level.width,
-            bitrate: level.bitrate,
-            index,
-            label: `${level.height}p`
-          }))
-          .filter((level) => targetResolutions.includes(level.height))
-          .sort((a, b) => b.height - a.height);
+    observer.observe(video);
 
-        setQualityLevels(levels);
+    return () => observer.disconnect();
+  }, []);
 
-        // Set default 1080p section
-        const default1080 = levels.find((level) => level.height === 1080);
-        if (default1080) {
-          hls.currentLevel = default1080.index;
-          setCurrentQuality(default1080.index);
-        }
-
-        video
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch((err) => console.warn('Autoplay failed:', err));
-      });
-
-      hls.on(Hls.Events.LEVEL_SWITCHED, (event, data) => {
-        setCurrentQuality(data.level);
-      });
-
-      hls.on(Hls.Events.ERROR, (event, data) => {
-        console.error('HLS error:', data);
-      });
-
-      return () => {
-        hls.destroy();
-        hlsRef.current = null;
-      };
-    } else if (video?.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = src;
-      video
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => console.warn('Autoplay failed:', err));
-    }
-  }, [src, enableHLS]);
-
-  // Mobile Video Auto-play Functionality
+  // Keep mute state synced
   useEffect(() => {
     const video = videoRef.current;
-    if (video && !enableHLS) {
-      video
-        .play()
-        .then(() => setIsPlaying(true))
-            .catch((err) => {
-              console.warn('Autoplay failed:', err);
-            });
-        }
-  }, [enableHLS]);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.muted = isMuted;
-    }
+    if (video) video.muted = isMuted;
   }, [isMuted]);
 
   const handlePlayPause = () => {
     const video = videoRef.current;
-    if (video) {
-      if (isPlaying) {
-        video.pause();
-      } else {
-        video.play();
-      }
-      setIsPlaying(!isPlaying);
+    if (!video) return;
+
+    if (isPlaying) {
+      video.pause();
+      setIsPlaying(false);
+    } else {
+      video
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(() => {});
     }
   };
 
-  const handleMuteUnmute = () => {
-    setIsMuted(!isMuted);
-  };
-
-  const handleQualityChange = (qualityIndex: number) => {
-    if (hlsRef.current) {
-      hlsRef.current.currentLevel = qualityIndex;
-      setCurrentQuality(qualityIndex);
-    }
-  };
+  const handleMuteUnmute = () => setIsMuted((prev) => !prev);
 
   const renderPlayIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" viewBox="0 0 26 26" className="" style={{ '--width': '26', '--height': '26' } as React.CSSProperties as any}>
@@ -177,7 +109,9 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, ho
                   <source className={styles['picture']} srcSet={`${prefixed('/images/header/1080.png')} 1x, ${prefixed('/images/header/1080.png')} 2x`} media="(min-width: 480px)" />
                   <img src={prefixed('/images/header/1080.png')} loading="eager" width="450" height="364" alt="" className="" draggable="false" />
                 </picture>
-                <video ref={videoRef} className={`${styles['showreel__video']} ${isMobile ? styles['showreel__video--mobile'] : styles['showreel__video--desktop']}`} src={!enableHLS ? src : undefined} poster={poster} preload="metadata" loop controls={false} autoPlay muted={isMuted} playsInline />
+
+                <video ref={videoRef} className={`${styles['showreel__video']} ${isMobile ? styles['showreel__video--mobile'] : styles['showreel__video--desktop']}`} src={src} poster={poster} preload="metadata" loop controls={false} muted={isMuted} playsInline />
+
                 <div className={`${styles['showreel__controls']} ${isPlaying ? styles['showreel__controls--playing'] : styles['showreel__controls--paused']}`} style={{ '--height': height } as React.CSSProperties}>
                   <div className={styles['showreel__icons']}>
                     <button aria-label={isPlaying ? 'Pause Showreel Video' : 'Play Showreel Video'} data-faitracker-form-bind="true" onClick={handlePlayPause}>
@@ -188,23 +122,6 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, ho
                       {isMuted ? renderUnmuteIcon() : renderMuteIcon()}
                     </button>
                   </div>
-
-                  {enableHLS && qualityLevels.length > 0 && (
-                    <div className={styles['showreel__controls-menu']}>
-                      {qualityLevels.map((level) => (
-                        <button
-                          key={level.index}
-                          className={styles['showreel__controls-resolution-button']}
-                          onClick={() => handleQualityChange(level.index)}
-                          style={{
-                            backgroundColor: currentQuality === level.index ? 'hsla(0, 0%, 100%, .3)' : 'transparent'
-                          }}
-                        >
-                          {level.label}
-                        </button>
-                      ))}
-                    </div>
-                  )}
                 </div>
               </>
             )}
