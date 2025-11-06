@@ -128,52 +128,52 @@ const OFFERS: ExpertiseContent[] = [
   {
     slug: '',
     variant: 'green',
-    tagText: 'For SaaS Founder',
-    heading: 'One Team. One Process. \n Build Your SaaS faster - \n from $600/month',
-    paragraph: 'Vetted React & Next.js developers — or plug-in mini-squads — supervised by senior leads. Start in 7 days with US-friendly overlap and transparent delivery.',
+    tagText: 'For Tech Founders',
+    heading: 'AI-ready talent. \n Starting at $600/month.',
+    paragraph: 'Get vetted React, Next.js, and full-stack developers — or plug-in mini-squads — guided by senior tech leads. Kick off in 7 days with U.S. timezone overlap, transparent reporting, and true startup velocity.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
     iconCards: {
-      title: 'Start Small Scale Fast',
-      paragraph: "Begin with a single developer and upgrade to a full squad when you're ready. Our onboarding and managed support makes the transition seamless.",
+      title: 'Start Small. Scale Fast.',
+      paragraph: 'Begin with one developer, scale to a squad — no new contracts, no hassle. Every engagement is managed for quality, speed, and control.',
       items: [
         {
           title: 'Replacement Guarantee',
-          description: 'Not the right fit? We’ll provide a vetted replacement developer within 5 business days — no downtime.',
+          description: 'If it’s not the right fit, we’ll assign a vetted replacement developer within 5 business days — no downtime, no disruption.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
           title: 'Full Code Ownership',
-          description: 'You own 100% of the code, repositories, and documentation — we just help you build it faster and cleaner.',
+          description: 'You retain 100% ownership of code, repos, and docs — we accelerate your build and uphold enterprise-grade standards.',
           icon: { name: 'BackendIcon', width: 26 }
         },
         {
           title: 'Technical Supervision',
-          description: 'Every developer is guided by a senior tech lead ensuring code quality, scalability, and architectural consistency.',
+          description: 'Every developer is backed by a senior tech lead who ensures code quality, scalable architecture, and consistent best practices.',
           icon: { name: 'AIBrainIcon', width: 26 }
         },
         {
           title: 'Transparent Reporting',
-          description: 'Stay in control with weekly sprint reports, live Git access, and real-time task tracking in ClickUp or Jira.',
+          description: 'Stay in control with weekly sprint summaries, live Git access, and real-time task tracking in Jira or ClickUp.',
           icon: { name: 'SeismometerIcon', width: 22 }
         },
         {
           title: 'Quick Onboarding',
-          description: 'Start working within 7 days. We handle setup, tools, and environment so you can focus on product outcomes.',
+          description: 'Be operational within 7 days. We handle tool setup, environment prep and assets so you focus on delivering business outcomes.',
           icon: { name: 'VoltageIcon', width: 18 }
         },
         {
-          title: 'US Timezone Overlap',
-          description: 'Collaborate smoothly with guaranteed 4-hour overlap with U.S. Eastern Time — perfect for daily syncs and reviews.',
+          title: 'US Time-zone Overlap',
+          description: 'Collaborate effortlessly with guaranteed 4-hour overlap with U.S. Eastern Time — ideal for daily stand-ups and sprint reviews.',
           icon: { name: 'PlanetRingIcon', width: 26 }
         },
         {
           title: 'Flexible Payments',
-          description: 'Choose your comfort — pay bi-weekly for flexibility or prepay 3 months and enjoy instant savings.',
+          description: 'Pay bi-weekly for agility or pre-pay 3 months to unlock instant savings — align spend with your growth rhythm.',
           icon: { name: 'CreditCardIcon', width: 26 }
         },
         {
           title: 'Scalable Engagement',
-          description: 'Start with one developer and grow to a full squad anytime — without changing your workflow or vendor.',
+          description: 'Begin with one developer and expand to a full squad anytime — no change in vendor or workflow needed.',
           icon: { name: 'ScaleIcon', width: 26 }
         }
       ]
@@ -181,25 +181,25 @@ const OFFERS: ExpertiseContent[] = [
     contentAsideImageItems: [
       {
         title: 'Vetted Talent',
-        paragraph: 'Our developers are carefully selected through multi-stage assessments for skill, reliability, and communication. Each one is fluent in English and trained to collaborate seamlessly with U.S. startup teams.',
+        paragraph: 'Our developers are hand-picked via rigorous multi-stage assessments to ensure top technical skill, communication clarity and reliability. Fully fluent in English and trained to work as your remote first extension of a U.S. startup team.',
         icon: { name: 'PointerIcon', width: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'Technical Supervision',
-        paragraph: 'Every developer works under the guidance of senior engineers who ensure code quality, scalability, and best practices. This hands-on mentorship keeps projects efficient, maintainable, and future-ready.',
+        paragraph: 'Each developer is backed by senior engineers who drive code quality, architectural resilience and best practices. This mentorship ensures your codebase stays scalable, maintainable and ready for growth.',
         icon: { name: 'PointerIcon', width: 64 },
         image: prefixed('/api/images/work/troophunter/mobile/1.png')
       },
       {
         title: 'Fast Onboarding',
-        paragraph: 'Skip the lengthy hiring process. Share your needs, review vetted profiles, and begin development within a week. Our streamlined onboarding ensures your team starts strong and integrates smoothly.',
+        paragraph: 'Skip the lengthy hiring cycle. Simply share your requirements, review pre-vetted profiles and start sprinting within a week. Our streamlined onboarding means your team ramps up with minimal delay.',
         icon: { name: 'PointerIcon', width: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       },
       {
         title: 'Full Code Ownership',
-        paragraph: 'We believe in complete transparency and control. You own 100% of your code, repositories, and documentation — with full IP rights securely transferred at every project milestone.',
+        paragraph: 'We believe in full transparency and your control. You take ownership of all code, repos and documentation — with IP rights and deliverables securely transferred at each milestone.',
         icon: { name: 'PointerIcon', width: 64 },
         image: prefixed('/api/images/work/goldendao/desktop/14.png')
       }
@@ -264,28 +264,35 @@ const OFFERS: ExpertiseContent[] = [
       }
     ],
     faqs: [
-      { title: '1. How quickly can I start working with a developer or team?', description: 'Most clients begin within 7 days of signing up. Our onboarding process is designed for speed — once we understand your goals, we match you with the right talent and set up your development environment immediately.' },
-      { title: '2. What makes your developers “100% vetted”?', description: 'Every developer goes through a multi-stage assessment, including technical interviews, live coding tests, and communication evaluations. Only top-performing professionals with proven track records and strong English communication skills are approved.' },
-      { title: '3. Do I retain full ownership of the work?', description: 'Absolutely. You maintain 100% ownership and intellectual property rights to all code, assets, and deliverables created during the project — no hidden clauses or shared rights.' }
+      { title: '1. How fast can we kick off?', description: 'Most clients start within 5–7 days. We shortlist vetted engineers, align on goals, and integrate directly into your workflow — no hiring lag.' },
+      { title: '2. Are your developers fully dedicated?', description: 'Yes. Every engineer works full-time (160 hrs/month) on your product — no multitasking or shared bandwidth.' },
+      { title: '3. How do we communicate and manage work?', description: 'You’ll collaborate in Slack or Teams, track tasks in ClickUp or Jira, and review code in GitHub — full visibility, async-friendly.' },
+      { title: '4. Can I manage the developer directly?', description: 'Absolutely. You get direct control, or choose optional tech lead supervision for managed oversight and quality assurance.' },
+      { title: '5. What if I need to scale or pivot quickly?', description: 'You can add more developers or upgrade to a Mini Squad within 72 hours — same vetting, same standards, zero onboarding friction.' },
+      { title: '6. How do you ensure code quality and reliability?', description: 'Every developer works under senior supervision, with daily code reviews, automated CI/CD pipelines, and strict documentation practices.' },
+      { title: '7. Where are your developers based?', description: 'All engineers are based in Pakistan, working U.S.-aligned hours with fluent written English and clear communication standards.' },
+      { title: '8. What’s your pricing and payment model?', description: 'Flexible monthly contracts — no lock-ins. Pay via Stripe, Wise, or bank transfer. Choose bi-weekly billing or quarterly prepay discounts.' },
+      { title: '9. Do you handle NDAs and IP ownership?', description: 'Yes. Every engagement includes NDA, IP transfer, and confidentiality clauses — your code and IP remain fully yours.' },
+      { title: '10. How do you compare to freelance platforms or agencies?', description: 'We’re not a marketplace. All engineers are pre-vetted employees, trained for consistency, velocity, and startup-grade execution.' }
     ],
     offersSlider: [
       {
         id: '1',
         heading: 'Junior Developer',
         price: '$600',
-        description: 'Perfect for MVPs and quick iterations.',
-        features: ['1–2 years experience', 'Daily progress updates', 'Tech lead supervision'],
-        categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
+        description: 'Rapid MVP builds & early launches',
+        features: ['1–2 yrs experience', 'Daily async updates', 'Senior code review', 'Fast stack fit'],
+        categories: ['React', 'NextJS', 'Tailwind', 'Frontend', 'Rapid Delivery', 'Startup Friendly', 'Daily Updates', 'Outcome Driven'],
         buttonText: 'Hire Junior',
         package: 'developers'
       },
       {
         id: '2',
-        heading: 'Mid Developer',
+        heading: 'Mid-Level Developer',
         price: '$900',
-        description: 'Reliable full-stack React/Next.js dev.',
-        features: ['3–5 years experience', 'API integration & unit tests', 'Weekly sprint reviews'],
-        categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
+        description: 'Reliable v1.0 builds & scaling features',
+        features: ['3–5 yrs experience', 'API + CI/CD', 'Weekly sprint sync', 'Code ownership mindset'],
+        categories: ['React', 'NextJS', 'NodeJS', 'Full Stack', 'API Integration', 'Clean Code', 'Unit Tests', 'Agile', 'Reliable Delivery', 'Remote First Team'],
         buttonText: 'Hire Mid',
         package: 'developers'
       },
@@ -293,9 +300,9 @@ const OFFERS: ExpertiseContent[] = [
         id: '3',
         heading: 'Senior Developer',
         price: '$1,500',
-        description: 'Architecture, performance & leadership.',
-        features: ['5–8 years experience', 'Mentorship & code reviews', 'System design support'],
-        categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
+        description: 'System design & tech leadership',
+        features: ['5–8 yrs experience', 'Lead architecture', 'Optimize delivery', 'Mentor developers'],
+        categories: ['Tech Lead', 'Architecture', 'System Design', 'Performance', 'Mentorship', 'Cloud Ready', 'Scalable Apps', 'Team Leadership'],
         buttonText: 'Hire Senior',
         package: 'developers'
       },
@@ -303,9 +310,9 @@ const OFFERS: ExpertiseContent[] = [
         id: '4',
         heading: 'MVP Squad',
         price: '$4,500',
-        description: '2 Developers + QA + PM',
-        features: ['Build & launch your MVP in sprints', '4-hour U.S. overlap', 'Managed Agile sprints'],
-        categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
+        description: '2 Devs + QA + PM',
+        features: ['4-hr US overlap', 'Agile sprint cycles', 'QA-led testing', 'Fixed-scope launch'],
+        categories: ['MVP Launch', 'Startup Sprint', 'Agile PM', 'QA Included', 'US Overlap', 'Build Fast', 'Validated MVPs'],
         buttonText: 'Book a Squad Discovery Call',
         package: 'mini-squads'
       },
@@ -313,9 +320,9 @@ const OFFERS: ExpertiseContent[] = [
         id: '5',
         heading: 'Growth Squad',
         price: '$5,500',
-        description: '2 Full-stack Devs + Designer + QA + PM',
-        features: ['Feature scaling & UX improvements', 'Designer-led UI upgrades', 'Continuous delivery (CI/CD)'],
-        categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
+        description: '2 Devs + Designer + QA + PM',
+        features: ['CI/CD setup', 'Weekly design sync', 'UX-led upgrades', 'PM-owned delivery'],
+        categories: ['Growth Engineering', 'UX Design', 'CI/CD', 'Feature Scaling', 'PM Ownership', 'Figma To Code', 'Outcome Driven'],
         buttonText: 'Start Growth Squad',
         package: 'mini-squads'
       },
@@ -324,8 +331,8 @@ const OFFERS: ExpertiseContent[] = [
         heading: 'Pro Squad',
         price: '$7,000',
         description: '3 Devs + QA + PM + Senior Lead',
-        features: ['High-velocity delivery & architecture', 'Full-stack support + DevOps', 'Dedicated PM & weekly roadmaps'],
-        categories: ['Mobile Apps', 'Web Design', 'UI/UX', 'Framer Development', 'Brand Design', 'Logos', 'Slide Decks', 'Brand Guides', 'Social Media'],
+        features: ['DevOps support', 'Weekly tech roadmap', 'Senior-led reviews', 'End-to-end delivery'],
+        categories: ['DevOps', 'High Velocity', 'Scalable Architecture', 'Senior Leader', 'Expert Team', 'End-To-End Ownership', 'Cloud Ready'],
         buttonText: 'Start Pro Squad',
         package: 'mini-squads'
       }

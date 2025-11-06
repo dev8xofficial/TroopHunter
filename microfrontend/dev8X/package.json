@@ -16,6 +16,7 @@
     "lint": "next lint",
     "generate:hls": "bash scripts/generate-hls.sh",
     "generate:sitemap": "node sitemap.mjs",
+    "ngrok:local": "npx ngrok http 3005",
     "ngrok:development": "npx ngrok http 3005",
     "ngrok:staging": "npx ngrok http 3004",
     "ngrok:production": "npx ngrok http 3003"
