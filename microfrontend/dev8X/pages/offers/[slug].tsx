@@ -38,9 +38,21 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent):
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [showHowToHireVideo, setShowHowToHireVideo] = useState<boolean>(false);
 
+  const availableCategories = useMemo<string[]>(() => {
+    if (!PageData.offersSlider) return [];
+    const uniquePackages = new Set<string>();
+    PageData.offersSlider.forEach((offer) => {
+      if (offer.package && typeof offer.package === 'string') {
+        uniquePackages.add(offer.package);
+      }
+    });
+    return Array.from(uniquePackages).sort();
+  }, [PageData.offersSlider]);
+
   const filteredOffers = useMemo<ExpertiseOffersSliderItem[]>(() => {
+    if (!PageData.offersSlider) return [];
     if (activeCategory.toLowerCase() !== 'all') {
-      return PageData.offersSlider.filter((o) => o.package.toLowerCase() === activeCategory.toLowerCase());
+      return PageData.offersSlider.filter((o) => o.package === activeCategory);
     }
     return PageData.offersSlider;
   }, [activeCategory, PageData.offersSlider]);
@@ -60,12 +72,12 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent):
       <Head>
         <title>{PageData.meta.title}</title>
         <meta name="description" content={PageData.meta.description}></meta>
-        <link rel="canonical" href={prefixed('/offers')} />
+        <link rel="canonical" href={prefixed(`/offers/${slug}`)} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title}></meta>
         <meta property="og:description" content={PageData.meta.description}></meta>
-        <meta property="og:url" content={prefixed('/offers')}></meta>
+        <meta property="og:url" content={prefixed(`/offers/${slug}`)}></meta>
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:image:secure_url" content={prefixed('/logo-social.png')}></meta>
@@ -83,7 +95,7 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent):
         <Header />
         <FooterRevealPageWrap variant="page">
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
-            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} paragraph={PageData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} />
+            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} paragraph={PageData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />
           </div>
           {isOffersPage && !showHowToHireVideo && (
             <div style={{ display: 'grid' }}>

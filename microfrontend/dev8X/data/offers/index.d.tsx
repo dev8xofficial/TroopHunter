@@ -517,122 +517,132 @@ const OFFERS: ExpertiseContent[] = [
       {
         id: '1',
         heading: 'Modern Real Estate Website',
-        price: '$400–$600',
-        description: 'High-converting property brand presence',
-        features: ['Responsive design', 'High-performance pages', 'Lead-focused layout', 'SEO-ready setup'],
-        categories: ['Website', 'Branding', 'Fast Delivery', 'NextJS', 'High Conversion', 'Mobile Optimized'],
+        price: '$500',
+        description: 'Responsive, high-conversion site for listings and agents',
+        features: ['Property pages', 'Agent profiles', 'Testimonials', 'Contact forms'],
+        categories: ['Website', 'Branding', 'SEO', 'Lead Capture', 'Fast Delivery', 'Responsive'],
         buttonText: 'Launch My Website',
-        package: 'services'
+        package: 'Website & Portal'
       },
       {
         id: '2',
-        heading: 'Listings Automation System',
-        price: '$350–$500',
-        description: 'Dynamic listings synced to your CMS',
-        features: ['Auto-updating listings', 'Google Sheets sync', 'Fast filters', 'Sharp UI'],
-        categories: ['Listings', 'Automation', 'CMS', 'Data Sync', 'Full Stack', 'Property Management'],
+        heading: 'Listings Automation',
+        price: '$450',
+        description: 'Dynamic property listings synced from CMS or Sheets',
+        features: ['Auto-updating listings', 'CMS integration', 'Filters & search', 'Map view'],
+        categories: ['Automation', 'Listings', 'CMS', 'Dynamic', 'Real Estate', 'Efficiency'],
         buttonText: 'Automate My Listings',
-        package: 'services'
+        package: 'Automation & Lead Capture'
       },
       {
         id: '3',
-        heading: 'Smart Lead Form + CRM Sync',
-        price: '$200–$350',
-        description: 'Instantly send leads into your CRM',
-        features: ['Form validation', 'Email + CRM sync', 'Real-time alerts', 'Optimized fields'],
-        categories: ['Lead Capture', 'CRM Integration', 'Automation', 'NodeJS', 'High Intent Leads'],
+        heading: 'Smart Lead Form + CRM',
+        price: '$300',
+        description: 'Capture and sync leads into your CRM instantly',
+        features: ['Custom forms', 'CRM integration', 'Auto-responses', 'Notifications'],
+        categories: ['Leads', 'CRM', 'Automation', 'Email', 'Conversion'],
         buttonText: 'Install Lead Capture',
-        package: 'services'
+        package: 'Automation & Lead Capture'
       },
       {
         id: '4',
-        heading: '360° Virtual Tour Setup',
-        price: '$400–$600',
-        description: 'Immersive 360° tours and galleries',
-        features: ['360° viewer', 'HD gallery', 'Fast loading', 'Brand-styled UI'],
-        categories: ['Virtual Tours', 'ThreeJS', 'Cloudinary', 'Multimedia', 'High Engagement'],
+        heading: '360° Virtual Tours',
+        price: '$550',
+        description: 'Interactive property galleries and walkthroughs',
+        features: ['3D viewer', 'Image gallery', 'Video embeds', 'Mobile ready'],
+        categories: ['Media', 'Virtual Tour', 'Gallery', 'Showcase', 'Modern UX'],
         buttonText: 'Add Virtual Tours',
-        package: 'services'
+        package: 'Media & Showcase'
       },
       {
         id: '5',
-        heading: 'Online Appointment Booking',
-        price: '$250–$400',
-        description: 'Calendar-based viewing scheduling',
-        features: ['Google Calendar sync', 'Agent notifications', 'Auto reminders', 'Fast setup'],
-        categories: ['Booking System', 'Calendar Sync', 'Automation', 'Lead Flow', 'Frictionless UX'],
+        heading: 'Online Booking System',
+        price: '$350',
+        description: 'Let buyers schedule viewings or calls online',
+        features: ['Calendar sync', 'Agent availability', 'Reminders', 'Integrations'],
+        categories: ['Booking', 'Calendar', 'Automation', 'Scheduling', 'Lead Flow'],
         buttonText: 'Activate Booking',
-        package: 'services'
+        package: 'Automation & Lead Capture'
       },
       {
         id: '6',
-        heading: 'Local SEO + Google Business Setup',
-        price: '$250–$400',
-        description: 'Rank higher for “Real Estate in [City]”',
-        features: ['GBP optimization', 'Keyword targeting', 'Local schema', 'Speed checks'],
-        categories: ['SEO', 'Local Ranking', 'GBP', 'Visibility', 'City Targeting'],
-        buttonText: 'Boost My Local SEO',
-        package: 'services'
+        heading: 'Google Business & SEO',
+        price: '$300',
+        description: 'Rank higher for “Homes in [City]” searches',
+        features: ['Local SEO', 'Google Business setup', 'On-page fixes', 'Keyword insights'],
+        categories: ['SEO', 'Visibility', 'Local', 'Google', 'Ranking'],
+        buttonText: 'Boost My SEO',
+        package: 'Marketing'
       },
       {
         id: '7',
-        heading: 'Property Analytics Dashboard',
-        price: '$250–$350',
-        description: 'Track leads, top listings, and channels',
-        features: ['Lead metrics', 'Listing analytics', 'Channel insights', 'Clean dashboard'],
-        categories: ['Analytics', 'Dashboard', 'BI', 'Data Insights', 'Performance Tracking'],
+        heading: 'Property Dashboard',
+        price: '$280',
+        description: 'Track listings, leads, and conversion performance',
+        features: ['Charts & KPIs', 'Leads data', 'Traffic insights', 'Revenue trends'],
+        categories: ['Analytics', 'Dashboard', 'Insights', 'Growth', 'Data'],
         buttonText: 'Install Analytics',
-        package: 'services'
+        package: 'Website & Portal'
       },
       {
         id: '8',
-        heading: 'Email & SMS Follow-up System',
-        price: '$200–$300',
-        description: 'Automated follow-ups for cold leads',
-        features: ['Email automation', 'SMS sequences', 'Template library', 'Lead tagging'],
-        categories: ['Automation', 'Email', 'SMS', 'Lead Nurture', 'Twilio'],
-        buttonText: 'Activate Follow-ups',
-        package: 'services'
+        heading: 'Email & SMS Automation',
+        price: '$250',
+        description: 'Auto follow-ups for inquiries and cold leads',
+        features: ['SMS & email triggers', 'Templates', 'Follow-up rules', 'CRM sync'],
+        categories: ['Automation', 'SMS', 'Email', 'Retention', 'Leads'],
+        buttonText: 'Activate Automation',
+        package: 'Automation & Lead Capture'
       },
       {
         id: '9',
-        heading: 'Deployment + Hosting Setup',
-        price: '$150–$250',
-        description: 'Secure hosting with SSL and Cloudflare',
-        features: ['SSL included', 'Cloudflare security', 'Fast CDN', 'Docker setup'],
-        categories: ['Hosting', 'Security', 'Cloud', 'Deployment', 'Nginx'],
+        heading: 'Hosting & Security Setup',
+        price: '$200',
+        description: 'Domain, SSL, and cloud deployment with backups',
+        features: ['Domain setup', 'SSL config', 'Cloud hosting', 'Speed optimization'],
+        categories: ['Hosting', 'Security', 'Cloud', 'Performance', 'Reliability'],
         buttonText: 'Set Up Hosting',
-        package: 'services'
+        package: 'Website & Portal'
       },
       {
         id: '10',
-        heading: 'Reviews & Social Proof Widget',
-        price: '$80–$120',
-        description: 'Live Google reviews embedded on site',
-        features: ['Auto sync', 'Brand styling', 'Trust badges', 'Fast integration'],
-        categories: ['Social Proof', 'Reviews', 'Credibility', 'Conversion Boost', 'Google API'],
-        buttonText: 'Add Reviews Widget',
-        package: 'services'
+        heading: 'Google Reviews Widget',
+        price: '$120',
+        description: 'Showcase live client reviews for trust & SEO',
+        features: ['Live reviews', 'Auto-update', 'SEO boost', 'Easy embed'],
+        categories: ['Reviews', 'Trust', 'Social Proof', 'SEO', 'Credibility'],
+        buttonText: 'Add Review Widget',
+        package: 'Marketing'
       },
       {
         id: '11',
-        heading: 'Speed & Core Web Vitals Upgrade',
-        price: '$150–$250',
-        description: 'Improve rankings and conversion rates',
-        features: ['LCP optimization', 'CDN tuning', 'Image compression', 'Core fixes'],
-        categories: ['Performance', 'SEO', 'Page Speed', 'NextJS', 'Conversion Optimization'],
+        heading: 'Speed Optimization',
+        price: '$200',
+        description: 'Faster load times for better conversion & SEO',
+        features: ['Lighthouse fixes', 'Caching', 'Image compression', 'Performance tuning'],
+        categories: ['Speed', 'Performance', 'SEO', 'Optimization'],
         buttonText: 'Optimize Speed',
-        package: 'services'
+        package: 'Performance'
       },
       {
         id: '12',
-        heading: 'Monthly Hosting & Maintenance Plan',
-        price: '$150–$300/mo',
-        description: 'Ongoing hosting, updates, and backups',
-        features: ['Scheduled backups', 'Security patches', 'Performance checks', 'Priority support'],
-        categories: ['Maintenance', 'Hosting', 'Security', 'Long-Term Care', 'Monthly Support'],
+        heading: 'Monthly Support Plan',
+        price: '$250/mo',
+        description: 'Ongoing maintenance, backups, and uptime checks',
+        features: ['24/7 monitoring', 'Monthly updates', 'Daily backups', 'Security audits'],
+        categories: ['Support', 'Maintenance', 'Security', 'Monitoring', 'DevOps'],
         buttonText: 'Start Monthly Plan',
-        package: 'services'
+        package: 'Performance'
+      },
+      {
+        id: '13',
+        heading: 'Property Inquiry Chatbot',
+        price: '$400',
+        description: '24/7 AI chatbot for property leads via WhatsApp & web.',
+        features: ['AI + predefined responses', 'Multi-language support', 'CRM / database storage', 'Simple dashboard for agents', 'WhatsApp & web widget'],
+        categories: ['Automation', 'Lead Capture', 'AI', 'CRM', 'Property Inquiries'],
+        buttonText: 'Activate Chatbot',
+        package: 'Automation & Lead Capture'
       }
     ],
     video: prefixed(`/videos/header/header.mp4`)
@@ -722,8 +732,8 @@ const OFFERS: ExpertiseContent[] = [
       end: 'get started?'
     },
     meta: {
-      title: 'SaaS Development Services | Build Your SaaS Product — Dev8X | Dev8X: World class digital products',
-      description: 'SaaS Development Services | Build Your SaaS Product — Dev8X | Dev8X: World class digital products'
+      title: 'Dental Marketing & Automation Services | Dev8X | Build Your Dental Brand Fast',
+      description: 'Dental Marketing & Automation Services | Dev8X | Build Your Dental Brand Fast'
     },
     footerForm: {
       privacy: {
@@ -821,122 +831,122 @@ const OFFERS: ExpertiseContent[] = [
       {
         id: '1',
         heading: 'Modern Dental Website',
-        price: '$450',
-        description: 'Clean, mobile-first website built to convert patients',
-        features: ['Responsive design', 'Treatments + doctors pages', 'Reviews + map + contact', 'Fast SEO-ready build'],
-        categories: ['Website', 'Branding', 'SEO Ready', 'Modern UI', 'Fast Delivery', 'Conversion Focused'],
+        price: '$400',
+        description: 'Responsive site to showcase services & doctors with SEO-ready structure.',
+        features: ['Doctor profiles', 'Service overview', 'SEO-ready structure', 'Appointment CTA'],
+        categories: ['Website', 'Branding', 'SEO', 'Responsive Design', 'Conversion Focused', 'Patient Growth', 'Modern UI'],
         buttonText: 'Build My Website',
-        package: 'services'
+        package: 'Website & Portal'
       },
       {
         id: '2',
-        heading: 'Online Booking System',
-        price: '$400',
-        description: 'Let patients schedule appointments 24/7',
-        features: ['Booking calendar', 'Doctor availability', 'Google Calendar sync', 'Confirmation emails'],
-        categories: ['Booking', 'Calendar Sync', 'Automation', 'Patient Flow', 'Clinic Efficiency', 'Low No-Shows'],
-        buttonText: 'Add Booking System',
-        package: 'services'
+        heading: 'AI Chatbot Lead Capture',
+        price: '$300',
+        description: 'Automate appointment requests and follow-ups 24/7.',
+        features: ['AI-driven chat', 'CRM integration', 'WhatsApp & web', 'Multi-language support'],
+        categories: ['Automation', 'Lead Capture', 'CRM', 'AI', 'Patient Experience', 'Conversion', 'Time Saver'],
+        buttonText: 'Activate AI Chatbot',
+        package: 'Automation & Lead Capture'
       },
       {
         id: '3',
         heading: 'SMS & Email Reminders',
         price: '$300',
-        description: 'Automated reminders that reduce no-shows',
+        description: 'Automated reminders to reduce no-shows and improve retention.',
         features: ['SMS notifications', 'Email reminders', 'Custom templates', 'No-show reduction'],
         categories: ['Automation', 'SMS', 'Email', 'Reminders', 'Patient Retention'],
-        buttonText: 'Activate Reminders',
-        package: 'services'
+        buttonText: 'Set Up Reminders',
+        package: 'Automation & Lead Capture'
       },
       {
         id: '4',
         heading: 'Patient Portal',
         price: '$500',
-        description: 'Secure login for patients to manage bookings',
-        features: ['View appointments', 'Treatment history', 'Invoices', 'Secure authentication'],
+        description: 'Secure login for patients to manage bookings, history, and invoices.',
+        features: ['View appointments', 'Treatment history', 'Invoices', 'Secure login'],
         categories: ['Patient Portal', 'Dashboard', 'Security', 'Clinic Systems', 'Retention', 'Modern UX'],
         buttonText: 'Launch Patient Portal',
-        package: 'services'
+        package: 'Website & Portal'
       },
       {
         id: '5',
-        heading: 'Doctor/Admin Dashboard',
-        price: '$450',
-        description: 'Manage appointments, patients, and reminders',
-        features: ['Admin panel', 'Patient list', 'Schedule controls', 'Branch support'],
-        categories: ['Admin Dashboard', 'Scheduling', 'Patient Records', 'Clinic Management', 'Automation'],
-        buttonText: 'Enable Admin Panel',
-        package: 'services'
+        heading: 'Google Reviews Widget',
+        price: '$120',
+        description: 'Show live patient reviews to build trust and credibility.',
+        features: ['Live feed', 'Auto-update', 'Trust badges', 'Easy embed'],
+        categories: ['Social Proof', 'Reviews', 'Credibility', 'Patient Trust', 'SEO', 'Conversion'],
+        buttonText: 'Add Review Widget',
+        package: 'Marketing & Branding'
       },
       {
         id: '6',
-        heading: 'Local SEO & Google Business',
-        price: '$300',
-        description: 'Rank higher for “Dentist near me” searches',
-        features: ['GBP optimization', 'Local keywords', 'On-page SEO', 'Review insights'],
-        categories: ['SEO', 'Local Ranking', 'Visibility', 'Google Maps', 'Leads'],
-        buttonText: 'Boost My SEO',
-        package: 'services'
+        heading: 'Smart Appointment Form',
+        price: '$200',
+        description: 'Capture leads automatically and sync with CRM.',
+        features: ['Form validation', 'Email/SMS notifications', 'Calendar sync', 'CRM-ready'],
+        categories: ['Lead Capture', 'Automation', 'Booking', 'CRM', 'Conversion'],
+        buttonText: 'Install Smart Form',
+        package: 'Website & Portal'
       },
       {
         id: '7',
-        heading: 'Contact Forms + Auto Responder',
-        price: '$120',
-        description: 'Capture leads and respond instantly',
-        features: ['Contact forms', 'Auto-reply email', 'Lead notifications', 'CRM integration'],
-        categories: ['Leads', 'Forms', 'Automation', 'Email', 'Clinic Growth'],
-        buttonText: 'Setup Contact System',
-        package: 'services'
+        heading: 'Clinic Branding Kit',
+        price: '$200',
+        description: 'Refresh logo, colors, and typography for web & social.',
+        features: ['Logo refinement', 'Color palette', 'Typography', 'Social templates'],
+        categories: ['Branding', 'Visual Identity', 'Marketing', 'Patient Trust', 'Modern Design'],
+        buttonText: 'Create Branding Kit',
+        package: 'Marketing & Branding'
       },
       {
         id: '8',
-        heading: 'Domain, SSL & Hosting Setup',
-        price: '$200',
-        description: 'Secure, fast hosting with full configuration',
-        features: ['Domain setup', 'SSL certificate', 'Cloud deployment', 'Speed optimization'],
-        categories: ['Hosting', 'Security', 'Cloud', 'Performance', 'Reliability'],
-        buttonText: 'Setup Hosting',
-        package: 'services'
+        heading: 'Click-to-Call / WhatsApp',
+        price: '$100',
+        description: 'Enable patients to call or message instantly from your site.',
+        features: ['Floating button', 'WhatsApp API', 'Click tracking', 'Custom styling'],
+        categories: ['Leads', 'Conversion', 'Contact', 'WhatsApp', 'Patient Engagement'],
+        buttonText: 'Add Quick Contact',
+        package: 'Engagement & Contact'
       },
       {
         id: '9',
-        heading: 'Clinic Analytics Dashboard',
-        price: '$250',
-        description: 'Track appointments, traffic, and revenue',
-        features: ['Charts & insights', 'Appointments data', 'Traffic stats', 'Growth indicators'],
-        categories: ['Analytics', 'Dashboard', 'Insights', 'Revenue', 'Data'],
-        buttonText: 'Add Analytics',
-        package: 'services'
+        heading: 'Smile Gallery Showcase',
+        price: '$200',
+        description: 'Highlight patient transformations to build trust.',
+        features: ['Before & after images', 'SEO captions', 'Instagram-ready', 'Lightbox gallery'],
+        categories: ['Portfolio', 'Social Proof', 'Trust', 'Visual Marketing', 'Patient Confidence'],
+        buttonText: 'Upload Smile Gallery',
+        package: 'Marketing & Branding'
       },
       {
         id: '10',
-        heading: 'Google Reviews Widget',
-        price: '$100',
-        description: 'Show live reviews on your website',
-        features: ['Live review feed', 'Trust boost', 'Auto-update', 'Easy embedding'],
-        categories: ['Reviews', 'Trust', 'Credibility', 'Social Proof', 'SEO'],
-        buttonText: 'Add Review Widget',
-        package: 'services'
+        heading: 'Local Ads Campaign',
+        price: '$300',
+        description: 'Target nearby patients with Google & social ads.',
+        features: ['Audience targeting', 'Ad setup', 'Pixel tracking', 'Performance reports'],
+        categories: ['Advertising', 'Local Leads', 'Patient Growth', 'Google Ads', 'Conversion'],
+        buttonText: 'Launch Ads Campaign',
+        package: 'Marketing & Branding'
       },
       {
         id: '11',
         heading: 'Speed Optimization',
         price: '$200',
-        description: 'Boost website speed & improve SEO ranking',
-        features: ['Lighthouse fixes', 'CDN caching', 'Image optimization', 'Performance tuning'],
-        categories: ['Speed', 'SEO', 'Performance', 'Optimization'],
-        buttonText: 'Optimize Speed',
-        package: 'services'
+        description: 'Boost site speed, UX, and SEO rankings.',
+        features: ['CDN setup', 'Image optimization', 'Performance tuning', 'Core Web Vitals fix'],
+        categories: ['Performance', 'SEO', 'Optimization', 'UX', 'Conversion'],
+        buttonText: 'Optimize Website Speed',
+        package: 'Performance'
       },
       {
         id: '12',
         heading: 'Monthly Support Plan',
-        price: '$200/mo',
-        description: 'Backups, updates, uptime monitoring',
-        features: ['24/7 monitoring', 'Monthly updates', 'Daily backups', 'Security checks'],
-        categories: ['Support', 'Maintenance', 'Security', 'DevOps', 'Monitoring'],
-        buttonText: 'Start Support Plan',
-        package: 'services'
+        price: '$250',
+        description: 'Reliable hosting, backups, security checks, and ongoing support.',
+        features: ['24/7 monitoring', 'Security checks', 'Performance reports', 'Priority support'],
+        categories: ['Hosting', 'Maintenance', 'Security', 'Support', 'Reliability', 'Performance'],
+        buttonText: 'Start Monthly Support',
+        package: 'Performance'
       }
     ],
     video: prefixed(`/videos/header/header.mp4`)

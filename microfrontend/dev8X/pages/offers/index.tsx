@@ -41,10 +41,22 @@ const OffersPage: React.FC = (): JSX.Element => {
   };
 
   const nextExpertise = getNextExpertise('web-applications');
+  
+  const availableCategories = useMemo<string[]>(() => {
+    if (!offersData.offersSlider) return [];
+    const uniquePackages = new Set<string>();
+    offersData.offersSlider.forEach((offer) => {
+      if (offer.package && typeof offer.package === 'string') {
+        uniquePackages.add(offer.package);
+      }
+    });
+    return Array.from(uniquePackages).sort();
+  }, [offersData.offersSlider]);
 
   const filteredOffers = useMemo<ExpertiseOffersSliderItem[]>(() => {
+    if (!offersData.offersSlider) return [];
     if (activeCategory.toLowerCase() !== 'all') {
-      return offersData.offersSlider.filter((o) => o.package.toLowerCase() === activeCategory.toLowerCase());
+      return offersData.offersSlider.filter((o) => o.package === activeCategory);
     }
     return offersData.offersSlider;
   }, [activeCategory, offersData.offersSlider]);
@@ -87,7 +99,7 @@ const OffersPage: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
-            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} />
+            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />
           </div>
           {isOffersPage && !showHowToHireVideo && (
             <div style={{ display: 'grid' }}>
