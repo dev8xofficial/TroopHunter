@@ -5,61 +5,57 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom, useAtomValue } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, ExpertiseOffersSliderItem, WorkCard } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, ExpertiseOffersSliderItem, WorkCard, ExpertiseContent } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
-import EXPERTISES from '../../data/expertise/index.d';
+import OFFERS from '../../data/offers/index.d';
 import { prefixed } from '../../utils/helpers';
 import ExpertiseStyles from '../expertise/index.module.css';
-import OFFERS from '../../data/offers/index.d';
 
 import HomePageStyles from '../index.module.css';
 import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import styles from './index.module.css';
 
-const OffersPage: React.FC = (): JSX.Element => {
+const OffersPage: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const currentModal = useAtomValue(openSmoothModalAtom);
 
   // Get the first offers data item since PageData is an array
-  const offersData = OFFERS[1];
-  const variant = offersData.variant;
+  const getNextExpertise = (currentSlug: string) => {
+    const currentIndex = OFFERS.findIndex((e) => e.slug === currentSlug);
+
+    if (currentIndex === -1) return null; // if slug not found
+
+    const nextIndex = (currentIndex + 1) % OFFERS.length;
+    return OFFERS[nextIndex];
+  };
+
+  const nextExpertise = getNextExpertise(slug);
 
   const router = useRouter();
   const isOffersPage = router.pathname.includes('/offers');
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [showHowToHireVideo, setShowHowToHireVideo] = useState<boolean>(false);
 
-  const getNextExpertise = (currentSlug: string) => {
-    const currentIndex = EXPERTISES.findIndex((e) => e.slug === currentSlug);
-
-    if (currentIndex === -1) return null; // if slug not found
-
-    const nextIndex = (currentIndex + 1) % EXPERTISES.length;
-    return EXPERTISES[nextIndex];
-  };
-
-  const nextExpertise = getNextExpertise('web-applications');
-  
   const availableCategories = useMemo<string[]>(() => {
-    if (!offersData.offersSlider) return [];
+    if (!PageData.offersSlider) return [];
     const uniquePackages = new Set<string>();
-    offersData.offersSlider.forEach((offer) => {
+    PageData.offersSlider.forEach((offer) => {
       if (offer.package && typeof offer.package === 'string') {
         uniquePackages.add(offer.package);
       }
     });
     return Array.from(uniquePackages).sort();
-  }, [offersData.offersSlider]);
+  }, [PageData.offersSlider]);
 
   const filteredOffers = useMemo<ExpertiseOffersSliderItem[]>(() => {
-    if (!offersData.offersSlider) return [];
+    if (!PageData.offersSlider) return [];
     if (activeCategory.toLowerCase() !== 'all') {
-      return offersData.offersSlider.filter((o) => o.package === activeCategory);
+      return PageData.offersSlider.filter((o) => o.package === activeCategory);
     }
-    return offersData.offersSlider;
-  }, [activeCategory, offersData.offersSlider]);
+    return PageData.offersSlider;
+  }, [activeCategory, PageData.offersSlider]);
 
   const handleCategorySelect = (category: string) => {
     if (category === 'How to Hire') {
@@ -74,14 +70,14 @@ const OffersPage: React.FC = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>{offersData.meta.title}</title>
-        <meta name="description" content={offersData.meta.description}></meta>
-        <link rel="canonical" href={prefixed('/offers')} />
+        <title>{PageData.meta.title}</title>
+        <meta name="description" content={PageData.meta.description}></meta>
+        <link rel="canonical" href={prefixed(`/offers/${slug}`)} />
 
         {/* Open Graph Tags */}
-        <meta property="og:title" content={offersData.meta.title}></meta>
-        <meta property="og:description" content={offersData.meta.description}></meta>
-        <meta property="og:url" content={prefixed('/offers')}></meta>
+        <meta property="og:title" content={PageData.meta.title}></meta>
+        <meta property="og:description" content={PageData.meta.description}></meta>
+        <meta property="og:url" content={prefixed(`/offers/${slug}`)}></meta>
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:image:secure_url" content={prefixed('/logo-social.png')}></meta>
@@ -90,8 +86,8 @@ const OffersPage: React.FC = (): JSX.Element => {
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image"></meta>
-        <meta name="twitter:title" content={offersData.meta.title}></meta>
-        <meta name="twitter:description" content={offersData.meta.description}></meta>
+        <meta name="twitter:title" content={PageData.meta.title}></meta>
+        <meta name="twitter:description" content={PageData.meta.description}></meta>
         <meta name="twitter:image" content={prefixed('/logo-social.png')}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
@@ -99,7 +95,7 @@ const OffersPage: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
-            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />
+            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} paragraph={PageData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />
           </div>
           {isOffersPage && !showHowToHireVideo && (
             <div style={{ display: 'grid' }}>
@@ -114,8 +110,8 @@ const OffersPage: React.FC = (): JSX.Element => {
           <main className={`${ExpertiseStyles['expertise-single']} container-full`}>
             <div>
               <ModularBlocks>
-                <IconCards title={offersData.iconCards?.title} paragraph={offersData.iconCards?.paragraph} items={offersData.iconCards?.items} />
-                <ContentAsideImage contentAsideImageItems={offersData.contentAsideImageItems} />
+                <IconCards title={PageData.iconCards?.title} paragraph={PageData.iconCards?.paragraph} items={PageData.iconCards?.items} />
+                <ContentAsideImage contentAsideImageItems={PageData.contentAsideImageItems} />
               </ModularBlocks>
 
               <div className={ExpertiseStyles['expertise-container']}>
@@ -124,7 +120,7 @@ const OffersPage: React.FC = (): JSX.Element => {
                 <div className={ExpertiseStyles['expertise-container']}>
                   <h2 className="hidden">Testimonials:</h2>
                   <CardStack variant="Stack">
-                    {offersData?.testimonials?.map((item, index) => (
+                    {PageData?.testimonials?.map((item, index) => (
                       <CardStack variant="Card" index={index} key={index}>
                         <figure className={styles['testimonial-card']} style={{ backgroundColor: item.bgColor, color: item.color }}>
                           <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['testimonial-card__image']}`}>
@@ -157,13 +153,13 @@ const OffersPage: React.FC = (): JSX.Element => {
                       </Button>
                     </div>
                   </footer>
-                  <FAQs faqs={offersData.faqs} />
+                  <FAQs faqs={PageData.faqs} />
                 </div>
               </div>
             </div>
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={offersData.footerMainContent} footerForm={offersData.footerForm} footerSocialLinks={offersData.footerSocialLinks} onClick={() => toggleModal('contact')} />
+        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
       <SmoothModalWrapper modalType="career" toggle={() => toggleModal('career')}>
         <SubmitApplicationModal />
@@ -185,3 +181,24 @@ const OffersPage: React.FC = (): JSX.Element => {
 };
 
 export default OffersPage;
+
+export async function getStaticPaths() {
+  const paths = OFFERS.map((project) => ({
+    params: { slug: project.slug }
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+  const PageData = OFFERS.find((p) => p.slug === params.slug);
+  const { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials, faqs, offersSlider } = PageData;
+
+  if (!PageData) {
+    return { notFound: true };
+  }
+
+  return {
+    props: { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials, faqs, offersSlider }
+  };
+}

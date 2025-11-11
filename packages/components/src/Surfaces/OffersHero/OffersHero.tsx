@@ -18,9 +18,10 @@ interface OffersHeroProps extends Omit<ExpertiseContent, 'slug' | 'iconCards' | 
   paragraph?: string;
   handleCategorySelect?: any;
   openScheduleCallModal?: React.MouseEventHandler<HTMLButtonElement>;
+  categories?: string[];
 }
 
-export const OffersHero: React.FC<OffersHeroProps> = ({ tagText, heading, variant, activeCategory, showHowToHireVideo, paragraph, handleCategorySelect, openScheduleCallModal }): JSX.Element => {
+export const OffersHero: React.FC<OffersHeroProps> = ({ tagText, heading, variant, activeCategory, showHowToHireVideo, paragraph, handleCategorySelect, openScheduleCallModal, categories }): JSX.Element => {
   const router = useRouter();
   const isOffersPage = router.pathname.includes('/offers');
   const offersData: LandscapeWorkCardProps = OFFERS_GRID_DATA[0] as LandscapeWorkCardProps;
@@ -45,7 +46,7 @@ export const OffersHero: React.FC<OffersHeroProps> = ({ tagText, heading, varian
 
                 {isOffersPage && (
                   <div className={LayoutStyles['work-header']}>
-                    <OffersCategories active={activeCategory} onSelect={handleCategorySelect} openScheduleCallModal={openScheduleCallModal} />
+                    <OffersCategories active={activeCategory} onSelect={handleCategorySelect} openScheduleCallModal={openScheduleCallModal} categories={categories} />
                   </div>
                 )}
               </div>

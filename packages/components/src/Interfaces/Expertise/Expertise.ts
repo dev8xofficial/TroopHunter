@@ -68,7 +68,7 @@ export interface ExpertiseOffersSliderItem {
   features: string[];
   categories: string[];
   buttonText?: string;
-  package?: 'developers' | 'mini-squads';
+  package?: string;
 }
 
 export interface ExpertiseContent {
