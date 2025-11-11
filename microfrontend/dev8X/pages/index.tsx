@@ -18,7 +18,7 @@ import styles from './index.module.css';
 
 export default function Home() {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
-  const { modalSlug, openModal } = useProjectModal();
+  const { modalSlug, openModal, closeProjectModal } = useProjectModal();
   const project = WORK_PROJECTS.find((project) => project.path === modalSlug) ?? WORK_PROJECTS[0];
   const whyDev = {
     heading: 'Why Dev8X',
@@ -76,7 +76,7 @@ export default function Home() {
           <main className={styles['homepage']}>
             <Hero />
             <div className={styles['homepage__purple-change']}>
-              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src={prefixed("/videos/header/header.mp4")} isMobile={isMobile} />
+              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src={prefixed('/videos/header/header.mp4')} isMobile={isMobile} />
             </div>
             {/* <Problems /> */}
             <section className={styles['showcase']}>
@@ -113,7 +113,13 @@ export default function Home() {
         </FooterRevealPageWrap>
         <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
-      <SmoothModalWrapper modalType="project" toggle={() => toggleModal('project')}>
+      <SmoothModalWrapper
+        modalType="project"
+        toggle={() => {
+          toggleModal('project');
+          closeProjectModal();
+        }}
+      >
         {modalSlug && <ProjectsFormModal {...project} />}
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>

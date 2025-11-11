@@ -16,7 +16,7 @@ import WorkGridStyles from '../../components/Surfaces/WorkGrid/index.module.css'
 
 const Work: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
-  const { modalSlug, openModal } = useProjectModal();
+  const { modalSlug, openModal, closeProjectModal } = useProjectModal();
   const project = WORK_PROJECTS.find((project) => project.path === modalSlug) ?? WORK_PROJECTS[0];
 
   const getNextWorkProject = (currentSlug: string) => {
@@ -35,15 +35,15 @@ const Work: React.FC = (): JSX.Element => {
       <Head>
         <title>{PageData.meta.title}</title>
         <meta name="description" content={PageData.meta.description}></meta>
-        <link rel="canonical" href={prefixed("/work")} />
+        <link rel="canonical" href={prefixed('/work')} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title}></meta>
         <meta property="og:description" content={PageData.meta.description}></meta>
-        <meta property="og:url" content={prefixed("/work")}></meta>
+        <meta property="og:url" content={prefixed('/work')}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={prefixed("/logo-social.png")}></meta>
-        <meta property="og:image:secure_url" content={prefixed("/logo-social.png")}></meta>
+        <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
+        <meta property="og:image:secure_url" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -51,7 +51,7 @@ const Work: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content={PageData.meta.title}></meta>
         <meta name="twitter:description" content={PageData.meta.description}></meta>
-        <meta name="twitter:image" content={prefixed("/logo-social.png")}></meta>
+        <meta name="twitter:image" content={prefixed('/logo-social.png')}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
@@ -101,7 +101,13 @@ const Work: React.FC = (): JSX.Element => {
         </FooterRevealPageWrap>
         <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
-      <SmoothModalWrapper modalType="project" toggle={() => toggleModal('project')}>
+      <SmoothModalWrapper
+        modalType="project"
+        toggle={() => {
+          toggleModal('project');
+          closeProjectModal();
+        }}
+      >
         {modalSlug && <ProjectsFormModal {...project} nextWorkProject={nextWorkProject} />}
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>

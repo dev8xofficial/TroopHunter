@@ -25,7 +25,6 @@ export const PricingStudySidebar: React.FC<{ onBookNow?: () => void }> = ({ onBo
   const formData = new FormData();
 
   const handleSendRequest = async () => {
-    debugger;
     setLoading(true);
     setError(null);
     setSuccess(false);
