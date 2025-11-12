@@ -33,6 +33,7 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
   // Modal scroll + body scroll-lock
   useEffect(() => {
     if (!isVisible) return;
+    if (!modalRef.current || !modalInnerRef.current) return;
 
     // Stop global Lenis without locking body
     lenis.stop();

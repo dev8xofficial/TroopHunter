@@ -50,9 +50,9 @@
   border: 2px dashed rgba(0, 0, 0, 0.2);
 }
 
-.feed__shrink-drag--dragging {
+/* .feed__shrink-drag--dragging {
   transform: scale(0.9) var(--swiper-transform, translate3d(0, 0, 0)) !important;
-}
+} */
 
 .feed__item {
   padding: clamp(1.875rem, 1.9841269841vw, 2.49375rem);

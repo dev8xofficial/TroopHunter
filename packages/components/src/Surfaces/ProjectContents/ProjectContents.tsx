@@ -17,7 +17,7 @@ type WorkDetailWithoutMeta = Omit<WorkDetail, 'path' | 'bgColor'> & {
 
 export const ProjectsFormModal: React.FC<WorkDetailWithoutMeta> = ({ slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, placeholderImage, video, nextWorkProject, images, testimonial, testimonialAuthor, testimonialAuthorPosition }): JSX.Element => {
   const safeBgColor = `${slug}-light` as WorkDetail['bgColor'];
-  const safeBgColorNextWorkProject = `${nextWorkProject.slug}-light` as WorkDetail['bgColor'];
+  const safeBgColorNextWorkProject = `${nextWorkProject?.slug}-light` as WorkDetail['bgColor'];
 
   const getPicture = (images: string): ReactNode => {
     return (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useSetAtom } from 'jotai';
 import { toggleSmoothModalAtom, closeSmoothModalAtom } from '../store/smoothModalAtom';
@@ -8,6 +8,9 @@ export const useProjectModal = () => {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const closeModal = useSetAtom(closeSmoothModalAtom);
+
+  // Keep track of previous path to go back on close
+  const prevPathRef = useRef<string>(router.asPath);
 
   useEffect(() => {
     if (router.query.project) {
@@ -19,13 +22,45 @@ export const useProjectModal = () => {
 
   const openModal = (slug: string) => {
     setModalSlug(slug);
-    router.push(`/work?project=${slug}`, `/work/${slug}`, { shallow: true });
+    prevPathRef.current = router.asPath; // store current URL
+
+    // Determine new path
+    let newPath = '';
+    if (router.asPath === '/') {
+      newPath = `/work/${slug}`;
+    } else if (router.asPath === '/work') {
+      newPath = `/work/${slug}`;
+    } else {
+      // fallback in case user is already deep linked
+      newPath = `/work/${slug}`;
+    }
+
+    router.push(
+      {
+        pathname: router.pathname,
+        query: { project: slug }
+      },
+      newPath,
+      { shallow: true }
+    );
+
     toggleModal('project');
   };
 
   const closeProjectModal = () => {
     setModalSlug(null);
-    router.push('/work', undefined, { shallow: true });
+
+    // Go back to previous path
+    const fallbackPath = prevPathRef.current || '/';
+    router.push(
+      {
+        pathname: router.pathname,
+        query: {}
+      },
+      fallbackPath,
+      { shallow: true }
+    );
+
     closeModal();
   };
 
