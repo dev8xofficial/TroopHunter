@@ -92,6 +92,17 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent):
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
+        <style jsx global>{`
+          :root {
+            --theme-primary: var(--${variant}-primary);
+            --theme-primary-text: var(--${variant}-primary-text);
+            --theme-secondary: var(--${variant}-secondary);
+            --theme-text: var(--${variant}-text);
+            --theme-background: var(--${variant}-tertiary);
+            --theme-logo: var(--${variant}-secondary);
+            --theme-header-face: var(--${variant}-primary);
+          }
+        `}</style>
         <Header />
         <FooterRevealPageWrap variant="page">
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>

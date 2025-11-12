@@ -127,7 +127,7 @@ const OFFERS: ExpertiseContent[] = [
   // },
   {
     slug: 'tech-founders',
-    variant: 'green',
+    variant: 'blue',
     tagText: 'For Tech Founders',
     heading: 'AI-ready talent. \n Starting at $600/month.',
     paragraph: 'Get vetted React, Next.js, and full-stack developers — or plug-in mini-squads — guided by senior tech leads. Kick off in 7 days with U.S. timezone overlap, transparent reporting, and true startup velocity.',
@@ -210,8 +210,8 @@ const OFFERS: ExpertiseContent[] = [
       end: 'get started?'
     },
     meta: {
-      title: 'SaaS Development Services | Build Your SaaS Product — Dev8X | Dev8X: World class digital products',
-      description: 'SaaS Development Services | Build Your SaaS Product — Dev8X | Dev8X: World class digital products'
+      title: 'Tech Founders Services | Empower Your Startup Vision — Dev8X | Dev8X: World-class digital products',
+      description: 'Tech Founders Services | Empower Your Startup Vision — Dev8X | Dev8X: World-class digital products'
     },
     footerForm: {
       privacy: {
@@ -284,7 +284,7 @@ const OFFERS: ExpertiseContent[] = [
         features: ['1–2 yrs experience', 'Daily async updates', 'Senior code review', 'Fast stack fit'],
         categories: ['React', 'NextJS', 'Tailwind', 'Frontend', 'Rapid Delivery', 'Startup Friendly', 'Daily Updates', 'Outcome Driven'],
         buttonText: 'Hire Junior',
-        package: 'developers'
+        package: 'Developers'
       },
       {
         id: '2',
@@ -294,7 +294,7 @@ const OFFERS: ExpertiseContent[] = [
         features: ['3–5 yrs experience', 'API + CI/CD', 'Weekly sprint sync', 'Code ownership mindset'],
         categories: ['React', 'NextJS', 'NodeJS', 'Full Stack', 'API Integration', 'Clean Code', 'Unit Tests', 'Agile', 'Reliable Delivery', 'Remote First Team'],
         buttonText: 'Hire Mid',
-        package: 'developers'
+        package: 'Developers'
       },
       {
         id: '3',
@@ -304,7 +304,7 @@ const OFFERS: ExpertiseContent[] = [
         features: ['5–8 yrs experience', 'Lead architecture', 'Optimize delivery', 'Mentor developers'],
         categories: ['Tech Lead', 'Architecture', 'System Design', 'Performance', 'Mentorship', 'Cloud Ready', 'Scalable Apps', 'Team Leadership'],
         buttonText: 'Hire Senior',
-        package: 'developers'
+        package: 'Developers'
       },
       {
         id: '4',
@@ -314,7 +314,7 @@ const OFFERS: ExpertiseContent[] = [
         features: ['4-hr US overlap', 'Agile sprint cycles', 'QA-led testing', 'Fixed-scope launch'],
         categories: ['MVP Launch', 'Startup Sprint', 'Agile PM', 'QA Included', 'US Overlap', 'Build Fast', 'Validated MVPs'],
         buttonText: 'Book a Squad Discovery Call',
-        package: 'mini-squads'
+        package: 'Mini Squads'
       },
       {
         id: '5',
@@ -324,7 +324,7 @@ const OFFERS: ExpertiseContent[] = [
         features: ['CI/CD setup', 'Weekly design sync', 'UX-led upgrades', 'PM-owned delivery'],
         categories: ['Growth Engineering', 'UX Design', 'CI/CD', 'Feature Scaling', 'PM Ownership', 'Figma To Code', 'Outcome Driven'],
         buttonText: 'Start Growth Squad',
-        package: 'mini-squads'
+        package: 'Mini Squads'
       },
       {
         id: '6',
@@ -334,7 +334,7 @@ const OFFERS: ExpertiseContent[] = [
         features: ['DevOps support', 'Weekly tech roadmap', 'Senior-led reviews', 'End-to-end delivery'],
         categories: ['DevOps', 'High Velocity', 'Scalable Architecture', 'Senior Leader', 'Expert Team', 'End-To-End Ownership', 'Cloud Ready'],
         buttonText: 'Start Pro Squad',
-        package: 'mini-squads'
+        package: 'Mini Squads'
       }
     ],
     video: prefixed(`/videos/header/header.mp4`)
@@ -418,9 +418,10 @@ const OFFERS: ExpertiseContent[] = [
       end: 'get started?'
     },
     meta: {
-      title: 'SaaS Development Services | Build Your SaaS Product — Dev8X | Dev8X: World class digital products',
-      description: 'SaaS Development Services | Build Your SaaS Product — Dev8X | Dev8X: World class digital products'
+      title: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products',
+      description: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products'
     },
+
     footerForm: {
       privacy: {
         year: '2025',
@@ -526,56 +527,6 @@ const OFFERS: ExpertiseContent[] = [
       },
       {
         id: '2',
-        heading: 'Listings Automation',
-        price: '$450',
-        description: 'Dynamic property listings synced from CMS or Sheets',
-        features: ['Auto-updating listings', 'CMS integration', 'Filters & search', 'Map view'],
-        categories: ['Automation', 'Listings', 'CMS', 'Dynamic', 'Real Estate', 'Efficiency'],
-        buttonText: 'Automate My Listings',
-        package: 'Automation & Lead Capture'
-      },
-      {
-        id: '3',
-        heading: 'Smart Lead Form + CRM',
-        price: '$300',
-        description: 'Capture and sync leads into your CRM instantly',
-        features: ['Custom forms', 'CRM integration', 'Auto-responses', 'Notifications'],
-        categories: ['Leads', 'CRM', 'Automation', 'Email', 'Conversion'],
-        buttonText: 'Install Lead Capture',
-        package: 'Automation & Lead Capture'
-      },
-      {
-        id: '4',
-        heading: '360° Virtual Tours',
-        price: '$550',
-        description: 'Interactive property galleries and walkthroughs',
-        features: ['3D viewer', 'Image gallery', 'Video embeds', 'Mobile ready'],
-        categories: ['Media', 'Virtual Tour', 'Gallery', 'Showcase', 'Modern UX'],
-        buttonText: 'Add Virtual Tours',
-        package: 'Media & Showcase'
-      },
-      {
-        id: '5',
-        heading: 'Online Booking System',
-        price: '$350',
-        description: 'Let buyers schedule viewings or calls online',
-        features: ['Calendar sync', 'Agent availability', 'Reminders', 'Integrations'],
-        categories: ['Booking', 'Calendar', 'Automation', 'Scheduling', 'Lead Flow'],
-        buttonText: 'Activate Booking',
-        package: 'Automation & Lead Capture'
-      },
-      {
-        id: '6',
-        heading: 'Google Business & SEO',
-        price: '$300',
-        description: 'Rank higher for “Homes in [City]” searches',
-        features: ['Local SEO', 'Google Business setup', 'On-page fixes', 'Keyword insights'],
-        categories: ['SEO', 'Visibility', 'Local', 'Google', 'Ranking'],
-        buttonText: 'Boost My SEO',
-        package: 'Marketing'
-      },
-      {
-        id: '7',
         heading: 'Property Dashboard',
         price: '$280',
         description: 'Track listings, leads, and conversion performance',
@@ -585,7 +536,47 @@ const OFFERS: ExpertiseContent[] = [
         package: 'Website & Portal'
       },
       {
-        id: '8',
+        id: '3',
+        heading: 'Hosting & Security Setup',
+        price: '$200',
+        description: 'Domain, SSL, and cloud deployment with backups',
+        features: ['Domain setup', 'SSL config', 'Cloud hosting', 'Speed optimization'],
+        categories: ['Hosting', 'Security', 'Cloud', 'Performance', 'Reliability'],
+        buttonText: 'Set Up Hosting',
+        package: 'Website & Portal'
+      },
+      {
+        id: '4',
+        heading: 'Listings Automation',
+        price: '$450',
+        description: 'Dynamic property listings synced from CMS or Sheets',
+        features: ['Auto-updating listings', 'CMS integration', 'Filters & search', 'Map view'],
+        categories: ['Automation', 'Listings', 'CMS', 'Dynamic', 'Real Estate', 'Efficiency'],
+        buttonText: 'Automate My Listings',
+        package: 'Automation & Lead Capture'
+      },
+      {
+        id: '5',
+        heading: 'Smart Lead Form + CRM',
+        price: '$300',
+        description: 'Capture and sync leads into your CRM instantly',
+        features: ['Custom forms', 'CRM integration', 'Auto-responses', 'Notifications'],
+        categories: ['Leads', 'CRM', 'Automation', 'Email', 'Conversion'],
+        buttonText: 'Install Lead Capture',
+        package: 'Automation & Lead Capture'
+      },
+      {
+        id: '6',
+        heading: 'Online Booking System',
+        price: '$350',
+        description: 'Let buyers schedule viewings or calls online',
+        features: ['Calendar sync', 'Agent availability', 'Reminders', 'Integrations'],
+        categories: ['Booking', 'Calendar', 'Automation', 'Scheduling', 'Lead Flow'],
+        buttonText: 'Activate Booking',
+        package: 'Automation & Lead Capture'
+      },
+      {
+        id: '7',
         heading: 'Email & SMS Automation',
         price: '$250',
         description: 'Auto follow-ups for inquiries and cold leads',
@@ -595,14 +586,24 @@ const OFFERS: ExpertiseContent[] = [
         package: 'Automation & Lead Capture'
       },
       {
+        id: '8',
+        heading: 'Property Inquiry Chatbot',
+        price: '$400',
+        description: '24/7 AI chatbot for property leads via WhatsApp & web.',
+        features: ['AI + predefined responses', 'Multi-language support', 'CRM / database storage', 'Simple dashboard for agents', 'WhatsApp & web widget'],
+        categories: ['Automation', 'Lead Capture', 'AI', 'CRM', 'Property Inquiries'],
+        buttonText: 'Activate Chatbot',
+        package: 'Automation & Lead Capture'
+      },
+      {
         id: '9',
-        heading: 'Hosting & Security Setup',
-        price: '$200',
-        description: 'Domain, SSL, and cloud deployment with backups',
-        features: ['Domain setup', 'SSL config', 'Cloud hosting', 'Speed optimization'],
-        categories: ['Hosting', 'Security', 'Cloud', 'Performance', 'Reliability'],
-        buttonText: 'Set Up Hosting',
-        package: 'Website & Portal'
+        heading: 'Google Business & SEO',
+        price: '$300',
+        description: 'Rank higher for “Homes in [City]” searches',
+        features: ['Local SEO', 'Google Business setup', 'On-page fixes', 'Keyword insights'],
+        categories: ['SEO', 'Visibility', 'Local', 'Google', 'Ranking'],
+        buttonText: 'Boost My SEO',
+        package: 'Marketing'
       },
       {
         id: '10',
@@ -636,20 +637,20 @@ const OFFERS: ExpertiseContent[] = [
       },
       {
         id: '13',
-        heading: 'Property Inquiry Chatbot',
-        price: '$400',
-        description: '24/7 AI chatbot for property leads via WhatsApp & web.',
-        features: ['AI + predefined responses', 'Multi-language support', 'CRM / database storage', 'Simple dashboard for agents', 'WhatsApp & web widget'],
-        categories: ['Automation', 'Lead Capture', 'AI', 'CRM', 'Property Inquiries'],
-        buttonText: 'Activate Chatbot',
-        package: 'Automation & Lead Capture'
+        heading: '360° Virtual Tours',
+        price: '$550',
+        description: 'Interactive property galleries and walkthroughs',
+        features: ['3D viewer', 'Image gallery', 'Video embeds', 'Mobile ready'],
+        categories: ['Media', 'Virtual Tour', 'Gallery', 'Showcase', 'Modern UX'],
+        buttonText: 'Add Virtual Tours',
+        package: 'Media & Showcase'
       }
     ],
     video: prefixed(`/videos/header/header.mp4`)
   },
   {
     slug: 'dentists',
-    variant: 'green',
+    variant: 'cyan',
     tagText: 'For Dental Clinics',
     heading: 'Dental-ready digital systems. Starting at $80/project.',
     paragraph: 'Launch modern websites, online booking, and patient automation — built fast with clean design, secure backend, and SEO visibility. Kick off in 3 days with effortless communication and transparent delivery.',
