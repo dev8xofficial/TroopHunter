@@ -279,7 +279,7 @@ export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer 
             </Fieldset>
 
             {/* Add-Ons */}
-            <Controller
+            {/* <Controller
               name="addOns"
               control={control}
               rules={{ required: 'Please select at least one Add-On' }}
@@ -303,7 +303,7 @@ export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer 
                   </FieldWrapper>
                 </Fieldset>
               )}
-            />
+            /> */}
 
             {/* Plans */}
             <FieldWrapper className="col-sm-2" label="Plans" message="Choose your preferred plan?">

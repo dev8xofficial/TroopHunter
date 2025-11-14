@@ -239,7 +239,7 @@ export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer 
             </FieldWrapper>
 
             {/* Stages */}
-            <Controller
+            {/* <Controller
               name="selectedStages"
               control={control}
               render={() => (
@@ -262,10 +262,10 @@ export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer 
                   </FieldWrapper>
                 </Fieldset>
               )}
-            />
+            /> */}
 
             {/* Add-Ons */}
-            <Controller
+            {/* <Controller
               name="addOns"
               control={control}
               render={() => (
@@ -288,7 +288,7 @@ export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer 
                   </FieldWrapper>
                 </Fieldset>
               )}
-            />
+            /> */}
 
             {/* Plan Info */}
             <FieldWrapper className="col-sm-2" label="Plans">
