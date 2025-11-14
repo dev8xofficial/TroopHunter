@@ -104,10 +104,10 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, ho
               children
             ) : (
               <>
-                 <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['showreel__image']}`}>
-                  <source className={styles['picture']} srcSet={`${prefixed('/images/header/1080.png')} 1x, ${prefixed('/images/header/1080.png')} 2x`} media="(min-width: 0px) and (max-width: 479px)" />
-                  <source className={styles['picture']} srcSet={`${prefixed('/images/header/1080.png')} 1x, ${prefixed('/images/header/1080.png')} 2x`} media="(min-width: 480px)" />
-                  <img src={prefixed('/images/header/1080.png')} loading="eager" width="450" height="364" alt="" className="" draggable="false" />
+                <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['showreel__image']}`}>
+                  <source className={styles['picture']} srcSet={`${prefixed('/images/placeholder/1080-purple.png')} 1x, ${prefixed('/images/placeholder/1080-purple.png')} 2x`} media="(min-width: 0px) and (max-width: 479px)" />
+                  <source className={styles['picture']} srcSet={`${prefixed('/images/placeholder/1080-purple.png')} 1x, ${prefixed('/images/placeholder/1080-purple.png')} 2x`} media="(min-width: 480px)" />
+                  <img src={prefixed('/images/placeholder/1080-purple.png')} loading="eager" width="450" height="364" alt="" className="" draggable="false" />
                 </picture>
 
                 <video ref={videoRef} className={`${styles['showreel__video']} ${isMobile ? styles['showreel__video--mobile'] : styles['showreel__video--desktop']}`} src={src} poster={poster} preload="metadata" loop controls={false} muted={isMuted} playsInline />

@@ -31,7 +31,6 @@
         position: -webkit-sticky;
         position: sticky;
         overflow: hidden;
-        max-height: 100vh
     }
 }
 

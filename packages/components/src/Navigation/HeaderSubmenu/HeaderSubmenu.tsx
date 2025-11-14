@@ -240,7 +240,7 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height, onLinkClic
           color: 'green',
           href: '/plans-and-pricing'
         }
-      ]
+      ].filter((item) => !['/careers', '/internships', '/plans-and-pricing'].includes(item.href))
     }
   ];
 
