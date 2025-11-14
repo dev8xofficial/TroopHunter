@@ -33,9 +33,12 @@ export const ToggleField: React.FC<ToggleFieldProps> = ({ label, secondaryLabel,
         <div className={styles['wrapper']}>
           <input type="checkbox" checked={checked} onChange={handleChange} className={styles['hiddenInput']} />
 
-          <div className={`${TextAreastyles['textarea']} ${InputStyles['input']} ${styles['toggleBox']} ${checked ? styles.checked : styles.unchecked}`}>
-            <span>{label}</span>
-            <span>{secondaryLabel}</span>
+          <div className={`${TextAreastyles['textarea']} ${InputStyles['input']} ${styles['toggleBox']} ${styles['input--height-override']} ${checked ? styles.checked : styles.unchecked}`}>
+            <div className={styles['field-left']}>
+              <span className={styles['field-title']}>{label}</span>
+            </div>
+
+            <div className={styles['field-price']}>{secondaryLabel}</div>
           </div>
         </div>
       </Field>
