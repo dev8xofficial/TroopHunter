@@ -12,7 +12,7 @@ import { LandscapeWorkCardProps } from '../../Interfaces/Work/WorkProjectTypes';
 import LayoutStyles from '../Layout/layout.module.css';
 import styles from './index.module.css';
 
-interface OffersHeroProps extends Omit<ExpertiseContent, 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'> {
+interface OffersHeroProps extends Omit<ExpertiseContent, 'meta' | 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'> {
   activeCategory?: string;
   showHowToHireVideo?: boolean;
   paragraph?: string;
