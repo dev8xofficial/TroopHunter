@@ -1,6 +1,6 @@
-import { ExpertiseContent } from '@repo/components';
+import { PageLayoutContent } from '@repo/components/src/Interfaces/PageLayout/PageLayout';
 
-const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading' | 'image' | 'iconCards' | 'contentAsideImageItems' | 'testimonials'> = {
+const PageData: PageLayoutContent = {
   meta: {
     title: 'Internships — Dev8X | Dev8X: World class digital products',
     description: 'Kickstart your career with hands-on internships at Dev8X — from idea to execution.'

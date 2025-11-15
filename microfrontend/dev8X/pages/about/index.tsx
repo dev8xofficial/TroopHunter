@@ -4,7 +4,7 @@ import React from 'react';
 import Head from 'next/head';
 import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom } from 'jotai';
-import { AboutGallery, AwardsBlock, ContactFormModal, Footer, FooterRevealPageWrap, Header, LogoGrid, TestimonialAbout } from '@repo/components';
+import { AboutGallery, ContactFormModal, Footer, FooterRevealPageWrap, Header, LogoGrid, TestimonialAbout } from '@repo/components';
 import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import Capabilities from './Capabilities/Capabilities';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
@@ -18,24 +18,21 @@ import styles from './index.module.css';
 
 const Contact: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
-  const above = 'Above all, we believe in human relationships, exceptional outcomes, and having fun along the way.';
-  const paragraph = 'Human-focused experiences shape everything we create – from how we collaborate as a team, to the partnerships we build, and the digital solutions we deliver. This belief lives in our culture, fuels our curiosity, and drives how we approach every project from start to finish.';
-  const headingText = 'Since 2019 we’ve been working with amazing clients to create meaningful impact and compelling experiences.';
-  const heading = 'Our capabilities are centred around our ability to deliver world-class websites and apps. We’re 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.';
+
   return (
     <>
       <Head>
         <title>{PageData.meta.title}</title>
         <meta name="description" content={PageData.meta.description}></meta>
-        <link rel="canonical" href={prefixed("/about")} />
+        <link rel="canonical" href={prefixed('/about')} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title}></meta>
         <meta property="og:description" content={PageData.meta.description}></meta>
-        <meta property="og:url" content={prefixed("/about")}></meta>
+        <meta property="og:url" content={prefixed('/about')}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={prefixed("/logo-social.png")}></meta>
-        <meta property="og:image:secure_url" content={prefixed("/logo-social.png")}></meta>
+        <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
+        <meta property="og:image:secure_url" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -43,7 +40,7 @@ const Contact: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content={PageData.meta.title}></meta>
         <meta name="twitter:description" content={PageData.meta.description}></meta>
-        <meta name="twitter:image" content={prefixed("/logo-social.png")}></meta>
+        <meta name="twitter:image" content={prefixed('/logo-social.png')}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
@@ -172,10 +169,10 @@ const Contact: React.FC = (): JSX.Element => {
                 </AppearOnScroll>
                 <AppearOnScroll>
                   <div className={AboutHeroStyles['about-hero__container']}>
-                    <p className={AboutHeroStyles['about-hero__intro']} aria-label={paragraph}>
-                      {paragraph.split(' ').map((word, index) => {
-                               const cleanWord = word.replace(/[.,]/g, '').toLowerCase();
-                      const isSpecial = cleanWord === 'human-focused';
+                    <p className={AboutHeroStyles['about-hero__intro']} aria-label={PageData.aboutSections[0]}>
+                      {PageData.aboutSections[0].split(' ').map((word, index) => {
+                        const cleanWord = word.replace(/[.,]/g, '').toLowerCase();
+                        const isSpecial = cleanWord === 'human-focused';
                         return (
                           <span
                             key={index}
@@ -211,8 +208,8 @@ const Contact: React.FC = (): JSX.Element => {
               <AboutGallery />
               <AppearOnScroll>
                 <div className={styles['about-logos']}>
-                  <h2 className={styles['about-logos__intro']} aria-label={headingText}>
-                    {headingText.split(' ').map((word, index) => {
+                  <h2 className={styles['about-logos__intro']} aria-label={PageData.aboutSections[1]}>
+                    {PageData.aboutSections[1].split(' ').map((word, index) => {
                       // Clean word for accurate comparison (remove punctuation, make lowercase)
                       const cleanWord = word.replace(/[.,]/g, '').toLowerCase();
                       const isSpecial = cleanWord === 'dev8x';
@@ -249,8 +246,8 @@ const Contact: React.FC = (): JSX.Element => {
               </AppearOnScroll>
               <AppearOnScroll>
                 <div className={styles['about-capabilities']}>
-                  <h2 className={styles['about-capabilities__intro']} aria-label={heading}>
-                    {heading.split(' ').map((word, index) => {
+                  <h2 className={styles['about-capabilities__intro']} aria-label={PageData.aboutSections[2]}>
+                    {PageData.aboutSections[2].split(' ').map((word, index) => {
                       const isSpecial = word.toLowerCase().includes('capabilities');
                       return (
                         <span
@@ -280,21 +277,21 @@ const Contact: React.FC = (): JSX.Element => {
                     })}
                   </h2>
 
-                  <Capabilities />
+                  <Capabilities capabilities={PageData.capabilities} />
                 </div>
               </AppearOnScroll>
             </div>
 
             <div className={`${styles['about-midpage-banner']} ${styles['about-midpage-banner--visible']}`}>
-              <TestimonialAbout testimonialCSSClass={styles['about-testimonials']} />
+              <TestimonialAbout testimonialCSSClass={styles['about-testimonials']} testimonials={PageData.testimonials} authors={PageData.authors} />
             </div>
             <div className="">
               {/* <AwardsBlock /> */}
 
               <div className={styles['about-dos-donts']}>
                 <AppearOnScroll>
-                  <h2 className={styles['about-dos-donts__intro']} aria-label={above}>
-                    {above.split(' ').map((word, index) => (
+                  <h2 className={styles['about-dos-donts__intro']} aria-label={PageData.aboutSections[3]}>
+                    {PageData.aboutSections[3].split(' ').map((word, index) => (
                       <span
                         key={index}
                         className={TextAnimateStyles['word']}
@@ -323,42 +320,17 @@ const Contact: React.FC = (): JSX.Element => {
                 </AppearOnScroll>
                 <AppearOnScroll>
                   <div className={styles['about-dos-donts__grid']}>
-                    <section className={styles['about-column']} style={{ opacity: 1, transform: 'translateX(0px)' }}>
-                      <h3 className={styles['about-column__heading']}>What we do</h3>
-                      <ul className={styles['about-column__list']}>
-                        <li>World-className </li>
-                        <li>Expect creativity</li>
-                        <li>Celebrate success</li>
-                        <li>Obsess over detail</li>
-                        <li>Pub lunch Fridays</li>
-                        <li>Embrace change</li>
-                        <li>Unlock potential</li>
-                        <li>High-five</li>
-                        <li>Outstanding service</li>
-                        <li>Value relationships</li>
-                        <li>Exceed expectations</li>
-                        <li>Party</li>
-                      </ul>
-                    </section>
-                    <section className={styles['about-column']} style={{ opacity: 1, transform: 'translateX(0px)' }}>
-                      <h3 className={styles['about-column__heading']}>
-                        <span>What we don't</span>
-                      </h3>
-                      <ul className={styles['about-column__list']}>
-                        <li>Work weekends</li>
-                        <li>Outsource</li>
-                        <li>Resist cake</li>
-                        <li>Lose at Mario Kart</li>
-                        <li>‘Make it pop’</li>
-                        <li>Free pitches</li>
-                        <li>Sacrifice quality</li>
-                        <li>Egos</li>
-                        <li>Overpromise</li>
-                        <li>Cut corners</li>
-                        <li>Accept mediocrity</li>
-                        <li>Decaf</li>
-                      </ul>
-                    </section>
+                    {PageData.whatWeDo.map(({ heading, items }) => (
+                      <section key={heading} className={styles['about-column']} style={{ opacity: 1, transform: 'translateX(0px)' }}>
+                        <h3 className={styles['about-column__heading']}>{heading}</h3>
+
+                        <ul className={styles['about-column__list']}>
+                          {items.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </section>
+                    ))}
                   </div>
                 </AppearOnScroll>
               </div>

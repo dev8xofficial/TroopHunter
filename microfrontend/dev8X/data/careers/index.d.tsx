@@ -1,6 +1,6 @@
-import { ExpertiseContent } from '@repo/components';
+import { PageLayoutContent } from '@repo/components/src/Interfaces/PageLayout/PageLayout';
 
-const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading' | 'image' | 'iconCards' | 'contentAsideImageItems' | 'testimonials'> = {
+const PageData: PageLayoutContent = {
   meta: {
     title: 'Careers — Dev8X | Dev8X: World class digital products',
     description: 'World-class digital products, idea to execution.'
@@ -34,7 +34,7 @@ const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading
       title: 'Facebook',
       // icon: { name: 'AsteriskIcon', width: 10 },
       href: 'https://www.facebook.com/profile.php?id=61569289660818'
-    },
+    }
     // {
     //   title: 'Youtube',
     //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
