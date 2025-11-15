@@ -20,6 +20,19 @@ export default function Home() {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const { modalSlug, openModal, closeProjectModal } = useProjectModal();
   const project = WORK_PROJECTS.find((project) => project.path === modalSlug) ?? WORK_PROJECTS[0];
+
+  const getNextWorkProject = (currentSlug: string | null) => {
+    if (!currentSlug) return null;
+
+    const currentIndex = WORK_PROJECTS.findIndex((e) => e.slug === currentSlug);
+
+    if (currentIndex === -1) return null;
+
+    const nextIndex = (currentIndex + 1) % WORK_PROJECTS.length;
+    return WORK_PROJECTS[nextIndex];
+  };
+
+  const nextWorkProject = getNextWorkProject(modalSlug);
   const isMobile = useBreakpoint();
 
   return (
@@ -108,7 +121,7 @@ export default function Home() {
           closeProjectModal();
         }}
       >
-        {modalSlug && <ProjectsFormModal {...project} />}
+        {modalSlug && <ProjectsFormModal {...project} nextWorkProject={nextWorkProject} />}
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
         <ContactFormModal />
