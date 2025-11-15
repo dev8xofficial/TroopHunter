@@ -29,6 +29,26 @@ const nextConfig = withTM({
       },
       // Webmanifest
       {
+        source: '/apple-touch-icon.svg',
+        destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/apple-touch-icon.svg`
+      },
+      // Webmanifest
+      {
+        source: '/favicon-16x16.svg',
+        destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/favicon-16x16.svg`
+      },
+      // Webmanifest
+      {
+        source: '/favicon-32x32.svg',
+        destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/favicon-32x32.svg`
+      },
+      // Webmanifest
+      {
+        source: '/favicon.svg',
+        destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/favicon.svg`
+      },
+      // Webmanifest
+      {
         source: '/webmanifest/:path*',
         destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/webmanifest/:path*`
       },
@@ -46,6 +66,14 @@ const nextConfig = withTM({
       {
         source: '/videos/:path*',
         destination: `${process.env.NEXT_PUBLIC_ASSET_HOST}/videos/:path*`
+      }
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: '/fonts/:path*',
+        headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }]
       }
     ];
   }
