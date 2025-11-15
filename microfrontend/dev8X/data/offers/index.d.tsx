@@ -141,7 +141,6 @@ const OFFERS: ExpertiseContent[] = [
           description: 'If it’s not the right fit, we’ll assign a vetted replacement developer within 5 business days — no downtime, no disruption.',
           icon: { name: 'CreditCardIcon', width: 26 }
         },
-<<<<<<< HEAD
         {
           title: 'Full Code Ownership',
           description: 'You retain 100% ownership of code, repos, and docs — we accelerate your build and uphold enterprise-grade standards.',
@@ -156,7 +155,7 @@ const OFFERS: ExpertiseContent[] = [
           title: 'Quick Onboarding',
           description: 'Be operational within 7 days. We handle tool setup, environment prep and assets so you focus on delivering business outcomes.',
           icon: { name: 'VoltageIcon', width: 18 }
-=======
+        },
         // {
         //   title: 'Full Code Ownership',
         //   description: 'You retain 100% ownership of code, repos, and docs — we accelerate your build and uphold enterprise-grade standards.',
@@ -191,7 +190,6 @@ const OFFERS: ExpertiseContent[] = [
           title: 'Scalable Engagement',
           description: 'Begin with one developer and expand to a full squad anytime — no change in vendor or workflow needed.',
           icon: { name: 'ScaleIcon', width: 26 }
->>>>>>> 7bbaed0a0c23bf143ccf1df9da6e779f82a6ba48
         }
       ]
     },

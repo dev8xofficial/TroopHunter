@@ -22,7 +22,6 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
     const backdrop = modalBackdropRef.current;
     if (!el || !backdrop) return;
 
-<<<<<<< HEAD
     const tl = gsap.timeline({
       onStart: () => {
         // Set initial width/height constraints
@@ -36,48 +35,6 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
       onComplete: () => {
         // Optional: clear props if you want modal responsive after open
         gsap.set(el, { clearProps: 'width,maxWidth,minHeight,maxHeight' });
-=======
-    const element = document.querySelector('#modal-inner') as HTMLElement;
-    const modalInnerBg = document.querySelector('#modal-inner-bg') as HTMLElement;
-    const modal = document.querySelector('#modal') as HTMLElement;
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        if (element) {
-          gsap.to(element, {
-            '--progress': 1,
-            scrollTrigger: {
-              trigger: element,
-              start: 'top 20%',
-              end: 'top top',
-              scrub: true,
-              scroller: modalRef.current
-            }
-          });
-
-          gsap.to(modalInnerBg, {
-            borderRadius: '0px',
-            scrollTrigger: {
-              trigger: element,
-              start: 'top 20%',
-              end: 'top top',
-              scrub: true,
-              scroller: modalRef.current
-            }
-          });
-
-          gsap.to(modal, {
-            padding: '0px',
-            scrollTrigger: {
-              trigger: element,
-              start: 'top 20%',
-              end: 'top top',
-              scrub: true,
-              scroller: modalRef.current
-            }
-          });
-        }
->>>>>>> d7d88fef789ae4ec93bc8a92823bfad8ba716810
       }
     });
 
@@ -94,12 +51,9 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
     tl.to(el, { y: '0%', opacity: 1, scale: 1, duration: 0.45, ease: 'cubic-bezier(0.85,0.05,0.2,1)' }, '-=0.2');
   }, [modalInnerRef]);
 
-<<<<<<< HEAD
   // =======================
   // CLOSE ANIMATION
   // =======================
-=======
->>>>>>> d7d88fef789ae4ec93bc8a92823bfad8ba716810
   const handleClose = (e: React.MouseEvent<HTMLButtonElement> | MouseEvent) => {
     const el = modalInnerRef.current;
     const backdrop = modalBackdropRef.current;
@@ -120,7 +74,6 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
     // Slide down modal
     tl.to(el, { y: '100%', duration: 0.9, ease: 'power3.inOut' });
 
-<<<<<<< HEAD
     // Fade out backdrop
     tl.to(backdrop, { opacity: 0, duration: 0.6, ease: 'power4.inOut' }, '-=0.4');
   };
@@ -128,19 +81,6 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
   // =======================
   // BACKDROP CLICK
   // =======================
-=======
-    tl.to(
-      backdrop,
-      {
-        opacity: 0,
-        duration: 0.6,
-        ease: 'power4.inOut'
-      },
-      '-=0.4'
-    );
-  };
-
->>>>>>> d7d88fef789ae4ec93bc8a92823bfad8ba716810
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) handleClose(e.nativeEvent);
   };
