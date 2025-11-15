@@ -41,7 +41,7 @@ const OffersPage: React.FC = (): JSX.Element => {
   };
 
   const nextExpertise = getNextExpertise('web-applications');
-  
+
   const availableCategories = useMemo<string[]>(() => {
     if (!offersData.offersSlider) return [];
     const uniquePackages = new Set<string>();
@@ -105,7 +105,7 @@ const OffersPage: React.FC = (): JSX.Element => {
             <div style={{ display: 'grid' }}>
               <div className={`${HomePageStyles['homepage__feed-wrapper']} ${HomePageStyles['homepage__feed-wrapper-inner--overflow']}`}>
                 <div className={`${HomePageStyles['homepage__feed-wrapper-inner']}`}>
-                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', selectedOffer)} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', selectedOffer)} />
+                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', selectedOffer)} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, planItems: offersData.planItems })} />
                 </div>
               </div>
             </div>
@@ -175,7 +175,7 @@ const OffersPage: React.FC = (): JSX.Element => {
         <DevelopersModal selectedOffer={currentModal.data} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="minisquads" toggle={() => toggleModal('minisquads')}>
-        <MiniSquadsModal selectedOffer={currentModal.data} />
+        <MiniSquadsModal selectedOffer={currentModal.data?.selectedOffer} planItems={currentModal.data?.planItems} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="schedulecall" toggle={() => toggleModal('schedulecall')}>
         <ScheduleCallContent />

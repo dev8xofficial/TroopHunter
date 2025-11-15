@@ -47,9 +47,10 @@ const getSquadConfig = (selectedOffer: ExpertiseOffersSliderItem | null) => {
 
 interface MiniSquadsModalProps {
   selectedOffer?: ExpertiseOffersSliderItem | null;
+  planItems?: string[];
 }
 
-export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer = null }) => {
+export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer = null, planItems }) => {
   const squadConfig = getSquadConfig(selectedOffer);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -294,10 +295,18 @@ export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer 
             <FieldWrapper className="col-sm-2" label="Plans">
               <HighlightBox variant="contained">
                 <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}>
-                  <li>Dedicated Slack Channel for Communication</li>
-                  <li>Weekly Progress & Team Sync Meetings</li>
-                  <li>Complete Project Transparency via ClickUp or Jira</li>
-                  <li>Flexible Month-to-Month Commitment</li>
+                  {planItems && planItems.length > 0 ? (
+                    planItems.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))
+                  ) : (
+                    <>
+                      <li>Dedicated Slack Channel for Communication</li>
+                      <li>Weekly Progress & Team Sync Meetings</li>
+                      <li>Complete Project Transparency via ClickUp or Jira</li>
+                      <li>Flexible Month-to-Month Commitment</li>
+                    </>
+                  )}
                 </ul>
               </HighlightBox>
             </FieldWrapper>

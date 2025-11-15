@@ -88,4 +88,5 @@ export interface ExpertiseContent {
   faqs?: ExpertiseFAQS[]
   offersSlider?: ExpertiseOffersSliderItem[];
   video?: string;
+  planItems?: string[];
 }

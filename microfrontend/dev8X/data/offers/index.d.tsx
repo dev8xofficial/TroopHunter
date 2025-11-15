@@ -343,6 +343,12 @@ const OFFERS: ExpertiseContent[] = [
         package: 'Mini Squads'
       }
     ],
+    planItems: [
+      'Dedicated Slack Channel for Communication',
+      'Weekly Progress & Team Sync Meetings',
+      'Complete Project Transparency via ClickUp or Jira',
+      'Flexible Month-to-Month Commitment'
+    ],
     video: prefixed(`/videos/header/header.mp4`)
   },
   {
@@ -652,6 +658,12 @@ const OFFERS: ExpertiseContent[] = [
         package: 'Media & Showcase'
       }
     ],
+    planItems: [
+      'Dedicated Communication Channel via Slack or Email',
+      'Weekly Progress Updates & Revision Cycles',
+      'Full Project Visibility with Live Access to Assets',
+      'Flexible Payment Plans - Pay Per Project or Monthly'
+    ],
     video: prefixed(`/videos/header/header.mp4`)
   },
   {
@@ -955,6 +967,12 @@ const OFFERS: ExpertiseContent[] = [
         buttonText: 'Start Monthly Support',
         package: 'Performance'
       }
+    ],
+    planItems: [
+      'Direct Communication via WhatsApp, Email, or Slack',
+      'Weekly Progress Reports & Quick Updates',
+      'Complete Transparency with Live Project Access',
+      'Flexible Engagement - Start Small, Scale as Needed'
     ],
     video: prefixed(`/videos/header/header.mp4`)
   }
