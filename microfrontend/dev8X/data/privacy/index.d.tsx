@@ -1,6 +1,6 @@
-import { ExpertiseContent } from '@repo/components';
+import { PageLayoutContent } from '@repo/components/src/Interfaces/PageLayout/PageLayout';
 
-const PageData: Omit<ExpertiseContent, 'slug' | 'variant' | 'tagText' | 'heading' | 'image' | 'iconCards' | 'contentAsideImageItems' | 'testimonials'> = {
+const PageData: PageLayoutContent = {
   meta: {
     title: 'Privacy Policy — Dev8X | Dev8X: World class digital products',
     description: 'World-class digital products, idea to execution.'

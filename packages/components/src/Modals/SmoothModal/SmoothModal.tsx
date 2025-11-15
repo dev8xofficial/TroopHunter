@@ -23,18 +23,8 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
     if (!el || !backdrop) return;
 
     const tl = gsap.timeline({
-      onStart: () => {
-        // Set initial width/height constraints
-        gsap.set(el, {
-          width: '100%',
-          maxWidth: '100vw',
-          minHeight: '10vh',
-          maxHeight: '10vh'
-        });
-      },
       onComplete: () => {
-        // Optional: clear props if you want modal responsive after open
-        gsap.set(el, { clearProps: 'width,maxWidth,minHeight,maxHeight' });
+        // ScrollTrigger animations are handled in SmoothModalWrapper
       }
     });
 

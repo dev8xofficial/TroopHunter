@@ -2,22 +2,18 @@
 
 import React, { useState } from 'react';
 import { AppearOnScroll } from '../../Animations/AppearOnScroll';
+import { TestimonialAuthors, Testimonials } from '../../Interfaces/About/About';
 
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import styles from './index.module.css';
 
 type TestimonialAboutProps = {
   testimonialCSSClass: string;
+  testimonials: Testimonials;
+  authors: TestimonialAuthors;
 };
 
-const testimonials = ['“They simplified the entire process and made tech feel less overwhelming. Really happy with the results.”', '“We had a vague idea — they turned it into a working solution without any stress. Great experience!”'];
-
-const authors = [
-  { name: 'Sepand Hokmabadi', position: 'CEO, Total Health Dental Care' },
-  { name: 'Devin Picciolini', position: 'CEO, Coral' }
-];
-
-export const TestimonialAbout: React.FC<TestimonialAboutProps> = ({ testimonialCSSClass }) => {
+export const TestimonialAbout: React.FC<TestimonialAboutProps> = ({ testimonialCSSClass, testimonials, authors }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goPrev = () => {

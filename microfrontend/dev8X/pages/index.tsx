@@ -33,19 +33,6 @@ export default function Home() {
   };
 
   const nextWorkProject = getNextWorkProject(modalSlug);
-
-  const whyDev = {
-    heading: 'Why Dev8X',
-    para1: 'We believe that meaningful design starts with empathy. Every product we create is centered around improving real lives—helping people achieve more with less friction.',
-    para2: 'By combining strategy, creativity, and technology, we unlock opportunities, transform businesses, and make experiences that truly matter. As an independent team, our agility and passion shape every project into something exceptional.',
-    image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)',
-    stats: [
-      { title: '100%', span: ['In-house ', '& ', 'independent'] },
-      { title: '6+', span: ['Years ', 'crafting ', 'digital ', 'experiences'] },
-      { title: '20+', span: ['Digital ', 'solutions ', 'launched ', 'worldwide'] }
-    ]
-  };
-  const headingText = 'We design, build and ship world-class digital products for forward-thinking brands.';
   const isMobile = useBreakpoint();
 
   return (
@@ -88,14 +75,14 @@ export default function Home() {
         <FooterRevealPageWrap variant="page">
           {/* Main container with smooth-scrollbar */}
           <main className={styles['homepage']}>
-            <Hero />
+            <Hero title={PageData.title} />
             <div className={styles['homepage__purple-change']}>
-              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src={prefixed('/videos/header/header.mp4')} isMobile={isMobile} />
+              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src={PageData.video} isMobile={isMobile} />
             </div>
             {/* <Problems /> */}
             <section className={styles['showcase']}>
-              <h2 className={styles['showcase__heading']} aria-label={headingText}>
-                {headingText.split(' ').map((word, index) => (
+              <h2 className={styles['showcase__heading']} aria-label={PageData.paragraph}>
+                {PageData.paragraph.split(' ').map((word, index) => (
                   <AppearOnScroll key={index} delay={0.2} duration={0.2} yOffset={20} as="span" className={TextAnimateStyles['word']}>
                     <span
                       aria-hidden="true"
@@ -116,7 +103,7 @@ export default function Home() {
             <TestimonialsLarge /> */}
             <div className={styles['homepage__section']}>
               <WorkGrid workGridCSSClass={styles['work-grid']} openModal={openModal} />
-              <WhyDev8X {...whyDev} />
+              <WhyDev8X {...PageData.whyDev8XContent} />
               {/* <div className={styles['homepage__feed-wrapper']}>
                 <div className={styles['homepage__feed-wrapper-inner']}>
                   <FeedSlider  />

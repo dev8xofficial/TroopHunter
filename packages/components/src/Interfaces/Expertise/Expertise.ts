@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { PageLayoutContent } from '../PageLayout/PageLayout';
 
 export interface ExpertiseIconCardItem {
   title: string;
@@ -17,33 +18,6 @@ export interface ExpertiseContentAsideImageItem {
   paragraph: string;
   icon?: { name: string; width: number };
   image?: string;
-}
-
-export interface ExpertiseFooterMainContent {
-  link: string;
-  start: string;
-  end: string;
-}
-
-export interface ExpertiseMetaContent {
-  title: string;
-  description: string;
-}
-
-export interface ExpertiseFooterForm {
-  privacy: {
-    year: string;
-    text: string;
-  };
-  button: {
-    text: string;
-  };
-}
-
-export interface ExpertiseFooterSocialLink {
-  title: ReactNode | string;
-  icon?: { name: string; width: number };
-  href: string;
 }
 
 export interface ExpertiseTestimonial {
@@ -71,7 +45,7 @@ export interface ExpertiseOffersSliderItem {
   package?: string;
 }
 
-export interface ExpertiseContent {
+export interface ExpertiseContent extends PageLayoutContent {
   slug: string;
   variant: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
   tagText: string;
@@ -80,12 +54,8 @@ export interface ExpertiseContent {
   image: string;
   iconCards: ExpertiseIconCards;
   contentAsideImageItems: ExpertiseContentAsideImageItem[];
-  meta?: ExpertiseMetaContent;
-  footerMainContent: ExpertiseFooterMainContent;
-  footerForm: ExpertiseFooterForm;
-  footerSocialLinks: ExpertiseFooterSocialLink[];
   testimonials: ExpertiseTestimonial[];
-  faqs?: ExpertiseFAQS[]
+  faqs?: ExpertiseFAQS[];
   offersSlider?: ExpertiseOffersSliderItem[];
   video?: string;
 }
