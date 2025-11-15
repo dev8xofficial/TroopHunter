@@ -141,26 +141,26 @@ const OFFERS: ExpertiseContent[] = [
           description: 'If it’s not the right fit, we’ll assign a vetted replacement developer within 5 business days — no downtime, no disruption.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
-        {
-          title: 'Full Code Ownership',
-          description: 'You retain 100% ownership of code, repos, and docs — we accelerate your build and uphold enterprise-grade standards.',
-          icon: { name: 'BackendIcon', width: 26 }
-        },
-        {
-          title: 'Technical Supervision',
-          description: 'Every developer is backed by a senior tech lead who ensures code quality, scalable architecture, and consistent best practices.',
-          icon: { name: 'AIBrainIcon', width: 26 }
-        },
-        {
-          title: 'Transparent Reporting',
-          description: 'Stay in control with weekly sprint summaries, live Git access, and real-time task tracking in Jira or ClickUp.',
-          icon: { name: 'SeismometerIcon', width: 22 }
-        },
-        {
-          title: 'Quick Onboarding',
-          description: 'Be operational within 7 days. We handle tool setup, environment prep and assets so you focus on delivering business outcomes.',
-          icon: { name: 'VoltageIcon', width: 18 }
-        },
+        // {
+        //   title: 'Full Code Ownership',
+        //   description: 'You retain 100% ownership of code, repos, and docs — we accelerate your build and uphold enterprise-grade standards.',
+        //   icon: { name: 'BackendIcon', width: 26 }
+        // },
+        // {
+        //   title: 'Technical Supervision',
+        //   description: 'Every developer is backed by a senior tech lead who ensures code quality, scalable architecture, and consistent best practices.',
+        //   icon: { name: 'AIBrainIcon', width: 26 }
+        // },
+        // {
+        //   title: 'Transparent Reporting',
+        //   description: 'Stay in control with weekly sprint summaries, live Git access, and real-time task tracking in Jira or ClickUp.',
+        //   icon: { name: 'SeismometerIcon', width: 22 }
+        // },
+        // {
+        //   title: 'Quick Onboarding',
+        //   description: 'Be operational within 7 days. We handle tool setup, environment prep and assets so you focus on delivering business outcomes.',
+        //   icon: { name: 'VoltageIcon', width: 18 }
+        // },
         {
           title: 'US Time-zone Overlap',
           description: 'Collaborate effortlessly with guaranteed 4-hour overlap with U.S. Eastern Time — ideal for daily stand-ups and sprint reviews.',
@@ -202,6 +202,12 @@ const OFFERS: ExpertiseContent[] = [
         paragraph: 'We believe in full transparency and your control. You take ownership of all code, repos and documentation — with IP rights and deliverables securely transferred at each milestone.',
         icon: { name: 'PointerIcon', width: 64 },
         image: prefixed('/api/images/work/goldendao/desktop/14.png')
+      },
+      {
+        title: 'Transparent Reporting',
+        paragraph: 'Stay in control with weekly sprint summaries, live Git access, and real-time task tracking in Jira or ClickUp. You’ll always know progress, blockers, and next steps at a glance.',
+        icon: { name: 'PointerIcon', width: 64 },
+        image: prefixed('/api/images/work/honeydu/desktop/2.png')
       }
     ],
     footerMainContent: {

@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Neue Montreal', sans-serif;
+  font-family: 'Neue Montreal';
   src: url(/fonts/bold.otf) format('opentype');
   font-display: swap;
   font-weight: 700;
@@ -13,7 +13,7 @@
 }
 
 @font-face {
-  font-family: 'Neue Montreal', sans-serif;
+  font-family: 'Neue Montreal';
   src: url(/fonts/bold-italic.otf) format('opentype');
   font-display: swap;
   font-weight: 700;
@@ -21,7 +21,7 @@
 }
 
 @font-face {
-  font-family: 'Neue Montreal', sans-serif;
+  font-family: 'Neue Montreal';
   src: url(/fonts/medium.otf) format('opentype');
   font-display: swap;
   font-weight: 500;
@@ -29,7 +29,7 @@
 }
 
 @font-face {
-  font-family: 'Neue Montreal', sans-serif;
+  font-family: 'Neue Montreal';
   src: url(/fonts/medium-italic.otf) format('opentype');
   font-display: swap;
   font-weight: 500;
@@ -37,7 +37,7 @@
 }
 
 @font-face {
-  font-family: 'Neue Montreal', sans-serif;
+  font-family: 'Neue Montreal';
   src: url(/fonts/regular.otf) format('opentype');
   font-display: swap;
   font-weight: 400;
@@ -45,7 +45,7 @@
 }
 
 @font-face {
-  font-family: 'Neue Montreal', sans-serif;
+  font-family: 'Neue Montreal';
   src: url(/fonts/italic.otf) format('opentype');
   font-display: swap;
   font-weight: 400;
@@ -53,7 +53,7 @@
 }
 
 @font-face {
-  font-family: 'Neue Montreal', sans-serif;
+  font-family: 'Neue Montreal';
   src: url(/fonts/light.otf) format('opentype');
   font-display: swap;
   font-weight: 300;
@@ -61,7 +61,7 @@
 }
 
 @font-face {
-  font-family: 'Neue Montreal', sans-serif;
+  font-family: 'Neue Montreal';
   src: url(/fonts/light-italic.otf) format('opentype');
   font-display: swap;
   font-weight: 300;
