@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ExpertiseFooterForm, ExpertiseFooterMainContent, ExpertiseFooterSocialLink } from '../../Interfaces/Expertise/Expertise';
+import { ExpertiseFooterForm, ExpertiseFooterMainContent, ExpertiseFooterSocialLink } from '../../Interfaces/PageLayout/PageLayout';
 import { FooterInternationalContents } from '../../Surfaces/FooterInternationalContents/FooterInternationalContents';
 import RightArrowIcon from '../../Icons/RightArrow';
 

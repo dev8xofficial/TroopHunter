@@ -130,16 +130,16 @@ const OFFERS: ExpertiseContent[] = [
     variant: 'blue',
     tagText: 'For Tech Founders',
     heading: 'AI-ready talent. \n Starting at $600/month.',
-    paragraph: 'Get vetted React, Next.js, and full-stack developers — or plug-in mini-squads — guided by senior tech leads. Kick off in 7 days with U.S. timezone overlap, transparent reporting, and true startup velocity.',
+    paragraph: 'Get vetted React, Next.js, and full-stack developers — or plug-in mini-squads — guided by senior tech leads.<br /><br />  Kick off in <b>7 days</b> with <span><b>U.S. timezone overlap</b></span>, <span><b>transparent reporting</b></span>, and <span><b>true startup velocity</b></span>.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
     iconCards: {
       title: 'Start Small. Scale Fast.',
       paragraph: 'Begin with one developer, scale to a squad — no new contracts, no hassle. Every engagement is managed for quality, speed, and control.',
       items: [
         {
-          title: 'Replacement Guarantee',
+          title: 'Vetted Talent',
           description: 'If it’s not the right fit, we’ll assign a vetted replacement developer within 5 business days — no downtime, no disruption.',
-          icon: { name: 'RefreshIcon', width: 28 }
+          icon: { name: 'CreditCardIcon', width: 26 }
         },
         // {
         //   title: 'Full Code Ownership',
@@ -180,26 +180,26 @@ const OFFERS: ExpertiseContent[] = [
     },
     contentAsideImageItems: [
       {
-        title: 'Vetted Talent',
-        paragraph: 'Our developers are hand-picked via rigorous multi-stage assessments to ensure top technical skill, communication clarity and reliability. Fully fluent in English and trained to work as your remote first extension of a U.S. startup team.',
+        title: 'Transparent Reporting',
+        paragraph: 'Stay in control with weekly sprint summaries, live Git access, and real-time task tracking in Jira or ClickUp — giving you full visibility into progress and priorities. No surprises, no hidden work — everything is documented, traceable, and transparently reported.',
         icon: { name: 'PointerIcon', width: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'Technical Supervision',
-        paragraph: 'Each developer is backed by senior engineers who drive code quality, architectural resilience and best practices. This mentorship ensures your codebase stays scalable, maintainable and ready for growth.',
+        title: 'US Time-zone Overlap',
+        paragraph: 'Collaborate effortlessly with guaranteed 4-hour overlap with U.S. Eastern Time — ideal for daily stand-ups and sprint reviews. This ensures faster decisions, fewer blockers, and smooth communication without delays, making remote collaboration feel truly in-house.',
         icon: { name: 'PointerIcon', width: 64 },
         image: prefixed('/api/images/work/troophunter/mobile/1.png')
       },
       {
-        title: 'Fast Onboarding',
-        paragraph: 'Skip the lengthy hiring cycle. Simply share your requirements, review pre-vetted profiles and start sprinting within a week. Our streamlined onboarding means your team ramps up with minimal delay.',
+        title: 'Flexible Payments',
+        paragraph: 'Pay bi-weekly for agility or pre-pay 3 months to unlock instant savings — align spend with your growth rhythm. Choose the billing model that works for your cash-flow planning, without long-term lock-ins or surprise fees.',
         icon: { name: 'PointerIcon', width: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       },
       {
-        title: 'Full Code Ownership',
-        paragraph: 'We believe in full transparency and your control. You take ownership of all code, repos and documentation — with IP rights and deliverables securely transferred at each milestone.',
+        title: 'Scalable Engagement',
+        paragraph: 'Begin with one developer and expand to a full squad anytime — no change in vendor or workflow needed. Scale at your own pace based on roadmap, traction, and funding milestones, without any operational disruption.',
         icon: { name: 'PointerIcon', width: 64 },
         image: prefixed('/api/images/work/goldendao/desktop/14.png')
       },
@@ -381,26 +381,6 @@ const OFFERS: ExpertiseContent[] = [
           title: 'Transparent Reporting',
           description: 'Track leads, traffic, and engagement with weekly reports and access to dashboards and analytics.',
           icon: { name: 'SeismometerIcon', width: 22 }
-        },
-        {
-          title: 'Quick Onboarding',
-          description: 'We collect brand assets, listings, and goals in minutes — then build while you stay focused on closings.',
-          icon: { name: 'VoltageIcon', width: 18 }
-        },
-        {
-          title: 'US Time-zone Overlap',
-          description: 'Guaranteed 4-hour U.S. Eastern overlap for feedback, assets, and real-time revision cycles.',
-          icon: { name: 'PlanetRingIcon', width: 26 }
-        },
-        {
-          title: 'Flexible Payments',
-          description: 'Pay per deliverable or bundle services for discounted rates — ideal for fast-moving brokerages.',
-          icon: { name: 'CreditCardIcon', width: 26 }
-        },
-        {
-          title: 'Scalable Engagement',
-          description: 'Start with one service and expand to SEO, automation, analytics, or full digital management anytime.',
-          icon: { name: 'ScaleIcon', width: 26 }
         }
       ]
     },
@@ -415,7 +395,7 @@ const OFFERS: ExpertiseContent[] = [
         title: 'Optimized for Local Search',
         paragraph: 'Each deliverable strengthens your visibility in local buyer and seller searches — a critical driver of organic leads.',
         icon: { name: 'MapPinIcon', width: 24 },
-        image: prefixed('/api/images/work/troophunter/mobile/1.png')
+        image: prefixed('/api/images/work/honeydu/desktop/10.png')
       },
       {
         title: 'Automation-Ready Systems',
@@ -511,7 +491,7 @@ const OFFERS: ExpertiseContent[] = [
       },
       {
         title: '7. Where is your team based?',
-        description: 'Our engineering team operates from Pakistan with U.S.-aligned hours and strong written communication.'
+        description: 'Our engineering team operates from Pakistan with U.S.-aligned hours and b written communication.'
       },
       {
         title: '8. What’s your pricing and payment model?',
@@ -671,7 +651,7 @@ const OFFERS: ExpertiseContent[] = [
     variant: 'cyan',
     tagText: 'For Dental Clinics',
     heading: 'Dental-ready digital systems. Starting at $80/project.',
-    paragraph: 'Launch modern websites, online booking, and patient automation — built fast with clean design, secure backend, and SEO visibility. Kick off in 3 days with effortless communication and transparent delivery.',
+    paragraph: 'Launch modern websites, online booking, and patient automation — built fast with clean design, secure backend, and SEO visibility.<br /><br /> Kick off in <span><b>3 days</b></span> with <span><b>effortless communication</b></span> and <span><b>transparent delivery</b></span>.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
     iconCards: {
       title: 'Start Simple. Grow Smart.',
@@ -696,26 +676,6 @@ const OFFERS: ExpertiseContent[] = [
           title: 'Transparent Tracking',
           description: 'See every update in real time with progress logs, weekly summaries, and easy communication channels.',
           icon: { name: 'SeismometerIcon', width: 22 }
-        },
-        {
-          title: 'Quick Onboarding',
-          description: 'Simply share your clinic info — we set up assets, hosting, and integrations so you focus on patients.',
-          icon: { name: 'VoltageIcon', width: 18 }
-        },
-        {
-          title: 'U.S. Time-zone Overlap',
-          description: 'Collaborate smoothly with daily overlap for reviews, updates, and approvals that fit your clinic hours.',
-          icon: { name: 'PlanetRingIcon', width: 26 }
-        },
-        {
-          title: 'Flexible Payments',
-          description: 'Pay per project or choose monthly bundles — scale your digital footprint at your own pace.',
-          icon: { name: 'CreditCardIcon', width: 26 }
-        },
-        {
-          title: 'Scalable Engagement',
-          description: 'Start with a website — expand to booking, SEO, dashboards, or automation without changing teams.',
-          icon: { name: 'ScaleIcon', width: 26 }
         }
       ]
     },
@@ -831,7 +791,7 @@ const OFFERS: ExpertiseContent[] = [
       },
       {
         title: '7. Where is your delivery team based?',
-        description: 'Our engineers operate from Pakistan with strong written English and daily U.S. time-zone overlap.'
+        description: 'Our engineers operate from Pakistan with b written English and daily U.S. time-zone overlap.'
       },
       {
         title: '8. What is your pricing and billing model?',

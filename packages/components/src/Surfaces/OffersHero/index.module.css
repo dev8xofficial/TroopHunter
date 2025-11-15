@@ -16,6 +16,10 @@
   max-width: 42rem;
   opacity: 0.8;
 }
+.expertise-paragraph b {
+  font-weight: 500;
+  font-style: italic;
+}
 
 @media (min-width: 768px) {
   .expertise-paragraph {

@@ -12,7 +12,7 @@ import { LandscapeWorkCardProps } from '../../Interfaces/Work/WorkProjectTypes';
 import LayoutStyles from '../Layout/layout.module.css';
 import styles from './index.module.css';
 
-interface OffersHeroProps extends Omit<ExpertiseContent, 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'> {
+interface OffersHeroProps extends Omit<ExpertiseContent, 'meta' | 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'> {
   activeCategory?: string;
   showHowToHireVideo?: boolean;
   paragraph?: string;
@@ -42,7 +42,7 @@ export const OffersHero: React.FC<OffersHeroProps> = ({ tagText, heading, varian
                     </React.Fragment>
                   ))}
                 </h2>
-                <div style={{ opacity: 1, transform: 'translateY(0px)' }}>{paragraph && <p className={styles['expertise-paragraph']}>{paragraph}</p>}</div>
+                <div style={{ opacity: 1, transform: 'translateY(0px)' }}>{paragraph && <p className={styles['expertise-paragraph']} dangerouslySetInnerHTML={{ __html: paragraph }} />}</div>
 
                 {isOffersPage && (
                   <div className={LayoutStyles['work-header']}>

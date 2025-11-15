@@ -3,7 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { ICON_MAP } from '../IconCards/IconMap';
-import { ExpertiseFooterForm, ExpertiseFooterSocialLink } from '../../Interfaces/Expertise/Expertise';
+import { ExpertiseFooterForm, ExpertiseFooterSocialLink } from '../../Interfaces/PageLayout/PageLayout';
 import RightArrowIcon from '../../Icons/RightArrow';
 
 import ContactFormModalStyles from '../../Modals/ContactFormModal/index.module.css';

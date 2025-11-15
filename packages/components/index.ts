@@ -102,8 +102,10 @@ export * from './src/Icons/Wordpress';
 export * from './src/Icons/CaretDown';
 export * from './src/Icons/CaretUp';
 
+export * from './src/Interfaces/About/About';
 export * from './src/Interfaces/Work/WorkProjectTypes';
 export * from './src/Interfaces/Expertise/Expertise';
+export * from './src/Interfaces/Home/Home';
 
 export * from './src/Constants/Work/WorkProjects';
 export * from './src/Constants/Offers/OffersData';
