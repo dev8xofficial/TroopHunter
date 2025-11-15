@@ -32,8 +32,7 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
 
   // Modal scroll + body scroll-lock
   useEffect(() => {
-    if (!isVisible) return;
-    if (!modalRef.current || !modalInnerRef.current) return;
+    if (!isVisible || !modalRef.current || !modalInnerRef.current) return;
 
     // Stop global Lenis without locking body
     lenis.stop();
@@ -57,6 +56,7 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
       // Restart global Lenis without changing scroll
       lenis.start();
     };
+<<<<<<< HEAD
   }, [isVisible]);
 
   // Modal ScrollTrigger animations
@@ -80,7 +80,7 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
       });
 
       gsap.to(modalInnerBg, {
-        borderRadius: '0px',
+        borderRadius: '5px',
         scrollTrigger: {
           trigger: element,
           start: 'top 20%',
@@ -91,7 +91,7 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
       });
 
       gsap.to(modal, {
-        padding: '0px',
+        padding: '5px',
         scrollTrigger: {
           trigger: element,
           start: 'top 20%',
@@ -106,11 +106,14 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, [isVisible]);
+=======
+  }, [isVisible, lenis]);
+>>>>>>> d7d88fef789ae4ec93bc8a92823bfad8ba716810
 
   if (!isMounted || !isVisible) return null;
 
   return createPortal(
-    <SmoothModal toggle={toggle} modalRef={modalRef} modalInnerRef={modalInnerRef} modalBGClassName={modalType === 'contact' ? ContactFormModalStyles['modal-bg'] : ''}>
+    <SmoothModal toggle={toggle} modalRef={modalRef} modalInnerRef={modalInnerRef} modalBGClassName={modalType === 'contact' ? ContactFormModalStyles['modal-bg'] : ''} >
       {children}
     </SmoothModal>,
     document.getElementById('smooth-modal')!
