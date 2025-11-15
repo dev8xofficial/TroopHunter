@@ -56,59 +56,7 @@ const SmoothModalWrapper: React.FC<SmoothModalWrapperProps> = ({ modalType, togg
       // Restart global Lenis without changing scroll
       lenis.start();
     };
-<<<<<<< HEAD
-  }, [isVisible]);
-
-  // Modal ScrollTrigger animations
-  useEffect(() => {
-    if (!isVisible) return;
-
-    const element = document.querySelector('#modal-inner') as HTMLElement;
-    const modalInnerBg = document.querySelector('#modal-inner-bg') as HTMLElement;
-    const modal = document.querySelector('#modal') as HTMLElement;
-
-    if (element) {
-      gsap.to(element, {
-        '--progress': 1,
-        scrollTrigger: {
-          trigger: element,
-          start: 'top 20%',
-          end: 'top top',
-          scrub: true,
-          scroller: modalRef.current
-        }
-      });
-
-      gsap.to(modalInnerBg, {
-        borderRadius: '5px',
-        scrollTrigger: {
-          trigger: element,
-          start: 'top 20%',
-          end: 'top top',
-          scrub: true,
-          scroller: modalRef.current
-        }
-      });
-
-      gsap.to(modal, {
-        padding: '5px',
-        scrollTrigger: {
-          trigger: element,
-          start: 'top 20%',
-          end: 'top top',
-          scrub: true,
-          scroller: modalRef.current
-        }
-      });
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
-  }, [isVisible]);
-=======
   }, [isVisible, lenis]);
->>>>>>> d7d88fef789ae4ec93bc8a92823bfad8ba716810
 
   if (!isMounted || !isVisible) return null;
 
