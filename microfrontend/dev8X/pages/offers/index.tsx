@@ -41,7 +41,7 @@ const OffersPage: React.FC = (): JSX.Element => {
   };
 
   const nextExpertise = getNextExpertise('web-applications');
-  
+
   const availableCategories = useMemo<string[]>(() => {
     if (!offersData.offersSlider) return [];
     const uniquePackages = new Set<string>();
@@ -172,10 +172,10 @@ const OffersPage: React.FC = (): JSX.Element => {
         <ContactFormModal />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="developers" toggle={() => toggleModal('developers')}>
-        <DevelopersModal selectedOffer={currentModal.data} />
+        <DevelopersModal selectedOffer={currentModal.data} variant={variant} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="minisquads" toggle={() => toggleModal('minisquads')}>
-        <MiniSquadsModal selectedOffer={currentModal.data} />
+        <MiniSquadsModal selectedOffer={currentModal.data} variant={variant} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="schedulecall" toggle={() => toggleModal('schedulecall')}>
         <ScheduleCallContent />

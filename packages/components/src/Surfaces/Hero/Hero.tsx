@@ -36,19 +36,12 @@ export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, ima
                     </React.Fragment>
                   ))}
                 </h2>
-                <div style={{ opacity: 1, transform: 'translateY(0px)' }}>
-                  {paragraph && (
-                    <p className={styles['expertise-paragraph']}>
-                      {paragraph}
-                    </p>
-                  )}
-                </div>
+                <div style={{ opacity: 1, transform: 'translateY(0px)' }}>{paragraph && <p className={styles['expertise-paragraph']} dangerouslySetInnerHTML={{ __html: paragraph }} />}</div>
                 {isOffersPage && (
                   <div className={LayoutStyles['work-header']}>
                     <OffersCategories />
                   </div>
                 )}
-
               </div>
             </div>
 

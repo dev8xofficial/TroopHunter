@@ -11,6 +11,7 @@ import { ToggleField } from '../../Input/ToggleField/ToggleField';
 import { ListboxField, ListboxOptionType } from '../../Input/ListboxField/ListboxField';
 import { HighlightBox } from '../../Input/HighlightBox/HighlightBox';
 import { ExpertiseOffersSliderItem } from '../../Interfaces/Expertise/Expertise';
+import { Pill } from '../../Surfaces/Pill/Pill';
 
 import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
@@ -62,9 +63,10 @@ const getPlanConfig = (selectedOffer: ExpertiseOffersSliderItem | null) => {
 
 interface DevelopersModalProps {
   selectedOffer?: ExpertiseOffersSliderItem | null;
+  variant?: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
 }
 
-export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer = null }): JSX.Element => {
+export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer = null, variant = 'blue' }): JSX.Element => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -190,7 +192,10 @@ export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer 
       ) : (
         <>
           <div className={ContactFormModalStyles['modal-header']} />
-          <h1 className={ContactFormModalStyles['modal-heading']}>Let's Hire {planConfig.name}</h1>
+          <div className={ContactFormModalStyles['modal-heading-wrapper']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+            <Pill variant={variant}>Let's Hire</Pill>
+            <h1 className={ContactFormModalStyles['modal-heading']}>{planConfig.name}</h1>
+          </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className={`${ContactFormModalStyles['contact-form']} grid-cols-2`}>
             <div className={`col-full ${ContactFormModalStyles['modal-intro']}`}>

@@ -179,10 +179,10 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent):
         <ContactFormModal />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="developers" toggle={() => toggleModal('developers')}>
-        <DevelopersModal selectedOffer={currentModal.data} />
+        <DevelopersModal selectedOffer={currentModal.data} variant={variant} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="minisquads" toggle={() => toggleModal('minisquads')}>
-        <MiniSquadsModal selectedOffer={currentModal.data} />
+        <MiniSquadsModal selectedOffer={currentModal.data} variant={variant} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="schedulecall" toggle={() => toggleModal('schedulecall')}>
         <ScheduleCallContent />
