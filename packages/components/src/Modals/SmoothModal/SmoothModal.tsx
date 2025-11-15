@@ -22,7 +22,48 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
     const backdrop = modalBackdropRef.current;
     if (!el || !backdrop) return;
 
-    const tl = gsap.timeline();
+    const element = document.querySelector('#modal-inner') as HTMLElement;
+    const modalInnerBg = document.querySelector('#modal-inner-bg') as HTMLElement;
+    const modal = document.querySelector('#modal') as HTMLElement;
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        if (element) {
+          gsap.to(element, {
+            '--progress': 1,
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 20%',
+              end: 'top top',
+              scrub: true,
+              scroller: modalRef.current
+            }
+          });
+
+          gsap.to(modalInnerBg, {
+            borderRadius: '0px',
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 20%',
+              end: 'top top',
+              scrub: true,
+              scroller: modalRef.current
+            }
+          });
+
+          gsap.to(modal, {
+            padding: '0px',
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 20%',
+              end: 'top top',
+              scrub: true,
+              scroller: modalRef.current
+            }
+          });
+        }
+      }
+    });
 
     // 🏁 Initial states
     tl.set(backdrop, { opacity: 0 });
@@ -65,13 +106,11 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
     );
   }, [modalInnerRef]);
 
-
   const handleClose = (e: React.MouseEvent<HTMLButtonElement> | MouseEvent) => {
     const el = modalInnerRef.current;
     const backdrop = modalBackdropRef.current;
     if (!el || !backdrop) return;
 
- 
     gsap.set(el, { willChange: 'transform' });
 
     const tl = gsap.timeline({
@@ -93,7 +132,6 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
       ease: 'power3.inOut'
     });
 
-   
     tl.to(
       backdrop,
       {
@@ -104,7 +142,6 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
       '-=0.4'
     );
   };
-
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) handleClose(e.nativeEvent);
@@ -139,7 +176,7 @@ const SmoothModal: React.FC<SmoothModalProps> = ({ toggle, children, modalRef, m
                 left: '0px',
                 right: '0px'
               }}
-            ></div>                                                                                                                                               
+            ></div>
 
             <ModalCloseButton onClick={handleClose} />
 
