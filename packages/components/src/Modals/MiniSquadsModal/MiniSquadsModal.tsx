@@ -271,9 +271,9 @@ export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer 
               )}
             /> */}
 
-            {/* Plan Info */}
-            <FieldWrapper className="col-sm-2" label="Plans">
-              <HighlightBox variant="contained">
+            {/* All Plans Include */}
+            <FieldWrapper className="col-sm-2" label="All Plans Include">
+              <HighlightBox variant="outlined">
                 <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}>{plansItems && plansItems.length > 0 && plansItems.map((item, index) => <li key={index}>{item}</li>)}</ul>
               </HighlightBox>
             </FieldWrapper>
