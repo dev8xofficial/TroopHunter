@@ -112,7 +112,7 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent):
             <div style={{ display: 'grid' }}>
               <div className={`${HomePageStyles['homepage__feed-wrapper']} ${HomePageStyles['homepage__feed-wrapper-inner--overflow']}`}>
                 <div className={`${HomePageStyles['homepage__feed-wrapper-inner']}`}>
-                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', selectedOffer)} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, planItems: PageData.planItems })} />
+                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', { selectedOffer, plansItems: PageData.primaryPlansItems })} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, plansItems: PageData.secondaryPlansItems })} />
                 </div>
               </div>
             </div>
@@ -179,10 +179,10 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent):
         <ContactFormModal />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="developers" toggle={() => toggleModal('developers')}>
-        <DevelopersModal selectedOffer={currentModal.data} variant={variant} />
+        <DevelopersModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={PageData?.primaryPlansItems} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="minisquads" toggle={() => toggleModal('minisquads')}>
-        <MiniSquadsModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} planItems={currentModal.data?.planItems} />
+        <MiniSquadsModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={PageData?.secondaryPlansItems} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="schedulecall" toggle={() => toggleModal('schedulecall')}>
         <ScheduleCallContent />
@@ -203,13 +203,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const PageData = OFFERS.find((p) => p.slug === params.slug);
-  const { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials, faqs, offersSlider, planItems } = PageData;
+  const { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems } = PageData;
 
   if (!PageData) {
     return { notFound: true };
   }
 
   return {
-    props: { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials, faqs, offersSlider, planItems }
+    props: { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems }
   };
 }

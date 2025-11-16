@@ -106,6 +106,7 @@ export * from './src/Interfaces/About/About';
 export * from './src/Interfaces/Work/WorkProjectTypes';
 export * from './src/Interfaces/Expertise/Expertise';
 export * from './src/Interfaces/Home/Home';
+export * from './src/Interfaces/Offers/Offers';
 
 export * from './src/Constants/Work/WorkProjects';
 export * from './src/Constants/Offers/OffersData';

@@ -64,9 +64,10 @@ const getPlanConfig = (selectedOffer: ExpertiseOffersSliderItem | null) => {
 interface DevelopersModalProps {
   selectedOffer?: ExpertiseOffersSliderItem | null;
   variant?: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
+  plansItems?: string[];
 }
 
-export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer = null, variant = 'blue' }): JSX.Element => {
+export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer = null, variant = 'blue', plansItems }): JSX.Element => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -327,12 +328,7 @@ export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer 
             {/* All Plans Include */}
             <FieldWrapper className="col-sm-2" label="All Plans Include">
               <HighlightBox variant="outlined">
-                <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}>
-                  <li>Tech Lead Supervision</li>
-                  <li>Transparent Time Tracking</li>
-                  <li>Weekly Code Reports</li>
-                  <li>4-Hour U.S. Time Overlap</li>
-                </ul>
+                <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}>{plansItems && plansItems.length > 0 && plansItems.map((item, index) => <li key={index}>{item}</li>)}</ul>
               </HighlightBox>
             </FieldWrapper>
 

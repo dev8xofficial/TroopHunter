@@ -105,7 +105,7 @@ const OffersPage: React.FC = (): JSX.Element => {
             <div style={{ display: 'grid' }}>
               <div className={`${HomePageStyles['homepage__feed-wrapper']} ${HomePageStyles['homepage__feed-wrapper-inner--overflow']}`}>
                 <div className={`${HomePageStyles['homepage__feed-wrapper-inner']}`}>
-                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', selectedOffer)} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, planItems: offersData.planItems })} />
+                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', selectedOffer)} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, primaryPlansItems: offersData.primaryPlansItems })} />
                 </div>
               </div>
             </div>
@@ -172,10 +172,10 @@ const OffersPage: React.FC = (): JSX.Element => {
         <ContactFormModal />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="developers" toggle={() => toggleModal('developers')}>
-        <DevelopersModal selectedOffer={currentModal.data} variant={variant} />
+        <DevelopersModal selectedOffer={currentModal.data} variant={variant} plansItems={currentModal.data?.primaryPlansItems} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="minisquads" toggle={() => toggleModal('minisquads')}>
-        <MiniSquadsModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} planItems={currentModal.data?.planItems} />
+        <MiniSquadsModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={currentModal.data?.secondaryPlansItems} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="schedulecall" toggle={() => toggleModal('schedulecall')}>
         <ScheduleCallContent />

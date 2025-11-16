@@ -48,10 +48,10 @@ const getSquadConfig = (selectedOffer: ExpertiseOffersSliderItem | null) => {
 interface MiniSquadsModalProps {
   selectedOffer?: ExpertiseOffersSliderItem | null;
   variant?: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
-  planItems?: string[];
+  plansItems?: string[];
 }
 
-export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer = null, variant = 'blue', planItems }) => {
+export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer = null, variant = 'blue', plansItems }) => {
   const squadConfig = getSquadConfig(selectedOffer);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -274,18 +274,7 @@ export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer 
             {/* Plan Info */}
             <FieldWrapper className="col-sm-2" label="Plans">
               <HighlightBox variant="contained">
-                <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}>
-                  {planItems && planItems.length > 0 ? (
-                    planItems.map((item, index) => <li key={index}>{item}</li>)
-                  ) : (
-                    <>
-                      <li>Dedicated Slack Channel for Communication</li>
-                      <li>Weekly Progress & Team Sync Meetings</li>
-                      <li>Complete Project Transparency via ClickUp or Jira</li>
-                      <li>Flexible Month-to-Month Commitment</li>
-                    </>
-                  )}
-                </ul>
+                <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}>{plansItems && plansItems.length > 0 && plansItems.map((item, index) => <li key={index}>{item}</li>)}</ul>
               </HighlightBox>
             </FieldWrapper>
 

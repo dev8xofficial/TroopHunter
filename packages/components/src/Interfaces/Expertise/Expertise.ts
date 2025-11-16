@@ -58,5 +58,4 @@ export interface ExpertiseContent extends PageLayoutContent {
   faqs?: ExpertiseFAQS[];
   offersSlider?: ExpertiseOffersSliderItem[];
   video?: string;
-  planItems?: string[];
 }

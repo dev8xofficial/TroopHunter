@@ -69,7 +69,7 @@ export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePa
               </div>
               <p className={FeedSilderStyles['article-card__excerpt']}>{offer.description}</p>
               <div className={styles['expertise-footer']}>
-                <Button variant="secondary" endIcon={<RightArrowIcon width="14" className={FeedSilderStyles['button--icon']} />} className={`${ButtonStyles['button']} ${ButtonStyles['button--icon']} ${ButtonStyles['button--bg-secondary']}`} spanClassName={FeedSilderStyles['expertise-card__button']} onClick={(e) => { e.preventDefault(); if (offer.package === 'developers') { openDevelopersModal?.(offer); } else { openMiniSquadsModal?.(offer); } }}>
+                <Button variant="secondary" endIcon={<RightArrowIcon width="14" className={FeedSilderStyles['button--icon']} />} className={`${ButtonStyles['button']} ${ButtonStyles['button--icon']} ${ButtonStyles['button--bg-secondary']}`} spanClassName={FeedSilderStyles['expertise-card__button']} onClick={(e) => { e.preventDefault(); if (offer.package === 'Developers') { openDevelopersModal?.(offer); } else { openMiniSquadsModal?.(offer); } }}>
                   {offer.buttonText}
                 </Button>
               </div>
