@@ -512,6 +512,7 @@ const OFFERS: OffersContent[] = [
       }
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
+    secondaryPlansItems: [''],
     video: prefixed(`/videos/header/header.mp4`)
   },
   {
@@ -797,6 +798,7 @@ const OFFERS: OffersContent[] = [
       }
     ],
     primaryPlansItems: ['Direct Communication via WhatsApp, Email, or Slack', 'Weekly Progress Reports & Quick Updates', 'Complete Transparency with Live Project Access', 'Flexible Engagement - Start Small, Scale as Needed'],
+    secondaryPlansItems: [''],
     video: prefixed(`/videos/header/header.mp4`)
   }
   // {

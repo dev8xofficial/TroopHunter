@@ -10,7 +10,7 @@ import { Button } from '../../Input/Button/Button';
 // import { ToggleField } from '../../Input/ToggleField/ToggleField';
 import { ListboxField, ListboxOptionType } from '../../Input/ListboxField/ListboxField';
 import { HighlightBox } from '../../Input/HighlightBox/HighlightBox';
-import { ExpertiseOffersSliderItem } from '../../Interfaces/Expertise/Expertise';
+import { OffersSliderItem } from '../../Interfaces/Offers/Offers';
 import { Pill } from '../../Surfaces/Pill/Pill';
 
 import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
@@ -35,7 +35,7 @@ const addOnOptions = [
   { id: 5, label: 'Start in 1 Week', secondaryLabel: '', key: 'startInWeek' }
 ];
 
-const getPlanConfig = (selectedOffer: ExpertiseOffersSliderItem | null) => {
+const getPlanConfig = (selectedOffer: OffersSliderItem | null) => {
   if (!selectedOffer) {
     return {
       name: 'Junior Developer',
@@ -62,7 +62,7 @@ const getPlanConfig = (selectedOffer: ExpertiseOffersSliderItem | null) => {
 };
 
 interface DevelopersModalProps {
-  selectedOffer?: ExpertiseOffersSliderItem | null;
+  selectedOffer?: OffersSliderItem | null;
   variant?: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
   plansItems?: string[];
 }

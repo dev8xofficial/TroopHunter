@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom, useAtomValue } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, ExpertiseOffersSliderItem, WorkCard } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import EXPERTISES from '../../data/expertise/index.d';
@@ -53,7 +53,7 @@ const OffersPage: React.FC = (): JSX.Element => {
     return Array.from(uniquePackages).sort();
   }, [offersData.offersSlider]);
 
-  const filteredOffers = useMemo<ExpertiseOffersSliderItem[]>(() => {
+  const filteredOffers = useMemo<OffersSliderItem[]>(() => {
     if (!offersData.offersSlider) return [];
     if (activeCategory.toLowerCase() !== 'all') {
       return offersData.offersSlider.filter((o) => o.package === activeCategory);

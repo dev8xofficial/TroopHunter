@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom, useAtomValue } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, ExpertiseOffersSliderItem, WorkCard, ExpertiseContent } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, OffersContent } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import OFFERS from '../../data/offers/index.d';
@@ -17,7 +17,7 @@ import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import styles from './index.module.css';
 
-const OffersPage: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): JSX.Element => {
+const OffersPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const currentModal = useAtomValue(openSmoothModalAtom);
 
@@ -49,7 +49,7 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent):
     return Array.from(uniquePackages).sort();
   }, [PageData.offersSlider]);
 
-  const filteredOffers = useMemo<ExpertiseOffersSliderItem[]>(() => {
+  const filteredOffers = useMemo<OffersSliderItem[]>(() => {
     if (!PageData.offersSlider) return [];
     if (activeCategory.toLowerCase() !== 'all') {
       return PageData.offersSlider.filter((o) => o.package === activeCategory);
@@ -112,7 +112,7 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent):
             <div style={{ display: 'grid' }}>
               <div className={`${HomePageStyles['homepage__feed-wrapper']} ${HomePageStyles['homepage__feed-wrapper-inner--overflow']}`}>
                 <div className={`${HomePageStyles['homepage__feed-wrapper-inner']}`}>
-                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', { selectedOffer, plansItems: PageData.primaryPlansItems })} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, plansItems: PageData.secondaryPlansItems })} />
+                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', { selectedOffer, plansItems: PageData?.primaryPlansItems })} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, plansItems: PageData?.secondaryPlansItems })} />
                 </div>
               </div>
             </div>

@@ -10,7 +10,7 @@ import { Textarea } from '../../Input/Textarea/Textarea';
 import { Button } from '../../Input/Button/Button';
 import { Pill } from '../../Surfaces/Pill/Pill';
 import { HighlightBox } from '../../Input/HighlightBox/HighlightBox';
-import { ExpertiseOffersSliderItem } from '../../Interfaces/Expertise/Expertise';
+import { OffersSliderItem } from '../../Interfaces/Offers/Offers';
 
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
 import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
@@ -25,7 +25,7 @@ interface IFormInputs {
   addOns: any[];
 }
 
-const getSquadConfig = (selectedOffer: ExpertiseOffersSliderItem | null) => {
+const getSquadConfig = (selectedOffer: OffersSliderItem | null) => {
   if (!selectedOffer) {
     return {
       name: 'MVP Squad',
@@ -46,7 +46,7 @@ const getSquadConfig = (selectedOffer: ExpertiseOffersSliderItem | null) => {
 };
 
 interface MiniSquadsModalProps {
-  selectedOffer?: ExpertiseOffersSliderItem | null;
+  selectedOffer?: OffersSliderItem | null;
   variant?: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
   plansItems?: string[];
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { ExpertiseContent } from '../../Interfaces/Expertise/Expertise';
 
 import PictureStyles from '../Picture/index.module.css';
 import ButtonStyle from '../../Input/Button/index.module.css';

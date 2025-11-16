@@ -3,7 +3,7 @@
 import React, { CSSProperties } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
-import { Button, ExpertiseOffersSliderItem, Link } from '@repo/components';
+import { Button, OffersSliderItem, Link } from '@repo/components';
 import RightArrowIcon from '../../Icons/RightArrow';
 import StarIcon from '../../Icons/StarIcon';
 
@@ -31,9 +31,9 @@ type OffersSliderProps = {
   homePageFeed?: string;
   homePageFeedWrapperInnerOverflow?: string;
   homePageFeedOverflow?: string;
-  offers: ExpertiseOffersSliderItem[];
-  openDevelopersModal?: (selectedPlan: ExpertiseOffersSliderItem) => void;
-  openMiniSquadsModal?: (selectedOffer: ExpertiseOffersSliderItem) => void;
+  offers: OffersSliderItem[];
+  openDevelopersModal?: (selectedPlan: OffersSliderItem) => void;
+  openMiniSquadsModal?: (selectedOffer: OffersSliderItem) => void;
 };
 
 export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePageFeedWrapperInnerOverflow, homePageFeedOverflow, offers, openDevelopersModal, openMiniSquadsModal }): JSX.Element => {
@@ -69,7 +69,20 @@ export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePa
               </div>
               <p className={FeedSilderStyles['article-card__excerpt']}>{offer.description}</p>
               <div className={styles['expertise-footer']}>
-                <Button variant="secondary" endIcon={<RightArrowIcon width="14" className={FeedSilderStyles['button--icon']} />} className={`${ButtonStyles['button']} ${ButtonStyles['button--icon']} ${ButtonStyles['button--bg-secondary']}`} spanClassName={FeedSilderStyles['expertise-card__button']} onClick={(e) => { e.preventDefault(); if (offer.package === 'Developers') { openDevelopersModal?.(offer); } else { openMiniSquadsModal?.(offer); } }}>
+                <Button
+                  variant="secondary"
+                  endIcon={<RightArrowIcon width="14" className={FeedSilderStyles['button--icon']} />}
+                  className={`${ButtonStyles['button']} ${ButtonStyles['button--icon']} ${ButtonStyles['button--bg-secondary']}`}
+                  spanClassName={FeedSilderStyles['expertise-card__button']}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (offer.package === 'Developers') {
+                      openDevelopersModal?.(offer);
+                    } else {
+                      openMiniSquadsModal?.(offer);
+                    }
+                  }}
+                >
                   {offer.buttonText}
                 </Button>
               </div>

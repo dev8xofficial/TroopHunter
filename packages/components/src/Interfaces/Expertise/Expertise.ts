@@ -30,21 +30,6 @@ export interface ExpertiseTestimonial {
   comment: string;
 }
 
-export interface ExpertiseFAQS {
-  title: string;
-  description: string;
-}
-export interface ExpertiseOffersSliderItem {
-  id: string;
-  heading?: string;
-  price: string;
-  description: string;
-  features: string[];
-  categories: string[];
-  buttonText?: string;
-  package?: string;
-}
-
 export interface ExpertiseContent extends PageLayoutContent {
   slug: string;
   variant: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
@@ -55,7 +40,5 @@ export interface ExpertiseContent extends PageLayoutContent {
   iconCards: ExpertiseIconCards;
   contentAsideImageItems: ExpertiseContentAsideImageItem[];
   testimonials: ExpertiseTestimonial[];
-  faqs?: ExpertiseFAQS[];
-  offersSlider?: ExpertiseOffersSliderItem[];
   video?: string;
 }
