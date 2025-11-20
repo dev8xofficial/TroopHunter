@@ -89,3 +89,4 @@ Replace     ='prefixed("/$1")'
 
 Find        '/api(.*?)'
 Replace     prefixed('/api$1')
+

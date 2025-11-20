@@ -1,0 +1,38 @@
+.not-found {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  border-radius: inherit;
+  min-height: calc(100vh - var(--header-height));
+  text-align: center;
+}
+
+.not-found__heading {
+  font-size: clamp(2.5rem, 5.2083333333vw, 3.325rem);
+  color: var(--theme-secondary);
+  margin: 0;
+}
+
+.not-found__error {
+  font-size: clamp(1.25rem, 2.6041666667vw, 1.6625rem);
+}
+
+.not-found__image {
+  height: auto;
+  max-width: 50vw;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  image-rendering: pixelated;
+  border-bottom-left-radius: inherit;
+}
+
+@media (min-width: 768px) {
+  .not-found__heading {
+    font-size: clamp(5rem, 5.291005291vw, 6.65rem);
+  }
+
+  .not-found__error {
+    font-size: clamp(2.5rem, 2.6455026455vw, 3.325rem);
+  }
+}

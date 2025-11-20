@@ -6,7 +6,7 @@ WORKDIR /app
 # Copy package files for better caching
 COPY package.json ./
 COPY package-lock.json ./
-COPY .npmrc ./
+# COPY .npmrc ./
 COPY microfrontend/helloabdul/package.json ./microfrontend/helloabdul/package.json
 COPY packages ./packages
 COPY turbo.json ./
@@ -33,7 +33,7 @@ FROM base as builder
 # ARG NODE_ENV
 # RUN sh -c "npm run build:${NODE_ENV}"
 
-# ---- Production Stage ----
+# ---- Production/Staging Stage ----
 FROM node:20.19.5-alpine as production
 
 WORKDIR /app/microfrontend/helloabdul

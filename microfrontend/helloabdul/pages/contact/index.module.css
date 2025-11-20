@@ -1,0 +1,205 @@
+.contact-page {
+  min-height: 100vh;
+  margin-top: calc(var(--header-height) * -1);
+  display: grid;
+  position: relative;
+  overflow: hidden;
+}
+
+button > .contact-button {
+  font-size: clamp(0.9375rem, 0.9920634921vw, 1.246875rem);
+  padding: 1em 0.9em;
+  gap: 0.5em;
+}
+
+button > .contact-button svg {
+  font-size: 1em;
+}
+
+.contact-image,
+.contact-video {
+  animation: page_fade-in__rb81d 0.4s ease-in-out forwards;
+}
+
+.contact-image img {
+  height: 100%;
+  width: 100%;
+}
+
+.contact-video {
+  display: block;
+}
+
+.contact-bg-desktop {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.contact-bg-desktop .contact-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.contact-bg-desktop .contact-image img {
+  object-fit: cover;
+  object-position: 60% center;
+}
+
+.contact-bg-desktop .contact-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: 60% center;
+}
+
+.contact-bg-mobile {
+  display: grid;
+  margin-left: calc(var(--container-gutter) * -1);
+  margin-right: calc(var(--container-gutter) * -1);
+  margin-top: -10%;
+  margin-bottom: -10%;
+  animation: page_fade-in__rb81d 0.4s ease-in-out forwards;
+  position: relative;
+  z-index: 0;
+  z-index: -1;
+}
+
+.contact-bg-mobile:before {
+  top: 0;
+  top: -20%;
+}
+
+.contact-bg-mobile:after,
+.page_contact-bg-mobile:before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  border-radius: inherit;
+  background: linear-gradient(to top, transparent, var(--theme-background), transparent);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: background 0.15s ease-in-out;
+  height: 40%;
+  z-index: 1;
+}
+
+.contact-bg-mobile:after {
+  top: 0;
+  top: 80%;
+}
+
+.contact-bg-mobile .contact-image,
+.contact-bg-mobile .contact-video {
+  width: 100%;
+  height: 100%;
+  grid-area: 1/-1;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.contact-container {
+  grid-area: 1/-1;
+  padding-top: var(--header-height);
+  z-index: 0;
+  width: 100%;
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+  display: grid;
+  align-items: center;
+  grid-template-rows: auto auto;
+  grid-gap: clamp(2.25rem, 2.380952381vw, 2.9925rem);
+  gap: clamp(2.25rem, 2.380952381vw, 2.9925rem);
+}
+
+@media (min-width: 992px) {
+  .contact-container {
+    --container-gutter: clamp(5rem, 5.291005291vw, 6.65rem);
+  }
+}
+
+.contact-content {
+  padding: 8vw 0;
+}
+
+.contact-heading {
+  color: #fff;
+  line-height: 1;
+  margin: 0 0 0.3em;
+  max-width: clamp(31.25rem, 65.1041666667vw, 41.5625rem);
+  font-size: clamp(3.75rem, 7.8125vw, 4.9875rem);
+}
+
+@media (min-width: 992px) {
+  .contact-heading {
+    max-width: clamp(38.9375rem, 41.2037037037vw, 51.786875rem);
+    font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
+  }
+}
+
+.contact-footer {
+  z-index: 1;
+  width: 100%;
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+  align-self: flex-end;
+  display: grid;
+  grid-template-areas: 'columns' 'bottom';
+  grid-gap: 3.75rem;
+  gap: 3.75rem;
+  padding-bottom: 6.25rem;
+}
+
+@media (min-width: 768px) {
+  .contact-footer {
+    padding-bottom: 3.875rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .contact-footer {
+    gap: 0;
+    max-width: none;
+    grid-template-areas: 'columns .' 'bottom bottom';
+    padding-left: clamp(5rem, 5.291005291vw, 6.65rem);
+    padding-right: clamp(5rem, 5.291005291vw, 6.65rem);
+    padding-bottom: clamp(3.875rem, 4.1005291005vw, 5.15375rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .contact-footer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-footer .footer-columns {
+  margin: 0;
+  justify-content: space-between;
+}
+
+@media (min-width: 992px) {
+  .contact-footer .footer-bottom {
+    margin-top: clamp(5.875rem, 6.2169312169vw, 7.81375rem);
+    padding-top: clamp(1.375rem, 1.455026455vw, 1.82875rem);
+  }
+}

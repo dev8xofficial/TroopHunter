@@ -6,7 +6,7 @@ WORKDIR /app
 # Copy package files for better caching
 COPY package.json ./
 COPY package-lock.json ./
-COPY .npmrc ./
+# COPY .npmrc ./
 COPY microfrontend/dev8x/package.json ./microfrontend/dev8x/package.json
 COPY packages ./packages
 COPY turbo.json ./

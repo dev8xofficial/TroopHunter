@@ -5,50 +5,50 @@ services:
   #     file: docker-compose.ci.yml
   #     service: ci_prod
 
-  main-prod:
-    extends:
-      file: ./microservices/main/docker-compose.backend.yml
-      service: main-prod
+  # main-prod:
+  #   extends:
+  #     file: ./microservices/main/docker-compose.backend.yml
+  #     service: main-prod
 
-  auth-prod:
-    extends:
-      file: ./microservices/auth/docker-compose.backend.yml
-      service: auth-prod
+  # auth-prod:
+  #   extends:
+  #     file: ./microservices/auth/docker-compose.backend.yml
+  #     service: auth-prod
 
-  countries-prod:
-    extends:
-      file: ./microservices/countries/docker-compose.backend.yml
-      service: countries-prod
+  # countries-prod:
+  #   extends:
+  #     file: ./microservices/countries/docker-compose.backend.yml
+  #     service: countries-prod
 
-  businesses-prod:
-    extends:
-      file: ./microservices/businesses/docker-compose.backend.yml
-      service: businesses-prod
+  # businesses-prod:
+  #   extends:
+  #     file: ./microservices/businesses/docker-compose.backend.yml
+  #     service: businesses-prod
 
-  queues-prod:
-    extends:
-      file: ./microservices/queues/docker-compose.backend.yml
-      service: queues-prod
+  # queues-prod:
+  #   extends:
+  #     file: ./microservices/queues/docker-compose.backend.yml
+  #     service: queues-prod
 
-  users-prod:
-    extends:
-      file: ./microservices/users/docker-compose.backend.yml
-      service: users-prod
+  # users-prod:
+  #   extends:
+  #     file: ./microservices/users/docker-compose.backend.yml
+  #     service: users-prod
 
-  troophunter-prod:
-    extends:
-      file: ./microfrontend/troophunter/docker-compose.troophunter.yml
-      service: troophunter-prod
+  # troophunter-prod:
+  #   extends:
+  #     file: ./microfrontend/troophunter/docker-compose.troophunter.yml
+  #     service: troophunter-prod
 
   dev8x-prod:
     extends:
       file: ./microfrontend/dev8x/docker-compose.dev8x.yml
       service: dev8x-prod
 
-  helloabdul-prod:
-    extends:
-      file: ./microfrontend/helloabdul/docker-compose.helloabdul.yml
-      service: helloabdul-prod
+  # helloabdul-prod:
+  #   extends:
+  #     file: ./microfrontend/helloabdul/docker-compose.helloabdul.yml
+  #     service: helloabdul-prod
 
 volumes:
   pgadmin-data:

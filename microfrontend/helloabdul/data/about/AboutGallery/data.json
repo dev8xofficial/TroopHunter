@@ -1,0 +1,86 @@
+[
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/1121x694/0e805b7b17/office.jpg",
+      "alt": "office.jpg"
+    },
+    "type": "short"
+  },
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/990x990/b8b5d62739/video1_placeholder.jpg",
+      "alt": "video1_placeholder.jpg"
+    },
+    "type": "short"
+  },
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/1041x694/7e4f322b19/chats.jpg",
+      "alt": "chats.jpg"
+    },
+    "type": "short"
+  },
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/958x990/b81de9285b/letsinterface.jpg",
+      "alt": "letsinterface.jpg"
+    },
+    "type": "tall"
+  },
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/1800x900/f9f47af7d2/6_icecream.jpg",
+      "alt": "6_icecream.jpg"
+    },
+    "type": "short"
+  },
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/990x990/b8d8879cf1/video2_placeholder.jpg",
+      "alt": "video2_placeholder.jpg"
+    },
+    "type": "tall"
+  },
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/1251x694/c65618e8d1/tennis_2.jpg",
+      "alt": "tennis_2.jpg"
+    },
+    "type": "short"
+  },
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/742x990/f9c484e104/ross-jess.jpg",
+      "alt": "jess.jpg"
+    },
+    "type": "short"
+  },
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/1234x694/1fb9cf9818/video3_placeholder.jpg",
+      "alt": "video3_placeholder.jpg"
+    },
+    "type": "short"
+  },
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/500x500/eb95e694ec/2_workshop.jpg",
+      "alt": "2_workshop.jpg"
+    },
+    "type": "short"
+  },
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/1041x694/3c7a908d0d/lunching.jpg",
+      "alt": "lunching.jpg"
+    },
+    "type": "short"
+  },
+  {
+    "image": {
+      "filename": "https://a-us.storyblok.com/f/1017006/500x500/9d5515c81a/9_bowling.jpg",
+      "alt": "9_bowling.jpg"
+    },
+    "type": "short"
+  }
+]

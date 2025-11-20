@@ -1,212 +1,131 @@
-import { useEffect } from 'react';
+'use client';
+
 import Head from 'next/head';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import Scrollbar from 'smooth-scrollbar';
-import Hero from './home/Hero/Hero';
-import Header from '../components/Surfaces/Header/Header';
-import FeatureVideoResponsive from './home/FeatureVideo/FeatureVideoResponsive';
-import TestimonialsLarge from './home/Testimonials/TestimonialsLarge';
-import WorkWithVideos from './home/Work/WorkWithVideos';
-import About from './home/About/About';
-import Footer from './home/Footer/Footer';
-import Problems from './home/Problems/Problems';
-import Steps from './home/Steps/Steps';
+import { useSetAtom } from 'jotai';
+import { toggleSmoothModalAtom } from '../store/smoothModalAtom';
+import { useProjectModal } from '../hooks/useProjectModal';
+import Hero from '../components/Surfaces/Hero/Hero';
+// import Problems from './home/Problems/Problems';
+import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDev8X, ProjectsFormModal, ContactFormModal, WORK_PROJECTS } from '@repo/components';
+import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
+import { useBreakpoint } from '../hooks/useBreakpoint';
+import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
+import PageData from '../data/index.d';
+import { prefixed } from '../utils/helpers';
 
-type ScrollTriggerCallback = () => void;
-
-const createBackgroundScrollTrigger = (sectionId: string, startTrigger: string, endTrigger: string, onEnter: ScrollTriggerCallback = () => { }, onLeave: ScrollTriggerCallback = () => { }, onLeaveBack: ScrollTriggerCallback = () => { }, onEnterBack: ScrollTriggerCallback = () => { }) => {
-  ScrollTrigger.create({
-    trigger: sectionId,
-    scroller: '#smooth-scrollbar',
-    start: startTrigger,
-    end: endTrigger,
-    onEnter: () => {
-      onEnter();
-    },
-    onLeave: () => {
-      onLeave();
-    },
-    onLeaveBack: () => {
-      onLeaveBack();
-    },
-    onEnterBack: () => {
-      onEnterBack();
-    }
-  });
-};
+import TextAnimateStyles from '../components/Surfaces/TextAnimateUp/index.module.css';
+import styles from './index.module.css';
 
 export default function Home() {
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
+  const toggleModal = useSetAtom(toggleSmoothModalAtom);
+  const { modalSlug, openModal, closeProjectModal } = useProjectModal();
+  const project = WORK_PROJECTS.find((project) => project.path === modalSlug) ?? WORK_PROJECTS[0];
 
-      const scrollbar = Scrollbar.init(document.querySelector('#smooth-scrollbar') as HTMLElement, {
-        damping: 0.05
-      });
+  const getNextWorkProject = (currentSlug: string | null) => {
+    if (!currentSlug) return null;
 
-      ScrollTrigger.scrollerProxy('#smooth-scrollbar', {
-        scrollTop(value) {
-          if (arguments.length) {
-            scrollbar.scrollTop = value;
-          }
-          return scrollbar.scrollTop;
-        },
-        getBoundingClientRect() {
-          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-        }
-      });
+    const currentIndex = WORK_PROJECTS.findIndex((e) => e.slug === currentSlug);
 
-      scrollbar.addListener(ScrollTrigger.update);
+    if (currentIndex === -1) return null;
 
-      const sections = document.querySelectorAll('section');
-      sections.forEach((section) => {
-        gsap.fromTo(
-          section,
-          { y: 50 },
-          {
-            y: 0,
-            scrollTrigger: {
-              trigger: section,
-              scroller: '#smooth-scrollbar',
-              start: 'top 80%',
-              end: 'bottom 20%',
-              scrub: 2
-            },
-            ease: 'power2.in',
-            duration: 2
-          }
-        );
-      });
+    const nextIndex = (currentIndex + 1) % WORK_PROJECTS.length;
+    return WORK_PROJECTS[nextIndex];
+  };
 
-      const mainTag = document.querySelector('main');
-
-      // Code for FeatureVideo
-      // const triggerElment = document.getElementById('hero-section');
-      // const featureVideoWrapperElement = document.getElementById('feature-video-wrapper');
-      // let featureVideoElement = document.getElementById('feature-video');
-
-      // scrollbar.addListener(function (status) {
-      //   var offset = status.offset;
-
-      //   console.log('offset.y: ', offset.y);
-      //   featureVideoElement.style.top = `calc(${offset.y + 'px' + ' - 5vh'})`;
-      // });
-
-      // ScrollTrigger.create({
-      //   trigger: featureVideoElement,
-      //   scroller: '#smooth-scrollbar',
-      //   start: 'top 50%',
-      //   end: 'bottom bottom',
-      //   scrub: true, // Enable smooth scrubbing (this will automatically reverse the animation on scroll up)
-      //   onUpdate: (self) => {
-      //     featureVideoElement.style.setProperty('--progress', self.progress.toString());
-      //   }
-      // });
-
-      createBackgroundScrollTrigger(
-        '#feature-video-section',
-        'top 10%',
-        'top 10%',
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '#f3f3e9';
-          }
-        },
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '#f3f3e9';
-          }
-        },
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '';
-          }
-        },
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '#f3f3e9';
-          }
-        }
-      );
-
-      createBackgroundScrollTrigger(
-        '#about-section',
-        'top top',
-        'bottom top',
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '';
-          }
-        },
-        () => { },
-        () => {
-          if (mainTag) {
-            mainTag.style.backgroundColor = '#f3f3e9';
-          }
-        }
-      );
-
-      return () => {
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        scrollbar.destroy();
-      };
-    }
-  }, []);
+  const nextWorkProject = getNextWorkProject(modalSlug);
+  const isMobile = useBreakpoint();
 
   return (
     <>
       <Head>
-        <title>Dev8X - Solutions Made Simple!</title>
-        <meta name="description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <link rel="canonical" href="" />
+        <title>{PageData.meta.title}</title>
+        <meta name="description" content={PageData.meta.description}></meta>
+        <link rel="canonical" href="/" />
 
         {/* Open Graph Tags */}
-        <meta property="og:title" content="Dev8X - Solutions Made Simple!"></meta>
-        <meta property="og:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <meta property="og:url" content=""></meta>
+        <meta property="og:title" content={PageData.meta.title}></meta>
+        <meta property="og:description" content={PageData.meta.description}></meta>
+        <meta property="og:url" content="/"></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content="/logo-social.png"></meta>  
-        <meta property="og:image:secure_url" content="/logo-social.png"></meta>
+        <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
+        <meta property="og:image:secure_url" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image"></meta>
-        <meta name="twitter:title" content="Dev8X - Solutions Made Simple!"></meta>
-        <meta name="twitter:description" content="Dev8X simplifies finding and connecting with businesses around the world."></meta>
-        <meta name="twitter:image" content="/logo-social.png"></meta>
+        <meta name="twitter:title" content={PageData.meta.title}></meta>
+        <meta name="twitter:description" content={PageData.meta.description}></meta>
+        <meta name="twitter:image" content={prefixed('/logo-social.png')}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
-      {/* Main container with smooth-scrollbar */}
-      <main className="relative min-h-screen leading-relaxed font-medium h-full max-h-screen transition-colors duration-500 ease-in-out" id="smooth-scrollbar">
-        <header className="relative w-full h-screen overflow-hidden">
-          <Header />
-        </header>
-        <section id="problems-section">
-          <Problems />
-        </section>
-        {/* <section id="hero-section">
-          <Hero />
-        </section>
-        <section id="feature-video-section">
-          <FeatureVideoResponsive />
-        </section> */}
-        {/* <section id="testimonials-section">
-          <TestimonialsLarge />
-        </section> */}
-        <div className="grid">
-          <section id="work-section">
-            <WorkWithVideos />
-          </section>
-          <section id="about-section">
-            <About />
-          </section>
-          <section id="footer-section">
-            <Footer />
-          </section>
-        </div>
-      </main>
+      <FooterRevealPageWrap variant="frame">
+        <style jsx global>{`
+          :root {
+            --theme-primary: var(--default-primary);
+            --theme-primary-text: var(--default-primary-text);
+            --theme-secondary: var(--default-secondary);
+            --theme-text: var(--default-text);
+            --theme-background: var(--default-tertiary);
+            --theme-logo: var(--default-secondary);
+            --theme-header-face: var(--default-primary);
+          }
+        `}</style>
+        <Header />
+        <FooterRevealPageWrap variant="page">
+          {/* Main container with smooth-scrollbar */}
+          <main className={styles['homepage']}>
+            <Hero title={PageData.title} />
+            <div className={styles['homepage__purple-change']}>
+              <HomepageShowreel homepageShowreelCSSClass={styles['homepage__showreel']} src={PageData.video} isMobile={isMobile} />
+            </div>
+            {/* <Problems /> */}
+            <section className={styles['showcase']}>
+              <h2 className={styles['showcase__heading']} aria-label={PageData.paragraph}>
+                {PageData.paragraph.split(' ').map((word, index) => (
+                  <AppearOnScroll key={index} delay={0.2} duration={0.2} yOffset={20} as="span" className={TextAnimateStyles['word']}>
+                    <span
+                      aria-hidden="true"
+                      style={{
+                        display: 'inline-block',
+                        whiteSpace: 'pre'
+                      }}
+                    >
+                      {word + ' '}
+                    </span>
+                  </AppearOnScroll>
+                ))}
+              </h2>
+              {/* <HomePageLogos /> */}
+            </section>
+            {/* <Hero />
+            <FeatureVideoResponsive />
+            <TestimonialsLarge /> */}
+            <div className={styles['homepage__section']}>
+              <WorkGrid workGridCSSClass={styles['work-grid']} openModal={openModal} />
+              <WhyDev8X {...PageData.whyDev8XContent} />
+              {/* <div className={styles['homepage__feed-wrapper']}>
+                <div className={styles['homepage__feed-wrapper-inner']}>
+                  <FeedSlider  />
+                </div>
+              </div> */}
+            </div>
+          </main>
+        </FooterRevealPageWrap>
+        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
+      </FooterRevealPageWrap>
+      <SmoothModalWrapper
+        modalType="project"
+        toggle={() => {
+          toggleModal('project');
+          closeProjectModal();
+        }}
+      >
+        {modalSlug && <ProjectsFormModal {...project} nextWorkProject={nextWorkProject} />}
+      </SmoothModalWrapper>
+      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
+        <ContactFormModal />
+      </SmoothModalWrapper>
     </>
   );
 }
