@@ -57,7 +57,7 @@ const WorkPage: React.FC<WorkDetail> = ({ slug, ...project }: WorkDetail): JSX.E
             <ProjectsFormModal slug={slug} {...project} nextWorkProject={nextWorkProject} />
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
+        <Footer footerMainContent={PageData.footerMainContent} footerData={PageData.footerData} footerSocialLinks={PageData.footerSocialLinks} />
       </FooterRevealPageWrap>
     </>
   );

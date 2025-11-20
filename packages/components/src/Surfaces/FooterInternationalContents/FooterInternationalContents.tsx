@@ -3,7 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { ICON_MAP } from '../IconCards/IconMap';
-import { ExpertiseFooterForm, ExpertiseFooterSocialLink } from '../../Interfaces/PageLayout/PageLayout';
+import { ExpertiseFooterForm, ExpertiseFooterSocialLink, FooterInternationalContent } from '../../Interfaces/PageLayout/PageLayout';
 import RightArrowIcon from '../../Icons/RightArrow';
 
 import ContactFormModalStyles from '../../Modals/ContactFormModal/index.module.css';
@@ -12,12 +12,12 @@ import styles from './index.module.css';
 import { Magnet } from '../../Animations/Magnet';
 
 type FooterInternationalContentsProps = {
-  footerForm: ExpertiseFooterForm;
   footerSocialLinks: ExpertiseFooterSocialLink[];
+  footerData: FooterInternationalContent;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-export const FooterInternationalContents: React.FC<FooterInternationalContentsProps> = ({ footerForm, footerSocialLinks, onClick }): JSX.Element => {
+export const FooterInternationalContents: React.FC<FooterInternationalContentsProps> = ({ footerSocialLinks, footerData, onClick }): JSX.Element => {
   const router = useRouter();
   const currentPath = router.pathname;
 
@@ -30,13 +30,13 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
               <path stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.64" d="M.8 8a7.2 7.2 0 1 0 14.4 0A7.2 7.2 0 0 0 .8 8Z" />
               <path stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.64" d="M6.643 15.072c-1.005-1.408-1.683-4.051-1.683-7.04S5.638 2.336 6.643.96M9.357 15.072c1.005-1.408 1.683-4.051 1.683-7.04S10.362 2.336 9.357.96M.8 8h14.4M1.632 11.36h12.736M1.632 4.64h12.736" />
             </svg>
-            <h3>We work globally</h3>
+            <h3>{footerData.global.heading}</h3>
           </div>
 
           {!currentPath.startsWith('/contact') && (
             <div>
               <button className={`${ContactFormModalStyles['contact-form-button']} ${styles['footer-contact-button']}`} data-international-footer-cta="true" data-faitracker-form-bind="true" onClick={onClick}>
-                {footerForm?.button?.text}
+                {footerData.global.buttonText}
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" fill="none" strokeWidth="0.5" viewBox="0 0 14 13" style={{ '--width': 12, '--height': 13 } as React.CSSProperties}>
                   <path fill="currentColor" stroke="currentColor" d="M1 5.816H.75v1.326h10.014l-4.008 3.907-.173.168.162.179.563.62.174.191.186-.18 5.506-5.37.184-.178-.184-.18L7.668.932l-.186-.18-.174.191-.563.62-.162.178.173.169 4.008 3.907H1Z" vectorEffect="non-scaling-stroke" />
                 </svg>
@@ -44,32 +44,29 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
             </div>
           )}
 
-          <a href="mailto:contact@dev8x.com">contact@dev8x.com</a>
+          <a href="mailto:contact@dev8x.com">{footerData.global.email}</a>
         </div>
 
-        <div className={`${styles['footer-columns__column']} ${styles['footer-columns__column--address']}`}>
-          <h3>USA</h3>
-          <address>Orlando, Florida</address>
-          <a href="tel:+13213002393" className={styles['footer-columns__column--email']}>
-            +1 (321) 300-2393
-          </a>
-        </div>
+        {footerData.offices &&
+          footerData.offices.map((office, index) => (
+            <div key={index} className={`${styles['footer-columns__column']} ${styles['footer-columns__column--address']}`}>
+              <h3>{office.country}</h3>
+              <address>{office.city}</address>
+              <a href={`tel:${office.phone}`} className={styles['footer-columns__column--email']}>
+                {office.phone}
+              </a>
+            </div>
+          ))}
 
-        <div className={`${styles['footer-columns__column']} ${styles['footer-columns__column--address']}`}>
-          <h3>Pakistan</h3>
-          <address>Lahore, Punjab</address>
-          <a href="tel:+923292947777" className={styles['footer-columns__column--email']}>
-            +92 (329) 294-7777
-          </a>
-        </div>
-
-        <div className={`${styles['footer-columns__column']} ${styles['footer-columns__column--address']}`}>
-          <h3>We’re Growing – Join Our Team</h3>
-          <address>Let’s build the future, together.</address>
-          <a href="/careers" className={styles['footer-columns__column--email']} target="_blank">
-            Explore Careers <RightArrowIcon width="14" className={styles['arrow']} />
-          </a>
-        </div>
+        {footerData.careers && (
+          <div className={`${styles['footer-columns__column']} ${styles['footer-columns__column--address']}`}>
+            <h3>{footerData.careers.heading}</h3>
+            <address>{footerData.careers.description}</address>
+            <a href={footerData.careers.link} className={styles['footer-columns__column--email']} target="_blank">
+              {footerData.careers.linkText} <RightArrowIcon width="14" className={styles['arrow']} />
+            </a>
+          </div>
+        )}
       </div>
 
       <div className={`${styles['footer-bottom']} footer-bottom`}>
@@ -84,7 +81,7 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
             <path d="M177.776 25.186H186.582L195.166 38.506H195.314L203.898 25.186H212.704L199.976 43.686L214.11 63H205.082L195.314 48.792H195.166L185.546 63H176.444L190.578 43.686L177.776 25.186Z" fill="#3C3C3C" />
           </svg>
           <span>
-            © {footerForm?.privacy?.year} <a href="/privacy">{footerForm?.privacy?.text}</a>
+            © {footerData.copyright.year} <a href={footerData.copyright.privacyLink}>{footerData.copyright.text}</a>
           </span>
         </div>
 

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ExpertiseFooterForm, ExpertiseFooterMainContent, ExpertiseFooterSocialLink } from '../../Interfaces/PageLayout/PageLayout';
+import { ExpertiseFooterMainContent, ExpertiseFooterSocialLink, FooterInternationalContent } from '../../Interfaces/PageLayout/PageLayout';
 import { FooterInternationalContents } from '../../Surfaces/FooterInternationalContents/FooterInternationalContents';
 import RightArrowIcon from '../../Icons/RightArrow';
 
@@ -10,12 +10,12 @@ import styles from './index.module.css';
 
 type FooterProps = {
   footerMainContent: ExpertiseFooterMainContent;
-  footerForm: ExpertiseFooterForm;
+  footerData: FooterInternationalContent;
   footerSocialLinks: ExpertiseFooterSocialLink[];
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, footerSocialLinks, onClick }): JSX.Element => {
+export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerData, footerSocialLinks, onClick }): JSX.Element => {
   const endWords = footerMainContent?.end.split(' ') || [];
   const rotatingWords = [endWords[1], 'epic', 'fun', 'click', 'delightful', 'beautiful', 'original', 'extraordinary', 'engaging', 'click'].filter(Boolean);
 
@@ -112,7 +112,7 @@ export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerForm, f
           <canvas className={styles['ballpit']} width="1500" height="1157" style={{ background: '0% 0% / contain transparent' }}></canvas>
         </div>
 
-        <FooterInternationalContents footerForm={footerForm} footerSocialLinks={footerSocialLinks} onClick={onClick} />
+        <FooterInternationalContents footerSocialLinks={footerSocialLinks} footerData={footerData} onClick={onClick} />
       </div>
     </footer>
   );

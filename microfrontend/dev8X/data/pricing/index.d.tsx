@@ -101,14 +101,35 @@ const PRICING: ExpertiseContent[] = [
     meta: {
       title: 'Plans & Pricing — Dev8X | Build Digital Products with Confidence',
       description: 'Explore Dev8X’s flexible plans designed for startups, teams, and enterprises. Get the right support to build exceptional digital products.'
-    },    
-    footerForm: {
-      privacy: {
-        year: '2025',
-        text: 'Privacy'
+    },
+    footerData: {
+      global: {
+        heading: 'We work globally',
+        email: 'contact@dev8x.com',
+        buttonText: 'Submit a brief'
       },
-      button: {
-        text: 'Submit a brief'
+      offices: [
+        {
+          country: 'USA',
+          city: 'Orlando, Florida',
+          phone: '+1 (321) 300-2393'
+        },
+        {
+          country: 'Pakistan',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        }
+      ],
+      careers: {
+        heading: 'We’re Growing – Join Our Team',
+        description: 'Let’s build the future, together.',
+        link: '/careers',
+        linkText: 'Explore Careers'
+      },
+      copyright: {
+        year: '2025',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
       }
     },
     footerSocialLinks: [
