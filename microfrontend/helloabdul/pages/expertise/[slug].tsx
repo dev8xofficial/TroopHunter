@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Head from 'next/head';
-import { toggleSmoothModalAtom } from '@repo/components';
+import { FormModal, toggleSmoothModalAtom } from '@repo/components';
 import { useSetAtom } from 'jotai';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import EXPERTISES from '../../data/expertise/index.d';
@@ -125,7 +125,7 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
         <Footer footerMainContent={PageData.footerMainContent} footerData={PageData.footerData} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
       <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
-        <ContactFormModal />
+        <FormModal />
       </SmoothModalWrapper>
     </>
   );

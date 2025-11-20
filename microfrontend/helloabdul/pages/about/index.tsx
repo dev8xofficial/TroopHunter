@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Head from 'next/head';
-import { toggleSmoothModalAtom } from '@repo/components';
+import { FormModal, toggleSmoothModalAtom } from '@repo/components';
 import { useSetAtom } from 'jotai';
 import { AboutGallery, ContactFormModal, Footer, FooterRevealPageWrap, Header, LogoGrid, TestimonialAbout } from '@repo/components';
 import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
@@ -341,7 +341,7 @@ const Contact: React.FC = (): JSX.Element => {
         <Footer footerMainContent={PageData.footerMainContent} footerData={PageData.footerData} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
       <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
-        <ContactFormModal />
+        <FormModal />
       </SmoothModalWrapper>
     </>
   );

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Head from 'next/head';
-import { FooterRevealPageWrap, Footer, Header, WorkGrid, ProjectsFormModal, WORK_PROJECTS, ContactFormModal } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, WorkGrid, ProjectsFormModal, WORK_PROJECTS, FormModal } from '@repo/components';
 import { useProjectModal } from '../../hooks/useProjectModal';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import { toggleSmoothModalAtom } from '@repo/components';
@@ -112,7 +112,7 @@ const Work: React.FC = (): JSX.Element => {
         {modalSlug && <ProjectsFormModal {...project} nextWorkProject={nextWorkProject} />}
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
-        <ContactFormModal />
+        <FormModal />
       </SmoothModalWrapper>
     </>
   );

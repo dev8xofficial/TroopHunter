@@ -2,7 +2,7 @@
 
 import Head from 'next/head';
 import { useSetAtom } from 'jotai';
-import { toggleSmoothModalAtom } from '@repo/components';
+import { FormModal, toggleSmoothModalAtom } from '@repo/components';
 import { useProjectModal } from '../hooks/useProjectModal';
 import Hero from '../components/Surfaces/Hero/Hero';
 // import Problems from './home/Problems/Problems';
@@ -125,7 +125,7 @@ export default function Home() {
         {modalSlug && <ProjectsFormModal {...project} nextWorkProject={nextWorkProject} />}
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
-        <ContactFormModal />
+        <FormModal />
       </SmoothModalWrapper>
     </>
   );

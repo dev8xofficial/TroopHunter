@@ -3,7 +3,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { useSetAtom } from 'jotai';
-import { toggleSmoothModalAtom } from '@repo/components';
+import { FormModal, toggleSmoothModalAtom } from '@repo/components';
 
 import { Header, FooterRevealPageWrap, FooterInternationalContents, ContactFormModal, Button } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
@@ -102,7 +102,7 @@ const Contact: React.FC = (): JSX.Element => {
         </FooterRevealPageWrap>
       </FooterRevealPageWrap>
       <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
-        <ContactFormModal />
+        <FormModal />
       </SmoothModalWrapper>
     </>
   );

@@ -153,5 +153,6 @@ export * from './src/Modals/MiniSquadsModal/MiniSquadsModal';
 export * from './src/Modals/ScheduleCallModal/ScheduleCallModal';
 export * from './src/Modals/SmoothModal/SmoothModal';
 export * from './src/Modals/SubmitApplicationModal/SubmitApplicationModal';
+export * from './src/Modals/FormModal/FormModal';
 
 export * from './store/smoothModalAtom';

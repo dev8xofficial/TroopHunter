@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { PrivacyContent } from '../Privacy/Privacy';
 
 export interface ExpertiseMetaContent {
   title: string;
@@ -46,4 +47,5 @@ export interface PageLayoutContent {
   footerMainContent: ExpertiseFooterMainContent;
   footerData: FooterInternationalContent;
   footerSocialLinks: ExpertiseFooterSocialLink[];
+  privacy: PrivacyContent[];
 }
