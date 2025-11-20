@@ -1,29 +1,52 @@
-import { PageLayoutContent } from '@repo/components/src/Interfaces/PageLayout/PageLayout';
+import { ContactContent } from '@repo/components';
 
-const PageData: PageLayoutContent = {
+const PageData: ContactContent = {
   meta: {
-    title: 'Contact Us — Dev8X | Dev8X: World class digital products',
-    description: "Ready to create something extraordinary? We've got a great feeling about this. Lets get started! "
+    title: 'Contact Me — Abdul | Frontend Dev, US Tech Ready',
+    description: "Got a frontend challenge? I love turning pixels into experiences that actually work. Let's chat and build something that doesn't just look good—it ships."
   },
+  paragraph: "We've got a great feeling about this",
+  buttonText: 'Send a message',
   footerMainContent: {
     link: '/contact',
     start: 'Let’s make',
-    end: 'something wonderful'
+    end: 'your frontend fearless!'
   },
-  footerForm: {
-    privacy: {
-      year: '2025',
-      text: 'Privacy'
+  footerData: {
+    global: {
+      heading: 'I work globally',
+      email: 'contact@helloabdul.com',
+      buttonText: 'Hire me'
     },
-    button: {
-      text: 'Submit a brief'
+    offices: [
+      {
+        country: 'USA',
+        city: 'Orlando, Florida',
+        phone: '+1 (321) 300-2393'
+      },
+      {
+        country: 'Pakistan',
+        city: 'Lahore, Punjab',
+        phone: '+92 (329) 294-7777'
+      }
+    ],
+    // careers: {
+    //   heading: 'We’re Growing – Join Our Team',
+    //   description: 'Let’s build the future, together.',
+    //   link: '/careers',
+    //   linkText: 'Explore Careers'
+    // },
+    copyright: {
+      year: '2025',
+      text: 'Privacy Policy',
+      privacyLink: '/privacy'
     }
   },
   footerSocialLinks: [
     {
       title: 'LinkedIn',
       icon: { name: 'AsteriskIcon', width: 10 },
-      href: 'https://www.linkedin.com/company/helloabdul/'
+      href: 'https://www.linkedin.com/in/abdulrehman-dev/'
     },
     {
       title: 'Instagram',
@@ -32,13 +55,8 @@ const PageData: PageLayoutContent = {
     },
     {
       title: 'Facebook',
-      // icon: { name: 'AsteriskIcon', width: 10 },
       href: 'https://www.facebook.com/profile.php?id=61569289660818'
     }
-    // {
-    //   title: 'Youtube',
-    //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
-    // }
   ]
 };
 

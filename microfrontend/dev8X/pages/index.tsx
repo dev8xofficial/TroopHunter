@@ -113,7 +113,7 @@ export default function Home() {
             </div>
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
+        <Footer footerMainContent={PageData.footerMainContent} footerData={PageData.footerData} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
       <SmoothModalWrapper
         modalType="project"

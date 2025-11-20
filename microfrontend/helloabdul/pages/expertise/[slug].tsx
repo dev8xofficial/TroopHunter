@@ -122,7 +122,7 @@ const Websites: React.FC = ({ slug, variant, ...PageData }: ExpertiseContent): J
           </main>
         </FooterRevealPageWrap>
 
-        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
+        <Footer footerMainContent={PageData.footerMainContent} footerData={PageData.footerData} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
       <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
         <ContactFormModal />
@@ -143,13 +143,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const PageData = EXPERTISES.find((p) => p.slug === params.slug);
-  const { slug, variant, tagText, heading, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials } = PageData;
+  const { slug, variant, tagText, heading, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials } = PageData;
 
   if (!PageData) {
     return { notFound: true };
   }
 
   return {
-    props: { slug, variant, tagText, heading, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials }
+    props: { slug, variant, tagText, heading, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials }
   };
 }

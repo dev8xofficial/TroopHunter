@@ -11,13 +11,27 @@ export interface ExpertiseFooterMainContent {
   end: string;
 }
 
-export interface ExpertiseFooterForm {
-  privacy: {
+export interface FooterInternationalContent {
+  global: {
+    heading: string;
+    email: string;
+    buttonText: string;
+  };
+  offices?: {
+    country: string;
+    city: string;
+    phone: string;
+  }[];
+  careers?: {
+    heading: string;
+    description: string;
+    link: string;
+    linkText: string;
+  };
+  copyright: {
     year: string;
     text: string;
-  };
-  button: {
-    text: string;
+    privacyLink: string;
   };
 }
 
@@ -30,6 +44,6 @@ export interface ExpertiseFooterSocialLink {
 export interface PageLayoutContent {
   meta: ExpertiseMetaContent;
   footerMainContent: ExpertiseFooterMainContent;
-  footerForm: ExpertiseFooterForm;
+  footerData: FooterInternationalContent;
   footerSocialLinks: ExpertiseFooterSocialLink[];
 }

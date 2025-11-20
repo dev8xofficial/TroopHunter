@@ -164,7 +164,7 @@ const OffersPage: React.FC = (): JSX.Element => {
             </div>
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={offersData.footerMainContent} footerForm={offersData.footerForm} footerSocialLinks={offersData.footerSocialLinks} onClick={() => toggleModal('contact')} />
+        <Footer footerMainContent={offersData.footerMainContent} footerData={offersData.footerData} footerSocialLinks={offersData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
       <SmoothModalWrapper modalType="career" toggle={() => toggleModal('career')}>
         <SubmitApplicationModal />

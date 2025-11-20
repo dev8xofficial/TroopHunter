@@ -26,15 +26,15 @@ const Contact: React.FC = (): JSX.Element => {
       <Head>
         <title>{PageData.meta.title}</title>
         <meta name="description" content={PageData.meta.description}></meta>
-        <link rel="canonical" href={prefixed("/contact")} />
+        <link rel="canonical" href={prefixed('/contact')} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title}></meta>
         <meta property="og:description" content={PageData.meta.description}></meta>
-        <meta property="og:url" content={prefixed("/contact")}></meta>
+        <meta property="og:url" content={prefixed('/contact')}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={prefixed("/logo-social.png")}></meta>
-        <meta property="og:image:secure_url" content={prefixed("/logo-social.png")}></meta>
+        <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
+        <meta property="og:image:secure_url" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -42,11 +42,11 @@ const Contact: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content={PageData.meta.title}></meta>
         <meta name="twitter:description" content={PageData.meta.description}></meta>
-        <meta name="twitter:image" content={prefixed("/logo-social.png")}></meta>
+        <meta name="twitter:image" content={prefixed('/logo-social.png')}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
-        <Header submenuData={SubmenuData} />
+        <Header submenuData={SubmenuData}/>
         <FooterRevealPageWrap variant="page">
           <style jsx global>{`
             :root {
@@ -84,49 +84,19 @@ const Contact: React.FC = (): JSX.Element => {
             <div className={styles['contact-container']}>
               <div className={styles['contact-content']}>
                 <h1 className={styles['contact-heading']} aria-label="We've got a great feeling about this">
-                  <span
-                    className={`${TextStyles['word']}`}
-                    aria-hidden="true"
-                    style={{
-                      display: 'inline-block',
-                      whiteSpace: 'pre',
-                      transform: 'translate3d(0px, ' + '0%' + ', 0px)',
-                      animation: 'mask-down 0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards'
-                    }}
-                  >
-                    <span
-                      aria-hidden="true"
-                      style={{
-                        display: 'inline-block',
-                        whiteSpace: 'pre',
-                        transform: 'translate3d(0px, ' + '0%' + ', 0px)',
-                        animation: 'mask-down 0.8s cubic-bezier(0, 0.55, 0.45, 1) 0s 1 normal forwards'
-                      }}
-                    >
-                      We've {''}
-                    </span>
-                  </span>
-                  <span className={`${TextStyles['word']}`} aria-hidden="true">
-                    <span aria-hidden="true">got a</span>
-                  </span>
-                  <span className={`${TextStyles['word']}`} aria-hidden="true">
-                    <span aria-hidden="true">great {''}feeling</span>
-                  </span>
-                  <span className={`${TextStyles['word']}`} aria-hidden="true">
-                    <span aria-hidden="true">about {''}this</span>
-                  </span>
+                  {PageData.paragraph}
                 </h1>
                 <div>
                   <div>
                     <Button variant="secondary" context="contact" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} spanClassName={styles['contact-button']} onClick={() => toggleModal('contact')}>
-                      Submit a brief
+                      {PageData.footerData.global.buttonText}
                     </Button>
                   </div>
                 </div>
               </div>
             </div>
             <footer className={styles['contact-footer']}>
-              <FooterInternationalContents footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} />
+              <FooterInternationalContents footerData={PageData.footerData} footerSocialLinks={PageData.footerSocialLinks} />
             </footer>
           </main>
         </FooterRevealPageWrap>

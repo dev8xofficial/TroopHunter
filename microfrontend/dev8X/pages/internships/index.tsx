@@ -76,7 +76,7 @@ const InternshipsPage: React.FC = (): JSX.Element => {
             </div>
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
+        <Footer footerMainContent={PageData.footerMainContent} footerData={PageData.footerData} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
       <SmoothModalWrapper modalType="career" toggle={() => toggleModal('career')}>
         <SubmitApplicationModal />

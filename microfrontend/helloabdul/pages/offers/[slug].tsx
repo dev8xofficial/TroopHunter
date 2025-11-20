@@ -171,7 +171,7 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JS
             </div>
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={PageData.footerMainContent} footerForm={PageData.footerForm} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
+        <Footer footerMainContent={PageData.footerMainContent} footerData={PageData.footerData} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
       <SmoothModalWrapper modalType="career" toggle={() => toggleModal('career')}>
         <SubmitApplicationModal />
@@ -204,13 +204,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const PageData = OFFERS.find((p) => p.slug === params.slug);
-  const { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems } = PageData;
+  const { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems } = PageData;
 
   if (!PageData) {
     return { notFound: true };
   }
 
   return {
-    props: { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerForm, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems }
+    props: { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems }
   };
 }

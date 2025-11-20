@@ -11,7 +11,7 @@ import PictureStyles from '../../Surfaces/Picture/index.module.css';
 import LayoutStyles from '../Layout/layout.module.css';
 import styles from './index.module.css';
 
-interface HeroProps extends Omit<ExpertiseContent, 'meta' | 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerForm' | 'footerSocialLinks' | 'testimonials'> {
+interface HeroProps extends Omit<ExpertiseContent, 'meta' | 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerData' | 'footerSocialLinks' | 'testimonials'> {
   icon?: { name: string; width: number };
   placeholder?: boolean;
   paragraph?: string;

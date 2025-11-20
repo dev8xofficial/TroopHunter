@@ -103,6 +103,7 @@ export * from './src/Icons/CaretDown';
 export * from './src/Icons/CaretUp';
 
 export * from './src/Interfaces/About/About';
+export * from './src/Interfaces/Contact/Contact';
 export * from './src/Interfaces/Work/WorkProjectTypes';
 export * from './src/Interfaces/Expertise/Expertise';
 export * from './src/Interfaces/Home/Home';
