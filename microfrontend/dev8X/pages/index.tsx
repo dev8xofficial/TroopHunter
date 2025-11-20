@@ -2,7 +2,7 @@
 
 import Head from 'next/head';
 import { useSetAtom } from 'jotai';
-import { toggleSmoothModalAtom } from '../store/smoothModalAtom';
+import { toggleSmoothModalAtom } from '@repo/components';
 import { useProjectModal } from '../hooks/useProjectModal';
 import Hero from '../components/Surfaces/Hero/Hero';
 // import Problems from './home/Problems/Problems';
@@ -11,6 +11,7 @@ import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../data/index.d';
+import SubmenuData from '../data/navigation/index.d';
 import { prefixed } from '../utils/helpers';
 
 import TextAnimateStyles from '../components/Surfaces/TextAnimateUp/index.module.css';
@@ -71,7 +72,7 @@ export default function Home() {
             --theme-header-face: var(--default-primary);
           }
         `}</style>
-        <Header />
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           {/* Main container with smooth-scrollbar */}
           <main className={styles['homepage']}>

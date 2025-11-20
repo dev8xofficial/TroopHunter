@@ -5,10 +5,15 @@ import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenu } from '../HeaderSubmenu/HeaderSubmenu';
+import { HeaderSubmenuContent } from '../../Interfaces/Navigation/Navigation';
 
 import styles from './index.module.css';
 
-export const Header: React.FC = (): JSX.Element => {
+interface HeaderProps {
+  submenuData?: HeaderSubmenuContent;
+}
+
+export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
   const router = useRouter();
   const currentPath = router.pathname;
   const [dataSubmenuOpen, setDataSubmenuOpen] = useState(false);
@@ -102,23 +107,11 @@ export const Header: React.FC = (): JSX.Element => {
 
             <li className={styles['menu__item']} ref={submenuRef}>
               <div className="link-wrap">
-                <button
-                  ref={exploreBtnRef}
-                  className={`${styles['menu__link']} ${currentPath.includes('/expertise') ||
-                      currentPath.includes('/offers') ||
-                      currentPath.includes('/careers') ||
-                      currentPath.includes('/internships') ||
-                      currentPath.includes('/plans-and-pricing') ||
-                      currentPath.includes('/our-process')
-                      ? styles['menu__link--active']
-                      : ''
-                    }`}
-                  onClick={handleExpertiseClick}
-                >
+                <button ref={exploreBtnRef} className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') || currentPath.includes('/careers') || currentPath.includes('/internships') || currentPath.includes('/plans-and-pricing') || currentPath.includes('/our-process') ? styles['menu__link--active'] : ''}`} onClick={handleExpertiseClick}>
                   Explore
                 </button>
                 {/* ✅ Pass handleSubmenuLinkClick to close dropdown on link click */}
-                <HeaderSubmenu height={height} onLinkClick={handleSubmenuLinkClick} />
+                {submenuData && <HeaderSubmenu height={height} onLinkClick={handleSubmenuLinkClick} submenus={submenuData} />}
               </div>
             </li>
 

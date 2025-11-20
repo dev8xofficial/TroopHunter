@@ -28,222 +28,45 @@ import WebServersIcon from '../../Icons/WebServers';
 import SeismometerIcon from '../../Icons/Seismometer';
 import RightArrowIcon from '../../Icons/RightArrow';
 import { Magnet } from '../../Animations/Magnet';
+import { HeaderSubmenuContent } from '../../Interfaces/Navigation/Navigation';
 
 import styles from './index.module.css';
 
 interface HeaderSubmenuProps {
   height: number;
-  onLinkClick?: () => void; // ✅ Added this prop
+  onLinkClick?: () => void;
+  submenus: HeaderSubmenuContent;
 }
 
-export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height, onLinkClick }) => {
-  const submenus = [
-    {
-      heading: 'What We Do',
-      list: [
-        {
-          title: 'Websites',
-          icon: <PointerIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'cyan',
-          href: '/expertise/websites'
-        },
-        {
-          title: 'Web Apps',
-          icon: <CardIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'pink',
-          href: '/expertise/web-applications'
-        },
-        {
-          title: 'Mobile Apps',
-          icon: <MobileIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'blue',
-          href: '/expertise/mobile-apps'
-        },
-        {
-          title: 'eCommerce',
-          icon: <BasketIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'green',
-          href: '/expertise/ecommerce'
-        },
-        {
-          title: 'Data Vis',
-          icon: <DataIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'purple',
-          href: '/expertise/data-visualisation'
-        }
-      ]
-    },
-    {
-      heading: 'Backend & Databases',
-      list: [
-        {
-          title: 'Backend',
-          icon: <BackendIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'cyan',
-          href: '/expertise/backend'
-        },
-        {
-          title: 'Real-Time Apps',
-          icon: <SeismometerIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'blue',
-          href: '/expertise/real-time-apps'
-        },
-        {
-          title: 'SaaS',
-          icon: <SaaSIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'green',
-          href: '/expertise/saas'
-        },
-        {
-          title: 'PostgreSQL',
-          icon: <PostgresqlIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'purple',
-          href: '/expertise/postgresql'
-        },
-        {
-          title: 'ORM (Sequelize, Prisma)',
-          icon: <SequelizeIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'pink',
-          href: '/expertise/orm-sequelize-prisma'
-        }
-      ]
-    },
-    {
-      heading: 'Design & UX',
-      list: [
-        {
-          title: 'User Research',
-          icon: <MyspaceIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'purple',
-          href: '/expertise/user-research-validation'
-        },
-        {
-          title: 'UX Design',
-          icon: <MapIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'cyan',
-          href: '/expertise/user-experience-design'
-        },
-        {
-          title: 'UI Design',
-          icon: <SelectionIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'pink',
-          href: '/expertise/user-interface-design'
-        },
-        {
-          title: 'Prototyping',
-          icon: <MagicWandIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'blue',
-          href: '/expertise/prototyping'
-        },
-        {
-          title: 'Design Systems',
-          icon: <PlanetRingIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'purple',
-          href: '/expertise/design-systems'
-        }
-      ]
-    },
-    {
-      heading: 'DevOps & Cloud',
-      list: [
-        {
-          title: 'Docker',
-          icon: <DockerIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'purple',
-          href: '/expertise/docker'
-        },
-        {
-          title: 'Virtualization',
-          icon: <VirtualMachinesIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'blue',
-          href: '/expertise/virtualization'
-        },
-        {
-          title: 'Ansible & Web Servers',
-          icon: <AnsibleIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'cyan',
-          href: '/expertise/ansible-web-servers'
-        },
-        {
-          title: 'AWS, Vercel, DigitalOcean',
-          icon: <WebServersIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'pink',
-          href: '/expertise/aws-vercel-digitalocean'
-        },
-        {
-          title: 'CI/CD',
-          icon: <InfinityIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'green',
-          href: '/expertise/ci-cd'
-        }
-      ]
-    },
-    {
-      heading: 'Technology',
-      list: [
-        {
-          title: 'React.js',
-          icon: <ReactjsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'purple',
-          href: '/expertise/react-js'
-        },
-        {
-          title: 'Next.js',
-          icon: <NextjsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'cyan',
-          href: '/expertise/next-js'
-        },
-        {
-          title: 'Node.js',
-          icon: <NodejsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'blue',
-          href: '/expertise/node-js'
-        },
-        {
-          title: 'Express.js / Nest.js',
-          icon: <NextjsIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'pink',
-          href: '/expertise/express-nest'
-        },
-        {
-          title: 'Supabase',
-          icon: <SupabaseIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'green',
-          href: '/expertise/supabase'
-        }
-      ]
-    },
-    {
-      heading: 'Work With Us',
-      list: [
-        {
-          title: 'Careers',
-          icon: <RightArrowIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']} ${styles['submenu__link--rotate-45deg']}`} />,
-          color: 'cyan',
-          href: '/careers'
-        },
-        {
-          title: 'Internships',
-          icon: <PlanetRingIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'purple',
-          href: '/internships'
-        },
-        {
-          title: 'Our Process',
-          icon: <DataIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'blue',
-          href: '/our-process'
-        },
-        {
-          title: 'Plans & Pricing',
-          icon: <SaaSIcon width="11" className={`SVG_svg-raw-wrap__ODfz9 ${styles['submenu__link-icon']}`} />,
-          color: 'green',
-          href: '/plans-and-pricing'
-        }
-      ].filter((item) => !['/careers', '/internships', '/plans-and-pricing'].includes(item.href))
-    }
-  ];
+const ICON_MAP: Record<string, React.ComponentType<{ width?: string | number; className?: string }>> = {
+  PointerIcon,
+  CardIcon,
+  MobileIcon,
+  BasketIcon,
+  DataIcon,
+  MyspaceIcon,
+  SelectionIcon,
+  MagicWandIcon,
+  MapIcon,
+  PlanetRingIcon,
+  ReactjsIcon,
+  NextjsIcon,
+  NodejsIcon,
+  SupabaseIcon,
+  BackendIcon,
+  SaaSIcon,
+  PostgresqlIcon,
+  SequelizeIcon,
+  DockerIcon,
+  VirtualMachinesIcon,
+  AnsibleIcon,
+  InfinityIcon,
+  WebServersIcon,
+  SeismometerIcon,
+  RightArrowIcon
+};
 
+export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height, onLinkClick, submenus }) => {
   return (
     <>
       <div className={styles['submenu-container']} style={{ '--height': height } as React.CSSProperties}>
@@ -253,21 +76,23 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height, onLinkClic
               <div key={`submenu-group-${menuIndex}`} className={styles['submenu__group']}>
                 <h2 className={styles['submenu__heading']}>{menu.heading}</h2>
                 <ul className={styles['submenu__list']}>
-                  {menu.list.map((item, itemIndex) => (
-                    <Magnet key={`nav-anchor-${menuIndex}-${itemIndex}`}>
-                      <li>
-                        <NextLink href={item.href} passHref legacyBehavior>
-                          <a
-                            className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`}
-                            onClick={onLinkClick} // ✅ this will close submenu when link clicked
-                          >
-                            {item.icon}
-                            {item.title}
-                          </a>
-                        </NextLink>
-                      </li>
-                    </Magnet>
-                  ))}
+                  {menu.list.map((item, itemIndex) => {
+                    const IconComponent = ICON_MAP[item.iconName];
+                    const iconClassName = `${styles['submenu__link-icon']}${item.rotateIcon ? ` ${styles['submenu__link--rotate-45deg']}` : ''}`;
+
+                    return (
+                      <Magnet key={`nav-anchor-${menuIndex}-${itemIndex}`}>
+                        <li>
+                          <NextLink href={item.href} passHref legacyBehavior>
+                            <a className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`} onClick={onLinkClick}>
+                              {IconComponent && <IconComponent width="11" className={`SVG_svg-raw-wrap__ODfz9 ${iconClassName}`} />}
+                              {item.title}
+                            </a>
+                          </NextLink>
+                        </li>
+                      </Magnet>
+                    );
+                  })}
                 </ul>
               </div>
             ))}

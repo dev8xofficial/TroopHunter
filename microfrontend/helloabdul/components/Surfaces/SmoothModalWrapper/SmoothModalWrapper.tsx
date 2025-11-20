@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useAtom } from 'jotai';
 import Lenis from 'lenis';
-import { openSmoothModalAtom, ModalType } from '../../../store/smoothModalAtom';
+import { openSmoothModalAtom, ModalType } from '@repo/components';
 import { createPortal } from 'react-dom';
 import SmoothModal from '@repo/components/src/Modals/SmoothModal/SmoothModal';
 import { useLenis } from '../../../hooks/LenisContext';

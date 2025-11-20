@@ -3,6 +3,7 @@
 import Head from 'next/head';
 import { FooterRevealPageWrap, Footer, Header, ProjectsFormModal, WorkDetail, WORK_PROJECTS } from '@repo/components';
 import PageData from '../../data/work/index.d';
+import SubmenuData from '../../data/navigation/index.d';
 import { prefixed } from '../../utils/helpers';
 
 import styles from './index.module.css';
@@ -39,7 +40,7 @@ const WorkPage: React.FC<WorkDetail> = ({ slug, ...project }: WorkDetail): JSX.E
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
-        <Header />
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <style jsx global>{`
             :root {

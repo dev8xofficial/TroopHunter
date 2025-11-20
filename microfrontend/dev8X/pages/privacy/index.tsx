@@ -4,10 +4,11 @@ import React from 'react';
 import Head from 'next/head';
 
 import { useSetAtom } from 'jotai';
-import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { toggleSmoothModalAtom } from '@repo/components';
 import { FooterRevealPageWrap, Footer, Header, ContactFormModal } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../../data/privacy/index.d';
+import SubmenuData from '../../data/navigation/index.d';
 import { prefixed } from '../../utils/helpers';
 
 import WYSIWYGStyles from '../../components/Surfaces/WYSIWYG/index.module.css';
@@ -41,7 +42,7 @@ const Privacy: React.FC = (): JSX.Element => {
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
-        <Header />
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <main className={styles['privacy-policy']}>
             <style jsx global>

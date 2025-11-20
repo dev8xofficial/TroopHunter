@@ -2,13 +2,14 @@
 
 import React from 'react';
 import Head from 'next/head';
-import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { toggleSmoothModalAtom } from '@repo/components';
 import { useSetAtom } from 'jotai';
 import { AboutGallery, ContactFormModal, Footer, FooterRevealPageWrap, Header, LogoGrid, TestimonialAbout } from '@repo/components';
 import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import Capabilities from './Capabilities/Capabilities';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../../data/about/index.d';
+import SubmenuData from '../../data/navigation/index.d';
 import { prefixed } from '../../utils/helpers';
 
 import AboutHeroStyles from '../../components/Surfaces/AboutHero/index.module.css';
@@ -44,7 +45,7 @@ const Contact: React.FC = (): JSX.Element => {
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
-        <Header />
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <style jsx global>{`
             :root {

@@ -3,11 +3,12 @@
 import React, { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothModalAtom';
+import { toggleSmoothModalAtom, openSmoothModalAtom } from '@repo/components';
 import { useSetAtom, useAtomValue } from 'jotai';
 import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, OffersContent } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
+import SubmenuData from '../../data/navigation/index.d';
 import OFFERS from '../../data/offers/index.d';
 import { prefixed } from '../../utils/helpers';
 import ExpertiseStyles from '../expertise/index.module.css';
@@ -103,7 +104,7 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JS
             --theme-header-face: var(--${variant}-primary);
           }
         `}</style>
-        <Header />
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
             <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} paragraph={PageData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />

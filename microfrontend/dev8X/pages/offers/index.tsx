@@ -3,11 +3,12 @@
 import React, { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothModalAtom';
+import { toggleSmoothModalAtom, openSmoothModalAtom } from '@repo/components';
 import { useSetAtom, useAtomValue } from 'jotai';
 import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
+import SubmenuData from '../../data/navigation/index.d';
 import EXPERTISES from '../../data/expertise/index.d';
 import { prefixed } from '../../utils/helpers';
 import ExpertiseStyles from '../expertise/index.module.css';
@@ -96,7 +97,7 @@ const OffersPage: React.FC = (): JSX.Element => {
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
-        <Header />
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
             <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />

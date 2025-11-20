@@ -2,13 +2,14 @@
 
 import React from 'react';
 import Head from 'next/head';
-import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { toggleSmoothModalAtom } from '@repo/components';
 import { useSetAtom } from 'jotai';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import EXPERTISES from '../../data/expertise/index.d';
 import PROCESS from '../../data/our-process/index.d';
 import { FooterRevealPageWrap, ContentAsideImage, Footer, Header, Hero, ModularBlocks, IconCards, Button, ExpertiseCard, AwardsBlock, CardStack, WorkDetail, ExpertiseContent, ContactFormModal } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
+import SubmenuData from '../../data/navigation/index.d';
 import { prefixed } from '../../utils/helpers';
 
 import ExpertiseStyles from '../expertise/index.module.css';
@@ -57,7 +58,7 @@ const ProcessPage: React.FC = (): JSX.Element => {
             --theme-header-face: var(--${variant}-primary);
           }
         `}</style>
-        <Header />
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <main className={`${ExpertiseStyles['expertise-single']} container-full`}>
             <Hero variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} icon={PageData.contentAsideImageItems[Object.keys(PageData.contentAsideImageItems)[0]].icon} />

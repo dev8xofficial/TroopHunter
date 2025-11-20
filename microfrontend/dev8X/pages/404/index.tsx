@@ -5,6 +5,7 @@ import Head from 'next/head';
 
 import { FooterRevealPageWrap, Footer, Header } from '@repo/components';
 import PageData from '../../data/404/index.d';
+import SubmenuData from '../../data/navigation/index.d';
 import { prefixed } from '../../utils/helpers';
 
 import styles from './index.module.css';
@@ -35,7 +36,7 @@ const Work: React.FC = (): JSX.Element => {
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
-        <Header />
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <div className={styles['not-found']}>
             <style jsx global>{`

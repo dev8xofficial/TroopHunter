@@ -5,9 +5,10 @@ import Head from 'next/head';
 import { FooterRevealPageWrap, Footer, Header, WorkGrid, ProjectsFormModal, WORK_PROJECTS, ContactFormModal } from '@repo/components';
 import { useProjectModal } from '../../hooks/useProjectModal';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
-import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { toggleSmoothModalAtom } from '@repo/components';
 import { useSetAtom } from 'jotai';
 import PageData from '../../data/work/index.d';
+import SubmenuData from '../../data/navigation/index.d';
 import { prefixed } from '../../utils/helpers';
 
 import TextAnimateUpStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
@@ -55,7 +56,7 @@ const Work: React.FC = (): JSX.Element => {
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
-        <Header />
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <style jsx global>{`
             :root {

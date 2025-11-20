@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useSetAtom } from 'jotai';
-import { toggleSmoothModalAtom, closeSmoothModalAtom } from '../store/smoothModalAtom';
+import { toggleSmoothModalAtom, closeSmoothModalAtom } from '@repo/components';
 
 export const useProjectModal = () => {
   const router = useRouter();

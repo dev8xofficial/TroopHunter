@@ -107,6 +107,7 @@ export * from './src/Interfaces/Work/WorkProjectTypes';
 export * from './src/Interfaces/Expertise/Expertise';
 export * from './src/Interfaces/Home/Home';
 export * from './src/Interfaces/Offers/Offers';
+export * from './src/Interfaces/Navigation/Navigation';
 
 export * from './src/Constants/Work/WorkProjects';
 export * from './src/Constants/Offers/OffersData';
@@ -151,3 +152,5 @@ export * from './src/Modals/MiniSquadsModal/MiniSquadsModal';
 export * from './src/Modals/ScheduleCallModal/ScheduleCallModal';
 export * from './src/Modals/SmoothModal/SmoothModal';
 export * from './src/Modals/SubmitApplicationModal/SubmitApplicationModal';
+
+export * from './store/smoothModalAtom';

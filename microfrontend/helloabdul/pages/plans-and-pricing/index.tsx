@@ -2,11 +2,12 @@
 
 import { useEffect } from 'react';
 import Head from 'next/head';
-import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { toggleSmoothModalAtom } from '@repo/components';
 import { useSetAtom } from 'jotai';
 import { FooterRevealPageWrap, Footer, Header, ExpertiseCard, AwardsBlock, PricingContents, ContactFormModal } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PRICING from '../../data/pricing/index.d';
+import SubmenuData from '../../data/navigation/index.d';
 import EXPERTISES from '../../data/expertise/index.d';
 import { pricingAtom } from '../../store/pricingAtom';
 import { prefixed } from '../../utils/helpers';
@@ -49,7 +50,7 @@ const PlanAndPricingPage: React.FC = (): JSX.Element => {
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
-        <Header />
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <style jsx global>{`
             :root {

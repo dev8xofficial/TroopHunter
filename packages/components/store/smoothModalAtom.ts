@@ -22,3 +22,4 @@ export const toggleSmoothModalAtom = atom(null, (get, set, modal: ModalType, dat
 export const closeSmoothModalAtom = atom(null, (get, set) => {
   set(openSmoothModalAtom, { type: 'none' });
 });
+

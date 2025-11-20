@@ -1,11 +1,12 @@
 'use client';
 
 import Head from 'next/head';
-import { toggleSmoothModalAtom } from '../../store/smoothModalAtom';
+import { toggleSmoothModalAtom } from '@repo/components';
 import { useSetAtom } from 'jotai';
 import { FooterRevealPageWrap, Footer, Header, CareerContentsModal, ExpertiseCard, AwardsBlock, SubmitApplicationModal, ContactFormModal } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../../data/careers/index.d';
+import SubmenuData from '../../data/navigation/index.d';
 import EXPERTISES from '../../data/expertise/index.d';
 import { prefixed } from '../../utils/helpers';
 
@@ -50,7 +51,7 @@ const CareerPage: React.FC = (): JSX.Element => {
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
-        <Header />
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <style jsx global>{`
             :root {
