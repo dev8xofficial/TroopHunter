@@ -3,42 +3,63 @@ import { prefixed } from '@repo/components/utils/helpers';
 
 const PageData: HomeContent = {
   meta: {
-    title: 'Solutions Made Simple! — Dev8X',
-    description: 'We design, launch, and scale digital products for ambitious brands. Dev8X combines strategy, design, and technology to create meaningful, frictionless experiences.'
+    title: 'Frontend Made Fearless! — Abdul',
+    description: 'I craft fast, accessible, and scalable web experiences that feel effortless for users and reliable for engineering teams. From React to real-world product thinking — I ship code that ships businesses forward.'
   },
-  title: 'Solutions <br /> Made Simple.',
+  title: 'Frontend <br /> Made Friendly. 😊',
   video: prefixed('/videos/header/header.mp4'),
-  paragraph: 'We design, build and ship world-class digital products for forward-thinking brands.',
+  paragraph: 'I design, build, and fine-tune web experiences that load fast, look clean, and behave like they actually went through QA.',
   whyDev8XContent: {
-    heading: 'Why Dev8X',
-    para1: 'We believe that meaningful design starts with empathy. Every product we create is centered around improving real lives—helping people achieve more with less friction.',
-    para2: 'By combining strategy, creativity, and technology, we unlock opportunities, transform businesses, and make experiences that truly matter. As an independent team, our agility and passion shape every project into something exceptional.',
+    heading: 'Why Me',
+    para1: 'I believe great UI starts with empathy — and a tiny pinch of obsession. Every interface I build has one job: make someone’s day a little easier (and sometimes a little cooler).',
+    para2: 'With 6+ years in the US tech ecosystem, I mix product thinking, frontend engineering, and a “let’s keep it simple” mindset. I move fast without breaking core-web-vitals and collaborate like someone who’s been in real production fires.',
     image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)',
     stats: [
-      { title: '100%', span: ['In-house ', '& ', 'independent'] },
-      { title: '6+', span: ['Years ', 'crafting ', 'digital ', 'experiences'] },
-      { title: '20+', span: ['Digital ', 'solutions ', 'launched ', 'worldwide'] }
+      { title: '100%', span: ['Frontend-focused ', '& ', 'product-driven'] },
+      { title: '6+', span: ['Years ', 'building ', 'production-grade ', 'UI'] },
+      { title: '20+', span: ['Products ', 'shipped ', 'across ', 'US teams'] }
     ]
   },
   footerMainContent: {
     link: '/contact',
-    start: 'Let’s make',
-    end: 'something wonderful!'
+    start: 'Let’s build',
+    end: 'something that actually loads fast!'
   },
-  footerForm: {
-    privacy: {
-      year: '2025',
-      text: 'Privacy'
+  footerData: {
+    global: {
+      heading: 'I work globally',
+      email: 'contact@helloabdul.com',
+      buttonText: 'Hire me'
     },
-    button: {
-      text: 'Submit a brief'
+    offices: [
+      {
+        country: 'USA',
+        city: 'Orlando, Florida',
+        phone: '+1 (321) 300-2393'
+      },
+      {
+        country: 'Pakistan',
+        city: 'Lahore, Punjab',
+        phone: '+92 (329) 294-7777'
+      }
+    ],
+    // careers: {
+    //   heading: 'We’re Growing – Join Our Team',
+    //   description: 'Let’s build the future, together.',
+    //   link: '/careers',
+    //   linkText: 'Explore Careers'
+    // },
+    copyright: {
+      year: '2025',
+      text: 'Privacy Policy',
+      privacyLink: '/privacy'
     }
   },
   footerSocialLinks: [
     {
       title: 'LinkedIn',
       icon: { name: 'AsteriskIcon', width: 10 },
-      href: 'https://www.linkedin.com/company/helloabdul/'
+      href: 'https://www.linkedin.com/in/abdulrehman-dev/'
     },
     {
       title: 'Instagram',
@@ -47,13 +68,8 @@ const PageData: HomeContent = {
     },
     {
       title: 'Facebook',
-      // icon: { name: 'AsteriskIcon', width: 10 },
       href: 'https://www.facebook.com/profile.php?id=61569289660818'
     }
-    // {
-    //   title: 'Youtube',
-    //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
-    // }
   ]
 };
 
