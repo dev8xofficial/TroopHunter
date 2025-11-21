@@ -47,5 +47,4 @@ export interface PageLayoutContent {
   footerMainContent: ExpertiseFooterMainContent;
   footerData: FooterInternationalContent;
   footerSocialLinks: ExpertiseFooterSocialLink[];
-  privacy: PrivacyContent[];
 }
