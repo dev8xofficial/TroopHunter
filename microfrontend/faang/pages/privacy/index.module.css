@@ -1,0 +1,24 @@
+.privacy-policy__container {
+  max-width: calc(clamp(50rem, 52.9100529101vw, 66.5rem) + var(--container-gutter)*2);
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-top: clamp(5rem, 5.291005291vw, 6.65rem);
+  padding-bottom: clamp(5rem, 5.291005291vw, 6.65rem)
+}
+
+@media(min-width: 992px) {
+  .page_privacy-policy .page_privacy-policy__wysiwyg {
+    font-size: clamp(1.25rem, 1.3227513228vw, 1.6625rem)
+  }
+}
+
+.page_privacy-policy .page_privacy-policy__wysiwyg ol {
+  list-style-type: lower-alpha
+}
+
+.page_privacy-policy .page_privacy-policy__wysiwyg ol ol {
+  list-style-type: lower-roman
+}

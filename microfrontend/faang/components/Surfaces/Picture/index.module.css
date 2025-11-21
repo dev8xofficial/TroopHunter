@@ -1,0 +1,19 @@
+.picture {
+  display: block;
+  line-height: 0;
+  max-width: 100%;
+}
+
+.picture img {
+  object-fit: cover;
+}
+
+.picture--responsive img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery__image img {
+  border: 0.5px solid transparent;
+  border-radius: inherit;
+}
