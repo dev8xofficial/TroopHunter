@@ -52,22 +52,22 @@ const SubmenuData = [
     heading: 'Backend & Databases',
     list: [
       {
-        title: 'Backend',
-        iconName: 'BackendIcon',
+        title: 'Node.js / Express.js',
+        iconName: 'NodejsIcon',
         color: 'cyan',
-        href: '/expertise/backend'
+        href: '/expertise/node-js-express-js'
       },
       {
-        title: 'Real-Time Apps',
+        title: 'API Integration',
         iconName: 'SeismometerIcon',
         color: 'blue',
-        href: '/expertise/real-time-apps'
+        href: '/expertise/api-integration'
       },
       {
-        title: 'SaaS',
+        title: 'GraphQL / REST',
         iconName: 'SaaSIcon',
         color: 'green',
-        href: '/expertise/saas'
+        href: '/expertise/graphql-rest'
       },
       {
         title: 'PostgreSQL',
@@ -83,75 +83,38 @@ const SubmenuData = [
       }
     ]
   },
-
-  /* {
+  {
     heading: 'Design & UX',
     list: [
       {
-        title: 'User Research',
+        title: 'Interaction Design',
         iconName: 'MyspaceIcon',
         color: 'purple',
-        href: '/expertise/user-research-validation'
+        href: '/expertise/interaction-design'
       },
       {
-        title: 'UX Design',
+        title: 'UI Components',
         iconName: 'MapIcon',
         color: 'cyan',
-        href: '/expertise/user-experience-design'
-      },
-      {
-        title: 'UI Design',
-        iconName: 'SelectionIcon',
-        color: 'pink',
-        href: '/expertise/user-interface-design'
-      },
-      {
-        title: 'Prototyping',
-        iconName: 'MagicWandIcon',
-        color: 'blue',
-        href: '/expertise/prototyping'
+        href: '/expertise/user-interface-components'
       },
       {
         title: 'Design Systems',
+        iconName: 'SelectionIcon',
+        color: 'pink',
+        href: '/expertise/design-systems'
+      },
+      {
+        title: 'Animations',
+        iconName: 'MagicWandIcon',
+        color: 'blue',
+        href: '/expertise/animations'
+      },
+      {
+        title: 'Pixel-perfect Layouts',
         iconName: 'PlanetRingIcon',
         color: 'purple',
-        href: '/expertise/design-systems'
-      }
-    ]
-  },*/
-
-  {
-    heading: 'Technology',
-    list: [
-      {
-        title: 'React.js',
-        iconName: 'ReactjsIcon',
-        color: 'purple',
-        href: '/expertise/react-js'
-      },
-      {
-        title: 'Next.js',
-        iconName: 'NextjsIcon',
-        color: 'cyan',
-        href: '/expertise/next-js'
-      },
-      {
-        title: 'Node.js',
-        iconName: 'NodejsIcon',
-        color: 'blue',
-        href: '/expertise/node-js'
-      },
-      {
-        title: 'Express.js / Nest.js',
-        iconName: 'NextjsIcon',
-        color: 'pink',
-        href: '/expertise/express-nest'
-      },
-      {
-        title: 'Supabase',
-        iconName: 'SupabaseIcon',
-        color: 'green',
-        href: '/expertise/supabase'
+        href: '/expertise/pixel-perfect-layouts'
       }
     ]
   },
@@ -190,38 +153,73 @@ const SubmenuData = [
       }
     ]
   },
+  {
+    heading: 'Frontend Technologies',
+    list: [
+      {
+        title: 'React.js',
+        iconName: 'ReactjsIcon',
+        color: 'purple',
+        href: '/expertise/react-js'
+      },
+      {
+        title: 'Next.js',
+        iconName: 'NextjsIcon',
+        color: 'cyan',
+        href: '/expertise/next-js'
+      },
+      {
+        title: 'TypeScript',
+        iconName: 'NodejsIcon',
+        color: 'blue',
+        href: '/expertise/typescript'
+      },
+      {
+        title: 'State Management',
+        iconName: 'BackendIcon',
+        color: 'pink',
+        href: '/expertise/state-management'
+      },
+      {
+        title: 'SSR & SSG',
+        iconName: 'SupabaseIcon',
+        color: 'green',
+        href: '/expertise/ssr-ssg'
+      }
+    ]
+  },
   ...(false
     ? [
-        {
-          heading: 'Work With Us',
-          list: [
-            {
-              title: 'Careers',
-              iconName: 'RightArrowIcon',
-              color: 'cyan',
-              href: '/careers',
-              rotateIcon: true
-            },
-            {
-              title: 'Internships',
-              iconName: 'PlanetRingIcon',
-              color: 'purple',
-              href: '/internships'
-            },
-            {
-              title: 'Our Process',
-              iconName: 'DataIcon',
-              color: 'blue',
-              href: '/our-process'
-            },
-            {
-              title: 'Plans & Pricing',
-              iconName: 'SaaSIcon',
-              color: 'green',
-              href: '/plans-and-pricing'
-            }
+  {
+    heading: 'Work With Us',
+    list: [
+      {
+        title: 'Careers',
+        iconName: 'RightArrowIcon',
+        color: 'cyan',
+        href: '/careers',
+        rotateIcon: true
+      },
+      {
+        title: 'Internships',
+        iconName: 'PlanetRingIcon',
+        color: 'purple',
+        href: '/internships'
+      },
+      {
+        title: 'Our Process',
+        iconName: 'DataIcon',
+        color: 'blue',
+        href: '/our-process'
+      },
+      {
+        title: 'Plans & Pricing',
+        iconName: 'SaaSIcon',
+        color: 'green',
+        href: '/plans-and-pricing'
+      }
           ].filter((item) => !['/careers', '/internships', '/plans-and-pricing'].includes(item.href))
-        }
+  }
       ]
     : [])
 ] as HeaderSubmenuContent;
