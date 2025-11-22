@@ -28,7 +28,7 @@ export interface TestimonialAuthor {
 export type TestimonialAuthors = TestimonialAuthor[];
 
 export interface AboutContent extends PageLayoutContent {
-   aboutSections: string[];
+  aboutSections: string[];
   capabilities: CapabilitiesContent;
   whatWeDo: WhatWeDoContent;
   testimonials: Testimonials;

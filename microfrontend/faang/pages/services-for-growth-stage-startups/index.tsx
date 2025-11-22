@@ -13,7 +13,7 @@ import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import EXPERTISES from '../../data/expertise/index.d';
 import { prefixed } from '../../utils/helpers';
 import ExpertiseStyles from '../expertise/index.module.css';
-import OFFERS from '../../data/services-for-growth-stage-startups/index.d'
+import OFFERS from '../../data/services-for-growth-stage-startups/index.d';
 
 import HomePageStyles from '../index.module.css';
 import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
@@ -113,7 +113,7 @@ const OffersPage: React.FC = (): JSX.Element => {
               </div>
             </div>
           )}
-   
+
           <main className={`${ExpertiseStyles['expertise-single']} container-full`}>
             <div>
               <ModularBlocks>
@@ -149,44 +149,8 @@ const OffersPage: React.FC = (): JSX.Element => {
                       </CardStack>
                     ))}
                   </CardStack>
-        {offersData.capabilities && offersData.capabilities.length > 0 && (
-          <AppearOnScroll>
-            <div className={styles['about-capabilities']}>
-              <h2 className={styles['about-capabilities__intro']} aria-label={offersData.capabilitiesHeading || 'Our capabilities'}>
-                {(offersData.capabilitiesHeading || 'Our capabilities').split(' ').map((word, index) => {
-                  const isSpecial = word.toLowerCase().includes('capabilities');
-                  return (
-                    <span
-                      key={index}
-                      className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
-                      aria-hidden="true"
-                      style={{
-                        display: 'inline-block',
-                        whiteSpace: 'pre',
-                        transform: 'translate3d(0px, 0%, 0px)',
-                        opacity: 1,
-                        transitionDelay: `${index * 0.05}s`
-                      }}
-                    >
-                      <span
-                        aria-hidden="true"
-                        style={{
-                          display: 'inline-block',
-                          whiteSpace: 'pre',
-                          opacity: 1
-                        }}
-                      >
-                        {word + ' '}
-                      </span>
-                    </span>
-                  );
-                })}
-              </h2>
 
-              <Capabilities capabilities={offersData.capabilities} styles={styles} />
-            </div>
-          </AppearOnScroll>
-        )}
+                  {offersData.capabilities && offersData.capabilities.length > 0 && <Capabilities capabilitiesHeading={offersData.capabilitiesHeading} capabilities={offersData.capabilities} />}
                   <footer className={ExpertiseStyles['expertise-cta']}>
                     <h2 className={ExpertiseStyles['expertise-cta__content']}>
                       <span>Got questions? We’re here to help</span>

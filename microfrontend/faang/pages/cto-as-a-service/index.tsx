@@ -149,44 +149,7 @@ const OffersPage: React.FC = (): JSX.Element => {
                       </CardStack>
                     ))}
                   </CardStack>
-                  {offersData.capabilities && offersData.capabilities.length > 0 && (
-                    <AppearOnScroll>
-                      <div className={styles['about-capabilities']}>
-                        <h2 className={styles['about-capabilities__intro']} aria-label={offersData.capabilitiesHeading || 'Our capabilities'}>
-                          {(offersData.capabilitiesHeading || 'Our capabilities').split(' ').map((word, index) => {
-                            const isSpecial = word.toLowerCase().includes('capabilities');
-                            return (
-                              <span
-                                key={index}
-                                className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
-                                aria-hidden="true"
-                                style={{
-                                  display: 'inline-block',
-                                  whiteSpace: 'pre',
-                                  transform: 'translate3d(0px, 0%, 0px)',
-                                  opacity: 1,
-                                  transitionDelay: `${index * 0.05}s`
-                                }}
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  style={{
-                                    display: 'inline-block',
-                                    whiteSpace: 'pre',
-                                    opacity: 1
-                                  }}
-                                >
-                                  {word + ' '}
-                                </span>
-                              </span>
-                            );
-                          })}
-                        </h2>
-
-                        <Capabilities capabilities={offersData.capabilities} styles={styles} />
-                      </div>
-                    </AppearOnScroll>
-                  )}
+                  {offersData.capabilities && offersData.capabilities.length > 0 && <Capabilities capabilitiesHeading={offersData.capabilitiesHeading} capabilities={offersData.capabilities} />}
 
                   <footer className={ExpertiseStyles['expertise-cta']}>
                     <h2 className={ExpertiseStyles['expertise-cta__content']}>
