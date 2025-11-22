@@ -10,8 +10,8 @@ import CaretDownIcon from '../../Icons/CaretDown';
 import CaretUpIcon from '../../Icons/CaretUp';
 import { useMediaQuery } from 'react-responsive';
 import { useRouter } from 'next/router';
-import { CAREER_ROLES } from '../../Constants/Work/Careers';
-import { INTERNSHIP_ROLES } from '../../Constants/Work/Internships';
+import { CAREER_ROLES } from '../../Constants/Careers/Careers';
+import { INTERNSHIP_ROLES } from '../../Constants/Internships/Internships';
 
 import styles from './index.module.css';
 
