@@ -243,6 +243,41 @@ const OFFERS: OffersContent[] = [
     ],
     primaryPlansItems: ['Tech lead supervision', 'Transparent time tracking', '4-hour U.S. overlap', 'Cancel anytime'],
     secondaryPlansItems: ['Dedicated Slack Channel for Communication', 'Weekly Progress & Team Sync Meetings', 'Complete Project Transparency via ClickUp or Jira', 'Flexible Month-to-Month Commitment'],
+    capabilitiesHeading: "Our capabilities are centred around our ability to deliver world-class websites and apps. We're 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.",
+    capabilities: [
+      {
+        heading: 'Strategy & UX',
+        items: ['Digital Strategy', 'User Research', 'User Journey Mapping', 'Information Architecture', 'Wireframing']
+      },
+      {
+        heading: 'Design',
+        items: ['Interaction Design', 'User Interface Design', 'Design Systems', 'Prototyping & Animation', 'Accessibility']
+      },
+      {
+        heading: 'Development',
+        items: ['Websites', 'eCommerce', 'Web Applications', 'Mobile Apps (iOS & Android)', 'Platform Integrations']
+      },
+      {
+        heading: 'Technology',
+        items: ['React.js', 'Next.js', 'Node.js', 'Express.js / Nest.js', 'Supabase']
+      },
+      {
+        heading: 'Backend & Databases',
+        items: ['Backend', 'Real-Time Apps', 'SaaS', 'PostgreSQL', 'ORM (Sequelize, Prisma)']
+      },
+      {
+        heading: 'DevOps & Cloud',
+        items: ['Docker', 'Virtualization', 'Ansible & Web Servers', 'AWS, Vercel, DigitalOcean', 'CI/CD']
+      },
+      {
+        heading: 'Optimisation',
+        items: ['Website / App Review', 'Performance Optimisation', 'Conversion Optimisation', 'A/B Testing', 'Ongoing Enhancements']
+      },
+      {
+        heading: 'Support',
+        items: ['Project Management', 'Website Hosting', 'Website Maintenance', 'Performance & Security', '3rd Party Integrations']
+      }
+    ],
     video: prefixed(`/videos/header/header.mp4`)
   },
   {
@@ -575,6 +610,55 @@ Does all of this describe your current needs on the project? We are ready to hel
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
+    capabilitiesHeading: "50+ Full-Stack and Niche Experts on Standby",
+    capabilities: [
+      {
+        heading: 'Product management',
+        items: [
+          { name: 'Jira', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789076682a8f287807a6_jira.webp' },
+          { name: 'Slack', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789176682a27a67807ae_slack.webp' },
+          { name: 'Miro', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789127848f8dcf3eeabd_miro.webp' }
+        ]
+      },
+      {
+        heading: 'UX/UI design',
+        items: [
+          { name: 'Figma', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789152be206081bac0bc_figma.webp' },
+          { name: 'Adobe Photoshop', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727890b27f6382b9a1cd89_adobe-photoshop.webp' }
+        ]
+      },
+      {
+        heading: 'Development',
+        items: [
+          { name: 'Python (FastAPI, Django)', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278915e54a8355b3e1d52_python.webp' },
+          { name: 'TypeScript (Node.js, React, React Native)', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727893c290aa5ea60b6420_typescript.webp' }
+        ]
+      },
+      {
+        heading: 'DevOps',
+        items: [
+          { name: 'Terraform', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727893840a291e120162d3_terraform.webp' },
+          { name: 'Docker', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278908332ff18aa459ce4_docker.webp' },
+          { name: 'Kubernetes', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278911e566587192317f2_kubernetes.webp' }
+        ]
+      },
+      {
+        heading: 'QA',
+        items: [
+          { name: 'Appium', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278912ebc62e9c1c78a16_appium.webp' },
+          { name: 'Detox', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891fb38dbd31dc72743_detox.webp' },
+          { name: 'Selenium', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891633738a3d723a8bf_selenium.webp' }
+        ]
+      },
+      {
+        heading: 'AI & Machine Learning',
+        items: [
+          { name: 'TensorFlow', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278939601cf4af694d79f_tensor-flow.webp' },
+          { name: 'Keras', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891633738df2523a8ba_keras.webp' },
+          { name: 'PyTorch', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891d4d17683bbc11982_py-torch.webp' }
+        ]
+      },
+    ],
     video: prefixed(`/videos/header/header.mp4`)
   },
   {
@@ -884,6 +968,8 @@ Does all of this describe your current needs on the project? We are ready to hel
     secondaryPlansItems: [''],
     video: prefixed(`/videos/header/header.mp4`)
   }
+
+
   // {
   //   slug: 'totalhealthdentalcare',
   //   variant: 'cyan',

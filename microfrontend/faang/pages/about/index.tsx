@@ -6,7 +6,7 @@ import { toggleSmoothModalAtom } from '@repo/components';
 import { useSetAtom } from 'jotai';
 import { AboutGallery, ContactFormModal, Footer, FooterRevealPageWrap, Header, LogoGrid, TestimonialAbout } from '@repo/components';
 import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
-import Capabilities from './Capabilities/Capabilities';
+import Capabilities from '@repo/components/src/surfaces/Capabilities/Capabilities';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import PageData from '../../data/about/index.d';
 import SubmenuData from '../../data/navigation/index.d';
@@ -278,7 +278,7 @@ const Contact: React.FC = (): JSX.Element => {
                     })}
                   </h2>
 
-                  <Capabilities capabilities={PageData.capabilities} />
+                  <Capabilities capabilities={PageData.capabilities} styles={styles} />
                 </div>
               </AppearOnScroll>
             </div>

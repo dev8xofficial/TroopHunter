@@ -151,3 +151,104 @@
     font-size: clamp(2.625rem, 2.7777777778vw, 3.49125rem);
   }
 }
+
+.format {
+  color: #7360e4;
+}
+
+.about-capabilities {
+    display: grid;
+    color: var(--theme-secondary);
+    max-width: calc(clamp(87.5rem, 92.5925925926vw, 116.375rem) + var(--container-gutter)*2);
+    padding-left: var(--container-gutter);
+    padding-right: var(--container-gutter);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    grid-gap: 5rem;
+    gap: 5rem;
+    margin-top: clamp(9.375rem, 19.53125vw, 12.46875rem)
+}
+
+@media(min-width: 992px) {
+    .about-capabilities {
+        gap: clamp(7.9375rem, 8.3994708995vw, 10.556875rem);
+        margin-top: clamp(12.5rem, 13.2275132275vw, 16.625rem)
+    }
+}
+
+.about-capabilities__intro {
+    max-width: clamp(71.25rem, 75.3968253968vw, 94.7625rem);
+    margin: 0;
+    line-height: 1;
+    font-size: clamp(1.875rem, 3.90625vw, 2.49375rem)
+}
+
+@media(min-width: 992px) {
+    .about-capabilities__intro {
+        font-size: clamp(2.5rem, 5.2083333333vw, 3.325rem)
+    }
+}
+
+@media(min-width: 1400px) {
+    .about-capabilities__intro {
+        font-size: clamp(3.75rem, 3.9682539683vw, 4.9875rem)
+    }
+}
+
+.about-capabilities__grid {
+    display: grid;
+    max-width: clamp(68.125rem, 72.0899470899vw, 90.60625rem);
+    grid-gap: 3.125rem;
+    gap: 3.125rem
+}
+
+@media(min-width: 480px) {
+    .about-capabilities__grid {
+        gap: 5rem 2.5rem;
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media(min-width: 992px) {
+    .about-capabilities__grid {
+        justify-content: space-between;
+        grid-template-columns: repeat(3, auto);
+        gap: clamp(5.9375rem, 6.2830687831vw, 7.896875rem) clamp(5rem, 5.291005291vw, 6.65rem)
+    }
+}
+
+.about-column {
+    display: grid;
+    grid-gap: clamp(2.125rem, 2.2486772487vw, 2.82625rem);
+    gap: clamp(2.125rem, 2.2486772487vw, 2.82625rem);
+    align-content: flex-start
+}
+
+.about-column__heading {
+    margin: 0;
+    font-size: clamp(1.5rem, 1.5873015873vw, 1.995rem)
+}
+
+@media(min-width: 768px) {
+    .about-column__heading {
+        font-size: clamp(1.875rem, 1.9841269841vw, 2.49375rem)
+    }
+}
+
+.about-column__list {
+    margin: 0;
+    padding: 0;
+    opacity: .7;
+    list-style: none;
+    display: grid;
+    grid-gap: .8em;
+    gap: .8em;
+    font-size: clamp(1.125rem, 1.1904761905vw, 1.49625rem)
+}
+
+@media(min-width: 768px) {
+    .about-column__list {
+        font-size: clamp(1.25rem, 1.3227513228vw, 1.6625rem)
+    }
+}
