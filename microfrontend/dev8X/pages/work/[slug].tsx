@@ -1,7 +1,8 @@
 'use client';
 
 import Head from 'next/head';
-import { FooterRevealPageWrap, Footer, Header, ProjectsFormModal, WorkDetail, WORK_PROJECTS } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, ProjectsFormModal, WorkDetail } from '@repo/components';
+import { WORK_PROJECTS } from '../../data/work/index.d';
 import PageData from '../../data/work/index.d';
 import SubmenuData from '../../data/navigation/index.d';
 import { prefixed } from '../../utils/helpers';

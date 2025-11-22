@@ -6,7 +6,6 @@ import { ExpertiseContent } from '../../Interfaces/Expertise/Expertise';
 import { Pill } from '../Pill/Pill';
 import { OffersCategories } from '../OffersCategories/OffersCategories';
 import { WorkCard } from '../WorkCard/WorkCard';
-import { OFFERS_GRID_DATA } from '../../Constants/Offers/OffersData';
 import { LandscapeWorkCardProps } from '../../Interfaces/Work/WorkProjectTypes';
 
 import LayoutStyles from '../Layout/layout.module.css';
@@ -19,12 +18,27 @@ interface OffersHeroProps extends Omit<ExpertiseContent, 'meta' | 'slug' | 'icon
   handleCategorySelect?: any;
   openScheduleCallModal?: React.MouseEventHandler<HTMLButtonElement>;
   categories?: string[];
+  howToHireVideoData?: LandscapeWorkCardProps;
 }
 
-export const OffersHero: React.FC<OffersHeroProps> = ({ tagText, heading, variant, activeCategory, showHowToHireVideo, paragraph, handleCategorySelect, openScheduleCallModal, categories }): JSX.Element => {
+export const OffersHero: React.FC<OffersHeroProps> = ({ tagText, heading, variant, activeCategory, showHowToHireVideo, paragraph, handleCategorySelect, openScheduleCallModal, categories, howToHireVideoData }): JSX.Element => {
   const router = useRouter();
   const isOffersPage = router.pathname.includes('/offers');
-  const offersData: LandscapeWorkCardProps = OFFERS_GRID_DATA[0] as LandscapeWorkCardProps;
+  const defaultOffersData: LandscapeWorkCardProps = {
+    variant: 'landscape',
+    space: 'inner',
+    bgColor: 'blue',
+    title: 'How To Hire',
+    images: [],
+    placeholderImage: '/api/images/placeholder/1080-transparent.png',
+    video: {
+      originalFile: '/videos/work/troophunter/1080.mp4',
+      sequences: []
+    },
+    path: ''
+  };
+  
+  const offersData: LandscapeWorkCardProps = howToHireVideoData || defaultOffersData;
 
   return (
     <>

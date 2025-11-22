@@ -2,7 +2,6 @@
 
 import React, { ReactNode } from 'react';
 import { WorkCard } from '../../Surfaces/WorkCard/WorkCard';
-import { WORK_PROJECTS_GRID_DATA } from '../../Constants/Work/WorkProjects';
 import { WorkGridCard } from '../../Interfaces/Work/WorkProjectTypes';
 
 import styles from './index.module.css';
@@ -13,6 +12,7 @@ type WorkGridRowProps = {
 
 type WorkGridProps = {
   workGridCSSClass: string;
+  workProjects: WorkGridCard[];
   openModal?: (slug: string) => void;
 };
 
@@ -32,14 +32,14 @@ export const WorkGridRowPortrait: React.FC<WorkGridRowProps> = ({ children }: Wo
   );
 };
 
-export const WorkGrid: React.FC<WorkGridProps> = ({ workGridCSSClass, openModal }: WorkGridProps): JSX.Element => {
+export const WorkGrid: React.FC<WorkGridProps> = ({ workGridCSSClass, workProjects, openModal }: WorkGridProps): JSX.Element => {
   return (
     <>
       <div className={`${styles['work-grid']} ${workGridCSSClass}`}>
-        {WORK_PROJECTS_GRID_DATA.map((work: WorkGridCard, index) => {
+        {workProjects.map((work: WorkGridCard, index) => {
           if (Array.isArray(work)) {
-            work.map((item, index) => (
-              <WorkGridRowPortrait key={`portrait-card-${index}`}>
+            return work.map((item, itemIndex) => (
+              <WorkGridRowPortrait key={`portrait-card-${index}-${itemIndex}`}>
                 <WorkCard variant={item.variant} space={item.space} bgColor={item.bgColor} title={item.title} image="" placeholderImage={item.placeholderImage} video={item.video} path={item.path} openModal={openModal} />
               </WorkGridRowPortrait>
             ));
