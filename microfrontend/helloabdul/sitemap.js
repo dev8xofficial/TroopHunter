@@ -18,13 +18,9 @@ const pageToUrlMap = {
   // Main pages
   index: '/',
   'work/index': '/work',
-  'careers/index': '/careers',
-  'internships/index': '/internships',
   'contact/index': '/contact',
   'about/index': '/about',
   'expertise/index': '/expertise',
-  'our-process/index': '/our-process',
-  'plans-and-pricing/index': '/plans-and-pricing',
   'privacy/index': '/privacy',
   '404/index': '/404',
 
@@ -120,7 +116,7 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
 
     // Add static pages
     for (const [pageName, urlPath] of Object.entries(pageToUrlMap)) {
-      if (urlPath === '/404' || urlPath.includes('[slug]')) continue; // Skip 404 routes and dynamic routes
+      if (urlPath === '/404' || urlPath.includes('[slug]')) continue;
 
       const lastmod = updatedPaths.has(urlPath) ? getCurrentDate() : undefined;
 
@@ -131,33 +127,21 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
       if (urlPath === '/') {
         changefreq = 'daily';
         priority = 1.0;
-      } else if (urlPath === '/about') {
-        changefreq = 'weekly';
-        priority = 0.8;
-      } else if (urlPath === '/work') {
-        changefreq = 'weekly';
-        priority = 0.8;
       } else if (urlPath === '/expertise') {
         changefreq = 'weekly';
+        priority = 0.9;
+      } else if (urlPath === '/work') {
+        changefreq = 'weekly';
+        priority = 0.9;
+      } else if (urlPath === '/about') {
+        changefreq = 'monthly';
         priority = 0.8;
       } else if (urlPath === '/contact') {
         changefreq = 'monthly';
         priority = 0.7;
-      } else if (urlPath === '/careers') {
-        changefreq = 'monthly';
-        priority = 0.6;
-      } else if (urlPath === '/internships') {
-        changefreq = 'monthly';
-        priority = 0.6;
-      } else if (urlPath === '/plans-and-pricing') {
-        changefreq = 'monthly';
-        priority = 0.5;
-      } else if (urlPath === '/our-process') {
-        changefreq = 'yearly';
-        priority = 0.5;
       } else if (urlPath === '/privacy') {
         changefreq = 'yearly';
-        priority = 0.4;
+        priority = 0.3;
       }
 
       sitemapStream.write({

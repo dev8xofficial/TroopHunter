@@ -3,6 +3,11 @@ export type Video = {
   sequences: string[];
 };
 
+export type TeamMember = {
+  role: string;
+  name: string;
+};
+
 export type WorkDetail = {
   slug: string;
   title: string;
@@ -13,6 +18,7 @@ export type WorkDetail = {
   approach: string;
   impact: string;
   keyContributions: string[];
+  team?: TeamMember[];
   placeholderImage: string;
   images: string[];
   video: Video;

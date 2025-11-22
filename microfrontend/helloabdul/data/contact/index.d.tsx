@@ -46,7 +46,7 @@ const PageData: ContactContent = {
     {
       title: 'LinkedIn',
       icon: { name: 'AsteriskIcon', width: 10 },
-      href: 'https://www.linkedin.com/in/abdulrehman-dev/'
+      href: 'https://www.linkedin.com/in/helloabdul/'
     },
     {
       title: 'Instagram',

@@ -6,7 +6,8 @@ import { toggleSmoothModalAtom } from '@repo/components';
 import { useProjectModal } from '../hooks/useProjectModal';
 import Hero from '../components/Surfaces/Hero/Hero';
 // import Problems from './home/Problems/Problems';
-import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDev8X, ProjectsFormModal, ContactFormModal, WORK_PROJECTS } from '@repo/components';
+import { FooterRevealPageWrap, Header, HomepageShowreel, Footer, WorkGrid, WhyDev8X, ProjectsFormModal, ContactFormModal, transformWorkProjectsToGridData } from '@repo/components';
+import { WORK_PROJECTS } from '../data/work/index.d';
 import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 import SmoothModalWrapper from '../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
@@ -103,7 +104,7 @@ export default function Home() {
             <FeatureVideoResponsive />
             <TestimonialsLarge /> */}
             <div className={styles['homepage__section']}>
-              <WorkGrid workGridCSSClass={styles['work-grid']} openModal={openModal} />
+              <WorkGrid workGridCSSClass={styles['work-grid']} workProjects={transformWorkProjectsToGridData(WORK_PROJECTS)} openModal={openModal} />
               <WhyDev8X {...PageData.whyDev8XContent} />
               {/* <div className={styles['homepage__feed-wrapper']}>
                 <div className={styles['homepage__feed-wrapper-inner']}>

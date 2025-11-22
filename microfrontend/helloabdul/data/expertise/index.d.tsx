@@ -293,55 +293,61 @@ const EXPERTISES: ExpertiseContent[] = [
     ]
   },
   {
-    slug: 'mobile-apps',
-    variant: 'blue',
-    tagText: 'Mobile Apps',
-    heading: 'We create, craft and launch exceptional mobile apps',
-    image: prefixed('/api/images/work/scheduler/mobile/1.png'),
+    slug: 'real-time-apps',
+    variant: 'pink',
+    tagText: 'Real-Time Applications',
+    heading: 'Engage users in the moment with real-time experiences',
+    image: prefixed('/api/images/work/other/developer-identifying-server-issues.png'),
     iconCards: {
-      title: 'Built to touch',
-      paragraph: 'Bespoke iOS and Android applications – designed and developed entirely in-house.',
+      title: 'Instant, seamless interaction',
+      paragraph: 'We create real-time applications that enable immediate, meaningful communication. From live updates to instant messaging and collaborative tools, our real-time solutions keep users connected and engaged, effortlessly.',
       items: [
         {
-          title: 'The Right Technolog',
-          description: 'We spruik a core collection of robust technologies, chosen for maximum flexibility, useful for every occasion. Our preferred stack includes Swift, Java and React Native.',
-          icon: { name: 'LaptopIcon', width: 26 }
+          title: 'Live by design',
+          description: 'We design and develop responsive real-time experiences—from collaborative tools to live dashboards—that feel immediate, fluid, and alive.',
+          icon: { name: 'MagicWandIcon', width: 26 }
         },
         {
-          title: 'Handy Experience',
-          description: 'We design engaging and immersive mobile experiences, delighting users while solving business problems and keeping your brand at the forefront.',
-          icon: { name: 'ShuffleIcon', width: 24 }
+          title: 'Performance-first',
+          description: 'Our engineering focus ensures real-time features are lightweight, reliable, and performant across devices, networks, and locations.',
+          icon: { name: 'MonitorIcon', width: 24 }
         },
         {
-          title: 'Not Just a Pretty Fac',
-          description: 'As with any digital product, performance, accessibility and usability are paramount. We go to great lengths to ensure every app looks and functions well for all.',
-          icon: { name: 'FaceIdIcon', width: 28 }
+          title: 'Built to scale',
+          description: "Whether it's live chat, instant notifications, or multiplayer features, we build systems that scale seamlessly with your audience and demands.",
+          icon: { name: 'GroupUsersIcon', width: 28 }
         },
         {
-          title: 'Integrated',
-          description: 'A mobile app is just one part of your digital ecosystem. We incorporate secure API integrations to ensure seamless operation across your business.',
-          icon: { name: 'InfinityIcon', width: 28 }
+          title: 'Always in sync',
+          description: 'From sockets to state management, we make sure your app stays consistent and synchronised—delivering the right information at the right time.',
+          icon: { name: 'ShuffleIcon', width: 28 }
         }
       ]
     },
     contentAsideImageItems: [
       {
-        title: 'From MVP to fully featured',
-        paragraph: "Whether you're a startup looking to disrupt the market or an established enterprise seeking to expand your digital footprint, we can build a scalable, robust, and secure mobile app that serves and delights your users.",
-        icon: { name: 'MobileIcon', width: 64 },
+        title: 'Seamless, Instant Connectivity',
+        paragraph: 'Create applications that provide real-time updates and instantaneous interaction. Whether you’re building live chat platforms, collaborative tools, or online gaming experiences, our approach ensures a smooth, responsive, and engaging experience for your users—every time they interact.',
+        icon: { name: 'SeismometerIcon', width: 64 },
         image: prefixed('/api/images/work/troophunter/mobile/2.png')
       },
       {
-        title: 'Tailored customer experiences',
-        paragraph: 'Our apps are tailored to the needs of the audience, offering compelling journeys to match their behaviour and usage. With a focus on exceptional user experiences, we transform ideas into powerful tools for customer engagement and brand loyalty.',
-        icon: { name: 'MobileIcon', width: 64 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/mobile/5.png')
+        title: 'Transformative User Experiences',
+        paragraph: 'We specialize in designing and developing real-time applications that push the boundaries of user interaction. From real-time notifications to live data feeds, we create dynamic systems that engage users in meaningful, real-time experiences while maintaining optimal performance and reliability.',
+        icon: { name: 'SeismometerIcon', width: 64 },
+        image: prefixed('/api/images/work/scheduler/mobile/11.png')
       },
       {
-        title: 'iOS and Android',
-        paragraph: 'Blending innovative design, robust functionality, and seamless UX thinking, we create create world-class iOS and Android apps, utilising both native technologies and mobile frameworks to suit the unique requirements of every product.',
-        icon: { name: 'MobileIcon', width: 64 },
-        image: prefixed('/api/images/work/scheduler/mobile/11.png')
+        title: 'Scalable Solutions for Every Need',
+        paragraph: 'We build scalable architectures to support real-time data processing, ensuring that your app can grow as your user base expands. Whether handling hundreds or millions of simultaneous users, we leverage cutting-edge technologies to guarantee performance under pressure, offering seamless scalability for your real-time application needs.',
+        icon: { name: 'SeismometerIcon', width: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/5.png')
+      },
+      {
+        title: 'Powerful Real-Time Systems',
+        paragraph: 'Our expertise goes beyond simple integrations—we develop sophisticated back-end systems that allow for secure, real-time communication between users and devices. From instant messaging apps to real-time dashboards, we ensure your application remains fast, reliable, and always connected.',
+        icon: { name: 'SeismometerIcon', width: 64 },
+        image: prefixed('/api/images/work/honeydu/desktop/3.png')
       }
     ],
     footerMainContent: {
@@ -350,8 +356,156 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Mobile App Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
-      description: 'We create, craft and launch exceptional mobile apps for iOS and Android.'
+      title: 'Real-Time Systems & Application Development | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Engage users in the moment with real-time experiences'
+    },
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'USA',
+          city: 'Orlando, Florida',
+          phone: '+1 (321) 300-2393'
+        },
+        {
+          country: 'Pakistan',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        }
+      ],
+      // careers: {
+      //   heading: 'We’re Growing – Join Our Team',
+      //   description: 'Let’s build the future, together.',
+      //   link: '/careers',
+      //   linkText: 'Explore Careers'
+      // },
+      copyright: {
+        year: '2025',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      },
+      {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.instagram.com/dev8xofficial/'
+      },
+      {
+        title: 'Facebook',
+        // icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
+    ],
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
+      }
+    ]
+  },
+  {
+    slug: 'saas',
+    variant: 'blue',
+    tagText: 'SaaS',
+    heading: 'Empower your business with scalable SaaS solutions',
+    image: prefixed('/api/images/work/troophunter/desktop/2.png'),
+    iconCards: {
+      title: 'Seamless cloud integration',
+      paragraph: "We design SaaS platforms that drive growth and efficiency. Whether you're building a new product or optimizing an existing one, we create scalable and secure solutions that align with your business goals and user needs.",
+      items: [
+        {
+          title: 'SaaS with Substance',
+          description: 'We build SaaS products that are as powerful as they are intuitive—balancing robust functionality with beautifully crafted user experiences.',
+          icon: { name: 'SaaSIcon', width: 26 }
+        },
+        {
+          title: 'Scalable Foundations',
+          description: 'From MVP to enterprise-grade platforms, our architecture scales with your product. We lay the technical groundwork to support your growth trajectory.',
+          icon: { name: 'PlanetRingIcon', width: 24 }
+        },
+        {
+          title: 'Subscription & User Management',
+          description: 'Design seamless onboarding, billing, and access systems tailored to the needs of your users—backed by secure, efficient infrastructure.',
+          icon: { name: 'CardIcon', width: 28 }
+        },
+        {
+          title: 'Product-Led Thinking',
+          description: 'We craft experiences that drive engagement, adoption, and retention—helping you convert trial users into lifelong customers.',
+          icon: { name: 'HeartIcon', width: 28 }
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: 'Transform your business with SaaS',
+        paragraph: 'Elevate your operations with tailored SaaS solutions that streamline workflows and boost efficiency. We design and build robust platforms that meet your specific business needs, delivering intuitive, scalable, and secure tools to enhance your digital transformation journey.',
+        icon: { name: 'SaaSIcon', width: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/14.png')
+      },
+      {
+        title: 'Intuitive user experiences at scale',
+        paragraph: 'Every successful SaaS product needs a seamless user experience. Our focus is on simplifying complex workflows, ensuring that every interaction is intuitive and easy, even as your product scales. Whether it’s for internal teams or external customers, we ensure your users stay engaged and productive.',
+        icon: { name: 'SaaSIcon', width: 64 },
+        image: prefixed('/api/images/work/other/react_garvan.png')
+      },
+      {
+        title: 'Tailored for your growth',
+        paragraph: 'From start-ups to enterprises, we design SaaS platforms that evolve with your business. With an agile approach and a deep understanding of industry-specific needs, we help you develop a product that grows with your users, fostering long-term success and scalability.',
+        icon: { name: 'SaaSIcon', width: 64 },
+        image: prefixed('/api/images/work/scheduler/mobile/2.png')
+      },
+      {
+        title: 'End-to-end SaaS development',
+        paragraph: 'We partner with you through every stage of your SaaS journey—strategy, design, development, and deployment. Whether building from scratch or refining an existing product, our team ensures every feature serves its purpose, supporting your goals and delivering exceptional user experiences.',
+        icon: { name: 'SaaSIcon', width: 64 },
+        image: prefixed('/api/images/work/honeydu/desktop/21.png')
+      }
+    ],
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+    meta: {
+      title: 'SaaS Solutions Development | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Empower your business with scalable SaaS solutions'
     },
     footerData: {
       global: {
@@ -577,336 +731,55 @@ const EXPERTISES: ExpertiseContent[] = [
     ]
   },
   {
-    slug: 'data-visualisation',
-    variant: 'purple',
-    tagText: 'Data Visualisation & Storytelling',
-    heading: 'Compelling data storytelling through impactful visualisations',
-    image: '',
-    iconCards: {
-      title: 'Information is beautiful',
-      paragraph: 'Distinctive visuals, intuitive narratives, and engaging experiences driven by your data.',
-      items: [
-        {
-          title: 'Compelling experiences',
-          description: 'We create compelling, interactive visualisations and creative experiences to engage your audience and connect them with your data.',
-          icon: { name: 'EyeIcon', width: 28 }
-        },
-        {
-          title: 'Visualise complexity',
-          description: 'Leverage best-practice UX and human-centred design thinking to create simple and intuitive experiences for complex data and scenarios.',
-          icon: { name: 'SparklerIcon', width: 24 }
-        },
-        {
-          title: 'Dashboards and internal platforms',
-          description: 'Build better data platforms, from single-page applications through to highly bespoke online systems, bringing data management and visualisation together.',
-          icon: { name: 'DevicesIcon', width: 28 }
-        },
-        {
-          title: 'Powerful tools',
-          description: 'Provide powerful digital tools, tailored to the complexities and idiosyncrasies of your organisation’s data, processes and systems.',
-          icon: { name: 'PieChartIcon', width: 28 }
-        }
-      ]
-    },
-    contentAsideImageItems: [
-      {
-        title: 'Tell a story with data',
-        paragraph: 'Transform complex datasets into immersive narratives that inform and inspire action. Our approach combines rich visuals with insightful analysis, creating a seamless and engaging experience. Whether you aim to drive change, highlight trends, or demonstrate impact, curate your data in the best possible way for powerful digital experiences with lasting impact.',
-        icon: { name: 'DataIcon', width: 64 }
-      },
-      {
-        title: 'Engaging reports and dashboards',
-        paragraph: 'Surface insights from raw data with visually compelling, interactive experiences and consolidated touchpoints. We design and create data-driven interfaces to suit any objective, from immersive reports for public consumption to bespoke internal tools and dashboards that support and inform stakeholders.',
-        icon: { name: 'DataIcon', width: 64 }
-      },
-      {
-        title: 'Your data, our expertise',
-        paragraph: 'Leverage our expertise and transform your data into unique and compelling experiences that educate, inspire and delight. By blending your data with our experience in information graphics, data visualisation and modern interface design, we help unlock the full potential and create digital experiences with lasting impact.',
-        icon: { name: 'DataIcon', width: 64 }
-      }
-    ],
-    footerMainContent: {
-      link: '/contact',
-      start: 'Let’s make',
-      end: 'something wonderful'
-    },
-    meta: {
-      title: 'Data Visualisation & Storytelling | Our Expertise — Dev8X | Dev8X: World class digital products',
-      description: 'Compelling data storytelling through impactful visualisations'
-    },
-    footerData: {
-      global: {
-        heading: 'I work globally',
-        email: 'contact@helloabdul.com',
-        buttonText: 'Hire me'
-      },
-      offices: [
-        {
-          country: 'USA',
-          city: 'Orlando, Florida',
-          phone: '+1 (321) 300-2393'
-        },
-        {
-          country: 'Pakistan',
-          city: 'Lahore, Punjab',
-          phone: '+92 (329) 294-7777'
-        }
-      ],
-      // careers: {
-      //   heading: 'We’re Growing – Join Our Team',
-      //   description: 'Let’s build the future, together.',
-      //   link: '/careers',
-      //   linkText: 'Explore Careers'
-      // },
-      copyright: {
-        year: '2025',
-        text: 'Privacy Policy',
-        privacyLink: '/privacy'
-      }
-    },
-    footerSocialLinks: [
-      {
-        title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
-        title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
-      },
-      {
-        title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
-      // {
-      //   title: 'Youtube',
-      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
-      // }
-    ],
-    testimonials: [
-      {
-        name: 'Henry Luong',
-        company: 'Unios',
-        bgColor: '#ffffff',
-        color: '#111111',
-        transformOrigin: 'center top',
-        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
-      },
-      {
-        name: 'Paula McCarville',
-        company: 'Curtin University',
-        bgColor: '#4C21E2',
-        color: '#F0EBFF',
-        transformOrigin: 'center top',
-        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
-        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
-      },
-      {
-        name: 'Steph Jojart',
-        company: 'Schrole',
-        bgColor: '#1665A3',
-        color: '#E8F5FF',
-        transformOrigin: 'top center',
-        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
-      }
-    ]
-  },
-  {
-    slug: 'user-research-validation',
-    variant: 'purple',
-    tagText: 'User Research & Validation',
-    heading: 'Strategic foundations lead to better outcomes',
-    image: '',
-    iconCards: {
-      title: 'User research & validation',
-      paragraph: 'Our process begins with thorough user research—uncovering broad and specific audience needs through a mix of qualitative and quantitative methods.',
-      items: [
-        {
-          title: 'What, Why & How',
-          description: 'Get clear insights into target audience goals and pain points, determining key challenges and needs to inform a better product.',
-          icon: { name: 'AnalysisIcon', width: 26 }
-        },
-        {
-          title: 'A/B Testing',
-          description: 'Drawing from years of experience in building products for people, we can design tests that specifically explore what appeals most to your customers.',
-          icon: { name: 'FourDotIcon', width: 24 }
-        },
-        {
-          title: 'User Interviews',
-          description: 'Our approach includes more personalised user interviews and focus groups to go deeper on broad patterns discovered in the initial user testing stages.',
-          icon: { name: 'WandIcon', width: 28 }
-        },
-        {
-          title: 'Comprehensive Report',
-          description: 'Every research activity informs a comprehensive set of recommendations and specs, suitable for project stakeholders at every organisational level.',
-          icon: { name: 'SparklerIcon', width: 28 }
-        }
-      ]
-    },
-    contentAsideImageItems: [
-      {
-        title: 'Diverse user research and testing',
-        paragraph: 'Our team employs a diverse and bespoke selection of quantitative and qualitative research methods, tailored to the needs of your project. This may include user interviews, surveys, stakeholder workshops, focus groups, and data analysis in the early discovery stages, followed by usability testing, concept testing, card sorting, and more at key implementation milestones.',
-        icon: { name: 'MyspaceIcon', width: 64 }
-      },
-      {
-        title: 'Design an intuitive product experience',
-        paragraph: 'Data informs every design decision we make, a vital strategy when creating eCommerce websites, functional webapps, and conversion-focused journeys like signups, enrolments and checkouts. Using validation methods such as tree testing, targeted A/B testing, and usability testing, we can determine the clearest and most intuitive user workflows for your audience.',
-        icon: { name: 'MyspaceIcon', width: 64 }
-      },
-      {
-        title: 'Meaningful data analysis and reporting',
-        paragraph: 'We can prepare a report of our research findings, written to suit the requirements of your project, stakeholders and organisation. Most of our clients request design concepts, complemented by supporting insights and statistics, but our team can also provide a comprehensive review and analysis, with a full best-practice list of recommendations.',
-        icon: { name: 'MyspaceIcon', width: 64 }
-      },
-      {
-        title: 'Rewarding partnerships',
-        paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless end results, and a truly collaborative process, no matter what industry you’re in.',
-        icon: { name: 'MyspaceIcon', width: 64 }
-      }
-    ],
-    footerMainContent: {
-      link: '/contact',
-      start: 'Let’s make',
-      end: 'something wonderful'
-    },
-    meta: {
-      title: 'User Research & Validation | Our Expertise — Dev8X | Dev8X: World class digital products',
-      description: 'Strategic foundations lead to better outcomes'
-    },
-    footerData: {
-      global: {
-        heading: 'I work globally',
-        email: 'contact@helloabdul.com',
-        buttonText: 'Hire me'
-      },
-      offices: [
-        {
-          country: 'USA',
-          city: 'Orlando, Florida',
-          phone: '+1 (321) 300-2393'
-        },
-        {
-          country: 'Pakistan',
-          city: 'Lahore, Punjab',
-          phone: '+92 (329) 294-7777'
-        }
-      ],
-      // careers: {
-      //   heading: 'We’re Growing – Join Our Team',
-      //   description: 'Let’s build the future, together.',
-      //   link: '/careers',
-      //   linkText: 'Explore Careers'
-      // },
-      copyright: {
-        year: '2025',
-        text: 'Privacy Policy',
-        privacyLink: '/privacy'
-      }
-    },
-    footerSocialLinks: [
-      {
-        title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
-        title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
-      },
-      {
-        title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
-      // {
-      //   title: 'Youtube',
-      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
-      // }
-    ],
-    testimonials: [
-      {
-        name: 'Henry Luong',
-        company: 'Unios',
-        bgColor: '#ffffff',
-        color: '#111111',
-        transformOrigin: 'center top',
-        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
-      },
-      {
-        name: 'Paula McCarville',
-        company: 'Curtin University',
-        bgColor: '#4C21E2',
-        color: '#F0EBFF',
-        transformOrigin: 'center top',
-        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
-        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
-      },
-      {
-        name: 'Steph Jojart',
-        company: 'Schrole',
-        bgColor: '#1665A3',
-        color: '#E8F5FF',
-        transformOrigin: 'top center',
-        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
-      }
-    ]
-  },
-  {
-    slug: 'user-experience-design',
+    slug: 'interaction-design',
     variant: 'cyan',
-    tagText: 'User Experience Design',
+    tagText: 'Interaction Design',
     heading: 'Inspire, enable, captivate',
     image: prefixed('/api/images/work/other/sussexthumb.png'),
+
     iconCards: {
-      title: 'Human-centred digital experiences',
-      paragraph: 'User Experience Design sits at the heart of everything we do. From strategy to information architecture and seamless workflows, every choice is made to ensure users can accomplish their goals with ease—and a touch of delight.',
+      title: 'Human-centred interactive experiences',
+      paragraph: 'Interaction Design shapes how people feel when they use a product. Blending UX strategy with front-end engineering, I craft interfaces that respond intuitively, communicate clearly, and guide users through seamless digital journeys.',
       items: [
         {
-          title: 'UX Specialists',
-          description: 'Our award-winning UX design approach informs every concept, prototype, key decision and creative solution to help drive your brand forward.',
+          title: 'Interaction-first thinking',
+          description: 'I design and build clear interaction patterns grounded in real user behaviours—ensuring every animation, transition and feedback loop supports usability and increases task success.',
           icon: { name: 'EyeIcon', width: 26 }
         },
         {
-          title: 'Catering for all',
-          description: 'As with any digital product, performance, accessibility and usability are paramount. We go to great lengths to offer experiences that meet the needs of each audience.',
+          title: 'Accessible for everyone',
+          description: 'From keyboard workflows to WCAG-compliant motion and colour systems, accessibility and performance sit at the core of every interactive component I produce.',
           icon: { name: 'SeismometerIcon', width: 24 }
         },
         {
-          title: 'Evidence based',
-          description: 'Baked into our process is a suite of research and validation to ensure every UX design decision and recommendation is informed by data.',
+          title: 'Data-backed decisions',
+          description: 'Interaction choices are informed through analytics, usability testing and experimentation—allowing the UI to evolve into a frictionless, high-conversion experience.',
           icon: { name: 'PuzzlePieceIcon', width: 28 }
         },
         {
-          title: 'Leaders in Digital',
-          description: 'We push the boundaries of design and technology to achieve new levels in practical, delightful and meaningful online experiences.',
+          title: 'Crafted for modern engineering',
+          description: 'Built with React, Next.js and TypeScript, each interface is engineered for reliability, scalability, and long-term maintainability—aligned with US-standard frontend expectations.',
           icon: { name: 'MonitorIcon', width: 28 }
         }
       ]
     },
+
     contentAsideImageItems: [
       {
-        title: 'Connect with your audience',
-        paragraph: 'We draw from over 6 years in building and shipping wonderful things for people, accelerating conversion, generating revenue, amplifying awareness, and boosting ROI for clients big and small across a range of industries. Our first-hand knowledge of what works helps users achieve their objectives, while building emotional connections between brands and people.',
+        title: 'Connect through thoughtful interactions',
+        paragraph: 'With over 6 years of experience designing and shipping interactive products, I focus on creating moments that feel intuitive, purposeful and emotionally engaging. These micro-interactions help reduce cognitive load, increase clarity, and create strong brand–user relationships across applications, dashboards, eCommerce flows and onboarding journeys.',
         icon: { name: 'MapIcon', width: 64 },
         image: prefixed('/api/images/work/other/cocos.png')
       },
       {
-        title: 'Digital that resonates',
-        paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive information architecture to immersive storytelling, every website and web app is meticulously crafted to command attention and leave a lasting impression.',
+        title: 'Digital that resonates with users',
+        paragraph: 'From designing information architectures to engineering pixel-perfect UI states, every product is crafted to feel fluid, fast and meaningful. Using React-driven component systems, motion principles, and interaction guidelines, I help create high-impact experiences that US tech teams value—experiences that convert, retain and delight.',
         icon: { name: 'MapIcon', width: 64 },
         image: prefixed('/api/images/work/honeydu/desktop/2.png')
       },
       {
-        title: 'Elevate your brand experience',
-        paragraph: 'Each customer engagement is part of the bigger picture of an overall brand experience. Our approach to ethical UX and conversion design draws from this philosophy, ensuring better customer experiences that last long after the user achieves their goal.',
+        title: 'Elevate your brand through intelligent UX',
+        paragraph: 'Every touchpoint contributes to the broader brand experience. My approach merges ethical UX, behaviour-based interactions and conversion-focused design to create experiences that feel helpful, memorable and aligned with user intent—long after the task is complete.',
         icon: { name: 'MapIcon', width: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/11.png')
       }
@@ -1002,59 +875,61 @@ const EXPERTISES: ExpertiseContent[] = [
     ]
   },
   {
-    slug: 'user-interface-design',
+    slug: 'user-interface-components',
     variant: 'pink',
-    tagText: 'User Interface Design',
+    tagText: 'User Interface Components',
     heading: 'Next-gen UI tailored to your application',
     image: prefixed('/api/images/work/other/04-landscape.png'),
+
     iconCards: {
-      title: 'Bespoke user interfaces',
-      paragraph: 'Blending human-centric aesthetics with purposeful design, we follow a structured approach to build intuitive and highly functional user interfaces.',
+      title: 'Bespoke user interfaces built for impact',
+      paragraph: 'Blending aesthetic excellence with engineering precision, I design and implement intuitive, scalable, and highly functional user interface components that bring products to life for both users and development teams.',
       items: [
         {
-          title: 'Proven UI Design',
-          description: 'Our award-winning UI design approach informs every concept, interface solution, key decision, and prototype to help achieve what you need.',
+          title: 'Proven UI Expertise',
+          description: 'Over 6+ years, I have crafted award-worthy UI systems, providing clear, reusable components that streamline development and ensure design consistency across complex applications.',
           icon: { name: 'PaintSwatchIcon', width: 28 }
         },
         {
-          title: 'Digital Dashboards',
-          description: 'Leverage best-practice interface design and human-centred design thinking to create simple and intuitive experiences for complex data and scenarios',
+          title: 'Data-driven dashboards',
+          description: 'I build interactive dashboards that simplify complex data, enabling stakeholders to make informed decisions through visually compelling and intuitive interfaces.',
           icon: { name: 'MonitorIcon', width: 22 }
         },
         {
-          title: 'Design System',
-          description: 'Our team can supply a comprehensive design system and style guide, empowering your in-house teams to deliver long-term UI consistency at scale.',
+          title: 'Scalable Design Systems',
+          description: 'I create and maintain comprehensive design systems with reusable component libraries, empowering in-house teams to deliver consistent, production-ready UIs at scale.',
           icon: { name: 'WandIcon', width: 26 }
         },
         {
-          title: 'Your Design Partner',
-          description: 'We believe in extraordinary client relationships, service and support. We’ll collaborate with you to ensure world-class outcomes and ongoing success.',
+          title: 'Trusted UI Partner',
+          description: 'Collaboration is key. I work closely with product owners, designers, and engineers to ensure seamless handoffs, world-class outcomes, and a unified vision from concept to production.',
           icon: { name: 'HandPalmIcon', width: 26 }
         }
       ]
     },
+
     contentAsideImageItems: [
       {
         title: 'Engaging Reports & Dashboards',
-        paragraph: 'Surface insights from raw data with visually compelling, interactive experiences and consolidated touchpoints. We design and create data-driven user interfaces to suit any objective, from immersive reports for public consumption to bespoke internal tools and dashboards that support and inform your stakeholders.',
+        paragraph: 'Transform raw data into actionable insights with interactive UI components. I design dashboards and reporting tools that make data exploration intuitive, visually compelling, and tailored to meet both internal and external stakeholder needs.',
         icon: { name: 'SelectionIcon', width: 64 },
         image: prefixed('/api/images/work/other/ui.png')
       },
       {
-        title: 'An intuitive product experience',
-        paragraph: 'Data informs every interface design decision we make, a vital strategy when crafting digital tools to serve complex information workflows. Using quantitative and qualitative research methods, we can determine the clearest and most intuitive UI designs for your purpose, and find the optimal path to achieving user goals.',
+        title: 'Intuitive product experience',
+        paragraph: 'Every interface decision is informed by a blend of research, analytics, and UX best practices. I focus on creating UI workflows that are both highly usable and aligned with business goals, ensuring users achieve their objectives effortlessly.',
         icon: { name: 'SelectionIcon', width: 64 },
         image: prefixed('/api/images/work/other/pentanetui.png')
       },
       {
-        title: 'Human interfaces',
-        paragraph: 'Tune into how people work. From eCommerce checkouts to detailed customisation tools, our systematic UI design approach has produced dynamic, future-ready outcomes across traditional and emergent industries. With over 6 years’ experience making digital products for people, we know the details that make the difference.',
+        title: 'Human-centered interfaces',
+        paragraph: 'From eCommerce platforms to complex SaaS tools, I design interfaces that respond to real user behaviors. Each component is optimized for performance, accessibility, and delight, ensuring products feel natural, approachable, and future-ready.',
         icon: { name: 'SelectionIcon', width: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       },
       {
         title: 'Your UI Design Partner',
-        paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. Everything we craft is entirely bespoke, as unique as the story you tell. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless user interface experiences, and a truly collaborative design and delivery process.',
+        paragraph: 'Collaboration drives excellence. I partner with product teams to build scalable, intuitive, and visually cohesive interfaces. With a strong focus on component architecture, accessibility, and micro-interactions, every UI is crafted to elevate both brand and user experience.',
         icon: { name: 'SelectionIcon', width: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       }
@@ -1067,154 +942,6 @@ const EXPERTISES: ExpertiseContent[] = [
     meta: {
       title: 'User Interface Design | Our Expertise — Dev8X | Dev8X: World class digital products',
       description: 'Next-gen UI tailored to your application'
-    },
-    footerData: {
-      global: {
-        heading: 'I work globally',
-        email: 'contact@helloabdul.com',
-        buttonText: 'Hire me'
-      },
-      offices: [
-        {
-          country: 'USA',
-          city: 'Orlando, Florida',
-          phone: '+1 (321) 300-2393'
-        },
-        {
-          country: 'Pakistan',
-          city: 'Lahore, Punjab',
-          phone: '+92 (329) 294-7777'
-        }
-      ],
-      // careers: {
-      //   heading: 'We’re Growing – Join Our Team',
-      //   description: 'Let’s build the future, together.',
-      //   link: '/careers',
-      //   linkText: 'Explore Careers'
-      // },
-      copyright: {
-        year: '2025',
-        text: 'Privacy Policy',
-        privacyLink: '/privacy'
-      }
-    },
-    footerSocialLinks: [
-      {
-        title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
-        title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
-      },
-      {
-        title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
-      // {
-      //   title: 'Youtube',
-      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
-      // }
-    ],
-    testimonials: [
-      {
-        name: 'Henry Luong',
-        company: 'Unios',
-        bgColor: '#ffffff',
-        color: '#111111',
-        transformOrigin: 'center top',
-        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
-      },
-      {
-        name: 'Paula McCarville',
-        company: 'Curtin University',
-        bgColor: '#4C21E2',
-        color: '#F0EBFF',
-        transformOrigin: 'center top',
-        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
-        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
-      },
-      {
-        name: 'Steph Jojart',
-        company: 'Schrole',
-        bgColor: '#1665A3',
-        color: '#E8F5FF',
-        transformOrigin: 'top center',
-        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
-      }
-    ]
-  },
-  {
-    slug: 'prototyping',
-    variant: 'blue',
-    tagText: 'Prototyping',
-    heading: 'Turn your ideas into digital prototypes',
-    image: prefixed('/api/images/work/other/tourismprototype.png'),
-    iconCards: {
-      title: 'Design, prototype, test',
-      paragraph: "Validate your concepts before developing your MVP. With over 6 years of expertise in digital prototyping, our team ensures it's an integral part of a complete product development and design process.",
-      items: [
-        {
-          title: 'High Fidelity',
-          description: 'We’ll convert your napkin sketches into complex, high-fidelity wireframes, whether you’re after detailed concepts or a working interactive prototype.',
-          icon: { name: 'GPSIcon', width: 26 }
-        },
-        {
-          title: 'Audience Validation',
-          description: 'Quickly prepare a test product with just the bare essentials. Get answers directly from your target audience, so you can build a better MVP.',
-          icon: { name: 'FrameIcon', width: 24 }
-        },
-        {
-          title: 'Confidentiality Assured',
-          description: 'Our privacy-conscious processes and secure systems help protect your IP, along with any confidential information you share with us about your project.',
-          icon: { name: 'TargetIcon', width: 28 }
-        },
-        {
-          title: 'Your Design Partner',
-          description: 'We’ll collaborate with you to deliver high-quality digital prototypes to inform your product development. Our experienced team are with you all the way.',
-          icon: { name: 'HandPalmIcon', width: 28 }
-        }
-      ]
-    },
-    contentAsideImageItems: [
-      {
-        title: 'Mockups, wireframes & interactive prototypes',
-        paragraph: 'No matter the size of your business, we can help prepare high-fidelity concepts and digital prototypes to support your product development journey. Power up your stakeholder and investor pitches with clickable, interactive prototypes that demonstrate key concepts that define your initiative.',
-        icon: { name: 'MagicWandIcon', width: 64 },
-        image: prefixed('/api/images/work/other/studyplanner.png')
-      },
-      {
-        title: 'Unite multidisciplinary product teams',
-        paragraph: 'Digital prototyping channels your high-level concepts into single, high-impact points of reference, bringing together multi-faceted product teams and stakeholders, leaving less room for ambiguity and miscommunication. Provide definitive documentation that your people can refer to throughout the lifespan of the project.',
-        icon: { name: 'MagicWandIcon', width: 64 },
-        image: prefixed('/api/images/work/other/pentanetui.png')
-      },
-      {
-        title: 'Get real audience feedback',
-        paragraph: 'Use digital prototypes to test with real users, whether an existing audience or inviting new users from a target demographic. Validate key product assumptions and see how your users understand the platform to find the right solution before committing to a full project rollout.',
-        icon: { name: 'MagicWandIcon', width: 64 },
-        image: prefixed('/api/images/work/other/talk-n-walk.png')
-      },
-      {
-        title: 'Your Product Design Partner',
-        paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. We’ll collaborate with you to deliver just the essential prototypes for your early-stage project, or partner with you throughout the entire product development journey. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless prototyping and product builds, and a truly collaborative design and delivery process.',
-        icon: { name: 'MagicWandIcon', width: 64 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png')
-      }
-    ],
-    footerMainContent: {
-      link: '/contact',
-      start: 'Let’s make',
-      end: 'something wonderful'
-    },
-    meta: {
-      title: 'Prototyping | Our Expertise — Dev8X | Dev8X: World class digital products',
-      description: 'Turn your ideas into digital prototypes'
     },
     footerData: {
       global: {
@@ -1445,6 +1172,299 @@ const EXPERTISES: ExpertiseContent[] = [
       }
     ]
   },
+  {
+    slug: 'animations',
+    variant: 'blue',
+    tagText: 'Animations',
+    heading: 'Bring your interfaces to life with motion',
+    image: prefixed('/api/images/work/other/tourismprototype.png'),
+    iconCards: {
+      title: 'Interactive, meaningful motion',
+      paragraph: 'Animations are more than eye candy—they guide attention, provide feedback, and make digital experiences feel alive. With over 6 years of crafting motion in UI, I focus on purposeful, performance-friendly animations that enhance usability and delight users.',
+      items: [
+        {
+          title: 'Micro-interactions',
+          description: 'Tiny animations—like hover effects, button transitions, or input validations—give instant feedback and make interfaces feel responsive and intuitive.',
+          icon: { name: 'SparkleIcon', width: 26 }
+        },
+        {
+          title: 'Page & Layout Transitions',
+          description: 'Smooth transitions between views reduce cognitive load, help users understand hierarchy, and make complex flows feel seamless.',
+          icon: { name: 'SwapIcon', width: 24 }
+        },
+        {
+          title: 'Guided Attention',
+          description: 'Motion can direct users’ eyes to important content or call-to-action buttons without breaking focus or becoming annoying—perfect for dashboards, forms, and eCommerce flows.',
+          icon: { name: 'ArrowTrendingIcon', width: 28 }
+        },
+        {
+          title: 'Performance-first Animations',
+          description: 'Built with React, Framer Motion, or CSS transitions, I ensure animations are smooth, GPU-accelerated, and don’t compromise page load or interactivity—because nobody likes a jittery UI.',
+          icon: { name: 'CpuChipIcon', width: 28 }
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: 'Micro-interactions that feel alive',
+        paragraph: 'Small, deliberate animations make a big difference. From subtle hover states on buttons to animated toggles in settings panels, micro-interactions communicate system status and delight users without distracting from core functionality.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/studyplanner.png')
+      },
+      {
+        title: 'Smooth layout and route transitions',
+        paragraph: 'Animating layout changes or route transitions helps users maintain context. For example, when opening a modal or switching tabs, smooth transitions reduce cognitive load and create a polished experience.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/pentanetui.png')
+      },
+      {
+        title: 'Storytelling with motion',
+        paragraph: 'Animations can emphasize brand personality and highlight key product flows. Think onboarding sequences, progress indicators, or subtle background motion that reinforces your visual language.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/talk-n-walk.png')
+      },
+      {
+        title: 'Accessibility and performance',
+        paragraph: 'Motion should never hinder accessibility. I follow best practices like respecting reduced-motion preferences, keeping animation durations readable, and optimizing for mobile and low-power devices.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png')
+      }
+    ],
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+    meta: {
+      title: 'Prototyping | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Turn your ideas into digital prototypes'
+    },
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'USA',
+          city: 'Orlando, Florida',
+          phone: '+1 (321) 300-2393'
+        },
+        {
+          country: 'Pakistan',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        }
+      ],
+      // careers: {
+      //   heading: 'We’re Growing – Join Our Team',
+      //   description: 'Let’s build the future, together.',
+      //   link: '/careers',
+      //   linkText: 'Explore Careers'
+      // },
+      copyright: {
+        year: '2025',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      },
+      {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.instagram.com/dev8xofficial/'
+      },
+      {
+        title: 'Facebook',
+        // icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
+    ],
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
+      }
+    ]
+  },
+  {
+    slug: 'pixel-perfect-layouts',
+    variant: 'purple',
+    tagText: 'Pixel-Perfect Layouts',
+    heading: 'Transform concepts into flawless interfaces',
+    image: prefixed('/api/images/work/other/tourismprototype.png'),
+
+    iconCards: {
+      title: 'Precision-driven design and development',
+      paragraph: 'Deliver interfaces that are pixel-accurate, fully responsive, and seamless across devices. With over 6 years of experience in frontend engineering and design, I ensure your products look and behave exactly as envisioned.',
+      items: [
+        {
+          title: 'High-Fidelity Interfaces',
+          description: 'From sketches and wireframes to polished UI, I translate every detail into fully responsive, interactive designs that adhere strictly to brand guidelines and design specifications.',
+          icon: { name: 'GPSIcon', width: 26 }
+        },
+        {
+          title: 'Responsive & Adaptive',
+          description: 'Every layout is optimized for multiple screen sizes and devices. I focus on flexible grids, fluid spacing, and scalable typography to ensure a flawless experience across mobile, tablet, and desktop.',
+          icon: { name: 'FrameIcon', width: 24 }
+        },
+        {
+          title: 'Design-to-Code Precision',
+          description: 'Using React, Next.js, and modern frontend practices, I implement layouts exactly as designed. Every component is pixel-perfect, accessible, and performance-optimized for modern US tech standards.',
+          icon: { name: 'TargetIcon', width: 28 }
+        },
+        {
+          title: 'Collaborative Delivery',
+          description: 'I work closely with design and product teams to ensure your vision translates into a living product. From concept validation to production-ready layouts, every step is collaborative, transparent, and high-quality.',
+          icon: { name: 'HandPalmIcon', width: 28 }
+        }
+      ]
+    },
+
+    contentAsideImageItems: [
+      {
+        title: 'Detailed mockups & interactive layouts',
+        paragraph: 'Bring your ideas to life with precise, high-fidelity mockups. I create interactive layouts that showcase core functionality, flow, and design details, empowering teams and stakeholders to review concepts confidently.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/studyplanner.png')
+      },
+      {
+        title: 'Cross-functional alignment',
+        paragraph: 'Pixel-perfect prototypes unify multidisciplinary product teams. Stakeholders, developers, and designers all have a single source of truth, reducing ambiguity and ensuring a shared understanding of the final product.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/pentanetui.png')
+      },
+      {
+        title: 'User-centric validation',
+        paragraph: 'Test interfaces with real users before final development. Validate layouts, interaction flows, and micro-interactions to ensure the product is intuitive, accessible, and highly usable.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/talk-n-walk.png')
+      },
+      {
+        title: 'Your Pixel-Perfect Partner',
+        paragraph: 'From initial mockups to production-ready code, I collaborate with teams to deliver flawless interfaces. Every layout is meticulously crafted to balance aesthetics, usability, and frontend performance for US tech standards.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png')
+      }
+    ],
+
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+
+    meta: {
+      title: 'Pixel-Perfect Layouts | Our Expertise — Abdul | Frontend & UI Excellence',
+      description: 'Transform concepts into flawless, responsive, and interactive interfaces'
+    },
+
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'USA',
+          city: 'Orlando, Florida',
+          phone: '+1 (321) 300-2393'
+        },
+        {
+          country: 'Pakistan',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        }
+      ],
+      copyright: {
+        year: '2025',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      },
+      {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.instagram.com/dev8xofficial/'
+      },
+      {
+        title: 'Facebook',
+        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      }
+    ],
+
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Abdul delivered pixel-perfect layouts that matched the design exactly and translated seamlessly into React components. The precision and attention to detail are outstanding.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'Working with Abdul ensured our design vision was implemented perfectly in the final product. Every layout and interaction matched our expectations.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'From mockups to production-ready code, Abdul’s pixel-perfect approach made development effortless and resulted in highly polished interfaces.'
+      }
+    ]
+  },
+
   {
     slug: 'react-js',
     variant: 'purple',
@@ -1759,71 +1779,75 @@ const EXPERTISES: ExpertiseContent[] = [
     ]
   },
   {
-    slug: 'node-js',
-    variant: 'purple',
-    tagText: 'Node.js',
-    heading: 'Powerful, scalable applications with Node.js',
+    slug: 'typescript',
+    variant: 'yellow',
+    tagText: 'TypeScript',
+    heading: 'Strongly typed, scalable applications with TypeScript',
     image: prefixed('/api/images/work/other/macbook-node.png'),
+
     iconCards: {
-      title: 'Streamline backend development',
-      paragraph: 'Harness the full potential of Node.js to build fast, scalable applications. Whether you’re building real-time services, APIs, or complex enterprise solutions, Node.js helps you power up with efficiency and speed.',
+      title: 'Build reliable, maintainable code',
+      paragraph: 'Leverage TypeScript to write safer, scalable, and maintainable applications. From frontend React/Next.js apps to backend Node.js services, TypeScript ensures type safety, better collaboration, and fewer runtime errors.',
       items: [
         {
-          title: 'Performance-first development',
-          description: 'We build fast, scalable, and lightweight backend systems using Node.js—perfect for modern web applications requiring speed, concurrency, and real-time capabilities.',
+          title: 'Type-Safe Development',
+          description: 'Catch errors at compile-time rather than runtime. TypeScript’s static typing reduces bugs, improves code readability, and helps teams maintain complex applications efficiently.',
           icon: { name: 'LightningIcon', width: 26 }
         },
         {
-          title: 'API-first architecture',
-          description: "Design and develop robust, secure APIs to power your digital ecosystem. Whether you're integrating with third-party services or building a headless platform, we ensure your API layer is clean, stable, and future-ready.",
+          title: 'Scalable Frontend Apps',
+          description: 'Build modern, scalable frontend applications with React and Next.js using TypeScript. Strong typing improves component reuse, prop validation, and developer confidence for large-scale projects.',
           icon: { name: 'PointerIcon', width: 24 }
         },
         {
-          title: 'Real-time capabilities',
-          description: 'From live data streaming to instant notifications, we harness the real-time strengths of Node.js to deliver dynamic user experiences where speed and responsiveness matter most.',
+          title: 'Backend Reliability',
+          description: 'Implement Node.js APIs and server-side services using TypeScript to enhance maintainability, enforce contracts, and reduce runtime errors in production.',
           icon: { name: 'SeismometerIcon', width: 28 }
         },
         {
-          title: 'Scalable foundations',
-          description: 'Our approach to Node.js development lays the groundwork for future growth—modular, testable, and maintainable codebases that adapt with your product and team needs.',
+          title: 'Best Practices & Patterns',
+          description: 'Leverage TypeScript’s advanced features like generics, enums, union types, interfaces, and utility types to enforce consistent coding standards, scalable architecture, and clean code patterns.',
           icon: { name: 'PuzzlePieceIcon', width: 28 }
         }
       ]
     },
+
     contentAsideImageItems: [
       {
-        title: 'Powerful, Scalable Backend Solutions',
-        paragraph: 'Harness the power of Node.js to build fast, scalable, and reliable backend systems. From high-performance APIs to real-time applications, our expertise in Node.js allows us to deliver flexible solutions that scale with your business needs, ensuring seamless performance even as your user base grows.',
+        title: 'Static Typing for Robust Applications',
+        paragraph: 'Use TypeScript to define explicit types for variables, functions, and components. This ensures predictable behavior, improves developer productivity, and minimizes bugs in both frontend and backend projects.',
         icon: { name: 'NodejsIcon', width: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'Real-time, Event-driven Architecture',
-        paragraph: "Leverage the full potential of Node.js’s event-driven architecture to handle real-time data with low-latency performance. Whether it's live data streaming, instant messaging, or real-time analytics, we create systems that deliver dynamic and interactive experiences for your users.",
+        title: 'React + TypeScript for Frontend Excellence',
+        paragraph: 'Combine TypeScript with React to build strongly typed components, props, and state. Improve maintainability in large codebases, catch errors early, and enable better IDE support for developers.',
         icon: { name: 'NodejsIcon', width: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/5.png')
       },
       {
-        title: 'Custom APIs & Microservices',
-        paragraph: 'Unlock the flexibility of microservices with Node.js. We craft efficient, maintainable APIs that integrate effortlessly with third-party systems and allow you to scale parts of your application independently, empowering your team to focus on what truly matters while improving your development speed.',
+        title: 'Node.js + TypeScript for Backend Reliability',
+        paragraph: 'Use TypeScript on Node.js to define API contracts, interfaces, and type-safe services. This ensures backend logic is robust, scalable, and easier to maintain across multiple developers and services.',
         icon: { name: 'NodejsIcon', width: 64 },
         image: prefixed('/api/images/work/troophunter/desktop/8.png')
       },
       {
-        title: 'Your Node.js Development Partner',
-        paragraph: 'We don’t just build Node.js applications; we become your trusted partner in delivering custom backend solutions that drive your product forward. With our deep knowledge of Node.js and its ecosystem, we provide comprehensive solutions, from initial planning to deployment, with ongoing support and optimization.',
+        title: 'Advanced TypeScript Patterns',
+        paragraph: 'Implement generics, type guards, discriminated unions, and utility types to design reusable, maintainable, and scalable solutions. Apply design patterns such as repository, singleton, and service patterns with TypeScript to ensure code quality and maintainability.',
         icon: { name: 'NodejsIcon', width: 64 },
         image: prefixed('/api/images/work/honeydu/desktop/23.png')
       }
     ],
+
     footerMainContent: {
       link: '/contact',
       start: 'Let’s make',
       end: 'something wonderful'
     },
+
     meta: {
-      title: 'Node Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
-      description: 'Powerful, scalable applications with Node.js'
+      title: 'TypeScript Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Strongly typed, scalable applications with TypeScript'
     },
     footerData: {
       global: {
@@ -1907,228 +1931,246 @@ const EXPERTISES: ExpertiseContent[] = [
     ]
   },
   {
-    slug: 'express-nest',
-    variant: 'pink',
-    tagText: 'Express.js/Nest.js',
-    heading: 'Build fast, scalable APIs with precision',
-    image: prefixed('/api/images/work/other/macbook-node.png'),
-    iconCards: {
-      title: 'Efficient server-side solutions',
-      paragraph: 'Harness the power of Express.js and Nest.js to create lightweight, scalable backend applications. Whether you need a quick REST API or a robust GraphQL server, our team helps you build efficient, maintainable solutions.',
-      items: [
-        {
-          title: 'Battle-tested backends',
-          description: 'We build robust, scalable backend services using Express.js and Nest.js—trusted by startups and enterprises alike for high-performance APIs and real-time apps.',
-          icon: { name: 'BackendIcon', width: 26 }
-        },
-        {
-          title: 'Speed without compromise',
-          description: 'Leverage the simplicity of Express.js or the structured power of Nest.js to move fast while maintaining clean, maintainable, and extensible codebases.',
-          icon: { name: 'VoltageIcon', width: 24 }
-        },
-        {
-          title: 'Modular & future-ready',
-          description: 'Our backend architecture is built with modularity in mind, enabling seamless scaling, clear separation of concerns, and long-term maintainability.',
-          icon: { name: 'PuzzlePieceIcon', width: 28 }
-        },
-        {
-          title: 'Secure foundations',
-          description: 'From authentication to request validation, we follow best practices to ensure your backend is safe, stable, and ready to handle production-grade workloads.',
-          icon: { name: 'ShieldIcon', width: 28 }
-        },
-        {
-          title: 'Built for integration',
-          description: 'Whether it’s REST, GraphQL, or WebSocket-based communication, we create backend systems that play well with the rest of your stack—now and in the future.',
-          icon: { name: 'WebServersIcon', width: 28 }
-        }
-      ]
-    },
-    contentAsideImageItems: [
-      {
-        title: 'Fast, Scalable APIs',
-        paragraph: "Harness the power of Express.js and Nest.js to build lightning-fast, scalable APIs that serve your application needs. Whether you're crafting a lightweight API with Express or a full-fledged enterprise solution with Nest.js, we deliver performance-driven backend solutions that adapt as your business grows.",
-        icon: { name: 'NestjsIcon', width: 64 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/5.png')
-      },
-      {
-        title: 'Modular, Maintainable Architecture',
-        paragraph: 'With Nest.js, we help you structure your backend using modular, scalable architecture that makes it easier to maintain and extend. For lightweight, minimal overhead solutions, we tailor Express.js for high performance, ensuring your application remains agile and responsive.',
-        icon: { name: 'NestjsIcon', width: 64 },
-        image: prefixed('/api/images/work/troophunter/desktop/8.png')
-      },
-      {
-        title: 'Efficient Development Cycles',
-        paragraph: 'Accelerate your development cycles by leveraging the simplicity and efficiency of Express.js alongside the powerful features of Nest.js. We implement RESTful APIs, GraphQL, WebSockets, and more, ensuring your application can handle anything your users throw at it—quickly and reliably.',
-        icon: { name: 'NestjsIcon', width: 64 },
-        image: prefixed('/api/images/work/scheduler/mobile/2.png')
-      },
-      {
-        title: 'Your Backend Design Partner',
-        paragraph: 'Behind every scalable backend is a collaborative agency-client partnership. Whether you choose Express.js or Nest.js, we guide you every step of the way, delivering robust, future-proof solutions. Our team of strategists, designers, and backend experts will collaborate closely with your team to achieve seamless integration and provide custom backend solutions that fit your project perfectly.',
-        icon: { name: 'NestjsIcon', width: 64 },
-        image: prefixed('/api/images/work/honeydu/desktop/23.png')
-      }
-    ],
-    footerMainContent: {
-      link: '/contact',
-      start: 'Let’s make',
-      end: 'something wonderful'
-    },
-    meta: {
-      title: 'Express Nest Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
-      description: 'Build fast, scalable APIs with precision'
-    },
-    footerData: {
-      global: {
-        heading: 'I work globally',
-        email: 'contact@helloabdul.com',
-        buttonText: 'Hire me'
-      },
-      offices: [
-        {
-          country: 'USA',
-          city: 'Orlando, Florida',
-          phone: '+1 (321) 300-2393'
-        },
-        {
-          country: 'Pakistan',
-          city: 'Lahore, Punjab',
-          phone: '+92 (329) 294-7777'
-        }
-      ],
-      // careers: {
-      //   heading: 'We’re Growing – Join Our Team',
-      //   description: 'Let’s build the future, together.',
-      //   link: '/careers',
-      //   linkText: 'Explore Careers'
-      // },
-      copyright: {
-        year: '2025',
-        text: 'Privacy Policy',
-        privacyLink: '/privacy'
-      }
-    },
-    footerSocialLinks: [
-      {
-        title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
-        title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
-      },
-      {
-        title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
-      // {
-      //   title: 'Youtube',
-      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
-      // }
-    ],
-    testimonials: [
-      {
-        name: 'Henry Luong',
-        company: 'Unios',
-        bgColor: '#ffffff',
-        color: '#111111',
-        transformOrigin: 'center top',
-        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
-        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
-      },
-      {
-        name: 'Paula McCarville',
-        company: 'Curtin University',
-        bgColor: '#4C21E2',
-        color: '#F0EBFF',
-        transformOrigin: 'center top',
-        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
-        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
-      },
-      {
-        name: 'Steph Jojart',
-        company: 'Schrole',
-        bgColor: '#1665A3',
-        color: '#E8F5FF',
-        transformOrigin: 'top center',
-        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
-        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
-      }
-    ]
-  },
-  {
-    slug: 'supabase',
+    slug: 'state-management',
     variant: 'blue',
-    tagText: 'Supabase',
-    heading: 'Powerful, scalable applications with Supabase',
-    image: prefixed('/api/images/work/other/c-bco.png'),
+    tagText: 'State Management',
+    heading: 'Efficient and scalable state management for modern applications',
+    image: prefixed('/api/images/work/other/ansible-ci-cd.png'),
+
     iconCards: {
-      title: 'Extraordinary digital products',
-      paragraph: "We play to our strengths: For over 6 years we've been ideating, creating and shipping wonderful things on the internet.",
+      title: 'Control application state with precision',
+      paragraph: 'Leverage state management solutions to keep your frontend and backend applications predictable, maintainable, and scalable. Whether using Redux, Zustand, Jotai, or React Context, proper state management improves developer efficiency, reduces bugs, and enhances user experience.',
       items: [
         {
-          title: 'Built for speed',
-          description: 'Launch scalable applications faster with Supabase’s real-time backend infrastructure—designed for modern teams who need to ship quickly without sacrificing quality.',
-          icon: { name: 'LightningIcon', width: 26 }
+          title: 'Global State Control',
+          description: 'Manage application-wide state efficiently with libraries like Redux or Zustand, ensuring predictable updates, easy debugging, and maintainable code for large-scale applications.',
+          icon: { name: 'MagicWandIcon', width: 26 }
         },
         {
-          title: 'Postgres-powered',
-          description: 'Supabase offers the reliability and flexibility of PostgreSQL out of the box. We harness its full potential to deliver secure, high-performance databases tailored to your product.',
-          icon: { name: 'PostgresqlIcon', width: 24 }
+          title: 'Local & Derived State',
+          description: 'Handle component-level state and computed values effectively using React Context, Jotai, or Zustand atoms. Keep local and derived state synchronized for performance and readability.',
+          icon: { name: 'PuzzlePieceIcon', width: 24 }
         },
         {
-          title: 'Auth & Access Control',
-          description: 'Seamless user authentication, robust permissions, and scalable access control—all configured with best practices in mind to support your growth.',
-          icon: { name: 'ShieldIcon', width: 28 }
+          title: 'Type-Safe State',
+          description: 'Combine TypeScript with your state management solution to define interfaces, types, and payloads. This prevents runtime errors, enforces consistency, and improves developer confidence in complex workflows.',
+          icon: { name: 'TargetIcon', width: 28 }
         },
         {
-          title: 'Custom APIs, fast',
-          description: 'Instantly generate RESTful and GraphQL APIs from your database. We design these interfaces for both power and usability—so your team can build smarter, not harder.',
-          icon: { name: 'PuzzlePieceIcon', width: 28 }
-        },
-        {
-          title: 'Realtime & Subscriptions',
-          description: 'Build interactive, dynamic digital experiences with real-time updates and live data syncing, ideal for modern apps, dashboards, and collaborative tools.',
-          icon: { name: 'SeismometerIcon', width: 28 }
-        },
-        {
-          title: 'A trusted partner',
-          description: 'From architecture to deployment, we’ll guide your team through every phase of your Supabase implementation, ensuring your backend is solid, scalable, and ready for the future.',
-          icon: { name: 'HandshakeIcon', width: 28 }
+          title: 'Best Practices & Patterns',
+          description: 'Follow patterns like normalized state, feature-based slices, and middleware for asynchronous workflows. Optimize for scalability, modularity, and maintainability in enterprise-level applications.',
+          icon: { name: 'PaintSwatchIcon', width: 28 }
         }
       ]
     },
+
     contentAsideImageItems: [
       {
-        title: 'Real-time data at your fingertips',
-        paragraph: 'Harness the power of real-time data updates with Supabase’s scalable, open-source database solution. Our approach ensures that your application can effortlessly handle live data feeds, user interactions, and notifications, creating responsive, engaging experiences for your users. Whether building collaborative apps, live dashboards, or dynamic content, Supabase enables you to turn data into immediate action.',
-        icon: { name: 'SupabaseIcon', width: 64 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/5.png')
+        title: 'Predictable Application State',
+        paragraph: 'Implement centralized or modular state stores to maintain predictable, traceable, and debuggable application state. This reduces side effects and makes your app easier to maintain across teams.',
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: prefixed('/api/images/work/other/ansible-automation.png')
       },
       {
-        title: 'Seamless integrations for modern applications',
-        paragraph: 'Integrate effortlessly with your existing infrastructure. Supabase supports a wide range of out-of-the-box integrations, including APIs, webhooks, authentication, and storage, making it an ideal choice for developers looking to build and scale their applications quickly and efficiently.',
-        icon: { name: 'SupabaseIcon', width: 64 },
+        title: 'Frontend State Management',
+        paragraph: 'Use Redux, Zustand, or Jotai for robust frontend state management. Proper state handling allows real-time UI updates, efficient caching, and seamless interaction between components in React or Next.js applications.',
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: prefixed('/api/images/work/other/ansible-ci-cd.png')
+      },
+      {
+        title: 'Backend-Integrated State',
+        paragraph: 'Synchronize frontend state with backend APIs and real-time services. Using state management patterns alongside Node.js or GraphQL allows your app to reflect live updates and maintain consistent data across clients.',
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: prefixed('/api/images/work/other/team-developers-doing-brainstorming.png')
+      },
+      {
+        title: 'Optimized Async Workflows',
+        paragraph: 'Handle asynchronous actions efficiently with middleware or atom-based approaches. Fetching, caching, and updating data becomes predictable, reducing unnecessary re-renders and improving UX.',
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png')
+      },
+      {
+        title: 'Your State Management Partner',
+        paragraph: 'We guide organizations in implementing robust, scalable, and maintainable state solutions. From small projects to enterprise applications, we provide strategies, architecture patterns, and best practices to make your apps faster, safer, and easier to maintain.',
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: prefixed('/api/images/work/honeydu/desktop/23.png')
+      }
+    ],
+
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+
+    meta: {
+      title: 'State Management Experts | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Efficient and scalable state management for modern applications'
+    },
+
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'USA',
+          city: 'Orlando, Florida',
+          phone: '+1 (321) 300-2393'
+        },
+        {
+          country: 'Pakistan',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        }
+      ],
+      // careers: {
+      //   heading: 'We’re Growing – Join Our Team',
+      //   description: 'Let’s build the future, together.',
+      //   link: '/careers',
+      //   linkText: 'Explore Careers'
+      // },
+      copyright: {
+        year: '2025',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.linkedin.com/company/helloabdul/'
+      },
+      {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.instagram.com/dev8xofficial/'
+      },
+      {
+        title: 'Facebook',
+        // icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
+    ],
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
+      }
+    ]
+  },
+  {
+    slug: 'ssr-ssg',
+    variant: 'blue',
+    tagText: 'SSR & SSG',
+    heading: 'Optimized rendering with Server-Side & Static Site Generation',
+    image: prefixed('/api/images/work/other/developer-identifying-server-issues.png'),
+
+    iconCards: {
+      title: 'Fast, SEO-friendly web applications',
+      paragraph: 'Leverage SSR and SSG to deliver blazing-fast, SEO-optimized web applications. We help you architect solutions using Next.js or similar frameworks to improve page load speed, enhance search engine visibility, and provide seamless user experiences.',
+      items: [
+        {
+          title: 'Server-Side Rendering (SSR)',
+          description: 'Render dynamic pages on the server per request for fast initial load, personalized content, and improved SEO. Ideal for dashboards, e-commerce, and content-heavy applications.',
+          icon: { name: 'MagicWandIcon', width: 26 }
+        },
+        {
+          title: 'Static Site Generation (SSG)',
+          description: 'Generate HTML at build time for ultra-fast delivery. Perfect for blogs, marketing sites, and documentation. Combine with incremental static regeneration (ISR) for freshness without sacrificing speed.',
+          icon: { name: 'PuzzlePieceIcon', width: 24 }
+        },
+        {
+          title: 'Hybrid Rendering Strategies',
+          description: 'Combine SSR, SSG, and client-side rendering (CSR) to maximize performance, SEO, and dynamic functionality. Tailor the approach based on page type, data needs, and traffic patterns.',
+          icon: { name: 'TargetIcon', width: 28 }
+        },
+        {
+          title: 'Best Practices & Performance',
+          description: 'Optimize SSR/SSG pipelines with caching, image optimization, code-splitting, and lazy loading. Use TypeScript for type-safe API calls and ensure your app scales efficiently with traffic.',
+          icon: { name: 'PaintSwatchIcon', width: 28 }
+        }
+      ]
+    },
+
+    contentAsideImageItems: [
+      {
+        title: 'Blazing-Fast Initial Loads',
+        paragraph: 'With SSR, pages render on the server for every request, reducing the time to first paint and improving the perception of speed. Ideal for high-traffic applications targeting US audiences who expect instant responsiveness.',
+        icon: { name: 'WebServersIcon', width: 64 },
         image: prefixed('/api/images/work/troophunter/mobile/2.png')
       },
       {
-        title: 'Your data, our expertise',
-        paragraph: 'Supabase gives you all the tools needed to manage your databases at scale with ease. From authentication and authorization to real-time capabilities, Supabase simplifies complex tasks and empowers your team to focus on building great applications. We bring our expertise in backend development and cloud-native technologies to help you unlock the full potential of Supabase, creating highly performant and secure experiences.',
-        icon: { name: 'SupabaseIcon', width: 64 },
-        image: prefixed('/api/images/work/other/ui.png')
+        title: 'SEO-Optimized Content',
+        paragraph: 'SSG provides pre-rendered HTML pages that search engines can crawl easily, improving SEO and driving organic traffic. Combine with structured data and meta tags to maximize visibility.',
+        icon: { name: 'WebServersIcon', width: 64 },
+        image: prefixed('/api/images/work/other/proxmox-virtualization.png')
+      },
+      {
+        title: 'Incremental Static Regeneration (ISR)',
+        paragraph: 'Update static pages without rebuilding the entire site. ISR allows hybrid approaches, keeping content fresh while maintaining the speed benefits of static generation.',
+        icon: { name: 'WebServersIcon', width: 64 },
+        image: prefixed('/api/images/work/other/ansible-automation.png')
+      },
+      {
+        title: 'Dynamic & Interactive Experiences',
+        paragraph: 'Combine SSR/SSG with client-side React hydration to provide fully interactive UIs. State management libraries like Redux, Zustand, or Jotai can sync server and client states seamlessly.',
+        icon: { name: 'WebServersIcon', width: 64 },
+        image: prefixed('/api/images/work/other/proxmox-virtualization-graphes.png')
+      },
+      {
+        title: 'Scalable & Maintainable Architecture',
+        paragraph: 'Structure your projects to separate API routes, server-rendered pages, and static pages. Use TypeScript for strong typing, modular components, and consistent developer experience across teams.',
+        icon: { name: 'WebServersIcon', width: 64 },
+        image: prefixed('/api/images/work/other/developer-identifying-server-issues.png')
+      },
+      {
+        title: 'Your SSR & SSG Partner',
+        paragraph: 'From setup to optimization, we guide you in implementing SSR and SSG solutions tailored to your business needs. Our team ensures fast, reliable, SEO-friendly web applications that scale with traffic and deliver seamless user experiences.',
+        icon: { name: 'WebServersIcon', width: 64 },
+        image: prefixed('/api/images/work/other/team-developers-doing-brainstorming.png')
       }
     ],
+
     footerMainContent: {
       link: '/contact',
       start: 'Let’s make',
       end: 'something wonderful'
     },
+
     meta: {
-      title: 'Supabase Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
-      description: 'World-class websites for forward-thinking brands'
+      title: 'SSR & SSG Experts | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Optimized rendering with Server-Side & Static Site Generation'
     },
     footerData: {
       global: {
@@ -2211,10 +2253,11 @@ const EXPERTISES: ExpertiseContent[] = [
       }
     ]
   },
+
   {
-    slug: 'backend',
+    slug: 'node-js-express-js',
     variant: 'blue',
-    tagText: 'Backend',
+    tagText: 'Node.js / Express.js',
     heading: 'Building powerful, scalable backends',
     image: prefixed('/api/images/work/other/scalable-backends.png'),
     iconCards: {
@@ -2360,77 +2403,75 @@ const EXPERTISES: ExpertiseContent[] = [
     ]
   },
   {
-    slug: 'real-time-apps',
-    variant: 'pink',
-    tagText: 'Real-Time Applications',
-    heading: 'Engage users in the moment with real-time experiences',
-    image: prefixed('/api/images/work/other/developer-identifying-server-issues.png'),
+    slug: 'api-integration',
+    variant: 'purple',
+    tagText: 'API Integration',
+    heading: 'Seamless API integration for powerful applications',
+    image: prefixed('/api/images/work/other/ansible-ci-cd.png'),
+
     iconCards: {
-      title: 'Instant, seamless interaction',
-      paragraph: 'We create real-time applications that enable immediate, meaningful communication. From live updates to instant messaging and collaborative tools, our real-time solutions keep users connected and engaged, effortlessly.',
+      title: 'Connect systems efficiently',
+      paragraph: 'Integrate internal and third-party APIs to build connected, scalable, and robust applications. From REST and GraphQL to microservices and event-driven architectures, we ensure smooth data flow and reliable communication between services.',
       items: [
         {
-          title: 'Live by design',
-          description: 'We design and develop responsive real-time experiences—from collaborative tools to live dashboards—that feel immediate, fluid, and alive.',
-          icon: { name: 'MagicWandIcon', width: 26 }
+          title: 'REST & GraphQL APIs',
+          description: 'Design and implement scalable REST or GraphQL APIs for seamless frontend-backend communication. Ensure predictable responses, caching strategies, and proper versioning to support evolving applications.',
+          icon: { name: 'EyeIcon', width: 28 }
         },
         {
-          title: 'Performance-first',
-          description: 'Our engineering focus ensures real-time features are lightweight, reliable, and performant across devices, networks, and locations.',
-          icon: { name: 'MonitorIcon', width: 24 }
+          title: 'Third-party integrations',
+          description: 'Integrate external services such as payment gateways, analytics, authentication providers, or cloud platforms. We handle authentication, error handling, and data synchronization for reliable operation.',
+          icon: { name: 'SparklerIcon', width: 24 }
         },
         {
-          title: 'Built to scale',
-          description: "Whether it's live chat, instant notifications, or multiplayer features, we build systems that scale seamlessly with your audience and demands.",
-          icon: { name: 'GroupUsersIcon', width: 28 }
+          title: 'Real-time & event-driven APIs',
+          description: 'Leverage WebSockets, server-sent events, and message queues for real-time applications. Build dynamic dashboards, chat systems, notifications, and live data streams with low-latency performance.',
+          icon: { name: 'DevicesIcon', width: 28 }
         },
         {
-          title: 'Always in sync',
-          description: 'From sockets to state management, we make sure your app stays consistent and synchronised—delivering the right information at the right time.',
-          icon: { name: 'ShuffleIcon', width: 28 }
+          title: 'Secure & maintainable APIs',
+          description: 'Apply authentication, authorization, rate-limiting, and logging to protect your services. Follow industry best practices for maintainable and scalable API design across teams and projects.',
+          icon: { name: 'PieChartIcon', width: 28 }
         }
       ]
     },
+
     contentAsideImageItems: [
       {
-        title: 'Seamless, Instant Connectivity',
-        paragraph: 'Create applications that provide real-time updates and instantaneous interaction. Whether you’re building live chat platforms, collaborative tools, or online gaming experiences, our approach ensures a smooth, responsive, and engaging experience for your users—every time they interact.',
-        icon: { name: 'SeismometerIcon', width: 64 },
-        image: prefixed('/api/images/work/troophunter/mobile/2.png')
+        title: 'Reliable Backend Connections',
+        paragraph: 'Establish strong backend systems that connect with multiple APIs efficiently. Build modular services to maintain flexibility, allowing teams to extend functionality without impacting core operations.',
+        icon: { name: 'DataIcon', width: 64 },
+        image: prefixed('/api/images/work/other/ansible-automation.png')
       },
       {
-        title: 'Transformative User Experiences',
-        paragraph: 'We specialize in designing and developing real-time applications that push the boundaries of user interaction. From real-time notifications to live data feeds, we create dynamic systems that engage users in meaningful, real-time experiences while maintaining optimal performance and reliability.',
-        icon: { name: 'SeismometerIcon', width: 64 },
-        image: prefixed('/api/images/work/scheduler/mobile/11.png')
+        title: 'Frontend Integration Excellence',
+        paragraph: 'Integrate APIs seamlessly into frontend frameworks such as React, Next.js, or Vue. Manage state effectively with Redux, Zustand, or Jotai to reflect live updates, caching, and error handling for improved UX.',
+        icon: { name: 'DataIcon', width: 64 },
+        image: prefixed('/api/images/work/other/ansible-ci-cd.png')
       },
       {
-        title: 'Scalable Solutions for Every Need',
-        paragraph: 'We build scalable architectures to support real-time data processing, ensuring that your app can grow as your user base expands. Whether handling hundreds or millions of simultaneous users, we leverage cutting-edge technologies to guarantee performance under pressure, offering seamless scalability for your real-time application needs.',
-        icon: { name: 'SeismometerIcon', width: 64 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/5.png')
-      },
-      {
-        title: 'Powerful Real-Time Systems',
-        paragraph: 'Our expertise goes beyond simple integrations—we develop sophisticated back-end systems that allow for secure, real-time communication between users and devices. From instant messaging apps to real-time dashboards, we ensure your application remains fast, reliable, and always connected.',
-        icon: { name: 'SeismometerIcon', width: 64 },
-        image: prefixed('/api/images/work/honeydu/desktop/3.png')
+        title: 'End-to-End API Strategies',
+        paragraph: 'From design and documentation to testing and monitoring, we provide end-to-end API solutions. Ensure compatibility, security, and performance across multiple services for scalable and reliable applications.',
+        icon: { name: 'DataIcon', width: 64 },
+        image: prefixed('/api/images/work/other/team-developers-doing-brainstorming.png')
       }
     ],
+
     footerMainContent: {
       link: '/contact',
       start: 'Let’s make',
       end: 'something wonderful'
     },
+
     meta: {
-      title: 'Real-Time Systems & Application Development | Our Expertise — Dev8X | Dev8X: World class digital products',
-      description: 'Engage users in the moment with real-time experiences'
+      title: 'API Integration Experts | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Seamless API integration for powerful applications'
     },
     footerData: {
       global: {
-        heading: 'I work globally',
+        heading: 'We work globally',
         email: 'contact@helloabdul.com',
-        buttonText: 'Hire me'
+        buttonText: 'Submit a brief'
       },
       offices: [
         {
@@ -2444,12 +2485,12 @@ const EXPERTISES: ExpertiseContent[] = [
           phone: '+92 (329) 294-7777'
         }
       ],
-      // careers: {
-      //   heading: 'We’re Growing – Join Our Team',
-      //   description: 'Let’s build the future, together.',
-      //   link: '/careers',
-      //   linkText: 'Explore Careers'
-      // },
+      careers: {
+        heading: 'We’re Growing – Join Our Team',
+        description: 'Let’s build the future, together.',
+        link: '/careers',
+        linkText: 'Explore Careers'
+      },
       copyright: {
         year: '2025',
         text: 'Privacy Policy',
@@ -2508,77 +2549,86 @@ const EXPERTISES: ExpertiseContent[] = [
     ]
   },
   {
-    slug: 'saas',
-    variant: 'blue',
-    tagText: 'SaaS',
-    heading: 'Empower your business with scalable SaaS solutions',
-    image: prefixed('/api/images/work/troophunter/desktop/2.png'),
+    slug: 'graphql-rest',
+    variant: 'yellow',
+    tagText: 'GraphQL / REST',
+    heading: 'Build efficient, scalable APIs with GraphQL & REST',
+    image: prefixed('/api/images/work/other/macbook-node.png'),
+
     iconCards: {
-      title: 'Seamless cloud integration',
-      paragraph: "We design SaaS platforms that drive growth and efficiency. Whether you're building a new product or optimizing an existing one, we create scalable and secure solutions that align with your business goals and user needs.",
+      title: 'Modern API solutions',
+      paragraph: 'Design and implement robust GraphQL and REST APIs for scalable applications. From dynamic queries and schema design to caching strategies and versioning, we ensure your APIs are reliable, secure, and future-proof.',
       items: [
         {
-          title: 'SaaS with Substance',
-          description: 'We build SaaS products that are as powerful as they are intuitive—balancing robust functionality with beautifully crafted user experiences.',
-          icon: { name: 'SaaSIcon', width: 26 }
+          title: 'REST API Excellence',
+          description: 'Implement RESTful APIs following best practices, including proper resource naming, status codes, versioning, and error handling to ensure maintainable and reliable backend services.',
+          icon: { name: 'BackendIcon', width: 26 }
         },
         {
-          title: 'Scalable Foundations',
-          description: 'From MVP to enterprise-grade platforms, our architecture scales with your product. We lay the technical groundwork to support your growth trajectory.',
-          icon: { name: 'PlanetRingIcon', width: 24 }
+          title: 'GraphQL Mastery',
+          description: 'Create flexible GraphQL APIs with well-structured schemas, resolvers, and data loaders. Optimize queries, prevent over-fetching, and ensure secure access through proper authentication and authorization.',
+          icon: { name: 'VoltageIcon', width: 24 }
         },
         {
-          title: 'Subscription & User Management',
-          description: 'Design seamless onboarding, billing, and access systems tailored to the needs of your users—backed by secure, efficient infrastructure.',
-          icon: { name: 'CardIcon', width: 28 }
+          title: 'Realtime & Subscription APIs',
+          description: 'Implement WebSocket or GraphQL subscription endpoints to handle live updates, notifications, and real-time data streams for modern web and mobile applications.',
+          icon: { name: 'PuzzlePieceIcon', width: 28 }
         },
         {
-          title: 'Product-Led Thinking',
-          description: 'We craft experiences that drive engagement, adoption, and retention—helping you convert trial users into lifelong customers.',
-          icon: { name: 'HeartIcon', width: 28 }
+          title: 'API Security & Monitoring',
+          description: 'Apply OAuth, JWT, API keys, and rate limiting to protect your endpoints. Monitor API performance, error rates, and usage to ensure reliability and scalability.',
+          icon: { name: 'ShieldIcon', width: 28 }
+        },
+        {
+          title: 'Integration & Scalability',
+          description: 'Design APIs that integrate seamlessly with frontend applications, microservices, and third-party platforms. Ensure your services scale effortlessly as your business grows.',
+          icon: { name: 'WebServersIcon', width: 28 }
         }
       ]
     },
+
     contentAsideImageItems: [
       {
-        title: 'Transform your business with SaaS',
-        paragraph: 'Elevate your operations with tailored SaaS solutions that streamline workflows and boost efficiency. We design and build robust platforms that meet your specific business needs, delivering intuitive, scalable, and secure tools to enhance your digital transformation journey.',
-        icon: { name: 'SaaSIcon', width: 64 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/14.png')
+        title: 'Scalable REST APIs',
+        paragraph: 'Develop REST APIs optimized for speed, scalability, and maintainability. Use proper routing, middleware, and validation to ensure clean and predictable API behavior for your applications.',
+        icon: { name: 'NestjsIcon', width: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/5.png')
       },
       {
-        title: 'Intuitive user experiences at scale',
-        paragraph: 'Every successful SaaS product needs a seamless user experience. Our focus is on simplifying complex workflows, ensuring that every interaction is intuitive and easy, even as your product scales. Whether it’s for internal teams or external customers, we ensure your users stay engaged and productive.',
-        icon: { name: 'SaaSIcon', width: 64 },
-        image: prefixed('/api/images/work/other/react_garvan.png')
+        title: 'Flexible GraphQL Endpoints',
+        paragraph: 'Design GraphQL schemas to give frontend teams the flexibility to query exactly what they need. Reduce payload sizes, improve performance, and enhance developer experience with strongly-typed queries and reusable resolvers.',
+        icon: { name: 'NestjsIcon', width: 64 },
+        image: prefixed('/api/images/work/troophunter/desktop/8.png')
       },
       {
-        title: 'Tailored for your growth',
-        paragraph: 'From start-ups to enterprises, we design SaaS platforms that evolve with your business. With an agile approach and a deep understanding of industry-specific needs, we help you develop a product that grows with your users, fostering long-term success and scalability.',
-        icon: { name: 'SaaSIcon', width: 64 },
+        title: 'Real-time APIs & Subscriptions',
+        paragraph: 'Implement live data pipelines with WebSocket or GraphQL subscriptions, enabling dynamic dashboards, notifications, and collaborative applications that update in real-time.',
+        icon: { name: 'NestjsIcon', width: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'End-to-end SaaS development',
-        paragraph: 'We partner with you through every stage of your SaaS journey—strategy, design, development, and deployment. Whether building from scratch or refining an existing product, our team ensures every feature serves its purpose, supporting your goals and delivering exceptional user experiences.',
-        icon: { name: 'SaaSIcon', width: 64 },
-        image: prefixed('/api/images/work/honeydu/desktop/21.png')
+        title: 'Your API Strategy Partner',
+        paragraph: 'We partner with clients to define the best API strategy for their business, ensuring seamless integration, maintainability, and long-term scalability. From design to deployment, we deliver APIs that empower both developers and end-users.',
+        icon: { name: 'NestjsIcon', width: 64 },
+        image: prefixed('/api/images/work/honeydu/desktop/23.png')
       }
     ],
+
     footerMainContent: {
       link: '/contact',
       start: 'Let’s make',
       end: 'something wonderful'
     },
+
     meta: {
-      title: 'SaaS Solutions Development | Our Expertise — Dev8X | Dev8X: World class digital products',
-      description: 'Empower your business with scalable SaaS solutions'
+      title: 'GraphQL & REST Experts | Our Expertise — Dev8X | Dev8X: World class digital products',
+      description: 'Build efficient, scalable APIs with GraphQL & REST'
     },
     footerData: {
       global: {
-        heading: 'I work globally',
+        heading: 'We work globally',
         email: 'contact@helloabdul.com',
-        buttonText: 'Hire me'
+        buttonText: 'Submit a brief'
       },
       offices: [
         {
@@ -2592,12 +2642,12 @@ const EXPERTISES: ExpertiseContent[] = [
           phone: '+92 (329) 294-7777'
         }
       ],
-      // careers: {
-      //   heading: 'We’re Growing – Join Our Team',
-      //   description: 'Let’s build the future, together.',
-      //   link: '/careers',
-      //   linkText: 'Explore Careers'
-      // },
+      careers: {
+        heading: 'We’re Growing – Join Our Team',
+        description: 'Let’s build the future, together.',
+        link: '/careers',
+        linkText: 'Explore Careers'
+      },
       copyright: {
         year: '2025',
         text: 'Privacy Policy',
@@ -2957,6 +3007,7 @@ const EXPERTISES: ExpertiseContent[] = [
       }
     ]
   },
+
   {
     slug: 'docker',
     variant: 'blue',
