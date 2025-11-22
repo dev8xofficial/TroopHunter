@@ -1,4 +1,5 @@
 import { ExpertiseContent } from '../Expertise/Expertise';
+import { CapabilitiesContent } from '../About/About';
 
 export interface OffersFAQS {
   title: string;
@@ -20,4 +21,6 @@ export interface OffersContent extends ExpertiseContent {
   offersSlider?: OffersSliderItem[];
   primaryPlansItems?: string[];
   secondaryPlansItems?: string[];
+  capabilities?: CapabilitiesContent;
+  capabilitiesHeading?: string;
 }

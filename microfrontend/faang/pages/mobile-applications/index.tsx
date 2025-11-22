@@ -6,15 +6,19 @@ import Head from 'next/head';
 import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom, useAtomValue } from 'jotai';
 import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard } from '@repo/components';
+import Capabilities from '@repo/components/src/surfaces/Capabilities/Capabilities';
+import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import EXPERTISES from '../../data/expertise/index.d';
 import { prefixed } from '../../utils/helpers';
 import ExpertiseStyles from '../expertise/index.module.css';
 import OFFERS from '../../data/mobile-applications/index.d';
+
 import HomePageStyles from '../index.module.css';
 import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
+import TextAnimateStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
 import styles from './index.module.css';
 
 const OffersPage: React.FC = (): JSX.Element => {
@@ -145,6 +149,44 @@ const OffersPage: React.FC = (): JSX.Element => {
                       </CardStack>
                     ))}
                   </CardStack>
+                  {offersData.capabilities && offersData.capabilities.length > 0 && (
+                    <AppearOnScroll>
+                      <div className={styles['about-capabilities']}>
+                        <h2 className={styles['about-capabilities__intro']} aria-label={offersData.capabilitiesHeading || 'Our capabilities'}>
+                          {(offersData.capabilitiesHeading || 'Our capabilities').split(' ').map((word, index) => {
+                            const isSpecial = word.toLowerCase().includes('capabilities');
+                            return (
+                              <span
+                                key={index}
+                                className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
+                                aria-hidden="true"
+                                style={{
+                                  display: 'inline-block',
+                                  whiteSpace: 'pre',
+                                  transform: 'translate3d(0px, 0%, 0px)',
+                                  opacity: 1,
+                                  transitionDelay: `${index * 0.05}s`
+                                }}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  style={{
+                                    display: 'inline-block',
+                                    whiteSpace: 'pre',
+                                    opacity: 1
+                                  }}
+                                >
+                                  {word + ' '}
+                                </span>
+                              </span>
+                            );
+                          })}
+                        </h2>
+
+                        <Capabilities capabilities={offersData.capabilities} styles={styles} />
+                      </div>
+                    </AppearOnScroll>
+                  )}
 
                   <footer className={ExpertiseStyles['expertise-cta']}>
                     <h2 className={ExpertiseStyles['expertise-cta__content']}>

@@ -1,8 +1,12 @@
 import { PageLayoutContent } from '../PageLayout/PageLayout';
+export interface CapabilityItem {
+  name: string;
+  image?: string;
+}
 
 export interface Capability {
-  heading: string;
-  items: string[];
+  heading?: string;
+  items: (string | CapabilityItem)[];
 }
 
 export type CapabilitiesContent = Capability[];
@@ -24,7 +28,7 @@ export interface TestimonialAuthor {
 export type TestimonialAuthors = TestimonialAuthor[];
 
 export interface AboutContent extends PageLayoutContent {
-  aboutSections: string[];
+   aboutSections: string[];
   capabilities: CapabilitiesContent;
   whatWeDo: WhatWeDoContent;
   testimonials: Testimonials;

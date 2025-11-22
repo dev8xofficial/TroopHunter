@@ -295,6 +295,38 @@ Need to build an MVP? We will be happy to assist.`
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
+    capabilitiesHeading: "Our capabilities are centred around our ability to deliver world-class mobile applications. We're 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.",
+    capabilities: [
+      {
+         heading: 'Back-end',
+        items: [
+          { name: 'Python', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278915e54a8355b3e1d52_python.webp' },
+          { name: 'Django', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35caaa74ba0bc7d25c29_django.webp' },
+          { name: 'Node JS', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35cb747fce613622812b_nodejs.webp' },
+          { name: 'FastAPI', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35c954cf5c7584730437_fastapi.webp' }
+        ]
+      },
+       {
+        heading: 'Front-end developers',
+        items: [
+          { name: 'React', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp' },
+          { name: 'React Native', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp' },
+          { name: 'Expo', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637f3ecb64e4c467e07a8e77_expo.png' }
+        ]
+      },
+      {
+        heading: 'Deployment',
+        items: [
+          { name: 'Amazon EC2', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35c9aa74ba9c36d25c28_amazon-ec2.webp' },
+          { name: 'AWS CloudFront', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca6899cd0701fc956c_aws-cloudront.webp' },
+          { name: 'Amazon S3', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca673ed8ae5439f724_amazon-s3.webp' },
+          { name: 'Amazon RDS', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca1e7cca441a7d6898_amazon-rds.webp' },
+          { name: 'AWS ECS ECR', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca94ff56ceb4d8fba2_aws-ecs-ecr.webp' },
+          { name: 'AWS Lambda', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca673ed8896539f723_aws-labda.webp' },
+          { name: 'Google Cloud Platform', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0d186164f4793f22_google-cloud-platform.webp' }
+        ]
+      }
+    ],
     video: prefixed(`/videos/header/header.mp4`)
   }
 ];

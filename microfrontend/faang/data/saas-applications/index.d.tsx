@@ -287,6 +287,32 @@ const OFFERS: OffersContent[] = [
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
+    capabilitiesHeading: "Integrations Our Clients Benefit From:",
+    capabilities: [
+      {
+        items: [
+          { name: 'Stripe', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048cf5c38d73f0140038_stripe.webp' },
+          { name: 'PayPal', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048d346ec742399635de_paypal.webp' },
+          { name: 'Google Analytics', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048c2e5f78530668f95b_google-analytics.webp' },
+          { name: 'Skylight', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d0f8c9a16189ebdbb26b0_skylight.webp' },
+        ]
+      },
+      {
+        items: [
+          { name: 'Mobile', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048dfbd74d4571851528_mobile.webp' },
+          { name: 'Hotjar', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048d0787c7285eead1cc_hotjar.webp' },
+          { name: 'Mailchimp', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048d1f96aba06263f132_mailchimp.webp' }
+        ]
+      },
+      {
+        items: [
+          { name: 'HubSpot', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048dfbd74de55c851527_hubspot.webp' },
+          { name: 'UptimeRobot', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048db9a23c8cd5d9e390_uptime-robot.webp' },
+          { name: 'Sentry', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048c81318f470045d0b8_sentry.webp' }
+        ]
+      },
+
+    ],
     video: prefixed(`/videos/header/header.mp4`)
   }
 ];

@@ -311,6 +311,61 @@ const OFFERS: OffersContent[] = [
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
+    capabilitiesHeading: "Ambitious products deserve the best technologies. Here are the main tech skills our experts do possess:",
+    capabilities: [
+      {
+        heading: 'Front-end developers',
+        items: [
+          { name: 'React', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp' },
+          { name: 'Next JS', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca619e3e2ecd6da7a9_nextjs.webp' },
+          { name: 'Gatsby', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca1e7cca2f317d6899_gatsby.webp' }
+        ]
+      },
+      {
+        heading: 'DevOps engineers',
+        items: [
+          { name: 'AWS', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e78377fad8513b4895d6_aws.webp' },
+          { name: 'GitLab', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e9a64416b318c9d86_gitlab.webp' },
+          { name: 'Kubernetes', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278911e566587192317f2_kubernetes.webp' },
+          { name: 'GitHub', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e992fec12274efa72_github.webp' },
+          { name: 'Docker', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278908332ff18aa459ce4_docker.webp' },
+          { name: 'Jenkins', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e27ab56ec138c2ada_jenkins.webp' },
+        ]
+      },
+      {
+        heading: 'Mobile app developers',
+        items: [
+          { name: 'React Native', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp' },
+          { name: 'Expo', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637f3ecb64e4c467e07a8e77_expo.png' }
+        ]
+      },
+      {
+        heading: 'Back-end developers',
+        items: [
+          { name: 'Python', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278915e54a8355b3e1d52_python.webp' },
+          { name: 'Django', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35caaa74ba0bc7d25c29_django.webp' },
+          { name: 'Node JS', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35cb747fce613622812b_nodejs.webp' },
+          { name: 'FastAPI', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35c954cf5c7584730437_fastapi.webp' },
+        ]
+      },
+      {
+        heading: 'Data scientists',
+        items: [
+          { name: 'TensorFlow', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278939601cf4af694d79f_tensor-flow.webp' },
+          { name: 'NLTK', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e6760cea14fc35c73_nltk.webp' },
+          { name: 'DeepPavlov', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e2a93aa389e66cef7_deep-pavlov.webp' },
+          { name: 'Scikit learn', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e06df40bbdb8c972c_scikit-learn.webp' },
+          { name: 'Keras', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891633738df2523a8ba_keras.webp' },
+          { name: 'Gensim', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e27ab56bca98c2ad9_gensim.webp' },
+          { name: 'Faiss', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e2a33782738b3c3fa_faiss.webp' },
+          { name: 'SciPy', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e2d13f99cff54d001_scipy.webp' },
+          { name: 'PyTorch', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891d4d17683bbc11982_py-torch.webp' },
+          { name: 'SpaCy', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58ea4fc884273bd4df3_spacy.png' },
+          { name: 'XGBoost', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e6760ce61e1c35c75_xgboost.webp' },
+          { name: 'SimPy', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58ed1140bba1d50576f_simpy.webp' },
+        ]
+      }
+    ],
     video: prefixed(`/videos/header/header.mp4`)
   }
 ];
