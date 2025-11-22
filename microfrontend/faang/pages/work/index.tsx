@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Head from 'next/head';
-import { FooterRevealPageWrap, Footer, Header, WorkGrid, ProjectsFormModal, WORK_PROJECTS, ContactFormModal } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, WorkGrid, ProjectsFormModal, ContactFormModal, transformWorkProjectsToGridData } from '@repo/components';
+import { WORK_PROJECTS } from '../../data/work/index.d';
 import { useProjectModal } from '../../hooks/useProjectModal';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import { toggleSmoothModalAtom } from '@repo/components';
@@ -96,7 +97,7 @@ const Work: React.FC = (): JSX.Element => {
             {/* <WorkCategories /> */}
             <div>
               <h2 className="hidden">Featured</h2>
-              <WorkGrid workGridCSSClass={WorkGridStyles['work-grid']} openModal={openModal} />
+              <WorkGrid workGridCSSClass={WorkGridStyles['work-grid']} workProjects={transformWorkProjectsToGridData(WORK_PROJECTS)} openModal={openModal} />
             </div>
           </main>
         </FooterRevealPageWrap>
