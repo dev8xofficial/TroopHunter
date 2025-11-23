@@ -1,0 +1,134 @@
+Data needs to be update
+```
+{
+    slug: 'troophunter',
+    title: 'TroopHunter',
+    websiteUrl: 'https://troophunter.com',
+    industry: 'Sales / Lead Generation',
+    shortIntro: '**Automated lead generation** platform for fast, accurate prospect discovery. No manual research, no marketing expertise required. Designed for growing businesses.',
+    overview: 'Led all executive & technical aspects. Built Next.js + TypeScript frontend, Node.js microservices, PostgreSQL with Sequelize, fast dashboards, and scalable architecture.',
+    approach: 'Focused on intuitive UX, smooth microinteractions with Framer Motion & GSAP, Redux Thunk for state, TurboRepo monorepo, Docker CI/CD, Kubernetes, Terraform, Ansible.',
+    impact: 'Dashboards load instantly. Filters are intuitive. Workflows feel enjoyable, not tedious.',
+    keyContributions: ['Next.js & TypeScript frontend architecture', 'Redux Thunk state management', 'Framer Motion & GSAP microinteractions', 'TurboRepo monorepo setup', 'Dockerized CI/CD pipelines (K8s, Terraform, Ansible)', 'Node.js & Express microservices', 'PostgreSQL ORM via Sequelize', 'OAuth & auth flows', 'ESLint & Prettier code quality automation', 'Git feature branching & PR workflow'],
+    placeholderImage: prefixed('/api/images/placeholder/1080-transparent.png'),
+    images: [prefixed('/api/images/work/troophunter/mobile/7.png'), prefixed('/api/images/work/troophunter/mobile/8.png'), prefixed('/api/images/work/troophunter/mobile/9.png'), prefixed('/api/images/work/troophunter/mobile/10.png')],
+    video: {
+      originalFile: prefixed('/videos/work/troophunter/1080.mp4'),
+      sequences: [prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4')]
+    },
+    bgColor: 'blue',
+    path: 'troophunter',
+    testimonial: 'Working with Abdul made TroopHunter feel alive: fast, polished, fun—and code stays rock solid.',
+    testimonialAuthor: 'Abdul Rehman',
+    testimonialAuthorPosition: 'Founder & Lead Engineer'
+  }
+```
+
+Abdul Prompt
+```
+Brand & Voice
+Abdul — senior frontend developer. First-person, soft, confident, lightly funny. Conversational, US-tech-ready. Avoid corporate fluff. Real-world product sense, authentic tone, short scroll-friendly sentences.
+
+Target Job Market
+US Tech, remote frontend roles (React / Next.js). 6+ years experience. Impress engineering managers, startup founders, tech leads. Pakistan-based, async-friendly, timezone-aware.
+
+Purpose & Guidelines
+Show senior frontend thinking, practical product mindset, and problem-solving skills. Avoid generic phrases, motivational fluff, or clichés. Lightweight professional humor allowed. Mention Pakistan only for remote context. Reference Devin Picciolini subtly when helpful.
+
+Bold Usage Rules (Systemized)
+Bold only key terms — technologies, frameworks, tools, product names, important metrics. Example: React, Next.js, Node.js, PostgreSQL, Sequelize, TroopHunter.
+Do not bold full sentences or filler words. Keep sentences natural and scannable.
+Use italics for casual asides or soft humor. Example: makes dashboards feel alive.
+Maintain bold consistency across the output — always bold the same keywords wherever they appear.
+Optional: After generation, run a regex to enforce bolding for defined keywords if needed. Example: \b(React|Next\.js|Node\.js|TypeScript|PostgreSQL|Sequelize|TroopHunter)\b → **$1**.
+
+Output Requirements
+Short, scannable sentences
+Keyword-rich for quick comprehension
+Human tone, easy to read
+Highlight competence and real-world experience
+```
+
+/********************************************************************************************/
+
+Update troophunter data
+Each have max 25 words limit.
+Use text formatting in ordr to support content fast scanning, reading and understanding.
+I led all the executive and technical aspects of this product.
+
+Frontend Development:
+Next.js, React.js, TypeScript, Redux Thunk, HTML5, TailwindCSS, GSAP (Animation), Responsive & Mobile-First Design
+
+Code Quality & Workflow Automation:
+ESLint, Prettier, Code Quality Automation (CI/CD Integration), Git Feature Branching, GitHub Pull Requests, TurboRepo, Monorepo Architecture
+
+Backend Development & Databases:
+Node.js, Express.js, RESTful APIs, Microservices Architecture, PostgreSQL, Sequelize ORM, Database Design & Optimization, Authentication & Authorization
+
+DevOps & Cloud Infrastructure:
+Docker, Containerization, CI/CD Pipelines, Kubernetes, Terraform, Ansible, Infrastructure as Code (IaC)
+
+Additional Expertise:
+Performance Optimization, Testing & Debugging, Full-Stack Application Development, End-to-End Project Ownership, Cross-Functional Collaboration
+
+/********************************************************************************************/
+
+Update totalhealthdentalcare data
+Each have max 25 words limit.
+Use text formatting in ordr to support content fast scanning, reading and understanding.
+
+Frontend Development:
+React.js, TypeScript, Redux Thunk, HTML5, TailwindCSS
+
+Code Quality & Workflow Automation:
+ESLint, Prettier, Code Quality Automation (CI/CD Integration), Git Feature Branching, GitHub Pull Requests, Monorepo Architecture, RESTful APIs, Docker, CI/CD Pipelines
+
+/********************************************************************************************/
+
+Update scheduler data
+Each have max 25 words limit.
+Use text formatting in ordr to support content fast scanning, reading and understanding.
+
+Frontend Development:
+React.js, TypeScript, Redux Thunk, HTML5, TailwindCSS
+
+Code Quality & Workflow Automation:
+ESLint, Prettier, Code Quality Automation (CI/CD Integration), Git Feature Branching, GitHub Pull Requests, Monorepo Architecture, RESTful APIs, Docker, CI/CD Pipelines
+
+/********************************************************************************************/
+
+Update honeydu data
+Each have max 25 words limit.
+Use text formatting in ordr to support content fast scanning, reading and understanding.
+
+Frontend Development:
+React.js, JavaScript, Redux, HTML5, TailwindCSS, GSAP (Animation), Responsive & Mobile-First Design
+
+Code Quality & Workflow Automation:
+ESLint, Prettier, Git Feature Branching, GitHub Pull Requests, RESTful APIs
+
+/********************************************************************************************/
+
+Update coral data
+Each have max 25 words limit.
+Use text formatting in ordr to support content fast scanning, reading and understanding.
+
+Frontend Development:
+React.js, JavaScript, Redux, HTML5, SASS, GSAP (Animation), Responsive & Mobile-First Design
+
+Code Quality & Workflow Automation:
+ESLint, Prettier, Git Feature Branching, GitHub Pull Requests
+
+/********************************************************************************************/
+
+Update goldendao data
+Each have max 25 words limit.
+Use text formatting in ordr to support content fast scanning, reading and understanding.
+
+Frontend Development:
+React.js, JavaScript, Redux, HTML5, TailwindCSS, GSAP (Animation), Responsive & Mobile-First Design
+
+Code Quality & Workflow Automation:
+ESLint, Prettier, Git Feature Branching, GitHub Pull Requests
+
+/********************************************************************************************/
