@@ -12,14 +12,14 @@ import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/Smo
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import EXPERTISES from '../../data/expertise/index.d';
 import { prefixed } from '../../utils/helpers';
-import ExpertiseStyles from '../expertise/index.module.css';
+
 import OFFERS from '../../data/services-for-growth-stage-startups/index.d';
 
 import HomePageStyles from '../index.module.css';
 import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import TextAnimateStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
-import styles from './index.module.css';
+import ExpertiseStyles from '../expertise/index.module.css';
 
 const OffersPage: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
@@ -129,20 +129,20 @@ const OffersPage: React.FC = (): JSX.Element => {
                   <CardStack variant="Stack">
                     {offersData?.testimonials?.map((item, index) => (
                       <CardStack variant="Card" index={index} key={index}>
-                        <figure className={styles['testimonial-card']} style={{ backgroundColor: item.bgColor, color: item.color }}>
-                          <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['testimonial-card__image']}`}>
+                        <figure className={ExpertiseStyles['testimonial-card']} style={{ backgroundColor: item.bgColor, color: item.color }}>
+                          <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${ExpertiseStyles['testimonial-card__image']}`}>
                             <source srcSet={`${item.image}/m/390x360/filters:quality(80) 1x, ${item.image}/m/780x720/filters:quality(80) 2x`} media="(min-width: 0px) and (max-width: 479px)" />
                             <source srcSet={`${item.image}/m/872x806/filters:quality(80) 1x, ${item.image}/m/1744x1612/filters:quality(80) 2x`} media="(min-width: 480px) and (max-width: 991px)" />
                             <source srcSet={`${item.image}/m/667x609/filters:quality(80) 1x, ${item.image}/m/1334x1218/filters:quality(80) 2x`} media="(min-width: 992px)" />
                             <img src={`${item.image}/m/390x360/filters:quality(80)`} loading="lazy" width={390} height={360} alt="" draggable={false} />
                           </picture>
 
-                          <blockquote className={styles['testimonial-card__quote']}>{`“${item.comment}”`}</blockquote>
+                          <blockquote className={ExpertiseStyles['testimonial-card__quote']}>{`“${item.comment}”`}</blockquote>
 
-                          <figcaption className={styles['testimonial-card__author']}>
-                            <dl className={styles['testimonial-card__author-details']}>
-                              <dt className={styles['testimonial-card__author-name']}>{item.name}</dt>
-                              <dd className={styles['testimonial-card__author-title']}>{item.company}</dd>
+                          <figcaption className={ExpertiseStyles['testimonial-card__author']}>
+                            <dl className={ExpertiseStyles['testimonial-card__author-details']}>
+                              <dt className={ExpertiseStyles['testimonial-card__author-name']}>{item.name}</dt>
+                              <dd className={ExpertiseStyles['testimonial-card__author-title']}>{item.company}</dd>
                             </dl>
                           </figcaption>
                         </figure>
