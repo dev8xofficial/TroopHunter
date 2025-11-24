@@ -10,47 +10,48 @@ const OFFERS: OffersContent[] = [
     paragraph: 'Work with a long-term tech partner that will help you build an MVP to gain traction from early adopters and raise money from investors.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
     iconCards: {
-      title: 'HEY, FOUNDER! 👋',
-      paragraph: 'Do the statistics above sound terrifying? An MVP will boost your chances of getting into the target of 25% And we’re here to help you with that.',
+      title: 'Together from an Idea to the First Funding and Beyond',
+      paragraph: 'Only by releasing an MVP to market, and testing it on real customers, you can find out if you’ve chosen the right problem to solve.',
       items: [
         {
-          title: '34%',
-          description: 'cannot achieve a product-market fit',
+          title: 'Test the core idea',
+          description: 'Validate your business idea in the early stage without developing a full-fledged product.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
-          title: '18%',
-          description: 'have problems with teams and expertise',
+          title: 'Attract investors',
+          description: 'Show investors that they are not funding just an idea, but a product that has already gained traction.',
           icon: { name: 'BackendIcon', width: 26 }
         },
         {
-          title: '16%',
-          description: 'are unable to attract funding',
+          title: 'Collect feedback',
+          description: `Determine what features to add or remove and how to improve your product to meet the customer's needs.`,
           icon: { name: 'AIBrainIcon', width: 26 }
-        },
-        {
-          title: '7%',
-          description: 'choose the wrong technologies',
-          icon: { name: 'SeismometerIcon', width: 22 }
         }
       ]
     },
     contentAsideImageItems: [
       {
-        title: 'Test the core idea',
-        paragraph: 'Validate your business idea in the early stage without developing a full-fledged product.',
+        title: 'Long-Term Partner That Shares Your Vision',
+        paragraph: 'We love diving deep into the project’s specifics, generating ideas, and testing hypotheses. With Upsilon, your startup will get a reliable team who lives and breathes your product 24/7.',
         icon: { name: 'HomeIcon', width: 26 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'Attract investors',
-        paragraph: 'Show investors that they are not funding just an idea, but a product that has already gained traction.',
+        title: 'Senior Developers, Not Amateurs',
+        paragraph: 'Keeping abreast of modern technologies and following the best development practices and standards, we build products that truly change the game.',
         icon: { name: 'MapPinIcon', width: 24 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
       },
       {
-        title: 'Collect feedback',
-        paragraph: 'Determine what features to add or remove and how to improve your product to meet the customer`s needs.',
+        title: 'Quick Starters, Agile Riders',
+        paragraph: `We understand your time is limited and have teams ready for deployment within 1-2 weeks. Adhering to agile practices, we help clients deliver value to their customers faster and with fewer headaches.`,
+        icon: { name: 'BotIcon', width: 26 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
+      },
+      {
+        title: 'Uncompromising Achievers',
+        paragraph: `With Upsilon, you can be 100% sure that your project will never be left halfway down the road. We always work at full capacity striving to help your product achieve all goals you have set.`,
         icon: { name: 'BotIcon', width: 26 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }

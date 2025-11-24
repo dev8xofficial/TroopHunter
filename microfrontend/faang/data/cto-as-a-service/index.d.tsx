@@ -10,27 +10,27 @@ const OFFERS: OffersContent[] = [
     paragraph: 'Get C-level tech guidance for your product`s success and achieve your business goals with more confidence.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
     iconCards: {
-      title: 'Launch Fast. Convert Faster.',
+      title: 'When do I need CTO as a Service?',
       paragraph: 'CTOs are in demand and startups need to compete against FAANG to attract top talent.',
       items: [
         {
           title: '$140K/yr',
-          description: 'the average salary of a seed-stage CTO - equal to entry positions at companies like Google and Meta.',
+          description: 'You know WHAT kind of product you want to build but have no idea HOW it can be developed from the tech perspective.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
           title: '26%',
-          description: 'an increase in the number of active CTO job openings over the past three years.',
+          description: 'You are seeking funding for your startup and need to show investors you’re backed by a professional guiding the technical direction.',
           icon: { name: 'BackendIcon', width: 26 }
         },
         {
           title: '<4 years',
-          description: 'the average tenure of a CTO in a startup, and its downward trend is continuing.',
+          description: `Your past experience with low-cost developers has been disappointing and you don't want this scenario to happen again.`,
           icon: { name: 'AIBrainIcon', width: 26 }
         },
         {
           title: 'Transparent Reporting',
-          description: 'Track leads, traffic, and engagement with weekly reports and access to dashboards and analytics.',
+          description: `You are putting all efforts into strategy, networking, marketing, and sales and need someone who will fully take care of the product's tech side.`,
           icon: { name: 'SeismometerIcon', width: 22 }
         }
       ]

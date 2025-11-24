@@ -14,45 +14,49 @@ const OFFERS: OffersContent[] = [
       paragraph: 'We know firsthand how to design, build, implement and deploy fail-safe SaaS as we have successfully launched and continue maintaining and enhancing our own products. We have a deep comprehension of the specifics of the SaaS and, as the product owners, we always look beyond ‘blind coding’ when working on clients’ projects.',
       items: [
         {
-          title: 'Knowledge Management Platform',
-          description: 'A platform that helps your team to collect valuable internal information and access it anywhere.',
+          title: 'Web, Mobile and Desktop Apps',
+          description: 'Whatever platform you target - web, mobile, desktop or all three of them - our team can build a SaaS app of any complexity and covering all the features you require.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
-          title: 'Task Management App for Slack',
-          description: 'A productivity and task tracking app that allows individuals and teams organize, and prioritize their tasks without leaving Slack.',
+          title: 'Product Website',
+          description: 'We design and build highly personalized, user-friendly and full-featured product websites that help your business build deeper relationship with its audience.',
           icon: { name: 'BackendIcon', width: 26 }
+        },
+        {
+          title: 'API Development',
+          description: 'Our back-end development team will help you build an API that will scale on demand, perform fast, and provide secure and reliable data storage for your SaaS.',
+          icon: { name: 'AIBrainIcon', width: 26 }
+        },
+        {
+          title: 'CI/CD',
+          description: 'By setting up CI/CD pipelines, our team will allow you to make more frequent improvements to your product and efficiently test and deploy those changes.',
+          icon: { name: 'SeismometerIcon', width: 22 }
+        },
+        {
+          title: 'Build & Deployment System',
+          description: 'By leveraging the advantages of Docker and Kubernetes, we create systems that allow to automate and speed up the process of application building, deployment, scaling, and management.',
+          icon: { name: 'SeismometerIcon', width: 22 }
+        },
+        {
+          title: 'Third-party Integrations',
+          description: 'From connecting external data sources to integrating payment gateways, we help you connect your SaaS app with 3rd party solutions..',
+          icon: { name: 'SeismometerIcon', width: 22 }
         }
-        // {
-        //   title: '16%',
-        //   description: 'are unable to attract funding',
-        //   icon: { name: 'AIBrainIcon', width: 26 }
-        // },
-        // {
-        //   title: '7%',
-        //   description: 'choose the wrong technologies',
-        //   icon: { name: 'SeismometerIcon', width: 22 }
-        // }
       ]
     },
     contentAsideImageItems: [
       {
-        title: 'Payment System',
-        paragraph: 'Embed payments and financial services into your product. If you want to accept all types of online payments within your platform, Stripe is the best choice.',
+        title: 'Knowledge Management Platform',
+        paragraph: 'A platform that helps your team to collect valuable internal information and access it anywhere.',
         icon: { name: 'HomeIcon', width: 26 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'Interactive Dashboards',
-        paragraph: 'Explore and visualize your data through interactive dashboards. From simple line charts to multicomponent visualizations based on big data - with the help of Cube and Retool we will get you covered.',
+        title: 'Task Management App for Slack',
+        paragraph: 'A productivity and task tracking app that allows individuals and teams organize, and prioritize their tasks without leaving Slack.',
         icon: { name: 'MapPinIcon', width: 24 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
-      },
-      {
-        title: 'User Management',
-        paragraph: 'Manage teams and individual profiles within your SaaS application on an ongoing basis. Configure your application to identify, authenticate, and authorize all users depending on the amount of access they’ve paid or need..',
-        icon: { name: 'BotIcon', width: 26 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
     footerMainContent: {
