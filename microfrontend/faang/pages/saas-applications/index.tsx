@@ -7,19 +7,17 @@ import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothMo
 import { useSetAtom, useAtomValue } from 'jotai';
 import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, HeroCore, WhyDev8X } from '@repo/components';
 import Capabilities from '@repo/components/src/surfaces/Capabilities/Capabilities';
-import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import EXPERTISES from '../../data/expertise/index.d';
 import { prefixed } from '../../utils/helpers';
-import ExpertiseStyles from '../expertise/index.module.css';
+
 import OFFERS from '../../data/saas-applications/index.d';
 
 import HomePageStyles from '../index.module.css';
 import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
-import TextAnimateStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
-import styles from './index.module.css';
+import ExpertiseStyles from '../expertise/index.module.css';
 
 const OffersPage: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
@@ -129,64 +127,29 @@ const OffersPage: React.FC = (): JSX.Element => {
                   <CardStack variant="Stack">
                     {offersData?.testimonials?.map((item, index) => (
                       <CardStack variant="Card" index={index} key={index}>
-                        <figure className={styles['testimonial-card']} style={{ backgroundColor: item.bgColor, color: item.color }}>
-                          <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['testimonial-card__image']}`}>
+                        <figure className={ExpertiseStyles['testimonial-card']} style={{ backgroundColor: item.bgColor, color: item.color }}>
+                          <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${ExpertiseStyles['testimonial-card__image']}`}>
                             <source srcSet={`${item.image}/m/390x360/filters:quality(80) 1x, ${item.image}/m/780x720/filters:quality(80) 2x`} media="(min-width: 0px) and (max-width: 479px)" />
                             <source srcSet={`${item.image}/m/872x806/filters:quality(80) 1x, ${item.image}/m/1744x1612/filters:quality(80) 2x`} media="(min-width: 480px) and (max-width: 991px)" />
                             <source srcSet={`${item.image}/m/667x609/filters:quality(80) 1x, ${item.image}/m/1334x1218/filters:quality(80) 2x`} media="(min-width: 992px)" />
                             <img src={`${item.image}/m/390x360/filters:quality(80)`} loading="lazy" width={390} height={360} alt="" draggable={false} />
                           </picture>
 
-                          <blockquote className={styles['testimonial-card__quote']}>{`“${item.comment}”`}</blockquote>
+                          <blockquote className={ExpertiseStyles['testimonial-card__quote']}>{`“${item.comment}”`}</blockquote>
 
-                          <figcaption className={styles['testimonial-card__author']}>
-                            <dl className={styles['testimonial-card__author-details']}>
-                              <dt className={styles['testimonial-card__author-name']}>{item.name}</dt>
-                              <dd className={styles['testimonial-card__author-title']}>{item.company}</dd>
+                          <figcaption className={ExpertiseStyles['testimonial-card__author']}>
+                            <dl className={ExpertiseStyles['testimonial-card__author-details']}>
+                              <dt className={ExpertiseStyles['testimonial-card__author-name']}>{item.name}</dt>
+                              <dd className={ExpertiseStyles['testimonial-card__author-title']}>{item.company}</dd>
                             </dl>
                           </figcaption>
                         </figure>
                       </CardStack>
                     ))}
                   </CardStack>
-                  {offersData.capabilities && offersData.capabilities.length > 0 && (
-                    <AppearOnScroll>
-                      <div className={styles['about-capabilities']}>
-                        <h2 className={styles['about-capabilities__intro']} aria-label={offersData.capabilitiesHeading || 'Our capabilities'}>
-                          {(offersData.capabilitiesHeading || 'Our capabilities').split(' ').map((word, index) => {
-                            const isSpecial = word.toLowerCase().includes('capabilities');
-                            return (
-                              <span
-                                key={index}
-                                className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
-                                aria-hidden="true"
-                                style={{
-                                  display: 'inline-block',
-                                  whiteSpace: 'pre',
-                                  transform: 'translate3d(0px, 0%, 0px)',
-                                  opacity: 1,
-                                  transitionDelay: `${index * 0.05}s`
-                                }}
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  style={{
-                                    display: 'inline-block',
-                                    whiteSpace: 'pre',
-                                    opacity: 1
-                                  }}
-                                >
-                                  {word + ' '}
-                                </span>
-                              </span>
-                            );
-                          })}
-                        </h2>
 
-                        <Capabilities capabilities={offersData.capabilities} styles={styles as { 'about-capabilities__grid': string; 'about-column': string; 'about-column__heading': string; 'about-column__list': string }} />
-                      </div>
-                    </AppearOnScroll>
-                  )}
+                  {offersData.capabilities && offersData.capabilities.length > 0 && <Capabilities capabilitiesHeading={offersData.capabilitiesHeading} capabilities={offersData.capabilities} />}
+
                   <WhyDev8X {...offersData.whyDev8XContent} />
                   <footer className={ExpertiseStyles['expertise-cta']}>
                     <h2 className={ExpertiseStyles['expertise-cta__content']}>

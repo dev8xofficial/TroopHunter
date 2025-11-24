@@ -32,22 +32,17 @@ const OFFERS: OffersContent[] = [
     },
     contentAsideImageItems: [
       {
-        title: 'Online Art Marketplace for Collectors',
-        paragraph: '13 weeks to MVP | 10M+ auction data points',
+        title: 'Cross-platform Mobile App Development',
+        paragraph: 'Cross-platform application development became a silver bullet for businesses willing to win the competition. Upsilon helps companies bring this strategy to life with React Native. Here are the reasons why you should consider to use this technology for your next mobile application:',
         icon: { name: 'HomeIcon', width: 26 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'Collection Management Software for Art and Culture',
-        paragraph: '10 yearsof partnership | Artindustry',
+        title: 'Types of Mobile Applications We Build',
+        paragraph: `Internal Business Mobile Apps
+Upsilon helps businesses streamline their internal processes, increase productivity, automate workflows, and gain more visibility & control with 360° secure, innovative, high-performing mobile solutions.`,
         icon: { name: 'MapPinIcon', width: 24 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
-      },
-      {
-        title: 'Retail Store Customer Tracking Software',
-        paragraph: '7 monthstime to market | $330Kproject budget',
-        icon: { name: 'BotIcon', width: 26 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
     footerMainContent: {
