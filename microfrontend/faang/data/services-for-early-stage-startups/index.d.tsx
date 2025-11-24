@@ -10,27 +10,27 @@ const OFFERS: OffersContent[] = [
     paragraph: 'Work with a long-term tech partner that will help you build an MVP to gain traction from early adopters and raise money from investors.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
     iconCards: {
-      title: 'HEY, FOUNDER! 👋',
-      paragraph: 'Do the statistics above sound terrifying? An MVP will boost your chances of getting into the target of 25% And we’re here to help you with that.',
+      title: 'Together from an Idea to the First Funding and Beyond',
+      paragraph: 'Only by releasing an MVP to market, and testing it on real customers, you can find out if you’ve chosen the right problem to solve.',
       items: [
         {
-          title: '34%',
-          description: 'cannot achieve a product-market fit',
+          title: 'Test the core idea',
+          description: 'Validate your business idea in the early stage without developing a full-fledged product.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
-          title: '18%',
-          description: 'have problems with teams and expertise',
+          title: 'Attract investors',
+          description: 'Show investors that they are not funding just an idea, but a product that has already gained traction.',
           icon: { name: 'BackendIcon', width: 26 }
         },
         {
-          title: '16%',
-          description: 'are unable to attract funding',
+          title: 'Collect feedback',
+          description: 'Determine what features to add or remove and how to improve your product to meet the customer`s needs.',
           icon: { name: 'AIBrainIcon', width: 26 }
         },
         {
-          title: '7%',
-          description: 'choose the wrong technologies',
+          title: 'Choose the right technologies',
+          description: 'Select the best tools for your MVP to ensure scalability and performance.',
           icon: { name: 'SeismometerIcon', width: 22 }
         }
       ]
@@ -63,6 +63,17 @@ const OFFERS: OffersContent[] = [
     meta: {
       title: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products',
       description: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products'
+    },
+    whyDev8XContent: {
+      heading: 'Why Dev8X',
+      para1: 'We believe that meaningful design starts with empathy. Every product we create is centered around improving real lives—helping people achieve more with less friction.',
+      para2: 'By combining strategy, creativity, and technology, we unlock opportunities, transform businesses, and make experiences that truly matter. As an independent team, our agility and passion shape every project into something exceptional.',
+      image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)',
+      stats: [
+        { title: '100%', span: ['In-house ', '& ', 'independent'] },
+        { title: '6+', span: ['Years ', 'crafting ', 'digital ', 'experiences'] },
+        { title: '20+', span: ['Digital ', 'solutions ', 'launched ', 'worldwide'] }
+      ]
     },
     footerData: {
       global: {

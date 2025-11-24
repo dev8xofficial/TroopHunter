@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom, useAtomValue } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, HeroCore } from '@repo/components';
 import Capabilities from '@repo/components/src/surfaces/Capabilities/Capabilities';
 import { AppearOnScroll } from '@repo/components/src/Animations/AppearOnScroll';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
@@ -13,7 +13,7 @@ import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import EXPERTISES from '../../data/expertise/index.d';
 import { prefixed } from '../../utils/helpers';
 import ExpertiseStyles from '../expertise/index.module.css';
-import OFFERS from '../../data/services-for-growth-stage-startups/index.d'
+import OFFERS from '../../data/services-for-growth-stage-startups/index.d';
 
 import HomePageStyles from '../index.module.css';
 import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
@@ -102,7 +102,7 @@ const OffersPage: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
-            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />
+            <HeroCore variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} />
           </div>
           {isOffersPage && !showHowToHireVideo && (
             <div style={{ display: 'grid' }}>
@@ -113,7 +113,7 @@ const OffersPage: React.FC = (): JSX.Element => {
               </div>
             </div>
           )}
-   
+
           <main className={`${ExpertiseStyles['expertise-single']} container-full`}>
             <div>
               <ModularBlocks>
@@ -149,44 +149,43 @@ const OffersPage: React.FC = (): JSX.Element => {
                       </CardStack>
                     ))}
                   </CardStack>
-        {offersData.capabilities && offersData.capabilities.length > 0 && (
-          <AppearOnScroll>
-            <div className={styles['about-capabilities']}>
-              <h2 className={styles['about-capabilities__intro']} aria-label={offersData.capabilitiesHeading || 'Our capabilities'}>
-                {(offersData.capabilitiesHeading || 'Our capabilities').split(' ').map((word, index) => {
-                  const isSpecial = word.toLowerCase().includes('capabilities');
-                  return (
-                    <span
-                      key={index}
-                      className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
-                      aria-hidden="true"
-                      style={{
-                        display: 'inline-block',
-                        whiteSpace: 'pre',
-                        transform: 'translate3d(0px, 0%, 0px)',
-                        opacity: 1,
-                        transitionDelay: `${index * 0.05}s`
-                      }}
-                    >
-                      <span
-                        aria-hidden="true"
-                        style={{
-                          display: 'inline-block',
-                          whiteSpace: 'pre',
-                          opacity: 1
-                        }}
-                      >
-                        {word + ' '}
-                      </span>
-                    </span>
-                  );
-                })}
-              </h2>
-
-              <Capabilities capabilities={offersData.capabilities} styles={styles} />
-            </div>
-          </AppearOnScroll>
-        )}
+                  {offersData.capabilities && offersData.capabilities.length > 0 && (
+                    <AppearOnScroll>
+                      <div className={styles['about-capabilities']}>
+                        <h2 className={styles['about-capabilities__intro']} aria-label={offersData.capabilitiesHeading || 'Our capabilities'}>
+                          {(offersData.capabilitiesHeading || 'Our capabilities').split(' ').map((word, index) => {
+                            const isSpecial = word.toLowerCase().includes('capabilities');
+                            return (
+                              <span
+                                key={index}
+                                className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
+                                aria-hidden="true"
+                                style={{
+                                  display: 'inline-block',
+                                  whiteSpace: 'pre',
+                                  transform: 'translate3d(0px, 0%, 0px)',
+                                  opacity: 1,
+                                  transitionDelay: `${index * 0.05}s`
+                                }}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  style={{
+                                    display: 'inline-block',
+                                    whiteSpace: 'pre',
+                                    opacity: 1
+                                  }}
+                                >
+                                  {word + ' '}
+                                </span>
+                              </span>
+                            );
+                          })}
+                        </h2>
+                        <Capabilities capabilities={offersData.capabilities} styles={styles as { 'about-capabilities__grid': string; 'about-column': string; 'about-column__heading': string; 'about-column__list': string }} />
+                      </div>
+                    </AppearOnScroll>
+                  )}
                   <footer className={ExpertiseStyles['expertise-cta']}>
                     <h2 className={ExpertiseStyles['expertise-cta__content']}>
                       <span>Got questions? We’re here to help</span>

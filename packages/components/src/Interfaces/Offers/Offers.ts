@@ -1,5 +1,6 @@
 import { ExpertiseContent } from '../Expertise/Expertise';
 import { CapabilitiesContent } from '../About/About';
+import { WhyDev8XContent } from '../Home/Home';
 
 export interface OffersFAQS {
   title: string;
@@ -23,4 +24,5 @@ export interface OffersContent extends ExpertiseContent {
   secondaryPlansItems?: string[];
   capabilities?: CapabilitiesContent;
   capabilitiesHeading?: string;
+  whyDev8XContent?: WhyDev8XContent;
 }
