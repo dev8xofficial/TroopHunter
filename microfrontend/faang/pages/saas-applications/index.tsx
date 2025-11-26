@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom, useAtomValue } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, HeroCore, WhyDev8X } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, HeroCore } from '@repo/components';
 import Capabilities from '@repo/components/src/surfaces/Capabilities/Capabilities';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
@@ -150,7 +150,6 @@ const OffersPage: React.FC = (): JSX.Element => {
 
                   {offersData.capabilities && offersData.capabilities.length > 0 && <Capabilities capabilitiesHeading={offersData.capabilitiesHeading} capabilities={offersData.capabilities} />}
 
-                  <WhyDev8X {...offersData.whyDev8XContent} />
                   <footer className={ExpertiseStyles['expertise-cta']}>
                     <h2 className={ExpertiseStyles['expertise-cta__content']}>
                       <span>Got questions? We’re here to help</span>

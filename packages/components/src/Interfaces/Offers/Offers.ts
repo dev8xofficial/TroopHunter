@@ -17,6 +17,16 @@ export interface OffersSliderItem {
   package?: string;
 }
 
+export interface WhyWeAreDifferentQA {
+  title: string;
+  paragraph: string;
+}
+
+export interface WhyWeAreDifferentContent {
+  heading: string;
+  qa: WhyWeAreDifferentQA[];
+}
+
 export interface OffersContent extends ExpertiseContent {
   faqs?: OffersFAQS[];
   offersSlider?: OffersSliderItem[];
@@ -24,5 +34,5 @@ export interface OffersContent extends ExpertiseContent {
   secondaryPlansItems?: string[];
   capabilities?: CapabilitiesContent;
   capabilitiesHeading?: string;
-  whyDev8XContent?: WhyDev8XContent;
+  whyWeAreDifferentContent?: WhyWeAreDifferentContent;
 }

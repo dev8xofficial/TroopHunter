@@ -3,306 +3,15 @@ import { prefixed } from '../../utils/helpers';
 
 const OFFERS: OffersContent[] = [
   {
-    slug: 'tech-founders',
-    variant: 'blue',
-    tagText: 'For Tech Founders',
-    heading: 'LANUCH YOUR MVP \n WITHIN 3 MONTHS',
-    paragraph: 'Get vetted React, Next.js, and full-stack developers — or plug-in mini-squads — guided by senior tech leads.<br /><br />  Kick off in <b>7 days</b> with <span><b>U.S. timezone overlap</b></span>, <span><b>transparent reporting</b></span>, and <span><b>true startup velocity</b></span>.',
-    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
-    iconCards: {
-      title: 'Start Small. Scale Fast.',
-      paragraph: 'Begin with one developer, scale to a squad — no new contracts, no hassle. Every engagement is managed for quality, speed, and control.',
-      items: [
-        {
-          title: 'Vetted Talent',
-          description: 'If it’s not the right fit, we’ll assign a vetted replacement developer within 5 business days — no downtime, no disruption.',
-          icon: { name: 'CreditCardIcon', width: 26 }
-        },
-        // {
-        //   title: 'Full Code Ownership',
-        //   description: 'You retain 100% ownership of code, repos, and docs — we accelerate your build and uphold enterprise-grade standards.',
-        //   icon: { name: 'BackendIcon', width: 26 }
-        // },
-        // {
-        //   title: 'Technical Supervision',
-        //   description: 'Every developer is backed by a senior tech lead who ensures code quality, scalable architecture, and consistent best practices.',
-        //   icon: { name: 'AIBrainIcon', width: 26 }
-        // },
-        // {
-        //   title: 'Transparent Reporting',
-        //   description: 'Stay in control with weekly sprint summaries, live Git access, and real-time task tracking in Jira or ClickUp.',
-        //   icon: { name: 'SeismometerIcon', width: 22 }
-        // },
-        // {
-        //   title: 'Quick Onboarding',
-        //   description: 'Be operational within 7 days. We handle tool setup, environment prep and assets so you focus on delivering business outcomes.',
-        //   icon: { name: 'VoltageIcon', width: 18 }
-        // },
-        {
-          title: 'US Time-zone Overlap',
-          description: 'Collaborate effortlessly with guaranteed 4-hour overlap with U.S. Eastern Time — ideal for daily stand-ups and sprint reviews.',
-          icon: { name: 'PlanetRingIcon', width: 26 }
-        },
-        {
-          title: 'Flexible Payments',
-          description: 'Pay bi-weekly for agility or pre-pay 3 months to unlock instant savings — align spend with your growth rhythm.',
-          icon: { name: 'CreditCardIcon', width: 26 }
-        },
-        {
-          title: 'Scalable Engagement',
-          description: 'Begin with one developer and expand to a full squad anytime — no change in vendor or workflow needed.',
-          icon: { name: 'ScaleIcon', width: 26 }
-        }
-      ]
-    },
-    contentAsideImageItems: [
-      {
-        title: 'Transparent Reporting',
-        paragraph: 'Stay in control with weekly sprint summaries, live Git access, and real-time task tracking in Jira or ClickUp — giving you full visibility into progress and priorities. No surprises, no hidden work — everything is documented, traceable, and transparently reported.',
-        icon: { name: 'PointerIcon', width: 64 },
-        image: prefixed('/api/images/work/scheduler/mobile/2.png')
-      },
-      {
-        title: 'US Time-zone Overlap',
-        paragraph: 'Collaborate effortlessly with guaranteed 4-hour overlap with U.S. Eastern Time — ideal for daily stand-ups and sprint reviews. This ensures faster decisions, fewer blockers, and smooth communication without delays, making remote collaboration feel truly in-house.',
-        icon: { name: 'PointerIcon', width: 64 },
-        image: prefixed('/api/images/work/troophunter/mobile/1.png')
-      },
-      {
-        title: 'Flexible Payments',
-        paragraph: 'Pay bi-weekly for agility or pre-pay 3 months to unlock instant savings — align spend with your growth rhythm. Choose the billing model that works for your cash-flow planning, without long-term lock-ins or surprise fees.',
-        icon: { name: 'PointerIcon', width: 64 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
-      },
-      {
-        title: 'Scalable Engagement',
-        paragraph: 'Begin with one developer and expand to a full squad anytime — no change in vendor or workflow needed. Scale at your own pace based on roadmap, traction, and funding milestones, without any operational disruption.',
-        icon: { name: 'PointerIcon', width: 64 },
-        image: prefixed('/api/images/work/goldendao/desktop/14.png')
-      },
-      {
-        title: 'Transparent Reporting',
-        paragraph: 'Stay in control with weekly sprint summaries, live Git access, and real-time task tracking in Jira or ClickUp. You’ll always know progress, blockers, and next steps at a glance.',
-        icon: { name: 'PointerIcon', width: 64 },
-        image: prefixed('/api/images/work/honeydu/desktop/2.png')
-      }
-    ],
-    whyDev8XContent: {
-      heading: 'Why Dev8X',
-      para1: 'We believe that meaningful design starts with empathy. Every product we create is centered around improving real lives—helping people achieve more with less friction.',
-      para2: 'By combining strategy, creativity, and technology, we unlock opportunities, transform businesses, and make experiences that truly matter. As an independent team, our agility and passion shape every project into something exceptional.',
-      image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)',
-      stats: [
-        { title: '100%', span: ['In-house ', '& ', 'independent'] },
-        { title: '6+', span: ['Years ', 'crafting ', 'digital ', 'experiences'] },
-        { title: '20+', span: ['Digital ', 'solutions ', 'launched ', 'worldwide'] }
-      ]
-    },
-    footerMainContent: {
-      link: '/contact',
-      start: 'Ready to ',
-      end: 'get started?'
-    },
-    meta: {
-      title: 'Tech Founders Services | Empower Your Startup Vision — Dev8X | Dev8X: World-class digital products',
-      description: 'Tech Founders Services | Empower Your Startup Vision — Dev8X | Dev8X: World-class digital products'
-    },
-    footerData: {
-      global: {
-        heading: 'We work globally',
-        email: 'contact@dev8x.com',
-        buttonText: 'Submit a brief'
-      },
-      offices: [
-        {
-          country: 'USA',
-          city: 'Orlando, Florida',
-          phone: '+1 (321) 300-2393'
-        },
-        {
-          country: 'Pakistan',
-          city: 'Lahore, Punjab',
-          phone: '+92 (329) 294-7777'
-        }
-      ],
-      careers: {
-        heading: 'We’re Growing – Join Our Team',
-        description: 'Let’s build the future, together.',
-        link: '/careers',
-        linkText: 'Explore Careers'
-      },
-      copyright: {
-        year: '2025',
-        text: 'Privacy Policy',
-        privacyLink: '/privacy'
-      }
-    },
-    footerSocialLinks: [
-      {
-        title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
-        title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
-      },
-      {
-        title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
-      // {
-      //   title: 'Youtube',
-      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
-      // }
-    ],
-    testimonials: [
-      {
-        name: 'Sepand Hokmabadi',
-        company: 'Total Health Dental Care',
-        bgColor: '#ffffff',
-        color: '#111111',
-        transformOrigin: 'center top',
-        image: prefixed('/api/images/work/scheduler/mobile/7.png'),
-        comment: 'They simplified the entire process and made tech feel less overwhelming. Really happy with the results.'
-      },
-      {
-        name: 'Devin Picciolini',
-        company: 'Coral',
-        bgColor: '#4C21E2',
-        color: '#F0EBFF',
-        transformOrigin: 'center top',
-        image: prefixed('/api/images/work/honeydu/desktop/24.png'),
-        comment: 'We had a vague idea — they turned it into a working solution without any stress. Great experience!'
-      }
-    ],
-    faqs: [
-      { title: '1. How fast can we kick off?', description: 'Most clients start within 5–7 days. We shortlist vetted engineers, align on goals, and integrate directly into your workflow — no hiring lag.' },
-      { title: '2. Are your developers fully dedicated?', description: 'Yes. Every engineer works full-time (160 hrs/month) on your product — no multitasking or shared bandwidth.' },
-      { title: '3. How do we communicate and manage work?', description: 'You’ll collaborate in Slack or Teams, track tasks in ClickUp or Jira, and review code in GitHub — full visibility, async-friendly.' },
-      { title: '4. Can I manage the developer directly?', description: 'Absolutely. You get direct control, or choose optional tech lead supervision for managed oversight and quality assurance.' },
-      { title: '5. What if I need to scale or pivot quickly?', description: 'You can add more developers or upgrade to a Mini Squad within 72 hours — same vetting, same standards, zero onboarding friction.' },
-      { title: '6. How do you ensure code quality and reliability?', description: 'Every developer works under senior supervision, with daily code reviews, automated CI/CD pipelines, and strict documentation practices.' },
-      { title: '7. Where are your developers based?', description: 'All engineers are based in Pakistan, working U.S.-aligned hours with fluent written English and clear communication standards.' },
-      { title: '8. What’s your pricing and payment model?', description: 'Flexible monthly contracts — no lock-ins. Pay via Stripe, Wise, or bank transfer. Choose bi-weekly billing or quarterly prepay discounts.' },
-      { title: '9. Do you handle NDAs and IP ownership?', description: 'Yes. Every engagement includes NDA, IP transfer, and confidentiality clauses — your code and IP remain fully yours.' },
-      { title: '10. How do you compare to freelance platforms or agencies?', description: 'We’re not a marketplace. All engineers are pre-vetted employees, trained for consistency, velocity, and startup-grade execution.' }
-    ],
-    offersSlider: [
-      {
-        id: '1',
-        heading: 'Junior Developer',
-        price: '$600',
-        description: 'Rapid MVP builds & early launches',
-        features: ['1–2 yrs experience', 'Daily async updates', 'Senior code review', 'Fast stack fit'],
-        categories: ['React', 'NextJS', 'Tailwind', 'Frontend', 'Rapid Delivery', 'Startup Friendly', 'Daily Updates', 'Outcome Driven'],
-        buttonText: 'Hire Junior',
-        package: 'Developers'
-      },
-      {
-        id: '2',
-        heading: 'Mid-Level Developer',
-        price: '$900',
-        description: 'Reliable v1.0 builds & scaling features',
-        features: ['3–5 yrs experience', 'API + CI/CD', 'Weekly sprint sync', 'Code ownership mindset'],
-        categories: ['React', 'NextJS', 'NodeJS', 'Full Stack', 'API Integration', 'Clean Code', 'Unit Tests', 'Agile', 'Reliable Delivery', 'Remote First Team'],
-        buttonText: 'Hire Mid',
-        package: 'Developers'
-      },
-      {
-        id: '3',
-        heading: 'Senior Developer',
-        price: '$1,500',
-        description: 'System design & tech leadership',
-        features: ['5–8 yrs experience', 'Lead architecture', 'Optimize delivery', 'Mentor developers'],
-        categories: ['Tech Lead', 'Architecture', 'System Design', 'Performance', 'Mentorship', 'Cloud Ready', 'Scalable Apps', 'Team Leadership'],
-        buttonText: 'Hire Senior',
-        package: 'Developers'
-      },
-      {
-        id: '4',
-        heading: 'MVP Squad',
-        price: '$4,500',
-        description: '2 Devs + QA + PM',
-        features: ['4-hr US overlap', 'Agile sprint cycles', 'QA-led testing', 'Fixed-scope launch'],
-        categories: ['MVP Launch', 'Startup Sprint', 'Agile PM', 'QA Included', 'US Overlap', 'Build Fast', 'Validated MVPs'],
-        buttonText: 'Book a Squad Discovery Call',
-        package: 'Mini Squads'
-      },
-      {
-        id: '5',
-        heading: 'Growth Squad',
-        price: '$5,500',
-        description: '2 Devs + Designer + QA + PM',
-        features: ['CI/CD setup', 'Weekly design sync', 'UX-led upgrades', 'PM-owned delivery'],
-        categories: ['Growth Engineering', 'UX Design', 'CI/CD', 'Feature Scaling', 'PM Ownership', 'Figma To Code', 'Outcome Driven'],
-        buttonText: 'Start Growth Squad',
-        package: 'Mini Squads'
-      },
-      {
-        id: '6',
-        heading: 'Pro Squad',
-        price: '$7,000',
-        description: '3 Devs + QA + PM + Senior Lead',
-        features: ['DevOps support', 'Weekly tech roadmap', 'Senior-led reviews', 'End-to-end delivery'],
-        categories: ['DevOps', 'High Velocity', 'Scalable Architecture', 'Senior Leader', 'Expert Team', 'End-To-End Ownership', 'Cloud Ready'],
-        buttonText: 'Start Pro Squad',
-        package: 'Mini Squads'
-      }
-    ],
-    primaryPlansItems: ['Tech lead supervision', 'Transparent time tracking', '4-hour U.S. overlap', 'Cancel anytime'],
-    secondaryPlansItems: ['Dedicated Slack Channel for Communication', 'Weekly Progress & Team Sync Meetings', 'Complete Project Transparency via ClickUp or Jira', 'Flexible Month-to-Month Commitment'],
-    capabilitiesHeading: "Our capabilities are centred around our ability to deliver world-class websites and apps. We're 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.",
-    capabilities: [
-      {
-        heading: 'Strategy & UX',
-        items: ['Digital Strategy', 'User Research', 'User Journey Mapping', 'Information Architecture', 'Wireframing']
-      },
-      {
-        heading: 'Design',
-        items: ['Interaction Design', 'User Interface Design', 'Design Systems', 'Prototyping & Animation', 'Accessibility']
-      },
-      {
-        heading: 'Development',
-        items: ['Websites', 'eCommerce', 'Web Applications', 'Mobile Apps (iOS & Android)', 'Platform Integrations']
-      },
-      {
-        heading: 'Technology',
-        items: ['React.js', 'Next.js', 'Node.js', 'Express.js / Nest.js', 'Supabase']
-      },
-      {
-        heading: 'Backend & Databases',
-        items: ['Backend', 'Real-Time Apps', 'SaaS', 'PostgreSQL', 'ORM (Sequelize, Prisma)']
-      },
-      {
-        heading: 'DevOps & Cloud',
-        items: ['Docker', 'Virtualization', 'Ansible & Web Servers', 'AWS, Vercel, DigitalOcean', 'CI/CD']
-      },
-      {
-        heading: 'Optimisation',
-        items: ['Website / App Review', 'Performance Optimisation', 'Conversion Optimisation', 'A/B Testing', 'Ongoing Enhancements']
-      },
-      {
-        heading: 'Support',
-        items: ['Project Management', 'Website Hosting', 'Website Maintenance', 'Performance & Security', '3rd Party Integrations']
-      }
-    ],
-    video: prefixed(`/videos/header/header.mp4`)
-  },
-  {
     slug: 'real-estate',
     variant: 'green',
     tagText: 'For Tech Founders',
     heading: 'Scale Up Faster With team Augmentation Services',
     paragraph: 'Work with a long-term tech partner that will help you build an MVP to gain traction from early adopters and raise money from investors.',
-    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
+    image: prefixed('/api/images/services/services-for-growth-stage-startups/1.png'),
     iconCards: {
       title: 'Meet Your Future A-Players',
-      paragraph: `We'll carefully select each team member based on the requirements and skills you need. Discover our talents and the role they can play in your team.
-
-`,
+      paragraph: `We'll carefully select each team member based on the requirements and skills you need. Discover our talents and the role they can play in your team.`,
       items: [
         {
           title: 'Senior developer',
@@ -328,7 +37,7 @@ const OFFERS: OffersContent[] = [
           title: 'Product manager',
           description: 'Guides and shapes the development of the product in the direction you define. Keeps teams on track, ensuring that the development runs on schedule.',
           icon: { name: 'SeismometerIcon', width: 22 }
-        },
+        }
       ]
     },
     contentAsideImageItems: [
@@ -351,6 +60,15 @@ const OFFERS: OffersContent[] = [
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
+    whyWeAreDifferentContent: {
+      heading: `Why We Are Different`,
+      qa: [
+        { title: 'Long-Term Partner That Shares Your Vision', paragraph: 'We love diving deep into the project’s specifics, generating ideas, and testing hypotheses. With Upsilon, your startup will get a reliable team who lives and breathes your product 24/7.' },
+        { title: 'Senior Developers, Not Amateurs', paragraph: 'Keeping abreast of modern technologies and following the best development practices and standards, we build products that truly change the game.' },
+        { title: 'Quick Starters, Agile Riders', paragraph: 'We understand your time is limited and have teams ready for deployment within 1-2 weeks. Adhering to agile practices, we help clients deliver value to their customers faster and with fewer headaches.' },
+        { title: 'Uncompromising Achievers', paragraph: 'With Upsilon, you can be 100% sure that your project will never be left halfway down the road. We always work at full capacity striving to help your product achieve all goals you have set.' }
+      ]
+    },
     footerMainContent: {
       link: '/contact',
       start: 'Ready to ',
@@ -616,7 +334,7 @@ Does all of this describe your current needs on the project? We are ready to hel
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
-    capabilitiesHeading: "50+ Full-Stack and Niche Experts on Standby",
+    capabilitiesHeading: '50+ Full-Stack and Niche Experts on Standby',
     capabilities: [
       {
         heading: 'Product management',
@@ -663,14 +381,10 @@ Does all of this describe your current needs on the project? We are ready to hel
           { name: 'Keras', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891633738df2523a8ba_keras.webp' },
           { name: 'PyTorch', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891d4d17683bbc11982_py-torch.webp' }
         ]
-      },
+      }
     ],
     video: prefixed(`/videos/header/header.mp4`)
-  },
-
-
-
- 
+  }
 ];
 
 export default OFFERS;

@@ -27,12 +27,12 @@ export * from './src/Surfaces/CareerStudySidebar/CareerStudySidebar';
 export * from './src/Surfaces/PricingContents/PricingContents';
 export * from './src/Surfaces/PricingStudySidebar/PricingStudySidebar';
 export * from './src/Surfaces/PricingCategories/PricingCategories';
-export * from './src/Surfaces/WhyDev8X/WhyDev8X';
+export * from './src/Surfaces/WhyDev8x/WhyDev8X';
 export * from './src/Surfaces/Footer/Footer';
 export * from './src/Surfaces/Hero/Hero';
 export * from './src/Surfaces/Capabilities/Capabilities';
 export * from './src/Surfaces/HeroCore/HeroCore';
-
+export * from './src/Surfaces/WhyWeAreDifferent/WhyWeAreDifferent';
 export * from './src/Icons/AIBrain';
 export * from './src/Icons/Analysis';
 export * from './src/Icons/Ansible';

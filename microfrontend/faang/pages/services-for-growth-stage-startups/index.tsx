@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothModalAtom';
 import { useSetAtom, useAtomValue } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, HeroCore } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, WhyWeAreDifferent } from '@repo/components';
 import Capabilities from '@repo/components/src/surfaces/Capabilities/Capabilities';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
@@ -23,7 +23,7 @@ const OffersPage: React.FC = (): JSX.Element => {
   const currentModal = useAtomValue(openSmoothModalAtom);
 
   // Get the first offers data item since PageData is an array
-  const offersData = OFFERS[1];
+  const offersData = OFFERS[0];
   const variant = offersData.variant;
 
   const router = useRouter();
@@ -99,7 +99,7 @@ const OffersPage: React.FC = (): JSX.Element => {
         <Header />
         <FooterRevealPageWrap variant="page">
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
-            <HeroCore variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} />
+            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />
           </div>
           {isOffersPage && !showHowToHireVideo && (
             <div style={{ display: 'grid' }}>
@@ -148,6 +148,8 @@ const OffersPage: React.FC = (): JSX.Element => {
                   </CardStack>
 
                   {offersData.capabilities && offersData.capabilities.length > 0 && <Capabilities capabilitiesHeading={offersData.capabilitiesHeading} capabilities={offersData.capabilities} />}
+
+                  <WhyWeAreDifferent heading={offersData.whyWeAreDifferentContent.heading} qa={offersData.whyWeAreDifferentContent.qa} />
 
                   <footer className={ExpertiseStyles['expertise-cta']}>
                     <h2 className={ExpertiseStyles['expertise-cta__content']}>

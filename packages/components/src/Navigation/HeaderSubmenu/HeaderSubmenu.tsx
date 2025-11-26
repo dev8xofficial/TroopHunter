@@ -27,6 +27,8 @@ import InfinityIcon from '../../Icons/Infinity';
 import WebServersIcon from '../../Icons/WebServers';
 import SeismometerIcon from '../../Icons/Seismometer';
 import RightArrowIcon from '../../Icons/RightArrow';
+import TypeScript from '../../Icons/TypeScript';
+import GraphQL from '../../Icons/GraphQL';
 import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenuContent } from '../../Interfaces/Navigation/Navigation';
 
@@ -63,7 +65,9 @@ const ICON_MAP: Record<string, React.ComponentType<{ width?: string | number; cl
   InfinityIcon,
   WebServersIcon,
   SeismometerIcon,
-  RightArrowIcon
+  RightArrowIcon,
+  TypeScript,
+  GraphQL
 };
 
 export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height, onLinkClick, submenus }) => {

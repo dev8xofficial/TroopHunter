@@ -61,6 +61,15 @@ const OFFERS: OffersContent[] = [
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
+    whyWeAreDifferentContent: {
+      heading: `Why We Are Different`,
+      qa: [
+        { title: 'Long-Term Partner That Shares Your Vision', paragraph: 'We love diving deep into the project’s specifics, generating ideas, and testing hypotheses. With Upsilon, your startup will get a reliable team who lives and breathes your product 24/7.' },
+        { title: 'Senior Developers, Not Amateurs', paragraph: 'Keeping abreast of modern technologies and following the best development practices and standards, we build products that truly change the game.' },
+        { title: 'Quick Starters, Agile Riders', paragraph: 'We understand your time is limited and have teams ready for deployment within 1-2 weeks. Adhering to agile practices, we help clients deliver value to their customers faster and with fewer headaches.' },
+        { title: 'Uncompromising Achievers', paragraph: 'With Upsilon, you can be 100% sure that your project will never be left halfway down the road. We always work at full capacity striving to help your product achieve all goals you have set.' }
+      ]
+    },
     footerMainContent: {
       link: '/contact',
       start: 'Ready to ',
@@ -69,17 +78,6 @@ const OFFERS: OffersContent[] = [
     meta: {
       title: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products',
       description: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products'
-    },
-    whyDev8XContent: {
-      heading: 'Why Dev8X',
-      para1: 'We believe that meaningful design starts with empathy. Every product we create is centered around improving real lives—helping people achieve more with less friction.',
-      para2: 'By combining strategy, creativity, and technology, we unlock opportunities, transform businesses, and make experiences that truly matter. As an independent team, our agility and passion shape every project into something exceptional.',
-      image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)',
-      stats: [
-        { title: '100%', span: ['In-house ', '& ', 'independent'] },
-        { title: '6+', span: ['Years ', 'crafting ', 'digital ', 'experiences'] },
-        { title: '20+', span: ['Digital ', 'solutions ', 'launched ', 'worldwide'] }
-      ]
     },
     footerData: {
       global: {

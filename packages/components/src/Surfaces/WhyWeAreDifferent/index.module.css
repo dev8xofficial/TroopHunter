@@ -1,0 +1,13 @@
+.homepage-bottom__heading {
+  max-width: 100%;
+}
+
+.content-aside-image__paragraph {
+  margin-bottom: calc(1.875rem * 0.8);
+}
+
+@media (min-width: 992px) {
+  .content-aside-image__paragraph {
+    margin-bottom: calc(clamp(2.5rem, 2.6455026455vw, 3.325rem) * 0.8);
+  }
+}
