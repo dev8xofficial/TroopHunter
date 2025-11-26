@@ -1,14 +1,25 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
 
-const OFFERS: OffersContent[] = [
+const SAAS: OffersContent[] = [
   {
-    slug: 'real-estate',
+    slug: '',
     variant: 'green',
-    tagText: 'For Tech Founders',
+    tagText: '',
     heading: 'SaaS Application Development Services',
     paragraph: 'Leveraging the advantage of the Software-as-a-service (SaaS) model, Upsilon will help you build a secret weapon - a cloud-based solution with central hosting that will definitely boost your company’s bottom line. Whether you need to develop certain SaaS components like APIs or implement integrations like Stripe, our developers are at your service',
-    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
+    heroButtons: [
+      {
+        label: 'See Pricing',
+        href: prefixed('/pricing/tech-founders'),
+        target: '_blank'
+      },
+      {
+        label: 'Schedule a Call',
+        modalType: 'schedulecall'
+      }
+    ],
+    image: prefixed('/api/images/services/saas-applications/1.png'),
     iconCards: {
       title: 'SaaS Products in Business Portfolio',
       paragraph: 'We know firsthand how to design, build, implement and deploy fail-safe SaaS as we have successfully launched and continue maintaining and enhancing our own products. We have a deep comprehension of the specifics of the SaaS and, as the product owners, we always look beyond ‘blind coding’ when working on clients’ projects.',
@@ -302,14 +313,14 @@ const OFFERS: OffersContent[] = [
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
-    capabilitiesHeading: "Integrations Our Clients Benefit From:",
+    capabilitiesHeading: 'Integrations Our Clients Benefit From:',
     capabilities: [
       {
         items: [
           { name: 'Stripe', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048cf5c38d73f0140038_stripe.webp' },
           { name: 'PayPal', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048d346ec742399635de_paypal.webp' },
           { name: 'Google Analytics', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048c2e5f78530668f95b_google-analytics.webp' },
-          { name: 'Skylight', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d0f8c9a16189ebdbb26b0_skylight.webp' },
+          { name: 'Skylight', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d0f8c9a16189ebdbb26b0_skylight.webp' }
         ]
       },
       {
@@ -325,11 +336,10 @@ const OFFERS: OffersContent[] = [
           { name: 'UptimeRobot', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048db9a23c8cd5d9e390_uptime-robot.webp' },
           { name: 'Sentry', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048c81318f470045d0b8_sentry.webp' }
         ]
-      },
-
+      }
     ],
     video: prefixed(`/videos/header/header.mp4`)
   }
 ];
 
-export default OFFERS;
+export default SAAS;

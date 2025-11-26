@@ -1,14 +1,25 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
 
-const OFFERS: OffersContent[] = [
+const MVP: OffersContent[] = [
   {
-    slug: 'real-estate',
-    variant: 'green',
+    slug: '',
+    variant: 'cyan',
     tagText: 'For Tech Founders',
     heading: 'LANUCH YOUR MVP WITHIN 3 MONTHS',
     paragraph: 'Work with a long-term tech partner that will help you build an MVP to gain traction from early adopters and raise money from investors.',
-    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
+    heroButtons: [
+      {
+        label: 'See Pricing',
+        href: prefixed('/pricing/tech-founders'),
+        target: '_blank'
+      },
+      {
+        label: 'Schedule a Call',
+        modalType: 'schedulecall'
+      }
+    ],
+    image: prefixed('/api/images/services/services-for-growth-stage-startups/1.png'),
     iconCards: {
       title: 'Together from an Idea to the First Funding and Beyond',
       paragraph: 'Only by releasing an MVP to market, and testing it on real customers, you can find out if you’ve chosen the right problem to solve.',
@@ -319,4 +330,4 @@ Need to build an MVP? We will be happy to assist.`
   }
 ];
 
-export default OFFERS;
+export default MVP;

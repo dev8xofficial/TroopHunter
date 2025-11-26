@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { toggleSmoothModalAtom, openSmoothModalAtom } from '../../store/smoothModalAtom';
+import { toggleSmoothModalAtom, openSmoothModalAtom } from '@repo/components';
 import { useSetAtom, useAtomValue } from 'jotai';
 import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, HeroCore } from '@repo/components';
 import Capabilities from '@repo/components/src/surfaces/Capabilities/Capabilities';
@@ -13,7 +13,8 @@ import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import EXPERTISES from '../../data/expertise/index.d';
 import { prefixed } from '../../utils/helpers';
 
-import OFFERS from '../../data/web-applications/index.d';
+import SubmenuData from '../../data/navigation/index.d';
+import WEBSITE from '../../data/web-applications/index.d';
 
 import HomePageStyles from '../index.module.css';
 import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
@@ -21,13 +22,13 @@ import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import TextAnimateStyles from '../../components/Surfaces/TextAnimateUp/index.module.css';
 import ExpertiseStyles from '../expertise/index.module.css';
 
-const OffersPage: React.FC = (): JSX.Element => {
+const Website: React.FC = (): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const currentModal = useAtomValue(openSmoothModalAtom);
 
   // Get the first offers data item since PageData is an array
-  const offersData = OFFERS[0];
-  const variant = offersData.variant;
+  const PageData = WEBSITE[0];
+  const variant = PageData.variant;
 
   const router = useRouter();
   const isOffersPage = router.pathname.includes('/offers');
@@ -46,23 +47,23 @@ const OffersPage: React.FC = (): JSX.Element => {
   const nextExpertise = getNextExpertise('web-applications');
 
   const availableCategories = useMemo<string[]>(() => {
-    if (!offersData.offersSlider) return [];
+    if (!PageData.offersSlider) return [];
     const uniquePackages = new Set<string>();
-    offersData.offersSlider.forEach((offer) => {
+    PageData.offersSlider.forEach((offer) => {
       if (offer.package && typeof offer.package === 'string') {
         uniquePackages.add(offer.package);
       }
     });
     return Array.from(uniquePackages).sort();
-  }, [offersData.offersSlider]);
+  }, [PageData.offersSlider]);
 
   const filteredOffers = useMemo<OffersSliderItem[]>(() => {
-    if (!offersData.offersSlider) return [];
+    if (!PageData.offersSlider) return [];
     if (activeCategory.toLowerCase() !== 'all') {
-      return offersData.offersSlider.filter((o) => o.package === activeCategory);
+      return PageData.offersSlider.filter((o) => o.package === activeCategory);
     }
-    return offersData.offersSlider;
-  }, [activeCategory, offersData.offersSlider]);
+    return PageData.offersSlider;
+  }, [activeCategory, PageData.offersSlider]);
 
   const handleCategorySelect = (category: string) => {
     if (category === 'How to Hire') {
@@ -77,13 +78,13 @@ const OffersPage: React.FC = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>{offersData.meta.title}</title>
-        <meta name="description" content={offersData.meta.description}></meta>
+        <title>{PageData.meta.title}</title>
+        <meta name="description" content={PageData.meta.description}></meta>
         <link rel="canonical" href={prefixed('/offers')} />
 
         {/* Open Graph Tags */}
-        <meta property="og:title" content={offersData.meta.title}></meta>
-        <meta property="og:description" content={offersData.meta.description}></meta>
+        <meta property="og:title" content={PageData.meta.title}></meta>
+        <meta property="og:description" content={PageData.meta.description}></meta>
         <meta property="og:url" content={prefixed('/offers')}></meta>
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
@@ -93,22 +94,33 @@ const OffersPage: React.FC = (): JSX.Element => {
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image"></meta>
-        <meta name="twitter:title" content={offersData.meta.title}></meta>
-        <meta name="twitter:description" content={offersData.meta.description}></meta>
+        <meta name="twitter:title" content={PageData.meta.title}></meta>
+        <meta name="twitter:description" content={PageData.meta.description}></meta>
         <meta name="twitter:image" content={prefixed('/logo-social.png')}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
-        <Header />
+        <style jsx global>{`
+          :root {
+            --theme-primary: var(--${variant}-primary);
+            --theme-primary-text: var(--${variant}-primary-text);
+            --theme-secondary: var(--${variant}-secondary);
+            --theme-text: var(--${variant}-text);
+            --theme-background: var(--${variant}-tertiary);
+            --theme-logo: var(--${variant}-secondary);
+            --theme-header-face: var(--${variant}-primary);
+          }
+        `}</style>
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
-          <HeroCore variant={variant} tagText={offersData.tagText} heading={offersData.heading} image={offersData.image} paragraph={offersData.paragraph} />
+            <HeroCore variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} paragraph={PageData.paragraph} heroButtons={PageData.heroButtons} />
           </div>
           {isOffersPage && !showHowToHireVideo && (
             <div style={{ display: 'grid' }}>
               <div className={`${HomePageStyles['homepage__feed-wrapper']} ${HomePageStyles['homepage__feed-wrapper-inner--overflow']}`}>
                 <div className={`${HomePageStyles['homepage__feed-wrapper-inner']}`}>
-                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', selectedOffer)} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, primaryPlansItems: offersData.primaryPlansItems })} />
+                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', selectedOffer)} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, primaryPlansItems: PageData.primaryPlansItems })} />
                 </div>
               </div>
             </div>
@@ -117,17 +129,26 @@ const OffersPage: React.FC = (): JSX.Element => {
           <main className={`${ExpertiseStyles['expertise-single']} container-full`}>
             <div>
               <ModularBlocks>
-                <IconCards title={offersData.iconCards?.title} paragraph={offersData.iconCards?.paragraph} items={offersData.iconCards?.items} />
-                <ContentAsideImage contentAsideImageItems={offersData.contentAsideImageItems} />
+                <IconCards title={PageData.iconCards?.title} paragraph={PageData.iconCards?.paragraph} items={PageData.iconCards?.items} />
+                <ContentAsideImage contentAsideImageItems={PageData.contentAsideImageItems} />
               </ModularBlocks>
 
               <div className={ExpertiseStyles['expertise-container']}>
-                <AwardsBlock />
-
+                {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities capabilitiesHeading={PageData.capabilitiesHeading} capabilities={PageData.capabilities} />}{' '}
+                <footer className={ExpertiseStyles['expertise-cta']}>
+                  <h2 className={ExpertiseStyles['expertise-cta__content']}>
+                    <span>Got questions? We’re here to help</span>
+                  </h2>
+                  <div>
+                    <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon width="14" className={ExpertiseStyles['button--icon']} />} spanClassName={ExpertiseStyles['contact-button']} onClick={() => toggleModal('contact')}>
+                      Schedule Call
+                    </Button>
+                  </div>
+                </footer>
                 <div className={ExpertiseStyles['expertise-container']}>
                   <h2 className="hidden">Testimonials:</h2>
                   <CardStack variant="Stack">
-                    {offersData?.testimonials?.map((item, index) => (
+                    {PageData?.testimonials?.map((item, index) => (
                       <CardStack variant="Card" index={index} key={index}>
                         <figure className={ExpertiseStyles['testimonial-card']} style={{ backgroundColor: item.bgColor, color: item.color }}>
                           <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${ExpertiseStyles['testimonial-card__image']}`}>
@@ -150,8 +171,6 @@ const OffersPage: React.FC = (): JSX.Element => {
                     ))}
                   </CardStack>
 
-                  {offersData.capabilities && offersData.capabilities.length > 0 && <Capabilities capabilitiesHeading={offersData.capabilitiesHeading} capabilities={offersData.capabilities} />}
-
                   <footer className={ExpertiseStyles['expertise-cta']}>
                     <h2 className={ExpertiseStyles['expertise-cta__content']}>
                       <span>Got questions? We’re here to help</span>
@@ -162,13 +181,13 @@ const OffersPage: React.FC = (): JSX.Element => {
                       </Button>
                     </div>
                   </footer>
-                  {/* <FAQs faqs={offersData.faqs} /> */}
+                  <FAQs faqs={PageData.faqs} />
                 </div>
               </div>
             </div>
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={offersData.footerMainContent} footerData={offersData.footerData} footerSocialLinks={offersData.footerSocialLinks} onClick={() => toggleModal('contact')} />
+        <Footer footerMainContent={PageData.footerMainContent} footerData={PageData.footerData} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
       <SmoothModalWrapper modalType="career" toggle={() => toggleModal('career')}>
         <SubmitApplicationModal />
@@ -189,4 +208,4 @@ const OffersPage: React.FC = (): JSX.Element => {
   );
 };
 
-export default OffersPage;
+export default Website;

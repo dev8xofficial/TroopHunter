@@ -1,14 +1,25 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
 
-const OFFERS: OffersContent[] = [
+const WEBSITE: OffersContent[] = [
   {
-    slug: 'real-estate',
-    variant: 'green',
-    tagText: 'For Tech Founders',
+    slug: '',
+    variant: 'pink',
+    tagText: '',
     heading: 'Custom web applications',
     paragraph: 'Upsilon is a web app development company that builds high-tech web-based solutions of any complexity - from two-sided marketplaces to AI/ML applications.Our experts leverage superior market know-how and the best-in-class technologies for web application design and development. Our solutions will raise your brand awareness, increase conversions, boost customer engagement and help your digital business get ahead of competition.',
-    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
+    heroButtons: [
+      {
+        label: 'See Pricing',
+        href: prefixed('/pricing/tech-founders'),
+        target: '_blank'
+      },
+      {
+        label: 'Schedule a Call',
+        modalType: 'schedulecall'
+      }
+    ],
+    image: prefixed('/api/images/services/web-applications/1.png'),
     iconCards: {
       title: 'Highlights of Our Custom Web Apps',
       paragraph: 'We create impactful, efficient, and easy-to-use corporate and customer-facing web apps.',
@@ -137,7 +148,7 @@ const OFFERS: OffersContent[] = [
         comment: 'Their team had an ease of communication, but the most impressive thing about them is each member`s integrity and work ethic.'
       }
     ],
-    capabilitiesHeading: "Technologies We Use for Web Application Development",
+    capabilitiesHeading: 'Technologies We Use for Web Application Development',
     capabilities: [
       {
         heading: 'Back-end',
@@ -148,7 +159,7 @@ const OFFERS: OffersContent[] = [
           { name: 'FastAPI', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35c954cf5c7584730437_fastapi.webp' }
         ]
       },
-       {
+      {
         heading: 'Front-end developers',
         items: [
           { name: 'React', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp' },
@@ -168,8 +179,20 @@ const OFFERS: OffersContent[] = [
           { name: 'Google Cloud Platform', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0d186164f4793f22_google-cloud-platform.webp' }
         ]
       }
+    ],
+    faqs: [
+      { title: '1. How fast can we kick off?', description: 'Most clients start within 5–7 days. We shortlist vetted engineers, align on goals, and integrate directly into your workflow — no hiring lag.' },
+      { title: '2. Are your developers fully dedicated?', description: 'Yes. Every engineer works full-time (160 hrs/month) on your product — no multitasking or shared bandwidth.' },
+      { title: '3. How do we communicate and manage work?', description: 'You’ll collaborate in Slack or Teams, track tasks in ClickUp or Jira, and review code in GitHub — full visibility, async-friendly.' },
+      { title: '4. Can I manage the developer directly?', description: 'Absolutely. You get direct control, or choose optional tech lead supervision for managed oversight and quality assurance.' },
+      { title: '5. What if I need to scale or pivot quickly?', description: 'You can add more developers or upgrade to a Mini Squad within 72 hours — same vetting, same standards, zero onboarding friction.' },
+      { title: '6. How do you ensure code quality and reliability?', description: 'Every developer works under senior supervision, with daily code reviews, automated CI/CD pipelines, and strict documentation practices.' },
+      { title: '7. Where are your developers based?', description: 'All engineers are based in Pakistan, working U.S.-aligned hours with fluent written English and clear communication standards.' },
+      { title: '8. What’s your pricing and payment model?', description: 'Flexible monthly contracts — no lock-ins. Pay via Stripe, Wise, or bank transfer. Choose bi-weekly billing or quarterly prepay discounts.' },
+      { title: '9. Do you handle NDAs and IP ownership?', description: 'Yes. Every engagement includes NDA, IP transfer, and confidentiality clauses — your code and IP remain fully yours.' },
+      { title: '10. How do you compare to freelance platforms or agencies?', description: 'We’re not a marketplace. All engineers are pre-vetted employees, trained for consistency, velocity, and startup-grade execution.' }
     ]
   }
 ];
 
-export default OFFERS;
+export default WEBSITE;

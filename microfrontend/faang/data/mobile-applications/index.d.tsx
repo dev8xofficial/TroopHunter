@@ -1,14 +1,25 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
 
-const OFFERS: OffersContent[] = [
+const MOBILE: OffersContent[] = [
   {
-    slug: 'real-estate',
-    variant: 'green',
-    tagText: 'For Tech Founders',
+    slug: '',
+    variant: 'purple',
+    tagText: '',
     heading: 'Custom Mobile Applications',
     paragraph: 'Upsilon is a reliable tech partner with proven experience in building responsive and innovative mobile apps. We will help you make a unique, highly-customized mobile solution that responds to the market challenges while meeting your business objectives and overall strategy.Leveraging our company`s core strength and strategic approach to mobile application development, we support you from a discovery phase to deployment, treating your app launch as our own.',
-    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
+    heroButtons: [
+      {
+        label: 'See Pricing',
+        href: prefixed('/pricing/tech-founders'),
+        target: '_blank'
+      },
+      {
+        label: 'Schedule a Call',
+        modalType: 'schedulecall'
+      }
+    ],
+    image: prefixed('/api/images/services/mobile-applications/1.png'),
     iconCards: {
       title: 'Highlights of Our Custom Mobile Apps',
       paragraph: 'We develop, customize, and implement all kinds of features to build the best possible application that best serves your brand and caters to your missions.',
@@ -293,7 +304,7 @@ Need to build an MVP? We will be happy to assist.`
     capabilitiesHeading: "Our capabilities are centred around our ability to deliver world-class mobile applications. We're 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.",
     capabilities: [
       {
-         heading: 'Back-end',
+        heading: 'Back-end',
         items: [
           { name: 'Python', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278915e54a8355b3e1d52_python.webp' },
           { name: 'Django', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35caaa74ba0bc7d25c29_django.webp' },
@@ -301,7 +312,7 @@ Need to build an MVP? We will be happy to assist.`
           { name: 'FastAPI', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35c954cf5c7584730437_fastapi.webp' }
         ]
       },
-       {
+      {
         heading: 'Front-end developers',
         items: [
           { name: 'React', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp' },
@@ -326,4 +337,4 @@ Need to build an MVP? We will be happy to assist.`
   }
 ];
 
-export default OFFERS;
+export default MOBILE;

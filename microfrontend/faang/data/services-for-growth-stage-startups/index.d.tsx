@@ -1,13 +1,24 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
 
-const OFFERS: OffersContent[] = [
+const AUGMENTATION: OffersContent[] = [
   {
-    slug: 'real-estate',
-    variant: 'green',
+    slug: '',
+    variant: 'yellow',
     tagText: 'For Tech Founders',
     heading: 'Scale Up Faster With team Augmentation Services',
     paragraph: 'Work with a long-term tech partner that will help you build an MVP to gain traction from early adopters and raise money from investors.',
+    heroButtons: [
+      {
+        label: 'See Pricing',
+        href: prefixed('/pricing/tech-founders'),
+        target: '_blank'
+      },
+      {
+        label: 'Schedule a Call',
+        modalType: 'schedulecall'
+      }
+    ],
     image: prefixed('/api/images/services/services-for-growth-stage-startups/1.png'),
     iconCards: {
       title: 'Meet Your Future A-Players',
@@ -387,4 +398,4 @@ Does all of this describe your current needs on the project? We are ready to hel
   }
 ];
 
-export default OFFERS;
+export default AUGMENTATION;

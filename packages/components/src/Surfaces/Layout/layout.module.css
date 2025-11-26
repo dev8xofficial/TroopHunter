@@ -10,6 +10,8 @@
 
 .work-header {
   margin: 5rem 0 2.5rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .work-header__heading {
@@ -22,6 +24,8 @@
 @media (min-width: 992px) {
   .work-header {
     margin-bottom: 5rem;
+    display: flex;
+    gap: 1rem;
   }
 
   .work-header__heading {
@@ -33,5 +37,7 @@
 @media (min-width: 1200px) {
   .work-header {
     /* margin-top: 5.5rem; */
+    display: flex;
+    gap: 1rem;
   }
 }

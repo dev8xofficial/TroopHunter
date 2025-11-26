@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import type { ModalType } from '../../../store/smoothModalAtom';
 import { PageLayoutContent } from '../PageLayout/PageLayout';
 
 export interface ExpertiseIconCardItem {
@@ -30,6 +31,13 @@ export interface ExpertiseTestimonial {
   comment: string;
 }
 
+export interface ExpertiseHeroButton {
+  label: string;
+  href?: string;
+  target?: '_self' | '_blank';
+  modalType?: ModalType;
+}
+
 export interface ExpertiseContent extends PageLayoutContent {
   slug: string;
   variant: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
@@ -41,4 +49,5 @@ export interface ExpertiseContent extends PageLayoutContent {
   contentAsideImageItems: ExpertiseContentAsideImageItem[];
   testimonials: ExpertiseTestimonial[];
   video?: string;
+  heroButtons?: ExpertiseHeroButton[];
 }
