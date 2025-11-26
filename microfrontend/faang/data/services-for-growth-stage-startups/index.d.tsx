@@ -1,14 +1,25 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
 
-const OFFERS: OffersContent[] = [
+const AUGMENTATION: OffersContent[] = [
   {
-    slug: 'tech-founders',
-    variant: 'blue',
+    slug: '',
+    variant: 'yellow',
     tagText: 'For Tech Founders',
     heading: 'LANUCH YOUR MVP \n WITHIN 3 MONTHS',
     paragraph: 'Get vetted React, Next.js, and full-stack developers — or plug-in mini-squads — guided by senior tech leads.<br /><br />  Kick off in <b>7 days</b> with <span><b>U.S. timezone overlap</b></span>, <span><b>transparent reporting</b></span>, and <span><b>true startup velocity</b></span>.',
-    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
+    heroButtons: [
+      {
+        label: 'See Pricing',
+        href: prefixed('/pricing/tech-founders'),
+        target: '_blank'
+      },
+      {
+        label: 'Schedule a Call',
+        modalType: 'schedulecall'
+      }
+    ],
+    image: prefixed('/api/images/services/services-for-growth-stage-startups/1.png'),
     iconCards: {
       title: 'Start Small. Scale Fast.',
       paragraph: 'Begin with one developer, scale to a squad — no new contracts, no hassle. Every engagement is managed for quality, speed, and control.',
@@ -328,7 +339,7 @@ const OFFERS: OffersContent[] = [
           title: 'Product manager',
           description: 'Guides and shapes the development of the product in the direction you define. Keeps teams on track, ensuring that the development runs on schedule.',
           icon: { name: 'SeismometerIcon', width: 22 }
-        },
+        }
       ]
     },
     contentAsideImageItems: [
@@ -616,7 +627,7 @@ Does all of this describe your current needs on the project? We are ready to hel
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
-    capabilitiesHeading: "50+ Full-Stack and Niche Experts on Standby",
+    capabilitiesHeading: '50+ Full-Stack and Niche Experts on Standby',
     capabilities: [
       {
         heading: 'Product management',
@@ -663,14 +674,10 @@ Does all of this describe your current needs on the project? We are ready to hel
           { name: 'Keras', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891633738df2523a8ba_keras.webp' },
           { name: 'PyTorch', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891d4d17683bbc11982_py-torch.webp' }
         ]
-      },
+      }
     ],
     video: prefixed(`/videos/header/header.mp4`)
-  },
-
-
-
- 
+  }
 ];
 
-export default OFFERS;
+export default AUGMENTATION;

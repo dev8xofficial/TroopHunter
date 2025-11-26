@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { toggleSmoothModalAtom, openSmoothModalAtom } from '@repo/components';
 import { useSetAtom, useAtomValue } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, OffersContent } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, OffersContent, getBrandFromBaseURL, shouldRenderOffersSurfaces } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import SubmenuData from '../../data/navigation/index.d';
@@ -34,7 +34,8 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JS
   const nextExpertise = getNextExpertise(slug);
 
   const router = useRouter();
-  const isOffersPage = router.pathname.includes('/offers');
+  const brand = getBrandFromBaseURL();
+  const shouldShowOffersSurface = shouldRenderOffersSurfaces(brand, router.pathname);
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [showHowToHireVideo, setShowHowToHireVideo] = useState<boolean>(false);
 
@@ -108,7 +109,7 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JS
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
             <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} paragraph={PageData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />
           </div>
-          {isOffersPage && !showHowToHireVideo && (
+          {shouldShowOffersSurface && !showHowToHireVideo && (
             <div style={{ display: 'grid' }}>
               <div className={`${HomePageStyles['homepage__feed-wrapper']} ${HomePageStyles['homepage__feed-wrapper-inner--overflow']}`}>
                 <div className={`${HomePageStyles['homepage__feed-wrapper-inner']}`}>

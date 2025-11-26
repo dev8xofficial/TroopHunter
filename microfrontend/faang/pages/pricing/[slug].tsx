@@ -5,44 +5,39 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { toggleSmoothModalAtom, openSmoothModalAtom } from '@repo/components';
 import { useSetAtom, useAtomValue } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, HeroCore, WhyDev8X } from '@repo/components';
-import Capabilities from '@repo/components/src/surfaces/Capabilities/Capabilities';
+import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, OffersContent, getBrandFromBaseURL, shouldRenderOffersSurfaces } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
-import EXPERTISES from '../../data/expertise/index.d';
-import { prefixed } from '../../utils/helpers';
-
 import SubmenuData from '../../data/navigation/index.d';
-import SAAS from '../../data/saas-applications/index.d';
+import OFFERS from '../../data/pricing/index.d';
+import { prefixed } from '../../utils/helpers';
 
 import HomePageStyles from '../index.module.css';
 import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
 import ExpertiseStyles from '../expertise/index.module.css';
 
-const SaaSApplication: React.FC = (): JSX.Element => {
+const PricingPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const currentModal = useAtomValue(openSmoothModalAtom);
 
   // Get the first offers data item since PageData is an array
-  const PageData = SAAS[0];
-  const variant = PageData.variant;
-
-  const router = useRouter();
-  const isOffersPage = router.pathname.includes('/offers');
-  const [activeCategory, setActiveCategory] = useState<string>('All');
-  const [showHowToHireVideo, setShowHowToHireVideo] = useState<boolean>(false);
-
   const getNextExpertise = (currentSlug: string) => {
-    const currentIndex = EXPERTISES.findIndex((e) => e.slug === currentSlug);
+    const currentIndex = OFFERS.findIndex((e) => e.slug === currentSlug);
 
     if (currentIndex === -1) return null; // if slug not found
 
-    const nextIndex = (currentIndex + 1) % EXPERTISES.length;
-    return EXPERTISES[nextIndex];
+    const nextIndex = (currentIndex + 1) % OFFERS.length;
+    return OFFERS[nextIndex];
   };
 
-  const nextExpertise = getNextExpertise('web-applications');
+  const nextExpertise = getNextExpertise(slug);
+
+  const router = useRouter();
+  const brand = getBrandFromBaseURL();
+  const shouldShowOffersSurface = shouldRenderOffersSurfaces(brand, router.pathname);
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [showHowToHireVideo, setShowHowToHireVideo] = useState<boolean>(false);
 
   const availableCategories = useMemo<string[]>(() => {
     if (!PageData.offersSlider) return [];
@@ -78,12 +73,12 @@ const SaaSApplication: React.FC = (): JSX.Element => {
       <Head>
         <title>{PageData.meta.title}</title>
         <meta name="description" content={PageData.meta.description}></meta>
-        <link rel="canonical" href={prefixed('/offers')} />
+        <link rel="canonical" href={prefixed(`/offers/${slug}`)} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title}></meta>
         <meta property="og:description" content={PageData.meta.description}></meta>
-        <meta property="og:url" content={prefixed('/offers')}></meta>
+        <meta property="og:url" content={prefixed(`/offers/${slug}`)}></meta>
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:image:secure_url" content={prefixed('/logo-social.png')}></meta>
@@ -112,13 +107,13 @@ const SaaSApplication: React.FC = (): JSX.Element => {
         <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
-            <HeroCore variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} paragraph={PageData.paragraph} heroButtons={PageData.heroButtons} />
+            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} paragraph={PageData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />
           </div>
-          {isOffersPage && !showHowToHireVideo && (
+          {shouldShowOffersSurface && !showHowToHireVideo && (
             <div style={{ display: 'grid' }}>
               <div className={`${HomePageStyles['homepage__feed-wrapper']} ${HomePageStyles['homepage__feed-wrapper-inner--overflow']}`}>
                 <div className={`${HomePageStyles['homepage__feed-wrapper-inner']}`}>
-                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', selectedOffer)} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, primaryPlansItems: PageData.primaryPlansItems })} />
+                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', { selectedOffer, plansItems: PageData?.primaryPlansItems })} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, plansItems: PageData?.secondaryPlansItems })} />
                 </div>
               </div>
             </div>
@@ -128,14 +123,14 @@ const SaaSApplication: React.FC = (): JSX.Element => {
             <div>
               <ModularBlocks>
                 <IconCards title={PageData.iconCards?.title} paragraph={PageData.iconCards?.paragraph} items={PageData.iconCards?.items} />
-                <ContentAsideImage contentAsideImageItems={PageData.contentAsideImageItems} />
+                {/* <ContentAsideImage contentAsideImageItems={PageData.contentAsideImageItems} /> */}
               </ModularBlocks>
 
               <div className={ExpertiseStyles['expertise-container']}>
                 <AwardsBlock />
 
                 <div className={ExpertiseStyles['expertise-container']}>
-                  <h2 className="hidden">Testimonials:</h2>
+                  {/* <h2 className="hidden">Testimonials:</h2>
                   <CardStack variant="Stack">
                     {PageData?.testimonials?.map((item, index) => (
                       <CardStack variant="Card" index={index} key={index}>
@@ -158,11 +153,8 @@ const SaaSApplication: React.FC = (): JSX.Element => {
                         </figure>
                       </CardStack>
                     ))}
-                  </CardStack>
+                  </CardStack> */}
 
-                  {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities capabilitiesHeading={PageData.capabilitiesHeading} capabilities={PageData.capabilities} />}
-
-                  <WhyDev8X {...PageData.whyDev8XContent} />
                   <footer className={ExpertiseStyles['expertise-cta']}>
                     <h2 className={ExpertiseStyles['expertise-cta__content']}>
                       <span>Got questions? We’re here to help</span>
@@ -188,10 +180,10 @@ const SaaSApplication: React.FC = (): JSX.Element => {
         <ContactFormModal />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="developers" toggle={() => toggleModal('developers')}>
-        <DevelopersModal selectedOffer={currentModal.data} variant={variant} plansItems={currentModal.data?.primaryPlansItems} />
+        <DevelopersModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={PageData?.primaryPlansItems} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="minisquads" toggle={() => toggleModal('minisquads')}>
-        <MiniSquadsModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={currentModal.data?.secondaryPlansItems} />
+        <MiniSquadsModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={PageData?.secondaryPlansItems} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="schedulecall" toggle={() => toggleModal('schedulecall')}>
         <ScheduleCallContent />
@@ -200,4 +192,25 @@ const SaaSApplication: React.FC = (): JSX.Element => {
   );
 };
 
-export default SaaSApplication;
+export default PricingPage;
+
+export async function getStaticPaths() {
+  const paths = OFFERS.map((project) => ({
+    params: { slug: project.slug }
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+  const PageData = OFFERS.find((p) => p.slug === params.slug);
+  const { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems } = PageData;
+
+  if (!PageData) {
+    return { notFound: true };
+  }
+
+  return {
+    props: { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems }
+  };
+}
