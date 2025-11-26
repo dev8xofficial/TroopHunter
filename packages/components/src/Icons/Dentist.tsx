@@ -10,10 +10,10 @@ interface DentistIconProps {
 
 const DentistIcon: React.FC<DentistIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" fill="currentcolor" version="1.1" viewBox="0 0 512.00 512.00" xmlSpace="preserve" stroke="cuurentcolor" stroke-width="9.704">
-      <g stroke-width="0" />
+    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" fill="currentcolor" version="1.1" viewBox="0 0 512.00 512.00" xmlSpace="preserve" stroke="cuurentcolor" strokeWidth="9.704">
+      <g strokeWidth="0" />
 
-      <g stroke-linecap="round" stroke-linejoin="round" fill="currentcolor">
+      <g strokeLinecap="round" strokeLinejoin="round" fill="currentcolor">
         <g>
           <g>
             <path

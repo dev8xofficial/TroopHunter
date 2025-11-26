@@ -79,7 +79,7 @@ export const ProjectsFormModal: React.FC<WorkDetailWithoutMeta> = ({ slug, title
                 />
               </div>
             </div>
-            <TestimonialSlider testimonial={testimonial} testimonialAuthor={testimonialAuthor} testimonialAuthorPosition={testimonialAuthorPosition} />
+              <TestimonialSlider testimonial={testimonial} testimonialAuthor={testimonialAuthor} testimonialAuthorPosition={testimonialAuthorPosition} />
             {images[0] && (
               <div className={styles['project-content__block-image']}>
                 <div className={`${styles['project-content__image']} ${styles['project-content__image--half']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>

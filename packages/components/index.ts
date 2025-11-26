@@ -1,3 +1,5 @@
+export * from './hoc/AutoFormatText';
+
 export * from './src/Feedback/VideoDialog';
 
 export * from './src/Surfaces/FooterRevealPageWrap/FooterRevealPageWrap';
