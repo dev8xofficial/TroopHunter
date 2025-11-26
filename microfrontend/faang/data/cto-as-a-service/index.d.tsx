@@ -19,7 +19,7 @@ const CTO: OffersContent[] = [
         modalType: 'schedulecall'
       }
     ],
-    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
+    image: prefixed('/api/images/services/cto-as-a-service/1.png'),
     iconCards: {
       title: 'When do I need CTO as a Service?',
       paragraph: 'CTOs are in demand and startups need to compete against FAANG to attract top talent.',

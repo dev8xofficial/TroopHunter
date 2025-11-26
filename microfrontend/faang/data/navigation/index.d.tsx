@@ -28,9 +28,9 @@ const SubmenuData = [
   {
     heading: 'Other',
     list: [
-      { title: 'Our Process', iconName: 'DataIcon', color: 'cyan', href: '/our-process' },
       { title: 'Pricing', iconName: 'PlanetRingIcon', color: 'pink', href: '/pricing/tech-founders' },
-      { title: 'Careers', iconName: 'RightArrowIcon', color: 'blue', href: '/careers', rotateIcon: true }
+      { title: 'Our Process', iconName: 'DataIcon', color: 'cyan', href: '/our-process' },
+      // { title: 'Careers', iconName: 'RightArrowIcon', color: 'blue', href: '/careers', rotateIcon: true }
     ]
   }
 ] as HeaderSubmenuContent;
