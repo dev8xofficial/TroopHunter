@@ -65,7 +65,7 @@ const SubmenuData = [
       },
       {
         title: 'GraphQL / REST',
-        iconName: 'SaaSIcon',
+        iconName: 'GraphQL',
         color: 'green',
         href: '/expertise/graphql-rest'
       },
@@ -170,8 +170,8 @@ const SubmenuData = [
       },
       {
         title: 'TypeScript',
-        iconName: 'NodejsIcon',
-        color: 'blue',
+        iconName: 'TypeScript',
+        color: 'black',
         href: '/expertise/typescript'
       },
       {
