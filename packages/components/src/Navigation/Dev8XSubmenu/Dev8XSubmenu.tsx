@@ -27,8 +27,6 @@ import InfinityIcon from '../../Icons/Infinity';
 import WebServersIcon from '../../Icons/WebServers';
 import SeismometerIcon from '../../Icons/Seismometer';
 import RightArrowIcon from '../../Icons/RightArrow';
-import TypeScript from '../../Icons/TypeScript';
-import GraphQL from '../../Icons/GraphQL';
 import DentistIcon from '../../Icons/Dentist';
 import RocketIcon from '../../Icons/Rocket';
 import HandshakeIcon from '../../Icons/Handshake';
@@ -39,7 +37,7 @@ import { HeaderSubmenuContent } from '../../Interfaces/Navigation/Navigation';
 
 import styles from './index.module.css';
 
-interface HeaderSubmenuProps {
+interface Dev8XSubmenuProps {
   height: number;
   onLinkClick?: () => void;
   submenus: HeaderSubmenuContent;
@@ -71,8 +69,6 @@ const ICON_MAP: Record<string, React.ComponentType<{ width?: string | number; cl
   WebServersIcon,
   SeismometerIcon,
   RightArrowIcon,
-  TypeScript,
-  GraphQL,
   DentistIcon,
   RocketIcon,
   HandshakeIcon,
@@ -80,7 +76,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ width?: string | number; cl
   HomeIcon
 };
 
-export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height, onLinkClick, submenus }) => {
+export const Dev8XSubmenu: React.FC<Dev8XSubmenuProps> = ({ height, onLinkClick, submenus }) => {
   return (
     <>
       <div className={styles['submenu-container']} style={{ '--height': height } as React.CSSProperties}>

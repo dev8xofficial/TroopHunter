@@ -5,18 +5,17 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { toggleSmoothModalAtom, openSmoothModalAtom } from '@repo/components';
 import { useSetAtom, useAtomValue } from 'jotai';
-import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, OffersContent } from '@repo/components';
+import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, OffersContent, getBrandFromBaseURL, shouldRenderOffersSurfaces } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import SubmenuData from '../../data/navigation/index.d';
 import OFFERS from '../../data/offers/index.d';
 import { prefixed } from '../../utils/helpers';
-import ExpertiseStyles from '../expertise/index.module.css';
 
 import HomePageStyles from '../index.module.css';
 import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
 import PictureStyles from '../../components/Surfaces/Picture/index.module.css';
-import styles from './index.module.css';
+import ExpertiseStyles from '../expertise/index.module.css';
 
 const OffersPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
@@ -35,7 +34,8 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JS
   const nextExpertise = getNextExpertise(slug);
 
   const router = useRouter();
-  const isOffersPage = router.pathname.includes('/offers');
+  const brand = getBrandFromBaseURL();
+  const shouldShowOffersSurface = shouldRenderOffersSurfaces(brand, router.pathname);
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [showHowToHireVideo, setShowHowToHireVideo] = useState<boolean>(false);
 
@@ -109,7 +109,7 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JS
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
             <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} paragraph={PageData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />
           </div>
-          {isOffersPage && !showHowToHireVideo && (
+          {shouldShowOffersSurface && !showHowToHireVideo && (
             <div style={{ display: 'grid' }}>
               <div className={`${HomePageStyles['homepage__feed-wrapper']} ${HomePageStyles['homepage__feed-wrapper-inner--overflow']}`}>
                 <div className={`${HomePageStyles['homepage__feed-wrapper-inner']}`}>
@@ -134,20 +134,20 @@ const OffersPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JS
                   <CardStack variant="Stack">
                     {PageData?.testimonials?.map((item, index) => (
                       <CardStack variant="Card" index={index} key={index}>
-                        <figure className={styles['testimonial-card']} style={{ backgroundColor: item.bgColor, color: item.color }}>
-                          <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${styles['testimonial-card__image']}`}>
+                        <figure className={ExpertiseStyles['testimonial-card']} style={{ backgroundColor: item.bgColor, color: item.color }}>
+                          <picture className={`${PictureStyles['picture']} ${PictureStyles['picture--responsive']} ${ExpertiseStyles['testimonial-card__image']}`}>
                             <source srcSet={`${item.image}/m/390x360/filters:quality(80) 1x, ${item.image}/m/780x720/filters:quality(80) 2x`} media="(min-width: 0px) and (max-width: 479px)" />
                             <source srcSet={`${item.image}/m/872x806/filters:quality(80) 1x, ${item.image}/m/1744x1612/filters:quality(80) 2x`} media="(min-width: 480px) and (max-width: 991px)" />
                             <source srcSet={`${item.image}/m/667x609/filters:quality(80) 1x, ${item.image}/m/1334x1218/filters:quality(80) 2x`} media="(min-width: 992px)" />
                             <img src={`${item.image}/m/390x360/filters:quality(80)`} loading="lazy" width={390} height={360} alt="" draggable={false} />
                           </picture>
 
-                          <blockquote className={styles['testimonial-card__quote']}>{`“${item.comment}”`}</blockquote>
+                          <blockquote className={ExpertiseStyles['testimonial-card__quote']}>{`“${item.comment}”`}</blockquote>
 
-                          <figcaption className={styles['testimonial-card__author']}>
-                            <dl className={styles['testimonial-card__author-details']}>
-                              <dt className={styles['testimonial-card__author-name']}>{item.name}</dt>
-                              <dd className={styles['testimonial-card__author-title']}>{item.company}</dd>
+                          <figcaption className={ExpertiseStyles['testimonial-card__author']}>
+                            <dl className={ExpertiseStyles['testimonial-card__author-details']}>
+                              <dt className={ExpertiseStyles['testimonial-card__author-name']}>{item.name}</dt>
+                              <dd className={ExpertiseStyles['testimonial-card__author-title']}>{item.company}</dd>
                             </dl>
                           </figcaption>
                         </figure>

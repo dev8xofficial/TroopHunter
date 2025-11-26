@@ -1,60 +1,86 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
 
-const OFFERS: OffersContent[] = [
+const SAAS: OffersContent[] = [
   {
-    slug: 'real-estate',
+    slug: '',
     variant: 'green',
-    tagText: 'For Tech Founders',
+    tagText: '',
     heading: 'SaaS Application Development Services',
     paragraph: 'Leveraging the advantage of the Software-as-a-service (SaaS) model, Upsilon will help you build a secret weapon - a cloud-based solution with central hosting that will definitely boost your company’s bottom line. Whether you need to develop certain SaaS components like APIs or implement integrations like Stripe, our developers are at your service',
-    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
+    heroButtons: [
+      {
+        label: 'See Pricing',
+        href: prefixed('/pricing/tech-founders'),
+        target: '_blank'
+      },
+      {
+        label: 'Schedule a Call',
+        modalType: 'schedulecall'
+      }
+    ],
+    image: prefixed('/api/images/services/saas-applications/1.png'),
     iconCards: {
       title: 'SaaS Products in Business Portfolio',
       paragraph: 'We know firsthand how to design, build, implement and deploy fail-safe SaaS as we have successfully launched and continue maintaining and enhancing our own products. We have a deep comprehension of the specifics of the SaaS and, as the product owners, we always look beyond ‘blind coding’ when working on clients’ projects.',
       items: [
         {
-          title: 'Knowledge Management Platform',
-          description: 'A platform that helps your team to collect valuable internal information and access it anywhere.',
+          title: 'Web, Mobile and Desktop Apps',
+          description: 'Whatever platform you target - web, mobile, desktop or all three of them - our team can build a SaaS app of any complexity and covering all the features you require.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
-          title: 'Task Management App for Slack',
-          description: 'A productivity and task tracking app that allows individuals and teams organize, and prioritize their tasks without leaving Slack.',
+          title: 'Product Website',
+          description: 'We design and build highly personalized, user-friendly and full-featured product websites that help your business build deeper relationship with its audience.',
           icon: { name: 'BackendIcon', width: 26 }
+        },
+        {
+          title: 'API Development',
+          description: 'Our back-end development team will help you build an API that will scale on demand, perform fast, and provide secure and reliable data storage for your SaaS.',
+          icon: { name: 'AIBrainIcon', width: 26 }
+        },
+        {
+          title: 'CI/CD',
+          description: 'By setting up CI/CD pipelines, our team will allow you to make more frequent improvements to your product and efficiently test and deploy those changes.',
+          icon: { name: 'SeismometerIcon', width: 22 }
+        },
+        {
+          title: 'Build & Deployment System',
+          description: 'By leveraging the advantages of Docker and Kubernetes, we create systems that allow to automate and speed up the process of application building, deployment, scaling, and management.',
+          icon: { name: 'SeismometerIcon', width: 22 }
+        },
+        {
+          title: 'Third-party Integrations',
+          description: 'From connecting external data sources to integrating payment gateways, we help you connect your SaaS app with 3rd party solutions..',
+          icon: { name: 'SeismometerIcon', width: 22 }
         }
-        // {
-        //   title: '16%',
-        //   description: 'are unable to attract funding',
-        //   icon: { name: 'AIBrainIcon', width: 26 }
-        // },
-        // {
-        //   title: '7%',
-        //   description: 'choose the wrong technologies',
-        //   icon: { name: 'SeismometerIcon', width: 22 }
-        // }
       ]
     },
     contentAsideImageItems: [
       {
-        title: 'Payment System',
-        paragraph: 'Embed payments and financial services into your product. If you want to accept all types of online payments within your platform, Stripe is the best choice.',
+        title: 'Knowledge Management Platform',
+        paragraph: 'A platform that helps your team to collect valuable internal information and access it anywhere.',
         icon: { name: 'HomeIcon', width: 26 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'Interactive Dashboards',
-        paragraph: 'Explore and visualize your data through interactive dashboards. From simple line charts to multicomponent visualizations based on big data - with the help of Cube and Retool we will get you covered.',
+        title: 'Task Management App for Slack',
+        paragraph: 'A productivity and task tracking app that allows individuals and teams organize, and prioritize their tasks without leaving Slack.',
         icon: { name: 'MapPinIcon', width: 24 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
-      },
-      {
-        title: 'User Management',
-        paragraph: 'Manage teams and individual profiles within your SaaS application on an ongoing basis. Configure your application to identify, authenticate, and authorize all users depending on the amount of access they’ve paid or need..',
-        icon: { name: 'BotIcon', width: 26 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
+    whyDev8XContent: {
+      heading: 'Why Dev8X',
+      para1: 'We believe that meaningful design starts with empathy. Every product we create is centered around improving real lives—helping people achieve more with less friction.',
+      para2: 'By combining strategy, creativity, and technology, we unlock opportunities, transform businesses, and make experiences that truly matter. As an independent team, our agility and passion shape every project into something exceptional.',
+      image: 'https://a-us.storyblok.com/f/1017006/1200x1400/dc71890964/humaanpeople.jpg/m/450x548/filters:quality(80)',
+      stats: [
+        { title: '100%', span: ['In-house ', '& ', 'independent'] },
+        { title: '6+', span: ['Years ', 'crafting ', 'digital ', 'experiences'] },
+        { title: '20+', span: ['Digital ', 'solutions ', 'launched ', 'worldwide'] }
+      ]
+    },
     footerMainContent: {
       link: '/contact',
       start: 'Ready to ',
@@ -287,14 +313,14 @@ const OFFERS: OffersContent[] = [
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
-    capabilitiesHeading: "Integrations Our Clients Benefit From:",
+    capabilitiesHeading: 'Integrations Our Clients Benefit From:',
     capabilities: [
       {
         items: [
           { name: 'Stripe', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048cf5c38d73f0140038_stripe.webp' },
           { name: 'PayPal', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048d346ec742399635de_paypal.webp' },
           { name: 'Google Analytics', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048c2e5f78530668f95b_google-analytics.webp' },
-          { name: 'Skylight', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d0f8c9a16189ebdbb26b0_skylight.webp' },
+          { name: 'Skylight', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d0f8c9a16189ebdbb26b0_skylight.webp' }
         ]
       },
       {
@@ -310,11 +336,10 @@ const OFFERS: OffersContent[] = [
           { name: 'UptimeRobot', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048db9a23c8cd5d9e390_uptime-robot.webp' },
           { name: 'Sentry', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048c81318f470045d0b8_sentry.webp' }
         ]
-      },
-
+      }
     ],
     video: prefixed(`/videos/header/header.mp4`)
   }
 ];
 
-export default OFFERS;
+export default SAAS;

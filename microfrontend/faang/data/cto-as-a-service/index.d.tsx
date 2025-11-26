@@ -1,36 +1,47 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
 
-const OFFERS: OffersContent[] = [
+const CTO: OffersContent[] = [
   {
-    slug: 'real-estate',
-    variant: 'green',
-    tagText: 'For Real Estate Companies',
+    slug: '',
+    variant: 'blue',
+    tagText: '',
     heading: 'CTO as a Service for Non-Technical Founders',
     paragraph: 'Get C-level tech guidance for your product`s success and achieve your business goals with more confidence.',
-    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
+    heroButtons: [
+      {
+        label: 'See Pricing',
+        href: prefixed('/pricing/tech-founders'),
+        target: '_self'
+      },
+      {
+        label: 'Schedule a Call',
+        modalType: 'schedulecall'
+      }
+    ],
+    image: prefixed('/api/images/services/cto-as-a-service/1.png'),
     iconCards: {
-      title: 'Launch Fast. Convert Faster.',
+      title: 'When do I need CTO as a Service?',
       paragraph: 'CTOs are in demand and startups need to compete against FAANG to attract top talent.',
       items: [
         {
           title: '$140K/yr',
-          description: 'the average salary of a seed-stage CTO - equal to entry positions at companies like Google and Meta.',
+          description: 'You know WHAT kind of product you want to build but have no idea HOW it can be developed from the tech perspective.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
           title: '26%',
-          description: 'an increase in the number of active CTO job openings over the past three years.',
+          description: 'You are seeking funding for your startup and need to show investors you’re backed by a professional guiding the technical direction.',
           icon: { name: 'BackendIcon', width: 26 }
         },
         {
           title: '<4 years',
-          description: 'the average tenure of a CTO in a startup, and its downward trend is continuing.',
+          description: `Your past experience with low-cost developers has been disappointing and you don't want this scenario to happen again.`,
           icon: { name: 'AIBrainIcon', width: 26 }
         },
         {
           title: 'Transparent Reporting',
-          description: 'Track leads, traffic, and engagement with weekly reports and access to dashboards and analytics.',
+          description: `You are putting all efforts into strategy, networking, marketing, and sales and need someone who will fully take care of the product's tech side.`,
           icon: { name: 'SeismometerIcon', width: 22 }
         }
       ]
@@ -311,7 +322,7 @@ const OFFERS: OffersContent[] = [
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
-    capabilitiesHeading: "Ambitious products deserve the best technologies. Here are the main tech skills our experts do possess:",
+    capabilitiesHeading: 'Ambitious products deserve the best technologies. Here are the main tech skills our experts do possess:',
     capabilities: [
       {
         heading: 'Front-end developers',
@@ -329,7 +340,7 @@ const OFFERS: OffersContent[] = [
           { name: 'Kubernetes', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278911e566587192317f2_kubernetes.webp' },
           { name: 'GitHub', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e992fec12274efa72_github.webp' },
           { name: 'Docker', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278908332ff18aa459ce4_docker.webp' },
-          { name: 'Jenkins', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e27ab56ec138c2ada_jenkins.webp' },
+          { name: 'Jenkins', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e27ab56ec138c2ada_jenkins.webp' }
         ]
       },
       {
@@ -345,7 +356,7 @@ const OFFERS: OffersContent[] = [
           { name: 'Python', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278915e54a8355b3e1d52_python.webp' },
           { name: 'Django', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35caaa74ba0bc7d25c29_django.webp' },
           { name: 'Node JS', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35cb747fce613622812b_nodejs.webp' },
-          { name: 'FastAPI', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35c954cf5c7584730437_fastapi.webp' },
+          { name: 'FastAPI', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35c954cf5c7584730437_fastapi.webp' }
         ]
       },
       {
@@ -362,7 +373,7 @@ const OFFERS: OffersContent[] = [
           { name: 'PyTorch', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891d4d17683bbc11982_py-torch.webp' },
           { name: 'SpaCy', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58ea4fc884273bd4df3_spacy.png' },
           { name: 'XGBoost', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e6760ce61e1c35c75_xgboost.webp' },
-          { name: 'SimPy', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58ed1140bba1d50576f_simpy.webp' },
+          { name: 'SimPy', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58ed1140bba1d50576f_simpy.webp' }
         ]
       }
     ],
@@ -370,4 +381,4 @@ const OFFERS: OffersContent[] = [
   }
 ];
 
-export default OFFERS;
+export default CTO;

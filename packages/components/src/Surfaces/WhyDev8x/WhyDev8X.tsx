@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { HomepageStat, HomepageStats } from '../../Surfaces/HomepageStats/HomepageStats';
+import { HomepageStat, HomepageStats } from '../HomepageStats/HomepageStats';
 import { AppearOnScroll } from '../../Animations/AppearOnScroll';
 import { Link } from '../../Navigation/Link/Link';
 import RightArrowIcon from '../../Icons/RightArrow';

@@ -17,5 +17,5 @@ export interface HomeContent extends PageLayoutContent {
   title: string;
   video: string;
   paragraph: string;
-  whyDev8XContent: WhyDev8XContent;
+  whyDev8XContent?: WhyDev8XContent;
 }

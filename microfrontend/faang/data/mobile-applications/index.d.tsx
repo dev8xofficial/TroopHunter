@@ -1,14 +1,25 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
 
-const OFFERS: OffersContent[] = [
+const MOBILE: OffersContent[] = [
   {
-    slug: 'real-estate',
-    variant: 'green',
-    tagText: 'For Tech Founders',
+    slug: '',
+    variant: 'purple',
+    tagText: '',
     heading: 'Custom Mobile Applications',
     paragraph: 'Upsilon is a reliable tech partner with proven experience in building responsive and innovative mobile apps. We will help you make a unique, highly-customized mobile solution that responds to the market challenges while meeting your business objectives and overall strategy.Leveraging our company`s core strength and strategic approach to mobile application development, we support you from a discovery phase to deployment, treating your app launch as our own.',
-    image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
+    heroButtons: [
+      {
+        label: 'See Pricing',
+        href: prefixed('/pricing/tech-founders'),
+        target: '_blank'
+      },
+      {
+        label: 'Schedule a Call',
+        modalType: 'schedulecall'
+      }
+    ],
+    image: prefixed('/api/images/services/mobile-applications/1.png'),
     iconCards: {
       title: 'Highlights of Our Custom Mobile Apps',
       paragraph: 'We develop, customize, and implement all kinds of features to build the best possible application that best serves your brand and caters to your missions.',
@@ -32,22 +43,17 @@ const OFFERS: OffersContent[] = [
     },
     contentAsideImageItems: [
       {
-        title: 'Online Art Marketplace for Collectors',
-        paragraph: '13 weeks to MVP | 10M+ auction data points',
+        title: 'Cross-platform Mobile App Development',
+        paragraph: 'Cross-platform application development became a silver bullet for businesses willing to win the competition. Upsilon helps companies bring this strategy to life with React Native. Here are the reasons why you should consider to use this technology for your next mobile application:',
         icon: { name: 'HomeIcon', width: 26 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'Collection Management Software for Art and Culture',
-        paragraph: '10 yearsof partnership | Artindustry',
+        title: 'Types of Mobile Applications We Build',
+        paragraph: `Internal Business Mobile Apps
+Upsilon helps businesses streamline their internal processes, increase productivity, automate workflows, and gain more visibility & control with 360° secure, innovative, high-performing mobile solutions.`,
         icon: { name: 'MapPinIcon', width: 24 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
-      },
-      {
-        title: 'Retail Store Customer Tracking Software',
-        paragraph: '7 monthstime to market | $330Kproject budget',
-        icon: { name: 'BotIcon', width: 26 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
     footerMainContent: {
@@ -298,7 +304,7 @@ Need to build an MVP? We will be happy to assist.`
     capabilitiesHeading: "Our capabilities are centred around our ability to deliver world-class mobile applications. We're 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.",
     capabilities: [
       {
-         heading: 'Back-end',
+        heading: 'Back-end',
         items: [
           { name: 'Python', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278915e54a8355b3e1d52_python.webp' },
           { name: 'Django', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35caaa74ba0bc7d25c29_django.webp' },
@@ -306,7 +312,7 @@ Need to build an MVP? We will be happy to assist.`
           { name: 'FastAPI', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35c954cf5c7584730437_fastapi.webp' }
         ]
       },
-       {
+      {
         heading: 'Front-end developers',
         items: [
           { name: 'React', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp' },
@@ -331,4 +337,4 @@ Need to build an MVP? We will be happy to assist.`
   }
 ];
 
-export default OFFERS;
+export default MOBILE;

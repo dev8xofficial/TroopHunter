@@ -27,11 +27,12 @@ export * from './src/Surfaces/CareerStudySidebar/CareerStudySidebar';
 export * from './src/Surfaces/PricingContents/PricingContents';
 export * from './src/Surfaces/PricingStudySidebar/PricingStudySidebar';
 export * from './src/Surfaces/PricingCategories/PricingCategories';
-export * from './src/Surfaces/WhyDev8X/WhyDev8X';
+export * from './src/Surfaces/WhyDev8x/WhyDev8X';
 export * from './src/Surfaces/Footer/Footer';
 export * from './src/Surfaces/Hero/Hero';
 export * from './src/Surfaces/Capabilities/Capabilities';
-
+export * from './src/Surfaces/HeroCore/HeroCore';
+export * from './src/Surfaces/WhyWeAreDifferent/WhyWeAreDifferent';
 export * from './src/Icons/AIBrain';
 export * from './src/Icons/Analysis';
 export * from './src/Icons/Ansible';
@@ -102,6 +103,8 @@ export * from './src/Icons/WebServers';
 export * from './src/Icons/Wordpress';
 export * from './src/Icons/CaretDown';
 export * from './src/Icons/CaretUp';
+export * from './src/Icons/Dentist';
+export * from './src/Icons/Rocket';
 
 export * from './src/Interfaces/About/About';
 export * from './src/Interfaces/Contact/Contact';
@@ -132,6 +135,7 @@ export * from './src/Animations/Spotlight';
 export * from './src/Navigation/Link/Link';
 export * from './src/Navigation/Header/Header';
 export * from './src/Navigation/HeaderSubmenu/HeaderSubmenu';
+export * from './src/Navigation/Dev8XSubmenu/Dev8XSubmenu';
 
 export * from './src/Input/Button/Button';
 export * from './src/Input/FieldWrapper/FieldWrapper';
@@ -157,3 +161,4 @@ export * from './src/Modals/SubmitApplicationModal/SubmitApplicationModal';
 export * from './src/Modals/FormModal/FormModal';
 
 export * from './store/smoothModalAtom';
+export * from './utils/helpers';

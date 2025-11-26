@@ -9,6 +9,7 @@ interface HandshakeIconProps {
 }
 
 const HandshakeIcon: React.FC<HandshakeIconProps> = ({ width = '', height = '', className }) => {
+
   return (
     <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path

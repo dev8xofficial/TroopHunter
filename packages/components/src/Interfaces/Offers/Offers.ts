@@ -1,5 +1,6 @@
 import { ExpertiseContent } from '../Expertise/Expertise';
 import { CapabilitiesContent } from '../About/About';
+import { WhyDev8XContent } from '../Home/Home';
 
 export interface OffersFAQS {
   title: string;
@@ -16,6 +17,16 @@ export interface OffersSliderItem {
   package?: string;
 }
 
+export interface WhyWeAreDifferentQA {
+  title: string;
+  paragraph: string;
+}
+
+export interface WhyWeAreDifferentContent {
+  heading: string;
+  qa: WhyWeAreDifferentQA[];
+}
+
 export interface OffersContent extends ExpertiseContent {
   faqs?: OffersFAQS[];
   offersSlider?: OffersSliderItem[];
@@ -23,4 +34,5 @@ export interface OffersContent extends ExpertiseContent {
   secondaryPlansItems?: string[];
   capabilities?: CapabilitiesContent;
   capabilitiesHeading?: string;
+  whyWeAreDifferentContent?: WhyWeAreDifferentContent;
 }

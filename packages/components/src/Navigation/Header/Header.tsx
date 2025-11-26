@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenu } from '../HeaderSubmenu/HeaderSubmenu';
+import { Dev8XSubmenu } from '../Dev8XSubmenu/Dev8XSubmenu';
 import { HeaderSubmenuContent } from '../../Interfaces/Navigation/Navigation';
-import { isHelloabdulPort } from '../../../utils/helpers';
+import { isHelloabdulPort, getBrandFromBaseURL } from '../../../utils/helpers';
 
 import styles from './index.module.css';
 
@@ -23,10 +24,12 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
   const exploreBtnRef = useRef<HTMLButtonElement | null>(null);
   const [isHelloabdul, setIsHelloabdul] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [isDev8X, setIsDev8X] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
     setIsHelloabdul(isHelloabdulPort());
+    setIsDev8X(getBrandFromBaseURL() === 'faang');
   }, []);
 
   const getActiveColumn = (path: string): number => {
@@ -137,11 +140,11 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
 
             <li className={styles['menu__item']} ref={submenuRef}>
               <div className="link-wrap">
-                <button ref={exploreBtnRef} className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') || currentPath.includes('/careers') || currentPath.includes('/internships') || currentPath.includes('/plans-and-pricing') || currentPath.includes('/our-process') ? styles['menu__link--active'] : ''}`} onClick={handleExpertiseClick}>
+                <button ref={exploreBtnRef} className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') || currentPath.includes('/careers') || currentPath.includes('/internships') || currentPath.includes('/plans-and-pricing') || currentPath.includes('/our-process') || currentPath.includes('/web-applications') || currentPath.includes('/mobile-applications') || currentPath.includes('/saas-applications') || currentPath.includes('/cto-as-a-service') || currentPath.includes('/services-for-early-stage-startups') || currentPath.includes('/services-for-growth-stage-startups') || currentPath.includes('/pricing') ? styles['menu__link--active'] : ''}`} onClick={handleExpertiseClick}>
                   {menuLabel}
                 </button>
                 {/* ✅ Pass handleSubmenuLinkClick to close dropdown on link click */}
-                {submenuData && <HeaderSubmenu height={height} onLinkClick={handleSubmenuLinkClick} submenus={submenuData} />}
+                {submenuData && (isDev8X ? <Dev8XSubmenu height={height} onLinkClick={handleSubmenuLinkClick} submenus={submenuData} /> : <HeaderSubmenu height={height} onLinkClick={handleSubmenuLinkClick} submenus={submenuData} />)}
               </div>
             </li>
 

@@ -245,42 +245,7 @@ const Contact: React.FC = (): JSX.Element => {
                   <LogoGrid />
                 </div>
               </AppearOnScroll>
-              <AppearOnScroll>
-                <div className={styles['about-capabilities']}>
-                  <h2 className={styles['about-capabilities__intro']} aria-label={PageData.aboutSections[2]}>
-                    {PageData.aboutSections[2].split(' ').map((word, index) => {
-                      const isSpecial = word.toLowerCase().includes('capabilities');
-                      return (
-                        <span
-                          key={index}
-                          className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
-                          aria-hidden="true"
-                          style={{
-                            display: 'inline-block',
-                            whiteSpace: 'pre',
-                            transform: 'translate3d(0px, 0%, 0px)',
-                            opacity: 1,
-                            transitionDelay: `${index * 0.05}s`
-                          }}
-                        >
-                          <span
-                            aria-hidden="true"
-                            style={{
-                              display: 'inline-block',
-                              whiteSpace: 'pre',
-                              opacity: 1
-                            }}
-                          >
-                            {word + ' '}
-                          </span>
-                        </span>
-                      );
-                    })}
-                  </h2>
-
-                  <Capabilities capabilities={PageData.capabilities} styles={styles} />
-                </div>
-              </AppearOnScroll>
+              {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities capabilitiesHeading={PageData.aboutSections[2]} capabilities={PageData.capabilities} />}
             </div>
 
             <div className={`${styles['about-midpage-banner']} ${styles['about-midpage-banner--visible']}`}>

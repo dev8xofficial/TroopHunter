@@ -1,0 +1,81 @@
+Old Menu
+```
+What We Do
+Websites
+Web Apps
+Mobile Apps
+eCommerce
+Data Vis
+
+Design & UX
+User Research
+UX Design
+UI Design
+Prototyping
+Design Systems
+
+Technology
+React.js
+Next.js
+Node.js
+Express.js / Nest.js
+
+Backend & Databases
+Backend
+Real-Time Apps
+SaaS
+PostgreSQL
+ORM (Sequelize, Prisma)
+Supabase
+
+DevOps & Cloud
+Docker
+Virtualization
+Ansible & Web Servers
+AWS, Vercel, DigitalOcean
+CI/CD
+```
+
+New Menu
+```
+Services
+MVP Development
+Team Augmentation
+CTO as a Service
+Web Applications
+SaaS Applications
+Mobile Applications
+
+Industries
+Saas
+Dentists
+Real Estate
+
+Other
+Pricing
+Careers
+```
+
+I need new menu to have 4 columns because it looks better than 2 or 3 columns.
+I need Services, Other paages columns first. Than I need 2 more columns which must be important for customers and company
+
+
+Technical Services
+MVP Development
+Team Augmentation
+CTO as a Service
+
+Application Development
+Web Applications
+SaaS Applications
+Mobile Applications
+
+Solutions
+Saas
+Dentists
+Real Estate
+
+Other
+Process
+Pricing
+Careers
