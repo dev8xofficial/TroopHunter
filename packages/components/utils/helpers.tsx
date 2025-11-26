@@ -215,3 +215,23 @@ export const isHelloabdulPort = (baseUrl?: string): boolean => {
     return false;
   }
 };
+
+export const FormattedText = (text: string) => {
+  const BOLD_REGEX = /\*\*([^\*]+)\*\*/g;
+
+  if (!text) {
+    return null;
+  }
+
+  const parts = text.split(BOLD_REGEX);
+
+  const renderedText = parts.map((part, index) => {
+    if (index % 2 !== 0) {
+      return <strong key={index}>{part}</strong>;
+    } else {
+      return part;
+    }
+  });
+
+  return <span>{renderedText}</span>;
+};

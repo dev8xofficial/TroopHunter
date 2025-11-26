@@ -4,35 +4,37 @@ import React from 'react';
 import { WorkDetail } from '../../Interfaces/Work/WorkProjectTypes';
 import { Link } from '../../Navigation/Link/Link';
 import RightArrowIcon from '../../Icons/RightArrow';
+import { AutoFormatText } from '../../../hoc/AutoFormatText';
 
 import styles from './index.module.css';
 
 export const CaseStudySideBar: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'path' | 'placeholderImage' | 'images' | 'bgColor' | 'testimonial' | 'testimonialAuthor' | 'testimonialAuthorPosition'>> = ({ title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions }): JSX.Element => {
   return (
     <>
-      <div className={styles['sidebar']}>
-        <div className={styles['sidebar__inner']}>
-          <div className={styles['sidebar__header']}>
-            <h1 className={styles['sidebar__title']}>{title}</h1>
-            <Link variant="secondary" href={websiteUrl} endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} anchorClassName={styles['homepage-bottom__link']}>
-              Visit Website
-            </Link>
-            <p className={styles['sidebar__industry']}>{industry}</p>
-          </div>
-          <div className={styles['sidebar__intro']}>
-            <p>{shortIntro}</p>
-          </div>
-          <div className={styles['sidebar__body']}>
-            <p>{overview}</p>
-            <p>{approach}</p>
-            <p>{impact}</p>
-          </div>
-          <ul className={styles['custom-icon-list']}>
-            {keyContributions.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-          {/* <table className={styles['sidebar__awards']} summary="A list of awards won for this project. The award organisation is shown in the first column, the award category in the second column, and the year of the award is in the third column.">
+      <AutoFormatText>
+        <div className={styles['sidebar']}>
+          <div className={styles['sidebar__inner']}>
+            <div className={styles['sidebar__header']}>
+              <h1 className={styles['sidebar__title']}>{title}</h1>
+              <Link variant="secondary" href={websiteUrl} endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} anchorClassName={styles['homepage-bottom__link']}>
+                Visit Website
+              </Link>
+              <p className={styles['sidebar__industry']}>{industry}</p>
+            </div>
+            <div className={styles['sidebar__intro']}>
+              <p>{shortIntro}</p>
+            </div>
+            <div className={styles['sidebar__body']}>
+              <p>{overview}</p>
+              <p>{approach}</p>
+              <p>{impact}</p>
+            </div>
+            <ul className={styles['custom-icon-list']}>
+              {keyContributions.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+            {/* <table className={styles['sidebar__awards']} summary="A list of awards won for this project. The award organisation is shown in the first column, the award category in the second column, and the year of the award is in the third column.">
           <caption>Awards</caption>
           <thead>
             <tr>
@@ -74,8 +76,9 @@ export const CaseStudySideBar: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'pat
             </tr>
           </tbody>
         </table> */}
+          </div>
         </div>
-      </div>
+      </AutoFormatText>
     </>
   );
 };

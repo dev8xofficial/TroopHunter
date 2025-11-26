@@ -25,19 +25,19 @@ const WorkPage: React.FC<WorkDetail> = ({ slug, ...project }: WorkDetail): JSX.E
     <>
       <Head>
         <title>{PageData.meta.title.replace('Our Work', project.title)}</title>
-        <link rel="canonical" href={prefixed("/work/${slug}")} />
+        <link rel="canonical" href={prefixed('/work/${slug}')} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title.replace('Our Work', project.title)}></meta>
-        <meta property="og:url" content={prefixed("/work/${slug}")}></meta>
-        <meta property="og:image" content={prefixed("/logo-social.png")}></meta>
+        <meta property="og:url" content={prefixed('/work/${slug}')}></meta>
+        <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content={PageData.meta.title.replace('Our Work', project.title)}></meta>
-        <meta name="twitter:image" content={prefixed("/logo-social.png")}></meta>
+        <meta name="twitter:image" content={prefixed('/logo-social.png')}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
