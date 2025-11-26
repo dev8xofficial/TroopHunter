@@ -1,0 +1,547 @@
+Dataset
+```
+{
+  "identity": {
+    "name": "Abdul",
+    "rolePrimary": "Frontend Developer",
+    "roleSecondary": "Founder & CEO of Dev8X",
+    "experienceYears": "6+ years",
+    "remoteLocation": "Pakistan",
+    "techSummary": [
+      "React.js",
+      "Next.js",
+      "JavaScript",
+      "TypeScript",
+      "Redux",
+      "Redux Thunk",
+      "React Query / TanStack",
+      "TailwindCSS",
+      "HTML5",
+      "CSS3",
+      "SASS/SCSS/BEM",
+      "GSAP",
+      "ScrollTrigger",
+      "SmoothScroller",
+      "LenisScroll",
+      "Framer Motion",
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "Sequelize",
+      "Docker",
+      "CI/CD",
+      "Kubernetes",
+      "Terraform",
+      "Ansible",
+      "Containerization",
+      "Virtualization",
+      "RESTful APIs",
+      "Microservices",
+      "Monorepo Architecture",
+      "TurboRepo",
+      "Git Workflows",
+      "ESLint",
+      "Prettier",
+      "Performance Optimization",
+      "Database Design & Optimization",
+      "Testing",
+      "Debugging",
+      "Full-Stack Development",
+      "Cross-Functional Collaboration",
+      "Flutter",
+      "Agora",
+      "Mapbox GL"
+    ]
+  },
+  "about": {
+    "resumeVersion": "6+ years of frontend development experience building fast, modern, accessible web applications. Led delivery of large-scale systems, improved reliability, and reduced code errors by 30% through TypeScript adoption. Passionate about frontend engineering, product thinking, and shipping clean, high-performance interfaces.",
+    "linkedinVersion": "Founder & CEO of Dev8X, helping startups hire US-quality engineers at 60–70% lower cost. With 6+ years of engineering experience, I’ve built production systems across dental, fintech, SaaS, scheduling, and AI—supporting clients like Total Health Dental Care and Coral.",
+    "websiteVersion": "Partnered with Devin Picciolini to modernize patient engagement. Built connected ecosystems with React.js, TypeScript, Flutter, and backend automation for operational excellence in healthcare, sales, fintech, and Web3 platforms."
+  },
+  "experience": [
+    {
+      "title": "Founder & CEO",
+      "company": "Dev8X",
+      "dates": "Jan 2024 – Present",
+      "location": "On-site — Lahore, Punjab, Pakistan",
+      "summary": "Founded and manage Dev8X, providing US-quality engineering talent and development solutions for startups.",
+      "work": ["Oversee full-stack product development", "Architect frontend systems with React.js, Next.js, and TypeScript", "Manage Node.js backend microservices", "Lead DevOps and CI/CD automation using Docker, Kubernetes, Terraform, Ansible", "Implement monorepo architecture with TurboRepo"],
+      "achievements": ["Successfully launched multiple client-facing products", "Optimized development workflows across engineering teams", "Delivered reliable, high-performance software solutions"],
+      "tech": ["React.js", "Next.js", "TypeScript", "Redux Thunk", "TailwindCSS", "HTML5", "CSS3", "GSAP", "Framer Motion", "Node.js", "Express.js", "PostgreSQL", "Sequelize", "Docker", "CI/CD", "Kubernetes", "Terraform", "Ansible", "TurboRepo", "Monorepo Architecture", "Git Workflows", "RESTful APIs", "Microservices", "Full-Stack Development"]
+    },
+    {
+      "title": "Full-Stack Developer",
+      "company": "TroopHunter",
+      "dates": "Jan 2023 – Jan 2025",
+      "location": "On-site — Lahore, Punjab, Pakistan",
+      "summary": "Automated lead generation platform for fast, accurate prospect discovery.",
+      "work": [
+        "Led all executive and technical aspects of platform development",
+        "Built Next.js + TypeScript frontend dashboards",
+        "Implemented Node.js microservices with PostgreSQL + Sequelize",
+        "Designed scalable, performant architecture",
+        "Optimized workflows and UX with GSAP & Framer Motion",
+        "Set up TurboRepo monorepo and CI/CD pipelines",
+        "Managed Docker, Kubernetes, Terraform, and Ansible for deployment"
+      ],
+      "achievements": ["Dashboards load instantly and are highly responsive", "Intuitive filters and enjoyable workflow experiences", "End-to-end performance optimization for reliability and speed"],
+      "tech": ["React.js", "Next.js", "TypeScript", "Redux Thunk", "TailwindCSS", "HTML5", "CSS3", "GSAP", "Framer Motion", "Node.js", "Express.js", "PostgreSQL", "Sequelize", "Docker", "CI/CD", "Kubernetes", "Terraform", "Ansible", "TurboRepo", "Monorepo Architecture", "Git Workflows", "RESTful APIs", "Microservices", "Full-Stack Development"]
+    },
+    {
+      "title": "Frontend Developer",
+      "company": "Total Health Dental Care",
+      "dates": "Jan 2022 – Jan 2023",
+      "location": "Remote — San Francisco, California, United States",
+      "summary": "Built websites, scheduling systems, CRM modules, and virtual consultation tools used by 15,000+ active patients.",
+      "work": [
+        "Developed Scheduler: real-time booking UI using React + TypeScript",
+        "Built custom CRM replacing DentrixAscend",
+        "Integrated video appointments using Agora",
+        "Designed Mapbox-powered office location pages",
+        "Implemented GSAP animations and ScrollTrigger interactions",
+        "Optimized load times with ImagesLoaded, polyfills, responsive images",
+        "Developed custom mobile apps and backend automation scripts",
+        "Streamlined appointment booking and registration processes",
+        "Improved accessibility and convenience of dental care, resulting in higher satisfaction and increased revenue",
+        "Designed and developed web application for seamless appointment booking, registration, and office selection integrating with CRM systems"
+      ],
+      "achievements": ["20% increase in website traffic", "30% increase in user engagement", "40% reduction in site load times", "33% increase in global hygiene re-appointments (1000+ monthly)", "Millions in patient payments processed via custom tools", "Reduced staff labor through automated virtual appointments", "Higher patient satisfaction and convenience"],
+      "projects": {
+        "schedule": ["Real-time calendar with availability sync", "Reduced admin work and patient wait time", "Improved booking convenience and satisfaction"],
+        "crm": ["Live update UI for appointments", "Integrated virtual meeting system using Agora", "Admin-friendly dashboards and workflows"],
+        "website": ["GSAP + ScrollTrigger animations", "Fully responsive pages using TailwindCSS + HTML5", "Performance boost via ImagesLoaded + polyfills", "Custom interactive Mapbox GL office locator"]
+      },
+      "tech": ["React.js", "JavaScript", "TypeScript", "Redux Thunk", "TailwindCSS", "HTML5", "CSS3", "GSAP", "ScrollTrigger", "SmoothScroller", "Mapbox GL", "Agora", "Docker", "CI/CD", "RESTful APIs", "Flutter", "Git Workflows", "Monorepo Architecture"],
+      "team": [
+        { "role": "Project Manager", "name": "Devin Picciolini" },
+        { "role": "Senior Frontend Developer", "name": "Abdul" },
+        { "role": "Lead Software Engineer", "name": "Shan Asif" },
+        { "role": "Software Engineer", "name": "Zubair Mahboob" },
+        { "role": "Full-Stack Developer", "name": "Mohammed Musthafa" },
+        { "role": "Back-End Developer", "name": "Mutasim Billah" }
+      ]
+    },
+    {
+      "title": "Frontend Developer",
+      "company": "Coral Lab",
+      "dates": "Feb 2021 – Jan 2023",
+      "location": "Remote — San Francisco & Los Angeles, United States",
+      "summary": "Built consumer products, Web3 platforms, and fintech tools for Coral Lab and clients.",
+      "work": [
+        "Developed ASU List using React + TailwindCSS",
+        "Built GoldenDAO: Web3 membership + voting system",
+        "Created Coral’s company website (HTML, CSS, SCSS)",
+        "Enhanced UX using GSAP animations and SmoothScroller",
+        "Built Honeydu: zero-fee payment & invoice app",
+        "Designed and developed a responsive website for Coral using HTML, CSS, and SCSS",
+        "Utilized Greensocks products such as ScrollTrigger and SmoothScroller to enhance user experience and improve site functionality"
+      ],
+      "achievements": ["GoldenDAO launched successfully with AAPI empowerment mission", "Coral website improved brand presence and engagement", "Honeydu UI redesign boosted clarity and mobile-first usability", "Successfully developed and launched GoldenDAO website, contributing to the advancement of AAPI solidarity and empowerment in the web3 community"],
+      "projects": {
+        "goldendao": ["React.js + Redux architecture", "NFT-gated experience + exclusive event features", "Web3 community interactions"],
+        "coralWebsite": ["Responsive SCSS-based UI", "GSAP animations", "SmoothScroller interactions"],
+        "honeydu": ["React + TailwindCSS interface", "Reusable components + Redux global state", "Mobile-first payment experience"]
+      },
+      "tech": ["React.js", "Redux", "JavaScript", "TailwindCSS", "HTML5", "SCSS", "GSAP", "SmoothScroller", "Web3 integrations"]
+    },
+    {
+      "title": "Frontend Developer",
+      "company": "LEADCONCEPT LTD",
+      "dates": "Sep 2019 – Feb 2021",
+      "location": "On-site — Lahore, Punjab, Pakistan",
+      "summary": "Developed large-scale ticket booking systems and frontend products.",
+      "work": [
+        "Built Miboletazo ticket reservation system",
+        "Implemented seat selection UI with real-time availability",
+        "Developed admin interface for event management",
+        "Improved customer experience and increased sales for miboletazo.com by developing and streamlining the ticket reservation system",
+        "Created a seamless and efficient ticket booking process that allowed users to easily select their desired event and seats",
+        "Implemented real-time updates on seat availability, giving users the ability to make informed decisions about their seat choices"
+      ],
+      "achievements": ["Improved seat booking efficiency and customer satisfaction", "Increased sales through faster booking flow", "Boosted user trust via real-time seat updates"],
+      "tech": ["JavaScript", "React.js", "HTML5", "CSS3"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Dev8X",
+      "startDate": "January 2023",
+      "endDate": "Present",
+      "company": "Dev8X",
+      "shortIntro": "Full-service development company providing US-quality engineering solutions for startups.",
+      "overview": "Founded and manage Dev8X, overseeing frontend and backend product architecture, monorepo setup, and DevOps pipelines.",
+      "approach": "Architect scalable, maintainable systems with modern frontend frameworks, Node.js microservices, TurboRepo monorepo, CI/CD pipelines, Docker, Kubernetes, Terraform, and Ansible.",
+      "impact": "Enabled startups to build and ship products faster with reliable, high-performance software solutions.",
+      "keyContributions": ["React.js & Next.js frontend architecture", "TypeScript-based development standards", "Node.js backend microservices", "Redux Thunk for state management", "TurboRepo monorepo setup", "Docker & Kubernetes CI/CD pipelines", "Terraform & Ansible infrastructure automation", "Performance optimization and code quality enforcement"]
+    },
+    {
+      "name": "TroopHunter",
+      "startDate": "January 2023",
+      "endDate": "Present",
+      "company": "TroopHunter",
+      "shortIntro": "Automated lead generation platform for fast, accurate prospect discovery. No manual research or marketing skills needed.",
+      "overview": "I led all executive and technical aspects. Built Next.js, TypeScript frontend, Node.js microservices, PostgreSQL with Sequelize, fast dashboards, scalable architecture.",
+      "approach": "Focused on smooth UX, microinteractions (GSAP, Framer Motion), responsive design, Redux Thunk state, TurboRepo monorepo, Docker CI/CD, Kubernetes, Terraform, Ansible.",
+      "impact": "Dashboards load instantly. Filters are intuitive. Workflows feel enjoyable, not tedious. Performance optimized end-to-end for speed and reliability.",
+      "keyContributions": [
+        "Next.js & TypeScript frontend architecture",
+        "Redux Thunk state management",
+        "GSAP & Framer Motion microinteractions",
+        "TurboRepo monorepo setup",
+        "Docker CI/CD pipelines (K8s, Terraform, Ansible)",
+        "Node.js & Express microservices",
+        "PostgreSQL ORM via Sequelize",
+        "Authentication & authorization flows",
+        "ESLint, Prettier, CI/CD code quality automation",
+        "Git feature branching & PR workflow"
+      ]
+    },
+    {
+      "name": "CRM",
+      "startDate": "January 2022",
+      "endDate": "April 2023",
+      "company": "Total Health Dental Care",
+      "achievements": [
+        "Our tools have achieved the following milestones:",
+        "Increased global hygiene re-appointment rates by 33% from 2021-2023, resulting in over 1000 more appointments per month worldwide.",
+        "Processed millions of dollars in patient payments since launching our tools into production.",
+        "Streamlined the in-house virtual appointment process, resulting in higher efficiency and reduced labor costs."
+      ],
+      "responsibilities": [
+        "As the frontend developer, I was responsible for spearheading the development of a custom CRM system that simplifies booking appointments and connecting patients with healthcare professionals through virtual appointments. Some of my key responsibilities included:",
+        "Collaborating closely with healthcare professionals to create a tailor-made CRM that replaced DentrixAscend.",
+        "Developing two main sections: Schedule and Virtuals.",
+        "Creating an intuitive user interface that enables live updates on any appointment or patient, provides the ability to drag and drop appointment cards anywhere on the table, and enables users to stretch appointment cards to increase time.",
+        "Designing a virtual section that leverages Agora to facilitate live video meetings, resulting in a significant reduction in daily operational labor costs.",
+        "Providing admin users with a user-friendly interface to create or update appointments/patients."
+      ],
+      "impact": [
+        "Our custom CRM system has had a significant impact on Total Health Dental Care, resulting in:",
+        "Higher global hygiene re-appointment rates, leading to more patients visiting Total Health Dental Care and increased revenue.",
+        "Reduced operational labor costs due to the streamlined virtual appointment process.",
+        "Improved patient experience through an easy-to-use and efficient appointment booking system."
+      ],
+      "team": [
+        { "role": "Project Manager", "name": "Devin Picciolini" },
+        { "role": "Lead Software Engineer", "name": "Shan Asif" },
+        { "role": "Software Engineer", "name": "Zubair Mahboob" },
+        { "role": "Full-Stack Developer", "name": "Mohammed Musthafa" },
+        { "role": "Back-End Developer", "name": "Mutasim Billah" }
+      ]
+    },
+    {
+      "name": "Scheduler",
+      "startDate": "January 2022",
+      "endDate": "April 2023",
+      "company": "Total Health Dental Care",
+      "achievements": [
+        "The \"schedule\" web application has been a great success, resulting in the following achievements:",
+        "Improved the appointment booking process for patients by providing an easy-to-use and accessible platform.",
+        "Reduced costs for patients by eliminating the need for travel to book appointments.",
+        "Increased patient satisfaction by providing a more convenient and efficient booking process."
+      ],
+      "responsibilities": [
+        "As a frontend developer at Total Health Dental Care, I developed the \"schedule\" web application, which greatly improved the appointment booking process for patients. Some of my key responsibilities included:",
+        "Creating an intuitive interface for patients to easily book appointments with Total Health Dental Care.",
+        "Prompting patients to either register or book as an existing patient to get started.",
+        "Providing a selection of nearby offices to choose from.",
+        "Allowing patients to pick a date and time that suits them best.",
+        "Securely collecting card details to complete the booking process.",
+        "Integrating the system with our custom CRM system and DentrixAscend for easy access by patients and staff.",
+        "Saving patients time and money on travel costs, making dental care more accessible and convenient for everyone."
+      ],
+      "impact": [
+        "The \"schedule\" web application has had a significant impact on Total Health Dental Care, improving the patient experience and driving positive business outcomes. Specifically:",
+        "Made dental care more accessible and convenient for patients, resulting in higher patient satisfaction.",
+        "Increased business revenue by improving the efficiency of appointment booking.",
+        "Reduced administrative work for staff, freeing up time for other important tasks.",
+        "",
+        "Overall, the \"schedule\" web application has been a valuable asset to Total Health Dental Care, contributing to the success of the company."
+      ],
+      "team": [
+        { "role": "Project Manager", "name": "Devin Picciolini" },
+        { "role": "Lead Software Engineer", "name": "Shan Asif" },
+        { "role": "Software Engineer", "name": "Zubair Mahboob" },
+        { "role": "Software Engineer", "name": "Arslan Kaleem" },
+        { "role": "Mobile Application Developer", "name": "Mian Mudassir" },
+        { "role": "Full-Stack Developer", "name": "Mohammed Musthafa" },
+        { "role": "Back-End Developer", "name": "Mutasim Billah" }
+      ]
+    },
+    {
+      "name": "Total Health Dental Care",
+      "startDate": "January 2022",
+      "endDate": "April 2023",
+      "company": "Total Health Dental Care",
+      "achievements": ["Boosted website traffic by 20% by enhancing website design and improving the user experience.", "Increased user engagement by 30% by integrating scroll-based animations and other interactive features.", "Reduced website load times by 40% by optimizing performance with tools such as ImagesLoaded."],
+      "responsibilities": [
+        "In this role, I was responsible for the following:",
+        "Creating visually appealing and user-friendly websites using popular libraries like FontAwesome and Bootstrap.",
+        "Designing location markers and customizing the Mapbox GL integration to display Total Health Dental Care's office locations.",
+        "Improving website scrolling and adding scroll-based animations with Locomotive-Scroll and ScrollTrigger.",
+        "Ensuring website functionality across different browsers and devices with Polyfill.",
+        "Developing engaging animations, dynamic motion paths, and advanced typography with libraries like GSAP, MotionPathPlugin, and Splitting.",
+        "Enhancing website performance with ImagesLoaded and improving the carousel with Slick-carousel."
+      ],
+      "impact": ["Successfully improved website traffic and user engagement, resulting in higher conversion rates."],
+      "team": [
+        { "role": "Project Manager", "name": "Devin Picciolini" },
+        { "role": "Lead Software Engineer", "name": "Shan Asif" },
+        { "role": "Software Engineer", "name": "Zubair Mahboob" },
+        { "role": "Software Engineer", "name": "Arslan Kaleem" },
+        { "role": "Mobile Application Developer", "name": "Mian Mudassir" },
+        { "role": "Full-Stack Developer", "name": "Mohammed Musthafa" },
+        { "role": "Back-End Developer", "name": "Mutasim Billah" }
+      ]
+    },
+    {
+      "name": "Coral",
+      "startDate": "February 2021",
+      "endDate": "January 2023",
+      "achievements": [
+        "Designed and developed a responsive website for Coral using HTML, CSS, and SCSS, resulting in an improved online presence for the company.",
+        "Utilized Greensocks products such as ScrollTrigger and SmoothScroller to enhance user experience and improve site functionality.",
+        "Successfully launched the website on schedule and within budget, ensuring that it met all client requirements and specifications."
+      ],
+      "responsibilities": [
+        "Collaborated with the Coral team to understand their vision and goals for the website, and provided regular updates and progress reports throughout the development process.",
+        "Conducted thorough testing and debugging to ensure that the website was free of errors and bugs.",
+        "Assisted with the deployment and maintenance of the website, providing ongoing support and updates as needed.",
+        "Developed a visually appealing and user-friendly website for Coral, with a modern design that reflects the company's brand and mission.",
+        "Utilized HTML, CSS, and SCSS to create a responsive website that is optimized for all devices and screen sizes.",
+        "Incorporated Greensocks products such as ScrollTrigger and SmoothScroller to create dynamic animations and a seamless user experience."
+      ],
+      "impact": [
+        "Improved the online presence of Coral, helping to showcase the company's services and expertise to potential clients.",
+        "Created a high-quality website that reflects the professionalism and attention to detail of the Coral team.",
+        "Contributed to the success of the Coral projects by delivering a functional and visually appealing website that met all client requirements and specifications."
+      ],
+      "team": [
+        { "role": "Project Manager", "name": "Devin Picciolini" },
+        { "role": "Lead Software Engineer", "name": "Shan Asif" },
+        { "role": "Software Engineer", "name": "Zubair Mahboob" },
+        { "role": "Frontend Developer", "name": "Abdul" }
+      ]
+    },      
+    {
+      "name": "Honeydu",
+      "startDate": "April 2021",
+      "endDate": "December 2021",
+      "achievements": ["Built a zero-fee payment app called Honeydu using HTML, CSS, TailwindCSS, JavaScript, and React", "Designed an intuitive user interface with advanced features for managing money"],
+      "responsibilities": ["Allows users to easily send and receive money with anyone using email or phone number", "Generates invoices and organizes business payments in one place", "Provides real-time insights into finances and helps users stay on track"],
+      "impact": ["Simplifies money management for creators and freelancers, making tax season a breeze", "Empowers users to keep track of their finances and make informed decisions", "Reduces the hassle and fees associated with traditional payment methods"],
+      "team": [
+        { "role": "Project Manager", "name": "Devin Picciolini" },
+        { "role": "Lead Software Engineer", "name": "Shan Asif" },
+        { "role": "Software Engineer", "name": "Zubair Mahboob" },
+        { "role": "Back-End Developer", "name": "Mutasim Billah" }
+      ]
+    },
+    {
+      "name": "GoldenDAO",
+      "keyContributions": ["React.js & Redux architecture", "JavaScript-heavy UI interactions", "Responsive HTML5 & TailwindCSS layouts", "GSAP animations for micro-interactions", "NFT access-gated features"],
+      "achievements": [
+        "Successfully developed and launched the GoldenDAO website, contributing to the advancement of AAPI solidarity and empowerment in the web3 community",
+        "Created an engaging and impactful user experience through the integration of real-world events and web3 initiatives",
+        "Designed and implemented a membership system with exclusive benefits and voting rights for founding members"
+      ],
+      "responsibilities": ["Collaborated with the GoldenDAO team to develop a comprehensive roadmap for the website's launch and future expansion", "Conducted thorough testing and debugging to ensure the website's functionality and security", "Regularly updated and maintained the website to ensure optimal performance and user experience"],
+      "impact": ["Contributed to the growth of the AAPI web3 community through the development of a platform for collective advancement and empowerment", "Created a space for members to collaborate and contribute to the community's impact on the AAPI web3 community", "Facilitated access to exclusive events and merchandise, promoting engagement and loyalty among GoldenDAO members."],
+      "startDate": "September 2021",
+      "endDate": "December 2021",
+      "team": [
+        { "role": "Project Manager", "name": "Devin Picciolini" },
+        { "role": "Lead Software Engineer", "name": "Shan Asif" },
+        { "role": "Software Engineer", "name": "Zubair Mahboob" }
+      ]
+    }
+  ]
+}
+```
+
+You are generating harmonized content for Abdul (Senior Frontend Developer & Founder & CEO of Dev8X) across four platforms: Resume, LinkedIn, helloabdul.com, and dev8x.com.
+
+GOAL:
+- Ensure a smooth user journey: Resume → LinkedIn → Website.
+- Mention platform transitions factually if relevant (e.g., Total Health Dental Care moving to NexHealth).
+- Core information (skills, tech stack, achievements, projects) stays consistent across platforms.
+- Do NOT merge, mix, or combine these projects. Each must have its own project/experience block:
+  - Total Health Dental Care Website
+  - Total Health Dental Care CRM
+  - Total Health Dental Care Scheduler
+  - Coral
+  - Honeydu
+  - GoldenDAO
+- Even if the client is the same, describe each project independently with its own tech stack, achievements, and metrics.
+- Guide users from initial contact to deeper engagement and conversion.
+- Depth increases progressively: Resume < LinkedIn < Website.
+- Maintain JSON format for output.
+- Do not truncate or omit details.
+- Bold key terms (technologies, frameworks, tools, product names, metrics).
+- Italics only for subtle humor or soft commentary.
+- Paragraphs ≤ 25 words.
+- No fluff, generic phrasing, or clichés.
+- Highlight leadership & full-stack ownership only for TroopHunter.
+
+PLATFORMS & AUDIENCE:
+
+1️⃣ Resume (Abdul)
+Tone: First-person, concise, recruiter-friendly, metric-driven.
+Focus: Senior frontend experience, technical skills, measurable outcomes.
+Depth: Minimal narrative, maximum clarity. Fast scannable.
+Projects: List each project independently; do not merge.
+Metrics vs. Achievements:
+Use metrics: quantitative, precise, scannable (e.g., “30% reduction in site load time,” “1000+ appointments per month”).
+Achievements are secondary: 1–2 lines per project maximum.
+Special Case: For TroopHunter, highlight full-stack leadership and end-to-end ownership with metrics.
+Format Example:
+"achievements_&_metrics": [
+  "30% faster load time",
+  "1000+ appointments booked monthly"
+]
+
+2️⃣ LinkedIn (70% Abdul, 30% Dev8X)
+Tone: First-person, personable, lightly humorous.
+Focus: Professional story, client highlights, measurable results, social proof.
+Depth: Medium narrative, short stories/examples. Links to full case studies can be included.
+Projects: Each project described independently with achievements + metrics in context.
+Metrics vs. Achievements:
+Metrics: used naturally inside stories (“reduced load time by 40%”).
+Achievements: describe the impact or “so what” for clients or users.
+Format Example:
+"achievements_&_metrics": [
+  "Improved UX with GSAP microinteractions, increasing user engagement by 30%",
+  "Reduced booking friction, raising patient satisfaction and re-appointments by 33%"
+]
+
+3️⃣ Website – helloabdul.com
+Tone: First-person, approachable, polished.
+Focus: Deep-dive portfolio showcase, media-rich, conversion-focused.
+Depth: Long-form content; project stories with responsibilities, tech stack, achievements, and metrics.
+Metrics vs. Achievements:
+Achievements: narrative + measurable results (“streamlined booking reduced admin effort by 25%”).
+Metrics: highlighted within each story for impact.
+CTAs: Include invitations to contact, demo, or explore more projects.
+Format Example:
+"achievements_&_metrics": [
+  "Streamlined scheduling, reducing patient wait time by 40%",
+  "Integrated Mapbox & Agora, improving virtual consultation usage by 50%"
+]
+
+4️⃣ Website – dev8x.com
+Tone: Third-person, polished, US-tech aligned.
+Focus: Dev8X as senior-quality tech partner. Projects presented as client case studies, not personal ownership.
+Depth: Deep-dive portfolio, measurable outcomes, tech stack, processes, and team expertise.
+Projects: Each project independent; attribute to client or case study.
+Metrics vs. Achievements:
+Achievements: describe impact and business outcome.
+Metrics: quantitative numbers when available, presented as “business impact” statements.
+Do not mention Abdul; only include team roles and client collaboration if relevant.
+Format Example:
+"achievements_&_metrics": [
+  "Increased patient re-appointments by 33%, generating 1000+ monthly appointments",
+  "Reduced operational labor costs by 25% through virtual appointment automation"
+]
+
+GUIDELINE FOR USING ABDUL’S PAST WORK:
+- On **first-person platforms** (Resume, LinkedIn, helloabdul.com):  
+  > Use “I” when describing projects, e.g., “I led the frontend development for Total Health Dental Care, improving patient re-appointments by 25%.”  
+
+- On **third-person platforms** (dev8x.com):  
+  > Reference projects as **client case studies**, e.g., “This project implemented a modern React & TypeScript architecture, improving patient engagement by 25%.”  
+  > Do not mention Abdul’s name or attribute personal ownership.
+
+TECH STACK & EXPERTISE TO INCLUDE:
+- Frontend: Next.js, React.js, TypeScript, Redux Thunk, HTML5, TailwindCSS, GSAP, responsive & mobile-first engineering.
+- Code Quality & Workflow: ESLint, Prettier, CI/CD quality gates, Git feature branching, GitHub Pull Requests, TurboRepo, monorepo architecture.
+- Backend & Databases: Node.js, Express.js, RESTful APIs, microservices patterns, PostgreSQL, Sequelize ORM, database design & optimization, authentication, authorization.
+- DevOps & Cloud: Docker, containerization, CI/CD pipelines, Kubernetes, Terraform, Ansible, IaC.
+- Additional: performance optimization, testing & debugging, full-stack development, end-to-end ownership, cross-functional collaboration.
+
+IMPORTANT:
+For now, generate content for helloabdul only.
+
+OUTPUT FORMAT:
+Return a JSON object:
+
+{  
+  "website_content": {
+    "helloabdul": [
+      {
+        "name": "Dev8X",
+        "shortIntro": "...",
+        "overview": "...",
+        "approach": "...",
+        "impact": "...",
+        "keyContributions": ["...", "...", "...", "...", "...", "...", "...", "...", "...", "..."],
+        "contactCTA": "..."
+      },
+      {
+        "name": "TroopHunter",
+        "shortIntro": "...",
+        "overview": "...",
+        "approach": "...",
+        "impact": "...",
+        "keyContributions": ["...", "...", "...", "...", "...", "...", "...", "...", "...", "..."],
+        "contactCTA": "..."
+      },
+      {
+        "name": "CRM",
+        "shortIntro": "...",
+        "overview": "...",
+        "approach": "...",
+        "impact": "...",
+        "keyContributions": ["...", "...", "...", "...", "...", "...", "...", "...", "...", "..."],
+        "contactCTA": "..."
+      },
+      {
+        "name": "Scheduler",
+        "shortIntro": "...",
+        "overview": "...",
+        "approach": "...",
+        "impact": "...",
+        "keyContributions": ["...", "...", "...", "...", "...", "...", "...", "...", "...", "..."],
+        "contactCTA": "..."
+      },
+      {
+        "name": "Total Health Dental Care",
+        "shortIntro": "...",
+        "overview": "...",
+        "approach": "...",
+        "impact": "...",
+        "keyContributions": ["...", "...", "...", "...", "...", "...", "...", "...", "...", "..."],
+        "contactCTA": "..."
+      },
+      {
+        "name": "Coral",
+        "shortIntro": "...",
+        "overview": "...",
+        "approach": "...",
+        "impact": "...",
+        "keyContributions": ["...", "...", "...", "...", "...", "...", "...", "...", "...", "..."],
+        "contactCTA": "..."
+      },
+      {
+        "name": "Honeydu",
+        "shortIntro": "...",
+        "overview": "...",
+        "approach": "...",
+        "impact": "...",
+        "keyContributions": ["...", "...", "...", "...", "...", "...", "...", "...", "...", "..."],
+        "contactCTA": "..."
+      },
+      {
+        "name": "GoldenDAO",
+        "shortIntro": "...",
+        "overview": "...",
+        "approach": "...",
+        "impact": "...",
+        "keyContributions": ["...", "...", "...", "...", "...", "...", "...", "...", "...", "..."],
+        "contactCTA": "..."
+      },
+    ],
+  }
+}
+
+
+Take your maximum time to generate perfect data

@@ -1,0 +1,490 @@
+{
+  "resume": {
+    "about": "6+ years of frontend development experience building fast, modern, accessible web applications. Led large-scale systems, improved reliability, and reduced code errors by 30% through TypeScript adoption. Passionate about clean, high-performance interfaces.",
+    "experience": [
+      {
+        "title": "Founder & CEO",
+        "company": "Dev8X",
+        "dates": "Jan 2024 – Present",
+        "description": "Founded and manage Dev8X, providing US-quality engineering solutions for startups. Oversee full-stack development, architect scalable systems, and lead DevOps pipelines.",
+        "achievements_&_metrics": ["Successfully launched multiple client-facing products", "Optimized engineering workflows across teams", "Delivered reliable, high-performance software solutions"]
+      },
+      {
+        "title": "Full-Stack Developer",
+        "company": "TroopHunter",
+        "dates": "Jan 2023 – Jan 2025",
+        "description": "Led all technical and executive aspects of this automated lead generation platform. Designed frontend dashboards, backend microservices, and end-to-end infrastructure.",
+        "achievements_&_metrics": ["Dashboards load instantly with high responsiveness", "End-to-end performance optimization for reliability and speed", "Intuitive workflows improved lead discovery efficiency by 40%"]
+      },
+      {
+        "title": "Frontend Developer",
+        "company": "Total Health Dental Care",
+        "dates": "Jan 2022 – Jan 2023",
+        "description": "Built websites, scheduling systems, CRM modules, and virtual consultation tools used by 15,000+ patients. Focused on React.js, TypeScript, GSAP, Mapbox, and Agora integrations.",
+        "achievements_&_metrics": ["20% increase in website traffic", "30% increase in user engagement", "40% reduction in site load times"]
+      },
+      {
+        "title": "Frontend Developer",
+        "company": "Coral Lab",
+        "dates": "Feb 2021 – Jan 2023",
+        "description": "Developed consumer products, Web3 platforms, and fintech tools. Enhanced UX using React, TailwindCSS, GSAP, SmoothScroller, and Web3 integrations.",
+        "achievements_&_metrics": ["GoldenDAO launched successfully, empowering AAPI community", "Coral website improved brand presence and engagement", "Honeydu UI redesign boosted mobile usability and clarity"]
+      },
+      {
+        "title": "Frontend Developer",
+        "company": "LEADCONCEPT LTD",
+        "dates": "Sep 2019 – Feb 2021",
+        "description": "Built large-scale ticket booking systems. Developed real-time seat selection UI, admin dashboards, and improved booking workflows for efficiency.",
+        "achievements_&_metrics": ["Increased sales via faster booking flow", "Improved seat booking efficiency and customer satisfaction", "Enhanced user trust with real-time seat availability updates"]
+      }
+    ],
+    "skills": [
+      "React.js",
+      "Next.js",
+      "JavaScript",
+      "TypeScript",
+      "Redux Thunk",
+      "React Query / TanStack",
+      "TailwindCSS",
+      "HTML5",
+      "CSS3",
+      "SASS/SCSS/BEM",
+      "GSAP",
+      "ScrollTrigger",
+      "SmoothScroller",
+      "LenisScroll",
+      "Framer Motion",
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "Sequelize",
+      "Docker",
+      "CI/CD",
+      "Kubernetes",
+      "Terraform",
+      "Ansible",
+      "Microservices",
+      "Monorepo Architecture",
+      "TurboRepo",
+      "Performance Optimization",
+      "Database Design & Optimization",
+      "Testing",
+      "Debugging",
+      "Full-Stack Development",
+      "Flutter",
+      "Agora",
+      "Mapbox GL"
+    ]
+  },
+  "linkedin": {
+    "headline": "Founder & CEO at Dev8X | Senior Frontend Developer | React.js & TypeScript Expert | Building high-performance web apps for startups",
+    "about": "I’m Abdul, a frontend-focused engineer with 6+ years experience delivering modern, performant web applications. I co-founded Dev8X to help startups hire US-quality engineers at 60–70% lower cost. I’ve built production systems across dental, fintech, SaaS, scheduling, and Web3 platforms, working with clients like Total Health Dental Care and Coral. I enjoy optimizing user experiences, building responsive interfaces, and leading full-stack projects end-to-end.",
+    "experience": [
+      {
+        "title": "Founder & CEO",
+        "company": "Dev8X",
+        "dates": "Jan 2024 – Present",
+        "description": "I lead Dev8X, providing startups with top-tier engineering talent. I oversee frontend and backend product architecture, CI/CD pipelines, and cross-functional team delivery.",
+        "achievements_&_metrics": ["Launched multiple client-facing products on time and budget", "Streamlined engineering workflows across teams", "Delivered reliable, high-performance software solutions"]
+      },
+      {
+        "title": "Full-Stack Developer",
+        "company": "TroopHunter",
+        "dates": "Jan 2023 – Jan 2025",
+        "description": "I built this automated lead generation platform from the ground up, designing frontend dashboards in Next.js + TypeScript, Node.js microservices, PostgreSQL databases, and CI/CD pipelines.",
+        "achievements_&_metrics": ["Dashboards load instantly and are highly responsive", "End-to-end performance optimization improved speed and reliability", "Intuitive filters and workflows boosted lead discovery efficiency by 40%"]
+      },
+      {
+        "title": "Frontend Developer",
+        "company": "Total Health Dental Care",
+        "dates": "Jan 2022 – Jan 2023",
+        "description": "I developed websites, CRM modules, and a scheduler, integrating **React.js**, **TypeScript**, **GSAP**, **Mapbox**, and **Agora**. Focused on improving patient experience and operational efficiency.",
+        "achievements_&_metrics": ["Increased website traffic by 20%", "Boosted user engagement by 30%", "Reduced load times by 40%, improving patient satisfaction"]
+      },
+      {
+        "title": "Frontend Developer",
+        "company": "Coral Lab",
+        "dates": "Feb 2021 – Jan 2023",
+        "description": "I created Web3, fintech, and consumer-facing applications, enhancing UX with **GSAP**, **SmoothScroller**, and responsive **TailwindCSS** layouts.",
+        "achievements_&_metrics": ["Successfully launched GoldenDAO, empowering AAPI Web3 community", "Coral website improved brand presence and engagement", "Honeydu UI redesign increased mobile-first usability and clarity"]
+      },
+      {
+        "title": "Frontend Developer",
+        "company": "LEADCONCEPT LTD",
+        "dates": "Sep 2019 – Feb 2021",
+        "description": "I built ticket booking systems with real-time seat selection UI, admin dashboards, and optimized frontend workflows for efficiency and customer satisfaction.",
+        "achievements_&_metrics": ["Enhanced seat booking efficiency and user trust", "Increased sales via faster booking flow", "Implemented real-time seat availability updates"]
+      }
+    ],
+    "projects": [
+      {
+        "title": "Total Health Dental Care Website",
+        "description": "I built the website with **React.js**, **GSAP**, **ScrollTrigger**, **TailwindCSS**, and **Mapbox GL**, improving user engagement and accessibility for 15,000+ patients.",
+        "techStack": ["React.js", "TailwindCSS", "GSAP", "ScrollTrigger", "Mapbox GL", "HTML5", "CSS3", "TypeScript"],
+        "media": [],
+        "achievements_&_metrics": ["20% increase in website traffic", "30% higher user engagement", "40% faster load times"]
+      },
+      {
+        "title": "Total Health Dental Care CRM",
+        "description": "I developed a custom CRM replacing DentrixAscend, integrating live scheduling, virtual appointments via **Agora**, and admin dashboards for efficient patient management.",
+        "techStack": ["React.js", "TypeScript", "Agora", "Redux Thunk", "TailwindCSS", "Node.js", "Express.js", "PostgreSQL", "Sequelize"],
+        "media": [],
+        "achievements_&_metrics": ["33% increase in global hygiene re-appointments", "Millions processed in patient payments", "Reduced staff labor through virtual appointment automation"]
+      },
+      {
+        "title": "Total Health Dental Care Scheduler",
+        "description": "I built a real-time scheduling web app integrating CRM and DentrixAscend. Focused on UX, registration flow, office selection, and payment integration.",
+        "techStack": ["React.js", "TypeScript", "Redux Thunk", "TailwindCSS", "Node.js", "Express.js", "PostgreSQL", "Sequelize"],
+        "media": [],
+        "achievements_&_metrics": ["Improved booking convenience and patient satisfaction", "Reduced admin work and wait times", "Enhanced appointment accuracy across offices"]
+      },
+      {
+        "title": "Coral Website",
+        "description": "I developed Coral’s responsive website, adding **GSAP** animations and **SmoothScroller** interactions to enhance UX, while using **HTML**, **CSS**, and **SCSS**.",
+        "techStack": ["React.js", "HTML5", "SCSS", "TailwindCSS", "GSAP", "SmoothScroller"],
+        "media": [],
+        "achievements_&_metrics": ["Improved online brand presence and engagement", "Delivered responsive, modern layouts", "Enhanced UX via scroll-based interactions"]
+      },
+      {
+        "title": "Honeydu",
+        "description": "I built a zero-fee payment and invoice app with **React.js**, **TailwindCSS**, and **JavaScript**, focusing on mobile-first UX and reusable components.",
+        "techStack": ["React.js", "TailwindCSS", "JavaScript", "HTML5", "CSS3", "Redux"],
+        "media": [],
+        "achievements_&_metrics": ["Simplified money management for creators and freelancers", "Enabled real-time financial insights", "Reduced payment friction and costs"]
+      },
+      {
+        "title": "GoldenDAO",
+        "description": "I created a Web3 membership platform with **React.js**, **Redux**, **TailwindCSS**, and **GSAP**, implementing NFT-gated features and voting systems for community engagement.",
+        "techStack": ["React.js", "Redux", "JavaScript", "TailwindCSS", "GSAP", "HTML5"],
+        "media": [],
+        "achievements_&_metrics": ["Successfully launched GoldenDAO with AAPI empowerment mission", "Enabled membership voting and exclusive events", "Enhanced community engagement and platform adoption"]
+      }
+    ]
+  },
+  "website_content": {
+    "helloabdul": [
+      {
+        "name": "Dev8X",
+        "shortIntro": "I founded **Dev8X** to provide startups with US-quality engineering talent and scalable development solutions, bridging high-performance tech with practical business outcomes.",
+        "overview": "At Dev8X, I oversee end-to-end product development, from frontend architecture with **React.js** and **Next.js** to backend microservices in **Node.js**, ensuring reliability and maintainability.",
+        "approach": "I design modern, scalable systems using **TypeScript**, **Redux Thunk**, and **TurboRepo** monorepos. CI/CD pipelines leverage **Docker**, **Kubernetes**, **Terraform**, and **Ansible**, enforcing code quality and deployment consistency.",
+        "impact": "Startups partnering with Dev8X can ship products faster, with high performance and fewer bugs. The teams I lead consistently deliver production-grade, reliable software across multiple domains.",
+        "keyContributions": [
+          "Architected **React.js & Next.js** frontend frameworks for multiple client projects",
+          "Established **TypeScript**-based coding standards and best practices",
+          "Built **Node.js** backend microservices and APIs",
+          "Implemented **Redux Thunk** for complex state management",
+          "Set up **TurboRepo** monorepo for streamlined cross-project development",
+          "Deployed CI/CD pipelines with **Docker**, **Kubernetes**, **Terraform**, **Ansible**",
+          "Optimized frontend and backend performance for speed and reliability",
+          "Enforced code quality via **ESLint**, **Prettier**, and automated tests",
+          "Managed cross-functional teams and development workflows",
+          "Ensured scalable, maintainable, and modular software architectures"
+        ],
+        "contactCTA": "Explore how we can help your startup build reliable, scalable software. [Contact me to start a project](#contact)."
+      },
+      {
+        "name": "TroopHunter",
+        "shortIntro": "I led the development of **TroopHunter**, an automated lead generation platform that finds prospects quickly and accurately—no manual research needed.",
+        "overview": "I handled full-stack development, creating **Next.js + TypeScript** dashboards and **Node.js microservices** with **PostgreSQL + Sequelize**, optimized for speed, responsiveness, and scalability.",
+        "approach": "The UX focuses on intuitive workflows enhanced by **GSAP** and **Framer Motion**. **TurboRepo** monorepos ensure maintainable structure, while CI/CD pipelines use **Docker**, **Kubernetes**, **Terraform**, and **Ansible**.",
+        "impact": "Users experience instant-loading dashboards with powerful filters. The system reduces lead discovery time drastically and improves accuracy across thousands of prospects.",
+        "keyContributions": [
+          "Led frontend architecture with **Next.js & TypeScript**",
+          "Implemented global state management with **Redux Thunk**",
+          "Designed microinteractions using **GSAP** and **Framer Motion**",
+          "Set up **TurboRepo** monorepo for scalable development",
+          "Configured CI/CD pipelines with **Docker**, **Kubernetes**, **Terraform**, **Ansible**",
+          "Built backend **Node.js** microservices with **Sequelize ORM**",
+          "Integrated **authentication & authorization** flows",
+          "Optimized dashboards for instant load and responsiveness",
+          "Implemented automated testing and code quality enforcement",
+          "Managed feature branching and pull request workflows via Git"
+        ],
+        "contactCTA": "Discover how TroopHunter accelerates lead generation. [Request a demo or consultation](#contact)."
+      },
+      {
+        "name": "CRM",
+        "shortIntro": "I developed a custom **CRM** for **Total Health Dental Care**, streamlining appointments, virtual consultations, and patient management for 15,000+ users.",
+        "overview": "I built the CRM with **React.js** and **TypeScript**, replacing DentrixAscend. The system integrates virtual appointments via **Agora** and office locations with **Mapbox GL**.",
+        "approach": "The platform provides real-time updates, drag-and-drop appointment management, and intuitive admin dashboards. Animations use **GSAP** and **ScrollTrigger** for smooth interactions.",
+        "impact": "The CRM improved patient re-appointments by 33%, processed millions in payments, and reduced operational labor via virtual appointments.",
+        "keyContributions": [
+          "Developed **Schedule** and **Virtuals** sections with **React.js** + **TypeScript**",
+          "Integrated **Agora** for live video appointments",
+          "Built **Mapbox GL** location pages for office selection",
+          "Implemented drag-and-drop scheduling and card stretching features",
+          "Created real-time UI updates for appointments and patients",
+          "Enhanced user experience with **GSAP** animations",
+          "Optimized data flows and database interactions with **PostgreSQL + Sequelize**",
+          "Streamlined admin workflows for appointment and patient management",
+          "Improved accessibility and UX across web and mobile platforms",
+          "Reduced operational costs through automation of virtual consultations"
+        ],
+        "contactCTA": "See how I streamline healthcare operations with custom CRMs. [Explore project details](#contact)."
+      },
+      {
+        "name": "Scheduler",
+        "shortIntro": "I designed the **Scheduler** web app for **Total Health Dental Care**, simplifying appointment booking and improving patient convenience.",
+        "overview": "The **React.js + TypeScript** scheduler integrates with the CRM and DentrixAscend. Patients select offices, book times, and make secure payments online.",
+        "approach": "I implemented responsive, intuitive interfaces. Animations use **GSAP** for a smooth booking experience, with integrations for payment collection and office selection.",
+        "impact": "Booking efficiency increased, travel costs decreased, and patient satisfaction improved. Staff workload decreased through automation, and revenue grew via better appointment management.",
+        "keyContributions": [
+          "Created intuitive booking interface with **React.js** and **TypeScript**",
+          "Integrated CRM and **DentrixAscend** for seamless data sync",
+          "Implemented office selection and date/time pickers",
+          "Securely processed card payments for bookings",
+          "Used **GSAP** for smooth animations and microinteractions",
+          "Enhanced accessibility and mobile responsiveness",
+          "Streamlined patient registration flows",
+          "Reduced administrative work and improved operational efficiency",
+          "Optimized scheduling for speed and convenience",
+          "Enabled a 33% increase in hygiene re-appointments"
+        ],
+        "contactCTA": "Experience how patient-friendly scheduling boosts satisfaction. [Contact me for insights](#contact)."
+      },
+      {
+        "name": "Total Health Dental Care",
+        "shortIntro": "I improved the **Total Health Dental Care** website, creating responsive, interactive, and performance-optimized pages for 15,000+ patients.",
+        "overview": "I implemented **GSAP**, **ScrollTrigger**, and **TailwindCSS** for animations, responsive layouts, and performance optimization. Office pages leverage **Mapbox GL** for interactive location selection.",
+        "approach": "The website ensures smooth scrolling, fast load times, and cross-browser compatibility. Images are optimized, and polyfills enhance accessibility across devices.",
+        "impact": "Website traffic rose 20%, user engagement by 30%, and load times dropped 40%. Patients enjoy a visually engaging, intuitive experience.",
+        "keyContributions": [
+          "Built responsive pages with **TailwindCSS**, **HTML5**, **CSS3**",
+          "Implemented scroll-based animations with **GSAP** and **ScrollTrigger**",
+          "Enhanced site performance via **ImagesLoaded** and polyfills",
+          "Integrated interactive **Mapbox GL** office locator",
+          "Optimized cross-browser and mobile compatibility",
+          "Improved UX with smooth scrolling and motion interactions",
+          "Created visually appealing and accessible web components",
+          "Reduced page load time by 40%",
+          "Increased user engagement by 30%",
+          "Boosted overall website traffic by 20%"
+        ],
+        "contactCTA": "Check out how interactive web design improves engagement. [See the project](#contact)."
+      },
+      {
+        "name": "Coral",
+        "shortIntro": "I developed **Coral**’s responsive website and Web3 products, improving brand presence and engagement with modern UX and interactive elements.",
+        "overview": "Built using **React.js**, **TailwindCSS**, and **SCSS**, integrating **GSAP** and **SmoothScroller** for enhanced interactions. Web3 components include membership and voting systems for **GoldenDAO**.",
+        "approach": "I focused on responsive layouts, interactive animations, and smooth scrolling to increase engagement and provide a polished experience across devices.",
+        "impact": "Website quality and brand engagement improved, launching Web3 platforms for community empowerment and fintech solutions.",
+        "keyContributions": [
+          "Developed responsive UI with **HTML5**, **CSS3**, **SCSS**, **TailwindCSS**",
+          "Integrated **GSAP** and **SmoothScroller** for animations",
+          "Built **GoldenDAO** membership and voting features",
+          "Optimized UX for mobile-first interaction",
+          "Implemented Web3 functionalities for community engagement",
+          "Enhanced website aesthetics and performance",
+          "Collaborated on testing, debugging, and deployment",
+          "Improved site load time and responsiveness",
+          "Boosted brand presence through design consistency",
+          "Launched Web3 projects supporting community empowerment"
+        ],
+        "contactCTA": "Discover how modern UX and Web3 solutions can elevate your brand. [Explore Coral case study](#contact)."
+      },
+      {
+        "name": "Honeydu",
+        "shortIntro": "I developed **Honeydu**, a zero-fee payment and invoice app, simplifying money management for creators and freelancers.",
+        "overview": "Using **React.js**, **TailwindCSS**, and **JavaScript**, I built intuitive dashboards for sending/receiving money, generating invoices, and tracking finances in real-time.",
+        "approach": "I focused on a clean, mobile-first interface with reusable components and real-time updates, ensuring seamless financial management and user empowerment.",
+        "impact": "Honeydu simplified transactions, reduced payment fees, and helped users manage finances efficiently, with an intuitive interface for freelancers and small businesses.",
+        "keyContributions": [
+          "Designed responsive **React.js** + **TailwindCSS** interfaces",
+          "Enabled money transfer via email/phone number",
+          "Generated invoices and managed payments in-app",
+          "Provided real-time financial insights",
+          "Built reusable components for scalability",
+          "Optimized mobile-first experience",
+          "Enhanced UX for clarity and simplicity",
+          "Reduced reliance on traditional payment systems",
+          "Streamlined money management workflows",
+          "Empowered users to track finances efficiently"
+        ],
+        "contactCTA": "See how financial tools can empower users. [Discover Honeydu](#contact)."
+      },
+      {
+        "name": "GoldenDAO",
+        "shortIntro": "I built **GoldenDAO**, a Web3 membership platform empowering AAPI communities with access-gated events and voting features.",
+        "overview": "Using **React.js**, **Redux**, **TailwindCSS**, and **GSAP**, I created a responsive, interactive website with NFT-based membership controls and event participation features.",
+        "approach": "Focus was on engagement and accessibility, integrating animations, responsive layouts, and blockchain interactions for a seamless Web3 experience.",
+        "impact": "GoldenDAO launched successfully, advancing AAPI solidarity, offering exclusive benefits, and promoting member engagement in online and real-world events.",
+        "keyContributions": [
+          "Implemented **React.js & Redux** architecture for responsive UI",
+          "Built NFT-gated access features",
+          "Integrated event registration and voting systems",
+          "Applied **GSAP** animations for microinteractions",
+          "Created responsive **HTML5 & TailwindCSS** layouts",
+          "Enabled community collaboration and engagement",
+          "Tested and maintained Web3 platform performance",
+          "Ensured security and accessibility across devices",
+          "Launched on schedule with full feature set",
+          "Supported AAPI empowerment through digital engagement"
+        ],
+        "contactCTA": "Explore how Web3 membership platforms engage communities. [See GoldenDAO](#contact)."
+      }
+    ],
+    "dev8x": [
+      {
+        "name": "Dev8X",
+        "shortIntro": "Full-service development company providing US-quality engineering solutions for startups.",
+        "overview": "Dev8X delivers end-to-end product development, combining frontend and backend architecture, monorepo management, and DevOps automation for high-performance software.",
+        "approach": "We architect scalable, maintainable systems using **React.js**, **Next.js**, **TypeScript**, **Node.js** microservices, **TurboRepo** monorepo setup, **Docker**, **Kubernetes**, **Terraform**, and **Ansible** for reliable CI/CD pipelines.",
+        "impact": "Enabled startups to ship products faster, reduce technical debt, and maintain high-performance, reliable solutions across multiple domains including SaaS, fintech, healthcare, and Web3.",
+        "keyContributions": [
+          "**React.js** & **Next.js** frontend architecture",
+          "**TypeScript** development standards across frontend and backend",
+          "**Node.js** microservices implementation",
+          "State management via **Redux Thunk**",
+          "Monorepo architecture with **TurboRepo**",
+          "CI/CD pipelines using **Docker**, **Kubernetes**, **Terraform**, **Ansible**",
+          "Database design & optimization with **PostgreSQL** and **Sequelize**",
+          "RESTful API design and microservices patterns",
+          "Performance optimization and code quality enforcement (**ESLint**, **Prettier**)",
+          "Full-stack development and cross-functional collaboration"
+        ],
+        "contactCTA": "Partner with Dev8X to build your product with senior-quality engineering and scalable architecture. Contact us to start your project."
+      },
+      {
+        "name": "TroopHunter",
+        "shortIntro": "Automated lead generation platform for fast, accurate prospect discovery.",
+        "overview": "Led full-stack development and technical strategy for **TroopHunter**, creating dashboards, microservices, and scalable architecture for real-time lead insights.",
+        "approach": "Implemented **Next.js** + **TypeScript** dashboards, **Node.js** microservices, **PostgreSQL** with **Sequelize**, **TurboRepo** monorepo, CI/CD pipelines using **Docker**, **Kubernetes**, **Terraform**, and **Ansible**. UX enhanced via **GSAP** & **Framer Motion**.",
+        "impact": "Dashboards load instantly; filters and workflows are intuitive, enjoyable, and highly performant, delivering reliable lead generation with minimal friction.",
+        "keyContributions": [
+          "**Next.js** & **TypeScript** frontend architecture",
+          "State management via **Redux Thunk**",
+          "**GSAP** & **Framer Motion** for microinteractions",
+          "Monorepo setup with **TurboRepo**",
+          "CI/CD pipelines using **Docker**, **Kubernetes**, **Terraform**, **Ansible**",
+          "**Node.js** & **Express** microservices",
+          "**PostgreSQL** ORM via **Sequelize**",
+          "Authentication & authorization flows",
+          "Code quality enforcement with **ESLint**, **Prettier**",
+          "Git feature branching & pull request workflow"
+        ],
+        "contactCTA": "See how **TroopHunter** automates prospecting at scale. Contact us to learn more or demo the platform."
+      },
+      {
+        "name": "CRM",
+        "shortIntro": "Custom CRM for Total Health Dental Care streamlining patient appointments and virtual consultations.",
+        "overview": "Developed a tailor-made **CRM** replacing DentrixAscend, enabling live updates, drag-and-drop scheduling, and virtual appointments for 15,000+ patients.",
+        "approach": "Implemented **React.js**, **TypeScript**, **Agora** for video, **TailwindCSS** for responsive UI, and connected with backend automation scripts for seamless workflow.",
+        "impact": "Improved global hygiene re-appointments by 33%, processed millions in patient payments, and reduced staff labor through automated virtual appointments.",
+        "keyContributions": [
+          "Custom **CRM** interface with live updates on appointments",
+          "Drag-and-drop scheduling with time adjustments",
+          "Virtual appointments using **Agora** integration",
+          "Admin dashboards for appointment and patient management",
+          "Responsive UI with **TailwindCSS** and **HTML5**",
+          "Backend automation scripts for workflow efficiency",
+          "Integration with DentrixAscend and internal scheduling systems",
+          "Improved patient experience and operational efficiency",
+          "Increased revenue through higher appointment throughput",
+          "Enhanced accessibility for global patient base"
+        ],
+        "contactCTA": "Discover how our custom **CRM** improves patient engagement and operational efficiency. Contact us for a consultation."
+      },
+      {
+        "name": "Scheduler",
+        "shortIntro": "Real-time scheduling web app for Total Health Dental Care, enhancing booking convenience and accessibility.",
+        "overview": "Developed a **scheduler** web app allowing patients to select offices, pick dates and times, and securely pay, integrated with CRM and DentrixAscend.",
+        "approach": "Built with **React.js**, **TypeScript**, **TailwindCSS**, and **GSAP** for animations, optimized with **ImagesLoaded** and polyfills for performance across devices.",
+        "impact": "Reduced patient travel costs, improved satisfaction, and increased appointment booking efficiency across offices.",
+        "keyContributions": [
+          "Intuitive booking interface with office selection",
+          "Patient registration and existing patient flow",
+          "Secure card payment collection",
+          "Integration with **CRM** and DentrixAscend",
+          "Responsive design using **TailwindCSS** + **HTML5**",
+          "Scroll and animation enhancements via **GSAP**",
+          "Performance optimization with **ImagesLoaded**",
+          "Reduced administrative overhead for staff",
+          "Increased patient appointment rates",
+          "Improved overall booking convenience and UX"
+        ],
+        "contactCTA": "Learn how our scheduling solutions streamline patient bookings. Contact us for a demo or integration details."
+      },
+      {
+        "name": "Total Health Dental Care",
+        "shortIntro": "Corporate website redesign improving patient engagement and global presence.",
+        "overview": "Revamped the **Total Health Dental Care** website with responsive design, scroll-based animations, interactive Mapbox GL office locator, and performance optimization.",
+        "approach": "Implemented **React.js**, **TypeScript**, **GSAP**, **ScrollTrigger**, **Locomotive-Scroll**, **Mapbox GL**, and **ImagesLoaded** for high-performance, interactive UI.",
+        "impact": "Increased website traffic by 20%, user engagement by 30%, and reduced load times by 40%, enhancing global patient experience.",
+        "keyContributions": [
+          "Responsive, accessible website redesign with **TailwindCSS**",
+          "Scroll-based animations with **GSAP** and **ScrollTrigger**",
+          "Interactive office locator using **Mapbox GL**",
+          "Performance optimization with **ImagesLoaded** and polyfills",
+          "Cross-browser and mobile device compatibility",
+          "Enhanced UX with smooth scrolling and microinteractions",
+          "Integrated dynamic motion paths and advanced typography",
+          "Boosted conversion rates via intuitive navigation",
+          "Improved global patient engagement and retention",
+          "Higher visibility and brand presence online"
+        ],
+        "contactCTA": "See how a modern, responsive website can increase engagement. Contact us to discuss your project."
+      },
+      {
+        "name": "Coral",
+        "shortIntro": "Responsive website and Web3 platform enhancements for Coral Lab.",
+        "overview": "Built Coral’s company website and Web3 projects like **GoldenDAO** and **Honeydu**, focusing on responsive UI, UX animations, and Web3 interactions.",
+        "approach": "Used **React.js**, **TailwindCSS**, **GSAP**, **SmoothScroller**, **HTML5**, and **SCSS** to create modern, interactive, mobile-first web experiences.",
+        "impact": "Improved brand presence, engagement, and Web3 community interaction. Honeydu's redesign enhanced clarity and mobile-first usability.",
+        "keyContributions": [
+          "Responsive website design with **HTML5** and **SCSS**",
+          "UX animations with **GSAP** and **SmoothScroller**",
+          "Web3 integrations for **GoldenDAO** membership and voting",
+          "Reusable components and global state via **Redux**",
+          "Mobile-first interface for Honeydu payment system",
+          "Improved brand visibility and engagement metrics",
+          "Interactive and engaging web experience",
+          "Optimized site performance across devices",
+          "Facilitated NFT-gated experiences and exclusive events",
+          "Enhanced user satisfaction and accessibility"
+        ],
+        "contactCTA": "Explore how Coral Lab improved user engagement and Web3 interactions. Contact us to discuss a similar project."
+      },
+      {
+        "name": "Honeydu",
+        "shortIntro": "Zero-fee payment and invoicing platform for creators and freelancers.",
+        "overview": "Developed **Honeydu**, a mobile-first app to send/receive money, generate invoices, and track finances, enhancing user autonomy and financial clarity.",
+        "approach": "Built using **React.js**, **TailwindCSS**, **HTML5**, and **JavaScript**, focusing on reusable components, responsive design, and real-time financial insights.",
+        "impact": "Simplified money management, reduced transaction fees, and empowered users to stay on top of finances efficiently.",
+        "keyContributions": [
+          "Zero-fee payment interface using **React.js** and **TailwindCSS**",
+          "Invoice generation and financial organization tools",
+          "Mobile-first, responsive user experience",
+          "Reusable components for scalability",
+          "Real-time insights into account balances",
+          "Streamlined payment processes for freelancers and creators",
+          "Enhanced user autonomy and financial decision-making",
+          "Improved clarity and usability of financial data",
+          "Optimized for cross-device performance",
+          "Reduced friction in everyday financial transactions"
+        ],
+        "contactCTA": "Discover how Honeydu empowers creators and freelancers. Contact us to explore financial tools tailored for your users."
+      },
+      {
+        "name": "GoldenDAO",
+        "shortIntro": "Web3 membership and community platform for AAPI empowerment.",
+        "overview": "Developed **GoldenDAO** with NFT-gated membership, exclusive events, and voting system, engaging the AAPI Web3 community.",
+        "approach": "Built with **React.js**, **Redux**, **TailwindCSS**, **GSAP**, and **HTML5** for dynamic interactions, responsive layouts, and engaging microinteractions.",
+        "impact": "Advanced community solidarity and empowerment, provided members access to events, exclusive content, and governance participation.",
+        "keyContributions": [
+          "Membership system with exclusive NFT-gated access",
+          "Voting and event participation features for members",
+          "Responsive UI using **TailwindCSS** and **HTML5**",
+          "Dynamic animations via **GSAP**",
+          "State management with **Redux**",
+          "Enhanced engagement through Web3 community interactions",
+          "Testing, debugging, and performance optimization",
+          "Continuous updates and maintenance for user satisfaction",
+          "Facilitated collaboration and contribution within AAPI community",
+          "Strengthened digital presence and empowerment for members"
+        ],
+        "contactCTA": "Learn how GoldenDAO fosters community and engagement in Web3. Contact us to discuss building a similar platform."
+      }
+    ]
+  }
+}
