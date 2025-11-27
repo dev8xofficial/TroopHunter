@@ -95,7 +95,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'blue',
     path: 'troophunter',
-    testimonial: 'Working with Abdul made TroopHunter feel alive: fast, polished, fun—and code stays rock solid.',
+    testimonial: '“**TroopHunter** evolved into a precise, scalable lead-generation asset. Clear expertise and attention to detail ensured years of reliable growth.”',
     testimonialAuthor: 'Abdul Rehman',
     testimonialAuthorPosition: 'Founder & Lead Engineer'
   },
