@@ -38,6 +38,11 @@ export interface ExpertiseHeroButton {
   modalType?: ModalType;
 }
 
+export interface ExpertiseFooterCta {
+  heading: string;
+  buttonText: string;
+}
+
 export interface ExpertiseContent extends PageLayoutContent {
   slug: string;
   variant: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
@@ -50,4 +55,6 @@ export interface ExpertiseContent extends PageLayoutContent {
   testimonials: ExpertiseTestimonial[];
   video?: string;
   heroButtons?: ExpertiseHeroButton[];
+  footerCta?: ExpertiseFooterCta;
+  footerCtaSecondary?: ExpertiseFooterCta;
 }

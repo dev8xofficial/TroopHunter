@@ -372,6 +372,10 @@ const CTO: OffersContent[] = [
         ]
       }
     ],
+    footerCta: {
+      heading: 'Your Project Starts Here',
+      buttonText: "Let's Go"
+    },
     video: prefixed(`/videos/header/header.mp4`)
   }
 ];
