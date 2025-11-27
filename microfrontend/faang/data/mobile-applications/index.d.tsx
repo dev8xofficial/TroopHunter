@@ -371,6 +371,14 @@ const MOBILE: OffersContent[] = [
         ]
       }
     ],
+    footerCta: {
+      heading: 'Ready to get started?',
+      buttonText: "Contact Us"
+    },
+    footerCtaSecondary: {
+      heading: 'Got questions? We’re here to help',
+      buttonText: 'Scheldule Call'
+    },
     video: prefixed(`/videos/header/header.mp4`)
   }
 ];

@@ -361,6 +361,14 @@ const AUGMENTATION: OffersContent[] = [
         items: [{ name: 'Selenium', image: '' }]
       }
     ],
+    footerCta: {
+      heading: 'Your Project Starts Here',
+      buttonText: "Let's Go"
+    },
+    footerCtaSecondary: {
+      heading: 'Got questions? We’re here to help',
+      buttonText: 'Scheldule Call'
+    },
     video: prefixed(`/videos/header/header.mp4`)
   }
 ];

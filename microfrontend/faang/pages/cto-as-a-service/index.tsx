@@ -165,11 +165,11 @@ const CTOPage: React.FC = (): JSX.Element => {
 
                   <footer className={ExpertiseStyles['expertise-cta']}>
                     <h2 className={ExpertiseStyles['expertise-cta__content']}>
-                      <span>Got questions? We’re here to help</span>
+                      <span>{PageData.footerCta?.heading || "Got questions? We're here to help"}</span>
                     </h2>
                     <div>
                       <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon width="14" className={ExpertiseStyles['button--icon']} />} spanClassName={ExpertiseStyles['contact-button']} onClick={() => toggleModal('contact')}>
-                        Schedule Call
+                        {PageData.footerCta?.buttonText || 'Schedule Call'}
                       </Button>
                     </div>
                   </footer>

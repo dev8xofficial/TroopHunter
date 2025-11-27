@@ -328,7 +328,15 @@ const MVP: OffersContent[] = [
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
-    video: prefixed(`/videos/header/header.mp4`)
+    video: prefixed(`/videos/header/header.mp4`),
+    footerCta: {
+      heading: 'Your Project Starts Here',
+      buttonText: "Let's Go"
+    },
+    footerCtaSecondary: {
+      heading: 'Ready to get started?',
+      buttonText: 'Contact Us'
+    }
   }
 ];
 
