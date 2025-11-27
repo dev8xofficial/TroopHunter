@@ -134,6 +134,7 @@ const MobileApplication: React.FC = (): JSX.Element => {
               </ModularBlocks>
 
               <div className={ExpertiseStyles['expertise-container']}>
+                {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities capabilitiesHeading={PageData.capabilitiesHeading} capabilities={PageData.capabilities} />}
                 <footer className={ExpertiseStyles['expertise-cta']}>
                   <h2 className={ExpertiseStyles['expertise-cta__content']}>
                     <span>{PageData.footerCta?.heading || "Got questions? We're here to help"}</span>
@@ -144,7 +145,6 @@ const MobileApplication: React.FC = (): JSX.Element => {
                     </Button>
                   </div>
                 </footer>
-                {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities capabilitiesHeading={PageData.capabilitiesHeading} capabilities={PageData.capabilities} />}
                 <div className={ExpertiseStyles['expertise-container']}>
                   <h2 className="hidden">Testimonials:</h2>
                   <CardStack variant="Stack">
@@ -170,17 +170,6 @@ const MobileApplication: React.FC = (): JSX.Element => {
                       </CardStack>
                     ))}
                   </CardStack>
-
-                  <footer className={ExpertiseStyles['expertise-cta']}>
-                    <h2 className={ExpertiseStyles['expertise-cta__content']}>
-                      <span>{PageData.footerCtaSecondary?.heading || PageData.footerCta?.heading || "Got questions? We're here to help"}</span>
-                    </h2>
-                    <div>
-                      <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon width="14" className={ExpertiseStyles['button--icon']} />} spanClassName={ExpertiseStyles['contact-button']} onClick={() => toggleModal('schedulecall')}>
-                        {PageData.footerCtaSecondary?.buttonText || PageData.footerCta?.buttonText || 'Schedule Call'}
-                      </Button>
-                    </div>
-                  </footer>
                   <FAQs faqs={PageData.faqs} />
                 </div>
               </div>
