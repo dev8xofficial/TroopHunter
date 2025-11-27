@@ -4,7 +4,7 @@ import { prefixed } from '../../utils/helpers';
 
 const PageData: PageLayoutContent = {
   meta: {
-    title: 'Our Work — Dev8X | Dev8X: World class digital products',
+    title: 'Our Work — Abdul | Abdul: World class digital products',
     description: 'World-class digital products, idea to execution.'
   },
   footerMainContent: {

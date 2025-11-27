@@ -2,7 +2,7 @@ import { PageLayoutContent } from '@repo/components/src/Interfaces/PageLayout/Pa
 
 const PageData: PageLayoutContent = {
   meta: {
-    title: '404 — Dev8X | Dev8X: World class digital products',
+    title: '404 — Abdul | Abdul: World class digital products',
     description: 'World-class digital products, idea to execution.'
   },
   footerMainContent: {

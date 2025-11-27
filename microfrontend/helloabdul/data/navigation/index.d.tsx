@@ -188,38 +188,74 @@ const SubmenuData = [
       }
     ]
   },
-  ...(false
-    ? [
   {
-    heading: 'Work With Us',
+    heading: 'Platform Engineering',
     list: [
       {
-        title: 'Careers',
-        iconName: 'RightArrowIcon',
-        color: 'cyan',
-        href: '/careers',
-        rotateIcon: true
-      },
-      {
-        title: 'Internships',
-        iconName: 'PlanetRingIcon',
+        title: 'Microservices',
+        iconName: 'MobileIcon',
         color: 'purple',
-        href: '/internships'
+        href: '/expertise/microservices'
       },
       {
-        title: 'Our Process',
-        iconName: 'DataIcon',
-        color: 'blue',
-        href: '/our-process'
+        title: 'Containerization',
+        iconName: 'TypeScript',
+        color: 'black',
+        href: '/expertise/containerization'
       },
       {
-        title: 'Plans & Pricing',
-        iconName: 'SaaSIcon',
+        title: 'Kubernetes',
+        iconName: 'NextjsIcon',
+        color: 'cyan',
+        href: '/expertise/kubernetes'
+      },
+      {
+        title: 'Terraform',
+        iconName: 'BackendIcon',
+        color: 'pink',
+        href: '/expertise/terraform'
+      },
+      {
+        title: 'TurboRepo',
+        iconName: 'SupabaseIcon',
         color: 'green',
-        href: '/plans-and-pricing'
+        href: '/expertise/turbo-repo'
       }
+    ]
+  },
+
+  ...(false
+    ? [
+        {
+          heading: 'Work With Us',
+          list: [
+            {
+              title: 'Careers',
+              iconName: 'RightArrowIcon',
+              color: 'cyan',
+              href: '/careers',
+              rotateIcon: true
+            },
+            {
+              title: 'Internships',
+              iconName: 'PlanetRingIcon',
+              color: 'purple',
+              href: '/internships'
+            },
+            {
+              title: 'Our Process',
+              iconName: 'DataIcon',
+              color: 'blue',
+              href: '/our-process'
+            },
+            {
+              title: 'Plans & Pricing',
+              iconName: 'SaaSIcon',
+              color: 'green',
+              href: '/plans-and-pricing'
+            }
           ].filter((item) => !['/careers', '/internships', '/plans-and-pricing'].includes(item.href))
-  }
+        }
       ]
     : [])
 ] as HeaderSubmenuContent;

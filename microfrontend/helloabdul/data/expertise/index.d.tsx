@@ -66,7 +66,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Web Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'Web Developers | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Exceptional websites for ambitious, modern brands'
     },
     footerData: {
@@ -208,7 +208,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Web App Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'Web App Developers | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Tailored digital solutions, from concept to launch'
     },
     footerData: {
@@ -356,7 +356,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Real-Time Systems & Application Development | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'Real-Time Systems & Application Development | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Engage users in the moment with real-time experiences'
     },
     footerData: {
@@ -504,7 +504,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'SaaS Solutions Development | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'SaaS Solutions Development | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Empower your business with scalable SaaS solutions'
     },
     footerData: {
@@ -646,7 +646,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'eCommerce Shopify Website Development | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'eCommerce Shopify Website Development | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Beautiful online stores that engage and convert'
     },
     footerData: {
@@ -790,7 +790,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'User Experience Design | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'User Experience Design | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Inspire, enable, captivate'
     },
     footerData: {
@@ -940,7 +940,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'User Interface Design | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'User Interface Design | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Next-gen UI tailored to your application'
     },
     footerData: {
@@ -1076,7 +1076,7 @@ const EXPERTISES: ExpertiseContent[] = [
         image: prefixed('/api/images/work/other/design-systems_style-guide.png')
       },
       {
-        title: 'Made for humans, with Dev8X',
+        title: 'Made for humans, with Abdul',
         paragraph: 'Behind every best-in-class product is a collaborative agency–client partnership. Everything we craft is entirely bespoke, as unique as the story you tell. With an in-house team of strategists, designers, developers and project managers, we can offer diverse perspectives, seamless end results, and a truly collaborative design and delivery process.',
         icon: { name: 'PlanetRingIcon', width: 64 },
         image: prefixed('/api/images/work/other/design-systems_fourby-humans.png')
@@ -1088,7 +1088,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Design Systems | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'Design Systems | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Scalable Design Solutions'
     },
     footerData: {
@@ -1236,7 +1236,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Prototyping | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'Prototyping | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Turn your ideas into digital prototypes'
     },
     footerData: {
@@ -1540,7 +1540,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'React Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'React Developers | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'React development specialists'
     },
     footerData: {
@@ -1694,7 +1694,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Next Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'Next Developers | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Next development specialists'
     },
     footerData: {
@@ -1846,7 +1846,7 @@ const EXPERTISES: ExpertiseContent[] = [
     },
 
     meta: {
-      title: 'TypeScript Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'TypeScript Developers | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Strongly typed, scalable applications with TypeScript'
     },
     footerData: {
@@ -2004,7 +2004,7 @@ const EXPERTISES: ExpertiseContent[] = [
     },
 
     meta: {
-      title: 'State Management Experts | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'State Management Experts | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Efficient and scalable state management for modern applications'
     },
 
@@ -2169,7 +2169,7 @@ const EXPERTISES: ExpertiseContent[] = [
     },
 
     meta: {
-      title: 'SSR & SSG Experts | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'SSR & SSG Experts | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Optimized rendering with Server-Side & Static Site Generation'
     },
     footerData: {
@@ -2318,7 +2318,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Backend Developers | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'Backend Developers | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Building powerful, scalable backends'
     },
     footerData: {
@@ -2464,7 +2464,7 @@ const EXPERTISES: ExpertiseContent[] = [
     },
 
     meta: {
-      title: 'API Integration Experts | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'API Integration Experts | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Seamless API integration for powerful applications'
     },
     footerData: {
@@ -2621,7 +2621,7 @@ const EXPERTISES: ExpertiseContent[] = [
     },
 
     meta: {
-      title: 'GraphQL & REST Experts | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'GraphQL & REST Experts | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Build efficient, scalable APIs with GraphQL & REST'
     },
     footerData: {
@@ -2775,7 +2775,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'PostgreSQL Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'PostgreSQL Specialists | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Powerful, reliable data management with PostgreSQL'
     },
     footerData: {
@@ -2923,7 +2923,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'ORM (Sequelize/Prisma) Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'ORM (Sequelize/Prisma) Specialists | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Efficient data management with Sequelize ORM'
     },
     footerData: {
@@ -3072,7 +3072,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Docker Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'Docker Specialists | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Streamline your development with Docker'
     },
     footerData: {
@@ -3220,7 +3220,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Virtualization Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'Virtualization Specialists | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Empowering seamless digital transformation through virtualization'
     },
     footerData: {
@@ -3374,7 +3374,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Ansible & Web Servers Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'Ansible & Web Servers Specialists | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Seamless Automation, Effortless Management'
     },
     footerData: {
@@ -3539,7 +3539,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'AWS, Vercel, DigitalOcean Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'AWS, Vercel, DigitalOcean Specialists | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Empowering scalable cloud solutions'
     },
     footerData: {
@@ -3693,7 +3693,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'CI/CD Specialists | Our Expertise — Dev8X | Dev8X: World class digital products',
+      title: 'CI/CD Specialists | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Streamlined delivery with continuous integration and deployment'
     },
     footerData: {
@@ -3774,6 +3774,750 @@ const EXPERTISES: ExpertiseContent[] = [
         transformOrigin: 'top center',
         image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
         comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
+      }
+    ]
+  },
+  {
+    slug: 'kubernetes',
+    variant: 'green',
+    tagText: 'Kubernetes',
+    heading: 'Enterprise-grade Kubernetes platforms engineered for resilience',
+    image: prefixed('/api/images/work/other/ansible-ci-cd.png'),
+    iconCards: {
+      title: 'Cloud-native orchestration expertise',
+      paragraph: 'Architect, run, and evolve Kubernetes estates that deliver predictable performance for regulated enterprises, high-growth startups, and global product teams.',
+      items: [
+        {
+          title: 'Production-ready clusters',
+          description: 'Design highly available clusters with hardened control planes, policy guardrails, and zero-downtime upgrade paths so teams can ship with confidence.',
+          icon: { name: 'MagicWandIcon', width: 26 }
+        },
+        {
+          title: 'GitOps & IaC pipelines',
+          description: 'Codify infrastructure and workloads with GitOps workflows, baking governance, repeatability, and instant recovery directly into every deployment.',
+          icon: { name: 'PuzzlePieceIcon', width: 24 }
+        },
+        {
+          title: 'Observability & FinOps',
+          description: 'Instrument clusters with end-to-end metrics, tracing, and cost analytics to keep performance high while eliminating waste across environments.',
+          icon: { name: 'TargetIcon', width: 28 }
+        },
+        {
+          title: 'Platform enablement',
+          description: 'Uplevel application squads with golden paths, curated add-ons, and hands-on enablement so they can self-serve Kubernetes safely.',
+          icon: { name: 'PaintSwatchIcon', width: 28 }
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: 'Resilient multi-cloud architecture',
+        paragraph: 'Establish portable Kubernetes blueprints for AWS, Azure, or on-prem that align networking, security, and storage primitives so workloads behave consistently everywhere.',
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: prefixed('/api/images/work/other/ansible-automation.png')
+      },
+      {
+        title: 'Automated release governance',
+        paragraph: 'Integrate policy engines, admission controls, and progressive delivery strategies that allow you to move fast without compromising on compliance or uptime.',
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: prefixed('/api/images/work/other/ansible-ci-cd.png')
+      },
+      {
+        title: 'Secure service networking',
+        paragraph: 'Implement service meshes, mTLS, and workload identity to provide zero-trust communication between services while simplifying traffic management and debugging.',
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: prefixed('/api/images/work/other/team-developers-doing-brainstorming.png')
+      },
+      {
+        title: 'Continuous reliability testing',
+        paragraph: 'Bake chaos experiments, load testing, and automated game days into your release process so you can spot regressions before they hit production.',
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png')
+      },
+      {
+        title: 'Partner-led platform operations',
+        paragraph: 'Work side-by-side with our DevOps engineers on runbooks, SLOs, and on-call readiness so your platform team can operate Kubernetes with predictable budgets.',
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: prefixed('/api/images/work/honeydu/desktop/23.png')
+      }
+    ],
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+    meta: {
+      title: 'Kubernetes Platform Engineering | Our Expertise — Abdul | Abdul: World class digital products',
+      description: 'Enterprise-grade Kubernetes strategy, automation, and operations for modern product teams.'
+    },
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'USA',
+          city: 'Orlando, Florida',
+          phone: '+1 (321) 300-2393'
+        },
+        {
+          country: 'Pakistan',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        }
+      ],
+      // careers: {
+      //   heading: 'We’re Growing – Join Our Team',
+      //   description: 'Let’s build the future, together.',
+      //   link: '/careers',
+      //   linkText: 'Explore Careers'
+      // },
+      copyright: {
+        year: '2025',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.linkedin.com/company/helloabdul/'
+      },
+      {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.instagram.com/dev8xofficial/'
+      },
+      {
+        title: 'Facebook',
+        // icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
+    ],
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
+      }
+    ]
+  },
+  {
+    slug: 'terraform',
+    variant: 'cyan',
+    tagText: 'Terraform',
+    heading: 'Codifying cloud infrastructure for predictable multi-cloud delivery',
+    image: prefixed('/api/images/work/other/proxmox-virtualization-ubuntu.png'),
+    iconCards: {
+      title: 'Infrastructure as Code, production-ready',
+      paragraph: 'We architect Terraform foundations that turn complex infrastructure into auditable, reusable code so every environment ships with governance, security, and repeatability baked in.',
+      items: [
+        {
+          title: 'Modular Architecture',
+          description: 'Design reusable Terraform modules that standardize networking, data, and application stacks across regions while eliminating configuration drift.',
+          icon: { name: 'VirtualMachinesIcon', width: 26 }
+        },
+        {
+          title: 'Policy-Driven Pipelines',
+          description: 'Embed policy-as-code with Sentinel and OPA to enforce tagging, security, and cost controls before resources ever reach production.',
+          icon: { name: 'PuzzlePieceIcon', width: 24 }
+        },
+        {
+          title: 'Scalable Automation',
+          description: 'Tie Terraform plans into CI/CD and GitOps workflows so every change passes automated validation, secrets management, and approval gates.',
+          icon: { name: 'SaaSIcon', width: 28 }
+        },
+        {
+          title: 'Operational Visibility',
+          description: 'Leverage remote state backends, workspaces, and drift detection to maintain full insight into infrastructure lifecycles and accelerate recovery.',
+          icon: { name: 'VoltageIcon', width: 28 }
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: 'Production-ready Terraform blueprints',
+        paragraph: 'We codify landing zones, networking, and shared services with battle-tested Terraform patterns so every workspace launches with the same security posture and observability hooks.',
+        icon: { name: 'VirtualMachinesIcon', width: 64 },
+        image: prefixed('/api/images/work/other/proxmox-virtualization.png')
+      },
+      {
+        title: 'Secure multi-cloud governance',
+        paragraph: 'From AWS Organizations to Azure subscriptions, we implement RBAC, policy enforcement, and automated tagging so compliance teams can trust what is deployed and when.',
+        icon: { name: 'VirtualMachinesIcon', width: 64 },
+        image: prefixed('/api/images/work/other/ansible-ci-cd.png')
+      },
+      {
+        title: 'Pipelines that ship infrastructure',
+        paragraph: 'GitHub Actions, GitLab, and Harness pipelines orchestrate plan, review, and apply cycles with automated testing and artifact promotion for safer releases.',
+        icon: { name: 'VirtualMachinesIcon', width: 64 },
+        image: prefixed('/api/images/work/other/proxmox-virtualization-graphes.png')
+      },
+      {
+        title: 'Partners across the lifecycle',
+        paragraph: 'We stay engaged beyond launch with drift remediation, workload onboarding, and knowledge transfer so internal teams can own Terraform with confidence.',
+        icon: { name: 'VirtualMachinesIcon', width: 64 },
+        image: prefixed('/api/images/work/honeydu/desktop/23.png')
+      }
+    ],
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+    meta: {
+      title: 'Terraform Specialists | Our Expertise — Abdul | Abdul: World class digital products',
+      description: 'Enterprise-grade Terraform expertise for resilient, compliant infrastructure as code'
+    },
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'USA',
+          city: 'Orlando, Florida',
+          phone: '+1 (321) 300-2393'
+        },
+        {
+          country: 'Pakistan',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        }
+      ],
+      // careers: {
+      //   heading: 'We’re Growing – Join Our Team',
+      //   description: 'Let’s build the future, together.',
+      //   link: '/careers',
+      //   linkText: 'Explore Careers'
+      // },
+      copyright: {
+        year: '2025',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      },
+      {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.instagram.com/dev8xofficial/'
+      },
+      {
+        title: 'Facebook',
+        // icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
+    ],
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
+      }
+    ]
+  },
+  {
+    slug: 'containerization',
+    variant: 'yellow',
+    tagText: 'Containerization',
+    heading: 'Enterprise-grade container platforms, orchestrated for scale',
+    image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png'),
+    iconCards: {
+      title: 'Containers engineered for production',
+      paragraph: 'We package applications into portable, secure containers and operate them with hardened automation so releases stay fast, dependable, and ready for scale across every environment.',
+      items: [
+        {
+          title: 'Production-Ready Images',
+          description: 'Crafted Docker base images with automated scanning, reproducible builds, and minimal attack surfaces keep every workload reliable from dev to prod.',
+          icon: { name: 'DockerIcon', width: 26 }
+        },
+        {
+          title: 'Orchestrated Everywhere',
+          description: 'Design resilient Kubernetes and ECS topologies with multi-cluster failover, edge deployments, and workload placement tuned to business SLAs.',
+          icon: { name: 'InfinityIcon', width: 26 }
+        },
+        {
+          title: 'Security & Governance',
+          description: 'Policy-driven networking, secrets management, signing, and runtime controls make compliance and zero-trust best practices a default, not an afterthought.',
+          icon: { name: 'ShieldIcon', width: 26 }
+        },
+        {
+          title: 'Lifecycle Automation',
+          description: 'GitOps flows, progressive delivery, and autoscaling policies automate the full container lifecycle so teams can ship quickly without sacrificing control.',
+          icon: { name: 'RefreshIcon', width: 28 }
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: 'Container Platform Architecture',
+        paragraph: 'Blueprint modular registries, networking, storage, and observability so your container platform is predictable, compliant, and ready for enterprise workloads on day one.',
+        icon: { name: 'DockerIcon', width: 64 },
+        image: prefixed('/api/images/work/scheduler/mobile/2.png')
+      },
+      {
+        title: 'Kubernetes Operations at Scale',
+        paragraph: 'Operate multi-tenant Kubernetes with automated upgrades, cluster autoscaling, and disaster recovery playbooks that keep mission-critical services online.',
+        icon: { name: 'InfinityIcon', width: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/5.png')
+      },
+      {
+        title: 'Observability & Optimization',
+        paragraph: 'Instrument every layer with tracing, metrics, and cost analytics to right-size workloads, tune resource profiles, and catch regressions before customers do.',
+        icon: { name: 'AnalysisIcon', width: 64 },
+        image: prefixed('/api/images/work/troophunter/desktop/14.png')
+      },
+      {
+        title: 'Secure Supply Chain',
+        paragraph: 'Implement SBOM generation, signing, and policy gates that verify images from source commit through runtime, protecting sensitive data and regulated workloads.',
+        icon: { name: 'ShieldIcon', width: 64 },
+        image: prefixed('/api/images/work/other/payload_search2.png')
+      },
+      {
+        title: 'Embedded DevOps Partnership',
+        paragraph: 'Work shoulder-to-shoulder with DevOps engineers who coach your teams on best practices, document playbooks, and stay engaged for continuous improvement.',
+        icon: { name: 'HandshakeIcon', width: 64 },
+        image: prefixed('/api/images/work/honeydu/desktop/23.png')
+      }
+    ],
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+    meta: {
+      title: 'Containerization Specialists | Our Expertise — Abdul | Abdul: World class digital products',
+      description: 'Portable, secure containers architected for fast, reliable delivery at scale.'
+    },
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'USA',
+          city: 'Orlando, Florida',
+          phone: '+1 (321) 300-2393'
+        },
+        {
+          country: 'Pakistan',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        }
+      ],
+      // careers: {
+      //   heading: 'We’re Growing – Join Our Team',
+      //   description: 'Let’s build the future, together.',
+      //   link: '/careers',
+      //   linkText: 'Explore Careers'
+      // },
+      copyright: {
+        year: '2025',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      },
+      {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.instagram.com/dev8xofficial/'
+      },
+      {
+        title: 'Facebook',
+        // icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      }
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
+    ],
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
+      }
+    ]
+  },
+  {
+    slug: 'microservices',
+    variant: 'purple',
+    tagText: 'Microservices',
+    heading: 'Modernize products with resilient microservices',
+    image: prefixed('/api/images/work/other/tourismprototype.png'),
+
+    iconCards: {
+      title: 'Microservices architecture engineered for scale',
+      paragraph: 'I help product teams evolve monoliths into composable, API-driven systems that deploy quickly, recover gracefully, and keep engineering velocity high.',
+      items: [
+        {
+          title: 'Domain-Aligned Services',
+          description: 'Model services around business capabilities, ensuring each API boundary reflects the domain language and can evolve independently.',
+          icon: { name: 'GPSIcon', width: 26 }
+        },
+        {
+          title: 'Observable & Secure',
+          description: 'Bake in distributed tracing, real-time metrics, and zero-trust policies so every service is debuggable, auditable, and compliant.',
+          icon: { name: 'FrameIcon', width: 24 }
+        },
+        {
+          title: 'Cloud-Native Delivery',
+          description: 'Use containers, Kubernetes, and GitOps pipelines to ship updates continuously while maintaining strict SLOs and rollback guarantees.',
+          icon: { name: 'TargetIcon', width: 28 }
+        },
+        {
+          title: 'Embedded Partnership',
+          description: 'Collaborate with platform, product, and security teams to design migration roadmaps, success metrics, and operational runbooks.',
+          icon: { name: 'HandPalmIcon', width: 28 }
+        }
+      ]
+    },
+
+    contentAsideImageItems: [
+      {
+        title: 'Service blueprints & API contracts',
+        paragraph: 'Rapidly map domains, define async/evented communication, and document contracts in OpenAPI so every team shares a single source of truth.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/studyplanner.png')
+      },
+      {
+        title: 'Cloud-native CI/CD pipelines',
+        paragraph: 'Design container-first pipelines that enforce quality gates, security scans, and progressive delivery strategies across every microservice.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/pentanetui.png')
+      },
+      {
+        title: 'Progressive modernization playbooks',
+        paragraph: 'Break down monoliths incrementally with strangler patterns, data orchestration strategies, and automated regression coverage.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/talk-n-walk.png')
+      },
+      {
+        title: 'Reliability sprints & chaos drills',
+        paragraph: 'Run focused sessions to validate failover plans, practice incident choreography, and harden services before they face production load.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png')
+      }
+    ],
+
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+
+    meta: {
+      title: 'Microservices Architecture | Our Expertise — Abdul | Cloud-Native Scale',
+      description: 'Design, build, and operate microservices that keep complex products fast, secure, and resilient'
+    },
+
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'USA',
+          city: 'Orlando, Florida',
+          phone: '+1 (321) 300-2393'
+        },
+        {
+          country: 'Pakistan',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        }
+      ],
+      copyright: {
+        year: '2025',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      },
+      {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.instagram.com/dev8xofficial/'
+      },
+      {
+        title: 'Facebook',
+        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      }
+    ],
+
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Abdul rebuilt our monolith into modular services, reducing release cycles from weeks to hours without sacrificing reliability.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'He guided our team through containerization, observability, and governance, making microservices adoption predictable and secure.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'Our microservices migration hit every milestone thanks to Abdul’s architecture playbooks, cloud expertise, and hands-on leadership.'
+      }
+    ]
+  },
+  {
+    slug: 'turbo-repo',
+    variant: 'purple',
+    tagText: 'TurboRepo',
+    heading: 'Accelerate monorepos with TurboRepo mastery',
+    image: prefixed('/api/images/work/other/tourismprototype.png'),
+
+    iconCards: {
+      title: 'Monorepo velocity without the chaos',
+      paragraph: 'I architect TurboRepo workspaces that keep complex Next.js, React Native, and Node services fast, consistent, and effortless to ship.',
+      items: [
+        {
+          title: 'Deterministic Pipelines',
+          description: 'Leverage remote caching, parallel task orchestration, and incremental builds so engineers see predictable runtimes across every PR.',
+          icon: { name: 'GPSIcon', width: 26 }
+        },
+        {
+          title: 'Shared Platform Foundations',
+          description: 'Design workspaces with typed package boundaries, utility libraries, and lint/test presets that keep cross-team development aligned.',
+          icon: { name: 'FrameIcon', width: 24 }
+        },
+        {
+          title: 'CI-Ready Integrations',
+          description: 'Wire TurboRepo into GitHub Actions, CircleCI, or Buildkite with artifact reuse, fail-fast strategies, and automated release orchestration.',
+          icon: { name: 'TargetIcon', width: 28 }
+        },
+        {
+          title: 'Governance & Guardrails',
+          description: 'Establish code ownership, dependency policies, and documentation so the monorepo scales without bottlenecks or regressions.',
+          icon: { name: 'HandPalmIcon', width: 28 }
+        }
+      ]
+    },
+
+    contentAsideImageItems: [
+      {
+        title: 'Turbo modules & reusable kits',
+        paragraph: 'Build shared UI kits and server utilities that publish instantly across apps while staying versioned and typed inside the monorepo.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/studyplanner.png')
+      },
+      {
+        title: 'Insight-driven builds',
+        paragraph: 'Instrument Turbo tracing and custom metrics so platform teams can spot slow tasks, flaky dependencies, and caching gaps in minutes.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/pentanetui.png')
+      },
+      {
+        title: 'Migration playbooks',
+        paragraph: 'Move legacy repos into TurboRepo with phased strategies, dependency graph audits, and developer enablement sessions.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/other/talk-n-walk.png')
+      },
+      {
+        title: 'Developer-experience reviews',
+        paragraph: 'Run quarterly DX audits covering scripts, docs, and onboarding to ensure the monorepo keeps attracting top engineering talent.',
+        icon: { name: 'MagicWandIcon', width: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png')
+      }
+    ],
+
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+
+    meta: {
+      title: 'TurboRepo Experts | Our Expertise — Abdul | Monorepo Performance',
+      description: 'Design and operate TurboRepo workspaces that keep large product teams shipping faster with enterprise-grade guardrails'
+    },
+
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'USA',
+          city: 'Orlando, Florida',
+          phone: '+1 (321) 300-2393'
+        },
+        {
+          country: 'Pakistan',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        }
+      ],
+      copyright: {
+        year: '2025',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      },
+      {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', width: 10 },
+        href: 'https://www.instagram.com/dev8xofficial/'
+      },
+      {
+        title: 'Facebook',
+        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      }
+    ],
+
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Abdul overhauled our monorepo with TurboRepo, cutting CI times by 65% and giving every squad immediate feedback on their changes.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'His caching, task graph, and governance playbooks gave us a monorepo that ships faster while staying audit-ready.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'Our engineers rave about the DX upgrades Abdul delivered—scripts, docs, and CI/CD now feel effortless.'
       }
     ]
   }
