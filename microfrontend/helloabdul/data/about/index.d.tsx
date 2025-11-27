@@ -47,10 +47,10 @@ const PageData: AboutContent = {
       items: ['Ship buggy code', 'Ignore accessibility', 'Overcomplicate solutions', 'Skip code reviews', 'Work weekends unnecessarily', 'Sacrifice maintainability']
     }
   ],
-  testimonials: ['“Abdul turned our complex ideas into a clean, functional frontend without breaking a sweat. Highly recommend!”', '“Working with Abdul felt like having a senior frontend engineer on our team, even remotely. Fast, precise, and fun!”'],
+  testimonials: ['“Abdul is a unique professional. His pristine work ethics and adjustability made my transition incredibly smooth and comfortable. Thanks a lot for going out of your way to help!”', "“I highly endorse Abdul as a skilled React developer. He's a strong collaborator and works efficiently with modern front-end tools.”"],
   authors: [
-    { name: 'Sepand Hokmabadi', position: 'CEO, Total Health Dental Care' },
-    { name: 'Devin Picciolini', position: 'CEO, Coral' }
+    { name: 'Adil Peter', position: 'Full Stack JavaScript Engineer, Adil Peter' },
+    { name: 'Zubair Mahboob', position: 'CEO, Worko Dev' }
   ],
   footerMainContent: {
     link: '/contact',

@@ -67,39 +67,6 @@ const PageData: PageLayoutContent = {
 
 export const WORK_PROJECTS: WorkDetail[] = [
   {
-    slug: 'Dev8X',
-    title: 'Dev8X',
-    websiteUrl: 'https://dev8x.com',
-    industry: 'Software Development',
-    shortIntro: 'I founded Dev8X to provide startups with US-quality engineering talent and scalable development solutions, bridging high-performance tech with practical business outcomes.',
-    overview: 'At Dev8X, I oversee end-to-end product development, from frontend architecture with React.js and Next.js to backend microservices in Node.js, ensuring reliability and maintainability.',
-    approach: 'I design modern, scalable systems using TypeScript, Redux Thunk, and TurboRepo monorepos. CI/CD pipelines leverage Docker, Kubernetes, Terraform, and Ansible, enforcing code quality and deployment consistency.',
-    impact: 'Startups partnering with Dev8X can ship products faster, with high performance and fewer bugs. The teams I lead consistently deliver production-grade, reliable software across multiple domains.',
-    keyContributions: [
-      'Architected React.js & Next.js frontend frameworks for multiple client projects',
-      'Established TypeScript-based coding standards and best practices',
-      'Built Node.js backend microservices and APIs',
-      'Implemented Redux Thunk for complex state management',
-      'Set up TurboRepo monorepo for streamlined cross-project development',
-      'Deployed CI/CD pipelines with Docker, Kubernetes, Terraform, Ansible',
-      'Optimized frontend and backend performance for speed and reliability',
-      'Enforced code quality via ESLint, Prettier, and automated tests',
-      'Managed cross-functional teams and development workflows',
-      'Ensured scalable, maintainable, and modular software architectures'
-    ],
-    placeholderImage: prefixed('/api/images/placeholder/1080-transparent.png'),
-    images: [prefixed('/api/images/work/troophunter/mobile/7.png'), prefixed('/api/images/work/troophunter/mobile/8.png'), prefixed('/api/images/work/troophunter/mobile/9.png'), prefixed('/api/images/work/troophunter/mobile/10.png')],
-    video: {
-      originalFile: prefixed('/videos/work/troophunter/1080.mp4'),
-      sequences: [prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4'), prefixed('/videos/work/troophunter/1080.mp4')]
-    },
-    bgColor: 'blue',
-    path: 'troophunter',
-    testimonial: 'Working with Abdul made TroopHunter feel alive: fast, polished, fun—and code stays rock solid.',
-    testimonialAuthor: 'Abdul Rehman',
-    testimonialAuthorPosition: 'Founder & Lead Engineer'
-  },
-  {
     slug: 'troophunter',
     title: 'TroopHunter',
     websiteUrl: 'https://troophunter.com',
@@ -157,7 +124,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'cyan',
     path: 'totalhealthdentalcare',
-    testimonial: 'Working with me felt like having a senior frontend engineer embedded—complex systems simplified, features shipped faster than expected.',
+    testimonial: '“Abdul turned our complex ideas into a clean, functional frontend without breaking a sweat. Highly recommend!”',
     testimonialAuthor: 'Sepand Hokmabadi',
     testimonialAuthorPosition: 'CEO, Total Health Dental Care'
   },
@@ -188,7 +155,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'blue',
     path: 'scheduler',
-    testimonial: 'Scheduler made appointment chaos vanish. Fast, reliable, and staff actually enjoy using it. Frontend craft shows.',
+    testimonial: '“Abdul turned our complex ideas into a clean, functional frontend without breaking a sweat. Highly recommend!”',
     testimonialAuthor: 'Sepand Hokmabadi',
     testimonialAuthorPosition: 'CEO, Total Health Dental Care'
   },
@@ -216,7 +183,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'cyan',
     path: 'honeydu',
-    testimonial: 'Working with Abdul is like having a frontend Swiss-Army knife — clean, fast UI that genuinely delights users.',
+    testimonial: '“Working with Abdul felt like having a senior frontend engineer on our team, even remotely. Fast, precise, and fun!”',
     testimonialAuthor: 'Devin Picciolini',
     testimonialAuthorPosition: 'CEO, Coral'
   },
@@ -239,7 +206,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'blue',
     path: 'coral',
-    testimonial: 'Abdul’s frontend work felt magical—fast, clean, interactive. Debugging together was surprisingly fun and smooth.',
+    testimonial: '“Working with Abdul felt like having a senior frontend engineer on our team, even remotely. Fast, precise, and fun!”',
     testimonialAuthor: 'Devin Picciolini',
     testimonialAuthorPosition: 'CEO, Coral'
   },
@@ -262,9 +229,9 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'cyan',
     path: 'goldendao',
-    testimonial: 'Abdul made the frontend effortless — fast, precise, and genuinely enjoyable to use.',
-    testimonialAuthor: 'Andrew Yang',
-    testimonialAuthorPosition: 'CEO, Golden DAO'
+    testimonial: '“Working with Abdul felt like having a senior frontend engineer on our team, even remotely. Fast, precise, and fun!”',
+    testimonialAuthor: 'Devin Picciolini',
+    testimonialAuthorPosition: 'CEO, Coral'
   }
 ];
 

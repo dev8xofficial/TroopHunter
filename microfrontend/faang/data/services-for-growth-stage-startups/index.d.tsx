@@ -153,22 +153,22 @@ const AUGMENTATION: OffersContent[] = [
     ],
     testimonials: [
       {
-        name: 'David Letourneau',
-        company: 'COO at LiveArt',
+        name: 'Sepand Hokmabadi',
+        company: 'Total Health Dental Care',
         bgColor: '#ffffff',
         color: '#111111',
         transformOrigin: 'center top',
         image: prefixed('/api/images/work/scheduler/mobile/7.png'),
-        comment: 'We were excited to have a partner with strong coding skills who compiled everything according to the tech specifications.'
+        comment: '“They simplified the entire process and made tech feel less overwhelming. Really happy with the results.”'
       },
       {
-        name: 'Kenny R. Lienhard',
-        company: 'CTO, Medignition Inc',
+        name: 'Devin Picciolini',
+        company: 'Coral',
         bgColor: '#4C21E2',
         color: '#F0EBFF',
         transformOrigin: 'center top',
         image: prefixed('/api/images/work/honeydu/desktop/24.png'),
-        comment: 'Their team had an ease of communication, but the most impressive thing about them is each member`s integrity and work ethic.'
+        comment: '“We had a vague idea — they turned it into a working solution without any stress. Great experience!”'
       }
     ],
     faqs: [
