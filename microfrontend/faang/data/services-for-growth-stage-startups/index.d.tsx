@@ -6,8 +6,8 @@ const AUGMENTATION: OffersContent[] = [
     slug: '',
     variant: 'yellow',
     tagText: 'For Tech Founders',
-    heading: 'Scale Up Faster With team Augmentation Services',
-    paragraph: 'Work with a long-term tech partner that will help you build an MVP to gain traction from early adopters and raise money from investors.',
+    heading: 'Scale Faster With Expert Teams',
+    paragraph: 'Dev8X provides senior-level talent to expand your development capacity, accelerate product delivery, and fill critical skill gaps efficiently.',
     heroButtons: [
       {
         label: 'See Pricing',
@@ -22,62 +22,73 @@ const AUGMENTATION: OffersContent[] = [
     image: prefixed('/api/images/services/services-for-growth-stage-startups/1.png'),
     iconCards: {
       title: 'Meet Your Future A-Players',
-      paragraph: `We'll carefully select each team member based on the requirements and skills you need. Discover our talents and the role they can play in your team.`,
+      paragraph: 'We assemble teams that match your product needs, skill requirements, and timeline goals for maximum impact.',
       items: [
         {
-          title: 'Senior developer',
-          description: 'An orchestrator of the team who decides on the product’s architecture and tech stack. Reviews the code and supervises the tech team to make sure that the scope is delivered properly.',
+          title: 'Senior Developer',
+          description: 'Leads architecture, chooses tech stack, reviews code, and supervises the team to ensure scope delivery.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
-          title: 'Middle developer',
-          description: 'Main driving force of the team. They develop and deploy features, marrying tech and design parts.',
+          title: 'Middle Developer',
+          description: 'Executes development tasks, integrates design and backend, and deploys features efficiently.',
           icon: { name: 'BackendIcon', width: 26 }
         },
         {
-          title: 'UX/UI designer',
-          description: 'Works on making your product lovable at first sight. Creates interface designs and delivers the best user experience in line with the user journey.',
+          title: 'UX/UI Designer',
+          description: 'Creates interfaces aligned with user journeys to ensure an intuitive and visually appealing experience.',
           icon: { name: 'AIBrainIcon', width: 26 }
         },
         {
-          title: 'QA specialist',
-          description: 'Goes over the code and locates bugs and glitches. Has the final say on whether or not the product is ready for deployment.',
+          title: 'QA Specialist',
+          description: 'Detects bugs, validates feature quality, and signs off releases for deployment.',
           icon: { name: 'SeismometerIcon', width: 22 }
         },
         {
-          title: 'Product manager',
-          description: 'Guides and shapes the development of the product in the direction you define. Keeps teams on track, ensuring that the development runs on schedule.',
+          title: 'Product Manager',
+          description: 'Coordinates development, prioritizes tasks, and ensures deadlines are met while aligning with product vision.',
           icon: { name: 'SeismometerIcon', width: 22 }
         }
       ]
     },
     contentAsideImageItems: [
       {
-        title: 'Schedule a call',
-        paragraph: 'Complete the form and pick the best time. Ask us for an NDA if required, and we are happy to provide one.',
+        title: 'Schedule a Call',
+        paragraph: 'Pick a time that works. NDAs available upon request for confidential discussions.',
+        icon: { name: 'UserIcon', width: 24 }
+      },
+      {
+        title: 'Define Your Needs',
+        paragraph: 'Share project goals and required skills. Dev8X proposes a precise team composition within days.',
         icon: { name: 'HomeIcon', width: 26 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'Tell us what you’re building',
-        paragraph: 'Give us an idea of what you are building and what specific skills you need. In a few days, we’ll roll out a team composition that perfectly matches your needs.',
-        icon: { name: 'MapPinIcon', width: 24 },
-        image: prefixed('/api/images/work/honeydu/desktop/10.png')
-      },
-      {
-        title: 'Review the team and start',
-        paragraph: 'Once you approve the team and sign a contract, we can start building your product together with no-risk.',
+        title: 'Review & Start',
+        paragraph: 'Approve the team and contract to start building your product with no-risk, immediate deployment.',
         icon: { name: 'BotIcon', width: 26 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
     whyWeAreDifferentContent: {
-      heading: `Why We Are Different`,
+      heading: 'Why Dev8X Stands Out',
       qa: [
-        { title: 'Long-Term Partner That Shares Your Vision', paragraph: 'We love diving deep into the project’s specifics, generating ideas, and testing hypotheses. With Upsilon, your startup will get a reliable team who lives and breathes your product 24/7.' },
-        { title: 'Senior Developers, Not Amateurs', paragraph: 'Keeping abreast of modern technologies and following the best development practices and standards, we build products that truly change the game.' },
-        { title: 'Quick Starters, Agile Riders', paragraph: 'We understand your time is limited and have teams ready for deployment within 1-2 weeks. Adhering to agile practices, we help clients deliver value to their customers faster and with fewer headaches.' },
-        { title: 'Uncompromising Achievers', paragraph: 'With Upsilon, you can be 100% sure that your project will never be left halfway down the road. We always work at full capacity striving to help your product achieve all goals you have set.' }
+        {
+          title: 'Long-Term Partner',
+          paragraph: 'We align deeply with your product vision, generating ideas and testing hypotheses collaboratively.'
+        },
+        {
+          title: 'Senior Developers Only',
+          paragraph: 'Teams deliver with React.js, Next.js, TypeScript, and follow modern standards for robust outcomes.'
+        },
+        {
+          title: 'Quick Deployment',
+          paragraph: 'Teams ready in 1–2 weeks, leveraging CI/CD, feature branching, and sprint-based agile practices.'
+        },
+        {
+          title: 'Reliable Delivery',
+          paragraph: 'Projects never stall. Full-capacity teams ensure goals are achieved efficiently and consistently.'
+        }
       ]
     },
     footerMainContent: {
@@ -86,8 +97,8 @@ const AUGMENTATION: OffersContent[] = [
       end: 'get started?'
     },
     meta: {
-      title: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products',
-      description: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products'
+      title: 'Team Augmentation Services — Dev8X | Scale Your Tech Team',
+      description: 'Dev8X provides senior-level developers, designers, QA, and PMs to scale your team and accelerate product delivery.'
     },
     footerData: {
       global: {
@@ -163,53 +174,24 @@ const AUGMENTATION: OffersContent[] = [
     faqs: [
       {
         title: '1. What are IT staff augmentation services?',
-        description: 'The IT staff augmentation model means hiring outsourced specialists as an additional workforce on a temporary or permanent basis. By utilizing this model, you can easily fill a talent gap to complete tasks or take on roles that may be beyond the capabilities of your current staff. Interested in a team extension? Upsilon boasts an extensive talent pool that can perfectly fit your software development needs.  '
+        description: 'Hire vetted specialists temporarily or permanently to fill skill gaps, boost capacity, and accelerate project delivery.'
       },
       {
-        title: '2. When do I need team augmentation services?',
-        description: `
-Here are the signs when team augmentation services can be the best fit for your startup:
-
-Your in-house team lacks specialized skills and expertise, and you want quickly fill this “void”;
-You develop and release within a tight schedule: with team augmentation, you can ramp up your technical capacity while chasing stringent deadlines;
-You want to free your company from the hassle of searching and recruiting vetted development talent;
-You want to retain 100% control over the project.
-Does all of this describe your current needs on the project? We are ready to help.`
+        title: '2. When do I need team augmentation?',
+        description: 'When your team lacks expertise, faces tight deadlines, or wants to retain full control while scaling quickly.'
       },
       {
-        title: '3. What is the difference between IT staff augmentation and managed services?',
-        description:
-          'Under a staff augmentation model, you maintain direct and complete control over all processes. When tapping into a managed services model, your tech partner assumes external control of your non-core systems, managing all aspects of their functioning. A managed team operates independently of your in-house team, with an outsourced Project Manager overseeing daily operations and workflows.Which method works best for a startup?If you work under deadline pressure and need to fill specific gaps “here and now,” - you should consider staff augmentation as the number one choice. This model provides maximum flexibility and cost-effectiveness.The managed services option can be more efficient if you want to outsource the project from start to finish. You will have a dedicated team that takes full responsibility for the project. Since this makes your IT outsourcing costs predictable, you can save money over the long term.Both models are viable alternatives to an in-house team, but which model to choose depends on your project type and size.Want to enhance the development efficiency of your ongoing project? Augment your team with talent from Upsilon.'
+        title: '3. IT staff augmentation vs managed services?',
+        description: 'Staff augmentation keeps control in-house. Managed services outsource project oversight to external teams with predictable costs.'
       },
       {
-        title: '4. How will my team interact with your augmented staff?',
-        description:
-          'Leveraging our years of expertise in IT staff augmentation, we established a vetted approach to collaboration between external and internal teams. Being Agile and SCRUM adopters, we employ Jira to track work assignments, team progress & defects, and handle issues. Setting KPIs with accompanying deadlines ensures efficient cooperation across time zones. At the same time, regular standups, weekly meetings, and sprint reviews keep both sides up-to-date and allow them to adjust processes painlessly.Looking for developers who will be as committed as your in-house team members? You can hire them right now at Upsilon.'
+        title: '4. How will my team interact with augmented staff?',
+        description: 'Agile teams use Jira, KPIs, standups, weekly meetings, and sprint reviews for efficient collaboration across time zones.'
       },
       {
-        title: '5. How much do IT staff augmentation services cost?',
-        description: 'When you opt for an IT staff augmentation model, each specialist has a specific hourly rate, and you pay for the number of hours worked. Upsilon is ready to provide you with skilled experts at affordable prices. Visit the “Pricing” page to get an idea of our specialists’ rates.'
+        title: '5. How much do team augmentation services cost?',
+        description: 'Pricing is hourly per specialist. Dev8X provides skilled experts at competitive rates. See the Pricing page for details.'
       }
-      // {
-      //   title: '6. How do you ensure quality and reliability?',
-      //   description: 'We use tested templates, clean code, speed checks, responsive design, and QA reviews on every project.'
-      // },
-      // {
-      //   title: '7. Where is your team based?',
-      //   description: 'Our engineering team operates from Pakistan with U.S.-aligned hours and b written communication.'
-      // },
-      // {
-      //   title: '8. What’s your pricing and payment model?',
-      //   description: 'Flat-rate pricing per service. Pay via Stripe, Wise, or bank transfer. Discounts available for bundles.'
-      // },
-      // {
-      //   title: '9. Do you handle NDAs and ownership?',
-      //   description: 'Yes. You retain full ownership of all assets, domains, content, and code — with optional NDA protection.'
-      // },
-      // {
-      //   title: '10. How do you compare to typical marketing agencies?',
-      //   description: 'We deliver faster, cost less, and focus on real estate–specific assets built for immediate lead conversion.'
-      // }
     ],
     offersSlider: [
       {
@@ -345,53 +327,38 @@ Does all of this describe your current needs on the project? We are ready to hel
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
-    capabilitiesHeading: '50+ Full-Stack and Niche Experts on Standby',
+    capabilitiesHeading: '50+ Experts Ready to Join',
     capabilities: [
       {
-        heading: 'Product management',
+        heading: 'Product Management',
         items: [
-          { name: 'Jira', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789076682a8f287807a6_jira.webp' },
-          { name: 'Slack', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789176682a27a67807ae_slack.webp' },
-          { name: 'Miro', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789127848f8dcf3eeabd_miro.webp' }
+          { name: 'ClickUp', image: '' },
+          { name: 'Slack', image: '' }
         ]
       },
       {
-        heading: 'UX/UI design',
+        heading: 'UX/UI Design',
         items: [
-          { name: 'Figma', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789152be206081bac0bc_figma.webp' },
-          { name: 'Adobe Photoshop', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727890b27f6382b9a1cd89_adobe-photoshop.webp' }
+          { name: 'Figma', image: '' },
+          { name: 'Canva', image: '' },
+          { name: 'Adobe', image: '' }
         ]
       },
       {
         heading: 'Development',
-        items: [
-          { name: 'Python (FastAPI, Django)', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278915e54a8355b3e1d52_python.webp' },
-          { name: 'TypeScript (Node.js, React, React Native)', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727893c290aa5ea60b6420_typescript.webp' }
-        ]
+        items: [{ name: 'TypeScript (Node.js, React.js, Next.js)', image: '' }]
       },
       {
         heading: 'DevOps',
         items: [
-          { name: 'Terraform', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727893840a291e120162d3_terraform.webp' },
-          { name: 'Docker', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278908332ff18aa459ce4_docker.webp' },
-          { name: 'Kubernetes', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278911e566587192317f2_kubernetes.webp' }
+          { name: 'Terraform', image: '' },
+          { name: 'Docker', image: '' },
+          { name: 'Kubernetes', image: '' }
         ]
       },
       {
         heading: 'QA',
-        items: [
-          { name: 'Appium', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278912ebc62e9c1c78a16_appium.webp' },
-          { name: 'Detox', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891fb38dbd31dc72743_detox.webp' },
-          { name: 'Selenium', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891633738a3d723a8bf_selenium.webp' }
-        ]
-      },
-      {
-        heading: 'AI & Machine Learning',
-        items: [
-          { name: 'TensorFlow', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278939601cf4af694d79f_tensor-flow.webp' },
-          { name: 'Keras', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891633738df2523a8ba_keras.webp' },
-          { name: 'PyTorch', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891d4d17683bbc11982_py-torch.webp' }
-        ]
+        items: [{ name: 'Selenium', image: '' }]
       }
     ],
     video: prefixed(`/videos/header/header.mp4`)

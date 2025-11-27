@@ -5,9 +5,9 @@ const MOBILE: OffersContent[] = [
   {
     slug: '',
     variant: 'purple',
-    tagText: '',
+    tagText: 'End-to-End Mobile Solutions',
     heading: 'Custom Mobile Applications',
-    paragraph: 'Upsilon is a reliable tech partner with proven experience in building responsive and innovative mobile apps. We will help you make a unique, highly-customized mobile solution that responds to the market challenges while meeting your business objectives and overall strategy.Leveraging our company`s core strength and strategic approach to mobile application development, we support you from a discovery phase to deployment, treating your app launch as our own.',
+    paragraph: 'Dev8X delivers high-performance mobile apps using Flutter and the Dart ecosystem, producing native experiences for iOS and Android from a single codebase.',
     heroButtons: [
       {
         label: 'See Pricing',
@@ -21,39 +21,54 @@ const MOBILE: OffersContent[] = [
     ],
     image: prefixed('/api/images/services/mobile-applications/1.png'),
     iconCards: {
-      title: 'Highlights of Our Custom Mobile Apps',
-      paragraph: 'We develop, customize, and implement all kinds of features to build the best possible application that best serves your brand and caters to your missions.',
+      title: 'Highlights of Our Mobile Apps',
+      paragraph: 'Our team builds fully responsive, cross-platform mobile solutions with scalable architecture, robust performance, and seamless user experiences.',
       items: [
         {
-          title: 'Truly native UI',
-          description: 'React Native lets you develop interactive and user-friendly interfaces without compromising your users’ experiences. Your mobile app will truly have native look and feel.',
+          title: 'Native Performance',
+          description: 'Apps are developed with Flutter to ensure fast, smooth, and fully native performance across both iOS and Android devices.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
-          title: 'Live updates',
-          description: 'An application built with React Native can be updated over-the-air - directly on users’ devices. That accelerates the feedback gathering cycle and allows to deliver customer value faster.',
+          title: 'Cross-Platform Efficiency',
+          description: 'Using a single Dart codebase reduces development time and cost while maintaining platform-specific design and interactions.',
           icon: { name: 'BackendIcon', width: 26 }
         },
         {
-          title: '‍Cost-effective',
-          description: '‍By opting for React Native technology, you can save time and money receiving top-grade mobile solutions simultaneously on iOS and Android.',
+          title: 'Live Updates',
+          description: 'We implement over-the-air updates to deliver immediate enhancements and bug fixes, accelerating feedback loops and improving user satisfaction.',
           icon: { name: 'AIBrainIcon', width: 26 }
+        },
+        {
+          title: 'Scalable Architecture',
+          description: 'Our apps are designed with modular architecture and microservices patterns, enabling future expansion, integrations, and feature upgrades.',
+          icon: { name: 'CardIcon', width: 26 }
         }
       ]
     },
     contentAsideImageItems: [
       {
-        title: 'Cross-platform Mobile App Development',
-        paragraph: 'Cross-platform application development became a silver bullet for businesses willing to win the competition. Upsilon helps companies bring this strategy to life with React Native. Here are the reasons why you should consider to use this technology for your next mobile application:',
+        title: 'Cross-Platform Development',
+        paragraph: 'We leverage Flutter for building versatile apps that run on multiple platforms while maintaining a native look and feel.',
         icon: { name: 'HomeIcon', width: 26 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'Types of Mobile Applications We Build',
-        paragraph: `Internal Business Mobile Apps
-Upsilon helps businesses streamline their internal processes, increase productivity, automate workflows, and gain more visibility & control with 360° secure, innovative, high-performing mobile solutions.`,
+        title: 'Types of Mobile Apps',
+        paragraph: 'From internal business apps to customer-facing solutions, Dev8X creates apps that drive productivity, engagement, and operational efficiency.',
         icon: { name: 'MapPinIcon', width: 24 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
+      },
+      {
+        title: 'UI/UX Excellence',
+        paragraph: 'Our team focuses on responsive design, GSAP animations, and mobile-first engineering to deliver interfaces that delight users.',
+        icon: { name: 'MagicWandIcon', width: 26 }
+      },
+      {
+        title: 'Secure & Reliable',
+        paragraph: 'With Node.js, Express.js, and PostgreSQL, we build backends that ensure security, authorization, authentication, and reliable data storage.',
+        icon: { name: 'MapPinIcon', width: 24 },
+        image: prefixed('/api/images/work/coral/desktop/10.png')
       }
     ],
     footerMainContent: {
@@ -62,8 +77,8 @@ Upsilon helps businesses streamline their internal processes, increase productiv
       end: 'get started?'
     },
     meta: {
-      title: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products',
-      description: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products'
+      title: 'Mobile Application Development Services | Dev8X | World-Class Apps',
+      description: 'Dev8X builds high-performance, cross-platform mobile applications using Flutter and Dart, delivering scalable, native experiences for iOS and Android.'
     },
     footerData: {
       global: {
@@ -138,33 +153,24 @@ Upsilon helps businesses streamline their internal processes, increase productiv
     ],
     faqs: [
       {
-        title: '1. What are MVP development services?',
-        description:
-          'By opting for MVP development services, startups can build a product`s test version allowing them to see their idea in action and determine how well it resonates with potential customers. MVP development services for startups imply a certain sequence of activities, including market research; goal & main user identification; design; feature creation & implementation; testing; deployment; and receiving feedback.Whether you need help with MVP development, let Upsilon be your guide to uncovering valuable insights and feedback that will help you build a product tailored just right for customers` needs.  '
+        title: '1. What is a custom mobile application?',
+        description: 'A custom mobile application is a tailored software solution built for specific business requirements, offering optimized performance and unique user experience.'
       },
       {
-        title: '2. Why is MVP development important for startups?',
-        description: `By developing an MVP, you might avoid a larger initial investment in software development and reduce the risk when entering the market. Here are the main benefits of building an MVP for startups:
-
-• Faster time-to-market within a tight budget  
-• Getting early feedback from the target audience for making data-driven effective decisions  
-• Feature prioritization: understanding what functions should be added or removed  
-• Gaining the first traction from early adopters and building a user base  
-• Possibility to attract investors
-
-Need to build an MVP? We will be happy to assist.`
+        title: '2. Why choose Flutter for app development?',
+        description: 'Flutter enables cross-platform development with a single Dart codebase, delivering native performance, fast updates, and consistent UI on iOS and Android.'
       },
       {
-        title: '3. How to choose the right MVP development company?',
-        description: 'For over 10 years, we’ve been helping progressive companies bring their ideas to life faster, more effectively, and with minimal risk. So if you need expert help with MVP development, feel free to reach out to Upsilon.'
+        title: '3. How does Dev8X ensure app quality?',
+        description: 'Through CI/CD pipelines, testing, code reviews, ESLint, Prettier, and automated deployment, ensuring reliable and maintainable applications.'
       },
       {
-        title: '4. What is the best pricing model for building an MVP?',
-        description: 'Today’s pricing models in the field of MVP development range from the traditional fixed-price and time & material models to agile options like hiring a dedicated team. As an expert MVP development company, we use a sprint-based approach that has proven flexibility, cost-effectiveness, and transparency. Sprint is a 2-week working period during which a development team completes a set amount of work. The final cost depends on the number of sprints. To learn more about this model and why it may be a perfect match for your project, please visit our “Pricing” page.'
+        title: '4. What types of apps can Dev8X build?',
+        description: 'We deliver business productivity apps, customer-facing platforms, internal tools, and high-performance enterprise solutions, tailored to your workflows and objectives.'
       },
       {
-        title: '5. What if I need more listings or upgrades later?',
-        description: 'You can add new pages, listings, SEO, or automation anytime — all structures are built for easy scaling.'
+        title: '5. How much does a mobile app cost?',
+        description: 'Costs vary by complexity, integrations, and features. Typical projects range from $50,000 for MVPs to $200,000+ for fully-featured enterprise apps.'
       }
     ],
     offersSlider: [
@@ -301,35 +307,67 @@ Need to build an MVP? We will be happy to assist.`
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
-    capabilitiesHeading: "Our capabilities are centred around our ability to deliver world-class mobile applications. We're 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.",
+    capabilitiesHeading: 'Dev8X Mobile Capabilities',
     capabilities: [
       {
-        heading: 'Back-end',
+        heading: 'Frontend',
         items: [
-          { name: 'Python', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278915e54a8355b3e1d52_python.webp' },
-          { name: 'Django', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35caaa74ba0bc7d25c29_django.webp' },
-          { name: 'Node JS', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35cb747fce613622812b_nodejs.webp' },
-          { name: 'FastAPI', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35c954cf5c7584730437_fastapi.webp' }
+          { name: 'Flutter', image: '' },
+          { name: 'Dart', image: '' },
+          { name: 'React.js', image: '' },
+          { name: 'Next.js', image: '' },
+          { name: 'TypeScript', image: '' },
+          { name: 'Redux Thunk', image: '' },
+          { name: 'HTML5', image: '' },
+          { name: 'TailwindCSS', image: '' }
         ]
       },
       {
-        heading: 'Front-end developers',
+        heading: 'Backend & DB',
         items: [
-          { name: 'React', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp' },
-          { name: 'React Native', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp' },
-          { name: 'Expo', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637f3ecb64e4c467e07a8e77_expo.png' }
+          { name: 'Node.js', image: '' },
+          { name: 'Express.js', image: '' },
+          { name: 'RESTful APIs', image: '' },
+          { name: 'PostgreSQL', image: '' },
+          { name: 'Sequelize ORM', image: '' },
+          { name: 'Authentication', image: '' },
+          { name: 'Authorization', image: '' },
+          { name: 'Database Optimization', image: '' }
         ]
       },
       {
-        heading: 'Deployment',
+        heading: 'DevOps & Cloud',
         items: [
-          { name: 'Amazon EC2', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35c9aa74ba9c36d25c28_amazon-ec2.webp' },
-          { name: 'AWS CloudFront', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca6899cd0701fc956c_aws-cloudront.webp' },
-          { name: 'Amazon S3', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca673ed8ae5439f724_amazon-s3.webp' },
-          { name: 'Amazon RDS', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca1e7cca441a7d6898_amazon-rds.webp' },
-          { name: 'AWS ECS ECR', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca94ff56ceb4d8fba2_aws-ecs-ecr.webp' },
-          { name: 'AWS Lambda', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca673ed8896539f723_aws-labda.webp' },
-          { name: 'Google Cloud Platform', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0d186164f4793f22_google-cloud-platform.webp' }
+          { name: 'Docker', image: '' },
+          { name: 'Kubernetes', image: '' },
+          { name: 'CI/CD Pipelines', image: '' },
+          { name: 'Terraform', image: '' }
+        ]
+      },
+      {
+        heading: 'Performance & Testing',
+        items: [
+          { name: 'Performance Optimization', image: '' },
+          { name: 'Debugging', image: '' },
+          { name: 'End-to-End Testing', image: '' },
+          { name: 'Unit Testing', image: '' },
+          { name: 'Cross-Platform QA', image: '' },
+          { name: 'Load Testing', image: '' },
+          { name: 'Mobile Responsiveness', image: '' },
+          { name: 'Accessibility Audits', image: '' }
+        ]
+      },
+      {
+        heading: 'Project Workflow',
+        items: [
+          { name: 'ESLint & Prettier', image: '' },
+          { name: 'Git Feature Branching', image: '' },
+          { name: 'GitHub Pull Requests', image: '' },
+          { name: 'TurboRepo', image: '' },
+          { name: 'Monorepo Architecture', image: '' },
+          { name: 'Agile Delivery', image: '' },
+          { name: 'Cross-functional Collaboration', image: '' },
+          { name: 'End-to-End Ownership', image: '' }
         ]
       }
     ],

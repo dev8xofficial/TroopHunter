@@ -5,9 +5,9 @@ const SAAS: OffersContent[] = [
   {
     slug: '',
     variant: 'green',
-    tagText: '',
-    heading: 'SaaS Application Development Services',
-    paragraph: 'Leveraging the advantage of the Software-as-a-service (SaaS) model, Upsilon will help you build a secret weapon - a cloud-based solution with central hosting that will definitely boost your company’s bottom line. Whether you need to develop certain SaaS components like APIs or implement integrations like Stripe, our developers are at your service',
+    tagText: 'Cloud-Based SaaS Solutions',
+    heading: 'SaaS Application Development',
+    paragraph: 'Dev8X builds scalable, cloud-hosted SaaS solutions, integrating APIs, payment systems, and seamless multi-platform experiences for measurable business impact.',
     heroButtons: [
       {
         label: 'See Pricing',
@@ -21,37 +21,27 @@ const SAAS: OffersContent[] = [
     ],
     image: prefixed('/api/images/services/saas-applications/1.png'),
     iconCards: {
-      title: 'SaaS Products in Business Portfolio',
-      paragraph: 'We know firsthand how to design, build, implement and deploy fail-safe SaaS as we have successfully launched and continue maintaining and enhancing our own products. We have a deep comprehension of the specifics of the SaaS and, as the product owners, we always look beyond ‘blind coding’ when working on clients’ projects.',
+      title: 'SaaS Expertise in Action',
+      paragraph: 'Our team leverages first-hand SaaS product experience, ensuring client solutions go beyond coding, with maintainability, scalability, and high performance.',
       items: [
         {
-          title: 'Web, Mobile and Desktop Apps',
-          description: 'Whatever platform you target - web, mobile, desktop or all three of them - our team can build a SaaS app of any complexity and covering all the features you require.',
+          title: 'Web, Mobile, Desktop Apps',
+          description: 'Dev8X develops SaaS apps for web, mobile, and desktop, covering all required features with responsive, mobile-first design and Next.js, React.js, Flutter, and Dart.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
-          title: 'Product Website',
-          description: 'We design and build highly personalized, user-friendly and full-featured product websites that help your business build deeper relationship with its audience.',
+          title: 'Product Websites',
+          description: 'We create user-friendly, fully-featured websites for SaaS products using TailwindCSS, HTML5, and GSAP, fostering engagement and stronger audience connections.',
           icon: { name: 'BackendIcon', width: 26 }
         },
         {
           title: 'API Development',
-          description: 'Our back-end development team will help you build an API that will scale on demand, perform fast, and provide secure and reliable data storage for your SaaS.',
+          description: 'Back-end teams design scalable, secure RESTful APIs with Node.js, Express.js, and PostgreSQL, optimized for performance and multi-tenant SaaS environments.',
           icon: { name: 'AIBrainIcon', width: 26 }
         },
         {
-          title: 'CI/CD',
-          description: 'By setting up CI/CD pipelines, our team will allow you to make more frequent improvements to your product and efficiently test and deploy those changes.',
-          icon: { name: 'SeismometerIcon', width: 22 }
-        },
-        {
-          title: 'Build & Deployment System',
-          description: 'By leveraging the advantages of Docker and Kubernetes, we create systems that allow to automate and speed up the process of application building, deployment, scaling, and management.',
-          icon: { name: 'SeismometerIcon', width: 22 }
-        },
-        {
-          title: 'Third-party Integrations',
-          description: 'From connecting external data sources to integrating payment gateways, we help you connect your SaaS app with 3rd party solutions..',
+          title: 'CI/CD Pipelines',
+          description: 'We implement automated CI/CD workflows using Docker, Kubernetes, and pipeline orchestration to streamline testing, deployment, and continuous updates.',
           icon: { name: 'SeismometerIcon', width: 22 }
         }
       ]
@@ -59,17 +49,38 @@ const SAAS: OffersContent[] = [
     contentAsideImageItems: [
       {
         title: 'Knowledge Management Platform',
-        paragraph: 'A platform that helps your team to collect valuable internal information and access it anywhere.',
+        paragraph: 'A central hub for internal information, accessible securely anywhere, supporting collaboration and decision-making across distributed teams.',
         icon: { name: 'HomeIcon', width: 26 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'Task Management App for Slack',
-        paragraph: 'A productivity and task tracking app that allows individuals and teams organize, and prioritize their tasks without leaving Slack.',
-        icon: { name: 'MapPinIcon', width: 24 },
-        image: prefixed('/api/images/work/honeydu/desktop/10.png')
+        paragraph: 'Productivity app integrating with Slack, enabling task prioritization, tracking, and team coordination without leaving the platform.',
+        icon: { name: 'HomeIcon', width: 26 },
+        image: prefixed('/api/images/work/scheduler/mobile/2.png')
       }
     ],
+    whyWeAreDifferentContent: {
+      heading: 'Why Dev8X SaaS Development',
+      qa: [
+        {
+          title: 'Deep SaaS Experience',
+          paragraph: 'Our team has launched and maintains internal SaaS products, giving real-world insight into scalability, uptime, and client requirements.'
+        },
+        {
+          title: 'Full-Stack Expertise',
+          paragraph: 'From Next.js, React.js, Node.js, to PostgreSQL and Docker, we handle end-to-end architecture, development, and deployment.'
+        },
+        {
+          title: 'Cross-Platform Development',
+          paragraph: 'We deliver SaaS solutions across web, mobile, and desktop platforms with responsive design and Flutter-powered native apps for iOS and Android.'
+        },
+        {
+          title: 'Process-Driven Delivery',
+          paragraph: 'Using agile workflows, CI/CD pipelines, code reviews, and automated testing, Dev8X ensures reliable, maintainable, and fast deployment cycles.'
+        }
+      ]
+    },
     whyDev8XContent: {
       heading: 'Why Dev8X',
       para1: 'We believe that meaningful design starts with empathy. Every product we create is centered around improving real lives—helping people achieve more with less friction.',
@@ -87,8 +98,8 @@ const SAAS: OffersContent[] = [
       end: 'get started?'
     },
     meta: {
-      title: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products',
-      description: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products'
+      title: 'SaaS Application Development | Dev8X | Cloud-Based Solutions',
+      description: 'Dev8X delivers scalable SaaS solutions, APIs, integrations, and multi-platform apps with cloud hosting, ensuring reliability, performance, and measurable business impact.'
     },
     footerData: {
       global: {
@@ -164,19 +175,23 @@ const SAAS: OffersContent[] = [
     faqs: [
       {
         title: '1. What is a SaaS development company?',
-        description: 'A SaaS development company is an organization that provides cloud-based software to customers on a subscription-based or a flat rate model. SaaS companies may build, maintain, update and deliver their software by themselves, or they can delegate the development of their product to an outsourcing tech partner while focusing on hosting, distribution, and customer support. '
+        description: 'An organization creating cloud-based software delivered via subscription, handling hosting, distribution, updates, and optionally outsourcing development to experts like Dev8X.'
       },
       {
-        title: '2. What are SaaS application development services?',
-        description: `SaaS application development services cover the creation of documentation, design, development, testing, and maintenance of software solutions with multi-tenant architecture, their hosting in the cloud, and deployment on the servers.`
+        title: '2. What are SaaS development services?',
+        description: 'Covers design, development, testing, deployment, and maintenance of multi-tenant, cloud-hosted software with integrations, security, and scalability.'
       },
       {
         title: '3. How to build a SaaS application?',
-        description: 'Basically, the process of SaaS application development includes the following stages:Ideation, the definition of the value the SaaS will bring to users, and USP formulationOutlining the primary functionalitiesSelection of the tech stackDetermination of a most suitable pricing modelHiring a reliable SaaS development company'
+        description: 'Stages include ideation, core functionality definition, tech stack selection, pricing model, and partnering with a reliable development team like Dev8X.'
       },
       {
-        title: '4. How much does it cost to develop a SaaS application?',
-        description: 'Based on the estimate and our experience, we can say that the cost of a SaaS application will start from $50,000. Here we talk about the subscription functionality, which is the core of the SaaS product. The price of a complete, fully-featured solution will be around $150,000-200,000 and more.To get a closer look at the SaaS cost breakdown, please read our SaaS Application Development Guide.'
+        title: '4. How much does it cost to develop a SaaS app?',
+        description: 'Core SaaS solutions start around $50,000; full-featured applications with advanced integrations range from $150,000–200,000+.'
+      },
+      {
+        title: '5. What integrations are supported?',
+        description: 'Dev8X connects SaaS apps with Stripe, PayPal, Google Analytics, Hotjar, HubSpot, Mailchimp, Skylight, Sentry, and UptimeRobot.'
       }
     ],
     offersSlider: [
@@ -316,25 +331,53 @@ const SAAS: OffersContent[] = [
     capabilitiesHeading: 'Integrations Our Clients Benefit From:',
     capabilities: [
       {
+        heading: 'Payment & Analytics',
         items: [
-          { name: 'Stripe', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048cf5c38d73f0140038_stripe.webp' },
-          { name: 'PayPal', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048d346ec742399635de_paypal.webp' },
-          { name: 'Google Analytics', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048c2e5f78530668f95b_google-analytics.webp' },
-          { name: 'Skylight', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d0f8c9a16189ebdbb26b0_skylight.webp' }
+          { name: 'Stripe', image: '' },
+          { name: 'PayPal', image: '' },
+          { name: 'Google Analytics', image: '' },
+          { name: 'Skylight', image: '' }
         ]
       },
       {
+        heading: 'Marketing & Monitoring',
         items: [
-          { name: 'Mobile', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048dfbd74d4571851528_mobile.webp' },
-          { name: 'Hotjar', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048d0787c7285eead1cc_hotjar.webp' },
-          { name: 'Mailchimp', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048d1f96aba06263f132_mailchimp.webp' }
+          { name: 'Hotjar', image: '' },
+          { name: 'Mailchimp', image: '' },
+          { name: 'HubSpot', image: '' }
         ]
       },
       {
+        heading: 'Reliability & Security',
         items: [
-          { name: 'HubSpot', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048dfbd74de55c851527_hubspot.webp' },
-          { name: 'UptimeRobot', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048db9a23c8cd5d9e390_uptime-robot.webp' },
-          { name: 'Sentry', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/638d048c81318f470045d0b8_sentry.webp' }
+          { name: 'UptimeRobot', image: '' },
+          { name: 'Sentry', image: '' }
+        ]
+      },
+      {
+        heading: 'Frontend Stack',
+        items: [
+          { name: 'Next.js', image: '' },
+          { name: 'React.js', image: '' },
+          { name: 'TypeScript', image: '' },
+          { name: 'Redux Thunk', image: '' },
+          { name: 'HTML5', image: '' },
+          { name: 'TailwindCSS', image: '' },
+          { name: 'GSAP', image: '' },
+          { name: 'Responsive Design', image: '' }
+        ]
+      },
+      {
+        heading: 'Backend & DevOps',
+        items: [
+          { name: 'Node.js', image: '' },
+          { name: 'Express.js', image: '' },
+          { name: 'PostgreSQL', image: '' },
+          { name: 'Sequelize ORM', image: '' },
+          { name: 'RESTful APIs', image: '' },
+          { name: 'Docker', image: '' },
+          { name: 'Kubernetes', image: '' },
+          { name: 'CI/CD Pipelines', image: '' }
         ]
       }
     ],

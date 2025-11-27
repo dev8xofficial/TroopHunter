@@ -6,8 +6,8 @@ const MVP: OffersContent[] = [
     slug: '',
     variant: 'cyan',
     tagText: 'For Tech Founders',
-    heading: 'LANUCH YOUR MVP WITHIN 3 MONTHS',
-    paragraph: 'Work with a long-term tech partner that will help you build an MVP to gain traction from early adopters and raise money from investors.',
+    heading: 'LAUNCH YOUR MVP IN 3 MONTHS',
+    paragraph: 'Dev8X partners with founders to build MVPs that attract early adopters and investors.',
     heroButtons: [
       {
         label: 'See Pricing',
@@ -21,64 +21,75 @@ const MVP: OffersContent[] = [
     ],
     image: prefixed('/api/images/services/services-for-growth-stage-startups/1.png'),
     iconCards: {
-      title: 'Together from an Idea to the First Funding and Beyond',
-      paragraph: 'Only by releasing an MVP to market, and testing it on real customers, you can find out if you’ve chosen the right problem to solve.',
+      title: 'From Idea to Funding',
+      paragraph: 'A focused MVP proves product-market fit quickly and informs next-stage investment decisions.',
       items: [
         {
-          title: 'Test the core idea',
-          description: 'Validate your business idea in the early stage without developing a full-fledged product.',
+          title: 'Test Core Idea',
+          description: 'Validate the product hypothesis with real users before committing to full development.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
-          title: 'Attract investors',
-          description: 'Show investors that they are not funding just an idea, but a product that has already gained traction.',
+          title: 'Attract Investors',
+          description: 'Ship measurable traction to demonstrate demand and reduce investor risk.',
           icon: { name: 'BackendIcon', width: 26 }
         },
         {
-          title: 'Collect feedback',
-          description: 'Determine what features to add or remove and how to improve your product to meet the customer`s needs.',
+          title: 'Collect Feedback',
+          description: 'Turn early user insights into prioritized features and product iterations.',
           icon: { name: 'AIBrainIcon', width: 26 }
         },
         {
-          title: 'Choose the right technologies',
-          description: 'Select the best tools for your MVP to ensure scalability and performance.',
+          title: 'Choose Technologies',
+          description: 'Recommend scalable stacks to support growth and minimize costly rewrites.',
           icon: { name: 'SeismometerIcon', width: 22 }
         }
       ]
     },
     contentAsideImageItems: [
       {
-        title: 'Long-Term Partner That Shares Your Vision',
-        paragraph: 'We love diving deep into the project’s specifics, generating ideas, and testing hypotheses. With Upsilon, your startup will get a reliable team who lives and breathes your product 24/7.',
+        title: 'Long-Term Partner',
+        paragraph: 'Dev8X embeds with founders to shape product strategy, roadmaps, and release plans.',
         icon: { name: 'HomeIcon', width: 26 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'Senior Developers, Not Amateurs',
-        paragraph: 'Keeping abreast of modern technologies and following the best development practices and standards, we build products that truly change the game.',
+        title: 'Senior Developers',
+        paragraph: 'Teams use React.js, Next.js, and TypeScript to deliver robust, production-ready frontends.',
+        icon: { name: 'TargetIcon', width: 28 }
+      },
+      {
+        title: 'Fast Starters',
+        paragraph: 'Cross-functional squads are deploy-ready within weeks, following CI/CD, feature branching, and sprint cadences.',
         icon: { name: 'MapPinIcon', width: 24 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
       },
       {
-        title: 'Quick Starters, Agile Riders',
-        paragraph: `We understand your time is limited and have teams ready for deployment within 1-2 weeks. Adhering to agile practices, we help clients deliver value to their customers faster and with fewer headaches.`,
-        icon: { name: 'BotIcon', width: 26 },
-        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
-      },
-      {
-        title: 'Uncompromising Achievers',
-        paragraph: `With Upsilon, you can be 100% sure that your project will never be left halfway down the road. We always work at full capacity striving to help your product achieve all goals you have set.`,
+        title: 'Reliable Delivery',
+        paragraph: 'Engineering standards include ESLint, Prettier, PR reviews, and automated quality gates.',
         icon: { name: 'BotIcon', width: 26 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
     whyWeAreDifferentContent: {
-      heading: `Why We Are Different`,
+      heading: 'Why Dev8X Stands Out',
       qa: [
-        { title: 'Long-Term Partner That Shares Your Vision', paragraph: 'We love diving deep into the project’s specifics, generating ideas, and testing hypotheses. With Upsilon, your startup will get a reliable team who lives and breathes your product 24/7.' },
-        { title: 'Senior Developers, Not Amateurs', paragraph: 'Keeping abreast of modern technologies and following the best development practices and standards, we build products that truly change the game.' },
-        { title: 'Quick Starters, Agile Riders', paragraph: 'We understand your time is limited and have teams ready for deployment within 1-2 weeks. Adhering to agile practices, we help clients deliver value to their customers faster and with fewer headaches.' },
-        { title: 'Uncompromising Achievers', paragraph: 'With Upsilon, you can be 100% sure that your project will never be left halfway down the road. We always work at full capacity striving to help your product achieve all goals you have set.' }
+        {
+          title: 'Product-Led Process',
+          paragraph: 'Combines user research, product design, and engineering to prioritize high-impact features.'
+        },
+        {
+          title: 'Senior-Only Teams',
+          paragraph: 'Delivered by experienced engineers skilled in Next.js, TailwindCSS, and GSAP animations.'
+        },
+        {
+          title: 'Full-Stack Expertise',
+          paragraph: 'Backend skills include Node.js, Express.js, PostgreSQL, and Sequelize optimizations.'
+        },
+        {
+          title: 'DevOps & Scale',
+          paragraph: 'Containerized apps with Docker, Kubernetes, Terraform, and repeatable IaC pipelines.'
+        }
       ]
     },
     footerMainContent: {
@@ -87,8 +98,8 @@ const MVP: OffersContent[] = [
       end: 'get started?'
     },
     meta: {
-      title: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products',
-      description: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products'
+      title: 'MVP Development Services — Dev8X | Build, Validate, Scale',
+      description: 'Dev8X builds MVPs with Next.js, TypeScript, and repeatable CI/CD to validate ideas and attract investors.'
     },
     footerData: {
       global: {
@@ -164,32 +175,23 @@ const MVP: OffersContent[] = [
     faqs: [
       {
         title: '1. What are MVP development services?',
-        description:
-          'By opting for MVP development services, startups can build a product`s test version allowing them to see their idea in action and determine how well it resonates with potential customers. MVP development services for startups imply a certain sequence of activities, including market research; goal & main user identification; design; feature creation & implementation; testing; deployment; and receiving feedback.Whether you need help with MVP development, let Upsilon be your guide to uncovering valuable insights and feedback that will help you build a product tailored just right for customers` needs.  '
+        description: 'A rapid, testable product version combining product discovery, design, delivery, and user testing to validate market fit.'
       },
       {
-        title: '2. Why is MVP development important for startups?',
-        description: `By developing an MVP, you might avoid a larger initial investment in software development and reduce the risk when entering the market. Here are the main benefits of building an MVP for startups:
-
-• Faster time-to-market within a tight budget  
-• Getting early feedback from the target audience for making data-driven effective decisions  
-• Feature prioritization: understanding what functions should be added or removed  
-• Gaining the first traction from early adopters and building a user base  
-• Possibility to attract investors
-
-Need to build an MVP? We will be happy to assist.`
+        title: '2. Why is MVP important?',
+        description: 'MVPs reduce risk, save upfront cost, and provide actionable user data to guide product decisions.'
       },
       {
-        title: '3. How to choose the right MVP development company?',
-        description: 'For over 10 years, we’ve been helping progressive companies bring their ideas to life faster, more effectively, and with minimal risk. So if you need expert help with MVP development, feel free to reach out to Upsilon.'
+        title: '3. How does Dev8X price MVPs?',
+        description: 'Sprint-based pricing: predictable two-week sprints. Final cost equals number of sprints required.'
       },
       {
-        title: '4. What is the best pricing model for building an MVP?',
-        description: 'Today’s pricing models in the field of MVP development range from the traditional fixed-price and time & material models to agile options like hiring a dedicated team. As an expert MVP development company, we use a sprint-based approach that has proven flexibility, cost-effectiveness, and transparency. Sprint is a 2-week working period during which a development team completes a set amount of work. The final cost depends on the number of sprints. To learn more about this model and why it may be a perfect match for your project, please visit our “Pricing” page.'
+        title: '4. What tech stacks are used?',
+        description: 'Frontend: React.js, Next.js, TypeScript, TailwindCSS. Backend: Node.js, Express.js, PostgreSQL.'
       },
       {
-        title: '5. What if I need more listings or upgrades later?',
-        description: 'You can add new pages, listings, SEO, or automation anytime — all structures are built for easy scaling.'
+        title: '5. Can you support later upgrades?',
+        description: 'Yes. Architectures are modular for easy scaling, SEO pages, and feature expansion.'
       }
     ],
     offersSlider: [

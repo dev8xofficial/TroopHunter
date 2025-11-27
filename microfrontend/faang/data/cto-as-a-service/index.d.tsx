@@ -5,9 +5,9 @@ const CTO: OffersContent[] = [
   {
     slug: '',
     variant: 'blue',
-    tagText: '',
-    heading: 'CTO as a Service for Non-Technical Founders',
-    paragraph: 'Get C-level tech guidance for your product`s success and achieve your business goals with more confidence.',
+    tagText: 'For Non-Technical Founders',
+    heading: 'CTO Guidance On Demand',
+    paragraph: 'Dev8X provides part-time or full-time CTO expertise, ensuring your product’s tech strategy is scalable, reliable, and investor-ready.',
     heroButtons: [
       {
         label: 'See Pricing',
@@ -21,59 +21,80 @@ const CTO: OffersContent[] = [
     ],
     image: prefixed('/api/images/services/cto-as-a-service/1.png'),
     iconCards: {
-      title: 'When do I need CTO as a Service?',
-      paragraph: 'CTOs are in demand and startups need to compete against FAANG to attract top talent.',
+      title: 'When CTO as a Service Helps',
+      paragraph: 'Startups gain access to executive-level guidance without hiring full-time, bridging strategy and technical execution.',
       items: [
         {
           title: '$140K/yr',
-          description: 'You know WHAT kind of product you want to build but have no idea HOW it can be developed from the tech perspective.',
+          description: 'You know WHAT to build but need guidance on HOW to develop it using the right tech stack.',
           icon: { name: 'RefreshIcon', width: 28 }
         },
         {
           title: '26%',
-          description: 'You are seeking funding for your startup and need to show investors you’re backed by a professional guiding the technical direction.',
+          description: 'Seeking investment? A professional CTO ensures your technical decisions inspire investor confidence.',
           icon: { name: 'BackendIcon', width: 26 }
         },
         {
           title: '<4 years',
-          description: `Your past experience with low-cost developers has been disappointing and you don't want this scenario to happen again.`,
+          description: 'Past experiences with low-cost developers disappointed you. Dev8X ensures high-quality, maintainable solutions.',
           icon: { name: 'AIBrainIcon', width: 26 }
         },
         {
           title: 'Transparent Reporting',
-          description: `You are putting all efforts into strategy, networking, marketing, and sales and need someone who will fully take care of the product's tech side.`,
+          description: 'Focus on strategy, marketing, and sales while Dev8X handles all tech decisions with clear reporting.',
           icon: { name: 'SeismometerIcon', width: 22 }
         }
       ]
     },
     contentAsideImageItems: [
       {
-        title: 'Schedule a call',
-        paragraph: 'Complete the form and pick the best time. Ask us for an NDA if required, and we are happy to provide one ',
+        title: 'Schedule a Call',
+        paragraph: 'Select a time. NDAs available for confidential discussions.',
         icon: { name: 'HomeIcon', width: 26 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
-        title: 'Tell us what you’re building',
-        paragraph: 'Give us an idea of what you are building and what specific skills you need. In a few days, we’ll roll out a team composition that perfectly matches your needs.',
+        title: 'Describe Your Vision',
+        paragraph: 'Share your product concept and required skills. Dev8X proposes an optimal technical leadership plan quickly.',
         icon: { name: 'MapPinIcon', width: 24 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
       },
       {
-        title: 'Review the team and start',
-        paragraph: 'Once you approve the team and sign a contract, we can start building your product together with no-risk.',
+        title: 'Review & Approve',
+        paragraph: 'Approve the strategy and contract to start your product development immediately with senior-level guidance.',
         icon: { name: 'BotIcon', width: 26 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
+    whyWeAreDifferentContent: {
+      heading: 'Why Dev8X CTO Service',
+      qa: [
+        {
+          title: 'Strategic Leadership',
+          paragraph: 'Our CTOs align with your business goals, shaping technology choices, architecture, and scalable roadmap planning.'
+        },
+        {
+          title: 'Experienced Team',
+          paragraph: 'Teams deliver using React.js, Next.js, Node.js, PostgreSQL, Docker, and modern cloud DevOps practices.'
+        },
+        {
+          title: 'Agile Execution',
+          paragraph: 'We combine CI/CD, Git feature branching, and sprint-based agile methods to implement strategies efficiently.'
+        },
+        {
+          title: 'Full Transparency',
+          paragraph: 'Regular reports, KPIs, and meetings keep founders informed while maintaining technical excellence across projects.'
+        }
+      ]
+    },
     footerMainContent: {
       link: '/contact',
       start: 'Ready to ',
       end: 'get started?'
     },
     meta: {
-      title: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products',
-      description: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products'
+      title: 'CTO as a Service | Dev8X | Strategic Tech Leadership',
+      description: 'Dev8X provides part-time/full-time CTO expertise for non-technical founders, guiding scalable, reliable, and investor-ready product development.'
     },
     footerData: {
       global: {
@@ -148,45 +169,25 @@ const CTO: OffersContent[] = [
     ],
     faqs: [
       {
-        title: '1. What Is CTO as a service?',
-        description: 'CTO as a service refers to Chief Technology Officer-as-a-service. It’s a new way to think about the role of the CTO, where the CTO is brought in from outside and manages all technical aspects of product development. A company can hire the entire team led by a CTO or assign specific responsibilities to an external expert on a part-time consultancy basis.'
+        title: '1. What Is CTO as a Service?',
+        description: 'An external CTO manages technical aspects, either leading a full team or consulting part-time, ensuring strategic and operational alignment.'
       },
       {
-        title: '2. What are the CTO’s responsibilities in a startup?',
-        description: 'The CTO oversees all technology decisions within the startup. They are responsible for ensuring that the used tech stack is scalable, efficient, and reliable. In addition, they help create and maintain a comprehensive technology roadmap that guides the startup’s future growth.'
+        title: '2. CTO Responsibilities in Startups',
+        description: 'Oversees tech decisions, designs scalable architecture, implements reliable stacks, and maintains roadmaps to support business growth.'
       },
       {
-        title: '3. When should a startup opt for CTO as a service?',
-        description: 'CTO services are an excellent option for early-stage startups that can’t afford to hire an in-house CTO. It can also be beneficial for fast-growing companies that already have a CTO but need additional support in managing and scaling their products.'
+        title: '3. When to Hire CTO Service?',
+        description: 'Ideal for early-stage startups without a CTO or fast-growing companies needing additional tech leadership and strategy.'
       },
       {
-        title: '4. How much do CTO services cost at Upsilon?',
-        description: 'CTO services fees are determined on a case-by-case basis. However, our team is committed to offering these services to a diverse range of startups, regardless of their industry or the technology that will be used on the project.'
+        title: '4. CTO Service Cost',
+        description: 'Fees vary per project. Dev8X ensures flexible pricing across industries and tech stacks to support diverse startup needs.'
+      },
+      {
+        title: '5. How CTO Works With Teams',
+        description: 'CTOs coordinate with existing teams using agile workflows, Jira, KPIs, and sprint reviews for seamless collaboration and delivery.'
       }
-      // {
-      //   title: '5. What if I need more listings or upgrades later?',
-      //   description: 'CTO services fees are determined on a case-by-case basis. However, our team is committed to offering these services to a diverse range of startups, regardless of their industry or the technology that will be used on the project.'
-      // },
-      // {
-      //   title: '6. How do you ensure quality and reliability?',
-      //   description: 'We use tested templates, clean code, speed checks, responsive design, and QA reviews on every project.'
-      // },
-      // {
-      //   title: '7. Where is your team based?',
-      //   description: 'Our engineering team operates from Pakistan with U.S.-aligned hours and b written communication.'
-      // },
-      // {
-      //   title: '8. What’s your pricing and payment model?',
-      //   description: 'Flat-rate pricing per service. Pay via Stripe, Wise, or bank transfer. Discounts available for bundles.'
-      // },
-      // {
-      //   title: '9. Do you handle NDAs and ownership?',
-      //   description: 'Yes. You retain full ownership of all assets, domains, content, and code — with optional NDA protection.'
-      // },
-      // {
-      //   title: '10. How do you compare to typical marketing agencies?',
-      //   description: 'We deliver faster, cost less, and focus on real estate–specific assets built for immediate lead conversion.'
-      // }
     ],
     offersSlider: [
       {
@@ -322,58 +323,52 @@ const CTO: OffersContent[] = [
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     secondaryPlansItems: [''],
-    capabilitiesHeading: 'Ambitious products deserve the best technologies. Here are the main tech skills our experts do possess:',
+    capabilitiesHeading: 'Key Skills Our CTOs Apply',
     capabilities: [
       {
-        heading: 'Front-end developers',
+        heading: 'Front-end Developers',
         items: [
-          { name: 'React', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp' },
-          { name: 'Next JS', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca619e3e2ecd6da7a9_nextjs.webp' },
-          { name: 'Gatsby', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca1e7cca2f317d6899_gatsby.webp' }
+          { name: 'React.js', image: '' },
+          { name: 'Next.js', image: '' }
         ]
       },
       {
-        heading: 'DevOps engineers',
+        heading: 'DevOps Engineers',
         items: [
-          { name: 'AWS', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e78377fad8513b4895d6_aws.webp' },
-          { name: 'GitLab', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e9a64416b318c9d86_gitlab.webp' },
-          { name: 'Kubernetes', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278911e566587192317f2_kubernetes.webp' },
-          { name: 'GitHub', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e992fec12274efa72_github.webp' },
-          { name: 'Docker', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278908332ff18aa459ce4_docker.webp' },
-          { name: 'Jenkins', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e27ab56ec138c2ada_jenkins.webp' }
+          { name: 'AWS', image: '' },
+          { name: 'Kubernetes', image: '' },
+          { name: 'GitHub', image: '' },
+          { name: 'Docker', image: '' },
+          { name: 'Jenkins', image: '' }
         ]
       },
       {
-        heading: 'Mobile app developers',
+        heading: 'Mobile App Developers',
         items: [
-          { name: 'React Native', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp' },
-          { name: 'Expo', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637f3ecb64e4c467e07a8e77_expo.png' }
+          { name: 'Flutter', image: '' },
+          { name: 'Dart', image: '' }
         ]
       },
       {
-        heading: 'Back-end developers',
+        heading: 'Back-end Developers',
         items: [
-          { name: 'Python', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278915e54a8355b3e1d52_python.webp' },
-          { name: 'Django', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35caaa74ba0bc7d25c29_django.webp' },
-          { name: 'Node JS', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35cb747fce613622812b_nodejs.webp' },
-          { name: 'FastAPI', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35c954cf5c7584730437_fastapi.webp' }
+          { name: 'Node.js', image: '' },
+          { name: 'Express.js', image: '' },
+          { name: 'REST APIs', image: '' },
+          { name: 'PostgreSQL', image: '' }
         ]
       },
       {
-        heading: 'Data scientists',
+        heading: 'Cross-Functional Skills',
         items: [
-          { name: 'TensorFlow', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278939601cf4af694d79f_tensor-flow.webp' },
-          { name: 'NLTK', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e6760cea14fc35c73_nltk.webp' },
-          { name: 'DeepPavlov', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e2a93aa389e66cef7_deep-pavlov.webp' },
-          { name: 'Scikit learn', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e06df40bbdb8c972c_scikit-learn.webp' },
-          { name: 'Keras', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891633738df2523a8ba_keras.webp' },
-          { name: 'Gensim', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e27ab56bca98c2ad9_gensim.webp' },
-          { name: 'Faiss', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e2a33782738b3c3fa_faiss.webp' },
-          { name: 'SciPy', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e2d13f99cff54d001_scipy.webp' },
-          { name: 'PyTorch', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891d4d17683bbc11982_py-torch.webp' },
-          { name: 'SpaCy', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58ea4fc884273bd4df3_spacy.png' },
-          { name: 'XGBoost', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58e6760ce61e1c35c75_xgboost.webp' },
-          { name: 'SimPy', image: 'https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6380e58ed1140bba1d50576f_simpy.webp' }
+          { name: 'Microservices Architecture', image: '' },
+          { name: 'Authentication & Authorization', image: '' },
+          { name: 'Performance Optimization', image: '' },
+          { name: 'Testing & Debugging', image: '' },
+          { name: 'CI/CD Pipelines', image: '' },
+          { name: 'Containerization', image: '' },
+          { name: 'Full-Stack Development', image: '' },
+          { name: 'End-to-End Ownership', image: '' }
         ]
       }
     ],
