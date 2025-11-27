@@ -89,22 +89,17 @@ const WEBSITE: OffersContent[] = [
       },
       offices: [
         {
-          country: 'USA',
-          city: 'Orlando, Florida',
-          phone: '+1 (321) 300-2393'
-        },
-        {
           country: 'Pakistan',
           city: 'Lahore, Punjab',
           phone: '+92 (329) 294-7777'
+        },
+        {
+          country: 'USA',
+          city: 'San Francisco, CA',
+          phone: '+1 (321) 300-2393'
         }
       ],
-      careers: {
-        heading: 'We’re Growing – Join Our Team',
-        description: 'Let’s build the future, together.',
-        link: '/careers',
-        linkText: 'Explore Careers'
-      },
+
       copyright: {
         year: '2025',
         text: 'Privacy Policy',
