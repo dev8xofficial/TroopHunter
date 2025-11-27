@@ -106,7 +106,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'cyan',
     path: 'totalhealthdentalcare',
-    testimonial: '“Abdul turned our complex ideas into a clean, functional frontend without breaking a sweat. Highly recommend!”',
+    testimonial: '“They simplified the entire process and made tech feel less overwhelming. Really happy with the results.”',
     testimonialAuthor: 'Sepand Hokmabadi',
     testimonialAuthorPosition: 'CEO, Total Health Dental Care'
   },
@@ -128,7 +128,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'blue',
     path: 'scheduler',
-    testimonial: '“Abdul turned our complex ideas into a clean, functional frontend without breaking a sweat. Highly recommend!”',
+    testimonial: '“They simplified the entire process and made tech feel less overwhelming. Really happy with the results.”',
     testimonialAuthor: 'Sepand Hokmabadi',
     testimonialAuthorPosition: 'CEO, Total Health Dental Care'
   },
@@ -150,7 +150,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'cyan',
     path: 'honeydu',
-    testimonial: '“Working with Abdul felt like having a senior frontend engineer on our team, even remotely. Fast, precise, and fun!”',
+    testimonial: '“We had a vague idea — they turned it into a working solution without any stress. Great experience!”',
     testimonialAuthor: 'Devin Picciolini',
     testimonialAuthorPosition: 'CEO, Coral'
   },
@@ -172,7 +172,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'blue',
     path: 'coral',
-    testimonial: '“Working with Abdul felt like having a senior frontend engineer on our team, even remotely. Fast, precise, and fun!”',
+    testimonial: '“We had a vague idea — they turned it into a working solution without any stress. Great experience!”',
     testimonialAuthor: 'Devin Picciolini',
     testimonialAuthorPosition: 'CEO, Coral'
   },
@@ -194,7 +194,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'cyan',
     path: 'goldendao',
-    testimonial: '“Working with Abdul felt like having a senior frontend engineer on our team, even remotely. Fast, precise, and fun!”',
+    testimonial: '“We had a vague idea — they turned it into a working solution without any stress. Great experience!”',
     testimonialAuthor: 'Devin Picciolini',
     testimonialAuthorPosition: 'CEO, Coral'
   }
