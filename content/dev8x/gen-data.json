@@ -1,0 +1,854 @@
+{
+  "mvp-development": {
+    "tagText": "For Tech Founders",
+    "heading": "LAUNCH YOUR MVP IN 3 MONTHS",
+    "paragraph": "Dev8X partners with founders to build MVPs that attract early adopters and investors.",
+    "heroButtons": [
+      {
+        "label": "See Pricing"
+      },
+      {
+        "label": "Schedule a Call"
+      }
+    ],
+    "iconCards": {
+      "title": "From Idea to Funding",
+      "paragraph": "A focused MVP proves product-market fit quickly and informs next-stage investment decisions.",
+      "items": [
+        {
+          "title": "Test Core Idea",
+          "description": "Validate the product hypothesis with real users before committing to full development."
+        },
+        {
+          "title": "Attract Investors",
+          "description": "Ship measurable traction to demonstrate demand and reduce investor risk."
+        },
+        {
+          "title": "Collect Feedback",
+          "description": "Turn early user insights into prioritized features and product iterations."
+        },
+        {
+          "title": "Choose Technologies",
+          "description": "Recommend scalable stacks to support growth and minimize costly rewrites."
+        }
+      ]
+    },
+    "contentAsideImageItems": [
+      {
+        "title": "Long-Term Partner",
+        "paragraph": "Dev8X embeds with founders to shape product strategy, roadmaps, and release plans."
+      },
+      {
+        "title": "Senior Developers",
+        "paragraph": "Teams use **React.js**, **Next.js**, and **TypeScript** to deliver robust, production-ready frontends."
+      },
+      {
+        "title": "Fast Starters",
+        "paragraph": "Cross-functional squads are deploy-ready within weeks, following **CI/CD**, feature branching, and sprint cadences."
+      },
+      {
+        "title": "Reliable Delivery",
+        "paragraph": "Engineering standards include **ESLint**, **Prettier**, PR reviews, and automated quality gates."
+      }
+    ],
+    "whyWeAreDifferentContent": {
+      "heading": "Why Dev8X Stands Out",
+      "qa": [
+        {
+          "title": "Product-Led Process",
+          "paragraph": "Combines user research, product design, and engineering to prioritize high-impact features."
+        },
+        {
+          "title": "Senior-Only Teams",
+          "paragraph": "Delivered by experienced engineers skilled in **Next.js**, **TailwindCSS**, and **GSAP** animations."
+        },
+        {
+          "title": "Full-Stack Expertise",
+          "paragraph": "Backend skills include **Node.js**, **Express.js**, **PostgreSQL**, and **Sequelize** optimizations."
+        },
+        {
+          "title": "DevOps & Scale",
+          "paragraph": "Containerized apps with **Docker**, **Kubernetes**, **Terraform**, and repeatable IaC pipelines."
+        }
+      ]
+    },
+    "meta": {
+      "title": "MVP Development Services — Dev8X | Build, Validate, Scale",
+      "description": "Dev8X builds MVPs with **Next.js**, **TypeScript**, and repeatable CI/CD to validate ideas and attract investors."
+    },
+    "faqs": [
+      {
+        "title": "1. What are MVP development services?",
+        "description": "A rapid, testable product version combining product discovery, design, delivery, and user testing to validate market fit."
+      },
+      {
+        "title": "2. Why is MVP important?",
+        "description": "MVPs reduce risk, save upfront cost, and provide actionable user data to guide product decisions."
+      },
+      {
+        "title": "3. How does Dev8X price MVPs?",
+        "description": "Sprint-based pricing: predictable two-week sprints. Final cost equals number of sprints required."
+      },
+      {
+        "title": "4. What tech stacks are used?",
+        "description": "Frontend: **React.js**, **Next.js**, **TypeScript**, **TailwindCSS**. Backend: **Node.js**, **Express.js**, **PostgreSQL**."
+      },
+      {
+        "title": "5. Can you support later upgrades?",
+        "description": "Yes. Architectures are modular for easy scaling, SEO pages, and feature expansion."
+      }
+    ]
+  },
+  "team-augmentation": {
+    "tagText": "For Tech Founders",
+    "heading": "Scale Faster With Expert Teams",
+    "paragraph": "Dev8X provides senior-level talent to expand your development capacity, accelerate product delivery, and fill critical skill gaps efficiently.",
+    "heroButtons": [
+      {
+        "label": "See Pricing"
+      },
+      {
+        "label": "Schedule a Call"
+      }
+    ],
+    "iconCards": {
+      "title": "Meet Your Future A-Players",
+      "paragraph": "We assemble teams that match your product needs, skill requirements, and timeline goals for maximum impact.",
+      "items": [
+        {
+          "title": "Senior Developer",
+          "description": "Leads architecture, chooses tech stack, reviews code, and supervises the team to ensure scope delivery."
+        },
+        {
+          "title": "Middle Developer",
+          "description": "Executes development tasks, integrates design and backend, and deploys features efficiently."
+        },
+        {
+          "title": "UX/UI Designer",
+          "description": "Creates interfaces aligned with user journeys to ensure an intuitive and visually appealing experience."
+        },
+        {
+          "title": "QA Specialist",
+          "description": "Detects bugs, validates feature quality, and signs off releases for deployment."
+        },
+        {
+          "title": "Product Manager",
+          "description": "Coordinates development, prioritizes tasks, and ensures deadlines are met while aligning with product vision."
+        }
+      ]
+    },
+    "contentAsideImageItems": [
+      {
+        "title": "Schedule a Call",
+        "paragraph": "Pick a time that works. NDAs available upon request for confidential discussions."
+      },
+      {
+        "title": "Define Your Needs",
+        "paragraph": "Share project goals and required skills. Dev8X proposes a precise team composition within days."
+      },
+      {
+        "title": "Review & Start",
+        "paragraph": "Approve the team and contract to start building your product with no-risk, immediate deployment."
+      }
+    ],
+    "whyWeAreDifferentContent": {
+      "heading": "Why Dev8X Stands Out",
+      "qa": [
+        {
+          "title": "Long-Term Partner",
+          "paragraph": "We align deeply with your product vision, generating ideas and testing hypotheses collaboratively."
+        },
+        {
+          "title": "Senior Developers Only",
+          "paragraph": "Teams deliver with **React.js**, **Next.js**, **TypeScript**, and follow modern standards for robust outcomes."
+        },
+        {
+          "title": "Quick Deployment",
+          "paragraph": "Teams ready in 1–2 weeks, leveraging **CI/CD**, feature branching, and sprint-based agile practices."
+        },
+        {
+          "title": "Reliable Delivery",
+          "paragraph": "Projects never stall. Full-capacity teams ensure goals are achieved efficiently and consistently."
+        }
+      ]
+    },
+    "meta": {
+      "title": "Team Augmentation Services — Dev8X | Scale Your Tech Team",
+      "description": "Dev8X provides senior-level developers, designers, QA, and PMs to scale your team and accelerate product delivery."
+    },
+    "faqs": [
+      {
+        "title": "1. What are IT staff augmentation services?",
+        "description": "Hire vetted specialists temporarily or permanently to fill skill gaps, boost capacity, and accelerate project delivery."
+      },
+      {
+        "title": "2. When do I need team augmentation?",
+        "description": "When your team lacks expertise, faces tight deadlines, or wants to retain full control while scaling quickly."
+      },
+      {
+        "title": "3. IT staff augmentation vs managed services?",
+        "description": "Staff augmentation keeps control in-house. Managed services outsource project oversight to external teams with predictable costs."
+      },
+      {
+        "title": "4. How will my team interact with augmented staff?",
+        "description": "Agile teams use **Jira**, KPIs, standups, weekly meetings, and sprint reviews for efficient collaboration across time zones."
+      },
+      {
+        "title": "5. How much do team augmentation services cost?",
+        "description": "Pricing is hourly per specialist. Dev8X provides skilled experts at competitive rates. See the Pricing page for details."
+      }
+    ],
+    "capabilitiesHeading": "50+ Experts Ready to Join",
+    "capabilities": [
+      {
+        "heading": "Product Management",
+        "items": [
+          { "name": "ClickUp", "image": "" },
+          { "name": "Slack", "image": "" }
+        ]
+      },
+      {
+        "heading": "UX/UI Design",
+        "items": [
+          { "name": "Figma", "image": "" },
+          { "name": "Canva", "image": "" },
+          { "name": "Adobe", "image": "" }
+        ]
+      },
+      {
+        "heading": "Development",
+        "items": [{ "name": "TypeScript (Node.js, React.js, Next.js)", "image": "" }]
+      },
+      {
+        "heading": "DevOps",
+        "items": [
+          { "name": "Terraform", "image": "" },
+          { "name": "Docker", "image": "" },
+          { "name": "Kubernetes", "image": "" }
+        ]
+      },
+      {
+        "heading": "QA",
+        "items": [{ "name": "Selenium", "image": "" }]
+      }
+    ]
+  },
+  "cto-as-a-service": {
+    "tagText": "For Non-Technical Founders",
+    "heading": "CTO Guidance On Demand",
+    "paragraph": "Dev8X provides part-time or full-time CTO expertise, ensuring your product’s tech strategy is scalable, reliable, and investor-ready.",
+    "heroButtons": [
+      {
+        "label": "See Pricing"
+      },
+      {
+        "label": "Schedule a Call"
+      }
+    ],
+    "iconCards": {
+      "title": "When CTO as a Service Helps",
+      "paragraph": "Startups gain access to executive-level guidance without hiring full-time, bridging strategy and technical execution.",
+      "items": [
+        {
+          "title": "$140K/yr",
+          "description": "You know WHAT to build but need guidance on HOW to develop it using the right tech stack."
+        },
+        {
+          "title": "26%",
+          "description": "Seeking investment? A professional CTO ensures your technical decisions inspire investor confidence."
+        },
+        {
+          "title": "<4 years",
+          "description": "Past experiences with low-cost developers disappointed you. Dev8X ensures high-quality, maintainable solutions."
+        },
+        {
+          "title": "Transparent Reporting",
+          "description": "Focus on strategy, marketing, and sales while Dev8X handles all tech decisions with clear reporting."
+        }
+      ]
+    },
+    "contentAsideImageItems": [
+      {
+        "title": "Schedule a Call",
+        "paragraph": "Select a time. NDAs available for confidential discussions."
+      },
+      {
+        "title": "Describe Your Vision",
+        "paragraph": "Share your product concept and required skills. Dev8X proposes an optimal technical leadership plan quickly."
+      },
+      {
+        "title": "Review & Approve",
+        "paragraph": "Approve the strategy and contract to start your product development immediately with senior-level guidance."
+      }
+    ],
+    "whyWeAreDifferentContent": {
+      "heading": "Why Dev8X CTO Service",
+      "qa": [
+        {
+          "title": "Strategic Leadership",
+          "paragraph": "Our CTOs align with your business goals, shaping technology choices, architecture, and scalable roadmap planning."
+        },
+        {
+          "title": "Experienced Team",
+          "paragraph": "Teams deliver using **React.js**, **Next.js**, **Node.js**, **PostgreSQL**, **Docker**, and modern cloud DevOps practices."
+        },
+        {
+          "title": "Agile Execution",
+          "paragraph": "We combine **CI/CD**, Git feature branching, and sprint-based agile methods to implement strategies efficiently."
+        },
+        {
+          "title": "Full Transparency",
+          "paragraph": "Regular reports, KPIs, and meetings keep founders informed while maintaining technical excellence across projects."
+        }
+      ]
+    },
+    "meta": {
+      "title": "CTO as a Service | Dev8X | Strategic Tech Leadership",
+      "description": "Dev8X provides part-time/full-time CTO expertise for non-technical founders, guiding scalable, reliable, and investor-ready product development."
+    },
+    "faqs": [
+      {
+        "title": "1. What Is CTO as a Service?",
+        "description": "An external CTO manages technical aspects, either leading a full team or consulting part-time, ensuring strategic and operational alignment."
+      },
+      {
+        "title": "2. CTO Responsibilities in Startups",
+        "description": "Oversees tech decisions, designs scalable architecture, implements reliable stacks, and maintains roadmaps to support business growth."
+      },
+      {
+        "title": "3. When to Hire CTO Service?",
+        "description": "Ideal for early-stage startups without a CTO or fast-growing companies needing additional tech leadership and strategy."
+      },
+      {
+        "title": "4. CTO Service Cost",
+        "description": "Fees vary per project. Dev8X ensures flexible pricing across industries and tech stacks to support diverse startup needs."
+      },
+      {
+        "title": "5. How CTO Works With Teams",
+        "description": "CTOs coordinate with existing teams using agile workflows, Jira, KPIs, and sprint reviews for seamless collaboration and delivery."
+      }
+    ],
+    "capabilitiesHeading": "Key Skills Our CTOs Apply",
+    "capabilities": [
+      {
+        "heading": "Front-end Developers",
+        "items": [
+          { "name": "React.js", "image": "" },
+          { "name": "Next.js", "image": "" }
+        ]
+      },
+      {
+        "heading": "DevOps Engineers",
+        "items": [
+          { "name": "AWS", "image": "" },
+          { "name": "Kubernetes", "image": "" },
+          { "name": "GitHub", "image": "" },
+          { "name": "Docker", "image": "" },
+          { "name": "Jenkins", "image": "" }
+        ]
+      },
+      {
+        "heading": "Mobile App Developers",
+        "items": [
+          { "name": "Flutter", "image": "" },
+          { "name": "Dart", "image": "" }
+        ]
+      },
+      {
+        "heading": "Back-end Developers",
+        "items": [
+          { "name": "Node.js", "image": "" },
+          { "name": "Express.js", "image": "" },
+          { "name": "REST APIs", "image": "" },
+          { "name": "PostgreSQL", "image": "" }
+        ]
+      },
+      {
+        "heading": "Cross-Functional Skills",
+        "items": [
+          { "name": "Microservices Architecture", "image": "" },
+          { "name": "Authentication & Authorization", "image": "" },
+          { "name": "Performance Optimization", "image": "" },
+          { "name": "Testing & Debugging", "image": "" },
+          { "name": "CI/CD Pipelines", "image": "" },
+          { "name": "Containerization", "image": "" },
+          { "name": "Full-Stack Development", "image": "" },
+          { "name": "End-to-End Ownership", "image": "" }
+        ]
+      }
+    ]
+  },
+  "saas-applications": {
+    "tagText": "Cloud-Based SaaS Solutions",
+    "heading": "SaaS Application Development",
+    "paragraph": "Dev8X builds scalable, cloud-hosted SaaS solutions, integrating APIs, payment systems, and seamless multi-platform experiences for measurable business impact.",
+    "heroButtons": [
+      {
+        "label": "See Pricing"
+      },
+      {
+        "label": "Schedule a Call"
+      }
+    ],
+    "iconCards": {
+      "title": "SaaS Expertise in Action",
+      "paragraph": "Our team leverages first-hand SaaS product experience, ensuring client solutions go beyond coding, with maintainability, scalability, and high performance.",
+      "items": [
+        {
+          "title": "Web, Mobile, Desktop Apps",
+          "description": "Dev8X develops SaaS apps for web, mobile, and desktop, covering all required features with responsive, mobile-first design and **Next.js**, **React.js**, **Flutter**, and **Dart**."
+        },
+        {
+          "title": "Product Websites",
+          "description": "We create user-friendly, fully-featured websites for SaaS products using **TailwindCSS**, **HTML5**, and **GSAP**, fostering engagement and stronger audience connections."
+        },
+        {
+          "title": "API Development",
+          "description": "Back-end teams design scalable, secure **RESTful APIs** with **Node.js**, **Express.js**, and **PostgreSQL**, optimized for performance and multi-tenant SaaS environments."
+        },
+        {
+          "title": "CI/CD Pipelines",
+          "description": "We implement automated CI/CD workflows using **Docker**, **Kubernetes**, and pipeline orchestration to streamline testing, deployment, and continuous updates."
+        }
+      ]
+    },
+    "contentAsideImageItems": [
+      {
+        "title": "Knowledge Management Platform",
+        "paragraph": "A central hub for internal information, accessible securely anywhere, supporting collaboration and decision-making across distributed teams."
+      },
+      {
+        "title": "Task Management App for Slack",
+        "paragraph": "Productivity app integrating with **Slack**, enabling task prioritization, tracking, and team coordination without leaving the platform."
+      }
+    ],
+    "whyWeAreDifferentContent": {
+      "heading": "Why Dev8X SaaS Development",
+      "qa": [
+        {
+          "title": "Deep SaaS Experience",
+          "paragraph": "Our team has launched and maintains internal SaaS products, giving real-world insight into scalability, uptime, and client requirements."
+        },
+        {
+          "title": "Full-Stack Expertise",
+          "paragraph": "From **Next.js**, **React.js**, **Node.js**, to **PostgreSQL** and **Docker**, we handle end-to-end architecture, development, and deployment."
+        },
+        {
+          "title": "Cross-Platform Development",
+          "paragraph": "We deliver SaaS solutions across web, mobile, and desktop platforms with responsive design and Flutter-powered native apps for iOS and Android."
+        },
+        {
+          "title": "Process-Driven Delivery",
+          "paragraph": "Using agile workflows, CI/CD pipelines, code reviews, and automated testing, Dev8X ensures reliable, maintainable, and fast deployment cycles."
+        }
+      ]
+    },
+    "meta": {
+      "title": "SaaS Application Development | Dev8X | Cloud-Based Solutions",
+      "description": "Dev8X delivers scalable SaaS solutions, APIs, integrations, and multi-platform apps with cloud hosting, ensuring reliability, performance, and measurable business impact."
+    },
+    "faqs": [
+      {
+        "title": "1. What is a SaaS development company?",
+        "description": "An organization creating cloud-based software delivered via subscription, handling hosting, distribution, updates, and optionally outsourcing development to experts like Dev8X."
+      },
+      {
+        "title": "2. What are SaaS development services?",
+        "description": "Covers design, development, testing, deployment, and maintenance of multi-tenant, cloud-hosted software with integrations, security, and scalability."
+      },
+      {
+        "title": "3. How to build a SaaS application?",
+        "description": "Stages include ideation, core functionality definition, tech stack selection, pricing model, and partnering with a reliable development team like Dev8X."
+      },
+      {
+        "title": "4. How much does it cost to develop a SaaS app?",
+        "description": "Core SaaS solutions start around $50,000; full-featured applications with advanced integrations range from $150,000–200,000+."
+      },
+      {
+        "title": "5. What integrations are supported?",
+        "description": "Dev8X connects SaaS apps with **Stripe**, **PayPal**, **Google Analytics**, **Hotjar**, **HubSpot**, **Mailchimp**, **Skylight**, **Sentry**, and **UptimeRobot**."
+      }
+    ],
+    "capabilitiesHeading": "Integrations Our Clients Benefit From:",
+    "capabilities": [
+      {
+        "heading": "Payment & Analytics",
+        "items": [
+          { "name": "Stripe", "image": "" },
+          { "name": "PayPal", "image": "" },
+          { "name": "Google Analytics", "image": "" },
+          { "name": "Skylight", "image": "" }
+        ]
+      },
+      {
+        "heading": "Marketing & Monitoring",
+        "items": [
+          { "name": "Hotjar", "image": "" },
+          { "name": "Mailchimp", "image": "" },
+          { "name": "HubSpot", "image": "" }
+        ]
+      },
+      {
+        "heading": "Reliability & Security",
+        "items": [
+          { "name": "UptimeRobot", "image": "" },
+          { "name": "Sentry", "image": "" }
+        ]
+      },
+      {
+        "heading": "Frontend Stack",
+        "items": [
+          { "name": "Next.js", "image": "" },
+          { "name": "React.js", "image": "" },
+          { "name": "TypeScript", "image": "" },
+          { "name": "Redux Thunk", "image": "" },
+          { "name": "HTML5", "image": "" },
+          { "name": "TailwindCSS", "image": "" },
+          { "name": "GSAP", "image": "" },
+          { "name": "Responsive Design", "image": "" }
+        ]
+      },
+      {
+        "heading": "Backend & DevOps",
+        "items": [
+          { "name": "Node.js", "image": "" },
+          { "name": "Express.js", "image": "" },
+          { "name": "PostgreSQL", "image": "" },
+          { "name": "Sequelize ORM", "image": "" },
+          { "name": "RESTful APIs", "image": "" },
+          { "name": "Docker", "image": "" },
+          { "name": "Kubernetes", "image": "" },
+          { "name": "CI/CD Pipelines", "image": "" }
+        ]
+      }
+    ]
+  },
+  "mobile-applications": {
+    "tagText": "End-to-End Mobile Solutions",
+    "heading": "Custom Mobile Applications",
+    "paragraph": "Dev8X delivers high-performance mobile apps using **Flutter** and the **Dart** ecosystem, producing native experiences for iOS and Android from a single codebase.",
+    "heroButtons": [
+      {
+        "label": "See Pricing"
+      },
+      {
+        "label": "Schedule a Call"
+      }
+    ],
+    "iconCards": {
+      "title": "Highlights of Our Mobile Apps",
+      "paragraph": "Our team builds fully responsive, cross-platform mobile solutions with scalable architecture, robust performance, and seamless user experiences.",
+      "items": [
+        {
+          "title": "Native Performance",
+          "description": "Apps are developed with **Flutter** to ensure fast, smooth, and fully native performance across both iOS and Android devices."
+        },
+        {
+          "title": "Cross-Platform Efficiency",
+          "description": "Using a single **Dart** codebase reduces development time and cost while maintaining platform-specific design and interactions."
+        },
+        {
+          "title": "Live Updates",
+          "description": "We implement over-the-air updates to deliver immediate enhancements and bug fixes, accelerating feedback loops and improving user satisfaction."
+        },
+        {
+          "title": "Scalable Architecture",
+          "description": "Our apps are designed with modular architecture and **microservices patterns**, enabling future expansion, integrations, and feature upgrades."
+        }
+      ]
+    },
+    "contentAsideImageItems": [
+      {
+        "title": "Cross-Platform Development",
+        "paragraph": "We leverage **Flutter** for building versatile apps that run on multiple platforms while maintaining a native look and feel."
+      },
+      {
+        "title": "Types of Mobile Apps",
+        "paragraph": "From **internal business apps** to customer-facing solutions, Dev8X creates apps that drive productivity, engagement, and operational efficiency."
+      },
+      {
+        "title": "UI/UX Excellence",
+        "paragraph": "Our team focuses on **responsive design**, **GSAP animations**, and **mobile-first engineering** to deliver interfaces that delight users."
+      },
+      {
+        "title": "Secure & Reliable",
+        "paragraph": "With **Node.js**, **Express.js**, and **PostgreSQL**, we build backends that ensure security, authorization, authentication, and reliable data storage."
+      }
+    ],
+    "whyWeAreDifferentContent": {
+      "heading": "Why Dev8X Stands Out",
+      "qa": [
+        {
+          "title": "End-to-End Expertise",
+          "paragraph": "We manage the complete mobile development lifecycle: discovery, design, development, testing, CI/CD deployment, and post-launch support."
+        },
+        {
+          "title": "Modern Tech Stack",
+          "paragraph": "Our solutions use **Flutter**, **Dart**, **React.js**, **Next.js**, **TypeScript**, **Redux Thunk**, and **TailwindCSS**, ensuring performance and maintainability."
+        },
+        {
+          "title": "Team-Driven Delivery",
+          "paragraph": "Projects are executed by cross-functional teams using **Git feature branching**, **PR reviews**, and **monorepo architecture** for high-quality code."
+        },
+        {
+          "title": "Scalable Solutions",
+          "paragraph": "We design apps with modularity, **microservices patterns**, and containerized deployment via **Docker** and **Kubernetes** for seamless scalability."
+        }
+      ]
+    },
+    "meta": {
+      "title": "Mobile Application Development Services | Dev8X | World-Class Apps",
+      "description": "Dev8X builds high-performance, cross-platform mobile applications using Flutter and Dart, delivering scalable, native experiences for iOS and Android."
+    },
+    "faqs": [
+      {
+        "title": "1. What is a custom mobile application?",
+        "description": "A custom mobile application is a tailored software solution built for specific business requirements, offering optimized performance and unique user experience."
+      },
+      {
+        "title": "2. Why choose Flutter for app development?",
+        "description": "Flutter enables cross-platform development with a single **Dart** codebase, delivering native performance, fast updates, and consistent UI on iOS and Android."
+      },
+      {
+        "title": "3. How does Dev8X ensure app quality?",
+        "description": "Through **CI/CD pipelines**, testing, code reviews, **ESLint**, **Prettier**, and automated deployment, ensuring reliable and maintainable applications."
+      },
+      {
+        "title": "4. What types of apps can Dev8X build?",
+        "description": "We deliver business productivity apps, customer-facing platforms, internal tools, and high-performance enterprise solutions, tailored to your workflows and objectives."
+      },
+      {
+        "title": "5. How much does a mobile app cost?",
+        "description": "Costs vary by complexity, integrations, and features. Typical projects range from $50,000 for MVPs to $200,000+ for fully-featured enterprise apps."
+      }
+    ],
+    "capabilitiesHeading": "Dev8X Mobile Capabilities",
+    "capabilities": [
+      {
+        "heading": "Frontend",
+        "items": [
+          { "name": "Flutter", "image": "" },
+          { "name": "Dart", "image": "" },
+          { "name": "React.js", "image": "" },
+          { "name": "Next.js", "image": "" },
+          { "name": "TypeScript", "image": "" },
+          { "name": "Redux Thunk", "image": "" },
+          { "name": "HTML5", "image": "" },
+          { "name": "TailwindCSS", "image": "" }
+        ]
+      },
+      {
+        "heading": "Backend & DB",
+        "items": [
+          { "name": "Node.js", "image": "" },
+          { "name": "Express.js", "image": "" },
+          { "name": "RESTful APIs", "image": "" },
+          { "name": "PostgreSQL", "image": "" },
+          { "name": "Sequelize ORM", "image": "" },
+          { "name": "Authentication", "image": "" },
+          { "name": "Authorization", "image": "" },
+          { "name": "Database Optimization", "image": "" }
+        ]
+      },
+      {
+        "heading": "DevOps & Cloud",
+        "items": [
+          { "name": "Docker", "image": "" },
+          { "name": "Kubernetes", "image": "" },
+          { "name": "CI/CD Pipelines", "image": "" },
+          { "name": "Terraform", "image": "" }
+        ]
+      },
+      {
+        "heading": "Performance & Testing",
+        "items": [
+          { "name": "Performance Optimization", "image": "" },
+          { "name": "Debugging", "image": "" },
+          { "name": "End-to-End Testing", "image": "" },
+          { "name": "Unit Testing", "image": "" },
+          { "name": "Cross-Platform QA", "image": "" },
+          { "name": "Load Testing", "image": "" },
+          { "name": "Mobile Responsiveness", "image": "" },
+          { "name": "Accessibility Audits", "image": "" }
+        ]
+      },
+      {
+        "heading": "Project Workflow",
+        "items": [
+          { "name": "ESLint & Prettier", "image": "" },
+          { "name": "Git Feature Branching", "image": "" },
+          { "name": "GitHub Pull Requests", "image": "" },
+          { "name": "TurboRepo", "image": "" },
+          { "name": "Monorepo Architecture", "image": "" },
+          { "name": "Agile Delivery", "image": "" },
+          { "name": "Cross-functional Collaboration", "image": "" },
+          { "name": "End-to-End Ownership", "image": "" }
+        ]
+      }
+    ]
+  },
+  "web-applications": {
+    "tagText": "Enterprise-Grade Web Apps",
+    "heading": "Custom Web Applications",
+    "paragraph": "Dev8X builds advanced, scalable web applications using modern tech stacks, enabling measurable impact on conversions, engagement, and digital growth.",
+    "heroButtons": [
+      {
+        "label": "See Pricing"
+      },
+      {
+        "label": "Schedule a Call"
+      }
+    ],
+    "iconCards": {
+      "title": "Why Our Web Apps Excel",
+      "paragraph": "We deliver high-performance, secure, and scalable web apps designed to solve real business challenges.",
+      "items": [
+        {
+          "title": "High Performance",
+          "description": "Utilizing **React.js**, **Next.js**, and **TypeScript**, Dev8X ensures web apps handle heavy loads with fast, glitch-free performance."
+        },
+        {
+          "title": "Integration Ready",
+          "description": "Web apps integrate seamlessly with **RESTful APIs**, third-party services, and microservices for feature-rich, connected experiences."
+        },
+        {
+          "title": "End-to-End Security",
+          "description": "Dev8X implements **authentication**, **authorization**, and encryption standards, ensuring data integrity and enterprise-grade protection."
+        },
+        {
+          "title": "Scalable Architecture",
+          "description": "Apps are architected using **PostgreSQL**, **Sequelize ORM**, and modular backend patterns, ready to scale with your business growth."
+        }
+      ]
+    },
+    "contentAsideImageItems": [
+      {
+        "title": "Web Portals",
+        "paragraph": "Dev8X crafts enterprise-grade web portals, optimized for heavy traffic, vendor integrations, and seamless user experiences across all devices."
+      },
+      {
+        "title": "Progressive Web Apps",
+        "paragraph": "Our PWAs leverage **service workers** and offline capabilities, delivering near-native performance, push notifications, and cross-platform reliability."
+      },
+      {
+        "title": "Single-Page Applications",
+        "paragraph": "Using **SPA architectures** with **React.js** and **Next.js**, we create fast, flexible applications with smooth navigation and minimal reloads."
+      },
+      {
+        "title": "Marketplace & AI Apps",
+        "paragraph": "Dev8X builds complex two-sided marketplaces and AI/ML-powered applications with optimized **backend APIs**, responsive interfaces, and end-to-end workflows."
+      }
+    ],
+    "whyWeAreDifferentContent": {
+      "heading": "Why Dev8X Stands Out",
+      "qa": [
+        {
+          "title": "Dedicated Engineers",
+          "paragraph": "Each engineer is fully dedicated, working in U.S.-aligned hours with direct access and consistent quality."
+        },
+        {
+          "title": "Full-Stack Expertise",
+          "paragraph": "Our team covers **frontend**, **backend**, **DevOps**, testing, and deployment, ensuring seamless end-to-end delivery."
+        },
+        {
+          "title": "CI/CD & Code Quality",
+          "paragraph": "Strict **ESLint**, **Prettier**, and **CI/CD pipelines** maintain quality, with feature branching and GitHub PR reviews standard practice."
+        },
+        {
+          "title": "Rapid Scaling",
+          "paragraph": "Teams scale within 72 hours, allowing fast pivots, new features, or additional development capacity with zero onboarding friction."
+        }
+      ]
+    },
+    "meta": {
+      "title": "Custom Web Applications | Dev8X — Scalable Web Solutions",
+      "description": "Dev8X delivers enterprise-grade custom web applications. Our solutions use Next.js, React.js, Node.js, TypeScript, PostgreSQL, and modern DevOps for performance, security, and scalability."
+    },
+    "faqs": [
+      {
+        "title": "1. How fast can we start?",
+        "description": "Most clients kick off within 5–7 days, with vetted engineers integrated directly into your workflow."
+      },
+      {
+        "title": "2. Are developers fully dedicated?",
+        "description": "Yes, each engineer works 160 hours per month exclusively on your product — no multitasking or shared bandwidth."
+      },
+      {
+        "title": "3. How do we manage communication?",
+        "description": "Collaboration happens via Slack or Teams, task tracking in ClickUp or Jira, and code reviews in GitHub."
+      },
+      {
+        "title": "4. Can I directly manage developers?",
+        "description": "Absolutely. Direct management is standard, with optional tech lead supervision available for oversight."
+      },
+      {
+        "title": "5. Can we scale quickly?",
+        "description": "Add developers or upgrade to a Mini Squad within 72 hours, maintaining same standards and vetting."
+      }
+    ],
+    "capabilitiesHeading": "Technologies & Expertise",
+    "capabilities": [
+      {
+        "heading": "Frontend",
+        "items": [
+          { "name": "React.js", "image": "" },
+          { "name": "Next.js", "image": "" },
+          { "name": "TypeScript", "image": "" },
+          { "name": "Redux Thunk", "image": "" },
+          { "name": "HTML5", "image": "" },
+          { "name": "TailwindCSS", "image": "" },
+          { "name": "GSAP", "image": "" },
+          { "name": "Responsive & Mobile-first", "image": "" }
+        ]
+      },
+      {
+        "heading": "Backend & Databases",
+        "items": [
+          { "name": "Node.js", "image": "" },
+          { "name": "Express.js", "image": "" },
+          { "name": "RESTful APIs", "image": "" },
+          { "name": "PostgreSQL", "image": "" },
+          { "name": "Sequelize ORM", "image": "" },
+          { "name": "Authentication", "image": "" },
+          { "name": "Authorization", "image": "" },
+          { "name": "Microservices Patterns", "image": "" }
+        ]
+      },
+      {
+        "heading": "DevOps & Cloud",
+        "items": [
+          { "name": "Docker", "image": "" },
+          { "name": "CI/CD Pipelines", "image": "" },
+          { "name": "Kubernetes", "image": "" },
+          { "name": "Terraform", "image": "" }
+        ]
+      },
+      {
+        "heading": "Code Quality & Workflow",
+        "items": [
+          { "name": "ESLint", "image": "" },
+          { "name": "Prettier", "image": "" },
+          { "name": "Git Feature Branching", "image": "" },
+          { "name": "GitHub Pull Requests", "image": "" },
+          { "name": "TurboRepo", "image": "" },
+          { "name": "Monorepo Architecture", "image": "" },
+          { "name": "Testing & Debugging", "image": "" },
+          { "name": "Performance Optimization", "image": "" }
+        ]
+      },
+      {
+        "heading": "Full-Stack & Delivery",
+        "items": [
+          { "name": "End-to-End Ownership", "image": "" },
+          { "name": "Cross-Functional Collaboration", "image": "" },
+          { "name": "Scalable Architecture", "image": "" },
+          { "name": "Rapid Deployment", "image": "" },
+          { "name": "Maintenance & Support", "image": "" },
+          { "name": "High Availability", "image": "" },
+          { "name": "Analytics & Reporting", "image": "" },
+          { "name": "Secure Integrations", "image": "" }
+        ]
+      }
+    ]
+  }
+}

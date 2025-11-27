@@ -1,0 +1,438 @@
+Dev8X Services Pages Master Dataset
+```
+{
+  "mobile-applications":   {
+    heading: 'Custom Mobile Applications',
+    paragraph: 'Upsilon is a reliable tech partner with proven experience in building responsive and innovative mobile apps. We will help you make a unique, highly-customized mobile solution that responds to the market challenges while meeting your business objectives and overall strategy.Leveraging our company`s core strength and strategic approach to mobile application development, we support you from a discovery phase to deployment, treating your app launch as our own.',
+    heroButtons: [
+      {
+        label: 'See Pricing',
+      },
+      {
+        label: 'Schedule a Call',
+      }
+    ],
+    iconCards: {
+      title: 'Highlights of Our Custom Mobile Apps',
+      paragraph: 'We develop, customize, and implement all kinds of features to build the best possible application that best serves your brand and caters to your missions.',
+      items: [
+        {
+          title: 'Truly native UI',
+          description: 'React Native lets you develop interactive and user-friendly interfaces without compromising your users’ experiences. Your mobile app will truly have native look and feel.',
+        },
+        {
+          title: 'Live updates',
+          description: 'An application built with React Native can be updated over-the-air - directly on users’ devices. That accelerates the feedback gathering cycle and allows to deliver customer value faster.',
+        },
+        {
+          title: '‍Cost-effective',
+          description: '‍By opting for React Native technology, you can save time and money receiving top-grade mobile solutions simultaneously on iOS and Android.',
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: 'Cross-platform Mobile App Development',
+        paragraph: 'Cross-platform application development became a silver bullet for businesses willing to win the competition. Upsilon helps companies bring this strategy to life with React Native. Here are the reasons why you should consider to use this technology for your next mobile application:',
+      },
+      {
+        title: 'Types of Mobile Applications We Build',
+        paragraph: 'Internal Business Mobile Apps Upsilon helps businesses streamline their internal processes, increase productivity, automate workflows, and gain more visibility & control with 360° secure, innovative, high-performing mobile solutions.',
+      }
+    ],
+    meta: {
+      title: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products',
+      description: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products'
+    },
+    faqs: [
+      {
+        title: '1. What are MVP development services?',
+        description:
+          'By opting for MVP development services, startups can build a product`s test version allowing them to see their idea in action and determine how well it resonates with potential customers. MVP development services for startups imply a certain sequence of activities, including market research; goal & main user identification; design; feature creation & implementation; testing; deployment; and receiving feedback.Whether you need help with MVP development, let Upsilon be your guide to uncovering valuable insights and feedback that will help you build a product tailored just right for customers` needs.  '
+      },
+      {
+        title: '2. Why is MVP development important for startups?',
+        description: `By developing an MVP, you might avoid a larger initial investment in software development and reduce the risk when entering the market. Here are the main benefits of building an MVP for startups:
+        • Faster time-to-market within a tight budget  
+        • Getting early feedback from the target audience for making data-driven effective decisions  
+        • Feature prioritization: understanding what functions should be added or removed  
+        • Gaining the first traction from early adopters and building a user base  
+        • Possibility to attract investors
+
+        Need to build an MVP? We will be happy to assist.`
+      },
+      {
+        title: '3. How to choose the right MVP development company?',
+        description: 'For over 10 years, we’ve been helping progressive companies bring their ideas to life faster, more effectively, and with minimal risk. So if you need expert help with MVP development, feel free to reach out to Upsilon.'
+      },
+      {
+        title: '4. What is the best pricing model for building an MVP?',
+        description: 'Today’s pricing models in the field of MVP development range from the traditional fixed-price and time & material models to agile options like hiring a dedicated team. As an expert MVP development company, we use a sprint-based approach that has proven flexibility, cost-effectiveness, and transparency. Sprint is a 2-week working period during which a development team completes a set amount of work. The final cost depends on the number of sprints. To learn more about this model and why it may be a perfect match for your project, please visit our “Pricing” page.'
+      },
+      {
+        title: '5. What if I need more listings or upgrades later?',
+        description: 'You can add new pages, listings, SEO, or automation anytime — all structures are built for easy scaling.'
+      }
+    ],
+    offersSlider: [
+      {
+        id: '1',
+        heading: 'Modern Real Estate Website',
+        price: '$500',
+        description: 'Responsive, high-conversion site for listings and agents',
+        features: ['Property pages', 'Agent profiles', 'Testimonials', 'Contact forms'],
+        categories: ['Website', 'Branding', 'SEO', 'Lead Capture', 'Fast Delivery', 'Responsive'],
+        buttonText: 'Launch My Website',
+        package: 'Website & Portal'
+      },
+      {
+        id: '2',
+        heading: 'Property Dashboard',
+        price: '$280',
+        description: 'Track listings, leads, and conversion performance',
+        features: ['Charts & KPIs', 'Leads data', 'Traffic insights', 'Revenue trends'],
+        categories: ['Analytics', 'Dashboard', 'Insights', 'Growth', 'Data'],
+        buttonText: 'Install Analytics',
+        package: 'Website & Portal'
+      },
+      {
+        id: '3',
+        heading: 'Hosting & Security Setup',
+        price: '$200',
+        description: 'Domain, SSL, and cloud deployment with backups',
+        features: ['Domain setup', 'SSL config', 'Cloud hosting', 'Speed optimization'],
+        categories: ['Hosting', 'Security', 'Cloud', 'Performance', 'Reliability'],
+        buttonText: 'Set Up Hosting',
+        package: 'Website & Portal'
+      },
+      {
+        id: '4',
+        heading: 'Listings Automation',
+        price: '$450',
+        description: 'Dynamic property listings synced from CMS or Sheets',
+        features: ['Auto-updating listings', 'CMS integration', 'Filters & search', 'Map view'],
+        categories: ['Automation', 'Listings', 'CMS', 'Dynamic', 'Real Estate', 'Efficiency'],
+        buttonText: 'Automate My Listings',
+        package: 'Automation & Lead Capture'
+      },
+      {
+        id: '5',
+        heading: 'Smart Lead Form + CRM',
+        price: '$300',
+        description: 'Capture and sync leads into your CRM instantly',
+        features: ['Custom forms', 'CRM integration', 'Auto-responses', 'Notifications'],
+        categories: ['Leads', 'CRM', 'Automation', 'Email', 'Conversion'],
+        buttonText: 'Install Lead Capture',
+        package: 'Automation & Lead Capture'
+      },
+      {
+        id: '6',
+        heading: 'Online Booking System',
+        price: '$350',
+        description: 'Let buyers schedule viewings or calls online',
+        features: ['Calendar sync', 'Agent availability', 'Reminders', 'Integrations'],
+        categories: ['Booking', 'Calendar', 'Automation', 'Scheduling', 'Lead Flow'],
+        buttonText: 'Activate Booking',
+        package: 'Automation & Lead Capture'
+      },
+      {
+        id: '7',
+        heading: 'Email & SMS Automation',
+        price: '$250',
+        description: 'Auto follow-ups for inquiries and cold leads',
+        features: ['SMS & email triggers', 'Templates', 'Follow-up rules', 'CRM sync'],
+        categories: ['Automation', 'SMS', 'Email', 'Retention', 'Leads'],
+        buttonText: 'Activate Automation',
+        package: 'Automation & Lead Capture'
+      },
+      {
+        id: '8',
+        heading: 'Property Inquiry Chatbot',
+        price: '$400',
+        description: '24/7 AI chatbot for property leads via WhatsApp & web.',
+        features: ['AI + predefined responses', 'Multi-language support', 'CRM / database storage', 'Simple dashboard for agents', 'WhatsApp & web widget'],
+        categories: ['Automation', 'Lead Capture', 'AI', 'CRM', 'Property Inquiries'],
+        buttonText: 'Activate Chatbot',
+        package: 'Automation & Lead Capture'
+      },
+      {
+        id: '9',
+        heading: 'Google Business & SEO',
+        price: '$300',
+        description: 'Rank higher for “Homes in [City]” searches',
+        features: ['Local SEO', 'Google Business setup', 'On-page fixes', 'Keyword insights'],
+        categories: ['SEO', 'Visibility', 'Local', 'Google', 'Ranking'],
+        buttonText: 'Boost My SEO',
+        package: 'Marketing'
+      },
+      {
+        id: '10',
+        heading: 'Google Reviews Widget',
+        price: '$120',
+        description: 'Showcase live client reviews for trust & SEO',
+        features: ['Live reviews', 'Auto-update', 'SEO boost', 'Easy embed'],
+        categories: ['Reviews', 'Trust', 'Social Proof', 'SEO', 'Credibility'],
+        buttonText: 'Add Review Widget',
+        package: 'Marketing'
+      },
+      {
+        id: '11',
+        heading: 'Speed Optimization',
+        price: '$200',
+        description: 'Faster load times for better conversion & SEO',
+        features: ['Lighthouse fixes', 'Caching', 'Image compression', 'Performance tuning'],
+        categories: ['Speed', 'Performance', 'SEO', 'Optimization'],
+        buttonText: 'Optimize Speed',
+        package: 'Performance'
+      },
+      {
+        id: '12',
+        heading: 'Monthly Support Plan',
+        price: '$250/mo',
+        description: 'Ongoing maintenance, backups, and uptime checks',
+        features: ['24/7 monitoring', 'Monthly updates', 'Daily backups', 'Security audits'],
+        categories: ['Support', 'Maintenance', 'Security', 'Monitoring', 'DevOps'],
+        buttonText: 'Start Monthly Plan',
+        package: 'Performance'
+      },
+      {
+        id: '13',
+        heading: '360° Virtual Tours',
+        price: '$550',
+        description: 'Interactive property galleries and walkthroughs',
+        features: ['3D viewer', 'Image gallery', 'Video embeds', 'Mobile ready'],
+        categories: ['Media', 'Virtual Tour', 'Gallery', 'Showcase', 'Modern UX'],
+        buttonText: 'Add Virtual Tours',
+        package: 'Media & Showcase'
+      }
+    ],
+    capabilitiesHeading: "Our capabilities are centred around our ability to deliver world-class mobile applications. We're 100% in-house and work end-to-end, ensuring each project is delivered to the highest standard.",
+    capabilities: [
+      {
+        heading: 'Back-end',
+        items: [
+          { name: 'Node JS', image: '' },
+          { name: 'Express JS', image: '' },
+          { name: 'Rest APIs', image: '' },
+          { name: 'PostgreSQL', image: '' }
+        ]
+      },
+      {
+        heading: 'Front-end developers',
+        items: [
+          { name: 'React', image: '' },
+          { name: 'Next JS', image: '' },
+        ]
+      },
+      {
+        heading: 'Deployment',
+        items: [
+          { name: 'Amazon EC2', image: '' },
+          { name: 'AWS CloudFront', image: '' },
+          { name: 'Amazon S3', image: '' },
+          { name: 'Amazon RDS', image: '' },
+          { name: 'AWS ECS ECR', image: '' },
+          { name: 'AWS Lambda', image: '' },
+          { name: 'Google Cloud Platform', image: '' }
+        ]
+      }
+    ],
+  },
+}
+```
+
+You are generating content for dev8x.com.
+
+GOAL:
+- Mention platform transitions factually if relevant (e.g., Total Health Dental Care moving to NexHealth).
+- Maintain JSON format for output.
+- Do not truncate or omit details.
+- Bold key terms (technologies, frameworks, tools, product names, metrics).
+- Italics only for subtle humor or soft commentary.
+- Headings ≤ 5 words and Paragraphs ≤ 25 words.
+- Do not reference or utilize capabilities defined in the Master Dataset. Only generate capabilities based on the explicit skills provided in the current prompt.
+- Use Flutter and the Dart ecosystem to develop high-performance, natively compiled applications for both Android and iOS from a single codebase. Use this point whenever content is talking about mobile development.
+- No fluff, generic phrasing, or clichés.
+
+PLATFORMS & AUDIENCE:
+
+Website – dev8x.com
+Tone: Third-person, polished, US-tech aligned.
+Focus: Dev8X as senior-quality tech partner. Projects presented as client case studies, not personal ownership.
+Depth: Deep-dive portfolio, measurable outcomes, tech stack, processes, and team expertise.
+
+GUIDELINE FOR USING PAST WORK IN dev8x.com:
+- Use a **client case study** format.
+- Frame work as team-driven outcomes, not individual ownership.
+- Do not mention any individual contributor.
+- Attribute all work to Dev8X team capabilities, processes, and expertise.
+
+TECH STACK & EXPERTISE TO INCLUDE:
+- Frontend: Next.js, React.js, TypeScript, Redux Thunk, HTML5, TailwindCSS, GSAP, responsive & mobile-first engineering.
+- Code Quality & Workflow: ESLint, Prettier, CI/CD quality gates, Git feature branching, GitHub Pull Requests, TurboRepo, monorepo architecture.
+- Backend & Databases: Node.js, Express.js, RESTful APIs, microservices patterns, PostgreSQL, Sequelize ORM, database design & optimization, authentication, authorization.
+- DevOps & Cloud: Docker, containerization, CI/CD pipelines, Kubernetes, Terraform, Ansible, IaC.
+- Additional: performance optimization, testing & debugging, full-stack development, end-to-end ownership, cross-functional collaboration.
+
+IMPORTANT:
+For now, generate content for mobile-applications only.
+
+OUTPUT FORMAT:
+Return a JSON object:
+
+{
+  "mobile-applications": {
+    tagText: '...',
+    heading: '...',
+    paragraph: '...',
+    heroButtons: [
+      {
+        label: '...',
+      },
+      {
+        label: '...',
+      }
+    ],
+    iconCards: {
+      title: '...',
+      paragraph: '...',
+      items: [
+        {
+          title: '...',
+          description: '...',
+        },
+        {
+          title: '...',
+          description: '...',
+        },
+        {
+          title: '...',
+          description: '...',
+        },
+        {
+          title: '...',
+          description: '...',
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: '...',
+        paragraph: '...'
+      },
+      {
+        title: '...',
+        paragraph: '...'
+      },
+      {
+        title: '...',
+        paragraph: `...`
+      },
+      {
+        title: '...',
+        paragraph: `....`
+      }
+    ],
+    whyWeAreDifferentContent: {
+      heading: `...`,
+      qa: [
+        { title: '...', paragraph: '...' },
+        { title: '...', paragraph: '...' },
+        { title: '...', paragraph: '...' },
+        { title: '...', paragraph: '...' }
+      ]
+    },
+    meta: {
+      title: '...',
+      description: '...'
+    },
+    faqs: [
+      {
+        title: '...',
+        description: '...'
+      },
+      {
+        title: '...',
+        description: `...`
+      },
+      {
+        title: '...',
+        description: '...'
+      },
+      {
+        title: '...',
+        description: '...'
+      },
+      {
+        title: '...',
+        description: '...'
+      }
+    ],
+    capabilitiesHeading: '...',
+    capabilities: [
+      {
+        heading: '...',
+        items: [
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' }
+        ]
+      },
+      {
+        heading: '...',
+        items: [
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' }
+        ]
+      },
+      {
+        heading: '...',
+        items: [
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' }
+        ]
+      },
+      {
+        heading: '...',
+        items: [
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' }
+        ]
+      },
+      {
+        heading: '...',
+        items: [
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' }
+        ]
+      }
+    ],
+  },
+}
+
+Take your maximum time to generate perfect data

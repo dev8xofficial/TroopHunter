@@ -1,0 +1,300 @@
+Dev8X Services Pages Data
+```
+{
+  "saas-applications": {
+    heading: 'SaaS Application Development Services',
+    paragraph: 'Leveraging the advantage of the Software-as-a-service (SaaS) model, Upsilon will help you build a secret weapon - a cloud-based solution with central hosting that will definitely boost your company’s bottom line. Whether you need to develop certain SaaS components like APIs or implement integrations like Stripe, our developers are at your service',
+    heroButtons: [
+      {
+        label: 'See Pricing',
+      },
+      {
+        label: 'Schedule a Call',
+      }
+    ],
+    image: prefixed('/api/images/services/saas-applications/1.png'),
+    iconCards: {
+      title: 'SaaS Products in Business Portfolio',
+      paragraph: 'We know firsthand how to design, build, implement and deploy fail-safe SaaS as we have successfully launched and continue maintaining and enhancing our own products. We have a deep comprehension of the specifics of the SaaS and, as the product owners, we always look beyond ‘blind coding’ when working on clients’ projects.',
+      items: [
+        {
+          title: 'Web, Mobile and Desktop Apps',
+          description: 'Whatever platform you target - web, mobile, desktop or all three of them - our team can build a SaaS app of any complexity and covering all the features you require.',
+        },
+        {
+          title: 'Product Website',
+          description: 'We design and build highly personalized, user-friendly and full-featured product websites that help your business build deeper relationship with its audience.',
+        },
+        {
+          title: 'API Development',
+          description: 'Our back-end development team will help you build an API that will scale on demand, perform fast, and provide secure and reliable data storage for your SaaS.',
+        },
+        {
+          title: 'CI/CD',
+          description: 'By setting up CI/CD pipelines, our team will allow you to make more frequent improvements to your product and efficiently test and deploy those changes.',
+        },
+        {
+          title: 'Build & Deployment System',
+          description: 'By leveraging the advantages of Docker and Kubernetes, we create systems that allow to automate and speed up the process of application building, deployment, scaling, and management.',
+        },
+        {
+          title: 'Third-party Integrations',
+          description: 'From connecting external data sources to integrating payment gateways, we help you connect your SaaS app with 3rd party solutions..',
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: 'Knowledge Management Platform',
+        paragraph: 'A platform that helps your team to collect valuable internal information and access it anywhere.'
+      },
+      {
+        title: 'Task Management App for Slack',
+        paragraph: 'A productivity and task tracking app that allows individuals and teams organize, and prioritize their tasks without leaving Slack.'
+      }
+    ],
+    meta: {
+      title: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products',
+      description: 'Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products'
+    },
+    faqs: [
+      {
+        title: '1. What is a SaaS development company?',
+        description: 'A SaaS development company is an organization that provides cloud-based software to customers on a subscription-based or a flat rate model. SaaS companies may build, maintain, update and deliver their software by themselves, or they can delegate the development of their product to an outsourcing tech partner while focusing on hosting, distribution, and customer support. '
+      },
+      {
+        title: '2. What are SaaS application development services?',
+        description: `SaaS application development services cover the creation of documentation, design, development, testing, and maintenance of software solutions with multi-tenant architecture, their hosting in the cloud, and deployment on the servers.`
+      },
+      {
+        title: '3. How to build a SaaS application?',
+        description: 'Basically, the process of SaaS application development includes the following stages:Ideation, the definition of the value the SaaS will bring to users, and USP formulationOutlining the primary functionalitiesSelection of the tech stackDetermination of a most suitable pricing modelHiring a reliable SaaS development company'
+      },
+      {
+        title: '4. How much does it cost to develop a SaaS application?',
+        description: 'Based on the estimate and our experience, we can say that the cost of a SaaS application will start from $50,000. Here we talk about the subscription functionality, which is the core of the SaaS product. The price of a complete, fully-featured solution will be around $150,000-200,000 and more.To get a closer look at the SaaS cost breakdown, please read our SaaS Application Development Guide.'
+      }
+    ],
+    capabilitiesHeading: 'Integrations Our Clients Benefit From:',
+    capabilities: [
+      {
+        items: [
+          { name: 'Stripe', image: '' },
+          { name: 'PayPal', image: '' },
+          { name: 'Google Analytics', image: '' },
+          { name: 'Skylight', image: '' }
+        ]
+      },
+      {
+        items: [
+          { name: 'Mobile', image: '' },
+          { name: 'Hotjar', image: '' },
+          { name: 'Mailchimp', image: '' }
+        ]
+      },
+      {
+        items: [
+          { name: 'HubSpot', image: '' },
+          { name: 'UptimeRobot', image: '' },
+          { name: 'Sentry', image: '' }
+        ]
+      }
+    ],
+  },
+}
+```
+
+You are generating content for dev8x.com.
+
+GOAL:
+- Mention platform transitions factually if relevant (e.g., Total Health Dental Care moving to NexHealth).
+- Maintain JSON format for output.
+- Do not truncate or omit details.
+- Bold key terms (technologies, frameworks, tools, product names, metrics).
+- Italics only for subtle humor or soft commentary.
+- Headings ≤ 5 words and Paragraphs ≤ 25 words.
+- Do not reference or utilize capabilities defined in the Master Dataset. Only generate capabilities based on the explicit skills provided in the current prompt.
+- No fluff, generic phrasing, or clichés.
+
+PLATFORMS & AUDIENCE:
+
+Website – dev8x.com
+Tone: Third-person, polished, US-tech aligned.
+Focus: Dev8X as senior-quality tech partner. Projects presented as client case studies, not personal ownership.
+Depth: Deep-dive portfolio, measurable outcomes, tech stack, processes, and team expertise.
+
+GUIDELINE FOR USING PAST WORK IN dev8x.com:
+- Use a **client case study** format.
+- Frame work as team-driven outcomes, not individual ownership.
+- Do not mention any individual contributor.
+- Attribute all work to Dev8X team capabilities, processes, and expertise.
+
+TECH STACK & EXPERTISE TO INCLUDE:
+- Frontend: Next.js, React.js, TypeScript, Redux Thunk, HTML5, TailwindCSS, GSAP, responsive & mobile-first engineering.
+- Code Quality & Workflow: ESLint, Prettier, CI/CD quality gates, Git feature branching, GitHub Pull Requests, TurboRepo, monorepo architecture.
+- Backend & Databases: Node.js, Express.js, RESTful APIs, microservices patterns, PostgreSQL, Sequelize ORM, database design & optimization, authentication, authorization.
+- DevOps & Cloud: Docker, containerization, CI/CD pipelines, Kubernetes, Terraform, Ansible, IaC.
+- Additional: performance optimization, testing & debugging, full-stack development, end-to-end ownership, cross-functional collaboration.
+
+IMPORTANT:
+For now, generate content for saas-applications only.
+
+OUTPUT FORMAT:
+Return a JSON object:
+
+{
+  "saas-applications": {
+    tagText: '...',
+    heading: '...',
+    paragraph: '...',
+    heroButtons: [
+      {
+        label: '...',
+      },
+      {
+        label: '...',
+      }
+    ],
+    iconCards: {
+      title: '...',
+      paragraph: '...',
+      items: [
+        {
+          title: '...',
+          description: '...',
+        },
+        {
+          title: '...',
+          description: '...',
+        },
+        {
+          title: '...',
+          description: '...',
+        },
+        {
+          title: '...',
+          description: '...',
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: '...',
+        paragraph: '...'
+      },
+      {
+        title: '...',
+        paragraph: '...'
+      },
+      {
+        title: '...',
+        paragraph: `...`
+      },
+      {
+        title: '...',
+        paragraph: `....`
+      }
+    ],
+    whyWeAreDifferentContent: {
+      heading: `...`,
+      qa: [
+        { title: '...', paragraph: '...' },
+        { title: '...', paragraph: '...' },
+        { title: '...', paragraph: '...' },
+        { title: '...', paragraph: '...' }
+      ]
+    },
+    meta: {
+      title: '...',
+      description: '...'
+    },
+    faqs: [
+      {
+        title: '...',
+        description: '...'
+      },
+      {
+        title: '...',
+        description: `...`
+      },
+      {
+        title: '...',
+        description: '...'
+      },
+      {
+        title: '...',
+        description: '...'
+      },
+      {
+        title: '...',
+        description: '...'
+      }
+    ],
+    capabilitiesHeading: '...',
+    capabilities: [
+      {
+        heading: '...',
+        items: [
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' }
+        ]
+      },
+      {
+        heading: '...',
+        items: [
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' }
+        ]
+      },
+      {
+        heading: '...',
+        items: [
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' }
+        ]
+      },
+      {
+        heading: '...',
+        items: [
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' }
+        ]
+      },
+      {
+        heading: '...',
+        items: [
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' },
+          { name: '...', image: '...' }
+        ]
+      }
+    ],
+  },
+}
+
+Take your maximum time to generate perfect data
