@@ -55,7 +55,8 @@ const AUGMENTATION: OffersContent[] = [
       {
         title: 'Schedule a Call',
         paragraph: 'Pick a time that works. NDAs available upon request for confidential discussions.',
-        icon: { name: 'UserIcon', width: 24 }
+        icon: { name: 'UserIcon', width: 24 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/8.png')
       },
       {
         title: 'Define Your Needs',

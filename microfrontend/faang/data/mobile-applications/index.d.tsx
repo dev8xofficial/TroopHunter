@@ -62,7 +62,8 @@ const MOBILE: OffersContent[] = [
       {
         title: 'UI/UX Excellence',
         paragraph: 'Our team focuses on responsive design, GSAP animations, and mobile-first engineering to deliver interfaces that delight users.',
-        icon: { name: 'MagicWandIcon', width: 26 }
+        icon: { name: 'MagicWandIcon', width: 26 },
+        image: prefixed('/api/images/work/other/ui.png')
       },
       {
         title: 'Secure & Reliable',
