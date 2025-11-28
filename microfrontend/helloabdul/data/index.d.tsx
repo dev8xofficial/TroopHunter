@@ -34,7 +34,7 @@ const PageData: HomeContent = {
     offices: [
       {
         country: 'Pakistan',
-        city: 'Lahore, Punjab (HQ)',
+        city: 'Lahore, Punjab',
         phone: '+92 (329) 294-7777'
       },
       {
