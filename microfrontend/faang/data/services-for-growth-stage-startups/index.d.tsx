@@ -347,8 +347,14 @@ const AUGMENTATION: OffersContent[] = [
       },
       {
         heading: 'Development',
-        items: [{ name: 'TypeScript (Node.js, React.js, Next.js)', image: '' }]
+        items: [
+          { name: 'TypeScript ', image: '' },
+          { name: 'Node.js ', image: '' },
+          { name: 'React.js ', image: '' },
+          { name: 'Next.js ', image: '' }
+        ]
       },
+
       {
         heading: 'DevOps',
         items: [
