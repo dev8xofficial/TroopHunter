@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { WhyWeAreDifferentQA } from '../../Interfaces/Home/Home';
+import { WhyWeAreDifferentQA } from '../../Interfaces/Offers/Offers';
 import { AppearOnScroll } from '../../Animations/AppearOnScroll';
 
 import TextAnimateStyles from '../../Surfaces/TextAnimateUp/index.module.css';

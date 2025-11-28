@@ -32,5 +32,5 @@ export interface PrivacyContent {
 }
 
 export interface PrivacyPageContent extends PageLayoutContent {
-  content: PrivacyContent;
+  privacy: PrivacyContent;
 }

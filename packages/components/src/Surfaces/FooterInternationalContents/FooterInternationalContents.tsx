@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { ICON_MAP } from '../IconCards/IconMap';
-import { ExpertiseFooterForm, ExpertiseFooterSocialLink, FooterInternationalContent } from '../../Interfaces/PageLayout/PageLayout';
+import { ExpertiseFooterSocialLink, FooterInternationalContent } from '../../Interfaces/PageLayout/PageLayout';
 import RightArrowIcon from '../../Icons/RightArrow';
 import { isHelloabdulPort } from '../../../utils/helpers';
 
@@ -23,7 +23,7 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
   const currentPath = router.pathname;
   const [isHelloabdul, setIsHelloabdul] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  
+
   useEffect(() => {
     setIsMounted(true);
     setIsHelloabdul(isHelloabdulPort());
@@ -93,7 +93,7 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
             </svg>
           ) : isHelloabdul ? (
             // helloabdul logo
-            <svg height="32" viewBox="0 0 773 240" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '60px', height: '32px',} as React.CSSProperties}>
+            <svg height="32" viewBox="0 0 773 240" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '60px', height: '32px' } as React.CSSProperties}>
               <path
                 d="M289 88C289 105.6 278.6 113.8 266.8 117.8V118.2C281.8 120.8 294.6 131.8 294.6 153.2C294.6 180.8 275.6 195 246 195H181.2V52H242.6C272 52 289 65 289 88ZM205 111.2H241.8C258.8 111.2 265.2 104.4 265.2 91.8C265.2 79.2 257.4 72.2 243.2 72.2H205V111.2ZM205 129V174.8H244.2C264.6 174.8 270.8 165.2 270.8 151.8C270.8 137.2 261.8 129 246.8 129H205ZM341.864 195V52H397.464C436.864 52 461.064 77.6 461.064 123.6C461.064 169.6 437.664 195 398.064 195H341.864ZM365.664 72.2V174.8H396.264C428.264 174.8 437.264 151 437.264 123.6C437.264 96.2 428.264 72.2 396.264 72.2H365.664ZM620.945 146.2C620.945 177.4 604.345 198 564.545 198C524.745 198 508.145 177.4 508.145 146.2V52H531.945V146.2C531.945 167.8 542.745 177.6 564.545 177.6C586.545 177.6 597.345 167.8 597.345 146.2V52H620.945V146.2ZM673.544 52H697.344V174.8H768.744V195H673.544V52Z"
                 fill="currentColor"

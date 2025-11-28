@@ -12,10 +12,11 @@ export const AutoFormatText: React.FC<{ children: React.ReactNode }> = ({ childr
     }
 
     if (React.isValidElement(node)) {
-      const newChildren = formatNode(node.props.children);
+      const element = node as React.ReactElement;
+      const newChildren = formatNode(element.props.children);
 
-      return React.cloneElement(node, {
-        ...node.props,
+      return React.cloneElement(element, {
+        ...element.props,
         children: newChildren
       });
     }
