@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
   };
 
   const activeColumn = getActiveColumn(currentPath);
-  const menuLabel = !isMounted ? 'Services' : isHelloabdul ? 'Expertise' : 'Services';
+  const menuLabel = !isMounted ? 'Services' : isHelloabdul ? 'Expertise' : 'Explore';
 
   const handleExpertiseClick = () => {
     setDataSubmenuOpen((prev) => !prev);

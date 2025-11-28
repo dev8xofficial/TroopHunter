@@ -21,12 +21,12 @@ const PageData: PageLayoutContent = {
     offices: [
       {
         country: 'Pakistan',
-        city: 'Lahore, Punjab',
+        city: 'Lahore, Punjab (HQ)',
         phone: '+92 (329) 294-7777'
       },
       {
         country: 'USA',
-        city: 'San Francisco, CA',
+        city: 'San Francisco, CA (Remote)',
         phone: '+1 (321) 300-2393'
       }
     ],
