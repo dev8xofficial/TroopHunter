@@ -10,12 +10,9 @@ interface EyeIconProps {
 
 const EyeIcon: React.FC<EyeIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M9.85829 44.829V44.7708H9.8291C22.5749 23.1583 46.7248 22.8666 59.7332 44.1874" stroke="black" strokeWidth="6.33" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M35 18.5209V8.72095" stroke="black" strokeWidth="6.33" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M15.3125 25.0833L8.75 15.2542" stroke="black" strokeWidth="6.33" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M54.6875 25.0833L61.25 15.2542" stroke="black" strokeWidth="6.33" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M35.0001 61.2209C40.4445 61.2209 44.8582 56.8201 44.8582 51.3916C44.8582 45.9631 40.4445 41.5625 35.0001 41.5625C29.5554 41.5625 25.1416 45.9631 25.1416 51.3916C25.1416 56.8201 29.5554 61.2209 35.0001 61.2209Z" fill="currentColor" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path d="M35.0002 46.6623C41.4411 46.6623 46.6625 41.4409 46.6625 35C46.6625 28.5591 41.4411 23.3377 35.0002 23.3377C28.5593 23.3377 23.3379 28.5591 23.3379 35C23.3379 41.4409 28.5593 46.6623 35.0002 46.6623Z" fill="currentColor" />
+      <path d="M67.8615 27.4749C63.3394 20.1102 53.0532 7.75386 34.9999 7.75386C16.9466 7.75386 6.66045 20.1102 2.13838 27.4749C-0.712792 32.0865 -0.712792 37.9135 2.13838 42.5252C6.66045 49.89 16.9466 62.2463 34.9999 62.2463C53.0532 62.2463 63.3394 49.89 67.8615 42.5252C70.7127 37.9135 70.7127 32.0865 67.8615 27.4749ZM34.9999 52.4935C25.3386 52.4935 17.5064 44.6613 17.5064 35C17.5064 25.3387 25.3386 17.5065 34.9999 17.5065C44.6613 17.5065 52.4934 25.3387 52.4934 35C52.4837 44.6574 44.6573 52.4838 34.9999 52.4935Z" fill="currentColor" />
     </svg>
   );
 };
