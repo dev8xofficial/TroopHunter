@@ -2,6 +2,7 @@ import { PageLayoutContent } from '../PageLayout/PageLayout';
 export interface CapabilityItem {
   name: string;
   image?: string;
+  iconName?: string;
 }
 
 export interface Capability {

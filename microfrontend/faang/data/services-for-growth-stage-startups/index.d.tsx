@@ -333,33 +333,33 @@ const AUGMENTATION: OffersContent[] = [
       {
         heading: 'Product Management',
         items: [
-          { name: 'ClickUp', image: '' },
-          { name: 'Slack', image: '' }
+          { name: 'ClickUp', iconName: 'ClickUpIcon' },
+          { name: 'Slack', iconName: 'SlackIcon' }
         ]
       },
       {
         heading: 'UX/UI Design',
         items: [
-          { name: 'Figma', image: '' },
-          { name: 'Canva', image: '' },
-          { name: 'Adobe', image: '' }
+          { name: 'Figma', iconName: 'FigmaIcon' },
+          { name: 'Canva', iconName: 'CanvaIcon' },
+          { name: 'Adobe', iconName: 'AdobeIcon' }
         ]
       },
       {
         heading: 'Development',
-        items: [{ name: 'TypeScript (Node.js, React.js, Next.js)', image: '' }]
+        items: [{ name: 'TypeScript (Node.js, React.js, Next.js)', iconName: 'TypeScriptIcon' }]
       },
       {
         heading: 'DevOps',
         items: [
-          { name: 'Terraform', image: '' },
-          { name: 'Docker', image: '' },
-          { name: 'Kubernetes', image: '' }
+          { name: 'Terraform', iconName: 'TerraformIcon' },
+          { name: 'Docker', iconName: 'DockerIcon' },
+          { name: 'Kubernetes', iconName: 'KubernetesIcon' }
         ]
       },
       {
         heading: 'QA',
-        items: [{ name: 'Selenium', image: '' }]
+        items: [{ name: 'Selenium', iconName: 'SeleniumIcon' }]
       }
     ],
     footerCta: {

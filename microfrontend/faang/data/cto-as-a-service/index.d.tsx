@@ -328,47 +328,47 @@ const CTO: OffersContent[] = [
       {
         heading: 'Front-end Developers',
         items: [
-          { name: 'React.js', image: '' },
-          { name: 'Next.js', image: '' }
+          { name: 'React.js', iconName: 'ReactjsIcon' },
+          { name: 'Next.js', iconName: 'NextjsIcon' }
         ]
       },
       {
         heading: 'DevOps Engineers',
         items: [
-          { name: 'AWS', image: '' },
-          { name: 'Kubernetes', image: '' },
-          { name: 'GitHub', image: '' },
-          { name: 'Docker', image: '' },
-          { name: 'Jenkins', image: '' }
+          { name: 'AWS', iconName: 'AwsIcon' },
+          { name: 'Kubernetes', iconName: 'KubernetesIcon' },
+          { name: 'GitHub', iconName: 'GithubIcon' },
+          { name: 'Docker', iconName: 'DockerIcon' },
+          { name: 'Jenkins', iconName: 'JenkinsIcon' }
         ]
       },
       {
         heading: 'Mobile App Developers',
         items: [
-          { name: 'Flutter', image: '' },
-          { name: 'Dart', image: '' }
+          { name: 'Flutter', iconName: 'FlutterIcon' },
+          { name: 'Dart', iconName: 'DartIcon' }
         ]
       },
       {
         heading: 'Back-end Developers',
         items: [
-          { name: 'Node.js', image: '' },
-          { name: 'Express.js', image: '' },
-          { name: 'REST APIs', image: '' },
-          { name: 'PostgreSQL', image: '' }
+          { name: 'Node.js', iconName: 'NodejsIcon' },
+          { name: 'Express.js', iconName: 'BackendIcon' },
+          { name: 'REST APIs', iconName: 'RestApiIcon' },
+          { name: 'PostgreSQL', iconName: 'PostgresqlIcon' }
         ]
       },
       {
         heading: 'Cross-Functional Skills',
         items: [
-          { name: 'Microservices Architecture', image: '' },
-          { name: 'Authentication & Authorization', image: '' },
-          { name: 'Performance Optimization', image: '' },
-          { name: 'Testing & Debugging', image: '' },
-          { name: 'CI/CD Pipelines', image: '' },
-          { name: 'Containerization', image: '' },
-          { name: 'Full-Stack Development', image: '' },
-          { name: 'End-to-End Ownership', image: '' }
+          { name: 'Microservices Architecture', iconName: 'ArchitectureIcon' },
+          { name: 'Authentication & Authorization', iconName: 'AuthenticationIcon' },
+          { name: 'Performance Optimization', iconName: 'PerformanceIcon' },
+          { name: 'Testing & Debugging', iconName: 'TestingIcon' },
+          { name: 'CI/CD Pipelines', iconName: 'InfinityIcon' },
+          { name: 'Containerization', iconName: 'DockerIcon' },
+          { name: 'Full-Stack Development', iconName: 'FullStackIcon' },
+          { name: 'End-to-End Ownership', iconName: 'OwernshipIcon' }
         ]
       }
     ],

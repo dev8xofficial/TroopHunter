@@ -322,51 +322,51 @@ const SAAS: OffersContent[] = [
       {
         heading: 'Payment & Analytics',
         items: [
-          { name: 'Stripe', image: '' },
-          { name: 'PayPal', image: '' },
-          { name: 'Google Analytics', image: '' },
-          { name: 'Skylight', image: '' }
+          { name: 'Stripe', iconName: 'StripeIcon' },
+          { name: 'PayPal', iconName: 'PayPalIcon' },
+          { name: 'Google Analytics', iconName: 'GoogleAnaIcon' },
+          { name: 'Skylight', iconName: 'AnalyticsIcon' }
         ]
       },
       {
         heading: 'Marketing & Monitoring',
         items: [
-          { name: 'Hotjar', image: '' },
-          { name: 'Mailchimp', image: '' },
-          { name: 'HubSpot', image: '' }
+          { name: 'Hotjar', iconName: 'HotjarIcon' },
+          { name: 'Mailchimp', iconName: 'MailchimpIcon' },
+          { name: 'HubSpot', iconName: 'HubspotIcon' }
         ]
       },
       {
         heading: 'Reliability & Security',
         items: [
-          { name: 'UptimeRobot', image: '' },
-          { name: 'Sentry', image: '' }
+          { name: 'UptimeRobot', iconName: 'AvailabiltyIcon' },
+          { name: 'Sentry', iconName: 'SecurityIcon' }
         ]
       },
       {
         heading: 'Frontend Stack',
         items: [
-          { name: 'Next.js', image: '' },
-          { name: 'React.js', image: '' },
-          { name: 'TypeScript', image: '' },
-          { name: 'Redux Thunk', image: '' },
-          { name: 'HTML5', image: '' },
-          { name: 'TailwindCSS', image: '' },
-          { name: 'GSAP', image: '' },
-          { name: 'Responsive Design', image: '' }
+          { name: 'Next.js', iconName: 'NextjsIcon' },
+          { name: 'React.js', iconName: 'ReactjsIcon' },
+          { name: 'TypeScript', iconName: 'TypeScriptIcon' },
+          { name: 'Redux Thunk', iconName: 'ReduxIcon' },
+          { name: 'HTML5', iconName: 'HtmlIcon' },
+          { name: 'TailwindCSS', iconName: 'TailwindIcon' },
+          { name: 'GSAP', iconName: 'GsapIcon' },
+          { name: 'Responsive Design', iconName: 'ResponsiveIcon' }
         ]
       },
       {
         heading: 'Backend & DevOps',
         items: [
-          { name: 'Node.js', image: '' },
-          { name: 'Express.js', image: '' },
-          { name: 'PostgreSQL', image: '' },
-          { name: 'Sequelize ORM', image: '' },
-          { name: 'RESTful APIs', image: '' },
-          { name: 'Docker', image: '' },
-          { name: 'Kubernetes', image: '' },
-          { name: 'CI/CD Pipelines', image: '' }
+          { name: 'Node.js', iconName: 'NodejsIcon' },
+          { name: 'Express.js', iconName: 'BackendIcon' },
+          { name: 'PostgreSQL', iconName: 'PostgresqlIcon' },
+          { name: 'Sequelize ORM', iconName: 'SequelizeIcon' },
+          { name: 'RESTful APIs', iconName: 'RestApiIcon' },
+          { name: 'Docker', iconName: 'DockerIcon' },
+          { name: 'Kubernetes', iconName: 'KubernetesIcon' },
+          { name: 'CI/CD Pipelines', iconName: 'InfinityIcon' }
         ]
       }
     ],

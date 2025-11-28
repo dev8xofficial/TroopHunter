@@ -174,62 +174,62 @@ const WEBSITE: OffersContent[] = [
       {
         heading: 'Frontend',
         items: [
-          { name: 'React.js', image: '' },
-          { name: 'Next.js', image: '' },
-          { name: 'TypeScript', image: '' },
-          { name: 'Redux Thunk', image: '' },
-          { name: 'HTML5', image: '' },
-          { name: 'TailwindCSS', image: '' },
-          { name: 'GSAP', image: '' },
-          { name: 'Responsive & Mobile-first', image: '' }
+          { name: 'React.js', iconName: 'ReactjsIcon' },
+          { name: 'Next.js', iconName: 'NextjsIcon' },
+          { name: 'TypeScript', iconName: 'TypeScriptIcon' },
+          { name: 'Redux Thunk', iconName: 'ReduxIcon' },
+          { name: 'HTML5', iconName: 'HtmlIcon' },
+          { name: 'TailwindCSS', iconName: 'TailwindIcon' },
+          { name: 'GSAP', iconName: 'GsapIcon' },
+          { name: 'Responsive & Mobile-first', iconName: 'ResponsiveIcon' }
         ]
       },
       {
         heading: 'Backend & Databases',
         items: [
-          { name: 'Node.js', image: '' },
-          { name: 'Express.js', image: '' },
-          { name: 'RESTful APIs', image: '' },
-          { name: 'PostgreSQL', image: '' },
-          { name: 'Sequelize ORM', image: '' },
-          { name: 'Authentication', image: '' },
-          { name: 'Authorization', image: '' },
-          { name: 'Microservices Patterns', image: '' }
+          { name: 'Node.js', iconName: 'NodejsIcon' },
+          { name: 'Express.js', iconName: 'BackendIcon' },
+          { name: 'RESTful APIs', iconName: 'RestApiIcon' },
+          { name: 'PostgreSQL', iconName: 'PostgresqlIcon' },
+          { name: 'Sequelize ORM', iconName: 'SequelizeIcon' },
+          { name: 'Authentication', iconName: 'AuthenticationIcon' },
+          { name: 'Authorization', iconName: 'AuthenticationIcon' },
+          { name: 'Microservices Patterns', iconName: 'ArchitectureIcon' }
         ]
       },
       {
         heading: 'DevOps & Cloud',
         items: [
-          { name: 'Docker', image: '' },
-          { name: 'CI/CD Pipelines', image: '' },
-          { name: 'Kubernetes', image: '' },
-          { name: 'Terraform', image: '' }
+          { name: 'Docker', iconName: 'DockerIcon' },
+          { name: 'CI/CD Pipelines', iconName: 'InfinityIcon' },
+          { name: 'Kubernetes', iconName: 'KubernetesIcon' },
+          { name: 'Terraform', iconName: 'TerraformIcon' }
         ]
       },
       {
         heading: 'Code Quality & Workflow',
         items: [
-          { name: 'ESLint', image: '' },
-          { name: 'Prettier', image: '' },
-          { name: 'Git Feature Branching', image: '' },
-          { name: 'GitHub Pull Requests', image: '' },
-          { name: 'TurboRepo', image: '' },
-          { name: 'Monorepo Architecture', image: '' },
-          { name: 'Testing & Debugging', image: '' },
-          { name: 'Performance Optimization', image: '' }
+          { name: 'ESLint', iconName: 'PrettierIcon' },
+          { name: 'Prettier', iconName: 'PrettierIcon' },
+          { name: 'Git Feature Branching', iconName: 'GitBranchIcon' },
+          { name: 'GitHub Pull Requests', iconName: 'GitPullIcon' },
+          { name: 'TurboRepo', iconName: 'TubroRepoIcon' },
+          { name: 'Monorepo Architecture', iconName: 'MonoRepoIcon' },
+          { name: 'Testing & Debugging', iconName: 'TestingIcon' },
+          { name: 'Performance Optimization', iconName: 'PerformanceIcon' }
         ]
       },
       {
         heading: 'Full-Stack & Delivery',
         items: [
-          { name: 'End-to-End Ownership', image: '' },
-          { name: 'Cross-Functional Collaboration', image: '' },
-          { name: 'Scalable Architecture', image: '' },
-          { name: 'Rapid Deployment', image: '' },
-          { name: 'Maintenance & Support', image: '' },
-          { name: 'High Availability', image: '' },
-          { name: 'Analytics & Reporting', image: '' },
-          { name: 'Secure Integrations', image: '' }
+          { name: 'End-to-End Ownership', iconName: 'OwernshipIcon' },
+          { name: 'Cross-Functional Collaboration', iconName: 'CollaborationIcon' },
+          { name: 'Scalable Architecture', iconName: 'ArchitectureIcon' },
+          { name: 'Rapid Deployment', iconName: 'RapidDeliveryIcon' },
+          { name: 'Maintenance & Support', iconName: 'MaintenanceIcon' },
+          { name: 'High Availability', iconName: 'AvailabiltyIcon' },
+          { name: 'Analytics & Reporting', iconName: 'AnalyticsIcon' },
+          { name: 'Secure Integrations', iconName: 'IntegrationsIcon' }
         ]
       }
     ],

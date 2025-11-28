@@ -313,62 +313,62 @@ const MOBILE: OffersContent[] = [
       {
         heading: 'Frontend',
         items: [
-          { name: 'Flutter', image: '' },
-          { name: 'Dart', image: '' },
-          { name: 'React.js', image: '' },
-          { name: 'Next.js', image: '' },
-          { name: 'TypeScript', image: '' },
-          { name: 'Redux Thunk', image: '' },
-          { name: 'HTML5', image: '' },
-          { name: 'TailwindCSS', image: '' }
+          { name: 'Flutter', iconName: 'FlutterIcon' },
+          { name: 'Dart', iconName: 'DartIcon' },
+          { name: 'React.js', iconName: 'ReactjsIcon' },
+          { name: 'Next.js', iconName: 'NextjsIcon' },
+          { name: 'TypeScript', iconName: 'TypeScriptIcon' },
+          { name: 'Redux Thunk', iconName: 'ReduxIcon' },
+          { name: 'HTML5', iconName: 'HtmlIcon' },
+          { name: 'TailwindCSS', iconName: 'TailwindIcon' }
         ]
       },
       {
         heading: 'Backend & DB',
         items: [
-          { name: 'Node.js', image: '' },
-          { name: 'Express.js', image: '' },
-          { name: 'RESTful APIs', image: '' },
-          { name: 'PostgreSQL', image: '' },
-          { name: 'Sequelize ORM', image: '' },
-          { name: 'Authentication', image: '' },
-          { name: 'Authorization', image: '' },
-          { name: 'Database Optimization', image: '' }
+          { name: 'Node.js', iconName: 'NodejsIcon' },
+          { name: 'Express.js', iconName: 'BackendIcon' },
+          { name: 'RESTful APIs', iconName: 'RestApiIcon' },
+          { name: 'PostgreSQL', iconName: 'PostgresqlIcon' },
+          { name: 'Sequelize ORM', iconName: 'SequelizeIcon' },
+          { name: 'Authentication', iconName: 'AuthenticationIcon' },
+          { name: 'Authorization', iconName: 'AuthenticationIcon' },
+          { name: 'Database Optimization', iconName: 'DatabaseIcon' }
         ]
       },
       {
         heading: 'DevOps & Cloud',
         items: [
-          { name: 'Docker', image: '' },
-          { name: 'Kubernetes', image: '' },
-          { name: 'CI/CD Pipelines', image: '' },
-          { name: 'Terraform', image: '' }
+          { name: 'Docker', iconName: 'DockerIcon' },
+          { name: 'Kubernetes', iconName: 'KubernetesIcon' },
+          { name: 'CI/CD Pipelines', iconName: 'InfinityIcon' },
+          { name: 'Terraform', iconName: 'TerraformIcon' }
         ]
       },
       {
         heading: 'Performance & Testing',
         items: [
-          { name: 'Performance Optimization', image: '' },
-          { name: 'Debugging', image: '' },
-          { name: 'End-to-End Testing', image: '' },
-          { name: 'Unit Testing', image: '' },
-          { name: 'Cross-Platform QA', image: '' },
-          { name: 'Load Testing', image: '' },
-          { name: 'Mobile Responsiveness', image: '' },
-          { name: 'Accessibility Audits', image: '' }
+          { name: 'Performance Optimization', iconName: 'PerformanceIcon' },
+          { name: 'Debugging', iconName: 'TestingIcon' },
+          { name: 'End-to-End Testing', iconName: 'EndTestingIcon' },
+          { name: 'Unit Testing', iconName: 'UnitTestingIcon' },
+          { name: 'Cross-Platform QA', iconName: 'CrossPlatformIcon' },
+          { name: 'Load Testing', iconName: 'LoadTestingIcon' },
+          { name: 'Mobile Responsiveness', iconName: 'MobileIcon' },
+          { name: 'Accessibility Audits', iconName: 'AccessibilityIcon' }
         ]
       },
       {
         heading: 'Project Workflow',
         items: [
-          { name: 'ESLint & Prettier', image: '' },
-          { name: 'Git Feature Branching', image: '' },
-          { name: 'GitHub Pull Requests', image: '' },
-          { name: 'TurboRepo', image: '' },
-          { name: 'Monorepo Architecture', image: '' },
-          { name: 'Agile Delivery', image: '' },
-          { name: 'Cross-functional Collaboration', image: '' },
-          { name: 'End-to-End Ownership', image: '' }
+          { name: 'ESLint & Prettier', iconName: 'PrettierIcon' },
+          { name: 'Git Feature Branching', iconName: 'GitBranchIcon' },
+          { name: 'GitHub Pull Requests', iconName: 'GitPullIcon' },
+          { name: 'TurboRepo', iconName: 'TubroRepoIcon' },
+          { name: 'Monorepo Architecture', iconName: 'MonoRepoIcon' },
+          { name: 'Agile Delivery', iconName: 'AgileDeliveryIcon' },
+          { name: 'Cross-functional Collaboration', iconName: 'CollaborationIcon' },
+          { name: 'End-to-End Ownership', iconName: 'OwernshipIcon' }
         ]
       }
     ],
