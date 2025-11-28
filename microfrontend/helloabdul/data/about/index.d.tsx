@@ -65,14 +65,14 @@ const PageData: AboutContent = {
     },
     offices: [
       {
-        country: 'USA',
-        city: 'Orlando, Florida',
-        phone: '+1 (321) 300-2393'
-      },
-      {
         country: 'Pakistan',
         city: 'Lahore, Punjab',
         phone: '+92 (329) 294-7777'
+      },
+      {
+        country: 'USA',
+        city: 'San Francisco, CA',
+        phone: '+1 (321) 300-2393'
       }
     ],
     // careers: {

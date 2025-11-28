@@ -30,12 +30,7 @@ const PageData: PageLayoutContent = {
         phone: '+92 (329) 294-7777'
       }
     ],
-    careers: {
-      heading: 'We’re Growing – Join Our Team',
-      description: 'Let’s build the future, together.',
-      link: '/careers',
-      linkText: 'Explore Careers'
-    },
+
     copyright: {
       year: '2025',
       text: 'Privacy Policy',
@@ -84,7 +79,7 @@ export const WORK_PROJECTS: WorkDetail[] = [
     },
     bgColor: 'blue',
     path: 'troophunter',
-    testimonial: '“**TroopHunter** evolved into a precise, scalable lead-generation asset. Clear expertise and attention to detail ensured years of reliable growth.”',
+    testimonial: '“TroopHunter evolved into a precise, scalable lead-generation asset. Clear expertise and attention to detail ensured years of reliable growth.”',
     testimonialAuthor: 'Abdul Rehman',
     testimonialAuthorPosition: 'CEO, Dev8X'
   },

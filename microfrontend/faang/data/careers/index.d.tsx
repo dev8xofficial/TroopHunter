@@ -28,12 +28,7 @@ const PageData: PageLayoutContent = {
         phone: '+92 (329) 294-7777'
       }
     ],
-    careers: {
-      heading: 'We’re Growing – Join Our Team',
-      description: 'Let’s build the future, together.',
-      link: '/careers',
-      linkText: 'Explore Careers'
-    },
+
     copyright: {
       year: '2025',
       text: 'Privacy Policy',

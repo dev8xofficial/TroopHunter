@@ -227,7 +227,11 @@ export const FormattedText = (text: string) => {
 
   const renderedText = parts.map((part, index) => {
     if (index % 2 !== 0) {
-      return <strong key={index}>{part}</strong>;
+      return (
+        <strong key={index} style={{ color: 'rgba(0,0,0,.5)' }}>
+          {part}
+        </strong>
+      );
     } else {
       return part;
     }

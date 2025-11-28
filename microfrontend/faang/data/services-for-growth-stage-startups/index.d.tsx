@@ -55,7 +55,8 @@ const AUGMENTATION: OffersContent[] = [
       {
         title: 'Schedule a Call',
         paragraph: 'Pick a time that works. NDAs available upon request for confidential discussions.',
-        icon: { name: 'UserIcon', width: 24 }
+        icon: { name: 'UserIcon', width: 24 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/8.png')
       },
       {
         title: 'Define Your Needs',
@@ -108,22 +109,17 @@ const AUGMENTATION: OffersContent[] = [
       },
       offices: [
         {
-          country: 'USA',
-          city: 'Orlando, Florida',
-          phone: '+1 (321) 300-2393'
-        },
-        {
           country: 'Pakistan',
           city: 'Lahore, Punjab',
           phone: '+92 (329) 294-7777'
+        },
+        {
+          country: 'USA',
+          city: 'San Francisco, CA',
+          phone: '+1 (321) 300-2393'
         }
       ],
-      careers: {
-        heading: 'We’re Growing – Join Our Team',
-        description: 'Let’s build the future, together.',
-        link: '/careers',
-        linkText: 'Explore Careers'
-      },
+
       copyright: {
         year: '2025',
         text: 'Privacy Policy',

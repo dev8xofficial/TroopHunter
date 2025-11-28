@@ -56,7 +56,8 @@ const MVP: OffersContent[] = [
       {
         title: 'Senior Developers',
         paragraph: 'Teams use React.js, Next.js, and TypeScript to deliver robust, production-ready frontends.',
-        icon: { name: 'TargetIcon', width: 28 }
+        icon: { name: 'TargetIcon', width: 28 },
+        image: prefixed('/api/images/work/other/developer-identifying-server-issues.png')
       },
       {
         title: 'Fast Starters',
@@ -109,22 +110,17 @@ const MVP: OffersContent[] = [
       },
       offices: [
         {
-          country: 'USA',
-          city: 'Orlando, Florida',
-          phone: '+1 (321) 300-2393'
-        },
-        {
           country: 'Pakistan',
           city: 'Lahore, Punjab',
           phone: '+92 (329) 294-7777'
+        },
+        {
+          country: 'USA',
+          city: 'San Francisco, CA',
+          phone: '+1 (321) 300-2393'
         }
       ],
-      careers: {
-        heading: 'We’re Growing – Join Our Team',
-        description: 'Let’s build the future, together.',
-        link: '/careers',
-        linkText: 'Explore Careers'
-      },
+
       copyright: {
         year: '2025',
         text: 'Privacy Policy',
