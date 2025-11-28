@@ -7,6 +7,10 @@
 }
 
 @media (min-width: 992px) {
+  .homepage-bottom__heading {
+    line-height: 1;
+  }
+
   .content-aside-image__paragraph {
     margin-bottom: calc(clamp(2.5rem, 2.6455026455vw, 3.325rem) * 0.8);
   }

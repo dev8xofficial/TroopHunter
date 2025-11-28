@@ -161,7 +161,7 @@ const MVP: OffersContent[] = [
         color: '#111111',
         transformOrigin: 'center top',
         image: prefixed('/api/images/work/scheduler/mobile/7.png'),
-        comment: '“They simplified the entire process and made tech feel less overwhelming. Really happy with the results.”'
+        comment: 'They simplified the entire process and made tech feel less overwhelming\. Really happy with the results\.'
       },
       {
         name: 'Devin Picciolini',
@@ -170,7 +170,7 @@ const MVP: OffersContent[] = [
         color: '#F0EBFF',
         transformOrigin: 'center top',
         image: prefixed('/api/images/work/honeydu/desktop/24.png'),
-        comment: '“We had a vague idea — they turned it into a working solution without any stress. Great experience!”'
+        comment: 'We had a vague idea — they turned it into a working solution without any stress. Great experience!'
       }
     ],
     faqs: [
