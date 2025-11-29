@@ -10,7 +10,7 @@ interface DataIconProps {
 
 const DataIcon: React.FC<DataIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M7.56318 15.753L4.1123 18.146C5.24589 19.557 6.73163 20.6649 8.39472 21.3203L9.70444 17.3402C8.87294 16.988 8.14276 16.4339 7.56318 15.753Z" fill="currentColor" fill-opacity="0.8" />
       <path d="M10.7565 6.1061L9.92504 2C7.6077 2.67991 5.54238 4.19127 4.23145 6.15622L7.85841 8.24713C8.56492 7.26515 9.57276 6.50953 10.7565 6.1061Z" fill="currentColor" fill-opacity="0.2" />
       <path d="M6.18096 11.6523C6.18096 10.8209 6.35708 9.98944 6.71036 9.23377L3.0834 7.14285C2.37786 8.52826 2 10.0897 2 11.6512C2 13.5148 2.50381 15.3294 3.48585 16.8908L6.91229 14.4979C6.45767 13.6418 6.18096 12.6599 6.18096 11.6523Z" fill="currentColor" fill-opacity="0.5" />

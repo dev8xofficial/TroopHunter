@@ -10,7 +10,7 @@ interface FaceIdIconProps {
 
 const FaceIdIcon: React.FC<FaceIdIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12.958 2.5H14.4997C16.1497 2.5 17.4997 3.85001 17.4997 5.50001V6.925" stroke="black" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
       <path d="M2.5 6.95834V5.50001C2.5 3.85001 3.85001 2.5 5.50001 2.5H6.93334" stroke="black" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
       <path d="M6.95834 17.5H5.50001C3.85001 17.5 2.5 16.15 2.5 14.5V13.0084" stroke="black" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
