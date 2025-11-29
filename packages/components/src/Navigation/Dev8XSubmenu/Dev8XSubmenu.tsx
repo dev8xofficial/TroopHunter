@@ -32,6 +32,8 @@ import RocketIcon from '../../Icons/Rocket';
 import HandshakeIcon from '../../Icons/Handshake';
 import TargetIcon from '../../Icons/Target';
 import HomeIcon from '../../Icons/HomeIcon';
+import ArchitectureIcon from '../../Icons/Architecture';
+
 import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenuContent } from '../../Interfaces/Navigation/Navigation';
 
@@ -73,7 +75,8 @@ const ICON_MAP: Record<string, React.ComponentType<{ width?: string | number; cl
   RocketIcon,
   HandshakeIcon,
   TargetIcon,
-  HomeIcon
+  HomeIcon,
+  ArchitectureIcon
 };
 
 export const Dev8XSubmenu: React.FC<Dev8XSubmenuProps> = ({ height, onLinkClick, submenus }) => {

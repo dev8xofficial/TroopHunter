@@ -15,7 +15,7 @@ const HomeIcon: React.FC<HomeIconProps> = ({ width = '', height = '', className 
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
       <g id="SVGRepo_iconCarrier">
         <defs>
-          <style>{'.cls-1,.cls-2{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;}.cls-2{fill-rule:evenodd;}'}</style>
+          <style>{'.cls-1,.cls-2{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;strokeWidth:1.5px;}.cls-2{fillRule:evenodd;}'}</style>
         </defs>
         <g id="ic-real-estate-flat">
           <path className="cls-1" d="M4,2h8a2,2,0,0,1,2,2V22a0,0,0,0,1,0,0H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2Z" />

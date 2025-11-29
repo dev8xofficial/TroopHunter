@@ -22,14 +22,14 @@ const SubmenuData = [
     list: [
       { title: 'Saas', iconName: 'SaaSIcon', color: 'purple', href: '/pricing/tech-founders' },
       { title: 'Dentists', iconName: 'DentistIcon', color: 'cyan', href: '/pricing/dentists' },
-      { title: 'Real Estate', iconName: 'HomeIcon', color: 'yellow', href: '/pricing/real-estate' }
+      { title: 'Real Estate', iconName: 'ArchitectureIcon', color: 'yellow', href: '/pricing/real-estate' }
     ]
   },
   {
     heading: 'Other',
     list: [
       { title: 'Pricing', iconName: 'PlanetRingIcon', color: 'pink', href: '/pricing/tech-founders' },
-      { title: 'Our Process', iconName: 'DataIcon', color: 'cyan', href: '/our-process' },
+      { title: 'Our Process', iconName: 'DataIcon', color: 'cyan', href: '/our-process' }
       // { title: 'Careers', iconName: 'RightArrowIcon', color: 'blue', href: '/careers', rotateIcon: true }
     ]
   }

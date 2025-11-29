@@ -11,10 +11,17 @@ interface DevicesIconProps {
 const DevicesIcon: React.FC<DevicesIconProps> = ({ width = '', height = '', className }) => {
   return (
     <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M29.75 57.3707H16.625C12.2792 57.3707 8.75 53.8999 8.75 49.6124V47.0164C8.75 45.5874 9.94583 44.4207 11.375 44.4207H20.7959C21.4959 44.4207 22.1666 44.7124 22.6625 45.1789L26.3667 48.8249C26.8625 49.3207 27.5332 49.5832 28.2332 49.5832H29.75" stroke="black" strokeWidth="6.33" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M12.688 43.8958V15.7792C12.688 11.9 16.3338 8.75 20.7963 8.75H47.863C52.3547 8.75 55.9712 11.9 55.9712 15.7792V25.025" stroke="black" strokeWidth="6.33" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M55.4163 25.0249H43.4578C40.2363 25.0249 37.6245 27.6367 37.6245 30.8582V55.4167C37.6245 58.6384 40.2363 61.2499 43.4578 61.2499H55.4163C58.6378 61.2499 61.2495 58.6384 61.2495 55.4167V30.8582C61.2495 27.6367 58.6378 25.0249 55.4163 25.0249Z" stroke="black" strokeWidth="6.33" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M48.125 53.4917H50.75" stroke="black" strokeWidth="6.33" strokeLinecap="round" strokeLinejoin="round" />
+      <g clipPath="url(#clip0_642_148)">
+        <path
+          d="M61.25 20.4167C62.8542 20.4167 64.1667 19.1042 64.1667 17.5C64.1667 9.45001 57.6333 2.91667 49.5833 2.91667H14.5833C6.53333 2.91667 0 9.45001 0 17.5V37.9167C0 45.9667 6.53333 52.5 14.5833 52.5H29.1667V58.3333H20.4167C18.8125 58.3333 17.5 59.6458 17.5 61.25C17.5 62.8542 18.8125 64.1667 20.4167 64.1667H32.0833C33.6875 64.1667 35 62.8542 35 61.25V37.9167C35 28.2625 42.8458 20.4167 52.5 20.4167H61.25ZM58.3333 26.25H52.5C46.0542 26.25 40.8333 31.4708 40.8333 37.9167V58.3333C40.8333 64.7792 46.0542 70 52.5 70H58.3333C64.7792 70 70 64.7792 70 58.3333V37.9167C70 31.4708 64.7792 26.25 58.3333 26.25Z"
+          fill="currentColor"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_642_148">
+          <rect width="70" height="70" fill="white" />
+        </clipPath>
+      </defs>
     </svg>
   );
 };
