@@ -10,8 +10,8 @@ interface CrossIconProps {
 
 const CrossIcon: React.FC<CrossIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} viewBox="0 0 79 79" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M4.47559 74.476L74.4756 4.47598M74.4756 74.476L4.47559 4.47598" stroke="black" strokeWidth="6.33" stroke-linecap="square" stroke-linejoin="round" fill="currentColor" />
+    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2.12109 22.1213L22.1211 2.12131M22.1211 22.1213L2.12109 2.12131" stroke="black" stroke-width="3" stroke-linecap="square" stroke-linejoin="round" />
     </svg>
   );
 };

@@ -179,7 +179,7 @@ const Capabilities: React.FC<CapabilitiesProps> = ({ capabilities, capabilitiesH
                     const IconComponent = iconName ? ICON_MAP[iconName] : undefined;
                     return (
                       <li key={itemIndex} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        {IconComponent ? <IconComponent width={32} className={styles['about-column__icon']} /> : itemImage && <img src={itemImage} loading="lazy" width="40" alt={itemName} style={{ display: 'block' }} />}
+                        {IconComponent ? <IconComponent width={24} className={styles['about-column__icon']} /> : itemImage && <img src={itemImage} loading="lazy" width="40" alt={itemName} style={{ display: 'block' }} />}
                         <span>{itemName}</span>
                       </li>
                     );

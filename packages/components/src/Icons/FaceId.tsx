@@ -10,15 +10,15 @@ interface FaceIdIconProps {
 
 const FaceIdIcon: React.FC<FaceIdIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M45.3535 8.75H50.7493C56.5243 8.75 61.2493 13.475 61.2493 19.25V24.2375" stroke="currentColor" strokeWidth="6.33" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M8.75 24.3542V19.25C8.75 13.475 13.475 8.75 19.25 8.75H24.2667" stroke="currentColor" strokeWidth="6.33" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M24.3542 61.25H19.25C13.475 61.25 8.75 56.525 8.75 50.75V45.5293" stroke="currentColor" strokeWidth="6.33" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M61.2494 45.5293V50.75C61.2494 56.525 56.5244 61.25 50.7494 61.25H45.5576" stroke="currentColor" strokeWidth="6.33" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M24.499 22.1957V27.4457" stroke="currentColor" strokeWidth="6.33" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M45.499 22.1957V27.4457" stroke="currentColor" strokeWidth="6.33" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M34.999 26.133V35.3498C34.999 36.1665 34.6198 36.9248 33.9783 37.4205L32.374 38.6748" stroke="currentColor" strokeWidth="6.33" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M42.2616 46.725C40.5991 48.854 38.0034 50.225 35.1159 50.225C32.2284 50.225 29.3991 48.7375 27.7656 46.4625" stroke="currentColor" strokeWidth="6.33" stroke-linecap="round" stroke-linejoin="round" />
+    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12.958 2.5H14.4997C16.1497 2.5 17.4997 3.85001 17.4997 5.50001V6.925" stroke="black" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M2.5 6.95834V5.50001C2.5 3.85001 3.85001 2.5 5.50001 2.5H6.93334" stroke="black" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M6.95834 17.5H5.50001C3.85001 17.5 2.5 16.15 2.5 14.5V13.0084" stroke="black" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M17.5 13.0084V14.5C17.5 16.15 16.15 17.5 14.5 17.5H13.0166" stroke="black" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M7 6.34164V7.84164" stroke="black" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M13 6.34164V7.84164" stroke="black" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M10 7.46658V10.0999C10 10.3333 9.89164 10.5499 9.70836 10.6916L9.25 11.0499" stroke="black" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M12.0753 13.35C11.6003 13.9583 10.8587 14.35 10.0337 14.35C9.20867 14.35 8.40031 13.925 7.93359 13.275" stroke="black" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   );
 };
