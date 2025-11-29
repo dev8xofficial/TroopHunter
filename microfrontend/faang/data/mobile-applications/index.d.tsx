@@ -352,7 +352,7 @@ const MOBILE: OffersContent[] = [
           { name: 'Debugging', iconName: 'TestingIcon' },
           { name: 'End-to-End Testing', iconName: 'EndTestingIcon' },
           { name: 'Unit Testing', iconName: 'UnitTestingIcon' },
-          { name: 'Cross-Platform QA', iconName: 'CrossPlatformIcon' },
+          { name: 'Cross-Platform QA', iconName: 'QAIcon' },
           { name: 'Load Testing', iconName: 'LoadTestingIcon' },
           { name: 'Mobile Responsiveness', iconName: 'MobileIcon' },
           { name: 'Accessibility Audits', iconName: 'AccessibilityIcon' }

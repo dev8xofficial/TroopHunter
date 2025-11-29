@@ -22,7 +22,7 @@ import CoinsIcon from '@repo/components/src/Icons/Coins';
 import CollaborationIcon from '@repo/components/src/Icons/Collaboration';
 import CreditCardIcon from '@repo/components/src/Icons/CreditCard';
 import CrossIcon from '@repo/components/src/Icons/Cross';
-import CrossPlatformIcon from '@repo/components/src/Icons/CrossPlatform';
+import QAIcon from '@repo/components/src/Icons/QA';
 import DartIcon from '@repo/components/src/Icons/Dart';
 import DataIcon from '@repo/components/src/Icons/Data';
 import DatabaseIcon from '@repo/components/src/Icons/Database';
@@ -159,7 +159,7 @@ const ICON_COMPONENTS: Record<string, IconComponent> = {
   CollaborationIcon,
   CreditCardIcon,
   CrossIcon,
-  CrossPlatformIcon,
+  QAIcon,
   DartIcon,
   DataIcon,
   DatabaseIcon,

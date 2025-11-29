@@ -33,7 +33,7 @@ import DatabaseIcon from '../../Icons/Database';
 import TerraformIcon from '../../Icons/Terraform';
 import EndTestingIcon from '../../Icons/EndTesting';
 import UnitTestingIcon from '../../Icons/UnitTesting';
-import CrossPlatformIcon from '../../Icons/CrossPlatform';
+import QAIcon from '../../Icons/QA';
 import LoadTestingIcon from '../../Icons/LoadTesting';
 import MobileIcon from '../../Icons/Mobile';
 import AccessibilityIcon from '../../Icons/Accessibility';
@@ -103,7 +103,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ width?: number | string; cl
   TerraformIcon,
   EndTestingIcon,
   UnitTestingIcon,
-  CrossPlatformIcon,
+  QAIcon,
   LoadTestingIcon,
   MobileIcon,
   AccessibilityIcon,
