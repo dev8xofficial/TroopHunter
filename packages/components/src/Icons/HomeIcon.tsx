@@ -10,7 +10,7 @@ interface HomeIconProps {
 
 const HomeIcon: React.FC<HomeIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className={className}>
+    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className={className}>
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
       <g id="SVGRepo_iconCarrier">

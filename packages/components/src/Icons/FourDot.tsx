@@ -10,7 +10,7 @@ interface FourDotIconProps {
 
 const FourDotIcon: React.FC<FourDotIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_710_531)">
         <path d="M9.27246 4.72728C9.27246 6.23485 10.4922 7.45455 11.9997 7.45455C13.5074 7.45455 14.727 6.23485 14.727 4.72728C14.727 3.2197 13.5074 2 11.9997 2C10.4922 2 9.27246 3.2197 9.27246 4.72728Z" fill="currentColor" />
         <path d="M9.27246 19.2725C9.27246 20.7801 10.4921 21.9998 11.9997 21.9998C13.5073 21.9998 14.727 20.7801 14.727 19.2725C14.727 17.7649 13.5073 16.5453 11.9997 16.5453C10.4921 16.5453 9.27246 17.7649 9.27246 19.2725Z" fill="currentColor" />
