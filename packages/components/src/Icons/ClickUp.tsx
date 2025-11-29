@@ -10,8 +10,8 @@ interface ClickUpIconProps {
 
 const ClickUpIcon: React.FC<ClickUpIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M0 53.7804L10.7625 45.5321C16.4821 52.9988 22.5575 56.4375 29.3212 56.4375C36.05 56.4375 41.9504 53.0367 47.4133 45.6342L58.3333 53.6813C50.4525 64.3563 40.6612 70 29.3212 70C18.0192 70 8.13167 64.3942 0 53.7804ZM29.2833 17.9375L10.1267 34.4458L1.27167 24.1792L29.3271 0L57.1608 24.1967L48.265 34.4313L29.2833 17.9375Z" stroke="currentColor" strokeWidth="6" strokeLinecap="round" fill='currentcolor' />
+    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 19.2073L5.69 16.2615C7.651 18.9281 9.734 20.1562 12.053 20.1562C14.36 20.1562 16.383 18.9417 18.256 16.2979L22 19.1719C19.298 22.9844 15.941 25 12.053 25C8.178 25 4.788 22.9979 2 19.2073ZM12.04 6.40625L5.472 12.3021L2.436 8.63542L12.055 0L21.598 8.64167L18.548 12.2969L12.04 6.40625Z" fill="currentColor" />
     </svg>
   );
 };

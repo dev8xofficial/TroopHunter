@@ -10,8 +10,8 @@ interface SupabaseIconProps {
 
 const SupabaseIcon: React.FC<SupabaseIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M64.0209 32.8125L40.1043 63.1458C38.3543 65.1875 35.0001 64.0208 35.0001 61.3958V43.75H9.62511C6.56261 43.75 4.81261 40.1042 6.70844 37.7708L30.1876 7.4375C31.7918 5.25 35.1459 6.41667 35.1459 9.1875V26.8333H60.9584C64.3126 26.8333 66.0626 30.3333 64.0209 32.8125Z" fill="currentColor" />
+    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21.7039 11.306L13.5927 19.9727C12.9992 20.556 11.8617 20.2227 11.8617 19.4727V14.431H3.25593C2.2173 14.431 1.6238 13.3893 2.26676 12.7227L10.2296 4.056C10.7736 3.431 11.9111 3.76433 11.9111 4.556V9.59766H20.6653C21.8028 9.59766 22.3963 10.5977 21.7039 11.306Z" fill="currentColor" />
     </svg>
   );
 };

@@ -10,9 +10,9 @@ interface UserIconProps {
 
 const UserIcon: React.FC<UserIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M35 35C44.665 35 52.5 27.165 52.5 17.5C52.5 7.83502 44.665 0 35 0C25.335 0 17.5 7.83502 17.5 17.5C17.5 27.165 25.335 35 35 35Z" fill="currentColor" />
-      <path d="M35 40.8334C20.5092 40.8495 8.76613 52.5926 8.75 67.0834C8.75 68.6942 10.0558 70 11.6666 70H58.3332C59.9441 70 61.2499 68.6942 61.2499 67.0834C61.2339 52.5926 49.4908 40.8494 35 40.8334Z" fill="currentColor" />
+    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12.0007 12C15.6826 12 18.6674 9.76142 18.6674 7C18.6674 4.23858 15.6826 2 12.0007 2C8.31876 2 5.33398 4.23858 5.33398 7C5.33398 9.76142 8.31876 12 12.0007 12Z" fill="currentColor" />
+      <path d="M12 13.6667C6.4797 13.6713 2.00615 17.0265 2 21.1667C2 21.6269 2.49745 22 3.1111 22H20.8889C21.5026 22 22 21.6269 22 21.1667C21.9939 17.0265 17.5204 13.6713 12 13.6667Z" fill="currentColor" />
     </svg>
   );
 };

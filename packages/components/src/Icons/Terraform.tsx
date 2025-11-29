@@ -10,8 +10,8 @@ interface TerraformIconProps {
 
 const TerraformIcon: React.FC<TerraformIconProps> = ({ width = '', height = '', className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M24.0494 12.2938L45.7319 23.2991V45.3337L24.0494 34.3153V12.2938ZM48.1119 23.2991V45.3337L69.8053 34.3153V12.2938L48.1119 23.2991ZM0 0V22.0237L21.6825 33.04V11.0163L0 0ZM24.0494 58.7409L45.7319 69.7594V47.7466L24.0494 36.7303V58.7409Z" fill="currentcolor" />
+    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8.89041 5.52462L15.1027 8.67984V14.9972L8.89041 11.8382V5.52462ZM15.7846 8.67984V14.9972L22 11.8382V5.52462L15.7846 8.67984ZM2 2V8.3142L8.21228 11.4726V5.15836L2 2ZM8.89041 18.841L15.1027 22V15.6889L8.89041 12.5306V18.841Z" fill="currentColor" />
     </svg>
   );
 };
