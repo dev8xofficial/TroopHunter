@@ -45,7 +45,7 @@ interface Dev8XSubmenuProps {
   submenus: HeaderSubmenuContent;
 }
 
-const ICON_MAP: Record<string, React.ComponentType<{ width?: string | number; className?: string }>> = {
+const ICON_MAP: Record<string, React.ComponentType<{ size?: string | number; className?: string }>> = {
   PointerIcon,
   CardIcon,
   MobileIcon,
@@ -98,7 +98,7 @@ export const Dev8XSubmenu: React.FC<Dev8XSubmenuProps> = ({ height, onLinkClick,
                         <li>
                           <NextLink href={item.href} passHref legacyBehavior>
                             <a className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`} onClick={onLinkClick}>
-                              {IconComponent && <IconComponent width="11" className={`SVG_svg-raw-wrap__ODfz9 ${iconClassName}`} />}
+                              {IconComponent && <IconComponent size="11" className={`SVG_svg-raw-wrap__ODfz9 ${iconClassName}`} />}
                               {item.title}
                             </a>
                           </NextLink>

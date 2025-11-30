@@ -3,17 +3,16 @@
 import React from 'react';
 
 interface NodejsIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const NodejsIcon: React.FC<NodejsIconProps> = ({ width = '', height = '', className }) => {
+const NodejsIcon: React.FC<NodejsIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M22 7.12417L12 1.5L2 7.12417V16.8759L3.54822 17.7466L6.71175 16.5125C7.5834 16.1726 8.15391 15.3566 8.15391 14.45V6.80851H9.69237V14.45C9.69237 15.961 8.74154 17.3208 7.2888 17.8875L5.22809 18.6915L12 22.5L22 16.8759V7.12417ZM11.2308 9.7751C11.2308 8.13669 12.6084 6.80851 14.3077 6.80851H16.1026C17.6603 6.80851 18.9231 8.02601 18.9231 9.52788V9.7751H17.3846V9.52788C17.3846 8.84522 16.8106 8.2918 16.1026 8.2918H14.3077C13.458 8.2918 12.7692 8.9559 12.7692 9.7751C12.7692 10.5943 13.458 11.2584 14.3077 11.2584H15.8462C17.5455 11.2584 18.9231 12.5866 18.9231 14.225C18.9231 15.8634 17.5455 17.1916 15.8462 17.1916H14.3077C12.6084 17.1916 11.2308 15.8634 11.2308 14.225H12.7692C12.7692 15.0442 13.458 15.7083 14.3077 15.7083H15.8462C16.6958 15.7083 17.3846 15.0442 17.3846 14.225C17.3846 13.4058 16.6958 12.7417 15.8462 12.7417H14.3077C12.6084 12.7417 11.2308 11.4135 11.2308 9.7751Z"
         fill="currentcolor"
       />

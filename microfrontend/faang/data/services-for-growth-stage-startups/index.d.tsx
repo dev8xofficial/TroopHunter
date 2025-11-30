@@ -27,27 +27,27 @@ const AUGMENTATION: OffersContent[] = [
         {
           title: 'Senior Developer',
           description: 'Leads architecture, chooses tech stack, reviews code, and supervises the team to ensure scope delivery.',
-          icon: { name: 'RefreshIcon', width: 28 }
+          icon: { name: 'RefreshIcon', size: 24 }
         },
         {
           title: 'Middle Developer',
           description: 'Executes development tasks, integrates design and backend, and deploys features efficiently.',
-          icon: { name: 'BackendIcon', width: 26 }
+          icon: { name: 'BackendIcon', size: 24 }
         },
         {
           title: 'UX/UI Designer',
           description: 'Creates interfaces aligned with user journeys to ensure an intuitive and visually appealing experience.',
-          icon: { name: 'AIBrainIcon', width: 26 }
+          icon: { name: 'AIBrainIcon', size: 24 }
         },
         {
           title: 'QA Specialist',
           description: 'Detects bugs, validates feature quality, and signs off releases for deployment.',
-          icon: { name: 'SeismometerIcon', width: 22 }
+          icon: { name: 'SeismometerIcon', size: 24 }
         },
         {
           title: 'Product Manager',
           description: 'Coordinates development, prioritizes tasks, and ensures deadlines are met while aligning with product vision.',
-          icon: { name: 'SeismometerIcon', width: 22 }
+          icon: { name: 'SeismometerIcon', size: 24 }
         }
       ]
     },
@@ -55,19 +55,19 @@ const AUGMENTATION: OffersContent[] = [
       {
         title: 'Schedule a Call',
         paragraph: 'Pick a time that works. NDAs available upon request for confidential discussions.',
-        icon: { name: 'UserIcon', width: 24 },
+        icon: { name: 'UserIcon', size: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/8.png')
       },
       {
         title: 'Define Your Needs',
         paragraph: 'Share project goals and required skills. Dev8X proposes a precise team composition within days.',
-        icon: { name: 'HomeIcon', width: 26 },
+        icon: { name: 'HomeIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'Review & Start',
         paragraph: 'Approve the team and contract to start building your product with no-risk, immediate deployment.',
-        icon: { name: 'BotIcon', width: 26 },
+        icon: { name: 'BotIcon', size: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
@@ -134,17 +134,17 @@ const AUGMENTATION: OffersContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
       },
       {
         title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.instagram.com/dev8xofficial/'
       },
       {
         title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
       }
       // {

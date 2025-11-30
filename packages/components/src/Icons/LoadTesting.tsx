@@ -3,14 +3,13 @@
 import React from 'react';
 
 interface LoadTestingIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const LoadTestingIcon: React.FC<LoadTestingIconProps> = ({ width = '', height = '', className }) => {
+const LoadTestingIcon: React.FC<LoadTestingIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path
         d="M18.6667 15.3333H5.33333C3.495 15.3333 2 16.8283 2 18.6667C2 20.505 3.495 22 5.33333 22H18.6667C20.505 22 22 20.505 22 18.6667C22 16.8283 20.505 15.3333 18.6667 15.3333ZM18.6667 20.3333H15.3333V17H18.6667C19.5858 17 20.3333 17.7475 20.3333 18.6667C20.3333 19.5858 19.5858 20.3333 18.6667 20.3333ZM12 2C8.78333 2 6.16667 4.6175 6.16667 7.83333C6.16667 11.0492 8.78333 13.6667 12 13.6667C15.2167 13.6667 17.8333 11.0492 17.8333 7.83333C17.8333 4.6175 15.2167 2 12 2ZM14.0833 9.91667C13.9208 10.0792 13.7075 10.1608 13.4942 10.1608C13.2808 10.1608 13.0675 10.0792 12.905 9.91667L11.4108 8.4225C11.2542 8.26583 11.1667 8.055 11.1667 7.83333V5.33333C11.1667 4.8725 11.54 4.5 12 4.5C12.46 4.5 12.8333 4.8725 12.8333 5.33333V7.48833L14.0833 8.73833C14.4092 9.06417 14.4092 9.59083 14.0833 9.91667Z"
         fill="currentColor"

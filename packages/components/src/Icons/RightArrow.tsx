@@ -3,18 +3,14 @@
 import React from 'react';
 
 interface RightArrowIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const RightArrowIcon: React.FC<RightArrowIconProps> = ({ width = '', height = '', className }) => {
+const RightArrowIcon: React.FC<RightArrowIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M17.909 17.3361L21.1749 14.0702C21.7052 13.5145 22.0011 12.7759 22.0011 12.0077C22.0011 11.2396 21.7052 10.501 21.1749 9.94524L17.909 6.67941C17.6746 6.44491 17.3567 6.31313 17.0252 6.31305C16.6936 6.31297 16.3756 6.4446 16.1411 6.67899C15.9066 6.91337 15.7748 7.23131 15.7748 7.56286C15.7747 7.89441 15.9063 8.21241 16.1407 8.44691L18.4574 10.7644L3.24902 10.7836C2.9175 10.7836 2.59956 10.9153 2.36514 11.1497C2.13072 11.3841 1.99902 11.7021 1.99902 12.0336C1.99902 12.3651 2.13072 12.683 2.36514 12.9175C2.59956 13.1519 2.9175 13.2836 3.24902 13.2836L18.4415 13.2644L16.1407 15.5686C15.913 15.8043 15.787 16.1201 15.7898 16.4478C15.7927 16.7756 15.9242 17.0891 16.1559 17.3208C16.3877 17.5526 16.7012 17.6841 17.0289 17.6869C17.3567 17.6898 17.6733 17.5638 17.909 17.3361Z"
-        fill="currentColor"
-      />
+    <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2.39657 10.9574H2V13.041H17.8852L11.5273 19.1804L11.2529 19.4443L11.5098 19.7256L12.4029 20.6999L12.6789 21L12.974 20.7172L21.7081 12.2789L22 11.9992L21.7081 11.7164L12.974 3.28285L12.6789 3L12.4029 3.30013L11.5098 4.27438L11.2529 4.55408L11.5273 4.81964L17.8852 10.959L2.39657 10.9574Z" fill="currentColor" stroke="currentColor" strokeWidth="0.5" />
     </svg>
   );
 };

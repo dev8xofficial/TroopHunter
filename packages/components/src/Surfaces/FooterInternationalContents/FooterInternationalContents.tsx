@@ -71,7 +71,7 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
             <h3>{footerData.careers.heading}</h3>
             <address>{footerData.careers.description}</address>
             <a href={footerData.careers.link} className={styles['footer-columns__column--email']} target="_blank">
-              {footerData.careers.linkText} <RightArrowIcon width="14" className={styles['arrow']} />
+              {footerData.careers.linkText} <RightArrowIcon size={14} className={styles['arrow']} />
             </a>
           </div>
         )}
@@ -128,7 +128,7 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
                   </span>
                 </a>
               </Magnet>
-              {ICON_MAP[item.icon?.name]?.(item.icon?.width)}
+              {ICON_MAP[item.icon?.name]?.(item.icon?.size)}
             </li>
           ))}
         </ul>

@@ -58,17 +58,17 @@ const PageData: HomeContent = {
   footerSocialLinks: [
     {
       title: 'LinkedIn',
-      icon: { name: 'AsteriskIcon', width: 10 },
+      icon: { name: 'AsteriskIcon', size: 10 },
       href: 'https://www.linkedin.com/company/dev8x/'
     },
     {
       title: 'Instagram',
-      icon: { name: 'AsteriskIcon', width: 10 },
+      icon: { name: 'AsteriskIcon', size: 10 },
       href: 'https://www.instagram.com/dev8xofficial/'
     },
     {
       title: 'Facebook',
-      // icon: { name: 'AsteriskIcon', width: 10 },
+      // icon: { name: 'AsteriskIcon', size: 10 },
       href: 'https://www.facebook.com/profile.php?id=61569289660818'
     }
     // {

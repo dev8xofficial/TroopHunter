@@ -3,14 +3,13 @@
 import React from 'react';
 
 interface FigmaIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const FigmaIcon: React.FC<FigmaIconProps> = ({ width = '', height = '', className }) => {
+const FigmaIcon: React.FC<FigmaIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M11.6158 2H8.53884C6.8395 2 5.46191 3.37758 5.46191 5.07692C5.46191 6.77626 6.8395 8.15385 8.53884 8.15385H11.6158V2Z" fill="#0F1011" />
       <path d="M12.3848 2H15.4617C17.161 2 18.5386 3.37758 18.5386 5.07692C18.5386 6.77626 17.161 8.15385 15.4617 8.15385H12.3848V2Z" fill="#0F1011" />
       <path d="M11.6158 8.92308H8.53884C6.8395 8.92308 5.46191 10.3007 5.46191 12C5.46191 13.6993 6.8395 15.0769 8.53884 15.0769H11.6158V8.92308Z" fill="#0F1011" />

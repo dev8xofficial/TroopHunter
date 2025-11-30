@@ -14,7 +14,7 @@ import LayoutStyles from '../Layout/layout.module.css';
 import HeroStyles from '../Hero/index.module.css';
 
 interface HeroCoreProps extends Omit<ExpertiseContent, 'meta' | 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerData' | 'footerSocialLinks' | 'testimonials'> {
-  icon?: { name: string; width: number };
+  icon?: { name: string; size: number };
   placeholder?: boolean;
   paragraph?: string;
 }
@@ -59,7 +59,7 @@ export const HeroCore: React.FC<HeroCoreProps> = ({ heading, icon, image, paragr
                 {buttonsToRender.length > 0 && (
                   <div className={LayoutStyles['work-header']}>
                     {buttonsToRender.map((button, index) => (
-                      <Button type="button" variant="secondary" context="contact" fullWidth key={`${button.label}-${index}`} endIcon={<RightArrowIcon width="14" className={ButtonStyles['button--icon']} />} onClick={() => handleButtonClick(button)}>
+                      <Button type="button" variant="secondary" context="contact" fullWidth key={`${button.label}-${index}`} endIcon={<RightArrowIcon size={14} className={ButtonStyles['button--icon']} />} onClick={() => handleButtonClick(button)}>
                         {button.label}
                       </Button>
                     ))}

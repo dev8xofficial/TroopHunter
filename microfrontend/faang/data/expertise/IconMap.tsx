@@ -130,8 +130,7 @@ import WebServersIcon from '@repo/components/src/Icons/WebServers';
 import WordpressIcon from '@repo/components/src/Icons/Wordpress';
 
 type IconComponent = ComponentType<{
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }>;
 
@@ -267,10 +266,10 @@ const ICON_COMPONENTS: Record<string, IconComponent> = {
   WordpressIcon
 };
 
-export const ICON_MAP: Record<string, (width: number) => JSX.Element> = Object.entries(ICON_COMPONENTS).reduce(
+export const ICON_MAP: Record<string, (size: number) => JSX.Element> = Object.entries(ICON_COMPONENTS).reduce(
   (acc, [name, Icon]) => {
-    acc[name] = (width: number) => <Icon width={width} />;
+    acc[name] = (size: number) => <Icon size={size} />;
     return acc;
   },
-  {} as Record<string, (width: number) => JSX.Element>
+  {} as Record<string, (size: number) => JSX.Element>
 );

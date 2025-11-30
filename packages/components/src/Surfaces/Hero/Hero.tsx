@@ -12,7 +12,7 @@ import LayoutStyles from '../Layout/layout.module.css';
 import styles from './index.module.css';
 
 interface HeroProps extends Omit<ExpertiseContent, 'meta' | 'slug' | 'iconCards' | 'contentAsideImageItems' | 'footerMainContent' | 'footerData' | 'footerSocialLinks' | 'testimonials'> {
-  icon?: { name: string; width: number };
+  icon?: { name: string; size: number };
   placeholder?: boolean;
   paragraph?: string;
 }

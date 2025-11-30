@@ -27,22 +27,22 @@ const MVP: OffersContent[] = [
         {
           title: 'Test Core Idea',
           description: 'Validate the product hypothesis with real users before committing to full development.',
-          icon: { name: 'RefreshIcon', width: 28 }
+          icon: { name: 'RefreshIcon', size: 24 }
         },
         {
           title: 'Attract Investors',
           description: 'Ship measurable traction to demonstrate demand and reduce investor risk.',
-          icon: { name: 'BackendIcon', width: 26 }
+          icon: { name: 'BackendIcon', size: 24 }
         },
         {
           title: 'Collect Feedback',
           description: 'Turn early user insights into prioritized features and product iterations.',
-          icon: { name: 'AIBrainIcon', width: 26 }
+          icon: { name: 'AIBrainIcon', size: 24 }
         },
         {
           title: 'Choose Technologies',
           description: 'Recommend scalable stacks to support growth and minimize costly rewrites.',
-          icon: { name: 'SeismometerIcon', width: 22 }
+          icon: { name: 'SeismometerIcon', size: 24 }
         }
       ]
     },
@@ -50,25 +50,25 @@ const MVP: OffersContent[] = [
       {
         title: 'Long-Term Partner',
         paragraph: 'Dev8X embeds with founders to shape product strategy, roadmaps, and release plans.',
-        icon: { name: 'HomeIcon', width: 26 },
+        icon: { name: 'HomeIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'Senior Developers',
         paragraph: 'Teams use React.js, Next.js, and TypeScript to deliver robust, production-ready frontends.',
-        icon: { name: 'TargetIcon', width: 28 },
+        icon: { name: 'TargetIcon', size: 64 },
         image: prefixed('/api/images/work/other/developer-identifying-server-issues.png')
       },
       {
         title: 'Fast Starters',
         paragraph: 'Cross-functional squads are deploy-ready within weeks, following CI/CD, feature branching, and sprint cadences.',
-        icon: { name: 'MapPinIcon', width: 24 },
+        icon: { name: 'MapPinIcon', size: 64 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
       },
       {
         title: 'Reliable Delivery',
         paragraph: 'Engineering standards include ESLint, Prettier, PR reviews, and automated quality gates.',
-        icon: { name: 'BotIcon', width: 26 },
+        icon: { name: 'BotIcon', size: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
@@ -135,17 +135,17 @@ const MVP: OffersContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
       },
       {
         title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.instagram.com/dev8xofficial/'
       },
       {
         title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
       }
       // {

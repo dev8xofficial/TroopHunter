@@ -3,12 +3,11 @@
 import React from 'react';
 
 interface TubroRepoIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const TubroRepoIcon: React.FC<TubroRepoIconProps> = ({ width = '', height = '', className }) => {
+const TubroRepoIcon: React.FC<TubroRepoIconProps> = ({ size = 24, className }) => {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path

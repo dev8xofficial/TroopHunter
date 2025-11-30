@@ -3,12 +3,11 @@
 import React from 'react';
 
 interface ShuffleIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const ShuffleIcon: React.FC<ShuffleIconProps> = ({ width = '', height = '', className }) => {
+const ShuffleIcon: React.FC<ShuffleIconProps> = ({ size = 24, className }) => {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M8.63281 12.3667L9.19948 13.325C9.44948 13.7417 9.79948 14.0833 10.2245 14.325C10.6495 14.5667 11.1245 14.6917 11.6078 14.6917H17.4911" stroke="black" stroke-width="2.33" stroke-miterlimit="10" stroke-linecap="round" />

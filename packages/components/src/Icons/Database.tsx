@@ -3,14 +3,13 @@
 import React from 'react';
 
 interface DatabaseIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const DatabaseIcon: React.FC<DatabaseIconProps> = ({ width = '', height = '', className }) => {
+const DatabaseIcon: React.FC<DatabaseIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13.4733 15.4002C13.4733 15.3525 13.4756 15.3053 13.4769 15.2579H4.37226C3.03027 15.2579 1.93848 16.3504 1.93848 17.6933C1.93848 19.0363 3.03027 20.1288 4.37226 20.1288H16.9832C14.9548 19.5149 13.4733 17.6277 13.4733 15.4002ZM7.09051 18.3259H4.87798C4.52941 18.3259 4.24583 18.0422 4.24583 17.6933C4.24583 17.3445 4.52941 17.0607 4.87798 17.0607H7.09051C7.43908 17.0607 7.72266 17.3445 7.72266 17.6933C7.72266 18.0422 7.43908 18.3259 7.09051 18.3259Z" fill="currentColor" />
       <path d="M4.37226 14.4354H13.5685C14.0183 12.172 16.0177 10.4604 18.4096 10.4604C19.0127 10.4604 19.5906 10.5697 20.1252 10.7686C19.7019 10.0488 18.92 9.56447 18.0267 9.56447H4.37226C3.03026 9.56447 1.93848 10.657 1.93848 12C1.93848 13.3429 3.03026 14.4354 4.37226 14.4354ZM4.87798 11.3674H7.09051C7.43908 11.3674 7.72266 11.6511 7.72266 12C7.72266 12.3488 7.43908 12.6325 7.09051 12.6325H4.87798C4.52941 12.6325 4.24583 12.3488 4.24583 12C4.24583 11.6511 4.52941 11.3674 4.87798 11.3674Z" fill="currentColor" />
       <path

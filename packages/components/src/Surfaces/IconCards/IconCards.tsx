@@ -26,7 +26,7 @@ export const IconCards: React.FC<IconCardProps> = ({ title, paragraph, items }):
         <ul className={styles['icon-cards__list']}>
           {items?.map((item, index) => (
             <li className={styles['icon-card']} style={{ opacity: 1, transform: 'translateX(0px)' }} key={index}>
-              <div className={styles['icon-card__icon-wrapper']}>{ICON_MAP[item.icon.name]?.(item.icon.width)}</div>
+              <div className={styles['icon-card__icon-wrapper']}>{ICON_MAP[item.icon.name]?.(item.icon.size)}</div>
               <hr className={styles['icon-card__hr']} />
               <h3 className={styles['icon-card__heading']}>{item.title}</h3>
               <p className={styles['icon-card__body']}>{item.description}</p>

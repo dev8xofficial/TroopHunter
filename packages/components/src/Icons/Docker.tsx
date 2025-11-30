@@ -3,14 +3,13 @@
 import React from 'react';
 
 interface DockerIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const DockerIcon: React.FC<DockerIconProps> = ({ width = '', height = '', className }) => {
+const DockerIcon: React.FC<DockerIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path
         d="M21.8041 10.2454C21.7507 10.2037 21.2441 9.81955 20.1749 9.81955C19.8924 9.81955 19.6124 9.84455 19.3324 9.89205C19.1249 8.47538 17.9549 7.78372 17.9016 7.75288L17.6157 7.58788L17.4282 7.85955C17.1932 8.22622 17.0199 8.62955 16.9191 9.05205C16.7291 9.86122 16.8432 10.6195 17.2549 11.2695C16.7591 11.547 15.9616 11.6137 15.8024 11.6195H2.62489C2.28073 11.6195 2.00073 11.8995 2.00073 12.2412C1.98656 13.3945 2.17989 14.542 2.57739 15.6254C3.03073 16.8154 3.70573 17.6912 4.58489 18.2287C5.56989 18.8304 7.16906 19.1745 8.98323 19.1745C9.80323 19.177 10.6207 19.102 11.4241 18.9537C12.5441 18.7495 13.6216 18.357 14.6099 17.7945C15.4249 17.3212 16.1607 16.7195 16.7849 16.0137C17.8291 14.832 18.4507 13.5162 18.9124 12.3462C18.9741 12.3462 19.0357 12.3462 19.0974 12.3462C20.2399 12.3462 20.9424 11.8895 21.3316 11.5062C21.5891 11.2629 21.7907 10.9629 21.9191 10.6329L21.9999 10.3937L21.8041 10.2454Z"
         fill="currentcolor"

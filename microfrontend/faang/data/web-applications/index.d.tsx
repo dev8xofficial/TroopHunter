@@ -27,22 +27,22 @@ const WEBSITE: OffersContent[] = [
         {
           title: 'High Performance',
           description: 'Utilizing React.js, Next.js, and TypeScript, Dev8X ensures web apps handle heavy loads with fast, glitch-free performance.',
-          icon: { name: 'RefreshIcon', width: 28 }
+          icon: { name: 'RefreshIcon', size: 24 }
         },
         {
           title: 'Integration Ready',
           description: 'Web apps integrate seamlessly with RESTful APIs, third-party services, and microservices for feature-rich, connected experiences.',
-          icon: { name: 'BackendIcon', width: 26 }
+          icon: { name: 'BackendIcon', size: 24 }
         },
         {
           title: 'End-to-End Security',
           description: 'Dev8X implements authentication, authorization, and encryption standards, ensuring data integrity and enterprise-grade protection.',
-          icon: { name: 'AIBrainIcon', width: 26 }
+          icon: { name: 'AIBrainIcon', size: 24 }
         },
         {
           title: 'Scalable Architecture',
           description: 'Apps are architected using PostgreSQL, Sequelize ORM, and modular backend patterns, ready to scale with your business growth.',
-          icon: { name: 'SeismometerIcon', width: 22 }
+          icon: { name: 'SeismometerIcon', size: 24 }
         }
       ]
     },
@@ -50,25 +50,25 @@ const WEBSITE: OffersContent[] = [
       {
         title: 'Web Portals',
         paragraph: 'Dev8X crafts enterprise-grade web portals, optimized for heavy traffic, vendor integrations, and seamless user experiences across all devices.',
-        icon: { name: 'HomeIcon', width: 26 },
+        icon: { name: 'HomeIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'Progressive Web Apps',
         paragraph: 'Our PWAs leverage service workers and offline capabilities, delivering near-native performance, push notifications, and cross-platform reliability.',
-        icon: { name: 'HomeIcon', width: 26 },
+        icon: { name: 'HomeIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'Single-Page Applications',
         paragraph: 'Using SPA architectures with React.js and Next.js, we create fast, flexible applications with smooth navigation and minimal reloads.',
-        icon: { name: 'BotIcon', width: 26 },
+        icon: { name: 'BotIcon', size: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       },
       {
         title: 'Marketplace & AI Apps',
         paragraph: 'Dev8X builds complex two-sided marketplaces and AI/ML-powered applications with optimized backend APIs, responsive interfaces, and end-to-end workflows.',
-        icon: { name: 'BotIcon', width: 26 },
+        icon: { name: 'BotIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/desktop/29.png')
       }
     ],
@@ -109,17 +109,17 @@ const WEBSITE: OffersContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
       },
       {
         title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.instagram.com/dev8xofficial/'
       },
       {
         title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
       }
       // {

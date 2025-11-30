@@ -31,7 +31,7 @@ export const ContentAsideImage: React.FC<ContentAsideImageProps> = ({ contentAsi
                   </div>
                 ) : (
                   <div className={`${styles['content-aside-image__icon']} ${styles['content-aside-image__image']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-                    <div className={styles['icon-wrapper']}>{ICON_MAP[item.icon.name]?.(item.icon.width)}</div>
+                    <div className={styles['icon-wrapper']}>{ICON_MAP[item.icon.name]?.(item.icon.size)}</div>
                   </div>
                 )}
 
@@ -73,7 +73,7 @@ export const ContentAsideImage: React.FC<ContentAsideImageProps> = ({ contentAsi
                   </div>
                 ) : (
                   <div className={`${styles['content-aside-image__icon']} ${styles['content-aside-image__image']}`} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-                    <div className={styles['icon-wrapper']}>{ICON_MAP[item.icon.name]?.(item.icon.width)}</div>
+                    <div className={styles['icon-wrapper']}>{ICON_MAP[item.icon.name]?.(item.icon.size)}</div>
                   </div>
                 )}
               </section>

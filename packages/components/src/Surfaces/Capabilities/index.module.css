@@ -68,13 +68,13 @@
   }
 
   .about-capabilities__grid--custom-dev8x-grid-columns {
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1200px) {
   .about-capabilities__grid--custom-dev8x-grid-columns {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

@@ -3,14 +3,13 @@
 import React from 'react';
 
 interface IntegrationsIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const IntegrationsIcon: React.FC<IntegrationsIconProps> = ({ width = '', height = '', className }) => {
+const IntegrationsIcon: React.FC<IntegrationsIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path
         d="M8.66667 12C5.90917 12 3.66667 9.7575 3.66667 7C3.66667 4.2425 5.90917 2 8.66667 2C11.4242 2 13.6667 4.2425 13.6667 7C13.6667 9.7575 11.4242 12 8.66667 12ZM17.4175 22C17.29 22 17.1617 21.9708 17.045 21.9125L16.8775 21.8283C15.9283 21.3542 12.8333 19.575 12.8333 16.6017V14.0308C12.8333 12.9517 13.5217 11.9983 14.5458 11.6575L17.155 10.7925C17.3242 10.7367 17.51 10.7367 17.6792 10.7925L20.2875 11.6575C21.3117 11.9975 22.0008 12.9517 22.0008 14.0308V16.6017C22.0008 19.9617 18.8642 21.4833 17.9033 21.87L17.7292 21.94C17.6292 21.98 17.5233 22 17.4183 22H17.4175ZM11.1667 16.6008V14.8992C11.1667 14.4325 10.8558 14.0183 10.405 13.8967C9.60833 13.6808 8.7525 13.61 7.86833 13.7133C4.47583 14.1108 2 17.1392 2 20.555V21.1667C2 21.6267 2.37333 22 2.83333 22H14.0817C12.6742 20.8675 11.1667 19.0767 11.1667 16.6008Z"
         fill="currentColor"

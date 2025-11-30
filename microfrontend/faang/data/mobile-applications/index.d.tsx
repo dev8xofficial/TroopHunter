@@ -27,22 +27,22 @@ const MOBILE: OffersContent[] = [
         {
           title: 'Native Performance',
           description: 'Apps are developed with Flutter to ensure fast, smooth, and fully native performance across both iOS and Android devices.',
-          icon: { name: 'RefreshIcon', width: 28 }
+          icon: { name: 'RefreshIcon', size: 24 }
         },
         {
           title: 'Cross-Platform Efficiency',
           description: 'Using a single Dart codebase reduces development time and cost while maintaining platform-specific design and interactions.',
-          icon: { name: 'BackendIcon', width: 26 }
+          icon: { name: 'BackendIcon', size: 24 }
         },
         {
           title: 'Live Updates',
           description: 'We implement over-the-air updates to deliver immediate enhancements and bug fixes, accelerating feedback loops and improving user satisfaction.',
-          icon: { name: 'AIBrainIcon', width: 26 }
+          icon: { name: 'AIBrainIcon', size: 24 }
         },
         {
           title: 'Scalable Architecture',
           description: 'Our apps are designed with modular architecture and microservices patterns, enabling future expansion, integrations, and feature upgrades.',
-          icon: { name: 'CardIcon', width: 26 }
+          icon: { name: 'CardIcon', size: 24 }
         }
       ]
     },
@@ -50,25 +50,25 @@ const MOBILE: OffersContent[] = [
       {
         title: 'Cross-Platform Development',
         paragraph: 'We leverage Flutter for building versatile apps that run on multiple platforms while maintaining a native look and feel.',
-        icon: { name: 'HomeIcon', width: 26 },
+        icon: { name: 'HomeIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'Types of Mobile Apps',
         paragraph: 'From internal business apps to customer-facing solutions, Dev8X creates apps that drive productivity, engagement, and operational efficiency.',
-        icon: { name: 'MapPinIcon', width: 24 },
+        icon: { name: 'MapPinIcon', size: 64 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
       },
       {
         title: 'UI/UX Excellence',
         paragraph: 'Our team focuses on responsive design, GSAP animations, and mobile-first engineering to deliver interfaces that delight users.',
-        icon: { name: 'MagicWandIcon', width: 26 },
+        icon: { name: 'MagicWandIcon', size: 64 },
         image: prefixed('/api/images/work/other/ui.png')
       },
       {
         title: 'Secure & Reliable',
         paragraph: 'With Node.js, Express.js, and PostgreSQL, we build backends that ensure security, authorization, authentication, and reliable data storage.',
-        icon: { name: 'MapPinIcon', width: 24 },
+        icon: { name: 'MapPinIcon', size: 64 },
         image: prefixed('/api/images/work/coral/desktop/10.png')
       }
     ],
@@ -114,17 +114,17 @@ const MOBILE: OffersContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
       },
       {
         title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.instagram.com/dev8xofficial/'
       },
       {
         title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
       }
       // {

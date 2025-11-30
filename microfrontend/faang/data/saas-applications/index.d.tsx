@@ -27,22 +27,22 @@ const SAAS: OffersContent[] = [
         {
           title: 'Web, Mobile, Desktop Apps',
           description: 'Dev8X develops SaaS apps for web, mobile, and desktop, covering all required features with responsive, mobile-first design and Next.js, React.js, Flutter, and Dart.',
-          icon: { name: 'RefreshIcon', width: 28 }
+          icon: { name: 'RefreshIcon', size: 24 }
         },
         {
           title: 'Product Websites',
           description: 'We create user-friendly, fully-featured websites for SaaS products using TailwindCSS, HTML5, and GSAP, fostering engagement and stronger audience connections.',
-          icon: { name: 'BackendIcon', width: 26 }
+          icon: { name: 'BackendIcon', size: 24 }
         },
         {
           title: 'API Development',
           description: 'Back-end teams design scalable, secure RESTful APIs with Node.js, Express.js, and PostgreSQL, optimized for performance and multi-tenant SaaS environments.',
-          icon: { name: 'AIBrainIcon', width: 26 }
+          icon: { name: 'AIBrainIcon', size: 24 }
         },
         {
           title: 'CI/CD Pipelines',
           description: 'We implement automated CI/CD workflows using Docker, Kubernetes, and pipeline orchestration to streamline testing, deployment, and continuous updates.',
-          icon: { name: 'SeismometerIcon', width: 22 }
+          icon: { name: 'SeismometerIcon', size: 24 }
         }
       ]
     },
@@ -50,13 +50,13 @@ const SAAS: OffersContent[] = [
       {
         title: 'Knowledge Management Platform',
         paragraph: 'A central hub for internal information, accessible securely anywhere, supporting collaboration and decision-making across distributed teams.',
-        icon: { name: 'HomeIcon', width: 26 },
+        icon: { name: 'HomeIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'Task Management App for Slack',
         paragraph: 'Productivity app integrating with Slack, enabling task prioritization, tracking, and team coordination without leaving the platform.',
-        icon: { name: 'HomeIcon', width: 26 },
+        icon: { name: 'HomeIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       }
     ],
@@ -123,17 +123,17 @@ const SAAS: OffersContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
       },
       {
         title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.instagram.com/dev8xofficial/'
       },
       {
         title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
       }
       // {

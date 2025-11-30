@@ -3,14 +3,13 @@
 import React from 'react';
 
 interface ResponsiveIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const ResponsiveIcon: React.FC<ResponsiveIconProps> = ({ width = '', height = '', className }) => {
+const ResponsiveIcon: React.FC<ResponsiveIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path
         d="M4.50033 13.6667V5.33333C4.50033 4.89131 4.67592 4.46738 4.98848 4.15482C5.30104 3.84226 5.72496 3.66667 6.16699 3.66667H17.8337C18.2757 3.66667 18.6996 3.84226 19.0122 4.15482C19.3247 4.46738 19.5003 4.89131 19.5003 5.33333V7C19.5003 7.22101 19.4125 7.43298 19.2562 7.58926C19.1 7.74554 18.888 7.83333 18.667 7.83333H12.8337C12.1706 7.83333 11.5347 8.09673 11.0659 8.56557C10.5971 9.03441 10.3337 9.67029 10.3337 10.3333V16.1667C10.3337 16.3877 10.2459 16.5996 10.0896 16.7559C9.9333 16.9122 9.72134 17 9.50033 17H5.33366C4.89163 17 4.46771 16.8244 4.15515 16.5118C3.84259 16.1993 3.66699 15.7754 3.66699 15.3333V14.5C3.66699 14.279 3.75479 14.067 3.91107 13.9107C4.06735 13.7545 4.27931 13.6667 4.50033 13.6667Z"
         fill="currentColor"

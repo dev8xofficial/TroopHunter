@@ -3,14 +3,13 @@
 import React from 'react';
 
 interface BasketIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const BasketIcon: React.FC<BasketIconProps> = ({ width = '', height = '', className }) => {
+const BasketIcon: React.FC<BasketIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M21.3929 9.52814C20.9185 8.97791 20.2276 8.66945 19.5035 8.66945H19.4286C19.0124 4.92622 15.8329 2 11.9875 2C8.14213 2 4.96262 4.92622 4.54645 8.66945H4.49651C3.77238 8.66945 3.08154 8.98624 2.60711 9.52814C2.13268 10.0784 1.9246 10.8037 2.02448 11.5206L2.90675 17.7065C3.25633 20.1576 5.37878 22 7.85082 22H16.1492C18.6212 22 20.7437 20.1576 21.0933 17.7065L21.9755 11.5206C22.0754 10.8037 21.8673 10.0784 21.3929 9.52814ZM11.9875 3.66736C14.9173 3.66736 17.3394 5.84327 17.7473 8.66945H6.22776C6.63561 5.84327 9.0577 3.66736 11.9875 3.66736Z" fill="currentColor" />
     </svg>
   );

@@ -38,7 +38,7 @@ export interface FooterInternationalContent {
 
 export interface ExpertiseFooterSocialLink {
   title: ReactNode | string;
-  icon?: { name: string; width: number };
+  icon?: { name: string; size: number };
   href: string;
 }
 

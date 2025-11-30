@@ -27,22 +27,22 @@ const CTO: OffersContent[] = [
         {
           title: '$140K/yr',
           description: 'You know WHAT to build but need guidance on HOW to develop it using the right tech stack.',
-          icon: { name: 'RefreshIcon', width: 28 }
+          icon: { name: 'RefreshIcon', size: 24 }
         },
         {
           title: '26%',
           description: 'Seeking investment? A professional CTO ensures your technical decisions inspire investor confidence.',
-          icon: { name: 'BackendIcon', width: 26 }
+          icon: { name: 'BackendIcon', size: 24 }
         },
         {
           title: '<4 years',
           description: 'Past experiences with low-cost developers disappointed you. Dev8X ensures high-quality, maintainable solutions.',
-          icon: { name: 'AIBrainIcon', width: 26 }
+          icon: { name: 'AIBrainIcon', size: 24 }
         },
         {
           title: 'Transparent Reporting',
           description: 'Focus on strategy, marketing, and sales while Dev8X handles all tech decisions with clear reporting.',
-          icon: { name: 'SeismometerIcon', width: 22 }
+          icon: { name: 'SeismometerIcon', size: 24 }
         }
       ]
     },
@@ -50,19 +50,19 @@ const CTO: OffersContent[] = [
       {
         title: 'Schedule a Call',
         paragraph: 'Select a time. NDAs available for confidential discussions.',
-        icon: { name: 'HomeIcon', width: 26 },
+        icon: { name: 'HomeIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'Describe Your Vision',
         paragraph: 'Share your product concept and required skills. Dev8X proposes an optimal technical leadership plan quickly.',
-        icon: { name: 'MapPinIcon', width: 24 },
+        icon: { name: 'MapPinIcon', size: 64 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
       },
       {
         title: 'Review & Approve',
         paragraph: 'Approve the strategy and contract to start your product development immediately with senior-level guidance.',
-        icon: { name: 'BotIcon', width: 26 },
+        icon: { name: 'BotIcon', size: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
@@ -129,17 +129,17 @@ const CTO: OffersContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
       },
       {
         title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.instagram.com/dev8xofficial/'
       },
       {
         title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
       }
       // {

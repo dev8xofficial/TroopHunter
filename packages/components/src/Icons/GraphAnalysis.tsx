@@ -3,14 +3,13 @@
 import React from 'react';
 
 interface GraphAnalysisIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const GraphAnalysisIcon: React.FC<GraphAnalysisIconProps> = ({ width = '', height = '', className }) => {
+const GraphAnalysisIcon: React.FC<GraphAnalysisIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M17.2178 3.5C18.8985 3.50021 20.2607 4.90244 20.2607 6.63184V17.3682C20.2607 17.5199 20.2508 17.6694 20.2305 17.8154H20.6953C21.4157 17.8154 22 18.417 22 19.1582C21.9998 19.8993 21.4156 20.5 20.6953 20.5H3.30469C2.58441 20.5 2.00016 19.8993 2 19.1582C2 18.417 2.58432 17.8154 3.30469 17.8154H3.76953C3.74926 17.6694 3.73926 17.5199 3.73926 17.3682V12C3.73926 10.2706 5.10153 8.86838 6.78223 8.86816H10.2607C10.4083 8.86816 10.5534 8.87952 10.6953 8.90039V6.63184C10.6953 4.90231 12.0584 3.5 13.7393 3.5H17.2178ZM6.78223 11.5527C6.54228 11.5529 6.34766 11.7531 6.34766 12V17.3682C6.34766 17.6151 6.54235 17.8151 6.78223 17.8154H10.2607C10.5005 17.815 10.6953 17.615 10.6953 17.3682V12C10.6953 11.7529 10.5009 11.5527 10.2607 11.5527H6.78223ZM13.7393 6.18457C13.4991 6.18457 13.3047 6.38476 13.3047 6.63184V17.3682C13.3047 17.6149 13.4986 17.8149 13.7383 17.8154H17.2178C17.4572 17.8146 17.6523 17.6147 17.6523 17.3682V6.63184C17.6523 6.38489 17.4577 6.18478 17.2178 6.18457H13.7393Z"
         fill="currentColor"

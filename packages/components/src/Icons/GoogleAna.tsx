@@ -3,14 +3,13 @@
 import React from 'react';
 
 interface GoogleAnaIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const GoogleAnaIcon: React.FC<GoogleAnaIconProps> = ({ width = '', height = '', className }) => {
+const GoogleAnaIcon: React.FC<GoogleAnaIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M4.62408 18.5117C6.13858 18.5117 7.36632 19.7403 7.36632 21.2558C7.36632 22.7714 6.13858 24 4.62408 24C3.10958 24 1.88184 22.7714 1.88184 21.2558C1.88184 19.7403 3.10958 18.5117 4.62408 18.5117ZM11.8395 10.1945C10.3178 10.2779 9.13723 11.5552 9.17253 13.0798V20.4509C9.17253 22.4514 10.0521 23.6658 11.3409 23.9247C12.15 24.0888 12.99 23.88 13.6283 23.3562C14.2667 22.8324 14.6358 22.049 14.6335 21.2229V12.9528C14.6348 12.2143 14.3397 11.5062 13.8143 10.9875C13.289 10.4688 12.5774 10.1831 11.8395 10.1945Z" fill="currentColor" />
       <path d="M22.1182 21.2319C22.1223 22.0213 21.7877 22.7745 21.1993 23.3003C20.6109 23.8261 19.8253 24.0739 19.0419 23.9808C17.6323 23.772 16.5993 22.5445 16.6336 21.1189V4.7293C16.5996 3.30219 17.6351 2.07405 19.0466 1.86747C19.8292 1.77581 20.6135 2.02426 21.2008 2.54989C21.7882 3.07551 22.1221 3.82786 22.1182 4.61633V21.2319Z" fill="currentColor" />
     </svg>

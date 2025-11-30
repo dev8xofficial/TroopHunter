@@ -3,14 +3,13 @@
 import React from 'react';
 
 interface SlackIconProps {
-  width?: number | string;
-  height?: number | string;
+  size?: number | string;
   className?: string;
 }
 
-const SlackIcon: React.FC<SlackIconProps> = ({ width = '', height = '', className }) => {
+const SlackIcon: React.FC<SlackIconProps> = ({ size = 24, className }) => {
   return (
-    <svg {...(width ? { width } : {})} {...(height ? { height } : {})} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M9.39503 6.23386C8.23253 6.23386 7.29004 5.29071 7.29004 4.1274C7.29004 2.96326 8.23253 2.02011 9.39503 2.02011C10.5575 2.02011 11.5 2.96326 11.5 4.12657V6.23303L9.39503 6.23386Z" fill="currentColor" />
       <path d="M9.39466 7.28709C10.5571 7.28709 11.4996 8.23025 11.4996 9.39355C11.4996 10.5569 10.5571 11.5 9.39466 11.5H4.13135C2.96886 11.5 2.02637 10.5569 2.02637 9.39355C2.02637 8.23025 2.96886 7.28709 4.13135 7.28709H9.39466Z" fill="currentColor" />
       <path d="M17.7627 9.39355C17.7627 8.23025 18.7052 7.28709 19.8677 7.28709C21.031 7.28709 21.9735 8.23025 21.9735 9.39355C21.9735 10.5569 21.031 11.5 19.8685 11.5H17.7635L17.7627 9.39355Z" fill="currentColor" />

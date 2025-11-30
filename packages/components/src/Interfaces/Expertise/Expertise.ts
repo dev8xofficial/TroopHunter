@@ -5,7 +5,7 @@ import { PageLayoutContent } from '../PageLayout/PageLayout';
 export interface ExpertiseIconCardItem {
   title: string;
   description: string;
-  icon: { name: string; width: number };
+  icon: { name: string; size: number };
 }
 
 export interface ExpertiseIconCards {
@@ -17,7 +17,7 @@ export interface ExpertiseIconCards {
 export interface ExpertiseContentAsideImageItem {
   title: string;
   paragraph: string;
-  icon?: { name: string; width: number };
+  icon?: { name: string; size: number };
   image?: string;
 }
 

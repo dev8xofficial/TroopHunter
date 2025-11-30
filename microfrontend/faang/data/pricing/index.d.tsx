@@ -16,42 +16,42 @@ const OFFERS: OffersContent[] = [
         {
           title: 'Vetted Talent',
           description: 'If it’s not the right fit, we’ll assign a vetted replacement developer within 5 business days — no downtime, no disruption.',
-          icon: { name: 'CreditCardIcon', width: 26 }
+          icon: { name: 'CreditCardIcon', size: 24 }
         },
         // {
         //   title: 'Full Code Ownership',
         //   description: 'You retain 100% ownership of code, repos, and docs — we accelerate your build and uphold enterprise-grade standards.',
-        //   icon: { name: 'BackendIcon', width: 26 }
+        //   icon: { name: 'BackendIcon', size: 24 }
         // },
         // {
         //   title: 'Technical Supervision',
         //   description: 'Every developer is backed by a senior tech lead who ensures code quality, scalable architecture, and consistent best practices.',
-        //   icon: { name: 'AIBrainIcon', width: 26 }
+        //   icon: { name: 'AIBrainIcon', size: 24 }
         // },
         // {
         //   title: 'Transparent Reporting',
         //   description: 'Stay in control with weekly sprint summaries, live Git access, and real-time task tracking in Jira or ClickUp.',
-        //   icon: { name: 'SeismometerIcon', width: 22 }
+        //   icon: { name: 'SeismometerIcon', size: 24 }
         // },
         // {
         //   title: 'Quick Onboarding',
         //   description: 'Be operational within 7 days. We handle tool setup, environment prep and assets so you focus on delivering business outcomes.',
-        //   icon: { name: 'VoltageIcon', width: 18 }
+        //   icon: { name: 'VoltageIcon', size: 24 }
         // },
         {
           title: 'US Time-zone Overlap',
           description: 'Collaborate effortlessly with guaranteed 4-hour overlap with U.S. Eastern Time — ideal for daily stand-ups and sprint reviews.',
-          icon: { name: 'PlanetRingIcon', width: 26 }
+          icon: { name: 'PlanetRingIcon', size: 24 }
         },
         {
           title: 'Flexible Payments',
           description: 'Pay bi-weekly for agility or pre-pay 3 months to unlock instant savings — align spend with your growth rhythm.',
-          icon: { name: 'CreditCardIcon', width: 26 }
+          icon: { name: 'CreditCardIcon', size: 24 }
         },
         {
           title: 'Scalable Engagement',
           description: 'Begin with one developer and expand to a full squad anytime — no change in vendor or workflow needed.',
-          icon: { name: 'ScaleIcon', width: 26 }
+          icon: { name: 'ScaleIcon', size: 24 }
         }
       ]
     },
@@ -59,31 +59,31 @@ const OFFERS: OffersContent[] = [
       {
         title: 'Transparent Reporting',
         paragraph: 'Stay in control with weekly sprint summaries, live Git access, and real-time task tracking in Jira or ClickUp — giving you full visibility into progress and priorities. No surprises, no hidden work — everything is documented, traceable, and transparently reported.',
-        icon: { name: 'PointerIcon', width: 64 },
+        icon: { name: 'PointerIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'US Time-zone Overlap',
         paragraph: 'Collaborate effortlessly with guaranteed 4-hour overlap with U.S. Eastern Time — ideal for daily stand-ups and sprint reviews. This ensures faster decisions, fewer blockers, and smooth communication without delays, making remote collaboration feel truly in-house.',
-        icon: { name: 'PointerIcon', width: 64 },
+        icon: { name: 'PointerIcon', size: 64 },
         image: prefixed('/api/images/work/troophunter/mobile/1.png')
       },
       {
         title: 'Flexible Payments',
         paragraph: 'Pay bi-weekly for agility or pre-pay 3 months to unlock instant savings — align spend with your growth rhythm. Choose the billing model that works for your cash-flow planning, without long-term lock-ins or surprise fees.',
-        icon: { name: 'PointerIcon', width: 64 },
+        icon: { name: 'PointerIcon', size: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       },
       {
         title: 'Scalable Engagement',
         paragraph: 'Begin with one developer and expand to a full squad anytime — no change in vendor or workflow needed. Scale at your own pace based on roadmap, traction, and funding milestones, without any operational disruption.',
-        icon: { name: 'PointerIcon', width: 64 },
+        icon: { name: 'PointerIcon', size: 64 },
         image: prefixed('/api/images/work/goldendao/desktop/14.png')
       },
       {
         title: 'Transparent Reporting',
         paragraph: 'Stay in control with weekly sprint summaries, live Git access, and real-time task tracking in Jira or ClickUp. You’ll always know progress, blockers, and next steps at a glance.',
-        icon: { name: 'PointerIcon', width: 64 },
+        icon: { name: 'PointerIcon', size: 64 },
         image: prefixed('/api/images/work/honeydu/desktop/2.png')
       }
     ],
@@ -129,17 +129,17 @@ const OFFERS: OffersContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
       },
       {
         title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.instagram.com/dev8xofficial/'
       },
       {
         title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
       }
       // {
@@ -259,22 +259,22 @@ const OFFERS: OffersContent[] = [
         {
           title: 'Speed-to-Market Delivery',
           description: 'Most services ship in 1–3 days — your brand, listings, SEO, and funnels go live without delays.',
-          icon: { name: 'RefreshIcon', width: 28 }
+          icon: { name: 'RefreshIcon', size: 24 }
         },
         {
           title: 'Full Asset Ownership',
           description: 'You own all websites, listings systems, brand files, and integrations — built on open, scalable tech.',
-          icon: { name: 'BackendIcon', width: 26 }
+          icon: { name: 'BackendIcon', size: 24 }
         },
         {
           title: 'Conversion-Focused Build',
           description: 'Every page, form, and lead flow is designed for higher inquiries, more showings, and faster deals.',
-          icon: { name: 'AIBrainIcon', width: 26 }
+          icon: { name: 'AIBrainIcon', size: 24 }
         },
         {
           title: 'Transparent Reporting',
           description: 'Track leads, traffic, and engagement with weekly reports and access to dashboards and analytics.',
-          icon: { name: 'SeismometerIcon', width: 22 }
+          icon: { name: 'SeismometerIcon', size: 24 }
         }
       ]
     },
@@ -282,19 +282,19 @@ const OFFERS: OffersContent[] = [
       {
         title: 'Built for Real Estate Velocity',
         paragraph: 'From listing updates to booking calendars, every component is designed to move prospects from browsing to booking — fast.',
-        icon: { name: 'HomeIcon', width: 26 },
+        icon: { name: 'HomeIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'Optimized for Local Search',
         paragraph: 'Each deliverable strengthens your visibility in local buyer and seller searches — a critical driver of organic leads.',
-        icon: { name: 'MapPinIcon', width: 24 },
+        icon: { name: 'MapPinIcon', size: 64 },
         image: prefixed('/api/images/work/honeydu/desktop/10.png')
       },
       {
         title: 'Automation-Ready Systems',
         paragraph: 'Leads flow from forms to CRM, email, or SMS without manual work — freeing your team to close more deals.',
-        icon: { name: 'BotIcon', width: 26 },
+        icon: { name: 'BotIcon', size: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       }
     ],
@@ -341,17 +341,17 @@ const OFFERS: OffersContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
       },
       {
         title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.instagram.com/dev8xofficial/'
       },
       {
         title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
       }
       // {
@@ -571,22 +571,22 @@ const OFFERS: OffersContent[] = [
         {
           title: 'Fast Delivery',
           description: 'Most projects go live in 1–3 days — rapid setup with zero disruption to your practice operations.',
-          icon: { name: 'RefreshIcon', width: 28 }
+          icon: { name: 'RefreshIcon', size: 24 }
         },
         {
           title: '100% Ownership',
           description: 'You receive full ownership of your website, data, content, and integrations — no lock-ins, no hidden terms.',
-          icon: { name: 'BackendIcon', width: 26 }
+          icon: { name: 'BackendIcon', size: 24 }
         },
         {
           title: 'Technical Oversight',
           description: 'Every project is supervised by senior engineers ensuring security, reliability, and long-term scalability.',
-          icon: { name: 'AIBrainIcon', width: 26 }
+          icon: { name: 'AIBrainIcon', size: 24 }
         },
         {
           title: 'Transparent Tracking',
           description: 'See every update in real time with progress logs, weekly summaries, and easy communication channels.',
-          icon: { name: 'SeismometerIcon', width: 22 }
+          icon: { name: 'SeismometerIcon', size: 24 }
         }
       ]
     },
@@ -594,25 +594,25 @@ const OFFERS: OffersContent[] = [
       {
         title: 'Modern Dental Websites',
         paragraph: 'We craft clean, mobile-first websites that highlight treatments, doctors, reviews, and location — built to convert visitors into booked appointments.',
-        icon: { name: 'PointerIcon', width: 64 },
+        icon: { name: 'PointerIcon', size: 64 },
         image: prefixed('/api/images/work/scheduler/mobile/2.png')
       },
       {
         title: 'Online Booking Systems',
         paragraph: 'Give patients an easy way to book 24/7. Automated reminders reduce no-shows and streamline daily operations.',
-        icon: { name: 'PointerIcon', width: 64 },
+        icon: { name: 'PointerIcon', size: 64 },
         image: prefixed('/api/images/work/troophunter/mobile/1.png')
       },
       {
         title: 'Rapid Setup & Launch',
         paragraph: 'Share basic clinic details and we handle setup, configuration, deployment, and testing — most clinics go live in under 72 hours.',
-        icon: { name: 'PointerIcon', width: 64 },
+        icon: { name: 'PointerIcon', size: 64 },
         image: prefixed('/api/images/work/totalhealthdentalcare/desktop/26.png')
       },
       {
         title: 'Full Security & Control',
         paragraph: 'All files, domains, SSL, and patient-related systems remain fully yours. We ensure safe, compliant, high-uptime infrastructure.',
-        icon: { name: 'PointerIcon', width: 64 },
+        icon: { name: 'PointerIcon', size: 64 },
         image: prefixed('/api/images/work/goldendao/desktop/14.png')
       }
     ],
@@ -658,17 +658,17 @@ const OFFERS: OffersContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
       },
       {
         title: 'Instagram',
-        icon: { name: 'AsteriskIcon', width: 10 },
+        icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.instagram.com/dev8xofficial/'
       },
       {
         title: 'Facebook',
-        // icon: { name: 'AsteriskIcon', width: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.facebook.com/profile.php?id=61569289660818'
       }
       // {
@@ -877,22 +877,22 @@ const OFFERS: OffersContent[] = [
   //       {
   //         title: 'Idea to Execution',
   //         description: 'An entire product delivered in-house, from initial strategy to the end result. This means everything we do is fit for purpose, produced to the highest quality.',
-  //         icon: { name: 'VoltageIcon', width: 18 }
+  //         icon: { name: 'VoltageIcon', size: 24 }
   //       },
   //       {
   //         title: 'Full Stack',
   //         description: 'An entire product delivered in-house, from initial strategy to the end result. This means we everything we do is fit for purpose, produced to the highest quality.',
-  //         icon: { name: 'BackendIcon', width: 28 }
+  //         icon: { name: 'BackendIcon', size: 24 }
   //       },
   //       {
   //         title: 'Technology Neutral',
   //         description: 'The best technology is the one that works. We continually listen and observe, so we can recommend the optimal solution for your business problem.',
-  //         icon: { name: 'MonitorIcon', width: 22 }
+  //         icon: { name: 'MonitorIcon', size: 24 }
   //       },
   //       {
   //         title: 'Integrated',
   //         description: 'We put your website at the heart of your digital ecosystem, providing secure API integrations and automated solutions across your business systems',
-  //         icon: { name: 'PieChartIcon', width: 26 }
+  //         icon: { name: 'PieChartIcon', size: 24 }
   //       }
   //     ]
   //   },
@@ -900,22 +900,22 @@ const OFFERS: OffersContent[] = [
   //     {
   //       title: 'Elevate your brand',
   //       paragraph: 'We blend innovative design, cutting-edge technology, and strategic content to deliver websites that are visually appealing and highly functional. Harness the power of deeply engaging digital experiences to take your brand to the next level.',
-  //       icon: { name: 'PointerIcon', width: 64 }
+  //       icon: { name: 'PointerIcon', size: 64 }
   //     },
   //     {
   //       title: 'Human experiences',
   //       paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive navigation to immersive storytelling, every website is meticulously crafted to command attention and leave a lasting impression.',
-  //       icon: { name: 'PointerIcon', width: 64 }
+  //       icon: { name: 'PointerIcon', size: 64 }
   //     },
   //     {
   //       title: 'Robust, Secure, Flexible',
   //       paragraph: 'Every website we build is backed by secure and performant infrastructure, tailored to the needs of the organisation. This ensures that your digital presence can scale with demand and offer flexibility to meet the needs of your business over time.',
-  //       icon: { name: 'PointerIcon', width: 64 }
+  //       icon: { name: 'PointerIcon', size: 64 }
   //     },
   //     {
   //       title: 'Rewarding partnerships',
   //       paragraph: 'Behind every best-in-class website is a collaborative agency–client partnership. We work in close collaboration with you to ensure outcomes that offer extraordinary experiences while delivering results. Awards are nice, but your success means so much more.',
-  //       icon: { name: 'PointerIcon', width: 64 }
+  //       icon: { name: 'PointerIcon', size: 64 }
   //     }
   //   ],
   //   meta: {
@@ -939,17 +939,17 @@ const OFFERS: OffersContent[] = [
   //   footerSocialLinks: [
   //     {
   //       title: 'LinkedIn',
-  //       icon: { name: 'AsteriskIcon', width: 10 },
+  //       icon: { name: 'AsteriskIcon', size: 10 },
   //       href: 'https://www.linkedin.com/company/dev8x/'
   //     },
   //     {
   //       title: 'Instagram',
-  //       icon: { name: 'AsteriskIcon', width: 10 },
+  //       icon: { name: 'AsteriskIcon', size: 10 },
   //       href: 'https://www.instagram.com/dev8xofficial/'
   //     },
   //     {
   //       title: 'Facebook',
-  //       // icon: { name: 'AsteriskIcon', width: 10 },
+  //       // icon: { name: 'AsteriskIcon', size: 10 },
   //       href: 'https://www.facebook.com/profile.php?id=61569289660818'
   //     }
   //     // {

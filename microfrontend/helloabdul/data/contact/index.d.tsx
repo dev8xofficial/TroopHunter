@@ -45,12 +45,12 @@ const PageData: ContactContent = {
   footerSocialLinks: [
     {
       title: 'LinkedIn',
-      icon: { name: 'AsteriskIcon', width: 10 },
+      icon: { name: 'AsteriskIcon', size: 10 },
       href: 'https://www.linkedin.com/in/helloabdul/'
     },
     {
       title: 'Instagram',
-      icon: { name: 'AsteriskIcon', width: 10 },
+      icon: { name: 'AsteriskIcon', size: 10 },
       href: 'https://www.instagram.com/dev8xofficial/'
     },
     {
