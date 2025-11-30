@@ -7,7 +7,7 @@ import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenu } from '../HeaderSubmenu/HeaderSubmenu';
 import { Dev8XSubmenu } from '../Dev8XSubmenu/Dev8XSubmenu';
 import { HeaderSubmenuContent } from '../../Interfaces/Navigation/Navigation';
-import { isHelloabdulPort, getBrandFromBaseURL } from '../../../utils/helpers';
+import { isHelloabdulPort, getBrandFromBaseURL, prefixed } from '../../../utils/helpers';
 
 import styles from './index.module.css';
 
@@ -74,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
           <a className={styles['header__logo']}>
             <span className="hidden">Home</span>
             {/* Logo SVG */}
-            <img src="/logo.svg" height="32" />
+            <img src={prefixed('/logo.svg')} height="32" />
           </a>
         </NextLink>
 
@@ -174,7 +174,7 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
         <div className={styles['face']}>
           <div>
             <div>
-              <img src="/logo-small.svg" height="32" />
+              <img src={prefixed('/logo-small.svg')} height="32" />
             </div>
           </div>
           <div className={styles['nothing-wrapper']} aria-hidden="true">

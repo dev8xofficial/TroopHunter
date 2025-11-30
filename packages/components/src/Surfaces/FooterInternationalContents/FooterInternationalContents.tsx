@@ -5,12 +5,12 @@ import { useRouter } from 'next/router';
 import { ICON_MAP } from '../IconCards/IconMap';
 import { ExpertiseFooterSocialLink, FooterInternationalContent } from '../../Interfaces/PageLayout/PageLayout';
 import RightArrowIcon from '../../Icons/RightArrow';
-import { isHelloabdulPort } from '../../../utils/helpers';
+import { isHelloabdulPort, prefixed } from '../../../utils/helpers';
+import { Magnet } from '../../Animations/Magnet';
 
 import ContactFormModalStyles from '../../Modals/ContactFormModal/index.module.css';
 import ButtonStyles from '../../Input/Button/index.module.css';
 import styles from './index.module.css';
-import { Magnet } from '../../Animations/Magnet';
 
 type FooterInternationalContentsProps = {
   footerSocialLinks: ExpertiseFooterSocialLink[];
@@ -80,7 +80,7 @@ export const FooterInternationalContents: React.FC<FooterInternationalContentsPr
       <div className={`${styles['footer-bottom']} footer-bottom`}>
         <div className={styles['footer-legal']}>
           {/* Logo SVG - Dynamic based on base URL */}
-          <img width="60" src="/logo.svg" />
+          <img width="60" src={prefixed('/logo.svg')} />
           <span>
             © {footerData.copyright.year} <a href={footerData.copyright.privacyLink}>{footerData.copyright.text}</a>
           </span>
