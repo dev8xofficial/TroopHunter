@@ -70,7 +70,7 @@ export const Footer: React.FC<FooterProps> = ({ footerMainContent, footerData, f
           <a className={styles['footer__heading-link']} href={footerMainContent?.link}>
             <span>{footerMainContent?.start}</span>
             <br />
-            <RightArrowIcon width="14" className={styles['arrow']} />
+            <RightArrowIcon size={14} className={styles['arrow']} />
             <span className={styles['footer__word-ticker-wrapper']}>
               {endWords[0] + ' '}
               <span className={styles['word-ticker']}>

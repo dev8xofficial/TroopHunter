@@ -154,7 +154,7 @@ export const OpenRolesList: React.FC = () => {
                       <Button
                         variant="secondary"
                         context="contact"
-                        endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />}
+                        endIcon={<RightArrowIcon size={14} className={styles['button--icon']} />}
                         spanClassName={styles['contact-button']}
                         onClick={(event) => {
                           event.stopPropagation();

@@ -74,10 +74,10 @@ const Privacy: React.FC = (): JSX.Element => {
             <div className={styles['privacy-policy__container']}>
               <div className={`${WYSIWYGStyles['wysiwyg']} ${styles['privacy-policy__wysiwyg']}`}>
                 {/* Dynamic heading */}
-                <h2>{PageData.privacy[0].heading}</h2>
+                <h2>{PageData.privacy.heading}</h2>
 
                 {/* Dynamic Sections */}
-                {PageData.privacy[0].sections.map((section, secIndex) => (
+                {PageData.privacy.sections.map((section, secIndex) => (
                   <section key={secIndex}>
                     <h3>{section.title}</h3>
 

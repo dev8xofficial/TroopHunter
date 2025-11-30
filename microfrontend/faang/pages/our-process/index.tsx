@@ -26,15 +26,15 @@ const ProcessPage: React.FC = (): JSX.Element => {
       <Head>
         <title>{PageData.meta.title}</title>
         <meta name="description" content={PageData.meta.description}></meta>
-        <link rel="canonical" href={prefixed("/expertise/${slug}")} />
+        <link rel="canonical" href={prefixed('/expertise/${slug}')} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title}></meta>
         <meta property="og:description" content={PageData.meta.description}></meta>
-        <meta property="og:url" content={prefixed("/expertise/${slug}")}></meta>
+        <meta property="og:url" content={prefixed('/expertise/${slug}')}></meta>
         <meta property="og:locale" content="en_US"></meta>
-        <meta property="og:image" content={prefixed("/logo-social.png")}></meta>
-        <meta property="og:image:secure_url" content={prefixed("/logo-social.png")}></meta>
+        <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
+        <meta property="og:image:secure_url" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:type" content="website"></meta>
         <meta property="og:site_name" content="Dev8X"></meta>
 
@@ -42,7 +42,7 @@ const ProcessPage: React.FC = (): JSX.Element => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:title" content={PageData.meta.title}></meta>
         <meta name="twitter:description" content={PageData.meta.description}></meta>
-        <meta name="twitter:image" content={prefixed("/logo-social.png")}></meta>
+        <meta name="twitter:image" content={prefixed('/logo-social.png')}></meta>
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
 
@@ -78,7 +78,7 @@ const ProcessPage: React.FC = (): JSX.Element => {
                       <span>Extraordinary Digital Experiences</span>
                     </h2>
                     <div>
-                      <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon width="14" className={ExpertiseStyles['button--icon']} />} spanClassName={ExpertiseStyles['contact-button']} onClick={() => toggleModal('contact')}>
+                      <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon size={14} className={ExpertiseStyles['button--icon']} />} spanClassName={ExpertiseStyles['contact-button']} onClick={() => toggleModal('contact')}>
                         Submit a brief
                       </Button>
                     </div>

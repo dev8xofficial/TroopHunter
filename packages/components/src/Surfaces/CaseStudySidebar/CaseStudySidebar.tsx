@@ -16,7 +16,7 @@ export const CaseStudySideBar: React.FC<Omit<WorkDetail, 'slug' | 'video' | 'pat
           <div className={styles['sidebar__inner']}>
             <div className={styles['sidebar__header']}>
               <h1 className={styles['sidebar__title']}>{title}</h1>
-              <Link variant="secondary" href={websiteUrl} endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} anchorClassName={styles['homepage-bottom__link']}>
+              <Link variant="secondary" href={websiteUrl} endIcon={<RightArrowIcon size={14} className={styles['button--icon']} />} anchorClassName={styles['homepage-bottom__link']}>
                 Visit Website
               </Link>
               <p className={styles['sidebar__industry']}>{industry}</p>

@@ -18,7 +18,7 @@ const Problems: React.FC = (): JSX.Element => {
           <ul className="items-start gap-[clamp(3.125rem,3.3068783069vw,4.15625rem)_clamp(2rem,2.1164021164vw,2.66rem)] grid list-none p-0 m-0 grid-cols-2 lg:grid-cols-4">
             <li className="gap-[clamp(1.25rem,1.3227513228vw,1.6625rem)] grid">
               <div className="relative h-[clamp(1.625rem,1.7195767196vw,2.16125rem)]">
-                <PuzzlePieceIcon width="25" />
+                <PuzzlePieceIcon size={25} />
               </div>
               <hr className="overflow-visible h-0 box-content opacity-5 border-b border-t-0 w-full m-0" />
               <h3 className="leading-[clamp(1.5rem,1.5873015873vw,1.995rem)] text-[clamp(1.125rem,1.1904761905vw,1.49625rem)] m-0 text-[var(--theme-secondary)]">Custom Software Development</h3>
@@ -26,7 +26,7 @@ const Problems: React.FC = (): JSX.Element => {
             </li>
             <li className="gap-[clamp(1.25rem,1.3227513228vw,1.6625rem)] grid">
               <div className="relative h-[clamp(1.625rem,1.7195767196vw,2.16125rem)]">
-                <PointerIcon width="24" />
+                <PointerIcon size={24} />
               </div>
               <hr className="overflow-visible h-0 box-content opacity-5 border-b border-t-0 w-full m-0" />
               <h3 className="leading-[clamp(1.5rem,1.5873015873vw,1.995rem)] text-[clamp(1.125rem,1.1904761905vw,1.49625rem)] m-0 text-[var(--theme-secondary)]">Web Development</h3>
@@ -34,7 +34,7 @@ const Problems: React.FC = (): JSX.Element => {
             </li>
             <li className="gap-[clamp(1.25rem,1.3227513228vw,1.6625rem)] grid">
               <div className="relative h-[clamp(1.625rem,1.7195767196vw,2.16125rem)]">
-                <MobileIcon width="24" />
+                <MobileIcon size={24} />
               </div>
               <hr className="overflow-visible h-0 box-content opacity-5 border-b border-t-0 w-full m-0" />
               <h3 className="leading-[clamp(1.5rem,1.5873015873vw,1.995rem)] text-[clamp(1.125rem,1.1904761905vw,1.49625rem)] m-0 text-[var(--theme-secondary)]">Mobile Development</h3>
@@ -42,7 +42,7 @@ const Problems: React.FC = (): JSX.Element => {
             </li>
             <li className="gap-[clamp(1.25rem,1.3227513228vw,1.6625rem)] grid">
               <div className="relative h-[clamp(1.625rem,1.7195767196vw,2.16125rem)]">
-                <SelectionIcon width="28" />
+                <SelectionIcon size={28} />
               </div>
               <hr className="overflow-visible h-0 box-content opacity-5 border-b border-t-0 w-full m-0" />
               <h3 className="leading-[clamp(1.5rem,1.5873015873vw,1.995rem)] text-[clamp(1.125rem,1.1904761905vw,1.49625rem)] m-0 text-[var(--theme-secondary)]">UI/UX Design</h3>
@@ -50,7 +50,7 @@ const Problems: React.FC = (): JSX.Element => {
             </li>
             <li className="gap-[clamp(1.25rem,1.3227513228vw,1.6625rem)] grid">
               <div className="relative h-[clamp(1.625rem,1.7195767196vw,2.16125rem)]">
-                <AIBrainIcon width="28" />
+                <AIBrainIcon size={28} />
               </div>
               <hr className="overflow-visible h-0 box-content opacity-5 border-b border-t-0 w-full m-0" />
               <h3 className="leading-[clamp(1.5rem,1.5873015873vw,1.995rem)] text-[clamp(1.125rem,1.1904761905vw,1.49625rem)] m-0 text-[var(--theme-secondary)]">AI & Machine Learning</h3>
@@ -58,7 +58,7 @@ const Problems: React.FC = (): JSX.Element => {
             </li>
             <li className="gap-[clamp(1.25rem,1.3227513228vw,1.6625rem)] grid">
               <div className="relative h-[clamp(1.625rem,1.7195767196vw,2.16125rem)]">
-                <InfinityIcon width="28" />
+                <InfinityIcon size={28} />
               </div>
               <hr className="overflow-visible h-0 box-content opacity-5 border-b border-t-0 w-full m-0" />
               <h3 className="leading-[clamp(1.5rem,1.5873015873vw,1.995rem)] text-[clamp(1.125rem,1.1904761905vw,1.49625rem)] m-0 text-[var(--theme-secondary)]">DevOps</h3>
@@ -66,7 +66,7 @@ const Problems: React.FC = (): JSX.Element => {
             </li>
             <li className="gap-[clamp(1.25rem,1.3227513228vw,1.6625rem)] grid">
               <div className="relative h-[clamp(1.625rem,1.7195767196vw,2.16125rem)]">
-                <SaaSIcon width="28" />
+                <SaaSIcon size={28} />
               </div>
               <hr className="overflow-visible h-0 box-content opacity-5 border-b border-t-0 w-full m-0" />
               <h3 className="leading-[clamp(1.5rem,1.5873015873vw,1.995rem)] text-[clamp(1.125rem,1.1904761905vw,1.49625rem)] m-0 text-[var(--theme-secondary)]">Cloud Computing & Migration</h3>
@@ -74,7 +74,7 @@ const Problems: React.FC = (): JSX.Element => {
             </li>
             <li className="gap-[clamp(1.25rem,1.3227513228vw,1.6625rem)] grid">
               <div className="relative h-[clamp(1.625rem,1.7195767196vw,2.16125rem)]">
-                <SupportIcon width="28" />
+                <SupportIcon size={28} />
               </div>
               <hr className="overflow-visible h-0 box-content opacity-5 border-b border-t-0 w-full m-0" />
               <h3 className="leading-[clamp(1.5rem,1.5873015873vw,1.995rem)] text-[clamp(1.125rem,1.1904761905vw,1.49625rem)] m-0 text-[var(--theme-secondary)]">Support & Maintenance</h3>

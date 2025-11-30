@@ -15,7 +15,7 @@ export const ExpertiseCard: React.FC<Omit<ExpertiseContent, 'meta' | 'iconCards'
           <h2 className={styles['expertise-card__pill']}>Our Expertise</h2>
           <h3 className={styles['expertise-card__heading']}>{tagText}</h3>
           <p className={styles['expertise-card__body']}>{heading}</p>
-          <Link variant="secondary" href={`/expertise/${slug}`} endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} spanClassName={styles['expertise-card__button']}>
+          <Link variant="secondary" href={`/expertise/${slug}`} endIcon={<RightArrowIcon size={14} className={styles['button--icon']} />} spanClassName={styles['expertise-card__button']}>
             Read more
           </Link>
         </div>

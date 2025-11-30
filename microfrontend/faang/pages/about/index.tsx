@@ -245,7 +245,7 @@ const Contact: React.FC = (): JSX.Element => {
                   <LogoGrid />
                 </div>
               </AppearOnScroll>
-              {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities capabilitiesHeading={PageData.aboutSections[2]} capabilities={PageData.capabilities} />}
+              {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities capabilitiesHeading={PageData.aboutSections[2]} capabilitiesContent={PageData.capabilities} />}
             </div>
 
             <div className={`${styles['about-midpage-banner']} ${styles['about-midpage-banner--visible']}`}>

@@ -46,7 +46,7 @@ const Contact: React.FC = (): JSX.Element => {
         <meta name="twitter:site" content="@Dev8X"></meta>
       </Head>
       <FooterRevealPageWrap variant="frame">
-        <Header submenuData={SubmenuData}/>
+        <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <style jsx global>{`
             :root {
@@ -88,7 +88,7 @@ const Contact: React.FC = (): JSX.Element => {
                 </h1>
                 <div>
                   <div>
-                    <Button variant="secondary" context="contact" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} spanClassName={styles['contact-button']} onClick={() => toggleModal('contact')}>
+                    <Button variant="secondary" context="contact" endIcon={<RightArrowIcon size={14} className={styles['button--icon']} />} spanClassName={styles['contact-button']} onClick={() => toggleModal('contact')}>
                       {PageData.footerData.global.buttonText}
                     </Button>
                   </div>

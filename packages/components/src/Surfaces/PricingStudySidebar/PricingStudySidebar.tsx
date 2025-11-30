@@ -68,7 +68,7 @@ export const PricingStudySidebar: React.FC<{ onBookNow?: () => void }> = ({ onBo
       </div>
       <div className={`${FooterStyles['footer-columns']} footer-columns`}>
         <Magnet>
-          <Button variant="secondary" context="contact" endIcon={<RightArrowIcon width="14" />} onClick={handleSendRequest} disabled={loading}>
+          <Button variant="secondary" context="contact" endIcon={<RightArrowIcon size={14} />} onClick={handleSendRequest} disabled={loading}>
             {loading ? 'Sending...' : 'Send Request'}
           </Button>
         </Magnet>

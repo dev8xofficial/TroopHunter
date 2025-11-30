@@ -69,7 +69,7 @@ import styles from './index.module.css';
 
 interface CapabilitiesProps {
   capabilitiesHeading: string;
-  capabilities: CapabilitiesContent;
+  capabilitiesContent: CapabilitiesContent;
 }
 
 const ICON_MAP: Record<string, React.ComponentType<{ size?: number | string; className?: string }>> = {
@@ -135,7 +135,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: number | string; cla
   IntegrationsIcon
 };
 
-const Capabilities: React.FC<CapabilitiesProps> = ({ capabilities, capabilitiesHeading }): JSX.Element => {
+const Capabilities: React.FC<CapabilitiesProps> = ({ capabilitiesContent, capabilitiesHeading }): JSX.Element => {
   const router = useRouter();
   const isAboutPage = router.pathname === '/about';
 
@@ -167,8 +167,8 @@ const Capabilities: React.FC<CapabilitiesProps> = ({ capabilities, capabilitiesH
         </h2>
 
         <div className={`${styles['about-capabilities__grid']} ${!isAboutPage && styles['about-capabilities__grid--custom-dev8x-grid-columns']}`}>
-          {capabilities?.length > 0 &&
-            capabilities.map((capability, index) => (
+          {capabilitiesContent?.length > 0 &&
+            capabilitiesContent.map((capability, index) => (
               <section className={styles['about-column']} style={{ opacity: 1, transform: 'translateX(0px)' }} key={capability.heading || index}>
                 {capability.heading && <h3 className={styles['about-column__heading']}>{capability.heading}</h3>}
                 <ul className={`${styles['about-column__list']} ${!isAboutPage && styles['about-column__list--custom-grid-columns-2']}`}>

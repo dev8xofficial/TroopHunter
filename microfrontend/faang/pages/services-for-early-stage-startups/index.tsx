@@ -135,7 +135,7 @@ const MVPPage: React.FC = (): JSX.Element => {
                     <span>{PageData.footerCta?.heading || "Got questions? We're here to help"}</span>
                   </h2>
                   <div>
-                    <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon width="14" className={ExpertiseStyles['button--icon']} />} spanClassName={ExpertiseStyles['contact-button']} onClick={() => toggleModal('contact')}>
+                    <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon size={14} className={ExpertiseStyles['button--icon']} />} spanClassName={ExpertiseStyles['contact-button']} onClick={() => toggleModal('contact')}>
                       {PageData.footerCta?.buttonText || 'Schedule Call'}
                     </Button>
                   </div>
@@ -173,7 +173,7 @@ const MVPPage: React.FC = (): JSX.Element => {
                       <span>{PageData.footerCtaSecondary?.heading || PageData.footerCta?.heading || "Got questions? We're here to help"}</span>
                     </h2>
                     <div>
-                      <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon width="14" className={ExpertiseStyles['button--icon']} />} spanClassName={ExpertiseStyles['contact-button']} onClick={() => toggleModal('schedulecall')}>
+                      <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon size={14} className={ExpertiseStyles['button--icon']} />} spanClassName={ExpertiseStyles['contact-button']} onClick={() => toggleModal('schedulecall')}>
                         {PageData.footerCtaSecondary?.buttonText || PageData.footerCta?.buttonText || 'Schedule Call'}
                       </Button>
                     </div>

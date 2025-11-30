@@ -68,7 +68,7 @@ export const AwardsBlock: React.FC = (): JSX.Element => {
               variant="white"
               startIcon={
                 <i className={styles['awards-block__button-icon']} style={{ '--icon-color': 'var(--theme-primary)' } as CSSProperties}>
-                  <CrossIcon width="14" />
+                  <CrossIcon size={14} />
                 </i>
               }
             >

@@ -71,7 +71,7 @@ export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePa
               <div className={styles['expertise-footer']}>
                 <Button
                   variant="secondary"
-                  endIcon={<RightArrowIcon width="14" className={FeedSilderStyles['button--icon']} />}
+                  endIcon={<RightArrowIcon size={14} className={FeedSilderStyles['button--icon']} />}
                   className={`${ButtonStyles['button']} ${ButtonStyles['button--icon']} ${ButtonStyles['button--bg-secondary']}`}
                   spanClassName={FeedSilderStyles['expertise-card__button']}
                   onClick={(e) => {
@@ -88,7 +88,7 @@ export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePa
               </div>
               <div className={FeedSilderStyles['divider']}>
                 <div className={FeedSilderStyles['divider__line']}></div>
-                <StarIcon width={30} height={30} className={FeedSilderStyles['divider__star']} />
+                <StarIcon size={30} className={FeedSilderStyles['divider__star']} />
                 <div className={FeedSilderStyles['divider__line']}></div>
               </div>
               {offer.features?.length > 0 && (

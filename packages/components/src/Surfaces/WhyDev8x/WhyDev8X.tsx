@@ -48,7 +48,7 @@ export const WhyDev8X: React.FC<WhyProps> = ({ heading, para1, para2, image, sta
             <p>{para2}</p>
           </AppearOnScroll>
           <AppearOnScroll delay={0.5} as="div">
-            <Link variant="secondary" href="/about" endIcon={<RightArrowIcon width="14" className={styles['button--icon']} />} anchorClassName={styles['homepage-bottom__link']}>
+            <Link variant="secondary" href="/about" endIcon={<RightArrowIcon size={14} className={styles['button--icon']} />} anchorClassName={styles['homepage-bottom__link']}>
               About Us
             </Link>
           </AppearOnScroll>

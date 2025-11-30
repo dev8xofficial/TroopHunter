@@ -152,7 +152,7 @@ const OffersPage: React.FC = (): JSX.Element => {
                       <span>Got questions? We’re here to help</span>
                     </h2>
                     <div>
-                      <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon width="14" className={ExpertiseStyles['button--icon']} />} spanClassName={ExpertiseStyles['contact-button']} onClick={() => toggleModal('contact')}>
+                      <Button variant="secondary" context="contact" size="large" endIcon={<RightArrowIcon size={14} className={ExpertiseStyles['button--icon']} />} spanClassName={ExpertiseStyles['contact-button']} onClick={() => toggleModal('contact')}>
                         Schedule Call
                       </Button>
                     </div>
