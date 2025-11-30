@@ -1,3 +1,15 @@
+function corsHeaders() {
+	return {
+		'Cache-Control': 'public, max-age=86400, immutable',
+		'Access-Control-Allow-Origin': '*', // ✅ allow all origins
+		'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
+		'Access-Control-Allow-Headers': '*',
+		'Access-Control-Allow-Credentials': 'true',
+		'Cross-Origin-Resource-Policy': 'cross-origin', // ✅ needed for fonts
+		'Cross-Origin-Embedder-Policy': 'require-corp', // optional, depends on your app
+	};
+}
+
 export default {
 	async fetch(req, env) {
 		const url = new URL(req.url);
@@ -11,12 +23,42 @@ export default {
 					'Access-Control-Allow-Origin': '*',
 					'Access-Control-Allow-Methods': 'GET, OPTIONS',
 					'Access-Control-Allow-Headers': '*',
+					'Cross-Origin-Resource-Policy': 'cross-origin',
 				},
 			});
 		}
 
-		// --- 1. Serve ALL non-image assets from ASSETS first ---
-		if (!decodedPathname.startsWith('/images/')) {
+		// --- 1. Handle /videos/ files from R2 ---
+		if (pathname.startsWith('/videos/')) {
+			const objectKey = decodedPathname.replace(/^\//, '');
+			const object = await env.MY_BUCKET.get(objectKey, { cf: { cacheTtl: 0, cacheEverything: false } });
+
+			if (!object) {
+				return new Response('Worker 0: Video Not Found', { status: 404, headers: corsHeaders() });
+			}
+
+			const contentType =
+				object.httpMetadata?.contentType ||
+				(pathname.endsWith('.m3u8')
+					? 'application/vnd.apple.mpegurl'
+					: pathname.endsWith('.ts')
+						? 'video/mp2t'
+						: pathname.endsWith('.mp4')
+							? 'video/mp4'
+							: 'application/octet-stream');
+
+			return new Response(object.body, {
+				headers: {
+					...corsHeaders(),
+					'Cache-Control': 'no-cache, no-transform, no-store', // or 'private, max-age=0'
+					'Content-Type': contentType,
+					ETag: object.httpEtag,
+				},
+			});
+		}
+
+		// --- 2. Serve ALL non-image assets from ASSETS first ---
+		if (!pathname.startsWith('/images/') && !pathname.startsWith('/videos/')) {
 			const objectKey = decodedPathname.replace(/^\//, '');
 
 			// --- 1. Try R2 first with the decoded key ---
@@ -49,7 +91,7 @@ export default {
 			return new Response('Worker 1: Not Found', { status: 404 });
 		}
 
-		// --- 2. Handle /images/... from R2 ---
+		// --- 3. Handle /images/... from R2 ---
 		if (!pathname.startsWith('/images/')) {
 			return new Response('Worker 2: Not Found', { status: 404 });
 		}
