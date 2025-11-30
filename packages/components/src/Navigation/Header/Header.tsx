@@ -29,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
   useEffect(() => {
     setIsMounted(true);
     setIsHelloabdul(isHelloabdulPort());
-    setIsDev8X(getBrandFromBaseURL() === 'faang');
+    setIsDev8X(getBrandFromBaseURL() === 'dev8x');
   }, []);
 
   const getActiveColumn = (path: string): number => {

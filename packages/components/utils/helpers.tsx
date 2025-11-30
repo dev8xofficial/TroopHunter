@@ -12,7 +12,7 @@ export const prefixed = (src: string): string => {
 
   return `${assetHost}${path}`;
 };
-export type Brand = 'faang' | 'dev8x' | 'helloabdul';
+export type Brand = 'dev8x' | 'helloabdul';
 export const getBrandFromBaseURL = (baseUrl?: string): Brand => {
   let url: string | undefined;
   let hostname: string | undefined;
@@ -29,7 +29,7 @@ export const getBrandFromBaseURL = (baseUrl?: string): Brand => {
     // Check for NEXT_PUBLIC_BRAND environment variable first (most reliable)
     if (process.env.NEXT_PUBLIC_BRAND) {
       const envBrand = process.env.NEXT_PUBLIC_BRAND.toLowerCase();
-      if (['faang', 'dev8x', 'helloabdul'].includes(envBrand)) {
+      if (['dev8x', 'helloabdul'].includes(envBrand)) {
         return envBrand as Brand;
       }
     }
@@ -50,9 +50,6 @@ export const getBrandFromBaseURL = (baseUrl?: string): Brand => {
   if (hostname) {
     const lowerHostname = hostname.toLowerCase();
 
-    if (lowerHostname.includes('faang')) {
-      return 'faang';
-    }
     if (lowerHostname.includes('helloabdul')) {
       return 'helloabdul';
     }
@@ -68,16 +65,11 @@ export const getBrandFromBaseURL = (baseUrl?: string): Brand => {
       const port = urlObj.port ? parseInt(urlObj.port, 10) : null;
 
       if (port !== null) {
-        // faang ports: 3000 (production), 3001 (staging), 3002 (development/local)
-        const faangPorts = [3009, 3010, 3011];
         // dev8x ports: 3003 (production), 3004 (staging), 3005 (development/local)
         const dev8xPorts = [3003, 3004, 3005];
         // helloabdul ports: 3006 (production), 3007 (staging), 3008 (development/local)
         const helloabdulPorts = [3006, 3007, 3008];
 
-        if (faangPorts.includes(port)) {
-          return 'faang';
-        }
         if (dev8xPorts.includes(port)) {
           return 'dev8x';
         }
@@ -93,9 +85,6 @@ export const getBrandFromBaseURL = (baseUrl?: string): Brand => {
   // Strategy 3: Check process.cwd() or file system path (development fallback)
   if (typeof process !== 'undefined' && process.cwd) {
     const cwd = process.cwd().toLowerCase();
-    if (cwd.includes('faang')) {
-      return 'faang';
-    }
     if (cwd.includes('helloabdul')) {
       return 'helloabdul';
     }
@@ -109,7 +98,6 @@ export const getBrandFromBaseURL = (baseUrl?: string): Brand => {
 };
 
 const BRAND_OFFERS_ROUTES: Record<Brand, string[]> = {
-  faang: ['/offers', '/pricing'],
   dev8x: ['/offers', '/pricing'],
   helloabdul: []
 };
@@ -135,8 +123,7 @@ export const shouldShowOffersCategories = (brand: Brand, pathname: string): bool
 };
 
 const BRAND_PILL_VISIBILITY: Record<Brand, boolean> = {
-  faang: true,
-  dev8x: false,
+  dev8x: true,
   helloabdul: false
 };
 

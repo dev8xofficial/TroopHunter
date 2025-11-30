@@ -1,1 +1,1 @@
-export { ICON_MAP } from '../../../faang/data/expertise/IconMap';
+export { ICON_MAP } from '../../../dev8x/data/expertise/IconMap';
