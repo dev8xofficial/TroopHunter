@@ -99,7 +99,7 @@ export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height, onLinkClic
                         <li>
                           <NextLink href={item.href} passHref legacyBehavior>
                             <a className={`${styles['submenu__link']} ${styles[`submenu__link--${item.color}`]}`} onClick={onLinkClick}>
-                              {IconComponent && <IconComponent size="11" className={`SVG_svg-raw-wrap__ODfz9 ${iconClassName}`} />}
+                              {IconComponent && <IconComponent size="13" className={`SVG_svg-raw-wrap__ODfz9 ${iconClassName}`} />}
                               {item.title}
                             </a>
                           </NextLink>
