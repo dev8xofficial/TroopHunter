@@ -102,19 +102,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -244,19 +244,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -392,19 +392,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -540,19 +540,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -682,19 +682,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -826,19 +826,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -976,19 +976,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -1124,19 +1124,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -1272,19 +1272,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -1426,11 +1426,11 @@ const EXPERTISES: ExpertiseContent[] = [
       {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
       }
     ],
 
@@ -1576,19 +1576,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -1730,19 +1730,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -1882,19 +1882,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -2041,19 +2041,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.linkedin.com/company/helloabdul/'
-      },
-      {
+        // icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -2205,19 +2205,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -2354,19 +2354,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -2495,19 +2495,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -2647,19 +2647,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -2801,19 +2801,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -2949,19 +2949,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -3098,19 +3098,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -3246,19 +3246,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -3400,19 +3400,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -3565,19 +3565,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -3719,19 +3719,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.linkedin.com/company/helloabdul/'
-      },
-      {
+        // icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -3873,19 +3873,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.linkedin.com/company/helloabdul/'
-      },
-      {
+        // icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -4021,19 +4021,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -4175,19 +4175,19 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
         // icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
       // {
       //   title: 'Youtube',
       //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
@@ -4323,18 +4323,23 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        // icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
 
     testimonials: [
@@ -4467,18 +4472,23 @@ const EXPERTISES: ExpertiseContent[] = [
     footerSocialLinks: [
       {
         title: 'LinkedIn',
-        icon: { name: 'AsteriskIcon', size: 10 },
+        // icon: { name: 'AsteriskIcon', size: 10 },
         href: 'https://www.linkedin.com/company/dev8xofficial/'
-      },
-      {
+      }
+      /* {
         title: 'Instagram',
         icon: { name: 'AsteriskIcon', size: 10 },
-        href: 'https://www.instagram.com/dev8xofficial/'
+        href: 'https://www.instagram.com/reh.m.an/'
       },
       {
         title: 'Facebook',
-        href: 'https://www.facebook.com/profile.php?id=61569289660818'
-      }
+        // icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
     ],
 
     testimonials: [

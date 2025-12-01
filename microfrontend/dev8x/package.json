@@ -15,7 +15,7 @@
     "build:production": "dotenv -e .env.production next build",
     "lint": "next lint",
     "generate:hls": "bash scripts/generate-hls.sh",
-    "generate:sitemap": "node sitemap.mjs",
+    "generate:sitemap": "node sitemap.js",
     "ngrok:local": "npx ngrok http 3005",
     "ngrok:development": "npx ngrok http 3005",
     "ngrok:staging": "npx ngrok http 3004",

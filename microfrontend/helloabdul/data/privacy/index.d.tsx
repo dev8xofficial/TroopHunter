@@ -205,19 +205,19 @@ const PageData: PrivacyPageContent = {
   footerSocialLinks: [
     {
       title: 'LinkedIn',
-      icon: { name: 'AsteriskIcon', size: 10 },
+      // icon: { name: 'AsteriskIcon', size: 10 },
       href: 'https://www.linkedin.com/helloabdul/'
     },
-    {
-      title: 'Instagram',
-      icon: { name: 'AsteriskIcon', size: 10 },
-      href: 'https://www.instagram.com/helloabdul/'
-    },
-    {
-      title: 'Facebook',
-      // icon: { name: 'AsteriskIcon', size: 10 },
-      href: 'https://www.facebook.com/profile.php?id=61569289660818'
-    }
+    // {
+    //   title: 'Instagram',
+    //   icon: { name: 'AsteriskIcon', size: 10 },
+    //   href: 'https://www.instagram.com/helloabdul/'
+    // },
+    // {
+    //   title: 'Facebook',
+    //   icon: { name: 'AsteriskIcon', size: 10 },
+    //   href: 'https://www.facebook.com/share/15PGxbroKkm/'
+    // }
     // {
     //   title: 'Youtube',
     //   href: 'https://www.youtube.com/@helloabdulOfficial-s3v'

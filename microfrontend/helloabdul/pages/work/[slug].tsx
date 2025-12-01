@@ -1,7 +1,9 @@
 'use client';
 
 import Head from 'next/head';
-import { FooterRevealPageWrap, Footer, Header, ProjectsFormModal, WorkDetail } from '@repo/components';
+import { useSetAtom } from 'jotai';
+import { FooterRevealPageWrap, Footer, Header, ProjectsFormModal, WorkDetail, toggleSmoothModalAtom, FormModal } from '@repo/components';
+import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import { WORK_PROJECTS } from '../../data/work/index.d';
 import PageData from '../../data/work/index.d';
 import SubmenuData from '../../data/navigation/index.d';
@@ -10,6 +12,7 @@ import { prefixed } from '../../utils/helpers';
 import styles from './index.module.css';
 
 const WorkPage: React.FC<WorkDetail> = ({ slug, ...project }: WorkDetail): JSX.Element => {
+  const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const getNextWorkProject = (currentSlug: string) => {
     const currentIndex = WORK_PROJECTS.findIndex((e) => e.slug === currentSlug);
 
@@ -59,8 +62,11 @@ const WorkPage: React.FC<WorkDetail> = ({ slug, ...project }: WorkDetail): JSX.E
             <ProjectsFormModal slug={slug} {...project} nextWorkProject={nextWorkProject} />
           </main>
         </FooterRevealPageWrap>
-        <Footer footerMainContent={PageData.footerMainContent} footerData={PageData.footerData} footerSocialLinks={PageData.footerSocialLinks} />
+        <Footer footerMainContent={PageData.footerMainContent} footerData={PageData.footerData} footerSocialLinks={PageData.footerSocialLinks} onClick={() => toggleModal('contact')} />
       </FooterRevealPageWrap>
+      <SmoothModalWrapper modalType="contact" toggle={() => toggleModal('contact')}>
+        <FormModal />
+      </SmoothModalWrapper>
     </>
   );
 };

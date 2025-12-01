@@ -121,7 +121,7 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
       const lastmod = updatedPaths.has(urlPath) ? getCurrentDate() : undefined;
 
       // Define changefreq and priority based on page importance
-      let changefreq = 'monthly';
+      let changefreq = 'daily';
       let priority = 0.6;
 
       if (urlPath === '/') {
@@ -131,13 +131,13 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
         changefreq = 'weekly';
         priority = 0.9;
       } else if (urlPath === '/work') {
-        changefreq = 'weekly';
+        changefreq = 'daily';
         priority = 0.9;
       } else if (urlPath === '/about') {
-        changefreq = 'monthly';
+        changefreq = 'daily';
         priority = 0.8;
       } else if (urlPath === '/contact') {
-        changefreq = 'monthly';
+        changefreq = 'daily';
         priority = 0.7;
       } else if (urlPath === '/privacy') {
         changefreq = 'yearly';
@@ -156,7 +156,7 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
     for (const slug of dynamicRoutes.expertise) {
       sitemapStream.write({
         url: `/expertise/${slug}`,
-        changefreq: 'weekly',
+        changefreq: 'daily',
         priority: 0.7,
         lastmod: getCurrentDate()
       });

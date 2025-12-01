@@ -17,59 +17,66 @@ const __dirname = path.dirname(__filename);
 const pageToUrlMap = {
   // Main pages
   index: '/',
-  'work/index': '/work',
-  'careers/index': '/careers',
-  'internships/index': '/internships',
-  'contact/index': '/contact',
   'about/index': '/about',
-  'expertise/index': '/expertise',
+  'work/index': '/work',
+  'pricing/index': '/pricing',
+  'contact/index': '/contact',
   'our-process/index': '/our-process',
-  'plans-and-pricing/index': '/plans-and-pricing',
+  'services-for-early-stage-startups/index': '/services-for-early-stage-startups',
+  'services-for-growth-stage-startups/index': '/services-for-growth-stage-startups',
+  'cto-as-a-service/index': '/cto-as-a-service',
+  'web-applications/index': '/web-applications',
+  'saas-applications/index': '/saas-applications',
+  'mobile-applications/index': '/mobile-applications',
   'privacy/index': '/privacy',
   '404/index': '/404',
 
   // Dynamic routes (these will be handled separately)
-  'expertise/[slug]': '/expertise/[slug]',
+  'pricing/[slug]': '/pricing/[slug]',
   'work/[slug]': '/work/[slug]'
 };
 
 // Function to read dynamic routes from data files
 const readDynamicRoutes = () => {
   const dynamicRoutes = {
-    expertise: [],
+    pricing: [],
     work: []
   };
 
   try {
-    // Read expertise routes
-    const expertiseDataPath = path.join(__dirname, './data/expertise/index.d.tsx');
-    if (fs.existsSync(expertiseDataPath)) {
-      const expertiseContent = fs.readFileSync(expertiseDataPath, 'utf-8');
+    // Read pricing routes
+    const pricingDataPath = path.join(__dirname, './data/pricing/index.d.tsx');
+    if (fs.existsSync(pricingDataPath)) {
+      const pricingContent = fs.readFileSync(pricingDataPath, 'utf-8');
 
-      // Extract EXPERTISES array using regex
-      const expertiseMatch = expertiseContent.match(/const EXPERTISES:\s*ExpertiseContent\[\]\s*=\s*\[([\s\S]*?)\];/);
-      if (expertiseMatch) {
-        const expertiseArrayContent = expertiseMatch[1];
+      // 1. FIX: Changed 'Offers' to 'OFFERS' to match the data file
+      // 2. FIX: The capture group ([\s\S]*?) will contain the array content
+      const pricingMatch = pricingContent.match(/const\s+OFFERS\s*:\s*OffersContent[\s\w\[\]]*=\s*\[([\s\S]*?)\];/);
+
+      if (pricingMatch) {
+        // CORRECT: Use pricingMatch[1] to get the captured content *inside* the array brackets
+        const pricingArrayContent = pricingMatch[1];
 
         // Extract slug properties using regex
-        const slugMatches = expertiseArrayContent.match(/slug:\s*['"`]([^'"`]+)['"`]/g);
+        const slugMatches = pricingArrayContent.match(/slug:\s*['"`]([^'"`]+)['"`]/g);
         if (slugMatches) {
           slugMatches.forEach((match) => {
             const slug = match.match(/slug:\s*['"`]([^'"`]+)['"`]/)[1];
-            dynamicRoutes.expertise.push(slug);
+            dynamicRoutes.pricing.push(slug);
           });
         }
       }
     }
 
-    // Read work routes
+    // Read work routes (This section was already correct)
     const workDataPath = path.join(__dirname, './data/work/index.d.tsx');
     if (fs.existsSync(workDataPath)) {
       const workContent = fs.readFileSync(workDataPath, 'utf-8');
 
-      // Extract OFFERS array using regex
+      // This regex captures the array content into group [1]
       const workMatch = workContent.match(/const WORK_PROJECTS:\s*WorkDetail\[\]\s*=\s*\[([\s\S]*?)\];/);
       if (workMatch) {
+        // Correctly uses workMatch[1]
         const workArrayContent = workMatch[1];
 
         // Extract slug properties using regex
@@ -84,8 +91,8 @@ const readDynamicRoutes = () => {
     }
 
     console.log('📊 Dynamic routes found:');
-    console.log(`   Expertise: ${dynamicRoutes.expertise.length} routes`);
-    console.log(`   Work: ${dynamicRoutes.work.length} routes`);
+    console.log(`   Pricing: ${dynamicRoutes.pricing.length} routes`);
+    console.log(`   Work: ${dynamicRoutes.work.length} routes`);
 
     return dynamicRoutes;
   } catch (error) {
@@ -125,31 +132,37 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
       const lastmod = updatedPaths.has(urlPath) ? getCurrentDate() : undefined;
 
       // Define changefreq and priority based on page importance
-      let changefreq = 'monthly';
-      let priority = 0.6;
+      let changefreq = 'weekly';
+      let priority = 0.9;
 
       if (urlPath === '/') {
         changefreq = 'daily';
         priority = 1.0;
       } else if (urlPath === '/about') {
-        changefreq = 'weekly';
-        priority = 0.8;
+        changefreq = 'daily';
+        priority = 0.9;
       } else if (urlPath === '/work') {
-        changefreq = 'weekly';
-        priority = 0.8;
-      } else if (urlPath === '/expertise') {
-        changefreq = 'weekly';
-        priority = 0.8;
+        changefreq = 'daily';
+        priority = 0.9;
       } else if (urlPath === '/contact') {
         changefreq = 'monthly';
         priority = 0.7;
-      } else if (urlPath === '/careers') {
-        changefreq = 'monthly';
+      } else if (urlPath === '/cto-as-a-service') {
+        changefreq = 'weekly';
         priority = 0.6;
-      } else if (urlPath === '/internships') {
-        changefreq = 'monthly';
+      } else if (urlPath === '/services-for-early-stage-startups') {
+        changefreq = 'weekly';
         priority = 0.6;
-      } else if (urlPath === '/plans-and-pricing') {
+      } else if (urlPath === '/services-for-growth-stage-startups') {
+        changefreq = 'weekly';
+        priority = 0.5;
+      } else if (urlPath === '/web-applications') {
+        changefreq = 'monthly';
+        priority = 0.5;
+      } else if (urlPath === '/saas-applications') {
+        changefreq = 'monthly';
+        priority = 0.5;
+      } else if (urlPath === '/mobile-applications') {
         changefreq = 'monthly';
         priority = 0.5;
       } else if (urlPath === '/our-process') {
@@ -158,6 +171,9 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
       } else if (urlPath === '/privacy') {
         changefreq = 'yearly';
         priority = 0.4;
+      } else if (urlPath === '/pricing') {
+        changefreq = 'yearly';
+        priority = 0.8;
       }
 
       sitemapStream.write({
@@ -168,10 +184,10 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
       });
     }
 
-    // Add dynamic expertise routes
-    for (const slug of dynamicRoutes.expertise) {
+    // Add dynamic pricing routes
+    for (const slug of dynamicRoutes.pricing) {
       sitemapStream.write({
-        url: `/expertise/${slug}`,
+        url: `/pricing/${slug}`,
         changefreq: 'weekly',
         priority: 0.7,
         lastmod: getCurrentDate()
@@ -226,15 +242,15 @@ const startFileWatcher = () => {
   watcher.on('change', (filePath) => {
     console.log(`File changed: ${filePath}`);
 
-    // Check if it's a data file (expertise or work)
-    if (filePath.includes('/data/expertise/') || filePath.includes('/data/work/')) {
+    // Check if it's a data file (pricing or work)
+    if (filePath.includes('/data/pricing/') || filePath.includes('/data/work/')) {
       console.log('Data file changed, regenerating sitemap with dynamic routes...');
 
       // Debounce updates (wait for 5 seconds of inactivity)
       if (updateTimeout !== null) clearTimeout(updateTimeout);
 
       updateTimeout = setTimeout(() => {
-        generateSitemap(new Set(['/expertise', '/work']));
+        generateSitemap(new Set(['/pricing', '/work']));
       }, 5000);
       return;
     }
@@ -270,9 +286,9 @@ const startFileWatcher = () => {
     console.log(`File removed: ${filePath}`);
 
     // Check if it's a data file
-    if (filePath.includes('/data/expertise/') || filePath.includes('/data/work/')) {
+    if (filePath.includes('/data/pricing/') || filePath.includes('/data/work/')) {
       console.log('Data file removed, regenerating sitemap...');
-      generateSitemap(new Set(['/expertise', '/work']));
+      generateSitemap(new Set(['/pricing', '/work']));
       return;
     }
 

@@ -43,19 +43,19 @@ const PageData: PageLayoutContent = {
   footerSocialLinks: [
     {
       title: 'LinkedIn',
-      icon: { name: 'AsteriskIcon', size: 10 },
-      href: 'https://www.linkedin.com/company/helloabdul/'
-    },
-    {
-      title: 'Instagram',
-      icon: { name: 'AsteriskIcon', size: 10 },
-      href: 'https://www.instagram.com/dev8xofficial/'
-    },
-    {
-      title: 'Facebook',
       // icon: { name: 'AsteriskIcon', size: 10 },
-      href: 'https://www.facebook.com/profile.php?id=61569289660818'
+      href: 'https://www.linkedin.com/company/helloabdul/'
     }
+    // {
+    //   title: 'Instagram',
+    //   icon: { name: 'AsteriskIcon', size: 10 },
+    //   href: 'https://www.instagram.com/reh.m.an/'
+    // },
+    // {
+    //   title: 'Facebook',
+    //   // icon: { name: 'AsteriskIcon', size: 10 },
+    //   href: 'https://www.facebook.com/share/15PGxbroKkm/'
+    // }
     // {
     //   title: 'Youtube',
     //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
