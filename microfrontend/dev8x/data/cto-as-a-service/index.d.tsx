@@ -11,8 +11,8 @@ const CTO: OffersContent[] = [
     heroButtons: [
       {
         label: 'See Pricing',
-        href: prefixed('/pricing/tech-founders'),
-        target: '_self'
+        href: '/pricing/tech-founders',
+        target: '_blank'
       },
       {
         label: 'Schedule a Call',

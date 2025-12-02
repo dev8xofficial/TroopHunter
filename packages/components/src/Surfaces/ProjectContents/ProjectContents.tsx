@@ -117,7 +117,7 @@ export const ProjectsFormModal: React.FC<WorkDetailWithoutMeta> = ({ slug, title
               </span>
             </span>
           </h2>
-          {nextWorkProject && <WorkCard variant="landscape" space="inner" bgColor={safeBgColorNextWorkProject} title="" image="" placeholderImage={placeholderImage} video={nextWorkProject.video} path="" />}
+          {nextWorkProject && <WorkCard variant="landscape" space="inner" bgColor={safeBgColorNextWorkProject} title={nextWorkProject.title} image="" placeholderImage={placeholderImage} video={nextWorkProject.video} path="" />}
         </footer>
       </div>
     </>

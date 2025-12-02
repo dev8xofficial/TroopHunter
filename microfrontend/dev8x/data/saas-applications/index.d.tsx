@@ -11,7 +11,7 @@ const SAAS: OffersContent[] = [
     heroButtons: [
       {
         label: 'See Pricing',
-        href: prefixed('/pricing/tech-founders'),
+        href: '/pricing/tech-founders',
         target: '_blank'
       },
       {

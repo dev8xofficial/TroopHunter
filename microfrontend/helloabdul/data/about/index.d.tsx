@@ -88,9 +88,9 @@ const PageData: AboutContent = {
     }
   },
   footerSocialLinks: [
-    { title: 'LinkedIn', icon: { name: 'AsteriskIcon', size: 10 }, href: 'https://www.linkedin.com/in/helloabdul/' },
-    { title: 'Instagram', icon: { name: 'AsteriskIcon', size: 10 }, href: 'https://www.instagram.com/dev8xofficial/' },
-    { title: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61569289660818' }
+    { title: 'LinkedIn', href: 'https://www.linkedin.com/in/helloabdul/' },
+    // { title: 'Instagram', icon: { name: 'AsteriskIcon', size: 10 }, href: 'https://www.instagram.com/reh.m.an/' },
+    // { title: 'Facebook', href: 'https://www.facebook.com/share/15PGxbroKkm/' }
   ]
 };
 export default PageData;
