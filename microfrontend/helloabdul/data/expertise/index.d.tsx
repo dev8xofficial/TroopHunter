@@ -294,7 +294,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'real-time-apps',
-    variant: 'pink',
+    variant: 'purple',
     tagText: 'Real-Time Applications',
     heading: 'Engage users in the moment with real-time experiences',
     image: prefixed('/api/images/work/other/developer-identifying-server-issues.png'),
@@ -732,7 +732,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'interaction-design',
-    variant: 'cyan',
+    variant: 'purple',
     tagText: 'Interaction Design',
     heading: 'Inspire, enable, captivate',
     image: prefixed('/api/images/work/other/sussexthumb.png'),
@@ -876,7 +876,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'user-interface-components',
-    variant: 'pink',
+    variant: 'cyan',
     tagText: 'User Interface Components',
     heading: 'Next-gen UI tailored to your application',
     image: prefixed('/api/images/work/other/04-landscape.png'),
@@ -1026,7 +1026,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'design-systems',
-    variant: 'green',
+    variant: 'pink',
     tagText: 'Design Systems',
     heading: 'Scalable Design Solutions',
     image: prefixed('/api/images/work/other/design-systems_dev-effort.png'),
@@ -1322,7 +1322,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'pixel-perfect-layouts',
-    variant: 'purple',
+    variant: 'green',
     tagText: 'Pixel-Perfect Layouts',
     heading: 'Transform concepts into flawless interfaces',
     image: prefixed('/api/images/work/other/tourismprototype.png'),
@@ -1467,7 +1467,7 @@ const EXPERTISES: ExpertiseContent[] = [
 
   {
     slug: 'react-js',
-    variant: 'purple',
+    variant: 'blue',
     tagText: 'React.js',
     heading: 'Build dynamic web applications with React.js',
     image: prefixed('/api/images/work/totalhealthdentalcare/desktop/20.png'),
@@ -1626,7 +1626,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'next-js',
-    variant: 'purple',
+    variant: 'pink',
     tagText: 'Next.js',
     heading: 'Building fast, scalable, and dynamic web applications',
     image: prefixed('/api/images/work/totalhealthdentalcare/desktop/23.png'),
@@ -1780,7 +1780,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'typescript',
-    variant: 'yellow',
+    variant: 'purple',
     tagText: 'TypeScript',
     heading: 'Strongly typed, scalable applications with TypeScript',
     image: prefixed('/api/images/work/other/macbook-node.png'),
@@ -1932,7 +1932,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'state-management',
-    variant: 'blue',
+    variant: 'yellow',
     tagText: 'State Management',
     heading: 'Efficient and scalable state management for modern applications',
     image: prefixed('/api/images/work/other/ansible-ci-cd.png'),
@@ -2091,7 +2091,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'ssr-ssg',
-    variant: 'blue',
+    variant: 'cyan',
     tagText: 'SSR & SSG',
     heading: 'Optimized rendering with Server-Side & Static Site Generation',
     image: prefixed('/api/images/work/other/developer-identifying-server-issues.png'),
@@ -2256,7 +2256,7 @@ const EXPERTISES: ExpertiseContent[] = [
 
   {
     slug: 'node-js-express-js',
-    variant: 'blue',
+    variant: 'purple',
     tagText: 'Node.js / Express.js',
     heading: 'Building powerful, scalable backends',
     image: prefixed('/api/images/work/other/scalable-backends.png'),
@@ -2404,7 +2404,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'api-integration',
-    variant: 'purple',
+    variant: 'cyan',
     tagText: 'API Integration',
     heading: 'Seamless API integration for powerful applications',
     image: prefixed('/api/images/work/other/ansible-ci-cd.png'),
@@ -2545,7 +2545,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'graphql-rest',
-    variant: 'yellow',
+    variant: 'pink',
     tagText: 'GraphQL / REST',
     heading: 'Build efficient, scalable APIs with GraphQL & REST',
     image: prefixed('/api/images/work/other/macbook-node.png'),
@@ -2697,7 +2697,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'postgresql',
-    variant: 'yellow',
+    variant: 'blue',
     tagText: 'PostgreSQL',
     heading: 'Powerful, reliable data management with PostgreSQL',
     image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png'),
@@ -2851,7 +2851,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'orm-sequelize-prisma',
-    variant: 'cyan',
+    variant: 'green',
     tagText: 'ORM (Sequelize/Prisma)',
     heading: 'Efficient data management with Sequelize ORM',
     image: prefixed('/api/images/work/other/ui.png'),
@@ -3148,7 +3148,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'virtualization',
-    variant: 'blue',
+    variant: 'pink',
     tagText: 'Virtualization',
     heading: 'Empowering seamless digital transformation through virtualization',
     image: prefixed('/api/images/work/other/proxmox-virtualization-ubuntu.png'),
@@ -3296,7 +3296,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'ansible-web-servers',
-    variant: 'blue',
+    variant: 'purple',
     tagText: 'Ansible & Web Servers',
     heading: 'Seamless Automation, Effortless Management',
     image: prefixed('/api/images/work/other/ansible-automation.png'),
@@ -3450,7 +3450,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'aws-vercel-digitalocean',
-    variant: 'blue',
+    variant: 'yellow',
     tagText: 'AWS, Vercel, DigitalOcean',
     heading: 'Empowering scalable cloud solutions',
     image: prefixed('/api/images/work/other/developer-identifying-server-issues.png'),
@@ -3615,7 +3615,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'ci-cd',
-    variant: 'blue',
+    variant: 'cyan',
     tagText: 'CI/CD',
     heading: 'Streamlined delivery with continuous integration and deployment',
     image: prefixed('/api/images/work/other/ansible-ci-cd.png'),
@@ -3769,7 +3769,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'kubernetes',
-    variant: 'green',
+    variant: 'blue',
     tagText: 'Kubernetes',
     heading: 'Enterprise-grade Kubernetes platforms engineered for resilience',
     image: prefixed('/api/images/work/other/ansible-ci-cd.png'),
@@ -3923,7 +3923,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'terraform',
-    variant: 'cyan',
+    variant: 'green',
     tagText: 'Terraform',
     heading: 'Codifying cloud infrastructure for predictable multi-cloud delivery',
     image: prefixed('/api/images/work/other/proxmox-virtualization-ubuntu.png'),
@@ -4071,7 +4071,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'containerization',
-    variant: 'yellow',
+    variant: 'pink',
     tagText: 'Containerization',
     heading: 'Enterprise-grade container platforms, orchestrated for scale',
     image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png'),
@@ -4225,7 +4225,7 @@ const EXPERTISES: ExpertiseContent[] = [
   },
   {
     slug: 'microservices',
-    variant: 'purple',
+    variant: 'cyan',
     tagText: 'Microservices',
     heading: 'Modernize products with resilient microservices',
     image: prefixed('/api/images/work/other/tourismprototype.png'),

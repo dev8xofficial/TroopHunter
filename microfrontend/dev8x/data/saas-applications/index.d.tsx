@@ -4,7 +4,7 @@ import { prefixed } from '../../utils/helpers';
 const SAAS: OffersContent[] = [
   {
     slug: '',
-    variant: 'green',
+    variant: 'cyan',
     tagText: 'Cloud-Based SaaS Solutions',
     heading: 'SaaS Application Development',
     paragraph: 'Dev8X builds scalable, cloud-hosted SaaS solutions, integrating APIs, payment systems, and seamless multi-platform experiences for measurable business impact.',

@@ -247,7 +247,7 @@ const OFFERS: OffersContent[] = [
   },
   {
     slug: 'real-estate',
-    variant: 'green',
+    variant: 'purple',
     tagText: 'For Real Estate Companies',
     heading: 'High-converting digital assets. Starting at $80.',
     paragraph: 'Boost visibility, capture motivated buyers and sellers, and automate follow-ups. Launch modern property websites, dynamic listings, and lead systems — built fast with clear reporting and zero complexity.',
@@ -559,7 +559,7 @@ const OFFERS: OffersContent[] = [
   },
   {
     slug: 'dentists',
-    variant: 'cyan',
+    variant: 'pink',
     tagText: 'For Dental Clinics',
     heading: 'Dental-ready digital systems. Starting at $80/project.',
     paragraph: 'Launch modern websites, online booking, and patient automation — built fast with clean design, secure backend, and SEO visibility.<br /><br /> Kick off in <span><b>3 days</b></span> with <span><b>effortless communication</b></span> and <span><b>transparent delivery</b></span>.',

@@ -4,7 +4,7 @@ import { prefixed } from '../../utils/helpers';
 const PROCESS: ExpertiseContent[] = [
   {
     slug: '',
-    variant: 'blue',
+    variant: 'yellow',
     tagText: 'Our Process',
     heading: 'A thoughtful process for building impactful digital experiences',
     image: prefixed('/api/images/our-process/1.png'),

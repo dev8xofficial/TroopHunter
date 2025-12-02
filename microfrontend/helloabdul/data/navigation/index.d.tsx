@@ -25,7 +25,7 @@ const SubmenuData = [
       {
         title: 'SaaS',
         iconName: 'SaaSIcon',
-        color: 'green',
+        color: 'blue',
         href: '/expertise/saas'
       },
       {
@@ -43,7 +43,7 @@ const SubmenuData = [
       {
         title: 'Real-Time Apps',
         iconName: 'SeismometerIcon',
-        color: 'blue',
+        color: 'purple',
         href: '/expertise/real-time-apps'
       }
     ].filter((item) => !['/expertise/data-visualisation', '/expertise/mobile-apps'].includes(item.href))
@@ -54,31 +54,31 @@ const SubmenuData = [
       {
         title: 'Node.js / Express.js',
         iconName: 'NodejsIcon',
-        color: 'cyan',
+        color: 'purple',
         href: '/expertise/node-js-express-js'
       },
       {
         title: 'API Integration',
         iconName: 'SeismometerIcon',
-        color: 'blue',
+        color: 'cyan',
         href: '/expertise/api-integration'
       },
       {
         title: 'GraphQL / REST',
         iconName: 'GraphQL',
-        color: 'green',
+        color: 'pink',
         href: '/expertise/graphql-rest'
       },
       {
         title: 'PostgreSQL',
         iconName: 'PostgresqlIcon',
-        color: 'purple',
+        color: 'blue',
         href: '/expertise/postgresql'
       },
       {
         title: 'ORM (Sequelize, Prisma)',
         iconName: 'SequelizeIcon',
-        color: 'pink',
+        color: 'green',
         href: '/expertise/orm-sequelize-prisma'
       }
     ]
@@ -113,7 +113,7 @@ const SubmenuData = [
       {
         title: 'Pixel-perfect Layouts',
         iconName: 'PlanetRingIcon',
-        color: 'purple',
+        color: 'green',
         href: '/expertise/pixel-perfect-layouts'
       }
     ]
@@ -124,31 +124,31 @@ const SubmenuData = [
       {
         title: 'Docker',
         iconName: 'DockerIcon',
-        color: 'purple',
+        color: 'blue',
         href: '/expertise/docker'
       },
       {
         title: 'Virtualization',
         iconName: 'VirtualMachinesIcon',
-        color: 'blue',
+        color: 'pink',
         href: '/expertise/virtualization'
       },
       {
         title: 'Ansible & Web Servers',
         iconName: 'AnsibleIcon',
-        color: 'cyan',
+        color: 'purple',
         href: '/expertise/ansible-web-servers'
       },
       {
         title: 'AWS, Vercel, DigitalOcean',
         iconName: 'WebServersIcon',
-        color: 'pink',
+        color: 'yellow',
         href: '/expertise/aws-vercel-digitalocean'
       },
       {
         title: 'CI/CD',
         iconName: 'InfinityIcon',
-        color: 'green',
+        color: 'cyan',
         href: '/expertise/ci-cd'
       }
     ]
@@ -159,31 +159,31 @@ const SubmenuData = [
       {
         title: 'React.js',
         iconName: 'ReactjsIcon',
-        color: 'purple',
+        color: 'blue',
         href: '/expertise/react-js'
       },
       {
         title: 'Next.js',
         iconName: 'NextjsIcon',
-        color: 'cyan',
+        color: 'pink',
         href: '/expertise/next-js'
       },
       {
         title: 'TypeScript',
         iconName: 'TypeScript',
-        color: 'black',
+        color: 'purple',
         href: '/expertise/typescript'
       },
       {
         title: 'State Management',
         iconName: 'BackendIcon',
-        color: 'pink',
+        color: 'yellow',
         href: '/expertise/state-management'
       },
       {
         title: 'SSR & SSG',
         iconName: 'SupabaseIcon',
-        color: 'green',
+        color: 'cyan',
         href: '/expertise/ssr-ssg'
       }
     ]
@@ -194,31 +194,31 @@ const SubmenuData = [
       {
         title: 'Microservices',
         iconName: 'MobileIcon',
-        color: 'purple',
+        color: 'cyan',
         href: '/expertise/microservices'
       },
       {
         title: 'Containerization',
         iconName: 'TypeScript',
-        color: 'black',
+        color: 'pink',
         href: '/expertise/containerization'
       },
       {
         title: 'Kubernetes',
         iconName: 'NextjsIcon',
-        color: 'cyan',
+        color: 'blue',
         href: '/expertise/kubernetes'
       },
       {
         title: 'Terraform',
         iconName: 'BackendIcon',
-        color: 'pink',
+        color: 'green',
         href: '/expertise/terraform'
       },
       {
         title: 'TurboRepo',
         iconName: 'SupabaseIcon',
-        color: 'green',
+        color: 'purple',
         href: '/expertise/turbo-repo'
       }
     ]

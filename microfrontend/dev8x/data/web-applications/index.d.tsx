@@ -4,7 +4,7 @@ import { prefixed } from '../../utils/helpers';
 const WEBSITE: OffersContent[] = [
   {
     slug: '',
-    variant: 'pink',
+    variant: 'purple',
     tagText: 'Enterprise-Grade Web Apps',
     heading: 'Custom Web Applications',
     paragraph: 'Dev8X builds advanced, scalable web applications using modern tech stacks, enabling measurable impact on conversions, engagement, and digital growth.',

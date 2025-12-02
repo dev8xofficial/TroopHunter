@@ -4,7 +4,7 @@ import { prefixed } from '../../utils/helpers';
 const AUGMENTATION: OffersContent[] = [
   {
     slug: '',
-    variant: 'yellow',
+    variant: 'pink',
     tagText: 'For Tech Founders',
     heading: 'Scale Faster With Expert Teams',
     paragraph: 'Dev8X provides senior-level talent to expand your development capacity, accelerate product delivery, and fill critical skill gaps efficiently.',
