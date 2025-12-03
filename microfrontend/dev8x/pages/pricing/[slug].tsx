@@ -3,14 +3,14 @@
 import React, { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { toggleSmoothModalAtom, openSmoothModalAtom } from '@repo/components';
+import { toggleSmoothModalAtom, openSmoothModalAtom, maskDollarValues, prefixed } from '@repo/components';
 import { useSetAtom, useAtomValue } from 'jotai';
 import { FooterRevealPageWrap, Footer, Header, AwardsBlock, SubmitApplicationModal, ContactFormModal, Button, IconCards, ContentAsideImage, ModularBlocks, OffersHero, CardStack, FAQs, ScheduleCallModal, DevelopersModal, MiniSquadsModal, ScheduleCallContent, OffersSlider, OffersSliderItem, WorkCard, OffersContent, getBrandFromBaseURL, shouldRenderOffersSurfaces } from '@repo/components';
 import SmoothModalWrapper from '../../components/Surfaces/SmoothModalWrapper/SmoothModalWrapper';
 import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import SubmenuData from '../../data/navigation/index.d';
 import OFFERS from '../../data/pricing/index.d';
-import { prefixed } from '../../utils/helpers';
+import { countryAtom } from '../../store/country';
 
 import HomePageStyles from '../index.module.css';
 import HeroStyles from '../../components/Surfaces/Hero/index.module.css';
@@ -20,6 +20,7 @@ import ExpertiseStyles from '../expertise/index.module.css';
 const PricingPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const currentModal = useAtomValue(openSmoothModalAtom);
+  const countryCode = useAtomValue(countryAtom);
 
   // Get the first offers data item since PageData is an array
   const getNextExpertise = (currentSlug: string) => {
@@ -107,13 +108,13 @@ const PricingPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): J
         <Header submenuData={SubmenuData} />
         <FooterRevealPageWrap variant="page">
           <div className={`${HeroStyles['homepage__hero']} ${HeroStyles['homepage__hero--slider-override']} ${HeroStyles['mb-0']}`}>
-            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={PageData.tagText} heading={PageData.heading} image={PageData.image} paragraph={PageData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />
+            <OffersHero activeCategory={activeCategory} showHowToHireVideo={showHowToHireVideo} variant={variant} tagText={PageData.tagText} heading={countryCode === 'PK' ? maskDollarValues(PageData.heading) : PageData.heading} image={PageData.image} paragraph={PageData.paragraph} handleCategorySelect={handleCategorySelect} openScheduleCallModal={() => toggleModal('schedulecall')} categories={availableCategories} />
           </div>
           {shouldShowOffersSurface && !showHowToHireVideo && (
             <div style={{ display: 'grid' }}>
               <div className={`${HomePageStyles['homepage__feed-wrapper']} ${HomePageStyles['homepage__feed-wrapper-inner--overflow']}`}>
                 <div className={`${HomePageStyles['homepage__feed-wrapper-inner']}`}>
-                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', { selectedOffer, plansItems: PageData?.primaryPlansItems })} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, plansItems: PageData?.secondaryPlansItems })} />
+                  <OffersSlider homePageFeed={HomePageStyles['homepage__feed']} homePageFeedOverflow={HomePageStyles['homepage__feed--overflow']} offers={filteredOffers || []} openDevelopersModal={(selectedOffer) => toggleModal('developers', { selectedOffer, plansItems: PageData?.primaryPlansItems })} openMiniSquadsModal={(selectedOffer) => toggleModal('minisquads', { selectedOffer, plansItems: PageData?.secondaryPlansItems })} countryCode={countryCode} />
                 </div>
               </div>
             </div>
@@ -180,7 +181,7 @@ const PricingPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): J
         <ContactFormModal />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="developers" toggle={() => toggleModal('developers')}>
-        <DevelopersModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={PageData?.primaryPlansItems} />
+        <DevelopersModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={PageData?.primaryPlansItems} countryCode={countryCode} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="minisquads" toggle={() => toggleModal('minisquads')}>
         <MiniSquadsModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={PageData?.secondaryPlansItems} />

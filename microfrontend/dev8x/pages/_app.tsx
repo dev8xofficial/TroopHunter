@@ -4,8 +4,14 @@ import Script from 'next/script';
 import { Provider } from 'jotai';
 import { LenisProvider } from '../hooks/LenisContext';
 import Layout from '../components/Surfaces/Layout';
+import { useCountry } from '../hooks/useCountry';
 
 import '../styles/globals.css';
+
+const CountryBootstrapper: React.FC = () => {
+  useCountry();
+  return null;
+};
 
 export default function App({ Component, pageProps }) {
   const getLayout =
@@ -36,6 +42,7 @@ export default function App({ Component, pageProps }) {
 
       <LenisProvider>
         <Provider>
+          <CountryBootstrapper />
           {getLayout(<Component {...pageProps} />)}
         </Provider>
       </LenisProvider>

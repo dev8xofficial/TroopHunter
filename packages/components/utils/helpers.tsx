@@ -12,7 +12,9 @@ export const prefixed = (src: string): string => {
 
   return `${assetHost}${path}`;
 };
+
 export type Brand = 'dev8x' | 'helloabdul';
+
 export const getBrandFromBaseURL = (baseUrl?: string): Brand => {
   let url: string | undefined;
   let hostname: string | undefined;
@@ -221,4 +223,9 @@ export const FormattedText = (text: string) => {
   });
 
   return <span>{renderedText}</span>;
+};
+
+export const maskDollarValues = (text: string): string => {
+  if (!text || typeof text !== 'string') return text;
+  return text.replace(/\$\d+(?:,\d{3})*(?:\.\d+)?/g, '$***');
 };

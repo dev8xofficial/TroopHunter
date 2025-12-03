@@ -3,7 +3,7 @@
 import React, { CSSProperties } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
-import { Button, OffersSliderItem, Link } from '@repo/components';
+import { Button, OffersSliderItem, Link, maskDollarValues } from '@repo/components';
 import RightArrowIcon from '../../Icons/RightArrow';
 import StarIcon from '../../Icons/StarIcon';
 
@@ -25,6 +25,7 @@ export type Offer = {
   href?: string;
   buttonText?: string;
   package?: string;
+  countryCode?: string;
 };
 
 type OffersSliderProps = {
@@ -34,9 +35,10 @@ type OffersSliderProps = {
   offers: OffersSliderItem[];
   openDevelopersModal?: (selectedPlan: OffersSliderItem) => void;
   openMiniSquadsModal?: (selectedOffer: OffersSliderItem) => void;
+  countryCode?: string;
 };
 
-export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePageFeedWrapperInnerOverflow, homePageFeedOverflow, offers, openDevelopersModal, openMiniSquadsModal }): JSX.Element => {
+export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePageFeedWrapperInnerOverflow, homePageFeedOverflow, offers, openDevelopersModal, openMiniSquadsModal, countryCode }): JSX.Element => {
   const handleClick = (e: React.MouseEvent, buttonOnClick?: () => void) => {
     e.preventDefault();
     buttonOnClick?.();
@@ -64,7 +66,7 @@ export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePa
             <article className={FeedSilderStyles['feed__item']}>
               <h2 className={FeedSilderStyles['about-column__heading']}>{offer.heading}</h2>
               <div>
-                <span className={FeedSilderStyles['article-card__title']}>{offer.price}</span>
+                <span className={FeedSilderStyles['article-card__title']}>{countryCode === 'PK' && offer.price ? maskDollarValues(offer.price) : offer.price}</span>
                 <span className={FeedSilderStyles['article-card__subtitle']}>/months</span>
               </div>
               <p className={FeedSilderStyles['article-card__excerpt']}>{offer.description}</p>

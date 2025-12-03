@@ -12,6 +12,7 @@ import { ListboxField, ListboxOptionType } from '../../Input/ListboxField/Listbo
 import { HighlightBox } from '../../Input/HighlightBox/HighlightBox';
 import { OffersSliderItem } from '../../Interfaces/Offers/Offers';
 import { Pill } from '../../Surfaces/Pill/Pill';
+import { maskDollarValues } from '../../../utils/helpers';
 
 import CaseStudySiderbarStyles from '../../Surfaces/CaseStudySidebar/index.module.css';
 import ContactFormModalStyles from '../ContactFormModal/index.module.css';
@@ -65,9 +66,10 @@ interface DevelopersModalProps {
   selectedOffer?: OffersSliderItem | null;
   variant?: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
   plansItems?: string[];
+  countryCode?: string;
 }
 
-export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer = null, variant = 'blue', plansItems }): JSX.Element => {
+export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer = null, variant = 'blue', plansItems, countryCode }): JSX.Element => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -317,7 +319,7 @@ export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer 
                 <HighlightBox key={plan.id} variant="contained">
                   <h4>{plan.name}</h4>
                   <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${ContactFormModalStyles['mb-0']}`}>
-                    <li>{plan.price}</li>
+                    <li>{countryCode === 'PK' && plan.price ? maskDollarValues(plan.price) : plan.price}</li>
                     <li>{plan.start}</li>
                     <li>{plan.trial}</li>
                   </ul>
