@@ -9,11 +9,11 @@ const CTO: OffersContent[] = [
     heading: 'CTO Guidance On Demand',
     paragraph: 'Dev8X provides part-time or full-time CTO expertise, ensuring your product’s tech strategy is scalable, reliable, and investor-ready.',
     heroButtons: [
-      {
-        label: 'See Pricing',
-        href: '/pricing/tech-founders',
-        target: '_blank'
-      },
+      // {
+      //   label: 'See Pricing',
+      //   href: '/pricing/tech-founders',
+      //   target: '_blank'
+      // },
       {
         label: 'Schedule a Call',
         modalType: 'schedulecall'
