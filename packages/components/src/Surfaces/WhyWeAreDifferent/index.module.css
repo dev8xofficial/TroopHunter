@@ -2,6 +2,11 @@
   max-width: 100%;
 }
 
+.homepage-horizontal-space__zero {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .content-aside-image__paragraph {
   margin-bottom: calc(1.875rem * 0.8);
 }

@@ -17,7 +17,7 @@ type WhyProps = {
 
 export const WhyWeAreDifferent: React.FC<WhyProps> = ({ heading, qa }) => {
   return (
-    <div className={WhyDev8xStyles['homepage-bottom']}>
+    <div className={`${WhyDev8xStyles['homepage-bottom']} ${styles['homepage-horizontal-space__zero']}`}>
       {/* Animate each word of heading */}
       <span className={`${WhyDev8xStyles['homepage-bottom__heading']} ${styles['homepage-bottom__heading']}`} aria-label={heading}>
         {heading.split(' ').map((word, index) => (
