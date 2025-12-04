@@ -229,3 +229,28 @@ export const maskDollarValues = (text: string): string => {
   if (!text || typeof text !== 'string') return text;
   return text.replace(/\$\d+(?:,\d{3})*(?:\.\d+)?/g, '$***');
 };
+
+/**
+ * Converts monthly price to hourly rate
+ * Assumes 160 hours per month (40 hours/week × 4 weeks)
+ * @param monthlyPrice - The monthly price string (e.g., "$600" or "$1,500")
+ * @returns The hourly rate string (e.g., "$3.75" or "$9.38")
+ */
+export const convertMonthlyToHourly = (monthlyPrice: string): string => {
+  if (!monthlyPrice || typeof monthlyPrice !== 'string') return monthlyPrice;
+
+  // Extract number from price string (handles $600, $1,500, etc.)
+  const priceMatch = monthlyPrice.match(/\$?([\d,]+(?:\.\d+)?)/);
+  if (!priceMatch) return monthlyPrice;
+
+  const priceValue = parseFloat(priceMatch[1].replace(/,/g, ''));
+  if (isNaN(priceValue)) return monthlyPrice;
+
+  // Calculate hourly rate (160 hours per month)
+  const hourlyRate = priceValue / 160;
+
+  // Format to 2 decimal places, remove trailing zeros
+  const formattedRate = hourlyRate.toFixed(2).replace(/\.?0+$/, '');
+
+  return `$${formattedRate}`;
+};
