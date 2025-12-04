@@ -67,9 +67,10 @@ interface DevelopersModalProps {
   variant?: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
   plansItems?: string[];
   countryCode?: string;
+  pillText?: string;
 }
 
-export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer = null, variant = 'blue', plansItems, countryCode }): JSX.Element => {
+export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer = null, variant = 'blue', plansItems, countryCode, pillText }): JSX.Element => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -196,7 +197,7 @@ export const DevelopersModal: React.FC<DevelopersModalProps> = ({ selectedOffer 
         <>
           <div className={ContactFormModalStyles['modal-header']} />
           <div className={ContactFormModalStyles['modal-heading-wrapper']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-            <Pill variant={variant}>Let's Hire</Pill>
+            <Pill variant={variant}>{pillText}</Pill>
             <h1 className={ContactFormModalStyles['modal-heading']}>{planConfig.name}</h1>
           </div>
 

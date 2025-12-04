@@ -57,4 +57,5 @@ export interface ExpertiseContent extends PageLayoutContent {
   heroButtons?: ExpertiseHeroButton[];
   footerCta?: ExpertiseFooterCta;
   footerCtaSecondary?: ExpertiseFooterCta;
+  pillText?: string;
 }

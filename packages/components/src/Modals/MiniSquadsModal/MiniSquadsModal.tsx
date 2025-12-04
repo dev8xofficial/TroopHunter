@@ -49,9 +49,10 @@ interface MiniSquadsModalProps {
   selectedOffer?: OffersSliderItem | null;
   variant?: 'cyan' | 'pink' | 'blue' | 'green' | 'purple' | 'yellow';
   plansItems?: string[];
+  pillText?: string;
 }
 
-export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer = null, variant = 'blue', plansItems }) => {
+export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer, variant, plansItems, pillText }) => {
   const squadConfig = getSquadConfig(selectedOffer);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -183,7 +184,7 @@ export const MiniSquadsModal: React.FC<MiniSquadsModalProps> = ({ selectedOffer 
         <>
           <div className={ContactFormModalStyles['modal-header']} />
           <div className={ContactFormModalStyles['modal-heading-wrapper']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-            <Pill variant={variant}>Let's Hire</Pill>
+            <Pill variant={variant}>{pillText}</Pill>
             <h1 className={ContactFormModalStyles['modal-heading']}>{squadConfig.name}</h1>
           </div>
 

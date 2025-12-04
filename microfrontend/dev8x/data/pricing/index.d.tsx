@@ -6,6 +6,7 @@ const OFFERS: OffersContent[] = [
     slug: 'tech-founders',
     variant: 'blue',
     tagText: 'For Tech Founders',
+    pillText: "Let's \n Hire",
     heading: 'AI-ready talent. \n Starting at $600/month.',
     paragraph: 'Get vetted React, Next.js, and full-stack developers — or plug-in mini-squads — guided by senior tech leads.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
@@ -185,8 +186,8 @@ const OFFERS: OffersContent[] = [
         heading: 'Junior Developer',
         price: '$600',
         description: 'Rapid MVP builds & early launches',
-        features: ['1–2 yrs experience', 'Daily async updates', 'Senior code review', 'Fast stack fit'],
-        categories: ['React', 'NextJS', 'Tailwind', 'Frontend', 'Rapid Delivery', 'Startup Friendly', 'Daily Updates', 'Outcome Driven'],
+        features: ['1–2 yrs experience', 'Daily async updates', 'Senior code review', 'Fast stack fit', ' Animations'],
+        categories: ['React', 'NextJS', 'Tailwind', 'Flutter', 'Dart', 'Rapid Delivery', 'Startup Friendly', 'Daily Updates', 'Outcome Driven', 'Clean Code'],
         buttonText: 'Hire Junior',
         package: 'Developers'
       },
@@ -195,8 +196,8 @@ const OFFERS: OffersContent[] = [
         heading: 'Mid-Level Developer',
         price: '$900',
         description: 'Reliable v1.0 builds & scaling features',
-        features: ['3–5 yrs experience', 'API + CI/CD', 'Weekly sprint sync', 'Code ownership mindset'],
-        categories: ['React', 'NextJS', 'NodeJS', 'Full Stack', 'API Integration', 'Clean Code', 'Unit Tests', 'Agile', 'Reliable Delivery', 'Remote First Team'],
+        features: ['3–5 yrs experience', 'API + CI/CD', 'State Management', 'Weekly sprint sync', 'Code ownership mindset'],
+        categories: ['React', 'NextJS', 'NodeJS', 'Flutter', 'Dart', 'Firebase', 'Full Stack', 'API Integration', 'Clean Code', 'Unit Tests', 'Agile', 'Reliable Delivery', 'Remote First Team'],
         buttonText: 'Hire Mid',
         package: 'Developers'
       },
@@ -205,7 +206,7 @@ const OFFERS: OffersContent[] = [
         heading: 'Senior Developer',
         price: '$1,500',
         description: 'System design & tech leadership',
-        features: ['5–8 yrs experience', 'Lead architecture', 'Optimize delivery', 'Mentor developers'],
+        features: ['5–8 yrs experience', 'Lead architecture', 'Optimize delivery', 'Mentor developers', 'Architecture & Performance Optimization'],
         categories: ['Tech Lead', 'Architecture', 'System Design', 'Performance', 'Mentorship', 'Cloud Ready', 'Scalable Apps', 'Team Leadership'],
         buttonText: 'Hire Senior',
         package: 'Developers'
@@ -249,6 +250,7 @@ const OFFERS: OffersContent[] = [
     slug: 'real-estate',
     variant: 'purple',
     tagText: 'For Real Estate Companies',
+    pillText: "Let's Get Growing",
     heading: 'High-converting digital assets. Starting at $80.',
     paragraph: 'Boost visibility, capture motivated buyers and sellers, and automate follow-ups. Launch modern property websites, dynamic listings, and lead systems — built fast with clear reporting and zero complexity.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
@@ -554,13 +556,14 @@ const OFFERS: OffersContent[] = [
       }
     ],
     primaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
-    secondaryPlansItems: [''],
+    secondaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     video: prefixed(`/videos/header/header.mp4`)
   },
   {
     slug: 'dentists',
     variant: 'pink',
     tagText: 'For Dental Clinics',
+    pillText: "Let's Get Growing",
     heading: 'Dental-ready digital systems. Starting at $80/project.',
     paragraph: 'Launch modern websites, online booking, and patient automation — built fast with clean design, secure backend, and SEO visibility.<br /><br /> Kick off in <span><b>3 days</b></span> with <span><b>effortless communication</b></span> and <span><b>transparent delivery</b></span>.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
@@ -861,7 +864,7 @@ const OFFERS: OffersContent[] = [
       }
     ],
     primaryPlansItems: ['Direct Communication via WhatsApp, Email, or Slack', 'Weekly Progress Reports & Quick Updates', 'Complete Transparency with Live Project Access', 'Flexible Engagement - Start Small, Scale as Needed'],
-    secondaryPlansItems: [''],
+    secondaryPlansItems: ['Dedicated Communication Channel via Slack or Email', 'Weekly Progress Updates & Revision Cycles', 'Full Project Visibility with Live Access to Assets', 'Flexible Payment Plans - Pay Per Project or Monthly'],
     video: prefixed(`/videos/header/header.mp4`)
   }
   // {

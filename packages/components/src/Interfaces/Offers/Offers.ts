@@ -28,6 +28,7 @@ export interface WhyWeAreDifferentContent {
 }
 
 export interface OffersContent extends ExpertiseContent {
+  pillText?: string;
   faqs?: OffersFAQS[];
   offersSlider?: OffersSliderItem[];
   primaryPlansItems?: string[];

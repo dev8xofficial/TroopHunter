@@ -181,10 +181,10 @@ const PricingPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): J
         <ContactFormModal />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="developers" toggle={() => toggleModal('developers')}>
-        <DevelopersModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={PageData?.primaryPlansItems} countryCode={countryCode} />
+        <DevelopersModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={PageData?.primaryPlansItems} countryCode={countryCode} pillText={PageData.pillText} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="minisquads" toggle={() => toggleModal('minisquads')}>
-        <MiniSquadsModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={PageData?.secondaryPlansItems} />
+        <MiniSquadsModal selectedOffer={currentModal.data?.selectedOffer} variant={variant} plansItems={PageData?.secondaryPlansItems} pillText={PageData.pillText} />
       </SmoothModalWrapper>
       <SmoothModalWrapper modalType="schedulecall" toggle={() => toggleModal('schedulecall')}>
         <ScheduleCallContent />
@@ -205,13 +205,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const PageData = OFFERS.find((p) => p.slug === params.slug);
-  const { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems } = PageData;
+  const { slug, variant, tagText, pillText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems } = PageData;
 
   if (!PageData) {
     return { notFound: true };
   }
 
   return {
-    props: { slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems }
+    props: { slug, variant, tagText, pillText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials, faqs, offersSlider, primaryPlansItems, secondaryPlansItems }
   };
 }
