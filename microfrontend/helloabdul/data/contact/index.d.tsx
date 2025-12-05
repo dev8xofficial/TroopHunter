@@ -20,12 +20,12 @@ const PageData: ContactContent = {
     },
     offices: [
       {
-        country: 'Pakistan (HQ)',
+        country: 'Pakistan (Base)',
         city: 'Lahore, Punjab',
         phone: '+92 (329) 294-7777'
       },
       {
-        country: 'USA (Remote)',
+        country: 'USA (Focus)',
         city: 'San Francisco, CA',
         phone: '+1 (321) 300-2393'
       }
