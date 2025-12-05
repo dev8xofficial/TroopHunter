@@ -1,6 +1,7 @@
 'use client';
 
 import React, { CSSProperties } from 'react';
+import { useRouter } from 'next/router';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import { Button, OffersSliderItem, Link, maskDollarValues, convertMonthlyToHourly } from '@repo/components';
@@ -39,6 +40,9 @@ type OffersSliderProps = {
 };
 
 export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePageFeedWrapperInnerOverflow, homePageFeedOverflow, offers, openDevelopersModal, openMiniSquadsModal, countryCode }): JSX.Element => {
+  const router = useRouter();
+  const isTechFoundersPage = router.pathname === '/pricing/tech-founders' || (router.pathname === '/pricing/[slug]' && router.query.slug === 'tech-founders');
+
   const handleClick = (e: React.MouseEvent, buttonOnClick?: () => void) => {
     e.preventDefault();
     buttonOnClick?.();
@@ -68,9 +72,11 @@ export const OffersSlider: React.FC<OffersSliderProps> = ({ homePageFeed, homePa
               <div>
                 <span className={FeedSilderStyles['article-card__title']}>{countryCode === 'PK' && offer.price ? maskDollarValues(offer.price) : offer.price}</span>
                 <span className={FeedSilderStyles['article-card__subtitle']}>/month</span>
-                <p className={FeedSilderStyles['article-card__excerpt']} style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.5)' }}>
-                  {countryCode === 'PK' && offer.price ? maskDollarValues(convertMonthlyToHourly(offer.price)) : convertMonthlyToHourly(offer.price || '')}/hour
-                </p>
+                {isTechFoundersPage && (
+                  <p className={FeedSilderStyles['article-card__excerpt']} style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.5)' }}>
+                    {countryCode === 'PK' && offer.price ? maskDollarValues(convertMonthlyToHourly(offer.price)) : convertMonthlyToHourly(offer.price || '')}/hour
+                  </p>
+                )}
               </div>
               <p className={FeedSilderStyles['article-card__excerpt']}>{offer.description}</p>
               <div className={styles['expertise-footer']}>
