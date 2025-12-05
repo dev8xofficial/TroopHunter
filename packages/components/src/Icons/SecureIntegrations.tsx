@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-interface IntegrationsIconProps {
+interface SecureIntegrationsIconProps {
   size?: number | string;
   className?: string;
 }
 
-const IntegrationsIcon: React.FC<IntegrationsIconProps> = ({ size = 24, className }) => {
+const SecureIntegrationsIcon: React.FC<SecureIntegrationsIconProps> = ({ size = 24, className }) => {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path
@@ -18,4 +18,4 @@ const IntegrationsIcon: React.FC<IntegrationsIconProps> = ({ size = 24, classNam
   );
 };
 
-export default IntegrationsIcon;
+export default SecureIntegrationsIcon;

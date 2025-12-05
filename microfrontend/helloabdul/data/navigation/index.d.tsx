@@ -6,7 +6,7 @@ const SubmenuData = [
     list: [
       {
         title: 'Websites',
-        iconName: 'PointerIcon',
+        iconName: 'PointerCursorIcon',
         color: 'cyan',
         href: '/expertise/websites'
       },
@@ -88,7 +88,7 @@ const SubmenuData = [
     list: [
       {
         title: 'Interaction Design',
-        iconName: 'MyspaceIcon',
+        iconName: 'CollabSpaceIcon',
         color: 'purple',
         href: '/expertise/interaction-design'
       },

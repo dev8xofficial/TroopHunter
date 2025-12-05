@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-interface AvailabiltyIconProps {
+interface HighAvailabiltyIconProps {
   size?: number | string;
   className?: string;
 }
 
-const AvailabiltyIcon: React.FC<AvailabiltyIconProps> = ({ size = 24, className }) => {
+const HighAvailabiltyIcon: React.FC<HighAvailabiltyIconProps> = ({ size = 24, className }) => {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <g clipPath="url(#clip0_713_127)">
@@ -24,4 +24,4 @@ const AvailabiltyIcon: React.FC<AvailabiltyIconProps> = ({ size = 24, className 
   );
 };
 
-export default AvailabiltyIcon;
+export default HighAvailabiltyIcon;

@@ -27,22 +27,22 @@ const MVP: OffersContent[] = [
         {
           title: 'Test Core Idea',
           description: 'Validate the product hypothesis with real users before committing to full development.',
-          icon: { name: 'RefreshIcon', size: 24 }
+          icon: { name: 'SeismometerIcon', size: 24 }
         },
         {
           title: 'Attract Investors',
           description: 'Ship measurable traction to demonstrate demand and reduce investor risk.',
-          icon: { name: 'BackendIcon', size: 24 }
+          icon: { name: 'RocketIcon', size: 24 }
         },
         {
           title: 'Collect Feedback',
           description: 'Turn early user insights into prioritized features and product iterations.',
-          icon: { name: 'AIBrainIcon', size: 24 }
+          icon: { name: 'SmileIcon', size: 24 }
         },
         {
           title: 'Choose Technologies',
           description: 'Recommend scalable stacks to support growth and minimize costly rewrites.',
-          icon: { name: 'SeismometerIcon', size: 24 }
+          icon: { name: 'ArchitectureIcon', size: 24 }
         }
       ]
     },

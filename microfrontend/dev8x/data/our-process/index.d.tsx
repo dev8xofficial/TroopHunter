@@ -15,37 +15,37 @@ const PROCESS: ExpertiseContent[] = [
         {
           title: 'Discovery Phase',
           description: 'Discovery Phase blends strategy, research, and data analysis to deeply understand your business, users, and goals — shaping a clear plan for structure, functionality, and user experience.',
-          icon: { name: 'VoltageIcon', size: 24 }
+          icon: { name: 'AnalysisIcon', size: 24 }
         },
         {
           title: 'Content and SEO',
           description: 'We craft content that aligns with your brand voice and user needs, while our SEO audits and strategies ensure your site ranks high on search engines — from launch to ongoing growth.',
-          icon: { name: 'BackendIcon', size: 24 }
+          icon: { name: 'AnalyticsIcon', size: 24 }
         },
         {
           title: 'Creative and User Interface (UI)',
           description: 'We design engaging, user-friendly interfaces through high-fidelity wireframes, brand-aligned UI, and interactive prototypes — ensuring a seamless and visually compelling user experience.',
-          icon: { name: 'PaintSwatchIcon', size: 24 }
+          icon: { name: 'FigmaIcon', size: 24 }
         },
         {
           title: 'Website Development',
           description: 'Our developers bring your site to life with clean code, responsive design, CMS setup, third-party integrations, and rigorous testing — ensuring fast performance, cross-device compatibility, and a smooth user experience.',
-          icon: { name: 'GlobeIcon', size: 24 }
+          icon: { name: 'FullStackIcon', size: 24 }
         },
         {
           title: 'Website Launch',
           description: 'As launch nears, we ensure everything runs smoothly with final SEO checks, analytics setup, client training, and two weeks of post-launch bug support setting you up for success from day one.',
-          icon: { name: 'GraphAnalysisIcon', size: 24 }
+          icon: { name: 'RocketIcon', size: 24 }
         },
         {
           title: 'Website Maintenance',
           description: 'Website maintenance includes CMS updates, security checks, and backups — keeping your site safe, smooth, and ready for anything.',
-          icon: { name: 'ShieldIcon', size: 24 }
+          icon: { name: 'MaintenanceIcon', size: 24 }
         },
         {
           title: 'Website Evaluation and Improvement',
           description: 'Website is never truly finished — we review performance at 3 and 6 months post-launch, analyze conversions, boost SEO with link building, and plan ongoing improvements to keep your site growing and evolving.',
-          icon: { name: 'ShuffleIcon', size: 24 }
+          icon: { name: 'RefreshIcon', size: 24 }
         }
       ]
     },

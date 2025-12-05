@@ -2,12 +2,12 @@
 
 import React from 'react';
 import NextLink from 'next/link';
-import PointerIcon from '../../Icons/Pointer';
+import PointerCursorIcon from '../../Icons/PointerCursor';
 import CardIcon from '../../Icons/Card';
 import MobileIcon from '../../Icons/Mobile';
 import BasketIcon from '../../Icons/Basket';
 import DataIcon from '../../Icons/Data';
-import MyspaceIcon from '../../Icons/Myspace';
+import CollabSpaceIcon from '../../Icons/CollabSpace';
 import SelectionIcon from '../../Icons/Selection';
 import MagicWandIcon from '../../Icons/MagicWand';
 import MapIcon from '../../Icons/Map';
@@ -46,12 +46,12 @@ interface Dev8XSubmenuProps {
 }
 
 const ICON_MAP: Record<string, React.ComponentType<{ size?: string | number; className?: string }>> = {
-  PointerIcon,
+  PointerCursorIcon,
   CardIcon,
   MobileIcon,
   BasketIcon,
   DataIcon,
-  MyspaceIcon,
+  CollabSpaceIcon,
   SelectionIcon,
   MagicWandIcon,
   MapIcon,

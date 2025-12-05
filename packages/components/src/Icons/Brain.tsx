@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-interface AIBrainIconProps {
+interface BrainIconProps {
   size?: number | string;
   className?: string;
 }
 
-const AIBrainIcon: React.FC<AIBrainIconProps> = ({ size = 24, className }) => {
+const BrainIcon: React.FC<BrainIconProps> = ({ size = 24, className }) => {
   return (
     <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -18,4 +18,4 @@ const AIBrainIcon: React.FC<AIBrainIconProps> = ({ size = 24, className }) => {
   );
 };
 
-export default AIBrainIcon;
+export default BrainIcon;

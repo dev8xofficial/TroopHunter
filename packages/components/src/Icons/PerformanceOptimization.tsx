@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-interface OptimizationIconProps {
+interface PerformanceOptimizationIconProps {
   size?: number | string;
   className?: string;
 }
 
-const OptimizationIcon: React.FC<OptimizationIconProps> = ({ size = 24, className }) => {
+const PerformanceOptimizationIcon: React.FC<PerformanceOptimizationIconProps> = ({ size = 24, className }) => {
   return (
     <svg width={size} height={size} viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <g clipPath="url(#clip0_713_121)">
@@ -25,4 +25,4 @@ const OptimizationIcon: React.FC<OptimizationIconProps> = ({ size = 24, classNam
   );
 };
 
-export default OptimizationIcon;
+export default PerformanceOptimizationIcon;

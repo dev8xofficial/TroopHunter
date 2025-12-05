@@ -27,22 +27,22 @@ const CTO: OffersContent[] = [
         {
           title: '$140K/yr',
           description: 'You know WHAT to build but need guidance on HOW to develop it using the right tech stack.',
-          icon: { name: 'RefreshIcon', size: 24 }
+          icon: { name: 'ArchitectureIcon', size: 24 }
         },
         {
           title: '26%',
           description: 'Seeking investment? A professional CTO ensures your technical decisions inspire investor confidence.',
-          icon: { name: 'BackendIcon', size: 24 }
+          icon: { name: 'TargetIcon', size: 24 }
         },
         {
           title: '<4 years',
           description: 'Past experiences with low-cost developers disappointed you. Dev8X ensures high-quality, maintainable solutions.',
-          icon: { name: 'AIBrainIcon', size: 24 }
+          icon: { name: 'ShieldIcon', size: 24 }
         },
         {
           title: 'Transparent Reporting',
           description: 'Focus on strategy, marketing, and sales while Dev8X handles all tech decisions with clear reporting.',
-          icon: { name: 'SeismometerIcon', size: 24 }
+          icon: { name: 'AnalyticsIcon', size: 24 }
         }
       ]
     },
@@ -292,11 +292,11 @@ const CTO: OffersContent[] = [
       },
       {
         id: '11',
-        heading: 'Speed Optimization',
+        heading: 'Speed PerformanceOptimization',
         price: '$200',
         description: 'Faster load times for better conversion & SEO',
         features: ['Lighthouse fixes', 'Caching', 'Image compression', 'Performance tuning'],
-        categories: ['Speed', 'Performance', 'SEO', 'Optimization'],
+        categories: ['Speed', 'Performance', 'SEO', 'PerformanceOptimization'],
         buttonText: 'Optimize Speed',
         package: 'Performance'
       },

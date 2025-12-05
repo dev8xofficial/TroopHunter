@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-interface MonoRepoIconProps {
+interface MonoRepoArchitectureIconProps {
   size?: number | string;
   className?: string;
 }
 
-const MonoRepoIcon: React.FC<MonoRepoIconProps> = ({ size = 24, className }) => {
+const MonoRepoArchitectureIcon: React.FC<MonoRepoArchitectureIconProps> = ({ size = 24, className }) => {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path
@@ -18,4 +18,4 @@ const MonoRepoIcon: React.FC<MonoRepoIconProps> = ({ size = 24, className }) => 
   );
 };
 
-export default MonoRepoIcon;
+export default MonoRepoArchitectureIcon;

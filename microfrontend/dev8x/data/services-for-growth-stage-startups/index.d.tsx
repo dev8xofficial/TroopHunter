@@ -37,7 +37,7 @@ const AUGMENTATION: OffersContent[] = [
         {
           title: 'UX/UI Designer',
           description: 'Creates interfaces aligned with user journeys to ensure an intuitive and visually appealing experience.',
-          icon: { name: 'AIBrainIcon', size: 24 }
+          icon: { name: 'BrainIcon', size: 24 }
         },
         {
           title: 'QA Specialist',

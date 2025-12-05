@@ -27,22 +27,22 @@ const MOBILE: OffersContent[] = [
         {
           title: 'Native Performance',
           description: 'Apps are developed with Flutter to ensure fast, smooth, and fully native performance across both iOS and Android devices.',
-          icon: { name: 'RefreshIcon', size: 24 }
+          icon: { name: 'FlutterIcon', size: 24 }
         },
         {
           title: 'Cross-Platform Efficiency',
           description: 'Using a single Dart codebase reduces development time and cost while maintaining platform-specific design and interactions.',
-          icon: { name: 'BackendIcon', size: 24 }
+          icon: { name: 'DartIcon', size: 24 }
         },
         {
           title: 'Live Updates',
           description: 'We implement over-the-air updates to deliver immediate enhancements and bug fixes, accelerating feedback loops and improving user satisfaction.',
-          icon: { name: 'AIBrainIcon', size: 24 }
+          icon: { name: 'RapidDeliveryIcon', size: 24 }
         },
         {
           title: 'Scalable Architecture',
           description: 'Our apps are designed with modular architecture and microservices patterns, enabling future expansion, integrations, and feature upgrades.',
-          icon: { name: 'CardIcon', size: 24 }
+          icon: { name: 'MonoRepoArchitectureIcon', size: 24 }
         }
       ]
     },
@@ -277,7 +277,7 @@ const MOBILE: OffersContent[] = [
       },
       {
         id: '11',
-        heading: 'Speed Optimization',
+        heading: 'Speed PerformanceOptimization',
         price: '$200',
         description: 'Faster load times for better conversion & SEO',
         features: ['Lighthouse fixes', 'Caching', 'Image compression', 'Performance tuning'],
@@ -367,7 +367,7 @@ const MOBILE: OffersContent[] = [
           { name: 'TurboRepo', iconName: 'TubroRepoIcon' },
           { name: 'Monorepo Architecture', iconName: 'MonoRepoIcon' },
           { name: 'Agile Delivery', iconName: 'AgileDeliveryIcon' },
-          { name: 'Cross-functional Collaboration', iconName: 'CollaborationIcon' },
+          { name: 'Cross-functional Collaboration', iconName: 'CollabSpaceIcon' },
           { name: 'End-to-End Ownership', iconName: 'OwernshipIcon' }
         ]
       }

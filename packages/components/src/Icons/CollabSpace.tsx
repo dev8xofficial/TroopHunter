@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-interface MyspaceIconProps {
+interface CollabSpaceIconProps {
   size?: number | string;
   className?: string;
 }
 
-const MyspaceIcon: React.FC<MyspaceIconProps> = ({ size = 24, className }) => {
+const CollabSpaceIcon: React.FC<CollabSpaceIconProps> = ({ size = 24, className }) => {
   return (
     <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -18,4 +18,4 @@ const MyspaceIcon: React.FC<MyspaceIconProps> = ({ size = 24, className }) => {
   );
 };
 
-export default MyspaceIcon;
+export default CollabSpaceIcon;

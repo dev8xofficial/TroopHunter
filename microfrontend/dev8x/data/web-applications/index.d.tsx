@@ -27,22 +27,22 @@ const WEBSITE: OffersContent[] = [
         {
           title: 'High Performance',
           description: 'Utilizing React.js, Next.js, and TypeScript, Dev8X ensures web apps handle heavy loads with fast, glitch-free performance.',
-          icon: { name: 'RefreshIcon', size: 24 }
+          icon: { name: 'PerformanceOptimizationIcon', size: 24 }
         },
         {
           title: 'Integration Ready',
           description: 'Web apps integrate seamlessly with RESTful APIs, third-party services, and microservices for feature-rich, connected experiences.',
-          icon: { name: 'BackendIcon', size: 24 }
+          icon: { name: 'RestApiIcon', size: 24 }
         },
         {
           title: 'End-to-End Security',
           description: 'Dev8X implements authentication, authorization, and encryption standards, ensuring data integrity and enterprise-grade protection.',
-          icon: { name: 'AIBrainIcon', size: 24 }
+          icon: { name: 'EndTestingIcon', size: 24 }
         },
         {
           title: 'Scalable Architecture',
           description: 'Apps are architected using PostgreSQL, Sequelize ORM, and modular backend patterns, ready to scale with your business growth.',
-          icon: { name: 'SeismometerIcon', size: 24 }
+          icon: { name: 'ArchitectureIcon', size: 24 }
         }
       ]
     },
@@ -222,7 +222,7 @@ const WEBSITE: OffersContent[] = [
         heading: 'Full-Stack & Delivery',
         items: [
           { name: 'End-to-End Ownership', iconName: 'OwernshipIcon' },
-          { name: 'Cross-Functional Collaboration', iconName: 'CollaborationIcon' },
+          { name: 'Cross-Functional Collaboration', iconName: 'CollabSpaceIcon' },
           { name: 'Scalable Architecture', iconName: 'ArchitectureIcon' },
           { name: 'Rapid Deployment', iconName: 'RapidDeliveryIcon' },
           { name: 'Maintenance & Support', iconName: 'MaintenanceIcon' },

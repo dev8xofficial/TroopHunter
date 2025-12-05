@@ -27,22 +27,22 @@ const SAAS: OffersContent[] = [
         {
           title: 'Web, Mobile, Desktop Apps',
           description: 'Dev8X develops SaaS apps for web, mobile, and desktop, covering all required features with responsive, mobile-first design and Next.js, React.js, Flutter, and Dart.',
-          icon: { name: 'RefreshIcon', size: 24 }
+          icon: { name: 'SaaSIcon', size: 24 }
         },
         {
           title: 'Product Websites',
           description: 'We create user-friendly, fully-featured websites for SaaS products using TailwindCSS, HTML5, and GSAP, fostering engagement and stronger audience connections.',
-          icon: { name: 'BackendIcon', size: 24 }
+          icon: { name: 'HtmlIcon', size: 24 }
         },
         {
           title: 'API Development',
           description: 'Back-end teams design scalable, secure RESTful APIs with Node.js, Express.js, and PostgreSQL, optimized for performance and multi-tenant SaaS environments.',
-          icon: { name: 'AIBrainIcon', size: 24 }
+          icon: { name: 'RestApiIcon', size: 24 }
         },
         {
           title: 'CI/CD Pipelines',
           description: 'We implement automated CI/CD workflows using Docker, Kubernetes, and pipeline orchestration to streamline testing, deployment, and continuous updates.',
-          icon: { name: 'SeismometerIcon', size: 24 }
+          icon: { name: 'RapidDeliveryIcon', size: 24 }
         }
       ]
     },
@@ -324,7 +324,7 @@ const SAAS: OffersContent[] = [
         items: [
           { name: 'Stripe', iconName: 'StripeIcon' },
           { name: 'PayPal', iconName: 'PayPalIcon' },
-          { name: 'Google Analytics', iconName: 'GoogleAnaIcon' },
+          { name: 'Google Analytics', iconName: 'GoogleAnalyticsIcon' },
           { name: 'Skylight', iconName: 'AnalyticsIcon' }
         ]
       },

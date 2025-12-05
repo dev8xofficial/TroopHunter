@@ -18,7 +18,7 @@ import RestApiIcon from '../../Icons/RestApi';
 import PostgresqlIcon from '../../Icons/Postgresql';
 import ArchitectureIcon from '../../Icons/Architecture';
 import AuthenticationIcon from '../../Icons/Authentication';
-import PerformanceIcon from '../../Icons/Performance';
+import PerformanceOptimizationIcon from '../../Icons/PerformanceOptimization';
 import TestingIcon from '../../Icons/Testing';
 import TubroRepoIcon from '../../Icons/TubroRepo';
 import FullStackIcon from '../../Icons/FullStack';
@@ -40,17 +40,17 @@ import AccessibilityIcon from '../../Icons/Accessibility';
 import PrettierIcon from '../../Icons/Prettier';
 import GitBranchIcon from '../../Icons/GitBranch';
 import GitPullIcon from '../../Icons/GitPull';
-import MonoRepoIcon from '../../Icons/MonoRepo';
+import MonoRepoIcon from '../../Icons/MonoRepoArchitecture';
 import AgileDeliveryIcon from '../../Icons/AgileDelivery';
-import CollaborationIcon from '../../Icons/Collaboration';
+import CollabSpaceIcon from '../../Icons/CollabSpace';
 import StripeIcon from '../../Icons/Stripe';
 import PayPalIcon from '../../Icons/PayPal';
-import GoogleAnaIcon from '../../Icons/GoogleAna';
+import GoogleAnalyticsIcon from '../../Icons/GoogleAnalytics';
 import AnalyticsIcon from '../../Icons/Analytics';
 import HotjarIcon from '../../Icons/Hotjar';
 import MailchimpIcon from '../../Icons/Mailchimp';
 import HubspotIcon from '../../Icons/Hubspot';
-import AvailabiltyIcon from '../../Icons/Availabilty';
+import HighAvailabiltyIcon from '../../Icons/HighAvailabilty';
 import SecurityIcon from '../../Icons/Security';
 import GsapIcon from '../../Icons/Gsap';
 import ResponsiveIcon from '../../Icons/Responsive';
@@ -62,7 +62,7 @@ import AdobeIcon from '../../Icons/Adobe';
 import SeleniumIcon from '../../Icons/Selenium';
 import RapidDeliveryIcon from '../../Icons/RapidDelivery';
 import MaintenanceIcon from '../../Icons/Maintenance';
-import IntegrationsIcon from '../../Icons/Integrations';
+import SecureIntegrationsIcon from '../../Icons/SecureIntegrations';
 
 import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import styles from './index.module.css';
@@ -88,7 +88,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: number | string; cla
   PostgresqlIcon,
   ArchitectureIcon,
   AuthenticationIcon,
-  PerformanceIcon,
+  PerformanceOptimizationIcon,
   TestingIcon,
   TubroRepoIcon,
   FullStackIcon,
@@ -112,15 +112,15 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: number | string; cla
   GitPullIcon,
   MonoRepoIcon,
   AgileDeliveryIcon,
-  CollaborationIcon,
+  CollabSpaceIcon,
   StripeIcon,
   PayPalIcon,
-  GoogleAnaIcon,
+  GoogleAnalyticsIcon,
   AnalyticsIcon,
   HotjarIcon,
   MailchimpIcon,
   HubspotIcon,
-  AvailabiltyIcon,
+  HighAvailabiltyIcon,
   SecurityIcon,
   GsapIcon,
   ResponsiveIcon,
@@ -132,7 +132,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: number | string; cla
   SeleniumIcon,
   RapidDeliveryIcon,
   MaintenanceIcon,
-  IntegrationsIcon
+  SecureIntegrationsIcon
 };
 
 const Capabilities: React.FC<CapabilitiesProps> = ({ capabilitiesContent, capabilitiesHeading }): JSX.Element => {

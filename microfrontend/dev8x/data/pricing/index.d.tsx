@@ -17,7 +17,7 @@ const OFFERS: OffersContent[] = [
         {
           title: 'Vetted Talent',
           description: 'If it’s not the right fit, we’ll assign a vetted replacement developer within 5 business days — no downtime, no disruption.',
-          icon: { name: 'CreditCardIcon', size: 24 }
+          icon: { name: 'QAIcon', size: 24 }
         },
         // {
         //   title: 'Full Code Ownership',
@@ -27,7 +27,7 @@ const OFFERS: OffersContent[] = [
         // {
         //   title: 'Technical Supervision',
         //   description: 'Every developer is backed by a senior tech lead who ensures code quality, scalable architecture, and consistent best practices.',
-        //   icon: { name: 'AIBrainIcon', size: 24 }
+        //   icon: { name: 'BrainIcon', size: 24 }
         // },
         // {
         //   title: 'Transparent Reporting',
@@ -42,12 +42,12 @@ const OFFERS: OffersContent[] = [
         {
           title: 'US Time-zone Overlap',
           description: 'Collaborate effortlessly with guaranteed 4-hour overlap with U.S. Eastern Time — ideal for daily stand-ups and sprint reviews.',
-          icon: { name: 'PlanetRingIcon', size: 24 }
+          icon: { name: 'GlobeIcon', size: 24 }
         },
         {
           title: 'Flexible Payments',
           description: 'Pay bi-weekly for agility or pre-pay 3 months to unlock instant savings — align spend with your growth rhythm.',
-          icon: { name: 'CreditCardIcon', size: 24 }
+          icon: { name: 'CoinsIcon', size: 24 }
         },
         {
           title: 'Scalable Engagement',
@@ -261,22 +261,22 @@ const OFFERS: OffersContent[] = [
         {
           title: 'Speed-to-Market Delivery',
           description: 'Most services ship in 1–3 days — your brand, listings, SEO, and funnels go live without delays.',
-          icon: { name: 'RefreshIcon', size: 24 }
+          icon: { name: 'RapidDeliveryIcon', size: 24 }
         },
         {
           title: 'Full Asset Ownership',
           description: 'You own all websites, listings systems, brand files, and integrations — built on open, scalable tech.',
-          icon: { name: 'BackendIcon', size: 24 }
+          icon: { name: 'OwnershipIcon', size: 24 }
         },
         {
           title: 'Conversion-Focused Build',
           description: 'Every page, form, and lead flow is designed for higher inquiries, more showings, and faster deals.',
-          icon: { name: 'AIBrainIcon', size: 24 }
+          icon: { name: 'TargetIcon', size: 24 }
         },
         {
           title: 'Transparent Reporting',
           description: 'Track leads, traffic, and engagement with weekly reports and access to dashboards and analytics.',
-          icon: { name: 'SeismometerIcon', size: 24 }
+          icon: { name: 'AnalyticsIcon', size: 24 }
         }
       ]
     },
@@ -574,22 +574,22 @@ const OFFERS: OffersContent[] = [
         {
           title: 'Fast Delivery',
           description: 'Most projects go live in 1–3 days — rapid setup with zero disruption to your practice operations.',
-          icon: { name: 'RefreshIcon', size: 24 }
+          icon: { name: 'RapidDeliveryIcon', size: 24 }
         },
         {
           title: '100% Ownership',
           description: 'You receive full ownership of your website, data, content, and integrations — no lock-ins, no hidden terms.',
-          icon: { name: 'BackendIcon', size: 24 }
+          icon: { name: 'OwnershipIcon', size: 24 }
         },
         {
           title: 'Technical Oversight',
           description: 'Every project is supervised by senior engineers ensuring security, reliability, and long-term scalability.',
-          icon: { name: 'AIBrainIcon', size: 24 }
+          icon: { name: 'ShieldIcon', size: 24 }
         },
         {
           title: 'Transparent Tracking',
           description: 'See every update in real time with progress logs, weekly summaries, and easy communication channels.',
-          icon: { name: 'SeismometerIcon', size: 24 }
+          icon: { name: 'AnalyticsIcon', size: 24 }
         }
       ]
     },

@@ -2,30 +2,30 @@ import type { ComponentType } from 'react';
 import AccessibilityIcon from '@repo/components/src/Icons/Accessibility';
 import AdobeIcon from '@repo/components/src/Icons/Adobe';
 import AgileDeliveryIcon from '@repo/components/src/Icons/AgileDelivery';
-import AIBrainIcon from '@repo/components/src/Icons/AIBrain';
 import AnalysisIcon from '@repo/components/src/Icons/Analysis';
 import AnalyticsIcon from '@repo/components/src/Icons/Analytics';
 import AnsibleIcon from '@repo/components/src/Icons/Ansible';
 import ArchitectureIcon from '@repo/components/src/Icons/Architecture';
 import AsteriskIcon from '@repo/components/src/Icons/Asterisk';
 import AuthenticationIcon from '@repo/components/src/Icons/Authentication';
-import AvailabiltyIcon from '@repo/components/src/Icons/Availabilty';
+import AuthorizationIcon from '@repo/components/src/Icons/Authorization';
 import AwsIcon from '@repo/components/src/Icons/Aws';
 import BackendIcon from '@repo/components/src/Icons/Backend';
 import BasketIcon from '@repo/components/src/Icons/Basket';
+import BrainIcon from '@repo/components/src/Icons/Brain';
 import CanvaIcon from '@repo/components/src/Icons/Canva';
 import CardIcon from '@repo/components/src/Icons/Card';
 import CaretDownIcon from '@repo/components/src/Icons/CaretDown';
 import CaretUpIcon from '@repo/components/src/Icons/CaretUp';
 import ClickUpIcon from '@repo/components/src/Icons/ClickUp';
 import CoinsIcon from '@repo/components/src/Icons/Coins';
-import CollaborationIcon from '@repo/components/src/Icons/Collaboration';
+import CollabSpaceIcon from '@repo/components/src/Icons/CollabSpace';
 import CreditCardIcon from '@repo/components/src/Icons/CreditCard';
 import CrossIcon from '@repo/components/src/Icons/Cross';
-import QAIcon from '@repo/components/src/Icons/QA';
 import DartIcon from '@repo/components/src/Icons/Dart';
 import DataIcon from '@repo/components/src/Icons/Data';
 import DatabaseIcon from '@repo/components/src/Icons/Database';
+import DataBaseOptimizationIcon from '@repo/components/src/Icons/DataBaseOptimization';
 import DentistIcon from '@repo/components/src/Icons/Dentist';
 import DevicesIcon from '@repo/components/src/Icons/Devices';
 import DockerIcon from '@repo/components/src/Icons/Docker';
@@ -40,10 +40,10 @@ import FrameIcon from '@repo/components/src/Icons/Frame';
 import FullStackIcon from '@repo/components/src/Icons/FullStack';
 import GitBranchIcon from '@repo/components/src/Icons/GitBranch';
 import GithubIcon from '@repo/components/src/Icons/Github';
-import GithlabIcon from '@repo/components/src/Icons/Gitlab';
+import GitlabIcon from '@repo/components/src/Icons/Gitlab';
 import GitPullIcon from '@repo/components/src/Icons/GitPull';
 import GlobeIcon from '@repo/components/src/Icons/Globe';
-import GoogleAnaIcon from '@repo/components/src/Icons/GoogleAna';
+import GoogleAnalyticsIcon from '@repo/components/src/Icons/GoogleAnalytics';
 import GPSIcon from '@repo/components/src/Icons/GPS';
 import GraduateHatIcon from '@repo/components/src/Icons/GraduateHat';
 import GraphAnalysisIcon from '@repo/components/src/Icons/GraphAnalysis';
@@ -53,12 +53,12 @@ import GsapIcon from '@repo/components/src/Icons/Gsap';
 import HandPalmIcon from '@repo/components/src/Icons/HandPalm';
 import HandshakeIcon from '@repo/components/src/Icons/Handshake';
 import HeartIcon from '@repo/components/src/Icons/Heart';
+import HighAvailabiltyIcon from '@repo/components/src/Icons/HighAvailabilty';
 import HomeIcon from '@repo/components/src/Icons/HomeIcon';
 import HotjarIcon from '@repo/components/src/Icons/Hotjar';
 import HtmlIcon from '@repo/components/src/Icons/HTML';
 import HubspotIcon from '@repo/components/src/Icons/Hubspot';
 import InfinityIcon from '@repo/components/src/Icons/Infinity';
-import IntegrationsIcon from '@repo/components/src/Icons/Integrations';
 import JenkinsIcon from '@repo/components/src/Icons/Jenkins';
 import KubernetesIcon from '@repo/components/src/Icons/Kubernetes';
 import LaptopIcon from '@repo/components/src/Icons/Laptop';
@@ -71,23 +71,22 @@ import MaintenanceIcon from '@repo/components/src/Icons/Maintenance';
 import MapIcon from '@repo/components/src/Icons/Map';
 import MobileIcon from '@repo/components/src/Icons/Mobile';
 import MonitorIcon from '@repo/components/src/Icons/Monitor';
-import MonoRepoIcon from '@repo/components/src/Icons/MonoRepo';
-import MyspaceIcon from '@repo/components/src/Icons/Myspace';
+import MonoRepoArchitectureIcon from '@repo/components/src/Icons/MonoRepoArchitecture';
 import NestjsIcon from '@repo/components/src/Icons/Nestjs';
 import NextjsIcon from '@repo/components/src/Icons/Nextjs';
 import NodejsIcon from '@repo/components/src/Icons/Nodejs';
 import OpenBookIcon from '@repo/components/src/Icons/OpenBook';
-import OptimizationIcon from '@repo/components/src/Icons/Optimization';
-import OwernshipIcon from '@repo/components/src/Icons/Owernship';
+import OwnershipIcon from '@repo/components/src/Icons/Owernship';
 import PaintSwatchIcon from '@repo/components/src/Icons/PaintSwatch';
 import PayPalIcon from '@repo/components/src/Icons/PayPal';
-import PerformanceIcon from '@repo/components/src/Icons/Performance';
+import PerformanceOptimizationIcon from '@repo/components/src/Icons/PerformanceOptimization';
 import PieChartIcon from '@repo/components/src/Icons/PieChart';
 import PlanetRingIcon from '@repo/components/src/Icons/PlanetRing';
-import PointerIcon from '@repo/components/src/Icons/Pointer';
+import PointerCursorIcon from '@repo/components/src/Icons/PointerCursor';
 import PostgresqlIcon from '@repo/components/src/Icons/Postgresql';
 import PrettierIcon from '@repo/components/src/Icons/Prettier';
 import PuzzlePieceIcon from '@repo/components/src/Icons/PuzzlePiece';
+import QAIcon from '@repo/components/src/Icons/QA';
 import RapidDeliveryIcon from '@repo/components/src/Icons/RapidDelivery';
 import ReactjsIcon from '@repo/components/src/Icons/Reactjs';
 import ReduxIcon from '@repo/components/src/Icons/Redux';
@@ -98,6 +97,7 @@ import RightArrowIcon from '@repo/components/src/Icons/RightArrow';
 import RocketIcon from '@repo/components/src/Icons/Rocket';
 import SaaSIcon from '@repo/components/src/Icons/SaaS';
 import ScaleIcon from '@repo/components/src/Icons/Scale';
+import SecureIntegrationsIcon from '@repo/components/src/Icons/SecureIntegrations';
 import SecurityIcon from '@repo/components/src/Icons/Security';
 import SeismometerIcon from '@repo/components/src/Icons/Seismometer';
 import SelectionIcon from '@repo/components/src/Icons/Selection';
@@ -123,45 +123,41 @@ import TubroRepoIcon from '@repo/components/src/Icons/TubroRepo';
 import TypeScriptIcon from '@repo/components/src/Icons/TypeScript';
 import UnitTestingIcon from '@repo/components/src/Icons/UnitTesting';
 import UserIcon from '@repo/components/src/Icons/User';
+import UserIdIcon from '@repo/components/src/Icons/UserId';
 import VirtualMachinesIcon from '@repo/components/src/Icons/VirtualMachines';
 import VoltageIcon from '@repo/components/src/Icons/Voltage';
 import WandIcon from '@repo/components/src/Icons/Wand';
 import WebServersIcon from '@repo/components/src/Icons/WebServers';
 import WordpressIcon from '@repo/components/src/Icons/Wordpress';
 
-type IconComponent = ComponentType<{
-  size?: number | string;
-  className?: string;
-}>;
-
-const ICON_COMPONENTS: Record<string, IconComponent> = {
+const ICON_COMPONENTS = {
   AccessibilityIcon,
   AdobeIcon,
   AgileDeliveryIcon,
-  AIBrainIcon,
   AnalysisIcon,
   AnalyticsIcon,
   AnsibleIcon,
   ArchitectureIcon,
   AsteriskIcon,
   AuthenticationIcon,
-  AvailabiltyIcon,
+  AuthorizationIcon,
   AwsIcon,
   BackendIcon,
   BasketIcon,
+  BrainIcon,
   CanvaIcon,
   CardIcon,
   CaretDownIcon,
   CaretUpIcon,
   ClickUpIcon,
   CoinsIcon,
-  CollaborationIcon,
+  CollabSpaceIcon,
   CreditCardIcon,
   CrossIcon,
-  QAIcon,
   DartIcon,
   DataIcon,
   DatabaseIcon,
+  DataBaseOptimizationIcon,
   DentistIcon,
   DevicesIcon,
   DockerIcon,
@@ -176,10 +172,10 @@ const ICON_COMPONENTS: Record<string, IconComponent> = {
   FullStackIcon,
   GitBranchIcon,
   GithubIcon,
-  GithlabIcon,
+  GitlabIcon,
   GitPullIcon,
   GlobeIcon,
-  GoogleAnaIcon,
+  GoogleAnalyticsIcon,
   GPSIcon,
   GraduateHatIcon,
   GraphAnalysisIcon,
@@ -189,12 +185,12 @@ const ICON_COMPONENTS: Record<string, IconComponent> = {
   HandPalmIcon,
   HandshakeIcon,
   HeartIcon,
+  HighAvailabiltyIcon,
   HomeIcon,
   HotjarIcon,
   HtmlIcon,
   HubspotIcon,
   InfinityIcon,
-  IntegrationsIcon,
   JenkinsIcon,
   KubernetesIcon,
   LaptopIcon,
@@ -207,23 +203,22 @@ const ICON_COMPONENTS: Record<string, IconComponent> = {
   MapIcon,
   MobileIcon,
   MonitorIcon,
-  MonoRepoIcon,
-  MyspaceIcon,
+  MonoRepoArchitectureIcon,
   NestjsIcon,
   NextjsIcon,
   NodejsIcon,
   OpenBookIcon,
-  OptimizationIcon,
-  OwernshipIcon,
+  OwnershipIcon,
   PaintSwatchIcon,
   PayPalIcon,
-  PerformanceIcon,
+  PerformanceOptimizationIcon,
   PieChartIcon,
   PlanetRingIcon,
-  PointerIcon,
+  PointerCursorIcon,
   PostgresqlIcon,
   PrettierIcon,
   PuzzlePieceIcon,
+  QAIcon,
   RapidDeliveryIcon,
   ReactjsIcon,
   ReduxIcon,
@@ -234,6 +229,7 @@ const ICON_COMPONENTS: Record<string, IconComponent> = {
   RocketIcon,
   SaaSIcon,
   ScaleIcon,
+  SecureIntegrationsIcon,
   SecurityIcon,
   SeismometerIcon,
   SelectionIcon,
@@ -259,6 +255,7 @@ const ICON_COMPONENTS: Record<string, IconComponent> = {
   TypeScriptIcon,
   UnitTestingIcon,
   UserIcon,
+  UserIdIcon,
   VirtualMachinesIcon,
   VoltageIcon,
   WandIcon,

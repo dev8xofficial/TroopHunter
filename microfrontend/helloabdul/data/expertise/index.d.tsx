@@ -744,17 +744,17 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Interaction-first thinking',
           description: 'I design and build clear interaction patterns grounded in real user behaviours—ensuring every animation, transition and feedback loop supports usability and increases task success.',
-          icon: { name: 'EyeIcon', size: 24 }
+          icon: { name: 'PointerCursorIcon', size: 24 }
         },
         {
           title: 'Accessible for everyone',
           description: 'From keyboard workflows to WCAG-compliant motion and colour systems, accessibility and performance sit at the core of every interactive component I produce.',
-          icon: { name: 'SeismometerIcon', size: 24 }
+          icon: { name: 'AccessibilityIcon', size: 24 }
         },
         {
           title: 'Data-backed decisions',
           description: 'Interaction choices are informed through analytics, usability testing and experimentation—allowing the UI to evolve into a frictionless, high-conversion experience.',
-          icon: { name: 'PuzzlePieceIcon', size: 24 }
+          icon: { name: 'AnalyticsIcon', size: 24 }
         },
         {
           title: 'Crafted for modern engineering',
@@ -1185,22 +1185,22 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Micro-interactions',
           description: 'Tiny animations—like hover effects, button transitions, or input validations—give instant feedback and make interfaces feel responsive and intuitive.',
-          icon: { name: 'SparkleIcon', size: 24 }
+          icon: { name: 'PointerCursorIcon', size: 24 }
         },
         {
           title: 'Page & Layout Transitions',
           description: 'Smooth transitions between views reduce cognitive load, help users understand hierarchy, and make complex flows feel seamless.',
-          icon: { name: 'SwapIcon', size: 24 }
+          icon: { name: 'RefreshIcon', size: 24 }
         },
         {
           title: 'Guided Attention',
           description: 'Motion can direct users’ eyes to important content or call-to-action buttons without breaking focus or becoming annoying—perfect for dashboards, forms, and eCommerce flows.',
-          icon: { name: 'ArrowTrendingIcon', size: 24 }
+          icon: { name: 'TargetIcon', size: 24 }
         },
         {
           title: 'Performance-first Animations',
           description: 'Built with React, Framer Motion, or CSS transitions, I ensure animations are smooth, GPU-accelerated, and don’t compromise page load or interactivity—because nobody likes a jittery UI.',
-          icon: { name: 'CpuChipIcon', size: 24 }
+          icon: { name: 'PerformanceOptimizationIcon', size: 24 }
         }
       ]
     },
@@ -1236,7 +1236,7 @@ const EXPERTISES: ExpertiseContent[] = [
       end: 'something wonderful'
     },
     meta: {
-      title: 'Prototyping | Our Expertise — Abdul | Abdul: World class digital products',
+      title: 'Animations | Our Expertise — Abdul | Abdul: World class digital products',
       description: 'Turn your ideas into digital prototypes'
     },
     footerData: {
@@ -1334,22 +1334,22 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'High-Fidelity Interfaces',
           description: 'From sketches and wireframes to polished UI, I translate every detail into fully responsive, interactive designs that adhere strictly to brand guidelines and design specifications.',
-          icon: { name: 'GPSIcon', size: 24 }
+          icon: { name: 'FigmaIcon', size: 24 }
         },
         {
           title: 'Responsive & Adaptive',
           description: 'Every layout is optimized for multiple screen sizes and devices. I focus on flexible grids, fluid spacing, and scalable typography to ensure a flawless experience across mobile, tablet, and desktop.',
-          icon: { name: 'FrameIcon', size: 24 }
+          icon: { name: 'ResponsiveIcon', size: 24 }
         },
         {
           title: 'Design-to-Code Precision',
           description: 'Using React, Next.js, and modern frontend practices, I implement layouts exactly as designed. Every component is pixel-perfect, accessible, and performance-optimized for modern US tech standards.',
-          icon: { name: 'TargetIcon', size: 24 }
+          icon: { name: 'ReactjsIcon', size: 24 }
         },
         {
           title: 'Collaborative Delivery',
           description: 'I work closely with design and product teams to ensure your vision translates into a living product. From concept validation to production-ready layouts, every step is collaborative, transparent, and high-quality.',
-          icon: { name: 'HandPalmIcon', size: 24 }
+          icon: { name: 'CollabSpaceIcon', size: 24 }
         }
       ]
     },
@@ -1478,27 +1478,27 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Modern Foundations',
           description: 'We build fast, scalable applications using React.js—an open-source JavaScript library designed for creating rich, interactive UIs that adapt to your product needs.',
-          icon: { name: 'TargetIcon', size: 24 }
+          icon: { name: 'ReactjsIcon', size: 24 }
         },
         {
           title: 'Component-first Thinking',
           description: 'React’s modular architecture enables us to design reusable, isolated components that scale with your application and support long-term maintainability.',
-          icon: { name: 'GPSIcon', size: 24 }
+          icon: { name: 'PuzzlePieceIcon', size: 24 }
         },
         {
           title: 'Performance at Scale',
           description: 'Optimised rendering, dynamic routing, and seamless state management ensure high performance even in data-heavy or real-time environments.',
-          icon: { name: 'FrameIcon', size: 24 }
+          icon: { name: 'PerformanceOptimizationIcon', size: 24 }
         },
         {
           title: 'Built for Integration Design',
           description: 'We craft React.js frontends that work effortlessly with APIs, headless CMSs, and custom backends—adapting to your existing infrastructure with ease.',
-          icon: { name: 'HandPalmIcon', size: 24 }
+          icon: { name: 'RestApiIcon', size: 24 }
         },
         {
           title: 'Your Development Partner',
           description: 'From architecture to handover, we collaborate closely with your team to create future-ready React applications backed by our expert support and guidance.',
-          icon: { name: 'HandshakeIcon', size: 24 }
+          icon: { name: 'CollabSpaceIcon', size: 24 }
         }
       ]
     },
@@ -1637,7 +1637,7 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Production-ready by design',
           description: 'Build fast, scalable, and secure applications with Next.js—designed from the ground up to perform across every device and connection.',
-          icon: { name: 'ShieldIcon', size: 24 }
+          icon: { name: 'ArchitectureIcon', size: 24 }
         },
         {
           title: 'Framework Flexibility',
@@ -1652,7 +1652,7 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Scalable Foundations',
           description: 'From MVPs to enterprise platforms, we use Next.js as a robust foundation to grow with your needs, making future enhancements faster and easier.',
-          icon: { name: 'PuzzlePieceIcon', size: 24 }
+          icon: { name: 'MonoRepoArchitectureIcon', size: 24 }
         }
       ]
     },
@@ -1792,22 +1792,22 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Type-Safe Development',
           description: 'Catch errors at compile-time rather than runtime. TypeScript’s static typing reduces bugs, improves code readability, and helps teams maintain complex applications efficiently.',
-          icon: { name: 'LightningIcon', size: 24 }
+          icon: { name: 'TypeScriptIcon', size: 24 }
         },
         {
           title: 'Scalable Frontend Apps',
           description: 'Build modern, scalable frontend applications with React and Next.js using TypeScript. Strong typing improves component reuse, prop validation, and developer confidence for large-scale projects.',
-          icon: { name: 'PointerIcon', size: 24 }
+          icon: { name: 'ReactjsIcon', size: 24 }
         },
         {
           title: 'Backend Reliability',
           description: 'Implement Node.js APIs and server-side services using TypeScript to enhance maintainability, enforce contracts, and reduce runtime errors in production.',
-          icon: { name: 'SeismometerIcon', size: 24 }
+          icon: { name: 'NodejsIcon', size: 24 }
         },
         {
           title: 'Best Practices & Patterns',
           description: 'Leverage TypeScript’s advanced features like generics, enums, union types, interfaces, and utility types to enforce consistent coding standards, scalable architecture, and clean code patterns.',
-          icon: { name: 'PuzzlePieceIcon', size: 24 }
+          icon: { name: 'ArchitectureIcon', size: 24 }
         }
       ]
     },
@@ -1944,22 +1944,22 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Global State Control',
           description: 'Manage application-wide state efficiently with libraries like Redux or Zustand, ensuring predictable updates, easy debugging, and maintainable code for large-scale applications.',
-          icon: { name: 'MagicWandIcon', size: 24 }
+          icon: { name: 'ReduxIcon', size: 24 }
         },
         {
           title: 'Local & Derived State',
           description: 'Handle component-level state and computed values effectively using React Context, Jotai, or Zustand atoms. Keep local and derived state synchronized for performance and readability.',
-          icon: { name: 'PuzzlePieceIcon', size: 24 }
+          icon: { name: 'ReactjsIcon', size: 24 }
         },
         {
           title: 'Type-Safe State',
           description: 'Combine TypeScript with your state management solution to define interfaces, types, and payloads. This prevents runtime errors, enforces consistency, and improves developer confidence in complex workflows.',
-          icon: { name: 'TargetIcon', size: 24 }
+          icon: { name: 'TypeScriptIcon', size: 24 }
         },
         {
           title: 'Best Practices & Patterns',
           description: 'Follow patterns like normalized state, feature-based slices, and middleware for asynchronous workflows. Optimize for scalability, modularity, and maintainability in enterprise-level applications.',
-          icon: { name: 'PaintSwatchIcon', size: 24 }
+          icon: { name: 'MonoRepoArchitectureIcon', size: 24 }
         }
       ]
     },
@@ -2103,22 +2103,22 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Server-Side Rendering (SSR)',
           description: 'Render dynamic pages on the server per request for fast initial load, personalized content, and improved SEO. Ideal for dashboards, e-commerce, and content-heavy applications.',
-          icon: { name: 'MagicWandIcon', size: 24 }
+          icon: { name: 'NextjsIcon', size: 24 }
         },
         {
           title: 'Static Site Generation (SSG)',
           description: 'Generate HTML at build time for ultra-fast delivery. Perfect for blogs, marketing sites, and documentation. Combine with incremental static regeneration (ISR) for freshness without sacrificing speed.',
-          icon: { name: 'PuzzlePieceIcon', size: 24 }
+          icon: { name: 'PerformanceOptimizationIcon', size: 24 }
         },
         {
           title: 'Hybrid Rendering Strategies',
           description: 'Combine SSR, SSG, and client-side rendering (CSR) to maximize performance, SEO, and dynamic functionality. Tailor the approach based on page type, data needs, and traffic patterns.',
-          icon: { name: 'TargetIcon', size: 24 }
+          icon: { name: 'ArchitectureIcon', size: 24 }
         },
         {
           title: 'Best Practices & Performance',
           description: 'Optimize SSR/SSG pipelines with caching, image optimization, code-splitting, and lazy loading. Use TypeScript for type-safe API calls and ensure your app scales efficiently with traffic.',
-          icon: { name: 'PaintSwatchIcon', size: 24 }
+          icon: { name: 'MonoRepoArchitectureIcon', size: 24 }
         }
       ]
     },
@@ -2416,22 +2416,22 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'REST & GraphQL APIs',
           description: 'Design and implement scalable REST or GraphQL APIs for seamless frontend-backend communication. Ensure predictable responses, caching strategies, and proper versioning to support evolving applications.',
-          icon: { name: 'EyeIcon', size: 24 }
+          icon: { name: 'GraphQLIcon', size: 24 }
         },
         {
           title: 'Third-party integrations',
           description: 'Integrate external services such as payment gateways, analytics, authentication providers, or cloud platforms. We handle authentication, error handling, and data synchronization for reliable operation.',
-          icon: { name: 'SparklerIcon', size: 24 }
+          icon: { name: 'SecureIntegrationsIcon', size: 24 }
         },
         {
           title: 'Real-time & event-driven APIs',
           description: 'Leverage WebSockets, server-sent events, and message queues for real-time applications. Build dynamic dashboards, chat systems, notifications, and live data streams with low-latency performance.',
-          icon: { name: 'DevicesIcon', size: 24 }
+          icon: { name: 'LightningIcon', size: 24 }
         },
         {
           title: 'Secure & maintainable APIs',
           description: 'Apply authentication, authorization, rate-limiting, and logging to protect your services. Follow industry best practices for maintainable and scalable API design across teams and projects.',
-          icon: { name: 'PieChartIcon', size: 24 }
+          icon: { name: 'AuthorizationIcon', size: 24 }
         }
       ]
     },
@@ -2557,27 +2557,27 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'REST API Excellence',
           description: 'Implement RESTful APIs following best practices, including proper resource naming, status codes, versioning, and error handling to ensure maintainable and reliable backend services.',
-          icon: { name: 'BackendIcon', size: 24 }
+          icon: { name: 'RestApiIcon', size: 24 }
         },
         {
           title: 'GraphQL Mastery',
           description: 'Create flexible GraphQL APIs with well-structured schemas, resolvers, and data loaders. Optimize queries, prevent over-fetching, and ensure secure access through proper authentication and authorization.',
-          icon: { name: 'VoltageIcon', size: 24 }
+          icon: { name: 'GraphQLIcon', size: 24 }
         },
         {
           title: 'Realtime & Subscription APIs',
           description: 'Implement WebSocket or GraphQL subscription endpoints to handle live updates, notifications, and real-time data streams for modern web and mobile applications.',
-          icon: { name: 'PuzzlePieceIcon', size: 24 }
+          icon: { name: 'GlobeIcon', size: 24 }
         },
         {
           title: 'API Security & Monitoring',
           description: 'Apply OAuth, JWT, API keys, and rate limiting to protect your endpoints. Monitor API performance, error rates, and usage to ensure reliability and scalability.',
-          icon: { name: 'ShieldIcon', size: 24 }
+          icon: { name: 'MonitorIcon', size: 24 }
         },
         {
           title: 'Integration & Scalability',
           description: 'Design APIs that integrate seamlessly with frontend applications, microservices, and third-party platforms. Ensure your services scale effortlessly as your business grows.',
-          icon: { name: 'WebServersIcon', size: 24 }
+          icon: { name: 'SecureIntegrationsIcon', size: 24 }
         }
       ]
     },
@@ -3780,22 +3780,22 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Production-ready clusters',
           description: 'Design highly available clusters with hardened control planes, policy guardrails, and zero-downtime upgrade paths so teams can ship with confidence.',
-          icon: { name: 'MagicWandIcon', size: 24 }
+          icon: { name: 'HighAvailabiltyIcon', size: 24 }
         },
         {
           title: 'GitOps & IaC pipelines',
           description: 'Codify infrastructure and workloads with GitOps workflows, baking governance, repeatability, and instant recovery directly into every deployment.',
-          icon: { name: 'PuzzlePieceIcon', size: 24 }
+          icon: { name: 'GitBranchIcon', size: 24 }
         },
         {
           title: 'Observability & FinOps',
           description: 'Instrument clusters with end-to-end metrics, tracing, and cost analytics to keep performance high while eliminating waste across environments.',
-          icon: { name: 'TargetIcon', size: 24 }
+          icon: { name: 'AnalyticsIcon', size: 24 }
         },
         {
           title: 'Platform enablement',
           description: 'Uplevel application squads with golden paths, curated add-ons, and hands-on enablement so they can self-serve Kubernetes safely.',
-          icon: { name: 'PaintSwatchIcon', size: 24 }
+          icon: { name: 'SupportIcon', size: 24 }
         }
       ]
     },
@@ -3934,22 +3934,22 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Modular Architecture',
           description: 'Design reusable Terraform modules that standardize networking, data, and application stacks across regions while eliminating configuration drift.',
-          icon: { name: 'VirtualMachinesIcon', size: 24 }
+          icon: { name: 'TerraformIcon', size: 24 }
         },
         {
           title: 'Policy-Driven Pipelines',
           description: 'Embed policy-as-code with Sentinel and OPA to enforce tagging, security, and cost controls before resources ever reach production.',
-          icon: { name: 'PuzzlePieceIcon', size: 24 }
+          icon: { name: 'ShieldIcon', size: 24 }
         },
         {
           title: 'Scalable Automation',
           description: 'Tie Terraform plans into CI/CD and GitOps workflows so every change passes automated validation, secrets management, and approval gates.',
-          icon: { name: 'SaaSIcon', size: 24 }
+          icon: { name: 'RapidDeliveryIcon', size: 24 }
         },
         {
           title: 'Operational Visibility',
           description: 'Leverage remote state backends, workspaces, and drift detection to maintain full insight into infrastructure lifecycles and accelerate recovery.',
-          icon: { name: 'VoltageIcon', size: 24 }
+          icon: { name: 'MonitorIcon', size: 24 }
         }
       ]
     },
@@ -4087,7 +4087,7 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Orchestrated Everywhere',
           description: 'Design resilient Kubernetes and ECS topologies with multi-cluster failover, edge deployments, and workload placement tuned to business SLAs.',
-          icon: { name: 'InfinityIcon', size: 24 }
+          icon: { name: 'KubernetesIcon', size: 24 }
         },
         {
           title: 'Security & Governance',
@@ -4097,7 +4097,7 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Lifecycle Automation',
           description: 'GitOps flows, progressive delivery, and autoscaling policies automate the full container lifecycle so teams can ship quickly without sacrificing control.',
-          icon: { name: 'RefreshIcon', size: 24 }
+          icon: { name: 'RapidDeliveryIcon', size: 24 }
         }
       ]
     },
@@ -4237,22 +4237,22 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Domain-Aligned Services',
           description: 'Model services around business capabilities, ensuring each API boundary reflects the domain language and can evolve independently.',
-          icon: { name: 'GPSIcon', size: 24 }
+          icon: { name: 'HighAvailabiltyIcon', size: 24 }
         },
         {
           title: 'Observable & Secure',
           description: 'Bake in distributed tracing, real-time metrics, and zero-trust policies so every service is debuggable, auditable, and compliant.',
-          icon: { name: 'FrameIcon', size: 24 }
+          icon: { name: 'GitBranchIcon', size: 24 }
         },
         {
           title: 'Cloud-Native Delivery',
           description: 'Use containers, Kubernetes, and GitOps pipelines to ship updates continuously while maintaining strict SLOs and rollback guarantees.',
-          icon: { name: 'TargetIcon', size: 24 }
+          icon: { name: 'AnalyticsIcon', size: 24 }
         },
         {
           title: 'Embedded Partnership',
           description: 'Collaborate with platform, product, and security teams to design migration roadmaps, success metrics, and operational runbooks.',
-          icon: { name: 'HandPalmIcon', size: 24 }
+          icon: { name: 'CollabSpaceIcon', size: 24 }
         }
       ]
     },
@@ -4386,22 +4386,22 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Deterministic Pipelines',
           description: 'Leverage remote caching, parallel task orchestration, and incremental builds so engineers see predictable runtimes across every PR.',
-          icon: { name: 'GPSIcon', size: 24 }
+          icon: { name: 'TubroRepoIcon', size: 24 }
         },
         {
           title: 'Shared Platform Foundations',
           description: 'Design workspaces with typed package boundaries, utility libraries, and lint/test presets that keep cross-team development aligned.',
-          icon: { name: 'FrameIcon', size: 24 }
+          icon: { name: 'MonoRepoArchitectureIcon', size: 24 }
         },
         {
           title: 'CI-Ready Integrations',
           description: 'Wire TurboRepo into GitHub Actions, CircleCI, or Buildkite with artifact reuse, fail-fast strategies, and automated release orchestration.',
-          icon: { name: 'TargetIcon', size: 24 }
+          icon: { name: 'RapidDeliveryIcon', size: 24 }
         },
         {
           title: 'Governance & Guardrails',
           description: 'Establish code ownership, dependency policies, and documentation so the monorepo scales without bottlenecks or regressions.',
-          icon: { name: 'HandPalmIcon', size: 24 }
+          icon: { name: 'OwnershipIcon', size: 24 }
         }
       ]
     },
