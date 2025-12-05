@@ -14,7 +14,7 @@ const s3 = new S3Client({
 });
 
 const BUCKET = process.env.R2_BUCKET;
-const EXCLUDE_PREFIX = '_next/'; // keep this folder
+const EXCLUDE_PREFIXES = ['_next/', 'favicon/', 'fonts/', 'images/', 'logo/', 'videos/']; // keep these folders
 
 async function deleteAllExceptNext() {
 	try {
@@ -32,8 +32,10 @@ async function deleteAllExceptNext() {
 				break;
 			}
 
-			// Filter out objects that start with _next/
-			const objectsToDelete = listRes.Contents.filter((obj) => !obj.Key.startsWith(EXCLUDE_PREFIX));
+			// Filter out objects that start with any excluded prefix
+			const objectsToDelete = listRes.Contents.filter(
+				(obj) => !EXCLUDE_PREFIXES.some((prefix) => obj.Key.startsWith(prefix)),
+			);
 
 			if (objectsToDelete.length === 0) {
 				console.log('No objects to delete on this batch');
@@ -56,7 +58,7 @@ async function deleteAllExceptNext() {
 			continuationToken = listRes.IsTruncated ? listRes.NextContinuationToken : undefined;
 		} while (continuationToken);
 
-		console.log('✅ Done deleting all except _next folder');
+		console.log('✅ Done deleting all except _next, images, and videos folders');
 	} catch (err) {
 		console.error('❌ Failed to delete objects', err);
 		process.exit(1);
