@@ -9,6 +9,7 @@
 		"deploy:force": "wrangler deploy --force",
 		"delete:next": "node src/delete-next-r2.js",
 		"delete:public": "node src/delete-public-r2.js",
+		"delete:sitemap": "node src/delete-sitemap-r2.js",
 		"dev": "wrangler dev",
 		"dev:remote": "wrangler dev --remote",
 		"start": "wrangler dev",
