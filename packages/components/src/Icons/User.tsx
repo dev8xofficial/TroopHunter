@@ -9,16 +9,9 @@ interface UserIconProps {
 
 const UserIcon: React.FC<UserIconProps> = ({ size = 24, className }) => {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_710_304)">
-        <path d="M12.001 12C16.4193 12 20.001 9.31371 20.001 6C20.001 2.68629 16.4193 0 12.001 0C7.58271 0 4.00098 2.68629 4.00098 6C4.00098 9.31371 7.58271 12 12.001 12Z" fill="currentcolor" />
-        <path d="M12 14.0001C5.37564 14.0057 0.00737502 18.0318 0 23.0001C0 23.5524 0.596939 24.0001 1.33332 24.0001H22.6667C23.4031 24.0001 24 23.5524 24 23.0001C23.9927 18.0318 18.6244 14.0056 12 14.0001Z" fill="currentcolor" />
-      </g>
-      <defs>
-        <clipPath id="clip0_710_304">
-          <rect width="24" height="24" fill="white" />
-        </clipPath>
-      </defs>
+    <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" fill="cuurentcolor" />
+      <path d="M12 12.6667C7.85977 12.6714 4.50461 16.0265 4.5 20.1667C4.5 20.627 4.87309 21.0001 5.33332 21.0001H18.6667C19.1269 21.0001 19.5 20.627 19.5 20.1667C19.4954 16.0265 16.1403 12.6713 12 12.6667Z" fill="cuurentcolor" />
     </svg>
   );
 };
