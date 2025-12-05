@@ -1,14 +1,25 @@
 import { HomeContent } from '@repo/components';
 import { prefixed } from '@repo/components/utils/helpers';
+import React from 'react';
+import SmileIcon from '@repo/components/src/Icons/Smile';
 
 const PageData: HomeContent = {
   meta: {
     title: 'Frontend Made Fearless! — Abdul',
     description: 'I craft fast, accessible, and scalable web experiences that feel effortless for users and reliable for engineering teams. From React to real-world product thinking — I ship code that ships businesses forward.'
   },
-  title: 'Frontend <br /> Made Friendly. 😊',
+
+  // Title as JSX with SmileIcon inline
+  title: (
+    <>
+      Frontend <br /> Made Friendly. <SmileIcon size={80} />
+    </>
+  ),
+
   video: prefixed('/videos/header/header.mp4'),
+
   paragraph: 'I design, build, and fine-tune web experiences that load fast, look clean, and behave like they actually went through QA.',
+
   whyDev8XContent: {
     heading: 'Why Me',
     para1: 'I believe great UI starts with empathy — and a tiny pinch of obsession. Every interface I build has one job: make someone’s day a little easier (and sometimes a little cooler).',
@@ -20,11 +31,13 @@ const PageData: HomeContent = {
       { title: '20+', span: ['Products ', 'shipped ', 'across ', 'US teams'] }
     ]
   },
+
   footerMainContent: {
     link: '/contact',
     start: 'Let’s build',
     end: 'something that actually loads fast!'
   },
+
   footerData: {
     global: {
       heading: 'I work globally',
@@ -32,44 +45,21 @@ const PageData: HomeContent = {
       buttonText: 'Hire me'
     },
     offices: [
-      {
-        country: 'Pakistan (HQ)',
-        city: 'Lahore, Punjab',
-        phone: '+92 (329) 294-7777'
-      },
-      {
-        country: 'USA (Remote)',
-        city: 'San Francisco, CA',
-        phone: '+1 (321) 300-2393'
-      }
+      { country: 'Pakistan (HQ)', city: 'Lahore, Punjab', phone: '+92 (329) 294-7777' },
+      { country: 'USA (Remote)', city: 'San Francisco, CA', phone: '+1 (321) 300-2393' }
     ],
-    // careers: {
-    //   heading: 'We’re Growing – Join Our Team',
-    //   description: 'Let’s build the future, together.',
-    //   link: '/careers',
-    //   linkText: 'Explore Careers'
-    // },
     copyright: {
       year: '2025',
       text: 'Privacy Policy',
       privacyLink: '/privacy'
     }
   },
+
   footerSocialLinks: [
     {
       title: 'LinkedIn',
-      // icon: { name: 'AsteriskIcon', size: 10 },
       href: 'https://www.linkedin.com/in/helloabdul/'
-    },
-    // {
-    //   title: 'Instagram',
-    //   icon: { name: 'AsteriskIcon', size: 10 },
-    //   href: 'https://www.instagram.com/reh.m.an/'
-    // },
-    // {
-    //   title: 'Facebook',
-    //   href: 'https://www.facebook.com/share/15PGxbroKkm/'
-    // }
+    }
   ]
 };
 
