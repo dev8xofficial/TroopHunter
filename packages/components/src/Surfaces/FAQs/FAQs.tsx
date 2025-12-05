@@ -46,11 +46,11 @@ export const FAQs: React.FC<FAQsProps> = ({ faqs }) => {
               {({ open }) => (
                 <>
                   <DisclosureButton as="div" className={`${HomepageStatsStyles['homepage-stats__item']} ${styles['faqs-stats__item']}`} aria-label={open ? 'Collapse details' : 'Expand details'} key={index}>
-                    <span className={`${styles['homepage-stats__value']} ${styles['faqs-stats__value']}`}>
+                    <span className={`${HomepageStatsStyles['homepage-stats__value']} ${styles['faqs-stats__value']}`}>
                       {stat.title}
                     </span>
 
-                    <span className={`${styles['homepage-stats__label']} ${styles['faqs-stats__label']}`}>
+                    <span className={`${HomepageStatsStyles['homepage-stats__label']} ${styles['faqs-stats__label']}`}>
                       <button type="button" className={OpenRolesListStyles['toggleButton']}>
                         {open ? (
                           <CaretUp
