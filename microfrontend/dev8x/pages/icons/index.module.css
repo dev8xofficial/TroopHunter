@@ -1,0 +1,12 @@
+.icons-grid-wrapper {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+}
+
+.icons-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: 960px;
+}
