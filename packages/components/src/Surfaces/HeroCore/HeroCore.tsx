@@ -8,6 +8,7 @@ import { toggleSmoothModalAtom } from '../../../store/smoothModalAtom';
 import { Button } from '../../Input/Button/Button';
 import RightArrowIcon from '../../Icons/RightArrow';
 
+import IconCardStyles from '../IconCards/index.module.css';
 import ButtonStyles from '../../Input/Button/index.module.css';
 import PictureStyles from '../../Surfaces/Picture/index.module.css';
 import LayoutStyles from '../Layout/layout.module.css';
@@ -55,7 +56,7 @@ export const HeroCore: React.FC<HeroCoreProps> = ({ heading, icon, image, paragr
                     </React.Fragment>
                   ))}
                 </h2>
-                <div style={{ opacity: 1, transform: 'translateY(0px)' }}>{paragraph && <p className={HeroStyles['expertise-paragraph']} dangerouslySetInnerHTML={{ __html: paragraph }} />}</div>
+                <div style={{ opacity: 1, transform: 'translateY(0px)' }}>{paragraph && <p className={IconCardStyles['icon-cards__intro']} dangerouslySetInnerHTML={{ __html: paragraph }} />}</div>
                 {buttonsToRender.length > 0 && (
                   <div className={LayoutStyles['work-header']}>
                     {buttonsToRender.map((button, index) => (

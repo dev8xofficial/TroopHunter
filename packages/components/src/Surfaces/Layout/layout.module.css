@@ -9,9 +9,10 @@
 }
 
 .work-header {
-  margin: 5rem 0 2.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .work-header__heading {
@@ -23,21 +24,17 @@
 
 @media (min-width: 992px) {
   .work-header {
-    margin-bottom: 5rem;
-    display: flex;
-    gap: 1rem;
+    margin-top: clamp(3.125rem, 3.3068783069vw, 4.15625rem);
+    margin-bottom: clamp(3.75rem, 3.9682539683vw, 4.9875rem);
   }
-
   .work-header__heading {
     max-width: clamp(75rem, 79.3650793651vw, 99.75rem);
     font-size: clamp(6.25rem, 6.6137566138vw, 8.3125rem);
   }
 }
-
 @media (min-width: 1200px) {
   .work-header {
-    /* margin-top: 5.5rem; */
-    display: flex;
-    gap: 1rem;
+    margin-top: clamp(3.75rem, 3.9682539683vw, 4.9875rem);
+    margin-bottom: clamp(5rem, 5.291005291vw, 6.65rem);
   }
 }

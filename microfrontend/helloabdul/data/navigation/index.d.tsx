@@ -6,13 +6,13 @@ const SubmenuData = [
     list: [
       {
         title: 'Websites',
-        iconName: 'PointerCursorIcon',
+        iconName: 'MonitorIcon',
         color: 'cyan',
         href: '/expertise/websites'
       },
       {
         title: 'Web Apps',
-        iconName: 'CardIcon',
+        iconName: 'ResponsiveIcon',
         color: 'pink',
         href: '/expertise/web-applications'
       },
@@ -30,7 +30,7 @@ const SubmenuData = [
       },
       {
         title: 'eCommerce',
-        iconName: 'BasketIcon',
+        iconName: 'ShoppingCartIcon',
         color: 'green',
         href: '/expertise/ecommerce'
       },
@@ -42,7 +42,7 @@ const SubmenuData = [
       },
       {
         title: 'Real-Time Apps',
-        iconName: 'SeismometerIcon',
+        iconName: 'LightningIcon',
         color: 'purple',
         href: '/expertise/real-time-apps'
       }
@@ -59,7 +59,7 @@ const SubmenuData = [
       },
       {
         title: 'API Integration',
-        iconName: 'SeismometerIcon',
+        iconName: 'RestApiIcon',
         color: 'cyan',
         href: '/expertise/api-integration'
       },
@@ -88,31 +88,31 @@ const SubmenuData = [
     list: [
       {
         title: 'Interaction Design',
-        iconName: 'CollabSpaceIcon',
+        iconName: 'PointerCursorIcon',
         color: 'purple',
         href: '/expertise/interaction-design'
       },
       {
         title: 'UI Components',
-        iconName: 'MapIcon',
+        iconName: 'PuzzlePieceIcon',
         color: 'cyan',
         href: '/expertise/user-interface-components'
       },
       {
         title: 'Design Systems',
-        iconName: 'SelectionIcon',
+        iconName: 'PaintSwatchIcon',
         color: 'pink',
         href: '/expertise/design-systems'
       },
       {
         title: 'Animations',
-        iconName: 'MagicWandIcon',
+        iconName: 'GsapIcon',
         color: 'blue',
         href: '/expertise/animations'
       },
       {
         title: 'Pixel-perfect Layouts',
-        iconName: 'PlanetRingIcon',
+        iconName: 'FrameIcon',
         color: 'green',
         href: '/expertise/pixel-perfect-layouts'
       }
@@ -141,7 +141,7 @@ const SubmenuData = [
       },
       {
         title: 'AWS, Vercel, DigitalOcean',
-        iconName: 'WebServersIcon',
+        iconName: 'AwsIcon',
         color: 'yellow',
         href: '/expertise/aws-vercel-digitalocean'
       },
@@ -176,13 +176,13 @@ const SubmenuData = [
       },
       {
         title: 'State Management',
-        iconName: 'BackendIcon',
+        iconName: 'ReduxIcon',
         color: 'yellow',
         href: '/expertise/state-management'
       },
       {
         title: 'SSR & SSG',
-        iconName: 'SupabaseIcon',
+        iconName: 'WebServersIcon',
         color: 'cyan',
         href: '/expertise/ssr-ssg'
       }
@@ -193,31 +193,31 @@ const SubmenuData = [
     list: [
       {
         title: 'Microservices',
-        iconName: 'MobileIcon',
+        iconName: 'MonoRepoArchitectureIcon',
         color: 'cyan',
         href: '/expertise/microservices'
       },
       {
         title: 'Containerization',
-        iconName: 'TypeScript',
+        iconName: 'DataIcon',
         color: 'pink',
         href: '/expertise/containerization'
       },
       {
         title: 'Kubernetes',
-        iconName: 'NextjsIcon',
+        iconName: 'KubernetesIcon',
         color: 'blue',
         href: '/expertise/kubernetes'
       },
       {
         title: 'Terraform',
-        iconName: 'BackendIcon',
+        iconName: 'TerraformIcon',
         color: 'green',
         href: '/expertise/terraform'
       },
       {
         title: 'TurboRepo',
-        iconName: 'SupabaseIcon',
+        iconName: 'TubroRepoIcon',
         color: 'purple',
         href: '/expertise/turbo-repo'
       }
