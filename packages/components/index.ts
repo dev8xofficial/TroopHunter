@@ -73,7 +73,6 @@ export * from './src/Icons/FaceId';
 export * from './src/Icons/Figma';
 export * from './src/Icons/Flutter';
 export * from './src/Icons/FourDot';
-export * from './src/Icons/Frame';
 export * from './src/Icons/FullStack';
 export * from './src/Icons/GitBranch';
 export * from './src/Icons/Github';

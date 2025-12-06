@@ -36,7 +36,6 @@ import FaceIdIcon from '@repo/components/src/Icons/FaceId';
 import FigmaIcon from '@repo/components/src/Icons/Figma';
 import FlutterIcon from '@repo/components/src/Icons/Flutter';
 import FourDotIcon from '@repo/components/src/Icons/FourDot';
-import FrameIcon from '@repo/components/src/Icons/Frame';
 import FullStackIcon from '@repo/components/src/Icons/FullStack';
 import GitBranchIcon from '@repo/components/src/Icons/GitBranch';
 import GithubIcon from '@repo/components/src/Icons/Github';
@@ -168,7 +167,6 @@ const ICON_COMPONENTS = {
   FigmaIcon,
   FlutterIcon,
   FourDotIcon,
-  FrameIcon,
   FullStackIcon,
   GitBranchIcon,
   GithubIcon,

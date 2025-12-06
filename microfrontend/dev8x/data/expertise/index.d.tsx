@@ -1167,7 +1167,7 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Audience Validation',
           description: 'Quickly prepare a test product with just the bare essentials. Get answers directly from your target audience, so you can build a better MVP.',
-          icon: { name: 'FrameIcon', size: 24 }
+          icon: { name: 'UserIdIcon', size: 24 }
         },
         {
           title: 'Confidentiality Assured',
@@ -1468,7 +1468,7 @@ const EXPERTISES: ExpertiseContent[] = [
         {
           title: 'Performance at Scale',
           description: 'Optimised rendering, dynamic routing, and seamless state management ensure high performance even in data-heavy or real-time environments.',
-          icon: { name: 'FrameIcon', size: 24 }
+          icon: { name: 'UserIdIcon', size: 24 }
         },
         {
           title: 'Built for Integration Design',
