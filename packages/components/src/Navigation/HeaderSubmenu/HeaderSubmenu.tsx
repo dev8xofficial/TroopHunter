@@ -42,7 +42,7 @@ import RestApiIcon from '../../Icons/RestApi';
 import PuzzlePieceIcon from '../../Icons/PuzzlePiece';
 import PaintSwatchIcon from '../../Icons/PaintSwatch';
 import GsapIcon from '../../Icons/Gsap';
-import FrameIcon from '../../Icons/Frame';
+import UserIdIcon from '../../Icons/UserId';
 import AwsIcon from '../../Icons/Aws';
 import ReduxIcon from '../../Icons/Redux';
 import MonoRepoArchitectureIcon from '../../Icons/MonoRepoArchitecture';
@@ -102,13 +102,13 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: string | number; cla
   PuzzlePieceIcon,
   PaintSwatchIcon,
   GsapIcon,
-  FrameIcon,
   AwsIcon,
   ReduxIcon,
   MonoRepoArchitectureIcon,
   KubernetesIcon,
   TerraformIcon,
-  TubroRepoIcon
+  TubroRepoIcon,
+  UserIdIcon
 };
 
 export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height, onLinkClick, submenus }) => {
