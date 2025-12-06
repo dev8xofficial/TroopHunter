@@ -34,6 +34,22 @@ import RocketIcon from '../../Icons/Rocket';
 import HandshakeIcon from '../../Icons/Handshake';
 import TargetIcon from '../../Icons/Target';
 import HomeIcon from '../../Icons/HomeIcon';
+import MonitorIcon from '../../Icons/Monitor';
+import ResponsiveIcon from '../../Icons/Responsive';
+import ShoppingCartIcon from '../../Icons/ShoppingCart';
+import LightningIcon from '../../Icons/Lightning';
+import RestApiIcon from '../../Icons/RestApi';
+import PuzzlePieceIcon from '../../Icons/PuzzlePiece';
+import PaintSwatchIcon from '../../Icons/PaintSwatch';
+import GsapIcon from '../../Icons/Gsap';
+import FrameIcon from '../../Icons/Frame';
+import AwsIcon from '../../Icons/Aws';
+import ReduxIcon from '../../Icons/Redux';
+import MonoRepoArchitectureIcon from '../../Icons/MonoRepoArchitecture';
+import KubernetesIcon from '../../Icons/Kubernetes';
+import TerraformIcon from '../../Icons/Terraform';
+import TubroRepoIcon from '../../Icons/TubroRepo';
+
 import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenuContent } from '../../Interfaces/Navigation/Navigation';
 
@@ -77,7 +93,22 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: string | number; cla
   RocketIcon,
   HandshakeIcon,
   TargetIcon,
-  HomeIcon
+  HomeIcon,
+  MonitorIcon,
+  ResponsiveIcon,
+  ShoppingCartIcon,
+  LightningIcon,
+  RestApiIcon,
+  PuzzlePieceIcon,
+  PaintSwatchIcon,
+  GsapIcon,
+  FrameIcon,
+  AwsIcon,
+  ReduxIcon,
+  MonoRepoArchitectureIcon,
+  KubernetesIcon,
+  TerraformIcon,
+  TubroRepoIcon
 };
 
 export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height, onLinkClick, submenus }) => {

@@ -333,7 +333,7 @@ const MOBILE: OffersContent[] = [
           { name: 'Sequelize ORM', iconName: 'SequelizeIcon' },
           { name: 'Authentication', iconName: 'AuthenticationIcon' },
           { name: 'Authorization', iconName: 'AuthenticationIcon' },
-          { name: 'Database Optimization', iconName: 'DatabaseIcon' }
+          { name: 'DB Optimization', iconName: 'DatabaseIcon' }
         ]
       },
       {
@@ -341,20 +341,20 @@ const MOBILE: OffersContent[] = [
         items: [
           { name: 'Docker', iconName: 'DockerIcon' },
           { name: 'Kubernetes', iconName: 'KubernetesIcon' },
-          { name: 'CI/CD Pipelines', iconName: 'InfinityIcon' },
+          { name: 'CI/CD', iconName: 'InfinityIcon' },
           { name: 'Terraform', iconName: 'TerraformIcon' }
         ]
       },
       {
         heading: 'Performance & Testing',
         items: [
-          { name: 'Performance Optimization', iconName: 'PerformanceIcon' },
+          { name: 'Performance', iconName: 'PerformanceOptimizationIcon' },
           { name: 'Debugging', iconName: 'TestingIcon' },
-          { name: 'End-to-End Testing', iconName: 'EndTestingIcon' },
+          { name: 'E2E Testing', iconName: 'EndTestingIcon' },
           { name: 'Unit Testing', iconName: 'UnitTestingIcon' },
           { name: 'Cross-Platform QA', iconName: 'QAIcon' },
           { name: 'Load Testing', iconName: 'LoadTestingIcon' },
-          { name: 'Mobile Responsiveness', iconName: 'MobileIcon' },
+          { name: 'Responsiveness', iconName: 'MobileIcon' },
           { name: 'Accessibility Audits', iconName: 'AccessibilityIcon' }
         ]
       },
@@ -362,13 +362,13 @@ const MOBILE: OffersContent[] = [
         heading: 'Project Workflow',
         items: [
           { name: 'ESLint & Prettier', iconName: 'PrettierIcon' },
-          { name: 'Git Feature Branching', iconName: 'GitBranchIcon' },
-          { name: 'GitHub Pull Requests', iconName: 'GitPullIcon' },
+          { name: 'Git Flow', iconName: 'GitBranchIcon' },
+          { name: 'Pull Requests', iconName: 'GitPullIcon' },
           { name: 'TurboRepo', iconName: 'TubroRepoIcon' },
-          { name: 'Monorepo Architecture', iconName: 'MonoRepoIcon' },
+          { name: 'Monorepo', iconName: 'MonoRepoIcon' },
           { name: 'Agile Delivery', iconName: 'AgileDeliveryIcon' },
-          { name: 'Cross-functional Collaboration', iconName: 'CollabSpaceIcon' },
-          { name: 'End-to-End Ownership', iconName: 'OwernshipIcon' }
+          { name: 'Team Collaboration', iconName: 'CollabSpaceIcon' },
+          { name: 'E2E Ownership', iconName: 'OwernshipIcon' }
         ]
       }
     ],

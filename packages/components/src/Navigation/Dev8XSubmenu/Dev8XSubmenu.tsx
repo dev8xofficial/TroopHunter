@@ -33,6 +33,11 @@ import HandshakeIcon from '../../Icons/Handshake';
 import TargetIcon from '../../Icons/Target';
 import HomeIcon from '../../Icons/HomeIcon';
 import ArchitectureIcon from '../../Icons/Architecture';
+import GroupUsersIcon from '../../Icons/GroupUsers';
+import BrainIcon from '../../Icons/Brain';
+import PuzzlePieceIcon from '../../Icons/PuzzlePiece';
+import CoinsIcon from '../../Icons/Coins';
+import MonitorIcon from '../../Icons/Monitor';
 
 import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenuContent } from '../../Interfaces/Navigation/Navigation';
@@ -76,7 +81,12 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: string | number; cla
   HandshakeIcon,
   TargetIcon,
   HomeIcon,
-  ArchitectureIcon
+  ArchitectureIcon,
+  GroupUsersIcon,
+  CoinsIcon,
+  PuzzlePieceIcon,
+  BrainIcon,
+  MonitorIcon
 };
 
 export const Dev8XSubmenu: React.FC<Dev8XSubmenuProps> = ({ height, onLinkClick, submenus }) => {

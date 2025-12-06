@@ -180,7 +180,7 @@ const WEBSITE: OffersContent[] = [
           { name: 'HTML5', iconName: 'HtmlIcon' },
           { name: 'TailwindCSS', iconName: 'TailwindIcon' },
           { name: 'GSAP', iconName: 'GsapIcon' },
-          { name: 'Responsive & Mobile-first', iconName: 'ResponsiveIcon' }
+          { name: 'Responsive Design', iconName: 'ResponsiveIcon' }
         ]
       },
       {
@@ -193,14 +193,14 @@ const WEBSITE: OffersContent[] = [
           { name: 'Sequelize ORM', iconName: 'SequelizeIcon' },
           { name: 'Authentication', iconName: 'AuthenticationIcon' },
           { name: 'Authorization', iconName: 'AuthenticationIcon' },
-          { name: 'Microservices Patterns', iconName: 'ArchitectureIcon' }
+          { name: 'Microservices', iconName: 'ArchitectureIcon' }
         ]
       },
       {
         heading: 'DevOps & Cloud',
         items: [
           { name: 'Docker', iconName: 'DockerIcon' },
-          { name: 'CI/CD Pipelines', iconName: 'InfinityIcon' },
+          { name: 'CI/CD', iconName: 'InfinityIcon' },
           { name: 'Kubernetes', iconName: 'KubernetesIcon' },
           { name: 'Terraform', iconName: 'TerraformIcon' }
         ]
@@ -210,25 +210,25 @@ const WEBSITE: OffersContent[] = [
         items: [
           { name: 'ESLint', iconName: 'PrettierIcon' },
           { name: 'Prettier', iconName: 'PrettierIcon' },
-          { name: 'Git Feature Branching', iconName: 'GitBranchIcon' },
-          { name: 'GitHub Pull Requests', iconName: 'GitPullIcon' },
+          { name: 'Git Flow', iconName: 'GitBranchIcon' },
+          { name: 'Pull Requests', iconName: 'GitPullIcon' },
           { name: 'TurboRepo', iconName: 'TubroRepoIcon' },
-          { name: 'Monorepo Architecture', iconName: 'MonoRepoIcon' },
-          { name: 'Testing & Debugging', iconName: 'TestingIcon' },
-          { name: 'Performance Optimization', iconName: 'PerformanceIcon' }
+          { name: 'Monorepo', iconName: 'MonoRepoIcon' },
+          { name: 'Testing', iconName: 'TestingIcon' },
+          { name: 'Optimization', iconName: 'PerformanceOptimizationIcon' }
         ]
       },
       {
         heading: 'Full-Stack & Delivery',
         items: [
-          { name: 'End-to-End Ownership', iconName: 'OwernshipIcon' },
-          { name: 'Cross-Functional Collaboration', iconName: 'CollabSpaceIcon' },
-          { name: 'Scalable Architecture', iconName: 'ArchitectureIcon' },
+          { name: 'E2E Ownership', iconName: 'OwernshipIcon' },
+          { name: 'Team Collaboration', iconName: 'CollabSpaceIcon' },
+          { name: 'Scalable Systems', iconName: 'ArchitectureIcon' },
           { name: 'Rapid Deployment', iconName: 'RapidDeliveryIcon' },
-          { name: 'Maintenance & Support', iconName: 'MaintenanceIcon' },
-          { name: 'High Availability', iconName: 'AvailabiltyIcon' },
-          { name: 'Analytics & Reporting', iconName: 'AnalyticsIcon' },
-          { name: 'Secure Integrations', iconName: 'IntegrationsIcon' }
+          { name: 'Maintenance', iconName: 'MaintenanceIcon' },
+          { name: 'High Availability', iconName: 'HighAvailabiltyIcon' },
+          { name: 'Analytics', iconName: 'AnalyticsIcon' },
+          { name: 'Secure Integrations', iconName: 'SecureIntegrationsIcon' }
         ]
       }
     ],

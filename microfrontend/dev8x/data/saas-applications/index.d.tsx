@@ -339,7 +339,7 @@ const SAAS: OffersContent[] = [
       {
         heading: 'Reliability & Security',
         items: [
-          { name: 'UptimeRobot', iconName: 'AvailabiltyIcon' },
+          { name: 'UptimeRobot', iconName: 'HighAvailabiltyIcon' },
           { name: 'Sentry', iconName: 'SecurityIcon' }
         ]
       },
