@@ -2,42 +2,17 @@
 
 import React from 'react';
 import NextLink from 'next/link';
-import PointerCursorIcon from '../../Icons/PointerCursor';
-import CardIcon from '../../Icons/Card';
-import MobileIcon from '../../Icons/Mobile';
-import BasketIcon from '../../Icons/Basket';
-import DataIcon from '../../Icons/Data';
-import CollabSpaceIcon from '../../Icons/CollabSpace';
-import SelectionIcon from '../../Icons/Selection';
-import MagicWandIcon from '../../Icons/MagicWand';
-import MapIcon from '../../Icons/Map';
-import PlanetRingIcon from '../../Icons/PlanetRing';
-import ReactjsIcon from '../../Icons/Reactjs';
-import NextjsIcon from '../../Icons/Nextjs';
-import NodejsIcon from '../../Icons/Nodejs';
-import SupabaseIcon from '../../Icons/Supabase';
-import BackendIcon from '../../Icons/Backend';
+
 import SaaSIcon from '../../Icons/SaaS';
-import PostgresqlIcon from '../../Icons/Postgresql';
-import SequelizeIcon from '../../Icons/Sequelize';
-import DockerIcon from '../../Icons/Docker';
-import VirtualMachinesIcon from '../../Icons/VirtualMachines';
-import AnsibleIcon from '../../Icons/Ansible';
-import InfinityIcon from '../../Icons/Infinity';
-import WebServersIcon from '../../Icons/WebServers';
-import SeismometerIcon from '../../Icons/Seismometer';
-import RightArrowIcon from '../../Icons/RightArrow';
 import DentistIcon from '../../Icons/Dentist';
 import RocketIcon from '../../Icons/Rocket';
-import HandshakeIcon from '../../Icons/Handshake';
-import TargetIcon from '../../Icons/Target';
-import HomeIcon from '../../Icons/HomeIcon';
 import ArchitectureIcon from '../../Icons/Architecture';
 import GroupUsersIcon from '../../Icons/GroupUsers';
 import BrainIcon from '../../Icons/Brain';
 import PuzzlePieceIcon from '../../Icons/PuzzlePiece';
 import CoinsIcon from '../../Icons/Coins';
-import MonitorIcon from '../../Icons/Monitor';
+import ResponsiveIcon from '../../Icons/Responsive';
+import MobileIcon from '../../Icons/Mobile';
 
 import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenuContent } from '../../Interfaces/Navigation/Navigation';
@@ -51,42 +26,16 @@ interface Dev8XSubmenuProps {
 }
 
 const ICON_MAP: Record<string, React.ComponentType<{ size?: string | number; className?: string }>> = {
-  PointerCursorIcon,
-  CardIcon,
-  MobileIcon,
-  BasketIcon,
-  DataIcon,
-  CollabSpaceIcon,
-  SelectionIcon,
-  MagicWandIcon,
-  MapIcon,
-  PlanetRingIcon,
-  ReactjsIcon,
-  NextjsIcon,
-  NodejsIcon,
-  SupabaseIcon,
-  BackendIcon,
-  SaaSIcon,
-  PostgresqlIcon,
-  SequelizeIcon,
-  DockerIcon,
-  VirtualMachinesIcon,
-  AnsibleIcon,
-  InfinityIcon,
-  WebServersIcon,
-  SeismometerIcon,
-  RightArrowIcon,
-  DentistIcon,
   RocketIcon,
-  HandshakeIcon,
-  TargetIcon,
-  HomeIcon,
-  ArchitectureIcon,
   GroupUsersIcon,
+  BrainIcon,
+  ResponsiveIcon,
+  SaaSIcon,
+  DentistIcon,
+  ArchitectureIcon,
   CoinsIcon,
   PuzzlePieceIcon,
-  BrainIcon,
-  MonitorIcon
+  MobileIcon
 };
 
 export const Dev8XSubmenu: React.FC<Dev8XSubmenuProps> = ({ height, onLinkClick, submenus }) => {

@@ -112,7 +112,7 @@ const SubmenuData = [
       },
       {
         title: 'Pixel-perfect Layouts',
-        iconName: 'FrameIcon',
+        iconName: 'UserIdIcon',
         color: 'green',
         href: '/expertise/pixel-perfect-layouts'
       }

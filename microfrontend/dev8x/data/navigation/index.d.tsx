@@ -12,7 +12,7 @@ const SubmenuData = [
   {
     heading: 'Product Development',
     list: [
-      { title: 'Web Applications', iconName: 'MonitorIcon', color: 'purple', href: '/web-applications' },
+      { title: 'Web Applications', iconName: 'ResponsiveIcon', color: 'purple', href: '/web-applications' },
       { title: 'SaaS Applications', iconName: 'SaaSIcon', color: 'cyan', href: '/saas-applications' },
       { title: 'Mobile Applications', iconName: 'MobileIcon', color: 'pink', href: '/mobile-applications' }
     ]

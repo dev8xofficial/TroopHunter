@@ -2,21 +2,13 @@
 
 import React from 'react';
 import NextLink from 'next/link';
+
 import PointerCursorIcon from '../../Icons/PointerCursor';
-import CardIcon from '../../Icons/Card';
 import MobileIcon from '../../Icons/Mobile';
-import BasketIcon from '../../Icons/Basket';
 import DataIcon from '../../Icons/Data';
-import CollabSpaceIcon from '../../Icons/CollabSpace';
-import SelectionIcon from '../../Icons/Selection';
-import MagicWandIcon from '../../Icons/MagicWand';
-import MapIcon from '../../Icons/Map';
-import PlanetRingIcon from '../../Icons/PlanetRing';
 import ReactjsIcon from '../../Icons/Reactjs';
 import NextjsIcon from '../../Icons/Nextjs';
 import NodejsIcon from '../../Icons/Nodejs';
-import SupabaseIcon from '../../Icons/Supabase';
-import BackendIcon from '../../Icons/Backend';
 import SaaSIcon from '../../Icons/SaaS';
 import PostgresqlIcon from '../../Icons/Postgresql';
 import SequelizeIcon from '../../Icons/Sequelize';
@@ -25,15 +17,8 @@ import VirtualMachinesIcon from '../../Icons/VirtualMachines';
 import AnsibleIcon from '../../Icons/Ansible';
 import InfinityIcon from '../../Icons/Infinity';
 import WebServersIcon from '../../Icons/WebServers';
-import SeismometerIcon from '../../Icons/Seismometer';
-import RightArrowIcon from '../../Icons/RightArrow';
 import TypeScript from '../../Icons/TypeScript';
 import GraphQL from '../../Icons/GraphQL';
-import DentistIcon from '../../Icons/Dentist';
-import RocketIcon from '../../Icons/Rocket';
-import HandshakeIcon from '../../Icons/Handshake';
-import TargetIcon from '../../Icons/Target';
-import HomeIcon from '../../Icons/HomeIcon';
 import MonitorIcon from '../../Icons/Monitor';
 import ResponsiveIcon from '../../Icons/Responsive';
 import ShoppingCartIcon from '../../Icons/ShoppingCart';
@@ -63,20 +48,11 @@ interface HeaderSubmenuProps {
 
 const ICON_MAP: Record<string, React.ComponentType<{ size?: string | number; className?: string }>> = {
   PointerCursorIcon,
-  CardIcon,
   MobileIcon,
-  BasketIcon,
   DataIcon,
-  CollabSpaceIcon,
-  SelectionIcon,
-  MagicWandIcon,
-  MapIcon,
-  PlanetRingIcon,
   ReactjsIcon,
   NextjsIcon,
   NodejsIcon,
-  SupabaseIcon,
-  BackendIcon,
   SaaSIcon,
   PostgresqlIcon,
   SequelizeIcon,
@@ -85,15 +61,8 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: string | number; cla
   AnsibleIcon,
   InfinityIcon,
   WebServersIcon,
-  SeismometerIcon,
-  RightArrowIcon,
   TypeScript,
   GraphQL,
-  DentistIcon,
-  RocketIcon,
-  HandshakeIcon,
-  TargetIcon,
-  HomeIcon,
   MonitorIcon,
   ResponsiveIcon,
   ShoppingCartIcon,
@@ -102,13 +71,13 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: string | number; cla
   PuzzlePieceIcon,
   PaintSwatchIcon,
   GsapIcon,
+  UserIdIcon,
   AwsIcon,
   ReduxIcon,
   MonoRepoArchitectureIcon,
   KubernetesIcon,
   TerraformIcon,
-  TubroRepoIcon,
-  UserIdIcon
+  TubroRepoIcon
 };
 
 export const HeaderSubmenu: React.FC<HeaderSubmenuProps> = ({ height, onLinkClick, submenus }) => {
