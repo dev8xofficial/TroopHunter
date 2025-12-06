@@ -3,7 +3,7 @@
 import React, { CSSProperties, useLayoutEffect, useRef } from 'react';
 import { ModalCloseButton } from '@repo/components';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 import styles from './index.module.css';
 
