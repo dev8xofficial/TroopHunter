@@ -124,7 +124,7 @@ const AugmentationPage: React.FC = (): JSX.Element => {
           <main className={`${ExpertiseStyles['expertise-single']} container-full`}>
             <div>
               <ModularBlocks>
-                {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities capabilitiesHeading={PageData.capabilitiesHeading} capabilitiesContent={PageData.capabilities} />}
+                {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities className={`${ExpertiseStyles['padding-0']} ${ExpertiseStyles['margin-0']}`} capabilitiesHeading={PageData.capabilitiesHeading} capabilitiesContent={PageData.capabilities} />}
                 <ContentAsideImage contentAsideImageItems={PageData.contentAsideImageItems} />
               </ModularBlocks>
 

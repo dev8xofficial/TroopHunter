@@ -160,7 +160,7 @@ const SaaSApplication: React.FC = (): JSX.Element => {
                     ))}
                   </CardStack>
 
-                  {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities capabilitiesHeading={PageData.capabilitiesHeading} capabilitiesContent={PageData.capabilities} />}
+                  {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities className={ExpertiseStyles['padding-0']} capabilitiesHeading={PageData.capabilitiesHeading} capabilitiesContent={PageData.capabilities} />}
 
                   <footer className={ExpertiseStyles['expertise-cta']}>
                     <h2 className={ExpertiseStyles['expertise-cta__content']}>
