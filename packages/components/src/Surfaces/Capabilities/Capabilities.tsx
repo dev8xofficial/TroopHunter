@@ -68,6 +68,7 @@ import TextAnimateStyles from '../TextAnimateUp/index.module.css';
 import styles from './index.module.css';
 
 interface CapabilitiesProps {
+  className?: string;
   capabilitiesHeading: string;
   capabilitiesContent: CapabilitiesContent;
 }
@@ -135,13 +136,13 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: number | string; cla
   SecureIntegrationsIcon
 };
 
-const Capabilities: React.FC<CapabilitiesProps> = ({ capabilitiesContent, capabilitiesHeading }): JSX.Element => {
+const Capabilities: React.FC<CapabilitiesProps> = ({ className, capabilitiesContent, capabilitiesHeading }): JSX.Element => {
   const router = useRouter();
   const isAboutPage = router.pathname === '/about';
 
   return (
     <AppearOnScroll>
-      <div className={styles['about-capabilities']}>
+      <div className={`${styles['about-capabilities']} ${className ? className : ''}`}>
         <h2 className={styles['about-capabilities__intro']} aria-label={capabilitiesHeading || 'Our capabilities'}>
           {(capabilitiesHeading || 'Our capabilities').split(' ').map((word, index) => {
             const isSpecial = word.toLowerCase().includes('capabilities');

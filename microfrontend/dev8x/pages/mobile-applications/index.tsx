@@ -134,7 +134,7 @@ const MobileApplication: React.FC = (): JSX.Element => {
               </ModularBlocks>
 
               <div className={ExpertiseStyles['expertise-container']}>
-                {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities capabilitiesHeading={PageData.capabilitiesHeading} capabilitiesContent={PageData.capabilities} />}
+                {PageData.capabilities && PageData.capabilities.length > 0 && <Capabilities className={ExpertiseStyles['padding-0']} capabilitiesHeading={PageData.capabilitiesHeading} capabilitiesContent={PageData.capabilities} />}
                 <footer className={ExpertiseStyles['expertise-cta']}>
                   <h2 className={ExpertiseStyles['expertise-cta__content']}>
                     <span>{PageData.footerCta?.heading || "Got questions? We're here to help"}</span>
