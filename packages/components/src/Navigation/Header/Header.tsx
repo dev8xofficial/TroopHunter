@@ -22,15 +22,10 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
   const [height, setHeight] = useState(45);
   const submenuRef = useRef<HTMLLIElement | null>(null);
   const exploreBtnRef = useRef<HTMLButtonElement | null>(null);
-  const [isHelloabdul, setIsHelloabdul] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-  const [isDev8X, setIsDev8X] = useState(false);
+  const [isHelloabdul, setIsHelloabdul] = useState(() => isHelloabdulPort());
+  const [isDev8X, setIsDev8X] = useState(() => getBrandFromBaseURL() === 'dev8x')
 
-  useEffect(() => {
-    setIsMounted(true);
-    setIsHelloabdul(isHelloabdulPort());
-    setIsDev8X(getBrandFromBaseURL() === 'dev8x');
-  }, []);
+
 
   const getActiveColumn = (path: string): number => {
     if (path === '/') return 1;
@@ -42,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
   };
 
   const activeColumn = getActiveColumn(currentPath);
-  const menuLabel = !isMounted ? 'Services' : isHelloabdul ? 'Expertise' : 'Explore';
+  const menuLabel = isHelloabdul ? 'Expertise' : 'Explore';
 
   const handleExpertiseClick = () => {
     setDataSubmenuOpen((prev) => !prev);
