@@ -180,7 +180,7 @@ const WEBSITE: OffersContent[] = [
           { name: 'HTML5', iconName: 'HtmlIcon' },
           { name: 'TailwindCSS', iconName: 'TailwindIcon' },
           { name: 'GSAP', iconName: 'GsapIcon' },
-          { name: 'Responsive Design', iconName: 'ResponsiveIcon' }
+          { name: 'Responsiveness', iconName: 'ResponsiveIcon' }
         ]
       },
       {

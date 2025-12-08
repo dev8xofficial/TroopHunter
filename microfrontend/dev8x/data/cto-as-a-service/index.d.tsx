@@ -364,7 +364,7 @@ const CTO: OffersContent[] = [
           { name: 'Microservices', iconName: 'ArchitectureIcon' },
           { name: 'Authentication', iconName: 'AuthenticationIcon' },
           { name: 'Performance', iconName: 'PerformanceOptimizationIcon' },
-          { name: 'Testing & Debugging', iconName: 'TestingIcon' },
+          { name: 'Debugging', iconName: 'TestingIcon' },
           { name: 'CI/CD', iconName: 'InfinityIcon' },
           { name: 'Containerization', iconName: 'DockerIcon' },
           { name: 'Full-Stack Dev', iconName: 'FullStackIcon' },
