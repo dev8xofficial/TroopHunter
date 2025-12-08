@@ -537,7 +537,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '12',
         heading: 'Monthly Support Plan',
-        price: '$250/mo',
+        price: '$250',
         description: 'Ongoing maintenance, backups, and uptime checks',
         features: ['24/7 monitoring', 'Monthly updates', 'Daily backups', 'Security audits'],
         categories: ['Support', 'Maintenance', 'Security', 'Monitoring', 'DevOps'],
