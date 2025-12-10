@@ -9,8 +9,8 @@
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
   "editor.formatOnSave": true,
-  "eslint.workingDirectories": ["./crm", "./backend", "./scraper", "./webiste", "./packages/validator"],
-	"files.associations": {
-		"wrangler.json": "jsonc"
-	}
+  "eslint.workingDirectories": ["../microfrontend", "../microservices", "../packages/validator"],
+  "files.associations": {
+    "wrangler.json": "jsonc"
+  }
 }
