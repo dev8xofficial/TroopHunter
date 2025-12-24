@@ -353,7 +353,7 @@ const SAAS: OffersContent[] = [
           { name: 'HTML5', iconName: 'HtmlIcon' },
           { name: 'TailwindCSS', iconName: 'TailwindIcon' },
           { name: 'GSAP', iconName: 'GsapIcon' },
-          { name: 'Responsive Design', iconName: 'ResponsiveIcon' }
+          { name: 'Responsiveness', iconName: 'ResponsiveIcon' }
         ]
       },
       {
@@ -366,7 +366,7 @@ const SAAS: OffersContent[] = [
           { name: 'RESTful APIs', iconName: 'RestApiIcon' },
           { name: 'Docker', iconName: 'DockerIcon' },
           { name: 'Kubernetes', iconName: 'KubernetesIcon' },
-          { name: 'CI/CD Pipelines', iconName: 'InfinityIcon' }
+          { name: 'CI/CD', iconName: 'InfinityIcon' }
         ]
       }
     ],

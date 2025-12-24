@@ -23,14 +23,7 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
   const submenuRef = useRef<HTMLLIElement | null>(null);
   const exploreBtnRef = useRef<HTMLButtonElement | null>(null);
   const [isHelloabdul, setIsHelloabdul] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const [isDev8X, setIsDev8X] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    setIsHelloabdul(isHelloabdulPort());
-    setIsDev8X(getBrandFromBaseURL() === 'dev8x');
-  }, []);
 
   const getActiveColumn = (path: string): number => {
     if (path === '/') return 1;
@@ -42,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
   };
 
   const activeColumn = getActiveColumn(currentPath);
-  const menuLabel = !isMounted ? 'Services' : isHelloabdul ? 'Expertise' : 'Explore';
+  const menuLabel = isHelloabdul ? 'Expertise' : 'Explore';
 
   const handleExpertiseClick = () => {
     setDataSubmenuOpen((prev) => !prev);
@@ -53,6 +46,11 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
     setDataSubmenuOpen(false);
     setHeight(45);
   };
+
+  useEffect(() => {
+    setIsHelloabdul(isHelloabdulPort());
+    setIsDev8X(getBrandFromBaseURL() === 'dev8x');
+  }, []);
 
   // ✅ Close submenu when clicking outside Explore area
   useEffect(() => {

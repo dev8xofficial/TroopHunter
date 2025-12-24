@@ -149,7 +149,7 @@ const Capabilities: React.FC<CapabilitiesProps> = ({ className, capabilitiesCont
             return (
               <span
                 key={index}
-                className={`${TextAnimateStyles['word']} ${isSpecial ? styles['format'] : ''}`}
+                className={`${TextAnimateStyles['word']} ${isAboutPage && isSpecial ? styles['format'] : ''}`}
                 aria-hidden="true"
                 style={{
                   display: 'inline-block',
