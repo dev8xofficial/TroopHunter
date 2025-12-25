@@ -1327,7 +1327,7 @@ const EXPERTISES: ExpertiseContent[] = [
     variant: 'green',
     tagText: 'Pixel-Perfect Layouts',
     heading: 'Transform concepts into flawless interfaces',
-    image: prefixed('/api/images/work/other/tourismprototype.png'),
+   image: prefixed('/api/images/work/other/04-landscape.png'),
 
     iconCards: {
       title: 'Precision-driven design and development',
