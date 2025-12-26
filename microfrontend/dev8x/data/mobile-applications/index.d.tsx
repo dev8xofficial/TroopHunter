@@ -4,7 +4,7 @@ import { prefixed } from '../../utils/helpers';
 const MOBILE: OffersContent[] = [
   {
     slug: '',
-    variant: 'purple',
+    variant: 'pink',
     tagText: 'End-to-End Mobile Solutions',
     heading: 'Custom Mobile Applications',
     paragraph: 'Dev8X delivers high-performance mobile apps using Flutter and the Dart ecosystem, producing native experiences for iOS and Android from a single codebase.',

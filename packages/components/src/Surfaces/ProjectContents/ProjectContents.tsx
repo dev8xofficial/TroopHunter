@@ -4,6 +4,9 @@ import React, { ReactNode } from 'react';
 import { WorkDetail } from '../../Interfaces/Work/WorkProjectTypes';
 import { useProjectModal } from '../../../store/useProjectModal';
 
+// Adjust path if needed
+import { useSmoothModalContext } from '@repo/components/src/Modals/SmoothModal/SmoothModal'; 
+
 import { CaseStudySideBar } from '../CaseStudySidebar/CaseStudySidebar';
 import { TestimonialSlider } from '../TestimonialSlider/TestimonialSlider';
 import { WorkCard } from '../WorkCard/WorkCard';
@@ -17,7 +20,9 @@ type WorkDetailWithoutMeta = Omit<WorkDetail, 'path' | 'bgColor'> & {
 };
 
 export const ProjectsFormModal: React.FC<WorkDetailWithoutMeta> = ({ slug, title, websiteUrl, industry, shortIntro, overview, approach, impact, keyContributions, placeholderImage, video, nextWorkProject, images, testimonial, testimonialAuthor, testimonialAuthorPosition }): JSX.Element => {
-  const { openModal } = useProjectModal(); // only openModal is needed
+  const { openModal } = useProjectModal();
+  const { closeWithCallback } = useSmoothModalContext();
+
   const safeBgColor = `${slug}-light` as WorkDetail['bgColor'];
   const safeBgColorNextWorkProject = `${nextWorkProject?.slug}-light` as WorkDetail['bgColor'];
 
@@ -29,29 +34,16 @@ export const ProjectsFormModal: React.FC<WorkDetailWithoutMeta> = ({ slug, title
     </picture>
   );
 
-  // Correct "Up Next" handling using existing close button
   const handleUpNextClick = (nextSlug: string) => {
     if (!nextSlug) return;
-    console.log('1');
-
-    const closeButton = document.querySelector<HTMLButtonElement>('.ModalCloseButton_modal-close-button__h46b_');
-    if (!closeButton) return;
-    console.log('2');
-
-    // Use MutationObserver to detect when the modal disappears
-    const observer = new MutationObserver((mutations, obs) => {
-      const modalRemoved = !document.querySelector('.SmoothModal_modal__5j45R');
-      if (modalRemoved) {
-        console.log('3');
-        obs.disconnect();
-        openModal(nextSlug); // open the next modal after current modal closes
-      }
+    
+    // Optimized "Fast Track" Close
+    closeWithCallback(() => {
+        // Changed to 0ms to ensure immediate execution on the next event loop tick
+        setTimeout(() => {
+            openModal(nextSlug);
+        }, 0);
     });
-
-    console.log('4');
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    closeButton.click(); // trigger the modal close animation
   };
 
   return (
