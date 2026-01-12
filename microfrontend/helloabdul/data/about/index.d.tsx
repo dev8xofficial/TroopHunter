@@ -82,7 +82,7 @@ const PageData: AboutContent = {
     //   linkText: 'Explore Careers'
     // },
     copyright: {
-      year: '2025',
+      year: '2026',
       text: 'Privacy Policy',
       privacyLink: '/privacy'
     }

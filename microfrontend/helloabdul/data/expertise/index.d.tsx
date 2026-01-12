@@ -94,7 +94,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -236,7 +236,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -384,7 +384,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -532,7 +532,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -674,7 +674,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -818,7 +818,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -968,7 +968,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1116,7 +1116,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1264,7 +1264,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1411,7 +1411,7 @@ const EXPERTISES: ExpertiseContent[] = [
         }
       ],
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1568,7 +1568,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1722,7 +1722,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1874,7 +1874,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2033,7 +2033,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2197,7 +2197,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2346,7 +2346,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2487,7 +2487,7 @@ const EXPERTISES: ExpertiseContent[] = [
       ],
 
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2639,7 +2639,7 @@ const EXPERTISES: ExpertiseContent[] = [
       ],
 
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2793,7 +2793,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2941,7 +2941,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -3090,7 +3090,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -3238,7 +3238,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -3392,7 +3392,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -3557,7 +3557,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -3711,7 +3711,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -3865,7 +3865,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -4013,7 +4013,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -4167,7 +4167,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -4314,7 +4314,7 @@ const EXPERTISES: ExpertiseContent[] = [
         }
       ],
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -4463,7 +4463,7 @@ const EXPERTISES: ExpertiseContent[] = [
         }
       ],
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }

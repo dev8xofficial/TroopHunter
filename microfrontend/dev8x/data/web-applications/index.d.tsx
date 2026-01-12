@@ -100,7 +100,7 @@ const WEBSITE: OffersContent[] = [
         }
       ],
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
