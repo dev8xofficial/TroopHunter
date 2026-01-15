@@ -31,7 +31,7 @@ const SubmenuData = [
       { title: 'Pricing', iconName: 'CoinsIcon', color: 'blue', href: '/pricing/tech-founders' },
       { title: 'Our Process', iconName: 'PuzzlePieceIcon', color: 'yellow', href: '/our-process' },
       // { title: 'Careers', iconName: 'RightArrowIcon', color: 'blue', href: '/careers', rotateIcon: true }
-      { title: 'Internships', iconName: 'ArchitectureIcon', color: 'purple', href: '/internships' }
+      { title: 'Internships', iconName: 'GraduateHatIcon', color: 'purple', href: '/internships' }
     ]
   }
 ] as HeaderSubmenuContent;

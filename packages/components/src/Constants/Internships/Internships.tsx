@@ -41,7 +41,8 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you curious about how websites and mobile apps grow? Want to gain hands-on experience across SEO, ads, social media, and App Store Optimization (ASO) while working on real campaigns that drive leads, traffic, and app installs?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote Digital Marketing internship</caption> where you’ll learn how to manage multi-channel campaigns, optimize app visibility, and contribute to real-world growth projects! </p>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote Digital Marketing internship</caption> where you’ll learn how to manage multi-channel campaigns, optimize app visibility, and contribute to real-world growth projects!{' '}
+          </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
@@ -94,7 +95,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Digital Marketing Intern (Mobile Growth Focus)
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
@@ -207,7 +208,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Graphic Designer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
@@ -322,7 +323,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> UI/UX Designer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
@@ -438,7 +439,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> ASO Specialist Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
@@ -455,17 +456,12 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
-              <li>Conduct market & competitor analysis to find trending niches and opportunities.
-              </li>
-              <li>Perform keyword research & strategy using ASO tools.
-              </li>
+              <li>Conduct market & competitor analysis to find trending niches and opportunities.</li>
+              <li>Perform keyword research & strategy using ASO tools.</li>
               <li>Draft metadata (titles, descriptions, subtitles) for iOS & Android apps.</li>
-              <li>Assist in creating creative assets (icons, screenshots, feature graphics).
-              </li>
-              <li>Monitor reviews & ratings, track sentiment, and escalate feedback.
-              </li>
-              <li>Analyze user engagement & retention metrics.
-              </li>
+              <li>Assist in creating creative assets (icons, screenshots, feature graphics).</li>
+              <li>Monitor reviews & ratings, track sentiment, and escalate feedback.</li>
+              <li>Analyze user engagement & retention metrics.</li>
               <li>Support A/B testing experiments for app creatives & metadata.</li>
             </ul>
           </div>
@@ -490,14 +486,10 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
-              <li>Work on meaningful ASO projects with real impact.
-              </li>
-              <li>Receive mentorship from experienced ASO specialists.
-              </li>
-              <li>Learn how to rank apps, optimize conversions, and manage app store presence.
-              </li>
-              <li>Internship certificate, recommendation letter, and a potential path to full-time.
-              </li>
+              <li>Work on meaningful ASO projects with real impact.</li>
+              <li>Receive mentorship from experienced ASO specialists.</li>
+              <li>Learn how to rank apps, optimize conversions, and manage app store presence.</li>
+              <li>Internship certificate, recommendation letter, and a potential path to full-time.</li>
             </ul>
           </div>
         </div>
@@ -568,7 +560,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Flutter Developer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
@@ -683,7 +675,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Web Frontend Developer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
@@ -800,7 +792,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Web Backend Developer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
@@ -918,7 +910,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> AI Engineer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
@@ -1034,7 +1026,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Business Development Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
@@ -1154,7 +1146,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> LinkedIn Lead Generation Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
@@ -1188,9 +1180,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Open to remote applicants (preferably Pakistan-based)
               </li>
-              <li>
-                Currently pursuing or recently completed a degree in Marketing, Business Administration, or a related field
-              </li>
+              <li>Currently pursuing or recently completed a degree in Marketing, Business Administration, or a related field</li>
               <li>Familiarity with LinkedIn and its features, including Sales Navigator</li>
               <li>Strong research and analytical skills</li>
               <li>Proficiency in Microsoft Office Suite (Excel, Word, PowerPoint) and Google Workspace</li>
@@ -1230,7 +1220,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you someone who loves exploring freelancing platforms, spotting new opportunities, and building client relationships? Looking to gain real-world experience in proposals, bidding, and client acquisition?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6-month remote  Upwork Bidder internship</caption>where you’ll collaborate with our leadership team to explore new growth opportunities across platforms such as Upwork, LinkedIn, Email, and Cold Calling.
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6-month remote Upwork Bidder internship</caption>where you’ll collaborate with our leadership team to explore new growth opportunities across platforms such as Upwork, LinkedIn, Email, and Cold Calling.
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -1278,7 +1268,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Upwork Bidder Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
@@ -1337,5 +1327,5 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
         </div>
       </div>
     )
-  },
+  }
 ];

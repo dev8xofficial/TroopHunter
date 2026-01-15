@@ -13,6 +13,7 @@ import PuzzlePieceIcon from '../../Icons/PuzzlePiece';
 import CoinsIcon from '../../Icons/Coins';
 import ResponsiveIcon from '../../Icons/Responsive';
 import MobileIcon from '../../Icons/Mobile';
+import GraduateHatIcon from '../../Icons/GraduateHat';
 
 import { Magnet } from '../../Animations/Magnet';
 import { HeaderSubmenuContent } from '../../Interfaces/Navigation/Navigation';
@@ -35,7 +36,8 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: string | number; cla
   ArchitectureIcon,
   CoinsIcon,
   PuzzlePieceIcon,
-  MobileIcon
+  MobileIcon,
+  GraduateHatIcon
 };
 
 export const Dev8XSubmenu: React.FC<Dev8XSubmenuProps> = ({ height, onLinkClick, submenus }) => {
