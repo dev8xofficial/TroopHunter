@@ -1,5 +1,6 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
+import { COPYRIGHT_YEAR } from '../constants';
 
 const WEBSITE: OffersContent[] = [
   {
@@ -100,7 +101,7 @@ const WEBSITE: OffersContent[] = [
         }
       ],
       copyright: {
-        year: '2026',
+        year: COPYRIGHT_YEAR,
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }

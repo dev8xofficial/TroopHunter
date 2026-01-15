@@ -1,6 +1,7 @@
 import { WorkDetail } from '@repo/components';
 import { PageLayoutContent } from '@repo/components/src/Interfaces/PageLayout/PageLayout';
 import { prefixed } from '../../utils/helpers';
+import { COPYRIGHT_YEAR } from '../constants';
 
 const PageData: PageLayoutContent = {
   meta: {
@@ -37,7 +38,7 @@ const PageData: PageLayoutContent = {
     //   linkText: 'Explore Careers'
     // },
     copyright: {
-      year: '2026',
+      year: COPYRIGHT_YEAR,
       text: 'Privacy Policy',
       privacyLink: '/privacy'
     }
