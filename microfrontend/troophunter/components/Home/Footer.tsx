@@ -60,7 +60,7 @@ const Footer: React.FC = (): JSX.Element => {
             <div className="flex items-center gap-[clamp(1rem,1.0582010582vw,1.33rem)]">
               <img className="mx-auto !h-6 lg:!h-8" src={prefixed('/logo/logo.svg')} alt="TroopHunter" width={50} height={50} style={{ width: 'auto', height: 'auto' }} />
               <span className="text-[var(--theme-secondary)] opacity-50">
-                © 2025 <div className="text-inherit underline">Privacy</div>
+                © 2026 <div className="text-inherit underline">Privacy</div>
               </span>
             </div>
             <div className="FooterSimpleContents_footer-acknowledgement__67wsz">

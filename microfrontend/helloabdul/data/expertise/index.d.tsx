@@ -94,7 +94,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -224,7 +224,7 @@ const EXPERTISES: ExpertiseContent[] = [
           phone: '+92 (329) 294-7777'
         },
         {
-          country: 'USA (Focus)',
+          country: 'USA (Remote)',
           city: 'San Francisco, CA',
           phone: '+1 (321) 300-2393'
         }
@@ -236,7 +236,155 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        // icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      }
+      /* {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.instagram.com/reh.m.an/'
+      },
+      {
+        title: 'Facebook',
+        // icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
+    ],
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
+      }
+    ]
+  },
+  {
+    slug: 'real-time-apps',
+    variant: 'purple',
+    tagText: 'Real-Time Applications',
+    heading: 'Engage users in the moment with real-time experiences',
+    image: prefixed('/api/images/work/other/developer-identifying-server-issues.png'),
+    iconCards: {
+      title: 'Instant, seamless interaction',
+      paragraph: 'We create real-time applications that enable immediate, meaningful communication. From live updates to instant messaging and collaborative tools, our real-time solutions keep users connected and engaged, effortlessly.',
+      items: [
+        {
+          title: 'Live by design',
+          description: 'We design and develop responsive real-time experiences—from collaborative tools to live dashboards—that feel immediate, fluid, and alive.',
+          icon: { name: 'MagicWandIcon', size: 24 }
+        },
+        {
+          title: 'Performance-first',
+          description: 'Our engineering focus ensures real-time features are lightweight, reliable, and performant across devices, networks, and locations.',
+          icon: { name: 'MonitorIcon', size: 24 }
+        },
+        {
+          title: 'Built to scale',
+          description: "Whether it's live chat, instant notifications, or multiplayer features, we build systems that scale seamlessly with your audience and demands.",
+          icon: { name: 'GroupUsersIcon', size: 24 }
+        },
+        {
+          title: 'Always in sync',
+          description: 'From sockets to state management, we make sure your app stays consistent and synchronised—delivering the right information at the right time.',
+          icon: { name: 'ShuffleIcon', size: 24 }
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: 'Seamless, Instant Connectivity',
+        paragraph: 'Create applications that provide real-time updates and instantaneous interaction. Whether you’re building live chat platforms, collaborative tools, or online gaming experiences, our approach ensures a smooth, responsive, and engaging experience for your users—every time they interact.',
+        icon: { name: 'SeismometerIcon', size: 64 },
+        image: prefixed('/api/images/work/troophunter/mobile/2.png')
+      },
+      {
+        title: 'Transformative User Experiences',
+        paragraph: 'We specialize in designing and developing real-time applications that push the boundaries of user interaction. From real-time notifications to live data feeds, we create dynamic systems that engage users in meaningful, real-time experiences while maintaining optimal performance and reliability.',
+        icon: { name: 'SeismometerIcon', size: 64 },
+        image: prefixed('/api/images/work/scheduler/mobile/11.png')
+      },
+      {
+        title: 'Scalable Solutions for Every Need',
+        paragraph: 'We build scalable architectures to support real-time data processing, ensuring that your app can grow as your user base expands. Whether handling hundreds or millions of simultaneous users, we leverage cutting-edge technologies to guarantee performance under pressure, offering seamless scalability for your real-time application needs.',
+        icon: { name: 'SeismometerIcon', size: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/5.png')
+      },
+      {
+        title: 'Powerful Real-Time Systems',
+        paragraph: 'Our expertise goes beyond simple integrations—we develop sophisticated back-end systems that allow for secure, real-time communication between users and devices. From instant messaging apps to real-time dashboards, we ensure your application remains fast, reliable, and always connected.',
+        icon: { name: 'SeismometerIcon', size: 64 },
+        image: prefixed('/api/images/work/honeydu/desktop/3.png')
+      }
+    ],
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+    meta: {
+      title: 'Real-Time Systems & Application Development | Our Expertise — Abdul | Abdul: World class digital products',
+      description: 'Engage users in the moment with real-time experiences'
+    },
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'Pakistan (HQ)',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        },
+        {
+          country: 'USA (Remote)',
+          city: 'San Francisco, CA',
+          phone: '+1 (321) 300-2393'
+        }
+      ],
+      // careers: {
+      //   heading: 'We’re Growing – Join Our Team',
+      //   description: 'Let’s build the future, together.',
+      //   link: '/careers',
+      //   linkText: 'Explore Careers'
+      // },
+      copyright: {
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -385,7 +533,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -676,7 +824,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -820,7 +968,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -970,7 +1118,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1118,7 +1266,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1266,7 +1414,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1413,7 +1561,7 @@ const EXPERTISES: ExpertiseContent[] = [
         }
       ],
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1570,7 +1718,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1724,7 +1872,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -1876,7 +2024,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2035,7 +2183,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2199,7 +2347,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2348,7 +2496,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2489,7 +2637,7 @@ const EXPERTISES: ExpertiseContent[] = [
       ],
 
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2641,7 +2789,7 @@ const EXPERTISES: ExpertiseContent[] = [
       ],
 
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2795,7 +2943,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -2943,7 +3091,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -3092,7 +3240,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -3240,7 +3388,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -3394,7 +3542,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -3559,7 +3707,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -4016,7 +4164,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -4170,7 +4318,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -4318,7 +4466,7 @@ const EXPERTISES: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -4374,8 +4522,309 @@ const EXPERTISES: ExpertiseContent[] = [
       }
     ]
   },
- 
- 
+  {
+    slug: 'containerization',
+    variant: 'pink',
+    tagText: 'Containerization',
+    heading: 'Enterprise-grade container platforms, orchestrated for scale',
+    image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png'),
+    iconCards: {
+      title: 'Containers engineered for production',
+      paragraph: 'We package applications into portable, secure containers and operate them with hardened automation so releases stay fast, dependable, and ready for scale across every environment.',
+      items: [
+        {
+          title: 'Production-Ready Images',
+          description: 'Crafted Docker base images with automated scanning, reproducible builds, and minimal attack surfaces keep every workload reliable from dev to prod.',
+          icon: { name: 'DockerIcon', size: 24 }
+        },
+        {
+          title: 'Orchestrated Everywhere',
+          description: 'Design resilient Kubernetes and ECS topologies with multi-cluster failover, edge deployments, and workload placement tuned to business SLAs.',
+          icon: { name: 'InfinityIcon', size: 24 }
+        },
+        {
+          title: 'Security & Governance',
+          description: 'Policy-driven networking, secrets management, signing, and runtime controls make compliance and zero-trust best practices a default, not an afterthought.',
+          icon: { name: 'ShieldIcon', size: 24 }
+        },
+        {
+          title: 'Lifecycle Automation',
+          description: 'GitOps flows, progressive delivery, and autoscaling policies automate the full container lifecycle so teams can ship quickly without sacrificing control.',
+          icon: { name: 'RefreshIcon', size: 24 }
+        }
+      ]
+    },
+    contentAsideImageItems: [
+      {
+        title: 'Container Platform Architecture',
+        paragraph: 'Blueprint modular registries, networking, storage, and observability so your container platform is predictable, compliant, and ready for enterprise workloads on day one.',
+        icon: { name: 'DockerIcon', size: 64 },
+        image: prefixed('/api/images/work/scheduler/mobile/2.png')
+      },
+      {
+        title: 'Kubernetes Operations at Scale',
+        paragraph: 'Operate multi-tenant Kubernetes with automated upgrades, cluster autoscaling, and disaster recovery playbooks that keep mission-critical services online.',
+        icon: { name: 'InfinityIcon', size: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/5.png')
+      },
+      {
+        title: 'Observability & Optimization',
+        paragraph: 'Instrument every layer with tracing, metrics, and cost analytics to right-size workloads, tune resource profiles, and catch regressions before customers do.',
+        icon: { name: 'AnalysisIcon', size: 64 },
+        image: prefixed('/api/images/work/troophunter/desktop/14.png')
+      },
+      {
+        title: 'Secure Supply Chain',
+        paragraph: 'Implement SBOM generation, signing, and policy gates that verify images from source commit through runtime, protecting sensitive data and regulated workloads.',
+        icon: { name: 'ShieldIcon', size: 64 },
+        image: prefixed('/api/images/work/other/payload_search2.png')
+      },
+      {
+        title: 'Embedded DevOps Partnership',
+        paragraph: 'Work shoulder-to-shoulder with DevOps engineers who coach your teams on best practices, document playbooks, and stay engaged for continuous improvement.',
+        icon: { name: 'HandshakeIcon', size: 64 },
+        image: prefixed('/api/images/work/honeydu/desktop/23.png')
+      }
+    ],
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+    meta: {
+      title: 'Containerization Specialists | Our Expertise — Abdul | Abdul: World class digital products',
+      description: 'Portable, secure containers architected for fast, reliable delivery at scale.'
+    },
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'Pakistan (HQ)',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        },
+        {
+          country: 'USA (Remote)',
+          city: 'San Francisco, CA',
+          phone: '+1 (321) 300-2393'
+        }
+      ],
+      // careers: {
+      //   heading: 'We’re Growing – Join Our Team',
+      //   description: 'Let’s build the future, together.',
+      //   link: '/careers',
+      //   linkText: 'Explore Careers'
+      // },
+      copyright: {
+        year: '2026',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        // icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      }
+      /* {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.instagram.com/reh.m.an/'
+      },
+      {
+        title: 'Facebook',
+        // icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
+    ],
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Without a doubt, a number of projects have been won on the back of our new website and project specification toolbox built by the team at Dev8X.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'From the very beginning, it was evident that the team truly grasped our brief and vision, effectively translating it into a remarkable reality.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'From conception through to launch, the Dev8X team has been nothing short of amazing. I wouldn’t hesitate to recommend Dev8X to any business.'
+      }
+    ]
+  },
+  {
+    slug: 'microservices',
+    variant: 'cyan',
+    tagText: 'Microservices',
+    heading: 'Modernize products with resilient microservices',
+    image: prefixed('/api/images/work/other/tourismprototype.png'),
+
+    iconCards: {
+      title: 'Microservices architecture engineered for scale',
+      paragraph: 'I help product teams evolve monoliths into composable, API-driven systems that deploy quickly, recover gracefully, and keep engineering velocity high.',
+      items: [
+        {
+          title: 'Domain-Aligned Services',
+          description: 'Model services around business capabilities, ensuring each API boundary reflects the domain language and can evolve independently.',
+          icon: { name: 'GPSIcon', size: 24 }
+        },
+        {
+          title: 'Observable & Secure',
+          description: 'Bake in distributed tracing, real-time metrics, and zero-trust policies so every service is debuggable, auditable, and compliant.',
+          icon: { name: 'FrameIcon', size: 24 }
+        },
+        {
+          title: 'Cloud-Native Delivery',
+          description: 'Use containers, Kubernetes, and GitOps pipelines to ship updates continuously while maintaining strict SLOs and rollback guarantees.',
+          icon: { name: 'TargetIcon', size: 24 }
+        },
+        {
+          title: 'Embedded Partnership',
+          description: 'Collaborate with platform, product, and security teams to design migration roadmaps, success metrics, and operational runbooks.',
+          icon: { name: 'HandPalmIcon', size: 24 }
+        }
+      ]
+    },
+
+    contentAsideImageItems: [
+      {
+        title: 'Service blueprints & API contracts',
+        paragraph: 'Rapidly map domains, define async/evented communication, and document contracts in OpenAPI so every team shares a single source of truth.',
+        icon: { name: 'MagicWandIcon', size: 64 },
+        image: prefixed('/api/images/work/other/studyplanner.png')
+      },
+      {
+        title: 'Cloud-native CI/CD pipelines',
+        paragraph: 'Design container-first pipelines that enforce quality gates, security scans, and progressive delivery strategies across every microservice.',
+        icon: { name: 'MagicWandIcon', size: 64 },
+        image: prefixed('/api/images/work/other/pentanetui.png')
+      },
+      {
+        title: 'Progressive modernization playbooks',
+        paragraph: 'Break down monoliths incrementally with strangler patterns, data orchestration strategies, and automated regression coverage.',
+        icon: { name: 'MagicWandIcon', size: 64 },
+        image: prefixed('/api/images/work/other/talk-n-walk.png')
+      },
+      {
+        title: 'Reliability sprints & chaos drills',
+        paragraph: 'Run focused sessions to validate failover plans, practice incident choreography, and harden services before they face production load.',
+        icon: { name: 'MagicWandIcon', size: 64 },
+        image: prefixed('/api/images/work/totalhealthdentalcare/desktop/2.png')
+      }
+    ],
+
+    footerMainContent: {
+      link: '/contact',
+      start: 'Let’s make',
+      end: 'something wonderful'
+    },
+
+    meta: {
+      title: 'Microservices Architecture | Our Expertise — Abdul | Cloud-Native Scale',
+      description: 'Design, build, and operate microservices that keep complex products fast, secure, and resilient'
+    },
+
+    footerData: {
+      global: {
+        heading: 'I work globally',
+        email: 'contact@helloabdul.com',
+        buttonText: 'Hire me'
+      },
+      offices: [
+        {
+          country: 'Pakistan (HQ)',
+          city: 'Lahore, Punjab',
+          phone: '+92 (329) 294-7777'
+        },
+        {
+          country: 'USA (Remote)',
+          city: 'San Francisco, CA',
+          phone: '+1 (321) 300-2393'
+        }
+      ],
+      copyright: {
+        year: '2026',
+        text: 'Privacy Policy',
+        privacyLink: '/privacy'
+      }
+    },
+
+    footerSocialLinks: [
+      {
+        title: 'LinkedIn',
+        // icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.linkedin.com/company/dev8xofficial/'
+      }
+      /* {
+        title: 'Instagram',
+        icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.instagram.com/reh.m.an/'
+      },
+      {
+        title: 'Facebook',
+        // icon: { name: 'AsteriskIcon', size: 10 },
+        href: 'https://www.facebook.com/share/15PGxbroKkm/'
+      } */
+      // {
+      //   title: 'Youtube',
+      //   href: 'https://www.youtube.com/@Dev8XOfficial-s3v'
+      // }
+    ],
+
+    testimonials: [
+      {
+        name: 'Henry Luong',
+        company: 'Unios',
+        bgColor: '#ffffff',
+        color: '#111111',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/1d5f3959f9/unios.jpeg',
+        comment: 'Abdul rebuilt our monolith into modular services, reducing release cycles from weeks to hours without sacrificing reliability.'
+      },
+      {
+        name: 'Paula McCarville',
+        company: 'Curtin University',
+        bgColor: '#4C21E2',
+        color: '#F0EBFF',
+        transformOrigin: 'center top',
+        image: 'https://a-us.storyblok.com/f/1017006/1744x1612/4c0927054c/curtin-open-day.jpg',
+        comment: 'He guided our team through containerization, observability, and governance, making microservices adoption predictable and secure.'
+      },
+      {
+        name: 'Steph Jojart',
+        company: 'Schrole',
+        bgColor: '#1665A3',
+        color: '#E8F5FF',
+        transformOrigin: 'top center',
+        image: 'https://a-us.storyblok.com/f/1017006/3488x3224/f6a5e2a115/schrole-1744px-x-1612px.jpg',
+        comment: 'Our microservices migration hit every milestone thanks to Abdul’s architecture playbooks, cloud expertise, and hands-on leadership.'
+      }
+    ]
+  },
   {
     slug: 'turbo-repo',
     variant: 'purple',
@@ -4467,7 +4916,7 @@ const EXPERTISES: ExpertiseContent[] = [
         }
       ],
       copyright: {
-        year: '2025',
+        year: '2026',
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
