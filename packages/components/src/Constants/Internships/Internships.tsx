@@ -187,7 +187,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                   } as React.CSSProperties
                 }
               >
-                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/r/graphic-designer-internship-roadmap--6-months" target="_blank">
+                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/r/graphic-designer-internship-roadmap--3-monthss" target="_blank">
                   <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
                     <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
                     <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
@@ -391,7 +391,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p> Are you passionate about mobile apps, curious about how apps grow on the App Store & Google Play, and eager to learn real ASO strategies? Looking to gain hands-on experience in keyword research, competitor analysis, and app growth?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}> 6-month remote ASO internship</caption> where you’ll learn how to boost app visibility, drive downloads, and contribute to real-world growth projects!
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}> 3-months remote ASO internship</caption> where you’ll learn how to boost app visibility, drive downloads, and contribute to real-world growth projects!
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -979,7 +979,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you a persuasive communicator with a passion for connecting with people and growing businesses? Looking to gain hands-on experience in client acquisition, outreach, and tech sales?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6-month remote Business Development internship</caption> where you'll grow, build, and innovate alongside a talented team!
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3-months remote Business Development internship</caption> where you'll grow, build, and innovate alongside a talented team!
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -1098,7 +1098,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you passionate about building professional connections and identifying new business opportunities? This internship is your chance to gain real-world experience in LinkedIn-based lead generation and contribute directly to our growth journey?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6-month remote LinkedIn Lead Generation internship</caption> where you'll work directly with the sales and marketing team to identify, connect, and qualify potential clients on LinkedIn while driving new business opportunities.
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3-months remote LinkedIn Lead Generation internship</caption> where you'll work directly with the sales and marketing team to identify, connect, and qualify potential clients on LinkedIn while driving new business opportunities.
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -1220,7 +1220,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you someone who loves exploring freelancing platforms, spotting new opportunities, and building client relationships? Looking to gain real-world experience in proposals, bidding, and client acquisition?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6-month remote Upwork Bidder internship</caption>where you’ll collaborate with our leadership team to explore new growth opportunities across platforms such as Upwork, LinkedIn, Email, and Cold Calling.
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3-months remote Upwork Bidder internship</caption>where you’ll collaborate with our leadership team to explore new growth opportunities across platforms such as Upwork, LinkedIn, Email, and Cold Calling.
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
