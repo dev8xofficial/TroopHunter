@@ -12,18 +12,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
-  const transporter = nodemailer.createTransport({
-    host: process.env.MAIL_HOST,
-    port: Number(process.env.MAIL_PORT),
-    secure: process.env.MAIL_PORT === '465',
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS
-    }
-  });
+  // Validate email formats
+  const allRecipients = [to, ...(cc ? cc.split(',').map(e => e.trim()) : [])];
+  if (!allRecipients.every(email => emailRegex.test(email))) {
+    return res.status(400).json({ message: 'One or more email addresses are invalid' });
+  }
 
   try {
-    await transporter.verify();
+    const transporter = nodemailer.createTransport({
+      host: process.env.MAIL_HOST,
+      port: Number(process.env.MAIL_PORT),
+      secure: Number(process.env.MAIL_PORT) === 465, // SSL
+      auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS
+      }
+    });
 
     const info = await transporter.sendMail({
       from: `"${from}" <${process.env.MAIL_USER}>`,
@@ -35,18 +39,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       text: message.replace(/<[^>]*>/g, '')
     });
 
-    // This return object is what your frontend 'payload' variable receives
-    return res.status(200).json({ 
-      message: 'Email sent successfully', 
+    return res.status(200).json({
+      message: 'Email sent successfully',
       messageId: info.messageId,
       accepted: info.accepted,
-      response: info.response 
+      response: info.response
     });
   } catch (error: any) {
     console.error('SMTP Error:', error);
-    return res.status(500).json({ 
-      message: 'SMTP delivery failed', 
-      error: error.message 
-    });
+    return res.status(500).json({ message: 'SMTP delivery failed', error: error.message });
   }
 }
