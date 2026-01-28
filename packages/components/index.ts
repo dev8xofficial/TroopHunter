@@ -219,6 +219,7 @@ export * from './src/Modals/ScheduleCallModal/ScheduleCallModal';
 export * from './src/Modals/SmoothModal/SmoothModal';
 export * from './src/Modals/SubmitApplicationModal/SubmitApplicationModal';
 export * from './src/Modals/FormModal/FormModal';
+export * from './src/Modals/EmailModal/EmailModal';
 
 export * from './store/smoothModalAtom';
 export * from './utils/helpers';
