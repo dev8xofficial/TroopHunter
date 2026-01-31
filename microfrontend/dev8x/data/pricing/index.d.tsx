@@ -252,7 +252,7 @@ const OFFERS: OffersContent[] = [
     variant: 'purple',
     tagText: 'For Real Estate Companies',
     pillText: "Let's Get Growing",
-    heading: 'High-converting digital assets. Starting at $80.',
+    heading: 'High-converting digital assets. Starting at $***.',
     paragraph: 'Boost visibility, capture motivated buyers and sellers, and automate follow-ups. Launch modern property websites, dynamic listings, and lead systems — built fast with clear reporting and zero complexity.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
     iconCards: {
@@ -428,7 +428,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '1',
         heading: 'Modern Real Estate Website',
-        price: '$500',
+        price: '$***',
         description: 'Responsive, high-conversion site for listings and agents',
         features: ['Property pages', 'Agent profiles', 'Testimonials', 'Contact forms'],
         categories: ['Website', 'Branding', 'SEO', 'Lead Capture', 'Fast Delivery', 'Responsive'],
@@ -438,7 +438,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '2',
         heading: 'Property Dashboard',
-        price: '$280',
+        price: '$***',
         description: 'Track listings, leads, and conversion performance',
         features: ['Charts & KPIs', 'Leads data', 'Traffic insights', 'Revenue trends'],
         categories: ['Analytics', 'Dashboard', 'Insights', 'Growth', 'Data'],
@@ -448,7 +448,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '3',
         heading: 'Hosting & Security Setup',
-        price: '$200',
+        price: '$***',
         description: 'Domain, SSL, and cloud deployment with backups',
         features: ['Domain setup', 'SSL config', 'Cloud hosting', 'Speed optimization'],
         categories: ['Hosting', 'Security', 'Cloud', 'Performance', 'Reliability'],
@@ -458,7 +458,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '4',
         heading: 'Listings Automation',
-        price: '$450',
+        price: '$***',
         description: 'Dynamic property listings synced from CMS or Sheets',
         features: ['Auto-updating listings', 'CMS integration', 'Filters & search', 'Map view'],
         categories: ['Automation', 'Listings', 'CMS', 'Dynamic', 'Real Estate', 'Efficiency'],
@@ -468,7 +468,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '5',
         heading: 'Smart Lead Form + CRM',
-        price: '$300',
+        price: '$***',
         description: 'Capture and sync leads into your CRM instantly',
         features: ['Custom forms', 'CRM integration', 'Auto-responses', 'Notifications'],
         categories: ['Leads', 'CRM', 'Automation', 'Email', 'Conversion'],
@@ -478,7 +478,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '6',
         heading: 'Online Booking System',
-        price: '$350',
+        price: '$***',
         description: 'Let buyers schedule viewings or calls online',
         features: ['Calendar sync', 'Agent availability', 'Reminders', 'Integrations'],
         categories: ['Booking', 'Calendar', 'Automation', 'Scheduling', 'Lead Flow'],
@@ -488,7 +488,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '7',
         heading: 'Email & SMS Automation',
-        price: '$250',
+        price: '$***',
         description: 'Auto follow-ups for inquiries and cold leads',
         features: ['SMS & email triggers', 'Templates', 'Follow-up rules', 'CRM sync'],
         categories: ['Automation', 'SMS', 'Email', 'Retention', 'Leads'],
@@ -498,7 +498,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '8',
         heading: 'Property Inquiry Chatbot',
-        price: '$400',
+        price: '$***',
         description: '24/7 AI chatbot for property leads via WhatsApp & web.',
         features: ['AI + predefined responses', 'Multi-language support', 'CRM / database storage', 'Simple dashboard for agents', 'WhatsApp & web widget'],
         categories: ['Automation', 'Lead Capture', 'AI', 'CRM', 'Property Inquiries'],
@@ -508,7 +508,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '9',
         heading: 'Google Business & SEO',
-        price: '$300',
+        price: '$***',
         description: 'Rank higher for “Homes in [City]” searches',
         features: ['Local SEO', 'Google Business setup', 'On-page fixes', 'Keyword insights'],
         categories: ['SEO', 'Visibility', 'Local', 'Google', 'Ranking'],
@@ -518,7 +518,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '10',
         heading: 'Google Reviews Widget',
-        price: '$120',
+        price: '$***',
         description: 'Showcase live client reviews for trust & SEO',
         features: ['Live reviews', 'Auto-update', 'SEO boost', 'Easy embed'],
         categories: ['Reviews', 'Trust', 'Social Proof', 'SEO', 'Credibility'],
@@ -528,7 +528,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '11',
         heading: 'Speed Optimization',
-        price: '$200',
+        price: '$***',
         description: 'Faster load times for better conversion & SEO',
         features: ['Lighthouse fixes', 'Caching', 'Image compression', 'Performance tuning'],
         categories: ['Speed', 'Performance', 'SEO', 'Optimization'],
@@ -538,7 +538,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '12',
         heading: 'Monthly Support Plan',
-        price: '$250',
+        price: '$***',
         description: 'Ongoing maintenance, backups, and uptime checks',
         features: ['24/7 monitoring', 'Monthly updates', 'Daily backups', 'Security audits'],
         categories: ['Support', 'Maintenance', 'Security', 'Monitoring', 'DevOps'],
@@ -548,7 +548,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '13',
         heading: '360° Virtual Tours',
-        price: '$550',
+        price: '$***',
         description: 'Interactive property galleries and walkthroughs',
         features: ['3D viewer', 'Image gallery', 'Video embeds', 'Mobile ready'],
         categories: ['Media', 'Virtual Tour', 'Gallery', 'Showcase', 'Modern UX'],
@@ -565,7 +565,7 @@ const OFFERS: OffersContent[] = [
     variant: 'pink',
     tagText: 'For Dental Clinics',
     pillText: "Let's Get Growing",
-    heading: 'Dental-ready digital systems. Starting at $80/project.',
+    heading: 'Dental-ready digital systems. Starting at $***/project.',
     paragraph: 'Launch modern websites, online booking, and patient automation — built fast with clean design, secure backend, and SEO visibility.<br /><br /> Kick off in <span><b>3 days</b></span> with <span><b>effortless communication</b></span> and <span><b>transparent delivery</b></span>.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
     iconCards: {
@@ -746,7 +746,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '1',
         heading: 'Modern Dental Website',
-        price: '$400',
+        price: '$***',
         description: 'Responsive site to showcase services & doctors with SEO-ready structure.',
         features: ['Doctor profiles', 'Service overview', 'SEO-ready structure', 'Appointment CTA'],
         categories: ['Website', 'Branding', 'SEO', 'Responsive Design', 'Conversion Focused', 'Patient Growth', 'Modern UI'],
@@ -756,7 +756,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '2',
         heading: 'AI Chatbot Lead Capture',
-        price: '$300',
+        price: '$***',
         description: 'Automate appointment requests and follow-ups 24/7.',
         features: ['AI-driven chat', 'CRM integration', 'WhatsApp & web', 'Multi-language support'],
         categories: ['Automation', 'Lead Capture', 'CRM', 'AI', 'Patient Experience', 'Conversion', 'Time Saver'],
@@ -766,7 +766,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '3',
         heading: 'SMS & Email Reminders',
-        price: '$300',
+        price: '$***',
         description: 'Automated reminders to reduce no-shows and improve retention.',
         features: ['SMS notifications', 'Email reminders', 'Custom templates', 'No-show reduction'],
         categories: ['Automation', 'SMS', 'Email', 'Reminders', 'Patient Retention'],
@@ -776,7 +776,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '4',
         heading: 'Patient Portal',
-        price: '$500',
+        price: '$***',
         description: 'Secure login for patients to manage bookings, history, and invoices.',
         features: ['View appointments', 'Treatment history', 'Invoices', 'Secure login'],
         categories: ['Patient Portal', 'Dashboard', 'Security', 'Clinic Systems', 'Retention', 'Modern UX'],
@@ -786,7 +786,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '5',
         heading: 'Google Reviews Widget',
-        price: '$120',
+        price: '$***',
         description: 'Show live patient reviews to build trust and credibility.',
         features: ['Live feed', 'Auto-update', 'Trust badges', 'Easy embed'],
         categories: ['Social Proof', 'Reviews', 'Credibility', 'Patient Trust', 'SEO', 'Conversion'],
@@ -796,7 +796,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '6',
         heading: 'Smart Appointment Form',
-        price: '$200',
+        price: '$***',
         description: 'Capture leads automatically and sync with CRM.',
         features: ['Form validation', 'Email/SMS notifications', 'Calendar sync', 'CRM-ready'],
         categories: ['Lead Capture', 'Automation', 'Booking', 'CRM', 'Conversion'],
@@ -806,7 +806,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '7',
         heading: 'Clinic Branding Kit',
-        price: '$200',
+        price: '$***',
         description: 'Refresh logo, colors, and typography for web & social.',
         features: ['Logo refinement', 'Color palette', 'Typography', 'Social templates'],
         categories: ['Branding', 'Visual Identity', 'Marketing', 'Patient Trust', 'Modern Design'],
@@ -816,7 +816,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '8',
         heading: 'Click-to-Call / WhatsApp',
-        price: '$100',
+        price: '$***',
         description: 'Enable patients to call or message instantly from your site.',
         features: ['Floating button', 'WhatsApp API', 'Click tracking', 'Custom styling'],
         categories: ['Leads', 'Conversion', 'Contact', 'WhatsApp', 'Patient Engagement'],
@@ -826,7 +826,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '9',
         heading: 'Smile Gallery Showcase',
-        price: '$200',
+        price: '$***',
         description: 'Highlight patient transformations to build trust.',
         features: ['Before & after images', 'SEO captions', 'Instagram-ready', 'Lightbox gallery'],
         categories: ['Portfolio', 'Social Proof', 'Trust', 'Visual Marketing', 'Patient Confidence'],
@@ -836,7 +836,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '10',
         heading: 'Local Ads Campaign',
-        price: '$300',
+        price: '$***',
         description: 'Target nearby patients with Google & social ads.',
         features: ['Audience targeting', 'Ad setup', 'Pixel tracking', 'Performance reports'],
         categories: ['Advertising', 'Local Leads', 'Patient Growth', 'Google Ads', 'Conversion'],
@@ -846,7 +846,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '11',
         heading: 'Speed Optimization',
-        price: '$200',
+        price: '$***',
         description: 'Boost site speed, UX, and SEO rankings.',
         features: ['CDN setup', 'Image optimization', 'Performance tuning', 'Core Web Vitals fix'],
         categories: ['Performance', 'SEO', 'Optimization', 'UX', 'Conversion'],
@@ -856,7 +856,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '12',
         heading: 'Monthly Support Plan',
-        price: '$250',
+        price: '$***',
         description: 'Reliable hosting, backups, security checks, and ongoing support.',
         features: ['24/7 monitoring', 'Security checks', 'Performance reports', 'Priority support'],
         categories: ['Hosting', 'Maintenance', 'Security', 'Support', 'Reliability', 'Performance'],
