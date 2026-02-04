@@ -19,7 +19,7 @@ import ExpertiseStyles from '../expertise/index.module.css';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import VideoPlayer from '@repo/components/src/Surfaces/VideoPlayer/VideoPlayer';
 
-const ProposalPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): JSX.Element => {
+const ProposalPage: React.FC = ({ slug, variant, proposal, ...PageData }: OffersContent & { proposal?: any }): JSX.Element => {
   const toggleModal = useSetAtom(toggleSmoothModalAtom);
   const currentModal = useAtomValue(openSmoothModalAtom);
 
@@ -81,8 +81,9 @@ const ProposalPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): 
               <HomepageShowreel homepageShowreelCSSClass={ExpertiseStyles['homepage__showreel']} src={prefixed('/videos/work/crm.mp4')} isMobile={isMobile}>
                 <div className={`${ExpertiseStyles['work-grid']} ${HomePageStyles['work-grid']}`}>
                   <WorkGridRowLandscape>
-                    {/* <OffersReel bgColor="cyan" title={PageData.tagText} image={prefixed("/images/placeholder/1080-transparent.png")} poster={prefixed("/videos/dev8x/thumbnail.jpg")} src={prefixed("/videos/dev8x/master.m3u8")} /> */}
-                    <VideoPlayer src={prefixed(`/videos/proposals/${slug}/master.m3u8`)} poster={prefixed(`/videos/proposals/${slug}/thumbnail.jpg`)} />
+                    {/* <OffersReel bgColor="cyan" title={pageDataWithProposal.tagText} image={prefixed("/images/placeholder/1080-transparent.png")} poster={prefixed("/videos/dev8x/thumbnail.jpg")} src={prefixed("/videos/dev8x/master.m3u8")} /> */}
+                    {/* <VideoPlayer src={proposal?.videoSrc} poster={proposal?.poster} /> */}
+                    <VideoPlayer src={prefixed(`/videos/proposals/${slug}/output.mp4`)} poster={proposal?.poster} hideQualityControls={true} />
                   </WorkGridRowLandscape>
                 </div>
               </HomepageShowreel>
@@ -171,13 +172,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const PageData = PROPOSALS.find((p) => p.slug === params.slug);
-  const { variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials } = PageData;
+  const { variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials, proposal } = PageData;
 
   if (!PageData) {
     return { notFound: true };
   }
 
-  const props = { slug: params.slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials };
+  const props = { slug: params.slug, variant, tagText, heading, paragraph, image, iconCards, contentAsideImageItems, meta, footerMainContent, footerData, footerSocialLinks, testimonials, proposal };
 
   // Remove undefined values to prevent serialization errors
   Object.keys(props).forEach((key) => {

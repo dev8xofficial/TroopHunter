@@ -13,6 +13,11 @@ export const prefixed = (src: string): string => {
   return `${assetHost}${path}`;
 };
 
+export const getCompanyName = (companies: any[], companyId: string): string => {
+  const company = companies.find((c) => c.id === companyId);
+  return company?.name || 'Company';
+};
+
 export type Brand = 'dev8x' | 'helloabdul';
 
 export const getBrandFromBaseURL = (baseUrl?: string): Brand => {

@@ -113,8 +113,18 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, autoplay = true,
 
   useEffect(() => {
     const video = videoRef.current;
+    if (!video) return;
 
-    if (video && Hls.isSupported()) {
+    // Helper function to determine if source is HLS
+    const isHlsSource = (url: string) => {
+      return url.includes('.m3u8') || url.includes('application/vnd.apple.mpegurl');
+    };
+
+    // Check if this is an HLS source
+    const needsHls = isHlsSource(src);
+
+    if (needsHls && Hls.isSupported()) {
+      // HLS playback using hls.js
       const hls = new Hls();
       hlsRef.current = hls;
       hls.loadSource(src);
@@ -161,7 +171,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, autoplay = true,
         hls.destroy();
         hlsRef.current = null;
       };
-    } else if (video?.canPlayType('application/vnd.apple.mpegurl')) {
+    } else if (needsHls && video.canPlayType('application/vnd.apple.mpegurl')) {
+      // Native HLS support (Safari)
       video.src = src;
       if (autoplay) {
         video
@@ -169,6 +180,24 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, autoplay = true,
           .then(() => setIsPlaying(true))
           .catch((err) => console.warn('Autoplay failed:', err));
       }
+    } else {
+      // MP4 or other native HTML5 video formats
+      video.src = src;
+
+      // Clear quality levels for non-HLS sources
+      setQualityLevels([]);
+
+      if (autoplay) {
+        video
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((err) => console.warn('Autoplay failed:', err));
+      }
+
+      return () => {
+        // Cleanup for non-HLS playback
+        video.src = '';
+      };
     }
   }, [src, autoplay]);
 
@@ -339,7 +368,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, autoplay = true,
   );
 
   if (!isClient) {
-    return <video ref={videoRef} controls={false} loop playsInline muted={true} poster={poster} style={{ width: '100%', borderRadius: '8px' }} preload='metadata'/>;
+    return <video ref={videoRef} controls={false} loop playsInline muted={isMuted} poster={poster} style={{ width: '100%', borderRadius: '8px' }} preload="metadata" />;
   }
 
   return (
@@ -364,7 +393,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, autoplay = true,
             </button>
           )}
           {(!hidePlayControls && (!isMobile || !autoplay)) && <button onClick={handlePlayPause}>{isPlaying ? renderPauseIcon() : renderPlayIcon()}</button>}
-          {!isMobile && !hideMuteControls && <button onClick={handleMuteUnmute}>{isMuted ? renderUnmuteIcon() : renderMuteIcon()}</button>}
+          {!isMobile && !hideMuteControls && <button onClick={handleMuteUnmute}>{isMuted ? renderMuteIcon() : renderUnmuteIcon()}</button>}
           {!hideFullscreen && <button onClick={handleFullscreen}>{isFullscreen ? renderExitFullscreenIcon() : renderFullScreenIcon()}</button>}
         </div>
       </div>
