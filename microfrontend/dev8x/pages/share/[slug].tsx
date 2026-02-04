@@ -82,8 +82,7 @@ const ProposalPage: React.FC = ({ slug, variant, proposal, ...PageData }: Offers
                 <div className={`${ExpertiseStyles['work-grid']} ${HomePageStyles['work-grid']}`}>
                   <WorkGridRowLandscape>
                     {/* <OffersReel bgColor="cyan" title={pageDataWithProposal.tagText} image={prefixed("/images/placeholder/1080-transparent.png")} poster={prefixed("/videos/dev8x/thumbnail.jpg")} src={prefixed("/videos/dev8x/master.m3u8")} /> */}
-                    {/* <VideoPlayer src={proposal?.videoSrc} poster={proposal?.poster} /> */}
-                    <VideoPlayer src={prefixed(`/videos/proposals/${slug}/output.mp4`)} poster={proposal?.poster} hideQualityControls={true} />
+                    <VideoPlayer src={proposal.videoSrc} poster={proposal?.poster} hideQualityControls={true} autoplay={false} isMuted={false} />
                   </WorkGridRowLandscape>
                 </div>
               </HomepageShowreel>

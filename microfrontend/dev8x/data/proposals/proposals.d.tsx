@@ -36,12 +36,13 @@ const PROPOSALS: ProposalContent[] = [
     },
     proposal: {
       companyId: '8475e512-b410-473b-abae-e707aae40022',
-      videoSrc: '/videos/proposals/042deec5-c6a3-4bb0-9134-86fbab6875d6/output.mp4',
+      videoSrc: prefixed('/videos/proposals/042deec5-c6a3-4bb0-9134-86fbab6875d6/output.mp4'),
+      poster: prefixed(''),
       tag: { text: '', backgroundColor: '', color: '' },
       date: '03.02.26',
       title: 'Real Estate Solution:',
       description: 'For over a decade, The Burkes Group has been providing comprehensive real estate services in The Woodlands, TX. We combine traditional values with modern technology to deliver exceptional results.',
-      link: { href: prefixed('/share/042deec5-c6a3-4bb0-9134-86fbab6875d6'), label: 'Share' }
+      link: { href: '/share/042deec5-c6a3-4bb0-9134-86fbab6875d6', label: 'Share' }
     },
     contentAsideImageItems: [
       {

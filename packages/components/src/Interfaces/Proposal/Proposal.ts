@@ -15,6 +15,7 @@ export interface ProposalLink {
 export interface Proposal {
   companyId: string;
   videoSrc?: string;
+  poster?: string;
   tag: ProposalTag;
   date: string;
   title: string;

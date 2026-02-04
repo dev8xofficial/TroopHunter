@@ -4,7 +4,7 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
-import { FeedSliderItem } from '../../Interfaces/Home/Home';
+import { Proposal } from '../../Interfaces/Proposal/Proposal';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -15,7 +15,7 @@ import styles from './index.module.css';
 
 export interface ProposalSilderProps {
   heading: string;
-  feedSliderItems: FeedSliderItem[];
+  feedSliderItems: Proposal[];
   homePageFeed?: string;
   homePageFeedOverflow?: string;
 }
