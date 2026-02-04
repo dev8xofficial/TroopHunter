@@ -29,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
     if (path === '/') return 1;
     if (path === '/about') return 2;
     if (path.startsWith('/work')) return 3;
-    if (path.startsWith('/expertise') || path.startsWith('/offers')) return 4;
+    if (path.startsWith('/expertise') || path.startsWith('/offers') || path.startsWith('/proposals') || path.startsWith('/share')) return 4;
     if (path === '/contact') return 5;
     return 1;
   };
@@ -106,7 +106,7 @@ export const Header: React.FC<HeaderProps> = ({ submenuData }): JSX.Element => {
               <div className="link-wrap">
                 <button
                   ref={exploreBtnRef}
-                  className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') || currentPath.includes('/careers') || currentPath.includes('/internships') || currentPath.includes('/plans-and-pricing') || currentPath.includes('/our-process') || currentPath.includes('/web-applications') || currentPath.includes('/mobile-applications') || currentPath.includes('/saas-applications') || currentPath.includes('/cto-as-a-service') || currentPath.includes('/services-for-early-stage-startups') || currentPath.includes('/services-for-growth-stage-startups') || currentPath.includes('/pricing') ? styles['menu__link--active'] : ''}`}
+                  className={`${styles['menu__link']} ${currentPath.includes('/expertise') || currentPath.includes('/offers') || currentPath.includes('/careers') || currentPath.includes('/internships') || currentPath.includes('/plans-and-pricing') || currentPath.includes('/our-process') || currentPath.includes('/web-applications') || currentPath.includes('/mobile-applications') || currentPath.includes('/saas-applications') || currentPath.includes('/cto-as-a-service') || currentPath.includes('/services-for-early-stage-startups') || currentPath.includes('/services-for-growth-stage-startups') || currentPath.includes('/pricing') || currentPath.includes('/proposals') || currentPath.includes('/share') ? styles['menu__link--active'] : ''}`}
                   onClick={handleExpertiseClick}
                 >
                   {menuLabel}

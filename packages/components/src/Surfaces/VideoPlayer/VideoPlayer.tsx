@@ -9,6 +9,7 @@ import HomepageShowreelStyles from '../HomepageShowreel/index.module.css';
 interface VideoPlayerProps {
   src: string;
   poster?: string;
+  autoplay?: boolean;
   hideQualityControls?: boolean;
   hideFullscreen?: boolean;
   hidePlayControls?: boolean;
@@ -23,7 +24,7 @@ interface QualityLevel {
   label: string;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityControls = false, hideFullscreen = false, hidePlayControls = false, hideMuteControls = false }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, autoplay = true, hideQualityControls = false, hideFullscreen = false, hidePlayControls = false, hideMuteControls = false }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<Hls | null>(null);
   const [qualityLevels, setQualityLevels] = useState<QualityLevel[]>([]);
@@ -140,10 +141,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityContr
           setCurrentQuality(default1080.index);
         }
 
-        video
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch((err) => console.warn('Autoplay failed:', err));
+        if (autoplay) {
+          video
+            .play()
+            .then(() => setIsPlaying(true))
+            .catch((err) => console.warn('Autoplay failed:', err));
+        }
       });
 
       hls.on(Hls.Events.LEVEL_SWITCHED, (_, data) => {
@@ -160,12 +163,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityContr
       };
     } else if (video?.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = src;
-      video
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => console.warn('Autoplay failed:', err));
+      if (autoplay) {
+        video
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((err) => console.warn('Autoplay failed:', err));
+      }
     }
-  }, [src]);
+  }, [src, autoplay]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -358,7 +363,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityContr
               <div style={{ position: 'relative' }}>{renderResolutionIcon()}</div>
             </button>
           )}
-          {!isMobile && !hidePlayControls && <button onClick={handlePlayPause}>{isPlaying ? renderPauseIcon() : renderPlayIcon()}</button>}
+          {(!hidePlayControls && (!isMobile || !autoplay)) && <button onClick={handlePlayPause}>{isPlaying ? renderPauseIcon() : renderPlayIcon()}</button>}
           {!isMobile && !hideMuteControls && <button onClick={handleMuteUnmute}>{isMuted ? renderUnmuteIcon() : renderMuteIcon()}</button>}
           {!hideFullscreen && <button onClick={handleFullscreen}>{isFullscreen ? renderExitFullscreenIcon() : renderFullScreenIcon()}</button>}
         </div>
