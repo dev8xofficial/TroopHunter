@@ -1,0 +1,3084 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Burkes Group - All User Portal Dashboards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-navy: #1a3a52;
+        --primary-gold: #fdb913;
+        --accent-blue: #2d5a7b;
+        --success-green: #10b981;
+        --warning-orange: #f59e0b;
+        --error-red: #ef4444;
+        --neutral-50: #fafafa;
+        --neutral-100: #f5f5f5;
+        --neutral-200: #e5e5e5;
+        --neutral-300: #d4d4d4;
+        --neutral-400: #a3a3a3;
+        --neutral-500: #737373;
+        --neutral-600: #525252;
+        --neutral-700: #404040;
+        --neutral-800: #262626;
+        --neutral-900: #171717;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family: 'Manrope', sans-serif;
+        background: var(--neutral-50);
+        color: var(--neutral-800);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 32px;
+      }
+
+      .page-hidden {
+        display: none;
+      }
+
+      /* Enhanced Navigation */
+      .top-nav {
+        background: white;
+        border-bottom: 1px solid var(--neutral-200);
+        padding: 0 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 72px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--primary-navy);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: var(--primary-gold);
+        font-weight: 800;
+      }
+
+      .logo-text {
+        font-family: 'Archivo', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--primary-navy);
+      }
+
+      .main-nav {
+        display: flex;
+        gap: 8px;
+      }
+
+      .nav-item {
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--neutral-600);
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .nav-item:hover {
+        background: var(--neutral-100);
+        color: var(--primary-navy);
+      }
+
+      .nav-item.active {
+        background: var(--primary-navy);
+        color: white;
+      }
+
+      .user-section {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .notification-bell {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--neutral-100);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s ease;
+      }
+
+      .notification-bell:hover {
+        background: var(--neutral-200);
+      }
+
+      .notification-badge {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 8px;
+        height: 8px;
+        background: var(--error-red);
+        border-radius: 50%;
+      }
+
+      .user-menu {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        padding: 8px 16px;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+      }
+
+      .user-menu:hover {
+        background: var(--neutral-100);
+      }
+
+      .user-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--primary-navy) 0%, var(--accent-blue) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .user-name {
+        font-weight: 600;
+        color: var(--primary-navy);
+        font-size: 15px;
+      }
+
+      /* Page Styles */
+      .page-title {
+        font-family: 'Archivo', sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--primary-navy);
+        margin-bottom: 8px;
+      }
+
+      .page-subtitle {
+        font-size: 16px;
+        color: var(--neutral-600);
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .stat-card {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--neutral-200);
+        transition: all 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .stat-label {
+        font-size: 14px;
+        color: var(--neutral-600);
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .stat-value {
+        font-family: 'Archivo', sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--primary-navy);
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+
+      .stat-description {
+        font-size: 13px;
+        color: var(--neutral-500);
+      }
+
+      .stat-icon {
+        font-size: 42px;
+        opacity: 0.9;
+      }
+
+      /* Cards */
+      .main-content-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--neutral-200);
+        overflow: hidden;
+      }
+
+      .card-header {
+        padding: 24px;
+        border-bottom: 1px solid var(--neutral-200);
+        background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
+      }
+
+      .card-title {
+        font-family: 'Archivo', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--primary-navy);
+        margin-bottom: 4px;
+      }
+
+      .card-subtitle {
+        font-size: 14px;
+        color: var(--neutral-600);
+      }
+
+      .card-content {
+        padding: 24px;
+      }
+
+      /* Buttons */
+      .btn-primary {
+        background: var(--primary-navy);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: 'Manrope', sans-serif;
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-blue);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-secondary {
+        background: white;
+        color: var(--primary-navy);
+        border: 2px solid var(--neutral-200);
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: 'Manrope', sans-serif;
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--primary-navy);
+        background: var(--neutral-50);
+      }
+
+      .btn-danger {
+        background: var(--error-red);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: 'Manrope', sans-serif;
+      }
+
+      .btn-danger:hover {
+        background: #dc2626;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      /* Form Elements */
+      .form-label {
+        display: block;
+        font-weight: 600;
+        color: var(--primary-navy);
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid var(--neutral-200);
+        border-radius: 10px;
+        font-size: 15px;
+        font-family: 'Manrope', sans-serif;
+        transition: all 0.2s ease;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: var(--primary-navy);
+        box-shadow: 0 0 0 3px rgba(26, 58, 82, 0.1);
+      }
+
+      .form-textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .form-row {
+        display: grid;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .form-row-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .form-row-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 12px;
+      }
+
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .checkbox-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+
+      .checkbox-item label {
+        cursor: pointer;
+        font-size: 14px;
+        color: var(--neutral-700);
+      }
+
+      /* Document List */
+      .document-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .document-item {
+        background: white;
+        border: 1px solid var(--neutral-200);
+        border-radius: 12px;
+        padding: 20px;
+        transition: all 0.2s ease;
+      }
+
+      .document-item:hover {
+        border-color: var(--primary-navy);
+        box-shadow: var(--shadow-md);
+      }
+
+      .document-status {
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        display: inline-block;
+      }
+
+      .document-status.pending {
+        background: #fef3c7;
+        color: #d97706;
+      }
+
+      .document-status.approved {
+        background: #d1fae5;
+        color: #059669;
+      }
+
+      .document-status.rejected {
+        background: #fee2e2;
+        color: #dc2626;
+      }
+
+      .doc-action-btn {
+        background: white;
+        border: 2px solid var(--neutral-200);
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .doc-action-btn:hover {
+        border-color: var(--primary-navy);
+        background: var(--neutral-50);
+      }
+
+      .doc-action-btn.primary {
+        background: var(--primary-navy);
+        color: white;
+        border-color: var(--primary-navy);
+      }
+
+      .doc-action-btn.primary:hover {
+        background: var(--accent-blue);
+      }
+
+      /* Modal/Form Overlay */
+      .form-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+        backdrop-filter: blur(4px);
+        overflow-y: auto;
+        padding: 40px 20px;
+      }
+
+      .form-overlay.active {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .form-modal {
+        background: white;
+        border-radius: 20px;
+        box-shadow: var(--shadow-xl);
+        max-width: 900px;
+        width: 100%;
+        margin: auto;
+        animation: slideUp 0.3s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .form-modal-header {
+        padding: 32px;
+        border-bottom: 2px solid var(--neutral-200);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .form-modal-title {
+        font-family: 'Archivo', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--primary-navy);
+      }
+
+      .form-modal-subtitle {
+        font-size: 15px;
+        color: var(--neutral-600);
+        margin-top: 4px;
+      }
+
+      .form-close-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        background: var(--neutral-100);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: var(--neutral-600);
+        transition: all 0.2s ease;
+      }
+
+      .form-close-btn:hover {
+        background: var(--error-red);
+        color: white;
+      }
+
+      .form-modal-body {
+        padding: 32px;
+      }
+
+      .form-modal-footer {
+        padding: 24px 32px;
+        border-top: 2px solid var(--neutral-200);
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        background: var(--neutral-50);
+      }
+
+      .form-section {
+        margin-bottom: 32px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--neutral-200);
+      }
+
+      .form-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .form-section-title {
+        font-family: 'Archivo', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary-navy);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .required-indicator {
+        color: var(--error-red);
+        font-size: 18px;
+      }
+
+      .help-text {
+        font-size: 13px;
+        color: var(--neutral-500);
+        margin-top: 6px;
+      }
+
+      /* Zip Code Tag Input */
+      .zip-code-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px;
+        border: 2px solid var(--neutral-200);
+        border-radius: 10px;
+        min-height: 48px;
+      }
+
+      .zip-tag {
+        background: var(--primary-navy);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .zip-tag-remove {
+        cursor: pointer;
+        font-size: 16px;
+        opacity: 0.8;
+      }
+
+      .zip-tag-remove:hover {
+        opacity: 1;
+      }
+
+      .zip-input-wrapper {
+        display: flex;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .zip-input {
+        flex: 1;
+        padding: 10px 14px;
+        border: 2px solid var(--neutral-200);
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      .add-zip-btn {
+        background: var(--success-green);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .add-zip-btn:hover {
+        background: #059669;
+      }
+
+      /* File Upload */
+      .file-upload-area {
+        border: 2px dashed var(--neutral-300);
+        border-radius: 12px;
+        padding: 32px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .file-upload-area:hover {
+        border-color: var(--primary-navy);
+        background: var(--neutral-50);
+      }
+
+      .file-upload-icon {
+        font-size: 48px;
+        margin-bottom: 12px;
+      }
+
+      .file-upload-text {
+        font-weight: 600;
+        color: var(--primary-navy);
+        margin-bottom: 4px;
+      }
+
+      .file-upload-subtext {
+        font-size: 13px;
+        color: var(--neutral-500);
+      }
+
+      /* Dashboard Layout */
+      .page-header {
+        margin-bottom: 32px;
+      }
+
+      .content-layout {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 32px;
+        align-items: start;
+      }
+
+      .content-layout-full {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      /* Sidebar Components */
+      .sidebar-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--neutral-200);
+        overflow: hidden;
+      }
+
+      /* Activity & Quick Actions */
+      .activity-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .activity-card {
+        padding: 16px;
+        border-radius: 10px;
+        background: var(--neutral-50);
+        transition: all 0.2s ease;
+      }
+
+      .activity-card:hover {
+        background: var(--neutral-100);
+      }
+
+      .quick-actions {
+        display: grid;
+        gap: 10px;
+      }
+
+      .action-btn {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        background: white;
+        border: 1px solid var(--neutral-200);
+        border-radius: 10px;
+        font-family: 'Manrope', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--neutral-800);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        width: 100%;
+        text-align: left;
+      }
+
+      .action-btn:hover {
+        background: var(--primary-navy);
+        color: white;
+        border-color: var(--primary-navy);
+      }
+
+      .action-icon {
+        font-size: 20px;
+      }
+
+      /* Document Header Components */
+      .document-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .document-info {
+        flex: 1;
+      }
+
+      .document-name {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--primary-navy);
+        margin-bottom: 6px;
+      }
+
+      .document-meta {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .document-meta-item {
+        font-size: 13px;
+        color: var(--neutral-600);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .document-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      /* Table Action Buttons */
+      .table-action-btn {
+        background: white;
+        border: 1px solid var(--neutral-200);
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .table-action-btn:hover {
+        border-color: var(--primary-navy);
+        background: var(--neutral-50);
+      }
+
+      /* Responsive */
+      @media (max-width: 1200px) {
+        .content-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .form-row-2,
+        .form-row-3 {
+          grid-template-columns: 1fr;
+        }
+
+        .form-modal {
+          margin: 0;
+          border-radius: 0;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="top-nav">
+      <div class="logo-section">
+        <div class="logo-icon">B</div>
+        <div class="logo-text">The Burkes Group</div>
+      </div>
+
+      <div class="main-nav">
+        <a class="nav-item active" onclick="showPage('dashboard')">Dashboard</a>
+        <a class="nav-item" onclick="showPage('users')">Users</a>
+        <a class="nav-item" onclick="showPage('partners')">Partners</a>
+        <a class="nav-item" onclick="showPage('transactions')">Transactions</a>
+        <a class="nav-item" onclick="showPage('analytics')">Analytics</a>
+        <a class="nav-item" onclick="showPage('settings')">Settings</a>
+      </div>
+
+      <div class="user-section">
+        <div class="notification-bell">
+          🔔
+          <div class="notification-badge"></div>
+        </div>
+        <div class="user-menu">
+          <div class="user-avatar">SA</div>
+          <div class="user-name">Sarah Anderson</div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- DASHBOARD PAGE -->
+      <div id="dashboard-page" class="page">
+        <div class="page-header">
+          <h1 class="page-title">Dashboard</h1>
+          <p class="page-subtitle">Welcome back, Sarah! Here's your overview</p>
+        </div>
+
+        <!-- Key Metrics Grid -->
+        <div class="stats-grid" style="margin-bottom: 32px">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Total Users</div>
+                <div class="stat-value">1,247</div>
+                <div class="stat-description">+47 this month</div>
+              </div>
+              <div class="stat-icon">👥</div>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 12px; font-size: 12px">
+              <span style="background: var(--neutral-100); padding: 4px 8px; border-radius: 6px">Clients: 856</span>
+              <span style="background: var(--neutral-100); padding: 4px 8px; border-radius: 6px">Attorneys: 142</span>
+              <span style="background: var(--neutral-100); padding: 4px 8px; border-radius: 6px">CPAs: 89</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Active Transactions</div>
+                <div class="stat-value">324</div>
+                <div class="stat-description">Across all clients</div>
+              </div>
+              <div class="stat-icon">📋</div>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 12px; font-size: 12px">
+              <span style="background: var(--success-green); color: white; padding: 4px 8px; border-radius: 6px">89 Closing Soon</span>
+              <span style="background: var(--warning-orange); color: white; padding: 4px 8px; border-radius: 6px">12 Delayed</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Service Partners</div>
+                <div class="stat-value">156</div>
+                <div class="stat-description">Across all categories</div>
+              </div>
+              <div class="stat-icon">🤝</div>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 12px; font-size: 12px">
+              <span style="background: var(--neutral-100); padding: 4px 8px; border-radius: 6px">42 Plumbing</span>
+              <span style="background: var(--neutral-100); padding: 4px 8px; border-radius: 6px">38 Roofing</span>
+              <span style="background: var(--neutral-100); padding: 4px 8px; border-radius: 6px">35 Electrical</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Documents Pending</div>
+                <div class="stat-value">47</div>
+                <div class="stat-description">Awaiting approval</div>
+              </div>
+              <div class="stat-icon">📄</div>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 12px; font-size: 12px">
+              <span style="background: var(--error-red); color: white; padding: 4px 8px; border-radius: 6px">8 Urgent</span>
+              <span style="background: var(--warning-orange); color: white; padding: 4px 8px; border-radius: 6px">39 Standard</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Management Access -->
+        <div class="main-content-card" style="margin-bottom: 32px">
+          <div class="card-header">
+            <h2 class="card-title">Quick Management Access</h2>
+            <p class="card-subtitle">Manage key areas of your platform</p>
+          </div>
+          <div class="card-content">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px">
+              <!-- Service Partners -->
+              <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); padding: 24px; border-radius: 12px; color: white; cursor: pointer; transition: transform 0.2s ease" onmouseover="this.style.transform = 'translateY(-4px)'" onmouseout="this.style.transform = 'translateY(0)'">
+                <div style="font-size: 36px; margin-bottom: 12px">🤝</div>
+                <div style="font-size: 18px; font-weight: 700; margin-bottom: 4px">Service Partners</div>
+                <div style="font-size: 13px; opacity: 0.9; margin-bottom: 12px">Manage plumbing, roofing, electrical & more</div>
+                <div style="font-size: 24px; font-weight: 700">156</div>
+                <div style="font-size: 12px; opacity: 0.8">Total Partners</div>
+              </div>
+
+              <!-- Agents -->
+              <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 24px; border-radius: 12px; color: white; cursor: pointer; transition: transform 0.2s ease" onmouseover="this.style.transform = 'translateY(-4px)'" onmouseout="this.style.transform = 'translateY(0)'">
+                <div style="font-size: 36px; margin-bottom: 12px">🏡</div>
+                <div style="font-size: 18px; font-weight: 700; margin-bottom: 4px">Agents & Lenders</div>
+                <div style="font-size: 13px; opacity: 0.9; margin-bottom: 12px">Real estate agents & mortgage lenders</div>
+                <div style="font-size: 24px; font-weight: 700">89</div>
+                <div style="font-size: 12px; opacity: 0.8">Active Agents</div>
+              </div>
+
+              <!-- Attorneys -->
+              <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); padding: 24px; border-radius: 12px; color: white; cursor: pointer; transition: transform 0.2s ease" onmouseover="this.style.transform = 'translateY(-4px)'" onmouseout="this.style.transform = 'translateY(0)'">
+                <div style="font-size: 36px; margin-bottom: 12px">⚖️</div>
+                <div style="font-size: 18px; font-weight: 700; margin-bottom: 4px">Attorneys</div>
+                <div style="font-size: 13px; opacity: 0.9; margin-bottom: 12px">Closing & divorce attorneys</div>
+                <div style="font-size: 24px; font-weight: 700">142</div>
+                <div style="font-size: 12px; opacity: 0.8">Licensed Attorneys</div>
+              </div>
+
+              <!-- CPAs -->
+              <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 24px; border-radius: 12px; color: white; cursor: pointer; transition: transform 0.2s ease" onmouseover="this.style.transform = 'translateY(-4px)'" onmouseout="this.style.transform = 'translateY(0)'">
+                <div style="font-size: 36px; margin-bottom: 12px">💼</div>
+                <div style="font-size: 18px; font-weight: 700; margin-bottom: 4px">CPAs</div>
+                <div style="font-size: 13px; opacity: 0.9; margin-bottom: 12px">Certified public accountants</div>
+                <div style="font-size: 24px; font-weight: 700">89</div>
+                <div style="font-size: 12px; opacity: 0.8">Registered CPAs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Layout -->
+        <div class="content-layout">
+          <div>
+            <!-- Recent Activity -->
+            <div class="main-content-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">Recent Platform Activity</h2>
+                <p class="card-subtitle">Latest actions across all portals</p>
+              </div>
+              <div class="card-content">
+                <div class="document-list">
+                  <div class="document-item">
+                    <div class="document-header">
+                      <div class="document-info">
+                        <div class="document-name">👤 New User Registration: Sarah Johnson (Client Portal)</div>
+                        <div class="document-meta">
+                          <span class="document-meta-item">📧 sarah.j@email.com</span>
+                          <span class="document-meta-item">🕐 5 min ago</span>
+                        </div>
+                      </div>
+                      <span class="document-status pending">Action Required</span>
+                    </div>
+                    <div class="document-actions">
+                      <button class="doc-action-btn primary">Approve Account</button>
+                      <button class="doc-action-btn">View Details</button>
+                      <button class="doc-action-btn">Send Welcome Email</button>
+                    </div>
+                  </div>
+
+                  <div class="document-item">
+                    <div class="document-header">
+                      <div class="document-info">
+                        <div class="document-name">📄 Document Uploaded: Purchase Agreement - 123 Main St</div>
+                        <div class="document-meta">
+                          <span class="document-meta-item">👤 By: Michael Chen (Attorney)</span>
+                          <span class="document-meta-item">🕐 22 min ago</span>
+                        </div>
+                      </div>
+                      <span class="document-status pending">Pending Review</span>
+                    </div>
+                    <div class="document-actions">
+                      <button class="doc-action-btn primary">Review Document</button>
+                      <button class="doc-action-btn">View Transaction</button>
+                    </div>
+                  </div>
+
+                  <div class="document-item">
+                    <div class="document-header">
+                      <div class="document-info">
+                        <div class="document-name">🤝 New Service Partner Application: ABC Plumbing Co.</div>
+                        <div class="document-meta">
+                          <span class="document-meta-item">📍 Service Areas: 77380, 77381, 77382</span>
+                          <span class="document-meta-item">🕐 1h ago</span>
+                        </div>
+                      </div>
+                      <span class="document-status pending">Pending Approval</span>
+                    </div>
+                    <div class="document-actions">
+                      <button class="doc-action-btn primary">Review Application</button>
+                      <button class="doc-action-btn">Contact Partner</button>
+                      <button class="doc-action-btn">View License</button>
+                    </div>
+                  </div>
+
+                  <div class="document-item">
+                    <div class="document-header">
+                      <div class="document-info">
+                        <div class="document-name">✅ Transaction Completed: 456 Oak Avenue</div>
+                        <div class="document-meta">
+                          <span class="document-meta-item">💰 $425,000</span>
+                          <span class="document-meta-item">🕐 3h ago</span>
+                        </div>
+                      </div>
+                      <span class="document-status approved">Closed</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pending Approvals -->
+            <div class="main-content-card">
+              <div class="card-header">
+                <h2 class="card-title">Pending Approvals</h2>
+                <p class="card-subtitle">Documents and requests awaiting your review</p>
+              </div>
+              <div class="card-content">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px">
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px; border-left: 4px solid var(--error-red)">
+                    <div style="font-size: 32px; font-weight: 700; color: var(--error-red); margin-bottom: 4px">8</div>
+                    <div style="font-size: 14px; color: var(--neutral-600); margin-bottom: 8px">Urgent Documents</div>
+                    <button class="btn-primary" style="width: 100%; padding: 8px; font-size: 13px">Review Now</button>
+                  </div>
+
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px; border-left: 4px solid var(--warning-orange)">
+                    <div style="font-size: 32px; font-weight: 700; color: var(--warning-orange); margin-bottom: 4px">15</div>
+                    <div style="font-size: 14px; color: var(--neutral-600); margin-bottom: 8px">Partner Applications</div>
+                    <button class="btn-primary" style="width: 100%; padding: 8px; font-size: 13px">Review Now</button>
+                  </div>
+
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px; border-left: 4px solid var(--accent-blue)">
+                    <div style="font-size: 32px; font-weight: 700; color: var(--accent-blue); margin-bottom: 4px">24</div>
+                    <div style="font-size: 14px; color: var(--neutral-600); margin-bottom: 8px">User Registrations</div>
+                    <button class="btn-primary" style="width: 100%; padding: 8px; font-size: 13px">Review Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div>
+            <!-- System Health -->
+            <div class="sidebar-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">System Health</h2>
+              </div>
+              <div class="card-content">
+                <div style="margin-bottom: 16px">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 6px">
+                    <span style="font-size: 13px; color: var(--neutral-600)">Server Status</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--success-green)">✓ Operational</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 6px">
+                    <span style="font-size: 13px; color: var(--neutral-600)">Database</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--success-green)">✓ Healthy</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 6px">
+                    <span style="font-size: 13px; color: var(--neutral-600)">API Response Time</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--success-green)">124ms</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between">
+                    <span style="font-size: 13px; color: var(--neutral-600)">Active Sessions</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--primary-navy)">847</span>
+                  </div>
+                </div>
+                <div style="background: var(--success-green); color: white; padding: 12px; border-radius: 8px; text-align: center; font-size: 13px; font-weight: 600">All Systems Operational ✓</div>
+              </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="sidebar-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">Today's Stats</h2>
+              </div>
+              <div class="card-content">
+                <div class="activity-list">
+                  <div class="activity-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center">
+                      <div>
+                        <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 4px">New Users</div>
+                        <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy)">12</div>
+                      </div>
+                      <div style="font-size: 32px">👥</div>
+                    </div>
+                  </div>
+
+                  <div class="activity-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center">
+                      <div>
+                        <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 4px">Documents Processed</div>
+                        <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy)">87</div>
+                      </div>
+                      <div style="font-size: 32px">📄</div>
+                    </div>
+                  </div>
+
+                  <div class="activity-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center">
+                      <div>
+                        <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 4px">Transactions Closed</div>
+                        <div style="font-size: 24px; font-weight: 700; color: var(--success-green)">5</div>
+                      </div>
+                      <div style="font-size: 32px">✅</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Admin Quick Actions -->
+            <div class="sidebar-card">
+              <div class="card-header">
+                <h2 class="card-title">Admin Actions</h2>
+              </div>
+              <div class="card-content">
+                <div class="quick-actions">
+                  <button class="action-btn">
+                    <span class="action-icon">➕</span>
+                    Add New User
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">🤝</span>
+                    Add Service Partner
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">📊</span>
+                    Generate Report
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">📧</span>
+                    Send Bulk Email
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">⚙️</span>
+                    System Settings
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">🔒</span>
+                    Security Logs
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- USERS MANAGEMENT SCREEN -->
+      <div id="users-page" class="page page-hidden">
+        <!-- Page Header with Actions -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px">
+          <div>
+            <h2 style="font-family: 'Archivo', sans-serif; font-size: 28px; font-weight: 700; color: var(--primary-navy); margin-bottom: 8px">Users Management</h2>
+            <p style="color: var(--neutral-600); font-size: 15px">Manage users, roles, and permissions across the platform</p>
+          </div>
+          <button class="btn-primary" style="display: flex; align-items: center; gap: 8px" onclick="openAddUserForm()">
+            <span style="font-size: 18px">➕</span>
+            Add New User
+          </button>
+        </div>
+
+        <!-- User Statistics -->
+        <div class="stats-grid" style="margin-bottom: 32px">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Total Users</div>
+                <div class="stat-value">1,247</div>
+                <div class="stat-description">All active users</div>
+              </div>
+              <div class="stat-icon">👥</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Clients</div>
+                <div class="stat-value">856</div>
+                <div class="stat-description">Active homeowners</div>
+              </div>
+              <div class="stat-icon">🏠</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Attorneys</div>
+                <div class="stat-value">142</div>
+                <div class="stat-description">Closing & divorce</div>
+              </div>
+              <div class="stat-icon">⚖️</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">CPAs</div>
+                <div class="stat-value">89</div>
+                <div class="stat-description">Certified accountants</div>
+              </div>
+              <div class="stat-icon">💼</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Real Estate Agents</div>
+                <div class="stat-value">67</div>
+                <div class="stat-description">Licensed agents</div>
+              </div>
+              <div class="stat-icon">🏡</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Mortgage Lenders</div>
+                <div class="stat-value">22</div>
+                <div class="stat-description">Active lenders</div>
+              </div>
+              <div class="stat-icon">🏦</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters and Search -->
+        <div class="main-content-card" style="margin-bottom: 24px">
+          <div class="card-content">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 16px; align-items: end">
+              <div>
+                <label class="form-label">Search Users</label>
+                <input type="text" class="form-input" placeholder="Search by name, email, or ID..." />
+              </div>
+              <div>
+                <label class="form-label">Filter by Role</label>
+                <select class="form-input">
+                  <option>All Roles</option>
+                  <option>Clients</option>
+                  <option>Attorneys</option>
+                  <option>CPAs</option>
+                  <option>Real Estate Agents</option>
+                  <option>Mortgage Lenders</option>
+                  <option>Administrators</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label">Filter by Status</label>
+                <select class="form-input">
+                  <option>All Status</option>
+                  <option>Active</option>
+                  <option>Pending Approval</option>
+                  <option>Suspended</option>
+                  <option>Inactive</option>
+                </select>
+              </div>
+              <button class="btn-secondary">Apply Filters</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="main-content-card">
+          <div class="card-header">
+            <h2 class="card-title">All Users</h2>
+            <p class="card-subtitle">Manage user accounts and permissions</p>
+          </div>
+          <div class="card-content">
+            <!-- Table Header -->
+            <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 150px; gap: 16px; padding: 16px; background: var(--neutral-50); border-radius: 8px; margin-bottom: 12px; font-weight: 600; font-size: 13px; color: var(--neutral-700)">
+              <div>User</div>
+              <div>Email</div>
+              <div>Role</div>
+              <div>Status</div>
+              <div>Joined</div>
+              <div style="text-align: center">Actions</div>
+            </div>
+
+            <!-- User Rows -->
+            <div class="document-list">
+              <!-- User 1 - Pending Client -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div style="display: flex; align-items: center; gap: 12px">
+                    <div class="user-avatar" style="width: 48px; height: 48px; font-size: 18px">SJ</div>
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 2px">Sarah Johnson</div>
+                      <div style="font-size: 12px; color: var(--neutral-500)">ID: USR-10247</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">sarah.j@email.com</div>
+                  <div>
+                    <span style="background: var(--neutral-100); color: var(--neutral-700); padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏠 Client</span>
+                  </div>
+                  <div>
+                    <span class="document-status pending">Pending Approval</span>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">Today</div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn primary" style="padding: 6px 12px; font-size: 12px">Approve</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- User 2 - Active Attorney -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div style="display: flex; align-items: center; gap: 12px">
+                    <div class="user-avatar" style="width: 48px; height: 48px; font-size: 18px; background: var(--accent-blue)">MC</div>
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 2px">Michael Chen</div>
+                      <div style="font-size: 12px; color: var(--neutral-500)">ID: USR-08934</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">m.chen@lawfirm.com</div>
+                  <div>
+                    <span style="background: #f3e8ff; color: #7c3aed; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">⚖️ Attorney</span>
+                  </div>
+                  <div>
+                    <span class="document-status approved">Active</span>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">Jan 15, 2024</div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- User 3 - Active CPA -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div style="display: flex; align-items: center; gap: 12px">
+                    <div class="user-avatar" style="width: 48px; height: 48px; font-size: 18px; background: var(--success-green)">ER</div>
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 2px">Emily Rodriguez</div>
+                      <div style="font-size: 12px; color: var(--neutral-500)">ID: USR-07821</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">e.rodriguez@cpa.com</div>
+                  <div>
+                    <span style="background: #dcfce7; color: #16a34a; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">💼 CPA</span>
+                  </div>
+                  <div>
+                    <span class="document-status approved">Active</span>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">Dec 3, 2023</div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- User 4 - Active Real Estate Agent -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div style="display: flex; align-items: center; gap: 12px">
+                    <div class="user-avatar" style="width: 48px; height: 48px; font-size: 18px; background: #3b82f6">DB</div>
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 2px">David Brown</div>
+                      <div style="font-size: 12px; color: var(--neutral-500)">ID: USR-06512</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">d.brown@realty.com</div>
+                  <div>
+                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏡 Agent</span>
+                  </div>
+                  <div>
+                    <span class="document-status approved">Active</span>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">Oct 28, 2023</div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- User 5 - Active Mortgage Lender -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div style="display: flex; align-items: center; gap: 12px">
+                    <div class="user-avatar" style="width: 48px; height: 48px; font-size: 18px; background: #f59e0b">JW</div>
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 2px">Jennifer Wilson</div>
+                      <div style="font-size: 12px; color: var(--neutral-500)">ID: USR-05234</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">j.wilson@mortgage.com</div>
+                  <div>
+                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏦 Lender</span>
+                  </div>
+                  <div>
+                    <span class="document-status approved">Active</span>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">Sep 12, 2023</div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- User 6 - Suspended User -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div style="display: flex; align-items: center; gap: 12px">
+                    <div class="user-avatar" style="width: 48px; height: 48px; font-size: 18px; background: var(--neutral-400)">RT</div>
+                    <div>
+                      <div style="font-weight: 600; color: var(--neutral-500); margin-bottom: 2px">Robert Taylor</div>
+                      <div style="font-size: 12px; color: var(--neutral-400)">ID: USR-03891</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-500)">r.taylor@email.com</div>
+                  <div>
+                    <span style="background: var(--neutral-100); color: var(--neutral-700); padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏠 Client</span>
+                  </div>
+                  <div>
+                    <span class="document-status rejected">Suspended</span>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">Jul 5, 2023</div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px; background: var(--success-green); color: white">Activate</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--neutral-200)">
+              <div style="font-size: 14px; color: var(--neutral-600)">Showing 1-6 of 1,247 users</div>
+              <div style="display: flex; gap: 8px">
+                <button class="btn-secondary" style="padding: 8px 16px">Previous</button>
+                <button class="btn-primary" style="padding: 8px 16px">1</button>
+                <button class="btn-secondary" style="padding: 8px 16px">2</button>
+                <button class="btn-secondary" style="padding: 8px 16px">3</button>
+                <button class="btn-secondary" style="padding: 8px 16px">...</button>
+                <button class="btn-secondary" style="padding: 8px 16px">208</button>
+                <button class="btn-secondary" style="padding: 8px 16px">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTNERS MANAGEMENT SCREEN -->
+      <div id="partners-page" class="page page-hidden">
+        <!-- Page Header with Actions -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px">
+          <div>
+            <h2 style="font-family: 'Archivo', sans-serif; font-size: 28px; font-weight: 700; color: var(--primary-navy); margin-bottom: 8px">Service Partners Management</h2>
+            <p style="color: var(--neutral-600); font-size: 15px">Manage service providers across plumbing, roofing, electrical, and other categories</p>
+          </div>
+          <button class="btn-primary" style="display: flex; align-items: center; gap: 8px" onclick="openAddPartnerForm()">
+            <span style="font-size: 18px">➕</span>
+            Add New Partner
+          </button>
+        </div>
+
+        <!-- Partner Statistics by Category -->
+        <div class="stats-grid" style="margin-bottom: 32px">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Total Partners</div>
+                <div class="stat-value">156</div>
+                <div class="stat-description">All categories</div>
+              </div>
+              <div class="stat-icon">🤝</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Plumbing</div>
+                <div class="stat-value">42</div>
+                <div class="stat-description">Licensed plumbers</div>
+              </div>
+              <div class="stat-icon">🔧</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Roofing</div>
+                <div class="stat-value">38</div>
+                <div class="stat-description">Roofing contractors</div>
+              </div>
+              <div class="stat-icon">🏠</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Electrical</div>
+                <div class="stat-value">35</div>
+                <div class="stat-description">Licensed electricians</div>
+              </div>
+              <div class="stat-icon">⚡</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Credit Repair</div>
+                <div class="stat-value">24</div>
+                <div class="stat-description">Credit specialists</div>
+              </div>
+              <div class="stat-icon">💳</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Other Services</div>
+                <div class="stat-value">17</div>
+                <div class="stat-description">HVAC, painting, etc.</div>
+              </div>
+              <div class="stat-icon">🛠️</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters and Search -->
+        <div class="main-content-card" style="margin-bottom: 24px">
+          <div class="card-content">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 16px; align-items: end">
+              <div>
+                <label class="form-label">Search Partners</label>
+                <input type="text" class="form-input" placeholder="Search by name or company..." />
+              </div>
+              <div>
+                <label class="form-label">Filter by Category</label>
+                <select class="form-input">
+                  <option>All Categories</option>
+                  <option>Plumbing</option>
+                  <option>Roofing</option>
+                  <option>Electrical</option>
+                  <option>Credit Repair</option>
+                  <option>HVAC</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label">Filter by Zip Code</label>
+                <input type="text" class="form-input" placeholder="Enter zip code..." />
+              </div>
+              <div>
+                <label class="form-label">Filter by Status</label>
+                <select class="form-input">
+                  <option>All Status</option>
+                  <option>Active</option>
+                  <option>Pending Approval</option>
+                  <option>Suspended</option>
+                </select>
+              </div>
+              <button class="btn-secondary">Apply Filters</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Partners Table -->
+        <div class="main-content-card">
+          <div class="card-header">
+            <h2 class="card-title">All Service Partners</h2>
+            <p class="card-subtitle">Manage partner companies and their service areas</p>
+          </div>
+          <div class="card-content">
+            <!-- Table Header -->
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr 150px; gap: 16px; padding: 16px; background: var(--neutral-50); border-radius: 8px; margin-bottom: 12px; font-weight: 600; font-size: 13px; color: var(--neutral-700)">
+              <div>Partner Company</div>
+              <div>Category</div>
+              <div>Service Areas (Zip Codes)</div>
+              <div>Rating</div>
+              <div>Status</div>
+              <div style="text-align: center">Actions</div>
+            </div>
+
+            <!-- Partner Rows -->
+            <div class="document-list">
+              <!-- Partner 1 - Pending Plumbing -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div>
+                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">ABC Plumbing Co.</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">Contact: John Smith • (555) 123-4567</div>
+                  </div>
+                  <div>
+                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🔧 Plumbing</span>
+                  </div>
+                  <div style="font-size: 13px; color: var(--neutral-600)">77380, 77381, 77382</div>
+                  <div style="display: flex; align-items: center; gap: 6px">
+                    <span style="color: var(--primary-gold); font-size: 14px">⭐⭐⭐⭐⭐</span>
+                    <span style="font-size: 13px; color: var(--neutral-600); font-weight: 600">New</span>
+                  </div>
+                  <div>
+                    <span class="document-status pending">Pending Approval</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn primary" style="padding: 6px 12px; font-size: 12px">Approve</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Partner 2 - Active Roofing -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div>
+                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Premium Roofing Solutions</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">Contact: Maria Garcia • (555) 234-5678</div>
+                  </div>
+                  <div>
+                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏠 Roofing</span>
+                  </div>
+                  <div style="font-size: 13px; color: var(--neutral-600)">77380, 77381, 77385, 77386</div>
+                  <div style="display: flex; align-items: center; gap: 6px">
+                    <span style="color: var(--primary-gold); font-size: 14px">⭐⭐⭐⭐⭐</span>
+                    <span style="font-size: 13px; color: var(--neutral-600); font-weight: 600">4.9</span>
+                  </div>
+                  <div>
+                    <span class="document-status approved">Active</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Partner 3 - Active Electrical -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div>
+                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Lightning Fast Electric</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">Contact: David Lee • (555) 345-6789</div>
+                  </div>
+                  <div>
+                    <span style="background: #fef9c3; color: #ca8a04; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">⚡ Electrical</span>
+                  </div>
+                  <div style="font-size: 13px; color: var(--neutral-600)">77380, 77381</div>
+                  <div style="display: flex; align-items: center; gap: 6px">
+                    <span style="color: var(--primary-gold); font-size: 14px">⭐⭐⭐⭐⭐</span>
+                    <span style="font-size: 13px; color: var(--neutral-600); font-weight: 600">4.8</span>
+                  </div>
+                  <div>
+                    <span class="document-status approved">Active</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Partner 4 - Active Credit Repair -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div>
+                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Credit Solutions Plus</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">Contact: Lisa Anderson • (555) 456-7890</div>
+                  </div>
+                  <div>
+                    <span style="background: #dcfce7; color: #16a34a; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">💳 Credit Repair</span>
+                  </div>
+                  <div style="font-size: 13px; color: var(--neutral-600)">All zip codes (Virtual)</div>
+                  <div style="display: flex; align-items: center; gap: 6px">
+                    <span style="color: var(--primary-gold); font-size: 14px">⭐⭐⭐⭐⭐</span>
+                    <span style="font-size: 13px; color: var(--neutral-600); font-weight: 600">5.0</span>
+                  </div>
+                  <div>
+                    <span class="document-status approved">Active</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Partner 5 - Active Plumbing High Rated -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div>
+                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Elite Plumbing Services</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">Contact: Robert Johnson • (555) 567-8901</div>
+                  </div>
+                  <div>
+                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🔧 Plumbing</span>
+                  </div>
+                  <div style="font-size: 13px; color: var(--neutral-600)">77380, 77381, 77382, 77383</div>
+                  <div style="display: flex; align-items: center; gap: 6px">
+                    <span style="color: var(--primary-gold); font-size: 14px">⭐⭐⭐⭐⭐</span>
+                    <span style="font-size: 13px; color: var(--neutral-600); font-weight: 600">4.7</span>
+                  </div>
+                  <div>
+                    <span class="document-status approved">Active</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Partner 6 - Suspended -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div>
+                    <div style="font-weight: 600; color: var(--neutral-500); margin-bottom: 4px">Budget Roofing Inc.</div>
+                    <div style="font-size: 12px; color: var(--neutral-400)">Contact: James Wilson • (555) 678-9012</div>
+                  </div>
+                  <div>
+                    <span style="background: var(--neutral-100); color: var(--neutral-500); padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏠 Roofing</span>
+                  </div>
+                  <div style="font-size: 13px; color: var(--neutral-500)">77380, 77381</div>
+                  <div style="display: flex; align-items: center; gap: 6px">
+                    <span style="color: var(--neutral-400); font-size: 14px">⭐⭐⭐</span>
+                    <span style="font-size: 13px; color: var(--neutral-500); font-weight: 600">3.2</span>
+                  </div>
+                  <div>
+                    <span class="document-status rejected">Suspended</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px; background: var(--success-green); color: white">Activate</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--neutral-200)">
+              <div style="font-size: 14px; color: var(--neutral-600)">Showing 1-6 of 156 partners</div>
+              <div style="display: flex; gap: 8px">
+                <button class="btn-secondary" style="padding: 8px 16px">Previous</button>
+                <button class="btn-primary" style="padding: 8px 16px">1</button>
+                <button class="btn-secondary" style="padding: 8px 16px">2</button>
+                <button class="btn-secondary" style="padding: 8px 16px">3</button>
+                <button class="btn-secondary" style="padding: 8px 16px">...</button>
+                <button class="btn-secondary" style="padding: 8px 16px">26</button>
+                <button class="btn-secondary" style="padding: 8px 16px">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS SCREEN -->
+      <div id="settings-page" class="page page-hidden">
+        <!-- Page Header -->
+        <div style="margin-bottom: 32px">
+          <h2 style="font-family: 'Archivo', sans-serif; font-size: 28px; font-weight: 700; color: var(--primary-navy); margin-bottom: 8px">Platform Settings</h2>
+          <p style="color: var(--neutral-600); font-size: 15px">Configure system preferences, security, and integrations</p>
+        </div>
+
+        <!-- Settings Layout -->
+        <div class="content-layout">
+          <!-- Main Settings -->
+          <div>
+            <!-- General Settings -->
+            <div class="main-content-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">🏢 General Settings</h2>
+                <p class="card-subtitle">Basic platform configuration</p>
+              </div>
+              <div class="card-content">
+                <div style="display: grid; gap: 24px">
+                  <div>
+                    <label class="form-label">Company Name</label>
+                    <input type="text" class="form-input" value="The Burkes Group" />
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px">
+                    <div>
+                      <label class="form-label">Support Email</label>
+                      <input type="email" class="form-input" value="support@burkesgroup.com" />
+                    </div>
+                    <div>
+                      <label class="form-label">Support Phone</label>
+                      <input type="tel" class="form-input" value="(555) 123-4567" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="form-label">Company Address</label>
+                    <textarea class="form-input" rows="3" style="resize: vertical">123 Main Street The Woodlands, TX 77380</textarea>
+                  </div>
+
+                  <div>
+                    <label class="form-label">Platform Timezone</label>
+                    <select class="form-input">
+                      <option>Central Time (US & Canada)</option>
+                      <option>Eastern Time (US & Canada)</option>
+                      <option>Mountain Time (US & Canada)</option>
+                      <option>Pacific Time (US & Canada)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="form-label">Default Currency</label>
+                    <select class="form-input">
+                      <option>USD - US Dollar</option>
+                      <option>EUR - Euro</option>
+                      <option>GBP - British Pound</option>
+                    </select>
+                  </div>
+
+                  <div style="border-top: 1px solid var(--neutral-200); padding-top: 16px">
+                    <button class="btn-primary">Save General Settings</button>
+                    <button class="btn-secondary" style="margin-left: 12px">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- User Registration Settings -->
+            <div class="main-content-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">👥 User Registration Settings</h2>
+                <p class="card-subtitle">Control user signup and approval process</p>
+              </div>
+              <div class="card-content">
+                <div style="display: grid; gap: 20px">
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 8px">
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Require Admin Approval for New Users</div>
+                      <div style="font-size: 13px; color: var(--neutral-600)">All new user registrations must be approved by an administrator</div>
+                    </div>
+                    <label style="position: relative; display: inline-block; width: 60px; height: 34px">
+                      <input type="checkbox" checked style="opacity: 0; width: 0; height: 0" />
+                      <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--success-green); border-radius: 34px; transition: 0.4s"></span>
+                    </label>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 8px">
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Email Verification Required</div>
+                      <div style="font-size: 13px; color: var(--neutral-600)">Users must verify their email address before accessing the platform</div>
+                    </div>
+                    <label style="position: relative; display: inline-block; width: 60px; height: 34px">
+                      <input type="checkbox" checked style="opacity: 0; width: 0; height: 0" />
+                      <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--success-green); border-radius: 34px; transition: 0.4s"></span>
+                    </label>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 8px">
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Allow Self-Registration</div>
+                      <div style="font-size: 13px; color: var(--neutral-600)">Enable users to create accounts without invitation</div>
+                    </div>
+                    <label style="position: relative; display: inline-block; width: 60px; height: 34px">
+                      <input type="checkbox" checked style="opacity: 0; width: 0; height: 0" />
+                      <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--success-green); border-radius: 34px; transition: 0.4s"></span>
+                    </label>
+                  </div>
+
+                  <div>
+                    <label class="form-label">Allowed Registration Roles</label>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px">
+                      <label style="display: flex; align-items: center; gap: 8px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer">
+                        <input type="checkbox" checked style="width: 18px; height: 18px" />
+                        <span style="font-size: 14px">🏠 Clients</span>
+                      </label>
+                      <label style="display: flex; align-items: center; gap: 8px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer">
+                        <input type="checkbox" checked style="width: 18px; height: 18px" />
+                        <span style="font-size: 14px">⚖️ Attorneys</span>
+                      </label>
+                      <label style="display: flex; align-items: center; gap: 8px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer">
+                        <input type="checkbox" checked style="width: 18px; height: 18px" />
+                        <span style="font-size: 14px">💼 CPAs</span>
+                      </label>
+                      <label style="display: flex; align-items: center; gap: 8px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer">
+                        <input type="checkbox" checked style="width: 18px; height: 18px" />
+                        <span style="font-size: 14px">🏡 Agents</span>
+                      </label>
+                      <label style="display: flex; align-items: center; gap: 8px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer">
+                        <input type="checkbox" checked style="width: 18px; height: 18px" />
+                        <span style="font-size: 14px">🏦 Lenders</span>
+                      </label>
+                      <label style="display: flex; align-items: center; gap: 8px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer">
+                        <input type="checkbox" style="width: 18px; height: 18px" />
+                        <span style="font-size: 14px">🔧 Admins</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div style="border-top: 1px solid var(--neutral-200); padding-top: 16px">
+                    <button class="btn-primary">Save Registration Settings</button>
+                    <button class="btn-secondary" style="margin-left: 12px">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="main-content-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">🔒 Security Settings</h2>
+                <p class="card-subtitle">Configure authentication and security policies</p>
+              </div>
+              <div class="card-content">
+                <div style="display: grid; gap: 20px">
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 8px">
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Require Two-Factor Authentication (2FA)</div>
+                      <div style="font-size: 13px; color: var(--neutral-600)">Enforce 2FA for all users for enhanced security</div>
+                    </div>
+                    <label style="position: relative; display: inline-block; width: 60px; height: 34px">
+                      <input type="checkbox" checked style="opacity: 0; width: 0; height: 0" />
+                      <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--success-green); border-radius: 34px; transition: 0.4s"></span>
+                    </label>
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px">
+                    <div>
+                      <label class="form-label">Password Minimum Length</label>
+                      <select class="form-input">
+                        <option>8 characters</option>
+                        <option>10 characters</option>
+                        <option selected>12 characters</option>
+                        <option>16 characters</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="form-label">Session Timeout (minutes)</label>
+                      <select class="form-input">
+                        <option>15 minutes</option>
+                        <option selected>30 minutes</option>
+                        <option>60 minutes</option>
+                        <option>120 minutes</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="form-label">Password Requirements</label>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 8px">
+                      <label style="display: flex; align-items: center; gap: 8px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer">
+                        <input type="checkbox" checked style="width: 18px; height: 18px" />
+                        <span style="font-size: 14px">Uppercase letters</span>
+                      </label>
+                      <label style="display: flex; align-items: center; gap: 8px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer">
+                        <input type="checkbox" checked style="width: 18px; height: 18px" />
+                        <span style="font-size: 14px">Lowercase letters</span>
+                      </label>
+                      <label style="display: flex; align-items: center; gap: 8px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer">
+                        <input type="checkbox" checked style="width: 18px; height: 18px" />
+                        <span style="font-size: 14px">Numbers</span>
+                      </label>
+                      <label style="display: flex; align-items: center; gap: 8px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer">
+                        <input type="checkbox" checked style="width: 18px; height: 18px" />
+                        <span style="font-size: 14px">Special characters</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 8px">
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">IP Whitelisting</div>
+                      <div style="font-size: 13px; color: var(--neutral-600)">Restrict admin access to specific IP addresses</div>
+                    </div>
+                    <label style="position: relative; display: inline-block; width: 60px; height: 34px">
+                      <input type="checkbox" style="opacity: 0; width: 0; height: 0" />
+                      <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--neutral-300); border-radius: 34px; transition: 0.4s"></span>
+                    </label>
+                  </div>
+
+                  <div style="border-top: 1px solid var(--neutral-200); padding-top: 16px">
+                    <button class="btn-primary">Save Security Settings</button>
+                    <button class="btn-secondary" style="margin-left: 12px">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email Notification Settings -->
+            <div class="main-content-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">📧 Email Notification Settings</h2>
+                <p class="card-subtitle">Configure automated email notifications</p>
+              </div>
+              <div class="card-content">
+                <div style="display: grid; gap: 16px">
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 8px">
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">New User Registration</div>
+                      <div style="font-size: 13px; color: var(--neutral-600)">Send email when new users register</div>
+                    </div>
+                    <label style="position: relative; display: inline-block; width: 60px; height: 34px">
+                      <input type="checkbox" checked style="opacity: 0; width: 0; height: 0" />
+                      <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--success-green); border-radius: 34px; transition: 0.4s"></span>
+                    </label>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 8px">
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Document Upload Notifications</div>
+                      <div style="font-size: 13px; color: var(--neutral-600)">Notify admins when documents are uploaded</div>
+                    </div>
+                    <label style="position: relative; display: inline-block; width: 60px; height: 34px">
+                      <input type="checkbox" checked style="opacity: 0; width: 0; height: 0" />
+                      <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--success-green); border-radius: 34px; transition: 0.4s"></span>
+                    </label>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 8px">
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Transaction Status Updates</div>
+                      <div style="font-size: 13px; color: var(--neutral-600)">Email users when transaction status changes</div>
+                    </div>
+                    <label style="position: relative; display: inline-block; width: 60px; height: 34px">
+                      <input type="checkbox" checked style="opacity: 0; width: 0; height: 0" />
+                      <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--success-green); border-radius: 34px; transition: 0.4s"></span>
+                    </label>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 8px">
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Partner Application Notifications</div>
+                      <div style="font-size: 13px; color: var(--neutral-600)">Notify when service partners apply</div>
+                    </div>
+                    <label style="position: relative; display: inline-block; width: 60px; height: 34px">
+                      <input type="checkbox" checked style="opacity: 0; width: 0; height: 0" />
+                      <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--success-green); border-radius: 34px; transition: 0.4s"></span>
+                    </label>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 8px">
+                    <div>
+                      <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">Weekly Summary Reports</div>
+                      <div style="font-size: 13px; color: var(--neutral-600)">Send weekly platform activity summary to admins</div>
+                    </div>
+                    <label style="position: relative; display: inline-block; width: 60px; height: 34px">
+                      <input type="checkbox" checked style="opacity: 0; width: 0; height: 0" />
+                      <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--success-green); border-radius: 34px; transition: 0.4s"></span>
+                    </label>
+                  </div>
+
+                  <div style="border-top: 1px solid var(--neutral-200); padding-top: 16px">
+                    <button class="btn-primary">Save Email Settings</button>
+                    <button class="btn-secondary" style="margin-left: 12px">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Integration Settings -->
+            <div class="main-content-card">
+              <div class="card-header">
+                <h2 class="card-title">🔌 Integration Settings</h2>
+                <p class="card-subtitle">Configure third-party integrations</p>
+              </div>
+              <div class="card-content">
+                <div style="display: grid; gap: 16px">
+                  <!-- Mortgage Integration -->
+                  <div style="border: 2px solid var(--neutral-200); border-radius: 12px; padding: 20px">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px">
+                      <div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px">
+                          <div style="font-size: 32px">🏦</div>
+                          <div>
+                            <div style="font-weight: 700; font-size: 18px; color: var(--primary-navy)">Mortgage Lender Integration</div>
+                            <div style="font-size: 13px; color: var(--neutral-600)">Connect to mortgage lender platforms</div>
+                          </div>
+                        </div>
+                      </div>
+                      <span style="background: var(--success-green); color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600">Connected</span>
+                    </div>
+                    <div style="display: grid; gap: 12px">
+                      <div>
+                        <label class="form-label">API Endpoint</label>
+                        <input type="text" class="form-input" value="https://api.mortgagelender.com/v1" />
+                      </div>
+                      <div>
+                        <label class="form-label">API Key</label>
+                        <input type="password" class="form-input" value="••••••••••••••••••••" />
+                      </div>
+                      <div style="display: flex; gap: 8px">
+                        <button class="btn-secondary" style="flex: 1">Test Connection</button>
+                        <button class="btn-secondary" style="flex: 1">Disconnect</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Payment Gateway -->
+                  <div style="border: 2px solid var(--neutral-200); border-radius: 12px; padding: 20px">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px">
+                      <div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px">
+                          <div style="font-size: 32px">💳</div>
+                          <div>
+                            <div style="font-weight: 700; font-size: 18px; color: var(--primary-navy)">Payment Gateway</div>
+                            <div style="font-size: 13px; color: var(--neutral-600)">Stripe payment processing</div>
+                          </div>
+                        </div>
+                      </div>
+                      <span style="background: var(--success-green); color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600">Connected</span>
+                    </div>
+                    <div style="display: grid; gap: 12px">
+                      <div>
+                        <label class="form-label">Publishable Key</label>
+                        <input type="text" class="form-input" value="pk_live_••••••••••••••••••••" />
+                      </div>
+                      <div>
+                        <label class="form-label">Secret Key</label>
+                        <input type="password" class="form-input" value="sk_live_••••••••••••••••••••" />
+                      </div>
+                      <div style="display: flex; gap: 8px">
+                        <button class="btn-secondary" style="flex: 1">Test Connection</button>
+                        <button class="btn-secondary" style="flex: 1">Disconnect</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SMS Service -->
+                  <div style="border: 2px solid var(--neutral-200); border-radius: 12px; padding: 20px">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px">
+                      <div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px">
+                          <div style="font-size: 32px">📱</div>
+                          <div>
+                            <div style="font-weight: 700; font-size: 18px; color: var(--primary-navy)">SMS Notifications (Twilio)</div>
+                            <div style="font-size: 13px; color: var(--neutral-600)">Send SMS alerts to users</div>
+                          </div>
+                        </div>
+                      </div>
+                      <span style="background: var(--neutral-300); color: var(--neutral-700); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600">Not Connected</span>
+                    </div>
+                    <button class="btn-primary" style="width: 100%">Configure SMS Service</button>
+                  </div>
+
+                  <div style="border-top: 1px solid var(--neutral-200); padding-top: 16px">
+                    <button class="btn-primary">Save Integration Settings</button>
+                    <button class="btn-secondary" style="margin-left: 12px">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div>
+            <!-- Quick Actions -->
+            <div class="sidebar-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">Quick Actions</h2>
+              </div>
+              <div class="card-content">
+                <div class="quick-actions">
+                  <button class="action-btn">
+                    <span class="action-icon">🔄</span>
+                    Backup Database
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">📊</span>
+                    Export Settings
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">📥</span>
+                    Import Settings
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">🗑️</span>
+                    Clear Cache
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">🔒</span>
+                    Security Audit
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">📝</span>
+                    View Audit Logs
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- System Information -->
+            <div class="sidebar-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">System Information</h2>
+              </div>
+              <div class="card-content">
+                <div style="display: grid; gap: 12px">
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--neutral-200)">
+                    <span style="font-size: 13px; color: var(--neutral-600)">Platform Version</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--primary-navy)">v2.4.1</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--neutral-200)">
+                    <span style="font-size: 13px; color: var(--neutral-600)">Database Version</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--primary-navy)">PostgreSQL 15.2</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--neutral-200)">
+                    <span style="font-size: 13px; color: var(--neutral-600)">Last Backup</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--success-green)">2 hours ago</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--neutral-200)">
+                    <span style="font-size: 13px; color: var(--neutral-600)">Storage Used</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--primary-navy)">47.2 GB / 100 GB</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between">
+                    <span style="font-size: 13px; color: var(--neutral-600)">Uptime</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--success-green)">99.97%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Changes -->
+            <div class="sidebar-card">
+              <div class="card-header">
+                <h2 class="card-title">Recent Changes</h2>
+              </div>
+              <div class="card-content">
+                <div class="activity-list">
+                  <div class="activity-card">
+                    <div style="font-size: 12px; color: var(--neutral-500); margin-bottom: 4px">2 hours ago</div>
+                    <div style="font-size: 13px; color: var(--neutral-700)"><strong>Admin User</strong> updated security settings</div>
+                  </div>
+                  <div class="activity-card">
+                    <div style="font-size: 12px; color: var(--neutral-500); margin-bottom: 4px">5 hours ago</div>
+                    <div style="font-size: 13px; color: var(--neutral-700)"><strong>Admin User</strong> modified email notification preferences</div>
+                  </div>
+                  <div class="activity-card">
+                    <div style="font-size: 12px; color: var(--neutral-500); margin-bottom: 4px">Yesterday</div>
+                    <div style="font-size: 13px; color: var(--neutral-700)"><strong>System</strong> performed automatic backup</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD USER FORM MODAL -->
+    <div id="addUserFormOverlay" class="form-overlay">
+      <div class="form-modal">
+        <div class="form-modal-header">
+          <div>
+            <div class="form-modal-title">Add New User</div>
+            <div class="form-modal-subtitle">Create a new user account with role-based permissions</div>
+          </div>
+          <button class="form-close-btn" onclick="closeAddUserForm()">✕</button>
+        </div>
+
+        <div class="form-modal-body">
+          <form id="addUserForm">
+            <!-- Personal Information -->
+            <div class="form-section">
+              <div class="form-section-title"><span>👤</span> Personal Information</div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">First Name <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-input" placeholder="Enter first name" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Last Name <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-input" placeholder="Enter last name" required />
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Email Address <span class="required-indicator">*</span></label>
+                  <input type="email" class="form-input" placeholder="user@example.com" required />
+                  <div class="help-text">User will receive login credentials at this email</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Phone Number <span class="required-indicator">*</span></label>
+                  <input type="tel" class="form-input" placeholder="(555) 123-4567" required />
+                </div>
+              </div>
+
+              <div class="form-row form-row-3">
+                <div class="form-group">
+                  <label class="form-label">Date of Birth</label>
+                  <input type="date" class="form-input" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Company/Firm Name</label>
+                  <input type="text" class="form-input" placeholder="Optional" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">License Number</label>
+                  <input type="text" class="form-input" placeholder="For professionals only" />
+                  <div class="help-text">Required for Attorneys, CPAs, Agents</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Role & Access -->
+            <div class="form-section">
+              <div class="form-section-title"><span>🔐</span> Role & Access Permissions</div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">User Role <span class="required-indicator">*</span></label>
+                  <select class="form-select" required onchange="updateRolePermissions(this.value)">
+                    <option value="">Select a role</option>
+                    <option value="client">🏠 Client - Homeowner/Buyer</option>
+                    <option value="attorney">⚖️ Attorney - Closing/Divorce Attorney</option>
+                    <option value="cpa">💼 CPA - Certified Public Accountant</option>
+                    <option value="agent">🏡 Real Estate Agent</option>
+                    <option value="lender">🏦 Mortgage Lender</option>
+                    <option value="admin">⚙️ Administrator</option>
+                  </select>
+                  <div class="help-text">Role determines access permissions and portal features</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Account Status <span class="required-indicator">*</span></label>
+                  <select class="form-select" required>
+                    <option value="pending">Pending Approval</option>
+                    <option value="active">Active</option>
+                    <option value="suspended">Suspended</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Role-Based Permissions -->
+              <div class="form-group">
+                <label class="form-label">Access Permissions</label>
+                <div class="checkbox-group" id="rolePermissions">
+                  <!-- Dynamically populated based on role selection -->
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="perm_view_docs" checked disabled />
+                    <label for="perm_view_docs">View Documents</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="perm_upload_docs" />
+                    <label for="perm_upload_docs">Upload Documents</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="perm_approve_docs" />
+                    <label for="perm_approve_docs">Approve Documents</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="perm_view_transactions" />
+                    <label for="perm_view_transactions">View Transactions</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="perm_manage_transactions" />
+                    <label for="perm_manage_transactions">Manage Transactions</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="perm_messaging" />
+                    <label for="perm_messaging">Secure Messaging</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="perm_mortgage_access" />
+                    <label for="perm_mortgage_access">Access Mortgage Integration</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="perm_insurance_access" />
+                    <label for="perm_insurance_access">Access Insurance Module</label>
+                  </div>
+                </div>
+                <div class="help-text">Permissions are pre-configured based on role but can be customized</div>
+              </div>
+            </div>
+
+            <!-- Address Information -->
+            <div class="form-section">
+              <div class="form-section-title"><span>📍</span> Address Information</div>
+
+              <div class="form-group">
+                <label class="form-label">Street Address</label>
+                <input type="text" class="form-input" placeholder="123 Main Street" />
+              </div>
+
+              <div class="form-row form-row-3">
+                <div class="form-group">
+                  <label class="form-label">City</label>
+                  <input type="text" class="form-input" placeholder="Houston" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">State</label>
+                  <select class="form-select">
+                    <option value="">Select State</option>
+                    <option value="TX">Texas</option>
+                    <option value="CA">California</option>
+                    <option value="NY">New York</option>
+                    <option value="FL">Florida</option>
+                    <!-- Add more states as needed -->
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Zip Code</label>
+                  <input type="text" class="form-input" placeholder="77380" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Insurance Information (for Clients) -->
+            <div class="form-section" id="insuranceSection" style="display: none">
+              <div class="form-section-title"><span>🛡️</span> Insurance Information (Optional)</div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Auto Insurance Provider</label>
+                  <input type="text" class="form-input" placeholder="Insurance company name" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">VIN Number</label>
+                  <input type="text" class="form-input" placeholder="Vehicle identification number" />
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Home Insurance Provider</label>
+                  <input type="text" class="form-input" placeholder="Insurance company name" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Home Warranty Provider</label>
+                  <input type="text" class="form-input" placeholder="Warranty company name" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Notes -->
+            <div class="form-section">
+              <div class="form-section-title"><span>📝</span> Additional Notes</div>
+
+              <div class="form-group">
+                <label class="form-label">Internal Notes</label>
+                <textarea class="form-textarea" placeholder="Add any internal notes about this user (not visible to the user)"></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-modal-footer">
+          <button class="btn-secondary" onclick="closeAddUserForm()">Cancel</button>
+          <button class="btn-primary" onclick="submitUserForm()">Create User Account</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD PARTNER FORM MODAL -->
+    <div id="addPartnerFormOverlay" class="form-overlay">
+      <div class="form-modal">
+        <div class="form-modal-header">
+          <div>
+            <div class="form-modal-title">Add New Service Partner</div>
+            <div class="form-modal-subtitle">Register a new service provider for your network</div>
+          </div>
+          <button class="form-close-btn" onclick="closeAddPartnerForm()">✕</button>
+        </div>
+
+        <div class="form-modal-body">
+          <form id="addPartnerForm">
+            <!-- Company Information -->
+            <div class="form-section">
+              <div class="form-section-title"><span>🏢</span> Company Information</div>
+
+              <div class="form-group">
+                <label class="form-label">Company/Business Name <span class="required-indicator">*</span></label>
+                <input type="text" class="form-input" placeholder="ABC Plumbing Co." required />
+                <div class="help-text">Legal business name as it appears on license</div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Service Category <span class="required-indicator">*</span></label>
+                  <select class="form-select" required>
+                    <option value="">Select a category</option>
+                    <option value="plumbing">🔧 Plumbing</option>
+                    <option value="roofing">🏠 Roofing</option>
+                    <option value="electrical">⚡ Electrical</option>
+                    <option value="hvac">❄️ HVAC</option>
+                    <option value="credit_repair">💳 Credit Repair</option>
+                    <option value="painting">🎨 Painting</option>
+                    <option value="landscaping">🌳 Landscaping</option>
+                    <option value="flooring">📐 Flooring</option>
+                    <option value="other">🛠️ Other Services</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Business License Number <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-input" placeholder="License #" required />
+                  <div class="help-text">State/local business license</div>
+                </div>
+              </div>
+
+              <div class="form-row form-row-3">
+                <div class="form-group">
+                  <label class="form-label">Tax ID / EIN</label>
+                  <input type="text" class="form-input" placeholder="XX-XXXXXXX" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Years in Business</label>
+                  <input type="number" class="form-input" placeholder="5" min="0" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Insurance Verified</label>
+                  <select class="form-select">
+                    <option value="pending">Pending Verification</option>
+                    <option value="yes">Yes - Verified</option>
+                    <option value="no">No - Not Verified</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-section">
+              <div class="form-section-title"><span>📞</span> Primary Contact Information</div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Contact Person Name <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-input" placeholder="John Smith" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Position/Title</label>
+                  <input type="text" class="form-input" placeholder="Owner, Manager, etc." />
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Phone Number <span class="required-indicator">*</span></label>
+                  <input type="tel" class="form-input" placeholder="(555) 123-4567" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Email Address <span class="required-indicator">*</span></label>
+                  <input type="email" class="form-input" placeholder="contact@company.com" required />
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Website URL</label>
+                  <input type="url" class="form-input" placeholder="https://www.company.com" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Emergency Contact Number</label>
+                  <input type="tel" class="form-input" placeholder="24/7 hotline (optional)" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Business Address -->
+            <div class="form-section">
+              <div class="form-section-title"><span>🏢</span> Business Address</div>
+
+              <div class="form-group">
+                <label class="form-label">Street Address <span class="required-indicator">*</span></label>
+                <input type="text" class="form-input" placeholder="123 Business Blvd" required />
+              </div>
+
+              <div class="form-row form-row-3">
+                <div class="form-group">
+                  <label class="form-label">City <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-input" placeholder="Houston" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">State <span class="required-indicator">*</span></label>
+                  <select class="form-select" required>
+                    <option value="">Select State</option>
+                    <option value="TX">Texas</option>
+                    <option value="CA">California</option>
+                    <option value="NY">New York</option>
+                    <option value="FL">Florida</option>
+                    <!-- Add more states as needed -->
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Zip Code <span class="required-indicator">*</span></label>
+                  <input type="text" class="form-input" placeholder="77380" required />
+                </div>
+              </div>
+            </div>
+
+            <!-- Service Coverage Areas -->
+            <div class="form-section">
+              <div class="form-section-title"><span>📍</span> Service Coverage Areas (Zip Codes)</div>
+
+              <div class="form-group">
+                <label class="form-label">Zip Codes Served <span class="required-indicator">*</span></label>
+                <div class="help-text" style="margin-bottom: 12px">Add all zip codes where this partner provides services. Customers will see this partner when searching within these areas.</div>
+
+                <div id="zipCodeTags" class="zip-code-tags">
+                  <!-- Zip code tags will be added here dynamically -->
+                </div>
+
+                <div class="zip-input-wrapper">
+                  <input type="text" id="zipCodeInput" class="zip-input" placeholder="Enter 5-digit zip code (e.g., 77380)" maxlength="5" />
+                  <button type="button" class="add-zip-btn" onclick="addZipCode()">+ Add Zip Code</button>
+                </div>
+                <div class="help-text">Tip: Add "00000" for virtual services available everywhere</div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Service Radius (miles)</label>
+                  <input type="number" class="form-input" placeholder="25" min="0" />
+                  <div class="help-text">How far from business location you serve</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Service Type</label>
+                  <select class="form-select">
+                    <option value="on-site">On-Site Service Only</option>
+                    <option value="virtual">Virtual/Remote Service</option>
+                    <option value="both">Both On-Site & Virtual</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pricing & Ratings -->
+            <div class="form-section">
+              <div class="form-section-title"><span>💰</span> Pricing & Service Details</div>
+
+              <div class="form-row form-row-3">
+                <div class="form-group">
+                  <label class="form-label">Hourly Rate Range</label>
+                  <input type="text" class="form-input" placeholder="$75 - $150/hr" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Minimum Service Charge</label>
+                  <input type="text" class="form-input" placeholder="$100" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Free Estimates?</label>
+                  <select class="form-select">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="conditional">Conditional</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Emergency Services Available?</label>
+                  <select class="form-select">
+                    <option value="no">No</option>
+                    <option value="yes">Yes - 24/7</option>
+                    <option value="limited">Limited Hours</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Typical Response Time</label>
+                  <select class="form-select">
+                    <option value="same-day">Same Day</option>
+                    <option value="24-hours">Within 24 Hours</option>
+                    <option value="48-hours">Within 48 Hours</option>
+                    <option value="week">Within a Week</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Document Uploads -->
+            <div class="form-section">
+              <div class="form-section-title"><span>📄</span> Required Documentation</div>
+
+              <div class="form-group">
+                <label class="form-label">Business License <span class="required-indicator">*</span></label>
+                <div class="file-upload-area">
+                  <div class="file-upload-icon">📄</div>
+                  <div class="file-upload-text">Click to upload business license</div>
+                  <div class="file-upload-subtext">PDF, JPG, PNG up to 10MB</div>
+                  <input type="file" style="display: none" accept=".pdf,.jpg,.jpeg,.png" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Insurance Certificate <span class="required-indicator">*</span></label>
+                <div class="file-upload-area">
+                  <div class="file-upload-icon">🛡️</div>
+                  <div class="file-upload-text">Click to upload insurance certificate</div>
+                  <div class="file-upload-subtext">PDF, JPG, PNG up to 10MB</div>
+                  <input type="file" style="display: none" accept=".pdf,.jpg,.jpeg,.png" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Company Logo (Optional)</label>
+                <div class="file-upload-area">
+                  <div class="file-upload-icon">🖼️</div>
+                  <div class="file-upload-text">Click to upload company logo</div>
+                  <div class="file-upload-subtext">PNG, JPG up to 5MB (Square format recommended)</div>
+                  <input type="file" style="display: none" accept=".jpg,.jpeg,.png" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Status & Notes -->
+            <div class="form-section">
+              <div class="form-section-title"><span>⚙️</span> Account Status & Notes</div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Partner Status <span class="required-indicator">*</span></label>
+                  <select class="form-select" required>
+                    <option value="pending">Pending Approval</option>
+                    <option value="active">Active</option>
+                    <option value="suspended">Suspended</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                  <div class="help-text">Set to 'Pending' for new partners requiring verification</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Initial Rating</label>
+                  <select class="form-select">
+                    <option value="new">New Partner (No Rating)</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (5.0)</option>
+                    <option value="4.5">⭐⭐⭐⭐ (4.5)</option>
+                    <option value="4">⭐⭐⭐⭐ (4.0)</option>
+                    <option value="3.5">⭐⭐⭐ (3.5)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Internal Notes</label>
+                <textarea class="form-textarea" placeholder="Add any internal notes about this partner, verification status, special arrangements, etc."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Partnership Agreement</label>
+                <div class="checkbox-group">
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="terms_accepted" required />
+                    <label for="terms_accepted">Partner has read and accepted terms & conditions</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="commission_agreed" />
+                    <label for="commission_agreed">Commission/referral agreement signed</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="background_check" />
+                    <label for="background_check">Background check completed</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-modal-footer">
+          <button class="btn-secondary" onclick="closeAddPartnerForm()">Cancel</button>
+          <button class="btn-primary" onclick="submitPartnerForm()">Add Service Partner</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Page Navigation
+      function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach((page) => {
+          page.classList.add('page-hidden');
+        });
+
+        // Show selected page
+        const selectedPage = document.getElementById(pageId + '-page');
+        if (selectedPage) {
+          selectedPage.classList.remove('page-hidden');
+        }
+
+        // Update active nav item
+        document.querySelectorAll('.nav-item').forEach((item) => {
+          item.classList.remove('active');
+        });
+        event.target.classList.add('active');
+      }
+
+      // Add User Form Functions
+      function openAddUserForm() {
+        document.getElementById('addUserFormOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeAddUserForm() {
+        document.getElementById('addUserFormOverlay').classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+
+      function submitUserForm() {
+        const form = document.getElementById('addUserForm');
+        if (form.checkValidity()) {
+          alert('User account would be created! (This is a demo)');
+          closeAddUserForm();
+          // In production, this would submit to backend
+        } else {
+          form.reportValidity();
+        }
+      }
+
+      function updateRolePermissions(role) {
+        const insuranceSection = document.getElementById('insuranceSection');
+
+        // Show insurance section only for clients
+        if (role === 'client') {
+          insuranceSection.style.display = 'block';
+        } else {
+          insuranceSection.style.display = 'none';
+        }
+
+        // Update permissions based on role (example logic)
+        const permissions = {
+          client: ['perm_view_docs', 'perm_upload_docs', 'perm_messaging', 'perm_insurance_access'],
+          attorney: ['perm_view_docs', 'perm_approve_docs', 'perm_view_transactions', 'perm_manage_transactions', 'perm_messaging'],
+          cpa: ['perm_view_docs', 'perm_view_transactions', 'perm_messaging'],
+          agent: ['perm_view_docs', 'perm_upload_docs', 'perm_view_transactions', 'perm_messaging'],
+          lender: ['perm_view_docs', 'perm_upload_docs', 'perm_mortgage_access', 'perm_messaging'],
+          admin: ['perm_view_docs', 'perm_upload_docs', 'perm_approve_docs', 'perm_view_transactions', 'perm_manage_transactions', 'perm_messaging', 'perm_mortgage_access', 'perm_insurance_access'],
+        };
+
+        // Reset all checkboxes
+        document.querySelectorAll('#rolePermissions input[type="checkbox"]').forEach((cb) => {
+          cb.checked = false;
+          cb.disabled = false;
+        });
+
+        // Check appropriate permissions for selected role
+        if (permissions[role]) {
+          permissions[role].forEach((permId) => {
+            const checkbox = document.getElementById(permId);
+            if (checkbox) {
+              checkbox.checked = true;
+            }
+          });
+        }
+      }
+
+      // Add Partner Form Functions
+      function openAddPartnerForm() {
+        document.getElementById('addPartnerFormOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeAddPartnerForm() {
+        document.getElementById('addPartnerFormOverlay').classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+
+      function submitPartnerForm() {
+        const form = document.getElementById('addPartnerForm');
+        const zipTags = document.querySelectorAll('.zip-tag');
+
+        if (zipTags.length === 0) {
+          alert('Please add at least one service area zip code!');
+          return;
+        }
+
+        if (form.checkValidity()) {
+          alert('Service partner would be added! (This is a demo)');
+          closeAddPartnerForm();
+          // In production, this would submit to backend
+        } else {
+          form.reportValidity();
+        }
+      }
+
+      // Zip Code Tag Management
+      let zipCodes = [];
+
+      function addZipCode() {
+        const input = document.getElementById('zipCodeInput');
+        const zipCode = input.value.trim();
+
+        // Validate zip code (5 digits)
+        if (!/^\d{5}$/.test(zipCode)) {
+          alert('Please enter a valid 5-digit zip code');
+          return;
+        }
+
+        // Check for duplicates
+        if (zipCodes.includes(zipCode)) {
+          alert('This zip code has already been added');
+          return;
+        }
+
+        // Add zip code
+        zipCodes.push(zipCode);
+        renderZipCodes();
+        input.value = '';
+      }
+
+      function removeZipCode(zipCode) {
+        zipCodes = zipCodes.filter((z) => z !== zipCode);
+        renderZipCodes();
+      }
+
+      function renderZipCodes() {
+        const container = document.getElementById('zipCodeTags');
+        container.innerHTML = '';
+
+        zipCodes.forEach((zipCode) => {
+          const tag = document.createElement('div');
+          tag.className = 'zip-tag';
+          tag.innerHTML = `
+            ${zipCode}
+            <span class="zip-tag-remove" onclick="removeZipCode('${zipCode}')">✕</span>
+          `;
+          container.appendChild(tag);
+        });
+      }
+
+      // Allow Enter key to add zip code
+      document.addEventListener('DOMContentLoaded', function () {
+        const zipInput = document.getElementById('zipCodeInput');
+        if (zipInput) {
+          zipInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              addZipCode();
+            }
+          });
+        }
+
+        // File upload areas click handlers
+        document.querySelectorAll('.file-upload-area').forEach((area) => {
+          area.addEventListener('click', function () {
+            const fileInput = this.querySelector('input[type="file"]');
+            if (fileInput) {
+              fileInput.click();
+            }
+          });
+        });
+
+        // Handle file selection
+        document.querySelectorAll('.file-upload-area input[type="file"]').forEach((input) => {
+          input.addEventListener('change', function () {
+            const area = this.closest('.file-upload-area');
+            const fileName = this.files[0]?.name;
+            if (fileName) {
+              const textElement = area.querySelector('.file-upload-text');
+              textElement.textContent = `✓ ${fileName}`;
+              textElement.style.color = 'var(--success-green)';
+            }
+          });
+        });
+
+        // Close modals when clicking overlay (outside modal)
+        document.querySelectorAll('.form-overlay').forEach((overlay) => {
+          overlay.addEventListener('click', function (e) {
+            if (e.target === this) {
+              if (this.id === 'addUserFormOverlay') {
+                closeAddUserForm();
+              } else if (this.id === 'addPartnerFormOverlay') {
+                closeAddPartnerForm();
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

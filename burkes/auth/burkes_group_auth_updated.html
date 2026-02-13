@@ -1,0 +1,1235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Burkes Group - Enhanced Client Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-navy: #1a3a52;
+        --primary-gold: #fdb913;
+        --accent-blue: #2d5a7b;
+        --success-green: #10b981;
+        --warning-orange: #f59e0b;
+        --error-red: #ef4444;
+        --neutral-50: #fafafa;
+        --neutral-100: #f5f5f5;
+        --neutral-200: #e5e5e5;
+        --neutral-300: #d4d4d4;
+        --neutral-400: #a3a3a3;
+        --neutral-500: #737373;
+        --neutral-600: #525252;
+        --neutral-700: #404040;
+        --neutral-800: #262626;
+        --neutral-900: #171717;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family: 'Manrope', sans-serif;
+        background: var(--neutral-50);
+        color: var(--neutral-800);
+        line-height: 1.6;
+      }
+
+      .mockup-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .page-section {
+        background: white;
+        margin-bottom: 50px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow-xl);
+      }
+
+      .page-title {
+        background: linear-gradient(135deg, var(--primary-navy) 0%, var(--accent-blue) 100%);
+        color: white;
+        padding: 40px;
+        text-align: center;
+      }
+
+      .page-title h1 {
+        font-family: 'Archivo', sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: -0.5px;
+      }
+
+      .page-title p {
+        font-size: 17px;
+        opacity: 0.95;
+        font-weight: 400;
+      }
+
+      /* Login Page Enhancement */
+      .login-container {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: white;
+      }
+
+      .login-brand {
+        background: linear-gradient(135deg, var(--primary-navy) 0%, var(--accent-blue) 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 80px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .login-brand::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(253, 185, 19, 0.1) 0%, transparent 70%);
+      }
+
+      .brand-icon {
+        font-size: 80px;
+        margin-bottom: 32px;
+        z-index: 1;
+      }
+
+      .brand-title {
+        font-family: 'Archivo', sans-serif;
+        font-size: 48px;
+        font-weight: 800;
+        margin-bottom: 16px;
+        text-align: center;
+        z-index: 1;
+        letter-spacing: -1px;
+      }
+
+      .brand-subtitle {
+        font-size: 18px;
+        text-align: center;
+        max-width: 480px;
+        opacity: 0.95;
+        z-index: 1;
+        line-height: 1.7;
+      }
+
+      .brand-features {
+        margin-top: 48px;
+        z-index: 1;
+        width: 100%;
+        max-width: 480px;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        margin-bottom: 12px;
+        backdrop-filter: blur(10px);
+      }
+
+      .feature-icon {
+        font-size: 28px;
+      }
+
+      .feature-text {
+        flex: 1;
+      }
+
+      .feature-title {
+        font-weight: 700;
+        font-size: 16px;
+        margin-bottom: 4px;
+      }
+
+      .feature-description {
+        font-size: 13px;
+        opacity: 0.85;
+      }
+
+      .login-form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 80px;
+        background: white;
+      }
+
+      .login-form-box {
+        width: 100%;
+        max-width: 480px;
+      }
+
+      .form-header {
+        margin-bottom: 40px;
+      }
+
+      .form-header h2 {
+        font-family: 'Archivo', sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--primary-navy);
+        margin-bottom: 8px;
+        letter-spacing: -0.5px;
+      }
+
+      .form-header p {
+        color: var(--neutral-500);
+        font-size: 16px;
+      }
+
+      .form-group {
+        margin-bottom: 24px;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--neutral-700);
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .form-input,
+      select.form-input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid var(--neutral-200);
+        border-radius: 10px;
+        font-size: 15px;
+        font-family: 'Manrope', sans-serif;
+        transition: all 0.2s ease;
+        background: white;
+      }
+
+      .form-input:focus,
+      select.form-input:focus {
+        outline: none;
+        border-color: var(--primary-navy);
+        box-shadow: 0 0 0 4px rgba(26, 58, 82, 0.1);
+      }
+
+      /* NEW: Role Selection Cards */
+      .role-selection {
+        margin-bottom: 32px;
+      }
+
+      .role-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .role-card {
+        border: 2px solid var(--neutral-200);
+        border-radius: 12px;
+        padding: 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background: white;
+      }
+
+      .role-card:hover {
+        border-color: var(--primary-navy);
+        background: var(--neutral-50);
+      }
+
+      .role-card.selected {
+        border-color: var(--primary-navy);
+        background: #e6f0f5;
+      }
+
+      .role-card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .role-icon {
+        font-size: 24px;
+      }
+
+      .role-name {
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--primary-navy);
+      }
+
+      .role-description {
+        font-size: 13px;
+        color: var(--neutral-600);
+        line-height: 1.5;
+      }
+
+      /* NEW: MFA Section */
+      .mfa-section {
+        background: #f0fdf4;
+        border: 2px solid var(--success-green);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 24px;
+      }
+
+      .mfa-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .mfa-icon {
+        font-size: 24px;
+      }
+
+      .mfa-title {
+        font-weight: 700;
+        color: var(--neutral-800);
+        font-size: 16px;
+      }
+
+      .mfa-description {
+        font-size: 14px;
+        color: var(--neutral-600);
+        margin-bottom: 16px;
+      }
+
+      .mfa-code-input {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .mfa-digit {
+        width: 56px;
+        height: 56px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        border: 2px solid var(--neutral-300);
+        border-radius: 10px;
+        font-family: 'Manrope', sans-serif;
+      }
+
+      .mfa-digit:focus {
+        outline: none;
+        border-color: var(--primary-navy);
+        box-shadow: 0 0 0 3px rgba(26, 58, 82, 0.1);
+      }
+
+      .btn {
+        width: 100%;
+        padding: 16px;
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: 'Manrope', sans-serif;
+      }
+
+      .btn-primary {
+        background: var(--primary-navy);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-blue);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .btn-secondary {
+        background: white;
+        color: var(--primary-navy);
+        border: 2px solid var(--primary-navy);
+      }
+
+      .btn-secondary:hover {
+        background: var(--primary-navy);
+        color: white;
+      }
+
+      .forgot-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .forgot-link a {
+        color: var(--primary-navy);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .forgot-link a:hover {
+        text-decoration: underline;
+      }
+
+      .security-badges {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 1px solid var(--neutral-200);
+      }
+
+      .security-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--primary-navy);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .security-badge-icon {
+        font-size: 18px;
+      }
+
+      /* NEW: Role Permission Display */
+      .role-permissions {
+        background: var(--neutral-50);
+        border-radius: 10px;
+        padding: 16px;
+        margin-top: 16px;
+      }
+
+      .permission-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--primary-navy);
+        margin-bottom: 12px;
+      }
+
+      .permission-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .permission-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--neutral-600);
+      }
+
+      .permission-icon {
+        color: var(--success-green);
+      }
+
+      /* Alert Banner */
+      .alert-banner {
+        background: #fff7ed;
+        border-left: 4px solid var(--warning-orange);
+        padding: 16px 20px;
+        border-radius: 8px;
+        margin-bottom: 24px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      .alert-icon {
+        font-size: 20px;
+      }
+
+      .alert-content {
+        flex: 1;
+      }
+
+      .alert-title {
+        font-weight: 600;
+        color: var(--neutral-800);
+        margin-bottom: 4px;
+        font-size: 14px;
+      }
+
+      .alert-text {
+        font-size: 13px;
+        color: var(--neutral-600);
+      }
+
+      /* Password Reset Flow */
+      .reset-flow-container {
+        max-width: 500px;
+        margin: 60px auto;
+        padding: 40px;
+      }
+
+      .reset-card {
+        background: white;
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: var(--shadow-xl);
+        border: 1px solid var(--neutral-200);
+      }
+
+      .reset-header {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .reset-icon {
+        font-size: 64px;
+        margin-bottom: 16px;
+      }
+
+      .reset-title {
+        font-family: 'Archivo', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--primary-navy);
+        margin-bottom: 8px;
+      }
+
+      .reset-description {
+        font-size: 15px;
+        color: var(--neutral-600);
+      }
+
+      .success-message {
+        background: #f0fdf4;
+        border: 2px solid var(--success-green);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      .success-icon {
+        font-size: 48px;
+        margin-bottom: 12px;
+      }
+
+      .success-text {
+        font-size: 15px;
+        color: var(--neutral-700);
+      }
+
+      /* Responsive */
+      @media (max-width: 1200px) {
+        .role-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .login-container {
+          grid-template-columns: 1fr;
+        }
+
+        .login-brand {
+          display: none;
+        }
+
+        .login-form-container {
+          padding: 40px 20px;
+        }
+
+        .role-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .mfa-digit {
+          width: 48px;
+          height: 48px;
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mockup-container">
+      <!-- PAGE 1: ENHANCED LOGIN WITH ROLE SELECTION -->
+      <div class="page-section">
+        <div class="page-title">
+          <h1>🔐 Enhanced Authentication System</h1>
+          <p>Multi-Portal Access with Role-Based Permissions & MFA Support</p>
+        </div>
+        <div style="padding: 0">
+          <div class="login-container">
+            <div class="login-brand">
+              <div class="brand-icon">🏠</div>
+              <h1 class="brand-title">The Burkes Group</h1>
+              <p class="brand-subtitle">Secure real estate transaction platform for clients, attorneys, CPAs, agents, and service partners.</p>
+              
+              <div class="brand-features">
+                <div class="feature-item">
+                  <div class="feature-icon">🔒</div>
+                  <div class="feature-text">
+                    <div class="feature-title">Bank-Grade Security</div>
+                    <div class="feature-description">256-bit encryption & multi-factor authentication</div>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">👥</div>
+                  <div class="feature-text">
+                    <div class="feature-title">Role-Based Access</div>
+                    <div class="feature-description">Customized portals for each user type</div>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">📄</div>
+                  <div class="feature-text">
+                    <div class="feature-title">Secure Document Sharing</div>
+                    <div class="feature-description">Controlled access to sensitive transaction documents</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="login-form-container">
+              <div class="login-form-box">
+                <div class="form-header">
+                  <h2>Welcome Back</h2>
+                  <p>Select your role and sign in to access your portal</p>
+                </div>
+                
+                <form>
+                  <div class="role-selection">
+                    <label class="form-label">Select Your Portal</label>
+                    <div class="role-grid">
+                      <div class="role-card selected">
+                        <div class="role-card-header">
+                          <span class="role-icon">👤</span>
+                          <span class="role-name">Client</span>
+                        </div>
+                        <p class="role-description">Track your real estate transaction and documents</p>
+                      </div>
+                      
+                      <div class="role-card">
+                        <div class="role-card-header">
+                          <span class="role-icon">⚖️</span>
+                          <span class="role-name">Attorney</span>
+                        </div>
+                        <p class="role-description">Review & verify closing details and asset splitting</p>
+                      </div>
+                      
+                      <div class="role-card">
+                        <div class="role-card-header">
+                          <span class="role-icon">💼</span>
+                          <span class="role-name">CPA</span>
+                        </div>
+                        <p class="role-description">Access client real estate transaction information</p>
+                      </div>
+                      
+                      <div class="role-card">
+                        <div class="role-card-header">
+                          <span class="role-icon">🏡</span>
+                          <span class="role-name">Real Estate Agent</span>
+                        </div>
+                        <p class="role-description">Upload purchase agreements and manage listings</p>
+                      </div>
+                      
+                      <div class="role-card">
+                        <div class="role-card-header">
+                          <span class="role-icon">🏦</span>
+                          <span class="role-name">Mortgage Lender</span>
+                        </div>
+                        <p class="role-description">Share mortgage info with title company</p>
+                      </div>
+                      
+                      <div class="role-card">
+                        <div class="role-card-header">
+                          <span class="role-icon">🔧</span>
+                          <span class="role-name">Service Partner</span>
+                        </div>
+                        <p class="role-description">Provide services to homeowners in your area</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" placeholder="your.email@example.com" />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" placeholder="Enter your password" />
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary">Sign In Securely</button>
+                  
+                  <div class="forgot-link">
+                    <a href="#reset-password">Forgot your password?</a>
+                  </div>
+                  
+                  <div style="margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--neutral-200); text-align: center">
+                    <p style="color: var(--neutral-500); font-size: 14px">New to the platform? <a href="#" style="color: var(--primary-navy); font-weight: 700; text-decoration: none">Contact Your Agent</a></p>
+                  </div>
+                  
+                  <div class="security-badges">
+                    <div class="security-badge">
+                      <span class="security-badge-icon">🔒</span>
+                      256-bit Encryption
+                    </div>
+                    <div class="security-badge">
+                      <span class="security-badge-icon">🛡️</span>
+                      SOC2 Compliant
+                    </div>
+                    <div class="security-badge">
+                      <span class="security-badge-icon">✅</span>
+                      MFA Enabled
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 2: MULTI-FACTOR AUTHENTICATION (MFA) -->
+      <div class="page-section">
+        <div class="page-title">
+          <h1>🔐 Multi-Factor Authentication</h1>
+          <p>Enhanced security for document access</p>
+        </div>
+        <div style="padding: 0">
+          <div class="login-container">
+            <div class="login-brand">
+              <div class="brand-icon">🛡️</div>
+              <h1 class="brand-title">Verify Your Identity</h1>
+              <p class="brand-subtitle">We've sent a 6-digit verification code to your registered device for added security.</p>
+              
+              <div class="brand-features">
+                <div class="feature-item">
+                  <div class="feature-icon">📱</div>
+                  <div class="feature-text">
+                    <div class="feature-title">SMS Authentication</div>
+                    <div class="feature-description">Code sent to your mobile device</div>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">📧</div>
+                  <div class="feature-text">
+                    <div class="feature-title">Email Backup</div>
+                    <div class="feature-description">Alternative verification method available</div>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">🔐</div>
+                  <div class="feature-text">
+                    <div class="feature-title">Authenticator App</div>
+                    <div class="feature-description">Google Authenticator or Authy supported</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="login-form-container">
+              <div class="login-form-box">
+                <div class="form-header">
+                  <h2>Enter Verification Code</h2>
+                  <p>We sent a 6-digit code to your phone ending in ****89</p>
+                </div>
+                
+                <div class="mfa-section">
+                  <div class="mfa-header">
+                    <span class="mfa-icon">🔒</span>
+                    <span class="mfa-title">Secure Access</span>
+                  </div>
+                  <p class="mfa-description">Enter the verification code to complete your login</p>
+                  <div class="mfa-code-input">
+                    <input type="text" maxlength="1" class="mfa-digit" />
+                    <input type="text" maxlength="1" class="mfa-digit" />
+                    <input type="text" maxlength="1" class="mfa-digit" />
+                    <input type="text" maxlength="1" class="mfa-digit" />
+                    <input type="text" maxlength="1" class="mfa-digit" />
+                    <input type="text" maxlength="1" class="mfa-digit" />
+                  </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Verify & Continue</button>
+                
+                <div style="text-align: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--neutral-200);">
+                  <p style="color: var(--neutral-500); font-size: 14px; margin-bottom: 12px">Didn't receive a code?</p>
+                  <div style="display: flex; gap: 12px; justify-content: center;">
+                    <button class="btn btn-secondary" style="width: auto; padding: 10px 20px; font-size: 14px;">Resend Code</button>
+                    <button class="btn btn-secondary" style="width: auto; padding: 10px 20px; font-size: 14px;">Use Email Instead</button>
+                  </div>
+                </div>
+                
+                <div class="security-badges">
+                  <div class="security-badge">
+                    <span class="security-badge-icon">⏱️</span>
+                    Code expires in 5:00
+                  </div>
+                  <div class="security-badge">
+                    <span class="security-badge-icon">🔐</span>
+                    Encrypted Connection
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 3: ROLE PERMISSIONS OVERVIEW -->
+      <div class="page-section">
+        <div class="page-title">
+          <h1>👥 Role-Based Access Control</h1>
+          <p>Different permissions for each user type</p>
+        </div>
+        <div style="padding: 0">
+          <div class="login-container">
+            <div class="login-brand">
+              <div class="brand-icon">🎯</div>
+              <h1 class="brand-title">Portal Permissions</h1>
+              <p class="brand-subtitle">Each role has specific capabilities designed to streamline the real estate transaction process while maintaining security.</p>
+            </div>
+            <div class="login-form-container">
+              <div class="login-form-box">
+                <div class="form-header">
+                  <h2>Attorney Portal Access</h2>
+                  <p>Review and verify transaction details</p>
+                </div>
+                
+                <div class="alert-banner">
+                  <span class="alert-icon">⚖️</span>
+                  <div class="alert-content">
+                    <div class="alert-title">Closing & Divorce Attorney Access</div>
+                    <div class="alert-text">You can view client transactions, verify amounts, and handle asset splitting for divorce cases.</div>
+                  </div>
+                </div>
+                
+                <div class="role-permissions">
+                  <div class="permission-title">What You Can Do:</div>
+                  <div class="permission-list">
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      View all client real estate transactions
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Review and verify dollar amounts
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Verify closing details and dates
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Handle asset/money splitting (divorce cases)
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Access purchase & sales agreements
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Communicate with mortgage lenders and agents
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="role-permissions" style="margin-top: 16px;">
+                  <div class="permission-title">Restrictions:</div>
+                  <div class="permission-list">
+                    <div class="permission-item" style="color: var(--error-red);">
+                      <span style="color: var(--error-red);">✗</span>
+                      Cannot upload mortgage applications
+                    </div>
+                    <div class="permission-item" style="color: var(--error-red);">
+                      <span style="color: var(--error-red);">✗</span>
+                      Cannot modify client insurance information
+                    </div>
+                    <div class="permission-item" style="color: var(--error-red);">
+                      <span style="color: var(--error-red);">✗</span>
+                      Cannot access other attorneys' cases
+                    </div>
+                  </div>
+                </div>
+                
+                <button class="btn btn-primary" style="margin-top: 24px;">Access Attorney Portal</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 4: CPA PORTAL ACCESS -->
+      <div class="page-section">
+        <div class="page-title">
+          <h1>💼 CPA Portal</h1>
+          <p>Access client real estate transaction information</p>
+        </div>
+        <div style="padding: 0">
+          <div class="login-container">
+            <div class="login-brand">
+              <div class="brand-icon">📊</div>
+              <h1 class="brand-title">Financial Overview</h1>
+              <p class="brand-subtitle">CPAs can access comprehensive transaction data for tax reporting and financial planning purposes.</p>
+            </div>
+            <div class="login-form-container">
+              <div class="login-form-box">
+                <div class="form-header">
+                  <h2>CPA Portal Access</h2>
+                  <p>View client transaction data for tax purposes</p>
+                </div>
+                
+                <div class="alert-banner">
+                  <span class="alert-icon">💼</span>
+                  <div class="alert-content">
+                    <div class="alert-title">Certified Public Accountant Access</div>
+                    <div class="alert-text">Access financial information for your authorized clients' real estate transactions.</div>
+                  </div>
+                </div>
+                
+                <div class="role-permissions">
+                  <div class="permission-title">What You Can Do:</div>
+                  <div class="permission-list">
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      View client real estate transaction details
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Access purchase prices and closing costs
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Download transaction documents for records
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Export data for tax preparation software
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      View mortgage and financing information
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Access historical transaction data
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="role-permissions" style="margin-top: 16px;">
+                  <div class="permission-title">Restrictions:</div>
+                  <div class="permission-list">
+                    <div class="permission-item" style="color: var(--error-red);">
+                      <span style="color: var(--error-red);">✗</span>
+                      Cannot modify transaction details
+                    </div>
+                    <div class="permission-item" style="color: var(--error-red);">
+                      <span style="color: var(--error-red);">✗</span>
+                      Cannot upload or delete documents
+                    </div>
+                    <div class="permission-item" style="color: var(--error-red);">
+                      <span style="color: var(--error-red);">✗</span>
+                      Read-only access to client data
+                    </div>
+                  </div>
+                </div>
+                
+                <button class="btn btn-primary" style="margin-top: 24px;">Access CPA Portal</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 5: AGENT PORTAL -->
+      <div class="page-section">
+        <div class="page-title">
+          <h1>🏡 Agent Portal</h1>
+          <p>Real Estate Agents & Mortgage Lenders</p>
+        </div>
+        <div style="padding: 0">
+          <div class="login-container">
+            <div class="login-brand">
+              <div class="brand-icon">🤝</div>
+              <h1 class="brand-title">Professional Portal</h1>
+              <p class="brand-subtitle">Upload agreements, share information with title companies, and manage your client transactions.</p>
+            </div>
+            <div class="login-form-container">
+              <div class="login-form-box">
+                <div class="form-header">
+                  <h2>Agent Portal Access</h2>
+                  <p>Select your professional role</p>
+                </div>
+                
+                <div class="role-grid" style="margin-bottom: 24px;">
+                  <div class="role-card selected">
+                    <div class="role-card-header">
+                      <span class="role-icon">🏡</span>
+                      <span class="role-name">Real Estate Agent</span>
+                    </div>
+                    <p class="role-description">Upload purchase & sales agreements, manage listings</p>
+                  </div>
+                  
+                  <div class="role-card">
+                    <div class="role-card-header">
+                      <span class="role-icon">🏦</span>
+                      <span class="role-name">Mortgage Lender</span>
+                    </div>
+                    <p class="role-description">Share mortgage info with title company</p>
+                  </div>
+                </div>
+                
+                <div class="role-permissions">
+                  <div class="permission-title">Real Estate Agent Permissions:</div>
+                  <div class="permission-list">
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Upload purchase and sales agreements
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Manage client property listings
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Share documents with attorneys and lenders
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Track transaction progress
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="role-permissions" style="margin-top: 16px;">
+                  <div class="permission-title">Mortgage Lender Permissions:</div>
+                  <div class="permission-list">
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Share mortgage information with title company
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Receive mortgage applications from clients
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Upload pre-approval letters
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Import/sync mortgage data into portal
+                    </div>
+                  </div>
+                </div>
+                
+                <button class="btn btn-primary" style="margin-top: 24px;">Access Agent Portal</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 6: ADMIN PORTAL -->
+      <div class="page-section">
+        <div class="page-title">
+          <h1>⚙️ Admin Portal</h1>
+          <p>System Administration & Management</p>
+        </div>
+        <div style="padding: 0">
+          <div class="login-container">
+            <div class="login-brand">
+              <div class="brand-icon">🔧</div>
+              <h1 class="brand-title">Admin Control Center</h1>
+              <p class="brand-subtitle">Manage all users, service partners, and oversee the entire platform ecosystem with comprehensive administrative controls.</p>
+              
+              <div class="brand-features">
+                <div class="feature-item">
+                  <div class="feature-icon">👥</div>
+                  <div class="feature-text">
+                    <div class="feature-title">User Management</div>
+                    <div class="feature-description">Control access for all portal types</div>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">🤝</div>
+                  <div class="feature-text">
+                    <div class="feature-title">Partner Network</div>
+                    <div class="feature-description">Manage service providers and professionals</div>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">📊</div>
+                  <div class="feature-text">
+                    <div class="feature-title">Analytics & Reports</div>
+                    <div class="feature-description">Monitor platform performance and activity</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="login-form-container">
+              <div class="login-form-box">
+                <div class="form-header">
+                  <h2>Admin Portal Access</h2>
+                  <p>Secure administrator authentication required</p>
+                </div>
+                
+                <div class="alert-banner">
+                  <span class="alert-icon">🔐</span>
+                  <div class="alert-content">
+                    <div class="alert-title">Administrator Access Only</div>
+                    <div class="alert-text">This portal requires elevated permissions. All access attempts are logged and monitored.</div>
+                  </div>
+                </div>
+                
+                <form>
+                  <div class="form-group">
+                    <label class="form-label">Admin Email</label>
+                    <input type="email" class="form-input" placeholder="admin@burkesgroup.com" />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" placeholder="Enter your secure password" />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="form-label">Two-Factor Authentication Code</label>
+                    <input type="text" class="form-input" placeholder="000000" maxlength="6" style="letter-spacing: 0.3em; text-align: center; font-size: 18px; font-weight: 600;" />
+                    <p style="font-size: 12px; color: var(--neutral-500); margin-top: 6px;">Enter the 6-digit code from your authenticator app</p>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary">Sign In to Admin Portal</button>
+                </form>
+                
+                <div class="role-permissions" style="margin-top: 32px;">
+                  <div class="permission-title">Admin Capabilities:</div>
+                  <div class="permission-list">
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Manage Services Partners (CRUD operations)
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Manage Real Estate Agents & Mortgage Lenders
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Manage Attorney Network (Closing & Divorce)
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Manage CPA Access & Permissions
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Oversee all client transactions
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Document approval workflows
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      System configuration & settings
+                    </div>
+                    <div class="permission-item">
+                      <span class="permission-icon">✓</span>
+                      Analytics, reporting & audit logs
+                    </div>
+                  </div>
+                </div>
+                
+                <div style="margin-top: 24px; padding: 16px; background: var(--neutral-50); border-radius: 10px; border-left: 4px solid var(--primary-gold);">
+                  <p style="font-size: 13px; color: var(--neutral-600); line-height: 1.6;">
+                    <strong>🛡️ Security Notice:</strong> Admin access is protected by multi-factor authentication and all actions are logged. Contact IT support if you experience any access issues.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 7: PASSWORD RESET FLOW -->
+      <div class="page-section">
+        <div class="page-title">
+          <h1>🔑 Password Reset</h1>
+          <p>Secure password recovery process</p>
+        </div>
+        <div class="reset-flow-container">
+          <div class="reset-card">
+            <div class="reset-header">
+              <div class="reset-icon">🔒</div>
+              <h2 class="reset-title">Reset Your Password</h2>
+              <p class="reset-description">Enter your email address and we'll send you a link to reset your password.</p>
+            </div>
+            
+            <form>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" placeholder="your.email@example.com" />
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Send Reset Link</button>
+              
+              <div style="text-align: center; margin-top: 24px;">
+                <a href="#" style="color: var(--primary-navy); text-decoration: none; font-weight: 600; font-size: 14px;">← Back to Sign In</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 8: PASSWORD RESET SUCCESS -->
+      <div class="page-section">
+        <div class="page-title">
+          <h1>✅ Reset Link Sent</h1>
+          <p>Check your email to continue</p>
+        </div>
+        <div class="reset-flow-container">
+          <div class="reset-card">
+            <div class="success-message">
+              <div class="success-icon">✉️</div>
+              <p class="success-text"><strong>Check your email!</strong><br>We've sent a password reset link to your email address.</p>
+            </div>
+            
+            <div style="background: var(--neutral-50); border-radius: 10px; padding: 20px; margin-bottom: 24px;">
+              <p style="font-size: 14px; color: var(--neutral-600); line-height: 1.6;">
+                <strong>Next Steps:</strong><br>
+                1. Check your email inbox<br>
+                2. Click the reset link (valid for 1 hour)<br>
+                3. Create a new password<br>
+                4. Sign in with your new credentials
+              </p>
+            </div>
+            
+            <button class="btn btn-secondary">Resend Email</button>
+            
+            <div style="text-align: center; margin-top: 24px;">
+              <a href="#" style="color: var(--primary-navy); text-decoration: none; font-weight: 600; font-size: 14px;">← Back to Sign In</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

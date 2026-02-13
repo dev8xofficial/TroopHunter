@@ -1,0 +1,2578 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Burkes Group - Agent Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-navy: #1a3a52;
+        --primary-gold: #fdb913;
+        --accent-blue: #2d5a7b;
+        --success-green: #10b981;
+        --warning-orange: #f59e0b;
+        --error-red: #ef4444;
+        --neutral-50: #fafafa;
+        --neutral-100: #f5f5f5;
+        --neutral-200: #e5e5e5;
+        --neutral-300: #d4d4d4;
+        --neutral-400: #a3a3a3;
+        --neutral-500: #737373;
+        --neutral-600: #525252;
+        --neutral-700: #404040;
+        --neutral-800: #262626;
+        --neutral-900: #171717;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family: 'Manrope', sans-serif;
+        background: var(--neutral-50);
+        color: var(--neutral-800);
+        line-height: 1.6;
+      }
+
+      /* Navigation */
+      .top-nav {
+        background: white;
+        border-bottom: 1px solid var(--neutral-200);
+        padding: 0 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 72px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--primary-navy);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: var(--primary-gold);
+        font-weight: 800;
+      }
+
+      .logo-text {
+        font-family: 'Archivo', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--primary-navy);
+      }
+
+      .main-nav {
+        display: flex;
+        gap: 8px;
+      }
+
+      .nav-item {
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--neutral-600);
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .nav-item:hover {
+        background: var(--neutral-100);
+        color: var(--primary-navy);
+      }
+
+      .nav-item.active {
+        background: var(--primary-navy);
+        color: white;
+      }
+
+      .user-section {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .notification-bell {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--neutral-100);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s ease;
+        font-size: 18px;
+      }
+
+      .notification-bell:hover {
+        background: var(--neutral-200);
+      }
+
+      .notification-badge {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 8px;
+        height: 8px;
+        background: var(--error-red);
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+
+      .user-menu {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 16px;
+        border-radius: 10px;
+        background: var(--neutral-100);
+        cursor: pointer;
+      }
+
+      .user-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--primary-navy);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .user-name {
+        font-weight: 600;
+        font-size: 15px;
+        color: var(--neutral-800);
+      }
+
+      /* Main Container */
+      .container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 32px;
+      }
+
+      .page-hidden {
+        display: none;
+      }
+
+      .page-header {
+        margin-bottom: 32px;
+      }
+
+      .page-title {
+        font-family: 'Archivo', sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--primary-navy);
+        margin-bottom: 8px;
+      }
+
+      .page-subtitle {
+        font-size: 16px;
+        color: var(--neutral-600);
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-bottom: 32px;
+      }
+
+      .stat-card {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--shadow-md);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .stat-label {
+        font-size: 14px;
+        color: var(--neutral-600);
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .stat-value {
+        font-family: 'Archivo', sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--primary-navy);
+        margin-bottom: 4px;
+      }
+
+      .stat-description {
+        font-size: 13px;
+        color: var(--neutral-500);
+      }
+
+      .stat-icon {
+        font-size: 32px;
+        opacity: 0.8;
+      }
+
+      /* Content Layout */
+      .content-layout {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 24px;
+      }
+
+      @media (max-width: 1200px) {
+        .content-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Cards */
+      .card {
+        background: white;
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: var(--shadow-md);
+        margin-bottom: 24px;
+      }
+
+      .card-header {
+        margin-bottom: 24px;
+      }
+
+      .card-title {
+        font-family: 'Archivo', sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary-navy);
+        margin-bottom: 6px;
+      }
+
+      .card-subtitle {
+        font-size: 14px;
+        color: var(--neutral-600);
+      }
+
+      /* Buttons */
+      .btn-primary {
+        background: var(--primary-navy);
+        color: white;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-blue);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-secondary {
+        background: var(--neutral-100);
+        color: var(--neutral-700);
+        border: none;
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .btn-secondary:hover {
+        background: var(--neutral-200);
+      }
+
+      .btn-gold {
+        background: var(--primary-gold);
+        color: var(--primary-navy);
+        border: none;
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .btn-gold:hover {
+        background: #fca600;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      /* Tables */
+      .table-container {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        background: var(--neutral-100);
+      }
+
+      th {
+        padding: 16px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--neutral-700);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      td {
+        padding: 20px 16px;
+        border-bottom: 1px solid var(--neutral-200);
+        font-size: 15px;
+      }
+
+      tbody tr:hover {
+        background: var(--neutral-50);
+      }
+
+      .table-status {
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        display: inline-block;
+      }
+
+      .table-status.active {
+        background: #d1fae5;
+        color: #065f46;
+      }
+
+      .table-status.pending {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      .table-status.completed {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+
+      .table-action-btn {
+        padding: 8px 16px;
+        background: var(--primary-navy);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .table-action-btn:hover {
+        background: var(--accent-blue);
+      }
+
+      /* Upload Section */
+      .upload-section {
+        border: 3px dashed var(--neutral-300);
+        border-radius: 12px;
+        padding: 48px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .upload-section:hover {
+        border-color: var(--primary-navy);
+        background: var(--neutral-50);
+      }
+
+      .upload-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+
+      .upload-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--neutral-800);
+        margin-bottom: 8px;
+      }
+
+      .upload-description {
+        font-size: 14px;
+        color: var(--neutral-600);
+      }
+
+      /* Form Elements */
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--neutral-700);
+        font-size: 14px;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid var(--neutral-200);
+        border-radius: 8px;
+        font-size: 15px;
+        font-family: 'Manrope', sans-serif;
+        transition: all 0.2s ease;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: var(--primary-navy);
+      }
+
+      .form-textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      /* Activity List */
+      .activity-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .activity-card {
+        padding: 16px;
+        background: var(--neutral-50);
+        border-radius: 10px;
+        border-left: 4px solid var(--primary-navy);
+      }
+
+      .activity-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .activity-icon-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .activity-icon {
+        font-size: 20px;
+      }
+
+      .activity-title-text {
+        font-weight: 600;
+        color: var(--neutral-800);
+        font-size: 15px;
+      }
+
+      .activity-time {
+        font-size: 13px;
+        color: var(--neutral-500);
+      }
+
+      .activity-text {
+        font-size: 14px;
+        color: var(--neutral-600);
+        margin-left: 30px;
+      }
+
+      /* Quick Actions */
+      .quick-actions {
+        display: grid;
+        gap: 12px;
+      }
+
+      .action-btn {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px;
+        background: var(--neutral-50);
+        border: 2px solid var(--neutral-200);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-weight: 600;
+        color: var(--neutral-800);
+        font-size: 15px;
+      }
+
+      .action-btn:hover {
+        background: white;
+        border-color: var(--primary-navy);
+        transform: translateX(4px);
+      }
+
+      .action-icon {
+        font-size: 24px;
+      }
+
+      /* Document Grid */
+      .document-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+      }
+
+      .document-card {
+        background: white;
+        border: 2px solid var(--neutral-200);
+        border-radius: 12px;
+        padding: 20px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .document-card:hover {
+        border-color: var(--primary-navy);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+      }
+
+      .document-icon {
+        font-size: 48px;
+        margin-bottom: 12px;
+      }
+
+      .document-name {
+        font-weight: 600;
+        color: var(--neutral-800);
+        margin-bottom: 6px;
+        font-size: 15px;
+      }
+
+      .document-meta {
+        font-size: 13px;
+        color: var(--neutral-500);
+      }
+
+      /* Client Card */
+      .client-card {
+        background: white;
+        border: 2px solid var(--neutral-200);
+        border-radius: 12px;
+        padding: 24px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .client-card:hover {
+        border-color: var(--primary-navy);
+        box-shadow: var(--shadow-md);
+      }
+
+      .client-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .client-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--primary-navy);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 20px;
+      }
+
+      .client-info h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--neutral-900);
+        margin-bottom: 4px;
+      }
+
+      .client-info p {
+        font-size: 14px;
+        color: var(--neutral-600);
+      }
+
+      .client-details {
+        display: grid;
+        gap: 12px;
+      }
+
+      .client-detail-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+      }
+
+      .client-detail-label {
+        color: var(--neutral-600);
+      }
+
+      .client-detail-value {
+        font-weight: 600;
+        color: var(--neutral-800);
+      }
+
+      /* Message Thread */
+      .message-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .message-item {
+        padding: 20px;
+        background: white;
+        border: 2px solid var(--neutral-200);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .message-item:hover {
+        border-color: var(--primary-navy);
+        box-shadow: var(--shadow-md);
+      }
+
+      .message-item.unread {
+        background: #eff6ff;
+        border-color: var(--primary-navy);
+      }
+
+      .message-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .message-sender {
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--neutral-900);
+      }
+
+      .message-time {
+        font-size: 13px;
+        color: var(--neutral-500);
+      }
+
+      .message-subject {
+        font-weight: 600;
+        color: var(--neutral-800);
+        margin-bottom: 6px;
+        font-size: 15px;
+      }
+
+      .message-preview {
+        font-size: 14px;
+        color: var(--neutral-600);
+        line-height: 1.5;
+      }
+
+      /* Calendar */
+      .calendar-view {
+        background: white;
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .calendar-month {
+        font-family: 'Archivo', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary-navy);
+      }
+
+      .appointment-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .appointment-card {
+        padding: 20px;
+        background: var(--neutral-50);
+        border-left: 4px solid var(--primary-navy);
+        border-radius: 10px;
+      }
+
+      .appointment-time {
+        font-weight: 700;
+        color: var(--primary-navy);
+        margin-bottom: 8px;
+        font-size: 16px;
+      }
+
+      .appointment-title {
+        font-weight: 600;
+        color: var(--neutral-900);
+        margin-bottom: 6px;
+        font-size: 15px;
+      }
+
+      .appointment-details {
+        font-size: 14px;
+        color: var(--neutral-600);
+      }
+
+      /* Partner Card */
+      .partner-card {
+        background: white;
+        border: 2px solid var(--neutral-200);
+        border-radius: 12px;
+        padding: 24px;
+        transition: all 0.2s ease;
+      }
+
+      .partner-card:hover {
+        border-color: var(--primary-gold);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-2px);
+      }
+
+      .partner-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        background: var(--primary-gold);
+        color: var(--primary-navy);
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+      }
+
+      .partner-name {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--primary-navy);
+        margin-bottom: 8px;
+      }
+
+      .partner-category {
+        font-size: 14px;
+        color: var(--neutral-600);
+        margin-bottom: 12px;
+      }
+
+      .partner-rating {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .partner-stars {
+        color: var(--primary-gold);
+        font-size: 16px;
+      }
+
+      .partner-reviews {
+        font-size: 14px;
+        color: var(--neutral-600);
+      }
+
+      .partner-services {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .partner-service-tag {
+        padding: 4px 10px;
+        background: var(--neutral-100);
+        border-radius: 6px;
+        font-size: 13px;
+        color: var(--neutral-700);
+      }
+
+      .partner-contact {
+        display: flex;
+        gap: 12px;
+      }
+
+      .partner-contact-btn {
+        flex: 1;
+        padding: 10px;
+        border: 2px solid var(--primary-navy);
+        background: white;
+        color: var(--primary-navy);
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .partner-contact-btn:hover {
+        background: var(--primary-navy);
+        color: white;
+      }
+
+      /* Filter Section */
+      .filter-section {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .filter-label {
+        font-weight: 600;
+        color: var(--neutral-700);
+      }
+
+      .filter-select {
+        padding: 10px 16px;
+        border: 2px solid var(--neutral-200);
+        border-radius: 8px;
+        font-size: 14px;
+        min-width: 180px;
+      }
+
+      /* Search Bar */
+      .search-bar {
+        position: relative;
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 16px 12px 48px;
+        border: 2px solid var(--neutral-200);
+        border-radius: 10px;
+        font-size: 15px;
+        transition: all 0.2s ease;
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: var(--primary-navy);
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+        color: var(--neutral-400);
+      }
+
+      /* Transaction Detail Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 800px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: var(--shadow-xl);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .modal-title {
+        font-family: 'Archivo', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--primary-navy);
+      }
+
+      .modal-close {
+        font-size: 32px;
+        cursor: pointer;
+        color: var(--neutral-400);
+        line-height: 1;
+      }
+
+      .modal-close:hover {
+        color: var(--neutral-800);
+      }
+
+      /* Progress Bar */
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: var(--neutral-200);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 8px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--success-green), var(--primary-navy));
+        transition: width 0.3s ease;
+      }
+
+      .progress-label {
+        font-size: 13px;
+        color: var(--neutral-600);
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="top-nav">
+      <div class="logo-section">
+        <div class="logo-icon">B</div>
+        <div class="logo-text">The Burkes Group</div>
+      </div>
+
+      <div class="main-nav">
+        <a class="nav-item active" onclick="showPage('dashboard')">Dashboard</a>
+        <a class="nav-item" onclick="showPage('transactions')">My Transactions</a>
+        <a class="nav-item" onclick="showPage('documents')">Documents</a>
+        <a class="nav-item" onclick="showPage('clients')">Clients</a>
+        <a class="nav-item" onclick="showPage('messages')">Messages</a>
+        <a class="nav-item" onclick="showPage('calendar')">Calendar</a>
+        <a class="nav-item" onclick="showPage('partners')">Partner Referrals</a>
+        <a class="nav-item" onclick="showPage('reports')">Reports</a>
+      </div>
+
+      <div class="user-section">
+        <div class="notification-bell">
+          🔔
+          <div class="notification-badge"></div>
+        </div>
+        <div class="user-menu">
+          <div class="user-avatar">SA</div>
+          <div class="user-name">Sarah Anderson</div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- DASHBOARD PAGE -->
+      <div id="dashboard-page" class="page">
+        <div class="page-header">
+          <h1 class="page-title">Dashboard</h1>
+          <p class="page-subtitle">Welcome back, Sarah! Here's your overview</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Active Transactions</div>
+                <div class="stat-value">8</div>
+                <div class="stat-description">2 under contract</div>
+              </div>
+              <div class="stat-icon">🏠</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Pending Offers</div>
+                <div class="stat-value">3</div>
+                <div class="stat-description">Awaiting response</div>
+              </div>
+              <div class="stat-icon">📝</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">This Month Sales</div>
+                <div class="stat-value">$1.2M</div>
+                <div class="stat-description">4 properties sold</div>
+              </div>
+              <div class="stat-icon">💰</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Commission Earned</div>
+                <div class="stat-value">$36K</div>
+                <div class="stat-description">This month</div>
+              </div>
+              <div class="stat-icon">💵</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-layout">
+          <div>
+            <!-- Upload Purchase Agreement -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Upload Purchase & Sales Agreement</h2>
+                <p class="card-subtitle">Share agreements with title company and attorney</p>
+              </div>
+              <div class="upload-section">
+                <div class="upload-icon">📤</div>
+                <div class="upload-title">Click to Upload Agreement</div>
+                <p class="upload-description">Drag and drop or click to select PDF, DOC, or DOCX files</p>
+              </div>
+              <div style="margin-top: 24px">
+                <label class="form-label">Select Transaction</label>
+                <select class="form-select">
+                  <option>123 Main Street - Smith Purchase</option>
+                  <option>456 Oak Avenue - Johnson Sale</option>
+                  <option>789 Pine Road - Williams Purchase</option>
+                </select>
+                <button class="btn-primary" style="width: 100%; margin-top: 16px">Upload Agreement</button>
+              </div>
+            </div>
+
+            <!-- Active Transactions -->
+            <div class="table-container">
+              <div class="card-header" style="padding: 24px">
+                <h2 class="card-title">Your Active Transactions</h2>
+                <p class="card-subtitle">Manage your client real estate deals</p>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Client Name</th>
+                    <th>Property</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>John Smith</strong></td>
+                    <td>123 Main Street</td>
+                    <td>Purchase</td>
+                    <td>$485,000</td>
+                    <td><span class="table-status active">Under Contract</span></td>
+                    <td><button class="table-action-btn">Manage</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sarah Williams</strong></td>
+                    <td>789 Pine Road</td>
+                    <td>Sale</td>
+                    <td>$375,000</td>
+                    <td><span class="table-status pending">Pending Offer</span></td>
+                    <td><button class="table-action-btn">Manage</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Michael Brown</strong></td>
+                    <td>321 Elm Street</td>
+                    <td>Purchase</td>
+                    <td>$520,000</td>
+                    <td><span class="table-status completed">Closed</span></td>
+                    <td><button class="table-action-btn">View</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Recent Activity</h2>
+              </div>
+              <div class="activity-list">
+                <div class="activity-card">
+                  <div class="activity-header-row">
+                    <div class="activity-icon-title">
+                      <span class="activity-icon">✅</span>
+                      <span class="activity-title-text">Offer Accepted</span>
+                    </div>
+                    <span class="activity-time">2h ago</span>
+                  </div>
+                  <p class="activity-text">123 Main Street - Smith offer accepted</p>
+                </div>
+
+                <div class="activity-card">
+                  <div class="activity-header-row">
+                    <div class="activity-icon-title">
+                      <span class="activity-icon">📄</span>
+                      <span class="activity-title-text">Agreement Uploaded</span>
+                    </div>
+                    <span class="activity-time">5h ago</span>
+                  </div>
+                  <p class="activity-text">Purchase agreement for Williams transaction</p>
+                </div>
+
+                <div class="activity-card">
+                  <div class="activity-header-row">
+                    <div class="activity-icon-title">
+                      <span class="activity-icon">🏡</span>
+                      <span class="activity-title-text">New Listing</span>
+                    </div>
+                    <span class="activity-time">1d ago</span>
+                  </div>
+                  <p class="activity-text">456 Oak Avenue listed at $425,000</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Quick Actions</h2>
+              </div>
+              <div class="quick-actions">
+                <button class="action-btn">
+                  <span class="action-icon">📤</span>
+                  Upload Agreement
+                </button>
+                <button class="action-btn">
+                  <span class="action-icon">🏡</span>
+                  Add New Listing
+                </button>
+                <button class="action-btn">
+                  <span class="action-icon">📝</span>
+                  Create Offer
+                </button>
+                <button class="action-btn">
+                  <span class="action-icon">💬</span>
+                  Message Clients
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRANSACTIONS PAGE -->
+      <div id="transactions-page" class="page page-hidden">
+        <div class="page-header">
+          <h1 class="page-title">My Transactions</h1>
+          <p class="page-subtitle">View and manage all your real estate transactions</p>
+        </div>
+
+        <div class="filter-section">
+          <span class="filter-label">Filter by:</span>
+          <select class="filter-select">
+            <option>All Transactions</option>
+            <option>Active</option>
+            <option>Under Contract</option>
+            <option>Pending</option>
+            <option>Closed</option>
+          </select>
+          <select class="filter-select">
+            <option>All Types</option>
+            <option>Purchase</option>
+            <option>Sale</option>
+          </select>
+          <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search transactions..." />
+          </div>
+          <button class="btn-primary">+ New Transaction</button>
+        </div>
+
+        <!-- Inside My Transactions page, above the table-container -->
+        <div id="new-transaction-card" class="card page-hidden">
+          <div class="card-header">
+            <h2 class="card-title">New Transaction</h2>
+            <p class="card-subtitle">Create a new real estate transaction and link it to a client.</p>
+          </div>
+          <form id="new-transaction-form" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+            <div class="form-group">
+              <label class="form-label">Client</label>
+              <select class="form-select" name="clientId" id="transaction-client-select" required>
+                <option value="">Select client</option>
+                <!-- dynamically populated with clients (John Smith, Sarah Williams, etc.) -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Transaction Type</label>
+              <select class="form-select" name="type" required>
+                <option value="purchase">Purchase</option>
+                <option value="sale">Sale</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1">
+              <label class="form-label">Property Address</label>
+              <input type="text" class="form-input" name="address" placeholder="123 Main Street, Chicago, IL" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Price / Contract Amount</label>
+              <input type="number" class="form-input" name="price" placeholder="485000" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Current Status</label>
+              <select class="form-select" name="status" required>
+                <option value="active-listing">Active Listing</option>
+                <option value="pending-offer">Pending Offer</option>
+                <option value="under-contract">Under Contract</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Expected Closing Date</label>
+              <input type="date" class="form-input" name="closingDate" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mortgage Lender (optional)</label>
+              <input type="text" class="form-input" name="lender" placeholder="First National Bank" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Attorney (optional)</label>
+              <input type="text" class="form-input" name="attorney" placeholder="Michael Johnson, Esq." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Title / Insurance Notes</label>
+              <input type="text" class="form-input" name="titleNotes" placeholder="Title company, insurance needs, etc." />
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1">
+              <label class="form-label">Internal Notes</label>
+              <textarea class="form-textarea" name="notes" placeholder="Key deal terms, contingencies, timelines..."></textarea>
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1; display: flex; gap: 12px; justify-content: flex-end">
+              <button type="button" class="btn-secondary" onclick="toggleNewTransaction(false)">Cancel</button>
+              <button type="submit" class="btn-primary">Create Transaction</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Transaction ID</th>
+                <th>Client Name</th>
+                <th>Property Address</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Progress</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>#TXN-2024-001</strong></td>
+                <td>John Smith</td>
+                <td>123 Main Street, Chicago, IL</td>
+                <td>Purchase</td>
+                <td>$485,000</td>
+                <td><span class="table-status active">Under Contract</span></td>
+                <td>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 65%"></div>
+                  </div>
+                  <div class="progress-label">65%</div>
+                </td>
+                <td><button class="table-action-btn">View Details</button></td>
+              </tr>
+              <tr>
+                <td><strong>#TXN-2024-002</strong></td>
+                <td>Sarah Williams</td>
+                <td>789 Pine Road, Evanston, IL</td>
+                <td>Sale</td>
+                <td>$375,000</td>
+                <td><span class="table-status pending">Pending Offer</span></td>
+                <td>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 40%"></div>
+                  </div>
+                  <div class="progress-label">40%</div>
+                </td>
+                <td><button class="table-action-btn">View Details</button></td>
+              </tr>
+              <tr>
+                <td><strong>#TXN-2024-003</strong></td>
+                <td>Michael Brown</td>
+                <td>321 Elm Street, Oak Park, IL</td>
+                <td>Purchase</td>
+                <td>$520,000</td>
+                <td><span class="table-status completed">Closed</span></td>
+                <td>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                  </div>
+                  <div class="progress-label">100%</div>
+                </td>
+                <td><button class="table-action-btn">View Details</button></td>
+              </tr>
+              <tr>
+                <td><strong>#TXN-2024-004</strong></td>
+                <td>Emily Davis</td>
+                <td>555 Lake Shore Drive, Chicago, IL</td>
+                <td>Purchase</td>
+                <td>$725,000</td>
+                <td><span class="table-status active">Under Contract</span></td>
+                <td>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 55%"></div>
+                  </div>
+                  <div class="progress-label">55%</div>
+                </td>
+                <td><button class="table-action-btn">View Details</button></td>
+              </tr>
+              <tr>
+                <td><strong>#TXN-2024-005</strong></td>
+                <td>David Martinez</td>
+                <td>890 Maple Avenue, Naperville, IL</td>
+                <td>Sale</td>
+                <td>$425,000</td>
+                <td><span class="table-status active">Active Listing</span></td>
+                <td>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 30%"></div>
+                  </div>
+                  <div class="progress-label">30%</div>
+                </td>
+                <td><button class="table-action-btn">View Details</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- DOCUMENTS PAGE -->
+      <div id="documents-page" class="page page-hidden">
+        <div class="page-header">
+          <h1 class="page-title">Documents</h1>
+          <p class="page-subtitle">Manage all transaction documents</p>
+        </div>
+
+        <div class="filter-section">
+          <span class="filter-label">Filter by:</span>
+          <select class="filter-select">
+            <option>All Documents</option>
+            <option>Purchase Agreements</option>
+            <option>Mortgage Documents</option>
+            <option>Insurance</option>
+            <option>Legal Documents</option>
+          </select>
+          <select class="filter-select">
+            <option>All Transactions</option>
+            <option>123 Main Street</option>
+            <option>789 Pine Road</option>
+            <option>321 Elm Street</option>
+          </select>
+          <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search documents..." />
+          </div>
+          <button class="btn-primary">+ Upload Document</button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Upload New Document</h2>
+            <p class="card-subtitle">Add documents to a transaction</p>
+          </div>
+          <div class="upload-section">
+            <div class="upload-icon">📁</div>
+            <div class="upload-title">Drag and Drop Files Here</div>
+            <p class="upload-description">or click to browse - Supports PDF, DOC, DOCX, XLS, XLSX</p>
+          </div>
+          <div style="margin-top: 24px">
+            <div class="form-group">
+              <label class="form-label">Document Type</label>
+              <select class="form-select">
+                <option>Purchase & Sales Agreement</option>
+                <option>Mortgage Application</option>
+                <option>Insurance Policy</option>
+                <option>Inspection Report</option>
+                <option>Title Documents</option>
+                <option>Closing Documents</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Assign to Transaction</label>
+              <select class="form-select">
+                <option>123 Main Street - Smith Purchase</option>
+                <option>789 Pine Road - Williams Sale</option>
+                <option>321 Elm Street - Brown Purchase</option>
+              </select>
+            </div>
+            <button class="btn-primary" style="width: 100%">Upload Document</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Recent Documents</h2>
+          </div>
+          <div class="document-grid">
+            <div class="document-card">
+              <div class="document-icon">📄</div>
+              <div class="document-name">Purchase_Agreement_Smith.pdf</div>
+              <div class="document-meta">123 Main Street • Feb 10, 2026</div>
+            </div>
+            <div class="document-card">
+              <div class="document-icon">📊</div>
+              <div class="document-name">Mortgage_Application_Williams.pdf</div>
+              <div class="document-meta">789 Pine Road • Feb 9, 2026</div>
+            </div>
+            <div class="document-card">
+              <div class="document-icon">🏠</div>
+              <div class="document-name">Home_Insurance_Brown.pdf</div>
+              <div class="document-meta">321 Elm Street • Feb 8, 2026</div>
+            </div>
+            <div class="document-card">
+              <div class="document-icon">📋</div>
+              <div class="document-name">Inspection_Report_Davis.pdf</div>
+              <div class="document-meta">555 Lake Shore • Feb 7, 2026</div>
+            </div>
+            <div class="document-card">
+              <div class="document-icon">📝</div>
+              <div class="document-name">Closing_Disclosure_Martinez.pdf</div>
+              <div class="document-meta">890 Maple Ave • Feb 6, 2026</div>
+            </div>
+            <div class="document-card">
+              <div class="document-icon">📑</div>
+              <div class="document-name">Title_Insurance_Smith.pdf</div>
+              <div class="document-meta">123 Main Street • Feb 5, 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLIENTS PAGE -->
+      <div id="clients-page" class="page page-hidden">
+        <div class="page-header">
+          <h1 class="page-title">My Clients</h1>
+          <p class="page-subtitle">Manage your client relationships</p>
+        </div>
+
+        <div class="filter-section">
+          <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search clients..." />
+          </div>
+          <button class="btn-primary">+ Add New Client</button>
+        </div>
+
+        <!-- Add this inside the Clients page, above the client cards grid -->
+        <div id="add-client-card" class="card page-hidden">
+          <div class="card-header">
+            <h2 class="card-title">Add New Client</h2>
+            <p class="card-subtitle">Create a new client profile to associate transactions and documents.</p>
+          </div>
+          <form id="add-client-form" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+            <div class="form-group">
+              <label class="form-label">Client Type</label>
+              <select class="form-select" name="clientType" required>
+                <option value="buyer">Buyer</option>
+                <option value="seller">Seller</option>
+                <option value="both">Buyer & Seller</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Preferred Communication</label>
+              <select class="form-select" name="preferredComm">
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+                <option value="sms">Text Message</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-input" name="firstName" placeholder="John" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input type="text" class="form-input" name="lastName" placeholder="Smith" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" name="email" placeholder="name@example.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-input" name="phone" placeholder="(555) 123-4567" required />
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1">
+              <label class="form-label">Current Situation / Notes</label>
+              <textarea class="form-textarea" name="notes" placeholder="e.g. First-time buyer looking in Lincoln Park, pre-approved at $500K..."></textarea>
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1; display: flex; gap: 12px; justify-content: flex-end">
+              <button type="button" class="btn-secondary" onclick="toggleAddClient(false)">Cancel</button>
+              <button type="submit" class="btn-primary">Save Client & Continue</button>
+            </div>
+          </form>
+        </div>
+
+        <div style="display: grid; gap: 24px">
+          <div class="client-card">
+            <div class="client-header">
+              <div class="client-avatar">JS</div>
+              <div class="client-info">
+                <h3>John Smith</h3>
+                <p>john.smith@email.com • (555) 123-4567</p>
+              </div>
+            </div>
+            <div class="client-details">
+              <div class="client-detail-row">
+                <span class="client-detail-label">Property:</span>
+                <span class="client-detail-value">123 Main Street</span>
+              </div>
+              <div class="client-detail-row">
+                <span class="client-detail-label">Transaction Type:</span>
+                <span class="client-detail-value">Purchase</span>
+              </div>
+              <div class="client-detail-row">
+                <span class="client-detail-label">Status:</span>
+                <span class="table-status active">Under Contract</span>
+              </div>
+              <div class="client-detail-row">
+                <span class="client-detail-label">Property Value:</span>
+                <span class="client-detail-value">$485,000</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; margin-top: 20px">
+              <button class="btn-primary" style="flex: 1">View Transaction</button>
+              <button class="btn-secondary">Send Message</button>
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-header">
+              <div class="client-avatar">SW</div>
+              <div class="client-info">
+                <h3>Sarah Williams</h3>
+                <p>sarah.williams@email.com • (555) 234-5678</p>
+              </div>
+            </div>
+            <div class="client-details">
+              <div class="client-detail-row">
+                <span class="client-detail-label">Property:</span>
+                <span class="client-detail-value">789 Pine Road</span>
+              </div>
+              <div class="client-detail-row">
+                <span class="client-detail-label">Transaction Type:</span>
+                <span class="client-detail-value">Sale</span>
+              </div>
+              <div class="client-detail-row">
+                <span class="client-detail-label">Status:</span>
+                <span class="table-status pending">Pending Offer</span>
+              </div>
+              <div class="client-detail-row">
+                <span class="client-detail-label">Property Value:</span>
+                <span class="client-detail-value">$375,000</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; margin-top: 20px">
+              <button class="btn-primary" style="flex: 1">View Transaction</button>
+              <button class="btn-secondary">Send Message</button>
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-header">
+              <div class="client-avatar">MB</div>
+              <div class="client-info">
+                <h3>Michael Brown</h3>
+                <p>michael.brown@email.com • (555) 345-6789</p>
+              </div>
+            </div>
+            <div class="client-details">
+              <div class="client-detail-row">
+                <span class="client-detail-label">Property:</span>
+                <span class="client-detail-value">321 Elm Street</span>
+              </div>
+              <div class="client-detail-row">
+                <span class="client-detail-label">Transaction Type:</span>
+                <span class="client-detail-value">Purchase</span>
+              </div>
+              <div class="client-detail-row">
+                <span class="client-detail-label">Status:</span>
+                <span class="table-status completed">Closed</span>
+              </div>
+              <div class="client-detail-row">
+                <span class="client-detail-label">Property Value:</span>
+                <span class="client-detail-value">$520,000</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; margin-top: 20px">
+              <button class="btn-primary" style="flex: 1">View Transaction</button>
+              <button class="btn-secondary">Send Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESSAGES PAGE -->
+      <div id="messages-page" class="page page-hidden">
+        <div class="page-header">
+          <h1 class="page-title">Messages</h1>
+          <p class="page-subtitle">Communicate with clients and team members</p>
+        </div>
+
+        <div class="filter-section">
+          <select class="filter-select">
+            <option>All Messages</option>
+            <option>Unread</option>
+            <option>From Clients</option>
+            <option>From Attorneys</option>
+            <option>From Mortgage Lenders</option>
+          </select>
+          <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search messages..." />
+          </div>
+          <button class="btn-primary">+ New Message</button>
+        </div>
+
+        <div class="content-layout">
+          <div>
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Inbox</h2>
+              </div>
+              <div class="message-list">
+                <div class="message-item unread">
+                  <div class="message-header">
+                    <span class="message-sender">John Smith</span>
+                    <span class="message-time">10 minutes ago</span>
+                  </div>
+                  <div class="message-subject">Re: Inspection Results</div>
+                  <div class="message-preview">Hi Sarah, I reviewed the inspection report and have some questions about the HVAC system. Can we discuss this today?</div>
+                </div>
+
+                <div class="message-item unread">
+                  <div class="message-header">
+                    <span class="message-sender">Attorney Michael Johnson</span>
+                    <span class="message-time">2 hours ago</span>
+                  </div>
+                  <div class="message-subject">Purchase Agreement Review</div>
+                  <div class="message-preview">The purchase agreement for 123 Main Street has been reviewed. I found a few minor items that need clarification...</div>
+                </div>
+
+                <div class="message-item">
+                  <div class="message-header">
+                    <span class="message-sender">Sarah Williams</span>
+                    <span class="message-time">5 hours ago</span>
+                  </div>
+                  <div class="message-subject">Offer Update</div>
+                  <div class="message-preview">Thank you for the update on the offer. I'd like to proceed with the counteroffer we discussed yesterday.</div>
+                </div>
+
+                <div class="message-item">
+                  <div class="message-header">
+                    <span class="message-sender">Mortgage Lender - First National</span>
+                    <span class="message-time">Yesterday</span>
+                  </div>
+                  <div class="message-subject">Pre-approval Documentation</div>
+                  <div class="message-preview">We've received all necessary documentation and the pre-approval letter has been issued for your client Emily Davis...</div>
+                </div>
+
+                <div class="message-item">
+                  <div class="message-header">
+                    <span class="message-sender">Title Company</span>
+                    <span class="message-time">2 days ago</span>
+                  </div>
+                  <div class="message-subject">Title Search Complete</div>
+                  <div class="message-preview">The title search for 321 Elm Street has been completed. No issues found. Attached is the preliminary title report.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Compose New Message</h2>
+              </div>
+              <form style="display: flex; flex-direction: column; gap: 16px">
+                <div class="form-group">
+                  <label class="form-label">To</label>
+                  <select class="form-select">
+                    <option>Select Recipient</option>
+                    <optgroup label="Clients">
+                      <option>John Smith</option>
+                      <option>Sarah Williams</option>
+                      <option>Michael Brown</option>
+                    </optgroup>
+                    <optgroup label="Attorneys">
+                      <option>Michael Johnson - Attorney</option>
+                      <option>Jennifer Lee - Attorney</option>
+                    </optgroup>
+                    <optgroup label="Mortgage Lenders">
+                      <option>First National Bank</option>
+                      <option>Premier Mortgage</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Subject</label>
+                  <input type="text" class="form-input" placeholder="Enter subject" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Message</label>
+                  <textarea class="form-textarea" placeholder="Type your message..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CALENDAR PAGE -->
+      <div id="calendar-page" class="page page-hidden">
+        <div class="page-header">
+          <h1 class="page-title">Calendar & Appointments</h1>
+          <p class="page-subtitle">Manage your schedule and appointments</p>
+        </div>
+
+        <div class="content-layout">
+          <div>
+            <div class="calendar-view">
+              <div class="calendar-header">
+                <div class="calendar-month">February 2026</div>
+                <div style="display: flex; gap: 12px">
+                  <button class="btn-secondary">← Previous</button>
+                  <button class="btn-secondary">Next →</button>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 32px">
+                <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--primary-navy)">Today's Appointments</h3>
+                <div class="appointment-list">
+                  <div class="appointment-card">
+                    <div class="appointment-time">10:00 AM - 11:00 AM</div>
+                    <div class="appointment-title">Property Showing - 789 Pine Road</div>
+                    <div class="appointment-details">Client: Sarah Williams • Location: 789 Pine Road, Evanston, IL</div>
+                  </div>
+
+                  <div class="appointment-card">
+                    <div class="appointment-time">2:00 PM - 3:00 PM</div>
+                    <div class="appointment-title">Closing Meeting - 321 Elm Street</div>
+                    <div class="appointment-details">Client: Michael Brown • Attorney: Michael Johnson</div>
+                  </div>
+
+                  <div class="appointment-card">
+                    <div class="appointment-time">4:30 PM - 5:30 PM</div>
+                    <div class="appointment-title">Client Consultation - New Buyer</div>
+                    <div class="appointment-details">Prospective Client: Jennifer Adams • Phone Meeting</div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--primary-navy)">Upcoming This Week</h3>
+                <div class="appointment-list">
+                  <div class="appointment-card">
+                    <div class="appointment-time">Thu, Feb 13 - 11:00 AM</div>
+                    <div class="appointment-title">Home Inspection - 123 Main Street</div>
+                    <div class="appointment-details">Client: John Smith • Inspector: ABC Home Inspections</div>
+                  </div>
+
+                  <div class="appointment-card">
+                    <div class="appointment-time">Fri, Feb 14 - 3:00 PM</div>
+                    <div class="appointment-title">Mortgage Application Meeting</div>
+                    <div class="appointment-details">Client: Emily Davis • Lender: First National Bank</div>
+                  </div>
+
+                  <div class="appointment-card">
+                    <div class="appointment-time">Mon, Feb 17 - 10:00 AM</div>
+                    <div class="appointment-title">Final Walkthrough - 555 Lake Shore</div>
+                    <div class="appointment-details">Client: Emily Davis • Property: 555 Lake Shore Drive</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Schedule New Appointment</h2>
+              </div>
+              <form style="display: flex; flex-direction: column; gap: 16px">
+                <div class="form-group">
+                  <label class="form-label">Appointment Type</label>
+                  <select class="form-select">
+                    <option>Property Showing</option>
+                    <option>Client Consultation</option>
+                    <option>Closing Meeting</option>
+                    <option>Home Inspection</option>
+                    <option>Final Walkthrough</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Client</label>
+                  <select class="form-select">
+                    <option>John Smith</option>
+                    <option>Sarah Williams</option>
+                    <option>Michael Brown</option>
+                    <option>Emily Davis</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Date</label>
+                  <input type="date" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Time</label>
+                  <input type="time" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Location</label>
+                  <input type="text" class="form-input" placeholder="Enter location" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Notes</label>
+                  <textarea class="form-textarea" placeholder="Add notes or details..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Schedule Appointment</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTNER REFERRALS PAGE -->
+      <div id="partners-page" class="page page-hidden">
+        <div class="page-header">
+          <h1 class="page-title">Partner Referrals</h1>
+          <p class="page-subtitle">Find trusted service providers for your clients</p>
+        </div>
+
+        <div class="filter-section">
+          <span class="filter-label">Service Type:</span>
+          <select class="filter-select">
+            <option>All Services</option>
+            <option>Plumbing</option>
+            <option>Roofing</option>
+            <option>Electrical</option>
+            <option>Credit Repair</option>
+            <option>Home Inspection</option>
+            <option>Moving Services</option>
+          </select>
+          <div class="form-group" style="margin: 0">
+            <input type="text" class="form-input" placeholder="Enter zip code..." style="min-width: 200px" />
+          </div>
+          <button class="btn-primary">Search Partners</button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Recommended Partners - Chicago Area (60601)</h2>
+            <p class="card-subtitle">Trusted professionals for your client's needs</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px">
+            <div class="partner-card">
+              <div class="partner-badge">⭐ Featured Partner</div>
+              <div class="partner-name">Chicago Elite Plumbing</div>
+              <div class="partner-category">Plumbing Services</div>
+              <div class="partner-rating">
+                <div class="partner-stars">★★★★★</div>
+                <div class="partner-reviews">4.9 (127 reviews)</div>
+              </div>
+              <div class="partner-services">
+                <span class="partner-service-tag">Emergency Service</span>
+                <span class="partner-service-tag">Licensed & Insured</span>
+                <span class="partner-service-tag">24/7 Available</span>
+              </div>
+              <div class="partner-contact">
+                <button class="partner-contact-btn">📞 Call</button>
+                <button class="partner-contact-btn">✉️ Email</button>
+              </div>
+            </div>
+
+            <div class="partner-card">
+              <div class="partner-badge">⭐ Featured Partner</div>
+              <div class="partner-name">Apex Roofing Solutions</div>
+              <div class="partner-category">Roofing & Repair</div>
+              <div class="partner-rating">
+                <div class="partner-stars">★★★★★</div>
+                <div class="partner-reviews">4.8 (89 reviews)</div>
+              </div>
+              <div class="partner-services">
+                <span class="partner-service-tag">Free Estimates</span>
+                <span class="partner-service-tag">Warranty Included</span>
+                <span class="partner-service-tag">25 Years Experience</span>
+              </div>
+              <div class="partner-contact">
+                <button class="partner-contact-btn">📞 Call</button>
+                <button class="partner-contact-btn">✉️ Email</button>
+              </div>
+            </div>
+
+            <div class="partner-card">
+              <div class="partner-name">Bright Spark Electrical</div>
+              <div class="partner-category">Electrical Services</div>
+              <div class="partner-rating">
+                <div class="partner-stars">★★★★☆</div>
+                <div class="partner-reviews">4.7 (156 reviews)</div>
+              </div>
+              <div class="partner-services">
+                <span class="partner-service-tag">Licensed Electricians</span>
+                <span class="partner-service-tag">Residential & Commercial</span>
+                <span class="partner-service-tag">Same-Day Service</span>
+              </div>
+              <div class="partner-contact">
+                <button class="partner-contact-btn">📞 Call</button>
+                <button class="partner-contact-btn">✉️ Email</button>
+              </div>
+            </div>
+
+            <div class="partner-card">
+              <div class="partner-name">CreditFix Pro</div>
+              <div class="partner-category">Credit Repair Services</div>
+              <div class="partner-rating">
+                <div class="partner-stars">★★★★★</div>
+                <div class="partner-reviews">4.9 (203 reviews)</div>
+              </div>
+              <div class="partner-services">
+                <span class="partner-service-tag">Fast Results</span>
+                <span class="partner-service-tag">Money-Back Guarantee</span>
+                <span class="partner-service-tag">Certified Consultants</span>
+              </div>
+              <div class="partner-contact">
+                <button class="partner-contact-btn">📞 Call</button>
+                <button class="partner-contact-btn">✉️ Email</button>
+              </div>
+            </div>
+
+            <div class="partner-card">
+              <div class="partner-name">HomePro Inspection Services</div>
+              <div class="partner-category">Home Inspection</div>
+              <div class="partner-rating">
+                <div class="partner-stars">★★★★★</div>
+                <div class="partner-reviews">5.0 (74 reviews)</div>
+              </div>
+              <div class="partner-services">
+                <span class="partner-service-tag">Certified Inspectors</span>
+                <span class="partner-service-tag">Same-Day Reports</span>
+                <span class="partner-service-tag">Thermal Imaging</span>
+              </div>
+              <div class="partner-contact">
+                <button class="partner-contact-btn">📞 Call</button>
+                <button class="partner-contact-btn">✉️ Email</button>
+              </div>
+            </div>
+
+            <div class="partner-card">
+              <div class="partner-name">Swift Movers Chicago</div>
+              <div class="partner-category">Moving Services</div>
+              <div class="partner-rating">
+                <div class="partner-stars">★★★★☆</div>
+                <div class="partner-reviews">4.6 (112 reviews)</div>
+              </div>
+              <div class="partner-services">
+                <span class="partner-service-tag">Full Service Moving</span>
+                <span class="partner-service-tag">Packing Available</span>
+                <span class="partner-service-tag">Insured & Bonded</span>
+              </div>
+              <div class="partner-contact">
+                <button class="partner-contact-btn">📞 Call</button>
+                <button class="partner-contact-btn">✉️ Email</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Refer a Client to a Partner</h2>
+            <p class="card-subtitle">Help your clients connect with trusted service providers</p>
+          </div>
+          <form style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+            <div class="form-group">
+              <label class="form-label">Client Name</label>
+              <select class="form-select">
+                <option>John Smith</option>
+                <option>Sarah Williams</option>
+                <option>Emily Davis</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Service Needed</label>
+              <select class="form-select">
+                <option>Plumbing</option>
+                <option>Roofing</option>
+                <option>Electrical</option>
+                <option>Credit Repair</option>
+                <option>Home Inspection</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Partner to Refer</label>
+              <select class="form-select">
+                <option>Chicago Elite Plumbing</option>
+                <option>Apex Roofing Solutions</option>
+                <option>Bright Spark Electrical</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Property Address</label>
+              <input type="text" class="form-input" placeholder="Enter property address" />
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1">
+              <label class="form-label">Additional Notes</label>
+              <textarea class="form-textarea" placeholder="Any special requirements or details..."></textarea>
+            </div>
+            <button type="submit" class="btn-gold" style="grid-column: 1 / -1">Send Referral</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- REPORTS PAGE -->
+      <div id="reports-page" class="page page-hidden">
+        <div class="page-header">
+          <h1 class="page-title">Reports & Analytics</h1>
+          <p class="page-subtitle">Track your performance and business metrics</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Total Sales (YTD)</div>
+                <div class="stat-value">$5.2M</div>
+                <div class="stat-description">18 properties closed</div>
+              </div>
+              <div class="stat-icon">💰</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Total Commission</div>
+                <div class="stat-value">$156K</div>
+                <div class="stat-description">+23% from last year</div>
+              </div>
+              <div class="stat-icon">💵</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Avg. Days to Close</div>
+                <div class="stat-value">42</div>
+                <div class="stat-description">5 days faster than Q4</div>
+              </div>
+              <div class="stat-icon">📊</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Client Satisfaction</div>
+                <div class="stat-value">4.9</div>
+                <div class="stat-description">Based on 47 reviews</div>
+              </div>
+              <div class="stat-icon">⭐</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-layout">
+          <div>
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Monthly Sales Performance</h2>
+                <p class="card-subtitle">Sales volume by month</p>
+              </div>
+              <div style="padding: 40px; text-align: center; color: var(--neutral-500)">📈 Chart visualization would appear here</div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Transaction Pipeline</h2>
+                <p class="card-subtitle">Current status of active deals</p>
+              </div>
+              <div style="display: grid; gap: 16px">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 10px">
+                  <div>
+                    <div style="font-weight: 600; color: var(--neutral-800)">Initial Contact</div>
+                    <div style="font-size: 14px; color: var(--neutral-600)">Prospecting & Lead Generation</div>
+                  </div>
+                  <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy)">12</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 10px">
+                  <div>
+                    <div style="font-weight: 600; color: var(--neutral-800)">Property Search</div>
+                    <div style="font-size: 14px; color: var(--neutral-600)">Active house hunting</div>
+                  </div>
+                  <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy)">6</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 10px">
+                  <div>
+                    <div style="font-weight: 600; color: var(--neutral-800)">Offer Stage</div>
+                    <div style="font-size: 14px; color: var(--neutral-600)">Negotiations in progress</div>
+                  </div>
+                  <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy)">3</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 10px">
+                  <div>
+                    <div style="font-weight: 600; color: var(--neutral-800)">Under Contract</div>
+                    <div style="font-size: 14px; color: var(--neutral-600)">Due diligence & inspection</div>
+                  </div>
+                  <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy)">2</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--neutral-50); border-radius: 10px">
+                  <div>
+                    <div style="font-weight: 600; color: var(--neutral-800)">Closing Prep</div>
+                    <div style="font-size: 14px; color: var(--neutral-600)">Final documentation</div>
+                  </div>
+                  <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy)">4</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Quick Reports</h2>
+              </div>
+              <div class="quick-actions">
+                <button class="action-btn">
+                  <span class="action-icon">📄</span>
+                  Monthly Summary
+                </button>
+                <button class="action-btn">
+                  <span class="action-icon">📊</span>
+                  YTD Performance
+                </button>
+                <button class="action-btn">
+                  <span class="action-icon">💰</span>
+                  Commission Report
+                </button>
+                <button class="action-btn">
+                  <span class="action-icon">👥</span>
+                  Client List
+                </button>
+                <button class="action-btn">
+                  <span class="action-icon">🏠</span>
+                  Property Report
+                </button>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Top Performing Areas</h2>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 12px">
+                <div style="padding: 12px; background: var(--neutral-50); border-radius: 8px">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 8px">
+                    <span style="font-weight: 600">Chicago Loop</span>
+                    <span style="font-weight: 700; color: var(--primary-navy)">$1.8M</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div style="padding: 12px; background: var(--neutral-50); border-radius: 8px">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 8px">
+                    <span style="font-weight: 600">Lincoln Park</span>
+                    <span style="font-weight: 700; color: var(--primary-navy)">$1.2M</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%"></div>
+                  </div>
+                </div>
+                <div style="padding: 12px; background: var(--neutral-50); border-radius: 8px">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 8px">
+                    <span style="font-weight: 600">Oak Park</span>
+                    <span style="font-weight: 700; color: var(--primary-navy)">$950K</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 55%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="transaction-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h2 class="modal-title" id="txn-modal-title">Transaction Details</h2>
+            <p class="page-subtitle" id="txn-modal-subtitle"></p>
+          </div>
+          <span class="modal-close" onclick="closeTransactionModal()">&times;</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Status & Progress</label>
+          <div id="txn-modal-status"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Key Details</label>
+          <div id="txn-modal-details"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Documents</label>
+          <div id="txn-modal-docs">
+            <!-- list of docs for this transaction -->
+            <p style="font-size: 14px; color: var(--neutral-600)">No documents uploaded yet.</p>
+            <button class="btn-primary" onclick="goToDocumentsForCurrentTransaction()">Upload Document</button>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px">
+          <button class="btn-secondary" onclick="showPage('transactions')">View in My Transactions</button>
+          <button class="btn-primary" onclick="showPage('messages')">Message Client</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showPage(pageId) {
+        // Hide all pages
+        const pages = document.querySelectorAll('.page');
+        pages.forEach((page) => page.classList.add('page-hidden'));
+
+        // Show selected page
+        const selectedPage = document.getElementById(pageId + '-page');
+        if (selectedPage) {
+          selectedPage.classList.remove('page-hidden');
+        }
+
+        // Update active nav item
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach((item) => item.classList.remove('active'));
+        event.target.classList.add('active');
+      }
+
+      function toggleAddClient(show) {
+        const card = document.getElementById('add-client-card');
+        if (!card) return;
+        card.classList[show ? 'remove' : 'add']('page-hidden');
+      }
+
+      // attach in a script block
+      document.addEventListener('DOMContentLoaded', () => {
+        const addClientBtn = document.querySelector('#clients-page .btn-primary');
+        if (addClientBtn) {
+          addClientBtn.addEventListener('click', () => toggleAddClient(true));
+        }
+
+        const addClientForm = document.getElementById('add-client-form');
+        if (addClientForm) {
+          addClientForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // TODO: save client to backend
+            // After save: pre-select this client in New Transaction form
+            toggleAddClient(false);
+            showPage('transactions'); // go straight to New Transaction
+            openNewTransactionWithClient(/* newly created client id/name */);
+          });
+        }
+      });
+
+      function toggleNewTransaction(show) {
+        const card = document.getElementById('new-transaction-card');
+        if (!card) return;
+        card.classList[show ? 'remove' : 'add']('page-hidden');
+      }
+
+      function openNewTransactionWithClient(clientId) {
+        showPage('transactions');
+        toggleNewTransaction(true);
+        const clientSelect = document.getElementById('transaction-client-select');
+        if (clientSelect && clientId) {
+          clientSelect.value = clientId;
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const newTxnBtn = document.querySelector('#transactions-page .btn-primary');
+        if (newTxnBtn) {
+          newTxnBtn.addEventListener('click', () => toggleNewTransaction(true));
+        }
+
+        const newTxnForm = document.getElementById('new-transaction-form');
+        if (newTxnForm) {
+          newTxnForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // TODO: save transaction to backend
+            // After save: update Dashboard stats, Active Transactions table, Transactions table, and client card
+            toggleNewTransaction(false);
+            // Optionally: open the transaction detail modal
+          });
+        }
+      });
+    </script>
+
+    <script>
+      let currentTransactionContext = null;
+
+      function openTransactionModal(context) {
+        const modal = document.getElementById('transaction-modal');
+        if (!modal) return;
+
+        currentTransactionContext = context || null;
+
+        const titleEl = document.getElementById('txn-modal-title');
+        const subtitleEl = document.getElementById('txn-modal-subtitle');
+        const statusEl = document.getElementById('txn-modal-status');
+        const detailsEl = document.getElementById('txn-modal-details');
+
+        if (context) {
+          const client = context.client || '';
+          const property = context.propertyFull || context.property || '';
+          const type = context.type || '';
+          const price = context.price || '';
+          const statusText = context.statusText || '';
+          const statusClass = context.statusClass || '';
+          const progress = typeof context.progress === 'number' ? context.progress : null;
+
+          titleEl.textContent = property || 'Transaction Details';
+          subtitleEl.textContent = [client, type, price].filter(Boolean).join(' • ');
+
+          statusEl.innerHTML = `
+      <span class="table-status ${statusClass}">${statusText}</span>
+      ${
+        progress !== null
+          ? `
+        <div class="progress-bar" style="margin-top:12px;">
+          <div class="progress-fill" style="width:${progress}%"></div>
+        </div>
+        <div class="progress-label">${progress}% complete</div>
+      `
+          : ''
+      }
+    `;
+
+          detailsEl.innerHTML = `
+      <p><strong>Client:</strong> ${client || '-'}</p>
+      <p><strong>Property:</strong> ${property || '-'}</p>
+      <p><strong>Type:</strong> ${type || '-'}</p>
+      <p><strong>Price:</strong> ${price || '-'}</p>
+      ${context.id ? `<p><strong>Transaction ID:</strong> ${context.id}</p>` : ''}
+    `;
+        } else {
+          titleEl.textContent = 'Transaction Details';
+          subtitleEl.textContent = '';
+          statusEl.innerHTML = '';
+          detailsEl.innerHTML = '<p>No transaction selected.</p>';
+        }
+
+        modal.classList.add('active');
+      }
+
+      function closeTransactionModal() {
+        const modal = document.getElementById('transaction-modal');
+        if (modal) {
+          modal.classList.remove('active');
+        }
+      }
+
+      function goToDocumentsForCurrentTransaction() {
+        // Navigate to Documents page; you can later wire this to pre-select the transaction
+        showPage('documents');
+        // Example hook for later:
+        // if (currentTransactionContext && currentTransactionContext.property) { ... }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Dashboard "Your Active Transactions" table
+        document.querySelectorAll('#dashboard-page .table-container tbody tr').forEach((row) => {
+          const cells = row.querySelectorAll('td');
+          const btn = row.querySelector('.table-action-btn');
+          if (!btn) return;
+
+          btn.addEventListener('click', () => {
+            const statusSpan = row.querySelector('.table-status');
+            const statusText = statusSpan ? statusSpan.textContent.trim() : '';
+            let statusClass = '';
+            if (statusSpan) {
+              if (statusSpan.classList.contains('completed')) statusClass = 'completed';
+              else if (statusSpan.classList.contains('pending')) statusClass = 'pending';
+              else if (statusSpan.classList.contains('active')) statusClass = 'active';
+            }
+
+            openTransactionModal({
+              source: 'dashboard',
+              client: cells[0]?.innerText.trim(),
+              property: cells[1]?.innerText.trim(),
+              type: cells[2]?.innerText.trim(),
+              price: cells[3]?.innerText.trim(),
+              statusText,
+              statusClass,
+            });
+          });
+        });
+
+        // "My Transactions" table
+        document.querySelectorAll('#transactions-page .table-container tbody tr').forEach((row) => {
+          const cells = row.querySelectorAll('td');
+          const btn = row.querySelector('.table-action-btn');
+          if (!btn) return;
+
+          btn.addEventListener('click', () => {
+            const statusSpan = row.querySelector('.table-status');
+            const statusText = statusSpan ? statusSpan.textContent.trim() : '';
+            let statusClass = '';
+            if (statusSpan) {
+              if (statusSpan.classList.contains('completed')) statusClass = 'completed';
+              else if (statusSpan.classList.contains('pending')) statusClass = 'pending';
+              else if (statusSpan.classList.contains('active')) statusClass = 'active';
+            }
+
+            const progressLabel = row.querySelector('.progress-label');
+            const progress = progressLabel ? parseInt(progressLabel.textContent, 10) || null : null;
+
+            openTransactionModal({
+              source: 'transactions',
+              id: cells[0]?.innerText.trim(), // e.g. "#TXN-2024-001"
+              client: cells[1]?.innerText.trim(),
+              propertyFull: cells[2]?.innerText.trim(),
+              type: cells[3]?.innerText.trim(),
+              price: cells[4]?.innerText.trim(),
+              statusText,
+              statusClass,
+              progress,
+            });
+          });
+        });
+
+        // Clients page "View Transaction" buttons
+        document.querySelectorAll('#clients-page .client-card').forEach((card) => {
+          const viewBtn = card.querySelector('.btn-primary');
+          if (!viewBtn) return;
+
+          viewBtn.addEventListener('click', () => {
+            const nameEl = card.querySelector('.client-info h3');
+            const propertyEl = card.querySelector('.client-detail-value');
+            const statusSpan = card.querySelector('.table-status');
+
+            const client = nameEl ? nameEl.textContent.trim() : '';
+            const property = propertyEl ? propertyEl.textContent.trim() : '';
+            const statusText = statusSpan ? statusSpan.textContent.trim() : '';
+            let statusClass = '';
+            if (statusSpan) {
+              if (statusSpan.classList.contains('completed')) statusClass = 'completed';
+              else if (statusSpan.classList.contains('pending')) statusClass = 'pending';
+              else if (statusSpan.classList.contains('active')) statusClass = 'active';
+            }
+
+            openTransactionModal({
+              source: 'clients',
+              client,
+              property,
+              statusText,
+              statusClass,
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
