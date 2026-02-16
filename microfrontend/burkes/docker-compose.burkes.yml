@@ -1,0 +1,12 @@
+services:
+  burkes-prod:
+    container_name: burkes-prod
+    image: burkes-prod:latest
+    build:
+      context: ../../
+      dockerfile: microfrontend/burkes/Dockerfile
+      target: production
+    env_file:
+      - ./.env.production
+    ports:
+      - '3009:3009'

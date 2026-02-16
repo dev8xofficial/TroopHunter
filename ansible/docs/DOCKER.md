@@ -11,6 +11,7 @@ docker tag users-prod:latest 192.168.1.201:5000/users-prod:latest
 docker tag troophunter-prod:latest 192.168.1.201:5000/troophunter-prod:latest
 docker tag helloabdul-prod:latest 192.168.1.201:5000/helloabdul-prod:latest
 docker tag dev8x-prod:latest 192.168.1.201:5000/dev8x-prod:latest
+docker tag burkes-prod:latest 192.168.1.201:5000/burkes-prod:latest
 
 docker push 192.168.1.201:5000/main-prod:latest
 docker push 192.168.1.201:5000/auth-prod:latest
@@ -21,6 +22,7 @@ docker push 192.168.1.201:5000/users-prod:latest
 docker push 192.168.1.201:5000/troophunter-prod:latest
 docker push 192.168.1.201:5000/helloabdul-prod:latest
 docker push 192.168.1.201:5000/dev8x-prod:latest
+docker push 192.168.1.201:5000/burkes-prod:latest
 
 k8s-ctrlr@k8s-ctrlr:~$ sudo kubeadm config images pull --kubernetes-version=v1.33.4
 [config/images] Pulled registry.k8s.io/kube-apiserver:v1.33.4

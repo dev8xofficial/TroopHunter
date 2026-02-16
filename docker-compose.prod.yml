@@ -50,6 +50,11 @@ services:
   #     file: ./microfrontend/helloabdul/docker-compose.helloabdul.yml
   #     service: helloabdul-prod
 
+  burkes-prod:
+    extends:
+      file: ./microfrontend/burkes/docker-compose.burkes.yml
+      service: burkes-prod
+
 volumes:
   pgadmin-data:
 
