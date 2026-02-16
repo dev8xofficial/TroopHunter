@@ -884,7 +884,7 @@
         <a class="nav-item" onclick="showPage('partners')">Partners</a>
         <a class="nav-item" onclick="showPage('transactions')">Transactions</a>
         <a class="nav-item" onclick="showPage('analytics')">Analytics</a>
-        <a class="nav-item" onclick="showPage('settings')">Settings</a>
+        <!-- <a class="nav-item" onclick="showPage('settings')">Settings</a> -->
       </div>
 
       <div class="user-section">
@@ -893,8 +893,8 @@
           <div class="notification-badge"></div>
         </div>
         <div class="user-menu">
-          <div class="user-avatar">SA</div>
-          <div class="user-name">Sarah Anderson</div>
+          <div class="user-avatar">A</div>
+          <div class="user-name">Administrator<div>
         </div>
       </div>
     </nav>
@@ -1132,7 +1132,7 @@
           <!-- Sidebar -->
           <div>
             <!-- System Health -->
-            <div class="sidebar-card" style="margin-bottom: 24px">
+            <!-- <div class="sidebar-card" style="margin-bottom: 24px">
               <div class="card-header">
                 <h2 class="card-title">System Health</h2>
               </div>
@@ -1157,7 +1157,7 @@
                 </div>
                 <div style="background: var(--success-green); color: white; padding: 12px; border-radius: 8px; text-align: center; font-size: 13px; font-weight: 600">All Systems Operational ✓</div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Quick Stats -->
             <div class="sidebar-card" style="margin-bottom: 24px">
@@ -1214,22 +1214,22 @@
                     <span class="action-icon">🤝</span>
                     Add Service Partner
                   </button>
-                  <button class="action-btn">
+                  <!-- <button class="action-btn">
                     <span class="action-icon">📊</span>
                     Generate Report
                   </button>
                   <button class="action-btn">
                     <span class="action-icon">📧</span>
                     Send Bulk Email
-                  </button>
-                  <button class="action-btn">
+                  </button> -->
+                  <!-- <button class="action-btn">
                     <span class="action-icon">⚙️</span>
                     System Settings
                   </button>
                   <button class="action-btn">
                     <span class="action-icon">🔒</span>
                     Security Logs
-                  </button>
+                  </button> -->
                 </div>
               </div>
             </div>
@@ -1394,7 +1394,7 @@
                   <div style="font-size: 14px; color: var(--neutral-600)">Today</div>
                   <div style="display: flex; gap: 8px; justify-content: center">
                     <button class="doc-action-btn primary" style="padding: 6px 12px; font-size: 12px">Approve</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditUserModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1418,8 +1418,8 @@
                   </div>
                   <div style="font-size: 14px; color: var(--neutral-600)">Jan 15, 2024</div>
                   <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditUserModal()">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditUserModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1443,8 +1443,8 @@
                   </div>
                   <div style="font-size: 14px; color: var(--neutral-600)">Dec 3, 2023</div>
                   <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditUserModal()">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditUserModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1468,8 +1468,8 @@
                   </div>
                   <div style="font-size: 14px; color: var(--neutral-600)">Oct 28, 2023</div>
                   <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditUserModal()">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditUserModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1493,8 +1493,8 @@
                   </div>
                   <div style="font-size: 14px; color: var(--neutral-600)">Sep 12, 2023</div>
                   <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditUserModal()">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditUserModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1519,7 +1519,7 @@
                   <div style="font-size: 14px; color: var(--neutral-600)">Jul 5, 2023</div>
                   <div style="display: flex; gap: 8px; justify-content: center">
                     <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px; background: var(--success-green); color: white">Activate</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditUserModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1702,7 +1702,7 @@
                   </div>
                   <div style="display: flex; gap: 8px; justify-content: center">
                     <button class="doc-action-btn primary" style="padding: 6px 12px; font-size: 12px">Approve</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditPartnerModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1726,8 +1726,8 @@
                     <span class="document-status approved">Active</span>
                   </div>
                   <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditPartnerModal()">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditPartnerModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1751,8 +1751,8 @@
                     <span class="document-status approved">Active</span>
                   </div>
                   <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditPartnerModal()">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditPartnerModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1776,8 +1776,8 @@
                     <span class="document-status approved">Active</span>
                   </div>
                   <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditPartnerModal()">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditPartnerModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1801,8 +1801,8 @@
                     <span class="document-status approved">Active</span>
                   </div>
                   <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Edit</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditPartnerModal()">Edit</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditPartnerModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1827,7 +1827,7 @@
                   </div>
                   <div style="display: flex; gap: 8px; justify-content: center">
                     <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px; background: var(--success-green); color: white">Activate</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditPartnerModal()">View</button>
                   </div>
                 </div>
               </div>
@@ -1844,6 +1844,620 @@
                 <button class="btn-secondary" style="padding: 8px 16px">...</button>
                 <button class="btn-secondary" style="padding: 8px 16px">26</button>
                 <button class="btn-secondary" style="padding: 8px 16px">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRANSACTIONS PAGE -->
+      <div id="transactions-page" class="page page-hidden">
+        <div class="page-header">
+          <h1 class="page-title">Transactions Management</h1>
+          <p class="page-subtitle">Monitor and manage all real estate transactions</p>
+        </div>
+
+        <!-- Transaction Statistics -->
+        <div class="stats-grid" style="margin-bottom: 32px">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Total Transactions</div>
+                <div class="stat-value">847</div>
+                <div class="stat-description">All time</div>
+              </div>
+              <div class="stat-icon">📋</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Active Transactions</div>
+                <div class="stat-value">324</div>
+                <div class="stat-description">In progress</div>
+              </div>
+              <div class="stat-icon">🔄</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Closing Soon</div>
+                <div class="stat-value">89</div>
+                <div class="stat-description">Within 30 days</div>
+              </div>
+              <div class="stat-icon">⏰</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Completed (This Month)</div>
+                <div class="stat-value">47</div>
+                <div class="stat-description">Successfully closed</div>
+              </div>
+              <div class="stat-icon">✅</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Delayed</div>
+                <div class="stat-value">12</div>
+                <div class="stat-description">Behind schedule</div>
+              </div>
+              <div class="stat-icon">⚠️</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Total Value</div>
+                <div class="stat-value">$127M</div>
+                <div class="stat-description">Active transactions</div>
+              </div>
+              <div class="stat-icon">💰</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="main-content-card" style="margin-bottom: 24px">
+          <div class="card-content">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 16px; align-items: end">
+              <div>
+                <label class="form-label">Search Transactions</label>
+                <input type="text" class="form-input" placeholder="Search by address, client, ID..." />
+              </div>
+              <div>
+                <label class="form-label">Filter by Stage</label>
+                <select class="form-input">
+                  <option value="consultation" selected>Initial Consultation</option>
+                  <option value="search">Property Search/Listing</option>
+                  <option value="negotiation">Offer/Negotiation</option>
+                  <option value="contract">Under Contract</option>
+                  <option value="mortgage-app">Mortgage Application/Pre-Approval</option>
+                  <option value="insurance">Insurance Information/Documentation</option>
+                  <option value="attorney-review">Attorney/Title Company Review</option>
+                  <option value="inspection">Inspection/Appraisal</option>
+                  <option value="closing-prep">Closing Preparation</option>
+                  <option value="mortgage-underwriting">Mortgage Underwriting/Final Approval</option>
+                  <option value="final-walkthrough">Final Walkthrough/Document Signing</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label">Filter by Type</label>
+                <select class="form-input">
+                  <option>All Types</option>
+                  <option>Purchase</option>
+                  <option>Sale</option>
+                  <option>Refinance</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label">Filter by Status</label>
+                <select class="form-input">
+                  <option>All Status</option>
+                  <option>On Track</option>
+                  <option>Closing Soon</option>
+                  <option>Delayed</option>
+                  <option>At Risk</option>
+                </select>
+              </div>
+              <button class="btn-secondary">Apply Filters</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transactions Table -->
+        <div class="main-content-card">
+          <div class="card-header">
+            <h2 class="card-title">All Transactions</h2>
+            <p class="card-subtitle">Comprehensive view of all real estate transactions</p>
+          </div>
+          <div class="card-content">
+            <!-- Table Header -->
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; padding: 16px; background: var(--neutral-50); border-radius: 8px; margin-bottom: 12px; font-weight: 600; font-size: 13px; color: var(--neutral-700)">
+              <div>Property / Client</div>
+              <div>Transaction Type</div>
+              <div>Value</div>
+              <div>Stage</div>
+              <div>Closing Date</div>
+              <div>Status</div>
+              <div style="text-align: center">Actions</div>
+            </div>
+
+            <!-- Transaction Rows -->
+            <div class="document-list">
+              <!-- Transaction 1 -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div>
+                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">123 Main Street, The Woodlands, TX 77380</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">Client: Sarah Johnson • ID: TRX-10247</div>
+                  </div>
+                  <div>
+                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏠 Purchase</span>
+                  </div>
+                  <div style="font-size: 14px; font-weight: 600; color: var(--primary-navy)">$425,000</div>
+                  <div>
+                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">Closing Prep</span>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">Feb 28, 2026</div>
+                  <div>
+                    <span class="document-status" style="background: var(--warning-orange); color: white">Closing Soon</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">Edit</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Transaction 2 -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div>
+                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">456 Oak Avenue, Spring, TX 77383</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">Client: Michael Chen • ID: TRX-10198</div>
+                  </div>
+                  <div>
+                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏘️ Sale</span>
+                  </div>
+                  <div style="font-size: 14px; font-weight: 600; color: var(--primary-navy)">$389,500</div>
+                  <div>
+                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">Under Contract</span>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">Mar 15, 2026</div>
+                  <div>
+                    <span class="document-status approved">On Track</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">Edit</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Transaction 3 -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div>
+                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">789 Pine Road, The Woodlands, TX 77381</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">Client: Emily Rodriguez • ID: TRX-10156</div>
+                  </div>
+                  <div>
+                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏠 Purchase</span>
+                  </div>
+                  <div style="font-size: 14px; font-weight: 600; color: var(--primary-navy)">$512,000</div>
+                  <div>
+                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">Inspection</span>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">Mar 8, 2026</div>
+                  <div>
+                    <span class="document-status rejected">Delayed</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">Edit</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Transaction 4 -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div>
+                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">321 Elm Street, Conroe, TX 77304</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">Client: David Brown • ID: TRX-10134</div>
+                  </div>
+                  <div>
+                    <span style="background: #dcfce7; color: #16a34a; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">💰 Refinance</span>
+                  </div>
+                  <div style="font-size: 14px; font-weight: 600; color: var(--primary-navy)">$298,000</div>
+                  <div>
+                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">Offer Review</span>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">Apr 2, 2026</div>
+                  <div>
+                    <span class="document-status approved">On Track</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">Edit</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Transaction 5 -->
+              <div class="document-item">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; align-items: center">
+                  <div>
+                    <div style="font-weight: 600; color: var(--neutral-600); margin-bottom: 4px">654 Maple Drive, Tomball, TX 77375</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">Client: Jennifer Wilson • ID: TRX-10089</div>
+                  </div>
+                  <div>
+                    <span style="background: var(--neutral-100); color: var(--neutral-600); padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏘️ Sale</span>
+                  </div>
+                  <div style="font-size: 14px; font-weight: 600; color: var(--neutral-600)">$467,500</div>
+                  <div>
+                    <span style="background: var(--success-green); color: white; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">Completed</span>
+                  </div>
+                  <div style="font-size: 14px; color: var(--neutral-600)">Feb 15, 2026</div>
+                  <div>
+                    <span class="document-status approved">Closed</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; justify-content: center">
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">View</button>
+                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Archive</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--neutral-200)">
+              <div style="font-size: 14px; color: var(--neutral-600)">Showing 1-5 of 324 active transactions</div>
+              <div style="display: flex; gap: 8px">
+                <button class="btn-secondary" style="padding: 8px 16px">Previous</button>
+                <button class="btn-primary" style="padding: 8px 16px">1</button>
+                <button class="btn-secondary" style="padding: 8px 16px">2</button>
+                <button class="btn-secondary" style="padding: 8px 16px">3</button>
+                <button class="btn-secondary" style="padding: 8px 16px">...</button>
+                <button class="btn-secondary" style="padding: 8px 16px">65</button>
+                <button class="btn-secondary" style="padding: 8px 16px">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANALYTICS PAGE -->
+      <div id="analytics-page" class="page page-hidden">
+        <div class="page-header">
+          
+        <div style="display: flex; justify-content: space-between; margin-bottom: 24px">
+          <div>
+          <h1 class="page-title">Analytics & Reports</h1>
+          <p class="page-subtitle">Platform performance metrics and insights</p>
+
+        </div>
+          <!-- Time Period Selector -->
+            <select class="form-input" style="width: 200px; height: fit-content;">
+              <option>Last 7 Days</option>
+              <option>Last 30 Days</option>
+              <option selected>Last 90 Days</option>
+              <option>Last Year</option>
+              <option>All Time</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Key Performance Indicators -->
+        <div class="stats-grid" style="margin-bottom: 32px">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Total Revenue</div>
+                <div class="stat-value">$3.2M</div>
+                <div class="stat-description" style="color: var(--success-green)">↑ 23.5% vs last period</div>
+              </div>
+              <div class="stat-icon">💰</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Closed Transactions</div>
+                <div class="stat-value">147</div>
+                <div class="stat-description" style="color: var(--success-green)">↑ 18.2% vs last period</div>
+              </div>
+              <div class="stat-icon">✅</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Avg Transaction Value</div>
+                <div class="stat-value">$412K</div>
+                <div class="stat-description" style="color: var(--success-green)">↑ 5.8% vs last period</div>
+              </div>
+              <div class="stat-icon">📈</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">New Users (90 days)</div>
+                <div class="stat-value">284</div>
+                <div class="stat-description" style="color: var(--success-green)">↑ 31.4% vs last period</div>
+              </div>
+              <div class="stat-icon">👥</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Avg Close Time</div>
+                <div class="stat-value">42 days</div>
+                <div class="stat-description" style="color: var(--success-green)">↓ 12.5% vs last period</div>
+              </div>
+              <div class="stat-icon">⏱️</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label">Partner Referrals</div>
+                <div class="stat-value">523</div>
+                <div class="stat-description" style="color: var(--success-green)">↑ 45.3% vs last period</div>
+              </div>
+              <div class="stat-icon">🤝</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-layout">
+          <div>
+            <!-- Transaction Volume Chart -->
+            <div class="main-content-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">Transaction Volume Over Time</h2>
+                <p class="card-subtitle">Monthly transaction trends (Last 12 months)</p>
+              </div>
+              <div class="card-content">
+                <div style="background: var(--neutral-50); border-radius: 12px; padding: 32px; min-height: 320px; display: flex; align-items: center; justify-content: center">
+                  <div style="text-align: center; color: var(--neutral-500)">
+                    <div style="font-size: 64px; margin-bottom: 16px">📊</div>
+                    <div style="font-size: 16px; font-weight: 600; margin-bottom: 8px">Chart Visualization</div>
+                    <div style="font-size: 14px">Line chart showing monthly transaction volume trends</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Revenue Breakdown -->
+            <div class="main-content-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">Revenue by Transaction Type</h2>
+                <p class="card-subtitle">Revenue distribution across different transaction categories</p>
+              </div>
+              <div class="card-content">
+                <div style="display: grid; gap: 16px">
+                  <!-- Purchase Transactions -->
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
+                      <div>
+                        <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">🏠 Purchase Transactions</div>
+                        <div style="font-size: 13px; color: var(--neutral-600)">68 transactions</div>
+                      </div>
+                      <div style="text-align: right">
+                        <div style="font-size: 20px; font-weight: 700; color: var(--primary-navy)">$1.8M</div>
+                        <div style="font-size: 12px; color: var(--success-green); font-weight: 600">56.2%</div>
+                      </div>
+                    </div>
+                    <div style="background: var(--neutral-200); height: 8px; border-radius: 4px; overflow: hidden">
+                      <div style="background: linear-gradient(90deg, #2563eb, #3b82f6); width: 56.2%; height: 100%"></div>
+                    </div>
+                  </div>
+
+                  <!-- Sale Transactions -->
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
+                      <div>
+                        <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">🏘️ Sale Transactions</div>
+                        <div style="font-size: 13px; color: var(--neutral-600)">53 transactions</div>
+                      </div>
+                      <div style="text-align: right">
+                        <div style="font-size: 20px; font-weight: 700; color: var(--primary-navy)">$1.1M</div>
+                        <div style="font-size: 12px; color: var(--success-green); font-weight: 600">34.4%</div>
+                      </div>
+                    </div>
+                    <div style="background: var(--neutral-200); height: 8px; border-radius: 4px; overflow: hidden">
+                      <div style="background: linear-gradient(90deg, #d97706, #f59e0b); width: 34.4%; height: 100%"></div>
+                    </div>
+                  </div>
+
+                  <!-- Refinance Transactions -->
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px">
+                      <div>
+                        <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">💰 Refinance Transactions</div>
+                        <div style="font-size: 13px; color: var(--neutral-600)">26 transactions</div>
+                      </div>
+                      <div style="text-align: right">
+                        <div style="font-size: 20px; font-weight: 700; color: var(--primary-navy)">$300K</div>
+                        <div style="font-size: 12px; color: var(--success-green); font-weight: 600">9.4%</div>
+                      </div>
+                    </div>
+                    <div style="background: var(--neutral-200); height: 8px; border-radius: 4px; overflow: hidden">
+                      <div style="background: linear-gradient(90deg, #16a34a, #10b981); width: 9.4%; height: 100%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- User Growth -->
+            <div class="main-content-card">
+              <div class="card-header">
+                <h2 class="card-title">User Growth by Role</h2>
+                <p class="card-subtitle">New user registrations over the last 90 days</p>
+              </div>
+              <div class="card-content">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px">
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px; text-align: center">
+                    <div style="font-size: 32px; margin-bottom: 8px">🏠</div>
+                    <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy); margin-bottom: 4px">124</div>
+                    <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">New Clients</div>
+                    <div style="font-size: 12px; color: var(--success-green); font-weight: 600">↑ 35%</div>
+                  </div>
+
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px; text-align: center">
+                    <div style="font-size: 32px; margin-bottom: 8px">⚖️</div>
+                    <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy); margin-bottom: 4px">47</div>
+                    <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">New Attorneys</div>
+                    <div style="font-size: 12px; color: var(--success-green); font-weight: 600">↑ 28%</div>
+                  </div>
+
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px; text-align: center">
+                    <div style="font-size: 32px; margin-bottom: 8px">💼</div>
+                    <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy); margin-bottom: 4px">31</div>
+                    <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">New CPAs</div>
+                    <div style="font-size: 12px; color: var(--success-green); font-weight: 600">↑ 42%</div>
+                  </div>
+
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px; text-align: center">
+                    <div style="font-size: 32px; margin-bottom: 8px">🏡</div>
+                    <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy); margin-bottom: 4px">52</div>
+                    <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">New Agents</div>
+                    <div style="font-size: 12px; color: var(--success-green); font-weight: 600">↑ 18%</div>
+                  </div>
+
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px; text-align: center">
+                    <div style="font-size: 32px; margin-bottom: 8px">🏦</div>
+                    <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy); margin-bottom: 4px">19</div>
+                    <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">New Lenders</div>
+                    <div style="font-size: 12px; color: var(--success-green); font-weight: 600">↑ 52%</div>
+                  </div>
+
+                  <div style="background: var(--neutral-50); padding: 20px; border-radius: 8px; text-align: center">
+                    <div style="font-size: 32px; margin-bottom: 8px">🤝</div>
+                    <div style="font-size: 24px; font-weight: 700; color: var(--primary-navy); margin-bottom: 4px">11</div>
+                    <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">New Partners</div>
+                    <div style="font-size: 12px; color: var(--success-green); font-weight: 600">↑ 22%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div>
+            <!-- Top Performers -->
+            <div class="sidebar-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">Top Performing Partners</h2>
+              </div>
+              <div class="card-content">
+                <div class="activity-list">
+                  <div class="activity-card">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px">
+                      <strong style="color: var(--primary-navy)">Premium Roofing Solutions</strong>
+                      <span style="color: var(--primary-gold)">⭐ 4.9</span>
+                    </div>
+                    <div style="font-size: 13px; color: var(--neutral-600)">89 referrals completed</div>
+                  </div>
+
+                  <div class="activity-card">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px">
+                      <strong style="color: var(--primary-navy)">Elite Plumbing Services</strong>
+                      <span style="color: var(--primary-gold)">⭐ 4.8</span>
+                    </div>
+                    <div style="font-size: 13px; color: var(--neutral-600)">76 referrals completed</div>
+                  </div>
+
+                  <div class="activity-card">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px">
+                      <strong style="color: var(--primary-navy)">Credit Solutions Plus</strong>
+                      <span style="color: var(--primary-gold)">⭐ 5.0</span>
+                    </div>
+                    <div style="font-size: 13px; color: var(--neutral-600)">64 referrals completed</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Platform Activity -->
+            <div class="sidebar-card" style="margin-bottom: 24px">
+              <div class="card-header">
+                <h2 class="card-title">Platform Activity (24h)</h2>
+              </div>
+              <div class="card-content">
+                <div style="display: grid; gap: 12px">
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--neutral-200)">
+                    <span style="font-size: 13px; color: var(--neutral-600)">Active Users</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--primary-navy)">847</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--neutral-200)">
+                    <span style="font-size: 13px; color: var(--neutral-600)">Documents Uploaded</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--primary-navy)">142</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--neutral-200)">
+                    <span style="font-size: 13px; color: var(--neutral-600)">New Transactions</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--success-green)">8</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between">
+                    <span style="font-size: 13px; color: var(--neutral-600)">Partner Referrals</span>
+                    <span style="font-size: 13px; font-weight: 600; color: var(--primary-navy)">23</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Reports -->
+            <div class="sidebar-card">
+              <div class="card-header">
+                <h2 class="card-title">Generate Reports</h2>
+              </div>
+              <div class="card-content">
+                <div class="quick-actions">
+                  <button class="action-btn">
+                    <span class="action-icon">📊</span>
+                    Monthly Summary
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">💰</span>
+                    Revenue Report
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">👥</span>
+                    User Growth
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">📋</span>
+                    Transaction Report
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">🤝</span>
+                    Partner Performance
+                  </button>
+                  <button class="action-btn">
+                    <span class="action-icon">📈</span>
+                    Custom Report
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -2877,6 +3491,307 @@
       </div>
     </div>
 
+    <!-- VIEW/EDIT USER MODAL -->
+    <div id="viewEditUserModal" class="form-overlay">
+      <div class="form-modal">
+        <div class="form-modal-header">
+          <div>
+            <div class="form-modal-title" id="userModalTitle">View User Details</div>
+            <div class="form-modal-subtitle">User information and permissions</div>
+          </div>
+          <button class="form-close-btn" onclick="closeViewEditUserModal()">✕</button>
+        </div>
+
+        <div class="form-modal-body">
+          <form id="viewEditUserForm">
+            <!-- Personal Information -->
+            <div class="form-section">
+              <div class="form-section-title"><span>👤</span> Personal Information</div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">First Name</label>
+                  <input type="text" class="form-input" id="userFirstName" value="Sarah" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Last Name</label>
+                  <input type="text" class="form-input" id="userLastName" value="Johnson" readonly />
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Email Address</label>
+                  <input type="email" class="form-input" id="userEmail" value="sarah.j@email.com" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Phone Number</label>
+                  <input type="tel" class="form-input" id="userPhone" value="(555) 123-4567" readonly />
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">User ID</label>
+                  <input type="text" class="form-input" id="userId" value="USR-10247" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Join Date</label>
+                  <input type="text" class="form-input" id="userJoinDate" value="Today" readonly />
+                </div>
+              </div>
+            </div>
+
+            <!-- Role & Status -->
+            <div class="form-section">
+              <div class="form-section-title"><span>🔐</span> Role & Status</div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">User Role</label>
+                  <select class="form-select" id="userRole" disabled>
+                    <option value="client" selected>🏠 Client - Homeowner/Buyer</option>
+                    <option value="attorney">⚖️ Attorney - Closing/Divorce Attorney</option>
+                    <option value="cpa">💼 CPA - Certified Public Accountant</option>
+                    <option value="agent">🏡 Real Estate Agent</option>
+                    <option value="lender">🏦 Mortgage Lender</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Account Status</label>
+                  <select class="form-select" id="userStatus" disabled>
+                    <option value="pending" selected>Pending Approval</option>
+                    <option value="active">Active</option>
+                    <option value="suspended">Suspended</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeViewEditUserModal()">Close</button>
+          <button type="button" class="btn-primary" id="editUserBtn" onclick="enableEditUser()">Enable Edit</button>
+          <button type="button" class="btn-primary" id="saveUserBtn" onclick="saveUser()" style="display: none">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW/EDIT PARTNER MODAL -->
+    <div id="viewEditPartnerModal" class="form-overlay">
+      <div class="form-modal">
+        <div class="form-modal-header">
+          <div>
+            <div class="form-modal-title" id="partnerModalTitle">View Partner Details</div>
+            <div class="form-modal-subtitle">Service partner information</div>
+          </div>
+          <button class="form-close-btn" onclick="closeViewEditPartnerModal()">✕</button>
+        </div>
+
+        <div class="form-modal-body">
+          <form id="viewEditPartnerForm">
+            <!-- Company Information -->
+            <div class="form-section">
+              <div class="form-section-title"><span>🏢</span> Company Information</div>
+
+              <div class="form-group">
+                <label class="form-label">Company Name</label>
+                <input type="text" class="form-input" id="partnerCompanyName" value="ABC Plumbing Co." readonly />
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Contact Person</label>
+                  <input type="text" class="form-input" id="partnerContact" value="John Smith" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Phone Number</label>
+                  <input type="tel" class="form-input" id="partnerPhone" value="(555) 123-4567" readonly />
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Email Address</label>
+                  <input type="email" class="form-input" id="partnerEmail" value="contact@abcplumbing.com" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Service Category</label>
+                  <select class="form-select" id="partnerCategory" disabled>
+                    <option value="plumbing" selected>🔧 Plumbing</option>
+                    <option value="roofing">🏠 Roofing</option>
+                    <option value="electrical">⚡ Electrical</option>
+                    <option value="credit">💳 Credit Repair</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service Areas -->
+            <div class="form-section">
+              <div class="form-section-title"><span>📍</span> Service Areas</div>
+
+              <div class="form-group">
+                <label class="form-label">Zip Codes</label>
+                <input type="text" class="form-input" id="partnerZipCodes" value="77380, 77381, 77382" readonly />
+                <div class="help-text">Comma-separated list of service area zip codes</div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Rating</label>
+                  <input type="text" class="form-input" id="partnerRating" value="New (No ratings yet)" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Status</label>
+                  <select class="form-select" id="partnerStatus" disabled>
+                    <option value="pending" selected>Pending Approval</option>
+                    <option value="active">Active</option>
+                    <option value="suspended">Suspended</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeViewEditPartnerModal()">Close</button>
+          <button type="button" class="btn-primary" id="editPartnerBtn" onclick="enableEditPartner()">Enable Edit</button>
+          <button type="button" class="btn-primary" id="savePartnerBtn" onclick="savePartner()" style="display: none">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW/EDIT TRANSACTION MODAL -->
+    <div id="viewEditTransactionModal" class="form-overlay">
+      <div class="form-modal" style="max-width: 900px">
+        <div class="form-modal-header">
+          <div>
+            <div class="form-modal-title" id="transactionModalTitle">View Transaction Details</div>
+            <div class="form-modal-subtitle">Real estate transaction information</div>
+          </div>
+          <button class="form-close-btn" onclick="closeViewEditTransactionModal()">✕</button>
+        </div>
+
+        <div class="form-modal-body">
+          <form id="viewEditTransactionForm">
+            <!-- Property Information -->
+            <div class="form-section">
+              <div class="form-section-title"><span>🏠</span> Property Information</div>
+
+              <div class="form-group">
+                <label class="form-label">Property Address</label>
+                <input type="text" class="form-input" id="transactionAddress" value="123 Main Street, The Woodlands, TX 77380" readonly />
+              </div>
+
+              <div class="form-row form-row-3">
+                <div class="form-group">
+                  <label class="form-label">Transaction Type</label>
+                  <select class="form-select" id="transactionType" disabled>
+                    <option value="purchase" selected>🏠 Purchase</option>
+                    <option value="sale">🏘️ Sale</option>
+                    <option value="refinance">💰 Refinance</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Transaction Value</label>
+                  <input type="text" class="form-input" id="transactionValue" value="$425,000" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Transaction ID</label>
+                  <input type="text" class="form-input" id="transactionId" value="TRX-10247" readonly />
+                </div>
+              </div>
+            </div>
+
+            <!-- Client & Timeline -->
+            <div class="form-section">
+              <div class="form-section-title"><span>👤</span> Client & Timeline</div>
+
+              <div class="form-row form-row-3">
+                <div class="form-group">
+                  <label class="form-label">Client Name</label>
+                  <input type="text" class="form-input" id="transactionClient" value="Sarah Johnson" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Closing Date</label>
+                  <input type="date" class="form-input" id="transactionClosingDate" value="2026-02-28" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Days to Close</label>
+                  <input type="text" class="form-input" id="transactionDaysToClose" value="11 days" readonly />
+                </div>
+              </div>
+            </div>
+
+            <!-- Progress & Status -->
+            <div class="form-section">
+              <div class="form-section-title"><span>📊</span> Progress & Status</div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Current Stage</label>
+                  <select class="form-select" id="transactionStage" disabled>
+                    <option value="consultation" selected>Initial Consultation</option>
+                    <option value="search">Property Search/Listing</option>
+                    <option value="negotiation">Offer/Negotiation</option>
+                    <option value="contract">Under Contract</option>
+                    <option value="mortgage-app">Mortgage Application/Pre-Approval</option>
+                    <option value="insurance">Insurance Information/Documentation</option>
+                    <option value="attorney-review">Attorney/Title Company Review</option>
+                    <option value="inspection">Inspection/Appraisal</option>
+                    <option value="closing-prep">Closing Preparation</option>
+                    <option value="mortgage-underwriting">Mortgage Underwriting/Final Approval</option>
+                    <option value="final-walkthrough">Final Walkthrough/Document Signing</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Transaction Status</label>
+                  <select class="form-select" id="transactionStatus" disabled>
+                    <option value="on-track" selected>On Track</option>
+                    <option value="closing-soon">Closing Soon</option>
+                    <option value="delayed">Delayed</option>
+                    <option value="at-risk">At Risk</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notes -->
+            <div class="form-section">
+              <div class="form-section-title"><span>📝</span> Transaction Notes</div>
+
+              <div class="form-group">
+                <label class="form-label">Admin Notes</label>
+                <textarea class="form-input" id="transactionNotes" rows="4" readonly style="resize: vertical">All documents submitted. Waiting for final title clearance. Expected to close on schedule.</textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeViewEditTransactionModal()">Close</button>
+          <button type="button" class="btn-primary" id="editTransactionBtn" onclick="enableEditTransaction()">Enable Edit</button>
+          <button type="button" class="btn-primary" id="saveTransactionBtn" onclick="saveTransaction()" style="display: none">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
     <script>
       // Page Navigation
       function showPage(pageId) {
@@ -3078,7 +3993,127 @@
             }
           });
         });
-      });
+      });      
+      
+      // View/Edit User Modal Functions
+      function openViewEditUserModal(userId) {
+        document.getElementById('viewEditUserModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        // In production, fetch user data by userId and populate form
+      }
+
+      function closeViewEditUserModal() {
+        document.getElementById('viewEditUserModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+        disableEditUser();
+      }
+
+      function enableEditUser() {
+        document.querySelectorAll('#viewEditUserForm input, #viewEditUserForm select').forEach(el => {
+          el.removeAttribute('readonly');
+          el.removeAttribute('disabled');
+        });
+        document.getElementById('userModalTitle').textContent = 'Edit User Details';
+        document.getElementById('editUserBtn').style.display = 'none';
+        document.getElementById('saveUserBtn').style.display = 'inline-block';
+      }
+
+      function disableEditUser() {
+        document.querySelectorAll('#viewEditUserForm input').forEach(el => {
+          el.setAttribute('readonly', 'readonly');
+        });
+        document.querySelectorAll('#viewEditUserForm select').forEach(el => {
+          el.setAttribute('disabled', 'disabled');
+        });
+        document.getElementById('userModalTitle').textContent = 'View User Details';
+        document.getElementById('editUserBtn').style.display = 'inline-block';
+        document.getElementById('saveUserBtn').style.display = 'none';
+      }
+
+      function saveUser() {
+        alert('User changes saved! (This is a demo)');
+        closeViewEditUserModal();
+      }
+
+      // View/Edit Partner Modal Functions
+      function openViewEditPartnerModal(partnerId) {
+        document.getElementById('viewEditPartnerModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        // In production, fetch partner data by partnerId and populate form
+      }
+
+      function closeViewEditPartnerModal() {
+        document.getElementById('viewEditPartnerModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+        disableEditPartner();
+      }
+
+      function enableEditPartner() {
+        document.querySelectorAll('#viewEditPartnerForm input, #viewEditPartnerForm select').forEach(el => {
+          el.removeAttribute('readonly');
+          el.removeAttribute('disabled');
+        });
+        document.getElementById('partnerModalTitle').textContent = 'Edit Partner Details';
+        document.getElementById('editPartnerBtn').style.display = 'none';
+        document.getElementById('savePartnerBtn').style.display = 'inline-block';
+      }
+
+      function disableEditPartner() {
+        document.querySelectorAll('#viewEditPartnerForm input').forEach(el => {
+          el.setAttribute('readonly', 'readonly');
+        });
+        document.querySelectorAll('#viewEditPartnerForm select').forEach(el => {
+          el.setAttribute('disabled', 'disabled');
+        });
+        document.getElementById('partnerModalTitle').textContent = 'View Partner Details';
+        document.getElementById('editPartnerBtn').style.display = 'inline-block';
+        document.getElementById('savePartnerBtn').style.display = 'none';
+      }
+
+      function savePartner() {
+        alert('Partner changes saved! (This is a demo)');
+        closeViewEditPartnerModal();
+      }
+
+      // View/Edit Transaction Modal Functions
+      function openViewEditTransactionModal(transactionId) {
+        document.getElementById('viewEditTransactionModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        // In production, fetch transaction data by transactionId and populate form
+      }
+
+      function closeViewEditTransactionModal() {
+        document.getElementById('viewEditTransactionModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+        disableEditTransaction();
+      }
+
+      function enableEditTransaction() {
+        document.querySelectorAll('#viewEditTransactionForm input, #viewEditTransactionForm select, #viewEditTransactionForm textarea').forEach(el => {
+          el.removeAttribute('readonly');
+          el.removeAttribute('disabled');
+        });
+        document.getElementById('transactionModalTitle').textContent = 'Edit Transaction Details';
+        document.getElementById('editTransactionBtn').style.display = 'none';
+        document.getElementById('saveTransactionBtn').style.display = 'inline-block';
+      }
+
+      function disableEditTransaction() {
+        document.querySelectorAll('#viewEditTransactionForm input, #viewEditTransactionForm textarea').forEach(el => {
+          el.setAttribute('readonly', 'readonly');
+        });
+        document.querySelectorAll('#viewEditTransactionForm select').forEach(el => {
+          el.setAttribute('disabled', 'disabled');
+        });
+        document.getElementById('transactionModalTitle').textContent = 'View Transaction Details';
+        document.getElementById('editTransactionBtn').style.display = 'inline-block';
+        document.getElementById('saveTransactionBtn').style.display = 'none';
+      }
+
+      function saveTransaction() {
+        alert('Transaction changes saved! (This is a demo)');
+        closeViewEditTransactionModal();
+      }
     </script>
   </body>
 </html>
