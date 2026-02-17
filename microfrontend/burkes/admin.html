@@ -2965,78 +2965,30 @@
 
         <div class="form-modal-body">
           <form id="addUserForm">
-            <!-- Personal Information -->
-            <div class="form-section">
-              <div class="form-section-title"><span>👤</span> Personal Information</div>
-
-              <div class="form-row form-row-2">
-                <div class="form-group">
-                  <label class="form-label">First Name <span class="required-indicator">*</span></label>
-                  <input type="text" class="form-input" placeholder="Enter first name" required />
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">Last Name <span class="required-indicator">*</span></label>
-                  <input type="text" class="form-input" placeholder="Enter last name" required />
-                </div>
-              </div>
-
-              <div class="form-row form-row-2">
-                <div class="form-group">
-                  <label class="form-label">Email Address <span class="required-indicator">*</span></label>
-                  <input type="email" class="form-input" placeholder="user@example.com" required />
-                  <div class="help-text">User will receive login credentials at this email</div>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">Phone Number <span class="required-indicator">*</span></label>
-                  <input type="tel" class="form-input" placeholder="(555) 123-4567" required />
-                </div>
-              </div>
-
-              <div class="form-row form-row-3">
-                <div class="form-group">
-                  <label class="form-label">Date of Birth</label>
-                  <input type="date" class="form-input" />
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">Company/Firm Name</label>
-                  <input type="text" class="form-input" placeholder="Optional" />
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">License Number</label>
-                  <input type="text" class="form-input" placeholder="For professionals only" />
-                  <div class="help-text">Required for Attorneys, CPAs, Agents</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Role & Access -->
+            <!-- Role & Access (MOVED TO TOP) -->
             <div class="form-section">
               <div class="form-section-title"><span>🔐</span> Role & Access Permissions</div>
 
               <div class="form-row form-row-2">
                 <div class="form-group">
                   <label class="form-label">User Role <span class="required-indicator">*</span></label>
-                  <select class="form-select" required onchange="updateRolePermissions(this.value)">
+                  <select id="userRoleSelect" class="form-select" required onchange="handleRoleChange(this.value)">
                     <option value="">Select a role</option>
-                    <option value="client">🏠 Client - Homeowner/Buyer</option>
-                    <option value="attorney">⚖️ Attorney - Closing/Divorce Attorney</option>
-                    <option value="cpa">💼 CPA - Certified Public Accountant</option>
-                    <option value="agent">🏡 Real Estate Agent</option>
-                    <option value="lender">🏦 Mortgage Lender</option>
                     <option value="admin">⚙️ Administrator</option>
+                    <option value="agent">🏡 Real Estate Agent</option>
+                    <option value="client">🏠 Client - Homeowner/Buyer</option>
+                    <option value="attorney">⚖️ Attorney - Closing/Divorce</option>
+                    <option value="cpa">💼 CPA - Certified Public Accountant</option>
+                    <option value="lender">🏦 Mortgage Lender</option>
                   </select>
-                  <div class="help-text">Role determines access permissions and portal features</div>
+                  <div class="help-text">Select role first - form fields will adapt automatically</div>
                 </div>
 
                 <div class="form-group">
                   <label class="form-label">Account Status <span class="required-indicator">*</span></label>
                   <select class="form-select" required>
+                    <option value="active" selected>Active</option>
                     <option value="pending">Pending Approval</option>
-                    <option value="active">Active</option>
                     <option value="suspended">Suspended</option>
                     <option value="inactive">Inactive</option>
                   </select>
@@ -3047,9 +2999,8 @@
               <div class="form-group">
                 <label class="form-label">Access Permissions</label>
                 <div class="checkbox-group" id="rolePermissions">
-                  <!-- Dynamically populated based on role selection -->
                   <div class="checkbox-item">
-                    <input type="checkbox" id="perm_view_docs" checked disabled />
+                    <input type="checkbox" id="perm_view_docs" />
                     <label for="perm_view_docs">View Documents</label>
                   </div>
                   <div class="checkbox-item">
@@ -3057,8 +3008,8 @@
                     <label for="perm_upload_docs">Upload Documents</label>
                   </div>
                   <div class="checkbox-item">
-                    <input type="checkbox" id="perm_approve_docs" />
-                    <label for="perm_approve_docs">Approve Documents</label>
+                    <input type="checkbox" id="perm_create_clients" />
+                    <label for="perm_create_clients">Create Clients</label>
                   </div>
                   <div class="checkbox-item">
                     <input type="checkbox" id="perm_view_transactions" />
@@ -3069,6 +3020,14 @@
                     <label for="perm_manage_transactions">Manage Transactions</label>
                   </div>
                   <div class="checkbox-item">
+                    <input type="checkbox" id="perm_review_docs" />
+                    <label for="perm_review_docs">Review & Verify Documents</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="perm_share_with_title" />
+                    <label for="perm_share_with_title">Share with Title Company</label>
+                  </div>
+                  <div class="checkbox-item">
                     <input type="checkbox" id="perm_messaging" />
                     <label for="perm_messaging">Secure Messaging</label>
                   </div>
@@ -3077,73 +3036,170 @@
                     <label for="perm_mortgage_access">Access Mortgage Integration</label>
                   </div>
                   <div class="checkbox-item">
-                    <input type="checkbox" id="perm_insurance_access" />
-                    <label for="perm_insurance_access">Access Insurance Module</label>
+                    <input type="checkbox" id="perm_manage_users" />
+                    <label for="perm_manage_users">Manage Users</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="perm_view_reports" />
+                    <label for="perm_view_reports">View Reports</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="perm_system_settings" />
+                    <label for="perm_system_settings">System Settings</label>
                   </div>
                 </div>
-                <div class="help-text">Permissions are pre-configured based on role but can be customized</div>
+                <div class="help-text">Permissions auto-configure based on role but can be customized</div>
               </div>
             </div>
 
-            <!-- Address Information -->
+            <!-- Personal Information -->
             <div class="form-section">
-              <div class="form-section-title"><span>📍</span> Address Information</div>
+              <div class="form-section-title"><span>👤</span> Personal Information</div>
 
-              <div class="form-group">
-                <label class="form-label">Street Address</label>
-                <input type="text" class="form-input" placeholder="123 Main Street" />
-              </div>
-
-              <div class="form-row form-row-3">
+              <div class="form-row form-row-2">
                 <div class="form-group">
-                  <label class="form-label">City</label>
-                  <input type="text" class="form-input" placeholder="Houston" />
+                  <label class="form-label">First Name <span class="required-indicator">*</span></label>
+                  <input type="text" id="firstName" class="form-input" placeholder="Enter first name" required />
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">State</label>
-                  <select class="form-select">
-                    <option value="">Select State</option>
-                    <option value="TX">Texas</option>
-                    <option value="CA">California</option>
-                    <option value="NY">New York</option>
-                    <option value="FL">Florida</option>
-                    <!-- Add more states as needed -->
+                  <label class="form-label">Last Name <span class="required-indicator">*</span></label>
+                  <input type="text" id="lastName" class="form-input" placeholder="Enter last name" required />
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Email Address <span class="required-indicator">*</span></label>
+                  <input type="email" id="email" class="form-input" placeholder="user@example.com" required />
+                  <div class="help-text">User will receive login credentials at this email</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Phone Number <span class="required-indicator">*</span></label>
+                  <input type="tel" id="phone" class="form-input" placeholder="(555) 123-4567" required />
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Password <span class="required-indicator">*</span></label>
+                  <input type="password" id="password" class="form-input" placeholder="Auto-generate or enter" />
+                  <div class="help-text">
+                    <button type="button" onclick="generatePassword()" style="background: none; border: none; color: var(--primary-blue); cursor: pointer; padding: 0; text-decoration: underline;">
+                      Click to auto-generate secure password
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group" id="statusField">
+                  <label class="form-label">Status <span class="required-indicator">*</span></label>
+                  <select class="form-select" required>
+                    <option value="active" selected>Active</option>
+                    <option value="inactive">Inactive</option>
                   </select>
                 </div>
-
-                <div class="form-group">
-                  <label class="form-label">Zip Code</label>
-                  <input type="text" class="form-input" placeholder="77380" />
-                </div>
               </div>
             </div>
 
-            <!-- Insurance Information (for Clients) -->
-            <div class="form-section" id="insuranceSection" style="display: none">
+            <!-- Professional Information (Hidden by default, shown for Agent/Attorney/CPA/Lender) -->
+            <div class="form-section" id="professionalInfoSection" style="display: none;">
+              <div class="form-section-title"><span>💼</span> Professional Information</div>
+
+              <div class="form-row form-row-2" id="licenseNumberRow">
+                <div class="form-group">
+                  <label class="form-label" id="licenseLabel">License Number <span class="required-indicator">*</span></label>
+                  <input type="text" id="licenseNumber" class="form-input" placeholder="" />
+                  <div class="help-text" id="licenseHelp"></div>
+                </div>
+
+                <div class="form-group" id="attorneyTypeGroup" style="display: none;">
+                  <label class="form-label">Attorney Type <span class="required-indicator">*</span></label>
+                  <select id="attorneyType" class="form-select">
+                    <option value="">Select type</option>
+                    <option value="closing">Closing Attorney</option>
+                    <option value="divorce">Divorce Attorney</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label" id="companyLabel">Company/Firm Name <span class="required-indicator">*</span></label>
+                  <input type="text" id="companyName" class="form-input" placeholder="" />
+                </div>
+
+                <div class="form-group" id="officeAddressGroup">
+                  <label class="form-label">Office Address</label>
+                  <input type="text" id="officeAddress" class="form-input" placeholder="123 Main Street" />
+                </div>
+              </div>
+
+              <div class="form-group" id="serviceAreaGroup">
+                <label class="form-label">Service Area (Zip Codes) <span class="required-indicator">*</span></label>
+                <input type="text" id="serviceAreaZips" class="form-input" placeholder="Enter zip codes separated by commas (e.g., 77380, 77381, 77382)" />
+                <div class="help-text">Enter the zip codes where this professional provides services</div>
+              </div>
+            </div>
+
+            <!-- Client-Specific Information (Hidden by default, shown for Client) -->
+            <div class="form-section" id="clientInfoSection" style="display: none;">
+              <div class="form-section-title"><span>🏠</span> Transaction Information</div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Property Address</label>
+                  <input type="text" id="propertyAddress" class="form-input" placeholder="123 Main Street" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Transaction Type</label>
+                  <select id="transactionType" class="form-select">
+                    <option value="">Select type</option>
+                    <option value="purchase">Purchase</option>
+                    <option value="sale">Sale</option>
+                    <option value="refinance">Refinance</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Assigned Agent</label>
+                <select id="assignedAgent" class="form-select">
+                  <option value="">Select agent</option>
+                  <option value="agent1">John Smith - RE/MAX</option>
+                  <option value="agent2">Sarah Johnson - Keller Williams</option>
+                  <option value="agent3">Mike Davis - Century 21</option>
+                </select>
+                <div class="help-text">Assign a real estate agent to this client</div>
+              </div>
+            </div>
+
+            <!-- Insurance Information (for Clients Only) -->
+            <div class="form-section" id="insuranceSection" style="display: none;">
               <div class="form-section-title"><span>🛡️</span> Insurance Information (Optional)</div>
 
               <div class="form-row form-row-2">
                 <div class="form-group">
                   <label class="form-label">Auto Insurance Provider</label>
-                  <input type="text" class="form-input" placeholder="Insurance company name" />
+                  <input type="text" id="autoInsurance" class="form-input" placeholder="Insurance company name" />
                 </div>
 
                 <div class="form-group">
                   <label class="form-label">VIN Number</label>
-                  <input type="text" class="form-input" placeholder="Vehicle identification number" />
+                  <input type="text" id="vinNumber" class="form-input" placeholder="Vehicle identification number" />
                 </div>
               </div>
 
               <div class="form-row form-row-2">
                 <div class="form-group">
                   <label class="form-label">Home Insurance Provider</label>
-                  <input type="text" class="form-input" placeholder="Insurance company name" />
+                  <input type="text" id="homeInsurance" class="form-input" placeholder="Insurance company name" />
                 </div>
 
                 <div class="form-group">
                   <label class="form-label">Home Warranty Provider</label>
-                  <input type="text" class="form-input" placeholder="Warranty company name" />
+                  <input type="text" id="homeWarranty" class="form-input" placeholder="Warranty company name" />
                 </div>
               </div>
             </div>
@@ -3154,7 +3210,7 @@
 
               <div class="form-group">
                 <label class="form-label">Internal Notes</label>
-                <textarea class="form-textarea" placeholder="Add any internal notes about this user (not visible to the user)"></textarea>
+                <textarea id="internalNotes" class="form-textarea" placeholder="Add any internal notes about this user (not visible to the user)"></textarea>
               </div>
             </div>
           </form>
@@ -3162,7 +3218,9 @@
 
         <div class="form-modal-footer">
           <button class="btn-secondary" onclick="closeAddUserForm()">Cancel</button>
-          <button class="btn-primary" onclick="submitUserForm()">Create User Account</button>
+          <button class="btn-primary" onclick="submitUserForm()">
+            <span id="submitButtonText">Create User Account</span>
+          </button>
         </div>
       </div>
     </div>
@@ -3822,54 +3880,240 @@
       function closeAddUserForm() {
         document.getElementById('addUserFormOverlay').classList.remove('active');
         document.body.style.overflow = 'auto';
+        
+        // Reset form
+        document.getElementById('addUserForm').reset();
+        
+        // Reset role-specific sections
+        document.getElementById('professionalInfoSection').style.display = 'none';
+        document.getElementById('clientInfoSection').style.display = 'none';
+        document.getElementById('insuranceSection').style.display = 'none';
+        document.getElementById('attorneyTypeGroup').style.display = 'none';
+        
+        // Reset button text
+        document.getElementById('submitButtonText').textContent = 'Create User Account';
+        
+        // Clear all permissions
+        document.querySelectorAll('#rolePermissions input[type="checkbox"]').forEach((cb) => {
+          cb.checked = false;
+        });
       }
 
       function submitUserForm() {
         const form = document.getElementById('addUserForm');
+        const roleSelect = document.getElementById('userRoleSelect');
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const role = roleSelect.value;
+        
+        if (!role) {
+          alert('Please select a user role first!');
+          roleSelect.focus();
+          return;
+        }
+        
         if (form.checkValidity()) {
-          alert('User account would be created! (This is a demo)');
+          // Get role label
+          const roleLabels = {
+            'admin': 'Administrator',
+            'agent': 'Real Estate Agent',
+            'client': 'Client',
+            'attorney': 'Attorney',
+            'cpa': 'CPA',
+            'lender': 'Mortgage Lender'
+          };
+          
+          const roleLabel = roleLabels[role] || 'User';
+          
+          alert(`${roleLabel} account for ${firstName} ${lastName} would be created!\n\n(This is a demo - in production, this would:\n1. Create the user account\n2. Send login credentials to their email\n3. Set up role-based permissions\n4. Notify relevant team members)`);
+          
           closeAddUserForm();
+          
           // In production, this would submit to backend
+          // Example: fetch('/api/users/create', { method: 'POST', body: formData })
         } else {
           form.reportValidity();
         }
       }
 
-      function updateRolePermissions(role) {
+      // Enhanced role-based form handler
+      function handleRoleChange(role) {
+        // Get all dynamic sections
+        const professionalInfoSection = document.getElementById('professionalInfoSection');
+        const clientInfoSection = document.getElementById('clientInfoSection');
         const insuranceSection = document.getElementById('insuranceSection');
+        const attorneyTypeGroup = document.getElementById('attorneyTypeGroup');
+        
+        // Get dynamic labels and fields
+        const licenseLabel = document.getElementById('licenseLabel');
+        const licenseHelp = document.getElementById('licenseHelp');
+        const companyLabel = document.getElementById('companyLabel');
+        const licenseNumber = document.getElementById('licenseNumber');
+        const submitButtonText = document.getElementById('submitButtonText');
 
-        // Show insurance section only for clients
-        if (role === 'client') {
+        // Hide all optional sections first
+        professionalInfoSection.style.display = 'none';
+        clientInfoSection.style.display = 'none';
+        insuranceSection.style.display = 'none';
+        attorneyTypeGroup.style.display = 'none';
+
+        // Reset required status
+        licenseNumber.removeAttribute('required');
+
+        // Role-specific configurations
+        if (role === 'admin') {
+          // Admin - basic info only
+          updateRolePermissions([
+            'perm_view_docs', 
+            'perm_upload_docs', 
+            'perm_create_clients',
+            'perm_view_transactions', 
+            'perm_manage_transactions',
+            'perm_review_docs',
+            'perm_messaging',
+            'perm_mortgage_access',
+            'perm_manage_users',
+            'perm_view_reports',
+            'perm_system_settings'
+          ]);
+          submitButtonText.textContent = 'Create Administrator Account';
+          
+        } else if (role === 'agent') {
+          // Real Estate Agent
+          professionalInfoSection.style.display = 'block';
+          licenseLabel.innerHTML = 'Real Estate License Number <span class="required-indicator">*</span>';
+          licenseHelp.textContent = 'State real estate license number';
+          companyLabel.innerHTML = 'Brokerage Name <span class="required-indicator">*</span>';
+          licenseNumber.setAttribute('required', 'required');
+          licenseNumber.placeholder = 'e.g., TX-1234567';
+          
+          updateRolePermissions([
+            'perm_view_docs', 
+            'perm_upload_docs',
+            'perm_create_clients',
+            'perm_view_transactions',
+            'perm_messaging'
+          ]);
+          submitButtonText.textContent = 'Create Agent Account';
+          
+        } else if (role === 'client') {
+          // Client
+          clientInfoSection.style.display = 'block';
           insuranceSection.style.display = 'block';
-        } else {
-          insuranceSection.style.display = 'none';
+          
+          updateRolePermissions([
+            'perm_view_docs',
+            'perm_upload_docs',
+            'perm_messaging'
+          ]);
+          submitButtonText.textContent = 'Create Client Account';
+          
+        } else if (role === 'attorney') {
+          // Attorney
+          professionalInfoSection.style.display = 'block';
+          attorneyTypeGroup.style.display = 'block';
+          licenseLabel.innerHTML = 'Bar Number <span class="required-indicator">*</span>';
+          licenseHelp.textContent = 'State bar association number';
+          companyLabel.innerHTML = 'Law Firm Name <span class="required-indicator">*</span>';
+          licenseNumber.setAttribute('required', 'required');
+          licenseNumber.placeholder = 'e.g., 12345678';
+          
+          updateRolePermissions([
+            'perm_view_docs',
+            'perm_upload_docs',
+            'perm_view_transactions',
+            'perm_manage_transactions',
+            'perm_review_docs',
+            'perm_messaging'
+          ]);
+          submitButtonText.textContent = 'Create Attorney Account';
+          
+        } else if (role === 'cpa') {
+          // CPA
+          professionalInfoSection.style.display = 'block';
+          licenseLabel.innerHTML = 'CPA License Number <span class="required-indicator">*</span>';
+          licenseHelp.textContent = 'Certified Public Accountant license number';
+          companyLabel.innerHTML = 'Firm Name <span class="required-indicator">*</span>';
+          licenseNumber.setAttribute('required', 'required');
+          licenseNumber.placeholder = 'e.g., CPA-123456';
+          
+          updateRolePermissions([
+            'perm_view_docs',
+            'perm_view_transactions',
+            'perm_messaging'
+          ]);
+          submitButtonText.textContent = 'Create CPA Account';
+          
+        } else if (role === 'lender') {
+          // Mortgage Lender
+          professionalInfoSection.style.display = 'block';
+          licenseLabel.innerHTML = 'NMLS Number <span class="required-indicator">*</span>';
+          licenseHelp.textContent = 'National Mortgage Licensing System number';
+          companyLabel.innerHTML = 'Company Name <span class="required-indicator">*</span>';
+          licenseNumber.setAttribute('required', 'required');
+          licenseNumber.placeholder = 'e.g., 123456';
+          
+          updateRolePermissions([
+            'perm_view_docs',
+            'perm_upload_docs',
+            'perm_share_with_title',
+            'perm_messaging',
+            'perm_mortgage_access'
+          ]);
+          submitButtonText.textContent = 'Create Lender Account';
         }
+      }
 
-        // Update permissions based on role (example logic)
-        const permissions = {
-          client: ['perm_view_docs', 'perm_upload_docs', 'perm_messaging', 'perm_insurance_access'],
-          attorney: ['perm_view_docs', 'perm_approve_docs', 'perm_view_transactions', 'perm_manage_transactions', 'perm_messaging'],
-          cpa: ['perm_view_docs', 'perm_view_transactions', 'perm_messaging'],
-          agent: ['perm_view_docs', 'perm_upload_docs', 'perm_view_transactions', 'perm_messaging'],
-          lender: ['perm_view_docs', 'perm_upload_docs', 'perm_mortgage_access', 'perm_messaging'],
-          admin: ['perm_view_docs', 'perm_upload_docs', 'perm_approve_docs', 'perm_view_transactions', 'perm_manage_transactions', 'perm_messaging', 'perm_mortgage_access', 'perm_insurance_access'],
-        };
-
+      // Update permissions checkboxes
+      function updateRolePermissions(permissionsList) {
         // Reset all checkboxes
         document.querySelectorAll('#rolePermissions input[type="checkbox"]').forEach((cb) => {
           cb.checked = false;
           cb.disabled = false;
         });
 
-        // Check appropriate permissions for selected role
-        if (permissions[role]) {
-          permissions[role].forEach((permId) => {
-            const checkbox = document.getElementById(permId);
-            if (checkbox) {
-              checkbox.checked = true;
-            }
-          });
+        // Check appropriate permissions
+        permissionsList.forEach((permId) => {
+          const checkbox = document.getElementById(permId);
+          if (checkbox) {
+            checkbox.checked = true;
+          }
+        });
+      }
+
+      // Password generator function
+      function generatePassword() {
+        const length = 16;
+        const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+        let password = '';
+        
+        // Ensure at least one of each type
+        password += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 26)];
+        password += 'abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random() * 26)];
+        password += '0123456789'[Math.floor(Math.random() * 10)];
+        password += '!@#$%^&*'[Math.floor(Math.random() * 8)];
+        
+        // Fill the rest randomly
+        for (let i = password.length; i < length; i++) {
+          password += charset[Math.floor(Math.random() * charset.length)];
         }
+        
+        // Shuffle the password
+        password = password.split('').sort(() => Math.random() - 0.5).join('');
+        
+        // Set the password field
+        document.getElementById('password').value = password;
+        document.getElementById('password').type = 'text';
+        
+        // Show copied message
+        const helpText = document.querySelector('#password + .help-text');
+        const originalHTML = helpText.innerHTML;
+        helpText.innerHTML = '<span style="color: var(--success-green);">✓ Password generated and visible</span>';
+        
+        setTimeout(() => {
+          helpText.innerHTML = originalHTML;
+          document.getElementById('password').type = 'password';
+        }, 3000);
       }
 
       // Add Partner Form Functions
