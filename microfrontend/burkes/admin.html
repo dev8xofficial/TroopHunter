@@ -888,6 +888,7 @@
         <a class="nav-item" onclick="showPage('users')">Users</a>
         <a class="nav-item" onclick="showPage('partners')">Partners</a>
         <a class="nav-item" onclick="showPage('transactions')">Transactions</a>
+        <a class="nav-item" onclick="showPage('documents')">Documents</a>
         <a class="nav-item" onclick="showPage('analytics')">Analytics</a>
         <!-- <a class="nav-item" onclick="showPage('settings')">Settings</a> -->
       </div>
@@ -1097,7 +1098,7 @@
                           <span class="document-meta-item">🕐 3h ago</span>
                         </div>
                       </div>
-                      <span class="document-status approved">Closed</span>
+                      <span class="document-status approved">Completed</span>
                     </div>
                   </div>
                 </div>
@@ -1956,8 +1957,7 @@
                 <select class="form-select" onclick="event.stopPropagation();" style="width: 180px; padding: 8px;">
                   <option>All Requests</option>
                   <option>Attorney Verifications</option>
-                  <option>Status Changes</option>
-                  <option>Stage Updates</option>
+                  <option>Transaction Updates</option>
                 </select>
               </div>
             </div>
@@ -2022,17 +2022,18 @@
               <div>
                 <label class="form-label">Filter by Stage</label>
                 <select class="form-input">
-                  <option value="consultation" selected>Initial Consultation</option>
-                  <option value="search">Property Search/Listing</option>
-                  <option value="negotiation">Offer/Negotiation</option>
+                  <option value="">All Stages</option>
+                  <option value="consultation">Initial Consultation</option>
+                  <option value="search">Property Search / Listing</option>
+                  <option value="negotiation">Offer / Negotiation</option>
                   <option value="contract">Under Contract</option>
-                  <option value="mortgage-app">Mortgage Application/Pre-Approval</option>
-                  <option value="insurance">Insurance Information/Documentation</option>
-                  <option value="attorney-review">Attorney/Title Company Review</option>
-                  <option value="inspection">Inspection/Appraisal</option>
+                  <option value="mortgage-app">Mortgage Application / Pre-Approval</option>
+                  <option value="insurance">Insurance Information / Documentation</option>
+                  <option value="attorney-review">Attorney / Title Company Review</option>
+                  <option value="inspection">Inspection / Appraisal</option>
                   <option value="closing-prep">Closing Preparation</option>
-                  <option value="mortgage-underwriting">Mortgage Underwriting/Final Approval</option>
-                  <option value="final-walkthrough">Final Walkthrough/Document Signing</option>
+                  <option value="mortgage-underwriting">Mortgage Underwriting / Final Approval</option>
+                  <option value="final-walkthrough">Final Walkthrough / Document Signing</option>
                   <option value="completed">Completed</option>
                 </select>
               </div>
@@ -2071,143 +2072,109 @@
           </div>
 
           <div class="card-content">
-            <!-- Table Header -->
-            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; padding: 16px; background: var(--neutral-50); border-radius: 8px; margin-bottom: 12px; font-weight: 600; font-size: 13px; color: var(--neutral-700)">
-              <div>Property / Client</div>
-              <div>Transaction Type</div>
-              <div>Contract Amount</div>
-              <div>Stage</div>
-              <div>Closing Date</div>
-              <div>Status</div>
-              <div style="text-align: center">Actions</div>
-            </div>
-
-            <!-- Transaction Rows -->
-            <div class="document-list">
-              <!-- Transaction 1 -->
-              <div class="document-item">
-                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; align-items: center">
-                  <div>
-                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">123 Main Street, The Woodlands, TX 77380</div>
-                    <div style="font-size: 12px; color: var(--neutral-500)">Client: Sarah Johnson • ID: TRX-10247</div>
-                  </div>
-                  <div>
-                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏠 Purchase</span>
-                  </div>
-                  <div style="font-size: 14px; font-weight: 600; color: var(--primary-navy)">$425,000</div>
-                  <div>
-                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">Closing Prep</span>
-                  </div>
-                  <div style="font-size: 14px; color: var(--neutral-600)">Feb 28, 2026</div>
-                  <div>
-                    <span class="document-status" style="background: var(--warning-orange); color: white">Closing Soon</span>
-                  </div>
-                  <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">View</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">Edit</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Transaction 2 -->
-              <div class="document-item">
-                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; align-items: center">
-                  <div>
-                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">456 Oak Avenue, Spring, TX 77383</div>
-                    <div style="font-size: 12px; color: var(--neutral-500)">Client: Michael Chen • ID: TRX-10198</div>
-                  </div>
-                  <div>
-                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏘️ Sale</span>
-                  </div>
-                  <div style="font-size: 14px; font-weight: 600; color: var(--primary-navy)">$389,500</div>
-                  <div>
-                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">Under Contract</span>
-                  </div>
-                  <div style="font-size: 14px; color: var(--neutral-600)">Mar 15, 2026</div>
-                  <div>
-                    <span class="document-status approved">On Track</span>
-                  </div>
-                  <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">View</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">Edit</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Transaction 3 -->
-              <div class="document-item">
-                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; align-items: center">
-                  <div>
-                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">789 Pine Road, The Woodlands, TX 77381</div>
-                    <div style="font-size: 12px; color: var(--neutral-500)">Client: Emily Rodriguez • ID: TRX-10156</div>
-                  </div>
-                  <div>
-                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏠 Purchase</span>
-                  </div>
-                  <div style="font-size: 14px; font-weight: 600; color: var(--primary-navy)">$512,000</div>
-                  <div>
-                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">Inspection</span>
-                  </div>
-                  <div style="font-size: 14px; color: var(--neutral-600)">Mar 8, 2026</div>
-                  <div>
-                    <span class="document-status rejected">Delayed</span>
-                  </div>
-                  <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">View</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">Edit</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Transaction 4 -->
-              <div class="document-item">
-                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; align-items: center">
-                  <div>
-                    <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 4px">321 Elm Street, Conroe, TX 77304</div>
-                    <div style="font-size: 12px; color: var(--neutral-500)">Client: David Brown • ID: TRX-10134</div>
-                  </div>
-                  <div>
-                    <span style="background: #dcfce7; color: #16a34a; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">💰 Refinance</span>
-                  </div>
-                  <div style="font-size: 14px; font-weight: 600; color: var(--primary-navy)">$298,000</div>
-                  <div>
-                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">Offer Review</span>
-                  </div>
-                  <div style="font-size: 14px; color: var(--neutral-600)">Apr 2, 2026</div>
-                  <div>
-                    <span class="document-status approved">On Track</span>
-                  </div>
-                  <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">View</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">Edit</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Transaction 5 -->
-              <div class="document-item">
-                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; align-items: center">
-                  <div>
-                    <div style="font-weight: 600; color: var(--neutral-600); margin-bottom: 4px">654 Maple Drive, Tomball, TX 77375</div>
-                    <div style="font-size: 12px; color: var(--neutral-500)">Client: Jennifer Wilson • ID: TRX-10089</div>
-                  </div>
-                  <div>
-                    <span style="background: var(--neutral-100); color: var(--neutral-600); padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">🏘️ Sale</span>
-                  </div>
-                  <div style="font-size: 14px; font-weight: 600; color: var(--neutral-600)">$467,500</div>
-                  <div>
-                    <span style="background: var(--success-green); color: white; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600">Completed</span>
-                  </div>
-                  <div style="font-size: 14px; color: var(--neutral-600)">Feb 15, 2026</div>
-                  <div>
-                    <span class="document-status approved">Closed</span>
-                  </div>
-                  <div style="display: flex; gap: 8px; justify-content: center">
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px" onclick="openViewEditTransactionModal()">View</button>
-                    <button class="doc-action-btn" style="padding: 6px 12px; font-size: 12px">Archive</button>
-                  </div>
-                </div>
-              </div>
+            <div style="overflow-x:auto;">
+              <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                  <tr style="background:var(--neutral-50);">
+                    <th style="padding:12px 16px; text-align:left; font-size:13px; font-weight:600; color:var(--neutral-700); border-bottom:2px solid var(--neutral-200);">Transaction ID</th>
+                    <th style="padding:12px 16px; text-align:left; font-size:13px; font-weight:600; color:var(--neutral-700); border-bottom:2px solid var(--neutral-200);">Client Name</th>
+                    <th style="padding:12px 16px; text-align:left; font-size:13px; font-weight:600; color:var(--neutral-700); border-bottom:2px solid var(--neutral-200);">Property Address</th>
+                    <th style="padding:12px 16px; text-align:left; font-size:13px; font-weight:600; color:var(--neutral-700); border-bottom:2px solid var(--neutral-200);">Transaction Type</th>
+                    <th style="padding:12px 16px; text-align:left; font-size:13px; font-weight:600; color:var(--neutral-700); border-bottom:2px solid var(--neutral-200);">Contract Amount</th>
+                    <th style="padding:12px 16px; text-align:left; font-size:13px; font-weight:600; color:var(--neutral-700); border-bottom:2px solid var(--neutral-200);">Stage</th>
+                    <th style="padding:12px 16px; text-align:left; font-size:13px; font-weight:600; color:var(--neutral-700); border-bottom:2px solid var(--neutral-200);">Closing Date</th>
+                    <th style="padding:12px 16px; text-align:left; font-size:13px; font-weight:600; color:var(--neutral-700); border-bottom:2px solid var(--neutral-200);">Status</th>
+                    <th style="padding:12px 16px; text-align:center; font-size:13px; font-weight:600; color:var(--neutral-700); border-bottom:2px solid var(--neutral-200);">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Transaction 1 — Active -->
+                  <tr style="border-bottom:1px solid var(--neutral-200);">
+                    <td style="padding:14px 16px; font-size:13px; font-weight:700; color:var(--accent-blue);">TRX-10247</td>
+                    <td style="padding:14px 16px; font-size:13px;">Sarah Johnson</td>
+                    <td style="padding:14px 16px; font-size:13px; color:var(--primary-navy); font-weight:600;">123 Main Street, The Woodlands, TX 77380</td>
+                    <td style="padding:14px 16px;"><span style="background:#dbeafe;color:#2563eb;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">🏠 Purchase</span></td>
+                    <td style="padding:14px 16px; font-size:13px; font-weight:600; color:var(--primary-navy);">$425,000</td>
+                    <td style="padding:14px 16px;"><span style="background:#fef3c7;color:#d97706;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">Closing Preparation</span></td>
+                    <td style="padding:14px 16px; font-size:13px; color:var(--neutral-600);">Feb 28, 2026</td>
+                    <td style="padding:14px 16px;"><span class="document-status pending">Closing Soon</span></td>
+                    <td style="padding:14px 16px; text-align:center;">
+                      <div style="display:flex;gap:6px;justify-content:center;">
+                        <button class="doc-action-btn" style="padding:6px 12px;font-size:12px;" onclick="openViewEditTransactionModal()">View</button>
+                        <button class="doc-action-btn" style="padding:6px 12px;font-size:12px;" onclick="openViewEditTransactionModal()">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Transaction 2 — Active -->
+                  <tr style="border-bottom:1px solid var(--neutral-200);">
+                    <td style="padding:14px 16px; font-size:13px; font-weight:700; color:var(--accent-blue);">TRX-10198</td>
+                    <td style="padding:14px 16px; font-size:13px;">Michael Chen</td>
+                    <td style="padding:14px 16px; font-size:13px; color:var(--primary-navy); font-weight:600;">456 Oak Avenue, Spring, TX 77383</td>
+                    <td style="padding:14px 16px;"><span style="background:#fef3c7;color:#d97706;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">🏘️ Sale</span></td>
+                    <td style="padding:14px 16px; font-size:13px; font-weight:600; color:var(--primary-navy);">$389,500</td>
+                    <td style="padding:14px 16px;"><span style="background:#dbeafe;color:#2563eb;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">Under Contract</span></td>
+                    <td style="padding:14px 16px; font-size:13px; color:var(--neutral-600);">Mar 15, 2026</td>
+                    <td style="padding:14px 16px;"><span class="document-status approved">On Track</span></td>
+                    <td style="padding:14px 16px; text-align:center;">
+                      <div style="display:flex;gap:6px;justify-content:center;">
+                        <button class="doc-action-btn" style="padding:6px 12px;font-size:12px;" onclick="openViewEditTransactionModal()">View</button>
+                        <button class="doc-action-btn" style="padding:6px 12px;font-size:12px;" onclick="openViewEditTransactionModal()">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Transaction 3 — Active -->
+                  <tr style="border-bottom:1px solid var(--neutral-200);">
+                    <td style="padding:14px 16px; font-size:13px; font-weight:700; color:var(--accent-blue);">TRX-10156</td>
+                    <td style="padding:14px 16px; font-size:13px;">Emily Rodriguez</td>
+                    <td style="padding:14px 16px; font-size:13px; color:var(--primary-navy); font-weight:600;">789 Pine Road, The Woodlands, TX 77381</td>
+                    <td style="padding:14px 16px;"><span style="background:#dbeafe;color:#2563eb;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">🏠 Purchase</span></td>
+                    <td style="padding:14px 16px; font-size:13px; font-weight:600; color:var(--primary-navy);">$512,000</td>
+                    <td style="padding:14px 16px;"><span style="background:#fef3c7;color:#d97706;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">Inspection / Appraisal</span></td>
+                    <td style="padding:14px 16px; font-size:13px; color:var(--neutral-600);">Mar 8, 2026</td>
+                    <td style="padding:14px 16px;"><span class="document-status rejected">Delayed</span></td>
+                    <td style="padding:14px 16px; text-align:center;">
+                      <div style="display:flex;gap:6px;justify-content:center;">
+                        <button class="doc-action-btn" style="padding:6px 12px;font-size:12px;" onclick="openViewEditTransactionModal()">View</button>
+                        <button class="doc-action-btn" style="padding:6px 12px;font-size:12px;" onclick="openViewEditTransactionModal()">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Transaction 4 — Active -->
+                  <tr style="border-bottom:1px solid var(--neutral-200);">
+                    <td style="padding:14px 16px; font-size:13px; font-weight:700; color:var(--accent-blue);">TRX-10134</td>
+                    <td style="padding:14px 16px; font-size:13px;">David Brown</td>
+                    <td style="padding:14px 16px; font-size:13px; color:var(--primary-navy); font-weight:600;">321 Elm Street, Conroe, TX 77304</td>
+                    <td style="padding:14px 16px;"><span style="background:#dcfce7;color:#16a34a;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">💰 Refinance</span></td>
+                    <td style="padding:14px 16px; font-size:13px; font-weight:600; color:var(--primary-navy);">$298,000</td>
+                    <td style="padding:14px 16px;"><span style="background:#dbeafe;color:#2563eb;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">Offer / Negotiation</span></td>
+                    <td style="padding:14px 16px; font-size:13px; color:var(--neutral-600);">Apr 2, 2026</td>
+                    <td style="padding:14px 16px;"><span class="document-status approved">On Track</span></td>
+                    <td style="padding:14px 16px; text-align:center;">
+                      <div style="display:flex;gap:6px;justify-content:center;">
+                        <button class="doc-action-btn" style="padding:6px 12px;font-size:12px;" onclick="openViewEditTransactionModal()">View</button>
+                        <button class="doc-action-btn" style="padding:6px 12px;font-size:12px;" onclick="openViewEditTransactionModal()">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Transaction 5 — Completed: use "Completed" not "Closed" (FIX A-3) -->
+                  <tr style="border-bottom:1px solid var(--neutral-200); opacity:0.85;">
+                    <td style="padding:14px 16px; font-size:13px; font-weight:700; color:var(--accent-blue);">TRX-10089</td>
+                    <td style="padding:14px 16px; font-size:13px;">Jennifer Wilson</td>
+                    <td style="padding:14px 16px; font-size:13px; color:var(--neutral-600);">654 Maple Drive, Tomball, TX 77375</td>
+                    <td style="padding:14px 16px;"><span style="background:var(--neutral-100);color:var(--neutral-600);padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">🏘️ Sale</span></td>
+                    <td style="padding:14px 16px; font-size:13px; font-weight:600; color:var(--neutral-600);">$467,500</td>
+                    <td style="padding:14px 16px;"><span style="background:var(--success-green);color:white;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">Completed</span></td>
+                    <td style="padding:14px 16px; font-size:13px; color:var(--neutral-600);">Feb 15, 2026</td>
+                    <td style="padding:14px 16px;"><span class="document-status approved">Completed</span></td>
+                    <td style="padding:14px 16px; text-align:center;">
+                      <div style="display:flex;gap:6px;justify-content:center;">
+                        <button class="doc-action-btn" style="padding:6px 12px;font-size:12px;" onclick="openViewEditTransactionModal()">View</button>
+                        <button class="doc-action-btn" style="padding:6px 12px;font-size:12px;">Archive</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
             <!-- Pagination -->
@@ -2221,6 +2188,149 @@
                 <button class="btn-secondary" style="padding: 8px 16px">...</button>
                 <button class="btn-secondary" style="padding: 8px 16px">65</button>
                 <button class="btn-secondary" style="padding: 8px 16px">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOCUMENTS PAGE -->
+      <div id="documents-page" class="page page-hidden">
+        <div class="page-header" style="margin-bottom:32px;">
+          <h1 class="page-title">Documents</h1>
+          <p class="page-subtitle">Review, approve, and manage all transaction documents</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="main-content-card" style="margin-bottom:24px;">
+          <div class="card-content">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:16px;align-items:end;">
+              <div>
+                <label class="form-label">Search Documents</label>
+                <input type="text" class="form-input" placeholder="Search by name, client, or transaction ID…" />
+              </div>
+              <div>
+                <label class="form-label">Filter by Category</label>
+                <select class="form-input">
+                  <option value="">All Categories</option>
+                  <option>Purchase &amp; Sales Agreement</option>
+                  <option>Closing Disclosure</option>
+                  <option>Mortgage Documents</option>
+                  <option>Insurance Documents</option>
+                  <option>Title Documents</option>
+                  <option>Divorce Agreement</option>
+                  <option>Inspection Report</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label">Filter by Status</label>
+                <select class="form-input">
+                  <option value="">All Statuses</option>
+                  <option>Needs Review</option>
+                  <option>Under Review</option>
+                  <option>Approved</option>
+                  <option>Rejected</option>
+                </select>
+              </div>
+              <button class="btn-secondary">Apply Filters</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Documents Table -->
+        <div class="main-content-card">
+          <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <h2 class="card-title">All Documents</h2>
+              <p class="card-subtitle">Platform-wide document review queue</p>
+            </div>
+          </div>
+          <div class="card-content">
+            <div style="overflow-x:auto;">
+              <table style="width:100%;border-collapse:collapse;">
+                <thead>
+                  <tr style="background:var(--neutral-50);">
+                    <th style="padding:12px 16px;text-align:left;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Document Name</th>
+                    <th style="padding:12px 16px;text-align:left;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Category</th>
+                    <th style="padding:12px 16px;text-align:left;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Transaction ID</th>
+                    <th style="padding:12px 16px;text-align:left;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Uploaded By</th>
+                    <th style="padding:12px 16px;text-align:left;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Date</th>
+                    <th style="padding:12px 16px;text-align:left;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Status</th>
+                    <th style="padding:12px 16px;text-align:center;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid var(--neutral-200);">
+                    <td style="padding:14px 16px;font-size:13px;font-weight:600;color:var(--primary-navy);">📋 Purchase &amp; Sales Agreement – Smith</td>
+                    <td style="padding:14px 16px;"><span style="background:#dbeafe;color:#2563eb;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">Purchase &amp; Sales Agreement</span></td>
+                    <td style="padding:14px 16px;font-size:13px;font-weight:700;color:var(--accent-blue);">TRX-10247</td>
+                    <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">RE Agent Kim Lee</td>
+                    <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">Feb 1, 2026</td>
+                    <td style="padding:14px 16px;"><span class="document-status rejected">Needs Review</span></td>
+                    <td style="padding:14px 16px;text-align:center;">
+                      <div style="display:flex;gap:6px;justify-content:center;">
+                        <button class="doc-action-btn" style="padding:6px 10px;font-size:12px;">👁️ View</button>
+                        <button class="btn-primary" style="padding:6px 10px;font-size:12px;background:var(--success-green);">✅ Approve</button>
+                        <button class="btn-secondary" style="padding:6px 10px;font-size:12px;">❌ Reject</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--neutral-200);">
+                    <td style="padding:14px 16px;font-size:13px;font-weight:600;color:var(--primary-navy);">📊 Mortgage Application – Williams</td>
+                    <td style="padding:14px 16px;"><span style="background:#fef3c7;color:#d97706;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">Mortgage Documents</span></td>
+                    <td style="padding:14px 16px;font-size:13px;font-weight:700;color:var(--accent-blue);">TRX-10198</td>
+                    <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">RE Agent Lisa Anderson</td>
+                    <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">Feb 5, 2026</td>
+                    <td style="padding:14px 16px;"><span class="document-status pending">Under Review</span></td>
+                    <td style="padding:14px 16px;text-align:center;">
+                      <div style="display:flex;gap:6px;justify-content:center;">
+                        <button class="doc-action-btn" style="padding:6px 10px;font-size:12px;">👁️ View</button>
+                        <button class="btn-primary" style="padding:6px 10px;font-size:12px;background:var(--success-green);">✅ Approve</button>
+                        <button class="btn-secondary" style="padding:6px 10px;font-size:12px;">❌ Reject</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--neutral-200);">
+                    <td style="padding:14px 16px;font-size:13px;font-weight:600;color:var(--primary-navy);">🏠 Home Inspection Report – Rodriguez</td>
+                    <td style="padding:14px 16px;"><span style="background:#dcfce7;color:#16a34a;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">Inspection Report</span></td>
+                    <td style="padding:14px 16px;font-size:13px;font-weight:700;color:var(--accent-blue);">TRX-10156</td>
+                    <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">Attorney Michael Chen</td>
+                    <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">Feb 8, 2026</td>
+                    <td style="padding:14px 16px;"><span class="document-status approved">Approved</span></td>
+                    <td style="padding:14px 16px;text-align:center;">
+                      <div style="display:flex;gap:6px;justify-content:center;">
+                        <button class="doc-action-btn" style="padding:6px 10px;font-size:12px;">👁️ View</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--neutral-200);">
+                    <td style="padding:14px 16px;font-size:13px;font-weight:600;color:var(--primary-navy);">📋 Closing Disclosure – Brown</td>
+                    <td style="padding:14px 16px;"><span style="background:#dbeafe;color:#2563eb;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">Closing Disclosure</span></td>
+                    <td style="padding:14px 16px;font-size:13px;font-weight:700;color:var(--accent-blue);">TRX-10134</td>
+                    <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">CPA David Torres</td>
+                    <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">Feb 10, 2026</td>
+                    <td style="padding:14px 16px;"><span class="document-status rejected">Needs Review</span></td>
+                    <td style="padding:14px 16px;text-align:center;">
+                      <div style="display:flex;gap:6px;justify-content:center;">
+                        <button class="doc-action-btn" style="padding:6px 10px;font-size:12px;">👁️ View</button>
+                        <button class="btn-primary" style="padding:6px 10px;font-size:12px;background:var(--success-green);">✅ Approve</button>
+                        <button class="btn-secondary" style="padding:6px 10px;font-size:12px;">❌ Reject</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:24px;border-top:1px solid var(--neutral-200);">
+              <div style="font-size:14px;color:var(--neutral-600);">Showing 1–4 of 47 documents pending review</div>
+              <div style="display:flex;gap:8px;">
+                <button class="btn-secondary" style="padding:8px 16px;">Previous</button>
+                <button class="btn-primary" style="padding:8px 16px;">1</button>
+                <button class="btn-secondary" style="padding:8px 16px;">2</button>
+                <button class="btn-secondary" style="padding:8px 16px;">3</button>
+                <button class="btn-secondary" style="padding:8px 16px;">Next</button>
               </div>
             </div>
           </div>
@@ -3866,7 +3976,7 @@
             <div class="form-section">
               <div class="form-section-title"><span>👤</span> Client & Timeline</div>
 
-              <div class="form-row form-row-3">
+              <div class="form-row form-row-2">
                 <div class="form-group">
                   <label class="form-label">Client Name</label>
                   <input type="text" class="form-input" id="transactionClient" value="Sarah Johnson" readonly />
@@ -3875,11 +3985,6 @@
                 <div class="form-group">
                   <label class="form-label">Closing Date</label>
                   <input type="date" class="form-input" id="transactionClosingDate" value="2026-02-28" readonly />
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">Days to Close</label>
-                  <input type="text" class="form-input" id="transactionDaysToClose" value="11 days" readonly />
                 </div>
               </div>
             </div>

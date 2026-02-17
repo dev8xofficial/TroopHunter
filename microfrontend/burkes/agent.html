@@ -1321,9 +1321,11 @@
                 <thead>
                   <tr>
                     <th>Client Name</th>
-                    <th>Property</th>
-                    <th>Type</th>
+                    <th>Property Address</th>
+                    <th>Transaction Type</th>
                     <th>Contract Amount</th>
+                    <th>Stage</th>
+                    <th>Closing Date</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -1335,23 +1337,29 @@
                     <td>Purchase</td>
                     <td>$485,000</td>
                     <td><span class="table-status active">Under Contract</span></td>
-                    <td><button class="table-action-btn">Manage</button></td>
+                    <td>Mar 15, 2026</td>
+                    <td><span class="table-status active">On Track</span></td>
+                    <td><button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button></td>
                   </tr>
                   <tr>
                     <td><strong>Sarah Williams</strong></td>
                     <td>789 Pine Road</td>
                     <td>Sale</td>
                     <td>$375,000</td>
-                    <td><span class="table-status pending">Pending Offer</span></td>
-                    <td><button class="table-action-btn">Manage</button></td>
+                    <td><span class="table-status pending">Offer / Negotiation</span></td>
+                    <td>Apr 30, 2026</td>
+                    <td><span class="table-status pending">On Track</span></td>
+                    <td><button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button></td>
                   </tr>
                   <tr>
                     <td><strong>Michael Brown</strong></td>
                     <td>321 Elm Street</td>
                     <td>Purchase</td>
                     <td>$520,000</td>
-                    <td><span class="table-status completed">Closed</span></td>
-                    <td><button class="table-action-btn">View</button></td>
+                    <td><span class="table-status completed">Completed</span></td>
+                    <td>Jan 8, 2026</td>
+                    <td><span class="table-status completed">Completed</span></td>
+                    <td><button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -1448,6 +1456,21 @@
             <option>Purchase</option>
             <option>Sale</option>
           </select>
+          <select class="filter-select">
+            <option>All Stages</option>
+            <option>Initial Consultation</option>
+            <option>Property Search / Listing</option>
+            <option>Offer / Negotiation</option>
+            <option>Under Contract</option>
+            <option>Mortgage Application / Pre-Approval</option>
+            <option>Insurance Information / Documentation</option>
+            <option>Attorney / Title Company Review</option>
+            <option>Inspection / Appraisal</option>
+            <option>Closing Preparation</option>
+            <option>Mortgage Underwriting / Final Approval</option>
+            <option>Final Walkthrough / Document Signing</option>
+            <option>Completed</option>
+          </select>
           <div class="search-bar">
             <span class="search-icon">🔍</span>
             <input type="text" class="search-input" placeholder="Search transactions..." />
@@ -1462,7 +1485,7 @@
                 <th>Transaction ID</th>
                 <th>Client Name</th>
                 <th>Property Address</th>
-                <th>Type</th>
+                <th>Transaction Type</th>
                 <th>Contract Amount</th>
                 <th>Stage</th>
                 <th>Closing Date</th>
@@ -1483,7 +1506,6 @@
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap">
                     <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
-                    <button class="table-action-btn" onclick="openEditTransactionModal(this)">Edit</button>
                     <button class="table-action-btn" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe" onclick="openUpdateStageModal(this)">Update Stage</button>
                   </div>
                 </td>
@@ -1500,7 +1522,6 @@
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap">
                     <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
-                    <button class="table-action-btn" onclick="openEditTransactionModal(this)">Edit</button>
                     <button class="table-action-btn" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe" onclick="openUpdateStageModal(this)">Update Stage</button>
                   </div>
                 </td>
@@ -1515,11 +1536,7 @@
                 <td>Jan 8, 2026</td>
                 <td><span class="table-status completed">Completed</span></td>
                 <td>
-                  <div style="display:flex;gap:6px;flex-wrap:wrap">
-                    <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
-                    <button class="table-action-btn" onclick="openEditTransactionModal(this)">Edit</button>
-                    <button class="table-action-btn" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe" onclick="openUpdateStageModal(this)">Update Stage</button>
-                  </div>
+                  <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
                 </td>
               </tr>
               <tr>
@@ -1534,7 +1551,6 @@
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap">
                     <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
-                    <button class="table-action-btn" onclick="openEditTransactionModal(this)">Edit</button>
                     <button class="table-action-btn" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe" onclick="openUpdateStageModal(this)">Update Stage</button>
                   </div>
                 </td>
@@ -1551,7 +1567,6 @@
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap">
                     <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
-                    <button class="table-action-btn" onclick="openEditTransactionModal(this)">Edit</button>
                     <button class="table-action-btn" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe" onclick="openUpdateStageModal(this)">Update Stage</button>
                   </div>
                 </td>
@@ -1604,12 +1619,12 @@
             <div class="form-group">
               <label class="form-label">Document Type</label>
               <select class="form-select">
-                <option>Purchase & Sales Agreement</option>
-                <option>Mortgage Application</option>
-                <option>Insurance Policy</option>
+                <option>Purchase &amp; Sales Agreement</option>
+                <option>Mortgage Documents</option>
+                <option>Insurance Documents</option>
                 <option>Inspection Report</option>
                 <option>Title Documents</option>
-                <option>Closing Documents</option>
+                <option>Closing Disclosure</option>
               </select>
             </div>
             <div class="form-group">
@@ -1626,39 +1641,102 @@
 
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">Recent Documents</h2>
+            <h2 class="card-title">Documents</h2>
+            <p class="card-subtitle">All documents across your transactions</p>
           </div>
-          <div class="document-grid">
-            <div class="document-card">
-              <div class="document-icon">📄</div>
-              <div class="document-name">Purchase_Agreement_Smith.pdf</div>
-              <div class="document-meta">123 Main Street • Feb 10, 2026</div>
-            </div>
-            <div class="document-card">
-              <div class="document-icon">📊</div>
-              <div class="document-name">Mortgage_Application_Williams.pdf</div>
-              <div class="document-meta">789 Pine Road • Feb 9, 2026</div>
-            </div>
-            <div class="document-card">
-              <div class="document-icon">🏠</div>
-              <div class="document-name">Home_Insurance_Brown.pdf</div>
-              <div class="document-meta">321 Elm Street • Feb 8, 2026</div>
-            </div>
-            <div class="document-card">
-              <div class="document-icon">📋</div>
-              <div class="document-name">Inspection_Report_Davis.pdf</div>
-              <div class="document-meta">555 Lake Shore • Feb 7, 2026</div>
-            </div>
-            <div class="document-card">
-              <div class="document-icon">📝</div>
-              <div class="document-name">Closing_Disclosure_Martinez.pdf</div>
-              <div class="document-meta">890 Maple Ave • Feb 6, 2026</div>
-            </div>
-            <div class="document-card">
-              <div class="document-icon">📑</div>
-              <div class="document-name">Title_Insurance_Smith.pdf</div>
-              <div class="document-meta">123 Main Street • Feb 5, 2026</div>
-            </div>
+          <div style="overflow-x:auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Document Name</th>
+                  <th>Category</th>
+                  <th>Transaction</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>📄 Purchase_Agreement_Smith.pdf</strong></td>
+                  <td><span class="table-status active">Purchase &amp; Sales Agreement</span></td>
+                  <td>123 Main Street (#TXN-2024-001)</td>
+                  <td>Feb 10, 2026</td>
+                  <td><span class="table-status active">Approved</span></td>
+                  <td>
+                    <div style="display:flex;gap:6px;">
+                      <button class="table-action-btn">View</button>
+                      <button class="table-action-btn">Download</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>📊 Mortgage_Application_Williams.pdf</strong></td>
+                  <td><span class="table-status pending">Mortgage Documents</span></td>
+                  <td>789 Pine Road (#TXN-2024-002)</td>
+                  <td>Feb 9, 2026</td>
+                  <td><span class="table-status pending">Under Review</span></td>
+                  <td>
+                    <div style="display:flex;gap:6px;">
+                      <button class="table-action-btn">View</button>
+                      <button class="table-action-btn">Download</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>🏠 Home_Insurance_Brown.pdf</strong></td>
+                  <td><span class="table-status active">Insurance Documents</span></td>
+                  <td>321 Elm Street (#TXN-2024-003)</td>
+                  <td>Feb 8, 2026</td>
+                  <td><span class="table-status active">Approved</span></td>
+                  <td>
+                    <div style="display:flex;gap:6px;">
+                      <button class="table-action-btn">View</button>
+                      <button class="table-action-btn">Download</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>📋 Inspection_Report_Davis.pdf</strong></td>
+                  <td><span class="table-status pending">Inspection Report</span></td>
+                  <td>555 Lake Shore Drive (#TXN-2024-004)</td>
+                  <td>Feb 7, 2026</td>
+                  <td><span class="table-status pending">Under Review</span></td>
+                  <td>
+                    <div style="display:flex;gap:6px;">
+                      <button class="table-action-btn">View</button>
+                      <button class="table-action-btn">Download</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>📝 Closing_Disclosure_Martinez.pdf</strong></td>
+                  <td><span class="table-status active">Closing Documents</span></td>
+                  <td>890 Maple Avenue (#TXN-2024-005)</td>
+                  <td>Feb 6, 2026</td>
+                  <td><span class="table-status active">Approved</span></td>
+                  <td>
+                    <div style="display:flex;gap:6px;">
+                      <button class="table-action-btn">View</button>
+                      <button class="table-action-btn">Download</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>📑 Title_Insurance_Smith.pdf</strong></td>
+                  <td><span class="table-status active">Title Documents</span></td>
+                  <td>123 Main Street (#TXN-2024-001)</td>
+                  <td>Feb 5, 2026</td>
+                  <td><span class="table-status active">Approved</span></td>
+                  <td>
+                    <div style="display:flex;gap:6px;">
+                      <button class="table-action-btn">View</button>
+                      <button class="table-action-btn">Download</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -2615,16 +2693,16 @@
                   <label class="form-label">Transaction Stage <span class="required-indicator">*</span></label>
                   <select id="transactionStage" class="form-select" required>
                     <option value="consultation">Initial Consultation</option>
-                    <option value="search">Property Search/Listing</option>
-                    <option value="negotiation">Offer/Negotiation</option>
+                    <option value="search">Property Search / Listing</option>
+                    <option value="negotiation">Offer / Negotiation</option>
                     <option value="contract">Under Contract</option>
-                    <option value="mortgage-app">Mortgage Application</option>
-                    <option value="insurance">Insurance Documentation</option>
-                    <option value="attorney-review">Attorney Review</option>
-                    <option value="inspection">Inspection/Appraisal</option>
+                    <option value="mortgage-app">Mortgage Application / Pre-Approval</option>
+                    <option value="insurance">Insurance Information / Documentation</option>
+                    <option value="attorney-review">Attorney / Title Company Review</option>
+                    <option value="inspection">Inspection / Appraisal</option>
                     <option value="closing-prep">Closing Preparation</option>
-                    <option value="final-approval">Final Approval</option>
-                    <option value="final-walkthrough">Final Walkthrough</option>
+                    <option value="mortgage-underwriting">Mortgage Underwriting / Final Approval</option>
+                    <option value="final-walkthrough">Final Walkthrough / Document Signing</option>
                     <option value="completed">Completed</option>
                   </select>
                 </div>

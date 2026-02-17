@@ -850,6 +850,15 @@
                     <option>Sales Only</option>
                 </select>
                 <select class="filter-select">
+                    <option>All Clients</option>
+                    <option>John Smith</option>
+                    <option>Sarah Williams</option>
+                    <option>Michael Brown</option>
+                    <option>Emily Davis</option>
+                    <option>Lisa Anderson</option>
+                    <option>Robert Wilson</option>
+                </select>
+                <select class="filter-select">
                     <option>All Time Periods</option>
                     <option>2026 YTD</option>
                     <option>2025</option>
@@ -870,7 +879,6 @@
                             <th>Property Address</th>
                             <th>Transaction Type</th>
                             <th>Contract Amount</th>
-                            <th>Closing Costs</th>
                             <th>Stage</th>
                             <th>Closing Date</th>
                             <th>Status</th>
@@ -894,7 +902,6 @@
                             <td>123 Main Street, The Woodlands, TX</td>
                             <td><span class="table-status purchase">Purchase</span></td>
                             <td>$485,000</td>
-                            <td>$12,450</td>
                             <td>Closing Preparation</td>
                             <td>Feb 21, 2026</td>
                             <td><span class="table-status purchase">On Track</span></td>
@@ -916,7 +923,6 @@
                             <td>789 Pine Road, Houston, TX</td>
                             <td><span class="table-status sale">Sale</span></td>
                             <td>$375,000</td>
-                            <td>$8,200</td>
                             <td>Completed</td>
                             <td>Jan 15, 2026</td>
                             <td><span class="table-status sale">Completed</span></td>
@@ -938,7 +944,6 @@
                             <td>321 Elm Street, Spring, TX</td>
                             <td><span class="table-status purchase">Purchase</span></td>
                             <td>$520,000</td>
-                            <td>$14,800</td>
                             <td>Completed</td>
                             <td>Jan 8, 2026</td>
                             <td><span class="table-status sale">Completed</span></td>
@@ -960,7 +965,6 @@
                             <td>654 Maple Ave, Conroe, TX</td>
                             <td><span class="table-status sale">Sale</span></td>
                             <td>$425,000</td>
-                            <td>$9,600</td>
                             <td>Completed</td>
                             <td>Dec 20, 2025</td>
                             <td><span class="table-status sale">Completed</span></td>
@@ -982,7 +986,6 @@
                             <td>234 Birch Street, The Woodlands, TX</td>
                             <td><span class="table-status purchase">Purchase</span></td>
                             <td>$675,000</td>
-                            <td>$18,200</td>
                             <td>Mortgage Underwriting</td>
                             <td>Dec 15, 2025</td>
                             <td><span class="table-status pending">Closing Soon</span></td>
@@ -1004,7 +1007,6 @@
                             <td>555 Lake Shore Drive, Houston, TX</td>
                             <td><span class="table-status purchase">Purchase</span></td>
                             <td>$725,000</td>
-                            <td>$19,500</td>
                             <td>Under Contract</td>
                             <td>Nov 28, 2025</td>
                             <td><span class="table-status purchase">On Track</span></td>
@@ -1113,90 +1115,92 @@
                     <h2 class="card-title">Available Documents</h2>
                     <p class="card-subtitle">View and download client transaction documents</p>
                 </div>
-                <div class="document-list">
-                    <div class="document-item">
-                        <div class="document-info">
-                            <div class="document-icon">📄</div>
-                            <div>
-                                <div class="document-name">Closing Disclosure - John Smith</div>
-                                <div class="document-meta">123 Main Street • Uploaded: Feb 21, 2026</div>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="btn-secondary" style="padding: 8px 16px; font-size: 14px;">👁️ View</button>
-                            <button class="btn-primary" style="padding: 8px 16px; font-size: 14px;">📥 Download</button>
-                        </div>
-                    </div>
-                    
-                    <div class="document-item">
-                        <div class="document-info">
-                            <div class="document-icon">📑</div>
-                            <div>
-                                <div class="document-name">Settlement Statement - John Smith</div>
-                                <div class="document-meta">123 Main Street • Uploaded: Feb 21, 2026</div>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="btn-secondary" style="padding: 8px 16px; font-size: 14px;">👁️ View</button>
-                            <button class="btn-primary" style="padding: 8px 16px; font-size: 14px;">📥 Download</button>
-                        </div>
-                    </div>
-                    
-                    <div class="document-item">
-                        <div class="document-info">
-                            <div class="document-icon">📊</div>
-                            <div>
-                                <div class="document-name">Form 1099-S - Sarah Williams</div>
-                                <div class="document-meta">789 Pine Road • Uploaded: Jan 15, 2026</div>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="btn-secondary" style="padding: 8px 16px; font-size: 14px;">👁️ View</button>
-                            <button class="btn-primary" style="padding: 8px 16px; font-size: 14px;">📥 Download</button>
-                        </div>
-                    </div>
-                    
-                    <div class="document-item">
-                        <div class="document-info">
-                            <div class="document-icon">📄</div>
-                            <div>
-                                <div class="document-name">Closing Disclosure - Sarah Williams</div>
-                                <div class="document-meta">789 Pine Road • Uploaded: Jan 15, 2026</div>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="btn-secondary" style="padding: 8px 16px; font-size: 14px;">👁️ View</button>
-                            <button class="btn-primary" style="padding: 8px 16px; font-size: 14px;">📥 Download</button>
-                        </div>
-                    </div>
-                    
-                    <div class="document-item">
-                        <div class="document-info">
-                            <div class="document-icon">📋</div>
-                            <div>
-                                <div class="document-name">Mortgage Note - Michael Brown</div>
-                                <div class="document-meta">321 Elm Street • Uploaded: Jan 8, 2026</div>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="btn-secondary" style="padding: 8px 16px; font-size: 14px;">👁️ View</button>
-                            <button class="btn-primary" style="padding: 8px 16px; font-size: 14px;">📥 Download</button>
-                        </div>
-                    </div>
-                    
-                    <div class="document-item">
-                        <div class="document-info">
-                            <div class="document-icon">📄</div>
-                            <div>
-                                <div class="document-name">Closing Disclosure - Michael Brown</div>
-                                <div class="document-meta">321 Elm Street • Uploaded: Jan 8, 2026</div>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="btn-secondary" style="padding: 8px 16px; font-size: 14px;">👁️ View</button>
-                            <button class="btn-primary" style="padding: 8px 16px; font-size: 14px;">📥 Download</button>
-                        </div>
-                    </div>
+                <div style="overflow-x:auto;">
+                    <table style="width:100%;border-collapse:collapse;">
+                        <thead>
+                            <tr style="background:var(--neutral-50);">
+                                <th style="padding:12px 16px;text-align:left;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Document Name</th>
+                                <th style="padding:12px 16px;text-align:left;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Client</th>
+                                <th style="padding:12px 16px;text-align:left;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Property</th>
+                                <th style="padding:12px 16px;text-align:left;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Date</th>
+                                <th style="padding:12px 16px;text-align:center;font-size:13px;font-weight:600;color:var(--neutral-700);border-bottom:2px solid var(--neutral-200);">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid var(--neutral-200);">
+                                <td style="padding:14px 16px;font-size:13px;font-weight:600;color:var(--primary-navy);">📄 Closing Disclosure - John Smith</td>
+                                <td style="padding:14px 16px;font-size:13px;">John Smith</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">123 Main Street</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">Feb 21, 2026</td>
+                                <td style="padding:14px 16px;text-align:center;">
+                                    <div style="display:flex;gap:6px;justify-content:center;">
+                                        <button class="btn-secondary" style="padding:6px 14px;font-size:13px;">👁️ View</button>
+                                        <button class="btn-primary" style="padding:6px 14px;font-size:13px;">📥 Download</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--neutral-200);">
+                                <td style="padding:14px 16px;font-size:13px;font-weight:600;color:var(--primary-navy);">📑 Settlement Statement - John Smith</td>
+                                <td style="padding:14px 16px;font-size:13px;">John Smith</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">123 Main Street</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">Feb 21, 2026</td>
+                                <td style="padding:14px 16px;text-align:center;">
+                                    <div style="display:flex;gap:6px;justify-content:center;">
+                                        <button class="btn-secondary" style="padding:6px 14px;font-size:13px;">👁️ View</button>
+                                        <button class="btn-primary" style="padding:6px 14px;font-size:13px;">📥 Download</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--neutral-200);">
+                                <td style="padding:14px 16px;font-size:13px;font-weight:600;color:var(--primary-navy);">📊 Form 1099-S - Sarah Williams</td>
+                                <td style="padding:14px 16px;font-size:13px;">Sarah Williams</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">789 Pine Road</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">Jan 15, 2026</td>
+                                <td style="padding:14px 16px;text-align:center;">
+                                    <div style="display:flex;gap:6px;justify-content:center;">
+                                        <button class="btn-secondary" style="padding:6px 14px;font-size:13px;">👁️ View</button>
+                                        <button class="btn-primary" style="padding:6px 14px;font-size:13px;">📥 Download</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--neutral-200);">
+                                <td style="padding:14px 16px;font-size:13px;font-weight:600;color:var(--primary-navy);">📄 Closing Disclosure - Sarah Williams</td>
+                                <td style="padding:14px 16px;font-size:13px;">Sarah Williams</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">789 Pine Road</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">Jan 15, 2026</td>
+                                <td style="padding:14px 16px;text-align:center;">
+                                    <div style="display:flex;gap:6px;justify-content:center;">
+                                        <button class="btn-secondary" style="padding:6px 14px;font-size:13px;">👁️ View</button>
+                                        <button class="btn-primary" style="padding:6px 14px;font-size:13px;">📥 Download</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--neutral-200);">
+                                <td style="padding:14px 16px;font-size:13px;font-weight:600;color:var(--primary-navy);">📋 Mortgage Note - Michael Brown</td>
+                                <td style="padding:14px 16px;font-size:13px;">Michael Brown</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">321 Elm Street</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">Jan 8, 2026</td>
+                                <td style="padding:14px 16px;text-align:center;">
+                                    <div style="display:flex;gap:6px;justify-content:center;">
+                                        <button class="btn-secondary" style="padding:6px 14px;font-size:13px;">👁️ View</button>
+                                        <button class="btn-primary" style="padding:6px 14px;font-size:13px;">📥 Download</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--neutral-200);">
+                                <td style="padding:14px 16px;font-size:13px;font-weight:600;color:var(--primary-navy);">📄 Closing Disclosure - Michael Brown</td>
+                                <td style="padding:14px 16px;font-size:13px;">Michael Brown</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">321 Elm Street</td>
+                                <td style="padding:14px 16px;font-size:13px;color:var(--neutral-600);">Jan 8, 2026</td>
+                                <td style="padding:14px 16px;text-align:center;">
+                                    <div style="display:flex;gap:6px;justify-content:center;">
+                                        <button class="btn-secondary" style="padding:6px 14px;font-size:13px;">👁️ View</button>
+                                        <button class="btn-primary" style="padding:6px 14px;font-size:13px;">📥 Download</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 
                 <div style="margin-top: 24px; padding-top: 24px; border-top: 2px solid var(--neutral-200);">

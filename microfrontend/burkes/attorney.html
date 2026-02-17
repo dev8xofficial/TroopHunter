@@ -1135,9 +1135,9 @@
                 <tr>
                   <th>Client</th>
                   <th>Property</th>
-                  <th>Type</th>
+                  <th>Transaction Type</th>
                   <th>Contract Amount</th>
-                  <th>Attorney Status</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -1153,7 +1153,12 @@
                   <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                   <td><strong>$485,000</strong></td>
                   <td><span class="badge badge-warning">Needs Verification</span></td>
-                  <td><button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify</button></td>
+                  <td>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify</button>
+                      <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                    </div>
+                  </td>
                 </tr>
                 <tr>
                   <td>
@@ -1166,7 +1171,12 @@
                   <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
                   <td><strong>$625,000</strong></td>
                   <td><span class="badge badge-warning">Split Pending</span></td>
-                  <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button></td>
+                  <td>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button>
+                      <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                    </div>
+                  </td>
                 </tr>
                 <tr>
                   <td>
@@ -1179,7 +1189,12 @@
                   <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                   <td><strong>$375,000</strong></td>
                   <td><span class="badge badge-info">In Progress</span></td>
-                  <td><button class="btn btn-secondary btn-sm" onclick="openModal('modalVerifyConfirm')">View</button></td>
+                  <td>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Start Review</button>
+                      <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                    </div>
+                  </td>
                 </tr>
                 <tr>
                   <td>
@@ -1266,7 +1281,7 @@
     <!-- ══════════════════════════════════ PAGE: TRANSACTIONS ══════════════════════════════════ -->
     <div id="page-transactions" class="page">
       <div class="welcome-header">
-        <h1>Transactions 🔄</h1>
+        <h1>Transactions</h1>
         <p>View and manage all real estate transactions assigned to you.</p>
       </div>
 
@@ -1306,7 +1321,7 @@
                 <th>Transaction Type</th>
                 <th>Contract Amount</th>
                 <th>Closing Date</th>
-                <th>Attorney Status</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -1324,7 +1339,12 @@
                 <td><strong>$485,000</strong></td>
                 <td>Feb 1, 2024</td>
                 <td><span class="badge badge-warning">Needs Verification</span></td>
-                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify</button></td>
+                <td>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify</button>
+                    <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                  </div>
+                </td>
               </tr>
               <tr>
                 <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-002</span></td>
@@ -1339,7 +1359,12 @@
                 <td><strong>$625,000</strong></td>
                 <td>Feb 1, 2024</td>
                 <td><span class="badge badge-warning">Split Pending</span></td>
-                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button></td>
+                <td>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button>
+                    <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                  </div>
+                </td>
               </tr>
               <tr>
                 <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-003</span></td>
@@ -1354,7 +1379,12 @@
                 <td><strong>$375,000</strong></td>
                 <td>Jan 28, 2024</td>
                 <td><span class="badge badge-info">In Progress</span></td>
-                <td><button class="btn btn-secondary btn-sm" onclick="openModal('modalVerifyConfirm')">View</button></td>
+                <td>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Start Review</button>
+                    <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                  </div>
+                </td>
               </tr>
               <tr>
                 <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-004</span></td>
@@ -1384,7 +1414,12 @@
                 <td><strong>$420,000</strong></td>
                 <td>Jan 28, 2024</td>
                 <td><span class="badge badge-warning">Split Pending</span></td>
-                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button></td>
+                <td>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button>
+                    <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                  </div>
+                </td>
               </tr>
               <tr>
                 <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-006</span></td>
@@ -1419,9 +1454,11 @@
               <tr>
                 <th>Transaction ID</th>
                 <th>Client</th>
-                <th>Property</th>
+                <th>Property Address</th>
+                <th>Transaction Type</th>
                 <th>Contract Amount</th>
                 <th>Closing Date</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -1429,26 +1466,47 @@
               <tr>
                 <td><strong>#TXN-2024-001</strong></td>
                 <td>John &amp; Mary Smith</td>
-                <td>123 Main Street</td>
+                <td>123 Main Street, Chicago IL</td>
+                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td>$485,000</td>
                 <td><span class="badge badge-error">Feb 15 – 3 days</span></td>
-                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify Now</button></td>
+                <td><span class="badge badge-warning">Needs Verification</span></td>
+                <td>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify</button>
+                    <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                  </div>
+                </td>
               </tr>
               <tr>
                 <td><strong>#TXN-2024-002</strong></td>
                 <td>Robert Johnson</td>
-                <td>456 Oak Avenue</td>
+                <td>456 Oak Avenue, Chicago IL</td>
+                <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
                 <td>$625,000</td>
                 <td><span class="badge badge-warning">Feb 18</span></td>
-                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Review Split</button></td>
+                <td><span class="badge badge-warning">Split Pending</span></td>
+                <td>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button>
+                    <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                  </div>
+                </td>
               </tr>
               <tr>
                 <td><strong>#TXN-2024-005</strong></td>
                 <td>Davis vs Davis</td>
-                <td>789 Pine Rd</td>
+                <td>789 Pine Rd, Naperville IL</td>
+                <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
                 <td>$420,000</td>
                 <td><span class="badge badge-warning">Feb 20</span></td>
-                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Review Split</button></td>
+                <td><span class="badge badge-warning">Split Pending</span></td>
+                <td>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button>
+                    <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -1461,50 +1519,64 @@
             <div class="card-subtitle">Cases requiring asset distribution review</div>
           </div>
           <div class="card-body">
-            <div class="split-card">
-              <div class="doc-header">
-                <div>
-                  <div class="doc-name">#TXN-2024-002 · Robert Johnson vs Emily Johnson</div>
-                  <div class="doc-meta"><span>💰 $625,000</span><span>📍 456 Oak Ave</span><span>Filed Feb 1</span></div>
-                </div>
-                <span class="badge badge-warning">Pending Approval</span>
-              </div>
-              <div class="split-grid">
-                <div class="split-party">
-                  <div class="split-party-label">Party A – Emily Johnson (Wife)</div>
-                  <div class="split-party-amount">$375,000</div>
-                  <div class="split-party-pct">60% per court order</div>
-                </div>
-                <div class="split-party">
-                  <div class="split-party-label">Party B – Robert Johnson (Husband)</div>
-                  <div class="split-party-amount">$250,000</div>
-                  <div class="split-party-pct">40% per court order</div>
-                </div>
-              </div>
-              <div class="doc-btns"><button class="btn btn-success btn-sm" onclick="openModal('modalApprove')">✅ Approve Split</button><button class="btn btn-secondary btn-sm" onclick="openModal('modalModify')">✏️ Modify</button><button class="btn btn-secondary btn-sm">📄 View Court Order</button></div>
-            </div>
-            <div class="split-card">
-              <div class="doc-header">
-                <div>
-                  <div class="doc-name">#TXN-2024-005 · Mark Davis vs Linda Davis</div>
-                  <div class="doc-meta"><span>💰 $420,000</span><span>📍 789 Pine Rd</span><span>Filed Jan 28</span></div>
-                </div>
-                <span class="badge badge-warning">Pending Approval</span>
-              </div>
-              <div class="split-grid">
-                <div class="split-party">
-                  <div class="split-party-label">Party A – Linda Davis (Wife)</div>
-                  <div class="split-party-amount">$252,000</div>
-                  <div class="split-party-pct">60% per agreement</div>
-                </div>
-                <div class="split-party">
-                  <div class="split-party-label">Party B – Mark Davis (Husband)</div>
-                  <div class="split-party-amount">$168,000</div>
-                  <div class="split-party-pct">40% per agreement</div>
-                </div>
-              </div>
-              <div class="doc-btns"><button class="btn btn-success btn-sm" onclick="openModal('modalApprove')">✅ Approve Split</button><button class="btn btn-secondary btn-sm" onclick="openModal('modalModify')">✏️ Modify</button><button class="btn btn-secondary btn-sm">📄 View Agreement</button></div>
-            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Transaction ID</th>
+                  <th>Client</th>
+                  <th>Property Address</th>
+                  <th>Transaction Type</th>
+                  <th>Contract Amount</th>
+                  <th>Closing Date</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span style="font-weight:700;color:var(--accent-blue)">#TXN-2024-002</span></td>
+                  <td>
+                    <div class="client-row">
+                      <div class="client-avatar">RJ</div>
+                      <div class="client-info"><strong>Robert Johnson vs Emily Johnson</strong><span>Divorce Attorney</span></div>
+                    </div>
+                  </td>
+                  <td>456 Oak Avenue, Chicago IL</td>
+                  <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split · 60/40</small></td>
+                  <td><strong>$625,000</strong></td>
+                  <td>Feb 18, 2024</td>
+                  <td><span class="badge badge-warning">Split Pending</span></td>
+                  <td>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <button class="btn btn-success btn-sm" onclick="openModal('modalApprove')">✅ Approve Split</button>
+                      <button class="btn btn-secondary btn-sm" onclick="openModal('modalModify')">✏️ Modify</button>
+                      <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span style="font-weight:700;color:var(--accent-blue)">#TXN-2024-005</span></td>
+                  <td>
+                    <div class="client-row">
+                      <div class="client-avatar">DD</div>
+                      <div class="client-info"><strong>Mark Davis vs Linda Davis</strong><span>Divorce Attorney</span></div>
+                    </div>
+                  </td>
+                  <td>789 Pine Rd, Naperville IL</td>
+                  <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split · 60/40</small></td>
+                  <td><strong>$420,000</strong></td>
+                  <td>Feb 20, 2024</td>
+                  <td><span class="badge badge-warning">Split Pending</span></td>
+                  <td>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <button class="btn btn-success btn-sm" onclick="openModal('modalApprove')">✅ Approve Split</button>
+                      <button class="btn btn-secondary btn-sm" onclick="openModal('modalModify')">✏️ Modify</button>
+                      <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -1515,17 +1587,19 @@
               <tr>
                 <th>Transaction ID</th>
                 <th>Client</th>
-                <th>Property</th>
+                <th>Property Address</th>
+                <th>Transaction Type</th>
                 <th>Contract Amount</th>
                 <th>Closing Date</th>
-                <th>Attorney Status</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><strong>#TXN-2024-004</strong></td>
                 <td>Michael Brown</td>
-                <td>321 Elm Street</td>
+                <td>321 Elm Street, Oak Park IL</td>
+                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td>$520,000</td>
                 <td>Jan 25, 2024</td>
                 <td><span class="badge badge-info">Verified</span></td>
@@ -1533,7 +1607,8 @@
               <tr>
                 <td><strong>#TXN-2024-006</strong></td>
                 <td>Amanda Lewis</td>
-                <td>555 Lakeview Dr</td>
+                <td>555 Lakeview Dr, Chicago IL</td>
+                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td>$710,000</td>
                 <td>Jan 20, 2024</td>
                 <td><span class="badge badge-success">Completed</span></td>
@@ -1541,7 +1616,8 @@
               <tr>
                 <td><strong>#TXN-2023-089</strong></td>
                 <td>David &amp; Karen Park</td>
-                <td>102 Maple Lane</td>
+                <td>102 Maple Lane, Chicago IL</td>
+                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td>$390,000</td>
                 <td>Dec 15, 2023</td>
                 <td><span class="badge badge-success">Completed</span></td>
@@ -1549,7 +1625,8 @@
               <tr>
                 <td><strong>#TXN-2023-077</strong></td>
                 <td>Thomas Green</td>
-                <td>77 Cedar Blvd</td>
+                <td>77 Cedar Blvd, Evanston IL</td>
+                <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td>$285,000</td>
                 <td>Dec 8, 2023</td>
                 <td><span class="badge badge-success">Completed</span></td>
@@ -1557,7 +1634,8 @@
               <tr>
                 <td><strong>#TXN-2023-065</strong></td>
                 <td>Rachel Adams</td>
-                <td>200 Birch Way</td>
+                <td>200 Birch Way, Oak Park IL</td>
+                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td>$445,000</td>
                 <td>Nov 30, 2023</td>
                 <td><span class="badge badge-success">Completed</span></td>
@@ -1571,7 +1649,7 @@
     <!-- ══════════════════════════════════ PAGE: DOCUMENTS ══════════════════════════════════ -->
     <div id="page-documents" class="page">
       <div class="welcome-header">
-        <h1>Documents 📄</h1>
+        <h1>Documents</h1>
         <p>Review, approve, and manage all documents across your transactions.</p>
       </div>
 
