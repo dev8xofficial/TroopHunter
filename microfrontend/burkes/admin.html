@@ -842,6 +842,11 @@
         background: var(--neutral-50);
       }
 
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
+
       /* Responsive */
       @media (max-width: 1200px) {
         .content-layout {
@@ -1926,6 +1931,86 @@
           </div>
         </div>
 
+        <!-- Collapsible Approval Section -->
+        <div class="main-content-card" style="margin-bottom: 32px; border-top: 4px solid var(--warning-orange); overflow: hidden;">
+          <!-- Collapsible Header - Always Visible -->
+          <div class="card-header" onclick="toggleApprovalSection()" style="cursor: pointer; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-bottom: 2px solid var(--primary-gold); transition: all 0.3s ease;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <span id="approvalToggleIcon" style="font-size: 24px; transition: transform 0.3s ease;">▶</span>
+                <div>
+                  <h2 class="card-title" style="display: flex; align-items: center; gap: 12px; margin-bottom: 4px;">
+                    <span style="font-size: 28px;">⏳</span>
+                    Pending Approvals
+                    <span style="background: var(--error-red); color: white; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 700; animation: pulse 2s infinite;">
+                      3 URGENT
+                    </span>
+                  </h2>
+                  <p class="card-subtitle" style="margin: 0;">Click to expand and review pending approvals</p>
+                </div>
+              </div>
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <button class="btn-primary" onclick="event.stopPropagation(); toggleApprovalSection(); setTimeout(() => {document.getElementById('approvalContent').scrollIntoView({behavior: 'smooth'})}, 100);" style="padding: 8px 16px; font-size: 14px;">
+                  Review All
+                </button>
+                <select class="form-select" onclick="event.stopPropagation();" style="width: 180px; padding: 8px;">
+                  <option>All Requests</option>
+                  <option>Attorney Verifications</option>
+                  <option>Status Changes</option>
+                  <option>Stage Updates</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Collapsible Content - Hidden by Default -->
+          <div id="approvalContent" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
+            <div class="card-content" style="padding: 0;">
+              <!-- Attorney Verification Request 1 -->
+              <div class="approval-item" style="border-left: 6px solid var(--primary-gold); padding: 24px; background: white; border-bottom: 1px solid var(--neutral-200);">
+                <!-- ... existing approval item content ... -->
+                <div style="display: flex; gap: 24px;">
+                  <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                      <div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                          <span style="font-size: 24px;">⚖️</span>
+                          <div>
+                            <div style="font-weight: 700; font-size: 18px; color: var(--primary-navy);">
+                              Attorney Verification: TRX-10247
+                            </div>
+                            <div style="font-size: 14px; color: var(--neutral-600); margin-top: 4px;">
+                              123 Main Street, The Woodlands, TX 77380 • Purchase • $425,000
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: flex; gap: 8px;">
+                        <span style="background: var(--primary-gold); color: var(--primary-navy); padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 700;">
+                          ATTORNEY VERIFICATION
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div style="background: var(--neutral-50); padding: 16px; border-radius: 8px; margin-bottom: 12px; font-size: 14px; color: var(--neutral-700);">
+                      <strong>Notes:</strong> All documents verified. Contract amounts match. Title is clear. Approved for closing.
+                    </div>
+                    
+                    <div style="display: flex; gap: 8px;">
+                      <button class="btn-primary" style="background: var(--success-green); padding: 10px 20px;">✅ Approve</button>
+                      <button class="btn-secondary" style="padding: 10px 20px;">❌ Reject</button>
+                      <button class="doc-action-btn" style="padding: 10px 20px;">👁️ View</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Add more approval items here -->
+              
+            </div>
+          </div>
+        </div>
+
         <!-- Filters -->
         <div class="main-content-card" style="margin-bottom: 24px">
           <div class="card-content">
@@ -1977,10 +2062,14 @@
 
         <!-- Transactions Table -->
         <div class="main-content-card">
-          <div class="card-header">
-            <h2 class="card-title">All Transactions</h2>
-            <p class="card-subtitle">Comprehensive view of all real estate transactions</p>
+          <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h2 class="card-title">All Transactions</h2>
+              <p class="card-subtitle">Comprehensive view of all real estate transactions</p>
+            </div>
+            <button class="btn-primary" onclick="openAdminNewTransactionModal()">+ New Transaction</button>
           </div>
+
           <div class="card-content">
             <!-- Table Header -->
             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; padding: 16px; background: var(--neutral-50); border-radius: 8px; margin-bottom: 12px; font-weight: 600; font-size: 13px; color: var(--neutral-700)">
@@ -3850,6 +3939,167 @@
       </div>
     </div>
 
+    <!-- ADMIN TRANSACTION CREATION MODAL -->
+    <div id="adminNewTransactionModal" class="form-overlay">
+      <div class="form-modal" style="max-width: 900px;">
+        <div class="form-modal-header">
+          <div>
+            <div class="form-modal-title">Create New Transaction</div>
+            <div class="form-modal-subtitle">Create and assign a new real estate transaction</div>
+          </div>
+          <button class="form-close-btn" onclick="closeAdminNewTransactionModal()">✕</button>
+        </div>
+
+        <div class="form-modal-body">
+          <form id="adminNewTransactionForm">
+            <!-- Agent & Client Assignment -->
+            <div class="form-section">
+              <div class="form-section-title"><span>👥</span> Agent & Client Assignment</div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Assign to Agent <span class="required-indicator">*</span></label>
+                  <select id="adminAssignAgent" class="form-select" required>
+                    <option value="">Select an agent</option>
+                    <option value="agent1">John Smith - Real Estate Agent</option>
+                    <option value="agent2">Lisa Anderson - Senior Agent</option>
+                    <option value="agent3">Michael Brown - Agent</option>
+                    <option value="agent4">Sarah Williams - Team Lead</option>
+                  </select>
+                  <div class="help-text">Select the agent who will manage this transaction</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Select Client <span class="required-indicator">*</span></label>
+                  <select id="adminTransactionClient" class="form-select" required>
+                    <option value="">Select a client</option>
+                    <option value="client1">Sarah Johnson</option>
+                    <option value="client2">Michael Chen</option>
+                    <option value="client3">Emily Rodriguez</option>
+                    <option value="client4">David Brown</option>
+                    <option value="client5">Jennifer Martinez</option>
+                  </select>
+                  <div class="help-text">Select the client for this transaction</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Transaction Type <span class="required-indicator">*</span></label>
+                <select id="adminTransactionType" class="form-select" required>
+                  <option value="">Select type</option>
+                  <option value="purchase">🏠 Purchase</option>
+                  <option value="sale">🏘️ Sale</option>
+                  <option value="refinance">💰 Refinance</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Property Details -->
+            <div class="form-section">
+              <div class="form-section-title"><span>🏠</span> Property Details</div>
+
+              <div class="form-group">
+                <label class="form-label">Property Address <span class="required-indicator">*</span></label>
+                <input type="text" id="adminPropertyAddress" class="form-input" placeholder="123 Main Street, The Woodlands, TX 77380" required />
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Contract Amount / Price <span class="required-indicator">*</span></label>
+                  <input type="number" id="adminContractAmount" class="form-input" placeholder="425000" required />
+                  <div class="help-text">Enter amount in USD (without $ symbol)</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Transaction Stage <span class="required-indicator">*</span></label>
+                  <select id="adminTransactionStage" class="form-select" required>
+                    <option value="consultation">Initial Consultation</option>
+                    <option value="search">Property Search/Listing</option>
+                    <option value="negotiation">Offer/Negotiation</option>
+                    <option value="contract">Under Contract</option>
+                    <option value="mortgage-app">Mortgage Application/Pre-Approval</option>
+                    <option value="insurance">Insurance Information/Documentation</option>
+                    <option value="attorney-review">Attorney/Title Company Review</option>
+                    <option value="inspection">Inspection/Appraisal</option>
+                    <option value="closing-prep">Closing Preparation</option>
+                    <option value="mortgage-underwriting">Mortgage Underwriting/Final Approval</option>
+                    <option value="final-walkthrough">Final Walkthrough/Document Signing</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Expected Closing Date</label>
+                  <input type="date" id="adminClosingDate" class="form-input" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Transaction Status</label>
+                  <select id="adminTransactionStatus" class="form-select">
+                    <option value="on-track">On Track</option>
+                    <option value="closing-soon">Closing Soon</option>
+                    <option value="delayed">Delayed</option>
+                    <option value="at-risk">At Risk</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Involved Parties (Optional) -->
+            <div class="form-section">
+              <div class="form-section-title"><span>👥</span> Involved Parties (Optional)</div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Mortgage Lender</label>
+                  <input type="text" id="adminMortgageLender" class="form-input" placeholder="First National Bank" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Attorney</label>
+                  <select id="adminAttorney" class="form-select">
+                    <option value="">Select an attorney (optional)</option>
+                    <option value="attorney1">Michael Johnson, Esq.</option>
+                    <option value="attorney2">Sarah Miller, Esq.</option>
+                    <option value="attorney3">David Wilson, Esq.</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Title Company / Insurance Notes</label>
+                <input type="text" id="adminTitleNotes" class="form-input" placeholder="Title company name, insurance requirements, etc." />
+              </div>
+            </div>
+
+            <!-- Administrative Notes -->
+            <div class="form-section">
+              <div class="form-section-title"><span>📝</span> Administrative Notes</div>
+
+              <div class="form-group">
+                <label class="form-label">Assignment Notes</label>
+                <textarea id="adminAssignmentNotes" class="form-textarea" rows="3" placeholder="Reason for creating this transaction, special instructions for the agent..."></textarea>
+                <div class="help-text">Notes about why you're creating this transaction (visible to agent)</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Internal Admin Notes</label>
+                <textarea id="adminInternalNotes" class="form-textarea" rows="3" placeholder="Internal notes, special conditions, priority level..."></textarea>
+                <div class="help-text">Internal notes visible only to administrators</div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-modal-footer">
+          <button class="btn-secondary" onclick="closeAdminNewTransactionModal()">Cancel</button>
+          <button class="btn-primary" onclick="submitAdminTransactionForm()">Create Transaction</button>
+        </div>
+      </div>
+    </div>
+
     <script>
       // Page Navigation
       function showPage(pageId) {
@@ -4359,5 +4609,121 @@
         closeViewEditTransactionModal();
       }
     </script>
+
+    <script>
+      // Admin Transaction Modal Functions
+
+      function openAdminNewTransactionModal() {
+        document.getElementById('adminNewTransactionModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeAdminNewTransactionModal() {
+        document.getElementById('adminNewTransactionModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+        
+        // Reset form
+        document.getElementById('adminNewTransactionForm').reset();
+      }
+
+      function submitAdminTransactionForm() {
+        const form = document.getElementById('adminNewTransactionForm');
+        
+        // Validate required fields
+        const assignedAgent = document.getElementById('adminAssignAgent').value;
+        const client = document.getElementById('adminTransactionClient').value;
+        const transactionType = document.getElementById('adminTransactionType').value;
+        const propertyAddress = document.getElementById('adminPropertyAddress').value;
+        const contractAmount = document.getElementById('adminContractAmount').value;
+        const transactionStage = document.getElementById('adminTransactionStage').value;
+        
+        if (!assignedAgent) {
+          alert('Please select an agent to assign this transaction to.');
+          document.getElementById('adminAssignAgent').focus();
+          return;
+        }
+        
+        if (!client) {
+          alert('Please select a client for this transaction.');
+          document.getElementById('adminTransactionClient').focus();
+          return;
+        }
+        
+        if (form.checkValidity()) {
+          const transactionData = {
+            assignedAgent: assignedAgent,
+            client: client,
+            transactionType: transactionType,
+            propertyAddress: propertyAddress,
+            contractAmount: contractAmount,
+            transactionStage: transactionStage,
+            transactionStatus: document.getElementById('adminTransactionStatus').value,
+            closingDate: document.getElementById('adminClosingDate').value,
+            mortgageLender: document.getElementById('adminMortgageLender').value,
+            attorney: document.getElementById('adminAttorney').value,
+            titleNotes: document.getElementById('adminTitleNotes').value,
+            assignmentNotes: document.getElementById('adminAssignmentNotes').value,
+            internalNotes: document.getElementById('adminInternalNotes').value,
+            createdBy: 'Admin',
+            createdAt: new Date().toISOString(),
+            autoApproved: true // Admin-created transactions are auto-approved
+          };
+          
+          // In production: POST to /api/transactions/create
+          // fetch('/api/transactions/create', { 
+          //   method: 'POST', 
+          //   headers: { 'Content-Type': 'application/json' },
+          //   body: JSON.stringify(transactionData) 
+          // })
+          
+          alert(`Transaction created successfully!\n\nTransaction has been assigned to the selected agent.\nAll involved parties will be notified.\n\n(This is a demo - in production, this would:\n1. Create the transaction in the database\n2. Assign it to the selected agent\n3. Send notifications to agent and client\n4. Create audit log entry\n5. Auto-approve without requiring additional approval)`);
+          
+          closeAdminNewTransactionModal();
+          
+          // Optionally refresh the transactions list
+          // location.reload();
+        } else {
+          form.reportValidity();
+        }
+      }
+
+      // Click outside modal to close
+      document.getElementById('adminNewTransactionModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeAdminNewTransactionModal();
+        }
+      });
+    </script>
+
+<script>
+function toggleApprovalSection() {
+  const content = document.getElementById('approvalContent');
+  const icon = document.getElementById('approvalToggleIcon');
+  
+  if (content.style.maxHeight === '0px' || content.style.maxHeight === '') {
+    // Expand
+    content.style.maxHeight = '2000px'; // Large enough to fit all content
+    icon.style.transform = 'rotate(90deg)';
+    icon.textContent = '▼';
+  } else {
+    // Collapse
+    content.style.maxHeight = '0px';
+    icon.style.transform = 'rotate(0deg)';
+    icon.textContent = '▶';
+  }
+}
+</script>
+
+<script>
+function openApprovalModal() {
+  document.getElementById('approvalModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeApprovalModal() {
+  document.getElementById('approvalModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+</script>
   </body>
 </html>
