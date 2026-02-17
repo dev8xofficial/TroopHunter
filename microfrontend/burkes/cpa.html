@@ -865,69 +865,150 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>Transaction ID</th>
                             <th>Client Name</th>
                             <th>Property Address</th>
                             <th>Transaction Type</th>
-                            <th>Purchase/Sale Price</th>
+                            <th>Contract Amount</th>
                             <th>Closing Costs</th>
+                            <th>Stage</th>
                             <th>Closing Date</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr
+                            data-txid="TRX-10247"
+                            data-client="John Smith"
+                            data-address="123 Main Street, The Woodlands, TX"
+                            data-type="Purchase"
+                            data-amount="$485,000"
+                            data-costs="$12,450"
+                            data-stage="Closing Preparation"
+                            data-closing="Feb 21, 2026"
+                            data-status="On Track"
+                            data-status-color="#16a34a">
+                            <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10247</span></td>
                             <td><strong>John Smith</strong></td>
                             <td>123 Main Street, The Woodlands, TX</td>
                             <td><span class="table-status purchase">Purchase</span></td>
                             <td>$485,000</td>
                             <td>$12,450</td>
+                            <td>Closing Preparation</td>
                             <td>Feb 21, 2026</td>
-                            <td><button class="table-action-btn">View Details</button></td>
+                            <td><span class="table-status purchase">On Track</span></td>
+                            <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
-                        <tr>
+                        <tr
+                            data-txid="TRX-10198"
+                            data-client="Sarah Williams"
+                            data-address="789 Pine Road, Houston, TX"
+                            data-type="Sale"
+                            data-amount="$375,000"
+                            data-costs="$8,200"
+                            data-stage="Completed"
+                            data-closing="Jan 15, 2026"
+                            data-status="Completed"
+                            data-status-color="#0f2137">
+                            <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10198</span></td>
                             <td><strong>Sarah Williams</strong></td>
                             <td>789 Pine Road, Houston, TX</td>
                             <td><span class="table-status sale">Sale</span></td>
                             <td>$375,000</td>
                             <td>$8,200</td>
+                            <td>Completed</td>
                             <td>Jan 15, 2026</td>
-                            <td><button class="table-action-btn">View Details</button></td>
+                            <td><span class="table-status sale">Completed</span></td>
+                            <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
-                        <tr>
+                        <tr
+                            data-txid="TRX-10155"
+                            data-client="Michael Brown"
+                            data-address="321 Elm Street, Spring, TX"
+                            data-type="Purchase"
+                            data-amount="$520,000"
+                            data-costs="$14,800"
+                            data-stage="Completed"
+                            data-closing="Jan 8, 2026"
+                            data-status="Completed"
+                            data-status-color="#0f2137">
+                            <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10155</span></td>
                             <td><strong>Michael Brown</strong></td>
                             <td>321 Elm Street, Spring, TX</td>
                             <td><span class="table-status purchase">Purchase</span></td>
                             <td>$520,000</td>
                             <td>$14,800</td>
+                            <td>Completed</td>
                             <td>Jan 8, 2026</td>
-                            <td><button class="table-action-btn">View Details</button></td>
+                            <td><span class="table-status sale">Completed</span></td>
+                            <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
-                        <tr>
+                        <tr
+                            data-txid="TRX-10089"
+                            data-client="Lisa Anderson"
+                            data-address="654 Maple Ave, Conroe, TX"
+                            data-type="Sale"
+                            data-amount="$425,000"
+                            data-costs="$9,600"
+                            data-stage="Completed"
+                            data-closing="Dec 20, 2025"
+                            data-status="Completed"
+                            data-status-color="#0f2137">
+                            <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10089</span></td>
                             <td><strong>Lisa Anderson</strong></td>
                             <td>654 Maple Ave, Conroe, TX</td>
                             <td><span class="table-status sale">Sale</span></td>
                             <td>$425,000</td>
                             <td>$9,600</td>
+                            <td>Completed</td>
                             <td>Dec 20, 2025</td>
-                            <td><button class="table-action-btn">View Details</button></td>
+                            <td><span class="table-status sale">Completed</span></td>
+                            <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
-                        <tr>
+                        <tr
+                            data-txid="TRX-10042"
+                            data-client="Robert Wilson"
+                            data-address="234 Birch Street, The Woodlands, TX"
+                            data-type="Purchase"
+                            data-amount="$675,000"
+                            data-costs="$18,200"
+                            data-stage="Mortgage Underwriting"
+                            data-closing="Dec 15, 2025"
+                            data-status="Closing Soon"
+                            data-status-color="#d97706">
+                            <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10042</span></td>
                             <td><strong>Robert Wilson</strong></td>
                             <td>234 Birch Street, The Woodlands, TX</td>
                             <td><span class="table-status purchase">Purchase</span></td>
                             <td>$675,000</td>
                             <td>$18,200</td>
+                            <td>Mortgage Underwriting</td>
                             <td>Dec 15, 2025</td>
-                            <td><button class="table-action-btn">View Details</button></td>
+                            <td><span class="table-status pending">Closing Soon</span></td>
+                            <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
-                        <tr>
+                        <tr
+                            data-txid="TRX-09987"
+                            data-client="Emily Davis"
+                            data-address="555 Lake Shore Drive, Houston, TX"
+                            data-type="Purchase"
+                            data-amount="$725,000"
+                            data-costs="$19,500"
+                            data-stage="Under Contract"
+                            data-closing="Nov 28, 2025"
+                            data-status="On Track"
+                            data-status-color="#16a34a">
+                            <td><span style="font-weight:700;color:var(--accent-blue)">TRX-09987</span></td>
                             <td><strong>Emily Davis</strong></td>
                             <td>555 Lake Shore Drive, Houston, TX</td>
                             <td><span class="table-status purchase">Purchase</span></td>
                             <td>$725,000</td>
                             <td>$19,500</td>
+                            <td>Under Contract</td>
                             <td>Nov 28, 2025</td>
-                            <td><button class="table-action-btn">View Details</button></td>
+                            <td><span class="table-status purchase">On Track</span></td>
+                            <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1549,6 +1630,99 @@
         </div>
     </div>
 
+    <!-- CPA READ-ONLY TRANSACTION MODAL -->
+    <div id="cpaTransactionModal" style="display:none;position:fixed;inset:0;
+        background:rgba(0,0,0,.5);z-index:1000;
+        align-items:center;justify-content:center;">
+        <div style="background:white;border-radius:12px;width:90%;max-width:780px;
+            max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)">
+
+            <!-- Header -->
+            <div style="padding:24px 28px;border-bottom:1px solid #e2e8f0;
+                display:flex;justify-content:space-between;align-items:center">
+                <div>
+                    <div style="font-size:18px;font-weight:700;color:#1a3a52">
+                        Transaction Details</div>
+                    <div style="font-size:13px;color:#64748b;margin-top:2px">
+                        Read-only view · CPA access</div>
+                </div>
+                <button onclick="closeCpaTransactionModal()"
+                    style="background:none;border:none;font-size:20px;cursor:pointer;
+                        color:#64748b;width:36px;height:36px;border-radius:6px">✕</button>
+            </div>
+
+            <!-- Body -->
+            <div style="padding:28px;display:grid;gap:24px">
+                <!-- Property Information -->
+                <div>
+                    <div style="font-size:11px;font-weight:600;text-transform:uppercase;
+                        letter-spacing:.08em;color:#64748b;margin-bottom:12px">
+                        Property Information</div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+                        <div>
+                            <div style="font-size:11px;color:#64748b;margin-bottom:4px">Transaction ID</div>
+                            <div id="cpaModal-txid" style="font-weight:600;color:#1a3a52"></div>
+                        </div>
+                        <div>
+                            <div style="font-size:11px;color:#64748b;margin-bottom:4px">Transaction Type</div>
+                            <div id="cpaModal-type" style="font-weight:600;color:#1a3a52"></div>
+                        </div>
+                        <div>
+                            <div style="font-size:11px;color:#64748b;margin-bottom:4px">Status</div>
+                            <div id="cpaModal-status" style="font-weight:600"></div>
+                        </div>
+                        <div style="grid-column:1/-1">
+                            <div style="font-size:11px;color:#64748b;margin-bottom:4px">Property Address</div>
+                            <div id="cpaModal-address" style="font-weight:600;color:#1a3a52"></div>
+                        </div>
+                        <div>
+                            <div style="font-size:11px;color:#64748b;margin-bottom:4px">Client</div>
+                            <div id="cpaModal-client" style="font-weight:600;color:#1a3a52"></div>
+                        </div>
+                        <div>
+                            <div style="font-size:11px;color:#64748b;margin-bottom:4px">Stage</div>
+                            <div id="cpaModal-stage" style="font-weight:600;color:#1a3a52"></div>
+                        </div>
+                        <div>
+                            <div style="font-size:11px;color:#64748b;margin-bottom:4px">Closing Date</div>
+                            <div id="cpaModal-closing" style="font-weight:600;color:#1a3a52"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Summary (CPA focus) -->
+                <div style="background:#f8fafc;border-radius:8px;padding:20px;
+                    border:1px solid #e2e8f0">
+                    <div style="font-size:11px;font-weight:600;text-transform:uppercase;
+                        letter-spacing:.08em;color:#64748b;margin-bottom:12px">
+                        Financial Summary</div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                        <div>
+                            <div style="font-size:11px;color:#64748b;margin-bottom:4px">Contract Amount</div>
+                            <div id="cpaModal-amount" style="font-size:20px;font-weight:700;color:#1a3a52"></div>
+                        </div>
+                        <div>
+                            <div style="font-size:11px;color:#64748b;margin-bottom:4px">Closing Costs</div>
+                            <div id="cpaModal-costs" style="font-size:20px;font-weight:700;color:#1a3a52"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div style="padding:20px 28px;border-top:1px solid #e2e8f0;
+                display:flex;gap:12px;justify-content:flex-end">
+                <button onclick="closeCpaTransactionModal()"
+                    style="padding:10px 20px;border:1px solid #e2e8f0;border-radius:8px;
+                        background:white;cursor:pointer;font-size:14px;font-family:'Manrope',sans-serif">Close</button>
+                <button style="padding:10px 20px;border-radius:8px;background:#1a3a52;
+                    color:white;border:none;cursor:pointer;font-size:14px;font-weight:600;font-family:'Manrope',sans-serif">
+                    📥 Export Tax Summary
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         function showPage(pageId) {
             // Hide all pages
@@ -1566,6 +1740,32 @@
             navItems.forEach(item => item.classList.remove('active'));
             event.target.classList.add('active');
         }
+
+        function openCpaTransactionModal(btn) {
+            const row = btn.closest('tr');
+            document.getElementById('cpaModal-txid').textContent    = row.dataset.txid    || '—';
+            document.getElementById('cpaModal-client').textContent  = row.dataset.client  || '—';
+            document.getElementById('cpaModal-address').textContent = row.dataset.address || '—';
+            document.getElementById('cpaModal-type').textContent    = row.dataset.type    || '—';
+            document.getElementById('cpaModal-amount').textContent  = row.dataset.amount  || '—';
+            document.getElementById('cpaModal-costs').textContent   = row.dataset.costs   || '—';
+            document.getElementById('cpaModal-stage').textContent   = row.dataset.stage   || '—';
+            document.getElementById('cpaModal-closing').textContent = row.dataset.closing || '—';
+            const statusEl = document.getElementById('cpaModal-status');
+            statusEl.textContent  = row.dataset.status || '—';
+            statusEl.style.color  = row.dataset.statusColor || '#1a3a52';
+            document.getElementById('cpaTransactionModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCpaTransactionModal() {
+            document.getElementById('cpaTransactionModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('cpaTransactionModal').addEventListener('click', function(e) {
+            if (e.target === this) closeCpaTransactionModal();
+        });
     </script>
 </body>
 </html>

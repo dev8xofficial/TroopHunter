@@ -1323,7 +1323,7 @@
                     <th>Client Name</th>
                     <th>Property</th>
                     <th>Type</th>
-                    <th>Price</th>
+                    <th>Contract Amount</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -1436,11 +1436,12 @@
         <div class="filter-section">
           <span class="filter-label">Filter by:</span>
           <select class="filter-select">
-            <option>All Transactions</option>
-            <option>Active</option>
-            <option>Under Contract</option>
-            <option>Pending</option>
-            <option>Closed</option>
+            <option>All Statuses</option>
+            <option>On Track</option>
+            <option>Closing Soon</option>
+            <option>Delayed</option>
+            <option>At Risk</option>
+            <option>Completed</option>
           </select>
           <select class="filter-select">
             <option>All Types</option>
@@ -1462,10 +1463,11 @@
                 <th>Client Name</th>
                 <th>Property Address</th>
                 <th>Type</th>
-                <th>Price</th>
+                <th>Contract Amount</th>
+                <th>Stage</th>
+                <th>Closing Date</th>
                 <th>Status</th>
-                <th>Progress</th>
-                <th>Action</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -1476,13 +1478,15 @@
                 <td>Purchase</td>
                 <td>$485,000</td>
                 <td><span class="table-status active">Under Contract</span></td>
+                <td>Mar 15, 2026</td>
+                <td><span class="table-status active">On Track</span></td>
                 <td>
-                  <div class="progress-bar">
-                    <div class="progress-fill" style="width: 65%"></div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
+                    <button class="table-action-btn" onclick="openEditTransactionModal(this)">Edit</button>
+                    <button class="table-action-btn" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe" onclick="openUpdateStageModal(this)">Update Stage</button>
                   </div>
-                  <div class="progress-label">65%</div>
                 </td>
-                <td><button class="table-action-btn">View Details</button></td>
               </tr>
               <tr>
                 <td><strong>#TXN-2024-002</strong></td>
@@ -1490,14 +1494,16 @@
                 <td>789 Pine Road, Evanston, IL</td>
                 <td>Sale</td>
                 <td>$375,000</td>
-                <td><span class="table-status pending">Pending Offer</span></td>
+                <td><span class="table-status pending">Offer / Negotiation</span></td>
+                <td>Apr 30, 2026</td>
+                <td><span class="table-status pending">On Track</span></td>
                 <td>
-                  <div class="progress-bar">
-                    <div class="progress-fill" style="width: 40%"></div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
+                    <button class="table-action-btn" onclick="openEditTransactionModal(this)">Edit</button>
+                    <button class="table-action-btn" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe" onclick="openUpdateStageModal(this)">Update Stage</button>
                   </div>
-                  <div class="progress-label">40%</div>
                 </td>
-                <td><button class="table-action-btn">View Details</button></td>
               </tr>
               <tr>
                 <td><strong>#TXN-2024-003</strong></td>
@@ -1505,14 +1511,16 @@
                 <td>321 Elm Street, Oak Park, IL</td>
                 <td>Purchase</td>
                 <td>$520,000</td>
-                <td><span class="table-status completed">Closed</span></td>
+                <td><span class="table-status completed">Completed</span></td>
+                <td>Jan 8, 2026</td>
+                <td><span class="table-status completed">Completed</span></td>
                 <td>
-                  <div class="progress-bar">
-                    <div class="progress-fill" style="width: 100%"></div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
+                    <button class="table-action-btn" onclick="openEditTransactionModal(this)">Edit</button>
+                    <button class="table-action-btn" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe" onclick="openUpdateStageModal(this)">Update Stage</button>
                   </div>
-                  <div class="progress-label">100%</div>
                 </td>
-                <td><button class="table-action-btn">View Details</button></td>
               </tr>
               <tr>
                 <td><strong>#TXN-2024-004</strong></td>
@@ -1521,13 +1529,15 @@
                 <td>Purchase</td>
                 <td>$725,000</td>
                 <td><span class="table-status active">Under Contract</span></td>
+                <td>May 15, 2026</td>
+                <td><span class="table-status active">On Track</span></td>
                 <td>
-                  <div class="progress-bar">
-                    <div class="progress-fill" style="width: 55%"></div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
+                    <button class="table-action-btn" onclick="openEditTransactionModal(this)">Edit</button>
+                    <button class="table-action-btn" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe" onclick="openUpdateStageModal(this)">Update Stage</button>
                   </div>
-                  <div class="progress-label">55%</div>
                 </td>
-                <td><button class="table-action-btn">View Details</button></td>
               </tr>
               <tr>
                 <td><strong>#TXN-2024-005</strong></td>
@@ -1535,14 +1545,16 @@
                 <td>890 Maple Avenue, Naperville, IL</td>
                 <td>Sale</td>
                 <td>$425,000</td>
-                <td><span class="table-status active">Active Listing</span></td>
+                <td><span class="table-status active">Property Search / Listing</span></td>
+                <td>Jun 1, 2026</td>
+                <td><span class="table-status active">On Track</span></td>
                 <td>
-                  <div class="progress-bar">
-                    <div class="progress-fill" style="width: 30%"></div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
+                    <button class="table-action-btn" onclick="openEditTransactionModal(this)">Edit</button>
+                    <button class="table-action-btn" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe" onclick="openUpdateStageModal(this)">Update Stage</button>
                   </div>
-                  <div class="progress-label">30%</div>
                 </td>
-                <td><button class="table-action-btn">View Details</button></td>
               </tr>
             </tbody>
           </table>
@@ -2594,7 +2606,7 @@
 
               <div class="form-row form-row-2">
                 <div class="form-group">
-                  <label class="form-label">Contract Amount / Price <span class="required-indicator">*</span></label>
+                  <label class="form-label">Contract Amount <span class="required-indicator">*</span></label>
                   <input type="number" id="contractAmount" class="form-input" placeholder="485000" required />
                   <div class="help-text">Enter amount in USD (without $ symbol)</div>
                 </div>
@@ -2618,21 +2630,9 @@
                 </div>
               </div>
 
-              <div class="form-row form-row-2">
-                <div class="form-group">
-                  <label class="form-label">Expected Closing Date</label>
-                  <input type="date" id="closingDate" class="form-input" />
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">Transaction Status</label>
-                  <select id="transactionStatus" class="form-select">
-                    <option value="on-track">On Track</option>
-                    <option value="closing-soon">Closing Soon</option>
-                    <option value="delayed">Delayed</option>
-                    <option value="at-risk">At Risk</option>
-                  </select>
-                </div>
+              <div class="form-group">
+                <label class="form-label">Expected Closing Date</label>
+                <input type="date" id="closingDate" class="form-input" />
               </div>
             </div>
 
@@ -2678,7 +2678,65 @@
       </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <!-- UPDATE STAGE MODAL -->
+    <div id="updateStageModalOverlay" class="form-overlay">
+      <div class="form-modal" style="max-width:600px">
+        <div class="form-modal-header">
+          <div>
+            <div class="form-modal-title">Update Transaction Stage</div>
+            <div class="form-modal-subtitle" id="updateStageSubtitle">
+              Submits to admin for approval
+            </div>
+          </div>
+          <button class="form-close-btn" onclick="closeUpdateStageModal()">✕</button>
+        </div>
+        <div class="form-modal-body">
+          <div class="form-section">
+            <div class="form-section-title"><span>📊</span> Stage Update</div>
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label class="form-label">Current Stage</label>
+                <input type="text" id="currentStageDisplay" class="form-input"
+                      readonly style="background:var(--neutral-100)">
+              </div>
+              <div class="form-group">
+                <label class="form-label">New Stage <span class="required-indicator">*</span></label>
+                <select id="newStageSelect" class="form-select" required>
+                  <option value="">Select new stage</option>
+                  <option>Initial Consultation</option>
+                  <option>Property Search / Listing</option>
+                  <option>Offer / Negotiation</option>
+                  <option>Under Contract</option>
+                  <option>Mortgage Application / Pre-Approval</option>
+                  <option>Insurance Information / Documentation</option>
+                  <option>Attorney / Title Company Review</option>
+                  <option>Inspection / Appraisal</option>
+                  <option>Closing Preparation</option>
+                  <option>Mortgage Underwriting / Final Approval</option>
+                  <option>Final Walkthrough / Document Signing</option>
+                  <option>Completed</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Reason for Update <span class="required-indicator">*</span></label>
+              <textarea id="stageUpdateReason" class="form-textarea" rows="3"
+                placeholder="e.g. All inspections passed. Financing confirmed. Ready for closing prep."
+                required></textarea>
+              <div class="help-text">Admin will review this before approving the stage change</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-modal-footer">
+          <button class="btn-secondary" onclick="closeUpdateStageModal()">Cancel</button>
+          <button class="btn-primary" onclick="submitStageUpdate()">
+            Submit for Approval
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
       function showPage(pageId) {
         // Hide all pages
         const pages = document.querySelectorAll('.page');
@@ -2982,6 +3040,33 @@
             });
           });
         });
+      });
+    </script>
+
+    <script>
+      function openUpdateStageModal(btn) {
+        const row = btn.closest('tr');
+        const currentStage = row.querySelector('td:nth-child(6)').textContent.trim();
+        document.getElementById('currentStageDisplay').value = currentStage;
+        document.getElementById('newStageSelect').value = '';
+        document.getElementById('stageUpdateReason').value = '';
+        document.getElementById('updateStageModalOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeUpdateStageModal() {
+        document.getElementById('updateStageModalOverlay').classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+      function submitStageUpdate() {
+        const newStage = document.getElementById('newStageSelect').value;
+        const reason  = document.getElementById('stageUpdateReason').value.trim();
+        if (!newStage) { alert('Please select the new stage.'); return; }
+        if (!reason)   { alert('Please provide a reason for this update.'); return; }
+        alert('Stage update submitted for admin approval.\n\nYou will be notified once approved.');
+        closeUpdateStageModal();
+      }
+      document.getElementById('updateStageModalOverlay').addEventListener('click', function(e){
+        if (e.target === this) closeUpdateStageModal();
       });
     </script>
   </body>

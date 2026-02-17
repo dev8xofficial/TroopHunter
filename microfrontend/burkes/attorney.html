@@ -1136,8 +1136,8 @@
                   <th>Client</th>
                   <th>Property</th>
                   <th>Type</th>
-                  <th>Amount</th>
-                  <th>Status</th>
+                  <th>Contract Amount</th>
+                  <th>Attorney Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -1150,10 +1150,10 @@
                     </div>
                   </td>
                   <td>123 Main Street</td>
-                  <td>Purchase – Closing</td>
+                  <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                   <td><strong>$485,000</strong></td>
                   <td><span class="badge badge-warning">Needs Verification</span></td>
-                  <td><button class="btn btn-primary btn-sm" onclick="showPage('verification', document.querySelectorAll('.nav-item')[4])">Review</button></td>
+                  <td><button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify</button></td>
                 </tr>
                 <tr>
                   <td>
@@ -1163,10 +1163,10 @@
                     </div>
                   </td>
                   <td>456 Oak Avenue</td>
-                  <td>Divorce – Asset Split</td>
+                  <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
                   <td><strong>$625,000</strong></td>
                   <td><span class="badge badge-warning">Split Pending</span></td>
-                  <td><button class="btn btn-primary btn-sm">Review</button></td>
+                  <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button></td>
                 </tr>
                 <tr>
                   <td>
@@ -1176,10 +1176,10 @@
                     </div>
                   </td>
                   <td>789 Pine Road</td>
-                  <td>Sale – Closing</td>
+                  <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                   <td><strong>$375,000</strong></td>
-                  <td><span class="badge badge-success">In Progress</span></td>
-                  <td><button class="btn btn-secondary btn-sm">Review</button></td>
+                  <td><span class="badge badge-info">In Progress</span></td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="openModal('modalVerifyConfirm')">View</button></td>
                 </tr>
                 <tr>
                   <td>
@@ -1189,7 +1189,7 @@
                     </div>
                   </td>
                   <td>321 Elm Street</td>
-                  <td>Purchase – Closing</td>
+                  <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                   <td><strong>$520,000</strong></td>
                   <td><span class="badge badge-info">Verified</span></td>
                   <td><button class="btn btn-secondary btn-sm">View</button></td>
@@ -1300,13 +1300,13 @@
           <table>
             <thead>
               <tr>
-                <th>Case ID</th>
+                <th>Transaction ID</th>
                 <th>Client</th>
                 <th>Property Address</th>
                 <th>Transaction Type</th>
-                <th>Amount</th>
-                <th>Date Filed</th>
-                <th>Status</th>
+                <th>Contract Amount</th>
+                <th>Closing Date</th>
+                <th>Attorney Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -1320,11 +1320,11 @@
                   </div>
                 </td>
                 <td>123 Main Street, Chicago IL</td>
-                <td>Purchase – Closing</td>
+                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td><strong>$485,000</strong></td>
                 <td>Feb 1, 2024</td>
                 <td><span class="badge badge-warning">Needs Verification</span></td>
-                <td><button class="btn btn-primary btn-sm">Review</button></td>
+                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify</button></td>
               </tr>
               <tr>
                 <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-002</span></td>
@@ -1335,11 +1335,11 @@
                   </div>
                 </td>
                 <td>456 Oak Avenue, Chicago IL</td>
-                <td>Divorce – Asset Split</td>
+                <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
                 <td><strong>$625,000</strong></td>
                 <td>Feb 1, 2024</td>
                 <td><span class="badge badge-warning">Split Pending</span></td>
-                <td><button class="btn btn-primary btn-sm">Review</button></td>
+                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button></td>
               </tr>
               <tr>
                 <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-003</span></td>
@@ -1350,11 +1350,11 @@
                   </div>
                 </td>
                 <td>789 Pine Road, Evanston IL</td>
-                <td>Sale – Closing</td>
+                <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td><strong>$375,000</strong></td>
                 <td>Jan 28, 2024</td>
-                <td><span class="badge badge-success">In Progress</span></td>
-                <td><button class="btn btn-secondary btn-sm">Review</button></td>
+                <td><span class="badge badge-info">In Progress</span></td>
+                <td><button class="btn btn-secondary btn-sm" onclick="openModal('modalVerifyConfirm')">View</button></td>
               </tr>
               <tr>
                 <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-004</span></td>
@@ -1365,7 +1365,7 @@
                   </div>
                 </td>
                 <td>321 Elm Street, Oak Park IL</td>
-                <td>Purchase – Closing</td>
+                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td><strong>$520,000</strong></td>
                 <td>Jan 20, 2024</td>
                 <td><span class="badge badge-info">Verified</span></td>
@@ -1380,11 +1380,11 @@
                   </div>
                 </td>
                 <td>789 Pine Rd, Naperville IL</td>
-                <td>Divorce – Asset Split</td>
+                <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
                 <td><strong>$420,000</strong></td>
                 <td>Jan 28, 2024</td>
                 <td><span class="badge badge-warning">Split Pending</span></td>
-                <td><button class="btn btn-primary btn-sm">Review</button></td>
+                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button></td>
               </tr>
               <tr>
                 <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-006</span></td>
@@ -1395,10 +1395,10 @@
                   </div>
                 </td>
                 <td>555 Lakeview Dr, Chicago IL</td>
-                <td>Purchase – Closing</td>
+                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td><strong>$710,000</strong></td>
                 <td>Jan 15, 2024</td>
-                <td><span class="badge badge-info">Completed</span></td>
+                <td><span class="badge badge-success">Completed</span></td>
                 <td><button class="btn btn-secondary btn-sm">View</button></td>
               </tr>
             </tbody>
@@ -1417,11 +1417,11 @@
           <table>
             <thead>
               <tr>
-                <th>Case ID</th>
+                <th>Transaction ID</th>
                 <th>Client</th>
                 <th>Property</th>
-                <th>Amount</th>
-                <th>Deadline</th>
+                <th>Contract Amount</th>
+                <th>Closing Date</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -1432,7 +1432,7 @@
                 <td>123 Main Street</td>
                 <td>$485,000</td>
                 <td><span class="badge badge-error">Feb 15 – 3 days</span></td>
-                <td><button class="btn btn-primary btn-sm" onclick="showPage('verification', document.querySelectorAll('.nav-item')[4])">Verify Now</button></td>
+                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify Now</button></td>
               </tr>
               <tr>
                 <td><strong>#TXN-2024-002</strong></td>
@@ -1440,7 +1440,7 @@
                 <td>456 Oak Avenue</td>
                 <td>$625,000</td>
                 <td><span class="badge badge-warning">Feb 18</span></td>
-                <td><button class="btn btn-primary btn-sm">Review Split</button></td>
+                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Review Split</button></td>
               </tr>
               <tr>
                 <td><strong>#TXN-2024-005</strong></td>
@@ -1448,7 +1448,7 @@
                 <td>789 Pine Rd</td>
                 <td>$420,000</td>
                 <td><span class="badge badge-warning">Feb 20</span></td>
-                <td><button class="btn btn-primary btn-sm">Review Split</button></td>
+                <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Review Split</button></td>
               </tr>
             </tbody>
           </table>
@@ -1513,12 +1513,12 @@
           <table>
             <thead>
               <tr>
-                <th>Case ID</th>
+                <th>Transaction ID</th>
                 <th>Client</th>
                 <th>Property</th>
-                <th>Amount</th>
-                <th>Closed Date</th>
-                <th>Status</th>
+                <th>Contract Amount</th>
+                <th>Closing Date</th>
+                <th>Attorney Status</th>
               </tr>
             </thead>
             <tbody>
@@ -1536,7 +1536,7 @@
                 <td>555 Lakeview Dr</td>
                 <td>$710,000</td>
                 <td>Jan 20, 2024</td>
-                <td><span class="badge badge-info">Completed</span></td>
+                <td><span class="badge badge-success">Completed</span></td>
               </tr>
               <tr>
                 <td><strong>#TXN-2023-089</strong></td>
@@ -1544,7 +1544,7 @@
                 <td>102 Maple Lane</td>
                 <td>$390,000</td>
                 <td>Dec 15, 2023</td>
-                <td><span class="badge badge-info">Completed</span></td>
+                <td><span class="badge badge-success">Completed</span></td>
               </tr>
               <tr>
                 <td><strong>#TXN-2023-077</strong></td>
@@ -1552,7 +1552,7 @@
                 <td>77 Cedar Blvd</td>
                 <td>$285,000</td>
                 <td>Dec 8, 2023</td>
-                <td><span class="badge badge-info">Completed</span></td>
+                <td><span class="badge badge-success">Completed</span></td>
               </tr>
               <tr>
                 <td><strong>#TXN-2023-065</strong></td>
@@ -1560,7 +1560,7 @@
                 <td>200 Birch Way</td>
                 <td>$445,000</td>
                 <td>Nov 30, 2023</td>
-                <td><span class="badge badge-info">Completed</span></td>
+                <td><span class="badge badge-success">Completed</span></td>
               </tr>
             </tbody>
           </table>
@@ -1864,8 +1864,8 @@
                   <th>Client</th>
                   <th>Case Type</th>
                   <th>Property</th>
-                  <th>Case ID</th>
-                  <th>Status</th>
+                  <th>Transaction ID</th>
+                  <th>Attorney Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -1874,49 +1874,49 @@
                   <td>
                     <div class="client-row">
                       <div class="client-avatar">JS</div>
-                      <div class="client-info"><strong>John &amp; Mary Smith</strong><span>john.smith@email.com</span></div>
+                      <div class="client-info"><strong>John &amp; Mary Smith</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="82e8edeaecacf1efebf6eac2e7efe3ebeeace1edef">[email&#160;protected]</a></span></div>
                     </div>
                   </td>
-                  <td>Purchase – Closing</td>
+                  <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                   <td>123 Main Street</td>
                   <td><span style="color: var(--accent-blue); font-weight: 700">#TXN-2024-001</span></td>
                   <td><span class="badge badge-warning">Needs Verification</span></td>
-                  <td><button class="btn btn-primary btn-sm">View</button></td>
+                  <td><button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify</button></td>
                 </tr>
                 <tr onclick="openModal('modalClientDetail')" style="cursor: pointer">
                   <td>
                     <div class="client-row">
                       <div class="client-avatar">RJ</div>
-                      <div class="client-info"><strong>Robert Johnson</strong><span>rjohnson@email.com</span></div>
+                      <div class="client-info"><strong>Robert Johnson</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c2e363334322f33321c39313d3530723f3331">[email&#160;protected]</a></span></div>
                     </div>
                   </td>
-                  <td>Divorce – Asset Split</td>
+                  <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
                   <td>456 Oak Avenue</td>
                   <td><span style="color: var(--accent-blue); font-weight: 700">#TXN-2024-002</span></td>
                   <td><span class="badge badge-warning">Split Pending</span></td>
-                  <td><button class="btn btn-primary btn-sm">View</button></td>
+                  <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button></td>
                 </tr>
                 <tr onclick="openModal('modalClientDetail')" style="cursor: pointer">
                   <td>
                     <div class="client-row">
                       <div class="client-avatar">SW</div>
-                      <div class="client-info"><strong>Sarah Williams</strong><span>swilliams@email.com</span></div>
+                      <div class="client-info"><strong>Sarah Williams</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a696d737676737b77695a7f777b737634797577">[email&#160;protected]</a></span></div>
                     </div>
                   </td>
-                  <td>Sale – Closing</td>
+                  <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                   <td>789 Pine Road</td>
                   <td><span style="color: var(--accent-blue); font-weight: 700">#TXN-2024-003</span></td>
-                  <td><span class="badge badge-success">In Progress</span></td>
-                  <td><button class="btn btn-secondary btn-sm">View</button></td>
+                  <td><span class="badge badge-info">In Progress</span></td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="openModal('modalVerifyConfirm')">View</button></td>
                 </tr>
                 <tr onclick="openModal('modalClientDetail')" style="cursor: pointer">
                   <td>
                     <div class="client-row">
                       <div class="client-avatar">MB</div>
-                      <div class="client-info"><strong>Michael Brown</strong><span>mbrown@email.com</span></div>
+                      <div class="client-info"><strong>Michael Brown</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="741916061b031a341119151d185a171b19">[email&#160;protected]</a></span></div>
                     </div>
                   </td>
-                  <td>Purchase – Closing</td>
+                  <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                   <td>321 Elm Street</td>
                   <td><span style="color: var(--accent-blue); font-weight: 700">#TXN-2024-004</span></td>
                   <td><span class="badge badge-info">Verified</span></td>
@@ -1926,14 +1926,14 @@
                   <td>
                     <div class="client-row">
                       <div class="client-avatar">DD</div>
-                      <div class="client-info"><strong>Davis vs Davis</strong><span>mdavis@email.com</span></div>
+                      <div class="client-info"><strong>Davis vs Davis</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e08d8481968993a0858d81898cce838f8d">[email&#160;protected]</a></span></div>
                     </div>
                   </td>
-                  <td>Divorce – Asset Split</td>
+                  <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
                   <td>789 Pine Road, Naperville</td>
                   <td><span style="color: var(--accent-blue); font-weight: 700">#TXN-2024-005</span></td>
                   <td><span class="badge badge-warning">Split Pending</span></td>
-                  <td><button class="btn btn-primary btn-sm">View</button></td>
+                  <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button></td>
                 </tr>
               </tbody>
             </table>
@@ -2512,7 +2512,7 @@
       </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
       function showPage(id, btn) {
         document.querySelectorAll('.page').forEach((p) => p.classList.remove('active'));
         document.getElementById('page-' + id).classList.add('active');

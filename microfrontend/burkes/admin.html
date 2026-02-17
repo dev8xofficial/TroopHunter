@@ -2075,7 +2075,7 @@
             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr 150px; gap: 16px; padding: 16px; background: var(--neutral-50); border-radius: 8px; margin-bottom: 12px; font-weight: 600; font-size: 13px; color: var(--neutral-700)">
               <div>Property / Client</div>
               <div>Transaction Type</div>
-              <div>Value</div>
+              <div>Contract Amount</div>
               <div>Stage</div>
               <div>Closing Date</div>
               <div>Status</div>
@@ -3851,7 +3851,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">Transaction Value</label>
+                  <label class="form-label">Contract Amount</label>
                   <input type="text" class="form-input" id="transactionValue" value="$425,000" readonly />
                 </div>
 
@@ -3924,7 +3924,7 @@
               <div class="form-section-title"><span>📝</span> Transaction Notes</div>
 
               <div class="form-group">
-                <label class="form-label">Admin Notes</label>
+                <label class="form-label">Internal Notes</label>
                 <textarea class="form-input" id="transactionNotes" rows="4" readonly style="resize: vertical">All documents submitted. Waiting for final title clearance. Expected to close on schedule.</textarea>
               </div>
             </div>
@@ -4005,7 +4005,7 @@
 
               <div class="form-row form-row-2">
                 <div class="form-group">
-                  <label class="form-label">Contract Amount / Price <span class="required-indicator">*</span></label>
+                  <label class="form-label">Contract Amount <span class="required-indicator">*</span></label>
                   <input type="number" id="adminContractAmount" class="form-input" placeholder="425000" required />
                   <div class="help-text">Enter amount in USD (without $ symbol)</div>
                 </div>
@@ -4074,20 +4074,14 @@
               </div>
             </div>
 
-            <!-- Administrative Notes -->
+            <!-- Notes -->
             <div class="form-section">
-              <div class="form-section-title"><span>📝</span> Administrative Notes</div>
-
+              <div class="form-section-title"><span>📝</span> Internal Notes</div>
               <div class="form-group">
-                <label class="form-label">Assignment Notes</label>
-                <textarea id="adminAssignmentNotes" class="form-textarea" rows="3" placeholder="Reason for creating this transaction, special instructions for the agent..."></textarea>
-                <div class="help-text">Notes about why you're creating this transaction (visible to agent)</div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Internal Admin Notes</label>
-                <textarea id="adminInternalNotes" class="form-textarea" rows="3" placeholder="Internal notes, special conditions, priority level..."></textarea>
-                <div class="help-text">Internal notes visible only to administrators</div>
+                <label class="form-label">Internal Notes</label>
+                <textarea id="adminInternalNotes" class="form-textarea" rows="4"
+                  placeholder="Special conditions, priority level, additional context..."></textarea>
+                <div class="help-text">Visible to admin and the assigned agent only</div>
               </div>
             </div>
           </form>
@@ -4662,7 +4656,6 @@
             mortgageLender: document.getElementById('adminMortgageLender').value,
             attorney: document.getElementById('adminAttorney').value,
             titleNotes: document.getElementById('adminTitleNotes').value,
-            assignmentNotes: document.getElementById('adminAssignmentNotes').value,
             internalNotes: document.getElementById('adminInternalNotes').value,
             createdBy: 'Admin',
             createdAt: new Date().toISOString(),
