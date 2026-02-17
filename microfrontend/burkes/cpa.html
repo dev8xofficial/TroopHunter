@@ -44,146 +44,136 @@
         }
         
         /* Navigation */
-        .top-nav {
-            background: white;
-            border-bottom: 1px solid var(--neutral-200);
-            padding: 0 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 72px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .logo-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--primary-navy);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--primary-gold);
-            font-weight: 800;
-        }
-        
-        .logo-text {
-            font-family: 'Archivo', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary-navy);
-        }
-        
-        .cpa-badge {
-            background: var(--cpa-purple);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-        
-        .main-nav {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .nav-item {
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--neutral-600);
-            font-weight: 500;
-            font-size: 15px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-        
-        .nav-item:hover {
-            background: var(--neutral-100);
-            color: var(--primary-navy);
-        }
-        
-        .nav-item.active {
-            background: var(--primary-navy);
-            color: white;
-        }
-        
-        .user-section {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        
-        .notification-bell {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: var(--neutral-100);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.2s ease;
-            font-size: 18px;
-        }
-        
-        .notification-bell:hover {
-            background: var(--neutral-200);
-        }
-        
-        .notification-badge {
-            position: absolute;
-            top: 6px;
-            right: 6px;
-            width: 8px;
-            height: 8px;
-            background: var(--error-red);
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-        
-        .user-menu {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 16px;
-            border-radius: 10px;
-            background: var(--neutral-100);
-            cursor: pointer;
-        }
-        
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--cpa-purple);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        .user-name {
-            font-weight: 600;
-            font-size: 15px;
-            color: var(--neutral-800);
-        }
-        
+      .top-nav {
+        background: white;
+        border-bottom: 1px solid var(--neutral-200);
+        padding: 0 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 72px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--primary-navy);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: var(--primary-gold);
+        font-weight: 800;
+      }
+
+      .logo-text {
+        font-family: 'Archivo', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--primary-navy);
+      }
+
+      .main-nav {
+        display: flex;
+        gap: 8px;
+      }
+
+      .nav-item {
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--neutral-600);
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .nav-item:hover {
+        background: var(--neutral-100);
+        color: var(--primary-navy);
+      }
+
+      .nav-item.active {
+        background: var(--primary-navy);
+        color: white;
+      }
+
+      .user-section {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .notification-bell {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--neutral-100);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s ease;
+        font-size: 18px;
+      }
+
+      .notification-bell:hover {
+        background: var(--neutral-200);
+      }
+
+      .notification-badge {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 8px;
+        height: 8px;
+        background: var(--error-red);
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+
+      .user-menu {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 16px;
+        border-radius: 10px;
+        background: var(--neutral-100);
+        cursor: pointer;
+      }
+
+      .user-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--primary-navy);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .user-name {
+        font-weight: 600;
+        font-size: 15px;
+        color: var(--neutral-800);
+      }
+
         /* Main Container */
         .container {
             max-width: 1600px;
@@ -211,7 +201,7 @@
             font-size: 16px;
             color: var(--neutral-600);
         }
-        
+
         /* Alert Banner */
         .alert-banner {
             background: white;
@@ -671,31 +661,30 @@
 <body>
     <!-- Navigation -->
     <nav class="top-nav">
-        <div class="logo-section">
-            <div class="logo-icon">B</div>
-            <div class="logo-text">The Burkes Group</div>
-            <div class="cpa-badge">CPA Portal</div>
-        </div>
-        
-        <div class="main-nav">
+      <div class="logo-section">
+        <div class="logo-icon">B</div>
+        <div class="logo-text">The Burkes Group</div>
+      </div>
+
+      <div class="main-nav">
             <a class="nav-item active" onclick="showPage('dashboard')">Dashboard</a>
-            <a class="nav-item" onclick="showPage('clients')">Client Transactions</a>
+            <a class="nav-item" onclick="showPage('transactions')">Transactions</a>
             <a class="nav-item" onclick="showPage('documents')">Documents</a>
             <a class="nav-item" onclick="showPage('tax-data')">Tax Data</a>
             <a class="nav-item" onclick="showPage('reports')">Reports</a>
             <a class="nav-item" onclick="showPage('export')">Export Tools</a>
+      </div>
+
+      <div class="user-section">
+        <div class="notification-bell">
+          🔔
+          <div class="notification-badge"></div>
         </div>
-        
-        <div class="user-section">
-            <div class="notification-bell">
-                🔔
-                <div class="notification-badge"></div>
-            </div>
-            <div class="user-menu">
-                <div class="user-avatar">DT</div>
-                <div class="user-name">David Thompson, CPA</div>
-            </div>
+        <div class="user-menu">
+          <div class="user-avatar">DT</div>
+          <div class="user-name">David Thompson, CPA</div>
         </div>
+      </div>
     </nav>
 
     <div class="container">
@@ -761,7 +750,7 @@
                 <div>
                     <div class="card">
                         <div class="card-header">
-                            <h2 class="card-title">Recent Client Transactions</h2>
+                            <h2 class="card-title">Recent Transactions</h2>
                             <p class="card-subtitle">Latest real estate activity requiring tax attention</p>
                         </div>
                         <div class="document-list">
@@ -846,10 +835,10 @@
             </div>
         </div>
 
-        <!-- CLIENT TRANSACTIONS PAGE -->
-        <div id="clients-page" class="page page-hidden">
+        <!-- TRANSACTIONS PAGE -->
+        <div id="transactions-page" class="page page-hidden">
             <div class="page-header">
-                <h1 class="page-title">Client Transactions</h1>
+                <h1 class="page-title">Transactions</h1>
                 <p class="page-subtitle">View all authorized client real estate transactions</p>
             </div>
             
@@ -1139,7 +1128,7 @@
         <div id="tax-data-page" class="page page-hidden">
             <div class="page-header">
                 <h1 class="page-title">Tax Data Summary</h1>
-                <p class="page-subtitle">Comprehensive tax-relevant information for all client transactions</p>
+                <p class="page-subtitle">Comprehensive tax-relevant information for all transactions</p>
             </div>
             
             <div class="stats-grid">
