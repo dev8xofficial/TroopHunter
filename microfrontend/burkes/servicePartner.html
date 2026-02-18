@@ -460,6 +460,11 @@
             color: #991b1b;
         }
 
+        .table-status.processing {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
         /* ── TABLE ACTION BUTTONS (Attorney Style) ── */
         .table-action-btn {
             padding: 6px 12px;
@@ -1103,8 +1108,8 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Homeowner</th>
-                            <th>Address</th>
+                            <th>Client Name</th>
+                            <th>Property Address</th>
                             <th>Service Type</th>
                             <th>Budget</th>
                             <th>Timeline</th>
@@ -1307,16 +1312,17 @@
                             <div class="price-input-group">
                                 <div class="form-group">
                                     <label class="form-label">Labor Cost</label>
-                                    <input type="number" class="form-input" placeholder="$0.00">
+                                    <input type="number" id="laborCost" class="form-input" placeholder="0.00" min="0" oninput="calcTotal()">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Materials Cost</label>
-                                    <input type="number" class="form-input" placeholder="$0.00">
+                                    <input type="number" id="materialsCost" class="form-input" placeholder="0.00" min="0" oninput="calcTotal()">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Total Quote Amount</label>
-                                <input type="number" class="form-input" placeholder="$0.00" style="font-size: 18px; font-weight: 600;">
+                                <label class="form-label">Total Quote Amount <span style="font-size:12px;color:var(--neutral-500);font-weight:400;">(auto-calculated)</span></label>
+                                <input type="number" id="totalQuote" class="form-input" placeholder="0.00" readonly
+                                    style="font-size:18px;font-weight:600;background:var(--neutral-50);cursor:not-allowed;">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Estimated Completion Time</label>
@@ -1660,7 +1666,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">Payment History</h2>
-                    <p class="card-subtitle">Your completed transactions</p>
+                    <p class="card-subtitle">Completed jobs and platform payment history</p>
                 </div>
                 <div class="table-container">
                     <table>
@@ -1710,7 +1716,7 @@
                                 <td>$1,100</td>
                                 <td>$110</td>
                                 <td><strong style="color: var(--warning-orange);">$990</strong></td>
-                                <td><span class="table-status quoted">Processing</span></td>
+                                <td><span class="table-status processing">Processing</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -1755,14 +1761,29 @@
                             <div class="form-group">
                                 <label class="form-label">License Number</label>
                                 <input type="text" class="form-input" value="TX-PLB-123456">
+                                <div style="font-size:12px;color:var(--neutral-500);margin-top:6px;">Submitted for admin verification.</div>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Years in Business</label>
-                                <input type="number" class="form-input" value="15">
+                                <input type="number" class="form-input" value="15" min="1" max="100">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Insurance Information</label>
-                                <textarea class="form-textarea" placeholder="General liability and workers compensation details...">Fully insured - $2M general liability, Workers comp policy #WC-789456</textarea>
+                                <label class="form-label">Insurance — Policy Type</label>
+                                <select class="form-select">
+                                    <option selected>General Liability + Workers Comp</option>
+                                    <option>General Liability Only</option>
+                                    <option>Workers Comp Only</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Coverage Amount</label>
+                                <input type="text" class="form-input" value="$2,000,000" placeholder="e.g. $1,000,000">
+                                <div style="font-size:12px;color:var(--neutral-500);margin-top:6px;">Submitted for admin verification.</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Policy Number</label>
+                                <input type="text" class="form-input" value="WC-789456" placeholder="e.g. WC-123456">
+                                <div style="font-size:12px;color:var(--neutral-500);margin-top:6px;">Submitted for admin verification.</div>
                             </div>
                             <button type="submit" class="btn-primary">Save Changes</button>
                         </form>
@@ -1858,6 +1879,12 @@
             const navItems = document.querySelectorAll('.nav-item');
             navItems.forEach(item => item.classList.remove('active'));
             event.target.classList.add('active');
+        }
+
+        function calcTotal() {
+            const labor = parseFloat(document.getElementById('laborCost').value) || 0;
+            const materials = parseFloat(document.getElementById('materialsCost').value) || 0;
+            document.getElementById('totalQuote').value = (labor + materials).toFixed(2);
         }
     </script>
 </body>

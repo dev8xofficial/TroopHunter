@@ -796,36 +796,27 @@
                             <h2 class="card-title">Recent Transactions</h2>
                             <p class="card-subtitle">Latest real estate activity requiring tax attention</p>
                         </div>
-                        <div class="document-list">
-                            <div class="document-item">
-                                <div class="document-info">
-                                    <div class="document-icon">🏠</div>
-                                    <div>
-                                        <div class="document-name">John Smith - Property Purchase</div>
-                                        <div class="document-meta">123 Main Street • $485,000 • Closing: Feb 21, 2026</div>
-                                    </div>
+                        <div style="display:flex;flex-direction:column;gap:12px;">
+                            <div style="padding:14px 16px;background:var(--neutral-50);border-radius:10px;display:flex;align-items:center;justify-content:space-between;border-left:4px solid var(--cpa-purple);">
+                                <div>
+                                    <div style="font-weight:600;color:var(--neutral-800);">John Smith — Purchase</div>
+                                    <div style="font-size:13px;color:var(--neutral-500);margin-top:2px;">123 Main Street · $485,000 · Closing: Feb 21, 2026</div>
                                 </div>
-                                <button class="table-action-btn">View Details</button>
+                                <button class="table-action-btn" onclick="showPage('transactions')">View</button>
                             </div>
-                            <div class="document-item">
-                                <div class="document-info">
-                                    <div class="document-icon">🏡</div>
-                                    <div>
-                                        <div class="document-name">Sarah Williams - Property Sale</div>
-                                        <div class="document-meta">789 Pine Road • $375,000 • Closed: Jan 15, 2026</div>
-                                    </div>
+                            <div style="padding:14px 16px;background:var(--neutral-50);border-radius:10px;display:flex;align-items:center;justify-content:space-between;border-left:4px solid var(--cpa-purple);">
+                                <div>
+                                    <div style="font-weight:600;color:var(--neutral-800);">Sarah Williams — Sale</div>
+                                    <div style="font-size:13px;color:var(--neutral-500);margin-top:2px;">789 Pine Road · $375,000 · Closed: Jan 15, 2026</div>
                                 </div>
-                                <button class="table-action-btn">View Details</button>
+                                <button class="table-action-btn secondary" onclick="showPage('transactions')">View</button>
                             </div>
-                            <div class="document-item">
-                                <div class="document-info">
-                                    <div class="document-icon">🏠</div>
-                                    <div>
-                                        <div class="document-name">Michael Brown - Property Purchase</div>
-                                        <div class="document-meta">321 Elm Street • $520,000 • Closed: Jan 8, 2026</div>
-                                    </div>
+                            <div style="padding:14px 16px;background:var(--neutral-50);border-radius:10px;display:flex;align-items:center;justify-content:space-between;border-left:4px solid var(--cpa-purple);">
+                                <div>
+                                    <div style="font-weight:600;color:var(--neutral-800);">Michael Brown — Purchase</div>
+                                    <div style="font-size:13px;color:var(--neutral-500);margin-top:2px;">321 Elm Street · $520,000 · Closed: Jan 8, 2026</div>
                                 </div>
-                                <button class="table-action-btn">View Details</button>
+                                <button class="table-action-btn secondary" onclick="showPage('transactions')">View</button>
                             </div>
                         </div>
                     </div>
@@ -924,7 +915,6 @@
                             <th>Contract Amount</th>
                             <th>Stage</th>
                             <th>Closing Date</th>
-                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -947,7 +937,6 @@
                             <td>$485,000</td>
                             <td>Closing Preparation</td>
                             <td>Feb 21, 2026</td>
-                            <td><span class="table-status pending">On Track</span></td>
                             <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
                         <tr
@@ -968,7 +957,6 @@
                             <td>$375,000</td>
                             <td>Completed</td>
                             <td>Jan 15, 2026</td>
-                            <td><span class="table-status completed">Completed</span></td>
                             <td><button class="table-action-btn secondary" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
                         <tr
@@ -989,7 +977,6 @@
                             <td>$520,000</td>
                             <td>Completed</td>
                             <td>Jan 8, 2026</td>
-                            <td><span class="table-status completed">Completed</span></td>
                             <td><button class="table-action-btn secondary" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
                         <tr
@@ -1010,7 +997,6 @@
                             <td>$425,000</td>
                             <td>Completed</td>
                             <td>Dec 20, 2025</td>
-                            <td><span class="table-status completed">Completed</span></td>
                             <td><button class="table-action-btn secondary" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
                         <tr
@@ -1031,7 +1017,6 @@
                             <td>$675,000</td>
                             <td>Mortgage Underwriting</td>
                             <td>Dec 15, 2025</td>
-                            <td><span class="table-status pending">Closing Soon</span></td>
                             <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
                         <tr
@@ -1052,77 +1037,12 @@
                             <td>$725,000</td>
                             <td>Under Contract</td>
                             <td>Nov 28, 2025</td>
-                            <td><span class="table-status sale">On Track</span></td>
                             <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             
-            <div class="card" style="margin-top: 24px;">
-                <div class="card-header">
-                    <h2 class="card-title">Transaction Detail - John Smith</h2>
-                    <p class="card-subtitle">123 Main Street, The Woodlands, TX - Purchase</p>
-                </div>
-                
-                <div class="detail-grid">
-                    <div class="detail-item">
-                        <div class="detail-label">Purchase Price</div>
-                        <div class="detail-value">$485,000</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Down Payment</div>
-                        <div class="detail-value">$97,000</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Mortgage Amount</div>
-                        <div class="detail-value">$388,000</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Closing Costs</div>
-                        <div class="detail-value">$12,450</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Mortgage Interest Rate</div>
-                        <div class="detail-value">6.75%</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Property Tax (Annual)</div>
-                        <div class="detail-value">$9,700</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Home Insurance (Annual)</div>
-                        <div class="detail-value">$2,400</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">HOA Fees (Annual)</div>
-                        <div class="detail-value">$1,200</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Loan Origination Fee</div>
-                        <div class="detail-value">$3,880</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Title Insurance</div>
-                        <div class="detail-value">$2,425</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Escrow Amount</div>
-                        <div class="detail-value">$4,850</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Closing Date</div>
-                        <div class="detail-value">Feb 21, 2026</div>
-                    </div>
-                </div>
-                
-                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                    <button class="btn-purple">📥 Download Tax Summary (PDF)</button>
-                    <button class="btn-secondary">📤 Export to TurboTax</button>
-                    <button class="btn-secondary">📤 Export to QuickBooks</button>
-                    <button class="btn-secondary">📧 Email to Client</button>
-                </div>
-            </div>
         </div>
 
         <!-- DOCUMENTS PAGE -->
@@ -1132,6 +1052,14 @@
                 <p class="page-subtitle">Access all transaction-related documents</p>
             </div>
             
+            <div class="alert-banner info">
+                <span class="alert-icon">ℹ️</span>
+                <div class="alert-content">
+                    <div class="alert-title">Read-Only Access</div>
+                    <div class="alert-text">You can view and download client transaction documents. To request additional documents, contact the client or admin.</div>
+                </div>
+            </div>
+
             <div class="filter-section">
                 <span class="filter-label">Filter by:</span>
                 <select class="filter-select">
@@ -1156,7 +1084,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">Available Documents</h2>
-                    <p class="card-subtitle">View and download client transaction documents</p>
+                    <p class="card-subtitle">Review and download transaction documents</p>
                 </div>
                 <div style="overflow-x:auto;">
                     <table>
@@ -1171,7 +1099,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="font-weight:600;color:var(--primary-navy);">📄 Closing Disclosure - John Smith</td>
+                                <td style="font-weight:600;color:var(--primary-navy);"><span style="margin-right:8px;">📄</span>Closing Disclosure - John Smith</td>
                                 <td>John Smith</td>
                                 <td style="color:var(--neutral-600);">123 Main Street</td>
                                 <td style="color:var(--neutral-600);">Feb 21, 2026</td>
@@ -1183,7 +1111,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight:600;color:var(--primary-navy);">📑 Settlement Statement - John Smith</td>
+                                <td style="font-weight:600;color:var(--primary-navy);"><span style="margin-right:8px;">📑</span>Settlement Statement - John Smith</td>
                                 <td>John Smith</td>
                                 <td style="color:var(--neutral-600);">123 Main Street</td>
                                 <td style="color:var(--neutral-600);">Feb 21, 2026</td>
@@ -1195,7 +1123,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight:600;color:var(--primary-navy);">📊 Form 1099-S - Sarah Williams</td>
+                                <td style="font-weight:600;color:var(--primary-navy);"><span style="margin-right:8px;">📊</span>Form 1099-S - Sarah Williams</td>
                                 <td>Sarah Williams</td>
                                 <td style="color:var(--neutral-600);">789 Pine Road</td>
                                 <td style="color:var(--neutral-600);">Jan 15, 2026</td>
@@ -1207,7 +1135,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight:600;color:var(--primary-navy);">📄 Closing Disclosure - Sarah Williams</td>
+                                <td style="font-weight:600;color:var(--primary-navy);"><span style="margin-right:8px;">📄</span>Closing Disclosure - Sarah Williams</td>
                                 <td>Sarah Williams</td>
                                 <td style="color:var(--neutral-600);">789 Pine Road</td>
                                 <td style="color:var(--neutral-600);">Jan 15, 2026</td>
@@ -1219,7 +1147,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight:600;color:var(--primary-navy);">📋 Mortgage Note - Michael Brown</td>
+                                <td style="font-weight:600;color:var(--primary-navy);"><span style="margin-right:8px;">📋</span>Mortgage Note - Michael Brown</td>
                                 <td>Michael Brown</td>
                                 <td style="color:var(--neutral-600);">321 Elm Street</td>
                                 <td style="color:var(--neutral-600);">Jan 8, 2026</td>
@@ -1231,7 +1159,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight:600;color:var(--primary-navy);">📄 Closing Disclosure - Michael Brown</td>
+                                <td style="font-weight:600;color:var(--primary-navy);"><span style="margin-right:8px;">📄</span>Closing Disclosure - Michael Brown</td>
                                 <td>Michael Brown</td>
                                 <td style="color:var(--neutral-600);">321 Elm Street</td>
                                 <td style="color:var(--neutral-600);">Jan 8, 2026</td>
@@ -1700,11 +1628,11 @@
 
             <!-- Body -->
             <div style="padding:28px;display:grid;gap:24px">
-                <!-- Property Information -->
+                <!-- Transaction Overview -->
                 <div>
                     <div style="font-size:11px;font-weight:600;text-transform:uppercase;
                         letter-spacing:.08em;color:#64748b;margin-bottom:12px">
-                        Property Information</div>
+                        Transaction Overview</div>
                     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
                         <div>
                             <div style="font-size:11px;color:#64748b;margin-bottom:4px">Transaction ID</div>
