@@ -915,6 +915,7 @@
                             <th>Contract Amount</th>
                             <th>Stage</th>
                             <th>Closing Date</th>
+                            <th>Tax Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -937,7 +938,13 @@
                             <td>$485,000</td>
                             <td>Closing Preparation</td>
                             <td>Feb 21, 2026</td>
-                            <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
+                            <td><span style="background:#f3f4f6;color:#6b7280;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;">Awaiting Close</span></td>
+                            <td style="text-align:right;">
+                                <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;">
+                                    <button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button>
+                                    <button class="table-action-btn secondary" onclick="openCpaNoteModal(this)">📝 Add Tax Note</button>
+                                </div>
+                            </td>
                         </tr>
                         <tr
                             data-txid="TRX-10198"
@@ -957,7 +964,13 @@
                             <td>$375,000</td>
                             <td>Completed</td>
                             <td>Jan 15, 2026</td>
-                            <td><button class="table-action-btn secondary" onclick="openCpaTransactionModal(this)">View Details</button></td>
+                            <td><span style="background:#fef9c3;color:#92400e;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;">1099-S Pending</span></td>
+                            <td style="text-align:right;">
+                                <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;">
+                                    <button class="table-action-btn secondary" onclick="openCpaTransactionModal(this)">View Details</button>
+                                    <button class="table-action-btn secondary" onclick="openCpaNoteModal(this)">📝 Add Tax Note</button>
+                                </div>
+                            </td>
                         </tr>
                         <tr
                             data-txid="TRX-10155"
@@ -977,7 +990,13 @@
                             <td>$520,000</td>
                             <td>Completed</td>
                             <td>Jan 8, 2026</td>
-                            <td><button class="table-action-btn secondary" onclick="openCpaTransactionModal(this)">View Details</button></td>
+                            <td><span style="background:#fef3c7;color:#92400e;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;">Capital Gains Review</span></td>
+                            <td style="text-align:right;">
+                                <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;">
+                                    <button class="table-action-btn secondary" onclick="openCpaTransactionModal(this)">View Details</button>
+                                    <button class="table-action-btn secondary" onclick="openCpaNoteModal(this)">📝 Add Tax Note</button>
+                                </div>
+                            </td>
                         </tr>
                         <tr
                             data-txid="TRX-10089"
@@ -997,7 +1016,13 @@
                             <td>$425,000</td>
                             <td>Completed</td>
                             <td>Dec 20, 2025</td>
-                            <td><button class="table-action-btn secondary" onclick="openCpaTransactionModal(this)">View Details</button></td>
+                            <td><span style="background:#dcfce7;color:#166534;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;">Tax Doc Ready</span></td>
+                            <td style="text-align:right;">
+                                <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;">
+                                    <button class="table-action-btn secondary" onclick="openCpaTransactionModal(this)">View Details</button>
+                                    <button class="table-action-btn secondary" onclick="openCpaNoteModal(this)">📝 Add Tax Note</button>
+                                </div>
+                            </td>
                         </tr>
                         <tr
                             data-txid="TRX-10042"
@@ -1017,7 +1042,13 @@
                             <td>$675,000</td>
                             <td>Mortgage Underwriting</td>
                             <td>Dec 15, 2025</td>
-                            <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
+                            <td><span style="background:#f3f4f6;color:#6b7280;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;">Awaiting Close</span></td>
+                            <td style="text-align:right;">
+                                <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;">
+                                    <button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button>
+                                    <button class="table-action-btn secondary" onclick="openCpaNoteModal(this)">📝 Add Tax Note</button>
+                                </div>
+                            </td>
                         </tr>
                         <tr
                             data-txid="TRX-09987"
@@ -1037,7 +1068,13 @@
                             <td>$725,000</td>
                             <td>Under Contract</td>
                             <td>Nov 28, 2025</td>
-                            <td><button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button></td>
+                            <td><span style="background:#f3f4f6;color:#6b7280;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;">Awaiting Close</span></td>
+                            <td style="text-align:right;">
+                                <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;">
+                                    <button class="table-action-btn" onclick="openCpaTransactionModal(this)">View Details</button>
+                                    <button class="table-action-btn secondary" onclick="openCpaNoteModal(this)">📝 Add Tax Note</button>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -1056,7 +1093,12 @@
                 <span class="alert-icon">ℹ️</span>
                 <div class="alert-content">
                     <div class="alert-title">Read-Only Access</div>
-                    <div class="alert-text">You can view and download client transaction documents. To request additional documents, contact the client or admin.</div>
+                    <div class="alert-text">You can view and download client transaction documents. Use the button below to formally request additional documents.</div>
+                    <div style="margin-top:10px;">
+                        <button class="btn-purple" style="padding:8px 18px;font-size:13px;" onclick="document.getElementById('cpaDocRequestModal').style.display='flex'">
+                            📩 Request a Document
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -1698,6 +1740,67 @@
         </div>
     </div>
 
+    <!-- Modal: CPA Tax Note -->
+    <div id="cpaNoteModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:1000;align-items:center;justify-content:center;">
+        <div style="background:white;border-radius:16px;padding:28px;max-width:480px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+            <h3 style="font-size:18px;font-weight:700;color:var(--primary-navy);margin-bottom:16px;">Add Tax Note</h3>
+            <p style="font-size:13px;color:var(--neutral-600);margin-bottom:16px;">
+                Notes are visible to you and the admin only. Use this to flag tax implications, document requests, or capital gains observations.
+            </p>
+            <div style="margin-bottom:16px;">
+                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Note Type</label>
+                <select style="width:100%;padding:10px;border:1px solid var(--neutral-200);border-radius:8px;font-size:13px;">
+                    <option>Capital Gains Observation</option>
+                    <option>1099-S Review Required</option>
+                    <option>Document Request</option>
+                    <option>Cost Basis Note</option>
+                    <option>Other Tax Note</option>
+                </select>
+            </div>
+            <div style="margin-bottom:20px;">
+                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Note <span style="color:red">*</span></label>
+                <textarea style="width:100%;padding:10px;border:1px solid var(--neutral-200);border-radius:8px;font-size:13px;resize:vertical;" rows="4" placeholder="e.g. Property sold above basis — client may owe capital gains. Request HUD-1 from admin."></textarea>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;">
+                <button onclick="document.getElementById('cpaNoteModal').style.display='none'" style="padding:10px 20px;border:1px solid var(--neutral-200);border-radius:8px;background:white;cursor:pointer;">Cancel</button>
+                <button style="padding:10px 20px;background:var(--primary-navy);color:white;border:none;border-radius:8px;font-weight:600;cursor:pointer;">💾 Save Note</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: CPA Document Request -->
+    <div id="cpaDocRequestModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:1000;align-items:center;justify-content:center;">
+        <div style="background:white;border-radius:16px;padding:28px;max-width:500px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+            <h3 style="font-size:18px;font-weight:700;color:var(--primary-navy);margin-bottom:16px;">Request a Document</h3>
+            <div style="margin-bottom:16px;">
+                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Client</label>
+                <select style="width:100%;padding:10px;border:1px solid var(--neutral-200);border-radius:8px;font-size:13px;">
+                    <option>John Smith</option>
+                    <option>Sarah Williams</option>
+                    <option>Michael Brown</option>
+                </select>
+            </div>
+            <div style="margin-bottom:16px;">
+                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Document Needed</label>
+                <select style="width:100%;padding:10px;border:1px solid var(--neutral-200);border-radius:8px;font-size:13px;">
+                    <option>HUD-1 / Settlement Statement</option>
+                    <option>Form 1099-S</option>
+                    <option>Closing Disclosure</option>
+                    <option>Mortgage Interest Statement (1098)</option>
+                    <option>Other (specify below)</option>
+                </select>
+            </div>
+            <div style="margin-bottom:20px;">
+                <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Additional Notes</label>
+                <textarea style="width:100%;padding:10px;border:1px solid var(--neutral-200);border-radius:8px;font-size:13px;resize:vertical;" rows="3" placeholder="Optional: reason or specific details"></textarea>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;">
+                <button onclick="document.getElementById('cpaDocRequestModal').style.display='none'" style="padding:10px 20px;border:1px solid var(--neutral-200);border-radius:8px;background:white;cursor:pointer;">Cancel</button>
+                <button style="padding:10px 20px;background:var(--primary-navy);color:white;border:none;border-radius:8px;font-weight:600;cursor:pointer;">📩 Send Request</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         function showPage(pageId) {
             // Hide all pages
@@ -1740,6 +1843,19 @@
 
         document.getElementById('cpaTransactionModal').addEventListener('click', function(e) {
             if (e.target === this) closeCpaTransactionModal();
+        });
+    </script>
+
+    <script>
+        function openCpaNoteModal(btn) {
+            document.getElementById('cpaNoteModal').style.display = 'flex';
+        }
+        // Close modals on backdrop click
+        document.getElementById('cpaNoteModal').addEventListener('click', function(e) {
+            if (e.target === this) this.style.display = 'none';
+        });
+        document.getElementById('cpaDocRequestModal').addEventListener('click', function(e) {
+            if (e.target === this) this.style.display = 'none';
         });
     </script>
 </body>

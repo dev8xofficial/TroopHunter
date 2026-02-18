@@ -1763,7 +1763,11 @@
                     </div>
                     <span class="badge badge-error">Urgent</span>
                   </div>
-                  <div class="doc-btns"><button class="btn btn-primary btn-sm">👁 Review</button><button class="btn btn-success btn-sm">✅ Approve</button></div>
+                  <div class="doc-btns">
+                    <button class="btn btn-primary btn-sm">👁 Review</button>
+                    <button class="btn btn-success btn-sm">✅ Approve</button>
+                    <button class="btn btn-secondary btn-sm" style="color:var(--error-red);border-color:var(--error-red);" onclick="openModal('modalRejectDoc')">❌ Reject / Return</button>
+                  </div>
                 </div>
                 <div class="doc-item">
                   <div class="doc-header">
@@ -1773,7 +1777,11 @@
                     </div>
                     <span class="badge badge-error">Urgent</span>
                   </div>
-                  <div class="doc-btns"><button class="btn btn-primary btn-sm">👁 Review</button><button class="btn btn-success btn-sm">✅ Approve</button></div>
+                  <div class="doc-btns">
+                    <button class="btn btn-primary btn-sm">👁 Review</button>
+                    <button class="btn btn-success btn-sm">✅ Approve</button>
+                    <button class="btn btn-secondary btn-sm" style="color:var(--error-red);border-color:var(--error-red);" onclick="openModal('modalRejectDoc')">❌ Reject / Return</button>
+                  </div>
                 </div>
                 <div class="doc-item">
                   <div class="doc-header">
@@ -1783,7 +1791,11 @@
                     </div>
                     <span class="badge badge-warning">Needs Review</span>
                   </div>
-                  <div class="doc-btns"><button class="btn btn-primary btn-sm">👁 Review</button><button class="btn btn-success btn-sm">✅ Approve</button></div>
+                  <div class="doc-btns">
+                    <button class="btn btn-primary btn-sm">👁 Review</button>
+                    <button class="btn btn-success btn-sm" onclick="openModal('modalApprove')">✅ Approve Split</button>
+                    <button class="btn btn-secondary btn-sm" style="color:var(--error-red);border-color:var(--error-red);" onclick="openModal('modalRejectDoc')">❌ Reject / Return</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2590,7 +2602,30 @@
       </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <!-- Modal: Reject Document -->
+    <div id="modalRejectDoc" class="modal-overlay">
+      <div class="modal" style="max-width:480px">
+        <div class="modal-header">
+          <h3 class="modal-title">Reject / Return Document</h3>
+          <button class="modal-close" onclick="closeModal('modalRejectDoc')">✕</button>
+        </div>
+        <div class="modal-body">
+          <p style="font-size:13px;color:var(--neutral-600);margin-bottom:16px">
+            This document will be returned to the uploader with your reason. The transaction status will be updated to <strong>Needs Revision</strong>.
+          </p>
+          <div class="form-group">
+            <label class="form-label">Reason for Rejection <span style="color:var(--error-red)">*</span></label>
+            <textarea class="form-control" rows="4" placeholder="e.g. Dollar amounts on closing disclosure do not match the purchase agreement. Please resubmit with corrected figures."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeModal('modalRejectDoc')">Cancel</button>
+          <button class="btn btn-primary" style="background:var(--error-red);">❌ Confirm Rejection</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
       function showPage(id, btn) {
         document.querySelectorAll('.page').forEach((p) => p.classList.remove('active'));
         document.getElementById('page-' + id).classList.add('active');

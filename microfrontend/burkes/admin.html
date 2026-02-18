@@ -1989,9 +1989,22 @@
                     </div>
                     
                     <div style="display: flex; gap: 8px;">
-                      <button class="btn-primary" style="background: var(--success-green); padding: 10px 20px;">✅ Approve</button>
-                      <button class="btn-secondary" style="padding: 10px 20px;">❌ Reject</button>
-                      <button class="doc-action-btn" style="padding: 10px 20px;">👁️ View</button>
+                      <div style="display:flex;flex-direction:column;gap:10px;">
+                        <textarea
+                          placeholder="Rejection reason (required before rejecting)…"
+                          id="adminRejectReason"
+                          style="width:100%;padding:10px;border:1px solid var(--neutral-200);border-radius:8px;font-size:13px;resize:vertical;display:none;"
+                          rows="3">
+                        </textarea>
+                        <div style="display:flex;gap:8px;">
+                          <button class="btn-primary" style="background:var(--success-green);padding:10px 20px;">✅ Approve</button>
+                          <button class="btn-secondary" style="padding:10px 20px;" onclick="
+                            var r=document.getElementById('adminRejectReason');
+                            r.style.display=r.style.display==='none'?'block':'none';
+                          ">❌ Reject</button>
+                          <button class="doc-action-btn" style="padding:10px 20px;">👁️ View</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
