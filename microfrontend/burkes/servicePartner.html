@@ -381,88 +381,116 @@
             overflow: hidden;
             box-shadow: var(--shadow-md);
         }
-        
+
+        /* ── TABLE ── */
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        
+
         thead {
-            background: var(--neutral-100);
+            background: transparent;
         }
-        
+
         th {
-            padding: 16px;
             text-align: left;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--neutral-700);
+            padding: 14px 20px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-        
-        td {
-            padding: 20px 16px;
-            border-bottom: 1px solid var(--neutral-200);
-            font-size: 15px;
-        }
-        
-        tbody tr:hover {
+            border-bottom: 2px solid var(--neutral-200);
             background: var(--neutral-50);
         }
-        
-        .table-status {
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            display: inline-block;
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--neutral-100);
+            font-size: 14px;
+            vertical-align: middle;
         }
-        
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ── BADGES (Attorney Style) ── */
+        .table-status {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 11px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
         .table-status.new {
             background: #dbeafe;
             color: #1e40af;
         }
-        
+
         .table-status.contacted {
             background: #fef3c7;
             color: #92400e;
         }
-        
+
         .table-status.quoted {
             background: #e0e7ff;
             color: #4338ca;
         }
-        
+
         .table-status.scheduled {
             background: #ddd6fe;
             color: #6b21a8;
         }
-        
+
         .table-status.completed {
             background: #d1fae5;
             color: #065f46;
         }
-        
+
         .table-status.declined {
             background: #fee2e2;
             color: #991b1b;
         }
-        
+
+        /* ── TABLE ACTION BUTTONS (Attorney Style) ── */
         .table-action-btn {
-            padding: 8px 16px;
-            background: var(--primary-navy);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-navy);
+            color: white;
         }
-        
+
         .table-action-btn:hover {
             background: var(--accent-blue);
+            transform: translateY(-1px);
+        }
+
+        .table-action-btn.secondary {
+            background: white;
+            color: var(--primary-navy);
+            border: 1.5px solid var(--primary-navy);
+        }
+
+        .table-action-btn.secondary:hover {
+            background: var(--primary-navy);
+            color: white;
         }
         
         /* Form Elements */
@@ -1110,7 +1138,7 @@
                             <td>$150-$300</td>
                             <td>This week</td>
                             <td><span class="table-status contacted">Contacted</span></td>
-                            <td><button class="table-action-btn">Send Quote</button></td>
+                            <td><button class="table-action-btn secondary">Send Quote</button></td>
                         </tr>
                         <tr>
                             <td><strong>Emily Davis</strong></td>
@@ -1119,7 +1147,7 @@
                             <td>$800-$1200</td>
                             <td>Next 2 weeks</td>
                             <td><span class="table-status quoted">Quote Sent</span></td>
-                            <td><button class="table-action-btn">Follow Up</button></td>
+                            <td><button class="table-action-btn secondary">Follow Up</button></td>
                         </tr>
                         <tr>
                             <td><strong>David Martinez</strong></td>
@@ -1128,7 +1156,7 @@
                             <td>$300-$500</td>
                             <td>Urgent</td>
                             <td><span class="table-status scheduled">Scheduled</span></td>
-                            <td><button class="table-action-btn">View Details</button></td>
+                            <td><button class="table-action-btn secondary">View Details</button></td>
                         </tr>
                     </tbody>
                 </table>

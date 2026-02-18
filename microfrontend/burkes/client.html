@@ -70,7 +70,7 @@
         .btn-ghost { background: var(--neutral-100); color: var(--neutral-700); border: 1px solid var(--neutral-200); }
         .btn-ghost:hover { background: var(--neutral-200); }
         .btn-sm { padding: 6px 13px; font-size: 12px; }
-        .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+        .badge { display: inline-flex; align-items: center; gap: 4px; padding: 5px 11px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.3px; }
         .bdg-green { background: #d1fae5; color: #065f46; }
         .bdg-yellow { background: #fef3c7; color: #92400e; }
         .bdg-blue { background: #dbeafe; color: #1e40af; }
@@ -173,12 +173,23 @@
         .rd-client { background: var(--success-green); }
         .rd-cpa { background: #f59e0b; }
 
-        /* Doc Table */
+        /* ── TABLE ── */
+        .tbl-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        /* Legacy alias kept for any residual references */
         .dtable { width: 100%; border-collapse: collapse; }
-        .dtable th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 600; color: var(--neutral-500); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid var(--neutral-200); background: var(--neutral-50); }
-        .dtable td { padding: 13px 14px; font-size: 13px; border-bottom: 1px solid var(--neutral-100); vertical-align: middle; }
-        .dtable tr:last-child td { border-bottom: none; }
-        .dtable tr:hover td { background: var(--neutral-50); }
+        th { text-align: left; padding: 14px 20px; font-weight: 700; color: var(--primary-navy); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--neutral-200); background: var(--neutral-50); }
+        td { padding: 15px 20px; border-bottom: 1px solid var(--neutral-100); font-size: 14px; vertical-align: middle; }
+        tbody tr:hover { background: #f8fafc; }
+        tbody tr:last-child td { border-bottom: none; }
+        /* Table action buttons */
+        .tbl-btn { padding: 6px 12px; border-radius: 8px; font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 5px; }
+        .tbl-btn-primary { background: var(--primary-navy); color: white; border: none; }
+        .tbl-btn-primary:hover { background: var(--accent-blue); transform: translateY(-1px); }
+        .tbl-btn-secondary { background: white; color: var(--primary-navy); border: 1.5px solid var(--primary-navy); }
+        .tbl-btn-secondary:hover { background: var(--primary-navy); color: white; }
+        .tbl-btn-ghost { background: var(--neutral-100); color: var(--neutral-700); border: 1px solid var(--neutral-200); }
+        .tbl-btn-ghost:hover { background: var(--neutral-200); }
         .df-info { display: flex; align-items: center; gap: 10px; }
         .df-ico { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
         .df-ico.pdf { background: #fee2e2; }
@@ -661,13 +672,31 @@
     <!-- CATEGORY: Purchase & Sale -->
     <div class="card" style="margin-bottom:18px">
         <div class="card-hdr"><div class="cat-hdr"><span class="cat-ico">🏠</span><span class="cat-ttl">Purchase &amp; Sale Documents</span><span class="cat-cnt">3 files</span></div></div>
-        <div style="padding:0 6px 8px">
-            <table class="dtable">
+        <div class="tbl-wrap">
+            <table>
                 <thead><tr><th>Document</th><th>Uploaded By</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
                 <tbody>
-                    <tr><td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Purchase Agreement</div><div class="df-sz">2.4 MB · PDF</div></div></div></td><td><div class="doc-role"><div class="role-dot rd-agent"></div>Real Estate Agent</div></td><td style="font-size:12px;color:var(--neutral-600)">Feb 10, 2026</td><td><span class="badge bdg-blue">✍️ Needs Signature</span></td><td><div class="dt-acts"><button class="btn btn-primary btn-sm">Sign Now</button><button class="btn btn-ghost btn-sm">View</button></div></td></tr>
-                    <tr><td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Buyer Disclosure Form</div><div class="df-sz">1.1 MB · PDF</div></div></div></td><td><div class="doc-role"><div class="role-dot rd-agent"></div>Real Estate Agent</div></td><td style="font-size:12px;color:var(--neutral-600)">Feb 9, 2026</td><td><span class="badge bdg-blue">✍️ Needs Signature</span></td><td><div class="dt-acts"><button class="btn btn-primary btn-sm">Sign Now</button><button class="btn btn-ghost btn-sm">View</button></div></td></tr>
-                    <tr><td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Seller Disclosure Statement</div><div class="df-sz">890 KB · PDF</div></div></div></td><td><div class="doc-role"><div class="role-dot rd-agent"></div>Real Estate Agent</div></td><td style="font-size:12px;color:var(--neutral-600)">Jan 28, 2026</td><td><span class="badge bdg-green">✅ Approved</span></td><td><div class="dt-acts"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-ghost btn-sm">⬇</button></div></td></tr>
+                    <tr>
+                        <td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Purchase Agreement</div><div class="df-sz">2.4 MB · PDF</div></div></div></td>
+                        <td><div class="doc-role"><div class="role-dot rd-agent"></div>Real Estate Agent</div></td>
+                        <td style="color:var(--neutral-600)">Feb 10, 2026</td>
+                        <td><span class="badge bdg-blue">✍️ Needs Signature</span></td>
+                        <td><div class="dt-acts"><button class="tbl-btn tbl-btn-primary">Sign Now</button><button class="tbl-btn tbl-btn-ghost">View</button></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Buyer Disclosure Form</div><div class="df-sz">1.1 MB · PDF</div></div></div></td>
+                        <td><div class="doc-role"><div class="role-dot rd-agent"></div>Real Estate Agent</div></td>
+                        <td style="color:var(--neutral-600)">Feb 9, 2026</td>
+                        <td><span class="badge bdg-blue">✍️ Needs Signature</span></td>
+                        <td><div class="dt-acts"><button class="tbl-btn tbl-btn-primary">Sign Now</button><button class="tbl-btn tbl-btn-ghost">View</button></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Seller Disclosure Statement</div><div class="df-sz">890 KB · PDF</div></div></div></td>
+                        <td><div class="doc-role"><div class="role-dot rd-agent"></div>Real Estate Agent</div></td>
+                        <td style="color:var(--neutral-600)">Jan 28, 2026</td>
+                        <td><span class="badge bdg-green">✅ Approved</span></td>
+                        <td><div class="dt-acts"><button class="tbl-btn tbl-btn-ghost">View</button><button class="tbl-btn tbl-btn-ghost">⬇</button></div></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -676,13 +705,31 @@
     <!-- CATEGORY: Mortgage & Financial -->
     <div class="card" style="margin-bottom:18px">
         <div class="card-hdr"><div class="cat-hdr"><span class="cat-ico">🏦</span><span class="cat-ttl">Mortgage &amp; Financial Documents</span><span class="cat-cnt">3 files</span></div></div>
-        <div style="padding:0 6px 8px">
-            <table class="dtable">
+        <div class="tbl-wrap">
+            <table>
                 <thead><tr><th>Document</th><th>Uploaded By</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
                 <tbody>
-                    <tr><td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Pre-Approval Letter</div><div class="df-sz">450 KB · PDF</div></div></div></td><td><div class="doc-role"><div class="role-dot rd-lender"></div>Mortgage Lender</div></td><td style="font-size:12px;color:var(--neutral-600)">Jan 25, 2026</td><td><span class="badge bdg-green">✅ Approved</span></td><td><div class="dt-acts"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-ghost btn-sm">⬇</button></div></td></tr>
-                    <tr><td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Loan Estimate</div><div class="df-sz">1.8 MB · PDF</div></div></div></td><td><div class="doc-role"><div class="role-dot rd-lender"></div>Mortgage Lender</div></td><td style="font-size:12px;color:var(--neutral-600)">Feb 5, 2026</td><td><span class="badge bdg-yellow">🕐 Under Review</span></td><td><div class="dt-acts"><button class="btn btn-ghost btn-sm">View</button></div></td></tr>
-                    <tr><td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Income Verification (W-2)</div><div class="df-sz">320 KB · PDF</div></div></div></td><td><div class="doc-role"><div class="role-dot rd-client"></div>You (Client)</div></td><td style="font-size:12px;color:var(--neutral-600)">Feb 3, 2026</td><td><span class="badge bdg-green">✅ Approved</span></td><td><div class="dt-acts"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-ghost btn-sm">Download</button></div></td></tr>
+                    <tr>
+                        <td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Pre-Approval Letter</div><div class="df-sz">450 KB · PDF</div></div></div></td>
+                        <td><div class="doc-role"><div class="role-dot rd-lender"></div>Mortgage Lender</div></td>
+                        <td style="color:var(--neutral-600)">Jan 25, 2026</td>
+                        <td><span class="badge bdg-green">✅ Approved</span></td>
+                        <td><div class="dt-acts"><button class="tbl-btn tbl-btn-ghost">View</button><button class="tbl-btn tbl-btn-ghost">⬇</button></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Loan Estimate</div><div class="df-sz">1.8 MB · PDF</div></div></div></td>
+                        <td><div class="doc-role"><div class="role-dot rd-lender"></div>Mortgage Lender</div></td>
+                        <td style="color:var(--neutral-600)">Feb 5, 2026</td>
+                        <td><span class="badge bdg-yellow">🕐 Under Review</span></td>
+                        <td><div class="dt-acts"><button class="tbl-btn tbl-btn-ghost">View</button></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Income Verification (W-2)</div><div class="df-sz">320 KB · PDF</div></div></div></td>
+                        <td><div class="doc-role"><div class="role-dot rd-client"></div>You (Client)</div></td>
+                        <td style="color:var(--neutral-600)">Feb 3, 2026</td>
+                        <td><span class="badge bdg-green">✅ Approved</span></td>
+                        <td><div class="dt-acts"><button class="tbl-btn tbl-btn-ghost">View</button><button class="tbl-btn tbl-btn-ghost">Download</button></div></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -691,12 +738,24 @@
     <!-- CATEGORY: Legal & Closing -->
     <div class="card" style="margin-bottom:18px">
         <div class="card-hdr"><div class="cat-hdr"><span class="cat-ico">⚖️</span><span class="cat-ttl">Legal &amp; Closing Documents</span><span class="cat-cnt">2 files</span></div></div>
-        <div style="padding:0 6px 8px">
-            <table class="dtable">
+        <div class="tbl-wrap">
+            <table>
                 <thead><tr><th>Document</th><th>Uploaded By</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
                 <tbody>
-                    <tr><td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Closing Disclosure</div><div class="df-sz">3.2 MB · PDF</div></div></div></td><td><div class="doc-role"><div class="role-dot rd-atty"></div>Closing Attorney</div></td><td style="font-size:12px;color:var(--neutral-600)">Feb 8, 2026</td><td><span class="badge bdg-yellow">🕐 Needs Review</span></td><td><div class="dt-acts"><button class="btn btn-ghost btn-sm">View</button></div></td></tr>
-                    <tr><td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Title Commitment</div><div class="df-sz">1.5 MB · PDF</div></div></div></td><td><div class="doc-role"><div class="role-dot rd-atty"></div>Closing Attorney</div></td><td style="font-size:12px;color:var(--neutral-600)">Feb 6, 2026</td><td><span class="badge bdg-green">✅ Approved</span></td><td><div class="dt-acts"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-ghost btn-sm">⬇</button></div></td></tr>
+                    <tr>
+                        <td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Closing Disclosure</div><div class="df-sz">3.2 MB · PDF</div></div></div></td>
+                        <td><div class="doc-role"><div class="role-dot rd-atty"></div>Closing Attorney</div></td>
+                        <td style="color:var(--neutral-600)">Feb 8, 2026</td>
+                        <td><span class="badge bdg-yellow">🕐 Needs Review</span></td>
+                        <td><div class="dt-acts"><button class="tbl-btn tbl-btn-ghost">View</button></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="df-info"><div class="df-ico pdf">📄</div><div><div class="df-nm">Title Commitment</div><div class="df-sz">1.5 MB · PDF</div></div></div></td>
+                        <td><div class="doc-role"><div class="role-dot rd-atty"></div>Closing Attorney</div></td>
+                        <td style="color:var(--neutral-600)">Feb 6, 2026</td>
+                        <td><span class="badge bdg-green">✅ Approved</span></td>
+                        <td><div class="dt-acts"><button class="tbl-btn tbl-btn-ghost">View</button><button class="tbl-btn tbl-btn-ghost">⬇</button></div></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -963,46 +1022,44 @@ Agent: Mary Thompson - (512) 555-0199</textarea>
                 <div class="card-ttl">📎 Insurance Documents</div>
                 <button class="btn btn-sm btn-primary" onclick="alert('Upload functionality would trigger here')">+ Upload Document</button>
             </div>
-            <div class="card-bd">
-                <table style="width:100%;border-collapse:collapse">
+            <div class="tbl-wrap">
+                <table>
                     <thead>
-                        <tr style="border-bottom:2px solid var(--neutral-200)">
-                            <th style="text-align:left;padding:10px 0;font-size:12px;font-weight:600;color:var(--neutral-600)">Document</th>
-                            <th style="text-align:left;padding:10px 0;font-size:12px;font-weight:600;color:var(--neutral-600)">Uploaded By</th>
-                            <th style="text-align:left;padding:10px 0;font-size:12px;font-weight:600;color:var(--neutral-600)">Date</th>
-                            <th style="text-align:left;padding:10px 0;font-size:12px;font-weight:600;color:var(--neutral-600)">Status</th>
-                            <th style="text-align:left;padding:10px 0;font-size:12px;font-weight:600;color:var(--neutral-600)">Actions</th>
+                        <tr>
+                            <th>Document</th>
+                            <th>Uploaded By</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="border-bottom:1px solid var(--neutral-200)">
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-800)">📄 Home Insurance Policy.pdf</td>
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-600)">John Anderson</td>
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-600)">Feb 10, 2026</td>
-                            <td style="padding:12px 0"><span class="badge bdg-green">✅ Approved</span></td>
-                            <td style="padding:12px 0">
+                        <tr>
+                            <td style="color:var(--neutral-800)">📄 Home Insurance Policy.pdf</td>
+                            <td style="color:var(--neutral-600)">John Anderson</td>
+                            <td style="color:var(--neutral-600)">Feb 10, 2026</td>
+                            <td><span class="badge bdg-green">✅ Approved</span></td>
+                            <td>
                                 <div style="display:flex;gap:6px;">
-                                    <button class="btn btn-sm btn-ghost">View</button>
-                                    <button class="btn btn-sm btn-ghost">Download</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr style="border-bottom:1px solid var(--neutral-200)">
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-800)">📄 Auto Insurance Card.pdf</td>
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-600)">John Anderson</td>
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-600)">Feb 10, 2026</td>
-                            <td style="padding:12px 0"><span class="badge bdg-yellow">🕐 Needs Review</span></td>
-                            <td style="padding:12px 0">
-                                <div style="display:flex;gap:6px;">
-                                    <button class="btn btn-sm btn-ghost">View</button>
-                                    <button class="btn btn-sm btn-ghost">Download</button>
+                                    <button class="tbl-btn tbl-btn-ghost">View</button>
+                                    <button class="tbl-btn tbl-btn-ghost">Download</button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="5" style="padding:30px 0;text-align:center">
-                                <div style="font-size:14px;color:var(--neutral-500)">Need to add more documents? Click "Upload Document" above.</div>
+                            <td style="color:var(--neutral-800)">📄 Auto Insurance Card.pdf</td>
+                            <td style="color:var(--neutral-600)">John Anderson</td>
+                            <td style="color:var(--neutral-600)">Feb 10, 2026</td>
+                            <td><span class="badge bdg-yellow">🕐 Needs Review</span></td>
+                            <td>
+                                <div style="display:flex;gap:6px;">
+                                    <button class="tbl-btn tbl-btn-ghost">View</button>
+                                    <button class="tbl-btn tbl-btn-ghost">Download</button>
+                                </div>
                             </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="text-align:center;color:var(--neutral-500)">Need to add more documents? Click "Upload Document" above.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1243,34 +1300,34 @@ Agent: Mary Thompson - (512) 555-0199</textarea>
             <div class="card-hdr">
                 <div class="card-ttl">📋 Application Documents</div>
             </div>
-            <div class="card-bd">
-                <table style="width:100%;border-collapse:collapse">
+            <div class="tbl-wrap">
+                <table>
                     <thead>
-                        <tr style="border-bottom:2px solid var(--neutral-200)">
-                            <th style="text-align:left;padding:10px 0;font-size:12px;font-weight:600;color:var(--neutral-600)">Document Type</th>
-                            <th style="text-align:left;padding:10px 0;font-size:12px;font-weight:600;color:var(--neutral-600)">Status</th>
-                            <th style="text-align:left;padding:10px 0;font-size:12px;font-weight:600;color:var(--neutral-600)">Uploaded</th>
-                            <th style="text-align:left;padding:10px 0;font-size:12px;font-weight:600;color:var(--neutral-600)">Actions</th>
+                        <tr>
+                            <th>Document Type</th>
+                            <th>Status</th>
+                            <th>Uploaded</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="border-bottom:1px solid var(--neutral-200)">
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-800)">Purchase Agreement</td>
-                            <td style="padding:12px 0"><span class="badge bdg-green">✓ Received</span></td>
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-600)">Feb 8, 2026</td>
-                            <td style="padding:12px 0"><button class="btn btn-sm btn-ghost">View</button></td>
-                        </tr>
-                        <tr style="border-bottom:1px solid var(--neutral-200)">
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-800)">Bank Statements (2 months)</td>
-                            <td style="padding:12px 0"><span class="badge bdg-yellow">⚡ Pending</span></td>
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-600)">—</td>
-                            <td style="padding:12px 0"><button class="btn btn-sm btn-primary">Upload</button></td>
+                        <tr>
+                            <td style="color:var(--neutral-800)">Purchase Agreement</td>
+                            <td><span class="badge bdg-green">✓ Received</span></td>
+                            <td style="color:var(--neutral-600)">Feb 8, 2026</td>
+                            <td><button class="tbl-btn tbl-btn-ghost">View</button></td>
                         </tr>
                         <tr>
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-800)">Employment Verification</td>
-                            <td style="padding:12px 0"><span class="badge bdg-yellow">⚡ In Progress</span></td>
-                            <td style="padding:12px 0;font-size:13px;color:var(--neutral-600)">—</td>
-                            <td style="padding:12px 0"><button class="btn btn-sm btn-ghost">Complete Form</button></td>
+                            <td style="color:var(--neutral-800)">Bank Statements (2 months)</td>
+                            <td><span class="badge bdg-yellow">⚡ Pending</span></td>
+                            <td style="color:var(--neutral-600)">—</td>
+                            <td><button class="tbl-btn tbl-btn-primary">Upload</button></td>
+                        </tr>
+                        <tr>
+                            <td style="color:var(--neutral-800)">Employment Verification</td>
+                            <td><span class="badge bdg-yellow">⚡ In Progress</span></td>
+                            <td style="color:var(--neutral-600)">—</td>
+                            <td><button class="tbl-btn tbl-btn-ghost">Complete Form</button></td>
                         </tr>
                     </tbody>
                 </table>
