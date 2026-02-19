@@ -1342,9 +1342,10 @@
               <div style="margin-top: 24px">
                 <label class="form-label">Select Transaction</label>
                 <select class="form-select">
-                  <option>123 Main Street - Smith Purchase</option>
-                  <option>456 Oak Avenue - Johnson Sale</option>
-                  <option>789 Pine Road - Williams Purchase</option>
+                  <option>TRX-10247 – 123 Main Street – Smith Purchase</option>
+                  <option>TRX-10198 – 789 Pine Road – Williams Sale</option>
+                  <option>TRX-10156 – 321 Elm Street – Brown Purchase</option>
+                  <option>TRX-10155 – 555 Oak Avenue – Brown Purchase</option>
                 </select>
                 <button class="btn-primary" style="width: 100%; margin-top: 16px">Upload Agreement</button>
               </div>
@@ -1372,32 +1373,32 @@
                 <tbody>
                   <tr>
                     <td><strong>John Smith</strong></td>
-                    <td>123 Main Street</td>
+                    <td>123 Main Street, The Woodlands, TX 77380</td>
                     <td>Purchase</td>
                     <td>$485,000</td>
-                    <td><span class="table-status active">Under Contract</span></td>
-                    <td>Mar 15, 2026</td>
-                    <td><span class="table-status active">On Track</span></td>
+                    <td><span class="table-status active">Attorney / Title Review</span></td>
+                    <td>Feb 15, 2026</td>
+                    <td><span class="table-status active">Closing Soon</span></td>
                     <td><button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button></td>
                   </tr>
                   <tr>
                     <td><strong>Sarah Williams</strong></td>
-                    <td>789 Pine Road</td>
+                    <td>789 Pine Road, The Woodlands, TX 77381</td>
                     <td>Sale</td>
-                    <td>$375,000</td>
-                    <td><span class="table-status pending">Offer / Negotiation</span></td>
-                    <td>Apr 30, 2026</td>
-                    <td><span class="table-status pending">On Track</span></td>
+                    <td>$389,500</td>
+                    <td><span class="table-status active">Under Contract</span></td>
+                    <td>Mar 1, 2026</td>
+                    <td><span class="table-status active">On Track</span></td>
                     <td><button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button></td>
                   </tr>
                   <tr>
                     <td><strong>Michael Brown</strong></td>
-                    <td>321 Elm Street</td>
+                    <td>789 Pine Road, The Woodlands, TX 77381</td>
                     <td>Purchase</td>
-                    <td>$520,000</td>
-                    <td><span class="table-status completed">Completed</span></td>
-                    <td>Jan 8, 2026</td>
-                    <td><span class="table-status completed">Completed</span></td>
+                    <td>$512,000</td>
+                    <td><span class="table-status pending">Inspection / Appraisal</span></td>
+                    <td>Mar 8, 2026</td>
+                    <td><span class="table-status pending">Delayed</span></td>
                     <td><button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button></td>
                   </tr>
                 </tbody>
@@ -1419,7 +1420,7 @@
                     </div>
                     <span class="activity-time">2h ago</span>
                   </div>
-                  <p class="activity-text">123 Main Street - Smith offer accepted</p>
+                  <p class="activity-text">TRX-10247 – John Smith offer accepted at 123 Main Street</p>
                 </div>
 
                 <div class="activity-card">
@@ -1430,7 +1431,7 @@
                     </div>
                     <span class="activity-time">5h ago</span>
                   </div>
-                  <p class="activity-text">Purchase agreement for Williams transaction</p>
+                  <p class="activity-text">Purchase agreement uploaded for TRX-10247 – Smith transaction</p>
                 </div>
 
                 <div class="activity-card">
@@ -1441,7 +1442,7 @@
                     </div>
                     <span class="activity-time">1d ago</span>
                   </div>
-                  <p class="activity-text">456 Oak Avenue listed at $425,000</p>
+                  <p class="activity-text">789 Pine Road listed at $389,500 – TRX-10198 (Williams Sale)</p>
                 </div>
               </div>
             </div>
@@ -1534,13 +1535,29 @@
             </thead>
             <tbody>
               <tr>
-                <td><span style="font-weight:700;color:var(--accent-blue)">#TXN-2024-001</span></td>
+                <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10247</span></td>
                 <td>John Smith</td>
-                <td>123 Main Street, Chicago, IL</td>
+                <td>123 Main Street, The Woodlands, TX 77380</td>
                 <td>Purchase</td>
                 <td>$485,000</td>
+                <td><span class="table-status active">Attorney / Title Review</span></td>
+                <td>Feb 15, 2026</td>
+                <td><span class="table-status active">Closing Soon</span></td>
+                <td>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
+                    <button class="table-action-btn stage" onclick="openUpdateStageModal(this)">Update Stage</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10198</span></td>
+                <td>Sarah Williams</td>
+                <td>789 Pine Road, The Woodlands, TX 77381</td>
+                <td>Sale</td>
+                <td>$389,500</td>
                 <td><span class="table-status active">Under Contract</span></td>
-                <td>Mar 15, 2026</td>
+                <td>Mar 1, 2026</td>
                 <td><span class="table-status active">On Track</span></td>
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap">
@@ -1550,14 +1567,14 @@
                 </td>
               </tr>
               <tr>
-                <td><span style="font-weight:700;color:var(--accent-blue)">#TXN-2024-002</span></td>
-                <td>Sarah Williams</td>
-                <td>789 Pine Road, Evanston, IL</td>
-                <td>Sale</td>
-                <td>$375,000</td>
-                <td><span class="table-status pending">Offer / Negotiation</span></td>
-                <td>Apr 30, 2026</td>
-                <td><span class="table-status pending">On Track</span></td>
+                <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10156</span></td>
+                <td>Michael Brown</td>
+                <td>789 Pine Road, The Woodlands, TX 77381</td>
+                <td>Purchase</td>
+                <td>$512,000</td>
+                <td><span class="table-status pending">Inspection / Appraisal</span></td>
+                <td>Mar 8, 2026</td>
+                <td><span class="table-status pending">Delayed</span></td>
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap">
                     <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
@@ -1566,48 +1583,32 @@
                 </td>
               </tr>
               <tr>
-                <td><span style="font-weight:700;color:var(--accent-blue)">#TXN-2024-003</span></td>
-                <td>Michael Brown</td>
-                <td>321 Elm Street, Oak Park, IL</td>
-                <td>Purchase</td>
-                <td>$520,000</td>
+                <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10134</span></td>
+                <td>Johnson vs. Johnson</td>
+                <td>456 Oak Avenue, The Woodlands, TX 77380</td>
+                <td>Divorce – Asset Split</td>
+                <td>—</td>
+                <td><span class="table-status active">Offer / Negotiation</span></td>
+                <td>Mar 20, 2026</td>
+                <td><span class="table-status active">On Track</span></td>
+                <td>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
+                    <button class="table-action-btn stage" onclick="openUpdateStageModal(this)">Update Stage</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10089</span></td>
+                <td>Lisa Anderson</td>
+                <td>654 Maple Drive, Tomball, TX 77375</td>
+                <td>Sale</td>
+                <td>$467,500</td>
                 <td><span class="table-status completed">Completed</span></td>
-                <td>Jan 8, 2026</td>
+                <td>Dec 20, 2025</td>
                 <td><span class="table-status completed">Completed</span></td>
                 <td>
                   <button class="table-action-btn secondary" onclick="openViewTransactionModal(this)">View</button>
-                </td>
-              </tr>
-              <tr>
-                <td><span style="font-weight:700;color:var(--accent-blue)">#TXN-2024-004</span></td>
-                <td>Emily Davis</td>
-                <td>555 Lake Shore Drive, Chicago, IL</td>
-                <td>Purchase</td>
-                <td>$725,000</td>
-                <td><span class="table-status active">Under Contract</span></td>
-                <td>May 15, 2026</td>
-                <td><span class="table-status active">On Track</span></td>
-                <td>
-                  <div style="display:flex;gap:6px;flex-wrap:wrap">
-                    <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
-                    <button class="table-action-btn stage" onclick="openUpdateStageModal(this)">Update Stage</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><span style="font-weight:700;color:var(--accent-blue)">#TXN-2024-005</span></td>
-                <td>David Martinez</td>
-                <td>890 Maple Avenue, Naperville, IL</td>
-                <td>Sale</td>
-                <td>$425,000</td>
-                <td><span class="table-status active">Property Search / Listing</span></td>
-                <td>Jun 1, 2026</td>
-                <td><span class="table-status active">On Track</span></td>
-                <td>
-                  <div style="display:flex;gap:6px;flex-wrap:wrap">
-                    <button class="table-action-btn" onclick="openViewTransactionModal(this)">View</button>
-                    <button class="table-action-btn stage" onclick="openUpdateStageModal(this)">Update Stage</button>
-                  </div>
                 </td>
               </tr>
             </tbody>
@@ -1633,9 +1634,11 @@
           </select>
           <select class="filter-select">
             <option>All Transactions</option>
-            <option>123 Main Street</option>
-            <option>789 Pine Road</option>
-            <option>321 Elm Street</option>
+            <option>TRX-10247 – 123 Main Street</option>
+            <option>TRX-10198 – 789 Pine Road</option>
+            <option>TRX-10156 – 321 Elm Street</option>
+            <option>TRX-10155 – 555 Oak Avenue</option>
+            <option>TRX-10089 – 654 Maple Drive</option>
           </select>
           <div class="search-bar">
             <span class="search-icon">🔍</span>
@@ -1669,9 +1672,10 @@
             <div class="form-group">
               <label class="form-label">Assign to Transaction</label>
               <select class="form-select">
-                <option>123 Main Street - Smith Purchase</option>
-                <option>789 Pine Road - Williams Sale</option>
-                <option>321 Elm Street - Brown Purchase</option>
+                <option>TRX-10247 – 123 Main Street – Smith Purchase</option>
+                <option>TRX-10198 – 789 Pine Road – Williams Sale</option>
+                <option>TRX-10156 – 321 Elm Street – Brown Purchase</option>
+                <option>TRX-10155 – 555 Oak Avenue – Brown Purchase</option>
               </select>
             </div>
             <button class="btn-primary" style="width: 100%">Upload Document</button>
@@ -1699,8 +1703,8 @@
                 <tr>
                   <td><strong>📄 Purchase_Agreement_Smith.pdf</strong></td>
                   <td><span class="table-status active">Purchase &amp; Sales Agreement</span></td>
-                  <td>123 Main Street (#TXN-2024-001)</td>
-                  <td>Feb 10, 2026</td>
+                  <td>123 Main Street (TRX-10247)</td>
+                  <td>Feb 1, 2026</td>
                   <td><span class="table-status active">Approved</span></td>
                   <td>
                     <div style="display:flex;gap:6px;">
@@ -1712,8 +1716,8 @@
                 <tr>
                   <td><strong>📊 Mortgage_Application_Williams.pdf</strong></td>
                   <td><span class="table-status pending">Mortgage Documents</span></td>
-                  <td>789 Pine Road (#TXN-2024-002)</td>
-                  <td>Feb 9, 2026</td>
+                  <td>789 Pine Road (TRX-10198)</td>
+                  <td>Feb 5, 2026</td>
                   <td><span class="table-status pending">Under Review</span></td>
                   <td>
                     <div style="display:flex;gap:6px;">
@@ -1723,23 +1727,10 @@
                   </td>
                 </tr>
                 <tr>
-                  <td><strong>🏠 Home_Insurance_Brown.pdf</strong></td>
-                  <td><span class="table-status active">Insurance Documents</span></td>
-                  <td>321 Elm Street (#TXN-2024-003)</td>
-                  <td>Feb 8, 2026</td>
-                  <td><span class="table-status active">Approved</span></td>
-                  <td>
-                    <div style="display:flex;gap:6px;">
-                      <button class="table-action-btn">View</button>
-                      <button class="table-action-btn">Download</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>📋 Inspection_Report_Davis.pdf</strong></td>
+                  <td><strong>🏠 Inspection_Report_Brown.pdf</strong></td>
                   <td><span class="table-status pending">Inspection Report</span></td>
-                  <td>555 Lake Shore Drive (#TXN-2024-004)</td>
-                  <td>Feb 7, 2026</td>
+                  <td>321 Elm Street (TRX-10156)</td>
+                  <td>Feb 8, 2026</td>
                   <td><span class="table-status pending">Under Review</span></td>
                   <td>
                     <div style="display:flex;gap:6px;">
@@ -1749,11 +1740,11 @@
                   </td>
                 </tr>
                 <tr>
-                  <td><strong>📝 Closing_Disclosure_Martinez.pdf</strong></td>
+                  <td><strong>📋 Closing_Disclosure_Brown.pdf</strong></td>
                   <td><span class="table-status active">Closing Documents</span></td>
-                  <td>890 Maple Avenue (#TXN-2024-005)</td>
-                  <td>Feb 6, 2026</td>
-                  <td><span class="table-status active">Approved</span></td>
+                  <td>555 Oak Avenue (TRX-10155)</td>
+                  <td>Feb 10, 2026</td>
+                  <td><span class="table-status pending">Needs Review</span></td>
                   <td>
                     <div style="display:flex;gap:6px;">
                       <button class="table-action-btn">View</button>
@@ -1764,7 +1755,7 @@
                 <tr>
                   <td><strong>📑 Title_Insurance_Smith.pdf</strong></td>
                   <td><span class="table-status active">Title Documents</span></td>
-                  <td>123 Main Street (#TXN-2024-001)</td>
+                  <td>123 Main Street (TRX-10247)</td>
                   <td>Feb 5, 2026</td>
                   <td><span class="table-status active">Approved</span></td>
                   <td>
@@ -1801,13 +1792,13 @@
               <div class="client-avatar">JS</div>
               <div class="client-info">
                 <h3>John Smith</h3>
-                <p>john.smith@email.com • (555) 123-4567</p>
+                <p>john.smith@gmail.com • (555) 210-4738</p>
               </div>
             </div>
             <div class="client-details">
               <div class="client-detail-row">
                 <span class="client-detail-label">Property:</span>
-                <span class="client-detail-value">123 Main Street</span>
+                <span class="client-detail-value">123 Main Street, The Woodlands, TX 77380</span>
               </div>
               <div class="client-detail-row">
                 <span class="client-detail-label">Transaction Type:</span>
@@ -1830,16 +1821,16 @@
 
           <div class="client-card">
             <div class="client-header">
-              <div class="client-avatar">SW</div>
+              <div class="client-avatar" style="background:#3b82f6;">MC</div>
               <div class="client-info">
                 <h3>Sarah Williams</h3>
-                <p>sarah.williams@email.com • (555) 234-5678</p>
+                <p>sarah.williams@gmail.com • (555) 387-9021</p>
               </div>
             </div>
             <div class="client-details">
               <div class="client-detail-row">
                 <span class="client-detail-label">Property:</span>
-                <span class="client-detail-value">789 Pine Road</span>
+                <span class="client-detail-value">789 Pine Road, The Woodlands, TX 77381</span>
               </div>
               <div class="client-detail-row">
                 <span class="client-detail-label">Transaction Type:</span>
@@ -1847,11 +1838,11 @@
               </div>
               <div class="client-detail-row">
                 <span class="client-detail-label">Status:</span>
-                <span class="table-status pending">Pending Offer</span>
+                <span class="table-status active">Under Contract</span>
               </div>
               <div class="client-detail-row">
                 <span class="client-detail-label">Property Value:</span>
-                <span class="client-detail-value">$375,000</span>
+                <span class="client-detail-value">$389,500</span>
               </div>
             </div>
             <div style="display: flex; gap: 12px; margin-top: 20px">
@@ -1862,16 +1853,16 @@
 
           <div class="client-card">
             <div class="client-header">
-              <div class="client-avatar">MB</div>
+              <div class="client-avatar" style="background:var(--success-green);">ER</div>
               <div class="client-info">
                 <h3>Michael Brown</h3>
-                <p>michael.brown@email.com • (555) 345-6789</p>
+                <p>michael.brown@gmail.com • (555) 502-6184</p>
               </div>
             </div>
             <div class="client-details">
               <div class="client-detail-row">
                 <span class="client-detail-label">Property:</span>
-                <span class="client-detail-value">321 Elm Street</span>
+                <span class="client-detail-value">789 Pine Road, The Woodlands, TX 77381</span>
               </div>
               <div class="client-detail-row">
                 <span class="client-detail-label">Transaction Type:</span>
@@ -1879,11 +1870,11 @@
               </div>
               <div class="client-detail-row">
                 <span class="client-detail-label">Status:</span>
-                <span class="table-status completed">Closed</span>
+                <span class="table-status pending">Inspection / Appraisal</span>
               </div>
               <div class="client-detail-row">
                 <span class="client-detail-label">Property Value:</span>
-                <span class="client-detail-value">$520,000</span>
+                <span class="client-detail-value">$512,000</span>
               </div>
             </div>
             <div style="display: flex; gap: 12px; margin-top: 20px">
@@ -1928,17 +1919,17 @@
                     <span class="message-sender">John Smith</span>
                     <span class="message-time">10 minutes ago</span>
                   </div>
-                  <div class="message-subject">Re: Inspection Results</div>
-                  <div class="message-preview">Hi Sarah, I reviewed the inspection report and have some questions about the HVAC system. Can we discuss this today?</div>
+                  <div class="message-subject">Re: Inspection Results – TRX-10247</div>
+                  <div class="message-preview">Hi Sarah, I reviewed the inspection report and have some questions about the HVAC system at 123 Main Street. Can we discuss this today?</div>
                 </div>
 
                 <div class="message-item unread">
                   <div class="message-header">
-                    <span class="message-sender">Attorney Michael Johnson</span>
+                    <span class="message-sender">Sarah Mitchell – Attorney</span>
                     <span class="message-time">2 hours ago</span>
                   </div>
-                  <div class="message-subject">Purchase Agreement Review</div>
-                  <div class="message-preview">The purchase agreement for 123 Main Street has been reviewed. I found a few minor items that need clarification...</div>
+                  <div class="message-subject">Purchase Agreement Review – TRX-10247</div>
+                  <div class="message-preview">The purchase agreement for 123 Main Street has been reviewed. I found a few minor items that need clarification before closing on Feb 15.</div>
                 </div>
 
                 <div class="message-item">
@@ -1946,17 +1937,17 @@
                     <span class="message-sender">Sarah Williams</span>
                     <span class="message-time">5 hours ago</span>
                   </div>
-                  <div class="message-subject">Offer Update</div>
-                  <div class="message-preview">Thank you for the update on the offer. I'd like to proceed with the counteroffer we discussed yesterday.</div>
+                  <div class="message-subject">Offer Update – TRX-10198</div>
+                  <div class="message-preview">Thank you for the update on the 789 Pine Road listing. I'd like to proceed with the counteroffer we discussed yesterday.</div>
                 </div>
 
                 <div class="message-item">
                   <div class="message-header">
-                    <span class="message-sender">Mortgage Lender - First National</span>
+                    <span class="message-sender">James Carter – First National Bank</span>
                     <span class="message-time">Yesterday</span>
                   </div>
-                  <div class="message-subject">Pre-approval Documentation</div>
-                  <div class="message-preview">We've received all necessary documentation and the pre-approval letter has been issued for your client Emily Davis...</div>
+                  <div class="message-subject">Pre-Approval Confirmed – TRX-10156</div>
+                  <div class="message-preview">We've received all necessary documentation and the pre-approval letter has been issued for your client Michael Brown for 321 Elm Street.</div>
                 </div>
 
                 <div class="message-item">
@@ -1964,7 +1955,7 @@
                     <span class="message-sender">Title Company</span>
                     <span class="message-time">2 days ago</span>
                   </div>
-                  <div class="message-subject">Title Search Complete</div>
+                  <div class="message-subject">Title Search Complete – TRX-10134</div>
                   <div class="message-preview">The title search for 321 Elm Street has been completed. No issues found. Attached is the preliminary title report.</div>
                 </div>
               </div>
@@ -1985,14 +1976,17 @@
                       <option>John Smith</option>
                       <option>Sarah Williams</option>
                       <option>Michael Brown</option>
+                      <option>Michael Brown</option>
+                      <option>Lisa Anderson</option>
                     </optgroup>
                     <optgroup label="Attorneys">
-                      <option>Michael Johnson - Attorney</option>
-                      <option>Jennifer Lee - Attorney</option>
+                      <option>Sarah Mitchell – Mitchell Law Group</option>
                     </optgroup>
                     <optgroup label="Mortgage Lenders">
-                      <option>First National Bank</option>
-                      <option>Premier Mortgage</option>
+                      <option>James Carter – First National Bank</option>
+                    </optgroup>
+                    <optgroup label="CPAs">
+                      <option>David Thompson – Thompson Financial Group</option>
                     </optgroup>
                   </select>
                 </div>
@@ -2033,21 +2027,21 @@
                 <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--primary-navy)">Today's Appointments</h3>
                 <div class="appointment-list">
                   <div class="appointment-card">
-                    <div class="appointment-time">10:00 AM - 11:00 AM</div>
-                    <div class="appointment-title">Property Showing - 789 Pine Road</div>
-                    <div class="appointment-details">Client: Sarah Williams • Location: 789 Pine Road, Evanston, IL</div>
+                    <div class="appointment-time">10:00 AM – 11:00 AM</div>
+                    <div class="appointment-title">Property Showing – 789 Pine Road</div>
+                    <div class="appointment-details">Client: Michael Brown • Location: 321 Elm Street, Spring, TX 77382 (TRX-10156)</div>
                   </div>
 
                   <div class="appointment-card">
-                    <div class="appointment-time">2:00 PM - 3:00 PM</div>
-                    <div class="appointment-title">Closing Meeting - 321 Elm Street</div>
-                    <div class="appointment-details">Client: Michael Brown • Attorney: Michael Johnson</div>
+                    <div class="appointment-time">2:00 PM – 3:00 PM</div>
+                    <div class="appointment-title">Closing Meeting – 123 Main Street</div>
+                    <div class="appointment-details">Client: John Smith • Attorney: Sarah Mitchell – Mitchell Law Group</div>
                   </div>
 
                   <div class="appointment-card">
-                    <div class="appointment-time">4:30 PM - 5:30 PM</div>
-                    <div class="appointment-title">Client Consultation - New Buyer</div>
-                    <div class="appointment-details">Prospective Client: Jennifer Adams • Phone Meeting</div>
+                    <div class="appointment-time">4:30 PM – 5:30 PM</div>
+                    <div class="appointment-title">Client Consultation – New Buyer</div>
+                    <div class="appointment-details">Prospective Client: Lisa Anderson • Phone Meeting</div>
                   </div>
                 </div>
               </div>
@@ -2056,21 +2050,21 @@
                 <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--primary-navy)">Upcoming This Week</h3>
                 <div class="appointment-list">
                   <div class="appointment-card">
-                    <div class="appointment-time">Thu, Feb 13 - 11:00 AM</div>
-                    <div class="appointment-title">Home Inspection - 123 Main Street</div>
-                    <div class="appointment-details">Client: John Smith • Inspector: ABC Home Inspections</div>
+                    <div class="appointment-time">Thu, Feb 19 – 11:00 AM</div>
+                    <div class="appointment-title">Home Inspection – 123 Main Street</div>
+                    <div class="appointment-details">Client: John Smith • Inspector: HomePro Inspection Services (TRX-10247)</div>
                   </div>
 
                   <div class="appointment-card">
-                    <div class="appointment-time">Fri, Feb 14 - 3:00 PM</div>
+                    <div class="appointment-time">Fri, Feb 20 – 3:00 PM</div>
                     <div class="appointment-title">Mortgage Application Meeting</div>
-                    <div class="appointment-details">Client: Emily Davis • Lender: First National Bank</div>
+                    <div class="appointment-details">Client: Michael Brown • Lender: James Carter – First National Bank (TRX-10156)</div>
                   </div>
 
                   <div class="appointment-card">
-                    <div class="appointment-time">Mon, Feb 17 - 10:00 AM</div>
-                    <div class="appointment-title">Final Walkthrough - 555 Lake Shore</div>
-                    <div class="appointment-details">Client: Emily Davis • Property: 555 Lake Shore Drive</div>
+                    <div class="appointment-time">Mon, Feb 23 – 10:00 AM</div>
+                    <div class="appointment-title">Final Walkthrough – 456 Oak Avenue</div>
+                    <div class="appointment-details">Client: Sarah Williams • Property: 789 Pine Road, The Woodlands, TX 77381 (TRX-10198)</div>
                   </div>
                 </div>
               </div>
@@ -2100,7 +2094,8 @@
                     <option>John Smith</option>
                     <option>Sarah Williams</option>
                     <option>Michael Brown</option>
-                    <option>Emily Davis</option>
+                    <option>Michael Brown</option>
+                    <option>Lisa Anderson</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -2178,11 +2173,11 @@
 
             <div class="partner-card">
               <div class="partner-badge">⭐ Featured Partner</div>
-              <div class="partner-name">Apex Roofing Solutions</div>
-              <div class="partner-category">Roofing & Repair</div>
+              <div class="partner-name">Premium Roofing Solutions</div>
+              <div class="partner-category">Roofing &amp; Repair</div>
               <div class="partner-rating">
                 <div class="partner-stars">★★★★★</div>
-                <div class="partner-reviews">4.8 (89 reviews)</div>
+                <div class="partner-reviews">4.9 (89 reviews)</div>
               </div>
               <div class="partner-services">
                 <span class="partner-service-tag">Free Estimates</span>
@@ -2196,15 +2191,15 @@
             </div>
 
             <div class="partner-card">
-              <div class="partner-name">Bright Spark Electrical</div>
+              <div class="partner-name">Lightning Fast Electric</div>
               <div class="partner-category">Electrical Services</div>
               <div class="partner-rating">
                 <div class="partner-stars">★★★★☆</div>
-                <div class="partner-reviews">4.7 (156 reviews)</div>
+                <div class="partner-reviews">4.8 (156 reviews)</div>
               </div>
               <div class="partner-services">
                 <span class="partner-service-tag">Licensed Electricians</span>
-                <span class="partner-service-tag">Residential & Commercial</span>
+                <span class="partner-service-tag">Residential &amp; Commercial</span>
                 <span class="partner-service-tag">Same-Day Service</span>
               </div>
               <div class="partner-contact">
@@ -2214,11 +2209,11 @@
             </div>
 
             <div class="partner-card">
-              <div class="partner-name">CreditFix Pro</div>
+              <div class="partner-name">Credit Solutions Plus</div>
               <div class="partner-category">Credit Repair Services</div>
               <div class="partner-rating">
                 <div class="partner-stars">★★★★★</div>
-                <div class="partner-reviews">4.9 (203 reviews)</div>
+                <div class="partner-reviews">5.0 (203 reviews)</div>
               </div>
               <div class="partner-services">
                 <span class="partner-service-tag">Fast Results</span>
@@ -2250,16 +2245,16 @@
             </div>
 
             <div class="partner-card">
-              <div class="partner-name">Swift Movers Chicago</div>
-              <div class="partner-category">Moving Services</div>
+              <div class="partner-name">Elite Plumbing Services</div>
+              <div class="partner-category">Plumbing</div>
               <div class="partner-rating">
                 <div class="partner-stars">★★★★☆</div>
-                <div class="partner-reviews">4.6 (112 reviews)</div>
+                <div class="partner-reviews">4.7 (112 reviews)</div>
               </div>
               <div class="partner-services">
-                <span class="partner-service-tag">Full Service Moving</span>
-                <span class="partner-service-tag">Packing Available</span>
-                <span class="partner-service-tag">Insured & Bonded</span>
+                <span class="partner-service-tag">Full Service Plumbing</span>
+                <span class="partner-service-tag">Emergency Calls</span>
+                <span class="partner-service-tag">Insured &amp; Bonded</span>
               </div>
               <div class="partner-contact">
                 <button class="partner-contact-btn">📞 Call</button>
@@ -2280,7 +2275,9 @@
               <select class="form-select">
                 <option>John Smith</option>
                 <option>Sarah Williams</option>
-                <option>Emily Davis</option>
+                <option>Michael Brown</option>
+                <option>Michael Brown</option>
+                <option>Lisa Anderson</option>
               </select>
             </div>
             <div class="form-group">
@@ -2296,9 +2293,9 @@
             <div class="form-group">
               <label class="form-label">Partner to Refer</label>
               <select class="form-select">
-                <option>Chicago Elite Plumbing</option>
-                <option>Apex Roofing Solutions</option>
-                <option>Bright Spark Electrical</option>
+                <option>Elite Plumbing Services</option>
+                <option>Premium Roofing Solutions</option>
+                <option>Lightning Fast Electric</option>
               </select>
             </div>
             <div class="form-group">
@@ -2455,7 +2452,7 @@
               <div style="display: flex; flex-direction: column; gap: 12px">
                 <div style="padding: 12px; background: var(--neutral-50); border-radius: 8px">
                   <div style="display: flex; justify-content: space-between; margin-bottom: 8px">
-                    <span style="font-weight: 600">Chicago Loop</span>
+                    <span style="font-weight: 600">The Woodlands, TX</span>
                     <span style="font-weight: 700; color: var(--primary-navy)">$1.8M</span>
                   </div>
                   <div class="progress-bar">
@@ -2464,7 +2461,7 @@
                 </div>
                 <div style="padding: 12px; background: var(--neutral-50); border-radius: 8px">
                   <div style="display: flex; justify-content: space-between; margin-bottom: 8px">
-                    <span style="font-weight: 600">Lincoln Park</span>
+                    <span style="font-weight: 600">Spring, TX</span>
                     <span style="font-weight: 700; color: var(--primary-navy)">$1.2M</span>
                   </div>
                   <div class="progress-bar">
@@ -2473,7 +2470,7 @@
                 </div>
                 <div style="padding: 12px; background: var(--neutral-50); border-radius: 8px">
                   <div style="display: flex; justify-content: space-between; margin-bottom: 8px">
-                    <span style="font-weight: 600">Oak Park</span>
+                    <span style="font-weight: 600">Conroe / Tomball, TX</span>
                     <span style="font-weight: 700; color: var(--primary-navy)">$950K</span>
                   </div>
                   <div class="progress-bar">
@@ -2694,8 +2691,8 @@
                     <option value="client1">John Smith</option>
                     <option value="client2">Sarah Williams</option>
                     <option value="client3">Michael Brown</option>
-                    <option value="client4">Emily Davis</option>
-                    <option value="client5">David Martinez</option>
+                    <option value="client4">Michael Brown</option>
+                    <option value="client5">Lisa Anderson</option>
                   </select>
                   <div class="help-text">Select the client for this transaction</div>
                 </div>
@@ -2718,7 +2715,7 @@
 
               <div class="form-group">
                 <label class="form-label">Property Address <span class="required-indicator">*</span></label>
-                <input type="text" id="propertyAddressTxn" class="form-input" placeholder="123 Main Street, Chicago, IL 60601" required />
+                <input type="text" id="propertyAddressTxn" class="form-input" placeholder="123 Main Street, The Woodlands, TX 77380" required />
               </div>
 
               <div class="form-row form-row-2">
@@ -2760,12 +2757,12 @@
               <div class="form-row form-row-2">
                 <div class="form-group">
                   <label class="form-label">Mortgage Lender</label>
-                  <input type="text" id="mortgageLender" class="form-input" placeholder="First National Bank" />
+                  <input type="text" id="mortgageLender" class="form-input" placeholder="James Carter – First National Bank Home Mortgage" />
                 </div>
 
                 <div class="form-group">
                   <label class="form-label">Attorney</label>
-                  <input type="text" id="attorneyName" class="form-input" placeholder="Michael Johnson, Esq." />
+                  <input type="text" id="attorneyName" class="form-input" placeholder="Sarah Mitchell, Esq. – Mitchell Law Group" />
                 </div>
               </div>
 

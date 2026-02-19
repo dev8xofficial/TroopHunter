@@ -999,14 +999,14 @@
     <div id="page-dashboard" class="page active">
       <div class="welcome-header">
         <h1>Good morning, Sarah ⚖️</h1>
-        <p>You have <strong>3 transactions</strong> awaiting verification and <strong>2 asset splits</strong> pending approval.</p>
+        <p>You have <strong>3 transactions</strong> awaiting verification and <strong>1 closing</strong> due Feb 15.</p>
       </div>
 
       <div class="alert alert-warning">
         <div class="alert-icon">⚠️</div>
         <div class="alert-content">
           <h4>Urgent: Closing Deadline Approaching</h4>
-          <p>Smith transaction at 123 Main Street requires verification before Feb 15 closing date. 3 days remaining.</p>
+          <p>Smith transaction at 123 Main Street requires verification before Feb 15 closing date. 4 days remaining.</p>
         </div>
         <button class="btn btn-primary btn-sm" style="margin-left: auto; flex-shrink: 0">Review Now</button>
       </div>
@@ -1069,53 +1069,53 @@
               <div class="split-card">
                 <div class="doc-header">
                   <div>
-                    <div class="doc-name">🏡 Johnson vs Johnson – 456 Oak Avenue</div>
-                    <div class="doc-meta"><span>💰 Value: $625,000</span><span>🕐 Filed: Feb 1</span></div>
+                    <div class="doc-name">🏠 TRX-10247 – John Smith – 123 Main Street</div>
+                    <div class="doc-meta"><span>💰 Value: $485,000</span><span>🕐 Closing: Feb 15, 2026</span></div>
                   </div>
-                  <span class="badge badge-warning">Pending Review</span>
+                  <span class="badge badge-error">Needs Verification</span>
                 </div>
                 <div class="split-grid">
                   <div class="split-party">
-                    <div class="split-party-label">Party A (Wife)</div>
-                    <div class="split-party-amount">$375,000</div>
-                    <div class="split-party-pct">60% share</div>
+                    <div class="split-party-label">Sale Price</div>
+                    <div class="split-party-amount">$485,000</div>
+                    <div class="split-party-pct">Purchase transaction</div>
                   </div>
                   <div class="split-party">
-                    <div class="split-party-label">Party B (Husband)</div>
-                    <div class="split-party-amount">$250,000</div>
-                    <div class="split-party-pct">40% share</div>
+                    <div class="split-party-label">Loan Amount</div>
+                    <div class="split-party-amount">$388,000</div>
+                    <div class="split-party-pct">First National Bank – James Carter</div>
                   </div>
                 </div>
                 <div class="doc-btns">
-                  <button class="btn btn-success btn-sm" onclick="openModal('modalApprove')">✅ Approve Split</button>
-                  <button class="btn btn-secondary btn-sm" onclick="openModal('modalModify')">✏️ Modify Distribution</button>
-                  <button class="btn btn-secondary btn-sm">👁 View Details</button>
+                  <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">✅ Verify Amounts</button>
+                  <button class="btn btn-secondary btn-sm">👁 View Documents</button>
+                  <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
                 </div>
               </div>
               <div class="split-card">
                 <div class="doc-header">
                   <div>
-                    <div class="doc-name">🏡 Davis vs Davis – 789 Pine Road</div>
-                    <div class="doc-meta"><span>💰 Value: $420,000</span><span>🕐 Filed: Jan 28</span></div>
+                    <div class="doc-name">🏠 TRX-10156 – Michael Brown – 321 Elm Street</div>
+                    <div class="doc-meta"><span>💰 Value: $512,000</span><span>🕐 Closing: Mar 8, 2026</span></div>
                   </div>
-                  <span class="badge badge-warning">Split Pending</span>
+                  <span class="badge badge-warning">In Progress</span>
                 </div>
                 <div class="split-grid">
                   <div class="split-party">
-                    <div class="split-party-label">Party A (Wife)</div>
-                    <div class="split-party-amount">$252,000</div>
-                    <div class="split-party-pct">60% share</div>
+                    <div class="split-party-label">Sale Price</div>
+                    <div class="split-party-amount">$512,000</div>
+                    <div class="split-party-pct">Purchase transaction</div>
                   </div>
                   <div class="split-party">
-                    <div class="split-party-label">Party B (Husband)</div>
-                    <div class="split-party-amount">$168,000</div>
-                    <div class="split-party-pct">40% share</div>
+                    <div class="split-party-label">Loan Amount</div>
+                    <div class="split-party-amount">~$409,600</div>
+                    <div class="split-party-pct">First National Bank – James Carter</div>
                   </div>
                 </div>
                 <div class="doc-btns">
-                  <button class="btn btn-success btn-sm" onclick="openModal('modalApprove')">✅ Approve Split</button>
-                  <button class="btn btn-secondary btn-sm" onclick="openModal('modalModify')">✏️ Modify Distribution</button>
-                  <button class="btn btn-secondary btn-sm">👁 View Details</button>
+                  <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">✅ Start Review</button>
+                  <button class="btn btn-secondary btn-sm">👁 View Documents</button>
+                  <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
                 </div>
               </div>
             </div>
@@ -1146,10 +1146,10 @@
                   <td>
                     <div class="client-row">
                       <div class="client-avatar">JS</div>
-                      <div class="client-info"><strong>John &amp; Mary Smith</strong><span>Closing Attorney</span></div>
+                      <div class="client-info"><strong>John Smith</strong><span>Closing Attorney</span></div>
                     </div>
                   </td>
-                  <td>123 Main Street</td>
+                  <td>123 Main Street, The Woodlands, TX 77380</td>
                   <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                   <td><strong>$485,000</strong></td>
                   <td><span class="badge badge-warning">Needs Verification</span></td>
@@ -1163,31 +1163,13 @@
                 <tr>
                   <td>
                     <div class="client-row">
-                      <div class="client-avatar">RJ</div>
-                      <div class="client-info"><strong>Robert Johnson</strong><span>Divorce Attorney</span></div>
-                    </div>
-                  </td>
-                  <td>456 Oak Avenue</td>
-                  <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
-                  <td><strong>$625,000</strong></td>
-                  <td><span class="badge badge-warning">Split Pending</span></td>
-                  <td>
-                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                      <button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button>
-                      <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="client-row">
                       <div class="client-avatar">SW</div>
                       <div class="client-info"><strong>Sarah Williams</strong><span>Closing Attorney</span></div>
                     </div>
                   </td>
-                  <td>789 Pine Road</td>
+                  <td>789 Pine Road, The Woodlands, TX 77381</td>
                   <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                  <td><strong>$375,000</strong></td>
+                  <td><strong>$389,500</strong></td>
                   <td><span class="badge badge-info">In Progress</span></td>
                   <td>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;">
@@ -1203,11 +1185,16 @@
                       <div class="client-info"><strong>Michael Brown</strong><span>Closing Attorney</span></div>
                     </div>
                   </td>
-                  <td>321 Elm Street</td>
+                  <td>321 Elm Street, Spring, TX 77382</td>
                   <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                  <td><strong>$520,000</strong></td>
-                  <td><span class="badge badge-info">Verified</span></td>
-                  <td><button class="btn btn-secondary btn-sm">View</button></td>
+                  <td><strong>$512,000</strong></td>
+                  <td><span class="badge badge-info">In Progress</span></td>
+                  <td>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Start Review</button>
+                      <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -1221,19 +1208,19 @@
             <div class="card-body">
               <div class="activity-item">
                 <div class="activity-dot dot-yellow">📄</div>
-                <div class="activity-text"><strong>Document Uploaded</strong><span>Closing disclosure – Smith transaction · 1h ago</span></div>
+                <div class="activity-text"><strong>Document Uploaded</strong><span>Closing disclosure – Smith (TRX-10247) · 1h ago</span></div>
               </div>
               <div class="activity-item">
                 <div class="activity-dot dot-green">✅</div>
-                <div class="activity-text"><strong>Verification Complete</strong><span>Brown transaction verified &amp; approved · 3h ago</span></div>
-              </div>
-              <div class="activity-item">
-                <div class="activity-dot dot-yellow">💰</div>
-                <div class="activity-text"><strong>Asset Split Filed</strong><span>Davis vs Davis – new divorce case · 1d ago</span></div>
+                <div class="activity-text"><strong>Review Started</strong><span>Williams (TRX-10198) – 789 Pine Road · 3h ago</span></div>
               </div>
               <div class="activity-item">
                 <div class="activity-dot dot-blue">📝</div>
-                <div class="activity-text"><strong>Client Added</strong><span>Williams sale case opened · 2d ago</span></div>
+                <div class="activity-text"><strong>Client Added</strong><span>Michael Brown case opened – TRX-10156 · 2d ago</span></div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot dot-yellow">💬</div>
+                <div class="activity-text"><strong>Message Received</strong><span>James Carter (First National Bank) re: TRX-10247 loan docs · 2d ago</span></div>
               </div>
             </div>
           </div>
@@ -1252,24 +1239,24 @@
               <div style="display: flex; flex-direction: column; gap: 12px">
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--neutral-50); border-radius: 8px; border-left: 3px solid var(--error-red)">
                   <div>
-                    <div style="font-size: 13px; font-weight: 700; color: var(--neutral-800)">Smith Closing</div>
-                    <div style="font-size: 12px; color: var(--neutral-500)">123 Main Street</div>
+                    <div style="font-size: 13px; font-weight: 700; color: var(--neutral-800)">Smith Closing – TRX-10247</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">123 Main Street, The Woodlands</div>
                   </div>
                   <span class="badge badge-error">Feb 15</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--neutral-50); border-radius: 8px; border-left: 3px solid var(--warning-orange)">
                   <div>
-                    <div style="font-size: 13px; font-weight: 700; color: var(--neutral-800)">Johnson Split Approval</div>
-                    <div style="font-size: 12px; color: var(--neutral-500)">456 Oak Avenue</div>
+                    <div style="font-size: 13px; font-weight: 700; color: var(--neutral-800)">Brown Review – TRX-10156</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">789 Pine Road, The Woodlands</div>
                   </div>
-                  <span class="badge badge-warning">Feb 18</span>
+                  <span class="badge badge-warning">Mar 8</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--neutral-50); border-radius: 8px; border-left: 3px solid var(--success-green)">
                   <div>
-                    <div style="font-size: 13px; font-weight: 700; color: var(--neutral-800)">Williams Closing</div>
-                    <div style="font-size: 12px; color: var(--neutral-500)">789 Pine Road</div>
+                    <div style="font-size: 13px; font-weight: 700; color: var(--neutral-800)">Williams Closing – TRX-10198</div>
+                    <div style="font-size: 12px; color: var(--neutral-500)">789 Pine Road, The Woodlands</div>
                   </div>
-                  <span class="badge badge-success">Feb 22</span>
+                  <span class="badge badge-success">Mar 1</span>
                 </div>
               </div>
             </div>
@@ -1327,17 +1314,17 @@
             </thead>
             <tbody>
               <tr>
-                <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-001</span></td>
+                <td><span style="font-weight: 700; color: var(--accent-blue)">TRX-10247</span></td>
                 <td>
                   <div class="client-row">
                     <div class="client-avatar">JS</div>
-                    <div class="client-info"><strong>John &amp; Mary Smith</strong><span>Closing Attorney</span></div>
+                    <div class="client-info"><strong>John Smith</strong><span>Closing Attorney</span></div>
                   </div>
                 </td>
-                <td>123 Main Street, Chicago IL</td>
+                <td>123 Main Street, The Woodlands, TX 77380</td>
                 <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td><strong>$485,000</strong></td>
-                <td>Feb 1, 2024</td>
+                <td>Feb 15, 2026</td>
                 <td><span class="badge badge-warning">Needs Verification</span></td>
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap;">
@@ -1347,37 +1334,17 @@
                 </td>
               </tr>
               <tr>
-                <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-002</span></td>
-                <td>
-                  <div class="client-row">
-                    <div class="client-avatar">RJ</div>
-                    <div class="client-info"><strong>Robert Johnson</strong><span>Divorce Attorney</span></div>
-                  </div>
-                </td>
-                <td>456 Oak Avenue, Chicago IL</td>
-                <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
-                <td><strong>$625,000</strong></td>
-                <td>Feb 1, 2024</td>
-                <td><span class="badge badge-warning">Split Pending</span></td>
-                <td>
-                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                    <button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button>
-                    <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-003</span></td>
+                <td><span style="font-weight: 700; color: var(--accent-blue)">TRX-10198</span></td>
                 <td>
                   <div class="client-row">
                     <div class="client-avatar">SW</div>
                     <div class="client-info"><strong>Sarah Williams</strong><span>Closing Attorney</span></div>
                   </div>
                 </td>
-                <td>789 Pine Road, Evanston IL</td>
+                <td>789 Pine Road, The Woodlands, TX 77381</td>
                 <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                <td><strong>$375,000</strong></td>
-                <td>Jan 28, 2024</td>
+                <td><strong>$389,500</strong></td>
+                <td>Mar 1, 2026</td>
                 <td><span class="badge badge-info">In Progress</span></td>
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap;">
@@ -1387,52 +1354,37 @@
                 </td>
               </tr>
               <tr>
-                <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-004</span></td>
+                <td><span style="font-weight: 700; color: var(--accent-blue)">TRX-10156</span></td>
                 <td>
                   <div class="client-row">
                     <div class="client-avatar">MB</div>
                     <div class="client-info"><strong>Michael Brown</strong><span>Closing Attorney</span></div>
                   </div>
                 </td>
-                <td>321 Elm Street, Oak Park IL</td>
+                <td>321 Elm Street, Spring, TX 77382</td>
                 <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                <td><strong>$520,000</strong></td>
-                <td>Jan 20, 2024</td>
-                <td><span class="badge badge-info">Verified</span></td>
-                <td><button class="btn btn-secondary btn-sm">View</button></td>
-              </tr>
-              <tr>
-                <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-005</span></td>
-                <td>
-                  <div class="client-row">
-                    <div class="client-avatar">DD</div>
-                    <div class="client-info"><strong>Davis vs Davis</strong><span>Divorce Attorney</span></div>
-                  </div>
-                </td>
-                <td>789 Pine Rd, Naperville IL</td>
-                <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
-                <td><strong>$420,000</strong></td>
-                <td>Jan 28, 2024</td>
-                <td><span class="badge badge-warning">Split Pending</span></td>
+                <td><strong>$512,000</strong></td>
+                <td>Mar 8, 2026</td>
+                <td><span class="badge badge-info">In Progress</span></td>
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                    <button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Start Review</button>
                     <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
                   </div>
                 </td>
               </tr>
               <tr>
-                <td><span style="font-weight: 700; color: var(--accent-blue)">#TXN-2024-006</span></td>
+                <td><span style="font-weight: 700; color: var(--accent-blue)">TRX-10089</span></td>
                 <td>
                   <div class="client-row">
-                    <div class="client-avatar">AL</div>
-                    <div class="client-info"><strong>Amanda Lewis</strong><span>Closing Attorney</span></div>
+                    <div class="client-avatar">LA</div>
+                    <div class="client-info"><strong>Lisa Anderson</strong><span>Closing Attorney</span></div>
                   </div>
                 </td>
-                <td>555 Lakeview Dr, Chicago IL</td>
-                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                <td><strong>$710,000</strong></td>
-                <td>Jan 15, 2024</td>
+                <td>654 Maple Drive, Tomball, TX 77375</td>
+                <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
+                <td><strong>$467,500</strong></td>
+                <td>Feb 15, 2026</td>
                 <td><span class="badge badge-success">Completed</span></td>
                 <td><button class="btn btn-secondary btn-sm">View</button></td>
               </tr>
@@ -1464,12 +1416,12 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>#TXN-2024-001</strong></td>
-                <td>John &amp; Mary Smith</td>
-                <td>123 Main Street, Chicago IL</td>
+                <td><strong>TRX-10247</strong></td>
+                <td>John Smith</td>
+                <td>123 Main Street, The Woodlands, TX 77380</td>
                 <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
                 <td>$485,000</td>
-                <td><span class="badge badge-error">Feb 15 – 3 days</span></td>
+                <td><span class="badge badge-error">Feb 15 – 9 days</span></td>
                 <td><span class="badge badge-warning">Needs Verification</span></td>
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap;">
@@ -1479,31 +1431,31 @@
                 </td>
               </tr>
               <tr>
-                <td><strong>#TXN-2024-002</strong></td>
-                <td>Robert Johnson</td>
-                <td>456 Oak Avenue, Chicago IL</td>
-                <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
-                <td>$625,000</td>
-                <td><span class="badge badge-warning">Feb 18</span></td>
-                <td><span class="badge badge-warning">Split Pending</span></td>
+                <td><strong>TRX-10198</strong></td>
+                <td>Sarah Williams</td>
+                <td>789 Pine Road, The Woodlands, TX 77381</td>
+                <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
+                <td>$389,500</td>
+                <td><span class="badge badge-warning">Mar 1</span></td>
+                <td><span class="badge badge-info">In Progress</span></td>
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                    <button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Start Review</button>
                     <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
                   </div>
                 </td>
               </tr>
               <tr>
-                <td><strong>#TXN-2024-005</strong></td>
-                <td>Davis vs Davis</td>
-                <td>789 Pine Rd, Naperville IL</td>
-                <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
-                <td>$420,000</td>
-                <td><span class="badge badge-warning">Feb 20</span></td>
-                <td><span class="badge badge-warning">Split Pending</span></td>
+                <td><strong>TRX-10156</strong></td>
+                <td>Michael Brown</td>
+                <td>321 Elm Street, Spring, TX 77382</td>
+                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
+                <td>$512,000</td>
+                <td><span class="badge badge-warning">Mar 8</span></td>
+                <td><span class="badge badge-info">In Progress</span></td>
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                    <button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Start Review</button>
                     <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
                   </div>
                 </td>
@@ -1515,8 +1467,8 @@
       <div id="tab-divorce" style="display: none">
         <div class="card">
           <div class="card-header">
-            <div class="card-title">Divorce Asset Split Cases</div>
-            <div class="card-subtitle">Cases requiring asset distribution review</div>
+            <div class="card-title">Active Closing Cases</div>
+            <div class="card-subtitle">Real estate transactions under attorney review</div>
           </div>
           <div class="card-body">
             <table>
@@ -1534,43 +1486,41 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><span style="font-weight:700;color:var(--accent-blue)">#TXN-2024-002</span></td>
+                  <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10247</span></td>
                   <td>
                     <div class="client-row">
-                      <div class="client-avatar">RJ</div>
-                      <div class="client-info"><strong>Robert Johnson vs Emily Johnson</strong><span>Divorce Attorney</span></div>
+                      <div class="client-avatar">JS</div>
+                      <div class="client-info"><strong>John Smith</strong><span>Closing Attorney</span></div>
                     </div>
                   </td>
-                  <td>456 Oak Avenue, Chicago IL</td>
-                  <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split · 60/40</small></td>
-                  <td><strong>$625,000</strong></td>
-                  <td>Feb 18, 2024</td>
-                  <td><span class="badge badge-warning">Split Pending</span></td>
+                  <td>123 Main Street, The Woodlands, TX 77380</td>
+                  <td>Purchase<br><small style="color:var(--neutral-500)">Attorney / Title Review</small></td>
+                  <td><strong>$485,000</strong></td>
+                  <td>Feb 15, 2026</td>
+                  <td><span class="badge badge-warning">Needs Verification</span></td>
                   <td>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                      <button class="btn btn-success btn-sm" onclick="openModal('modalApprove')">✅ Approve Split</button>
-                      <button class="btn btn-secondary btn-sm" onclick="openModal('modalModify')">✏️ Modify</button>
+                      <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify</button>
                       <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><span style="font-weight:700;color:var(--accent-blue)">#TXN-2024-005</span></td>
+                  <td><span style="font-weight:700;color:var(--accent-blue)">TRX-10156</span></td>
                   <td>
                     <div class="client-row">
-                      <div class="client-avatar">DD</div>
-                      <div class="client-info"><strong>Mark Davis vs Linda Davis</strong><span>Divorce Attorney</span></div>
+                      <div class="client-avatar">MB</div>
+                      <div class="client-info"><strong>Michael Brown</strong><span>Closing Attorney</span></div>
                     </div>
                   </td>
-                  <td>789 Pine Rd, Naperville IL</td>
-                  <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split · 60/40</small></td>
-                  <td><strong>$420,000</strong></td>
-                  <td>Feb 20, 2024</td>
-                  <td><span class="badge badge-warning">Split Pending</span></td>
+                  <td>321 Elm Street, Spring, TX 77382</td>
+                  <td>Purchase<br><small style="color:var(--neutral-500)">Attorney / Title Review</small></td>
+                  <td><strong>$512,000</strong></td>
+                  <td>Mar 8, 2026</td>
+                  <td><span class="badge badge-info">In Progress</span></td>
                   <td>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                      <button class="btn btn-success btn-sm" onclick="openModal('modalApprove')">✅ Approve Split</button>
-                      <button class="btn btn-secondary btn-sm" onclick="openModal('modalModify')">✏️ Modify</button>
+                      <button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Start Review</button>
                       <button class="btn btn-secondary btn-sm" onclick="openModal('modalFlag')" style="color:var(--error-red);border-color:var(--error-red);">🚩 Flag</button>
                     </div>
                   </td>
@@ -1596,48 +1546,12 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>#TXN-2024-004</strong></td>
-                <td>Michael Brown</td>
-                <td>321 Elm Street, Oak Park IL</td>
-                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                <td>$520,000</td>
-                <td>Jan 25, 2024</td>
-                <td><span class="badge badge-info">Verified</span></td>
-              </tr>
-              <tr>
-                <td><strong>#TXN-2024-006</strong></td>
-                <td>Amanda Lewis</td>
-                <td>555 Lakeview Dr, Chicago IL</td>
-                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                <td>$710,000</td>
-                <td>Jan 20, 2024</td>
-                <td><span class="badge badge-success">Completed</span></td>
-              </tr>
-              <tr>
-                <td><strong>#TXN-2023-089</strong></td>
-                <td>David &amp; Karen Park</td>
-                <td>102 Maple Lane, Chicago IL</td>
-                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                <td>$390,000</td>
-                <td>Dec 15, 2023</td>
-                <td><span class="badge badge-success">Completed</span></td>
-              </tr>
-              <tr>
-                <td><strong>#TXN-2023-077</strong></td>
-                <td>Thomas Green</td>
-                <td>77 Cedar Blvd, Evanston IL</td>
+                <td><strong>TRX-10089</strong></td>
+                <td>Lisa Anderson</td>
+                <td>654 Maple Drive, Tomball, TX 77375</td>
                 <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                <td>$285,000</td>
-                <td>Dec 8, 2023</td>
-                <td><span class="badge badge-success">Completed</span></td>
-              </tr>
-              <tr>
-                <td><strong>#TXN-2023-065</strong></td>
-                <td>Rachel Adams</td>
-                <td>200 Birch Way, Oak Park IL</td>
-                <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                <td>$445,000</td>
-                <td>Nov 30, 2023</td>
+                <td>$467,500</td>
+                <td>Feb 15, 2026</td>
                 <td><span class="badge badge-success">Completed</span></td>
               </tr>
             </tbody>
@@ -1686,11 +1600,11 @@
                   <div class="doc-header">
                     <div>
                       <div class="doc-name">📋 Purchase & Sales Agreement – Smith</div>
-                      <div class="doc-meta"><span>Case #TXN-2024-001</span><span>Uploaded by: RE Agent Kim Lee</span><span>Feb 1, 2024</span></div>
+                      <div class="doc-meta"><span>TRX-10247</span><span>Uploaded by: Agent Sarah Anderson</span><span>Feb 1, 2026</span></div>
                     </div>
                     <span class="badge badge-warning">Needs Review</span>
                   </div>
-                  <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">Purchase agreement for 123 Main Street. Sale price: $485,000. Contingencies: financing, inspection. Closing date: Feb 15, 2024.</div>
+                  <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">Purchase agreement for 123 Main Street, The Woodlands, TX 77380. Sale price: $485,000. Contingencies: financing, inspection. Closing date: Feb 15, 2026.</div>
                   <div class="doc-btns"><button class="btn btn-primary btn-sm">👁 Review</button><button class="btn btn-success btn-sm">✅ Approve</button><button class="btn btn-secondary btn-sm">💬 Comment</button><button class="btn btn-secondary btn-sm">⬇ Download</button></div>
                 </div>
                 <!-- Doc 2 -->
@@ -1698,7 +1612,7 @@
                   <div class="doc-header">
                     <div>
                       <div class="doc-name">💰 Closing Disclosure – Smith</div>
-                      <div class="doc-meta"><span>Case #TXN-2024-001</span><span>Uploaded by: Lender ABC Mortgage</span><span>Feb 3, 2024</span></div>
+                      <div class="doc-meta"><span>TRX-10247</span><span>Uploaded by: First National Bank – James Carter</span><span>Feb 5, 2026</span></div>
                     </div>
                     <span class="badge badge-warning">Needs Review</span>
                   </div>
@@ -1709,36 +1623,36 @@
                 <div class="doc-item">
                   <div class="doc-header">
                     <div>
-                      <div class="doc-name">⚖️ Divorce Settlement Agreement – Johnson</div>
-                      <div class="doc-meta"><span>Case #TXN-2024-002</span><span>Uploaded by: Client Portal</span><span>Feb 2, 2024</span></div>
+                      <div class="doc-name">📊 Mortgage Documents – Brown</div>
+                      <div class="doc-meta"><span>TRX-10156</span><span>Uploaded by: First National Bank – James Carter</span><span>Feb 8, 2026</span></div>
                     </div>
-                    <span class="badge badge-warning">Needs Review</span>
+                    <span class="badge badge-info">Under Review</span>
                   </div>
-                  <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">Divorce settlement for 456 Oak Avenue. Asset split: 60/40. Net equity: $625,000 after $198,000 mortgage payoff.</div>
-                  <div class="doc-btns"><button class="btn btn-primary btn-sm">👁 Review</button><button class="btn btn-success btn-sm">✅ Approve Split</button><button class="btn btn-secondary btn-sm">💬 Comment</button><button class="btn btn-secondary btn-sm">⬇ Download</button></div>
+                  <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">Mortgage package: Loan terms, rate lock confirmation, underwriting approval. Property: 789 Pine Road, The Woodlands.</div>
+                  <div class="doc-btns"><button class="btn btn-primary btn-sm">👁 Review</button><button class="btn btn-secondary btn-sm">💬 Comment</button><button class="btn btn-secondary btn-sm">⬇ Download</button></div>
                 </div>
                 <!-- Doc 4 - Approved -->
                 <div class="doc-item">
                   <div class="doc-header">
                     <div>
-                      <div class="doc-name">🏡 Title Search Report – Brown</div>
-                      <div class="doc-meta"><span>Case #TXN-2024-004</span><span>Uploaded by: Title Co.</span><span>Jan 19, 2024</span></div>
+                      <div class="doc-name">🏡 Title Commitment – Smith</div>
+                      <div class="doc-meta"><span>TRX-10247</span><span>Uploaded by: Title Co.</span><span>Feb 6, 2026</span></div>
                     </div>
                     <span class="badge badge-success">Approved</span>
                   </div>
-                  <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">Title is clear. No liens or encumbrances. Property at 321 Elm Street. Approved Jan 22, 2024.</div>
+                  <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">Title is clear. No liens or encumbrances. Property at 123 Main Street, The Woodlands, TX 77380.</div>
                   <div class="doc-btns"><button class="btn btn-secondary btn-sm">👁 View</button><button class="btn btn-secondary btn-sm">⬇ Download</button></div>
                 </div>
                 <!-- Doc 5 -->
                 <div class="doc-item">
                   <div class="doc-header">
                     <div>
-                      <div class="doc-name">📊 Lender Mortgage Documents – Williams</div>
-                      <div class="doc-meta"><span>Case #TXN-2024-003</span><span>Uploaded by: First National Mortgage</span><span>Jan 30, 2024</span></div>
+                      <div class="doc-name">📋 Purchase Agreement – Williams</div>
+                      <div class="doc-meta"><span>TRX-10198</span><span>Uploaded by: Agent Sarah Anderson</span><span>Feb 10, 2026</span></div>
                     </div>
                     <span class="badge badge-info">Under Review</span>
                   </div>
-                  <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">Mortgage package: Loan terms, rate lock confirmation, underwriting approval. Loan amount: $300,000 at 6.75% fixed.</div>
+                  <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 8px">Purchase agreement for 789 Pine Road, The Woodlands, TX 77381. Sale price: $389,500. Closing date: Mar 1, 2026.</div>
                   <div class="doc-btns"><button class="btn btn-primary btn-sm">👁 Review</button><button class="btn btn-secondary btn-sm">💬 Comment</button><button class="btn btn-secondary btn-sm">⬇ Download</button></div>
                 </div>
               </div>
@@ -1759,7 +1673,7 @@
                   <div class="doc-header">
                     <div>
                       <div class="doc-name">📋 Purchase & Sales Agreement – Smith</div>
-                      <div class="doc-meta"><span>Case #TXN-2024-001</span><span>Closing: Feb 15</span></div>
+                      <div class="doc-meta"><span>TRX-10247</span><span>Closing: Feb 15</span></div>
                     </div>
                     <span class="badge badge-error">Urgent</span>
                   </div>
@@ -1773,7 +1687,7 @@
                   <div class="doc-header">
                     <div>
                       <div class="doc-name">💰 Closing Disclosure – Smith</div>
-                      <div class="doc-meta"><span>Case #TXN-2024-001</span><span>Closing: Feb 15</span></div>
+                      <div class="doc-meta"><span>TRX-10247</span><span>Closing: Feb 15</span></div>
                     </div>
                     <span class="badge badge-error">Urgent</span>
                   </div>
@@ -1786,14 +1700,14 @@
                 <div class="doc-item">
                   <div class="doc-header">
                     <div>
-                      <div class="doc-name">⚖️ Divorce Settlement – Johnson</div>
-                      <div class="doc-meta"><span>Case #TXN-2024-002</span></div>
+                      <div class="doc-name">📋 Purchase Agreement – Williams</div>
+                      <div class="doc-meta"><span>TRX-10198</span></div>
                     </div>
                     <span class="badge badge-warning">Needs Review</span>
                   </div>
                   <div class="doc-btns">
                     <button class="btn btn-primary btn-sm">👁 Review</button>
-                    <button class="btn btn-success btn-sm" onclick="openModal('modalApprove')">✅ Approve Split</button>
+                    <button class="btn btn-success btn-sm">✅ Approve</button>
                     <button class="btn btn-secondary btn-sm" style="color:var(--error-red);border-color:var(--error-red);" onclick="openModal('modalRejectDoc')">❌ Reject / Return</button>
                   </div>
                 </div>
@@ -1807,8 +1721,8 @@
                 <div class="doc-item">
                   <div class="doc-header">
                     <div>
-                      <div class="doc-name">🏡 Title Search Report – Brown</div>
-                      <div class="doc-meta"><span>Approved Jan 22, 2024</span></div>
+                      <div class="doc-name">🏡 Title Commitment – Smith</div>
+                      <div class="doc-meta"><span>Approved Feb 8, 2026</span></div>
                     </div>
                     <span class="badge badge-success">Approved</span>
                   </div>
@@ -1817,8 +1731,8 @@
                 <div class="doc-item">
                   <div class="doc-header">
                     <div>
-                      <div class="doc-name">📋 Purchase Agreement – Lewis</div>
-                      <div class="doc-meta"><span>Approved Jan 18, 2024</span></div>
+                      <div class="doc-name">📋 Closing Disclosure – Anderson</div>
+                      <div class="doc-meta"><span>Approved Feb 14, 2026</span></div>
                     </div>
                     <span class="badge badge-success">Approved</span>
                   </div>
@@ -1827,8 +1741,8 @@
                 <div class="doc-item">
                   <div class="doc-header">
                     <div>
-                      <div class="doc-name">💰 Closing Disclosure – Lewis</div>
-                      <div class="doc-meta"><span>Approved Jan 18, 2024</span></div>
+                      <div class="doc-name">💰 Purchase Agreement – Anderson</div>
+                      <div class="doc-meta"><span>Approved Feb 10, 2026</span></div>
                     </div>
                     <span class="badge badge-success">Approved</span>
                   </div>
@@ -1856,9 +1770,10 @@
                       <label class="form-label">Transaction / Case</label
                       ><select class="form-control">
                         <option>Select case…</option>
-                        <option>#TXN-2024-001 – Smith</option>
-                        <option>#TXN-2024-002 – Johnson</option>
-                        <option>#TXN-2024-003 – Williams</option>
+                        <option>TRX-10247 – Smith</option>
+                        <option>TRX-10198 – Williams</option>
+                        <option>TRX-10156 – Brown</option>
+                        <option>TRX-10089 – Anderson (Completed)</option>
                       </select>
                     </div>
                     <div class="form-group">
@@ -1900,15 +1815,15 @@
             <div class="card-body">
               <div class="activity-item">
                 <div class="activity-dot dot-yellow">📋</div>
-                <div class="activity-text"><strong>Closing Disclosure – Smith</strong><span>Uploaded by Lender · 1h ago</span></div>
+                <div class="activity-text"><strong>Closing Disclosure – Smith</strong><span>First National Bank (James Carter) · 1h ago</span></div>
               </div>
               <div class="activity-item">
                 <div class="activity-dot dot-blue">📊</div>
-                <div class="activity-text"><strong>Mortgage Docs – Williams</strong><span>First National · Jan 30</span></div>
+                <div class="activity-text"><strong>Mortgage Docs – Brown</strong><span>First National Bank · Feb 8, 2026</span></div>
               </div>
               <div class="activity-item">
-                <div class="activity-dot dot-yellow">⚖️</div>
-                <div class="activity-text"><strong>Divorce Settlement – Johnson</strong><span>Client Portal · Feb 2</span></div>
+                <div class="activity-dot dot-yellow">📋</div>
+                <div class="activity-text"><strong>Purchase Agreement – Williams</strong><span>Agent Sarah Anderson · Feb 10, 2026</span></div>
               </div>
             </div>
           </div>
@@ -1946,7 +1861,7 @@
           <div class="card">
             <div class="card-header">
               <div class="card-title">All Clients</div>
-              <div class="card-subtitle">4 active clients across 5 transactions</div>
+              <div class="card-subtitle">4 active clients across 4 transactions</div>
             </div>
             <table>
               <thead>
@@ -1964,38 +1879,25 @@
                   <td>
                     <div class="client-row">
                       <div class="client-avatar">JS</div>
-                      <div class="client-info"><strong>John &amp; Mary Smith</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="82e8edeaecacf1efebf6eac2e7efe3ebeeace1edef">[email&#160;protected]</a></span></div>
+                      <div class="client-info"><strong>John Smith</strong><span>john.smith@gmail.com</span></div>
                     </div>
                   </td>
                   <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                  <td>123 Main Street</td>
-                  <td><span style="color: var(--accent-blue); font-weight: 700">#TXN-2024-001</span></td>
+                  <td>123 Main Street, The Woodlands</td>
+                  <td><span style="color: var(--accent-blue); font-weight: 700">TRX-10247</span></td>
                   <td><span class="badge badge-warning">Needs Verification</span></td>
                   <td><button class="btn btn-primary btn-sm" onclick="openModal('modalVerifyConfirm')">Verify</button></td>
                 </tr>
                 <tr onclick="openModal('modalClientDetail')" style="cursor: pointer">
                   <td>
                     <div class="client-row">
-                      <div class="client-avatar">RJ</div>
-                      <div class="client-info"><strong>Robert Johnson</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c2e363334322f33321c39313d3530723f3331">[email&#160;protected]</a></span></div>
-                    </div>
-                  </td>
-                  <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
-                  <td>456 Oak Avenue</td>
-                  <td><span style="color: var(--accent-blue); font-weight: 700">#TXN-2024-002</span></td>
-                  <td><span class="badge badge-warning">Split Pending</span></td>
-                  <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button></td>
-                </tr>
-                <tr onclick="openModal('modalClientDetail')" style="cursor: pointer">
-                  <td>
-                    <div class="client-row">
                       <div class="client-avatar">SW</div>
-                      <div class="client-info"><strong>Sarah Williams</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a696d737676737b77695a7f777b737634797577">[email&#160;protected]</a></span></div>
+                      <div class="client-info"><strong>Sarah Williams</strong><span>sarah.williams@gmail.com</span></div>
                     </div>
                   </td>
                   <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                  <td>789 Pine Road</td>
-                  <td><span style="color: var(--accent-blue); font-weight: 700">#TXN-2024-003</span></td>
+                  <td>789 Pine Road, The Woodlands</td>
+                  <td><span style="color: var(--accent-blue); font-weight: 700">TRX-10198</span></td>
                   <td><span class="badge badge-info">In Progress</span></td>
                   <td><button class="btn btn-secondary btn-sm" onclick="openModal('modalVerifyConfirm')">View</button></td>
                 </tr>
@@ -2003,27 +1905,27 @@
                   <td>
                     <div class="client-row">
                       <div class="client-avatar">MB</div>
-                      <div class="client-info"><strong>Michael Brown</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="741916061b031a341119151d185a171b19">[email&#160;protected]</a></span></div>
+                      <div class="client-info"><strong>Michael Brown</strong><span>michael.brown@gmail.com</span></div>
                     </div>
                   </td>
                   <td>Purchase<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
-                  <td>321 Elm Street</td>
-                  <td><span style="color: var(--accent-blue); font-weight: 700">#TXN-2024-004</span></td>
-                  <td><span class="badge badge-info">Verified</span></td>
-                  <td><button class="btn btn-secondary btn-sm">View</button></td>
+                  <td>789 Pine Road, The Woodlands</td>
+                  <td><span style="color: var(--accent-blue); font-weight: 700">TRX-10156</span></td>
+                  <td><span class="badge badge-info">In Progress</span></td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="openModal('modalVerifyConfirm')">View</button></td>
                 </tr>
                 <tr onclick="openModal('modalClientDetail')" style="cursor: pointer">
                   <td>
                     <div class="client-row">
-                      <div class="client-avatar">DD</div>
-                      <div class="client-info"><strong>Davis vs Davis</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e08d8481968993a0858d81898cce838f8d">[email&#160;protected]</a></span></div>
+                      <div class="client-avatar">LA</div>
+                      <div class="client-info"><strong>Lisa Anderson</strong><span>lisa.anderson@burkesgroup.com</span></div>
                     </div>
                   </td>
-                  <td>Divorce<br><small style="color:var(--neutral-500)">Asset Split</small></td>
-                  <td>789 Pine Road, Naperville</td>
-                  <td><span style="color: var(--accent-blue); font-weight: 700">#TXN-2024-005</span></td>
-                  <td><span class="badge badge-warning">Split Pending</span></td>
-                  <td><button class="btn btn-primary btn-sm" onclick="openModal('modalApprove')">Verify</button></td>
+                  <td>Sale<br><small style="color:var(--neutral-500)">Closing Attorney</small></td>
+                  <td>654 Maple Drive, Tomball</td>
+                  <td><span style="color: var(--accent-blue); font-weight: 700">TRX-10089</span></td>
+                  <td><span class="badge badge-success">Completed</span></td>
+                  <td><button class="btn btn-secondary btn-sm">View</button></td>
                 </tr>
               </tbody>
             </table>
@@ -2057,9 +1959,10 @@
                 <label class="form-label">Select Client</label
                 ><select class="form-control">
                   <option>Select client…</option>
-                  <option>John &amp; Mary Smith</option>
-                  <option>Robert Johnson</option>
+                  <option>John Smith</option>
                   <option>Sarah Williams</option>
+                  <option>Michael Brown</option>
+                  <option>Lisa Anderson</option>
                 </select>
               </div>
               <div class="form-group"><label class="form-label">Message</label><textarea class="form-control" rows="3" placeholder="Type your message…" style="resize: vertical"></textarea></div>
@@ -2092,8 +1995,8 @@
           <div class="verify-panel" style="border-color: var(--error-red)">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px">
               <div>
-                <div style="font-family: 'Archivo', sans-serif; font-size: 18px; font-weight: 700; color: var(--primary-navy)">#TXN-2024-001 · Smith Purchase – 123 Main Street</div>
-                <div style="font-size: 13px; color: var(--neutral-500)">Submitted by: RE Agent Kim Lee · Lender: ABC Mortgage · Closing Feb 15</div>
+                <div style="font-family: 'Archivo', sans-serif; font-size: 18px; font-weight: 700; color: var(--primary-navy)">TRX-10247 · Smith Purchase – 123 Main Street</div>
+                <div style="font-size: 13px; color: var(--neutral-500)">Submitted by: Agent Sarah Anderson · Lender: First National Bank (James Carter) · Closing Feb 15, 2026</div>
               </div>
               <span class="badge badge-error">Needs Verification</span>
             </div>
@@ -2145,7 +2048,7 @@
               </div>
               <div class="verify-item">
                 <div class="verify-label">Closing Date</div>
-                <div class="verify-value" style="font-size: 16px">Feb 15, 2024</div>
+                <div class="verify-value" style="font-size: 16px">Feb 15, 2026</div>
               </div>
             </div>
             <div style="margin-top: 16px">
@@ -2163,42 +2066,30 @@
           <div class="verify-panel">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px">
               <div>
-                <div style="font-family: 'Archivo', sans-serif; font-size: 18px; font-weight: 700; color: var(--primary-navy)">#TXN-2024-002 · Johnson Divorce – 456 Oak Avenue</div>
-                <div style="font-size: 13px; color: var(--neutral-500)">Divorce case · Asset split pending approval · Filed Feb 1</div>
+                <div style="font-family: 'Archivo', sans-serif; font-size: 18px; font-weight: 700; color: var(--primary-navy)">TRX-10156 · Brown Purchase – 321 Elm Street</div>
+                <div style="font-size: 13px; color: var(--neutral-500)">Submitted by: Agent Sarah Anderson · First National Bank (James Carter) · Closing Mar 8, 2026</div>
               </div>
-              <span class="badge badge-warning">Split Pending</span>
+              <span class="badge badge-info">In Progress</span>
             </div>
 
             <div class="verify-grid" style="margin-bottom: 14px">
               <div class="verify-item">
-                <div class="verify-label">Property Value</div>
-                <div class="verify-value">$823,000</div>
+                <div class="verify-label">Sale Price</div>
+                <div class="verify-value">$512,000</div>
               </div>
               <div class="verify-item">
-                <div class="verify-label">Mortgage Balance</div>
-                <div class="verify-value">$198,000</div>
+                <div class="verify-label">Loan Amount</div>
+                <div class="verify-value">~$409,600</div>
               </div>
               <div class="verify-item">
-                <div class="verify-label">Net Equity</div>
-                <div class="verify-value">$625,000</div>
-              </div>
-            </div>
-            <div class="split-grid" style="margin-bottom: 14px">
-              <div class="split-party" style="border: 1.5px solid var(--success-green)">
-                <div class="split-party-label">Party A – Emily Johnson (Wife)</div>
-                <div class="split-party-amount">$375,000</div>
-                <div class="split-party-pct">60% · Per court order</div>
-              </div>
-              <div class="split-party" style="border: 1.5px solid var(--accent-blue)">
-                <div class="split-party-label">Party B – Robert Johnson (Husband)</div>
-                <div class="split-party-amount">$250,000</div>
-                <div class="split-party-pct">40% · Per court order</div>
+                <div class="verify-label">Closing Date</div>
+                <div class="verify-value">Mar 8, 2026</div>
               </div>
             </div>
             <div style="display: flex; gap: 10px; flex-wrap: wrap">
-              <button class="btn btn-success" onclick="openModal('modalApprove')">✅ Approve Split</button>
-              <button class="btn btn-secondary btn-sm" onclick="openModal('modalModify')">✏️ Modify Distribution</button>
-              <button class="btn btn-secondary btn-sm">📄 View Court Order</button>
+              <button class="btn btn-success" onclick="openModal('modalVerifyConfirm')">✅ Verify Amounts</button>
+              <button class="btn btn-danger btn-sm" onclick="openModal('modalFlag')">🚩 Flag Discrepancy</button>
+              <button class="btn btn-secondary btn-sm">📄 View Documents</button>
             </div>
           </div>
 
@@ -2212,18 +2103,8 @@
               <div class="doc-item" style="border-color: var(--success-green)">
                 <div class="doc-header">
                   <div>
-                    <div class="doc-name" style="color: var(--success-green)">✅ #TXN-2024-004 · Brown Purchase – 321 Elm Street</div>
-                    <div class="doc-meta"><span>Verified Jan 22, 2024</span><span>Amount: $520,000</span></div>
-                  </div>
-                  <span class="badge badge-success">Verified</span>
-                </div>
-                <div class="doc-btns"><button class="btn btn-secondary btn-sm">View Record</button><button class="btn btn-secondary btn-sm">⬇ Download Report</button></div>
-              </div>
-              <div class="doc-item" style="border-color: var(--success-green)">
-                <div class="doc-header">
-                  <div>
-                    <div class="doc-name" style="color: var(--success-green)">✅ #TXN-2024-006 · Lewis Purchase – 555 Lakeview Dr</div>
-                    <div class="doc-meta"><span>Verified Jan 18, 2024</span><span>Amount: $710,000</span></div>
+                    <div class="doc-name" style="color: var(--success-green)">✅ TRX-10089 · Anderson Sale – 654 Maple Drive, Tomball</div>
+                    <div class="doc-meta"><span>Verified Feb 14, 2026</span><span>Amount: $467,500</span></div>
                   </div>
                   <span class="badge badge-success">Verified</span>
                 </div>
@@ -2265,8 +2146,9 @@
               <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 14px">Generate a verification report for any transaction to share with title company or client.</div>
               <select class="form-control" style="margin-bottom: 12px">
                 <option>Select transaction…</option>
-                <option>#TXN-2024-001 – Smith</option>
-                <option>#TXN-2024-002 – Johnson</option>
+                <option>TRX-10247 – Smith</option>
+                <option>TRX-10198 – Williams</option>
+                <option>TRX-10156 – Brown</option>
               </select>
               <button class="btn btn-primary" style="width: 100%" onclick="openModal('modalReport')">📊 Generate Report</button>
             </div>
@@ -2286,22 +2168,22 @@
         </div>
         <div class="modal-body">
           <div class="alert alert-info">
-            <div class="alert-icon">⚖️</div>
+            <div class="alert-icon">✅</div>
             <div class="alert-content">
-              <h4>Confirm Distribution</h4>
-              <p>You are about to approve the asset split for Johnson vs Johnson. This action will be recorded and sent to all parties.</p>
+              <h4>Confirm Verification</h4>
+              <p>You are about to approve TRX-10247 – John Smith. This action will be recorded and sent to all parties.</p>
             </div>
           </div>
           <div class="split-grid">
             <div class="split-party">
-              <div class="split-party-label">Party A – Emily Johnson</div>
-              <div class="split-party-amount">$375,000</div>
-              <div class="split-party-pct">60%</div>
+              <div class="split-party-label">Sale Price</div>
+              <div class="split-party-amount">$485,000</div>
+              <div class="split-party-pct">Purchase</div>
             </div>
             <div class="split-party">
-              <div class="split-party-label">Party B – Robert Johnson</div>
-              <div class="split-party-amount">$250,000</div>
-              <div class="split-party-pct">40%</div>
+              <div class="split-party-label">Loan Amount</div>
+              <div class="split-party-amount">$388,000</div>
+              <div class="split-party-pct">First National Bank</div>
             </div>
           </div>
           <div class="form-group" style="margin-top: 16px"><label class="form-label">Attorney Signature Note</label><input type="text" class="form-control" placeholder="Add your approval note…" /></div>
@@ -2363,7 +2245,7 @@
           <div class="alert alert-success">
             <div class="alert-icon">✅</div>
             <div class="alert-content">
-              <h4>Verification Summary – Smith #TXN-2024-001</h4>
+              <h4>Verification Summary – John Smith · TRX-10247</h4>
               <p>You are confirming all amounts are accurate and this transaction is cleared for closing.</p>
             </div>
           </div>
@@ -2469,14 +2351,15 @@
             <label class="form-label">Transaction</label
             ><select class="form-control">
               <option>All Transactions</option>
-              <option>#TXN-2024-001 – Smith</option>
-              <option>#TXN-2024-002 – Johnson</option>
-              <option>#TXN-2024-003 – Williams</option>
+              <option>TRX-10247 – Smith</option>
+              <option>TRX-10198 – Williams</option>
+              <option>TRX-10156 – Brown</option>
+              <option>TRX-10089 – Anderson</option>
             </select>
           </div>
           <div class="form-row">
-            <div class="form-group"><label class="form-label">Date From</label><input type="date" class="form-control" value="2024-01-01" /></div>
-            <div class="form-group"><label class="form-label">Date To</label><input type="date" class="form-control" value="2024-02-12" /></div>
+            <div class="form-group"><label class="form-label">Date From</label><input type="date" class="form-control" value="2026-01-01" /></div>
+            <div class="form-group"><label class="form-label">Date To</label><input type="date" class="form-control" value="2026-02-19" /></div>
           </div>
           <div class="form-group">
             <label class="form-label">Format</label>
@@ -2546,26 +2429,26 @@
     <div id="modalClientDetail" class="modal-overlay">
       <div class="modal">
         <div class="modal-header">
-          <div class="modal-title">👤 John &amp; Mary Smith</div>
+          <div class="modal-title">👤 John Smith</div>
           <button class="modal-close" onclick="closeModal('modalClientDetail')">✕</button>
         </div>
         <div class="modal-body">
           <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding: 16px; background: var(--neutral-50); border-radius: 10px">
             <div class="user-avatar" style="width: 52px; height: 52px; font-size: 18px">JS</div>
             <div>
-              <div style="font-size: 18px; font-weight: 700; color: var(--primary-navy)">John &amp; Mary Smith</div>
-              <div style="font-size: 13px; color: var(--neutral-500)">john.smith@email.com · (312) 555-0100</div>
+              <div style="font-size: 18px; font-weight: 700; color: var(--primary-navy)">John Smith</div>
+              <div style="font-size: 13px; color: var(--neutral-500)">john.smith@gmail.com · (555) 210-4738</div>
               <span class="badge badge-warning" style="margin-top: 6px; display: inline-flex">Needs Verification</span>
             </div>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px">
             <div class="verify-item">
               <div class="verify-label">Case ID</div>
-              <div style="font-size: 14px; font-weight: 700; color: var(--accent-blue)">#TXN-2024-001</div>
+              <div style="font-size: 14px; font-weight: 700; color: var(--accent-blue)">TRX-10247</div>
             </div>
             <div class="verify-item">
               <div class="verify-label">Property</div>
-              <div style="font-size: 14px; font-weight: 700; color: var(--primary-navy)">123 Main Street</div>
+              <div style="font-size: 14px; font-weight: 700; color: var(--primary-navy)">123 Main Street, The Woodlands</div>
             </div>
             <div class="verify-item">
               <div class="verify-label">Transaction</div>
