@@ -46,6 +46,19 @@
   border: 2px dashed rgba(0, 0, 0, 0.2);
 }
 
+/* Mobile: narrower slides so first slide aligns with content and fits viewport */
+@media (max-width: 991px) {
+  .feed__section .feed__heading,
+  .feed__section .feed__inner {
+    padding-left: var(--feed-padding-x, var(--feed-overflow, clamp(1rem, 4vw, 1.5rem)));
+    padding-right: var(--feed-padding-x, var(--feed-overflow, clamp(1rem, 4vw, 1.5rem)));
+  }
+
+  .feed__shrink-drag {
+    width: min(clamp(18rem, 85vw, 26rem), calc(100vw - 2 * var(--feed-padding-x, clamp(1rem, 4vw, 1.5rem))));
+  }
+}
+
 .feed__shrink-drag--dragging {
   transform: scale(0.9) var(--swiper-transform, translate3d(0, 0, 0)) !important;
 }

@@ -369,11 +369,15 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, autoplay = true,
   );
 
   if (!isClient) {
-    return <video ref={videoRef} controls={false} autoPlay={isPlaying} loop playsInline muted={isMutedState} poster={poster} style={{ width: '100%', borderRadius: '8px' }} preload="metadata" />;
+    return (
+      <div>
+        <video ref={videoRef} controls={false} autoPlay={isPlaying} loop playsInline muted={isMutedState} poster={poster} style={{ width: '100%', borderRadius: '8px' }} preload="metadata" />
+      </div>
+    );
   }
 
   return (
-    <>
+    <div>
       <video ref={videoRef} controls={false} autoPlay={isPlaying} loop playsInline muted={isMutedState} poster={poster} style={{ width: '100%', borderRadius: '8px' }} />
       <div className={`${HomepageShowreelStyles['showreel__controls']} ${isPlaying ? HomepageShowreelStyles['showreel__controls--playing'] : HomepageShowreelStyles['showreel__controls--paused']} ${dataSubmenuOpen ? `${HomepageShowreelStyles['showreel__controls-submenu-transition']}` : ''} ${dataSubmenuOpen ? `${HomepageShowreelStyles['showreel__controls-submenu-open']}` : ''}`} data-submenu-open={`${dataSubmenuOpen}`} style={{ '--height': height } as React.CSSProperties}>
         {!hideQualityControls && (
@@ -398,7 +402,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, autoplay = true,
           {!hideFullscreen && <button onClick={handleFullscreen}>{isFullscreen ? renderExitFullscreenIcon() : renderFullScreenIcon()}</button>}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

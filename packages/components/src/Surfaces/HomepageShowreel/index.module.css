@@ -354,11 +354,21 @@
   .showreel__controls {
     margin: 0.75rem;
     font-size: 1.25rem;
+    /* Ensure play button row is never clipped: min-height fits icon + padding */
+    min-height: 2.75rem;
+    max-height: max(var(--max-height, 2.125rem), 2.75rem);
+  }
+
+  .showreel__icons {
+    flex-wrap: nowrap;
+    min-width: 0;
   }
 
   .showreel__icons button {
     padding: 0.5rem 0.625rem;
     font-size: 1.25rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
   }
 
   .showreel__controls-resolution-button {
