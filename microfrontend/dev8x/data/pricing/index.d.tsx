@@ -8,7 +8,7 @@ const OFFERS: OffersContent[] = [
     variant: 'blue',
     tagText: 'For Tech Founders',
     pillText: "Let's \n Hire",
-    heading: 'AI-ready talent. \n Starting at $600/month.',
+    heading: 'AI-ready talent. \n Starting at $***/month.',
     paragraph: 'Get vetted React, Next.js, and full-stack developers — or plug-in mini-squads — guided by senior tech leads.',
     image: prefixed('/api/images/work/totalhealthdentalcare/mobile/1.png'),
     iconCards: {
@@ -185,7 +185,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '1',
         heading: 'Junior Developer',
-        price: '$600',
+        price: '$***',
         description: 'Rapid MVP builds & early launches',
         features: ['1–2 yrs experience', 'Daily async updates', 'Senior code review', 'Fast stack fit', ' Animations'],
         categories: ['React', 'NextJS', 'Tailwind', 'Flutter', 'Dart', 'Rapid Delivery', 'Startup Friendly', 'Daily Updates', 'Outcome Driven', 'Clean Code'],
@@ -195,7 +195,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '2',
         heading: 'Mid-Level Developer',
-        price: '$900',
+        price: '$***',
         description: 'Reliable v1.0 builds & scaling features',
         features: ['3–5 yrs experience', 'API + CI/CD', 'State Management', 'Weekly sprint sync', 'Code ownership mindset'],
         categories: ['React', 'NextJS', 'NodeJS', 'Flutter', 'Dart', 'Firebase', 'Full Stack', 'API Integration', 'Clean Code', 'Unit Tests', 'Agile', 'Reliable Delivery', 'Remote First Team'],
@@ -205,7 +205,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '3',
         heading: 'Senior Developer',
-        price: '$1,500',
+        price: '$***',
         description: 'System design & tech leadership',
         features: ['5–8 yrs experience', 'Lead architecture', 'Optimize delivery', 'Mentor developers', 'Architecture & Performance Optimization'],
         categories: ['Tech Lead', 'Architecture', 'System Design', 'Performance', 'Mentorship', 'Cloud Ready', 'Scalable Apps', 'Team Leadership'],
@@ -215,7 +215,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '4',
         heading: 'MVP Squad',
-        price: '$4,500',
+        price: '$***',
         description: '2 Devs + QA + PM',
         features: ['4-hr US overlap', 'Agile sprint cycles', 'QA-led testing', 'Fixed-scope launch'],
         categories: ['MVP Launch', 'Startup Sprint', 'Agile PM', 'QA Included', 'US Overlap', 'Build Fast', 'Validated MVPs'],
@@ -225,7 +225,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '5',
         heading: 'Growth Squad',
-        price: '$5,500',
+        price: '$***',
         description: '2 Devs + Designer + QA + PM',
         features: ['CI/CD setup', 'Weekly design sync', 'UX-led upgrades', 'PM-owned delivery'],
         categories: ['Growth Engineering', 'UX Design', 'CI/CD', 'Feature Scaling', 'PM Ownership', 'Figma To Code', 'Outcome Driven'],
@@ -235,7 +235,7 @@ const OFFERS: OffersContent[] = [
       {
         id: '6',
         heading: 'Pro Squad',
-        price: '$7,000',
+        price: '$***',
         description: '3 Devs + QA + PM + Senior Lead',
         features: ['DevOps support', 'Weekly tech roadmap', 'Senior-led reviews', 'End-to-end delivery'],
         categories: ['DevOps', 'High Velocity', 'Scalable Architecture', 'Senior Leader', 'Expert Team', 'End-To-End Ownership', 'Cloud Ready'],
