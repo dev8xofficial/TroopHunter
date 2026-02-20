@@ -1,0 +1,787 @@
+{
+  "_meta": {
+    "project": "The Burkes Group – Unified Demo Dataset",
+    "version": "1.0",
+    "generated": "2026-02-19",
+    "description": "Synchronized data for all 7 portals: Admin, Agent, Attorney, Client, CPA, Mortgage Lender, Service Partner. All names, emails, IDs, and addresses are consistent across portals.",
+    "portals": ["admin", "agent", "attorney", "client", "cpa", "mortgageLender", "servicePartner"]
+  },
+
+  "portal_users": {
+    "admin": {
+      "id": "USR-ADM-001",
+      "name": "Sarah Burke",
+      "initials": "SB",
+      "email": "sarah.burke@burkesgroup.com",
+      "role": "Administrator",
+      "phone": "(281) 555-0101",
+      "avatar_color": "#1a3a52"
+    },
+    "agent": {
+      "id": "USR-AGT-001",
+      "name": "Sarah Anderson",
+      "initials": "SA",
+      "email": "sarah.anderson@burkesgroup.com",
+      "role": "Real Estate Agent",
+      "license": "TX-RE-284710",
+      "phone": "(281) 555-0202",
+      "avatar_color": "#2d5a7b",
+      "team": "The Burkes Group"
+    },
+    "agent_2": {
+      "id": "USR-AGT-002",
+      "name": "Lisa Anderson",
+      "initials": "LA",
+      "email": "lisa.anderson@burkesgroup.com",
+      "role": "Senior Real Estate Agent",
+      "license": "TX-RE-319042",
+      "phone": "(281) 555-0203",
+      "avatar_color": "#7c3aed",
+      "team": "The Burkes Group"
+    },
+    "attorney": {
+      "id": "USR-ATT-001",
+      "name": "Sarah Mitchell",
+      "initials": "SM",
+      "email": "sarah.mitchell@mitchelllawgroup.com",
+      "role": "Real Estate & Divorce Attorney",
+      "firm": "Mitchell Law Group",
+      "bar_number": "TX-BAR-52891",
+      "phone": "(281) 555-0303",
+      "avatar_color": "#1a3a52"
+    },
+    "cpa": {
+      "id": "USR-CPA-001",
+      "name": "David Thompson",
+      "initials": "DT",
+      "email": "david.thompson@thompsonfinancial.com",
+      "role": "Certified Public Accountant",
+      "firm": "Thompson Financial Group",
+      "license": "TX-CPA-77412",
+      "phone": "(281) 555-0404",
+      "avatar_color": "#059669"
+    },
+    "mortgage_lender": {
+      "id": "USR-LND-001",
+      "name": "James Carter",
+      "initials": "JC",
+      "email": "james.carter@firstnationalbank.com",
+      "role": "Senior Loan Officer",
+      "company": "First National Bank",
+      "nmls": "NMLS-1048273",
+      "phone": "(281) 555-0505",
+      "avatar_color": "#2563eb"
+    },
+    "service_partner": {
+      "id": "USR-SVC-001",
+      "name": "Marcus Rivera",
+      "initials": "MR",
+      "email": "marcus@woodlandsplumbing.com",
+      "role": "Owner / Master Plumber",
+      "company": "Woodlands Plumbing Pro",
+      "phone": "(281) 555-0606",
+      "avatar_color": "#f59e0b",
+      "service_type": "Plumbing",
+      "license": "TX-PLB-48830"
+    }
+  },
+
+  "clients": [
+    {
+      "id": "USR-CLT-001",
+      "name": "John Smith",
+      "initials": "JS",
+      "email": "john.smith@gmail.com",
+      "phone": "(281) 555-1001",
+      "avatar_color": "#3b82f6",
+      "status": "Active",
+      "joined": "2026-01-10",
+      "assigned_agent_id": "USR-AGT-001",
+      "transaction_ids": ["TRX-10247"]
+    },
+    {
+      "id": "USR-CLT-002",
+      "name": "Sarah Williams",
+      "initials": "SW",
+      "email": "sarah.williams@gmail.com",
+      "phone": "(281) 555-1002",
+      "avatar_color": "#8b5cf6",
+      "status": "Active",
+      "joined": "2026-01-14",
+      "assigned_agent_id": "USR-AGT-001",
+      "transaction_ids": ["TRX-10198"]
+    },
+    {
+      "id": "USR-CLT-003",
+      "name": "Michael Brown",
+      "initials": "MB",
+      "email": "michael.brown@gmail.com",
+      "phone": "(281) 555-1003",
+      "avatar_color": "#10b981",
+      "status": "Active",
+      "joined": "2026-01-18",
+      "assigned_agent_id": "USR-AGT-001",
+      "transaction_ids": ["TRX-10155", "TRX-10156"]
+    },
+    {
+      "id": "USR-CLT-004",
+      "name": "Emily Davis",
+      "initials": "ED",
+      "email": "emily.davis@gmail.com",
+      "phone": "(281) 555-1004",
+      "avatar_color": "#f59e0b",
+      "status": "Active",
+      "joined": "2026-01-22",
+      "assigned_agent_id": "USR-AGT-002",
+      "transaction_ids": ["TRX-09987"]
+    },
+    {
+      "id": "USR-CLT-005",
+      "name": "Lisa Anderson",
+      "initials": "LA",
+      "email": "lisa.anderson.client@gmail.com",
+      "phone": "(281) 555-1005",
+      "avatar_color": "#ef4444",
+      "status": "Completed",
+      "joined": "2025-11-05",
+      "assigned_agent_id": "USR-AGT-002",
+      "transaction_ids": ["TRX-10089"]
+    },
+    {
+      "id": "USR-CLT-006",
+      "name": "Robert Wilson",
+      "initials": "RW",
+      "email": "robert.wilson@gmail.com",
+      "phone": "(281) 555-1006",
+      "avatar_color": "#6366f1",
+      "status": "Active",
+      "joined": "2025-12-01",
+      "assigned_agent_id": "USR-AGT-002",
+      "transaction_ids": ["TRX-10042"]
+    },
+    {
+      "id": "USR-CLT-007",
+      "name": "Robert Johnson",
+      "initials": "RJ",
+      "email": "robert.johnson@gmail.com",
+      "phone": "(281) 555-1007",
+      "avatar_color": "#14b8a6",
+      "status": "Active – Divorce",
+      "joined": "2025-12-15",
+      "assigned_agent_id": null,
+      "transaction_ids": ["TRX-10134"]
+    },
+    {
+      "id": "USR-CLT-008",
+      "name": "Emily Johnson",
+      "initials": "EJ",
+      "email": "emily.johnson@gmail.com",
+      "phone": "(281) 555-1008",
+      "avatar_color": "#a855f7",
+      "status": "Active – Divorce",
+      "joined": "2025-12-15",
+      "assigned_agent_id": null,
+      "transaction_ids": ["TRX-10134"]
+    }
+  ],
+
+  "transactions": [
+    {
+      "id": "TRX-10247",
+      "status": "Closing Preparation",
+      "type": "Purchase",
+      "type_emoji": "🏠",
+      "contract_price": 485000,
+      "loan_amount": 388000,
+      "down_payment": 97000,
+      "property": {
+        "address": "123 Main Street",
+        "city": "The Woodlands",
+        "state": "TX",
+        "zip": "77380",
+        "full_address": "123 Main Street, The Woodlands, TX 77380"
+      },
+      "client_id": "USR-CLT-001",
+      "client_name": "John Smith",
+      "agent_id": "USR-AGT-001",
+      "agent_name": "Sarah Anderson",
+      "attorney_id": "USR-ATT-001",
+      "attorney_name": "Sarah Mitchell",
+      "cpa_id": "USR-CPA-001",
+      "cpa_name": "David Thompson",
+      "lender_id": "USR-LND-001",
+      "lender_name": "James Carter",
+      "lender_company": "First National Bank",
+      "loan_type": "Conventional",
+      "service_partner_id": "USR-SVC-001",
+      "service_partner_name": "Marcus Rivera",
+      "service_partner_company": "Woodlands Plumbing Pro",
+      "service_type": "Plumbing Inspection",
+      "offer_accepted_date": "2026-01-20",
+      "inspection_date": "2026-01-28",
+      "closing_date": "2026-02-15",
+      "created_date": "2026-01-15",
+      "admin_review": {
+        "submitted_by": "RE Agent Kim Lee",
+        "submitted_date": "2026-02-01",
+        "status": "Needs Review"
+      },
+      "timeline_stage": 4,
+      "completion_pct": 45,
+      "documents": [
+        { "name": "Purchase & Sales Agreement", "uploaded_by": "USR-AGT-001", "date": "2026-01-21", "status": "Approved" },
+        { "name": "Pre-Approval Letter", "uploaded_by": "USR-LND-001", "date": "2026-01-22", "status": "Approved" },
+        { "name": "Home Inspection Report", "uploaded_by": "USR-SVC-001", "date": "2026-01-29", "status": "Approved" },
+        { "name": "Appraisal Report", "uploaded_by": "USR-LND-001", "date": "2026-02-03", "status": "Approved" },
+        { "name": "Closing Disclosure", "uploaded_by": "USR-LND-001", "date": "2026-02-10", "status": "Under Review" },
+        { "name": "Title Commitment", "uploaded_by": "USR-ATT-001", "date": "2026-02-11", "status": "Approved" }
+      ]
+    },
+    {
+      "id": "TRX-10198",
+      "status": "Under Contract",
+      "type": "Sale",
+      "type_emoji": "🏘️",
+      "contract_price": 389500,
+      "loan_amount": 300000,
+      "down_payment": 89500,
+      "property": {
+        "address": "789 Pine Road",
+        "city": "The Woodlands",
+        "state": "TX",
+        "zip": "77381",
+        "full_address": "789 Pine Road, The Woodlands, TX 77381"
+      },
+      "client_id": "USR-CLT-002",
+      "client_name": "Sarah Williams",
+      "agent_id": "USR-AGT-001",
+      "agent_name": "Sarah Anderson",
+      "attorney_id": "USR-ATT-001",
+      "attorney_name": "Sarah Mitchell",
+      "cpa_id": "USR-CPA-001",
+      "cpa_name": "David Thompson",
+      "lender_id": "USR-LND-001",
+      "lender_name": "James Carter",
+      "lender_company": "First National Bank",
+      "loan_type": "FHA",
+      "service_partner_id": "USR-SVC-001",
+      "service_partner_name": "Marcus Rivera",
+      "service_partner_company": "Woodlands Plumbing Pro",
+      "service_type": "Water Heater Repair",
+      "offer_accepted_date": "2026-01-28",
+      "inspection_date": "2026-02-05",
+      "closing_date": "2026-03-01",
+      "created_date": "2026-01-25",
+      "admin_review": {
+        "submitted_by": "RE Agent Lisa Anderson",
+        "submitted_date": "2026-02-05",
+        "status": "Under Review"
+      },
+      "timeline_stage": 3,
+      "completion_pct": 30,
+      "documents": [
+        { "name": "Listing Agreement", "uploaded_by": "USR-AGT-001", "date": "2026-01-25", "status": "Approved" },
+        { "name": "Purchase & Sales Agreement", "uploaded_by": "USR-AGT-001", "date": "2026-01-29", "status": "Approved" },
+        { "name": "Income Verification", "uploaded_by": "USR-LND-001", "date": "2026-02-01", "status": "Pending" },
+        { "name": "Home Inspection Report", "uploaded_by": "USR-SVC-001", "date": "2026-02-06", "status": "Approved" }
+      ]
+    },
+    {
+      "id": "TRX-10156",
+      "status": "Inspection / Appraisal",
+      "type": "Purchase",
+      "type_emoji": "🏠",
+      "contract_price": 512000,
+      "loan_amount": 409600,
+      "down_payment": 102400,
+      "property": {
+        "address": "321 Elm Street",
+        "city": "Spring",
+        "state": "TX",
+        "zip": "77382",
+        "full_address": "321 Elm Street, Spring, TX 77382"
+      },
+      "client_id": "USR-CLT-003",
+      "client_name": "Michael Brown",
+      "agent_id": "USR-AGT-001",
+      "agent_name": "Sarah Anderson",
+      "attorney_id": "USR-ATT-001",
+      "attorney_name": "Sarah Mitchell",
+      "cpa_id": "USR-CPA-001",
+      "cpa_name": "David Thompson",
+      "lender_id": "USR-LND-001",
+      "lender_name": "James Carter",
+      "lender_company": "First National Bank",
+      "loan_type": "Conventional",
+      "service_partner_id": "USR-SVC-001",
+      "service_partner_name": "Marcus Rivera",
+      "service_partner_company": "Woodlands Plumbing Pro",
+      "service_type": "Drain Cleaning",
+      "offer_accepted_date": "2026-02-02",
+      "inspection_date": "2026-02-10",
+      "closing_date": "2026-03-15",
+      "created_date": "2026-01-30",
+      "admin_review": {
+        "submitted_by": "Attorney Sarah Mitchell",
+        "submitted_date": "2026-02-08",
+        "status": "Approved"
+      },
+      "timeline_stage": 3,
+      "completion_pct": 35,
+      "documents": [
+        { "name": "Purchase & Sales Agreement – Brown", "uploaded_by": "USR-AGT-001", "date": "2026-02-03", "status": "Approved" },
+        { "name": "Pre-Approval Letter – Brown", "uploaded_by": "USR-LND-001", "date": "2026-02-04", "status": "Approved" },
+        { "name": "Credit Report – Brown", "uploaded_by": "USR-LND-001", "date": "2026-02-04", "status": "Approved" }
+      ]
+    },
+    {
+      "id": "TRX-10155",
+      "status": "Offer / Negotiation",
+      "type": "Purchase",
+      "type_emoji": "🏠",
+      "contract_price": 298000,
+      "loan_amount": 238400,
+      "down_payment": 59600,
+      "property": {
+        "address": "555 Oak Avenue",
+        "city": "The Woodlands",
+        "state": "TX",
+        "zip": "77380",
+        "full_address": "555 Oak Avenue, The Woodlands, TX 77380"
+      },
+      "client_id": "USR-CLT-003",
+      "client_name": "Michael Brown",
+      "agent_id": "USR-AGT-002",
+      "agent_name": "Lisa Anderson",
+      "attorney_id": "USR-ATT-001",
+      "attorney_name": "Sarah Mitchell",
+      "cpa_id": "USR-CPA-001",
+      "cpa_name": "David Thompson",
+      "lender_id": "USR-LND-001",
+      "lender_name": "James Carter",
+      "lender_company": "First National Bank",
+      "loan_type": "Conventional",
+      "service_partner_id": null,
+      "offer_accepted_date": null,
+      "inspection_date": null,
+      "closing_date": "2026-04-01",
+      "created_date": "2026-02-08",
+      "admin_review": {
+        "submitted_by": "CPA David Thompson",
+        "submitted_date": "2026-02-10",
+        "status": "Needs Review"
+      },
+      "timeline_stage": 2,
+      "completion_pct": 15,
+      "documents": [
+        { "name": "Offer Letter – Brown / Oak Ave", "uploaded_by": "USR-AGT-002", "date": "2026-02-08", "status": "Pending" }
+      ]
+    },
+    {
+      "id": "TRX-10134",
+      "status": "Offer / Negotiation",
+      "type": "Divorce – Asset Split",
+      "type_emoji": "⚖️",
+      "contract_price": null,
+      "property": {
+        "address": "456 Oak Avenue",
+        "city": "The Woodlands",
+        "state": "TX",
+        "zip": "77380",
+        "full_address": "456 Oak Avenue, The Woodlands, TX 77380"
+      },
+      "client_id": "USR-CLT-007",
+      "client_name": "Robert Johnson",
+      "client_2_id": "USR-CLT-008",
+      "client_2_name": "Emily Johnson",
+      "case_label": "Johnson vs. Johnson",
+      "agent_id": null,
+      "attorney_id": "USR-ATT-001",
+      "attorney_name": "Sarah Mitchell",
+      "cpa_id": null,
+      "lender_id": null,
+      "service_partner_id": null,
+      "offer_accepted_date": null,
+      "inspection_date": null,
+      "closing_date": "2026-03-20",
+      "created_date": "2025-12-15",
+      "admin_review": {
+        "submitted_by": "Attorney Sarah Mitchell",
+        "submitted_date": "2026-02-01",
+        "status": "Under Review"
+      },
+      "timeline_stage": 2,
+      "completion_pct": 25,
+      "documents": [
+        { "name": "Divorce Settlement Agreement – Johnson", "uploaded_by": "USR-ATT-001", "date": "2025-12-20", "status": "Under Review" },
+        { "name": "Asset Valuation Report – 456 Oak Ave", "uploaded_by": "USR-ATT-001", "date": "2026-01-10", "status": "Approved" }
+      ]
+    },
+    {
+      "id": "TRX-10089",
+      "status": "Completed",
+      "type": "Sale",
+      "type_emoji": "🏘️",
+      "contract_price": 467500,
+      "loan_amount": 374000,
+      "down_payment": 93500,
+      "property": {
+        "address": "654 Maple Drive",
+        "city": "Tomball",
+        "state": "TX",
+        "zip": "77375",
+        "full_address": "654 Maple Drive, Tomball, TX 77375"
+      },
+      "client_id": "USR-CLT-005",
+      "client_name": "Lisa Anderson",
+      "agent_id": "USR-AGT-002",
+      "agent_name": "Lisa Anderson",
+      "attorney_id": "USR-ATT-001",
+      "attorney_name": "Sarah Mitchell",
+      "cpa_id": "USR-CPA-001",
+      "cpa_name": "David Thompson",
+      "lender_id": "USR-LND-001",
+      "lender_name": "James Carter",
+      "lender_company": "First National Bank",
+      "loan_type": "Conventional",
+      "service_partner_id": null,
+      "offer_accepted_date": "2025-11-15",
+      "inspection_date": "2025-11-25",
+      "closing_date": "2025-12-20",
+      "completed_date": "2025-12-20",
+      "created_date": "2025-11-05",
+      "admin_review": {
+        "submitted_by": "RE Agent Lisa Anderson",
+        "submitted_date": "2025-12-20",
+        "status": "Approved"
+      },
+      "timeline_stage": 6,
+      "completion_pct": 100,
+      "documents": [
+        { "name": "Closing Disclosure – Anderson", "uploaded_by": "USR-LND-001", "date": "2025-12-15", "status": "Approved" },
+        { "name": "Final Settlement Statement", "uploaded_by": "USR-ATT-001", "date": "2025-12-20", "status": "Approved" }
+      ]
+    },
+    {
+      "id": "TRX-10042",
+      "status": "Inspection / Appraisal",
+      "type": "Refinance",
+      "type_emoji": "💰",
+      "contract_price": 320000,
+      "loan_amount": 256000,
+      "down_payment": null,
+      "property": {
+        "address": "890 Maple Drive",
+        "city": "Spring",
+        "state": "TX",
+        "zip": "77382",
+        "full_address": "890 Maple Drive, Spring, TX 77382"
+      },
+      "client_id": "USR-CLT-006",
+      "client_name": "Robert Wilson",
+      "agent_id": "USR-AGT-002",
+      "agent_name": "Lisa Anderson",
+      "attorney_id": null,
+      "cpa_id": "USR-CPA-001",
+      "cpa_name": "David Thompson",
+      "lender_id": "USR-LND-001",
+      "lender_name": "James Carter",
+      "lender_company": "First National Bank",
+      "loan_type": "Refinance",
+      "service_partner_id": null,
+      "offer_accepted_date": null,
+      "inspection_date": "2026-02-12",
+      "closing_date": "2026-03-10",
+      "created_date": "2025-12-01",
+      "admin_review": {
+        "submitted_by": "RE Agent Lisa Anderson",
+        "submitted_date": "2026-01-15",
+        "status": "Approved"
+      },
+      "timeline_stage": 3,
+      "completion_pct": 50,
+      "documents": [
+        { "name": "Refinance Application – Wilson", "uploaded_by": "USR-LND-001", "date": "2025-12-05", "status": "Approved" },
+        { "name": "Appraisal Report – 890 Maple Dr", "uploaded_by": "USR-LND-001", "date": "2026-02-13", "status": "Approved" }
+      ]
+    },
+    {
+      "id": "TRX-09987",
+      "status": "Completed",
+      "type": "Purchase",
+      "type_emoji": "🏠",
+      "contract_price": 345000,
+      "loan_amount": 275000,
+      "down_payment": 70000,
+      "property": {
+        "address": "234 Birch Street",
+        "city": "The Woodlands",
+        "state": "TX",
+        "zip": "77381",
+        "full_address": "234 Birch Street, The Woodlands, TX 77381"
+      },
+      "client_id": "USR-CLT-004",
+      "client_name": "Emily Davis",
+      "agent_id": "USR-AGT-002",
+      "agent_name": "Lisa Anderson",
+      "attorney_id": "USR-ATT-001",
+      "attorney_name": "Sarah Mitchell",
+      "cpa_id": "USR-CPA-001",
+      "cpa_name": "David Thompson",
+      "lender_id": "USR-LND-001",
+      "lender_name": "James Carter",
+      "lender_company": "First National Bank",
+      "loan_type": "FHA",
+      "service_partner_id": null,
+      "offer_accepted_date": "2025-10-10",
+      "inspection_date": "2025-10-18",
+      "closing_date": "2025-11-15",
+      "completed_date": "2025-11-15",
+      "created_date": "2025-10-01",
+      "admin_review": {
+        "submitted_by": "Attorney Sarah Mitchell",
+        "submitted_date": "2025-11-15",
+        "status": "Approved"
+      },
+      "timeline_stage": 6,
+      "completion_pct": 100,
+      "documents": [
+        { "name": "Closing Disclosure – Davis", "uploaded_by": "USR-LND-001", "date": "2025-11-10", "status": "Approved" },
+        { "name": "Final Settlement Statement", "uploaded_by": "USR-ATT-001", "date": "2025-11-15", "status": "Approved" },
+        { "name": "Credit Report – Davis", "uploaded_by": "USR-LND-001", "date": "2025-10-05", "status": "Approved" }
+      ]
+    }
+  ],
+
+  "attorney_divorce_cases": [
+    {
+      "case_id": "CASE-DIV-001",
+      "transaction_id": "TRX-10134",
+      "label": "Johnson vs. Johnson",
+      "party_a": { "name": "Robert Johnson", "id": "USR-CLT-007", "email": "robert.johnson@gmail.com" },
+      "party_b": { "name": "Emily Johnson", "id": "USR-CLT-008", "email": "emily.johnson@gmail.com" },
+      "property": "456 Oak Avenue, The Woodlands, TX 77380",
+      "estimated_value": 520000,
+      "status": "Asset Split Pending",
+      "filed_date": "2025-12-15",
+      "hearing_date": "2026-03-05",
+      "attorney_id": "USR-ATT-001"
+    },
+    {
+      "case_id": "CASE-DIV-002",
+      "transaction_id": null,
+      "label": "Davis vs. Davis",
+      "party_a": { "name": "Mark Davis", "id": null, "email": "mark.davis@gmail.com" },
+      "party_b": { "name": "Linda Davis", "id": null, "email": "linda.davis@gmail.com" },
+      "property": "789 Pine Road, The Woodlands, TX 77381",
+      "estimated_value": 415000,
+      "status": "Under Mediation",
+      "filed_date": "2026-01-08",
+      "hearing_date": "2026-03-22",
+      "attorney_id": "USR-ATT-001"
+    }
+  ],
+
+  "service_jobs": [
+    {
+      "job_id": "JOB-001",
+      "transaction_id": "TRX-10247",
+      "client_name": "John Smith",
+      "property": "123 Main Street, The Woodlands, TX 77380",
+      "service_type": "Plumbing Inspection",
+      "status": "Completed",
+      "scheduled_date": "2026-01-28",
+      "completed_date": "2026-01-28",
+      "amount": 250,
+      "payment_status": "Paid",
+      "rating": 5,
+      "referral_source": "Agent Sarah Anderson"
+    },
+    {
+      "job_id": "JOB-002",
+      "transaction_id": "TRX-10198",
+      "client_name": "Sarah Williams",
+      "property": "789 Pine Road, The Woodlands, TX 77381",
+      "service_type": "Water Heater Repair",
+      "status": "Completed",
+      "scheduled_date": "2026-02-05",
+      "completed_date": "2026-02-05",
+      "amount": 580,
+      "payment_status": "Paid",
+      "rating": 4,
+      "referral_source": "Agent Sarah Anderson"
+    },
+    {
+      "job_id": "JOB-003",
+      "transaction_id": "TRX-10156",
+      "client_name": "Michael Brown",
+      "property": "321 Elm Street, Spring, TX 77382",
+      "service_type": "Drain Cleaning",
+      "status": "Scheduled",
+      "scheduled_date": "2026-02-20",
+      "completed_date": null,
+      "amount": 195,
+      "payment_status": "Awaiting Payment",
+      "rating": null,
+      "referral_source": "Agent Sarah Anderson"
+    }
+  ],
+
+  "messages": [
+    {
+      "id": "MSG-001",
+      "transaction_id": "TRX-10247",
+      "from_id": "USR-AGT-001",
+      "from_name": "Sarah Anderson",
+      "from_role": "Real Estate Agent",
+      "to_id": "USR-CLT-001",
+      "to_name": "John Smith",
+      "subject": "Offer Accepted! 🎉",
+      "body": "Congratulations — the seller accepted your $485,000 offer for 123 Main Street. Transaction is now Under Contract. I'll be uploading the Purchase Agreement shortly.",
+      "timestamp": "2026-01-20T10:15:00",
+      "read": true
+    },
+    {
+      "id": "MSG-002",
+      "transaction_id": "TRX-10247",
+      "from_id": "USR-LND-001",
+      "from_name": "James Carter",
+      "from_role": "Mortgage Lender · First National Bank",
+      "to_id": "USR-CLT-001",
+      "to_name": "John Smith",
+      "subject": "Pre-Approval Letter Issued",
+      "body": "We've received all necessary documentation and the pre-approval letter has been issued for your $388,000 loan. Conventional 30-year fixed at 6.75%. Please review the attached letter.",
+      "timestamp": "2026-01-22T09:30:00",
+      "read": true
+    },
+    {
+      "id": "MSG-003",
+      "transaction_id": "TRX-10247",
+      "from_id": "USR-CPA-001",
+      "from_name": "David Thompson",
+      "from_role": "CPA · Thompson Financial Group",
+      "to_id": "USR-CLT-001",
+      "to_name": "John Smith",
+      "subject": "Tax Implications – 123 Main Street Purchase",
+      "body": "Hi John, I reviewed the transaction details for 123 Main Street. You may be eligible for a first-time homebuyer deduction. Let's schedule a call before closing.",
+      "timestamp": "2026-02-03T14:00:00",
+      "read": false
+    },
+    {
+      "id": "MSG-004",
+      "transaction_id": "TRX-10247",
+      "from_id": "USR-ATT-001",
+      "from_name": "Sarah Mitchell",
+      "from_role": "Attorney · Mitchell Law Group",
+      "to_id": "USR-AGT-001",
+      "to_name": "Sarah Anderson",
+      "subject": "Attorney Verification Required – TRX-10247",
+      "body": "The Smith transaction at 123 Main Street requires attorney verification before the Feb 15 closing date. 3 days remaining. Please confirm inspection contingencies are cleared.",
+      "timestamp": "2026-02-01T11:00:00",
+      "read": true
+    }
+  ],
+
+  "admin_stats": {
+    "total_users": 47,
+    "active_agents": 8,
+    "active_clients": 24,
+    "active_transactions": 5,
+    "closed_transactions_ytd": 12,
+    "total_volume_ytd": 8200000,
+    "avg_transaction_value": 415000,
+    "pending_reviews": 3
+  },
+
+  "agent_stats": {
+    "agent_id": "USR-AGT-001",
+    "active_transactions": 3,
+    "closed_ytd": 7,
+    "total_volume_ytd": 3100000,
+    "client_satisfaction": 4.9,
+    "new_leads": 4
+  },
+
+  "cpa_stats": {
+    "cpa_id": "USR-CPA-001",
+    "active_clients": 6,
+    "total_transactions_managed": 8,
+    "total_value_managed": 8200000,
+    "docs_pending_review": 4
+  },
+
+  "lender_stats": {
+    "lender_id": "USR-LND-001",
+    "active_applications": 5,
+    "active_loans": 3,
+    "closed_loans_ytd": 4,
+    "total_loan_volume": 2150000,
+    "avg_loan_amount": 358333
+  },
+
+  "service_partner_stats": {
+    "partner_id": "USR-SVC-001",
+    "active_jobs": 1,
+    "completed_jobs_ytd": 14,
+    "total_revenue_ytd": 9840,
+    "avg_rating": 4.8,
+    "acceptance_rate": 0.94
+  },
+
+  "timeline_stages": [
+    { "stage": 1, "label": "Property Search / Listing", "emoji": "🔍" },
+    { "stage": 2, "label": "Offer / Negotiation", "emoji": "📝" },
+    { "stage": 3, "label": "Under Contract", "emoji": "✍️" },
+    { "stage": 4, "label": "Inspection / Appraisal", "emoji": "🔬" },
+    { "stage": 5, "label": "Closing Preparation", "emoji": "📋" },
+    { "stage": 6, "label": "Completed / Closed", "emoji": "🎉" }
+  ],
+
+  "cross_portal_map": {
+    "description": "How each transaction appears across portals",
+    "TRX-10247": {
+      "admin": "Transactions table row + Approval queue (Needs Review) + Document review",
+      "agent": "Active transaction card for Sarah Anderson; client = John Smith",
+      "client": "John Smith's primary transaction dashboard (45% complete, Under Contract)",
+      "attorney": "Closing case: Smith – 123 Main Street (Feb 15 deadline)",
+      "cpa": "Client row: John Smith – TRX-10247",
+      "mortgageLender": "Active application: John Smith – $388,000 Conventional",
+      "servicePartner": "Completed job: Plumbing Inspection – 123 Main Street (Paid)"
+    },
+    "TRX-10198": {
+      "admin": "Transactions table row (Under Contract) + Approval queue (Under Review)",
+      "agent": "Active transaction: Sarah Williams – 789 Pine Road",
+      "client": "Sarah Williams' portal (secondary)",
+      "attorney": "Closing preparation case",
+      "cpa": "Client row: Sarah Williams – TRX-10198",
+      "mortgageLender": "Active application: Sarah Williams – $300,000 FHA",
+      "servicePartner": "Completed job: Water Heater Repair – 789 Pine Rd (Paid)"
+    },
+    "TRX-10156": {
+      "admin": "Transactions table row (Inspection/Appraisal) + Approval queue (Approved)",
+      "agent": "Active transaction: Michael Brown – 321 Elm Street",
+      "attorney": "Closing preparation case",
+      "cpa": "Client row: Michael Brown – TRX-10155/10156",
+      "mortgageLender": "Active application: Michael Brown – $416,000 Conventional",
+      "servicePartner": "Scheduled job: Drain Cleaning – 321 Elm St"
+    },
+    "TRX-10089": {
+      "admin": "Transactions table row (Completed)",
+      "agent": "Closed transaction: Lisa Anderson – 654 Maple Drive",
+      "cpa": "Completed client: Lisa Anderson – TRX-10089",
+      "mortgageLender": "Closed loan: Lisa Anderson – $374,000"
+    },
+    "TRX-10042": {
+      "admin": "Approved refinance transaction",
+      "agent": "Robert Wilson – 890 Maple Drive refinance",
+      "cpa": "Client row: Robert Wilson – TRX-10042",
+      "mortgageLender": "Refinance application: Robert Wilson – $256,000"
+    },
+    "TRX-09987": {
+      "admin": "Completed transaction",
+      "agent": "Closed transaction: Emily Davis – 234 Birch Street",
+      "cpa": "Completed client: Emily Davis – TRX-09987",
+      "mortgageLender": "Closed loan: Emily Davis – $275,000 FHA (Credit Report on file)"
+    }
+  }
+}

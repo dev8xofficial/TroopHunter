@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: burkes-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: burkes-prod
+  template:
+    metadata:
+      labels:
+        app: burkes-prod
+    spec:
+      containers:
+        - name: burkes-prod
+          image: 192.168.1.201/burkes-prod:latest
+          imagePullPolicy: Always
+          command: ["npm", "run", "start:production"]
+          ports:
+            - containerPort: 3009
+          env:
+            - name: PORT
+              value: "3009"
+          volumeMounts:
+            - name: logs
+              mountPath: /microfrontend/burkes/logs
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "100Mi"
+            limits:
+              cpu: "50m"
+              memory: "150Mi"
+      volumes:
+        - name: logs
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: burkes-prod
+spec:
+  selector:
+    app: burkes-prod
+  ports:
+    - name: burkes-http
+      protocol: TCP
+      port: 3009
+      targetPort: 3009

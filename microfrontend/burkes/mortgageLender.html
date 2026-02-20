@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Burkes Group - Mortgage Lender Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-navy: #1a3a52;
+            --primary-gold: #fdb913;
+            --accent-blue: #2d5a7b;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --error-red: #ef4444;
+            --neutral-50: #fafafa;
+            --neutral-100: #f5f5f5;
+            --neutral-200: #e5e5e5;
+            --neutral-300: #d4d4d4;
+            --neutral-400: #a3a3a3;
+            --neutral-500: #737373;
+            --neutral-600: #525252;
+            --neutral-700: #404040;
+            --neutral-800: #262626;
+            --neutral-900: #171717;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--neutral-50);
+            color: var(--neutral-800);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .top-nav {
+            background: white;
+            border-bottom: 1px solid var(--neutral-200);
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--primary-navy);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .logo-text {
+            font-family: 'Archivo', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-navy);
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .nav-item {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--neutral-600);
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .nav-item:hover {
+            background: var(--neutral-100);
+            color: var(--primary-navy);
+        }
+        
+        .nav-item.active {
+            background: var(--primary-navy);
+            color: white;
+        }
+        
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .notification-bell {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--neutral-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .notification-bell:hover {
+            background: var(--neutral-200);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            background: var(--error-red);
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+        
+        .user-profile:hover {
+            background: var(--neutral-100);
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-navy), var(--accent-blue));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--neutral-800);
+        }
+        
+        .user-role {
+            font-size: 12px;
+            color: var(--neutral-500);
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.2s ease;
+        }
+
+        .stat-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-icon.blue {
+            background: rgba(45, 90, 123, 0.1);
+        }
+
+        .stat-icon.green {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .stat-icon.orange {
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .stat-icon.red {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--neutral-500);
+            font-weight: 500;
+        }
+
+        .stat-change {
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .stat-change.positive {
+            color: var(--success-green);
+        }
+
+        .stat-change.negative {
+            color: var(--error-red);
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .main-content-card, .sidebar-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .card-title {
+            font-family: 'Archivo', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: var(--neutral-500);
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table thead {
+            background: var(--neutral-50);
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 12px 16px;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--neutral-700);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table td {
+            padding: 16px;
+            border-bottom: 1px solid var(--neutral-200);
+            font-size: 14px;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        .data-table tbody tr:hover {
+            background: var(--neutral-50);
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .status-badge.pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-orange);
+        }
+
+        .status-badge.approved {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-green);
+        }
+
+        .status-badge.in-review {
+            background: rgba(45, 90, 123, 0.1);
+            color: var(--accent-blue);
+        }
+
+        .status-badge.rejected {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-red);
+        }
+
+        /* Buttons */
+        .btn-primary, .btn-secondary, .btn-outline {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary-navy);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-blue);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--neutral-100);
+            color: var(--neutral-700);
+        }
+
+        .btn-secondary:hover {
+            background: var(--neutral-200);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-navy);
+            border: 2px solid var(--primary-navy);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-navy);
+            color: white;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+
+        /* Activity List */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .activity-card {
+            padding: 16px;
+            border-radius: 8px;
+            background: var(--neutral-50);
+            transition: all 0.2s ease;
+        }
+
+        .activity-card:hover {
+            background: var(--neutral-100);
+        }
+
+        .activity-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .activity-icon-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .activity-icon {
+            font-size: 18px;
+        }
+
+        .activity-title-text {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--neutral-900);
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: var(--neutral-500);
+        }
+
+        .activity-text {
+            font-size: 13px;
+            color: var(--neutral-600);
+            margin-left: 26px;
+        }
+
+        /* Application Cards */
+        .application-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .application-card {
+            background: var(--neutral-50);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid var(--neutral-200);
+            transition: all 0.2s ease;
+        }
+
+        .application-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-md);
+        }
+
+        .application-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .application-client {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--neutral-900);
+            margin-bottom: 4px;
+        }
+
+        .application-property {
+            font-size: 14px;
+            color: var(--neutral-600);
+        }
+
+        .application-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0;
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            color: var(--neutral-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--neutral-900);
+        }
+
+        .application-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        /* Document Upload */
+        .upload-section {
+            border: 2px dashed var(--neutral-300);
+            border-radius: 12px;
+            padding: 48px 24px;
+            text-align: center;
+            background: var(--neutral-50);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .upload-section:hover {
+            border-color: var(--accent-blue);
+            background: rgba(45, 90, 123, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .upload-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--neutral-900);
+            margin-bottom: 8px;
+        }
+
+        .upload-description {
+            font-size: 14px;
+            color: var(--neutral-500);
+        }
+
+        /* Document List */
+        .document-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .document-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            background: var(--neutral-50);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .document-item:hover {
+            background: var(--neutral-100);
+        }
+
+        .document-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .document-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .document-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--neutral-900);
+        }
+
+        .document-meta {
+            font-size: 12px;
+            color: var(--neutral-500);
+        }
+
+        .document-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* Pipeline */
+        .pipeline-stage {
+            background: var(--neutral-50);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .pipeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .pipeline-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--neutral-900);
+        }
+
+        .pipeline-count {
+            background: var(--primary-navy);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pipeline-items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pipeline-item {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .pipeline-item:hover {
+            box-shadow: var(--shadow-sm);
+            transform: translateX(4px);
+        }
+
+        .pipeline-item-info {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--neutral-900);
+        }
+
+        .pipeline-item-amount {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--success-green);
+        }
+
+        /* Filters */
+        .filters-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 10px 16px;
+            border: 2px solid var(--neutral-200);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--neutral-700);
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-select:hover, .filter-select:focus {
+            border-color: var(--accent-blue);
+            outline: none;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 10px 16px 10px 40px;
+            border: 2px solid var(--neutral-200);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-blue);
+            outline: none;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--neutral-700);
+            font-size: 14px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--neutral-200);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Manrope', sans-serif;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--accent-blue);
+            outline: none;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--neutral-50);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--neutral-700);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: var(--neutral-100);
+            color: var(--primary-navy);
+        }
+
+        .action-icon {
+            font-size: 20px;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--neutral-200);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success-green), var(--accent-blue));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Modal/Share Section */
+        .share-section {
+            background: var(--neutral-50);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            background: white;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-nav {
+                display: none;
+            }
+
+            .application-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="logo-section">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">The Burkes Group</span>
+        </div>
+        
+        <div class="main-nav">
+            <a class="nav-item" data-page="dashboard">Dashboard</a>
+            <a class="nav-item" data-page="applications">Applications</a>
+            <a class="nav-item" data-page="pre-approvals">Pre-Approvals</a>
+            <a class="nav-item" data-page="documents">Documents</a>
+            <a class="nav-item" data-page="pipeline">Pipeline</a>
+        </div>
+        
+        <div class="user-section">
+            <div class="notification-bell">
+                🔔
+                <div class="notification-badge"></div>
+            </div>
+            <div class="user-profile">
+                <div class="user-avatar" style="background:linear-gradient(135deg,#1a3a52,#2563eb);">JC</div>
+                <div class="user-info">
+                    <div class="user-name">James Carter</div>
+                    <div class="user-role">Senior Loan Officer · First National Bank</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        
+        <!-- DASHBOARD PAGE -->
+        <div id="dashboard" class="page-content active">
+            <!-- Stats Grid -->
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">Active Applications</div>
+                        </div>
+                        <div class="stat-icon blue">📋</div>
+                    </div>
+                    <div class="stat-change positive">↑ 2 new this week</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Pre-Approvals Issued</div>
+                        </div>
+                        <div class="stat-icon green">✅</div>
+                    </div>
+                    <div class="stat-change positive">↑ 1 this month</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">$8.2M</div>
+                            <div class="stat-label">Total Pipeline Value</div>
+                        </div>
+                        <div class="stat-icon orange">💰</div>
+                    </div>
+                    <div class="stat-change positive">↑ 12% vs last month</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">Pending Reviews</div>
+                        </div>
+                        <div class="stat-icon red">⏱️</div>
+                    </div>
+                    <div class="stat-change negative">Needs attention</div>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="content-grid">
+                <!-- Main Content -->
+                <div>
+                    <!-- Recent Applications -->
+                    <div class="main-content-card" style="margin-bottom: 24px;">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Applications</h2>
+                            <p class="card-subtitle">Latest mortgage applications received</p>
+                        </div>
+                        <div class="card-content">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Client Name</th>
+                                        <th>Property</th>
+                                        <th>Loan Amount</th>
+                                        <th>Status</th>
+                                        <th>Submitted</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>John Smith</strong></td>
+                                        <td>123 Main Street, The Woodlands, TX 77380</td>
+                                        <td><strong>$388,000</strong></td>
+                                        <td><span class="status-badge in-review">In Review</span></td>
+                                        <td>2 hours ago</td>
+                                        <td><button class="btn-primary btn-small">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Sarah Williams</strong></td>
+                                        <td>789 Pine Road, The Woodlands, TX 77381</td>
+                                        <td><strong>$300,000</strong></td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td>4 hours ago</td>
+                                        <td><button class="btn-primary btn-small">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Michael Brown</strong></td>
+                                        <td>321 Elm Street, Spring, TX 77382</td>
+                                        <td><strong>$409,600</strong></td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td>1 day ago</td>
+                                        <td><button class="btn-primary btn-small">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Robert Wilson</strong></td>
+                                        <td>890 Maple Drive, Spring, TX 77382</td>
+                                        <td><strong>$256,000</strong></td>
+                                        <td><span class="status-badge in-review">In Review</span></td>
+                                        <td>2 days ago</td>
+                                        <td><button class="btn-primary btn-small">View</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Share with Title Company -->
+                    <div class="main-content-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Share Information with Title Company</h2>
+                            <p class="card-subtitle">Securely transmit loan details to title company</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="share-section">
+                                <div class="form-group">
+                                    <label class="form-label">Select Transaction</label>
+                                    <select class="form-select">
+                                        <option>123 Main Street, The Woodlands – John Smith – $388,000</option>
+                                        <option>789 Pine Road, The Woodlands – Sarah Williams – $300,000</option>
+                                        <option>321 Elm Street, Spring – Michael Brown – $409,600</option>
+                                        <option>890 Maple Drive, Spring – Robert Wilson – $256,000 (Refinance)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Title Company</label>
+                                    <select class="form-select">
+                                        <option>First American Title Company</option>
+                                        <option>Chicago Title Insurance Company</option>
+                                        <option>Stewart Title Guaranty Company</option>
+                                    </select>
+                                </div>
+                                <div style="background: white; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                                    <div style="font-weight: 600; margin-bottom: 12px; color: var(--primary-navy);">Information to Share:</div>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" checked>
+                                        <span>Loan Amount & Terms</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" checked>
+                                        <span>Closing Date</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" checked>
+                                        <span>Lender Contact Information</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" checked>
+                                        <span>Pre-Approval Letter</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn-primary" style="width: 100%;">Share with Title Company</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div>
+                    <div class="sidebar-card" style="margin-bottom: 24px;">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Activity</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="activity-list">
+                                <div class="activity-card">
+                                    <div class="activity-header-row">
+                                        <div class="activity-icon-title">
+                                            <span class="activity-icon">📋</span>
+                                            <span class="activity-title-text">Application Received</span>
+                                        </div>
+                                        <span class="activity-time">2h ago</span>
+                                    </div>
+                                    <p class="activity-text">John Smith submitted mortgage application · TRX-10247 · $388,000 Conventional</p>
+                                </div>
+                                
+                                <div class="activity-card">
+                                    <div class="activity-header-row">
+                                        <div class="activity-icon-title">
+                                            <span class="activity-icon">📤</span>
+                                            <span class="activity-title-text">Info Shared</span>
+                                        </div>
+                                        <span class="activity-time">4h ago</span>
+                                    </div>
+                                    <p class="activity-text">Loan details sent to First American Title for TRX-10247</p>
+                                </div>
+                                
+                                <div class="activity-card">
+                                    <div class="activity-header-row">
+                                        <div class="activity-icon-title">
+                                            <span class="activity-icon">✅</span>
+                                            <span class="activity-title-text">Pre-Approval Issued</span>
+                                        </div>
+                                        <span class="activity-time">1d ago</span>
+                                    </div>
+                                    <p class="activity-text">Michael Brown pre-approval issued · $409,600 Conventional</p>
+                                </div>
+
+                                <div class="activity-card">
+                                    <div class="activity-header-row">
+                                        <div class="activity-icon-title">
+                                            <span class="activity-icon">📄</span>
+                                            <span class="activity-title-text">Document Uploaded</span>
+                                        </div>
+                                        <span class="activity-time">2d ago</span>
+                                    </div>
+                                    <p class="activity-text">Sarah Williams income verification received · TRX-10198</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Quick Actions</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="quick-actions">
+                                <button class="action-btn">
+                                    <span class="action-icon">📋</span>
+                                    Review Applications
+                                </button>
+                                <button class="action-btn">
+                                    <span class="action-icon">📤</span>
+                                    Share with Title Co.
+                                </button>
+                                <button class="action-btn">
+                                    <span class="action-icon">📄</span>
+                                    Upload Pre-Approval
+                                </button>
+                                <button class="action-btn">
+                                    <span class="action-icon">📊</span>
+                                    View Pipeline
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- APPLICATIONS PAGE -->
+        <div id="applications" class="page-content">
+            <div class="card-header" style="margin-bottom: 24px;">
+                <h2 class="card-title">Mortgage Applications</h2>
+                <p class="card-subtitle">Review and process mortgage applications from consumers</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-bar">
+                <input type="text" class="search-input" placeholder="🔍 Search by client name or property...">
+                <select class="filter-select">
+                    <option>All Statuses</option>
+                    <option>Pending</option>
+                    <option>In Review</option>
+                    <option>Approved</option>
+                    <option>Rejected</option>
+                </select>
+                <select class="filter-select">
+                    <option>All Loan Types</option>
+                    <option>Conventional</option>
+                    <option>FHA</option>
+                    <option>VA</option>
+                    <option>USDA</option>
+                </select>
+                <select class="filter-select">
+                    <option>Sort by Date (Newest)</option>
+                    <option>Sort by Date (Oldest)</option>
+                    <option>Sort by Amount (High)</option>
+                    <option>Sort by Amount (Low)</option>
+                </select>
+            </div>
+
+            <!-- Applications Grid -->
+            <div class="application-grid">
+                <!-- Application 1 -->
+                <div class="application-card">
+                    <div class="application-header">
+                        <div>
+                            <div class="application-client">John Smith</div>
+                            <div class="application-property">📍 123 Main Street, The Woodlands, TX 77380</div>
+                        </div>
+                        <span class="status-badge in-review">In Review</span>
+                    </div>
+                    
+                    <div class="application-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Loan Amount</div>
+                            <div class="detail-value">$388,000</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Loan Type</div>
+                            <div class="detail-value">Conventional</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Credit Score</div>
+                            <div class="detail-value">720</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Down Payment</div>
+                            <div class="detail-value">20%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">DTI Ratio</div>
+                            <div class="detail-value">28%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Submitted</div>
+                            <div class="detail-value">2 hours ago</div>
+                        </div>
+                    </div>
+
+                    <div class="application-actions">
+                        <button class="btn-primary">Import to System</button>
+                        <button class="btn-secondary">View Application</button>
+                        <button class="btn-outline">Download PDF</button>
+                    </div>
+                </div>
+
+                <!-- Application 2 -->
+                <div class="application-card">
+                    <div class="application-header">
+                        <div>
+                            <div class="application-client">Sarah Williams</div>
+                            <div class="application-property">📍 789 Pine Road, The Woodlands, TX 77381</div>
+                        </div>
+                        <span class="status-badge pending">Pending</span>
+                    </div>
+                    
+                    <div class="application-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Loan Amount</div>
+                            <div class="detail-value">$300,000</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Loan Type</div>
+                            <div class="detail-value">FHA</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Credit Score</div>
+                            <div class="detail-value">680</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Down Payment</div>
+                            <div class="detail-value">3.5%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">DTI Ratio</div>
+                            <div class="detail-value">35%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Submitted</div>
+                            <div class="detail-value">4 hours ago</div>
+                        </div>
+                    </div>
+
+                    <div class="application-actions">
+                        <button class="btn-primary">Import to System</button>
+                        <button class="btn-secondary">View Application</button>
+                        <button class="btn-outline">Download PDF</button>
+                    </div>
+                </div>
+
+                <!-- Application 3 -->
+                <div class="application-card">
+                    <div class="application-header">
+                        <div>
+                            <div class="application-client">Michael Brown</div>
+                            <div class="application-property">📍 321 Elm Street, Spring, TX 77382 · TRX-10156</div>
+                        </div>
+                        <span class="status-badge approved">Approved</span>
+                    </div>
+                    
+                    <div class="application-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Loan Amount</div>
+                            <div class="detail-value">$409,600</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Loan Type</div>
+                            <div class="detail-value">Conventional</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Credit Score</div>
+                            <div class="detail-value">750</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Down Payment</div>
+                            <div class="detail-value">20%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">DTI Ratio</div>
+                            <div class="detail-value">22%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Submitted</div>
+                            <div class="detail-value">1 day ago</div>
+                        </div>
+                    </div>
+
+                    <div class="application-actions">
+                        <button class="btn-secondary">View Application</button>
+                        <button class="btn-outline">Download PDF</button>
+                        <button class="btn-outline">Issue Pre-Approval</button>
+                    </div>
+                </div>
+
+                <!-- Application 4 -->
+                <div class="application-card">
+                    <div class="application-header">
+                        <div>
+                            <div class="application-client">Robert Wilson</div>
+                            <div class="application-property">📍 234 Birch Street, The Woodlands, TX 77381</div>
+                        </div>
+                        <span class="status-badge in-review">In Review</span>
+                    </div>
+                    
+                    <div class="application-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Loan Amount</div>
+                            <div class="detail-value">$256,000</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Loan Type</div>
+                            <div class="detail-value">Refinance</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Credit Score</div>
+                            <div class="detail-value">710</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Down Payment</div>
+                            <div class="detail-value">N/A</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">DTI Ratio</div>
+                            <div class="detail-value">31%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Submitted</div>
+                            <div class="detail-value">2 days ago</div>
+                        </div>
+                    </div>
+
+                    <div class="application-actions">
+                        <button class="btn-primary">Import to System</button>
+                        <button class="btn-secondary">View Application</button>
+                        <button class="btn-outline">Download PDF</button>
+                    </div>
+                </div>
+
+                <!-- Application 5 -->
+                <div class="application-card">
+                    <div class="application-header">
+                        <div>
+                            <div class="application-client">Emily Davis</div>
+                            <div class="application-property">📍 890 Maple Drive, Spring, TX 77382</div>
+                        </div>
+                        <span class="status-badge approved">Closed</span>
+                    </div>
+                    
+                    <div class="application-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Loan Amount</div>
+                            <div class="detail-value">$275,000</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Loan Type</div>
+                            <div class="detail-value">FHA</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Credit Score</div>
+                            <div class="detail-value">695</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Down Payment</div>
+                            <div class="detail-value">20.3%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">DTI Ratio</div>
+                            <div class="detail-value">30%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Submitted</div>
+                            <div class="detail-value">Oct 1, 2025</div>
+                        </div>
+                    </div>
+
+                    <div class="application-actions">
+                        <button class="btn-secondary">View Application</button>
+                        <button class="btn-outline">Send Feedback</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRE-APPROVALS PAGE -->
+        <div id="pre-approvals" class="page-content">
+            <div class="content-grid">
+                <!-- Main Content -->
+                <div>
+                    <div class="main-content-card" style="margin-bottom: 24px;">
+                        <div class="card-header">
+                            <h2 class="card-title">Issue Pre-Approval Letter</h2>
+                            <p class="card-subtitle">Create and upload pre-approval letters for clients</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="form-label">Client Name</label>
+                                <select class="form-select">
+                                    <option>Select a client...</option>
+                                    <option>John Smith</option>
+                                    <option>Sarah Williams</option>
+                                    <option>Michael Brown</option>
+                                    <option>Robert Wilson</option>
+                                    <option>Emily Davis</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Pre-Approval Amount</label>
+                                <input type="text" class="form-input" placeholder="$388,000">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Interest Rate</label>
+                                <input type="text" class="form-input" placeholder="6.5%">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Loan Type</label>
+                                <select class="form-select">
+                                    <option>Conventional</option>
+                                    <option>FHA</option>
+                                    <option>VA</option>
+                                    <option>USDA</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Expiration Date</label>
+                                <input type="date" class="form-input">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Additional Notes</label>
+                                <textarea class="form-textarea" placeholder="Any special conditions or notes..."></textarea>
+                            </div>
+
+                            <div class="upload-section" style="margin-bottom: 20px;">
+                                <div class="upload-icon">📄</div>
+                                <div class="upload-title">Upload Pre-Approval Letter</div>
+                                <p class="upload-description">PDF format recommended (Max 10MB)</p>
+                            </div>
+
+                            <button class="btn-primary" style="width: 100%;">Generate & Upload Pre-Approval</button>
+                        </div>
+                    </div>
+
+                    <div class="main-content-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Pre-Approval Templates</h2>
+                            <p class="card-subtitle">Use pre-configured templates for faster processing</p>
+                        </div>
+                        <div class="card-content">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                <div style="padding: 20px; background: var(--neutral-50); border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='var(--neutral-100)'" onmouseout="this.style.background='var(--neutral-50)'">
+                                    <div style="font-size: 32px; margin-bottom: 8px;">📄</div>
+                                    <div style="font-weight: 600; color: var(--neutral-900);">Conventional Loan</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Standard template</div>
+                                </div>
+
+                                <div style="padding: 20px; background: var(--neutral-50); border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='var(--neutral-100)'" onmouseout="this.style.background='var(--neutral-50)'">
+                                    <div style="font-size: 32px; margin-bottom: 8px;">📋</div>
+                                    <div style="font-weight: 600; color: var(--neutral-900);">FHA Loan</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">FHA approved template</div>
+                                </div>
+
+                                <div style="padding: 20px; background: var(--neutral-50); border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='var(--neutral-100)'" onmouseout="this.style.background='var(--neutral-50)'">
+                                    <div style="font-size: 32px; margin-bottom: 8px;">🎖️</div>
+                                    <div style="font-weight: 600; color: var(--neutral-900);">VA Loan</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Veterans template</div>
+                                </div>
+
+                                <div style="padding: 20px; background: var(--neutral-50); border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='var(--neutral-100)'" onmouseout="this.style.background='var(--neutral-50)'">
+                                    <div style="font-size: 32px; margin-bottom: 8px;">✨</div>
+                                    <div style="font-weight: 600; color: var(--neutral-900);">Custom</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Create from scratch</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div>
+                    <div class="sidebar-card" style="margin-bottom: 24px;">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Pre-Approvals</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="document-list">
+                                <div class="document-item">
+                                    <div class="document-info">
+                                        <div class="document-icon">✅</div>
+                                        <div>
+                                            <div class="document-name">Michael Brown</div>
+                                            <div class="document-meta">$409,600 • Conventional • 1 day ago</div>
+                                        </div>
+                                    </div>
+                                    <button class="btn-secondary btn-small">View</button>
+                                </div>
+
+                                <div class="document-item">
+                                    <div class="document-info">
+                                        <div class="document-icon">✅</div>
+                                        <div>
+                                            <div class="document-name">Sarah Williams</div>
+                                            <div class="document-meta">$300,000 • FHA • 3 days ago</div>
+                                        </div>
+                                    </div>
+                                    <button class="btn-secondary btn-small">View</button>
+                                </div>
+
+                                <div class="document-item">
+                                    <div class="document-info">
+                                        <div class="document-icon">✅</div>
+                                        <div>
+                                            <div class="document-name">Emily Davis</div>
+                                            <div class="document-meta">$275,000 • FHA • Closed Nov 2025</div>
+                                        </div>
+                                    </div>
+                                    <button class="btn-secondary btn-small">View</button>
+                                </div>
+
+                                <div class="document-item">
+                                    <div class="document-info">
+                                        <div class="document-icon">✅</div>
+                                        <div>
+                                            <div class="document-name">John Smith</div>
+                                            <div class="document-meta">$388,000 • Conventional • 3 days ago</div>
+                                        </div>
+                                    </div>
+                                    <button class="btn-secondary btn-small">View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Pre-Approval Stats</h2>
+                        </div>
+                        <div class="card-content">
+                            <div style="margin-bottom: 20px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span style="font-weight: 600; color: var(--neutral-700);">This Month</span>
+                                    <span style="font-weight: 700; color: var(--neutral-900);">18 Issued</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%;"></div>
+                                </div>
+                            </div>
+
+                            <div style="padding: 16px; background: var(--neutral-50); border-radius: 8px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span style="font-size: 14px; color: var(--neutral-600);">Average Amount</span>
+                                    <span style="font-weight: 700; color: var(--neutral-900);">$342,000</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span style="font-size: 14px; color: var(--neutral-600);">Avg. Interest Rate</span>
+                                    <span style="font-weight: 700; color: var(--neutral-900);">6.4%</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-size: 14px; color: var(--neutral-600);">Expiring Soon</span>
+                                    <span style="font-weight: 700; color: var(--warning-orange);">3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOCUMENTS PAGE -->
+        <div id="documents" class="page-content">
+            <div class="content-grid">
+                <!-- Main Content -->
+                <div>
+                    <div class="main-content-card" style="margin-bottom: 24px;">
+                        <div class="card-header">
+                            <h2 class="card-title">Document Library</h2>
+                            <p class="card-subtitle">Manage all mortgage-related documents</p>
+                        </div>
+                        <div class="card-content">
+                            <!-- Search and Filter -->
+                            <div class="filters-bar" style="margin-bottom: 20px;">
+                                <input type="text" class="search-input" placeholder="🔍 Search documents...">
+                                <select class="filter-select">
+                                    <option>All Types</option>
+                                    <option>Pre-Approvals</option>
+                                    <option>Applications</option>
+                                    <option>Income Verification</option>
+                                    <option>Credit Reports</option>
+                                    <option>Closing Documents</option>
+                                </select>
+                                <select class="filter-select">
+                                    <option>All Clients</option>
+                                    <option>John Smith</option>
+                                    <option>Sarah Williams</option>
+                                    <option>Michael Brown</option>
+                                </select>
+                            </div>
+
+                            <!-- Document List -->
+                            <div class="document-list">
+                                <div class="document-item">
+                                    <div class="document-info">
+                                        <div class="document-icon">📄</div>
+                                        <div>
+                                            <div class="document-name">Pre-Approval Letter – Michael Brown · $409,600</div>
+                                            <div class="document-meta">PDF • 245 KB • Uploaded 1 day ago</div>
+                                        </div>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-secondary btn-small">View</button>
+                                        <button class="btn-outline btn-small">Download</button>
+                                        <button class="btn-outline btn-small">Share</button>
+                                    </div>
+                                </div>
+
+                                <div class="document-item">
+                                    <div class="document-info">
+                                        <div class="document-icon">📋</div>
+                                        <div>
+                                            <div class="document-name">Mortgage Application – John Smith · TRX-10247</div>
+                                            <div class="document-meta">PDF • 1.2 MB • Uploaded 2 hours ago</div>
+                                        </div>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-secondary btn-small">View</button>
+                                        <button class="btn-outline btn-small">Download</button>
+                                        <button class="btn-outline btn-small">Share</button>
+                                    </div>
+                                </div>
+
+                                <div class="document-item">
+                                    <div class="document-info">
+                                        <div class="document-icon">💰</div>
+                                        <div>
+                                            <div class="document-name">Income Verification – Sarah Williams · TRX-10198</div>
+                                            <div class="document-meta">PDF • 890 KB • Uploaded 3 days ago</div>
+                                        </div>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-secondary btn-small">View</button>
+                                        <button class="btn-outline btn-small">Download</button>
+                                        <button class="btn-outline btn-small">Share</button>
+                                    </div>
+                                </div>
+
+                                <div class="document-item">
+                                    <div class="document-info">
+                                        <div class="document-icon">📊</div>
+                                        <div>
+                                            <div class="document-name">Credit Report – Emily Davis · TRX-09987</div>
+                                            <div class="document-meta">PDF • 567 KB • Uploaded 5 days ago</div>
+                                        </div>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-secondary btn-small">View</button>
+                                        <button class="btn-outline btn-small">Download</button>
+                                        <button class="btn-outline btn-small">Share</button>
+                                    </div>
+                                </div>
+
+                                <div class="document-item">
+                                    <div class="document-info">
+                                        <div class="document-icon">🏠</div>
+                                        <div>
+                                            <div class="document-name">Appraisal Report – 123 Main Street, The Woodlands, TX</div>
+                                            <div class="document-meta">PDF • 3.4 MB • Uploaded 1 week ago</div>
+                                        </div>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-secondary btn-small">View</button>
+                                        <button class="btn-outline btn-small">Download</button>
+                                        <button class="btn-outline btn-small">Share</button>
+                                    </div>
+                                </div>
+
+                                <div class="document-item">
+                                    <div class="document-info">
+                                        <div class="document-icon">✍️</div>
+                                        <div>
+                                            <div class="document-name">Closing Disclosure – Michael Brown · TRX-10156</div>
+                                            <div class="document-meta">PDF • 678 KB • Uploaded 2 weeks ago</div>
+                                        </div>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-secondary btn-small">View</button>
+                                        <button class="btn-outline btn-small">Download</button>
+                                        <button class="btn-outline btn-small">Share</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="main-content-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Upload Document</h2>
+                            <p class="card-subtitle">Add new documents to the library</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="form-label">Document Type</label>
+                                <select class="form-select">
+                                    <option>Pre-Approval Letter</option>
+                                    <option>Mortgage Application</option>
+                                    <option>Income Verification</option>
+                                    <option>Credit Report</option>
+                                    <option>Appraisal Report</option>
+                                    <option>Closing Documents</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Client Name</label>
+                                <select class="form-select">
+                                    <option>Select a client...</option>
+                                    <option>John Smith</option>
+                                    <option>Sarah Williams</option>
+                                    <option>Michael Brown</option>
+                                    <option>Robert Wilson</option>
+                                    <option>Emily Davis</option>
+                                </select>
+                            </div>
+
+                            <div class="upload-section" style="margin-bottom: 20px;">
+                                <div class="upload-icon">📁</div>
+                                <div class="upload-title">Click to Upload or Drag and Drop</div>
+                                <p class="upload-description">PDF, DOC, DOCX, or image files (Max 25MB)</p>
+                            </div>
+
+                            <button class="btn-primary" style="width: 100%;">Upload Document</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div>
+                    <div class="sidebar-card" style="margin-bottom: 24px;">
+                        <div class="card-header">
+                            <h2 class="card-title">Document Stats</h2>
+                        </div>
+                        <div class="card-content">
+                            <div style="padding: 16px; background: var(--neutral-50); border-radius: 8px; margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span style="font-size: 14px; color: var(--neutral-600);">Total Documents</span>
+                                    <span style="font-weight: 700; font-size: 18px; color: var(--neutral-900);">156</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span style="font-size: 14px; color: var(--neutral-600);">This Week</span>
+                                    <span style="font-weight: 700; color: var(--success-green);">+12</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-size: 14px; color: var(--neutral-600);">Pending Review</span>
+                                    <span style="font-weight: 700; color: var(--warning-orange);">7</span>
+                                </div>
+                            </div>
+
+                            <div style="font-weight: 600; margin-bottom: 12px; color: var(--neutral-700);">By Type</div>
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                <div style="display: flex; justify-content: space-between; font-size: 14px;">
+                                    <span style="color: var(--neutral-600);">Pre-Approvals</span>
+                                    <span style="font-weight: 600; color: var(--neutral-900);">42</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 14px;">
+                                    <span style="color: var(--neutral-600);">Applications</span>
+                                    <span style="font-weight: 600; color: var(--neutral-900);">38</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 14px;">
+                                    <span style="color: var(--neutral-600);">Income Docs</span>
+                                    <span style="font-weight: 600; color: var(--neutral-900);">35</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 14px;">
+                                    <span style="color: var(--neutral-600);">Credit Reports</span>
+                                    <span style="font-weight: 600; color: var(--neutral-900);">28</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 14px;">
+                                    <span style="color: var(--neutral-600);">Other</span>
+                                    <span style="font-weight: 600; color: var(--neutral-900);">13</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Quick Actions</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="quick-actions">
+                                <button class="action-btn">
+                                    <span class="action-icon">📤</span>
+                                    Share with Title Co.
+                                </button>
+                                <button class="action-btn">
+                                    <span class="action-icon">📧</span>
+                                    Email to Client
+                                </button>
+                                <button class="action-btn">
+                                    <span class="action-icon">📥</span>
+                                    Bulk Download
+                                </button>
+                                <button class="action-btn">
+                                    <span class="action-icon">🗑️</span>
+                                    Archive Old Docs
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PIPELINE PAGE -->
+        <div id="pipeline" class="page-content">
+            <div class="card-header" style="margin-bottom: 24px;">
+                <h2 class="card-title">Loan Pipeline</h2>
+                <p class="card-subtitle">Track all loans through each stage of the process</p>
+            </div>
+
+            <!-- Pipeline Stats -->
+            <div class="dashboard-grid" style="margin-bottom: 32px;">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">$8.2M</div>
+                            <div class="stat-label">Total Pipeline</div>
+                        </div>
+                        <div class="stat-icon blue">💰</div>
+                    </div>
+                    <div class="stat-change positive">↑ 12% vs last month</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">24</div>
+                            <div class="stat-label">Active Loans</div>
+                        </div>
+                        <div class="stat-icon green">📋</div>
+                    </div>
+                    <div class="stat-change positive">2 new applications</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">$342K</div>
+                            <div class="stat-label">Average Loan Size</div>
+                        </div>
+                        <div class="stat-icon orange">📊</div>
+                    </div>
+                    <div class="stat-change">Steady</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">18 days</div>
+                            <div class="stat-label">Avg. Processing Time</div>
+                        </div>
+                        <div class="stat-icon red">⏱️</div>
+                    </div>
+                    <div class="stat-change positive">↓ 3 days faster</div>
+                </div>
+            </div>
+
+            <!-- Pipeline Stages -->
+            <div class="content-grid">
+                <div style="grid-column: 1 / -1;">
+                    <!-- Stage 1: Application Received -->
+                    <div class="pipeline-stage">
+                        <div class="pipeline-header">
+                            <div class="pipeline-title">📋 Application Received</div>
+                            <div class="pipeline-count">7</div>
+                        </div>
+                        <div class="pipeline-items">
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">John Smith - 123 Main Street</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Submitted 2 hours ago</div>
+                                </div>
+                                <div class="pipeline-item-amount">$388,000</div>
+                            </div>
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">Sarah Williams - 789 Pine Road</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Submitted 4 hours ago</div>
+                                </div>
+                                <div class="pipeline-item-amount">$300,000</div>
+                            </div>
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">Robert Wilson - 890 Maple Drive, Spring, TX</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Submitted 1 day ago</div>
+                                </div>
+                                <div class="pipeline-item-amount">$256,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2: Document Review -->
+                    <div class="pipeline-stage">
+                        <div class="pipeline-header">
+                            <div class="pipeline-title">🔍 Document Review</div>
+                            <div class="pipeline-count">5</div>
+                        </div>
+                        <div class="pipeline-items">
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">Emily Davis - 555 Oak Avenue</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">In review for 2 days</div>
+                                </div>
+                                <div class="pipeline-item-amount">$275,000</div>
+                            </div>
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">Emily Davis - 234 Birch Street, The Woodlands, TX</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">In review for 3 days</div>
+                                </div>
+                                <div class="pipeline-item-amount">$275,000</div>
+                            </div>
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">John Smith - 123 Main Street, The Woodlands, TX</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">In review for 1 day</div>
+                                </div>
+                                <div class="pipeline-item-amount">$388,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 3: Underwriting -->
+                    <div class="pipeline-stage">
+                        <div class="pipeline-header">
+                            <div class="pipeline-title">📊 Underwriting</div>
+                            <div class="pipeline-count">6</div>
+                        </div>
+                        <div class="pipeline-items">
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">Michael Brown - 321 Elm Street</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Underwriting for 5 days</div>
+                                </div>
+                                <div class="pipeline-item-amount">$416,000</div>
+                            </div>
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">Sarah Williams - 789 Pine Road, The Woodlands, TX</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Underwriting for 4 days</div>
+                                </div>
+                                <div class="pipeline-item-amount">$300,000</div>
+                            </div>
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">Michael Brown - 321 Elm Street, Spring, TX (active)</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Underwriting for 6 days</div>
+                                </div>
+                                <div class="pipeline-item-amount">$409,600</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 4: Approved -->
+                    <div class="pipeline-stage">
+                        <div class="pipeline-header">
+                            <div class="pipeline-title">✅ Approved</div>
+                            <div class="pipeline-count">4</div>
+                        </div>
+                        <div class="pipeline-items">
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">Lisa Anderson - 654 Maple Drive, Tomball, TX (Closed Dec 2025)</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Approved 1 week ago</div>
+                                </div>
+                                <div class="pipeline-item-amount">$374,000</div>
+                            </div>
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">Emily Davis - 234 Birch Street, The Woodlands (Closed Nov 2025)</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Approved 1 week ago</div>
+                                </div>
+                                <div class="pipeline-item-amount">$275,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 5: Closing -->
+                    <div class="pipeline-stage">
+                        <div class="pipeline-header">
+                            <div class="pipeline-title">🏠 Closing</div>
+                            <div class="pipeline-count">2</div>
+                        </div>
+                        <div class="pipeline-items">
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">John Smith - 123 Main Street (Closing Feb 15)</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Closing in 3 days</div>
+                                </div>
+                                <div class="pipeline-item-amount">$388,000</div>
+                            </div>
+                            <div class="pipeline-item">
+                                <div>
+                                    <div class="pipeline-item-info">Michael Brown - 321 Elm Street (Closing Mar 15)</div>
+                                    <div style="font-size: 12px; color: var(--neutral-500); margin-top: 4px;">Closing in 5 days</div>
+                                </div>
+                                <div class="pipeline-item-amount">$409,600</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const pageContents = document.querySelectorAll('.page-content');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all nav items and pages
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    pageContents.forEach(page => page.classList.remove('active'));
+                    
+                    // Add active class to clicked nav item
+                    this.classList.add('active');
+                    
+                    // Show corresponding page
+                    const pageName = this.getAttribute('data-page');
+                    document.getElementById(pageName).classList.add('active');
+                });
+            });
+
+            // Set first nav item as active by default
+            navItems[0].classList.add('active');
+        });
+    </script>
+</body>
+</html>

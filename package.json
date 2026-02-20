@@ -22,6 +22,7 @@
     "install:cdns:helloabdul": "cd cdns/helloabdul && npm install",
     "install:cdns:troophunter": "cd cdns/troophunter && npm install",
     "build:dev8x": "npm run build -- --filter=dev8x",
+    "build:burkes": "npm run build -- --filter=burkes",
     "build:helloabdul": "npm run build -- --filter=helloabdul",
     "build:troophunter": "npm run build -- --filter=troophunter",
     "build:auth": "npm run build -- --filter=dev8x",

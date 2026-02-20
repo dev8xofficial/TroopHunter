@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Burkes Group - Service Partner Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-navy: #1a3a52;
+            --primary-gold: #fdb913;
+            --accent-blue: #2d5a7b;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --error-red: #ef4444;
+            --neutral-50: #fafafa;
+            --neutral-100: #f5f5f5;
+            --neutral-200: #e5e5e5;
+            --neutral-300: #d4d4d4;
+            --neutral-400: #a3a3a3;
+            --neutral-500: #737373;
+            --neutral-600: #525252;
+            --neutral-700: #404040;
+            --neutral-800: #262626;
+            --neutral-900: #171717;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--neutral-50);
+            color: var(--neutral-800);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        .top-nav {
+            background: white;
+            border-bottom: 1px solid var(--neutral-200);
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--primary-navy);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary-gold);
+            font-weight: 800;
+        }
+        
+        .logo-text {
+            font-family: 'Archivo', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-navy);
+        }
+        
+        .partner-badge {
+            background: var(--primary-gold);
+            color: var(--primary-navy);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .nav-item {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--neutral-600);
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .nav-item:hover {
+            background: var(--neutral-100);
+            color: var(--primary-navy);
+        }
+        
+        .nav-item.active {
+            background: var(--primary-navy);
+            color: white;
+        }
+        
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .notification-bell {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--neutral-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+            font-size: 18px;
+        }
+        
+        .notification-bell:hover {
+            background: var(--neutral-200);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            background: var(--error-red);
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            border-radius: 10px;
+            background: var(--neutral-100);
+            cursor: pointer;
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary-navy);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--neutral-800);
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+        
+        .page-hidden {
+            display: none;
+        }
+        
+        .page-header {
+            margin-bottom: 32px;
+        }
+        
+        .page-title {
+            font-family: 'Archivo', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 8px;
+        }
+        
+        .page-subtitle {
+            font-size: 16px;
+            color: var(--neutral-600);
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--neutral-600);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .stat-value {
+            font-family: 'Archivo', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 4px;
+        }
+        
+        .stat-description {
+            font-size: 13px;
+            color: var(--neutral-500);
+        }
+        
+        .stat-icon {
+            font-size: 32px;
+            opacity: 0.8;
+        }
+        
+        /* Content Layout */
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 24px;
+        }
+        
+        @media (max-width: 1200px) {
+            .content-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 24px;
+        }
+        
+        .card-header {
+            margin-bottom: 24px;
+        }
+        
+        .card-title {
+            font-family: 'Archivo', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 6px;
+        }
+        
+        .card-subtitle {
+            font-size: 14px;
+            color: var(--neutral-600);
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background: var(--primary-navy);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-secondary {
+            background: var(--neutral-100);
+            color: var(--neutral-700);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--neutral-200);
+        }
+        
+        .btn-gold {
+            background: var(--primary-gold);
+            color: var(--primary-navy);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-gold:hover {
+            background: #fca600;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-success {
+            background: var(--success-green);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+        
+        /* Tables */
+        .table-container {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── TABLE ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: transparent;
+        }
+
+        th {
+            text-align: left;
+            padding: 14px 20px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--neutral-200);
+            background: var(--neutral-50);
+        }
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--neutral-100);
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ── BADGES (Attorney Style) ── */
+        .table-status {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 11px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .table-status.new {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .table-status.contacted {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .table-status.quoted {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+
+        .table-status.scheduled {
+            background: #ddd6fe;
+            color: #6b21a8;
+        }
+
+        .table-status.completed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .table-status.declined {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .table-status.processing {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* ── TABLE ACTION BUTTONS (Attorney Style) ── */
+        .table-action-btn {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-navy);
+            color: white;
+        }
+
+        .table-action-btn:hover {
+            background: var(--accent-blue);
+            transform: translateY(-1px);
+        }
+
+        .table-action-btn.secondary {
+            background: white;
+            color: var(--primary-navy);
+            border: 1.5px solid var(--primary-navy);
+        }
+
+        .table-action-btn.secondary:hover {
+            background: var(--primary-navy);
+            color: white;
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--neutral-700);
+            font-size: 14px;
+        }
+        
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--neutral-200);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Manrope', sans-serif;
+            transition: all 0.2s ease;
+        }
+        
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-navy);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Activity List */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .activity-card {
+            padding: 16px;
+            background: var(--neutral-50);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-navy);
+        }
+        
+        .activity-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .activity-icon-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .activity-icon {
+            font-size: 20px;
+        }
+        
+        .activity-title-text {
+            font-weight: 600;
+            color: var(--neutral-800);
+            font-size: 15px;
+        }
+        
+        .activity-time {
+            font-size: 13px;
+            color: var(--neutral-500);
+        }
+        
+        .activity-text {
+            font-size: 14px;
+            color: var(--neutral-600);
+            margin-left: 30px;
+        }
+        
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--neutral-50);
+            border: 2px solid var(--neutral-200);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            color: var(--neutral-800);
+            font-size: 15px;
+        }
+        
+        .action-btn:hover {
+            background: white;
+            border-color: var(--primary-navy);
+            transform: translateX(4px);
+        }
+        
+        .action-icon {
+            font-size: 24px;
+        }
+        
+        /* Referral Card */
+        .referral-card {
+            background: white;
+            border: 2px solid var(--neutral-200);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: all 0.2s ease;
+        }
+        
+        .referral-card:hover {
+            border-color: var(--primary-gold);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .referral-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        
+        .referral-info h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 6px;
+        }
+        
+        .referral-address {
+            font-size: 14px;
+            color: var(--neutral-600);
+            margin-bottom: 4px;
+        }
+        
+        .referral-service {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--neutral-700);
+        }
+        
+        .referral-details {
+            background: var(--neutral-50);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .referral-details p {
+            font-size: 14px;
+            color: var(--neutral-700);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        .referral-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: var(--neutral-600);
+        }
+        
+        .referral-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        /* Service Area Card */
+        .service-area-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        
+        .service-area-card {
+            background: var(--neutral-50);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid var(--neutral-200);
+            transition: all 0.2s ease;
+        }
+        
+        .service-area-card:hover {
+            border-color: var(--primary-gold);
+        }
+        
+        .service-area-zip {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 6px;
+        }
+        
+        .service-area-city {
+            font-size: 14px;
+            color: var(--neutral-600);
+            margin-bottom: 10px;
+        }
+        
+        .service-area-status {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        
+        .service-area-status.active {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        /* Review Card */
+        .review-card {
+            background: white;
+            border: 2px solid var(--neutral-200);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .review-client {
+            font-weight: 700;
+            color: var(--primary-navy);
+            font-size: 16px;
+        }
+        
+        .review-stars {
+            color: var(--primary-gold);
+            font-size: 18px;
+        }
+        
+        .review-date {
+            font-size: 13px;
+            color: var(--neutral-500);
+            margin-bottom: 10px;
+        }
+        
+        .review-text {
+            font-size: 14px;
+            color: var(--neutral-700);
+            line-height: 1.6;
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .filter-label {
+            font-weight: 600;
+            color: var(--neutral-700);
+        }
+        
+        .filter-select {
+            padding: 10px 16px;
+            border: 2px solid var(--neutral-200);
+            border-radius: 8px;
+            font-size: 14px;
+            min-width: 180px;
+        }
+        
+        /* Search Bar */
+        .search-bar {
+            position: relative;
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 48px;
+            border: 2px solid var(--neutral-200);
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-navy);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: var(--neutral-400);
+        }
+        
+        /* Quote Form */
+        .quote-form {
+            background: var(--neutral-50);
+            padding: 24px;
+            border-radius: 12px;
+            border: 2px solid var(--neutral-200);
+        }
+        
+        .price-input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        /* Earnings Chart */
+        .earnings-card {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--accent-blue) 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .earnings-amount {
+            font-family: 'Archivo', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .earnings-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <div class="logo-section">
+            <div class="logo-icon">B</div>
+            <div class="logo-text">The Burkes Group</div>
+            <div class="partner-badge">Service Partner</div>
+        </div>
+        
+        <div class="main-nav">
+            <a class="nav-item active" onclick="showPage('dashboard')">Dashboard</a>
+            <a class="nav-item" onclick="showPage('referrals')">Referrals</a>
+            <a class="nav-item" onclick="showPage('jobs')">Active Jobs</a>
+            <a class="nav-item" onclick="showPage('quotes')">Quotes</a>
+            <a class="nav-item" onclick="showPage('reviews')">Reviews</a>
+            <a class="nav-item" onclick="showPage('areas')">Service Areas</a>
+            <a class="nav-item" onclick="showPage('earnings')">Earnings</a>
+            <a class="nav-item" onclick="showPage('profile')">Profile</a>
+        </div>
+        
+        <div class="user-section">
+            <div class="notification-bell">
+                🔔
+                <div class="notification-badge"></div>
+            </div>
+            <div class="user-menu">
+                <div class="user-avatar" style="background:#f59e0b;color:#1a3a52;">MR</div>
+                <div class="user-name">Marcus Rivera · Woodlands Plumbing Pro</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- DASHBOARD PAGE -->
+        <div id="dashboard-page" class="page">
+            <div class="page-header">
+                <h1 class="page-title">Dashboard</h1>
+                <p class="page-subtitle">Welcome back! Here's your performance overview</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">New Referrals</div>
+                            <div class="stat-value">1</div>
+                            <div class="stat-description">Awaiting response</div>
+                        </div>
+                        <div class="stat-icon">👥</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Active Jobs</div>
+                            <div class="stat-value">1</div>
+                            <div class="stat-description">In progress</div>
+                        </div>
+                        <div class="stat-icon">🔧</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Average Rating</div>
+                            <div class="stat-value">4.8</div>
+                            <div class="stat-description">Based on 14 reviews</div>
+                        </div>
+                        <div class="stat-icon">⭐</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">This Month Revenue</div>
+                            <div class="stat-value">$9,840</div>
+                            <div class="stat-description">From platform</div>
+                        </div>
+                        <div class="stat-icon">💰</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-layout">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">New Referral Requests</h2>
+                            <p class="card-subtitle">Homeowners requesting quotes in your service area</p>
+                        </div>
+                        
+                        <div class="referral-card">
+                            <div class="referral-header">
+                                <div class="referral-info">
+                                    <h3>🏠 John Smith · TRX-10247</h3>
+                                    <div class="referral-address">123 Main Street, The Woodlands, TX 77380</div>
+                                    <div class="referral-service">🔧 Service: Plumbing Inspection</div>
+                                </div>
+                                <span class="table-status new">New Lead</span>
+                            </div>
+                            <div class="referral-details">
+                                <p><strong>Request:</strong> Pre-purchase home inspection needed for plumbing system. Property is 15 years old.</p>
+                                <div class="referral-meta">
+                                    <span><strong>Timeframe:</strong> Within 1 week</span>
+                                    <span><strong>Budget:</strong> $200-$400</span>
+                                    <span><strong>Posted:</strong> 2h ago</span>
+                                </div>
+                            </div>
+                            <div class="referral-actions">
+                                <button class="btn-gold">Contact Homeowner</button>
+                                <button class="btn-primary">Provide Quote</button>
+                                <button class="btn-secondary">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="referral-card">
+                            <div class="referral-header">
+                                <div class="referral-info">
+                                    <h3>🏠 Sarah Williams · TRX-10198</h3>
+                                    <div class="referral-address">789 Pine Road, The Woodlands, TX 77381</div>
+                                    <div class="referral-service">🔧 Service: Water Heater Repair</div>
+                                </div>
+                                <span class="table-status new">New Lead</span>
+                            </div>
+                            <div class="referral-details">
+                                <p><strong>Request:</strong> Water heater not producing hot water consistently. Unit is 8 years old.</p>
+                                <div class="referral-meta">
+                                    <span><strong>Timeframe:</strong> ASAP</span>
+                                    <span><strong>Budget:</strong> Open to quote</span>
+                                    <span><strong>Posted:</strong> 5h ago</span>
+                                </div>
+                            </div>
+                            <div class="referral-actions">
+                                <button class="btn-gold">Contact Homeowner</button>
+                                <button class="btn-primary">Provide Quote</button>
+                                <button class="btn-secondary">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Your Service Areas</h2>
+                            <p class="card-subtitle">Zip codes where you receive referrals</p>
+                        </div>
+                        <div class="service-area-grid">
+                            <div class="service-area-card">
+                                <div class="service-area-zip">77380</div>
+                                <div class="service-area-city">The Woodlands</div>
+                                <div class="service-area-status active">✓ Active</div>
+                            </div>
+                            <div class="service-area-card">
+                                <div class="service-area-zip">77381</div>
+                                <div class="service-area-city">The Woodlands</div>
+                                <div class="service-area-status active">✓ Active</div>
+                            </div>
+                            <div class="service-area-card">
+                                <div class="service-area-zip">77382</div>
+                                <div class="service-area-city">Spring</div>
+                                <div class="service-area-status active">✓ Active</div>
+                            </div>
+                        </div>
+                        <button class="btn-secondary" style="width: 100%; margin-top: 20px;">+ Add More Service Areas</button>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Reviews</h2>
+                        </div>
+                        <div class="activity-list">
+                            <div class="activity-card">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong style="color: var(--primary-navy);">Michael Brown</strong>
+                                    <span style="color: var(--primary-gold);">⭐⭐⭐⭐⭐</span>
+                                </div>
+                                <p style="font-size: 13px; color: var(--neutral-600);">"Excellent service! Fast response and fair pricing."</p>
+                            </div>
+                            
+                            <div class="activity-card">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong style="color: var(--primary-navy);">Lisa Anderson</strong>
+                                    <span style="color: var(--primary-gold);">⭐⭐⭐⭐⭐</span>
+                                </div>
+                                <p style="font-size: 13px; color: var(--neutral-600);">"Professional and knowledgeable. Highly recommend!"</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Quick Actions</h2>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="action-btn" onclick="showPage('referrals')">
+                                <span class="action-icon">👥</span>
+                                View All Referrals
+                            </button>
+                            <button class="action-btn" onclick="showPage('areas')">
+                                <span class="action-icon">📍</span>
+                                Manage Service Areas
+                            </button>
+                            <button class="action-btn" onclick="showPage('reviews')">
+                                <span class="action-icon">⭐</span>
+                                View Reviews
+                            </button>
+                            <button class="action-btn" onclick="showPage('profile')">
+                                <span class="action-icon">⚙️</span>
+                                Update Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REFERRALS PAGE -->
+        <div id="referrals-page" class="page page-hidden">
+            <div class="page-header">
+                <h1 class="page-title">All Referrals</h1>
+                <p class="page-subtitle">Manage all referral requests from homeowners</p>
+            </div>
+            
+            <div class="filter-section">
+                <span class="filter-label">Filter by:</span>
+                <select class="filter-select">
+                    <option>All Referrals</option>
+                    <option>New Leads</option>
+                    <option>Contacted</option>
+                    <option>Quoted</option>
+                    <option>Declined</option>
+                </select>
+                <select class="filter-select">
+                    <option>All Service Types</option>
+                    <option>Emergency Repairs</option>
+                    <option>Inspections</option>
+                    <option>Installations</option>
+                    <option>Maintenance</option>
+                </select>
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search referrals...">
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Client Name</th>
+                            <th>Property Address</th>
+                            <th>Service Type</th>
+                            <th>Budget</th>
+                            <th>Timeline</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>John Smith</strong></td>
+                            <td>123 Main St, The Woodlands, 77380</td>
+                            <td>Plumbing Inspection</td>
+                            <td>$200-$400</td>
+                            <td>Within 1 week</td>
+                            <td><span class="table-status new">New Lead</span></td>
+                            <td><button class="table-action-btn">Respond</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sarah Williams</strong></td>
+                            <td>789 Pine Rd, The Woodlands, 77381</td>
+                            <td>Water Heater Repair</td>
+                            <td>Open</td>
+                            <td>ASAP</td>
+                            <td><span class="table-status new">New Lead</span></td>
+                            <td><button class="table-action-btn">Respond</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Michael Brown</strong></td>
+                            <td>321 Elm St, Spring, 77382</td>
+                            <td>Drain Cleaning</td>
+                            <td>$150-$300</td>
+                            <td>This week</td>
+                            <td><span class="table-status contacted">Contacted</span></td>
+                            <td><button class="table-action-btn secondary">Send Quote</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Emily Davis</strong></td>
+                            <td>321 Elm St, Spring, TX 77382</td>
+                            <td>Drain Cleaning</td>
+                            <td>$150-$300</td>
+                            <td>Feb 20, 2026</td>
+                            <td><span class="table-status scheduled">Scheduled</span></td>
+                            <td><button class="table-action-btn secondary">Follow Up</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>— (No active referral)</strong></td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td><span class="table-status new">Pending</span></td>
+                            <td><button class="table-action-btn secondary">View Details</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ACTIVE JOBS PAGE -->
+        <div id="jobs-page" class="page page-hidden">
+            <div class="page-header">
+                <h1 class="page-title">Active Jobs</h1>
+                <p class="page-subtitle">Track your scheduled and in-progress jobs</p>
+            </div>
+            
+            <div class="filter-section">
+                <span class="filter-label">Filter by:</span>
+                <select class="filter-select">
+                    <option>All Jobs</option>
+                    <option>Scheduled</option>
+                    <option>In Progress</option>
+                    <option>Awaiting Payment</option>
+                </select>
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search jobs...">
+                </div>
+            </div>
+            
+            <div style="display: grid; gap: 24px;">
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 20px;">
+                        <div>
+                            <h3 style="font-size: 20px; font-weight: 700; color: var(--primary-navy); margin-bottom: 8px;">Drain Cleaning – Michael Brown · TRX-10156</h3>
+                            <p style="color: var(--neutral-600);">321 Elm Street, Spring, TX 77382</p>
+                        </div>
+                        <span class="table-status scheduled">Scheduled</span>
+                    </div>
+                    <div style="background: var(--neutral-50); padding: 20px; border-radius: 10px; margin-bottom: 16px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                            <div>
+                                <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 4px;">Scheduled Date</div>
+                                <div style="font-weight: 600; color: var(--neutral-800);">Friday, Feb 20, 2026</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 4px;">Job Value</div>
+                                <div style="font-weight: 600; color: var(--primary-navy); font-size: 18px;">$195</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 14px; color: var(--neutral-700); line-height: 1.6;">
+                            <strong>Scope:</strong> Pre-purchase drain cleaning for 321 Elm Street. Clear main line and kitchen drain. Referred by Agent Sarah Anderson.
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn-primary">Contact Client</button>
+                        <button class="btn-secondary">Reschedule</button>
+                        <button class="btn-secondary">View Full Details</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 20px;">
+                        <div>
+                            <h3 style="font-size: 20px; font-weight: 700; color: var(--primary-navy); margin-bottom: 8px;">Water Heater Repair – Sarah Williams · TRX-10198</h3>
+                            <p style="color: var(--neutral-600);">789 Pine Road, The Woodlands, TX 77381</p>
+                        </div>
+                        <span class="table-status scheduled">Today - 2:00 PM</span>
+                    </div>
+                    <div style="background: var(--neutral-50); padding: 20px; border-radius: 10px; margin-bottom: 16px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                            <div>
+                                <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 4px;">Scheduled Date</div>
+                                <div style="font-weight: 600; color: var(--success-green);">Completed Feb 5, 2026</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 4px;">Job Value</div>
+                                <div style="font-weight: 600; color: var(--primary-navy); font-size: 18px;">$450</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 14px; color: var(--neutral-700); line-height: 1.6;">
+                            <strong>Scope:</strong> Emergency repair for burst pipe in basement. Immediate response needed. Client has shut off water main.
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn-secondary">View Invoice</button>
+                        <button class="btn-secondary">View Details</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 20px;">
+                        <div>
+                            <h3 style="font-size: 20px; font-weight: 700; color: var(--primary-navy); margin-bottom: 8px;">Plumbing Inspection – John Smith · TRX-10247</h3>
+                            <p style="color: var(--neutral-600);">123 Main Street, The Woodlands, TX 77380</p>
+                        </div>
+                        <span class="table-status scheduled">Next Week</span>
+                    </div>
+                    <div style="background: var(--neutral-50); padding: 20px; border-radius: 10px; margin-bottom: 16px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                            <div>
+                                <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 4px;">Scheduled Date</div>
+                                <div style="font-weight: 600; color: var(--success-green);">Completed Jan 28, 2026 ✓</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 13px; color: var(--neutral-600); margin-bottom: 4px;">Job Value</div>
+                                <div style="font-weight: 600; color: var(--primary-navy); font-size: 18px;">$3,200</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 14px; color: var(--neutral-700); line-height: 1.6;">
+                            <strong>Scope:</strong> Complete plumbing for master bathroom renovation. New shower, vanity, toilet installation. Rough-in and finish work. 3-day project.
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn-primary">Contact Client</button>
+                        <button class="btn-secondary">Review Plans</button>
+                        <button class="btn-secondary">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUOTES PAGE -->
+        <div id="quotes-page" class="page page-hidden">
+            <div class="page-header">
+                <h1 class="page-title">Quotes & Estimates</h1>
+                <p class="page-subtitle">Manage your sent quotes and create new estimates</p>
+            </div>
+            
+            <div class="content-layout">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Create New Quote</h2>
+                            <p class="card-subtitle">Provide detailed quote for a referral</p>
+                        </div>
+                        <div class="quote-form">
+                            <div class="form-group">
+                                <label class="form-label">Select Referral</label>
+                                <select class="form-select">
+                                    <option>John Smith - Plumbing Inspection - 123 Main St</option>
+                                    <option>Sarah Williams - Water Heater Repair - 789 Pine Rd</option>
+                                    <option>Michael Brown - Drain Cleaning - 321 Elm St</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Service Description</label>
+                                <textarea class="form-textarea" placeholder="Describe the work to be performed..."></textarea>
+                            </div>
+                            <div class="price-input-group">
+                                <div class="form-group">
+                                    <label class="form-label">Labor Cost</label>
+                                    <input type="number" id="laborCost" class="form-input" placeholder="0.00" min="0" oninput="calcTotal()">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Materials Cost</label>
+                                    <input type="number" id="materialsCost" class="form-input" placeholder="0.00" min="0" oninput="calcTotal()">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Total Quote Amount <span style="font-size:12px;color:var(--neutral-500);font-weight:400;">(auto-calculated)</span></label>
+                                <input type="number" id="totalQuote" class="form-input" placeholder="0.00" readonly
+                                    style="font-size:18px;font-weight:600;background:var(--neutral-50);cursor:not-allowed;">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Estimated Completion Time</label>
+                                <select class="form-select">
+                                    <option>Same Day</option>
+                                    <option>1-2 Days</option>
+                                    <option>3-5 Days</option>
+                                    <option>1-2 Weeks</option>
+                                    <option>2-4 Weeks</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Additional Notes</label>
+                                <textarea class="form-textarea" placeholder="Warranty information, payment terms, etc..."></textarea>
+                            </div>
+                            <button class="btn-gold" style="width: 100%;">Send Quote to Homeowner</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Quotes</h2>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div style="padding: 16px; background: var(--neutral-50); border-radius: 10px; border-left: 4px solid var(--success-green);">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong style="color: var(--primary-navy);">Emily Davis</strong>
+                                    <span class="table-status completed" style="font-size: 11px;">Accepted</span>
+                                </div>
+                                <div style="font-size: 14px; color: var(--neutral-600); margin-bottom: 4px;">Pipe Installation - $1,100</div>
+                                <div style="font-size: 13px; color: var(--neutral-500);">Sent 2 days ago</div>
+                            </div>
+                            
+                            <div style="padding: 16px; background: var(--neutral-50); border-radius: 10px; border-left: 4px solid var(--warning-orange);">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong style="color: var(--primary-navy);">Michael Brown</strong>
+                                    <span class="table-status quoted" style="font-size: 11px;">Pending</span>
+                                </div>
+                                <div style="font-size: 14px; color: var(--neutral-600); margin-bottom: 4px;">Drain Cleaning – $195 · TRX-10156</div>
+                                <div style="font-size: 13px; color: var(--neutral-500);">Sent 1 day ago</div>
+                            </div>
+                            
+                            <div style="padding: 16px; background: var(--neutral-50); border-radius: 10px; border-left: 4px solid var(--error-red);">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong style="color: var(--primary-navy);">James Taylor</strong>
+                                    <span class="table-status declined" style="font-size: 11px;">Declined</span>
+                                </div>
+                                <div style="font-size: 14px; color: var(--neutral-600); margin-bottom: 4px;">Faucet Replacement - $350</div>
+                                <div style="font-size: 13px; color: var(--neutral-500);">Sent 3 days ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Quote Statistics</h2>
+                        </div>
+                        <div style="display: grid; gap: 16px;">
+                            <div style="display: flex; justify-content: space-between; padding: 12px; background: var(--neutral-50); border-radius: 8px;">
+                                <span style="color: var(--neutral-600);">Acceptance Rate</span>
+                                <strong style="color: var(--success-green);">94%</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px; background: var(--neutral-50); border-radius: 8px;">
+                                <span style="color: var(--neutral-600);">Avg Response Time</span>
+                                <strong style="color: var(--primary-navy);">4.2 hours</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px; background: var(--neutral-50); border-radius: 8px;">
+                                <span style="color: var(--neutral-600);">Total Quotes Sent</span>
+                                <strong style="color: var(--primary-navy);">47</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS PAGE -->
+        <div id="reviews-page" class="page page-hidden">
+            <div class="page-header">
+                <h1 class="page-title">Customer Reviews</h1>
+                <p class="page-subtitle">See what homeowners are saying about your service</p>
+            </div>
+            
+            <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Overall Rating</div>
+                            <div class="stat-value">4.8</div>
+                            <div class="stat-description">⭐⭐⭐⭐⭐</div>
+                        </div>
+                        <div class="stat-icon">⭐</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Total Reviews</div>
+                            <div class="stat-value">14</div>
+                            <div class="stat-description">All positive</div>
+                        </div>
+                        <div class="stat-icon">💬</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Response Rate</div>
+                            <div class="stat-value">100%</div>
+                            <div class="stat-description">To all reviews</div>
+                        </div>
+                        <div class="stat-icon">✅</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: grid; gap: 20px;">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-client">Michael Brown</div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-date">February 10, 2026</div>
+                    <div class="review-text">
+                        "Excellent service! They responded quickly to my emergency leak and fixed it within hours. Very professional, fair pricing, and cleaned up thoroughly after the job. Highly recommend!"
+                    </div>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--neutral-200);">
+                        <strong style="font-size: 13px; color: var(--neutral-700);">Your Response:</strong>
+                        <p style="font-size: 14px; color: var(--neutral-600); margin-top: 6px;">Thank you Michael! We're glad we could help quickly. Don't hesitate to call us for any future plumbing needs.</p>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-client">Lisa Anderson</div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-date">February 8, 2026</div>
+                    <div class="review-text">
+                        "Professional and knowledgeable! They installed my new water heater perfectly and explained everything clearly. Great communication and arrived on time. Will definitely use again."
+                    </div>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--neutral-200);">
+                        <strong style="font-size: 13px; color: var(--neutral-700);">Your Response:</strong>
+                        <p style="font-size: 14px; color: var(--neutral-600); margin-top: 6px;">We appreciate your kind words, Lisa! Enjoy your new water heater and feel free to reach out if you need anything.</p>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-client">Robert Wilson</div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-date">February 5, 2026</div>
+                    <div class="review-text">
+                        "Outstanding work on our bathroom renovation plumbing! Attention to detail was impressive, and they completed the job ahead of schedule. Clean work area every day. Couldn't be happier!"
+                    </div>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--neutral-200);">
+                        <strong style="font-size: 13px; color: var(--neutral-700);">Your Response:</strong>
+                        <p style="font-size: 14px; color: var(--neutral-600); margin-top: 6px;">Thank you Robert! Your bathroom looks amazing. It was a pleasure working with you on this project!</p>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-client">Lisa Anderson</div>
+                        <div class="review-stars">⭐⭐⭐⭐☆</div>
+                    </div>
+                    <div class="review-date">February 2, 2026</div>
+                    <div class="review-text">
+                        "Very good service overall. Fixed my drain issue efficiently. Only minor complaint was they arrived 30 minutes late, but they called ahead to let me know. Otherwise great work!"
+                    </div>
+                    <div style="margin-top: 12px;">
+                        <button class="btn-secondary" style="font-size: 14px; padding: 8px 16px;">Respond to Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICE AREAS PAGE -->
+        <div id="areas-page" class="page page-hidden">
+            <div class="page-header">
+                <h1 class="page-title">Service Areas</h1>
+                <p class="page-subtitle">Manage the zip codes where you want to receive referrals</p>
+            </div>
+            
+            <div class="content-layout">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Your Active Service Areas</h2>
+                            <p class="card-subtitle">You're currently receiving referrals in these zip codes</p>
+                        </div>
+                        <div class="service-area-grid">
+                            <div class="service-area-card">
+                                <div class="service-area-zip">77380</div>
+                                <div class="service-area-city">The Woodlands</div>
+                                <div style="margin: 12px 0; font-size: 13px; color: var(--neutral-600);">
+                                    <div>8 referrals this month</div>
+                                    <div>$12,400 earned</div>
+                                </div>
+                                <div class="service-area-status active">✓ Active</div>
+                                <button class="btn-secondary" style="width: 100%; margin-top: 12px; font-size: 13px; padding: 8px;">Pause</button>
+                            </div>
+                            <div class="service-area-card">
+                                <div class="service-area-zip">77381</div>
+                                <div class="service-area-city">The Woodlands</div>
+                                <div style="margin: 12px 0; font-size: 13px; color: var(--neutral-600);">
+                                    <div>5 referrals this month</div>
+                                    <div>$7,800 earned</div>
+                                </div>
+                                <div class="service-area-status active">✓ Active</div>
+                                <button class="btn-secondary" style="width: 100%; margin-top: 12px; font-size: 13px; padding: 8px;">Pause</button>
+                            </div>
+                            <div class="service-area-card">
+                                <div class="service-area-zip">77382</div>
+                                <div class="service-area-city">Spring</div>
+                                <div style="margin: 12px 0; font-size: 13px; color: var(--neutral-600);">
+                                    <div>3 referrals this month</div>
+                                    <div>$4,200 earned</div>
+                                </div>
+                                <div class="service-area-status active">✓ Active</div>
+                                <button class="btn-secondary" style="width: 100%; margin-top: 12px; font-size: 13px; padding: 8px;">Pause</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recommended Service Areas</h2>
+                            <p class="card-subtitle">High-demand areas near your current service zones</p>
+                        </div>
+                        <div class="service-area-grid">
+                            <div class="service-area-card" style="border-color: var(--primary-gold);">
+                                <div class="service-area-zip">77384</div>
+                                <div class="service-area-city">Conroe</div>
+                                <div style="margin: 12px 0; font-size: 13px; color: var(--neutral-600);">
+                                    <div>High demand area</div>
+                                    <div>Avg. $850/referral</div>
+                                </div>
+                                <button class="btn-gold" style="width: 100%; font-size: 13px; padding: 10px;">Add Area</button>
+                            </div>
+                            <div class="service-area-card" style="border-color: var(--primary-gold);">
+                                <div class="service-area-zip">77385</div>
+                                <div class="service-area-city">Conroe</div>
+                                <div style="margin: 12px 0; font-size: 13px; color: var(--neutral-600);">
+                                    <div>Growing area</div>
+                                    <div>Avg. $720/referral</div>
+                                </div>
+                                <button class="btn-gold" style="width: 100%; font-size: 13px; padding: 10px;">Add Area</button>
+                            </div>
+                            <div class="service-area-card" style="border-color: var(--primary-gold);">
+                                <div class="service-area-zip">77386</div>
+                                <div class="service-area-city">Spring</div>
+                                <div style="margin: 12px 0; font-size: 13px; color: var(--neutral-600);">
+                                    <div>Medium demand</div>
+                                    <div>Avg. $680/referral</div>
+                                </div>
+                                <button class="btn-gold" style="width: 100%; font-size: 13px; padding: 10px;">Add Area</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Add New Service Area</h2>
+                        </div>
+                        <form style="display: flex; flex-direction: column; gap: 16px;">
+                            <div class="form-group">
+                                <label class="form-label">Zip Code</label>
+                                <input type="text" class="form-input" placeholder="Enter 5-digit zip code">
+                            </div>
+                            <button type="submit" class="btn-primary">Add Service Area</button>
+                        </form>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Service Area Tips</h2>
+                        </div>
+                        <div style="font-size: 14px; color: var(--neutral-700); line-height: 1.8;">
+                            <p style="margin-bottom: 12px;">✓ <strong>Start Local:</strong> Focus on areas within 15-20 miles of your location</p>
+                            <p style="margin-bottom: 12px;">✓ <strong>Monitor Performance:</strong> Track which areas generate the most revenue</p>
+                            <p style="margin-bottom: 12px;">✓ <strong>Be Responsive:</strong> Quick response times increase your referral priority</p>
+                            <p>✓ <strong>Adjust as Needed:</strong> Pause areas during busy periods</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EARNINGS PAGE -->
+        <div id="earnings-page" class="page page-hidden">
+            <div class="page-header">
+                <h1 class="page-title">Earnings & Payments</h1>
+                <p class="page-subtitle">Track your revenue from the platform</p>
+            </div>
+            
+            <div class="earnings-card" style="margin-bottom: 32px;">
+                <div class="earnings-label">Total Earnings (This Month)</div>
+                <div class="earnings-amount">$9,840</div>
+                <div style="font-size: 15px; opacity: 0.9;">YTD 2026 · 14 completed jobs · Next payout in 5 days</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Year to Date</div>
+                            <div class="stat-value">$9,840</div>
+                            <div class="stat-description">14 jobs completed</div>
+                        </div>
+                        <div class="stat-icon">💰</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Average Job Value</div>
+                            <div class="stat-value">$703</div>
+                            <div class="stat-description">+12% from last month</div>
+                        </div>
+                        <div class="stat-icon">📊</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Pending Payment</div>
+                            <div class="stat-value">$5,200</div>
+                            <div class="stat-description">2 jobs awaiting payment</div>
+                        </div>
+                        <div class="stat-icon">⏳</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Payment History</h2>
+                    <p class="card-subtitle">Completed jobs and platform payment history</p>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Client</th>
+                                <th>Service</th>
+                                <th>Job Value</th>
+                                <th>Platform Fee</th>
+                                <th>Your Earnings</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Feb 5, 2026</td>
+                                <td>Sarah Williams · TRX-10198</td>
+                                <td>Water Heater Repair</td>
+                                <td>$580</td>
+                                <td>$58</td>
+                                <td><strong style="color: var(--success-green);">$522</strong></td>
+                                <td><span class="table-status completed">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>Jan 28, 2026</td>
+                                <td>John Smith · TRX-10247</td>
+                                <td>Plumbing Inspection</td>
+                                <td>$250</td>
+                                <td>$25</td>
+                                <td><strong style="color: var(--success-green);">$225</strong></td>
+                                <td><span class="table-status completed">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>Feb 20, 2026</td>
+                                <td>Michael Brown · TRX-10156</td>
+                                <td>Drain Cleaning</td>
+                                <td>$195</td>
+                                <td>$20</td>
+                                <td><strong style="color: var(--warning-orange);">$175</strong></td>
+                                <td><span class="table-status processing">Awaiting Payment</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROFILE PAGE -->
+        <div id="profile-page" class="page page-hidden">
+            <div class="page-header">
+                <h1 class="page-title">Company Profile</h1>
+                <p class="page-subtitle">Manage your business information and preferences</p>
+            </div>
+            
+            <div class="content-layout">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Business Information</h2>
+                        </div>
+                        <form style="display: grid; gap: 20px;">
+                            <div class="form-group">
+                                <label class="form-label">Company Name</label>
+                                <input type="text" class="form-input" value="Woodlands Plumbing Pro">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Contact Name</label>
+                                <input type="text" class="form-input" value="Marcus Rivera">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-input" value="(281) 555-0606">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-input" value="marcus@woodlandsplumbing.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Business Address</label>
+                                <input type="text" class="form-input" value="512 Commerce Park Drive, The Woodlands, TX 77380">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">License Number</label>
+                                <input type="text" class="form-input" value="TX-PLB-48830">
+                                <div style="font-size:12px;color:var(--neutral-500);margin-top:6px;">Submitted for admin verification.</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Years in Business</label>
+                                <input type="number" class="form-input" value="15" min="1" max="100">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Insurance — Policy Type</label>
+                                <select class="form-select">
+                                    <option selected>General Liability + Workers Comp</option>
+                                    <option>General Liability Only</option>
+                                    <option>Workers Comp Only</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Coverage Amount</label>
+                                <input type="text" class="form-input" value="$2,000,000" placeholder="e.g. $1,000,000">
+                                <div style="font-size:12px;color:var(--neutral-500);margin-top:6px;">Submitted for admin verification.</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Policy Number</label>
+                                <input type="text" class="form-input" value="WC-789456" placeholder="e.g. WC-123456">
+                                <div style="font-size:12px;color:var(--neutral-500);margin-top:6px;">Submitted for admin verification.</div>
+                            </div>
+                            <button type="submit" class="btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Service Categories</h2>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px;">
+                                <span>Emergency Repairs</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px;">
+                                <span>Installations</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px;">
+                                <span>Inspections</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px;">
+                                <span>Maintenance</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" style="width: 18px; height: 18px;">
+                                <span>Water Treatment Systems</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Notification Preferences</h2>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px;">
+                                <span>Email notifications for new referrals</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px;">
+                                <span>SMS alerts for urgent requests</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--neutral-50); border-radius: 8px; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px;">
+                                <span>Weekly performance reports</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Account Status</h2>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+                            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--neutral-200);">
+                                <span style="color: var(--neutral-600);">Membership Type</span>
+                                <strong style="color: var(--primary-gold);">Premium Partner</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--neutral-200);">
+                                <span style="color: var(--neutral-600);">Member Since</span>
+                                <strong>January 2024</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 10px 0;">
+                                <span style="color: var(--neutral-600);">Account Status</span>
+                                <strong style="color: var(--success-green);">Active & Verified</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.add('page-hidden'));
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageId + '-page');
+            if (selectedPage) {
+                selectedPage.classList.remove('page-hidden');
+            }
+            
+            // Update active nav item
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function calcTotal() {
+            const labor = parseFloat(document.getElementById('laborCost').value) || 0;
+            const materials = parseFloat(document.getElementById('materialsCost').value) || 0;
+            document.getElementById('totalQuote').value = (labor + materials).toFixed(2);
+        }
+    </script>
+</body>
+</html>
