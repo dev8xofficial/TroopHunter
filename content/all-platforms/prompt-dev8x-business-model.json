@@ -1,0 +1,11 @@
+Subject: Architecture Review: Scaling a Boutique Managed Hosting Business (Development to Production)
+
+Context: Dev8X is a software agency transitioning from a "build-and-deliver" model to a "Full-Service Managed Hosting" provider (inspired by the Shopify SaaS model). It has one active client and aim to scale to 10 production clients immediately. It need a hardware and infrastructure plan that ensures 24/7/365 availability with cost-efficiency and reliability.
+
+Current Tech Stack:
+* Virtualization/Orchestration: Proxmox, Kubernetes (K8s), Docker.
+* IaC/Automation: Terraform, Ansible, CI/CD pipelines.
+
+The Mission: Design a hardware and infrastructure roadmap to host 10 production web systems with high reliability.
+
+Detail Document Location: Drive -> Dev8X -> The Burkes Group TX -> Me -> Clients -> Infrastructure
