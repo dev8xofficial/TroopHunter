@@ -30,31 +30,9 @@ export default {
 
 		// --- 1. Handle /videos/ files from R2 ---
 		if (pathname.startsWith('/videos/')) {
-			const objectKey = decodedPathname.replace(/^\//, '');
-			const object = await env.MY_BUCKET.get(objectKey, { cf: { cacheTtl: 0, cacheEverything: false } });
-
-			if (!object) {
-				return new Response('Worker 0: Video Not Found', { status: 404, headers: corsHeaders() });
-			}
-
-			const contentType =
-				object.httpMetadata?.contentType ||
-				(pathname.endsWith('.m3u8')
-					? 'application/vnd.apple.mpegurl'
-					: pathname.endsWith('.ts')
-						? 'video/mp2t'
-						: pathname.endsWith('.mp4')
-							? 'video/mp4'
-							: 'application/octet-stream');
-
-			return new Response(object.body, {
-				headers: {
-					...corsHeaders(),
-					'Cache-Control': 'no-cache, no-transform, no-store', // or 'private, max-age=0'
-					'Content-Type': contentType,
-					ETag: object.httpEtag,
-				},
-			});
+			// Redirect directly to the public R2 URL — Worker is not involved in serving the bytes
+			const publicR2VideoUrl = `https://www.assets.dev8x.com${pathname}`;
+			return Response.redirect(publicR2VideoUrl, 302);
 		}
 
 		// --- 2. Serve ALL non-image assets from ASSETS first ---
