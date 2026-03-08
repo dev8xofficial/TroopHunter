@@ -18,7 +18,6 @@ const pageToUrlMap = {
   // Main pages
   index: '/',
   'about/index': '/about',
-  'work/index': '/work',
   'pricing/index': '/pricing',
   'contact/index': '/contact',
   'our-process/index': '/our-process',
@@ -28,12 +27,12 @@ const pageToUrlMap = {
   'web-applications/index': '/web-applications',
   'saas-applications/index': '/saas-applications',
   'mobile-applications/index': '/mobile-applications',
+  'internships/index': '/internships',
   'privacy/index': '/privacy',
   '404/index': '/404',
 
   // Dynamic routes (these will be handled separately)
   'pricing/[slug]': '/pricing/[slug]',
-  'work/[slug]': '/work/[slug]'
 };
 
 // Function to read dynamic routes from data files
