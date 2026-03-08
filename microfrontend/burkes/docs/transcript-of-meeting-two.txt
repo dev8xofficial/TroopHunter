@@ -1,0 +1,374 @@
+Tom  00:00
+if uh can you go back uh abdu can you go back to any um icon say for example attorney yeah okay so are you asking to go back this page yep go to go agent for example agent client client i'm sorry client so There are what I think we kind of have to do because of compliance. Inside the portal, each section of the portal has to have a disclaimer. For example, if the client needs to have access to the attorney, They both have to check on it on that side. And then the next disclaimer would be the real estate side. I'm not sure if they can just click a general one or they have to separately click it. But I would assume that we should have each site individually click because of a lot of compliance in the United States on the real estate side. And if they don't click it, they can't go in. I think it's a safety feature or something.
+
+Abdul  01:23
+Okay. So the purpose of the disclaimer is to inform the user about the security concerns or we will write down some information on the disclaimer so that user first approve it. Then he can move into the actions.
+
+Tom  01:42
+yes um it's basically transfer of information from where they are actually at when they sign in and then give permission to go to the different department i would say on our website yeah that and uh giving them the right to truth whatever service they want so we got to make sure that we're are telling them that
+
+Speaker 3  02:10
+They're not obligated to use our services. They're free to use whoever they want, but our services are available to them.
+
+Abdul  02:19
+Perfectly fine. We can show either a drop down or just like this action required at every screen so that they can approve before any action, any major action or before accessing our portal.
+
+Speaker 3  02:38
+Yeah, I would like it to just be whenever they use it the first time So think of it like, you know, like like Disney plus like you don't sign a disclaimer every time that you log in When you set up your account There's one disclaimer.
+
+Abdul  02:53
+Yeah, then of course if they make any updates, yeah, then it's pushed through Let me go to the agent screen for example No, not the agent screen, we will go for the client screen first Here we can show that disclaimer.
+
+Speaker 4  03:11
+Okay.
+
+Abdul  03:11
+This is a screen where we can display the important information and the instructions like normally whenever we use a software, it always asks to click on the read me section where all the legal information is written. So we can use this screen as well for this purpose.
+
+Speaker 4  03:33
+Okay.
+
+Abdul  03:36
+And even we can show the disclaimer information, especially on this sensitive actions. Maybe, uh, when a client sharing their sensitive documents to the attorneys or CPAs, maybe at those points, we can also, you know, uh, show them a model where we can guide them, how this action will be moving forward. So you have to approve it.
+
+Tom  04:03
+OK. Approve it one time probably, right?
+
+Abdul  04:06
+Yeah. So these are minor tasks. We can do it.
+
+Speaker 3  04:11
+OK. OK, so the clients, well, they'll be able to upload documents. Now, what about the realtors as far as on the back end of things? How much assets will we have? to be able to see you know all the information or let's say in realtor that's not associated with admin but they need to log in to see their clients activity yeah i think i have to go to the agent portal first okay so uh let me
+
+Abdul  04:55
+give you a review about admin and client admin is the entity which has mostly access to all the users admin can create any kind of user we can select roles like agents and clients as well attorney cpa mortgage lender as well so okay Admin also create partners, which you have talked before in in last meeting and admin also can see the transactions and admin is the only one who going to approve. A status on the transactions, so there are several statuses before a transaction get complete, so admin will approve all the transactions. And OK, but agent also. can you know update the stage for example uh admin has started the consultation admin agent basically find the property or offer the negotiation so it it just has to update the status and admin will approve it so so in other in other words you are putting a crm in this port uh in this website also am i correct yeah Because I do believe that maybe if you guys will have multiple agents who are working with your customers and they can handle their transactions, but a senior guy in your team still needs to overview all the processes going on and he can overview the agent's transactions where they are moving and he can easily approve all of them. So I think this process is much better because if agent made some mistakes, it might be a user experience problem. And it's better to give that responsibility to a senior guy who will sit on the admin side. Yeah, because it's more so quality control. Yeah. Regarding the documents, an agent, who is handling a specific transaction and specific customers, we can see, uh, the transaction is here and he can upload the documents and he, uh, he will wait for the admin to approve or, uh, the attorney or CPU, whoever will, uh, review that document and approve it. So agent and admin, both will work on transactions. documents as well and obviously whenever the particular stage about the transaction appears specifically for attorney CPA and mortgage lender they can see those documents as well and they can approve as well for example in case of attorney they can I think yeah that was my next question will the attorney be able to access
+
+Speaker 3  08:11
+so like let's say when the user the the end user signs up which is the buyer or the seller um will the attorney be able to access their documents or we have to give them permission or will they be able to access it automatically so the attorney let's say um a client registers through the website and they put that they have an uh an attorney down will that attorney gain instant access whenever the email is created, or will we have to do it manually on our end to assign that client with the attorney?
+
+Abdul  08:49
+We have multiple options, and we can even\... Let me show you from the admin side. For example, in user section, we can create account for attorney here easily. Admin can do this. And even an attorney can\... go into the uh hot screen and he can create his account as well create your uh yes from the create link probably here we will add uh create attorney uh link he can create his account and uh there are two options and now uh we can also create a third option as well uh maybe from we can give attorney dashboard access to the attorney via email. If we leave that, the attorney probably will not create an account and will not do that hustle at that time.
+
+Speaker 3  09:51
+Yeah, I would like for the attorney to have read and write capabilities, meaning that they can add notes to their client's file if needed to be. Like, let's say that way they don't have to necessarily call us
+
+Abdul  10:06
+uh they'll just add a note to their client's file and then it will send us a notification via email that hey this has been updated for us to go back and check some of that stuff yeah i didn't work on the approve for now but i worked on the check button here you can see the note attorney can write while rejecting a document and we will follow the same process on approval as well Is this what you want or you want an email integration as well when an attorney approves or rejects a document?
+
+Tom  10:42
+Good question. So are we going to use this as our CRM or are we going to integrate our CRM into this or is it capable? Are you asking me a question? No, I'm asking a do.
+
+Abdul  11:00
+You don't know anything. OK, so this is a whole system. You can say this is and these are multiple CRMs for each entity. And whatever happens in these CRMs, each entities will know what the other party has performed in action. For example, an attorney performed an action he had rejected a document, basically. So, admin will know and the agent will know. An attorney associated to a particular customer has rejected a document with a note. Okay. And if you need an email integration, we can attach it as well. Okay. But these systems will not\... uh right now they they don't have any kind of uh functionality connect with your crm maybe you guys are using in right now um we doesn't have any functionality connect to connect it with your crm so at that part we need to work but i think we can do two things in these portals each entity will know uh
+
+Tom  12:20
+our particular document has rejected and the second part if you guys need to know the notification of the rejection we can integrate that thing with the email okay um one of my second questions well i have multiple questions now this is gonna be hosted by aws or some kind of data company right um we need the requirement of having the data for three to five years. I'm not sure how many years. And also the users. Four years. Four years. And we need to add different users on different apps. And how many users should we add or can we add? Or what does it affect us?
+
+Abdul  13:17
+Does it affect us on the cost? Your question have several parts. So I will discuss the first part is about AWS. We have options. We have AWS and we have other platforms who provide dedicated servers where we can run the whole system there. Okay. And if we use dedicated servers for better performances and for keeping a complete solution there, we can still use AWS services as well. So I'm working on that part. uh how how much we need to use aws services and where we need to use a dedicated server so that is the answer to your uh to your question the first part and the second part uh you have asked about the price or uh what you have asked this in the second part the users how was that yeah which users you are talking you are talking about agents or clients um there will be different users on different you can create any amount of users okay no limitation about it because we are we gonna um we're gonna buy a server who will have enough resources to hold all of these kind of uh stuff yeah there is a concern about storing the documents because if we store documents for four years we need a huge amount of storage so That's why there are some AWS services we're gonna use for it. For example, S3 to store those documents and we're gonna use some encryptions and details. Yeah, of course. Encryptions and security compliances to keep them safe.
+
+Tom  15:16
+We need another icon for insurance. uh in which portal we i have added insurance in the client uh portal as well i can show you okay yeah home warranty yep yep okay um i think we have to add in the menu tab on it also uh you are you are saying you need to add here yeah somewhere around there yeah uh okay yeah because if they if they if they uh just want to buy insurance right they they are done with their mortgage they are done with their real everything is done their last part is insurance for maintenance right so we want to keep that uh as a front front end okay so uh i will uh i will explain you my workflow which i have implemented in the client dashboard
+
+Abdul  16:18
+and exactly the client is will buy insurance at a stage of this transaction so for example he has consulted he got the property and he he is under contract he completed the mortgage application then he will go into the insurance side as well you can see here is the status And during that status, he will, this transaction, this status will move the client into the insurance section to go and buy the insurance.
+
+Tom  16:56
+I have a question for Jakorian. Do we, on this particular platform that we have, I understand that the disclosure is already sent and we see they have the client have the checkmark or attorney have the checkmark. Now, does the client need, does our website need to add three options for insurance?
+
+Speaker 3  17:28
+Yeah, we need an insurance option there.
+
+Tom  17:32
+Do we have to if this is a marketing company? We have to figure that out ourselves, right?
+
+Speaker 3  17:42
+Yeah. Okay.
+
+Tom  17:45
+Unless we're a marketing company. We were just talking about compliance. Sorry, Abdul.
+
+Speaker 4  17:53
+Okay.
+
+Tom  17:57
+Because in the mortgage world and\... The real estate world in all these things that we have, supposedly if a real estate agent offer home insurance for their client, they have, they're supposed to offer three different options.
+
+Speaker 3  18:19
+We don't have to, that doesn't apply. They're using access to the term because remember the disclosure is going to tell them that, Hey, you don't have, you're not obligated to use the services so we can have it. Okay. Because they have to sign a disclosure saying that they agree to allow us to share the information across our different entities, across different entities that's owned by Brooks Holding. And then at that point, once they sign up with us, they're at their own liberty to find two other companies to shop with. We don't have to provide them with that option.
+
+Tom  18:56
+What we need to do on our end, Abdul, is we want to make sure the compliance on our side is correct. The legal side, for us. So as far as we see it, this is what we need. Yes.
+
+Speaker 3  19:08
+Yeah, we have to have the compliance part here.
+
+Tom  19:15
+What else? Agent, insurance, agent.
+
+Speaker 3  19:20
+Could you give me about 20 more minutes? I'm actually inside the meeting room.
+
+Tom  19:27
+Yeah. That's all the questions I have right now. Mortgage.
+
+Abdul  19:35
+Tom, let me speak. I have questions about mortgage portal. But before that, I move in that section. I want to ensure that we maybe have a couple of meetings to clear other remaining portals they are probably six or seven and uh just like we uh we we are not integrating cpu right now maybe in future we need to ensure the remaining portals have all the functionalities buttons and widgets up there which we need which we required so after that we can even We can even we we will try to even finalize what we actually need So maybe there will be a lot more stuff which we need to hide on these portals. So that's right. That's right That's why I'm asking you to Maybe we're gonna create some we're gonna have more meetings to finalize other portals and regarding mortgage I was thinking about the mortgage side, portal side. Do these mortgage lenders will enter into our portals? That is a very important question.
+
+Tom  21:04
+Can the mortgage lender go into our portal instead of a client? Attorney can access this. The client can access this. The admin can access it. The insurance guy should access it. We're talking about the mortgage side. Am I correct?
+
+Abdul  21:22
+Yeah, yeah. Yeah, obviously.
+
+Tom  21:25
+Lender cannot access it?
+
+Tom  21:28
+Yeah, lender cannot access it, no. Because they already have their own portal.
+
+Tom  21:40
+Ja'Cory is in back with me.
+
+Speaker 3  21:47
+Yeah.
+
+Tom  22:01
+So how do most of the functions that you have on the tabs on the front end of the screen dashboard? These are plug and play. Once you have the The code, we can just put it in, right? We don't have to say yes or no today.
+
+Abdul  22:18
+Okay. So you are saying that if we leave the mortgage portal, the remaining portals will have those, all of these buttons and widgets and UI stuff, which we might require. So we can plug and play in future, basically. So this is what you are saying? We can reuse it.
+
+Speaker 3  22:41
+The mortgage is in fact\...
+
+Tom  22:43
+The mortgage, it doesn't\... It's our option, only the admin's option to click it or not.
+
+Speaker 3  22:50
+Okay, well, because I was going to say, so part of the back office task for the realtor is that you have to upload the closing disclosure, which is going to have all the mortgage information on it. Oh, title. So it's going to have all titles information on it as well.
+
+Tom  23:10
+So we need to add another title icon on this.
+
+Speaker 3  23:13
+no because the agent is gonna add they're gonna have all the documents the title has the real estate agent okay makes sense okay so at the stage they will see it at that stage yeah they are okay so who chooses the title the realtor the realtor or the consumer not care not care is legally they should have a choice between the agent so legally the is that's negotiated however in real world the agent chooses the the title company
+
+Tom  24:07
+So we will have a checkbox somewhere along the line that you're allowing the real estate agents, allowing this ex title company to go in.
+
+Speaker 3  24:20
+Yeah. Well, no. So the title company doesn't have assets to go in only the agent. So when the agent receives the documents or when they communicate with title, all of that stuff is going to be inside of the contract.
+
+Tom  24:32
+So what do you mean is on our side, we don't need any, It's none of our business. It's only the real estate agent. So when we do a disclosure, we have to do one specifically for real estate agent.
+
+Speaker 3  24:50
+We can do a disclosure for all the services. Because the real estate agent is going to be the one that's entering majority of the information. So that's another thing I wanted to ask you, Abdul. the realtor they they submit the contract is there a way to where the system will automatically pull that data and automatically make it populate stating that okay title company this address earnest money this amount option fee this amount or will we have to go in and manually put those numbers in uh is this a document from which the system has to fetch well we would upload the document uh because it's a trek document however with real estate all the documents are going to be uniform okay so so because they're only uh you can only use a state approved document okay So what I'm saying is, is there a way that we can create it to where whenever the document is uploaded into our portal, it automatically extracts the important information, such as purchase price, down payment, earnest and option money, option period term, like how long is the option period, the title company associated with it, and closing date, like that type of information.
+
+Abdul  26:22
+This should be done and this should be a doable thing, but I have to work on it because there will be multiple documents and probably these documents might have might have a little bit changed terms for the same concept. So there will be problems while extracting information out of the documents. So we can work on this feature. future probably because we always prefer to introduce a manual work first and we will start automating a feature by feature or step by step so whenever our right time comes we will start working on this feature and we will get to know that I can work on this feature right now and figure out a way can we achieve it or not Most of these softwares do achieve these sort of functionality. So I hope we can do as well. But there are challenges like multiple type of documents and a same term, same concept with different term might confuse. So obviously, these challenges we have to resolve and maybe while building this functionality, we will keep maturing this part of system. So we need to work on it, and we will figure out a way, definitely.
+
+Speaker 3  28:02
+Yeah, because I would think that adding those type of automations can be really costly. But of course, I guess what we would call it now is that we have the bare bones. of the platform, which is the most important part. And like you said, we can perfect it as we go.
+
+Abdul  28:25
+Yeah, as we go. Yeah.
+
+Speaker 3  28:27
+And so I want to talk about pricing in this. For what you have worked on, if you were to say, hey, we're going to take this system as it is today, what would we be looking at as far as pricing?
+
+Abdul  28:41
+so i was working on the pricing section as well and because these are salmon portals and they have a lot of screens and a lot of functionality now it has become complex and just in the in this meeting we are not approving the cpa so and i also mentioned about the mortgage lender portal as well uh because uh i left that part uh before because i was thinking about that how mortgage lender will enter into this system by creating an account i don't think so they will do it so this is the question which i asked to the tom so we are leaving two portals behind yes definitely and and the uh other portals and the functionalities were quite complex i could not be um calculating the clear working hours how much time it will take so basically in in the software development we have three different pricing methods one is fixed one which you are asking And in our case, these portals has become a bit complex. So it's becoming hard for me to give you a single digit about the portals. And I'm working on it. If you give me some time, I probably give you a complete document, two or three page document in which all the details will be mentioned and how much time will be given to the system to build. and the pricing. Basically, we are not charging a price based on the US markets. We are charging the price based on the Asian markets, the rates, because we are committed to deliver customers in 50 to 70% less price compared to the US market. So if I talk about the hourly rates, The hourly rates of a senior guy will be \$20 to \$30 per hour and mid guy between \$15 to \$20 per hour. So what I assume and I'm feeling about the system, probably we will be three person who is working on it. And the amount of work I have done, it probably, I think I can say at three or four weeks I have been working on the system. so and we just build it the prototype static prototype we haven't even achieved any single thing which is functional and what i feel and believe that it probably takes around five to six months and i was working since uh five to six days on it and that's why i was asking tom to have multiple meetings to finalize these portals, remaining portals, not the CPN mortgage lender, so that we can remove the unnecessary stuff from these portals and we can define what we need in the remaining portals. And I can have a clear picture because I believe that there are so many things which you guys might not need. And we just have three minutes. So giving a clear picture. On the mortgage side. Yeah.
+
+Speaker 3  32:11
+On the mortgage side, we don't need an actual portal. We just need, I guess, a section within the real estate portal to input mortgage information.
+
+Speaker 4  32:24
+Okay.
+
+Speaker 3  32:27
+Because whenever the realtor uploads a document or fills out the queue for their client's information, they're going to put\... How much is the property being paid or being sold for the down payment? And they're going to also put the down payment and how much is being sold for and the loan terms.
+
+Abdul  32:53
+OK, so I was thinking about it. I was thinking that client might fill a form or might write down an email and send it to the mortgage lender. About and write down its detail into the email So I was thinking that I probably create a form in which agent Realtor or client write down the information and send it it to the mortgage lender via email So is this how you guys work or there is an other way? sending the information to the mortgage lender and
+
+Speaker 3  33:27
+So how it normally works is that, so like let's say for an agent, right? They go and show the clients a house or really it's supposed to be before they even show the house, they're supposed to connect the client to a mortgage lender to get a pre-approval letter. And so once the agent gets the pre-approval letter back, it lets them know, okay, hey, the client is pre-qualified and they can find a house within this particular price range. So then once they find a house in that price range, the realtor would then draw up an offer to the seller. If that offer is accepted, all parties will sign. That's an executed contract listing agent, buyer's agent, buyer and seller all sign. And then at that point, the listing agent or the buyer's agent will communicate to the lender, the mortgage lender, that there's an but then the lender to start his process.
+
+Abdul  34:32
+Okay, so all of this conversation is happening into a physical meeting or it's in email or in a virtual conversation?
+
+Speaker 3  34:44
+uh well it starts out the introduction starts out via a group text pretty much okay but once the pre-approval the pre-approval is as a pdf document so how an agent will send the information to the mortgage lender so to the mortgage lender whenever they send the executed contract all that stuff is done via email email so we're going to basically send an email to the mortgage lender and he will create a document and send it send us back no so the realtor is pretty much the person that's going to be reporting to our portal because they're going to have access to the document no matter what because on the real estate side is where we have to retain the data for four years which is the longest. On the mortgage, it's two years. On the realtor side, it's four years.
+
+Tom  35:45
+I don't even know how long is the insurance side.
+
+Abdul  35:52
+OK. So what I have got is that I will create a form in which agent or realtor will add the information about the mortgage, and it will send to the mortgage lender via email. Am I correct?
+
+Speaker 3  36:08
+Repeat that, Abdul. a realtor or agent will add the information about the mortgage into a form and that form will send an email to the mortgage lender is this part correct so well the the lender doesn't he's not going to have to fill out a form only the the realtor is going to have to fill out a form yeah in our system yeah this is what i'm saying and what terms are they giving
+
+Abdul  36:40
+Yeah, this is what I'm saying, that the agent or realtor will add the information into the form, which is in our portal. And that form will actually send an email to the mortgage lender. And that email will contain all the information about mortgage.
+
+Speaker 3  37:00
+Well, it doesn't have to be sent to the lender unless you're talking about,
+
+Abdul  37:12
+So we basically save this information into our database.
+
+Speaker 4  37:18
+Okay.
+
+Speaker 5  37:19
+Sorry, excuse me.
+
+Tom  37:22
+Who uses the website first, the realtor or the client? Because the client needs to get a pre-approved first.
+
+Tom  37:32
+Or do they find the agent first?
+
+Speaker 3  37:34
+Either one can use it first. I'm sorry? Either one can use it first. Remember, the realtor is internal.
+
+Abdul  37:46
+Yeah.
+
+Speaker 3  37:48
+The client and the attorney are the only parties that's external.
+
+Abdul  37:58
+Both of them can use first. And yeah, the client and attorneys are external. And I think the admin can even create a client. So what's the problem here, Tom, you are discussing?
+
+Tom  38:24
+I don't have a problem. I was just thinking who should start the process first. But you just mentioned that anybody could start the process first. So I guess it's fine because the client has to get a Are you still there?
+
+Speaker 4  38:42
+Yeah. Yeah.
+
+Tom  38:44
+Okay. The client has to be approved first, but they also need an agent first. So, or maybe even have the attorney first, right? Where's the back refill back?
+
+Speaker 3  38:58
+Well, so 99.9% of the time, a home buyer is going to reach out to a realtor first. It is very rare that they'll reach out to a lender first. And so the realtor usually directs them to the lender that they want their client to use.
+
+Tom  39:20
+So the realtor has to put in their real estate agent license number in order for them to access our portal.
+
+Speaker 3  39:28
+Correct. They got to log in.
+
+Tom  39:29
+Yeah. Can we keep these data?
+
+Speaker 3  39:33
+Yeah.
+
+Tom  39:35
+I know. Yes. But like, yes. Yes. We have to find out.
+
+Speaker 3  39:39
+Can we keep their data? They're our client.
+
+Tom  39:44
+Let's think about how the disclosure and the actuality of what can be saved or what can legally cross.
+
+Speaker 3  39:56
+Any information that our client signs, we have to save it.
+
+Tom  40:05
+But does the attorney, should the attorney input their bar number?
+
+Speaker 3  40:13
+Their bar number?
+
+Tom  40:14
+their license number to access our portal. Should they or should they not? I guess they have to, but can we use that? Can we save it? So what I mean is they probably have to have a disclosure also, specifically for them. Allow them to allow us to save the data with their information in there. And that way, if the attorney needs to access the information, then they can access it.
+
+Abdul  40:47
+We are saving bar number. OK. While creating attorney.
+
+Speaker 3  40:52
+We have to have the bar number because there has to be a log on who pulled that information in the day and time as well.
+
+Tom  41:00
+OK.
+
+Speaker 3  41:01
+Because that keeps the liability off of us. OK. So I think, of course, there should be some way of tracking what person was the last one to touch that client's profile and things of that sort.
+
+Speaker 5  41:21
+OK.
+
+Tom  41:26
+Yeah, Abdul, you got your hands full. You opened a can of worms for us.
+
+Abdul  41:33
+I just created a new link.
+
+Speaker 3  41:34
+But I do like the direction we're going, Abdul.
+
+Abdul  41:37
+Yeah, I need a lot more feedback about the current portals. So I I think there's so many information which you guys will read while using this these portals like the bar number you just mentioned. We are saving the information while creating an attorney. So all of all of these questions can easily be answered if if if we spend some time on it and this is what i'm asking to tom as well if he's spent his time on the required portals and uh figure it out what we need and what we don't so that we can remove it unnecessary unnecessary thing for now uh do we need to uh discuss more things uh because the meeting is about to end in five minutes
+
+Tom  42:36
+We have a lot to go over already.
+
+Abdul  42:40
+If we need to discuss more things, we can join a new link.
+
+Tom  42:45
+I think we are OK for now.
+
+Speaker 3  42:47
+Yeah, I think we're OK for now, if you will, Abdul. Just allow Tom and I. I would say Monday probably works best for meeting times, at least for me. How about yourself, Tom?
+
+Abdul  43:00
+i'm open uh about any time to have our discussion because we need to discuss uh or we need to use the system as quick as we can if you give us some time to to to really like look at the system and use it i think we should be able to provide you with a lot more feedback at the earliest is probably monday
+
+Tom  43:22
+wednesday let's say okay wednesday we're supposed to be meeting wednesday this wednesday or next wednesday next one i can't do that right next wednesday okay um so yeah up to maybe we can uh schedule wednesday's meeting okay so um if you need to just keep that in mind uh next wednesday we're gonna have a meeting to discuss about the feedback basically and i think uh
+
+Abdul  43:53
+we have to leave cp i think cp and mortgage lender behind and we have to discuss uh the remaining portals correct correct and on what on what part should i work because i i will have a whole week so i probably will be working on pricing but it won't take long and what do you think that uh
+
+Speaker 3  44:21
+Yeah, let's work on pricing because of course like i love the direction that we're headed to but we need to get a start um and if we could figure out you know we can utilize the bare bones of the system uh and then because of course like this is not going to be like okay abdul thank you is going to be a continuous basis of improvement especially you know over the next few years as we continue to grow and scale yeah
+
+Abdul  44:55
+so that's why I'm I was asking Tom to have a detail view about all these portal so that I have a clear clear understanding and we can remove unnecessary stuff so that we can move forward so I do expect in this whole week both of you will work on it and you can even share screenshots in the emails what we should remove and what we should what we should remove so that I can move from the portals and the final you can say the view the UI of these portals will left and I can give you a clear picture about the pricing what do you so that we can utilize this whole week yeah I agree with that a hundred percent so normally when we work with clients if they give small feedback every single day if they spend 15 or 20 minutes on portals I probably think this will be more than enough for us to cover to remove those unnecessary stuff and we can start from the next meeting we can have a clear pricing picture and we can have a clear picture about these portals and we, how are we going to start and from which date and from which time we're going to start. If we utilize this whole week, otherwise we, I have to simply wait.
+
+Tom  46:23
+Okay. Yeah. I'll stop playing around with it.
+
+Speaker 4  46:32
+Yeah.
+
+Tom  46:36
+I have to set up my schedule, so I'm going to look at it every day until I give you feedbacks.
+
+Abdul  46:41
+Yeah. Only 10 or 15 minutes, I think, would be enough.
+
+Tom  46:47
+Yeah, I'll take a look at it, and we can intervene next Wednesday in between.
+
+Abdul  46:54
+Okay. So is there anything else?
+
+Tom  46:59
+I think for now we're okay.
+
+Abdul  47:02
+Okay. So\... Thank you for joining the meeting. Let's leave this meeting now.
+
+Speaker 3  47:08
+All right. Thank you.
+
+Abdul  47:09
+Thank you. Thank you. You're great. Thank you. Thank you. Bye bye.

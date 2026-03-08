@@ -1,0 +1,1261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Burkes Group — System Development Blueprint</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ─── RESET & ROOT ─────────────────────────────────── */
+      *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+      :root {
+        /* ── Palette: white + 3 dark-gray tones ── */
+        --white:   #ffffff;
+        --gray-1:  #1c1c1c;   /* primary text, active borders, active fills */
+        --gray-2:  #555555;   /* secondary text, connector lines             */
+        --gray-3:  #999999;   /* muted labels, placeholders                  */
+
+        /* ── Surfaces & borders (derived from palette) ── */
+        --bg:       #f4f4f4;
+        --surface:  var(--white);
+        --surface2: #eeeeee;
+        --border:   #e0e0e0;
+        --border2:  #c8c8c8;
+
+        /* ── Text ── */
+        --text:       var(--gray-1);
+        --text-dim:   var(--gray-2);
+        --text-muted: var(--gray-3);
+
+        --r-sm: 8px;
+        --r-md: 12px;
+      }
+
+      html, body {
+        width: 100%;
+        min-height: 100dvh;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: var(--bg);
+        font-family: "Rajdhani", sans-serif;
+        color: var(--text);
+      }
+      /* No background effects — clean flat page */
+
+      .page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100dvh;
+        padding: clamp(10px,1.4vw,18px) clamp(12px,1.8vw,26px) clamp(8px,1vw,14px);
+      }
+
+      /* ══════════════════ HEADER ═════════════════════════════ */
+      .header {
+        display: flex; align-items: center; justify-content: space-between;
+        flex-wrap: wrap; gap: 10px;
+        padding-bottom: 11px;
+        border-bottom: 1.5px solid var(--border);
+        margin-bottom: 12px; flex-shrink: 0;
+      }
+      .header-brand { display: flex; align-items: center; gap: 13px; }
+      .brand-mark {
+        width: 40px; height: 40px;
+        background: var(--gray-1);
+        border-radius: var(--r-sm);
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; font-size: 15px; color: var(--white);
+        letter-spacing: -1px;
+      }
+      .header-title {
+        font-size: clamp(15px,1.6vw,22px);
+        font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+        color: var(--gray-1);
+      }
+      .header-sub {
+        font-family: "Space Mono", monospace; font-size: 9px;
+        color: var(--text-muted); letter-spacing: 0.14em;
+        text-transform: uppercase; margin-top: 1px;
+      }
+      .header-right { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+      .stat-pill  { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+      .stat-num   { font-size: clamp(16px,1.6vw,23px); font-weight: 700; color: var(--gray-1); line-height: 1; }
+      .stat-lbl   { font-family: "Space Mono", monospace; font-size: 8px; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
+      .stat-divider { width: 1px; height: 30px; background: var(--border); }
+      .legend {
+        display: flex; gap: 13px; align-items: center;
+        border-left: 1.5px solid var(--border); padding-left: 20px;
+      }
+      .version-tag {
+        font-family: "Space Mono", monospace; font-size: 8px;
+        color: var(--text-muted); border: 1.5px solid var(--border);
+        padding: 4px 9px; border-radius: var(--r-sm);
+        letter-spacing: 0.14em; background: var(--surface);
+      }
+
+      /* ── Play / Pause button ── */
+      #anim-toggle {
+        display: flex; align-items: center; gap: 7px;
+        font-family: "Space Mono", monospace; font-size: 8px;
+        letter-spacing: 0.16em; text-transform: uppercase;
+        padding: 5px 13px; border-radius: var(--r-sm);
+        border: 1.5px solid var(--border2);
+        background: var(--surface); color: var(--gray-1);
+        cursor: pointer; white-space: nowrap; outline: none;
+        transition: background .2s, border-color .2s, color .2s;
+      }
+      #anim-toggle:hover {
+        border-color: var(--gray-1); background: var(--gray-1); color: var(--white);
+      }
+      #anim-toggle.is-paused {
+        border-color: var(--gray-2); color: var(--gray-2); background: var(--surface2);
+      }
+      #anim-icon { font-size: 10px; line-height: 1; }
+
+      /* ── Flow indicator ── */
+      #flow-indicator {
+        font-family: "Space Mono", monospace; font-size: 8px;
+        letter-spacing: 0.16em; text-transform: uppercase;
+        padding: 5px 12px; border-radius: var(--r-sm);
+        border: 1.5px solid var(--border);
+        display: flex; align-items: center; gap: 7px;
+        transition: color .3s, border-color .3s, background .3s;
+        white-space: nowrap;
+        color: var(--text-muted); background: var(--surface);
+      }
+      #flow-indicator .fi-dot {
+        width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+        background: var(--text-muted);
+        transition: background .3s;
+      }
+      .fi-idle  { color: var(--text-muted); border-color: var(--border); background: var(--surface); }
+      .fi-idle .fi-dot { background: var(--text-muted); }
+
+      .fi-basic, .fi-core, .fi-advance {
+        color: var(--gray-1); border-color: var(--gray-2); background: var(--surface2);
+      }
+      .fi-basic .fi-dot, .fi-core .fi-dot, .fi-advance .fi-dot {
+        background: var(--gray-1);
+        animation: dot-blink 1s ease-in-out infinite;
+      }
+      @keyframes dot-blink {
+        0%,100% { opacity:1; } 50% { opacity:.3; }
+      }
+
+      /* ══════════════════ SECTION LABEL ══════════════════════ */
+      .s-label {
+        font-family: "Space Mono", monospace; font-size: 8.5px;
+        letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted);
+        display: flex; align-items: center; gap: 8px;
+        margin-bottom: 7px; flex-shrink: 0;
+      }
+      .s-label::before {
+        content: ""; width: 20px; height: 1.5px;
+        background: var(--border2); border-radius: 2px;
+      }
+
+      /* ══════════════════ ITERATION ROW ══════════════════════ */
+      .iter-row {
+        display: flex; align-items: stretch; flex-wrap: wrap;
+        flex-shrink: 0; min-height: 80px; gap: 10px; margin-bottom: 6px;
+      }
+      .iteration {
+        flex: 1; min-width: min(100%,260px);
+        border: 1.5px solid var(--border); border-radius: var(--r-md);
+        display: flex; flex-direction: row; align-items: center;
+        padding: 0 clamp(12px,1.6vw,22px);
+        gap: clamp(10px,1.2vw,18px);
+        position: relative; overflow: hidden;
+        background: var(--surface);
+        transition: border-color .3s ease, opacity .3s ease, background .3s ease;
+      }
+      /* left accent bar — three shades of gray per iteration tier */
+      .iteration::before {
+        content: ""; position: absolute;
+        left: 0; top: 0; bottom: 0; width: 5px;
+        border-radius: var(--r-md) 0 0 var(--r-md);
+      }
+      .iter-basic::before   { background: var(--gray-1); }
+      .iter-core::before    { background: var(--gray-2); }
+      .iter-advance::before { background: var(--gray-3); }
+
+      .iter-num-badge { display: flex; flex-direction: column; align-items: center; gap: 3px; flex-shrink: 0; }
+      .iter-circle {
+        width: clamp(34px,3vw,44px); height: clamp(34px,3vw,44px);
+        border-radius: 50%; border: 2px solid var(--border2);
+        display: flex; align-items: center; justify-content: center;
+        font-size: clamp(12px,1.1vw,15px); font-weight: 700;
+        color: var(--text-muted); background: var(--surface2);
+        transition: border-color .3s, color .3s, background .3s;
+      }
+      .iter-tiny {
+        font-family: "Space Mono", monospace; font-size: 8.5px;
+        letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+      }
+      .iter-content { flex: 1; }
+      .iter-title {
+        font-size: clamp(16px,1.6vw,22px); font-weight: 700;
+        letter-spacing: 0.07em; text-transform: uppercase;
+        margin-bottom: 2px; color: var(--text-muted);
+        transition: color .3s;
+      }
+      .iter-desc {
+        font-family: "Space Mono", monospace; font-size: 9.5px;
+        color: var(--text-muted); line-height: 1.55; transition: color .3s;
+      }
+      .iter-screens-count { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
+      .iter-screens-num {
+        font-size: clamp(22px,2.4vw,32px); font-weight: 700;
+        line-height: 1; color: var(--border2);
+        transition: color .3s;
+      }
+      .iter-screens-lbl {
+        font-family: "Space Mono", monospace; font-size: 8.5px;
+        color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase;
+      }
+      .iter-stat-divider {
+        width: 1px; height: 36px; background: var(--border); flex-shrink: 0; margin: 0 16px;
+      }
+      .iter-duration { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
+      .iter-duration-num {
+        font-size: clamp(13px,1.4vw,19px); font-weight: 700;
+        line-height: 1; letter-spacing: -0.01em;
+        color: var(--border2); transition: color .3s;
+      }
+      .iter-duration-lbl {
+        font-family: "Space Mono", monospace; font-size: 8.5px;
+        color: var(--text-muted); letter-spacing: 0.12em;
+        text-transform: uppercase; margin-top: 2px;
+      }
+      .iter-arrow {
+        position: absolute; right: -20px; top: 50%;
+        transform: translateY(-50%);
+        display: flex; align-items: center; z-index: 10;
+      }
+      .iter-arrow-line  { width: 12px; height: 2px; background: var(--border2); }
+      .iter-arrow-head  {
+        width: 0; height: 0;
+        border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+        border-left: 7px solid var(--border2);
+      }
+
+      /* ══════════════════ V-CONNECTOR ════════════════════════ */
+      .v-connector {
+        display: flex; align-items: center; justify-content: center;
+        height: 22px; flex-shrink: 0; margin-bottom: 5px;
+      }
+      .v-connector-line {
+        width: 2px; height: 13px; background: var(--border2);
+        position: relative; border-radius: 1px;
+        transition: background .3s;
+      }
+      .v-connector-line::after {
+        content: ""; position: absolute; bottom: -6px; left: 50%;
+        transform: translateX(-50%);
+        width: 0; height: 0;
+        border-left: 5px solid transparent; border-right: 5px solid transparent;
+        border-top: 6px solid var(--border2);
+        transition: border-top-color .3s;
+      }
+      .v-connector-label {
+        font-family: "Space Mono", monospace; font-size: 8.5px;
+        color: var(--text-muted); letter-spacing: 0.15em;
+        text-transform: uppercase; margin: 0 10px; transition: color .3s;
+      }
+      .vc-dot {
+        position: absolute; left: 50%; transform: translateX(-50%);
+        width: 8px; height: 8px; border-radius: 50%;
+        top: -4px; opacity: 0; background: var(--gray-1);
+      }
+      @keyframes dot-travel {
+        0%   { top: -4px; opacity: 0; }
+        12%  { opacity: 1; }
+        88%  { opacity: 1; }
+        100% { top: 17px; opacity: 0; }
+      }
+
+      /* ══════════════════ PHASE ROW ══════════════════════════ */
+      .phase-row {
+        display: flex; align-items: stretch; flex-wrap: wrap;
+        flex-shrink: 0; gap: 10px; margin-bottom: 8px;
+      }
+      .phase {
+        flex: 1; min-width: min(100%,170px);
+        border: 1.5px solid var(--border); border-radius: var(--r-md);
+        display: flex; flex-direction: column;
+        position: relative; overflow: hidden;
+        background: var(--surface);
+        transition: border-color .3s, opacity .3s, background .3s;
+      }
+      /* top accent bar — single dark gray for all phases */
+      .phase::before {
+        content: ""; position: absolute; top: 0; left: 0; right: 0;
+        height: 4px; border-radius: var(--r-md) var(--r-md) 0 0; z-index: 2;
+        background: var(--border2);
+        transition: background .3s;
+      }
+      .phase-arrow {
+        position: absolute; right: -20px; top: 42px;
+        display: flex; align-items: center; z-index: 10;
+      }
+      .phase-arrow-line {
+        width: 12px; height: 2px; background: var(--border2);
+        transition: background .3s;
+      }
+      .phase-arrow-head {
+        width: 0; height: 0;
+        border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+        border-left: 7px solid var(--border2);
+        transition: border-left-color .3s;
+      }
+      .phase-top {
+        padding: 13px 14px 9px; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; flex-shrink: 0; gap: 2px;
+      }
+      .phase-num {
+        font-family: "Space Mono", monospace; font-size: 8px;
+        color: var(--text-muted); letter-spacing: 0.12em;
+      }
+      .phase-icon { font-size: 17px; line-height: 1; margin: 1px 0; color: var(--text-muted); transition: color .3s; }
+      .phase-name {
+        font-size: clamp(11px,1vw,13.5px); font-weight: 700;
+        text-align: center; letter-spacing: 0.06em;
+        text-transform: uppercase; line-height: 1.15;
+        color: var(--text-muted); transition: color .3s;
+      }
+      .phase-divider { height: 1px; margin: 0 12px; flex-shrink: 0; background: var(--border); }
+      .phase-team { padding: 6px 12px 9px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+      .phase-team-label {
+        font-family: "Space Mono", monospace; font-size: 8.5px;
+        letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--text-muted); margin-bottom: 1px;
+      }
+      .phase-team-badges { display: flex; flex-wrap: wrap; gap: 4px; }
+      .team-badge {
+        display: flex; align-items: center; gap: 5px;
+        padding: 3px 8px; border-radius: 20px;
+        border: 1.5px solid var(--border2);
+        font-size: 11px; font-weight: 700; line-height: 1; white-space: nowrap;
+        color: var(--text-dim); background: var(--surface2);
+      }
+      .badge-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; background: var(--gray-2); }
+      .badge-role {
+        font-family: "Space Mono", monospace; font-size: 8px;
+        letter-spacing: 0.06em; opacity: .65; font-weight: 400; text-transform: uppercase;
+      }
+
+      /* ══════════════════ PORTALS ════════════════════════════ */
+      .portals-section { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+      .portals-grid    { display: flex; flex-wrap: wrap; gap: 12px; flex: 1; min-height: 0; }
+      .portal {
+        flex: 1; min-width: min(100%,160px);
+        border: 1.5px solid var(--border); border-radius: var(--r-md);
+        display: flex; flex-direction: column; overflow: hidden; min-height: 0;
+        background: var(--surface);
+        transition: border-color .3s, opacity .3s;
+      }
+      .portal-head-bar {
+        height: 5px; flex-shrink: 0;
+        border-radius: var(--r-md) var(--r-md) 0 0;
+        background: var(--border2);
+        transition: background .3s;
+      }
+      .portal-header {
+        padding: 8px 12px 7px; border-bottom: 1px solid var(--border);
+        display: flex; align-items: center; gap: 9px; flex-shrink: 0;
+      }
+      .portal-icon-wrap {
+        width: 30px; height: 30px; border-radius: 7px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 9.5px; font-weight: 700;
+        font-family: "Space Mono", monospace; flex-shrink: 0;
+        color: var(--text-dim); background: var(--surface2);
+        border: 1.5px solid var(--border2);
+        transition: color .3s, background .3s, border-color .3s;
+      }
+      .portal-name {
+        font-size: 13px; font-weight: 700; letter-spacing: 0.07em;
+        text-transform: uppercase; line-height: 1.1;
+        color: var(--text-dim); transition: color .3s;
+      }
+      .portal-count {
+        margin-left: auto; font-family: "Space Mono", monospace; font-size: 9px;
+        color: var(--text-muted); letter-spacing: 0.1em;
+        text-transform: uppercase; white-space: nowrap;
+      }
+      .portal-screens {
+        padding: 8px 10px; display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px; flex: 1; align-content: start; overflow: auto;
+      }
+      .screen-pill {
+        background: var(--surface2); border: 1.5px solid var(--border);
+        border-radius: var(--r-sm); padding: 5px 9px;
+        font-size: 11.5px; font-weight: 600; letter-spacing: 0.03em;
+        display: flex; align-items: center; gap: 6px;
+        white-space: nowrap; overflow: hidden;
+        color: var(--text-muted); border-left: 4px solid var(--border2);
+        transition: background .25s, color .25s, border-color .25s;
+      }
+      .pill-dot {
+        width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
+        background: var(--border2); transition: background .25s;
+      }
+
+      /* ══════════════════ FOOTER ═════════════════════════════ */
+      .footer {
+        display: flex; align-items: center; justify-content: space-between;
+        flex-wrap: wrap; gap: 8px;
+        padding-top: 8px; margin-top: 7px;
+        border-top: 1.5px solid var(--border); flex-shrink: 0;
+      }
+      .footer-note {
+        font-family: "Space Mono", monospace; font-size: 9px;
+        color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase;
+      }
+      .footer-legend { display: flex; gap: 16px; align-items: center; }
+      .f-item {
+        display: flex; align-items: center; gap: 7px;
+        font-family: "Space Mono", monospace; font-size: 9px;
+        color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase;
+      }
+      .f-bar { width: 14px; height: 4px; border-radius: 2px; background: var(--gray-2); }
+
+      /* ════════════════ ANIMATION STATES ════════════════════
+         No glows. Active = dark border + dark text.
+         Inactive = faded.
+      ══════════════════════════════════════════════════════ */
+
+      /* ── Dim inactive iterations ── */
+      .iter-dim {
+        opacity: 0.22;
+      }
+
+      /* ── Active iteration: dark border, dark text, fill circle ── */
+      .iter-active {
+        border-color: var(--gray-1) !important;
+        background: var(--white) !important;
+      }
+      .iter-active .iter-title      { color: var(--gray-1) !important; }
+      .iter-active .iter-desc       { color: var(--gray-2) !important; }
+      .iter-active .iter-circle     { border-color: var(--gray-1) !important; color: var(--white) !important; background: var(--gray-1) !important; }
+      .iter-active .iter-tiny       { color: var(--gray-2) !important; }
+      .iter-active .iter-screens-num { color: var(--gray-2) !important; }
+      .iter-active .iter-duration-num { color: var(--gray-1) !important; }
+
+      /* ── Active v-connector ── */
+      .vc-active .v-connector-line  { background: var(--gray-1) !important; }
+      .vc-active .v-connector-line::after { border-top-color: var(--gray-1) !important; }
+      .vc-active .v-connector-label { color: var(--gray-1) !important; }
+      .vc-active .vc-dot            { background: var(--gray-1); animation: dot-travel 0.55s ease-in-out forwards; }
+
+      /* ── Active phase ── */
+      .phase-active {
+        border-color: var(--gray-1) !important;
+        background: var(--white) !important;
+      }
+      .phase-active::before         { background: var(--gray-1) !important; }
+      .phase-active .phase-name     { color: var(--gray-1) !important; }
+      .phase-active .phase-icon     { color: var(--gray-1) !important; }
+      .phase-active .phase-divider  { background: var(--border2) !important; }
+      .phase-active .phase-arrow-line  { background: var(--gray-1) !important; }
+      .phase-active .phase-arrow-head  { border-left-color: var(--gray-1) !important; }
+
+      /* ── Dim inactive phases ── */
+      .phase-dim { opacity: 0.22; }
+
+      /* ── Active portal ── */
+      .portal-active { border-color: var(--gray-1) !important; }
+      .portal-active .portal-head-bar    { background: var(--gray-1) !important; }
+      .portal-active .portal-name        { color: var(--gray-1) !important; }
+      .portal-active .portal-icon-wrap   { color: var(--white) !important; background: var(--gray-1) !important; border-color: var(--gray-1) !important; }
+
+      /* ── Dim inactive portals ── */
+      .portal-dim { opacity: 0.22; }
+
+      /* ── Active screen pill ── */
+      .pill-active {
+        background: var(--gray-1) !important;
+        color: var(--white) !important;
+        border-left-color: var(--gray-1) !important;
+        border-color: var(--gray-1) !important;
+      }
+      .pill-active .pill-dot { background: var(--white) !important; }
+
+      /* ════════════════ RESPONSIVE ══════════════════════════ */
+
+      @media (max-width: 1199px) {
+        .header-sub   { display: none; }
+        .iter-row     { gap: 8px; }
+        .iteration    { min-width: min(100%,220px); padding: 10px 14px; }
+        .iter-desc    { font-size: 8.5px; }
+        .phase-row    { gap: 8px; }
+        .phase        { min-width: min(100%,150px); }
+        .phase-top    { padding: 10px 10px 7px; }
+        .team-badge   { font-size: 10px; }
+        .badge-role   { display: none; }
+        .portals-grid { gap: 8px; }
+        .portal       { min-width: min(100%,180px); }
+        .legend       { gap: 8px; padding-left: 12px; }
+        .stat-divider { display: none; }
+        .header-right { gap: 8px; }
+      }
+
+      @media (max-width: 899px) {
+        .iter-row    { flex-direction: column; }
+        .iteration   { min-width: 100%; padding: 12px 16px; }
+        .iter-arrow  { display: none; }
+        .phase-row   { flex-direction: column; }
+        .phase       { min-width: 100%; }
+        .phase-arrow { display: none; }
+        .phase-top   { flex-direction: row; justify-content: flex-start; gap: 10px; padding: 10px 14px; }
+        .phase-icon  { font-size: 20px; }
+        .phase-name  { font-size: 13px; text-align: left; }
+        .portals-grid { flex-direction: column; }
+        .portal       { min-width: 100%; }
+        .portal-screens { grid-template-columns: repeat(auto-fill, minmax(110px,1fr)); overflow: visible; }
+        .v-connector { display: none; }
+        .s-label     { margin-top: 4px; }
+        .footer-note { font-size: 8.5px; }
+        .footer-legend { gap: 10px; }
+      }
+
+      @media (max-width: 599px) {
+        .header       { flex-direction: column; align-items: flex-start; }
+        .header-right { width: 100%; justify-content: flex-start; }
+        .legend       { border-left: none; padding-left: 0; }
+        .stat-pill    { flex-direction: row; gap: 4px; }
+        .stat-lbl::before { content: "("; }
+        .stat-lbl::after  { content: ")"; }
+        .stat-num     { font-size: 14px; }
+        .iter-num-badge .iter-tiny { display: none; }
+        .iter-screens-count, .iter-stat-divider, .iter-duration { display: none; }
+        .phase-team   { padding: 6px 10px 8px; }
+        .team-badge   { padding: 2px 6px; font-size: 10px; }
+        .portal-screens { grid-template-columns: repeat(auto-fill, minmax(90px,1fr)); }
+        .footer-legend { flex-wrap: wrap; gap: 7px; }
+        .footer-note   { font-size: 8px; letter-spacing: 0.08em; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- ════════════════════ HEADER ══════════════════════════════ -->
+      <div class="header">
+        <div class="header-brand">
+          <div class="brand-mark">BG</div>
+          <div>
+            <div class="header-title">
+              Burkes Group — System Development Blueprint
+            </div>
+            <div class="header-sub">
+              Software Architecture &amp; Full Delivery Plan · Portal &amp;
+              Screen Roadmap
+            </div>
+          </div>
+        </div>
+        <div class="header-right">
+          <!-- <div class="stat-pill">
+            <div class="stat-num">5</div>
+            <div class="stat-lbl">Phases</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-pill">
+            <div class="stat-num">3</div>
+            <div class="stat-lbl">Iterations</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-pill">
+            <div class="stat-num">5</div>
+            <div class="stat-lbl">Portals</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-pill">
+            <div class="stat-num">38</div>
+            <div class="stat-lbl">Screens</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-pill">
+            <div class="stat-num">4</div>
+            <div class="stat-lbl">Team</div>
+          </div> -->
+          <div class="legend">
+            <!-- <div class="version-tag">PROPOSAL V7</div> -->
+            <!-- Flow Indicator -->
+            <div id="flow-indicator" class="fi-idle">
+              <div class="fi-dot"></div>
+              <span id="fi-text">FLOW ACTIVE</span>
+            </div>
+            <!-- Play / Pause -->
+            <button id="anim-toggle" onclick="toggleAnimation()">
+              <span id="anim-icon">⏸</span>
+              <span id="anim-label">PAUSE</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════════════════ 01 — ITERATIONS (top) ═══════════════ -->
+      <div class="s-label">
+        01 — Delivery Iterations · Each iteration ends with a working prototype
+      </div>
+      <div class="iter-row">
+        <div class="iteration iter-basic" id="iter-basic">
+          <div class="iter-num-badge">
+            <div class="iter-circle">01</div>
+            <div class="iter-tiny">Iteration</div>
+          </div>
+          <div class="iter-content">
+            <div class="iter-title">Basic</div>
+            <!-- <div class="iter-desc">
+              Deliver authentication screens<br />for all 5 portals
+            </div> -->
+          </div>
+          <div class="iter-screens-count">
+            <div class="iter-screens-num">13</div>
+            <div class="iter-screens-lbl">Screens</div>
+          </div>
+          <div class="iter-stat-divider"></div>
+          <div class="iter-duration">
+            <div class="iter-duration-num">Weeks 1-6</div>
+            <div class="iter-duration-lbl">Duration</div>
+          </div>
+          <div class="iter-arrow">
+            <div class="iter-arrow-line"></div>
+            <div class="iter-arrow-head"></div>
+          </div>
+        </div>
+
+        <div class="iteration iter-core" id="iter-core">
+          <div class="iter-num-badge">
+            <div class="iter-circle">02</div>
+            <div class="iter-tiny">Iteration</div>
+          </div>
+          <div class="iter-content">
+            <div class="iter-title">Core</div>
+            <!-- <div class="iter-desc">
+              Deliver half of all remaining<br />screens across all portals
+            </div> -->
+          </div>
+          <div class="iter-screens-count">
+            <div class="iter-screens-num">16</div>
+            <div class="iter-screens-lbl">Screens</div>
+          </div>
+          <div class="iter-stat-divider"></div>
+          <div class="iter-duration">
+            <div class="iter-duration-num">Weeks 7-15</div>
+            <div class="iter-duration-lbl">Duration</div>
+          </div>
+          <div class="iter-arrow">
+            <div class="iter-arrow-line"></div>
+            <div class="iter-arrow-head"></div>
+          </div>
+        </div>
+
+        <div class="iteration iter-advance" id="iter-advance">
+          <div class="iter-num-badge">
+            <div class="iter-circle">03</div>
+            <div class="iter-tiny">Iteration</div>
+          </div>
+          <div class="iter-content">
+            <div class="iter-title">Advance</div>
+            <!-- <div class="iter-desc">
+              Deliver all remaining screens —<br />system fully complete
+            </div> -->
+          </div>
+          <div class="iter-screens-count">
+            <div class="iter-screens-num">9</div>
+            <div class="iter-screens-lbl">Screens</div>
+          </div>
+          <div class="iter-stat-divider"></div>
+          <div class="iter-duration">
+            <div class="iter-duration-num">Weeks 16-21</div>
+            <div class="iter-duration-lbl">Duration</div>
+          </div>
+        </div>
+      </div>
+      <!-- /iter-row -->
+
+      <!-- ════════ V-CONNECTOR 1: Iterations → Phases ══════════════ -->
+      <div class="v-connector" id="vc1">
+        <div class="v-connector-label">Iteration triggers</div>
+        <div style="position: relative; flex-shrink: 0">
+          <div class="v-connector-line"></div>
+          <div class="vc-dot" id="vc1-dot"></div>
+        </div>
+        <div class="v-connector-label">all development phases</div>
+      </div>
+
+      <!-- ════════════════════ 02 — PHASES + TEAM (middle) ══════════ -->
+      <div class="s-label">
+        02 — Development Phases &amp; Project Team · Who works in each phase
+      </div>
+      <div class="phase-row">
+        <!-- PHASE 01 -->
+        <div class="phase ph1" id="ph1">
+          <div class="phase-top">
+            <div class="phase-num">PHASE 01</div>
+            <div class="phase-icon">⚙</div>
+            <div class="phase-name">Setup &amp;<br />Infrastructure</div>
+          </div>
+          <div class="phase-divider"></div>
+          <div class="phase-team">
+            <div class="phase-team-label">Team</div>
+            <div class="phase-team-badges">
+              <div class="team-badge badge-abdul">
+                <div class="badge-dot"></div>
+                Abdul<span class="badge-role">Architect · DevOps</span>
+              </div>
+            </div>
+          </div>
+          <div class="phase-arrow">
+            <div class="phase-arrow-line"></div>
+            <div class="phase-arrow-head"></div>
+          </div>
+        </div>
+
+        <!-- PHASE 02 -->
+        <div class="phase ph2" id="ph2">
+          <div class="phase-top">
+            <div class="phase-num">PHASE 02</div>
+            <div class="phase-icon">✦</div>
+            <div class="phase-name">Design</div>
+          </div>
+          <div class="phase-divider"></div>
+          <div class="phase-team">
+            <div class="phase-team-label">Team</div>
+            <div class="phase-team-badges">
+              <div class="team-badge badge-arham">
+                <div class="badge-dot"></div>
+                Arham<span class="badge-role">UI/UX Designer</span>
+              </div>
+              <div class="team-badge badge-abdul">
+                <div class="badge-dot"></div>
+                Abdul<span class="badge-role">PM</span>
+              </div>
+            </div>
+          </div>
+          <div class="phase-arrow">
+            <div class="phase-arrow-line"></div>
+            <div class="phase-arrow-head"></div>
+          </div>
+        </div>
+
+        <!-- PHASE 03 -->
+        <div class="phase ph3" id="ph3">
+          <div class="phase-top">
+            <div class="phase-num">PHASE 03</div>
+            <div class="phase-icon">◈</div>
+            <div class="phase-name">Frontend</div>
+          </div>
+          <div class="phase-divider"></div>
+          <div class="phase-team">
+            <div class="phase-team-label">Team</div>
+            <div class="phase-team-badges">
+              <div class="team-badge badge-abdul">
+                <div class="badge-dot"></div>
+                Abdul<span class="badge-role">Sr. Full Stack</span>
+              </div>
+              <div class="team-badge badge-ahmad">
+                <div class="badge-dot"></div>
+                Ahmad<span class="badge-role">Jr. Full Stack</span>
+              </div>
+              <div class="team-badge badge-ali">
+                <div class="badge-dot"></div>
+                Ali<span class="badge-role">Jr. Full Stack</span>
+              </div>
+            </div>
+          </div>
+          <div class="phase-arrow">
+            <div class="phase-arrow-line"></div>
+            <div class="phase-arrow-head"></div>
+          </div>
+        </div>
+
+        <!-- PHASE 04 -->
+        <div class="phase ph4" id="ph4">
+          <div class="phase-top">
+            <div class="phase-num">PHASE 04</div>
+            <div class="phase-icon">⬡</div>
+            <div class="phase-name">Backend</div>
+          </div>
+          <div class="phase-divider"></div>
+          <div class="phase-team">
+            <div class="phase-team-label">Team</div>
+            <div class="phase-team-badges">
+              <div class="team-badge badge-abdul">
+                <div class="badge-dot"></div>
+                Abdul<span class="badge-role">Sr. Full Stack</span>
+              </div>
+              <div class="team-badge badge-ahmad">
+                <div class="badge-dot"></div>
+                Ahmad<span class="badge-role">Jr. Full Stack</span>
+              </div>
+              <div class="team-badge badge-ali">
+                <div class="badge-dot"></div>
+                Ali<span class="badge-role">Jr. Full Stack</span>
+              </div>
+            </div>
+          </div>
+          <div class="phase-arrow">
+            <div class="phase-arrow-line"></div>
+            <div class="phase-arrow-head"></div>
+          </div>
+        </div>
+
+        <!-- PHASE 05 -->
+        <div class="phase ph5" id="ph5">
+          <div class="phase-top">
+            <div class="phase-num">PHASE 05</div>
+            <div class="phase-icon">▲</div>
+            <div class="phase-name">Security<br />&amp; Launch</div>
+          </div>
+          <div class="phase-divider"></div>
+          <div class="phase-team">
+            <div class="phase-team-label">Team</div>
+            <div class="phase-team-badges">
+              <div class="team-badge badge-abdul">
+                <div class="badge-dot"></div>
+                Abdul<span class="badge-role">Architect · DevOps</span>
+              </div>
+              <div class="team-badge badge-ahmad">
+                <div class="badge-dot"></div>
+                Ahmad<span class="badge-role">Jr. Full Stack</span>
+              </div>
+              <div class="team-badge badge-ali">
+                <div class="badge-dot"></div>
+                Ali<span class="badge-role">Jr. Full Stack</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /phase-row -->
+
+      <!-- ════════ V-CONNECTOR 2: Phases → Portals ═════════════════ -->
+      <div class="v-connector" id="vc2">
+        <div class="v-connector-label">Phases deliver</div>
+        <div style="position: relative; flex-shrink: 0">
+          <div class="v-connector-line"></div>
+          <div class="vc-dot" id="vc2-dot"></div>
+        </div>
+        <div class="v-connector-label">portal screens</div>
+      </div>
+
+      <!-- ════════════════════ 03 — PORTALS (bottom) ═══════════════ -->
+      <div class="portals-section">
+        <div class="s-label">
+          03 — Portals &amp; Screens · Left border = delivery iteration
+          &nbsp;·&nbsp; Gold = Basic &nbsp;·&nbsp; Blue = Core &nbsp;·&nbsp;
+          Purple = Advance
+        </div>
+        <div class="portals-grid">
+          <!-- ADMIN -->
+          <div class="portal portal-admin" id="portal-admin">
+            <div class="portal-head-bar"></div>
+            <div class="portal-header">
+              <div class="portal-icon-wrap">ADM</div>
+              <div><div class="portal-name">Admin Portal</div></div>
+              <div class="portal-count">7 Screens</div>
+            </div>
+            <div class="portal-screens">
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Auth
+              </div>
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Dashboard
+              </div>
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Users
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Partners
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Transactions
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Documents
+              </div>
+              <div class="screen-pill advance">
+                <div class="pill-dot"></div>
+                Analytics
+              </div>
+            </div>
+          </div>
+
+          <!-- AGENT -->
+          <div class="portal portal-agent" id="portal-agent">
+            <div class="portal-head-bar"></div>
+            <div class="portal-header">
+              <div class="portal-icon-wrap">AGT</div>
+              <div><div class="portal-name">Agent Portal</div></div>
+              <div class="portal-count">9 Screens</div>
+            </div>
+            <div class="portal-screens">
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Auth
+              </div>
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Dashboard
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Transactions
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Documents
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Clients
+              </div>
+              <div class="screen-pill advance">
+                <div class="pill-dot"></div>
+                Messages
+              </div>
+              <div class="screen-pill advance">
+                <div class="pill-dot"></div>
+                Calendar
+              </div>
+              <div class="screen-pill advance">
+                <div class="pill-dot"></div>
+                Partner Referrals
+              </div>
+              <div class="screen-pill advance">
+                <div class="pill-dot"></div>
+                Reports
+              </div>
+            </div>
+          </div>
+
+          <!-- CLIENT -->
+          <div class="portal portal-client" id="portal-client">
+            <div class="portal-head-bar"></div>
+            <div class="portal-header">
+              <div class="portal-icon-wrap">CLT</div>
+              <div><div class="portal-name">Client Portal</div></div>
+              <div class="portal-count">7 Screens</div>
+            </div>
+            <div class="portal-screens">
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Auth
+              </div>
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Dashboard
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Documents
+              </div>
+              <div class="screen-pill advance">
+                <div class="pill-dot"></div>
+                Messages
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Insurance
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Mortgage
+              </div>
+              <div class="screen-pill advance">
+                <div class="pill-dot"></div>
+                Services
+              </div>
+            </div>
+          </div>
+
+          <!-- ATTORNEY -->
+          <div class="portal portal-attorney" id="portal-attorney">
+            <div class="portal-head-bar"></div>
+            <div class="portal-header">
+              <div class="portal-icon-wrap">ATY</div>
+              <div><div class="portal-name">Attorney Portal</div></div>
+              <div class="portal-count">6 Screens</div>
+            </div>
+            <div class="portal-screens">
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Auth
+              </div>
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Dashboard
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Transactions
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Documents
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Clients
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Verification
+              </div>
+            </div>
+          </div>
+
+          <!-- SERVICE PARTNER -->
+          <div class="portal portal-service" id="portal-service">
+            <div class="portal-head-bar"></div>
+            <div class="portal-header">
+              <div class="portal-icon-wrap">SVC</div>
+              <div><div class="portal-name">Service Partner</div></div>
+              <div class="portal-count">9 Screens</div>
+            </div>
+            <div class="portal-screens">
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Auth
+              </div>
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Dashboard
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Referrals
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Active Jobs
+              </div>
+              <div class="screen-pill core">
+                <div class="pill-dot"></div>
+                Quotes
+              </div>
+              <div class="screen-pill advance">
+                <div class="pill-dot"></div>
+                Reviews
+              </div>
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Service Areas
+              </div>
+              <div class="screen-pill advance">
+                <div class="pill-dot"></div>
+                Earnings
+              </div>
+              <div class="screen-pill basic">
+                <div class="pill-dot"></div>
+                Profile
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /portals-grid -->
+      </div>
+      <!-- /portals-section -->
+
+      <!-- ════════════════════ FOOTER ══════════════════════════════ -->
+      <!-- <div class="footer">
+        <div class="footer-note">
+          BURKES GROUP · CONFIDENTIAL DEVELOPMENT BLUEPRINT · ALL PHASES SUBJECT
+          TO REVIEW
+        </div>
+        <div class="footer-legend">
+          <div class="f-item">
+            <div class="f-bar"></div>
+            Setup &amp; Infra
+          </div>
+          <div class="f-item">
+            <div class="f-bar"></div>
+            Design
+          </div>
+          <div class="f-item">
+            <div class="f-bar"></div>
+            Frontend
+          </div>
+          <div class="f-item">
+            <div class="f-bar"></div>
+            Backend
+          </div>
+          <div class="f-item">
+            <div class="f-bar"></div>
+            Security &amp; Launch
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- /page -->
+
+    <script>
+      /* ═══════════════════════════════════════════════════════
+         CLEAN FLOW ANIMATION — active/inactive states, no glow
+         Sequence per cycle:
+           1. Active iteration card highlighted, others faded
+           2. VC1 connector activates + traveling dot
+           3. Phases activate sequentially left → right
+           4. VC2 connector activates + traveling dot
+           5. Screen pills in active-tier class activate portal-by-portal
+           6. Everything resets, next cycle begins
+      ══════════════════════════════════════════════════════════ */
+
+      let animPaused = false;
+      let resumeResolve = null;
+
+      const sleep = async (ms) => {
+        const end = Date.now() + ms;
+        while (Date.now() < end) {
+          if (animPaused) await new Promise(r => { resumeResolve = r; });
+          const rem = end - Date.now();
+          if (rem <= 0) break;
+          await new Promise(r => setTimeout(r, Math.min(40, rem)));
+        }
+      };
+
+      function toggleAnimation() {
+        animPaused = !animPaused;
+        const btn  = document.getElementById('anim-toggle');
+        const icon = document.getElementById('anim-icon');
+        const lbl  = document.getElementById('anim-label');
+        if (animPaused) {
+          btn.classList.add('is-paused');
+          icon.textContent = '▶';
+          lbl.textContent  = 'PLAY';
+          setIndicator('idle', 'PAUSED');
+        } else {
+          btn.classList.remove('is-paused');
+          icon.textContent = '⏸';
+          lbl.textContent  = 'PAUSE';
+          if (resumeResolve) { resumeResolve(); resumeResolve = null; }
+        }
+      }
+
+      const ITERATIONS = [
+        { id: 'iter-basic',   pillClass: 'basic',   label: 'BASIC ITERATION'   },
+        { id: 'iter-core',    pillClass: 'core',     label: 'CORE ITERATION'    },
+        { id: 'iter-advance', pillClass: 'advance',  label: 'ADVANCE ITERATION' },
+      ];
+      const PHASE_IDS  = ['ph1','ph2','ph3','ph4','ph5'];
+      const PORTAL_IDS = ['portal-admin','portal-agent','portal-client','portal-attorney','portal-service'];
+
+      const $  = id  => document.getElementById(id);
+      const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+      function restartAnim(el) {
+        el.style.animation = 'none';
+        void el.offsetWidth;
+        el.style.animation = '';
+      }
+
+      function setIndicator(state, label) {
+        if (animPaused && state !== 'idle') return;
+        const el = $('flow-indicator');
+        const tx = $('fi-text');
+        el.className    = 'fi-' + state;
+        tx.textContent  = label;
+      }
+
+      /* ── helpers: set / clear active state classes ── */
+      function activate(el, cls)   { el.classList.add(cls); }
+      function deactivate(el, cls) { el.classList.remove(cls); }
+
+      /* ═══ MAIN CYCLE ═══ */
+      async function runCycle(iter) {
+        const { id, pillClass, label } = iter;
+
+        // 1. Highlight active iteration, fade others
+        if (!animPaused) setIndicator('basic', label); // fi-basic/core/advance all same style now
+        ITERATIONS.forEach(it => {
+          const el = $(it.id);
+          if (it.id === id) {
+            el.classList.remove('iter-dim');
+            el.classList.add('iter-active');
+          } else {
+            el.classList.remove('iter-active');
+            el.classList.add('iter-dim');
+          }
+        });
+        await sleep(500);
+
+        // 2. VC1 activates
+        const vc1 = $('vc1');
+        vc1.classList.add('vc-active');
+        restartAnim($('vc1-dot'));
+        await sleep(480);
+
+        // 3. Phases activate one-by-one (others dimmed)
+        // First dim all phases
+        PHASE_IDS.forEach(pid => { $(pid).classList.add('phase-dim'); $(pid).classList.remove('phase-active'); });
+        for (const pid of PHASE_IDS) {
+          const ph = $(pid);
+          ph.classList.remove('phase-dim');
+          ph.classList.add('phase-active');
+          await sleep(290);
+        }
+        await sleep(320);
+
+        // 4. VC2 activates — clear phase states
+        PHASE_IDS.forEach(pid => { $(pid).classList.remove('phase-active', 'phase-dim'); });
+        const vc2 = $('vc2');
+        vc2.classList.add('vc-active');
+        restartAnim($('vc2-dot'));
+        await sleep(400);
+
+        // 5. Portals: dim all, activate one by one
+        PORTAL_IDS.forEach(pid => { $(pid).classList.add('portal-dim'); $(pid).classList.remove('portal-active'); });
+        for (const portalId of PORTAL_IDS) {
+          const portal = $(portalId);
+          portal.classList.remove('portal-dim');
+          portal.classList.add('portal-active');
+          // activate matching pills inside this portal
+          $$('.screen-pill.' + pillClass, portal).forEach(pill => pill.classList.add('pill-active'));
+          await sleep(200);
+        }
+        await sleep(1000);
+
+        // 6. Clear pills
+        $$('.screen-pill').forEach(p => p.classList.remove('pill-active'));
+
+        // 7. Clear portals
+        PORTAL_IDS.forEach(pid => { $(pid).classList.remove('portal-active', 'portal-dim'); });
+        await sleep(150);
+
+        // 8. Clear VC2
+        vc2.classList.remove('vc-active');
+        await sleep(120);
+
+        // 9. Clear VC1
+        vc1.classList.remove('vc-active');
+
+        // 10. Clear iteration states
+        ITERATIONS.forEach(it => { $(it.id).classList.remove('iter-active', 'iter-dim'); });
+        if (!animPaused) setIndicator('idle', 'FLOW ACTIVE');
+        await sleep(480);
+      }
+
+      async function runLoop() {
+        await sleep(800);
+        while (true) {
+          for (const iter of ITERATIONS) await runCycle(iter);
+          await sleep(600);
+        }
+      }
+
+      runLoop();
+    </script>
+  </body>
+</html>
