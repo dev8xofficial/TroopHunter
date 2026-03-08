@@ -58,7 +58,7 @@ const MOBILE: OffersContent[] = [
         title: 'Types of Mobile Apps',
         paragraph: 'From internal business apps to customer-facing solutions, Dev8X creates apps that drive productivity, engagement, and operational efficiency.',
         icon: { name: 'MapPinIcon', size: 64 },
-        image: prefixed('/api/images/work/honeydu/desktop/10.png')
+        image: prefixed('/api/images/work/scheduler/mobile/1.png')
       },
       {
         title: 'UI/UX Excellence',

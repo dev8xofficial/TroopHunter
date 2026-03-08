@@ -52,7 +52,7 @@ const WEBSITE: OffersContent[] = [
         title: 'Web Portals',
         paragraph: 'Dev8X crafts enterprise-grade web portals, optimized for heavy traffic, vendor integrations, and seamless user experiences across all devices.',
         icon: { name: 'HomeIcon', size: 64 },
-        image: prefixed('/api/images/work/scheduler/mobile/2.png')
+        image: prefixed('/api/images/work/troophunter/mobile/2.png')
       },
       {
         title: 'Progressive Web Apps',

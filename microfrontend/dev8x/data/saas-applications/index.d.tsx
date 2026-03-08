@@ -52,13 +52,13 @@ const SAAS: OffersContent[] = [
         title: 'Knowledge Management Platform',
         paragraph: 'A central hub for internal information, accessible securely anywhere, supporting collaboration and decision-making across distributed teams.',
         icon: { name: 'HomeIcon', size: 64 },
-        image: prefixed('/api/images/work/scheduler/mobile/2.png')
+        image: prefixed('/api/images/work/other/react_garvan.png')
       },
       {
         title: 'Task Management App for Slack',
         paragraph: 'Productivity app integrating with Slack, enabling task prioritization, tracking, and team coordination without leaving the platform.',
         icon: { name: 'HomeIcon', size: 64 },
-        image: prefixed('/api/images/work/scheduler/mobile/2.png')
+        image: prefixed('/api/images/work/honeydu/desktop/21.png')
       }
     ],
     whyWeAreDifferentContent: {
