@@ -6,7 +6,7 @@ const PROPOSALS: ProposalContent[] = [
     slug: '042deec5-c6a3-4bb0-9134-86fbab6875d6',
     variant: 'cyan',
     tagText: 'Company',
-    heading: getCompanyName(COMPANIES, '8475e512-b410-473b-abae-e707aae40022') + " - Prototype",
+    heading: getCompanyName(COMPANIES, '8475e512-b410-473b-abae-e707aae40022') + ' - Prototype',
     image: '',
     iconCards: {
       title: 'Real Estate Solutions',
@@ -48,22 +48,26 @@ const PROPOSALS: ProposalContent[] = [
       {
         title: 'Complete Transaction Visibility',
         paragraph: "Track every step of your real estate journey with our intuitive progress dashboard. From initial consultation to closing day, you'll always know exactly where you stand. Real-time updates, milestone notifications, and clear timelines ensure you're never left wondering about the status of your transaction.",
-        icon: { name: 'VoltageIcon', size: 64 }
+        icon: { name: 'VoltageIcon', size: 64 },
+        image: prefixed('/api/images/work/burkesgroup/desktop/1.png')
       },
       {
         title: 'Human experiences',
         paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive navigation to immersive storytelling, every website is meticulously crafted to command attention and leave a lasting impression.',
-        icon: { name: 'VoltageIcon', size: 64 }
+        icon: { name: 'VoltageIcon', size: 64 },
+        image: prefixed('/api/images/work/other/react_garvan.png')
       },
       {
         title: 'Robust, Secure, Flexible',
         paragraph: 'Every website we build is backed by secure and performant infrastructure, tailored to the needs of the organisation. This ensures that your digital presence can scale with demand and offer flexibility to meet the needs of your business over time.',
-        icon: { name: 'VoltageIcon', size: 64 }
+        icon: { name: 'VoltageIcon', size: 64 },
+        image: prefixed('/api/images/work/burkesgroup/desktop/2.png')
       },
       {
         title: 'Rewarding partnerships',
         paragraph: 'Behind every best-in-class website is a collaborative agency–client partnership. We work in close collaboration with you to ensure outcomes that offer extraordinary experiences while delivering results. Awards are nice, but your success means so much more.',
-        icon: { name: 'VoltageIcon', size: 64 }
+        icon: { name: 'VoltageIcon', size: 64 },
+        image: prefixed('/api/images/work/burkesgroup/desktop/3.png')
       }
     ],
     meta: {
@@ -154,7 +158,7 @@ const PROPOSALS: ProposalContent[] = [
     slug: 'c326895f-4cf2-463b-8680-5483244d9a07',
     variant: 'cyan',
     tagText: 'Company',
-    heading: getCompanyName(COMPANIES, '8475e512-b410-473b-abae-e707aae40022') + " - Proposal",
+    heading: getCompanyName(COMPANIES, '8475e512-b410-473b-abae-e707aae40022') + ' - Proposal',
     image: '',
     iconCards: {
       title: 'Real Estate Solutions',
@@ -196,22 +200,26 @@ const PROPOSALS: ProposalContent[] = [
       {
         title: 'Complete Transaction Visibility',
         paragraph: "Track every step of your real estate journey with our intuitive progress dashboard. From initial consultation to closing day, you'll always know exactly where you stand. Real-time updates, milestone notifications, and clear timelines ensure you're never left wondering about the status of your transaction.",
-        icon: { name: 'VoltageIcon', size: 64 }
+        icon: { name: 'VoltageIcon', size: 64 },
+        image: prefixed('/api/images/work/burkesgroup/desktop/1.png')
       },
       {
         title: 'Human experiences',
         paragraph: 'Offer an immersive user experience that captures the essence of your brand and resonates with your target audience. From intuitive navigation to immersive storytelling, every website is meticulously crafted to command attention and leave a lasting impression.',
-        icon: { name: 'VoltageIcon', size: 64 }
+        icon: { name: 'VoltageIcon', size: 64 },
+        image: prefixed('/api/images/work/other/react_garvan.png')
       },
       {
         title: 'Robust, Secure, Flexible',
         paragraph: 'Every website we build is backed by secure and performant infrastructure, tailored to the needs of the organisation. This ensures that your digital presence can scale with demand and offer flexibility to meet the needs of your business over time.',
-        icon: { name: 'VoltageIcon', size: 64 }
+        icon: { name: 'VoltageIcon', size: 64 },
+        image: prefixed('/api/images/work/burkesgroup/desktop/2.png')
       },
       {
         title: 'Rewarding partnerships',
         paragraph: 'Behind every best-in-class website is a collaborative agency–client partnership. We work in close collaboration with you to ensure outcomes that offer extraordinary experiences while delivering results. Awards are nice, but your success means so much more.',
-        icon: { name: 'VoltageIcon', size: 64 }
+        icon: { name: 'VoltageIcon', size: 64 },
+        image: prefixed('/api/images/work/burkesgroup/desktop/3.png')
       }
     ],
     meta: {
