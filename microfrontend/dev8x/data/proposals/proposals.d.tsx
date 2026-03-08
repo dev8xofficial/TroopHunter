@@ -154,7 +154,7 @@ const PROPOSALS: ProposalContent[] = [
     slug: 'c326895f-4cf2-463b-8680-5483244d9a07',
     variant: 'cyan',
     tagText: 'Company',
-    heading: getCompanyName(COMPANIES, '8475e512-b410-473b-abae-e707aae40022') + " - Proposals",
+    heading: getCompanyName(COMPANIES, '8475e512-b410-473b-abae-e707aae40022') + " - Proposal",
     image: '',
     iconCards: {
       title: 'Real Estate Solutions',
@@ -184,7 +184,7 @@ const PROPOSALS: ProposalContent[] = [
     },
     proposal: {
       companyId: '8475e512-b410-473b-abae-e707aae40022',
-      videoSrc: prefixed('/videos/proposals/042deec5-c6a3-4bb0-9134-86fbab6875d6/output.mp4'),
+      videoSrc: prefixed('/videos/proposals/c326895f-4cf2-463b-8680-5483244d9a07/output.mp4'),
       poster: prefixed(''),
       tag: { text: '', backgroundColor: '', color: '' },
       date: '03.02.26',
