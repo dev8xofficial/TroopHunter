@@ -125,19 +125,19 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
       let priority = 0.6;
 
       if (urlPath === '/') {
-        changefreq = 'daily';
+        changefreq = 'monthly';
         priority = 1.0;
       } else if (urlPath === '/expertise') {
-        changefreq = 'weekly';
+        changefreq = 'monthly';
         priority = 0.9;
       } else if (urlPath === '/work') {
-        changefreq = 'daily';
+        changefreq = 'yearly';
         priority = 0.9;
       } else if (urlPath === '/about') {
-        changefreq = 'daily';
+        changefreq = 'monthly';
         priority = 0.8;
       } else if (urlPath === '/contact') {
-        changefreq = 'daily';
+        changefreq = 'yearly';
         priority = 0.7;
       } else if (urlPath === '/privacy') {
         changefreq = 'yearly';
