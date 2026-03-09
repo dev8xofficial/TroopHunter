@@ -1,0 +1,207 @@
+{
+  "profile": {
+    "personalInfo": {
+      "firstName": "Abdul",
+      "lastName": "",
+      "emailAddressPersonal": "contact@helloabdul.com",
+      "linkedinProfileUrl": "linkedin.com/in/abdul-frontend",
+      "phoneNumber": {
+        "countryCode": "Pakistan (+92)",
+        "number": ""
+      },
+      "jobSearchStatus": {
+        "selectedOption": "I'm open to new opportunities",
+        "options": ["I'm actively looking for a job", "I'm open to new opportunities", "I'm not looking for a job / not ready to meet founders yet. HIDE MY PROFILE."]
+      },
+      "ycCompanyAffiliation": {
+        "selectedOption": "No affiliation",
+        "options": ["No affiliation", "Current or former employee at YC company"]
+      }
+    },
+    "locationInfo": {
+      "currentCity": "Lahore, Pakistan",
+      "usWorkAuthorization": {
+        "selection": "No",
+        "options": ["Yes", "No"]
+      },
+      "visaSponsorshipRequired": {
+        "selection": "Yes",
+        "options": ["Yes", "No"]
+      },
+      "remoteWorkPreference": {
+        "selection": "I only want to work remotely",
+        "options": ["I'm open to working remotely", "I only want to work remotely", "I don't want to work remotely"]
+      },
+      "willingToRelocate": {
+        "selection": "No",
+        "options": ["Yes", "No"]
+      },
+      "relocationDestinationsUs": {
+        "selections": [],
+        "options": ["San Francisco Bay Area", "New York City", "Anywhere in the US"]
+      },
+      "otherRelocationLocations": ""
+    },
+    "role": {
+      "jobFunction": {
+        "value": "Engineering",
+        "options": ["Engineering", "Design", "Product", "Science", "Sales", "Marketing", "Support", "Recruiting & HR", "Operations", "Finance", "Legal"]
+      },
+      "specificEngineeringRoles": ["Frontend Engineer", "Full-stack Engineer", "Software Engineer"],
+      "githubUrl": "github.com/abdul-dev",
+      "isFullTimeStudent": {
+        "value": "No",
+        "options": ["Yes", "No"]
+      },
+      "interestedJobTypes": {
+        "values": ["Full-time employee", "Contractor"],
+        "options": ["Full-time employee", "Contractor", "Cofounder"]
+      },
+      "yearsOfExperience": 6
+    },
+    "experience": {
+      "workHistory": [
+        {
+          "company": "Dev8X",
+          "title": "Founder & CEO",
+          "location": "Lahore, Pakistan",
+          "currentlyWorkHere": true,
+          "startDate": {
+            "month": "January",
+            "year": "2024"
+          },
+          "endDate": {
+            "month": "Present",
+            "year": "2024"
+          },
+          "description": "I provide **US-quality engineering** talent for startups. I architect scalable systems with **React.js**, **Next.js**, and **TypeScript**. I lead **DevOps** using **Docker** and **Kubernetes**. I implement **TurboRepo** monorepos to optimize engineering team workflows [1-4]."
+        },
+        {
+          "company": "TroopHunter",
+          "title": "Full-Stack Developer",
+          "location": "Lahore, Pakistan",
+          "currentlyWorkHere": false,
+          "startDate": {
+            "month": "January",
+            "year": "2023"
+          },
+          "endDate": {
+            "month": "January",
+            "year": "2025"
+          },
+          "description": "I led all technical and executive aspects of this **automated lead generation** platform. I built **Next.js** + **TypeScript** dashboards and **Node.js** microservices. I optimized workflows with **GSAP** and **Framer Motion**, ensuring dashboards load instantly [5-8]."
+        },
+        {
+          "company": "Total Health Dental Care",
+          "title": "Frontend Developer",
+          "location": "San Francisco, CA (Remote)",
+          "currentlyWorkHere": false,
+          "startDate": {
+            "month": "January",
+            "year": "2022"
+          },
+          "endDate": {
+            "month": "January",
+            "year": "2023"
+          },
+          "description": "I spearheaded a custom **CRM** using **React** and **TypeScript**, which later transitioned to **NexHealth**. I integrated **Agora** for virtual appointments and built a real-time **Scheduler**. My work resulted in a **33% increase** in global hygiene re-appointments [9-12]."
+        },
+        {
+          "company": "Coral Lab",
+          "title": "Frontend Developer",
+          "location": "Los Angeles, CA (Remote)",
+          "currentlyWorkHere": false,
+          "startDate": {
+            "month": "February",
+            "year": "2021"
+          },
+          "endDate": {
+            "month": "January",
+            "year": "2023"
+          },
+          "description": "I built consumer products and **Web3** platforms like **GoldenDAO**. I developed the **Honeydu** zero-fee payment app using **TailwindCSS**. I utilized **GSAP** and **SmoothScroller** to enhance user engagement for the corporate website [13-17]."
+        }
+      ],
+      "education": [
+        {
+          "school": "University in Pakistan (Source not specified)",
+          "fieldOfStudy": "Computer Science",
+          "degree": "Bachelor's",
+          "startDate": {
+            "month": "",
+            "year": ""
+          },
+          "endDate": {
+            "month": "",
+            "year": ""
+          },
+          "summary": "Focused on software engineering and modern web technologies [18]."
+        }
+      ]
+    },
+    "skills": [
+      {
+        "technology": "React.js",
+        "level": {
+          "selection": "Advanced",
+          "options": ["Beginner", "Intermediate", "Advanced"]
+        }
+      },
+      {
+        "technology": "Next.js",
+        "level": {
+          "selection": "Advanced",
+          "options": ["Beginner", "Intermediate", "Advanced"]
+        }
+      },
+      {
+        "technology": "TypeScript",
+        "level": {
+          "selection": "Advanced",
+          "options": ["Beginner", "Intermediate", "Advanced"]
+        }
+      },
+      {
+        "technology": "Node.js",
+        "level": {
+          "selection": "Intermediate",
+          "options": ["Beginner", "Intermediate", "Advanced"]
+        }
+      }
+    ],
+    "career": {
+      "companySizePreference": [
+        {
+          "size": "Seed: 1 - 10 people",
+          "preference": "Very Interested"
+        },
+        {
+          "size": "Small: 11 - 50 people",
+          "preference": "Interested"
+        },
+        {
+          "size": "Medium: 51 - 300 people",
+          "preference": "Open"
+        },
+        {
+          "size": "Large: 301+ people",
+          "preference": "Neutral"
+        }
+      ],
+      "equityValue": {
+        "selection": "I'd be interested in getting some equity at a promising company",
+        "options": ["I'm not that interested in startup equity; I'd prefer a cash-heavy package", "I'd be interested in getting some equity at a promising company", "Equity is very important to me"]
+      },
+      "salaryRequirementStatus": {
+        "selection": "I have a minimum in mind, but would consider offers below it for the right company",
+        "options": ["Yes, I'm only interested in salaries at or above my minimum", "I have a minimum in mind, but would consider offers below it for the right company", "I'm flexible, or not sure what my requirements are yet"]
+      },
+      "minimumSalaryUsd": "120000"
+    },
+    "share": {
+      "shortPhraseBio": "Senior **Frontend Consultant** helping startups ship production-ready **React.js** & **Next.js** apps with **6+ years** of high-leverage experience [19].",
+      "nextRoleGoalsAndAvoidance": "I want to partner with early-stage founders to architect scalable, **performant frontends**. I avoid technical debt and unoptimized, slow-loading architectures [19, 20].",
+      "proudProjectDescriptionOptional": "I am proud of the **Total Health Dental Care CRM**. I replaced **DentrixAscend** with a custom system that processed **millions in payments** and increased global re-appointments by **33%** [9-11, 21]."
+    }
+  }
+}

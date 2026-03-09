@@ -1,0 +1,363 @@
+{
+  "linkedin": {
+    "intro": {
+      "basicInfo": {
+        "firstName": "",
+        "lastName": "",
+        "additionalName": null,
+        "namePronunciation": null
+      },
+      "professional_profile": {
+        "headline": "",
+        "currentPosition": {
+          "title": " ",
+          "company": "",
+          "showInIntro": true
+        },
+        "industry": ""
+      },
+      "education": {
+        "school": "",
+        "showInIntro": false
+      },
+      "location": {
+        "country": "",
+        "city": ""
+      }
+    },
+    "about": {
+      "max length": 2600,
+      "title": {
+        "type": "string",
+        "context": "Professional headline summarizing role, expertise, and seniority.",
+        "values": ""
+      },
+
+      "summary": {
+        "type": "object",
+        "context": "High-level narrative explaining experience, focus, and value proposition.",
+
+        "openingContext": {
+          "type": "string",
+          "context": "Sets the scene for the consultant's current market focus and specialization.",
+          "values": ""
+        },
+
+        "problemAwareness": {
+          "type": "string",
+          "context": "Describes common client pain points the consultant understands.",
+          "values": ""
+        },
+
+        "corePromise": {
+          "type": "string",
+          "context": "Clear statement of the primary outcome or value delivered.",
+          "values": ""
+        },
+
+        "credibilityStatement": {
+          "type": "string",
+          "context": "Establishes trust through experience, results, or recognizable work.",
+          "values": ""
+        }
+      },
+
+      "positioning": {
+        "type": "object",
+        "context": "Defines ideal clients, exclusions, and strategic business focus.",
+
+        "whoThisIsFor": {
+          "type": "string",
+          "context": "Describes the ideal target audience.",
+          "values": ""
+        },
+
+        "whoThisIsNotFor": {
+          "type": "string",
+          "context": "Explicitly defines poor-fit clients or projects.",
+          "values": ""
+        },
+
+        "businessOutcomeFocus": {
+          "type": "string",
+          "context": "Explains the commercial or growth outcomes prioritized.",
+          "values": ""
+        },
+
+        "riskReductionAngle": {
+          "type": "string",
+          "context": "Explains how technical, delivery, or scalability risks are minimized.",
+          "values": ""
+        }
+      },
+
+      "authority": {
+        "type": "object",
+        "context": "Quantifiable proof of seniority, scale, and industry exposure.",
+
+        "yearsInProduction": {
+          "type": "string",
+          "context": "Total years of professional production experience.",
+          "values": ""
+        },
+
+        "typesOfProductsBuilt": {
+          "type": "array",
+          "context": "Categories of products previously delivered.",
+          "values": []
+        },
+
+        "industriesWorkedIn": {
+          "type": "array",
+          "context": "Industries or domains the consultant has worked in.",
+          "values": []
+        },
+
+        "scaleHandled": {
+          "type": "object",
+          "context": "Indicators of system scale, traffic, or complexity handled.",
+
+          "users": {
+            "type": "string",
+            "context": "Number of users or customers supported.",
+            "values": ""
+          },
+
+          "traffic": {
+            "type": "string",
+            "context": "Traffic growth or performance improvements achieved.",
+            "values": ""
+          },
+
+          "complexity": {
+            "type": "string",
+            "context": "Architectural or system-level complexity handled.",
+            "values": ""
+          }
+        }
+      },
+
+      "frontendSpecialization": {
+        "type": "object",
+        "context": "Deep technical focus areas within frontend engineering.",
+
+        "uiEngineering": {
+          "type": "string",
+          "context": "UI, animation, and design-system expertise.",
+          "values": ""
+        },
+
+        "stateManagement": {
+          "type": "string",
+          "context": "State, data, and application logic management expertise.",
+          "values": ""
+        },
+
+        "performanceOptimization": {
+          "type": "string",
+          "context": "Performance, loading speed, and optimization techniques.",
+          "values": ""
+        },
+
+        "architecturePatterns": {
+          "type": "string",
+          "context": "Frontend architecture and scaling patterns used.",
+          "values": ""
+        }
+      },
+
+      "problemsSolved": {
+        "type": "array",
+        "context": "Concrete business problems solved through frontend engineering.",
+        "values": [
+          {
+            "problem": {
+              "type": "string",
+              "context": "The core problem faced by the business.",
+              "values": ""
+            },
+            "impactOnBusiness": {
+              "type": "string",
+              "context": "Negative business impact before the solution.",
+              "values": ""
+            },
+            "howFrontendFixesIt": {
+              "type": "string",
+              "context": "Frontend solution implemented to resolve the issue.",
+              "values": ""
+            }
+          }
+        ]
+      },
+
+      "skills": {
+        "type": "object",
+        "context": "Structured breakdown of technical competencies.",
+
+        "fullTechStack": {
+          "type": "array",
+          "context": "End-to-end technologies used across projects.",
+          "values": []
+        },
+
+        "frameworks": {
+          "type": "array",
+          "context": "Primary frameworks and libraries.",
+          "values": []
+        },
+
+        "languages": {
+          "type": "array",
+          "context": "Programming and markup languages.",
+          "values": []
+        },
+
+        "stateManagement": {
+          "type": "array",
+          "context": "State and async data tools.",
+          "values": []
+        },
+
+        "animationLibraries": {
+          "type": "array",
+          "context": "Animation and interaction libraries.",
+          "values": []
+        },
+
+        "backendIntegrations": {
+          "type": "array",
+          "context": "External services and backend integrations.",
+          "values": []
+        },
+
+        "devOps": {
+          "type": "array",
+          "context": "DevOps, infrastructure, and deployment tools.",
+          "values": []
+        },
+
+        "performanceOptimizationTools": {
+          "type": "array",
+          "context": "Tools used for auditing and performance improvements.",
+          "values": []
+        }
+      },
+
+      "callToAction": {
+        "type": "object",
+        "context": "Guides the user toward the next step.",
+
+        "primaryCTA": {
+          "type": "string",
+          "context": "Primary action prompt.",
+          "values": ""
+        },
+
+        "informationToShare": {
+          "type": "array",
+          "context": "Information the client should provide.",
+          "values": []
+        }
+      }
+    },
+    "experience": [
+      {
+        "roleDetails": {
+          "title": "...",
+          "employmentType": {
+            "type ": "dropdown",
+            "value": "...",
+            "options": ["Full-time", "Part-time", "Self-employed", "Freelance", "Contract", "Internship", "Apprenticeship", "Seasonal"]
+          },
+          "companyName": "",
+          "isCurrentRole": {
+            "type": "checkbox",
+            "value": ""
+          }
+        },
+        "timeline": {
+          "startDate": {
+            "month": "",
+            "year": null
+          },
+          "endDate": {
+            "month": "",
+            "year": null
+          },
+          "locationDetails": {
+            "type": "dropdown",
+            "value": "",
+            "options": ["Remote", "On-site", "Hybrid"]
+          }
+        },
+        "roleDescription": {
+          "charactercount": {
+            "max": 2000
+          },
+          "context": "This is a long-form text field designed for a detailed summary (approx. 300 words) where you explain the specific background, requirements, or steps of your submission.",
+          "formattingNote": "Contains emoji bullet point",
+          "value": ""
+        },
+        "profileHeadline": {
+          "context": "Professional headline summarizing role, expertise, and seniority.",
+          "maxCharacters": 220,
+          "value": ""
+        }
+      }
+    ],
+    "education": {
+      "form_context": "Education Entry / Academic Background",
+      "education_details": {
+        "school": {
+          "label": "School",
+          "required": true,
+          "placeholder": "Ex: Boston University",
+          "current_value": null,
+          "validation_error": "School is a required field"
+        },
+        "degree": {
+          "label": "Degree",
+          "placeholder": "Ex: Bachelor of Science",
+          "current_value": null
+        },
+        "field_of_study": {
+          "label": "Field of study",
+          "placeholder": "Ex: Business",
+          "suggested_value": "Computer Software Engineering"
+        },
+        "start_date": {
+          "month": {
+            "current_selection": null
+          },
+          "year": {
+            "current_selection": ""
+          }
+        },
+        "end_date_expected": {
+          "month": {
+            "current_selection": null
+          },
+          "year": {
+            "current_selection": "2018"
+          }
+        },
+        "grade": {
+          "label": "Grade",
+          "character_limit": 80,
+          "current_count": 0
+        },
+        "activities_and_societies": {
+          "label": "Activities and societies",
+          "placeholder": "Ex: Alpha Phi Omega, Marching Band, Volleyball",
+          "character_limit": 500,
+          "current_count": 0
+        },
+        "description": {
+          "label": "Description",
+          "character_limit": 1000,
+          "current_count": 0
+        }
+      }
+    }
+  }
+}

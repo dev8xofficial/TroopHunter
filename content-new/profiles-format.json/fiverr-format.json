@@ -1,0 +1,587 @@
+{
+  "overview": {
+    "gigTitle": {
+      "type": "value",
+      "required": true,
+      "context": "Primary headline of the gig shown in search results; should clearly describe the service and include buyer search keywords.",
+      "constraints": {
+        "minCharacters": 15,
+        "maxCharacters": 80
+      },
+      "value": "I will ..."
+    },
+    "category": {
+      "details": {
+        "type": "select",
+        "required": true,
+        "options": {
+          "primaryCategory": {
+            "about": "Primary Category",
+            "type": "select",
+            "value": "...",
+            "options": ["graphics & design", "digital marketing", "writing & translation", "video & animation", "music & audio", "data", "programming & tech", "business", "Personal growth and hobbies", "Photography", "Finance", "End to End projects"]
+          },
+          "secondaryCategory": {
+            "about": "Secondary Category",
+            "type": "select",
+            "value": " ...",
+            "options": [
+              "WEBSITE DEVELOPMENT",
+              "WEBSITE MAINTENANCE",
+              "SOFTWARE DEVELOPMENT",
+              "MOBILE APP DEVELOPMENT",
+              "GAME DEVELOPMENT",
+              "AI DEVELOPMENT",
+              "VIBE CODING",
+              "CHATBOT DEVELOPMENT",
+              "CLOUD COMPUTING",
+              "DEVOPS ENGINEERING",
+              "SUPPORT & IT",
+              "CRYPTOCURRENCIES & TOKENS",
+              "BLOCKCHAIN DEVELOPMENT & SOLUTIONS",
+              "NFT DEVELOPMENT",
+              "MOBILE APP MAINTENANCE",
+              "ELECTRONICS ENGINEERING",
+              "Articles & Blog Posts",
+              "Proofreading & Editing",
+              "translation",
+              "website content",
+              "product descriptions",
+              "books & eBooks writing",
+              "book editing",
+              "resume writing",
+              "brand voice & tone",
+              "UX writing",
+              "email copy",
+              "technical writing",
+              "white papers",
+              "localization",
+              "content strategy",
+              "custom writing prompts",
+              "sales copy",
+              "linkedin profiles",
+              "job descriptions",
+              "creative writing",
+              "scriptwriting"
+            ]
+          }
+        }
+      },
+      "suggestedCategories": ["Programming & Tech > Website Development", "Programming & Tech > Software Development", "Graphics & Design > Website Design"]
+    },
+    "serviceType": "Custom Websites",
+    "gigMetadata": {
+      "websiteType": {
+        "value": "Business",
+        "option": ["Business", "eCommerce store", "Portfolio", "Blog", "Landing Page", "Non-Profit", "Personal", "Educational", "Entertainment", "Wedding", "Podcasting", "Online communities", "Forms", "Crowdfunding", "Wiki/Knowledge", "Saas", "Job Board", "Portal", "Brochure", "Dropshipping", "Other"]
+      },
+      "programming_languages": {
+        "value": ["HTML & CSS", "JavaScript", "TypeScript", "React", "Tailwind CSS"],
+        "maxSelectionslimit": 5,
+        "options": {
+          "programming_languages": ["ASP.NET", "HTML & CSS", "JavaScript", "Perl", "PHP", "Python", "Ruby/RoR", "Scala", "Flash", "Java", "TypeScript", "C#", "Go", "Kotlin", "React", "Bootstrap", "AngularJS", "Tailwind CSS", "JQuery", "Angular", "Django", "Vue.js", "Node.js", "Rust", "ColdFusion", "Dart"]
+        }
+      },
+      "websiteFeatures": {
+        "value": ["Landing page", "Portfolio", "User Authentication", "Analytics", "Form", "Chat", "Dashboard", "Social media", "Payment", "Reviews"],
+        "maxSelectionslimit": 10,
+        "options": {
+          "website_features": ["Marketing", "Payment", "Forum", "Social media", "Customer support", "Shipping", "Inventory", "Analytics", "Video", "Form", "Events", "Music", "Chat", "Membership", "Map", "FAQ", "Gallery", "Booking", "Calendar", "Portfolio", "Dashboard", "Reviews", "Landing page", "Blog", "User Authentication", "Newsletter", "Admin Panel"]
+        }
+      }
+    },
+    "searchTags": {
+      "context": "Enter search terms you feel your buyers will use when looking for your service.",
+      "max length": 5,
+      "value": ["...", "...", "...", "...", "..."],
+      "options": ["MODERN FRONTEND", "SCALABLE UI", "CLEAN CODE", "COMPONENT-DRIVEN", "ANIMATION-READY"]
+    }
+  },
+  "pricing": {
+    "packages": {
+      "basic": {
+        "packageName": "...",
+        "description": {
+          "type": "value",
+          "context": "Short summary explaining what is included in the Basic package",
+          "placeholder": "describe the details of your offering",
+          "maxLength": 100,
+          "value": "..."
+        },
+        "deliveryDays": {
+          "context": "Total number of days required to deliver the Basic package",
+          "value": null,
+          "type": "dropdown",
+          "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 21, 30, 45, 60, 75, 90]
+        },
+        "functionalWebsite": {
+          "context": "Indicates whether a fully working website is delivered",
+          "value": false
+        },
+        "numberOfPages": {
+          "context": "Total number of web pages included in the Basic package",
+          "value": null,
+          "option": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        "revisions": {
+          "context": "Number of revision requests the buyer is allowed after delivery",
+          "value": null,
+          "option": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "unlimited"]
+        },
+        "contentUpload": {
+          "context": "Seller uploads buyer-provided content to the website",
+          "value": false
+        },
+        "pluginsExtensionsInstallation": {
+          "context": "Number of plugins or extensions installed and configured",
+          "value": null,
+          "option": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        "eCommerceFunctionality": {
+          "context": "Whether online selling features are included",
+          "value": false
+        },
+        "numberOfProducts": {
+          "context": "Maximum number of products added if eCommerce is enabled",
+          "value": null,
+          "option": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
+        },
+        "paymentIntegration": {
+          "context": "Integration of online payment gateways such as Stripe or PayPal",
+          "value": false
+        },
+        "optInForm": {
+          "context": "Includes newsletter or lead capture forms",
+          "value": false
+        },
+        "autoresponderIntegration": { "context": "Email automation tool integration (e.g., Mailchimp)", "value": false },
+        "speedOptimization": {
+          "context": "Website performance and loading speed optimization",
+          "value": false
+        },
+        "hostingSetup": {
+          "context": "Server or hosting configuration and setup",
+          "value": false
+        },
+        "socialMediaIcons": {
+          "context": "Social media profile icons added to the website",
+          "value": false
+        },
+        "price": 0
+      },
+      "standard": {
+        "packageName": "...",
+        "description": {
+          "type": "value",
+          "context": "Short summary explaining what is included in the Basic package",
+          "placeholder": "describe the details of your offering",
+          "maxLength": 100,
+          "value": "..."
+        },
+        "deliveryDays": {
+          "context": "Total number of days required to deliver the Basic package",
+          "value": null,
+          "type": "dropdown",
+          "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 21, 30, 45, 60, 75, 90]
+        },
+        "functionalWebsite": {
+          "context": "Indicates whether a fully working website is delivered",
+          "value": false
+        },
+        "numberOfPages": {
+          "context": "Total number of web pages included in the Basic package",
+          "value": null,
+          "option": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        "revisions": {
+          "context": "Number of revision requests the buyer is allowed after delivery",
+          "value": null,
+          "option": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "unlimited"]
+        },
+        "contentUpload": {
+          "context": "Seller uploads buyer-provided content to the website",
+          "value": false
+        },
+        "pluginsExtensionsInstallation": {
+          "context": "Number of plugins or extensions installed and configured",
+          "value": null,
+          "option": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        "eCommerceFunctionality": {
+          "context": "Whether online selling features are included",
+          "value": false
+        },
+        "numberOfProducts": {
+          "context": "Maximum number of products added if eCommerce is enabled",
+          "value": null,
+          "option": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
+        },
+        "paymentIntegration": {
+          "context": "Integration of online payment gateways such as Stripe or PayPal",
+          "value": false
+        },
+        "optInForm": {
+          "context": "Includes newsletter or lead capture forms",
+          "value": false
+        },
+        "autoresponderIntegration": { "context": "Email automation tool integration (e.g., Mailchimp)", "value": false },
+        "speedOptimization": {
+          "context": "Website performance and loading speed optimization",
+          "value": false
+        },
+        "hostingSetup": {
+          "context": "Server or hosting configuration and setup",
+          "value": false
+        },
+        "socialMediaIcons": {
+          "context": "Social media profile icons added to the website",
+          "value": false
+        },
+        "price": 0
+      },
+      "premium": {
+        "packageName": "...",
+        "description": {
+          "type": "value",
+          "context": "Short summary explaining what is included in the Basic package",
+          "placeholder": "describe the details of your offering",
+          "maxLength": 100,
+          "value": "..."
+        },
+        "deliveryDays": {
+          "context": "Total number of days required to deliver the Basic package",
+          "value": null,
+          "type": "dropdown",
+          "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 21, 30, 45, 60, 75, 90]
+        },
+        "functionalWebsite": {
+          "context": "Indicates whether a fully working website is delivered",
+          "value": false
+        },
+        "numberOfPages": {
+          "context": "Total number of web pages included in the Basic package",
+          "value": null,
+          "option": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        "revisions": {
+          "context": "Number of revision requests the buyer is allowed after delivery",
+          "value": null,
+          "option": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "unlimited"]
+        },
+        "contentUpload": {
+          "context": "Seller uploads buyer-provided content to the website",
+          "value": false
+        },
+        "pluginsExtensionsInstallation": {
+          "context": "Number of plugins or extensions installed and configured",
+          "value": null,
+          "option": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        "eCommerceFunctionality": {
+          "context": "Whether online selling features are included",
+          "value": false
+        },
+        "numberOfProducts": {
+          "context": "Maximum number of products added if eCommerce is enabled",
+          "value": null,
+          "option": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
+        },
+        "paymentIntegration": {
+          "context": "Integration of online payment gateways such as Stripe or PayPal",
+          "value": false
+        },
+        "optInForm": {
+          "context": "Includes newsletter or lead capture forms",
+          "value": false
+        },
+        "autoresponderIntegration": { "context": "Email automation tool integration (e.g., Mailchimp)", "value": false },
+        "speedOptimization": {
+          "context": "Website performance and loading speed optimization",
+          "value": false
+        },
+        "hostingSetup": {
+          "context": "Server or hosting configuration and setup",
+          "value": false
+        },
+        "socialMediaIcons": {
+          "context": "Social media profile icons added to the website",
+          "value": false
+        },
+        "price": 0
+      }
+    },
+    "extra_services": {
+      "form_context": "This form defines optional gig extras that buyers can add on top of Basic, Standard, or Premium packages. Each extra can be enabled or disabled and may increase price and/or delivery time depending on the value package.",
+      "extra_fast_delivery": {
+        "context": " Set your price for faster delivery Extra fast delivery time must be shorter than your basic delivery time",
+        "value": true,
+        "options": [
+          {
+            "package": "Basic",
+            "additionalDeliveryDays": {
+              "value": null,
+              "placeholder": "SELECT",
+              "type": "dropdown",
+              "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+            },
+            "extraPrice": 0
+          },
+          {
+            "package": "Standard",
+            "additionalDeliveryDays": {
+              "value": null,
+              "placeholder": "SELECT",
+              "type": "dropdown",
+              "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+            },
+            "extraPrice": 0
+          },
+          {
+            "package": "Premium",
+            "additionalDeliveryDays": {
+              "value": null,
+              "placeholder": "SELECT",
+              "type": "dropdown",
+              "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+            },
+            "extraPrice": 0
+          }
+        ]
+      },
+      "additional_page": {
+        "context": "Set the price for an additional page to be added to the client's website.",
+        "value": true,
+        "extraPrice": 0,
+        "additionalDeliveryDays": {
+          "value": null,
+          "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+        }
+      },
+
+      "additional_revision": {
+        "context": "Set the price for an additional revision.",
+        "value": true,
+        "extraPrice": 0,
+        "additionalDeliveryDays": {
+          "value": null,
+          "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+        }
+      },
+
+      "additional_plugin_installation": {
+        "context": "Set the price for installing an additional plugin on the client's website.",
+        "value": true,
+        "extraPrice": 0,
+        "additionalDeliveryDays": {
+          "value": null,
+          "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+        }
+      },
+
+      "ecommerce_functionality": {
+        "context": "Add full e-commerce functionality to the client's website.",
+        "value": true,
+        "extraPrice": 0,
+        "additionalDeliveryDays": {
+          "value": null,
+          "placeholder": "SELECT",
+          "type": "dropdown",
+          "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+        }
+      },
+
+      "additional_product": {
+        "context": "Set the price for adding an additional product to the online store.",
+        "value": true,
+        "extraPrice": 0,
+        "additionalDeliveryDays": {
+          "value": null,
+          "placeholder": "SELECT",
+          "type": "dropdown",
+          "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+        }
+      },
+
+      "payment_integration": {
+        "context": "Integrate a payment gateway so the website can accept online payments.",
+        "value": true,
+        "extraPrice": 0,
+        "additionalDeliveryDays": {
+          "value": null,
+          "placeholder": "SELECT",
+          "type": "dropdown",
+          "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+        }
+      },
+
+      "opt_in_form": {
+        "context": "Create an opt-in form to capture customer email addresses.",
+        "value": true,
+        "extraPrice": 0,
+        "additionalDeliveryDays": {
+          "value": null,
+          "placeholder": "SELECT",
+          "type": "dropdown",
+          "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+        }
+      },
+      "speed_optimization": {
+        "context": "Optimize the speed and performance of the client's website.",
+        "value": true,
+        "extraPrice": 0,
+        "additionalDeliveryDays": {
+          "value": null,
+          "placeholder": "SELECT",
+          "type": "dropdown",
+          "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+        }
+      },
+      "addExtraGigService": {
+        "formContext": "Interface for adding 'extra services' or add-ons to a listing. It allows users to define a title, description, additional cost, and additional time required for each service.",
+        "fields": [
+          {
+            "status": "unchecked",
+            "addGigExtra": {
+              "titleInput": {
+                "placeholder": "Title your extra service",
+                "character_limit": {
+                  "max": 20,
+                  "value": "..."
+                }
+              },
+              "descriptionInput": {
+                "value": "...",
+                "placeholder": "I will describe your offering"
+              },
+              "pricingInput": {
+                "currencySymbol": "$",
+                "type": "number",
+                "price": 0
+              },
+              "additionalDeliveryDays": {
+                "value": null,
+                "type": "dropdown",
+                "option": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "descriptionAndFAQ": {
+    "briefDescription": {
+      "formContext": "A form section dedicated to providing a brief description of a service or 'gig', including a rich text editor with specific formatting tools and character limits.",
+      "fields": [
+        {
+          "type": "rich_text_editor",
+          "toolbarOptions": ["Bold", "Italic", "Highlight/Tip", "Ordered List", "Unordered List"],
+          "validation": {
+            "maxCharacters": 1200,
+            "required": true
+          },
+          "value": "..."
+        }
+      ]
+    },
+    "milestones": [
+      {
+        "milestoneName": {
+          "value": "",
+          "options": ["research", "videoMeetup", "requirement", "delivery", "progressCheck", "firstDraft", "modifications", "followUpSession", "OnboardingQuestionennaire", "planning", "Specification", "websiteDesign", "DesignConcept", "finalDesign", "contentAndDelivery", "ContentUpload"]
+        },
+        "zoomMeeting": "checked"
+      },
+      {
+        "availablePackages": [
+          {
+            "tier": "Basic",
+            "enabled": false,
+            "price": 0,
+            "deliveryTime": 0,
+            "revisions": 0
+          },
+          {
+            "tier": "Standard",
+            "enabled": false,
+            "price": 0,
+            "deliveryTime": 0,
+            "revisions": 0
+          },
+          {
+            "tier": "Premium",
+            "enabled": false,
+            "price": 0,
+            "deliveryTime": 0,
+            "revisions": 0
+          }
+        ]
+      }
+    ],
+    "faqs": {
+      "formContext": "A form section that allows sellers to add frequently asked questions and their corresponding answers for buyers.",
+      "section": {
+        "fields": [
+          {
+            "type": "value",
+            "placeholder": "Enter a buyer-facing question",
+            "required": true,
+            "value": "..."
+          },
+          {
+            "type": "textarea",
+            "placeholder": "Enter the answer to the question",
+            "required": true,
+            "constraints": {
+              "maxCharacters": 300,
+              "value": "..."
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": {
+    "form_context": "A buyer requirement intake configuration used to collect project-specific details, featuring platform-default optional questions and a custom question builder with character limits and response type validation.",
+    "fiverr_default_questions": [
+      {
+        "type": "multiple_choice",
+        "question_text": "If you're ordering for a business, what's your Industry?",
+        "is_optional": true
+      },
+      {
+        "type": "multiple_choice",
+        "question_text": "Is this order part of a bigger project you're working on?",
+        "is_optional": true
+      }
+    ],
+    "custom_question_builder": {
+      "input_fields": {
+        "question_text": {
+          "type": "textarea",
+          "max_length": 400,
+          "placeholder": "Request necessary details such as dimensions, brand guidelines, and more.",
+          "value": "..."
+        },
+        "is_required": {
+          "type": "checkbox",
+          "default_value": true,
+          "value": false
+        },
+        "response_format": {
+          "type": "dropdown",
+          "options": ["Free text", "Multiple Choice", "Attachment"],
+          "value": "..."
+        }
+      },
+      "actions": {
+        "add_new": "Add New Question"
+      }
+    }
+  },
+  "gallery": {
+    "images": ["...", "...", "..."],
+    "video": "...",
+    "documents": ["...", "..."]
+  }
+}

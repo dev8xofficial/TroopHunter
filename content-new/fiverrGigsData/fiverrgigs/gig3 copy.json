@@ -1,0 +1,133 @@
+{
+  "overview": {
+    "gigTitle": {
+      "type": "text",
+      "required": true,
+      "text": "I will be your framer expert for speed optimization and headless cms"
+    },
+    "category": {
+      "details": {
+        "primaryCategory": {
+          "type": "select",
+          "text": "programming & tech"
+        },
+        "secondaryCategory": {
+          "type": "select",
+          "text": "WEBSITE DEVELOPMENT"
+        }
+      },
+      "suggestedCategories": [
+        "Programming & Tech > Website Development",
+        "Programming & Tech > Software Development"
+      ]
+    },
+    "serviceType": "Custom Websites",
+    "gigMetadata": {
+      "websiteType": {
+        "selected": "Saas"
+      },
+      "programming_languages": {
+        "selected": [
+          "HTML & CSS",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Tailwind CSS"
+        ]
+      },
+      "websiteFeatures": {
+        "selected": [
+          "Landing page",
+          "Portfolio",
+          "User Authentication",
+          "Analytics",
+          "Form",
+          "Dashboard",
+          "Payment",
+          "Reviews",
+          "Booking",
+          "Calendar"
+        ]
+      }
+    },
+    "searchTags": {
+      "text": [
+"framer expert",
+"speed optimization",
+"headless cms",
+"GSAP Expert",
+"tailwind css dev"
+
+
+      ]
+    }
+  },
+
+  "descriptionAndFAQ": {
+    "briefDescription": {
+      "text": "Hello! I am a Framer Expert with 6+ years of experience converting complex Figma designs into high-performance, pixel-perfect websites. I specialize in custom layoutsno templates, just premium, bespoke digital experiences.  Why Choose Me?  Proven Experience: Successfully delivered 550+ websites and landing pages. Speed Optimization: I build lean, lightning-fast sites to boost conversion and SEO. Headless CMS: Expert setup for dynamic, scalable content management. Pixel-Perfect Conversion: High-fidelity Figma to Framer development. 100% Responsive: Flawless performance on mobile, tablet, and desktop. Advanced Integrations: Seamlessly connect Zapier, HubSpot, Airtable, and Memberstack. High-End Animations: Custom, fluid interactions using Framer Motion and GSAP. SEO Optimized: Built with semantic structure to help you rank higher. My Guarantee  I follow a strict style guide to ensure your project is consistent, maintainable, and scalable. You can expect high-quality code, professional communication, and full confidentiality.  Lets build something extraordinary! Please contact me before placing an order so we can review your design files together."
+    },
+    "faqs": {
+      "section": {
+        "fields": [
+          {
+            "type": "text",
+            "text": "Can you convert my Figma or Adobe XD design into Webflow?"
+          },
+          {
+            "type": "textarea",
+            "text": "Yes, I specialize in pixel-perfect conversions. I will take your design files and build a fully responsive, high-performance Webflow site that matches your vision exactly across all devices."
+          },
+          {
+            "type": "text",
+            "text": "Do you provide custom animations, or do you only use templates?"
+          },
+          {
+            "type": "textarea",
+            "text": "I do not use generic templates. I specialize in high-end, custom interactions using GSAP (Greensock), ScrollTrigger, and SmoothScroller. My goal is to create a 'wow-factor' experience that increases user engagement, as I did for Coral Lab and Total Health Dental Care"
+          },
+          {
+            "type": "text",
+            "text": "Can you integrate third-party tools like HubSpot, Zapier, or payment gateways?"
+          },
+          {
+            "type": "textarea",
+            "text": "Yes. I can connect your Webflow site to various external services for automation. Whether it’s setting up Zapier workflows, integrating HubSpot for marketing, or adding secure payment processing via Stripe, I handle the full integration"
+          },
+          {
+            "type": "text",
+            "text": "Will my website be SEO-friendly?"
+          },
+          {
+            "type": "textarea",
+            "text": "Definitely. I build websites with a clean semantic structure (HTML5/CSS3) and optimize page speed, which are critical for search engine rankings. I also ensure all metadata and alt tags are correctly configured before delivery"
+          },
+          {
+            "type": "text",
+            "text": "What if I need custom code functionality that Webflow doesn't offer natively?"
+          },
+          {
+            "type": "textarea",
+            "text": "This is where my background as a Senior Frontend Engineer helps. If Webflow’s native tools aren't enough, I can write custom JavaScript to add advanced features, unique UI components, or complex logic that standard 'no-code' developers cannot provide"
+          }
+        ]
+      }
+    }
+  },
+   "requirements": {
+    "custom_question_builder": [
+      {
+        "question_text": "What level of animation or 'Wow-Factor' are you looking for?",
+        "is_required": true,
+        "response_format": "Free text"
+      },
+      {
+        "question_text": "Which integrations do you need to be set up?",
+        "is_required": true,
+        "response_format": "Free text"
+      }
+     
+      
+    ]
+  }
+}

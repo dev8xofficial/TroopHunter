@@ -1,0 +1,131 @@
+{
+  "overview": {
+    "gigTitle": {
+      "type": "text",
+      "required": true,
+      "text": "I will build a custom full stack website using react next js and node js"
+    },
+    "category": {
+      "details": {
+        "primaryCategory": {
+          "type": "select",
+          "text": "programming & tech"
+        },
+        "secondaryCategory": {
+          "type": "select",
+          "text": "WEBSITE DEVELOPMENT"
+        }
+      }
+    },
+    "serviceType": "Custom Websites",
+    "gigMetadata": {
+      "websiteType": {
+        "selected": "Saas"
+      },
+      "programming_languages": {
+        "selected": [
+          "HTML & CSS",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Tailwind CSS"
+        ]
+      },
+      "websiteFeatures": {
+        "selected": [
+          "Landing page",
+          "Portfolio",
+          "User Authentication",
+          "Analytics",
+          "Form",
+          "Dashboard",
+          "Payment",
+          "Reviews",
+          "Booking",
+          "Calendar"
+        ]
+      }
+    },
+    "searchTags": {
+      "text": [
+     "full stack developer",
+     "mern stack",
+     "SaaS development",
+     "next js developer",
+     "api integration"
+      ]
+    }
+  },
+
+  "descriptionAndFAQ": {
+    "briefDescription": {
+      "text": "Custom Full Stack Website Development | React.js, Next.js & Node.js Expert  Looking for a reliable Senior Full Stack Developer to build a fast, secure, and scalable custom site? You are in the right place.  I am a professional Full Stack Engineer and Founder with 6+ years of experience building production-grade systems for startups, fintech, and healthcare clients. I don't just write code; I build modern, responsive, and high-performance web solutions that scale.  What I Can Build For You:  Custom Full Stack Platforms: built from scratch with clean architecture. Secure Backend Development: RESTful APIs, Node.js Microservices, and PostgreSQL/Sequelize database design. Modern Frontend: Pixel-perfect UI using React.js, Next.js, and TailwindCSS. Interactive Experiences: Smooth animations using GSAP and Framer Motion. Performance Optimization: Site rebuilds and refactoring for maximum speed and SEO. My Tech Stack:  Frontend: React.js, Next.js, TypeScript, TailwindCSS, Redux Backend: Node.js, Express.js, PostgreSQL DevOps: Docker, CI/CD pipelines (Basic setup) Why Choose Me?  Senior Expertise: 6+ years of engineering experience (US-quality standards). Clean Code: Maintainable, type-safe (TypeS"
+    },
+    "faqs": {
+      "section": {
+        "fields": [
+          {
+            "type": "text",
+            "text": "What is your preferred tech stack for full-stack projects?"
+          },
+          {
+            "type": "textarea",
+            "text": "To make your Fiverr gigs more professional and conversion-focused, I have generated five reasonable and high-converting FAQs for each gig. These are designed to address common client concerns while highlighting your specific 6+ years of engineering experience."
+          },
+          {
+            "type": "text",
+            "text": "Can you build complex systems like CRMs or custom booking engines?"
+          },
+          {
+            "type": "textarea",
+            "text": "Yes. I have extensive experience building enterprise-level tools, including a custom CRM and a real-time Scheduler for Total Health Dental Care. Whether you need a lead generation platform like TroopHunter or a secure payment app like Honeydu, I can architect it from scratch"
+          },
+          {
+            "type": "text",
+            "text": "How do you ensure the website is fast and performant?"
+          },
+          {
+            "type": "textarea",
+            "text": "Performance is a priority. I utilize Next.js for server-side rendering, optimize assets using tools like ImagesLoaded, and implement clean code practices to reduce load times. In past projects, I have successfully reduced site load times by 40%"
+          },
+          {
+            "type": "text",
+            "text": "Do you handle the deployment and DevOps part of the project?"
+          },
+          {
+            "type": "textarea",
+            "text": "Absolutely. Beyond coding, I can manage the entire deployment pipeline using Docker, Kubernetes, and CI/CD automation. This ensures your application is containerized, scalable, and easily maintainable."
+          },
+          {
+            "type": "text",
+            "text": "Is the code maintainable for future developers?"
+          },
+          {
+            "type": "textarea",
+            "text": "Yes. As the Founder of Dev8X, I follow industry-standard 'US-quality' engineering practices. I use TypeScript, ESLint, and Prettier to ensure the codebase is clean, well-documented, and easy for any team to scale in the future."
+          }
+        ]
+      }
+    }
+  },
+   "requirements": {
+    "custom_question_builder": [
+      {
+        "question_text": "If you’re ordering for a business, what’s your industry?",
+        "is_required": true,
+        "response_format": "Free text"
+      },
+      {
+        "question_text": "Are there any specific third-party integrations required?",
+        "is_required": true,
+        "response_format": "Attachment"
+      },
+      {
+        "question_text": "Do you have UI/UX designs ready (Figma, Adobe XD, or Sketch)?",
+        "is_required": true,
+        "response_format": "Attachment"
+      }
+      
+    ]
+  }
+}

@@ -1,0 +1,348 @@
+{
+  "overview": {
+    "gigTitle": {
+      "type": "text",
+      "required": true,
+      "text": "I will design a carrd landing page, figma to webflow, or custom booking website"
+    },
+    "category": {
+      "details": {
+        "primaryCategory": {
+          "type": "select",
+          "text": "programming & tech"
+        },
+        "secondaryCategory": {
+          "type": "select",
+          "text": "WEBSITE DEVELOPMENT"
+        }
+      },
+      "suggestedCategories": [
+        "Programming & Tech > Website Development",
+        "Programming & Tech > Software Development"
+      ]
+    },
+    "serviceType": "Custom Websites",
+    "gigMetadata": {
+      "websiteType": {
+        "selected": "Saas"
+      },
+      "programming_languages": {
+        "selected": [
+          "HTML & CSS",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Tailwind CSS"
+        ]
+      },
+      "websiteFeatures": {
+        "selected": [
+          "Landing page",
+          "Portfolio",
+          "User Authentication",
+          "Analytics",
+          "Form",
+          "Dashboard",
+          "Payment",
+          "Reviews",
+          "Booking",
+          "Calendar"
+        ]
+      }
+    },
+    "searchTags": {
+      "text": [
+   " Carrd Landing Page",
+   " figma to webflow",
+   " booking website",
+   " frontend developer",
+   " custom web app"
+      ]
+    }
+  },
+  "pricing": {
+    "packages": {
+      "basic": {
+        "packageName": "Performance Landing Page",
+        "description": {
+          "type": "text",
+          "text": "Build a **high-performance landing page** with **React/Next.js** and **TypeScript** for **instant loading**."
+        },
+        "deliveryDays": {
+          "selected": 3
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 1
+        },
+        "revisions": {
+          "selected": 2
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 2
+        },
+        "eCommerceFunctionality": {
+          "selected": false
+        },
+        "paymentIntegration": {
+          "selected": false
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 150
+      },
+      "standard": {
+        "packageName": "Scalable Business Solution",
+        "description": {
+          "type": "text",
+          "text": "**Custom SaaS/Business site** with **Next.js**, **Redux**, and **GSAP** for **30% better engagement**."
+        },
+        "deliveryDays": {
+          "selected": 7
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 5
+        },
+        "revisions": {
+          "selected": 5
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 5
+        },
+        "eCommerceFunctionality": {
+          "selected": false
+        },
+        "paymentIntegration": {
+          "selected": true
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 450
+      },
+      "premium": {
+        "packageName": "Full-Stack Enterprise System",
+        "description": {
+          "type": "text",
+          "text": "**Full-stack platform** with **Next.js**, **Auth**, **Payments**, and **Docker/CI/CD** for **enterprise scale**."
+        },
+        "deliveryDays": {
+          "selected": 21
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 10
+        },
+        "revisions": {
+          "selected": "unlimited"
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 10
+        },
+        "eCommerceFunctionality": {
+          "selected": true
+        },
+        "paymentIntegration": {
+          "selected": true
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 1200
+      }
+    },
+    "extra_services": {
+      "extra_fast_delivery": {
+        "selected": true,
+        "options": [
+          {
+            "package": "Basic",
+            "additionalDeliveryDays": {
+              "selected": 1
+            },
+            "extraPrice": 50
+          },
+          {
+            "package": "Standard",
+            "additionalDeliveryDays": {
+              "selected": 3
+            },
+            "extraPrice": 150
+          },
+          {
+            "package": "Premium",
+            "additionalDeliveryDays": {
+              "selected": 7
+            },
+            "extraPrice": 400
+          }
+        ]
+      },
+      "additional_page": {
+        "selected": true,
+        "extraPrice": 80,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "additional_revision": {
+        "selected": true,
+        "extraPrice": 30,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "ecommerce_functionality": {
+        "selected": true,
+        "extraPrice": 250,
+        "additionalDeliveryDays": {
+          "selected": 3
+        }
+      },
+      "payment_integration": {
+        "selected": true,
+        "extraPrice": 150,
+        "additionalDeliveryDays": {
+          "selected": 2
+        }
+      },
+      "speed_optimization": {
+        "selected": true,
+        "extraPrice": 100,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "addExtraGigService": {
+        "fields": [
+          {
+            "addGigExtra": {
+              "titleInput": {
+                "text": "CI/CD Pipeline Setup"
+              },
+              "descriptionInput": {
+                "text": "I will set up **automated deployment** using **Docker** and **GitHub Actions** to reduce **operational risk**."
+              },
+              "pricingInput": {
+                "price": 200
+              },
+              "additionalDeliveryDays": {
+                "selected": 2
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "descriptionAndFAQ": {
+    "briefDescription": {
+      "text": "Im Abdul, Senior Frontend Developer and Founder & CEO of Dev8X, with 6+ years of experience delivering US-quality engineering solutions. I build blazing-fast, high-converting websites that look stunning and perform flawlessly.  Whether you need a sleek Carrd landing page, a pixel-perfect Figma to Webflow conversion, or a powerful full-scale booking website, I can bring your vision to life.  What I Offer:  Carrd & Webflow Development Fully responsive, mobile-first builds with smooth micro-interactions using GSAP, ScrollTrigger, and Framer Motion.  Advanced Booking Systems Enterprise-grade scheduling platforms. Previously built a real-time booking UI used by 15,000+ active patients, increasing re-appointments by 33% (1,000+ monthly). Also developed a ticket reservation system with live seat availability.  Custom Integrations CRM modules, live video appointments (Agora), and third-party tool integrations.  Why Choose Me?  Proven Results Reduced load times by 40% and boosted engagement by 30%.  Scalable Solutions Expertise in React, Next.js, TypeScript, and Node.js.  End-to-End Ownership Product-focused, fast delivery, clean execution.  Lets build something exceptional. Message me to get started"
+    },
+    "faqs": {
+      "section": {
+        "fields": [
+          {
+            "type": "text",
+            "text": "Can you convert my complex Figma design into Webflow or Carrd?"
+          },
+          {
+            "type": "textarea",
+            "text": "Yes! I provide pixel-perfect conversions. I also specialize in adding advanced visual polish like GSAP animations, SmoothScroller, and custom dynamic motion paths to make your design stand out."
+          },
+          {
+            "type": "text",
+            "text": "What kind of Booking Websites can you build?"
+          },
+          {
+            "type": "textarea",
+            "text": "I can build everything from simple consultation schedulers to highly complex booking platforms. For example, I built a custom healthcare scheduler that allowed patients to pick locations via Mapbox GL, select times, and securely process millions of dollars in payments."
+          },
+          {
+            "type": "text",
+            "text": "Can you integrate a CRM or third-party tools into my booking site?"
+          },
+          {
+            "type": "textarea",
+            "text": "Absolutely. I have extensive experience connecting frontends with backend systems and APIs. I have previously replaced legacy systems (like DentrixAscend) with custom-built CRM dashboards featuring live appointment updates."
+          },
+          {
+            "type": "text",
+            "text": "What if my project eventually needs to scale beyond Carrd or Webflow?"
+          },
+          {
+            "type": "textarea",
+            "text": "You are in safe hands! I run Dev8X and have architected large-scale platforms using Next.js, Redux, Node.js, and microservices. If you ever need to migrate to a fully custom web application, I can manage that transition smoothly."
+          },
+          {
+            "type": "text",
+            "text": "Do you ensure the website is fast and mobile-friendly?"
+          },
+          {
+            "type": "textarea",
+            "text": "Always. Performance optimization is a core part of my workflow. I use responsive design principles (TailwindCSS, HTML5) and optimization techniques like ImagesLoaded and polyfills to ensure your site loads instantly on any device."
+          }
+        ]
+      }
+    }
+  },
+   "requirements": {
+    "custom_question_builder": [
+      {
+        "question_text": "If you are migrating from a spreadsheet or legacy CRM, please provide a sample of your current data structure.",
+        "is_required": true,
+        "response_format": "Free text"
+      },
+      {
+        "question_text": "Please share 2–3 links to websites or dashboards you like so I can understand your preferred aesthetic.",
+        "is_required": true,
+        "response_format": "Attachment"
+      }
+      
+    ]
+  }
+}

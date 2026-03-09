@@ -1,0 +1,288 @@
+
+
+{
+  "profile": {
+    "context": "The primary user identity and professional storefront information.",
+    "name": {
+      "firstName": "",
+      "lastName": ""
+    },
+    "jobTitle": "",
+    "skills": {
+      "type": "array",
+      "context": "Skills should be organized and prioritized based on relevance to the Frontend Developer role.",
+      "values": [
+        "...",
+        "...",
+        "..."
+      ],
+      "maxSkills": 15
+    },
+    "aboutYou": {
+      "type": "textArea",
+      "context": "A detailed professional bio or summary.",
+      "values": "",
+      "openingContext": {
+        "type": "string",
+        "context": "Sets the scene for the consultant's current market focus.",
+        "values": ""
+      },
+      "problemAwareness": {
+        "type": "string",
+        "context": "Demonstrates understanding of the client's typical pain points.",
+        "values": ""
+      },
+      "corePromise": {
+        "type": "string",
+        "context": "The primary outcome the consultant guarantees.",
+        "values": ""
+      },
+      "credibilityStatement": {
+        "type": "string",
+        "context": "Social proof or historical evidence of expertise.",
+        "values": ""
+      },
+      "positioning": {
+        "context": "Filters potential leads by defining the ideal client persona and focus areas.",
+        "whoThisIsFor": {
+          "type": "string",
+          "context": "Description of the ideal target audience.",
+          "values": ""
+        },
+        "whoThisIsNotFor": {
+          "type": "string",
+          "context": "Explicitly excludes projects that are a poor fit.",
+          "values": ""
+        },
+        "businessOutcomeFocus": {
+          "type": "string",
+          "context": "The specific commercial value delivered (e.g., higher conversion).",
+          "values": ""
+        },
+        "riskReductionAngle": {
+          "type": "string",
+          "context": "How the consultant minimizes technical or timeline risks.",
+          "values": ""
+        }
+      },
+      "authority": {
+        "context": "Quantifiable metrics that prove technical seniority and industrial experience.",
+        "yearsInProduction": "",
+        "typesOfProductsBuilt": {
+          "type": "array",
+          "context": "List of product categories like SaaS, E-commerce, etc.",
+          "values": [
+            "...",
+            "...",
+            "..."
+          ]
+        },
+        "industriesWorkedIn": {
+          "type": "array",
+          "context": "Specific sectors like Fintech, Healthcare, or Edtech.",
+          "values": [
+            "...",
+            "...",
+            "..."
+          ]
+        },
+        "scaleHandled": {
+          "users": "",
+          "traffic": "",
+          "complexity": ""
+        }
+      },
+      "frontendSpecialization": {
+        "context": "Deep-dive into specific frontend domains and technical leadership areas.",
+        "uiEngineering": "",
+        "stateManagement": "",
+        "performanceOptimization": "",
+        "architecturePatterns": ""
+      },
+      "problemsSolved": {
+        "context": "A list of past challenges and how frontend engineering directly improved business metrics.",
+        "type": "array",
+        "items": {
+          "problem": {
+            "type": "string",
+            "context": "The specific technical or business bottleneck.",
+            "values": ""
+          },
+          "impactOnBusiness": {
+            "type": "string",
+            "context": "How the bottleneck affected revenue or growth.",
+            "values": ""
+          },
+          "howFrontendFixesIt": {
+            "type": "string",
+            "context": "The technical solution applied to solve the impact.",
+            "values": ""
+          }
+        }
+      },
+      "skills": {
+        "context": "Skills should be organized and prioritized based on relevance to the Frontend Developer role.",
+        "type": "array",
+        "items": {
+          "fullTechStack": {
+            "type": "string",
+            "values": [
+              "...",
+              "...",
+              "..."
+            ]
+          },
+          "frameworks": {
+            "type": "string",
+            "values": [
+              "...",
+              "...",
+              "..."
+            ]
+          },
+          "languages": {
+            "type": "string",
+            "values": [
+              "...",
+              "...",
+              "..."
+            ]
+          },
+          "stateManagement": {
+            "type": "string",
+            "values": [
+              "...",
+              "...",
+              "..."
+            ]
+          },
+          "animationLibraries": {
+            "type": "string",
+            "values": [
+              "...",
+              "...",
+              "..."
+            ]
+          },
+          "backendIntegrations": {
+            "type": "string",
+            "values": [
+              "...",
+              "...",
+              "..."
+            ]
+          },
+          "devOps": {
+            "type": "string",
+            "values": [
+              "...",
+              "...",
+              "..."
+            ]
+          },
+          "performanceOptimizationTools": {
+            "type": "string",
+            "values": [
+              "...",
+              "...",
+              "..."
+            ]
+          }
+        }
+      },
+      "keyAchievements": {
+        "context": "Specific project highlights showcasing contributions and tangible results.",
+        "type": "array",
+        "items": {
+          "projectName": {
+            "type": "string",
+            "context": "Title of the project.",
+            "values": ""
+          },
+          "oneLineDescription": {
+            "type": "string",
+            "context": "A brief summary of what the project did.",
+            "values": ""
+          },
+          "keyContributionsTechnologies": {
+            "type": "string",
+            "context": "The consultant's specific input and tools used.",
+            "values": ""
+          },
+          "clearBusinessImpact": {
+            "type": "string",
+            "context": "The measurable win for the client (e.g., 20% faster load time).",
+            "values": ""
+          }
+        }
+      
+    
+      },
+      "qualityStandards": {
+        "context": "Engineering philosophy and non-negotiable standards for delivery.",
+        "codeQuality": "",
+        "uiConsistency": "",
+        "performanceBudgets": "",
+        "accessibility": ""
+      },
+      "callToAction": {
+        "context": "Instructions for the client to initiate the next phase of engagement.",
+        "primaryCTA": {
+          "type": "string",
+          "context": "The main button or link text.",
+          "values": ""
+        },
+        "informationToShare": {
+          "type": "array",
+          "context": "Required data points the client must provide for a quote.",
+          "values": [
+            "product stage",
+            "design readiness",
+            "timeline",
+            "expected outcomes"
+          ]
+        }
+      }
+    },
+    "portfolio": {
+      "context": "Showcase of past work including physical files and external links.",
+      "files": [
+        "...",
+        "...",
+        "..."
+      ],
+      "embeddedLinks": [
+        "...",
+        "...",
+        "..."
+      ]
+    },
+    "location": {
+      "city": "",
+      "state": "",
+      "country": ""
+    },
+    "industryExpertise": {
+      "type": "array",
+      "context": "Specific market sectors the user is specialized in.",
+      "values": [
+        "...",
+        "...",
+        "..."
+      ],
+      "maxindustryExpertise": 5
+    },
+    "pricing": {
+      "context": "Financial configuration for hiring the user.",
+      "perHourRate": {
+        "type": "number",
+        "context": "The monetary value charged per hour of work.",
+        "values": null
+      }
+    },
+    "contact": {
+      "type": "number",
+      "phoneNumber": ""
+    }
+  }
+}

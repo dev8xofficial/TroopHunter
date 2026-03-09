@@ -1,0 +1,604 @@
+
+
+
+
+{
+    "profile": {
+        "context": "The primary user identity and professional storefront information.",
+        "name": "",
+        "bio": {
+            "type": "string",
+            "context": "A short, punchy introduction for the profile header.",
+            "values": "",
+            "characterLimit": 160
+        },
+        "location": {
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "website": {
+            "link": ""
+        },
+        "about": {
+            "context": "Comprehensive professional narrative and specialization details.",
+            "summary": {
+                "openingContext": {
+                    "type": "string",
+                    "context": "Hook that sets the stage for the professional journey.",
+                    "values": ""
+                },
+                "problemAwareness": {
+                    "type": "string",
+                    "context": "Demonstrates understanding of common industry pain points.",
+                    "values": ""
+                },
+                "corePromise": {
+                    "type": "string",
+                    "context": "The primary value proposition offered to clients/employers.",
+                    "values": ""
+                },
+                "credibilityStatement": {
+                    "type": "string",
+                    "context": "Proof points or high-level achievements to build trust.",
+                    "values": ""
+                }
+            },
+            "positioning": {
+                "whoThisIsFor": {
+                    "type": "string",
+                    "context": "Target audience or ideal client profile.",
+                    "values": ""
+                },
+                "whoThisIsNotFor": {
+                    "type": "string",
+                    "context": "Exclusion criteria to filter out non-ideal opportunities.",
+                    "values": ""
+                },
+                "businessOutcomeFocus": {
+                    "type": "string",
+                    "context": "How the user's work translates into business growth or ROI.",
+                    "values": ""
+                },
+                "riskReductionAngle": {
+                    "type": "string",
+                    "context": "How the user minimizes technical or business risks.",
+                    "values": ""
+                }
+            },
+            "authority": {
+                "yearsInProduction": "",
+                "typesOfProductsBuilt": "",
+                "industriesWorkedIn": "",
+                "scaleHandled": {
+                    "users": "",
+                    "traffic": "",
+                    "complexity": ""
+                }
+            },
+            "frontendSpecialization": {
+                "uiEngineering": "",
+                "stateManagement": "",
+                "performanceOptimization": "",
+                "architecturePatterns": ""
+            },
+            "problemsSolved": [
+                {
+                    "problem": "",
+                    "impactOnBusiness": "",
+                    "howFrontendFixesIt": ""
+                }
+            ],
+            "skills": [
+                {
+                    "fullTechStack": "",
+                    "frameworks": "",
+                    "languages": "",
+                    "stateManagement": "",
+                    "animationLibraries": "",
+                    "backendIntegrations": "",
+                    "devOps": "",
+                    "performanceOptimizationTools": ""
+                }
+            ],
+            "keyachievements": [
+                {
+                    "projectName": {
+                        "type": "string",
+                        "context": "Official title of the project.",
+                        "values": ""
+                    },
+                    "one-linedescription": {
+                        "type": "string",
+                        "context": "Brief summary of the project goals.",
+                        "values": ""
+                    },
+                    "keyContributions/Technologies": {
+                        "type": "string",
+                        "context": "Specific role and stack used.",
+                        "values": ""
+                    },
+                    "clearBusinessImpact": {
+                        "type": "string",
+                        "context": "Quantifiable results (e.g., 20% faster load).",
+                        "values": ""
+                    }
+                },
+                {
+                    "projectName": {
+                        "type": "string",
+                        "context": "Official title of the project.",
+                        "values": ""
+                    },
+                    "one-linedescription": {
+                        "type": "string",
+                        "context": "Brief summary of the project goals.",
+                        "values": ""
+                    },
+                    "keyContributions/Technologies": {
+                        "type": "string",
+                        "context": "Specific role and stack used.",
+                        "values": ""
+                    },
+                    "clearBusinessImpact": {
+                        "type": "string",
+                        "context": "Quantifiable results (e.g., 20% faster load).",
+                        "values": ""
+                    }
+                },
+                {
+                    "projectName": {
+                        "type": "string",
+                        "context": "Official title of the project.",
+                        "values": ""
+                    },
+                    "one-linedescription": {
+                        "type": "string",
+                        "context": "Brief summary of the project goals.",
+                        "values": ""
+                    },
+                    "keyContributions/Technologies": {
+                        "type": "string",
+                        "context": "Specific role and stack used.",
+                        "values": ""
+                    },
+                    "clearBusinessImpact": {
+                        "type": "string",
+                        "context": "Quantifiable results (e.g., 20% faster load).",
+                        "values": ""
+                    }
+                },
+                {
+                    "projectName": {
+                        "type": "string",
+                        "context": "Official title of the project.",
+                        "values": ""
+                    },
+                    "one-linedescription": {
+                        "type": "string",
+                        "context": "Brief summary of the project goals.",
+                        "values": ""
+                    },
+                    "keyContributions/Technologies": {
+                        "type": "string",
+                        "context": "Specific role and stack used.",
+                        "values": ""
+                    },
+                    "clearBusinessImpact": {
+                        "type": "string",
+                        "context": "Quantifiable results (e.g., 20% faster load).",
+                        "values": ""
+                    }
+                },
+                {
+                    "projectName": {
+                        "type": "string",
+                        "context": "Official title of the project.",
+                        "values": ""
+                    },
+                    "one-linedescription": {
+                        "type": "string",
+                        "context": "Brief summary of the project goals.",
+                        "values": ""
+                    },
+                    "keyContributions/Technologies": {
+                        "type": "string",
+                        "context": "Specific role and stack used.",
+                        "values": ""
+                    },
+                    "clearBusinessImpact": {
+                        "type": "string",
+                        "context": "Quantifiable results (e.g., 20% faster load).",
+                        "values": ""
+                    }
+                },
+                {
+                    "projectName": {
+                        "type": "string",
+                        "context": "Official title of the project.",
+                        "values": ""
+                    },
+                    "one-linedescription": {
+                        "type": "string",
+                        "context": "Brief summary of the project goals.",
+                        "values": ""
+                    },
+                    "keyContributions/Technologies": {
+                        "type": "string",
+                        "context": "Specific role and stack used.",
+                        "values": ""
+                    },
+                    "clearBusinessImpact": {
+                        "type": "string",
+                        "context": "Quantifiable results (e.g., 20% faster load).",
+                        "values": ""
+                    }
+                }
+            ],
+            "qualityStandards": {
+                "codeQuality": "",
+                "uiConsistency": "",
+                "performanceBudgets": "",
+                "accessibility": ""
+            },
+            "clientQualification": {
+                "goodFitIf": {
+                    "type": "array",
+                    "context": "Characteristics of a successful partnership.",
+                    "values": []
+                },
+                "notAGoodFitIf": {
+                    "type": "array",
+                    "context": "Deal-breakers or misalignments.",
+                    "values": []
+                }
+            },
+            "callToAction": {
+                "primaryCTA": {
+                    "type": "string",
+                    "context": "Main action the user wants the visitor to take.",
+                    "values": ""
+                },
+                "informationToShare": {
+                    "type": "array",
+                    "context": "Required data from the client to start a project.",
+                    "values": [
+                        "product stage",
+                        "design readiness",
+                        "timeline",
+                        "expected outcomes"
+                    ]
+                }
+            }
+        },
+        "work_experience": [
+            {
+                "job_title": "",
+                "company": "",
+                "location": {
+                    "city": "",
+                    "state": "",
+                    "country": ""
+                },
+                "start_date": {
+                    "month": {
+                        "type": "string",
+                        "context": "Month of commencement.",
+                        "values": ""
+                    },
+                    "year": {
+                        "type": "string",
+                        "context": "Year of commencement.",
+                        "values": ""
+                    }
+                },
+                "end_date": {
+                    "month": {
+                        "type": "string",
+                        "context": "Month of departure.",
+                        "values": ""
+                    },
+                    "year": {
+                        "type": "number",
+                        "context": "Year of departure.",
+                        "values": ""
+                    }
+                },
+                "description": {
+                    "problemsSolved": [
+                        {
+                            "problem": {
+                                "type": "string",
+                                "context": "Challenge faced in this specific role.",
+                                "values": ""
+                            },
+                            "impactOnBusiness": {
+                                "type": "string",
+                                "context": "Financial or operational impact.",
+                                "values": ""
+                            },
+                            "howFrontendFixesIt": {
+                                "type": "string",
+                                "context": "Technical implementation detail.",
+                                "values": ""
+                            }
+                        }
+                    ],
+                    "frontendSpecialization": {
+                        "uiEngineering": "",
+                        "stateManagement": "",
+                        "performanceOptimization": "",
+                        "architecturePatterns": ""
+                    },
+                    "scaleHandled": {
+                        "users": "",
+                        "traffic": "",
+                        "complexity": ""
+                    },
+                    "maxLimit": 750,
+                    "type": "rich_text_editor",
+                    "toolbar": {
+                        "formattingOptions": [
+                            "Bold",
+                            "Italic",
+                            "Strikethrough"
+                        ],
+                        "listOptions": [
+                            "Bulleted List",
+                            "Numbered List"
+                        ]
+                    }
+                }
+            },
+            {
+                "job_title": "",
+                "company": "",
+                "location": {
+                    "city": "",
+                    "state": "",
+                    "country": ""
+                },
+                "start_date": {
+                    "month": {
+                        "type": "string",
+                        "context": "Month of commencement.",
+                        "values": ""
+                    },
+                    "year": {
+                        "type": "string",
+                        "context": "Year of commencement.",
+                        "values": ""
+                    }
+                },
+                "end_date": {
+                    "month": {
+                        "type": "string",
+                        "context": "Month of departure.",
+                        "values": ""
+                    },
+                    "year": {
+                        "type": "number",
+                        "context": "Year of departure.",
+                        "values": ""
+                    }
+                },
+                "description": {
+                    "problemsSolved": [
+                        {
+                            "problem": {
+                                "type": "string",
+                                "context": "Challenge faced in this specific role.",
+                                "values": ""
+                            },
+                            "impactOnBusiness": {
+                                "type": "string",
+                                "context": "Financial or operational impact.",
+                                "values": ""
+                            },
+                            "howFrontendFixesIt": {
+                                "type": "string",
+                                "context": "Technical implementation detail.",
+                                "values": ""
+                            }
+                        }
+                    ],
+                    "frontendSpecialization": {
+                        "uiEngineering": "",
+                        "stateManagement": "",
+                        "performanceOptimization": "",
+                        "architecturePatterns": ""
+                    },
+                    "scaleHandled": {
+                        "users": "",
+                        "traffic": "",
+                        "complexity": ""
+                    },
+                    "maxLimit": 750,
+                    "type": "rich_text_editor",
+                    "toolbar": {
+                        "formattingOptions": [
+                            "Bold",
+                            "Italic",
+                            "Strikethrough"
+                        ],
+                        "listOptions": [
+                            "Bulleted List",
+                            "Numbered List"
+                        ]
+                    }
+                }
+            },
+            {
+                "job_title": "",
+                "company": "",
+                "location": {
+                    "city": "",
+                    "state": "",
+                    "country": ""
+                },
+                "start_date": {
+                    "month": {
+                        "type": "string",
+                        "context": "Month of commencement.",
+                        "values": ""
+                    },
+                    "year": {
+                        "type": "string",
+                        "context": "Year of commencement.",
+                        "values": ""
+                    }
+                },
+                "end_date": {
+                    "month": {
+                        "type": "string",
+                        "context": "Month of departure.",
+                        "values": ""
+                    },
+                    "year": {
+                        "type": "number",
+                        "context": "Year of departure.",
+                        "values": ""
+                    }
+                },
+                "description": {
+                    "problemsSolved": [
+                        {
+                            "problem": {
+                                "type": "string",
+                                "context": "Challenge faced in this specific role.",
+                                "values": ""
+                            },
+                            "impactOnBusiness": {
+                                "type": "string",
+                                "context": "Financial or operational impact.",
+                                "values": ""
+                            },
+                            "howFrontendFixesIt": {
+                                "type": "string",
+                                "context": "Technical implementation detail.",
+                                "values": ""
+                            }
+                        }
+                    ],
+                    "frontendSpecialization": {
+                        "uiEngineering": "",
+                        "stateManagement": "",
+                        "performanceOptimization": "",
+                        "architecturePatterns": ""
+                    },
+                    "scaleHandled": {
+                        "users": "",
+                        "traffic": "",
+                        "complexity": ""
+                    },
+                    "maxLimit": 750,
+                    "type": "rich_text_editor",
+                    "toolbar": {
+                        "formattingOptions": [
+                            "Bold",
+                            "Italic",
+                            "Strikethrough"
+                        ],
+                        "listOptions": [
+                            "Bulleted List",
+                            "Numbered List"
+                        ]
+                    }
+                }
+            },
+            {
+                "job_title": "",
+                "company": "",
+                "location": {
+                    "city": "",
+                    "state": "",
+                    "country": ""
+                },
+                "start_date": {
+                    "month": {
+                        "type": "string",
+                        "context": "Month of commencement.",
+                        "values": ""
+                    },
+                    "year": {
+                        "type": "string",
+                        "context": "Year of commencement.",
+                        "values": ""
+                    }
+                },
+                "end_date": {
+                    "month": {
+                        "type": "string",
+                        "context": "Month of departure.",
+                        "values": ""
+                    },
+                    "year": {
+                        "type": "number",
+                        "context": "Year of departure.",
+                        "values": ""
+                    }
+                },
+                "description": {
+                    "problemsSolved": [
+                        {
+                            "problem": {
+                                "type": "string",
+                                "context": "Challenge faced in this specific role.",
+                                "values": ""
+                            },
+                            "impactOnBusiness": {
+                                "type": "string",
+                                "context": "Financial or operational impact.",
+                                "values": ""
+                            },
+                            "howFrontendFixesIt": {
+                                "type": "string",
+                                "context": "Technical implementation detail.",
+                                "values": ""
+                            }
+                        }
+                    ],
+                    "frontendSpecialization": {
+                        "uiEngineering": "",
+                        "stateManagement": "",
+                        "performanceOptimization": "",
+                        "architecturePatterns": ""
+                    },
+                    "scaleHandled": {
+                        "users": "",
+                        "traffic": "",
+                        "complexity": ""
+                    },
+                    "maxLimit": 750,
+                    "type": "rich_text_editor",
+                    "toolbar": {
+                        "formattingOptions": [
+                            "Bold",
+                            "Italic",
+                            "Strikethrough"
+                        ],
+                        "listOptions": [
+                            "Bulleted List",
+                            "Numbered List"
+                        ]
+                    }
+                }
+            }
+        ],
+        "professionalProfile": {
+            "description": {
+                "type": "string",
+                "context": "Brief profile tagline or executive summary.",
+                "values": "",
+                "characterLimit": 100
+            },
+            "profile_category": {
+                "selected_category": {
+                    "type": "string",
+                    "context": "The primary niche or industry classification.",
+                    "values": ""
+                }
+            }
+        }
+    }
+}

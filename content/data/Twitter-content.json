@@ -1,0 +1,822 @@
+{
+  "profile": {
+    "context": "The primary user identity and professional storefront information.",
+    "name": "Abdul",
+    "bio": {
+      "type": "string",
+      "context": "A short, punchy introduction for the profile header.",
+      "values": "Founder @Dev8X. Senior Frontend Engineer. I build high-performance web apps that drive revenue. Focused on **React.js**, **Next.js**, and **TypeScript**. 6+ years exp.",
+      "characterLimit": 160
+    },
+    "location": {
+      "city": "Lahore",
+      "state": "Punjab",
+      "country": "Pakistan"
+    },
+    "website": {
+      "link": "helloabdul.com"
+    },
+    "summary": {
+      "openingContext": {
+        "type": "string",
+        "context": "Hook that sets the stage for the professional journey.",
+        "values": "I bridge the gap between **clean code** and **business outcomes**."
+      },
+      "problemAwareness": {
+        "type": "string",
+        "context": "Demonstrates understanding of common industry pain points.",
+        "values": "Slow load times and unscalable architectures kill conversion and burn through startup capital fast."
+      },
+      "corePromise": {
+        "type": "string",
+        "context": "The primary value proposition offered to clients/employers.",
+        "values": "I deliver **US-quality engineering** and high-performance interfaces that scale to thousands of users."
+      },
+      "credibilityStatement": {
+        "type": "string",
+        "context": "Proof points or high-level achievements to build trust.",
+        "values": "With **6+ years** of experience, I’ve built production systems for **Total Health Dental Care** and **Coral**."
+      }
+    },
+    "positioning": {
+      "whoThisIsFor": {
+        "type": "string",
+        "context": "Target audience or ideal client profile.",
+        "values": "Founders and CTOs who need a technical partner to own the frontend lifecycle and drive ROI."
+      },
+      "whoThisIsNotFor": {
+        "type": "string",
+        "context": "Exclusion criteria to filter out non-ideal opportunities.",
+        "values": "Clients looking for quick, unoptimized hacks without regard for **performance** or long-term **scalability**."
+      },
+      "businessOutcomeFocus": {
+        "type": "string",
+        "context": "How the user's work translates into business growth or ROI.",
+        "values": "My focus is on **revenue growth**, such as increasing patient re-appointments by **33%** via optimized workflows."
+      },
+      "riskReductionAngle": {
+        "type": "string",
+        "context": "How the user minimizes technical or business risks.",
+        "values": "I reduce technical debt by adopting **TypeScript**, cutting code errors by **30%** before they hit production."
+      }
+    },
+    "authority": {
+      "yearsInProduction": "6+ years",
+      "typesOfProductsBuilt": "SaaS Platforms, Healthcare Systems, Fintech Apps, Web3 Membership Platforms",
+      "industriesWorkedIn": "Healthcare, Fintech, Web3, Sales Automation, Lead Generation",
+      "scaleHandled": {
+        "users": "15,000+ active patients",
+        "traffic": "20% increase in website traffic",
+        "complexity": "Architected **TurboRepo** monorepos and **Microservices** for high-reliability systems."
+      }
+    },
+    "frontendSpecialization": {
+      "uiEngineering": "Building responsive, mobile-first interfaces using **TailwindCSS**, **GSAP**, and **Framer Motion**.",
+      "stateManagement": "Managing complex application state with **Redux Thunk** and **React Query**.",
+      "performanceOptimization": "Cutting load times by **40%** through **ImagesLoaded** and asset optimization.",
+      "architecturePatterns": "Implementing **TurboRepo** and **Monorepo Architecture** for scalable engineering workflows."
+    },
+    "problemsSolved": [
+      {
+        "problem": "Low patient re-appointment rates and high operational labor costs.",
+        "impactOnBusiness": "Stagnant revenue growth and excessive administrative overhead.",
+        "howFrontendFixesIt": "I built a custom **CRM** with a live **Agora** video system, streamlining virtual appointments."
+      }
+    ],
+    "skills": [
+      {
+        "fullTechStack": "Next.js, React.js, TypeScript, Node.js, PostgreSQL, Docker, Kubernetes",
+        "frameworks": "Next.js, React.js, Express.js",
+        "languages": "JavaScript, TypeScript, HTML5, CSS3/SCSS",
+        "stateManagement": "Redux Thunk, React Query",
+        "animationLibraries": "GSAP, ScrollTrigger, Framer Motion",
+        "backendIntegrations": "RESTful APIs, Agora, Mapbox GL",
+        "devOps": "Docker, Kubernetes, Terraform, Ansible, CI/CD",
+        "performanceOptimizationTools": "ImagesLoaded, Polyfill, TurboRepo"
+      }
+    ],
+    "keyachievements": [
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "Total Health Dental Care CRM"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "A tailor-made CRM replacing DentrixAscend for healthcare automation."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "Built Schedule and Virtuals modules using **React**, **TypeScript**, and **Agora**."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "**33% increase** in re-appointments and **millions** in payments processed."
+        }
+      },
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "TroopHunter"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "Automated lead generation platform for prospect discovery."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "Full-stack ownership with **Next.js**, **Node.js**, **Docker**, and **Kubernetes**."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "Dashboards load **instantly** with **end-to-end performance optimization**."
+        }
+      },
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "Total Health Dental Care Website"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "Interactive healthcare website focused on patient engagement."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "Implemented **GSAP** animations and **Mapbox GL** locators."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "**40% reduction** in site load times and **30% increase** in engagement."
+        }
+      },
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "GoldenDAO"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "Web3 membership and voting system for the AAPI community."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "**React.js** architecture with **Web3** integrations and **NFT** gating."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "Successfully launched a space for **collective empowerment** and exclusive voting rights."
+        }
+      },
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "Honeydu"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "Zero-fee payment and invoice app for creators."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "Developed mobile-first UI with **React** and **TailwindCSS**."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "Simplified money management and **tax season** for freelancers."
+        }
+      },
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "Total Health Dental Care Scheduler"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "Real-time booking UI for 15,000+ patients."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "Integrated **React** frontend with **DentrixAscend** backend."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "Eliminated patient travel for booking and **reduced wait times**."
+        }
+      }
+    ],
+    "qualityStandards": {
+      "codeQuality": "I enforce **ESLint**, **Prettier**, and **CI/CD** quality gates to ensure clean codebases.",
+      "uiConsistency": "Building visually appealing websites using **TailwindCSS** and **Bootstrap**.",
+      "performanceBudgets": "Committed to **40% faster** load times through expert optimization.",
+      "accessibility": "Focused on creating modern, **accessible** web applications for all users."
+    },
+    "clientQualification": {
+      "goodFitIf": {
+        "type": "array",
+        "context": "Characteristics of a successful partnership.",
+        "values": [
+          "You need **senior frontend expertise** with a product mindset.",
+          "You are building for **scalability** using React/Next.js.",
+          "You value **performance** and **clean architecture**."
+        ]
+      },
+      "notAGoodFitIf": {
+        "type": "array",
+        "context": "Deal-breakers or misalignments.",
+        "values": [
+          "You prioritize the lowest cost over quality.",
+          "You want quick fixes that ignore technical debt.",
+          "You don't have a clear project vision."
+        ]
+      }
+    },
+    "callToAction": {
+      "primaryCTA": {
+        "type": "string",
+        "context": "Main action the user wants the visitor to take.",
+        "values": "Let's build something fast. DM me to discuss your product architecture."
+      },
+      "informationToShare": {
+        "type": "array",
+        "context": "Required data from the client to start a project.",
+        "values": [
+          "Product stage",
+          "Design readiness",
+          "Timeline",
+          "Expected outcomes"
+        ]
+      }
+    }
+  },
+  "about": {
+    "context": "Comprehensive professional narrative and specialization details.",
+    "summary": {
+      "openingContext": {
+        "type": "string",
+        "context": "Hook that sets the stage for the professional journey.",
+        "values": "I bridge the gap between **clean code** and **business outcomes**."
+      },
+      "problemAwareness": {
+        "type": "string",
+        "context": "Demonstrates understanding of common industry pain points.",
+        "values": "Slow load times and unscalable architectures kill conversion and burn through startup capital fast."
+      },
+      "corePromise": {
+        "type": "string",
+        "context": "The primary value proposition offered to clients/employers.",
+        "values": "I deliver **US-quality engineering** and high-performance interfaces that scale to thousands of users."
+      },
+      "credibilityStatement": {
+        "type": "string",
+        "context": "Proof points or high-level achievements to build trust.",
+        "values": "With **6+ years** of experience, I’ve built production systems for **Total Health Dental Care** and **Coral**."
+      }
+    },
+    "positioning": {
+      "whoThisIsFor": {
+        "type": "string",
+        "context": "Target audience or ideal client profile.",
+        "values": "Founders and CTOs who need a technical partner to own the frontend lifecycle and drive ROI."
+      },
+      "whoThisIsNotFor": {
+        "type": "string",
+        "context": "Exclusion criteria to filter out non-ideal opportunities.",
+        "values": "Clients looking for quick, unoptimized hacks without regard for **performance** or long-term **scalability**."
+      },
+      "businessOutcomeFocus": {
+        "type": "string",
+        "context": "How the user's work translates into business growth or ROI.",
+        "values": "My focus is on **revenue growth**, such as increasing patient re-appointments by **33%** via optimized workflows."
+      },
+      "riskReductionAngle": {
+        "type": "string",
+        "context": "How the user minimizes technical or business risks.",
+        "values": "I reduce technical debt by adopting **TypeScript**, cutting code errors by **30%** before they hit production."
+      }
+    },
+    "authority": {
+      "yearsInProduction": "6+ years",
+      "typesOfProductsBuilt": "SaaS Platforms, Healthcare Systems, Fintech Apps, Web3 Membership Platforms",
+      "industriesWorkedIn": "Healthcare, Fintech, Web3, Sales Automation, Lead Generation",
+      "scaleHandled": {
+        "users": "15,000+ active patients",
+        "traffic": "20% increase in website traffic",
+        "complexity": "Architected **TurboRepo** monorepos and **Microservices** for high-reliability systems."
+      }
+    },
+    "frontendSpecialization": {
+      "uiEngineering": "Building responsive, mobile-first interfaces using **TailwindCSS**, **GSAP**, and **Framer Motion**.",
+      "stateManagement": "Managing complex application state with **Redux Thunk** and **React Query**.",
+      "performanceOptimization": "Cutting load times by **40%** through **ImagesLoaded** and asset optimization.",
+      "architecturePatterns": "Implementing **TurboRepo** and **Monorepo Architecture** for scalable engineering workflows."
+    },
+    "problemsSolved": [
+      {
+        "problem": "Low patient re-appointment rates and high operational labor costs.",
+        "impactOnBusiness": "Stagnant revenue growth and excessive administrative overhead.",
+        "howFrontendFixesIt": "I built a custom **CRM** with a live **Agora** video system, streamlining virtual appointments."
+      }
+    ],
+    "skills": [
+      {
+        "fullTechStack": "Next.js, React.js, TypeScript, Node.js, PostgreSQL, Docker, Kubernetes",
+        "frameworks": "Next.js, React.js, Express.js",
+        "languages": "JavaScript, TypeScript, HTML5, CSS3/SCSS",
+        "stateManagement": "Redux Thunk, React Query",
+        "animationLibraries": "GSAP, ScrollTrigger, Framer Motion",
+        "backendIntegrations": "RESTful APIs, Agora, Mapbox GL",
+        "devOps": "Docker, Kubernetes, Terraform, Ansible, CI/CD",
+        "performanceOptimizationTools": "ImagesLoaded, Polyfill, TurboRepo"
+      }
+    ],
+    "keyachievements": [
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "Total Health Dental Care CRM"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "A tailor-made CRM replacing DentrixAscend for healthcare automation."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "Built Schedule and Virtuals modules using **React**, **TypeScript**, and **Agora**."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "**33% increase** in re-appointments and **millions** in payments processed."
+        }
+      },
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "TroopHunter"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "Automated lead generation platform for prospect discovery."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "Full-stack ownership with **Next.js**, **Node.js**, **Docker**, and **Kubernetes**."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "Dashboards load **instantly** with **end-to-end performance optimization**."
+        }
+      },
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "Total Health Dental Care Website"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "Interactive healthcare website focused on patient engagement."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "Implemented **GSAP** animations and **Mapbox GL** locators."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "**40% reduction** in site load times and **30% increase** in engagement."
+        }
+      },
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "GoldenDAO"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "Web3 membership and voting system for the AAPI community."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "**React.js** architecture with **Web3** integrations and **NFT** gating."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "Successfully launched a space for **collective empowerment** and exclusive voting rights."
+        }
+      },
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "Honeydu"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "Zero-fee payment and invoice app for creators."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "Developed mobile-first UI with **React** and **TailwindCSS**."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "Simplified money management and **tax season** for freelancers."
+        }
+      },
+      {
+        "projectName": {
+          "type": "string",
+          "context": "Official title of the project.",
+          "values": "Total Health Dental Care Scheduler"
+        },
+        "one-linedescription": {
+          "type": "string",
+          "context": "Brief summary of the project goals.",
+          "values": "Real-time booking UI for 15,000+ patients."
+        },
+        "keyContributions/Technologies": {
+          "type": "string",
+          "context": "Specific role and stack used.",
+          "values": "Integrated **React** frontend with **DentrixAscend** backend."
+        },
+        "clearBusinessImpact": {
+          "type": "string",
+          "context": "Quantifiable results (e.g., 20% faster load).",
+          "values": "Eliminated patient travel for booking and **reduced wait times**."
+        }
+      }
+    ],
+    "qualityStandards": {
+      "codeQuality": "I enforce **ESLint**, **Prettier**, and **CI/CD** quality gates to ensure clean codebases.",
+      "uiConsistency": "Building visually appealing websites using **TailwindCSS** and **Bootstrap**.",
+      "performanceBudgets": "Committed to **40% faster** load times through expert optimization.",
+      "accessibility": "Focused on creating modern, **accessible** web applications for all users."
+    },
+    "clientQualification": {
+      "goodFitIf": {
+        "type": "array",
+        "context": "Characteristics of a successful partnership.",
+        "values": [
+          "You need **senior frontend expertise** with a product mindset.",
+          "You are building for **scalability** using React/Next.js.",
+          "You value **performance** and **clean architecture**."
+        ]
+      },
+      "notAGoodFitIf": {
+        "type": "array",
+        "context": "Deal-breakers or misalignments.",
+        "values": [
+          "You prioritize the lowest cost over quality.",
+          "You want quick fixes that ignore technical debt.",
+          "You don't have a clear project vision."
+        ]
+      }
+    },
+    "callToAction": {
+      "primaryCTA": {
+        "type": "string",
+        "context": "Main action the user wants the visitor to take.",
+        "values": "Let's build something fast. DM me to discuss your product architecture."
+      },
+      "informationToShare": {
+        "type": "array",
+        "context": "Required data from the client to start a project.",
+        "values": [
+          "Product stage",
+          "Design readiness",
+          "Timeline",
+          "Expected outcomes"
+        ]
+      }
+    },
+     "work_experience": [
+    {
+      "job_title": "Founder & CEO",
+      "company": "Dev8X",
+      "location": {
+        "city": "Lahore",
+        "state": "Punjab",
+        "country": "Pakistan"
+      },
+      "start_date": {
+        "month": {
+          "type": "string",
+          "context": "Month of commencement.",
+          "values": "January"
+        },
+        "year": {
+          "type": "string",
+          "context": "Year of commencement.",
+          "values": "2024"
+        }
+      },
+      "end_date": {
+        "month": {
+          "type": "string",
+          "context": "Month of departure.",
+          "values": "Present"
+        },
+        "year": {
+          "type": "number",
+          "context": "Year of departure.",
+          "values": 2024
+        }
+      },
+      "description": {
+        "problemsSolved": [
+          {
+            "problem": {
+              "type": "string",
+              "context": "Challenge faced in this specific role.",
+              "values": "Startups struggle to hire **US-quality engineering** talent without paying unsustainable overhead costs."
+            },
+            "impactOnBusiness": {
+              "type": "string",
+              "context": "Financial or operational impact.",
+              "values": "Enabled founders to cut engineering costs by **60–70%** while shipping high-performance production systems."
+            },
+            "howFrontendFixesIt": {
+              "type": "string",
+              "context": "Technical implementation detail.",
+              "values": "I architect scalable **Frontend Systems** using **React.js**, **Next.js**, and **TypeScript** for long-term reliability."
+            }
+          }
+        ],
+        "frontendSpecialization": {
+          "uiEngineering": "Building modular, responsive interfaces with **TailwindCSS** and **Framer Motion**.",
+          "stateManagement": "Implementing **Redux Thunk** and **React Query** for robust data handling.",
+          "performanceOptimization": "Enforcing strict **ESLint** and **Prettier** standards to ensure clean, maintainable codebases.",
+          "architecturePatterns": "Implementing **Monorepo Architecture** with **TurboRepo** to optimize team development workflows."
+        },
+        "scaleHandled": {
+          "users": "Supporting multiple startup client ecosystems.",
+          "traffic": "High-performance software solutions for production use.",
+          "complexity": "Managing **Full-Stack Development** and **DevOps** pipelines via **Docker** and **Kubernetes**."
+        },
+        "maxLimit": 750,
+        "type": "rich_text_editor"
+      }
+    },
+    {
+      "job_title": "Full-Stack Developer",
+      "company": "TroopHunter",
+      "location": {
+        "city": "Lahore",
+        "state": "Punjab",
+        "country": "Pakistan"
+      },
+      "start_date": {
+        "month": {
+          "type": "string",
+          "context": "Month of commencement.",
+          "values": "January"
+        },
+        "year": {
+          "type": "string",
+          "context": "Year of commencement.",
+          "values": "2023"
+        }
+      },
+      "end_date": {
+        "month": {
+          "type": "string",
+          "context": "Month of departure.",
+          "values": "January"
+        },
+        "year": {
+          "type": "number",
+          "context": "Year of departure.",
+          "values": 2025
+        }
+      },
+      "description": {
+        "problemsSolved": [
+          {
+            "problem": {
+              "type": "string",
+              "context": "Challenge faced in this specific role.",
+              "values": "Lead generation was bottlenecked by slow manual research and marketing skill gaps."
+            },
+            "impactOnBusiness": {
+              "type": "string",
+              "context": "Financial or operational impact.",
+              "values": "Built a platform where dashboards load **instantly**, making prospect discovery fast and reliable."
+            },
+            "howFrontendFixesIt": {
+              "type": "string",
+              "context": "Technical implementation detail.",
+              "values": "I led **Full-Stack Ownership**, architecting a **Next.js** + **TypeScript** frontend with **Node.js** microservices."
+            }
+          }
+        ],
+        "frontendSpecialization": {
+          "uiEngineering": "Polished UX using **GSAP** and **Framer Motion** for enjoyable workflows.",
+          "stateManagement": "Global state handled via **Redux Thunk**.",
+          "performanceOptimization": "End-to-end performance tuning for **reliability** and **speed**.",
+          "architecturePatterns": "**TurboRepo** monorepo setup with **CI/CD code quality automation**."
+        },
+        "scaleHandled": {
+          "users": "Scalable prospect discovery for enterprise-level lead generation.",
+          "traffic": "Instant-load responsive dashboards.",
+          "complexity": "Led all **executive and technical aspects** including **Kubernetes** and **Terraform** deployments."
+        },
+        "maxLimit": 750,
+        "type": "rich_text_editor"
+      }
+    },
+    {
+      "job_title": "Frontend Developer",
+      "company": "Total Health Dental Care",
+      "location": {
+        "city": "San Francisco",
+        "state": "California",
+        "country": "United States (Remote)"
+      },
+      "start_date": {
+        "month": {
+          "type": "string",
+          "context": "Month of commencement.",
+          "values": "January"
+        },
+        "year": {
+          "type": "string",
+          "context": "Year of commencement.",
+          "values": "2022"
+        }
+      },
+      "end_date": {
+        "month": {
+          "type": "string",
+          "context": "Month of departure.",
+          "values": "January"
+        },
+        "year": {
+          "type": "number",
+          "context": "Year of departure.",
+          "values": 2023
+        }
+      },
+      "description": {
+        "problemsSolved": [
+          {
+            "problem": {
+              "type": "string",
+              "context": "Challenge faced in this specific role.",
+              "values": "Inefficient patient booking and low hygiene re-appointment rates."
+            },
+            "impactOnBusiness": {
+              "type": "string",
+              "context": "Financial or operational impact.",
+              "values": "Increased global re-appointments by **33%** (1,000+ monthly) and processed **millions** in payments."
+            },
+            "howFrontendFixesIt": {
+              "type": "string",
+              "context": "Technical implementation detail.",
+              "values": "I built a custom **CRM** and **Scheduler** using **React** and **TypeScript**, integrating **Agora** for virtuals."
+            }
+          }
+        ],
+        "frontendSpecialization": {
+          "uiEngineering": "Interactive location pages via **Mapbox GL** and **GSAP** scroll animations.",
+          "stateManagement": "Live update UI for appointment cards with drag-and-drop features.",
+          "performanceOptimization": "**40% reduction** in site load times using **ImagesLoaded** and polyfills.",
+          "architecturePatterns": "**Monorepo Architecture** for connected healthcare ecosystems."
+        },
+        "scaleHandled": {
+          "users": "**15,000+ active patients** managed through the system.",
+          "traffic": "**20% increase** in website traffic through UX improvements.",
+          "complexity": "Replaced **DentrixAscend** with a tailor-made **CRM** for operational excellence."
+        },
+        "maxLimit": 750,
+        "type": "rich_text_editor"
+      }
+    },
+    {
+      "job_title": "Frontend Developer",
+      "company": "Coral Lab",
+      "location": {
+        "city": "Los Angeles",
+        "state": "California",
+        "country": "United States (Remote)"
+      },
+      "start_date": {
+        "month": {
+          "type": "string",
+          "context": "Month of commencement.",
+          "values": "February"
+        },
+        "year": {
+          "type": "string",
+          "context": "Year of commencement.",
+          "values": "2021"
+        }
+      },
+      "end_date": {
+        "month": {
+          "type": "string",
+          "context": "Month of departure.",
+          "values": "January"
+        },
+        "year": {
+          "type": "number",
+          "context": "Year of departure.",
+          "values": 2023
+        }
+      },
+      "description": {
+        "problemsSolved": [
+          {
+            "problem": {
+              "type": "string",
+              "context": "Challenge faced in this specific role.",
+              "values": "Need for high-engagement platforms for **Web3** communities and **Fintech** users."
+            },
+            "impactOnBusiness": {
+              "type": "string",
+              "context": "Financial or operational impact.",
+              "values": "Successfully launched **GoldenDAO** for AAPI empowerment and improved **Honeydu's** mobile usability."
+            },
+            "howFrontendFixesIt": {
+              "type": "string",
+              "context": "Technical implementation detail.",
+              "values": "I developed responsive **Web3** membership systems and **Fintech** apps using **React.js** and **Redux**."
+            }
+          }
+        ],
+        "frontendSpecialization": {
+          "uiEngineering": "Enhanced UX using **GSAP** micro-interactions and **SmoothScroller**.",
+          "stateManagement": "Global state managed with **Redux** for payment processing.",
+          "performanceOptimization": "Responsive **SCSS-based** UI optimized for all devices.",
+          "architecturePatterns": "**NFT-gated** access architecture and **Web3** integrations."
+        },
+        "scaleHandled": {
+          "users": "Built consumer products and community-driven Web3 platforms.",
+          "traffic": "High brand presence for company and client websites.",
+          "complexity": "Redesigned **Honeydu** for a simplified mobile-first payment experience."
+        },
+        "maxLimit": 750,
+        "type": "rich_text_editor"
+      }
+    }
+  ]
+  ,
+ 
+  "professionalProfile": {
+    "description": {
+      "type": "string",
+      "context": "Brief profile tagline or executive summary.",
+      "values": "Senior Frontend Engineer & Founder driving business ROI through high-performance engineering.",
+      "characterLimit": 100
+    },
+    "profile_category": {
+      "selected_category": {
+        "type": "string",
+        "context": "The primary niche or industry classification.",
+        "values": "Web Development / Frontend Engineering"
+      }
+    }
+  }
+}
+}

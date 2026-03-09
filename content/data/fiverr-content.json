@@ -1,0 +1,407 @@
+{
+  "overview": {
+    "gigTitle": {
+      "type": "text",
+      "required": true,
+      "text": "I will build a **high-performance React** and **Nextjs website** with **TypeScript**"
+    },
+    "category": {
+      "details": {
+        "primaryCategory": {
+          "type": "select",
+          "text": "programming & tech"
+        },
+        "secondaryCategory": {
+          "type": "select",
+          "text": "WEBSITE DEVELOPMENT"
+        }
+      },
+      "suggestedCategories": [
+        "Programming & Tech > Website Development",
+        "Programming & Tech > Software Development"
+      ]
+    },
+    "serviceType": "Custom Websites",
+    "gigMetadata": {
+      "websiteType": {
+        "selected": "Saas"
+      },
+      "programming_languages": {
+        "selected": [
+          "HTML & CSS",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Tailwind CSS"
+        ]
+      },
+      "websiteFeatures": {
+        "selected": [
+          "Landing page",
+          "Portfolio",
+          "User Authentication",
+          "Analytics",
+          "Form",
+          "Dashboard",
+          "Payment",
+          "Reviews",
+          "Booking",
+          "Calendar"
+        ]
+      }
+    },
+    "searchTags": {
+      "text": [
+        "MODERN FRONTEND",
+        "SCALABLE UI",
+        "CLEAN CODE",
+        "COMPONENT-DRIVEN",
+        "ANIMATION-READY"
+      ]
+    }
+  },
+  "pricing": {
+    "packages": {
+      "basic": {
+        "packageName": "Performance Landing Page",
+        "description": {
+          "type": "text",
+          "text": "Build a **high-performance landing page** with **React/Next.js** and **TypeScript** for **instant loading**."
+        },
+        "deliveryDays": {
+          "selected": 3
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 1
+        },
+        "revisions": {
+          "selected": 2
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 2
+        },
+        "eCommerceFunctionality": {
+          "selected": false
+        },
+        "paymentIntegration": {
+          "selected": false
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 150
+      },
+      "standard": {
+        "packageName": "Scalable Business Solution",
+        "description": {
+          "type": "text",
+          "text": "**Custom SaaS/Business site** with **Next.js**, **Redux**, and **GSAP** for **30% better engagement**."
+        },
+        "deliveryDays": {
+          "selected": 7
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 5
+        },
+        "revisions": {
+          "selected": 5
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 5
+        },
+        "eCommerceFunctionality": {
+          "selected": false
+        },
+        "paymentIntegration": {
+          "selected": true
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 450
+      },
+      "premium": {
+        "packageName": "Full-Stack Enterprise System",
+        "description": {
+          "type": "text",
+          "text": "**Full-stack platform** with **Next.js**, **Auth**, **Payments**, and **Docker/CI/CD** for **enterprise scale**."
+        },
+        "deliveryDays": {
+          "selected": 21
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 10
+        },
+        "revisions": {
+          "selected": "unlimited"
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 10
+        },
+        "eCommerceFunctionality": {
+          "selected": true
+        },
+        "paymentIntegration": {
+          "selected": true
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 1200
+      }
+    },
+    "extra_services": {
+      "extra_fast_delivery": {
+        "selected": true,
+        "options": [
+          {
+            "package": "Basic",
+            "additionalDeliveryDays": {
+              "selected": 1
+            },
+            "extraPrice": 50
+          },
+          {
+            "package": "Standard",
+            "additionalDeliveryDays": {
+              "selected": 3
+            },
+            "extraPrice": 150
+          },
+          {
+            "package": "Premium",
+            "additionalDeliveryDays": {
+              "selected": 7
+            },
+            "extraPrice": 400
+          }
+        ]
+      },
+      "additional_page": {
+        "selected": true,
+        "extraPrice": 80,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "additional_revision": {
+        "selected": true,
+        "extraPrice": 30,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "ecommerce_functionality": {
+        "selected": true,
+        "extraPrice": 250,
+        "additionalDeliveryDays": {
+          "selected": 3
+        }
+      },
+      "payment_integration": {
+        "selected": true,
+        "extraPrice": 150,
+        "additionalDeliveryDays": {
+          "selected": 2
+        }
+      },
+      "speed_optimization": {
+        "selected": true,
+        "extraPrice": 100,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "addExtraGigService": {
+        "fields": [
+          {
+            "addGigExtra": {
+              "titleInput": {
+                "text": "CI/CD Pipeline Setup"
+              },
+              "descriptionInput": {
+                "text": "I will set up **automated deployment** using **Docker** and **GitHub Actions** to reduce **operational risk**."
+              },
+              "pricingInput": {
+                "price": 200
+              },
+              "additionalDeliveryDays": {
+                "selected": 2
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "descriptionAndFAQ": {
+    "briefDescription": {
+      "text": "I am a **Senior Frontend Developer** and **Founder of Dev8X** with **6+ years** of engineering experience [1, 2].\n\nI build **high-performance systems** that reduced code errors by **30%** through **TypeScript** adoption [2].\n\nMy work for **Total Health Dental Care** achieved a **40% reduction in load times** and processed **millions in payments** [3, 4].\n\nI lead full-stack development for **TroopHunter**, delivering **instant-loading dashboards** using **Next.js** and **TurboRepo** [5-7].\n\nFor **Coral** and **Honeydu**, I utilized **GSAP** and **TailwindCSS** to boost mobile engagement and brand presence [8-10].\n\nI focus on **US-quality engineering**, using **Docker**, **CI/CD**, and **clean code** to reduce your operational risk [11, 12].\n\nI deliver **scalable architecture** designed for production-grade reliability and growth [12].\n\nLet’s build a **reliable software solution** that drives measurable results for your business [12, 13]."
+    },
+    "milestones": [
+      {
+        "milestoneName": {
+          "selected": "research"
+        },
+        "description": "Requirement analysis, project scoping, and selecting the optimal **tech stack** for scalability [14]."
+      },
+      {
+        "milestoneName": {
+          "selected": "planning"
+        },
+        "description": "Architecting the system with **TurboRepo monorepo** and designing database schemas [14, 15]."
+      },
+      {
+        "milestoneName": {
+          "selected": "websiteDesign"
+        },
+        "description": "Developing the **UI** using **React/Next.js**, **TailwindCSS**, and **GSAP** animations [10, 14, 16]."
+      },
+      {
+        "milestoneName": {
+          "selected": "Specification"
+        },
+        "description": "Integrating **Node.js microservices**, **RESTful APIs**, and ensuring data optimization [11, 14, 17]."
+      },
+      {
+        "milestoneName": {
+          "selected": "delivery"
+        },
+        "description": "Deploying the production-ready system via **Docker** and **CI/CD pipelines** [13, 14]."
+      }
+    ],
+    "faqs": {
+      "section": {
+        "fields": [
+          {
+            "type": "text",
+            "text": "Why use TypeScript for my project?"
+          },
+          {
+            "type": "textarea",
+            "text": "**TypeScript** adoption reduces code errors by **30%**, ensuring a more reliable and maintainable code base [2]."
+          },
+          {
+            "type": "text",
+            "text": "How do you ensure my website is fast?"
+          },
+          {
+            "type": "textarea",
+            "text": "I achieved a **40% load time reduction** for major clients using **performance optimization** and **ImagesLoaded** [3, 4]."
+          },
+          {
+            "type": "text",
+            "text": "Can you build custom CRM or booking platforms?"
+          },
+          {
+            "type": "textarea",
+            "text": "Yes. I built a custom **CRM and Scheduler** for **15,000+ patients**, increasing re-appointments by **33%** [18, 19]."
+          },
+          {
+            "type": "text",
+            "text": "Do you provide full-stack ownership?"
+          },
+          {
+            "type": "textarea",
+            "text": "I manage everything from **Next.js frontends** to **Node.js backends** and **PostgreSQL** database design [5, 20]."
+          },
+          {
+            "type": "text",
+            "text": "What standards do you follow for code quality?"
+          },
+          {
+            "type": "textarea",
+            "text": "I use **ESLint**, **Prettier**, and **automated CI/CD** to maintain **US-quality engineering** standards [11, 12]."
+          }
+        ]
+      }
+    }
+  },
+   "requirements": {
+    "form_context": "I collect these details to ensure your project follows production-grade standards, including **React/Next.js architecture**, **TypeScript** safety, and **high-performance** delivery [1-3].",
+    "fiverr_default_questions": [
+      {
+        "type": "multiple_choice",
+        "question_text": "If you're ordering for a business, what's your Industry?",
+        "is_optional": true
+      },
+      {
+        "type": "multiple_choice",
+        "question_text": "Is this order part of a bigger project you're working on?",
+        "is_optional": true
+      }
+    ],
+    "custom_question_builder": [
+      {
+        "question_text": "Please provide a detailed **Project Brief**. What are your main goals, and do you have a specific **tech stack** preference (e.g., **Next.js**, **React**, or **TypeScript**) [1, 3, 4]?",
+        "is_required": true,
+        "response_format": "Free text"
+      },
+      {
+        "question_text": "Do you have existing **Figma designs**, brand guidelines, or wireframes? Please attach them to ensure the **TailwindCSS** or **GSAP** implementation matches your vision [1, 5, 6].",
+        "is_required": true,
+        "response_format": "Attachment"
+      },
+      {
+        "question_text": "Does your project require **Full-Stack ownership**, including **Node.js microservices**, **PostgreSQL** database design, or **Docker/CI/CD** pipeline setup [4, 7, 8]?",
+        "is_required": false,
+        "response_format": "Free text"
+      },
+      {
+        "question_text": "Are there specific third-party integrations needed, such as **Stripe/PayPal** for payments, **Agora** for video, or **Mapbox** for location services [5, 9, 10]?",
+        "is_required": false,
+        "response_format": "Free text"
+      },
+      {
+        "question_text": "What is your target for **performance optimization**? (e.g., achieving a specific load time or **40% faster performance**) [2, 11, 12].",
+        "is_required": false,
+        "response_format": "Free text"
+      }
+    ]
+  }
+}

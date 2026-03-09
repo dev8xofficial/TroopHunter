@@ -1,0 +1,64 @@
+
+
+{
+  "profile": {
+    "myInformation": {
+      "context": "Primary professional identity and current employment status.",
+      "employmentStatus": {
+        "type": "dropdown",
+        "context": "Current work availability or professional standing.",
+        "options": ["Employed", "Not-employed"],
+        "values": ""
+      },
+      "fullName": "",
+      "jobTitle": "",
+      "location": "",
+      "employer": {
+        "type": "string",
+        "context": "The name of the company currently employing the user.",
+        "values": ""
+      },
+      "primaryIndustry": {
+        "type": "string",
+        "context": "The main sector of the professional's work (e.g., Tech, Finance).",
+        "values": ""
+      },
+      "specialization": ""
+    },
+    "jobGoals": {
+      "context": "Future career objectives and compensation requirements.",
+      "desiredJobTitle": {
+        "type": "string",
+        "context": "The specific role the user is targeting next.",
+        "values": ""
+      },
+      "desiredMinimumSalary": {
+        "context": "Financial expectations for new opportunities.",
+        "baseSalary": "",
+        "currency": {
+          "type": "dropdown",
+          "context": "The local currency for payment (e.g., USD, PKR).",
+          "option": ["USD", "EURO"],
+          "values": ""
+        },
+        "payPeriod": {
+          "type": "dropdown",
+          "context": "Frequency of pay (e.g., Per Month, Per Year).",
+          "options": ["Annualyy", "Hourly", "Daily", "Weekly", "Monthly"],
+          "values": ""
+        }
+      },
+      "desiredLocation": {
+        "type": "string",
+        "context": "Target geographic area for a new role.",
+        "values": ""
+      },
+      "openToRemoteWork": {
+        "type": "boolean",
+        "context": "Indicates if the user is willing to work from home.",
+        "options": ["No", "Yes"],
+        "values": ""
+      }
+    }
+  }
+}

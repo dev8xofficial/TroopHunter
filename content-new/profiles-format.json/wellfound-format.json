@@ -1,0 +1,439 @@
+{
+  "profile": {
+    "context": "User profile setup form for a job platform, requesting personal identification, professional role details, and social media presence links.",
+    "about": {
+      "name": "...",
+      "location": {
+        "city": "...",
+        "state": "...",
+        "country": "..."
+      },
+      "primaryRole": {
+        "value": "...",
+        "options": [
+          "software engineer",
+          "Mobile Developer",
+          "Ios developer",
+          "Android Developer",
+          "Full Stack Developer",
+          "Frontend Developer",
+          "Backend engineer",
+          "DevOps Engineer",
+          "Data Scientist",
+          "Data Engineer",
+          "Product Manager",
+          "UX/UI Designer",
+          "QA Engineer",
+          "Systems Administrator",
+          "Security Engineer",
+          "Technical Writer",
+          "Project Manager",
+          "Business Analyst",
+          "Scrum Master",
+          "Database Administrator",
+          "Network Engineer",
+          "Cloud Engineer",
+          "Machine Learning Engineer",
+          "AI Specialist",
+          "Blockchain Developer",
+          "Game Developer",
+          "Embedded Systems Engineer",
+          "Site Reliability Engineer (SRE)"
+        ]
+      },
+      "yearsOfExperience": "6 Years",
+      "openToTheRoles": [],
+      "bio": {
+        "context": "A brief professional summary highlighting key skills and experiences.",
+        "maxCharacters": 0,
+        "inputType": "textarea",
+        "value": "..."
+      }
+    },
+    "socialProfiles": {
+      "website": "...",
+      "linkedin": "...",
+      "github": "...",
+      "twitter": "..."
+    },
+    "education": {
+      "institute": "...",
+      "graduationDate": "...",
+      "degreeAndMajor": {
+        "degreeType": [
+          "Associate's Degree",
+          "Bachelor of Arts (BA)",
+          "Bachelor of Business Administration (BBA)",
+          "Bachelor of Engineering (BEng)",
+          "Bachelor of Fine Arts (BFA)",
+          "Bachelor of Science (BS)",
+          "Bachelor's Degree",
+          "Engineer's Degree",
+          "Master of Arts (MA)",
+          "Master of Business Administration (MBA)",
+          "Master of Fine Arts (MFA)",
+          "Master of Science (MS)",
+          "Master's Degree",
+          "Doctor of Philosophy (PhD)",
+          "Doctor of Medicine (MD)",
+          "Juris Doctor (JD)",
+          "High School Diploma",
+          "Non-Degree Program (e.g. Coursera certificate)"
+        ],
+        "majorFieldOfStudy": "..."
+      },
+      "gpa": {
+        "score": null,
+        "max": null
+      }
+    },
+    "skills": {
+      "value": "...",
+      "required": true,
+      "placeholder": "e.g. Python, React",
+      "input_type": "tag_selector",
+      "description": "Helps startups identify candidate strengths.Skills should be organized and prioritized based on relevance to the Frontend Developer role."
+    },
+    "achievements": {
+      "context": "Details regarding successful projects, user reach, revenue generation, and full-stack contributions.",
+      "maxCharacters": 1000,
+      "inputType": "textarea",
+      "value": "..."
+    }
+  },
+  "preferences": {
+    "context": "Job search preference settings for a professional profile, including work authorization, location, salary, and company size targets.",
+    "usWorkAuthorization": {
+      "requiresSponsorship": {
+        "value": "",
+        "options": ["Yes", "No"]
+      },
+      "legallyAuthorizedToWorkUs": {
+        "value": "",
+        "options": ["Yes", "No"]
+      }
+    },
+"job_preferences": {
+    "formField": {
+      "context": "What type of job are you interested in?",
+      "required": true,
+      "type": "dropdown_with_multiple_checkboxes"
+    },
+    "user_selection": {
+      "primary_choice": "Full-time Employee",
+      "secondary_choices": {
+        "label": "Also open to the following job types:",
+        "selected_options": [
+         {
+           "value":"..." 
+        }
+        ]
+      }
+    },
+    "availableOptionsList": [
+      "Full-time Employee",
+      "Contractor",
+      "Intern",
+      "Co-founder"
+    ]
+  },
+    "locationPreferences": {
+      "context": "You can select multiple locations where you're interested in working.",
+      "desired_locations": ["Australia, Australia", "Europe", "United States", "Middle East"],
+      "value": ["..."],
+      "openToRemote": true
+    },
+    "salaryExpectations": {
+      "currency": {
+        "value": "...",
+        "options": [
+          "United States Dollar",
+          "Euro",
+          "British Pound",
+          "Canadian Dollar",
+          "Australian Dollar",
+          "Indian Rupee",
+          "Pakistani Rupee",
+          "Japanese Yen",
+          "Chinese Yuan",
+          "Swiss Franc",
+          "Swedish Krona",
+          "New Zealand Dollar",
+          "Mexican Peso",
+          "Singapore Dollar",
+          "Hong Kong Dollar",
+          "Norwegian Krone",
+          "South Korean Won",
+          "Turkish Lira",
+          "Russian Ruble",
+          "Brazilian Real",
+          "South African Rand",
+          "Danish Krone",
+          "Polish Zloty",
+          "Thai Baht",
+          "Indonesian Rupiah",
+          "Malaysian Ringgit",
+          "Philippine Peso",
+          "Czech Koruna",
+          "Hungarian Forint",
+          "Israeli New Shekel",
+          "Chilean Peso",
+          "Colombian Peso",
+          "Egyptian Pound",
+          "Argentine Peso",
+          "UAE Dirham",
+          "Saudi Riyal",
+          "Vietnamese Dong",
+          "Pakistani Rupee",
+          "Bangladeshi Taka",
+          "Nigerian Naira"
+        ]
+      },
+      "desiredAnnualSalary": null
+    },
+    "companySizePreferences": [
+      {
+        "category": "Seed",
+        "size_range": "1 - 10 employees",
+        "preference": "Ideal"
+      },
+      {
+        "category": "Early",
+        "size_range": "11 - 50 employees",
+        "preference": "Ideal"
+      },
+      {
+        "category": "Mid-size",
+        "size_range": "51 - 200 employees",
+        "preference": "Yes"
+      },
+      {
+        "category": "Large",
+        "size_range": "201 - 500 employees",
+        "preference": "Yes"
+      },
+      {
+        "category": "Very Large",
+        "size_range": "501 - 1000 employees",
+        "preference": "Yes"
+      },
+      {
+        "category": "Massive",
+        "size_range": "1001+ employees",
+        "preference": "Yes"
+      }
+    ]
+  },
+  "culture": {
+    "context": "Job profile setup section where candidates define their preferences, motivations, and requirements for potential startup employers.",
+    "nextJobDescription": {
+      "context": "Describe what you are looking for in your next job. Startups tell us this is one of the first things they look at in a profile",
+      "type": "textarea",
+      "maxlimit": 290,
+      "nextJobDescription": "..."
+    },
+    "motivationPreference": {
+      "type": "radio_group",
+      "value": "",
+      "options": ["Solving technical problems", "Building products"]
+    },
+    "fiveYearCareerPath": {
+      "type": "radio_group",
+      "value": "",
+      "options": ["Individual contributor", "Manager"]
+    },
+    "optimalWorkEnvironment": {
+      "type": "radio_group",
+      "value": "",
+      "options": ["Clear role and set of responsibilities. Consistent feedback from management.", "Employees wear a lot of hats. Assignments often require employees to \"figure it out\" on their own."]
+    },
+    "topCareerPriorities": {
+      "context": "What's most important to you in your next job? (Max 2)",
+      "type": "checkbox_group",
+      "value": [],
+      "maxSelection": 2,
+      "options": ["Having a say in what I work on and how I work", "Opportunities to progress within the company", "Team members I can learn from", "A company with a good growth trajectory", "Having a say in the company's and/or my team's direction", "Mentorship opportunities", "Learn new things and develop my skills", "Challenging problems to work on", "A diverse team"]
+    },
+    "remoteWorkFlexibilityImportance": {
+      "type": "radio_group",
+      "value": "",
+      "options": ["Very important", "Important", "Not important"]
+    },
+    "officeQuietEnvironmentPreference": {
+      "type": "radio_group",
+      "value": "",
+      "options": ["Very important", "Important", "Not important"]
+    },
+    "preferredTargetMarkets": {
+      "type": "dropdown",
+      "value": "",
+      "options": [
+        "Adtech",
+        "Analytics / Data",
+        "Artificial Intelligence / Machine Learning",
+        "Blockchain / Cryptocurrency",
+        "Consumer",
+        "Databases",
+        "Developer Tools",
+        "Drones",
+        "E-Commerce",
+        "Education",
+        "Enterprise Software",
+        "eSports",
+        "Fashion",
+        "Finance",
+        "Fitness",
+        "Games",
+        "Healthcare",
+        "HR / Recruiting",
+        "Logistics / Transportation / Shipping",
+        "Media",
+        "Productivity Software",
+        "Real Estate",
+        "Security",
+        "Social Good",
+        "Social Media",
+        "Travel",
+        "Virtual Reality",
+        "Wearables"
+      ]
+    },
+    "excludedTargetMarkets": {
+      "type": "dropdown",
+      "context": "Which markets are you NOT willing to work in?",
+      "value": "",
+      "options": [
+        "Adtech",
+        "Analytics / Data",
+        "Artificial Intelligence / Machine Learning",
+        "Blockchain / Cryptocurrency",
+        "Consumer",
+        "Databases",
+        "Developer Tools",
+        "Drones",
+        "E-Commerce",
+        "Education",
+        "Enterprise Software",
+        "eSports",
+        "Fashion",
+        "Finance",
+        "Fitness",
+        "Games",
+        "Healthcare",
+        "HR / Recruiting",
+        "Logistics / Transportation / Shipping",
+        "Media",
+        "Productivity Software",
+        "Real Estate",
+        "Security",
+        "Social Good",
+        "Social Media",
+        "Travel",
+        "Virtual Reality",
+        "Wearables"
+      ]
+    },
+    "preferredTechStack": {
+      "value": "",
+      "field_type": "multi_select_chips",
+      "maxlimit": 5,
+      "options": [
+        "Python",
+        "PHP",
+        "C++",
+        "Java",
+        "Javascript",
+        ".NET",
+        "jQuery",
+        "Scheme",
+        "Sinatra",
+        "Scala",
+        "Spring",
+        "Ocaml",
+        "Lua",
+        "Flask",
+        "Haskell",
+        "Erlang",
+        "SQL",
+        "C#",
+        "Django",
+        "Ruby",
+        "Coffeescript",
+        "Elixir",
+        "Rust",
+        "Racket",
+        "Ionic Framework",
+        "Kotlin",
+        "Swift",
+        "Vue.Js",
+        "Kubernetes",
+        "React Native",
+        "Go",
+        "Ember.js",
+        "Angular.JS",
+        "Ruby on Rails",
+        "Meteor",
+        "Bootstrap",
+        "F#",
+        "Unity",
+        "Objective-C",
+        "R",
+        "C",
+        "Perl",
+        "Clojure",
+        "Backbone.js"
+      ]
+    },
+    "excludedTechStack": {
+      "maxlimit": 5,
+      "field_type": "multi_select_chips",
+      "value": "",
+      "options": [
+        "Python",
+        "PHP",
+        "C++",
+        "Java",
+        "Javascript",
+        ".NET",
+        "jQuery",
+        "Scheme",
+        "Sinatra",
+        "Scala",
+        "Spring",
+        "Ocaml",
+        "Lua",
+        "Flask",
+        "Haskell",
+        "Erlang",
+        "SQL",
+        "C#",
+        "Django",
+        "Ruby",
+        "Coffeescript",
+        "Elixir",
+        "Rust",
+        "Racket",
+        "Ionic Framework",
+        "Kotlin",
+        "Swift",
+        "Vue.Js",
+        "Kubernetes",
+        "React Native",
+        "Go",
+        "Ember.js",
+        "Angular.JS",
+        "Ruby on Rails",
+        "Meteor",
+        "Bootstrap",
+        "F#",
+        "Unity",
+        "Objective-C",
+        "R",
+        "C",
+        "Perl",
+        "Clojure",
+        "Backbone.js"
+      ]
+    }
+  }
+}

@@ -1,0 +1,339 @@
+{
+  "profile": {
+    "Context": "User profile setup form for Wellfound, focusing on frontend and full-stack expertise for startup scaling [1, 2].",
+    "about": {
+      "name": "Abdul Rehman",
+      "location": {
+        "city": "Lahore",
+        "state": "Punjab",
+        "country": "Pakistan"
+      },
+      "primaryRole": {
+        "selected": "Frontend Developer",
+        "options": ["Frontend Developer", "Full Stack Developer", "Software Engineer"]
+      },
+      "yearsOfExperience": "6 Years",
+      "openToTheRoles": ["Senior Frontend Engineer", "Full Stack Developer", "Lead Engineer"],
+      "bio": {
+        "context": "Professional summary highlighting key wins for startups [1].",
+        "text": "Senior Frontend Developer** & Founder [3]. **6+ years** exp [1, 3]. Scaling with **React/Next.js** [3, 4]. Reduced errors **30%** [5], load times **40%** [6], and hiring costs **60%**"
+      }
+    },
+    "socialProfiles": {
+      "website": "helloabdul.com",
+      "linkedin": "linkedin.com/in/abdul",
+      "github": "github.com/abdul",
+      "twitter": "twitter.com/abdul"
+    },
+    "workExperience": {
+      "fields": [
+        {
+          "company": "Dev8X",
+          "title": "Founder & CEO",
+          "startDate": "Jan 2024",
+          "endDate": "Present",
+          "isCurrentRole": true,
+          "description": "I provide **US-quality engineering** for startups, overseeing **full-stack product development** and **monorepo architecture** using **TurboRepo**. [7, 8] I lead **DevOps** and **CI/CD automation** with **Docker** and **Kubernetes** to ensure high-performance software delivery. [8]",
+          "positionType": "This is a technical position [9]",
+          "skills": {
+            "selected": ["React.js", "Next.js", "TypeScript", "Node.js", "Docker", "Kubernetes", "TurboRepo"]
+          }
+        },
+        {
+          "company": "TroopHunter",
+          "title": "Full-Stack Developer",
+          "startDate": "Jan 2023",
+          "endDate": "Jan 2025",
+          "isCurrentRole": false,
+          "description": "I held **full-stack ownership** of an automated lead generation platform, building **Next.js** dashboards that load **instantly**. [10, 11] I implemented **Node.js microservices** and managed the entire **infrastructure as code** with **Terraform** and **Ansible**. [11, 12]",
+          "positionType": "This is a technical position [9]",
+          "skills": {
+            "selected": ["Next.js", "Node.js", "PostgreSQL", "Terraform", "Ansible", "GSAP"]
+          }
+        },
+        {
+          "company": "Total Health Dental Care",
+          "title": "Frontend Developer",
+          "startDate": "Jan 2022",
+          "endDate": "Jan 2023",
+          "description": "I built a custom **CRM** and **Scheduler** that increased re-appointments by **33%** and processed **millions in payments**. [13, 14] I integrated **Agora** for virtual consultations and optimized load times by **40%** through **performance engineering**. [14, 15]",
+          "positionType": "This is a technical position [9]",
+          "skills": {
+            "selected": ["React.js", "TypeScript", "Agora", "Mapbox GL", "Performance Optimization"]
+          }
+        }
+      ]
+    },
+    "skills": {
+      "text": "React.js, Next.js, TypeScript, Node.js, TailwindCSS, GSAP, Docker, CI/CD, TurboRepo [3, 13].",
+      "description": "Expertise in building scalable, production-grade frontend architectures [8, 14]."
+    },
+    "achievements": {
+      "context": "Measurable wins and startup growth impact [1].",
+      "text": "I processed **millions in patient payments** via custom tools and increased **user engagement by 30%** [5, 15]. I boosted global hygiene **re-appointments by 33%**, generating **1000+ monthly appointments** [5, 16]. My **TypeScript** initiatives reduced operational code errors by **30%** across large-scale systems [4]."
+    },
+    "preferences": {
+      "jobTypePreferences": {
+        "primaryInterest": {
+          "selected": "Full-time employee",
+          "text": "I am seeking a role where I can lead **frontend architecture** or scale **startup products** [1, 17]."
+        }
+      },
+      "locationPreferences": {
+        "desired_locations": ["United States", "Europe", "Remote"],
+        "openToRemote": true
+      },
+      "salaryExpectations": {
+        "currency": {
+          "selected": "United States Dollar"
+        }
+      }
+    },
+    "culture": {
+      "nextJobDescription": {
+        "nextJobDescription": "I am looking for a startup environment to build **high-performance systems** [17]. I enjoy solving **complex technical problems** and shipping **clean, accessible interfaces** [4, 18]."
+      },
+      "motivationPreference": {
+        "selected": "Building products"
+      },
+      "fiveYearCareerPath": {
+        "selected": "Individual contributor"
+      },
+      "optimalWorkEnvironment": {
+        "selected": "Employees wear a lot of hats. Assignments often require employees to \"figure it out\" on their own."
+      },
+      "topCareerPriorities": {
+        "selected": ["Challenging problems to work on", "Learn new things and develop my skills"]
+      },
+      "preferredTargetMarkets": {
+        "selected": "Healthcare, Finance, Blockchain, Enterprise Software [19]"
+      },
+      "preferredTechStack": {
+        "selected": ["React.js", "Next.js", "TypeScript", "Node.js", "Kubernetes"]
+      }
+    }
+  },
+  "resume": {
+    "description": "I am a **Senior Frontend Developer** and **Founder of Dev8X** with **6+ years** of engineering experience [1, 2]. I specialize in building **high-performance systems** using **React.js**, **Next.js**, and **TypeScript** [1, 3]. I reduced code errors by **30%** through **TypeScript** adoption and achieved a **40% load time reduction** for global clients [2, 4].",
+    "workExperience": [
+      {
+        "company": "Dev8X",
+        "title": "Founder & CEO",
+        "dates": "Jan 2024 – Present",
+        "description": "I manage **US-quality engineering** talent for startups [5]. I architect frontend systems with **React.js**, **Next.js**, and **TurboRepo monorepos** [6].",
+        "achievements_&_metrics": ["Successfully launched multiple **client-facing products** [6].", "Optimized development workflows for **high-performance software** [6].", "Provided **US-quality engineering** at **60–70% lower cost** [2]."]
+      },
+      {
+        "company": "TroopHunter",
+        "title": "Full-Stack Developer (Technical Leadership)",
+        "dates": "Jan 2023 – Jan 2025",
+        "description": "I led all **executive and technical aspects** of platform development [7]. I built **Next.js** dashboards and **Node.js microservices** with **PostgreSQL** [7].",
+        "achievements_&_metrics": ["Dashboards **load instantly** and are highly responsive [8].", "Implemented **CI/CD pipelines** using **Docker**, **Kubernetes**, and **Terraform** [8].", "Optimized UX with **GSAP** and **Framer Motion** micro-interactions [8, 9]."]
+      },
+      {
+        "company": "Total Health Dental Care",
+        "title": "Frontend Developer (Scheduler Project)",
+        "dates": "Jan 2022 – Apr 2023",
+        "description": "I developed a real-time booking UI using **React** and **TypeScript** [10]. I integrated this system with **DentrixAscend** for **15,000+ patients** [10, 11].",
+        "achievements_&_metrics": ["**33% increase** in global hygiene re-appointments [4].", "**1000+ more appointments** generated monthly worldwide [12].", "Reduced travel costs for patients by providing **accessible booking** [13]."]
+      },
+      {
+        "company": "Total Health Dental Care",
+        "title": "Frontend Developer (CRM Project)",
+        "dates": "Jan 2022 – Apr 2023",
+        "description": "I spearheaded the development of a custom **CRM** replacing **DentrixAscend** [14, 15]. I built a virtual section leveraging **Agora** [15].",
+        "achievements_&_metrics": ["Processed **millions in patient payments** via custom tools [4, 14].", "Reduced **operational labor costs** through virtual appointment automation [16].", "Enabled **live updates** on appointments with drag-and-drop interfaces [15]."]
+      },
+      {
+        "company": "Total Health Dental Care",
+        "title": "Frontend Developer (Website Project)",
+        "dates": "Jan 2022 – Jan 2023",
+        "description": "I built high-performance websites using **GSAP**, **ScrollTrigger**, and **Mapbox GL** [17, 18]. I optimized performance for **instant interactions** [19].",
+        "achievements_&_metrics": ["**40% reduction** in site load times [4, 20].", "**30% increase** in user engagement [4, 20].", "**20% increase** in website traffic [4, 20]."]
+      },
+      {
+        "company": "Coral Lab",
+        "title": "Frontend Developer (Coral Website)",
+        "dates": "Feb 2021 – Jan 2023",
+        "description": "I designed and developed a responsive website using **HTML**, **CSS**, and **SCSS** [21, 22]. I used **Greensock** products for UX [23].",
+        "achievements_&_metrics": ["Improved **brand presence** and engagement through modern design [24].", "Delivered **optimized layouts** for all device screen sizes [25].", "Successfully launched on schedule meeting all **client specifications** [23]."]
+      },
+      {
+        "company": "Coral Lab",
+        "title": "Frontend Developer (Honeydu)",
+        "dates": "Apr 2021 – Dec 2021",
+        "description": "I built **Honeydu**, a zero-fee payment app, using **React** and **TailwindCSS** [26]. I designed an **intuitive interface** for money management [26].",
+        "achievements_&_metrics": ["Redesign boosted **clarity and mobile-first usability** [24].", "Simplified money management for **creators and freelancers** [27].", "Provided **real-time financial insights** to users [27]."]
+      },
+      {
+        "company": "Coral Lab",
+        "title": "Frontend Developer (GoldenDAO)",
+        "dates": "Sep 2021 – Dec 2021",
+        "description": "I built a **Web3 membership** platform using **React** and **Redux** [21, 28]. I implemented **NFT access-gated** features [29].",
+        "achievements_&_metrics": ["Successfully launched for the **AAPI empowerment** mission [24, 30].", "Developed a membership system with **exclusive voting rights** [30].", "Integrated **Web3 community interactions** and real-world event features [28, 30]."]
+      },
+      {
+        "company": "LEADCONCEPT LTD",
+        "title": "Frontend Developer",
+        "dates": "Sep 2019 – Feb 2021",
+        "description": "I developed **Miboletazo**, a large-scale ticket booking system using **React.js** [31]. I built seat selection UIs [31].",
+        "achievements_&_metrics": ["**Increased sales** through a faster and more efficient booking flow [32].", "Boosted **user trust** with real-time seat availability updates [32].", "Improved booking efficiency and **customer satisfaction** [32]."]
+      }
+    ],
+    "skills": ["React.js", "Next.js", "TypeScript", "Node.js", "TailwindCSS", "GSAP", "Docker", "Kubernetes", "CI/CD", "TurboRepo", "PostgreSQL", "RESTful APIs"]
+  },
+  "preferences": {
+    "context": "Job search preference settings for Abdul, prioritizing high-impact startup roles and remote flexibility [1].",
+    "usWorkAuthorization": {
+      "requiresSponsorship": {
+        "selected": "Yes",
+        "options": ["Yes", "No"]
+      },
+      "legallyAuthorizedToWorkUs": {
+        "selected": "No",
+        "options": ["Yes", "No"]
+      }
+    },
+    "jobTypePreferences": {
+      "primaryInterest": {
+        "selected": "Full-time employee",
+        "text": "I am seeking a role where I can lead **frontend architecture** or scale **startup products** using my **6+ years** of engineering experience [2, 3]."
+      },
+      "also_open_to": {
+        "fullTimeEmployee": true,
+        "intern": false,
+        "coFounder": false
+      }
+    },
+    "locationPreferences": {
+      "context": "Selecting locations interested in working [3].",
+      "desired_locations": ["United States", "Europe", "Remote"],
+      "text": ["Open to roles in the **United States** and **Europe** given my history with US-based clients like **Total Health Dental Care** [3, 4]."],
+      "openToRemote": true
+    },
+    "salaryExpectations": {
+      "currency": {
+        "selected": "United States Dollar",
+        "options": ["United States Dollar", "Euro", "British Pound"]
+      },
+      "desiredAnnualSalary": null
+    },
+    "companySizePreferences": [
+      {
+        "category": "Seed",
+        "size_range": "1 - 10 employees",
+        "preference": "Ideal"
+      },
+      {
+        "category": "Early",
+        "size_range": "11 - 50 employees",
+        "preference": "Ideal"
+      },
+      {
+        "category": "Mid-size",
+        "size_range": "51 - 200 employees",
+        "preference": "Yes"
+      }
+    ],
+    "culture": {
+      "context": "Preferences and motivations for potential startup employers [5].",
+      "nextJobDescription": {
+        "context": "Describe what you are looking for in your next job [5].",
+        "nextJobDescription": "I am looking for a startup environment to build **high-performance systems**. I enjoy solving **complex technical problems** and shipping **clean, accessible interfaces** [5, 6]."
+      },
+      "motivationPreference": {
+        "selected": "Building products",
+        "options": ["Solving technical problems", "Building products"]
+      },
+      "fiveYearCareerPath": {
+        "selected": "Individual contributor",
+        "options": ["Individual contributor", "Manager"]
+      },
+      "optimalWorkEnvironment": {
+        "selected": "Employees wear a lot of hats. Assignments often require employees to \"figure it out\" on their own.",
+        "options": ["Clear role and set of responsibilities. Consistent feedback from management.", "Employees wear a lot of hats. Assignments often require employees to \"figure it out\" on their own."]
+      },
+      "topCareerPriorities": {
+        "context": "What's most important to you in your next job? [7]",
+        "selected": ["Challenging problems to work on", "Learn new things and develop my skills"],
+        "options": ["Learn new things and develop my skills", "Challenging problems to work on"]
+      },
+      "remoteWorkFlexibilityImportance": {
+        "selected": "Very important",
+        "options": ["Very important", "Important", "Not important"]
+      },
+      "preferredTargetMarkets": {
+        "selected": ["Healthcare", "Finance", "Blockchain / Cryptocurrency", "Enterprise Software"],
+        "options": ["Blockchain / Cryptocurrency", "Enterprise Software", "Finance", "Healthcare"]
+      },
+      "preferredTechStack": {
+        "selected": ["React.js", "Next.js", "TypeScript", "Node.js", "Kubernetes"],
+        "options": ["React.js", "Next.js", "TypeScript", "Node.js", "Kubernetes"]
+      }
+    }
+  },
+  "culture": {
+    "context": "Job profile setup section where candidates define their preferences, motivations, and requirements for potential startup employers [1].",
+    "nextJobDescription": {
+      "context": "Describe what you are looking for in your next job [1].",
+      "type": "textarea",
+      "maxlimit": 300,
+      "nextJobDescription": "I am seeking a senior role building **high-performance systems** [2]. I enjoy solving **complex technical problems** and shipping **clean, accessible interfaces** that drive startup growth and improve user engagement [2-4]."
+    },
+    "motivationPreference": {
+      "type": "radio_group",
+      "selected": "Building products",
+      "options": ["Solving technical problems", "Building products"]
+    },
+    "fiveYearCareerPath": {
+      "type": "radio_group",
+      "selected": "Individual contributor",
+      "options": ["Individual contributor", "Manager"]
+    },
+    "optimalWorkEnvironment": {
+      "type": "radio_group",
+      "selected": "Employees wear a lot of hats. Assignments often require employees to \"figure it out\" on their own.",
+      "options": ["Clear role and set of responsibilities. Consistent feedback from management.", "Employees wear a lot of hats. Assignments often require employees to \"figure it out\" on their own."]
+    },
+    "topCareerPriorities": {
+      "context": "What's most important to you in your next job? (Max 2) [5].",
+      "type": "checkbox_group",
+      "selected": ["Challenging problems to work on", "Learn new things and develop my skills"],
+      "maxSelection": 2,
+      "options": ["Having a say in what I work on and how I work", "Opportunities to progress within the company", "Team members I can learn from", "A company with a good growth trajectory", "Having a say in the company's and/or my team's direction", "Mentorship opportunities", "Learn new things and develop my skills", "Challenging problems to work on", "A diverse team"]
+    },
+    "remoteWorkFlexibilityImportance": {
+      "type": "radio_group",
+      "selected": "Very important",
+      "options": ["Very important", "Important", "Not important"]
+    },
+    "officeQuietEnvironmentPreference": {
+      "type": "radio_group",
+      "selected": "Important",
+      "options": ["Very important", "Important", "Not important"]
+    },
+    "preferredTargetMarkets": {
+      "type": "dropdown",
+      "selected": ["Healthcare", "Finance", "Blockchain / Cryptocurrency", "Enterprise Software"],
+      "options": ["Blockchain / Cryptocurrency", "Enterprise Software", "Finance", "Healthcare"]
+    },
+    "excludedTargetMarkets": {
+      "type": "dropdown",
+      "context": "Which markets are you NOT willing to work in? [6].",
+      "selected": ["Adtech"],
+      "options": ["Adtech", "Fashion", "Social Media"]
+    },
+    "preferredTechStack": {
+      "selected": ["Javascript", "React.js", "Next.js", "Node.js", "Kubernetes"],
+      "field_type": "multi_select_chips",
+      "maxlimit": 5,
+      "options": ["Javascript", "React.js", "Next.js", "Node.js", "Kubernetes"]
+    },
+    "excludedTechStack": {
+      "maxlimit": 5,
+      "field_type": "multi_select_chips",
+      "selected": ["PHP", "jQuery"],
+      "options": ["PHP", "jQuery"]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+
+
+
+{
+  "profile": {
+    "context": "Primary user identity and public-facing profile configuration.",
+    "displayName": "",
+    "pronouns": {
+      "type": "string",
+      "context": "Preferred gender identity pronouns (e.g., they/them).",
+      "values": ""
+    },
+    "aboutMe": {
+      "context": "Detailed professional narrative and expertise breakdown.",
+      "maxLimit":190,
+      "authority": {
+        "yearsInProduction": "",
+        "typesOfProductsBuilt": "",
+        "industriesWorkedIn": "",
+        "scaleHandled": {
+          "users": "",
+          "traffic": "",
+          "complexity": ""
+        }
+      },
+      "problemsSolved": [
+        {
+          "problem": "",
+          "impactOnBusiness": "",
+          "howFrontendFixesIt": ""
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "profile": {
+    "myInformation": {
+      "context": "Primary professional identity and current employment status.",
+      "employmentStatus": {
+        "type": "dropdown",
+        "context": "Current work availability or professional standing.",
+        "options": ["Employed", "Not-employed"],
+        "values": "Employed"
+      },
+      "fullName": "Abdul",
+      "jobTitle": "Senior Frontend Developer & Founder",
+      "location": "Lahore, Punjab, Pakistan",
+      "employer": {
+        "type": "string",
+        "context": "The name of the company currently employing the user.",
+        "values": "Dev8X"
+      },
+      "primaryIndustry": {
+        "type": "string",
+        "context": "The main sector of the professional's work (e.g., Tech, Finance).",
+        "values": "Technology / Software Development"
+      },
+      "specialization": "Senior Frontend Engineering | **React.js**, **Next.js**, & **TypeScript** Expert",
+      "bio": "I am a **Senior Frontend Consultant** with **6+ years** of experience building fast, modern, and accessible web applications [1, 2]. I specialize in **React.js** and **Next.js** architectures, focusing on shipping **clean, high-performance interfaces** that drive revenue [1, 2]. I have a proven track record of reducing code errors by **30%** through **TypeScript** adoption [2]."
+    },
+    "jobGoals": {
+      "context": "Future career objectives and compensation requirements.",
+      "desiredJobTitle": {
+        "type": "string",
+        "context": "The specific role the user is targeting next.",
+        "values": "Senior Frontend Consultant / Engineering Lead"
+      },
+      "desiredMinimumSalary": {
+        "context": "Financial expectations for new opportunities.",
+        "baseSalary": "125,000",
+        "currency": {
+          "type": "dropdown",
+          "context": "The local currency for payment (e.g., USD, PKR).",
+          "option": ["USD", "EURO"],
+          "values": "USD"
+        },
+        "payPeriod": {
+          "type": "dropdown",
+          "context": "Frequency of pay (e.g., Per Month, Per Year).",
+          "options": ["Annually", "Hourly", "Daily", "Weekly", "Monthly"],
+          "values": "Annually"
+        }
+      },
+      "desiredLocation": {
+        "type": "string",
+        "context": "Target geographic area for a new role.",
+        "values": "Remote (US-Aligned)"
+      },
+      "openToRemoteWork": {
+        "type": "boolean",
+        "context": "Indicates if the user is willing to work from home.",
+        "options": ["No", "Yes"],
+        "values": true
+      }
+    }
+  }
+}
