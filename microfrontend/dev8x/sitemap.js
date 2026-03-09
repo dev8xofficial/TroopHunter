@@ -92,7 +92,7 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
 
     if (!process.env.NEXT_PUBLIC_DEV8X_APP_URL) {
       console.warn('Warning: NEXT_PUBLIC_DEV8X_APP_URL is not defined, using default');
-      process.env.NEXT_PUBLIC_DEV8X_APP_URL = 'https://dev8x.com';
+      process.env.NEXT_PUBLIC_DEV8X_APP_URL = 'https://www.dev8x.com';
     }
 
     const sitemapStream = new SitemapStream({ hostname: process.env.NEXT_PUBLIC_DEV8X_APP_URL });
