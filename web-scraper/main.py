@@ -35,6 +35,12 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
         default=config.DEFAULT_MAX_PAGES,
         help=f"Maximum number of pages to scrape (1-{config.MAX_PAGES}, default {config.DEFAULT_MAX_PAGES}).",
     )
+    parser.add_argument(
+        "--concurrent-tabs",
+        type=int,
+        default=config.CONCURRENT_TABS,
+        help=f"Number of tabs to load concurrently (default {config.CONCURRENT_TABS}).",
+    )
     headless_group = parser.add_mutually_exclusive_group()
     headless_group.add_argument(
         "--headless",
@@ -76,48 +82,62 @@ def validate_url(url: str) -> str:
     return url
 
 
-def _scrape_urls_in_tabs(driver, urls: List[str]) -> list:
+def _scrape_urls_in_tabs(driver, urls: List[str], concurrent_tabs: int) -> list:
     """
-    Open each URL in a separate browser tab, extract content, and close the tab.
-
-    The first URL reuses the main tab; subsequent URLs open new tabs.
+    Load a batch of URLs into separate browser tabs concurrently,
+    then extract content sequentially from each tab.
     """
     pages_data = []
     main_tab = driver.current_window_handle
-
-    for page_index, url in enumerate(urls, start=1):
-        if page_index == 1:
-            # Use the existing (main) tab for the first page.
-            driver.get(url)
-        else:
-            # Open a new tab and switch to it.
-            driver.execute_script("window.open(arguments[0], '_blank');", url)
-            new_tab = [h for h in driver.window_handles if h != main_tab and h not in _seen]
-            if new_tab:
-                driver.switch_to.window(new_tab[0])
+    
+    # Process URLs in chunks of size `concurrent_tabs`
+    for batch_start in range(0, len(urls), concurrent_tabs):
+        batch_urls = urls[batch_start:batch_start + concurrent_tabs]
+        batch_handles = []  # Maps a window handle to its page info: (url, page_index)
+        
+        # 1. Open all tabs for this batch
+        for i, url in enumerate(batch_urls):
+            page_index = batch_start + i + 1
+            if page_index == 1:
+                # The very first page loads in the existing main tab
+                driver.get(url)
+                batch_handles.append((main_tab, url, page_index))
             else:
-                # Fallback: switch to the last handle.
-                driver.switch_to.window(driver.window_handles[-1])
-
-        # Track which handles we've already used.
-        _seen.add(driver.current_window_handle)
-
-        navigation.wait_for_page_ready(driver)
-
-        page_data = extraction.extract_page_data(
-            driver=driver,
-            page_number=page_index,
-        )
-        pages_data.append(page_data)
-        print(f"[info] Scraped page {page_index}/{len(urls)}: {url}")
-
-        # Close the tab (unless it's the main one) and switch back.
-        if driver.current_window_handle != main_tab:
-            driver.close()
-            driver.switch_to.window(main_tab)
-
-        # Small pause between pages.
-        if page_index < len(urls):
+                # Open a new tab
+                driver.execute_script("window.open(arguments[0], '_blank');", url)
+                # Find the newly created handle
+                new_tabs = [h for h in driver.window_handles if h != main_tab and h not in _seen]
+                if new_tabs:
+                    handle = new_tabs[0]
+                    _seen.add(handle)
+                    batch_handles.append((handle, url, page_index))
+                else:
+                    # Fallback
+                    handle = driver.window_handles[-1]
+                    _seen.add(handle)
+                    batch_handles.append((handle, url, page_index))
+        
+        # 2. Iterate through opened tabs, wait for ready, and extract
+        for handle, url, page_index in batch_handles:
+            driver.switch_to.window(handle)
+            navigation.wait_for_page_ready(driver)
+            
+            page_data = extraction.extract_page_data(
+                driver=driver,
+                page_number=page_index,
+            )
+            pages_data.append(page_data)
+            print(f"[info] Scraped page {page_index}/{len(urls)}: {url}")
+            
+            # Close the tab (unless it's the reusable main tab)
+            if handle != main_tab:
+                driver.close()
+                
+        # Switch back to the main tab for the next batch
+        driver.switch_to.window(main_tab)
+        
+        # Small pause between batches
+        if batch_start + concurrent_tabs < len(urls):
             time.sleep(config.REQUEST_PAUSE_SECONDS)
 
     return pages_data
@@ -130,6 +150,7 @@ _seen: set = set()
 def run_scraper(
     start_url: str,
     max_pages: int,
+    concurrent_tabs: int,
     headless: bool,
 ) -> str:
     """
@@ -152,7 +173,7 @@ def run_scraper(
     # --- Scrape in browser tabs ---
     driver = browser.create_driver(headless=headless)
     try:
-        pages_data = _scrape_urls_in_tabs(driver, urls)
+        pages_data = _scrape_urls_in_tabs(driver, urls, concurrent_tabs)
 
         markdown_content = output_md.render_markdown(
             pages_data=pages_data,
@@ -182,6 +203,7 @@ def main(argv: List[str] | None = None) -> int:
         output_path = run_scraper(
             start_url=start_url,
             max_pages=args.max_pages,
+            concurrent_tabs=args.concurrent_tabs,
             headless=bool(args.headless),
         )
     except WebDriverException as exc:

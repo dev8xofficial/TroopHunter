@@ -367,6 +367,19 @@ INDEX_TEMPLATE = """
             </div>
 
             <div class="field-group">
+              <label for="concurrent_tabs">Concurrent Tabs</label>
+              <input
+                type="number"
+                id="concurrent_tabs"
+                name="concurrent_tabs"
+                min="1"
+                max="20"
+                value="{{ request.form.get('concurrent_tabs', default_concurrent) }}"
+              />
+              <div class="hint">Batch size (1-20 tabs at a time).</div>
+            </div>
+
+            <div class="field-group">
               <span style="height: 18px;"></span>
               <div class="switch-row">
                 <div class="switch-label">
@@ -418,12 +431,24 @@ def index():
     if request.method == "POST":
         start_url = (request.form.get("start_url") or "").strip()
         raw_max = request.form.get("max_pages") or ""
+        raw_concurrent = request.form.get("concurrent_tabs") or ""
         headless_flag = request.form.get("headless")
 
         try:
             max_pages = int(raw_max) if raw_max else config.DEFAULT_MAX_PAGES
         except ValueError:
             max_pages = config.DEFAULT_MAX_PAGES
+
+        try:
+            concurrent_tabs = int(raw_concurrent) if raw_concurrent else config.CONCURRENT_TABS
+        except ValueError:
+            concurrent_tabs = config.CONCURRENT_TABS
+        
+        # Clamp concurrent_tabs
+        if concurrent_tabs < 1:
+            concurrent_tabs = 1
+        elif concurrent_tabs > 20:
+            concurrent_tabs = 20
 
         max_pages = normalise_max_pages(max_pages)
         headless = bool(headless_flag) if headless_flag is not None else config.HEADLESS
@@ -433,6 +458,7 @@ def index():
             output_path = run_scraper(
                 start_url=validated_url,
                 max_pages=max_pages,
+                concurrent_tabs=concurrent_tabs,
                 headless=headless,
             )
             flash("Scrape completed successfully.", "success")
@@ -444,6 +470,7 @@ def index():
         request=request,
         max_pages=config.MAX_PAGES,
         default_max=config.DEFAULT_MAX_PAGES,
+        default_concurrent=config.CONCURRENT_TABS,
         default_headless="checked" if config.HEADLESS else "",
         output_path=output_path,
     )

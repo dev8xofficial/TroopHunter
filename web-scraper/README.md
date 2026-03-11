@@ -36,7 +36,7 @@ The project uses `webdriver-manager` to download and manage the matching ChromeD
 From the project root:
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 
 # Windows
 venv\Scripts\activate
@@ -52,8 +52,9 @@ pip install -r requirements.txt
 Open `config.py` to adjust behavior:
 
 - **Scraping limits**
-  - `MAX_PAGES` – Hard upper bound (default `50`).
+  - `MAX_PAGES` – Hard upper bound (default `100`).
   - `DEFAULT_MAX_PAGES` – Default when `--max-pages` is omitted.
+  - `CONCURRENT_TABS` – Default number of tabs to open simultaneously for faster scraping.
 - **Browser settings**
   - `HEADLESS` – Default headless mode (`True` or `False`).
   - `WINDOW_SIZE` – Window size string like `"1600,900"`.
@@ -69,7 +70,7 @@ Open `config.py` to adjust behavior:
 Activate your virtual environment, then run:
 
 ```bash
-python main.py "https://example.com"
+python3 main.py "https://example.com"
 ```
 
 The scraper will:
@@ -81,18 +82,19 @@ The scraper will:
 
 Optional flags:
 
-- `--max-pages N` – Maximum pages to scrape (clamped between 1 and 50).
+- `--max-pages N` – Maximum pages to scrape (clamped between 1 and 100).
+- `--concurrent-tabs N` – Number of pages to load concurrently in browser tabs.
 - `--headless` – Force headless mode.
 - `--no-headless` – Force visible (non-headless) browser window.
 
 Examples:
 
 ```bash
-# Scrape up to 10 pages in headless mode
-python main.py "https://example.com" --max-pages 10 --headless
+# Scrape up to 10 pages in headless mode, loading 5 at a time
+python3 main.py "https://example.com" --max-pages 10 --concurrent-tabs 5 --headless
 
-# Scrape up to 5 pages with a visible browser window
-python main.py "https://example.com" --max-pages 5 --no-headless
+# Scrape up to 15 pages with a visible browser window
+python3 main.py "https://example.com" --max-pages 15 --concurrent-tabs 5 --no-headless
 ```
 
 ## Usage (Web page)
@@ -102,7 +104,7 @@ You can also drive the scraper through a small web page instead of the CLI.
 From the project root (after activating your virtual environment and installing dependencies):
 
 ```bash
-python web_app.py
+python3 web_app.py
 ```
 
 Then open `http://127.0.0.1:5000/` in your browser.
@@ -110,7 +112,8 @@ Then open `http://127.0.0.1:5000/` in your browser.
 The page lets you:
 
 - Enter the **website URL**.
-- Choose **max pages** (clamped between 1 and 50).
+- Choose **max pages** (clamped between 1 and 100).
+- Choose **concurrent tabs** to load pages in batches.
 - Toggle **headless mode**.
 
 The scraper auto-discovers the sitemap and runs the same logic as the CLI.

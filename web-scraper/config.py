@@ -9,6 +9,7 @@ from __future__ import annotations
 
 MAX_PAGES: int = 100
 DEFAULT_MAX_PAGES: int = 20
+CONCURRENT_TABS: int = 5
 
 PAGE_LOAD_TIMEOUT: int = 30
 ELEMENT_WAIT_TIMEOUT: int = 15
