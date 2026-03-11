@@ -1,0 +1,349 @@
+{
+  "overview": {
+    "gigTitle": {
+      "type": "text",
+      "required": true,
+      "text": "I will seo friendly website builder, core web vitals specialist, and notion to website"
+    },
+    "category": {
+      "details": {
+        "primaryCategory": {
+          "type": "select",
+          "text": "programming & tech"
+        },
+        "secondaryCategory": {
+          "type": "select",
+          "text": "WEBSITE DEVELOPMENT"
+        }
+      },
+      "suggestedCategories": [
+        "Programming & Tech > Website Development",
+        "Programming & Tech > Software Development"
+      ]
+    },
+    "serviceType": "Custom Websites",
+    "gigMetadata": {
+      "websiteType": {
+        "selected": "Saas"
+      },
+      "programming_languages": {
+        "selected": [
+          "HTML & CSS",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Tailwind CSS"
+        ]
+      },
+      "websiteFeatures": {
+        "selected": [
+          "Landing page",
+          "Portfolio",
+          "User Authentication",
+          "Analytics",
+          "Form",
+          "Dashboard",
+          "Payment",
+          "Reviews",
+          "Booking",
+          "Calendar"
+        ]
+      }
+    },
+    "searchTags": {
+      "text": [
+"speed optimization",
+"core web vital",
+"sseo friendly website",
+"notion website",
+"Next.js developer"
+
+      ]
+    }
+  },
+  "pricing": {
+    "packages": {
+      "basic": {
+        "packageName": "Performance Landing Page",
+        "description": {
+          "type": "text",
+          "text": "Build a **high-performance landing page** with **React/Next.js** and **TypeScript** for **instant loading**."
+        },
+        "deliveryDays": {
+          "selected": 3
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 1
+        },
+        "revisions": {
+          "selected": 2
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 2
+        },
+        "eCommerceFunctionality": {
+          "selected": false
+        },
+        "paymentIntegration": {
+          "selected": false
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 150
+      },
+      "standard": {
+        "packageName": "Scalable Business Solution",
+        "description": {
+          "type": "text",
+          "text": "**Custom SaaS/Business site** with **Next.js**, **Redux**, and **GSAP** for **30% better engagement**."
+        },
+        "deliveryDays": {
+          "selected": 7
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 5
+        },
+        "revisions": {
+          "selected": 5
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 5
+        },
+        "eCommerceFunctionality": {
+          "selected": false
+        },
+        "paymentIntegration": {
+          "selected": true
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 450
+      },
+      "premium": {
+        "packageName": "Full-Stack Enterprise System",
+        "description": {
+          "type": "text",
+          "text": "**Full-stack platform** with **Next.js**, **Auth**, **Payments**, and **Docker/CI/CD** for **enterprise scale**."
+        },
+        "deliveryDays": {
+          "selected": 21
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 10
+        },
+        "revisions": {
+          "selected": "unlimited"
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 10
+        },
+        "eCommerceFunctionality": {
+          "selected": true
+        },
+        "paymentIntegration": {
+          "selected": true
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 1200
+      }
+    },
+    "extra_services": {
+      "extra_fast_delivery": {
+        "selected": true,
+        "options": [
+          {
+            "package": "Basic",
+            "additionalDeliveryDays": {
+              "selected": 1
+            },
+            "extraPrice": 50
+          },
+          {
+            "package": "Standard",
+            "additionalDeliveryDays": {
+              "selected": 3
+            },
+            "extraPrice": 150
+          },
+          {
+            "package": "Premium",
+            "additionalDeliveryDays": {
+              "selected": 7
+            },
+            "extraPrice": 400
+          }
+        ]
+      },
+      "additional_page": {
+        "selected": true,
+        "extraPrice": 80,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "additional_revision": {
+        "selected": true,
+        "extraPrice": 30,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "ecommerce_functionality": {
+        "selected": true,
+        "extraPrice": 250,
+        "additionalDeliveryDays": {
+          "selected": 3
+        }
+      },
+      "payment_integration": {
+        "selected": true,
+        "extraPrice": 150,
+        "additionalDeliveryDays": {
+          "selected": 2
+        }
+      },
+      "speed_optimization": {
+        "selected": true,
+        "extraPrice": 100,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "addExtraGigService": {
+        "fields": [
+          {
+            "addGigExtra": {
+              "titleInput": {
+                "text": "CI/CD Pipeline Setup"
+              },
+              "descriptionInput": {
+                "text": "I will set up **automated deployment** using **Docker** and **GitHub Actions** to reduce **operational risk**."
+              },
+              "pricingInput": {
+                "price": 200
+              },
+              "additionalDeliveryDays": {
+                "selected": 2
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "descriptionAndFAQ": {
+    "briefDescription": {
+      "text": "Is your website working for you, or against you?  I`m Abdul, a Senior Frontend Developer and CEO of Dev8X. With 6+ years of engineering experience, I don't just build sites; I build high-performance assets. If you need an SEO friendly web builder who understands the technical side of rankings, you`re in the right place.    As a Core Web Vitals Specialist, I`ve helped clients like Total Health Dental Care reduce site load times by 40%. I focus on Performance Optimization to ensure your site is lightning-fast and search-engine ready.    Need to turn your notes into a live platform? I provide a seamless Notion to web service, transforming your workspace into a professional, scalable site.  What I bring to your project:   SEO friendly website builder: I use Next.js and TypeScript for clean, indexable code.  Core Web Vitals Specialist: Expert in LCP, FID, and CLS optimization.  Notion to website: Clean, responsive conversions that maintain your brand's look.  Advanced UI/UX: Smooth GSAP and Framer Motion animations.  Stop losing traffic to slow speeds. Lets build your SEO friendly web builder project today!"
+    },
+    "faqs": {
+      "section": {
+        "fields": [
+          {
+            "type": "text",
+            "text": "I already have a legacy CRM. Can you build something to replace it?"
+          },
+          {
+            "type": "textarea",
+            "text": "Yes! I have extensive experience replacing legacy enterprise software with custom, fast, and modern web applications. We can replicate your current necessary features while adding the automations you’ve been missing."
+          },
+          {
+            "type": "text",
+            "text": "Will the web app be mobile-friendly?"
+          },
+          {
+            "type": "textarea",
+            "text": "Yes. In today’s market, most real estate searches and asset management tasks happen on the go. Your application will be fully responsive and perform flawlessly across all devices—desktops, tablets, and smartphones."
+          },
+          {
+            "type": "text",
+            "text": "Can you build a dashboard that integrates with my existing data?"
+          },
+          {
+            "type": "textarea",
+            "text": "Absolutely. I can develop custom Property Management Dashboards that sync with your existing APIs or legacy databases, giving you a modern, unified interface to manage your assets efficiently."
+          },
+          {
+            "type": "text",
+            "text": "Do you provide the IDX subscription or hosting?"
+          },
+          {
+            "type": "textarea",
+            "text": "I handle all the technical implementation, development, and integration. You will need to provide your own IDX Broker or MLS credentials and hosting account, but I am happy to guide you through selecting the best providers for your specific needs."
+          },
+          {
+            "type": "text",
+            "text": "Can you build custom calculators for mortgage brokers?"
+          },
+          {
+            "type": "textarea",
+            "text": "Yes, I can build advanced, interactive tools such as mortgage payment calculators, loan-to-value (LTV) estimators, and property valuation logic tailored to your specific loan products."
+          }
+        ]
+      }
+    }
+  },
+   "requirements": {
+    "custom_question_builder": [
+      {
+        "question_text": "If you are migrating from a spreadsheet or legacy CRM, please provide a sample of your current data structure.",
+        "is_required": true,
+        "response_format": "Free text"
+      },
+      {
+        "question_text": "Please share 2–3 links to websites or dashboards you like so I can understand your preferred aesthetic.",
+        "is_required": true,
+        "response_format": "Attachment"
+      }
+      
+    ]
+  }
+}

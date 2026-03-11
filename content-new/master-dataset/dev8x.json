@@ -1,0 +1,499 @@
+{
+  "mvp-development": {
+    "tagText": "For Tech Founders",
+    "heading": "LAUNCH YOUR MVP WITHIN 3 MONTHS",
+    "paragraph": "Work with a long-term tech partner that will help you build an MVP to gain traction from early adopters and raise money from investors.",
+    "heroButtons": [
+      {
+        "label": "See Pricing",
+        "href": "/pricing/tech-founders",
+        "target": "_blank"
+      },
+      {
+        "label": "Schedule a Call",
+        "modalType": "schedulecall"
+      }
+    ],
+    "iconCards": {
+      "title": "Together from an Idea to the First Funding and Beyond",
+      "paragraph": "Only by releasing an MVP to market, and testing it on real customers, you can find out if you’ve chosen the right problem to solve.",
+      "items": [
+        {
+          "title": "Test the core idea",
+          "description": "Validate your business idea in the early stage without developing a full-fledged product.",
+          "icon": {
+            "name": "RefreshIcon",
+            "width": 28
+          }
+        },
+        {
+          "title": "Attract investors",
+          "description": "Show investors that they are not funding just an idea, but a product that has already gained traction.",
+          "icon": {
+            "name": "BackendIcon",
+            "width": 26
+          }
+        },
+        {
+          "title": "Collect feedback",
+          "description": "Determine what features to add or remove and how to improve your product to meet the customers needs.",
+          "icon": {
+            "name": "AIBrainIcon",
+            "width": 26
+          }
+        },
+        {
+          "title": "Choose the right technologies",
+          "description": "Select the best tools for your MVP to ensure scalability and performance.",
+          "icon": {
+            "name": "SeismometerIcon",
+            "width": 22
+          }
+        }
+      ]
+    },
+    "contentAsideImageItems": [
+      {
+        "title": "Long-Term Partner That Shares Your Vision",
+        "paragraph": "We love diving deep into the project’s specifics, generating ideas, and testing hypotheses. With Upsilon, your startup will get a reliable team who lives and breathes your product 24/7.",
+        "icon": {
+          "name": "HomeIcon",
+          "width": 26
+        },
+        "image": "/api/images/work/scheduler/mobile/2.png"
+      },
+      {
+        "title": "Senior Developers, Not Amateurs",
+        "paragraph": "Keeping abreast of modern technologies and following the best development practices and standards, we build products that truly change the game.",
+        "icon": {
+          "name": "MapPinIcon",
+          "width": 24
+        },
+        "image": "/api/images/work/honeydu/desktop/10.png"
+      },
+      {
+        "title": "Quick Starters, Agile Riders",
+        "paragraph": "We understand your time is limited and have teams ready for deployment within 1-2 weeks. Adhering to agile practices, we help clients deliver value to their customers faster and with fewer headaches.",
+        "icon": {
+          "name": "BotIcon",
+          "width": 26
+        },
+        "image": "/api/images/work/totalhealthdentalcare/desktop/26.png"
+      },
+      {
+        "title": "Uncompromising Achievers",
+        "paragraph": "With Upsilon, you can be 100% sure that your project will never be left halfway down the road. We always work at full capacity striving to help your product achieve all goals you have set.",
+        "icon": {
+          "name": "BotIcon",
+          "width": 26
+        },
+        "image": "/api/images/work/totalhealthdentalcare/desktop/26.png"
+      }
+    ],
+    "whyWeAreDifferentContent": {
+      "heading": "Why We Are Different",
+      "qa": [
+        {
+          "title": "Long-Term Partner That Shares Your Vision",
+          "paragraph": "We love diving deep into the project’s specifics, generating ideas, and testing hypotheses. With Upsilon, your startup will get a reliable team who lives and breathes your product 24/7."
+        },
+        {
+          "title": "Senior Developers, Not Amateurs",
+          "paragraph": "Keeping abreast of modern technologies and following the best development practices and standards, we build products that truly change the game."
+        },
+        {
+          "title": "Quick Starters, Agile Riders",
+          "paragraph": "We understand your time is limited and have teams ready for deployment within 1-2 weeks. Adhering to agile practices, we help clients deliver value to their customers faster and with fewer headaches."
+        },
+        {
+          "title": "Uncompromising Achievers",
+          "paragraph": "With Upsilon, you can be 100% sure that your project will never be left halfway down the road. We always work at full capacity striving to help your product achieve all goals you have set."
+        }
+      ]
+    },
+    "meta": {
+      "title": "Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products",
+      "description": "Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products"
+    },
+    "faqs": [
+      {
+        "title": "1. What are MVP development services?",
+        "description": "By opting for MVP development services, startups can build a test version of a product allowing them to see their idea in action and determine how well it resonates with potential customers."
+      },
+      {
+        "title": "2. Why is MVP development important for startups?",
+        "description": "Building an MVP reduces risk, lowers initial investment, enables faster time-to-market, collects early feedback, prioritizes features, gains traction, and attracts investors."
+      },
+      {
+        "title": "3. How to choose the right MVP development company?",
+        "description": "For over 10 years, we’ve been helping progressive companies bring their ideas to life faster, more effectively, and with minimal risk."
+      },
+      {
+        "title": "4. What is the best pricing model for building an MVP?",
+        "description": "We use a sprint-based pricing model with 2-week sprints that ensures flexibility, transparency, and cost efficiency."
+      },
+      {
+        "title": "5. What if I need more listings or upgrades later?",
+        "description": "You can add new pages, listings, SEO, or automation anytime — all structures are built for easy scaling."
+      }
+    ]
+  },
+  "team-augmentation": {
+    "tagText": "For Tech Founders",
+    "heading": "Scale Up Faster With team Augmentation Services",
+    "paragraph": "Work with a long-term tech partner that will help you build an MVP to gain traction from early adopters and raise money from investors.",
+    "heroButtons": [
+      {
+        "label": "See Pricing",
+        "href": "/pricing/tech-founders",
+        "target": "_blank"
+      },
+      {
+        "label": "Schedule a Call",
+        "modalType": "schedulecall"
+      }
+    ],
+    "iconCards": {
+      "title": "Meet Your Future A-Players",
+      "paragraph": "We'll carefully select each team member based on the requirements and skills you need. Discover our talents and the role they can play in your team.",
+      "items": [
+        {
+          "title": "Senior developer",
+          "description": "An orchestrator of the team who decides on the product’s architecture and tech stack. Reviews the code and supervises the tech team to make sure that the scope is delivered properly.",
+          "icon": {
+            "name": "RefreshIcon",
+            "width": 28
+          }
+        },
+        {
+          "title": "Middle developer",
+          "description": "Main driving force of the team. They develop and deploy features, marrying tech and design parts.",
+          "icon": {
+            "name": "BackendIcon",
+            "width": 26
+          }
+        },
+        {
+          "title": "UX/UI designer",
+          "description": "Works on making your product lovable at first sight. Creates interface designs and delivers the best user experience in line with the user journey.",
+          "icon": {
+            "name": "AIBrainIcon",
+            "width": 26
+          }
+        },
+        {
+          "title": "QA specialist",
+          "description": "Goes over the code and locates bugs and glitches. Has the final say on whether or not the product is ready for deployment.",
+          "icon": {
+            "name": "SeismometerIcon",
+            "width": 22
+          }
+        },
+        {
+          "title": "Product manager",
+          "description": "Guides and shapes the development of the product in the direction you define. Keeps teams on track, ensuring that the development runs on schedule.",
+          "icon": {
+            "name": "SeismometerIcon",
+            "width": 22
+          }
+        }
+      ]
+    },
+    "contentAsideImageItems": [
+      {
+        "title": "Schedule a call",
+        "paragraph": "Complete the form and pick the best time. Ask us for an NDA if required, and we are happy to provide one.",
+        "icon": {
+          "name": "HomeIcon",
+          "width": 26
+        },
+        "image": "/api/images/work/scheduler/mobile/2.png"
+      },
+      {
+        "title": "Tell us what you’re building",
+        "paragraph": "Give us an idea of what you are building and what specific skills you need. In a few days, we’ll roll out a team composition that perfectly matches your needs.",
+        "icon": {
+          "name": "MapPinIcon",
+          "width": 24
+        },
+        "image": "/api/images/work/honeydu/desktop/10.png"
+      },
+      {
+        "title": "Review the team and start",
+        "paragraph": "Once you approve the team and sign a contract, we can start building your product together with no-risk.",
+        "icon": {
+          "name": "BotIcon",
+          "width": 26
+        },
+        "image": "/api/images/work/totalhealthdentalcare/desktop/26.png"
+      }
+    ],
+    "whyWeAreDifferentContent": {
+      "heading": "Why We Are Different",
+      "qa": [
+        {
+          "title": "Long-Term Partner That Shares Your Vision",
+          "paragraph": "We love diving deep into the project’s specifics, generating ideas, and testing hypotheses. With Upsilon, your startup will get a reliable team who lives and breathes your product 24/7."
+        },
+        {
+          "title": "Senior Developers, Not Amateurs",
+          "paragraph": "Keeping abreast of modern technologies and following the best development practices and standards, we build products that truly change the game."
+        },
+        {
+          "title": "Quick Starters, Agile Riders",
+          "paragraph": "We understand your time is limited and have teams ready for deployment within 1-2 weeks. Adhering to agile practices, we help clients deliver value to their customers faster and with fewer headaches."
+        },
+        {
+          "title": "Uncompromising Achievers",
+          "paragraph": "With Upsilon, you can be 100% sure that your project will never be left halfway down the road. We always work at full capacity striving to help your product achieve all goals you have set."
+        }
+      ]
+    },
+    "meta": {
+      "title": "Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products",
+      "description": "Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products"
+    },
+    "faqs": [
+      {
+        "title": "1. What are IT staff augmentation services?",
+        "description": "The IT staff augmentation model means hiring outsourced specialists as an additional workforce on a temporary or permanent basis. By utilizing this model, you can easily fill a talent gap to complete tasks or take on roles that may be beyond the capabilities of your current staff. Interested in a team extension? Upsilon boasts an extensive talent pool that can perfectly fit your software development needs.  "
+      },
+      {
+        "title": "2. When do I need team augmentation services?",
+        "description": "Here are the signs when team augmentation services can be the best fit for your startup:\n\nYour in-house team lacks specialized skills and expertise, and you want quickly fill this “void”;\nYou develop and release within a tight schedule: with team augmentation, you can ramp up your technical capacity while chasing stringent deadlines;\nYou want to free your company from the hassle of searching and recruiting vetted development talent;\nYou want to retain 100% control over the project.\nDoes all of this describe your current needs on the project? We are ready to help."
+      },
+      {
+        "title": "3. What is the difference between IT staff augmentation and managed services?",
+        "description": "Under a staff augmentation model, you maintain direct and complete control over all processes. When tapping into a managed services model, your tech partner assumes external control of your non-core systems, managing all aspects of their functioning. A managed team operates independently of your in-house team, with an outsourced Project Manager overseeing daily operations and workflows.Which method works best for a startup?If you work under deadline pressure and need to fill specific gaps “here and now,” - you should consider staff augmentation as the number one choice. This model provides maximum flexibility and cost-effectiveness.The managed services option can be more efficient if you want to outsource the project from start to finish. You will have a dedicated team that takes full responsibility for the project. Since this makes your IT outsourcing costs predictable, you can save money over the long term.Both models are viable alternatives to an in-house team, but which model to choose depends on your project type and size.Want to enhance the development efficiency of your ongoing project? Augment your team with talent from Upsilon."
+      },
+      {
+        "title": "4. How will my team interact with your augmented staff?",
+        "description": "Leveraging our years of expertise in IT staff augmentation, we established a vetted approach to collaboration between external and internal teams. Being Agile and SCRUM adopters, we employ Jira to track work assignments, team progress & defects, and handle issues. Setting KPIs with accompanying deadlines ensures efficient cooperation across time zones. At the same time, regular standups, weekly meetings, and sprint reviews keep both sides up-to-date and allow them to adjust processes painlessly.Looking for developers who will be as committed as your in-house team members? You can hire them right now at Upsilon."
+      },
+      {
+        "title": "5. How much do IT staff augmentation services cost?",
+        "description": "When you opt for an IT staff augmentation model, each specialist has a specific hourly rate, and you pay for the number of hours worked. Upsilon is ready to provide you with skilled experts at affordable prices. Visit the “Pricing” page to get an idea of our specialists’ rates."
+      }
+    ],
+    "capabilities": [
+      {
+        "heading": "Product management",
+        "items": [
+          {
+            "name": "Jira",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789076682a8f287807a6_jira.webp"
+          },
+          {
+            "name": "Slack",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789176682a27a67807ae_slack.webp"
+          },
+          {
+            "name": "Miro",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789127848f8dcf3eeabd_miro.webp"
+          }
+        ]
+      },
+      {
+        "heading": "UX/UI design",
+        "items": [
+          {
+            "name": "Figma",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/6372789152be206081bac0bc_figma.webp"
+          },
+          {
+            "name": "Adobe Photoshop",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727890b27f6382b9a1cd89_adobe-photoshop.webp"
+          }
+        ]
+      },
+      {
+        "heading": "Development",
+        "items": [
+          {
+            "name": "Python (FastAPI, Django)",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278915e54a8355b3e1d52_python.webp"
+          },
+          {
+            "name": "TypeScript (Node.js, React, React Native)",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727893c290aa5ea60b6420_typescript.webp"
+          }
+        ]
+      },
+      {
+        "heading": "DevOps",
+        "items": [
+          {
+            "name": "Terraform",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727893840a291e120162d3_terraform.webp"
+          },
+          {
+            "name": "Docker",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278908332ff18aa459ce4_docker.webp"
+          },
+          {
+            "name": "Kubernetes",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278911e566587192317f2_kubernetes.webp"
+          }
+        ]
+      },
+      {
+        "heading": "QA",
+        "items": [
+          {
+            "name": "Appium",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278912ebc62e9c1c78a16_appium.webp"
+          },
+          {
+            "name": "Detox",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891fb38dbd31dc72743_detox.webp"
+          },
+          {
+            "name": "Selenium",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891633738a3d723a8bf_selenium.webp"
+          }
+        ]
+      },
+      {
+        "heading": "AI & Machine Learning",
+        "items": [
+          {
+            "name": "TensorFlow",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637278939601cf4af694d79f_tensor-flow.webp"
+          },
+          {
+            "name": "Keras",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891633738df2523a8ba_keras.webp"
+          },
+          {
+            "name": "PyTorch",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/63727891d4d17683bbc11982_py-torch.webp"
+          }
+        ]
+      }
+    ]
+  },
+  "cto-as-a-service": {
+    "heading": "CTO as a Service for Non-Technical Founders",
+    "paragraph": "Get C-level tech guidance for your product`s success and achieve your business goals with more confidence.",
+    "heroButtons": [
+      {
+        "label": "See Pricing",
+        "href": "/pricing/tech-founders",
+        "target": "_self"
+      },
+      {
+        "label": "Schedule a Call",
+        "modalType": "schedulecall"
+      }
+    ],
+    "iconCards": {
+      "title": "When do I need CTO as a Service?",
+      "paragraph": "CTOs are in demand and startups need to compete against FAANG to attract top talent.",
+      "items": [
+        {
+          "title": "$140K/yr",
+          "description": "You know WHAT kind of product you want to build but have no idea HOW it can be developed from the tech perspective.",
+          "icon": {
+            "name": "RefreshIcon",
+            "width": 28
+          }
+        },
+        {
+          "title": "26%",
+          "description": "You are seeking funding for your startup and need to show investors you’re backed by a professional guiding the technical direction.",
+          "icon": {
+            "name": "BackendIcon",
+            "width": 26
+          }
+        },
+        {
+          "title": "<4 years",
+          "description": "Your past experience with low-cost developers has been disappointing and you don't want this scenario to happen again.",
+          "icon": {
+            "name": "AIBrainIcon",
+            "width": 26
+          }
+        },
+        {
+          "title": "Transparent Reporting",
+          "description": "You are putting all efforts into strategy, networking, marketing, and sales and need someone who will fully take care of the product's tech side.",
+          "icon": {
+            "name": "SeismometerIcon",
+            "width": 22
+          }
+        }
+      ]
+    },
+    "contentAsideImageItems": [
+      {
+        "title": "Schedule a call",
+        "paragraph": "Complete the form and pick the best time. Ask us for an NDA if required, and we are happy to provide one ",
+        "icon": {
+          "name": "HomeIcon",
+          "width": 26
+        },
+        "image": "/api/images/work/scheduler/mobile/2.png"
+      },
+      {
+        "title": "Tell us what you’re building",
+        "paragraph": "Give us an idea of what you are building and what specific skills you need. In a few days, we’ll roll out a team composition that perfectly matches your needs.",
+        "icon": {
+          "name": "MapPinIcon",
+          "width": 24
+        },
+        "image": "/api/images/work/honeydu/desktop/10.png"
+      },
+      {
+        "title": "Review the team and start",
+        "paragraph": "Once you approve the team and sign a contract, we can start building your product together with no-risk.",
+        "icon": {
+          "name": "BotIcon",
+          "width": 26
+        },
+        "image": "/api/images/work/totalhealthdentalcare/desktop/26.png"
+      }
+    ],
+    "meta": {
+      "title": "Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products",
+      "description": "Real Estate Development Services | Build Your Real Estate Platform — Dev8X | Dev8X: World-class digital products"
+    },
+    "faqs": [
+      {
+        "title": "1. What Is CTO as a service?",
+        "description": "CTO as a service refers to Chief Technology Officer-as-a-service. It’s a new way to think about the role of the CTO, where the CTO is brought in from outside and manages all technical aspects of product development. A company can hire the entire team led by a CTO or assign specific responsibilities to an external expert on a part-time consultancy basis."
+      },
+      {
+        "title": "2. What are the CTO’s responsibilities in a startup?",
+        "description": "The CTO oversees all technology decisions within the startup. They are responsible for ensuring that the used tech stack is scalable, efficient, and reliable. In addition, they help create and maintain a comprehensive technology roadmap that guides the startup’s future growth."
+      },
+      {
+        "title": "3. When should a startup opt for CTO as a service?",
+        "description": "CTO services are an excellent option for early-stage startups that can’t afford to hire an in-house CTO. It can also be beneficial for fast-growing companies that already have a CTO but need additional support in managing and scaling their products."
+      },
+      {
+        "title": "4. How much do CTO services cost at Upsilon?",
+        "description": "CTO services fees are determined on a case-by-case basis. However, our team is committed to offering these services to a diverse range of startups, regardless of their industry or the technology that will be used on the project."
+      }
+    ],
+    "capabilities": [
+      {
+        "heading": "Front-end developers",
+        "items": [
+          {
+            "name": "React",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca0bed669b2a390257_react.webp"
+          },
+          {
+            "name": "Next JS",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca619e3e2ecd6da7a9_nextjs.webp"
+          },
+          {
+            "name": "Gatsby",
+            "image": "https://cdn.prod.website-files.com/633438ac0ff91a5041d3188b/637d35ca1e7cca2f317d6899_gatsby.webp"
+          }
+        ]
+      }
+    ],
+    "video": "/videos/header/header.mp4"
+  }
+}

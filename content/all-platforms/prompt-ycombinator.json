@@ -1,0 +1,242 @@
+{
+  "profile": {
+    "personalInfo": {
+      
+      "firstName": "",
+      "lastName": "",
+      "emailAddressPersonal": "",
+      "linkedinProfileUrl": "",
+      "phoneNumber": {
+        "countryCode": "Pakistan (+92)",
+        "number": ""
+      },
+      "jobSearchStatus": {
+        "selectedOption": "",
+        "options": [
+          "I'm actively looking for a job",
+          "I'm open to new opportunities",
+          "I'm not looking for a job / not ready to meet founders yet. HIDE MY PROFILE."
+        ]
+      },
+      "ycCompanyAffiliation": {
+        "selectedOption": "",
+        "options": [
+          "No affiliation",
+          "Current or former employee at YC company"
+        ]
+      }
+    },
+    "locationInfo": {
+      "currentCity": "",
+      "usWorkAuthorization": {
+        "selection": "",
+        "options": [
+          "Yes",
+          "No"
+        ]
+      },
+      "visaSponsorshipRequired": {
+        "selection": "",
+        "options": [
+          "Yes",
+          "No"
+        ]
+      },
+      "remoteWorkPreference": {
+        "selection": "",
+        "options": [
+          "I'm open to working remotely",
+          "I only want to work remotely",
+          "I don't want to work remotely"
+        ]
+      },
+      "willingToRelocate": {
+        "selection": "",
+        "options": [
+          "Yes",
+          "No"
+        ]
+      },
+      "relocationDestinationsUs": {
+        "selections": [],
+        "options": [
+          "San Francisco Bay Area",
+          "New York City",
+          "Anywhere in the US"
+        ]
+      },
+      "otherRelocationLocations": ""
+    },
+    "role": {
+      "jobFunction": {
+        "value": "",
+        "options": [
+          "Engineering",
+          "Design",
+          "Product",
+          "Science",
+          "Sales",
+          "Marketing",
+          "Support",
+          "Recruiting & HR",
+          "Operations",
+          "Finance",
+          "Legal"
+        ]
+      },
+      "specificEngineeringRoles": [],
+      "githubUrl": "",
+      "isFullTimeStudent": {
+        "value": "",
+        "options": [
+          "Yes",
+          "No"
+        ]
+      },
+      "interestedJobTypes": {
+        "values": [],
+        "options": [
+          "Full-time employee",
+          "Contractor",
+          "Cofounder"
+        ]
+      },
+      "yearsOfExperience": 0
+    },
+    "experience": {
+      "workHistory": [
+        {
+          "company": "",
+          "title": "",
+          "location": "",
+          "currentlyWorkHere": false,
+          "startDate": {
+            "month": "",
+            "year": ""
+          },
+          "endDate": {
+            "month": "",
+            "year": ""
+          },
+          "description": ""
+        },
+        {
+          "company": "",
+          "title": "",
+          "location": "",
+          "currentlyWorkHere": false,
+          "startDate": {
+            "month": "",
+            "year": ""
+          },
+          "endDate": {
+            "month": "",
+            "year": ""
+          },
+          "description": ""
+        },
+        {
+          "company": "",
+          "title": "",
+          "location": "",
+          "currentlyWorkHere": false,
+          "startDate": {
+            "month": "",
+            "year": ""
+          },
+          "endDate": {
+            "month": "",
+            "year": ""
+          },
+          "description": ""
+        },
+        {
+          "company": "",
+          "title": "",
+          "location": "",
+          "currentlyWorkHere": false,
+          "startDate": {
+            "month": "",
+            "year": ""
+          },
+          "endDate": {
+            "month": "",
+            "year": ""
+          },
+          "description": ""
+        }
+      ],
+      "education": [
+        {
+          "school": "",
+          "fieldOfStudy": "",
+          "degree": "",
+          "startDate": {
+            "month": "",
+            "year": ""
+          },
+          "endDate": {
+            "month": "",
+            "year": ""
+          },
+          "summary": ""
+        }
+      ]
+    },
+    "skills": [
+      {
+        "technology": "",
+        "level": {
+          "selection": "",
+          "options": [
+            "Beginner",
+            "Intermediate",
+            "Advanced"
+          ]
+        }
+      }
+    ],
+    "career": {
+      "companySizePreference": [
+        {
+          "size": "Seed: 1 - 10 people",
+          "preference": ""
+        },
+        {
+          "size": "Small: 11 - 50 people",
+          "preference": ""
+        },
+        {
+          "size": "Medium: 51 - 300 people",
+          "preference": ""
+        },
+        {
+          "size": "Large: 301+ people",
+          "preference": ""
+        }
+      ],
+      "equityValue": {
+        "selection": "",
+        "options": [
+          "I'm not that interested in startup equity; I'd prefer a cash-heavy package",
+          "I'd be interested in getting some equity at a promising company",
+          "Equity is very important to me"
+        ]
+      },
+      "salaryRequirementStatus": {
+        "selection": "",
+        "options": [
+          "Yes, I'm only interested in salaries at or above my minimum",
+          "I have a minimum in mind, but would consider offers below it for the right company",
+          "I'm flexible, or not sure what my requirements are yet"
+        ]
+      },
+      "minimumSalaryUsd": ""
+    },
+    "share": {
+      "shortPhraseBio": "",
+      "nextRoleGoalsAndAvoidance": "",
+      "proudProjectDescriptionOptional": ""
+    }
+  }
+}

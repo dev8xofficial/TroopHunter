@@ -1,0 +1,444 @@
+
+
+{
+  "indeedResume": {
+    "contactInformation": {
+      "personalDetails": {
+        "firstName": "...",
+        "lastName": "...",
+        "headline": {
+          "context": "A brief professional catchphrase or current role title.",
+          "type": "string",
+          "values": ""
+        },
+        "phone": "...",
+        "showNumberOnIndeed": {
+          "type": "boolean",
+          "values": false
+        },
+        "email": "..."
+      },
+      "location": {
+        "country": {
+          "type": "string",
+          "values": ""
+        },
+        "streetAddress": {
+          "type": "string",
+          "values": ""
+        },
+        "city": {
+          "type": "string",
+          "values": ""
+        },
+        "state": {
+          "type": "string",
+          "values": ""
+        },
+        "postalCode": "..."
+      }
+    },
+    "summary": {
+      "professionalSummary": {
+        "type": "textArea",
+        "context": "An executive summary of professional background and key achievements.",
+        "values": ""
+      }
+    },
+    "workExperience": [
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": ""
+        },
+        "company": {
+          "type": "string",
+          "values": ""
+        },
+        "country": {
+          "type": "string",
+          "values": ""
+        },
+        "cityState": {
+          "type": "string",
+          "values": ""
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": false
+        },
+        "startDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        },
+        "endDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": ""
+        }
+      },
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": ""
+        },
+        "company": {
+          "type": "string",
+          "values": ""
+        },
+        "country": {
+          "type": "string",
+          "values": ""
+        },
+        "cityState": {
+          "type": "string",
+          "values": ""
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": false
+        },
+        "startDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        },
+        "endDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": ""
+        }
+      },
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": ""
+        },
+        "company": {
+          "type": "string",
+          "values": ""
+        },
+        "country": {
+          "type": "string",
+          "values": ""
+        },
+        "cityState": {
+          "type": "string",
+          "values": ""
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": false
+        },
+        "startDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        },
+        "endDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": ""
+        }
+      },
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": ""
+        },
+        "company": {
+          "type": "string",
+          "values": ""
+        },
+        "country": {
+          "type": "string",
+          "values": ""
+        },
+        "cityState": {
+          "type": "string",
+          "values": ""
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": false
+        },
+        "startDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        },
+        "endDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": ""
+        }
+      }
+    ],
+    "education": [
+      {
+        "levelOfEducation": {
+          "type": "dropdown",
+          "context": "Degree type (e.g., Bachelor's, Master's).",
+          "options": [
+            "Bachelor's degree",
+            "Master's degree"
+          ],
+          "values": ""
+        },
+        "fieldOfStudy": {
+          "type": "string",
+          "context": "Subject or major of the degree.",
+          "values": ""
+        },
+        "schoolName": {
+          "type": "string",
+          "context": "The educational institution name.",
+          "values": ""
+        },
+        "country": {
+          "type": "string",
+          "context": "Country of the institution.",
+          "values": ""
+        },
+        "schoolLocation": {
+          "type": "string",
+          "context": "City or specific campus location.",
+          "values": ""
+        },
+        "startDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        },
+        "endDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        }
+      }
+    ],
+    "skills": {
+      "type": "array",
+      "context": "List of specialized competencies.",
+      "values": [
+        "...",
+        "...",
+        "..."
+      ]
+    },
+    "links": {
+      "urls": {
+        "type": "urlList",
+        "context": "Collection of professional links (e.g., Portfolio, GitHub).",
+        "selectedOptions": [
+          "Linkedin",
+          "portfolio",
+          "Github",
+          "Upwork",
+          "Fiveer"
+        ],
+        "values": [
+          "...",
+          "...",
+          "..."
+        ]
+      }
+    }
+  },
+  "Qualification": {
+    "mostRecentWorkExperience": {
+      "jobTitle": {
+        "type": "string",
+        "values": ""
+      },
+      "company": {
+        "type": "string",
+        "values": ""
+      }
+    },
+    "education": [
+      {
+        "levelOfEducation": {
+          "type": "string",
+          "context": "Primary qualification level.",
+          "options": [
+            "Bachelor's degree",
+            "Master's degree"
+          ],
+          "values": ""
+        },
+        "fieldOfStudy": {
+          "type": "string",
+          "context": "Primary academic specialization.",
+          "values": ""
+        },
+        "schoolName": {
+          "type": "string",
+          "context": "Institution name for qualification verification.",
+          "values": ""
+        },
+        "country": {
+          "type": "string",
+          "context": "Institution country.",
+          "values": ""
+        },
+        "schoolLocation": {
+          "type": "string",
+          "context": "Institution city.",
+          "values": ""
+        },
+        "startDate": {
+          "month": {
+            "type": "string",
+            "context": "Start month.",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "context": "Start year.",
+            "values": ""
+          }
+        },
+        "endDate": {
+          "month": {
+            "type": "string",
+            "context": "End month.",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "context": "End year.",
+            "values": ""
+          }
+        }
+      }
+    ],
+    "addSkill": {
+      "skill": {
+        "type": "string",
+        "context": "A specific skill name to be added.",
+        "values": [
+          "...",
+          "...",
+          "..."
+        ]
+      },
+      "yearsOfExperience": {
+        "type": "number",
+        "context": "Numeric count of years practicing the skill.",
+        "values": null
+      }
+    }
+  },
+  "jobPreferences": {
+    "jobTitles": {
+      "desiredJobTitles": {
+        "type": "array",
+        "context": "List of roles the user is currently seeking.",
+        "values": [
+          "...",
+          "...",
+          "..."
+        ]
+      }
+    },
+    "Pay": {
+      "minimumBasePay": {
+        "type": "number",
+        "context": "The floor amount the user is willing to accept.",
+        "values": ""
+      },
+      "payPeriod": {
+        "type": "dropdown",
+        "context": "Frequency of pay (e.g., Per Year, Per Hour).",
+        "values": ""
+      }
+    }
+  },
+  "hiddenJobDetails": [
+    {
+      "detailName": {
+        "type": "string",
+        "context": "The name of the attribute being hidden from employers.",
+        "values": ""
+      },
+      "isHidden": {
+        "type": "boolean",
+        "context": "Toggles visibility of this specific detail.",
+        "values": true
+      }
+    }
+  ]
+}
+

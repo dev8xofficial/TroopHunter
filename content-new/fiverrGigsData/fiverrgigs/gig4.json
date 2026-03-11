@@ -1,0 +1,348 @@
+{
+  "overview": {
+    "gigTitle": {
+      "type": "text",
+      "required": true,
+      "text": "I will create your custom web app or react website as a nextjs developer"
+    },
+    "category": {
+      "details": {
+        "primaryCategory": {
+          "type": "select",
+          "text": "programming & tech"
+        },
+        "secondaryCategory": {
+          "type": "select",
+          "text": "WEBSITE DEVELOPMENT"
+        }
+      },
+      "suggestedCategories": [
+        "Programming & Tech > Website Development",
+        "Programming & Tech > Software Development"
+      ]
+    },
+    "serviceType": "Custom Websites",
+    "gigMetadata": {
+      "websiteType": {
+        "selected": "Saas"
+      },
+      "programming_languages": {
+        "selected": [
+          "HTML & CSS",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Tailwind CSS"
+        ]
+      },
+      "websiteFeatures": {
+        "selected": [
+          "Landing page",
+          "Portfolio",
+          "User Authentication",
+          "Analytics",
+          "Form",
+          "Dashboard",
+          "Payment",
+          "Reviews",
+          "Booking",
+          "Calendar"
+        ]
+      }
+    },
+    "searchTags": {
+      "text": [
+" full stack",
+" Next.js developer",
+ "react website",
+" custom web app",
+" speed optimization"
+      ]
+    }
+  },
+  "pricing": {
+    "packages": {
+      "basic": {
+        "packageName": "Performance Landing Page",
+        "description": {
+          "type": "text",
+          "text": "Build a **high-performance landing page** with **React/Next.js** and **TypeScript** for **instant loading**."
+        },
+        "deliveryDays": {
+          "selected": 3
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 1
+        },
+        "revisions": {
+          "selected": 2
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 2
+        },
+        "eCommerceFunctionality": {
+          "selected": false
+        },
+        "paymentIntegration": {
+          "selected": false
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 150
+      },
+      "standard": {
+        "packageName": "Scalable Business Solution",
+        "description": {
+          "type": "text",
+          "text": "**Custom SaaS/Business site** with **Next.js**, **Redux**, and **GSAP** for **30% better engagement**."
+        },
+        "deliveryDays": {
+          "selected": 7
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 5
+        },
+        "revisions": {
+          "selected": 5
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 5
+        },
+        "eCommerceFunctionality": {
+          "selected": false
+        },
+        "paymentIntegration": {
+          "selected": true
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 450
+      },
+      "premium": {
+        "packageName": "Full-Stack Enterprise System",
+        "description": {
+          "type": "text",
+          "text": "**Full-stack platform** with **Next.js**, **Auth**, **Payments**, and **Docker/CI/CD** for **enterprise scale**."
+        },
+        "deliveryDays": {
+          "selected": 21
+        },
+        "functionalWebsite": {
+          "selected": true
+        },
+        "numberOfPages": {
+          "selected": 10
+        },
+        "revisions": {
+          "selected": "unlimited"
+        },
+        "contentUpload": {
+          "selected": true
+        },
+        "pluginsExtensionsInstallation": {
+          "selected": 10
+        },
+        "eCommerceFunctionality": {
+          "selected": true
+        },
+        "paymentIntegration": {
+          "selected": true
+        },
+        "optInForm": {
+          "selected": true
+        },
+        "speedOptimization": {
+          "selected": true
+        },
+        "hostingSetup": {
+          "selected": true
+        },
+        "socialMediaIcons": {
+          "selected": true
+        },
+        "price": 1200
+      }
+    },
+    "extra_services": {
+      "extra_fast_delivery": {
+        "selected": true,
+        "options": [
+          {
+            "package": "Basic",
+            "additionalDeliveryDays": {
+              "selected": 1
+            },
+            "extraPrice": 50
+          },
+          {
+            "package": "Standard",
+            "additionalDeliveryDays": {
+              "selected": 3
+            },
+            "extraPrice": 150
+          },
+          {
+            "package": "Premium",
+            "additionalDeliveryDays": {
+              "selected": 7
+            },
+            "extraPrice": 400
+          }
+        ]
+      },
+      "additional_page": {
+        "selected": true,
+        "extraPrice": 80,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "additional_revision": {
+        "selected": true,
+        "extraPrice": 30,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "ecommerce_functionality": {
+        "selected": true,
+        "extraPrice": 250,
+        "additionalDeliveryDays": {
+          "selected": 3
+        }
+      },
+      "payment_integration": {
+        "selected": true,
+        "extraPrice": 150,
+        "additionalDeliveryDays": {
+          "selected": 2
+        }
+      },
+      "speed_optimization": {
+        "selected": true,
+        "extraPrice": 100,
+        "additionalDeliveryDays": {
+          "selected": 1
+        }
+      },
+      "addExtraGigService": {
+        "fields": [
+          {
+            "addGigExtra": {
+              "titleInput": {
+                "text": "CI/CD Pipeline Setup"
+              },
+              "descriptionInput": {
+                "text": "I will set up **automated deployment** using **Docker** and **GitHub Actions** to reduce **operational risk**."
+              },
+              "pricingInput": {
+                "price": 200
+              },
+              "additionalDeliveryDays": {
+                "selected": 2
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "descriptionAndFAQ": {
+    "briefDescription": {
+      "text": "Welcome!    From Figma designs to fully functional, production-ready code, I handle every layer: frontend, backend, and deployment.    I'm a Certified React & Full Stack Web Developer with 9+ years of experience building high-performance websites and web apps.    What You Get    Complete frontend, backend, or fullstack web solution Pixel-perfect conversion from Figma/XD designs Clean, modular, and reusable code architecture Responsive, fast-loading, and SEO-friendly layouts REST API integration and backend logic Deployment to Vercel, cPanel, or VPS 1-month free post-launch support Unlimited revisions until every detail is perfect Transparent communication, on-time delivery    Tech Stack Expertise    Frontend: React.js, Next.js, TypeScript, JavaScript (ES6+), HTML5, CSS3, SCSS, Tailwind, Bootstrap Backend: Node.js, Express.js, REST APIs, MongoDB, MySQL State Management: Redux, Redux Toolkit, Context API Other: SSR (Server-Side Rendering), Authentication (JWT), Artificial Intelligence Integration (ChatGPT, etc.), API Integration   Let's turn your design or idea into a high-performing, full stack web application. Message me today to discuss your project"
+    },
+    "faqs": {
+      "section": {
+        "fields": [
+          {
+            "type": "text",
+            "text": "Do you convert Figma designs to React?"
+          },
+          {
+            "type": "textarea",
+            "text": "Yes, you can share your Figma design, and I can develop it into a pixel-perfect, responsive React website."
+          },
+          {
+            "type": "text",
+            "text": "Do you offer Full Stack development also?"
+          },
+          {
+            "type": "textarea",
+            "text": "Yes, I offer full-stack development services."
+          },
+          {
+            "type": "text",
+            "text": "Do you only integrate provided APIs with React web apps, or you can create/develop APIs also?"
+          },
+          {
+            "type": "textarea",
+            "text": "I can also develop APIs, with proper backend and database, which will be integrated with the frontend. The development of backend and APIs is not included in any of the packages, as it will require a custom quote, and I can provide a quote after discussion of your requirements."
+          },
+          {
+            "type": "text",
+            "text": "How do you ensure client satisfaction for completed work?"
+          },
+          {
+            "type": "textarea",
+            "text": "I present a live demo of the completed work and offer unlimited revisions till the time you are satisfied with the work. Once the work is approved, I send the delivery of the order."
+          },
+          {
+            "type": "text",
+            "text": "What is covered in Unlimited Revisions?"
+          },
+          {
+            "type": "textarea",
+            "text": "Unlimited Revisions apply to unlimited changes/revisions in the decided scope of work in an order, and do not apply to new development or new features that were not a part of the originally decided scope of work."
+          }
+        ]
+      }
+    }
+  },
+   "requirements": {
+    "custom_question_builder": [
+      {
+        "question_text": "If you are migrating from a spreadsheet or legacy CRM, please provide a sample of your current data structure.",
+        "is_required": true,
+        "response_format": "Free text"
+      },
+      {
+        "question_text": "Please share 2–3 links to websites or dashboards you like so I can understand your preferred aesthetic.",
+        "is_required": true,
+        "response_format": "Attachment"
+      }
+      
+    ]
+  }
+}

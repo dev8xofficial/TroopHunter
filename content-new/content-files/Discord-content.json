@@ -1,0 +1,39 @@
+{
+  "profile": {
+    "context": "Primary user identity and public-facing profile configuration. [1]",
+    "displayName": "Abdul | Senior Frontend Developer & Founder",
+    "pronouns": {
+      "type": "string",
+      "context": "Preferred gender identity pronouns (e.g., they/them). [1]",
+      "values": "he/him"
+    },
+    "aboutMe": {
+      "context": "Detailed professional narrative and expertise breakdown. [1]",
+      "maxLimit": 190,
+      "authority": {
+        "yearsInProduction": "6+ years [2]",
+        "typesOfProductsBuilt": "SaaS, Healthcare, Fintech, Web3, AI [3, 4]",
+        "industriesWorkedIn": "Dental Care, Fintech, Lead Gen, Web3 [3-6]"
+      },
+      "scaleHandled": {
+        "users": "15,000+ active patients [7]",
+        "traffic": "20% boost in web traffic [8, 9]",
+        "complexity": "Architecting **TurboRepo** monorepos and **Node.js** microservices. [10-12]"
+      }
+    },
+    "problemsSolved": [
+      {
+        "problem": "Low patient re-appointment rates and high operational labor costs. [8, 13]",
+        "impactOnBusiness": "Stagnant revenue growth and excessive administrative overhead. [14]",
+        "howFrontendFixesIt": "I built a custom **CRM** with **Agora** video. This increased re-appointments by **33%** for 15k+ patients. [7, 14, 15]"
+      },
+      {
+        "problem": "Slow manual lead generation and inaccurate prospect research. [5, 16]",
+        "impactOnBusiness": "Inefficient marketing discovery and stagnant sales workflows. [5, 16]",
+        "howFrontendFixesIt": "Led **full-stack ownership** to build an automated **Next.js** platform. Dashboards now load **instantly**. [5, 16-18]"
+      }
+    ]
+  }
+}
+
+

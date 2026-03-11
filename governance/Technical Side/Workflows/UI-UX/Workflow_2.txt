@@ -1,0 +1,206 @@
+# 🔹 UI/UX Department Workflow
+
+---
+
+## Stage 1: Idea & Requirements (AI-First Approach)
+
+### 1. App Idea Research (ASO Team)
+- The ASO team does R&D using ASO tools (SensorTower, AppTweak, AppMagic, etc.) to find:
+  - Apps that are trending or in high demand.
+  - Paid apps or apps with good revenue potential.
+  - Market gaps where users need better solutions.
+
+### 2. Competitor & Market Analysis
+- ASO studies competitor apps to see their strengths, weaknesses, and monetization models.
+- ASO reads user reviews and comments on the App Store/Play Store to identify:
+  - Common user complaints.
+  - Features that users are requesting again and again.
+  - Missing features in competitors’ apps.
+
+### 3. AI-Generated Requirement Document (First Draft)
+- ASO uses AI tools (ChatGPT, Gemini, etc.) to generate the first version of the requirement document.
+- This document should:
+  - Explain the core features of the app.
+  - Add new ideas/features discovered during ASO research.
+  - Show how the app will be different from competitors.
+  - Define the basic user flow (e.g., signup → main task → completion).
+
+### 4. Internal Review & Refinement
+- Senior ASO/PM reviews the AI-generated requirement doc.
+- Add missing details, remove unnecessary features, and make it more realistic.
+- Final document should be clear enough for designers and developers to understand the app’s purpose and scope.
+
+### 5. Key Notes for New Hires
+- Always start with AI first (ChatGPT, Gemini) to move fast.
+- Don’t just copy competitors — use user reviews + ASO tools to find unique opportunities.
+- Requirement document must cover what the app does, who it is for, and how it is better than others.
+
+---
+
+## Stage 2: Wireframing (Concept Phase, AI-First Approach)
+
+### 1. Generate Initial Wireframes (AI First)
+- Once the AI-generated requirement document is ready, the ASO team or designers feed it into Figma AI/extension to auto-generate wireframes.
+- AI should create basic layouts for key screens (Home, Login, Dashboard, Profile, etc.).
+- Saves time and ensures all main screens are covered quickly.
+
+### 2. Refinement by ASO/Design Team
+- AI wireframes are not always perfect. The ASO team should review and refine them.
+- Refinement includes:
+  - Fixing navigation flow.
+  - Improving usability.
+  - Adding hierarchy.
+  - Keeping layouts simple and user-friendly.
+
+### 3. Add Annotations (Notes on Wireframes)
+- Every important element should have a note so designers and developers understand its purpose.
+- Examples:
+  - "Login button → takes user to Dashboard."
+  - "Floating action button → opens quick menu."
+  - "Error message shows if password is wrong."
+
+### 4. Team Review
+- After refinement, the team should quickly review wireframes together.
+- Check if the wireframes match the requirement document.
+- Make sure no key feature is missing before moving to UI design.
+
+### 5. Key Notes for New Hires
+- Always start with AI first (Figma AI or extensions).
+- Don’t skip annotations — they help others understand your thinking.
+- Keep wireframes simple; clarity matters more than design.
+- Wireframes are blueprints, not the final design.
+
+---
+
+## Stage 3: UI Design (Visual Phase)
+
+### 1. Collect References
+- Always start with references from Pinterest, Behance, Dribbble, and competitor apps.
+- These references help set the tone for layout, colors, and design patterns.
+
+### 2. Home Screen Design (AI-First Approach)
+- Use AI tools (Stitch, Gemini, Figma AI) to generate the first version of the Home screen UI.
+
+### 3. Alternative (Manual R&D)
+- If AI results are not suitable, designers can create the Home screen manually.
+- Use insights and R&D from Pinterest, Behance, Dribbble, and competitor apps.
+
+### 4. Component & Style Guide Creation
+- Use AI (Gemini, Figma AI) to generate a style guide.
+- Build UI components (buttons, forms, cards, navigation) with AI first, then customize.
+
+### 5. Finalize Home Screen & Expand
+- Refine the Home screen with consistency in spacing, colors, typography, and interactions.
+- Once the Home screen is approved, apply the same design principles to other key screens.
+
+---
+
+## Stage 4: Design System (Build once, use everywhere)
+
+### 1. Goal
+- Turn the approved Home screen & style guide into a reusable, documented Figma library.
+
+### 2. Inputs
+- Approved Home screen UI
+- AI-generated style guide
+- Requirement document
+
+### 3. Step-by-step (AI-first)
+- Generate tokens with AI
+- Auto-build base components
+- Accessibility & contrast check
+- Manual review + standardization
+- Document usage
+- Export for dev
+- Version + release
+
+### 4. Deliverables
+- Figma library with tokens + components
+- Token export files (JSON / CSS variables)
+- Short component docs + examples
+- Release notes & version
+
+### 5. Acceptance Checklist
+- Every core component has variants and documented states.
+- Tokens exported and imported successfully.
+- Contrast / a11y checks pass.
+- Senior designer + dev lead sign-off.
+
+### 6. Useful AI Prompts
+- "Generate a Figma token JSON for a mobile app…"
+- "Create Button component variants…"
+
+---
+
+## Stage 5: App UI Expansion (Scale the approved Home design to full app)
+
+### 1. Goal
+- Use the design system to build every screen in the app quickly and consistently.
+
+### 2. Inputs
+- Figma design system/library
+- Approved Home screen and wireframes
+- Requirement doc
+
+### 3. Step-by-step (AI-first)
+- Auto-generate screen drafts
+- Generate microcopy & labels
+- Designer refinement
+- Extend components if needed
+- Assets & motion
+- Peer review & PM sync
+- Handoff packaging
+
+### 4. Deliverables
+- Full app UI in Figma
+- Microcopy file
+- Updated design system
+- Handoff tickets
+
+### 5. Acceptance Checklist
+- All screens use components from the design system.
+- Microcopy is approved and stored centrally.
+- Dev tickets contain asset exports and specs.
+- PM + designer sign-off.
+
+### 6. Useful AI Prompts
+- "Using the Home screen component library, generate Profile, Settings, and Checkout screens…"
+- "Write 3 versions of onboarding microcopy…"
+
+---
+
+## Stage 6: Prototyping & Testing (Validate before build)
+
+### 1. Goal
+- Build interactive prototypes, run usability tests, collect feedback, and iterate.
+
+### 2. Inputs
+- Final screens from stage 5
+- Design system + component interactions
+- Microcopy & acceptance criteria
+
+### 3. Step-by-step (AI-first)
+- Build prototype (AI helps speed)
+- Define test plan with AI
+- Internal playtest
+- External usability testing
+- Synthesize feedback (AI-assisted)
+- Iterate prototype
+- Final validation
+- Developer handoff
+
+### 4. Deliverables
+- Interactive prototype links
+- Usability test reports & recordings
+- Prioritized issue list
+- Final sign-off document + handoff tickets
+
+### 5. Acceptance Checklist
+- Core journeys pass usability tests.
+- Prototype contains interaction specs.
+- All critical feedback addressed or logged.
+- Stakeholders sign-off.
+
+### 6. Example AI Prompts
+- "Write a 5-task usability test script…"
+- "Summarize these 10 user session notes…"

@@ -1,0 +1,16 @@
+ {
+ "resume": {
+    "about": "...",
+    "experience": [
+      { "title": "...", "company": "...", "dates": "...", "description": "...", "achievements": ["...", "...", "..."] },
+      { "title": "...", "company": "...", "dates": "...", "description": "...", "achievements": ["...", "...", "..."] },
+      { "title": "...", "company": "...", "dates": "...", "description": "...", "achievements": ["...", "...", "..."] },
+      { "title": "...", "company": "...", "dates": "...", "description": "...", "achievements": ["...", "...", "..."] },
+      { "title": "...", "company": "...", "dates": "...", "description": "...", "achievements": ["...", "...", "..."] }
+    ],
+    "skills": {
+      "context": "Skills should be organized and prioritized based on relevance to the Frontend Developer role.",
+      "skills": ["...", "...", "..."]
+    }
+  }
+}

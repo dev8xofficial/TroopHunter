@@ -77,12 +77,12 @@ const OffersPage: React.FC = (): JSX.Element => {
       <Head>
         <title>{offersData.meta.title}</title>
         <meta name="description" content={offersData.meta.description}></meta>
-        <link rel="canonical" href={prefixed('/offers')} />
+        <link rel="canonical" href={'/offers'} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={offersData.meta.title}></meta>
         <meta property="og:description" content={offersData.meta.description}></meta>
-        <meta property="og:url" content={prefixed('/offers')}></meta>
+        <meta property="og:url" content={'/offers'}></meta>
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:image:secure_url" content={prefixed('/logo-social.png')}></meta>

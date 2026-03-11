@@ -74,12 +74,12 @@ const PricingPage: React.FC = ({ slug, variant, ...PageData }: OffersContent): J
       <Head>
         <title>{PageData.meta.title}</title>
         <meta name="description" content={PageData.meta.description}></meta>
-        <link rel="canonical" href={prefixed(`/offers/${slug}`)} />
+        <link rel="canonical" href={`/pricing/${slug}`} />
 
         {/* Open Graph Tags */}
         <meta property="og:title" content={PageData.meta.title}></meta>
         <meta property="og:description" content={PageData.meta.description}></meta>
-        <meta property="og:url" content={prefixed(`/offers/${slug}`)}></meta>
+        <meta property="og:url" content={`/pricing/${slug}`}></meta>
         <meta property="og:locale" content="en_US"></meta>
         <meta property="og:image" content={prefixed('/logo-social.png')}></meta>
         <meta property="og:image:secure_url" content={prefixed('/logo-social.png')}></meta>

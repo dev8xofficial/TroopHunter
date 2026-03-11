@@ -1,0 +1,624 @@
+
+
+{
+  "indeedResume": {
+      "contactInformation": {
+      "personalDetails": {
+        "firstName": "Abdul",
+        "lastName": "",
+        "headline": {
+          "context": "A brief professional catchphrase or current role title.",
+          "type": "string",
+          "values": "**Senior Frontend Consultant** | **React.js**, **Next.js**, & **TypeScript** Expert"
+        },
+        "phone": "Available upon request",
+        "showNumberOnIndeed": {
+          "type": "boolean",
+          "values": false
+        },
+        "email": "Contact via Indeed / helloabdul.com"
+      },
+      "location": {
+        "country": {
+          "type": "string",
+          "values": "Pakistan"
+        },
+        "streetAddress": {
+          "type": "string",
+          "values": ""
+        },
+        "city": {
+          "type": "string",
+          "values": "Lahore"
+        },
+        "state": {
+          "type": "string",
+          "values": "Punjab"
+        },
+        "postalCode": ""
+      }
+    },
+    "links": {
+      "urls": {
+        "type": "urlList",
+        "context": "Collection of professional links to facilitate deeper engagement.",
+        "selectedOptions": [
+          "Linkedin",
+          "portfolio",
+          "Github",
+          "Upwork",
+          "Fiveer"
+        ],
+        "values": [
+          "linkedin.com/in/your-profile",
+          "helloabdul.com",
+          "github.com/your-username",
+          "upwork.com/freelancers/your-id",
+          "fiverr.com/your-username"
+        ]
+      }
+    },
+       "summary": {
+      "professionalSummary": {
+        "type": "textArea",
+        "context": "An executive summary of professional background and key achievements.",
+        "values": "**Senior Frontend Consultant** with **6+ years** of experience building fast, modern, and accessible web applications. I have led the delivery of large-scale systems and reduced code errors by **30%** through **TypeScript** adoption. I am passionate about shipping clean, high-performance interfaces and driving measurable business outcomes through product thinking [1, 2]."
+      }
+    },
+    "workExperience": [
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": "Founder & CEO"
+        },
+        "company": {
+          "type": "string",
+          "values": "Dev8X"
+        },
+        "country": {
+          "type": "string",
+          "values": "Pakistan"
+        },
+        "cityState": {
+          "type": "string",
+          "values": "Lahore, Punjab"
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": true
+        },
+        "startDate": {
+          "month": { "type": "string", "values": "January" },
+          "year": { "type": "string", "values": "2024" }
+        },
+        "endDate": {
+          "month": { "type": "string", "values": "Present" },
+          "year": { "type": "string", "values": "2024" }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": "I oversee full-stack product development and architect frontend systems using **React.js**, **Next.js**, and **TypeScript**. I manage **Node.js** backend microservices and lead **DevOps** automation with **Docker**, **Kubernetes**, **Terraform**, and **Ansible**. I implemented a **monorepo architecture** using **TurboRepo** to optimize engineering workflows [3]. \n\n**Achievements & Metrics:** \n- Successfully launched multiple **client-facing products**. \n- Optimized development workflows across engineering teams. \n- Delivered reliable, **high-performance software** solutions [3]."
+        }
+      },
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": "Full-Stack Developer"
+        },
+        "company": {
+          "type": "string",
+          "values": "TroopHunter"
+        },
+        "country": {
+          "type": "string",
+          "values": "Pakistan"
+        },
+        "cityState": {
+          "type": "string", "values": "Lahore, Punjab"
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": false
+        },
+        "startDate": {
+          "month": { "type": "string", "values": "January" },
+          "year": { "type": "string", "values": "2023" }
+        },
+        "endDate": {
+          "month": { "type": "string", "values": "January" },
+          "year": { "type": "string", "values": "2025" }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": "I held **full-stack ownership** and led all executive and technical aspects of platform development. I built **Next.js** and **TypeScript** dashboards and implemented **Node.js** microservices with **PostgreSQL**. I managed deployment using **Docker**, **Kubernetes**, and **Terraform** [4-6]. \n\n**Achievements & Metrics:** \n- Dashboards load **instantly** and are highly responsive. \n- **End-to-end performance optimization** for maximum reliability and speed. \n- Integrated **GSAP** and **Framer Motion** for an enjoyable workflow experience [5]."
+        }
+      },
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": "Frontend Developer (CRM Project)"
+        },
+        "company": {
+          "type": "string",
+          "values": "Total Health Dental Care"
+        },
+        "country": {
+          "type": "string",
+          "values": "United States"
+        },
+        "cityState": {
+          "type": "string",
+          "values": "San Francisco, CA (Remote)"
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": false
+        },
+        "startDate": {
+          "month": { "type": "string", "values": "January" },
+          "year": { "type": "string", "values": "2022" }
+        },
+        "endDate": {
+          "month": { "type": "string", "values": "January" },
+          "year": { "type": "string", "values": "2023" }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": "I spearheaded the development of a custom **CRM** replacing **DentrixAscend**. I built the **Schedule** and **Virtuals** modules, integrating **Agora** for live video meetings. The UI features live updates and **drag-and-drop** appointment cards [7, 8]. \n\n**Achievements & Metrics:** \n- **33% increase** in global hygiene re-appointments (**1000+ monthly**). \n- Processed **millions in patient payments** via custom production tools. \n- Reduced operational labor costs through automated virtual appointments [7, 9, 10]."
+        }
+      },
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": "Frontend Developer (Scheduler Project)"
+        },
+        "company": {
+          "type": "string",
+          "values": "Total Health Dental Care"
+        },
+        "country": {
+          "type": "string",
+          "values": "United States"
+        },
+        "cityState": {
+          "type": "string",
+          "values": "San Francisco, CA (Remote)"
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": false
+        },
+        "startDate": {
+          "month": { "type": "string", "values": "January" },
+          "year": { "type": "string", "values": "2022" }
+        },
+        "endDate": {
+          "month": { "type": "string", "values": "January" },
+          "year": { "type": "string", "values": "2023" }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": "I developed a real-time booking web application with an intuitive interface for **15,000+ patients**. I integrated the system with the custom **CRM** and **DentrixAscend**. I implemented secure card collection for bookings and nearby office selection tools [11, 12]. \n\n**Achievements & Metrics:** \n- Improved booking accessibility, increasing **patient satisfaction**. \n- Reduced **administrative work** for staff members. \n- Drove positive business outcomes through automated scheduling efficiency [13, 14]."
+        }
+      },
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": "Frontend Developer (Website Optimization)"
+        },
+        "company": {
+          "type": "string",
+          "values": "Total Health Dental Care"
+        },
+        "country": {
+          "type": "string",
+          "values": "United States"
+        },
+        "cityState": {
+          "type": "string", "values": "San Francisco, CA (Remote)"
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean", "values": false
+        },
+        "startDate": {
+          "month": { "type": "string", "values": "January" },
+          "year": { "type": "string", "values": "2022" }
+        },
+        "endDate": {
+          "month": { "type": "string", "values": "January" },
+          "year": { "type": "string", "values": "2023" }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": "I optimized website performance and user experience using **GSAP**, **ScrollTrigger**, and **Mapbox GL**. I customized location markers and added dynamic motion paths for engaging typography [15, 16]. \n\n**Achievements & Metrics:** \n- **40% reduction** in site load times via **ImagesLoaded**. \n- **30% increase** in user engagement through scroll-based animations. \n- **20% boost** in website traffic and higher conversion rates [17]."
+        }
+      },
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": "Frontend Developer"
+        },
+        "company": {
+          "type": "string",
+          "values": "GoldenDAO"
+        },
+        "country": {
+          "type": "string",
+          "values": "United States"
+        },
+        "cityState": {
+          "type": "string", "values": "Remote"
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": false
+        },
+        "startDate": {
+          "month": { "type": "string", "values": "September" },
+          "year": { "type": "string", "values": "2021" }
+        },
+        "endDate": {
+          "month": { "type": "string", "values": "December" },
+          "year": { "type": "string", "values": "2021" }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": "I architected the **React.js** and **Redux** membership system with **Web3** integrations. I implemented **NFT-gated** exclusive features and voting rights for members [18, 19]. \n\n**Achievements & Metrics:** \n- Successfully launched a platform for **AAPI solidarity** and empowerment. \n- Created an impactful UX by integrating **real-world events** with **Web3 initiatives** [19, 20]."
+        }
+      },
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": "Frontend Developer"
+        },
+        "company": {
+          "type": "string",
+          "values": "Honeydu"
+        },
+        "country": {
+          "type": "string",
+          "values": "United States"
+        },
+        "cityState": {
+          "type": "string", "values": "Remote"
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": false
+        },
+        "startDate": {
+          "month": { "type": "string", "values": "April" },
+          "year": { "type": "string", "values": "2021" }
+        },
+        "endDate": {
+          "month": { "type": "string", "values": "December" },
+          "year": { "type": "string", "values": "2021" }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": "I built a zero-fee payment and invoice application for creators using **React** and **TailwindCSS**. I designed an intuitive interface for financial tracking and real-time insights [21, 22]. \n\n**Achievements & Metrics:** \n- Redesigned the UI for **mobile-first usability**. \n- Simplified money management for freelancers, optimizing their **tax season** workflows [22, 23]."
+        }
+      },
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": "Frontend Developer"
+        },
+        "company": {
+          "type": "string",
+          "values": "Coral Lab"
+        },
+        "country": {
+          "type": "string",
+          "values": "United States"
+        },
+        "cityState": {
+          "type": "string", "values": "Los Angeles, CA (Remote)"
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": false
+        },
+        "startDate": {
+          "month": { "type": "string", "values": "February" },
+          "year": { "type": "string", "values": "2021" }
+        },
+        "endDate": {
+          "month": { "type": "string", "values": "January" },
+          "year": { "type": "string", "values": "2023" }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": "I designed and developed a responsive company website using **HTML**, **CSS**, and **SCSS**. I utilized **GSAP ScrollTrigger** and **SmoothScroller** to enhance functionality [24, 25]. \n\n**Achievements & Metrics:** \n- Improved **online brand presence** and professionalism. \n- Delivered a functional, visually appealing site on schedule and **within budget** [24, 26]."
+        }
+      },
+      {
+        "jobTitle": {
+          "type": "string",
+          "values": "Frontend Developer"
+        },
+        "company": {
+          "type": "string",
+          "values": "LEADCONCEPT LTD"
+        },
+        "country": {
+          "type": "string",
+          "values": "Pakistan"
+        },
+        "cityState": {
+          "type": "string", "values": "Lahore, Punjab"
+        },
+        "isCurrentlyWorkingHere": {
+          "type": "boolean",
+          "values": false
+        },
+        "startDate": {
+          "month": { "type": "string", "values": "September" },
+          "year": { "type": "string", "values": "2019" }
+        },
+        "endDate": {
+          "month": { "type": "string", "values": "February" },
+          "year": { "type": "string", "values": "2021" }
+        },
+        "description": {
+          "type": "richText",
+          "context": "Detailed breakdown of responsibilities and accomplishments.",
+          "values": "I developed large-scale ticket booking systems and a seat selection UI with **real-time availability**. I also built an administrative interface for event management [27]. \n\n**Achievements & Metrics:** \n- Increased sales via a **faster booking flow**. \n- Boosted user trust through **real-time seat updates**. \n- Improved seat booking efficiency and customer satisfaction [28]."
+        }
+      }
+    ],
+    "education": [
+      {
+        "levelOfEducation": {
+          "type": "dropdown",
+          "context": "Degree type (e.g., Bachelor's, Master's).",
+          "options": [
+            "Bachelor's degree",
+            "Master's degree"
+          ],
+          "values": "Bachelor's degree"
+        },
+        "fieldOfStudy": {
+          "type": "string",
+          "context": "Subject or major of the degree.",
+          "values": "Computer Science (Information not found in sources)"
+        },
+        "schoolName": {
+          "type": "string",
+          "context": "The educational institution name.",
+          "values": "University Name (Information not found in sources)"
+        },
+        "country": {
+          "type": "string",
+          "context": "Country of the institution.",
+          "values": "Pakistan [1]"
+        },
+        "schoolLocation": {
+          "type": "string",
+          "context": "City or specific campus location.",
+          "values": "Lahore [2]"
+        },
+        "startDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        },
+        "endDate": {
+          "month": {
+            "type": "string",
+            "values": ""
+          },
+          "year": {
+            "type": "string",
+            "values": ""
+          }
+        }
+      }
+    ],
+    "skills": {
+      "type": "array",
+      "context": "List of specialized competencies.",
+      "values": [
+        "**React.js** [1, 3]",
+        "**Next.js** [1, 3]",
+        "**TypeScript** [1, 3]",
+        "**Redux Thunk** [1, 3]",
+        "**TailwindCSS** [1, 3]",
+        "**GSAP** [1, 3]",
+        "**Node.js** [3, 4]",
+        "**Express.js** [3, 4]",
+        "**PostgreSQL** [3, 4]",
+        "**Docker** [4, 5]",
+        "**Kubernetes** [4, 5]",
+        "**Terraform** [4, 5]",
+        "**Ansible** [4, 5]",
+        "**TurboRepo** [3, 4]",
+        "**Performance Optimization** [4, 5]",
+        "**Monorepo Architecture** [3, 4]"
+      ]
+    },
+    "Qualification": {
+      "mostRecentWorkExperience": {
+        "jobTitle": {
+          "type": "string",
+          "values": "**Founder & CEO** [2, 7]"
+        },
+        "company": {
+          "type": "string",
+          "values": "**Dev8X** [2, 7]"
+        }
+      },
+      "education": [
+        {
+          "levelOfEducation": {
+            "type": "string",
+            "context": "Primary qualification level.",
+            "options": [
+              "Bachelor's degree",
+              "Master's degree"
+            ],
+            "values": "Bachelor's degree"
+          },
+          "fieldOfStudy": {
+            "type": "string",
+            "context": "Primary academic specialization.",
+            "values": "Computer Science (Information not found in sources)"
+          },
+          "schoolName": {
+            "type": "string",
+            "context": "Institution name for qualification verification.",
+            "values": "University Name (Information not found in sources)"
+          },
+          "country": {
+            "type": "string",
+            "context": "Institution country.",
+            "values": "Pakistan [1]"
+          },
+          "schoolLocation": {
+            "type": "string",
+            "context": "Institution city.",
+            "values": "Lahore [2]"
+          },
+          "startDate": {
+            "month": {
+              "type": "string",
+              "context": "Start month.",
+              "values": ""
+            },
+            "year": {
+              "type": "string",
+              "context": "Start year.",
+              "values": ""
+            }
+          },
+          "endDate": {
+            "month": {
+              "type": "string",
+              "context": "End month.",
+              "values": ""
+            },
+            "year": {
+              "type": "string",
+              "context": "End year.",
+              "values": ""
+            }
+          }
+        }
+      ],
+      "addSkill": {
+        "skill": {
+          "type": "string",
+          "context": "A specific skill name to be added.",
+          "values": [
+            "**React.js**",
+            "**Next.js**",
+            "**TypeScript**",
+            "**Node.js**",
+            "**PostgreSQL**"
+          ]
+        },
+        "yearsOfExperience": {
+          "type": "number",
+          "context": "Numeric count of years practicing the skill.",
+          "values": 6
+        }
+      }
+    },
+    "jobPreferences": {
+      "jobTitles": {
+        "desiredJobTitles": {
+          "type": "array",
+          "context": "List of roles the user is currently seeking.",
+          "values": [
+            "**Senior Frontend Consultant**",
+            "**Senior Frontend Developer**",
+            "**Senior React.js Developer**",
+            "**Lead Frontend Engineer**",
+            "**Senior Software Engineer**"
+          ]
+        }
+      },
+      "Pay": {
+        "minimumBasePay": {
+          "type": "number",
+          "context": "The floor amount the user is willing to accept.",
+          "values": 125000
+        },
+        "payPeriod": {
+          "type": "dropdown",
+          "context": "Frequency of pay (e.g., Per Year, Per Hour).",
+          "values": "Per Year"
+        }
+      }
+    },
+    "hiddenJobDetails": [
+      {
+       "form_title": "Hide jobs with these details",
+  "form_context": "A user preference interface on a job board (Indeed) used to manage and remove negative filters (qualifications or preferences) that the user wants to exclude from their job search results.",
+  "form_description": "We'll try to hide jobs asking for these qualifications or preferences.",
+  "ui_component_type": "List",
+  "items": [
+    {
+      "name": ".NET",
+      "actionButton": "Unhide"
+    },
+    {
+      "name": "Agile",
+      "actionButton": "Unhide"
+    },
+    {
+      "name": "ArcGIS",
+      "actionButton": "Unhide"
+    },
+    {
+      "name": "Azure",
+      "actionButton": "Unhide"
+    },
+    {
+      "name": "C#",
+      "actionButton": "Unhide"
+    },
+    {
+      "name": "Java",
+      "actionButton": "Unhide"
+    },
+    {
+      "name": "Microsoft SQL Server",
+      "actionButton": "Unhide"
+    },
+    {
+      "name": "Oracle",
+      "actionButton": "Unhide"
+    },
+    {
+      "name": "Relational databases",
+      "actionButton": "Unhide"
+    },
+    {
+      "name": "Software troubleshooting",
+      "actionButton": "Unhide"
+    },
+    {
+      "name": "System design",
+      "actionButton": "Unhide"
+    }
+  ]
+      }
+    ]
+  }
+}
+
+

@@ -1,0 +1,43 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# testing
+coverage/
+
+# next.js
+.next/
+out/
+
+# production
+build/
+dist/
+
+# misc
+*.pem
+*.tsbuildinfo
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env files
+.env
+.env.*
+
+# vercel
+.vercel
+
+# typescript
+next-env.d.ts
+
+# turbo
+.turbo
+
+# eslint
+.eslintcache
+
+# public assets (served from CDN)
+public/
