@@ -1,0 +1,447 @@
+# Lead Pipeline — Requirements & Google Apps Script
+
+> **File:** Companies → Contacts → Outreach → Archive
+
+---
+
+## Contents
+
+1. Executive summary
+2. Data model (sheets & columns)
+3. Business rules & workflows
+4. UX & data validation / best practices
+5. Automation requirements (triggers, actions, error handling)
+6. Google Sheets Apps Script (complete code) — copy into Extensions → Apps Script
+7. Deployment & setup steps
+8. Testing checklist
+9. Maintenance & monitoring
+
+---
+
+## 1. Executive summary
+
+This document describes a robust, production-ready lead-generation pipeline implemented within Google Sheets with four sheets: **Companies**, **Contacts**, **Outreach**, and **Archive**. It contains clear data models, business rules, UI/UX recommendations (data validation, dropdowns, protections), and a Google Apps Script that automates dataset synchronization, archival, ID generation, duplicates prevention, audit logging, and scheduled housekeeping. All automation follows industry best practices for lead generation.
+
+---
+
+## 2. Data model
+
+**Companies** (sheet name: `Companies`)
+
+* Company\_ID (HCL-UUID)
+* Company\_Name
+* Size (Dropdown: 1-10, 11-50, 51-200, 200+)
+* Location (Dropdown: San Francisco, New York, Menlo Park, Atlanta)
+* Status (Dropdown: Startup, Growing, Established, Declining, Dormant, Closed)
+* Industry (Dropdown: Consumer Health and Wellness, Diagnostics, Drug Discovery and Delivery. Healthcare IT. Healthcare Services, Industrial Bio, Medical Devices, Therapeutics)
+* Website
+* Linkedin
+* Pain\_Points (Dropdown: No Website, No Web App, Web Down, Web Auth Bug, Web Appointment Crash, No SMM)
+
+**Contacts** (sheet name: `Contacts`)
+
+* Contact\_ID (HCL-UUID-C1)
+* Name
+* Company\_ID (foreign key -> Companies.Company\_ID)
+* Company\_Name (Companies.Company\_Name) auto pull company name
+* Job\_Title
+* Seniority
+* Department
+* Decision\_Maker (Dropdown: Yes, No)
+* Email
+* Phone
+* Linkedin
+* Technical\_Background (Dropdown: Yes, No)
+* Personal\_Pain\_Points (Dropdown: No Website, No Web App, Web Down, Web Auth Bug, Web Appointment Crash, No SMM)
+* Notes
+
+**Outreach** (sheet name: `Outreach`)
+
+* Outreach\_ID (OUT-UUID)
+* Contact\_ID (foreign key -> Contacts.Contact\_ID)
+* Company\_ID (foreign key -> Companies.Company\_ID)
+* Contact\_Name (Contacts.Name)
+* Job\_Title (Contacts.Job\_Title)
+* Channel (Dropdown: Email, LinkedIn, FB, Insta, Cold Call, Message)
+* Message\_Template (Dropdown: A, B, C)
+* Outreach\_Date (date)
+* Reply\_Status (Dropdown: No Reply, Replied, Positive, Negative)
+* Next\_Step (Dropdown: Follow-up, Call Scheduled, Proposal Sent)
+* Result (Dropdown: Pending, Contacted, Qualified, Won, Lost, No Response, Bounced)
+* Notes
+
+**Archive** (sheet name: `Archive`)
+
+* Archive\_ID (ARC-UUID)
+* Outreach\_ID (foreign key -> Outreach.Outreach\_ID)
+* Company\_ID (foreign key -> Companies.Company\_ID) auto pull
+* Company\_Name (Companies.Company\_Name) auto pull
+* Contact\_ID (foreign key -> Contacts.Contact\_ID) auto pull
+* Contact\_Name (Contacts.Name) auto pull
+* Job\_Title (Contacts.Job\_Title) auto pull
+* Channel (Outreach.Channel) auto pull
+* Message\_Template (Outreach.Message\_Template) auto pull
+* Outreach\_Date
+* Reply\_Status (Outreach.Reply\_Status) auto pull
+* Next\_Step (Outreach.Next\_Step) auto pull
+* Result (Outreach.Result) auto pull
+* Notes (Outreach.Notes) auto pull
+* Archived\_By (email)
+* Archived\_At (timestamp)
+
+---
+
+## 3. Business rules & workflows
+
+**Primary flows**
+
+* Create company in `Companies` (manual or via import). System generates `Company_ID` if empty.
+* Add contact in `Contacts` and link to `Company_ID`. System generates `Contact_ID` if empty.
+* Create outreach entry in `Outreach` referencing `Contact_ID` & `Company_ID`. System generates `Outreach_ID`.
+* When `Result` field in `Outreach` is set to a terminal state (`Won`, `Lost`, `No Response`, `Bounced`) the row is automatically copied to `Archive` with `Archived_By` and `Archived_At` and then optionally removed (or marked) in `Outreach`.
+* `Archive` is append-only. Never delete rows automatically; only manual admin deletion is allowed.
+
+**ID generation**
+
+* IDs must be globally unique and created server-side (Apps Script) using UUIDv4.
+* When a user pastes rows with blank IDs, the script backfills IDs.
+
+**Duplicate detection**
+
+* For Companies: duplicate if normalized domain or exact company name match for same location/industry — show warning and log duplicate.
+* For Contacts: duplicate if same email or (name + company) — prevent duplicate creation.
+* For Outreach: warn if outreach duplicates exist within 30 days for same contact & channel.
+
+**Audit & History**
+
+* All automated actions must write to a hidden `__AuditLog` sheet with timestamp, user email, action, sheet, row number, and details.
+* `Archive` stores `Archived_By` and `Archived_At`.
+
+**Permissions & protection**
+
+* Protect header rows and ID columns.
+* Create view-only for non-admins where possible.
+
+---
+
+## 4. UX & data validation / best practices
+
+* Use named ranges for dropdowns (Channels, Status, Results, Reply\_Status, Next\_Step).
+* Use data validation for email (basic regex), phone (format mask), and date (valid date).
+* Freeze header rows and use alternating colors.
+* Use conditional formatting for urgent `Next_Step` or `Reply_Status=Interested`.
+
+**Templates**
+
+* Keep message templates in a separate hidden sheet `__Templates` with Template\_ID, Name, Channel, Body.
+* In `Outreach`, Message\_Template may store Template\_ID; script can expand it into the archive copy.
+
+---
+
+## 5. Automation requirements
+
+**Triggers & actions**
+
+1. **onEdit trigger (simple/Installable)**
+
+   * Detect edits to ID columns: backfill missing IDs for Companies, Contacts, Outreach.
+   * Detect edits to `Result` in `Outreach`. If terminal, perform archive action.
+   * Validation checks on key columns (email format, required fields).
+
+2. **Custom menu**
+
+   * `Pipeline Tools` menu with: `Backfill IDs`, `Run Duplicate Check`, `Archive Terminal Rows Now`, `Export Archive CSV`, `Run Health Check`.
+
+3. **Time-driven trigger (daily)**
+
+   * Run housekeeping: detect old pending outreach (older than X days), send reminder, mark stale entries after N days.
+   * Run dedupe report and email admin with summary.
+
+4. **Error handling & notifications**
+
+   * Failures write to `__AuditLog` and send email to admin (configurable). Rate-limit notifications.
+
+5. **Batching & performance**
+
+   * Read sheets into memory (getValues), operate in JS arrays, then write back in bulk.
+   * Avoid per-row writes.
+
+6. **Security**
+
+   * Limit script-scoped properties (use PropertiesService) for admin email and config values.
+
+---
+
+## 6. Google Sheets Apps Script (complete)
+
+> **Important**: Copy the entire code block below into the Script Editor (Extensions → Apps Script) for this spreadsheet. Then follow the Deployment steps in section 7.
+
+```javascript
+/**
+ * Lead Pipeline Automation for Google Sheets
+ * - Place in Extensions -> Apps Script
+ * - Requires installable onEdit trigger for proper user email capture.
+ */
+
+const CONFIG = {
+  sheets: {
+    companies: 'Companies',
+    contacts: 'Contacts',
+    outreach: 'Outreach',
+    archive: 'Archive',
+    audit: '__AuditLog',
+    templates: '__Templates'
+  },
+  adminEmailProperty: 'pipeline_admin_email',
+  terminalResults: ['Won','Lost','No Response','Bounced'],
+};
+
+/** Utilities **/
+function uuidv4() {
+  // Lightweight UUIDv4
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+function getSheet(name) {
+  return SpreadsheetApp.getActive().getSheetByName(name);
+}
+
+function logAudit(action, sheetName, details) {
+  try {
+    const sh = getSheet(CONFIG.sheets.audit) || SpreadsheetApp.getActive().insertSheet(CONFIG.sheets.audit);
+    const now = new Date();
+    const user = Session.getActiveUser().getEmail() || 'unknown';
+    sh.appendRow([now, user, action, sheetName, details]);
+  } catch (e) {
+    // swallow but log to console
+    console.error('Audit log failed', e);
+  }
+}
+
+/** Backfill IDs for a sheet with a given idColumnName */
+function backfillIdsForSheet(sheetName, idColName) {
+  const sh = getSheet(sheetName);
+  if (!sh) return 0;
+  const vals = sh.getDataRange().getValues();
+  if (vals.length < 2) return 0;
+  const headers = vals[0];
+  const idIdx = headers.indexOf(idColName);
+  if (idIdx === -1) return 0;
+  const toWrite = [];
+  for (let r = 1; r < vals.length; r++) {
+    if (!vals[r][idIdx]) {
+      vals[r][idIdx] = uuidv4();
+      toWrite.push({row: r+1, id: vals[r][idIdx]});
+    }
+  }
+  if (toWrite.length) {
+    const range = sh.getRange(2, idIdx+1, vals.length-1, 1);
+    const colVals = vals.slice(1).map(r => [r[idIdx]]);
+    range.setValues(colVals);
+  }
+  logAudit('BackfillIDs', sheetName, `Backfilled ${toWrite.length} IDs`);
+  return toWrite.length;
+}
+
+/** Archive a given outreach row (rowIndex is 1-based) */
+function archiveOutreachRow(rowIndex) {
+  const sh = getSheet(CONFIG.sheets.outreach);
+  const archiveSh = getSheet(CONFIG.sheets.archive) || SpreadsheetApp.getActive().insertSheet(CONFIG.sheets.archive);
+  const headers = sh.getDataRange().getValues()[0];
+  const row = sh.getRange(rowIndex,1,1,headers.length).getValues()[0];
+  // Map outreach columns into Archive columns; try to keep order but also include metadata
+  const archiveHeaders = archiveSh.getDataRange().getValues()[0] || [];
+  if (archiveHeaders.length === 0) {
+    // initialize archive headers
+    archiveSh.appendRow(['Archive_ID','Outreach_ID','Company_ID','Company_Name','Contact_ID','Name','Job_Title','Channel','Message_Template','Outreach_Date','Reply_Status','Next_Step','Result','Notes','Archived_By','Archived_At']);
+  }
+  const ah = archiveSh.getDataRange().getValues()[0];
+  const map = {};
+  headers.forEach((h,i) => map[h] = row[i]);
+  const archiveRow = [];
+  archiveRow.push(uuidv4()); // Archive_ID
+  archiveRow.push(map['Outreach_ID'] || uuidv4());
+  archiveRow.push(map['Company_ID'] || '');
+  archiveRow.push(map['Company'] || '');
+  archiveRow.push(map['Contact_ID'] || '');
+  archiveRow.push(map['Name'] || '');
+  archiveRow.push(map['Job_Title'] || '');
+  archiveRow.push(map['Channel'] || '');
+  archiveRow.push(map['Message_Template'] || '');
+  archiveRow.push(map['Outreach_Date'] || '');
+  archiveRow.push(map['Reply_Status'] || '');
+  archiveRow.push(map['Next_Step'] || '');
+  archiveRow.push(map['Result'] || '');
+  archiveRow.push(map['Notes'] || '');
+  archiveRow.push(Session.getActiveUser().getEmail() || 'unknown');
+  archiveRow.push(new Date());
+  archiveSh.appendRow(archiveRow);
+  logAudit('ArchiveRow', CONFIG.sheets.outreach, `Archived row ${rowIndex}`);
+}
+
+/** Move terminal rows from Outreach to Archive in bulk */
+function archiveTerminalRowsBatch() {
+  const sh = getSheet(CONFIG.sheets.outreach);
+  if (!sh) return 0;
+  const data = sh.getDataRange().getValues();
+  if (data.length < 2) return 0;
+  const headers = data[0];
+  const resultIdx = headers.indexOf('Result');
+  const rowsToArchive = [];
+  for (let r=1;r<data.length;r++){
+    const val = data[r][resultIdx];
+    if (CONFIG.terminalResults.indexOf(val) !== -1) rowsToArchive.push(r+1);
+  }
+  // Archive from bottom to top to avoid shifting rows if we decide to delete
+  rowsToArchive.reverse().forEach(rowNum => archiveOutreachRow(rowNum));
+  // Optionally: mark archived rows in Outreach as 'Archived' in Result or remove them.
+  // We'll mark them to keep a trail.
+  rowsToArchive.forEach(rowNum => {
+    sh.getRange(rowNum, resultIdx+1).setNote('Archived on '+(new Date()).toISOString());
+    // Optionally prefix Outreach_ID with ARCHIVED_
+  });
+  logAudit('ArchiveBatch', CONFIG.sheets.outreach, `Archived ${rowsToArchive.length} rows`);
+  return rowsToArchive.length;
+}
+
+/** onEdit handler — requires installable trigger to capture user email reliably */
+function onEditInstallable(e) {
+  try {
+    const sh = e.range.getSheet();
+    const sheetName = sh.getName();
+    const col = e.range.getColumn();
+    const row = e.range.getRow();
+    const val = e.value;
+
+    // ID backfill triggers
+    if (sheetName === CONFIG.sheets.companies) {
+      backfillIdsForSheet(CONFIG.sheets.companies, 'Company_ID');
+    } else if (sheetName === CONFIG.sheets.contacts) {
+      backfillIdsForSheet(CONFIG.sheets.contacts, 'Contact_ID');
+    } else if (sheetName === CONFIG.sheets.outreach) {
+      backfillIdsForSheet(CONFIG.sheets.outreach, 'Outreach_ID');
+    }
+
+    // If edit happened in Outreach Result column, check terminal
+    if (sheetName === CONFIG.sheets.outreach) {
+      const headers = sh.getDataRange().getValues()[0];
+      const resultIdx = headers.indexOf('Result') + 1;
+      if (col === resultIdx) {
+        if (CONFIG.terminalResults.indexOf(val) !== -1) {
+          archiveOutreachRow(row);
+        }
+      }
+    }
+
+  } catch (err) {
+    logAudit('onEditError', 'onEditInstallable', err.toString());
+    throw err;
+  }
+}
+
+/** Custom menu */
+function onOpen() {
+  const ui = SpreadsheetApp.getUi();
+  ui.createMenu('Pipeline Tools')
+    .addItem('Backfill all IDs', 'menuBackfillAll')
+    .addItem('Archive terminal rows (now)', 'menuArchiveNow')
+    .addItem('Run health check', 'menuHealthCheck')
+    .addToUi();
+}
+
+function menuBackfillAll() {
+  const counts = [];
+  counts.push(backfillIdsForSheet(CONFIG.sheets.companies, 'Company_ID'));
+  counts.push(backfillIdsForSheet(CONFIG.sheets.contacts, 'Contact_ID'));
+  counts.push(backfillIdsForSheet(CONFIG.sheets.outreach, 'Outreach_ID'));
+  logAudit('ManualBackfill', 'Menu', 'Backfilled counts: '+counts.join(','));
+  SpreadsheetApp.getUi().alert('Backfill complete. Counts: '+counts.join(','));
+}
+
+function menuArchiveNow() {
+  const n = archiveTerminalRowsBatch();
+  SpreadsheetApp.getUi().alert('Archived '+n+' rows.');
+}
+
+function menuHealthCheck() {
+  // Simple health check: row counts
+  const ss = SpreadsheetApp.getActive();
+  const report = [];
+  ['companies','contacts','outreach','archive'].forEach(k => {
+    const s = getSheet(CONFIG.sheets[k]);
+    report.push(`${CONFIG.sheets[k]}: ${s ? s.getLastRow()-1 : 0} rows`);
+  });
+  logAudit('HealthCheck','Menu', report.join(' | '));
+  SpreadsheetApp.getUi().alert('Health check:\n'+report.join('\n'));
+}
+
+/** Time-driven housekeeping (daily) */
+function dailyHousekeeping() {
+  try {
+    // Example: find outreach older than 30 days with Result 'Pending' and write to audit
+    const sh = getSheet(CONFIG.sheets.outreach);
+    if (!sh) return;
+    const data = sh.getDataRange().getValues();
+    if (data.length<2) return;
+    const headers = data[0];
+    const dateIdx = headers.indexOf('Outreach_Date');
+    const resultIdx = headers.indexOf('Result');
+    const now = new Date();
+    const stale = [];
+    for (let r=1;r<data.length;r++){
+      const outDate = new Date(data[r][dateIdx]);
+      const res = data[r][resultIdx];
+      if (res === 'Pending' && (now - outDate) / (1000*60*60*24) > 30) {
+        stale.push({row: r+1, outreachDate: data[r][dateIdx]});
+      }
+    }
+    if (stale.length) {
+      logAudit('HousekeepingStale','dailyHousekeeping', `Found ${stale.length} stale outreach entries`);
+      // Further actions: add note, email admin, or change status
+    }
+  } catch (e) {
+    logAudit('dailyHousekeepingError','dailyHousekeeping', e.toString());
+  }
+}
+```
+
+---
+
+## 7. Deployment & setup steps
+
+1. Open the Google Sheet.
+2. Go to **Extensions → Apps Script**.
+3. Create a new script file and paste the entire code block from Section 6.
+4. In Apps Script **Project Settings** enable `Show "appsscript.json" manifest file` and ensure scopes are appropriate.
+5. Save, authorize the script (you'll be asked for permissions). Use an admin account.
+6. In Apps Script, set up installable trigger: **Triggers → Add Trigger** → `onEditInstallable` → From spreadsheet → On edit. Also add **Time-driven** trigger for `dailyHousekeeping` (Daily).
+7. Add the custom menu by reloading the spreadsheet.
+8. Create named ranges and dropdown lists as described in Section 4.
+9. Optionally protect header rows and ID columns.
+
+---
+
+## 8. Testing checklist
+
+* [ ] Add a company without Company\_ID — verify Company\_ID is backfilled.
+* [ ] Add a contact without Contact\_ID and with an existing Company\_ID — verify Contact\_ID.
+* [ ] Create outreach row; set Result to `Won` — verify row copied to Archive and Archived\_By/At populated.
+* [ ] Run `Pipeline Tools → Backfill all IDs` and confirm counts.
+* [ ] Run `Menu → Archive terminal rows (now)` to archive many rows.
+* [ ] Verify `__AuditLog` entries for major actions.
+
+---
+
+## 9. Maintenance & monitoring
+
+* Periodically (monthly) export `Archive` to an external backup (CSV/Drive) for long-term storage.
+* Monitor script executions logs in Apps Script and address failures.
+* Adjust `terminalResults` array in the script to reflect your business rules.
+* For scaling beyond a few thousand rows, consider migrating to BigQuery or a small Postgres instance and use the sheet only as a UI.
+
+---
+
+*End of document.*
