@@ -624,6 +624,10 @@
     </div>
 
     <div class="sidebar-section">Organizations</div>
+    <div class="nav-item" onclick="showPanel('campaigns',this)">
+      <span class="nav-icon">📋</span> All Campaigns
+      <span class="nav-badge green">38</span>
+    </div>
     <div class="nav-item" onclick="showPanel('orgs',this)">
       <span class="nav-icon">🏫</span> All Organizations
       <span class="nav-badge gray" style="background:var(--bg);color:var(--muted);border:1px solid var(--border)">47</span>
@@ -649,6 +653,10 @@
     <div class="nav-item" onclick="showPanel('flags',this)">
       <span class="nav-icon">🚩</span> Flagged Accounts
       <span class="nav-badge red">2</span>
+    </div>
+    <div class="nav-item" onclick="showPanel('coaches', this)">
+      <span class="nav-icon">🧑‍🏫</span> Coach Queue
+      <span class="nav-badge red">4</span>
     </div>
     <div class="nav-item" onclick="showPanel('comms',this)">
       <span class="nav-icon">📧</span> Communications
@@ -989,6 +997,149 @@
     </div><!-- /analytics -->
 
     <!-- ════════════════════════════
+         PANEL: ALL CAMPAIGNS
+    ════════════════════════════ -->
+    <div class="panel" id="panel-campaigns">
+      <div class="page-header">
+        <div class="page-header-inner">
+          <div>
+            <div class="ph-label">Admin · Organizations</div>
+            <div class="ph-title">All Campaigns</div>
+            <div class="ph-sub">38 live · 5 draft · 12 closed · across 47 organizations</div>
+          </div>
+          <div class="ph-actions">
+            <div class="search-box">
+              <span style="color:var(--muted);font-size:13px">🔍</span>
+              <input type="text" placeholder="Search campaigns or orgs…" oninput="searchCampaigns(this.value)">
+            </div>
+            <button class="btn btn-secondary" onclick="showToast('Campaigns exported to CSV')">↓ Export CSV</button>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+
+        <!-- Filter chips -->
+        <div class="filter-chips mb16" id="campaigns-filter-chips">
+          <span class="chip active" onclick="filterCampaigns('all',this)">All (55)</span>
+          <span class="chip" onclick="filterCampaigns('draft',this)">📝 Draft (5)</span>
+          <span class="chip" onclick="filterCampaigns('live',this)">🟢 Live (38)</span>
+          <span class="chip" onclick="filterCampaigns('closed',this)">✔ Closed (12)</span>
+        </div>
+
+        <!-- Campaigns table -->
+        <div class="card" style="overflow:hidden">
+          <!-- Column headers -->
+          <div style="display:grid;grid-template-columns:2.4fr 1fr 1fr 1fr 1fr 1fr 1.2fr 80px;padding:10px 16px;background:var(--bg2);border-bottom:1.5px solid var(--border)">
+            <div class="kpi-label">Campaign</div>
+            <div class="kpi-label">Sector</div>
+            <div class="kpi-label">Status</div>
+            <div class="kpi-label">Start Date</div>
+            <div class="kpi-label">Total Raised</div>
+            <div class="kpi-label">Trees</div>
+            <div class="kpi-label">Coach</div>
+            <div class="kpi-label">Actions</div>
+          </div>
+
+          <!-- Campaign rows -->
+          <div id="campaigns-table">
+
+            <!-- Row 1: Spring Tree Drive 2025 — LIVE -->
+            <div style="display:grid;grid-template-columns:2.4fr 1fr 1fr 1fr 1fr 1fr 1.2fr 80px;padding:13px 16px;align-items:center;border-bottom:1px solid var(--border2);transition:background .12s" class="campaign-row" data-cstatus="live" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background=''">
+              <div>
+                <div style="font-weight:600;font-size:13.5px;color:var(--ink)">Spring Tree Drive 2025</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:2px">🏫 Greenwood Elementary</div>
+              </div>
+              <div><span class="pill pill-blue" style="font-size:10px">School</span></div>
+              <div><span class="pill pill-green">● LIVE</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">Feb 1, 2026</div>
+              <div style="font-family:'DM Mono',monospace;font-weight:700;color:var(--forest2)">$51,200</div>
+              <div style="font-family:'DM Mono',monospace;color:var(--ink2)">4,120</div>
+              <div style="font-size:13px;color:var(--ink2)">Coach Maria</div>
+              <div><button class="btn btn-secondary btn-sm" onclick="showToast('Viewing Spring Tree Drive 2025')">View</button></div>
+            </div>
+
+            <!-- Row 2: Fall Fundraiser 2025 — CLOSED -->
+            <div style="display:grid;grid-template-columns:2.4fr 1fr 1fr 1fr 1fr 1fr 1.2fr 80px;padding:13px 16px;align-items:center;border-bottom:1px solid var(--border2);transition:background .12s" class="campaign-row" data-cstatus="closed" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background=''">
+              <div>
+                <div style="font-weight:600;font-size:13.5px;color:var(--ink)">Fall Fundraiser 2025</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:2px">🏫 Riverside K-8</div>
+              </div>
+              <div><span class="pill pill-blue" style="font-size:10px">School</span></div>
+              <div><span class="pill pill-blue">✔ CLOSED</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">Oct 1, 2025</div>
+              <div style="font-family:'DM Mono',monospace;font-weight:700;color:var(--forest2)">$41,800</div>
+              <div style="font-family:'DM Mono',monospace;color:var(--ink2)">3,344</div>
+              <div style="font-size:13px;color:var(--ink2)">Coach David</div>
+              <div><button class="btn btn-secondary btn-sm" onclick="showToast('Viewing Fall Fundraiser 2025')">View</button></div>
+            </div>
+
+            <!-- Row 3: Community Roots 2026 — LIVE -->
+            <div style="display:grid;grid-template-columns:2.4fr 1fr 1fr 1fr 1fr 1fr 1.2fr 80px;padding:13px 16px;align-items:center;border-bottom:1px solid var(--border2);transition:background .12s" class="campaign-row" data-cstatus="live" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background=''">
+              <div>
+                <div style="font-weight:600;font-size:13.5px;color:var(--ink)">Community Roots 2026</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:2px">⛪ Hope Community Church</div>
+              </div>
+              <div><span class="pill pill-gold" style="font-size:10px">Church</span></div>
+              <div><span class="pill pill-green">● LIVE</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">Jan 15, 2026</div>
+              <div style="font-family:'DM Mono',monospace;font-weight:700;color:var(--forest2)">$34,200</div>
+              <div style="font-family:'DM Mono',monospace;color:var(--ink2)">2,736</div>
+              <div style="font-size:13px;color:var(--ink2)">Coach Maria</div>
+              <div><button class="btn btn-secondary btn-sm" onclick="showToast('Viewing Community Roots 2026')">View</button></div>
+            </div>
+
+            <!-- Row 4: Spring Drive 2026 — DRAFT -->
+            <div style="display:grid;grid-template-columns:2.4fr 1fr 1fr 1fr 1fr 1fr 1.2fr 80px;padding:13px 16px;align-items:center;border-bottom:1px solid var(--border2);transition:background .12s" class="campaign-row" data-cstatus="draft" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background=''">
+              <div>
+                <div style="font-weight:600;font-size:13.5px;color:var(--ink)">Spring Drive 2026</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:2px">🏫 Lincoln Robotics</div>
+              </div>
+              <div><span class="pill pill-blue" style="font-size:10px">School</span></div>
+              <div><span class="pill pill-gray">● DRAFT</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">—</div>
+              <div style="font-family:'DM Mono',monospace;color:var(--muted)">—</div>
+              <div style="font-family:'DM Mono',monospace;color:var(--muted)">0</div>
+              <div style="font-size:13px;color:var(--muted)">Unassigned</div>
+              <div><button class="btn btn-secondary btn-sm" onclick="showToast('Viewing Spring Drive 2026')">View</button></div>
+            </div>
+
+            <!-- Row 5: Nature Campaign — DRAFT -->
+            <div style="display:grid;grid-template-columns:2.4fr 1fr 1fr 1fr 1fr 1fr 1.2fr 80px;padding:13px 16px;align-items:center;border-bottom:1px solid var(--border2);transition:background .12s" class="campaign-row" data-cstatus="draft" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background=''">
+              <div>
+                <div style="font-weight:600;font-size:13.5px;color:var(--ink)">Nature Campaign</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:2px">🌿 Valley Conservancy</div>
+              </div>
+              <div><span class="pill pill-green" style="font-size:10px;background:#dcf5e8;color:#137a3a">Nonprofit</span></div>
+              <div><span class="pill pill-gray">● DRAFT</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">—</div>
+              <div style="font-family:'DM Mono',monospace;color:var(--muted)">—</div>
+              <div style="font-family:'DM Mono',monospace;color:var(--muted)">0</div>
+              <div style="font-size:13px;color:var(--muted)">Unassigned</div>
+              <div><button class="btn btn-secondary btn-sm" onclick="showToast('Viewing Nature Campaign')">View</button></div>
+            </div>
+
+            <!-- Row 6: Soccer for Trees — LIVE -->
+            <div style="display:grid;grid-template-columns:2.4fr 1fr 1fr 1fr 1fr 1fr 1.2fr 80px;padding:13px 16px;align-items:center;border-bottom:1px solid var(--border2);transition:background .12s" class="campaign-row" data-cstatus="live" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background=''">
+              <div>
+                <div style="font-weight:600;font-size:13.5px;color:var(--ink)">Soccer for Trees</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:2px">⚽ Westside Soccer</div>
+              </div>
+              <div><span class="pill pill-gray" style="font-size:10px">Civic</span></div>
+              <div><span class="pill pill-green">● LIVE</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">Dec 1, 2025</div>
+              <div style="font-family:'DM Mono',monospace;font-weight:700;color:var(--forest2)">$19,400</div>
+              <div style="font-family:'DM Mono',monospace;color:var(--ink2)">1,552</div>
+              <div style="font-size:13px;color:var(--ink2)">Coach David</div>
+              <div><button class="btn btn-secondary btn-sm" onclick="showToast('Viewing Soccer for Trees')">View</button></div>
+            </div>
+
+            <div style="padding:13px 16px;text-align:center;font-size:12px;color:var(--muted)">… and 49 more campaigns. Use search or filters to narrow results.</div>
+          </div><!-- /campaigns-table -->
+        </div><!-- /card -->
+      </div><!-- /content -->
+    </div><!-- /campaigns -->
+
+    <!-- ════════════════════════════
          PANEL: ALL ORGANIZATIONS
     ════════════════════════════ -->
     <div class="panel" id="panel-orgs">
@@ -1004,6 +1155,7 @@
               <span style="color:var(--muted);font-size:13px">🔍</span>
               <input type="text" placeholder="Search organizations…" oninput="adminSearch(this.value)">
             </div>
+            <button class="btn btn-secondary" onclick="showToast('Organizations exported to CSV')">↓ Export CSV</button>
             <button class="btn btn-primary" onclick="showToast('New org invite sent')">+ Add Org</button>
           </div>
         </div>
@@ -1463,6 +1615,17 @@
         </div>
       </div>
       <div class="content">
+
+        <!-- Date-range filter row (CHANGE-A6) -->
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap">
+          <label style="font-size:12px;color:var(--muted);font-weight:600">Date range:</label>
+          <input type="date" class="adm-input" style="width:150px" value="2025-08-01">
+          <span style="color:var(--muted2)">→</span>
+          <input type="date" class="adm-input" style="width:150px" value="2026-03-14">
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Date filter applied')">Apply</button>
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Filter cleared — showing all time')">Clear</button>
+        </div>
+
         <div class="kpi-grid-3">
           <div class="kpi-card"><span class="kpi-icon">📈</span><div class="kpi-val">$243k</div><div class="kpi-label">Total Revenue (All Time)</div><div class="kpi-trend up">↑ 50% of all contributions</div></div>
           <div class="kpi-card"><span class="kpi-icon">📅</span><div class="kpi-val">$6.5k</div><div class="kpi-label">This Month (Mar)</div><div class="kpi-trend up">↑ +20% vs February</div></div>
@@ -1474,18 +1637,118 @@
           </div>
           <canvas id="fee-chart" width="900" height="160" style="width:100%;height:160px"></canvas>
         </div>
-        <div class="card" style="overflow:hidden">
-          <table class="data-table">
-            <thead><tr><th>Organization</th><th>Gross Raised</th><th>Split</th><th>TR Share</th><th>Status</th></tr></thead>
+
+        <!-- Per-org revenue table (CHANGE-A7 adds Actions column) -->
+        <div class="card" style="overflow:hidden;margin-bottom:20px">
+          <table class="data-table" id="revenue-table">
+            <thead>
+              <tr>
+                <th>Organization</th>
+                <th>Gross Raised</th>
+                <th>Split</th>
+                <th>TR Share</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr><td style="font-weight:600">Greenwood Elementary</td><td style="font-family:'DM Mono',monospace">$51,200</td><td style="font-family:'DM Mono',monospace">50%</td><td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$25,600</td><td><span class="pill pill-blue">● Paid</span></td></tr>
-              <tr><td style="font-weight:600">Riverside K-8</td><td style="font-family:'DM Mono',monospace">$41,800</td><td style="font-family:'DM Mono',monospace">50%</td><td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$20,900</td><td><span class="pill pill-blue">● Paid</span></td></tr>
-              <tr><td style="font-weight:600">Hope Community Church</td><td style="font-family:'DM Mono',monospace">$34,200</td><td style="font-family:'DM Mono',monospace">50%</td><td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$17,100</td><td><span class="pill pill-blue">● Paid</span></td></tr>
-              <tr style="background:var(--redl)"><td style="font-weight:600">Maplewood PTA</td><td style="font-family:'DM Mono',monospace">$12,300</td><td style="font-family:'DM Mono',monospace">50%</td><td style="font-family:'DM Mono',monospace;color:var(--gold);font-weight:700">$6,150</td><td><span class="pill pill-gold">⏳ KYC Hold</span></td></tr>
-              <tr><td style="color:var(--muted);font-size:12px" colspan="5">43 more orgs · Total collected: <strong>$243,000</strong></td></tr>
+              <tr id="rev-row-greenwood">
+                <td style="font-weight:600">Greenwood Elementary</td>
+                <td style="font-family:'DM Mono',monospace">$51,200</td>
+                <td style="font-family:'DM Mono',monospace">50%</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$25,600</td>
+                <td><span class="pill pill-blue" id="rstatus-greenwood">● Paid</span></td>
+                <td><button class="btn btn-danger btn-sm" onclick="initiateRefund('greenwood','Greenwood Elementary')">↩ Refund</button></td>
+              </tr>
+              <tr id="rev-row-riverside">
+                <td style="font-weight:600">Riverside K-8</td>
+                <td style="font-family:'DM Mono',monospace">$41,800</td>
+                <td style="font-family:'DM Mono',monospace">50%</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$20,900</td>
+                <td><span class="pill pill-blue" id="rstatus-riverside">● Paid</span></td>
+                <td><button class="btn btn-danger btn-sm" onclick="initiateRefund('riverside','Riverside K-8')">↩ Refund</button></td>
+              </tr>
+              <tr id="rev-row-hope">
+                <td style="font-weight:600">Hope Community Church</td>
+                <td style="font-family:'DM Mono',monospace">$34,200</td>
+                <td style="font-family:'DM Mono',monospace">50%</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$17,100</td>
+                <td><span class="pill pill-blue" id="rstatus-hope">● Paid</span></td>
+                <td><button class="btn btn-danger btn-sm" onclick="initiateRefund('hope','Hope Community Church')">↩ Refund</button></td>
+              </tr>
+              <tr id="rev-row-maplewood" style="background:var(--redl)">
+                <td style="font-weight:600">Maplewood PTA</td>
+                <td style="font-family:'DM Mono',monospace">$12,300</td>
+                <td style="font-family:'DM Mono',monospace">50%</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--gold);font-weight:700">$6,150</td>
+                <td><span class="pill pill-gold" id="rstatus-maplewood">⏳ KYC Hold</span></td>
+                <td><button class="btn btn-danger btn-sm" disabled style="opacity:.45;cursor:not-allowed" title="Cannot refund — KYC hold active">↩ Refund</button></td>
+              </tr>
+              <tr>
+                <td style="color:var(--muted);font-size:12px" colspan="6">43 more orgs · Total collected: <strong>$243,000</strong></td>
+              </tr>
             </tbody>
           </table>
         </div>
+
+        <!-- By Sector breakdown (CHANGE-A6) -->
+        <div class="card" style="overflow:hidden">
+          <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div class="sec-title">Revenue by Sector</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:2px">50/50 split breakdown across all organization types</div>
+            </div>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Sector</th>
+                <th>Organizations</th>
+                <th>Gross Raised</th>
+                <th>TreeRaise Share (50%)</th>
+                <th>Org Payout (50%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:600">🏫 Schools &amp; PTAs</td>
+                <td style="font-family:'DM Mono',monospace">28</td>
+                <td style="font-family:'DM Mono',monospace">$291,600</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$145,800</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--forest3)">$145,800</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">⛪ Churches</td>
+                <td style="font-family:'DM Mono',monospace">9</td>
+                <td style="font-family:'DM Mono',monospace">$102,600</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$51,300</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--forest3)">$51,300</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">🌿 Nonprofits</td>
+                <td style="font-family:'DM Mono',monospace">6</td>
+                <td style="font-family:'DM Mono',monospace">$60,000</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$30,000</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--forest3)">$30,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">⚽ Civic / Sports</td>
+                <td style="font-family:'DM Mono',monospace">4</td>
+                <td style="font-family:'DM Mono',monospace">$31,800</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$15,900</td>
+                <td style="font-family:'DM Mono',monospace;color:var(--forest3)">$15,900</td>
+              </tr>
+              <tr style="background:var(--bg2);border-top:2px solid var(--border)">
+                <td style="font-weight:700;font-size:13.5px">Total</td>
+                <td style="font-family:'DM Mono',monospace;font-weight:700">47</td>
+                <td style="font-family:'DM Mono',monospace;font-weight:700">$486,000</td>
+                <td style="font-family:'DM Mono',monospace;font-weight:700;color:var(--forest2)">$243,000</td>
+                <td style="font-family:'DM Mono',monospace;font-weight:700;color:var(--forest3)">$243,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
     </div><!-- /revenue -->
 
@@ -1506,39 +1769,77 @@
         <div class="alert alert-danger mb24">
           ⚠️ <strong>$3,200 blocked</strong> — Maplewood PTA KYC failed. Cannot release until resolved. Held since Feb 20.
         </div>
-        <div class="payout-card">
+
+        <!-- Payout Card: Riverside K-8 -->
+        <div class="payout-card" id="payout-card-riverside">
           <div>
             <div style="font-weight:700;font-size:14px;margin-bottom:3px">Riverside K-8</div>
             <div style="font-size:12px;color:var(--muted)">KYC ✅ · Bank verified ✅ · Chase ••••4231</div>
             <div style="font-size:11px;color:var(--muted);margin-top:4px">Requested Mar 4, 2026 · 2 days pending</div>
+            <div style="display:flex;align-items:center;gap:7px;margin-top:12px;font-size:12px">
+              <span style="color:var(--muted);font-weight:600;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase">Status</span>
+              <span id="ps-riverside-1" class="pill pill-gold">● Pending</span>
+              <span style="color:var(--muted2);font-size:13px">→</span>
+              <span id="ps-riverside-2" class="pill pill-gray">● Processing</span>
+              <span style="color:var(--muted2);font-size:13px">→</span>
+              <span id="ps-riverside-3" class="pill pill-gray">● Disbursed</span>
+            </div>
           </div>
-          <div style="text-align:right">
+          <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
             <div style="font-family:'Fraunces',serif;font-size:28px;color:var(--forest2)">$5,200</div>
-            <button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="releasePayoutBtn(this,'Riverside K-8','$5,200')">Release Payout →</button>
+            <button class="btn btn-primary btn-sm" id="pbtn-riverside-release"
+              onclick="advanceToProcessing('riverside','Riverside K-8')">Release Payout →</button>
+            <button class="btn btn-success btn-sm" id="pbtn-riverside-disburse" style="display:none"
+              onclick="advanceToDisbursed('riverside','Riverside K-8')">Mark Disbursed ✓</button>
           </div>
         </div>
-        <div class="payout-card">
+
+        <!-- Payout Card: Hope Community Church -->
+        <div class="payout-card" id="payout-card-hope">
           <div>
             <div style="font-weight:700;font-size:14px;margin-bottom:3px">Hope Community Church</div>
             <div style="font-size:12px;color:var(--muted)">KYC ✅ · Bank verified ✅ · BofA ••••8812</div>
             <div style="font-size:11px;color:var(--muted);margin-top:4px">Requested Mar 5, 2026 · 1 day pending</div>
+            <div style="display:flex;align-items:center;gap:7px;margin-top:12px;font-size:12px">
+              <span style="color:var(--muted);font-weight:600;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase">Status</span>
+              <span id="ps-hope-1" class="pill pill-gold">● Pending</span>
+              <span style="color:var(--muted2);font-size:13px">→</span>
+              <span id="ps-hope-2" class="pill pill-gray">● Processing</span>
+              <span style="color:var(--muted2);font-size:13px">→</span>
+              <span id="ps-hope-3" class="pill pill-gray">● Disbursed</span>
+            </div>
           </div>
-          <div style="text-align:right">
+          <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
             <div style="font-family:'Fraunces',serif;font-size:28px;color:var(--forest2)">$3,000</div>
-            <button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="releasePayoutBtn(this,'Hope Community Church','$3,000')">Release Payout →</button>
+            <button class="btn btn-primary btn-sm" id="pbtn-hope-release"
+              onclick="advanceToProcessing('hope','Hope Community Church')">Release Payout →</button>
+            <button class="btn btn-success btn-sm" id="pbtn-hope-disburse" style="display:none"
+              onclick="advanceToDisbursed('hope','Hope Community Church')">Mark Disbursed ✓</button>
           </div>
         </div>
-        <div class="payout-card blocked">
+
+        <!-- Payout Card: Maplewood PTA (blocked) -->
+        <div class="payout-card blocked" id="payout-card-maplewood">
           <div>
             <div style="font-weight:700;font-size:14px;margin-bottom:3px;color:#7f1d1d">Maplewood PTA</div>
             <div style="font-size:12px;color:var(--red)">🚫 KYC failed · Cannot release until verified</div>
             <div style="font-size:11px;color:var(--red);margin-top:4px">Held since Feb 20, 2026 · 14 days blocked</div>
+            <div style="display:flex;align-items:center;gap:7px;margin-top:12px;font-size:12px">
+              <span style="color:var(--red);font-weight:600;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase">Status</span>
+              <span class="pill pill-red">🚫 Blocked</span>
+              <span style="color:var(--muted2);font-size:13px">→</span>
+              <span class="pill pill-gray" style="opacity:.45">● Processing</span>
+              <span style="color:var(--muted2);font-size:13px">→</span>
+              <span class="pill pill-gray" style="opacity:.45">● Disbursed</span>
+            </div>
           </div>
-          <div style="text-align:right">
+          <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
             <div style="font-family:'Fraunces',serif;font-size:28px;color:var(--red)">$3,200</div>
-            <button class="btn btn-danger btn-sm" style="margin-top:8px" onclick="showToast('KYC resolution email sent to Maplewood PTA')">Resolve KYC →</button>
+            <button class="btn btn-danger btn-sm"
+              onclick="showToast('KYC resolution email sent to Maplewood PTA')">Resolve KYC →</button>
           </div>
         </div>
+
       </div>
     </div><!-- /payouts -->
 
@@ -1744,6 +2045,263 @@
       </div>
     </div><!-- /impact -->
 
+    <!-- ════════════════════════════
+         PANEL: COACH TASK QUEUE
+    ════════════════════════════ -->
+    <div class="panel" id="panel-coaches">
+      <div class="page-header">
+        <div class="page-header-inner">
+          <div>
+            <div class="ph-label">Admin · Operations</div>
+            <div class="ph-title">Coach Task Queue</div>
+            <div class="ph-sub">Follow-up tasks · Alert triggers · Coach assignments</div>
+          </div>
+          <div class="ph-actions">
+            <button class="btn btn-secondary" onclick="showToast('Coach report exported')">↓ Export</button>
+            <button class="btn btn-primary" onclick="showToast('New coach task created')">+ Add Task</button>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+
+        <!-- KPI Row -->
+        <div class="kpi-grid-3">
+          <div class="kpi-card">
+            <span class="kpi-icon">🧑‍🏫</span>
+            <div class="kpi-val">3</div>
+            <div class="kpi-label">Active Coaches</div>
+            <div class="kpi-trend neutral">Coach Maria · Coach David · Coach Priya</div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-icon">📋</span>
+            <div class="kpi-val">4</div>
+            <div class="kpi-label">Open Tasks</div>
+            <div class="kpi-trend up" style="color:var(--red)">↑ 2 urgent · 2 at-risk</div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-icon">⚡</span>
+            <div class="kpi-val">1.8d</div>
+            <div class="kpi-label">Avg Response Time</div>
+            <div class="kpi-trend up">↑ Better than 2.4d target</div>
+          </div>
+        </div>
+
+        <!-- Alert Tasks -->
+        <div class="g2 mb24">
+          <div class="card card-p">
+            <div class="sec-head mb16">
+              <div class="sec-title">🚨 Alert Tasks</div>
+              <span class="pill pill-red">4 open</span>
+            </div>
+
+            <!-- Task 1: Not launched within 48h -->
+            <div class="action-item">
+              <div class="action-dot dot-red"></div>
+              <div class="action-text">
+                <strong>Valley Nature Conservancy</strong> — Signed up 3 days ago, campaign not launched.
+                <div class="action-sub">
+                  🔴 Not launched within 48h · Assigned: <strong>Coach Maria</strong> · 3 days since signup
+                </div>
+              </div>
+              <div style="flex-shrink:0;margin-left:12px">
+                <button class="btn btn-primary btn-sm" onclick="markTaskComplete(this,'Valley Nature Conservancy')">Mark Complete</button>
+              </div>
+            </div>
+
+            <!-- Task 2: Not launched within 48h -->
+            <div class="action-item">
+              <div class="action-dot dot-red"></div>
+              <div class="action-text">
+                <strong>Lincoln Robotics Boosters</strong> — Signed up 2 days ago, no launch yet.
+                <div class="action-sub">
+                  🔴 Not launched within 48h · Assigned: <strong>Coach David</strong> · 2 days since signup
+                </div>
+              </div>
+              <div style="flex-shrink:0;margin-left:12px">
+                <button class="btn btn-primary btn-sm" onclick="markTaskComplete(this,'Lincoln Robotics Boosters')">Mark Complete</button>
+              </div>
+            </div>
+
+            <!-- Task 3: 80% duration, <50% goal -->
+            <div class="action-item">
+              <div class="action-dot dot-amber"></div>
+              <div class="action-text">
+                <strong>Sunrise High Booster Club</strong> — 24 of 30 days elapsed, only 44% of goal reached.
+                <div class="action-sub">
+                  🟡 Behind pace · Assigned: <strong>Coach Maria</strong> · 6 days remaining
+                </div>
+              </div>
+              <div style="flex-shrink:0;margin-left:12px">
+                <button class="btn btn-secondary btn-sm" onclick="showToast('Push notification sent to Sunrise High Booster Club supporters')">Send Push</button>
+              </div>
+            </div>
+
+            <!-- Task 4: 80% duration, <50% goal -->
+            <div class="action-item">
+              <div class="action-dot dot-amber"></div>
+              <div class="action-text">
+                <strong>Westside Soccer League</strong> — 26 of 30 days elapsed, 38% of goal.
+                <div class="action-sub">
+                  🟡 Behind pace · Assigned: <strong>Coach David</strong> · 4 days remaining
+                </div>
+              </div>
+              <div style="flex-shrink:0;margin-left:12px">
+                <button class="btn btn-secondary btn-sm" onclick="showToast('Push notification sent to Westside Soccer League supporters')">Send Push</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alert Legend / Info Card -->
+          <div class="card card-p" style="align-self:start">
+            <div class="sec-title mb16">📖 Alert Trigger Rules</div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:12px;background:var(--redl);border-radius:var(--r-sm);border:1px solid #f5c6c0">
+                <div class="action-dot dot-red" style="margin-top:2px;flex-shrink:0"></div>
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:#7f1d1d">Not Launched within 48h</div>
+                  <div style="font-size:12px;color:var(--red);margin-top:3px">Organization signed up but has not gone live with a campaign 48 hours after onboarding approval. Coach must make contact.</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:12px;background:var(--goldbg);border-radius:var(--r-sm);border:1px solid #f5d78a">
+                <div class="action-dot dot-amber" style="margin-top:2px;flex-shrink:0"></div>
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:#92400e">80% Duration · &lt;50% of Goal</div>
+                  <div style="font-size:12px;color:#78350f;margin-top:3px">Campaign has used 80% or more of its allotted duration but has only reached less than 50% of its fundraising goal.</div>
+                </div>
+              </div>
+              <div style="padding:10px 12px;background:var(--bg2);border-radius:var(--r-sm);border:1px solid var(--border);font-size:12px;color:var(--muted)">
+                Alerts are auto-generated by the system every 4 hours. Coaches receive an in-app notification and email when assigned.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coach Assignment Table -->
+        <div class="card" style="overflow:hidden;margin-bottom:24px">
+          <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+            <div class="sec-title">🗂 Coach Assignments — Live Campaigns</div>
+            <span class="pill pill-green">6 live</span>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Campaign</th>
+                <th>Organization</th>
+                <th>Status</th>
+                <th>Days Remaining</th>
+                <th>Assigned Coach</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div style="font-weight:600">Spring Tree Drive 2025</div>
+                  <div style="font-size:11px;color:var(--muted)">treeraise.com/c/greenwood-spring</div>
+                </td>
+                <td style="font-size:13px">🏫 Greenwood Elementary</td>
+                <td><span class="pill pill-green">● LIVE</span></td>
+                <td style="font-family:'DM Mono',monospace">9 days</td>
+                <td>
+                  <select class="role-select" onchange="showToast('Coach assignment updated — Spring Tree Drive 2025')">
+                    <option selected>Coach Maria</option>
+                    <option>Coach David</option>
+                    <option>Coach Priya</option>
+                    <option>Unassigned</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight:600">Community Roots 2026</div>
+                  <div style="font-size:11px;color:var(--muted)">treeraise.com/c/hope-roots</div>
+                </td>
+                <td style="font-size:13px">⛪ Hope Community Church</td>
+                <td><span class="pill pill-green">● LIVE</span></td>
+                <td style="font-family:'DM Mono',monospace">21 days</td>
+                <td>
+                  <select class="role-select" onchange="showToast('Coach assignment updated — Community Roots 2026')">
+                    <option selected>Coach Maria</option>
+                    <option>Coach David</option>
+                    <option>Coach Priya</option>
+                    <option>Unassigned</option>
+                  </select>
+                </td>
+              </tr>
+              <tr style="background:var(--goldbg)">
+                <td>
+                  <div style="font-weight:600">Booster Club Spring</div>
+                  <div style="font-size:11px;color:var(--gold)">⚠️ Behind pace · 44% of goal</div>
+                </td>
+                <td style="font-size:13px">🏫 Sunrise High Booster Club</td>
+                <td><span class="pill pill-green">● LIVE</span></td>
+                <td style="font-family:'DM Mono',monospace;color:var(--red);font-weight:700">6 days</td>
+                <td>
+                  <select class="role-select" onchange="showToast('Coach assignment updated — Booster Club Spring')">
+                    <option>Coach Maria</option>
+                    <option>Coach David</option>
+                    <option>Coach Priya</option>
+                    <option selected>Coach Maria</option>
+                  </select>
+                </td>
+              </tr>
+              <tr style="background:var(--goldbg)">
+                <td>
+                  <div style="font-weight:600">Soccer for Trees</div>
+                  <div style="font-size:11px;color:var(--gold)">⚠️ Behind pace · 38% of goal</div>
+                </td>
+                <td style="font-size:13px">⚽ Westside Soccer League</td>
+                <td><span class="pill pill-green">● LIVE</span></td>
+                <td style="font-family:'DM Mono',monospace;color:var(--red);font-weight:700">4 days</td>
+                <td>
+                  <select class="role-select" onchange="showToast('Coach assignment updated — Soccer for Trees')">
+                    <option>Coach Maria</option>
+                    <option selected>Coach David</option>
+                    <option>Coach Priya</option>
+                    <option>Unassigned</option>
+                  </select>
+                </td>
+              </tr>
+              <tr style="background:var(--redl)">
+                <td>
+                  <div style="font-weight:600">Valley Nature Campaign</div>
+                  <div style="font-size:11px;color:var(--red)">🔴 Not launched — 3 days post-signup</div>
+                </td>
+                <td style="font-size:13px">🌿 Valley Nature Conservancy</td>
+                <td><span class="pill pill-gold">⏳ DRAFT</span></td>
+                <td style="font-family:'DM Mono',monospace;color:var(--muted)">—</td>
+                <td>
+                  <select class="role-select" onchange="showToast('Coach assignment updated — Valley Nature Campaign')">
+                    <option selected>Coach Maria</option>
+                    <option>Coach David</option>
+                    <option>Coach Priya</option>
+                    <option>Unassigned</option>
+                  </select>
+                </td>
+              </tr>
+              <tr style="background:var(--redl)">
+                <td>
+                  <div style="font-weight:600">Lincoln Spring Drive</div>
+                  <div style="font-size:11px;color:var(--red)">🔴 Not launched — 2 days post-signup</div>
+                </td>
+                <td style="font-size:13px">🏫 Lincoln Robotics Boosters</td>
+                <td><span class="pill pill-gold">⏳ DRAFT</span></td>
+                <td style="font-family:'DM Mono',monospace;color:var(--muted)">—</td>
+                <td>
+                  <select class="role-select" onchange="showToast('Coach assignment updated — Lincoln Spring Drive')">
+                    <option>Coach Maria</option>
+                    <option selected>Coach David</option>
+                    <option>Coach Priya</option>
+                    <option>Unassigned</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div><!-- /coaches -->
+
   </div><!-- /main -->
 </div><!-- /app-shell -->
 
@@ -1806,12 +2364,68 @@
     btn.disabled = true;
     showToast('✅ Organization approved. Welcome email sent.');
   }
-  function releasePayoutBtn(btn, org, amount) {
-    btn.textContent = '✅ Released';
-    btn.disabled = true;
-    btn.style.background = '#16a34a';
-    btn.style.color = '#fff';
-    showToast('💸 Payout of ' + amount + ' released to ' + org);
+
+  /* ── REFUND PROCESSING (CHANGE-A7) ── */
+  function initiateRefund(id, orgName) {
+    const pill = document.getElementById('rstatus-' + id);
+    if (pill) {
+      pill.textContent = '↩ Refunded';
+      pill.className = 'pill pill-red';
+    }
+    // Gray-out the row to signal it's been processed
+    const row = document.getElementById('rev-row-' + id);
+    if (row) row.style.background = 'var(--redl)';
+    // Disable the refund button so it can't be double-clicked
+    event.target.textContent = '↩ Done';
+    event.target.disabled = true;
+    event.target.style.opacity = '0.55';
+    showToast('↩ Refund initiated via Stripe for ' + orgName + '. Both ledger entries reversed.');
+  }
+
+  /* ── PAYOUT 3-STATE PROGRESSION ── */
+  function advanceToProcessing(id, org) {
+    // Step 1 (Pending) → muted gray
+    const s1 = document.getElementById('ps-' + id + '-1');
+    if (s1) { s1.className = 'pill pill-gray'; s1.textContent = '● Pending'; }
+    // Step 2 (Processing) → highlighted blue
+    const s2 = document.getElementById('ps-' + id + '-2');
+    if (s2) { s2.className = 'pill pill-blue'; s2.textContent = '● Processing'; }
+    // Swap buttons: hide Release, show Mark Disbursed
+    const relBtn = document.getElementById('pbtn-' + id + '-release');
+    const disBtn = document.getElementById('pbtn-' + id + '-disburse');
+    if (relBtn) relBtn.style.display = 'none';
+    if (disBtn) disBtn.style.display = '';
+    showToast('⚙️ Payout moved to Processing — ' + org);
+  }
+
+  function advanceToDisbursed(id, org) {
+    // Step 2 (Processing) → muted gray
+    const s2 = document.getElementById('ps-' + id + '-2');
+    if (s2) { s2.className = 'pill pill-gray'; }
+    // Step 3 (Disbursed) → highlighted green
+    const s3 = document.getElementById('ps-' + id + '-3');
+    if (s3) { s3.className = 'pill pill-green'; s3.textContent = '● Disbursed'; }
+    // Finalize the Mark Disbursed button
+    const disBtn = document.getElementById('pbtn-' + id + '-disburse');
+    if (disBtn) { disBtn.textContent = '✅ Disbursed'; disBtn.disabled = true; disBtn.style.opacity = '0.7'; }
+    showToast('💸 Payout marked as Disbursed — ' + org);
+  }
+
+  /* ── CAMPAIGNS SEARCH & FILTER ── */
+  function searchCampaigns(val) {
+    document.querySelectorAll('#campaigns-table .campaign-row').forEach(r => {
+      // Must restore 'grid' not '' — rows have display:grid only as inline style, no CSS class fallback
+      r.style.display = r.textContent.toLowerCase().includes(val.toLowerCase()) ? 'grid' : 'none';
+    });
+  }
+
+  function filterCampaigns(status, chip) {
+    document.querySelectorAll('#campaigns-filter-chips .chip').forEach(c => c.classList.remove('active'));
+    if (chip) chip.classList.add('active');
+    document.querySelectorAll('#campaigns-table .campaign-row').forEach(r => {
+      // Must restore 'grid' not '' — rows have display:grid only as inline style, no CSS class fallback
+      r.style.display = (status === 'all' || r.dataset.cstatus === status) ? 'grid' : 'none';
+    });
   }
 
   /* ── ADMIN NOTES ── */
@@ -1834,6 +2448,19 @@
     t.textContent = msg;
     document.body.appendChild(t);
     setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity .4s'; setTimeout(() => t.remove(), 400); }, 3000);
+  }
+
+  /* ── COACH QUEUE ── */
+  function markTaskComplete(btn, orgName) {
+    const item = btn.closest('.action-item');
+    if (item) {
+      item.style.opacity = '0.45';
+      item.style.textDecoration = 'line-through';
+      item.style.pointerEvents = 'none';
+    }
+    btn.textContent = '✅ Done';
+    btn.disabled = true;
+    showToast('✅ Task marked complete — ' + orgName);
   }
 
   /* ── USER MANAGEMENT ── */

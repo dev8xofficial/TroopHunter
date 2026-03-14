@@ -240,6 +240,7 @@
       from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+    @keyframes slideUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
     /* ── PAGE HEADER ── */
     .page-header {
@@ -746,6 +747,124 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
 
+    /* ── COMMS ROW (email sequence) ── */
+    .comms-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 0; border-bottom: 1px solid var(--border2); font-size: 13px;
+      gap: 12px;
+    }
+    .comms-row:last-child { border-bottom: none; }
+    .comms-row-left { flex: 1; min-width: 0; }
+    .comms-row-title { font-weight: 600; font-size: 13px; color: var(--ink); margin-bottom: 2px; }
+    .comms-row-sub   { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+    .comms-row-actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+
+    /* ── TIMELINE (notifications) ── */
+    .timeline-item {
+      display: flex; gap: 12px; padding: 12px 16px;
+      border-bottom: 1px solid var(--border2); font-size: 13px;
+      border-left: 3px solid transparent; transition: background .12s;
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-item.unread { border-left-color: #2563eb; background: #f5f8ff; }
+    .timeline-item:hover { background: var(--bg2); }
+    .timeline-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--forest3); margin-top: 5px; flex-shrink: 0;
+    }
+    .timeline-dot.gold { background: var(--gold); }
+    .timeline-dot.red  { background: var(--red); }
+    .timeline-dot.blue { background: #2563eb; }
+
+    /* ── SETUP WIZARD ── */
+    .wizard-wrap { max-width: 640px; margin: 0 auto; }
+    .wz-steps {
+      display: flex; align-items: center; margin-bottom: 36px;
+    }
+    .wz-dot {
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; flex-shrink: 0;
+      transition: all .25s; cursor: default;
+    }
+    .wz-dot.done    { background: var(--forest2); color: #fff; }
+    .wz-dot.active  { background: var(--forest2); color: #fff; box-shadow: 0 0 0 5px rgba(26,71,49,.13); }
+    .wz-dot.pending { background: var(--bg); color: var(--muted2); border: 2px solid var(--border); }
+    .wz-line { flex: 1; height: 2px; background: var(--border); transition: background .25s; }
+    .wz-line.done { background: var(--forest2); }
+    .wz-step { display: none; animation: fadeUp .2s ease; }
+    .wz-step.active { display: block; }
+    .wz-label {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      letter-spacing: .18em; color: var(--forest3); text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .wz-title {
+      font-family: 'Fraunces', serif; font-size: 24px; font-weight: 600;
+      color: var(--ink); margin-bottom: 5px; letter-spacing: -.02em;
+    }
+    .wz-sub { font-size: 13.5px; color: var(--muted); margin-bottom: 24px; }
+    .wz-nav { display: flex; gap: 10px; margin-top: 28px; }
+    .wz-sector-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px; }
+    .wz-card {
+      border: 2px solid var(--border); border-radius: var(--r);
+      padding: 18px 16px; cursor: pointer; transition: all .15s;
+      background: var(--white); text-align: center;
+    }
+    .wz-card:hover { border-color: var(--forest3); background: var(--bg2); }
+    .wz-card.selected { border-color: var(--forest2); background: var(--mint3); }
+    .wz-card .wc-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+    .wz-card .wc-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+    .wz-card .wc-sub  { font-size: 12px; color: var(--muted); margin-top: 3px; }
+    .wz-upload-zone {
+      border: 2px dashed var(--border); border-radius: var(--r);
+      padding: 28px; text-align: center; cursor: pointer;
+      transition: all .15s; background: var(--bg2); margin-bottom: 14px;
+    }
+    .wz-upload-zone:hover { border-color: var(--forest3); background: var(--mint3); }
+    .wz-goal-prefix {
+      display: flex; align-items: center; border: 1.5px solid var(--border);
+      border-radius: var(--r-sm); overflow: hidden; background: var(--bg2);
+      transition: border-color .15s;
+    }
+    .wz-goal-prefix:focus-within { border-color: var(--forest3); background: #fff; }
+    .wz-goal-prefix span {
+      padding: 10px 13px; font-family: 'DM Mono', monospace; font-size: 15px;
+      font-weight: 700; color: var(--forest2); background: var(--mint3);
+      border-right: 1.5px solid var(--border);
+    }
+    .wz-goal-prefix input {
+      border: none; outline: none; flex: 1; padding: 10px 13px;
+      font-family: 'DM Mono', monospace; font-size: 15px;
+      color: var(--ink); background: transparent;
+    }
+    .wz-split-preview {
+      background: var(--mint3); border: 1px solid var(--border);
+      border-radius: var(--r-sm); padding: 13px 16px;
+      margin-top: 14px; font-size: 13.5px; color: var(--forest2);
+      display: none;
+    }
+    .wz-dur-opts { display: flex; gap: 10px; margin-bottom: 18px; }
+    .wz-dur-btn {
+      flex: 1; padding: 11px; border: 2px solid var(--border);
+      border-radius: var(--r-sm); background: var(--white);
+      font-family: 'Instrument Sans', sans-serif; font-size: 14px;
+      font-weight: 600; color: var(--muted); cursor: pointer; transition: all .15s;
+      text-align: center;
+    }
+    .wz-dur-btn:hover { border-color: var(--forest3); color: var(--ink); }
+    .wz-dur-btn.selected { border-color: var(--forest2); background: var(--mint3); color: var(--forest2); }
+    .wz-success {
+      display: none; text-align: center; padding: 20px 0;
+      animation: fadeUp .3s ease;
+    }
+    .wz-url-box {
+      background: var(--bg2); border: 1.5px solid var(--border);
+      border-radius: var(--r-sm); padding: 12px 16px;
+      font-family: 'DM Mono', monospace; font-size: 13px;
+      color: var(--forest2); margin: 16px 0; word-break: break-all;
+    }
+
   </style>
 </head>
 <body>
@@ -759,8 +878,45 @@
     <div class="topbar-org">Riverside Elementary PTA</div>
     <div class="topbar-spacer"></div>
     <div class="topbar-live"><div class="live-pulse"></div>LIVE · veritree</div>
+    <!-- CHANGE-P7: Notification Bell -->
+    <div style="position:relative;cursor:pointer" onclick="toggleNotifications()">
+      <span style="font-size:18px;color:rgba(255,255,255,.7)">🔔</span>
+      <span id="notif-badge" style="position:absolute;top:-4px;right:-5px;background:var(--red);color:#fff;font-size:9px;font-weight:700;border-radius:99px;padding:1px 5px;font-family:'DM Mono',monospace;">3</span>
+    </div>
     <div class="topbar-avatar">RP</div>
   </header>
+
+  <!-- CHANGE-P7: Notification Dropdown -->
+  <div id="notif-dropdown" style="display:none;position:fixed;top:60px;right:16px;width:320px;background:var(--white);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow3);z-index:300;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border)">
+      <div style="font-weight:700;font-size:14px;color:var(--ink)">Notifications</div>
+      <a href="#" style="font-size:12px;color:var(--forest3)" onclick="markAllRead(event)">Mark all read</a>
+    </div>
+    <div class="timeline-item unread">
+      <div class="timeline-dot blue"></div>
+      <div>
+        <div style="font-size:13px;color:var(--ink);line-height:1.5"><strong>New contribution</strong> — James T. contributed $156 (Legacy)</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">14 min ago</div>
+      </div>
+    </div>
+    <div class="timeline-item unread">
+      <div class="timeline-dot gold"></div>
+      <div>
+        <div style="font-size:13px;color:var(--ink);line-height:1.5"><strong>Milestone reached</strong> — You've planted 1,000 trees!</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">1 hour ago</div>
+      </div>
+    </div>
+    <div class="timeline-item unread">
+      <div class="timeline-dot"></div>
+      <div>
+        <div style="font-size:13px;color:var(--ink);line-height:1.5"><strong>Impact report ready</strong> — Fall Fundraiser 2025 report is available</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">2 days ago</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px;text-align:center;border-top:1px solid var(--border2)">
+      <a href="#" style="font-size:12px;color:var(--forest3)">View all notifications</a>
+    </div>
+  </div>
 
   <!-- ─── SIDEBAR ─── -->
   <nav class="sidebar">
@@ -964,7 +1120,161 @@
               <button class="btn btn-secondary btn-block" onclick="showPage('page-setup', document.querySelector('[onclick*=setup]'))">⚙️ Complete Setup (3/5)</button>
               <button class="btn btn-secondary btn-block" onclick="showPage('page-team', document.querySelector('[onclick*=team]'))">👥 Invite Team Member</button>
               <button class="btn btn-secondary btn-block" onclick="showPage('page-verify', document.querySelector('[onclick*=verify]'))">🔒 Complete Verification</button>
+              <button class="btn btn-secondary btn-block" onclick="showToast('Starter Kit ZIP downloading…')">📦 Download Starter Kit</button>
             </div>
+          </div>
+        </div>
+
+        <!-- CHANGE-P2: Starter Kit Info Card -->
+        <div class="card card-p mb24">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <div>
+              <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:3px">📦 Your Digital Starter Kit</div>
+              <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Everything you need to promote your campaign</div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--ink2)">
+                  <span style="font-size:18px;width:26px;text-align:center">📧</span>
+                  <div><strong>Email Templates</strong> <span style="color:var(--muted)">(HTML)</span></div>
+                  <span style="margin-left:auto;font-size:11px;font-family:'DM Mono',monospace;color:var(--forest3);background:var(--mint3);padding:2px 8px;border-radius:99px">3 templates</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--ink2)">
+                  <span style="font-size:18px;width:26px;text-align:center">🖼️</span>
+                  <div><strong>Social Media Graphics</strong> <span style="color:var(--muted)">(PNG)</span></div>
+                  <span style="margin-left:auto;font-size:11px;font-family:'DM Mono',monospace;color:var(--forest3);background:var(--mint3);padding:2px 8px;border-radius:99px">8 assets</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--ink2)">
+                  <span style="font-size:18px;width:26px;text-align:center">🖨️</span>
+                  <div><strong>Printable Posters</strong> <span style="color:var(--muted)">(PDF)</span></div>
+                  <span style="margin-left:auto;font-size:11px;font-family:'DM Mono',monospace;color:var(--forest3);background:var(--mint3);padding:2px 8px;border-radius:99px">2 sizes</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--ink2)">
+                  <span style="font-size:18px;width:26px;text-align:center">✅</span>
+                  <div><strong>Campaign Checklist</strong> <span style="color:var(--muted)">(PDF)</span></div>
+                  <span style="margin-left:auto;font-size:11px;font-family:'DM Mono',monospace;color:var(--forest3);background:var(--mint3);padding:2px 8px;border-radius:99px">1 doc</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;min-width:180px;align-self:center">
+              <button class="btn btn-primary btn-block" onclick="showToast('Starter Kit downloaded — check your Downloads folder')">⬇ Download ZIP</button>
+              <div style="font-size:11px;color:var(--muted);text-align:center;font-family:'DM Mono',monospace">4 files · ~8.2 MB</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHANGE-P4: Live Contributions Feed -->
+        <div class="card card-p mb24">
+          <div class="sec-head" style="margin-bottom:14px">
+            <div>
+              <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--ink)">Live Contributions Feed</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:2px">Spring Tree Drive 2025</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);font-family:'DM Mono',monospace">
+                <div class="live-pulse" style="background:var(--forest3)"></div>
+                Refreshing every 5s
+              </div>
+              <span class="pill pill-green">● Live</span>
+            </div>
+          </div>
+          <!-- Scrollable feed list -->
+          <div style="max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:0" id="contributions-feed">
+
+            <!-- Feed item: Sarah M. — Grove — $84 — 2 min ago -->
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border2)">
+              <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--forest2),var(--forest3));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0">SM</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-weight:600;font-size:13.5px;color:var(--ink)">Sarah M.</div>
+                <div style="font-size:11.5px;color:var(--muted);margin-top:1px">2 min ago</div>
+              </div>
+              <span class="pill pill-green" style="font-size:10px">🌳 Grove</span>
+              <div style="font-family:'DM Mono',monospace;font-weight:700;font-size:14px;color:var(--forest2);min-width:44px;text-align:right">$84</div>
+            </div>
+
+            <!-- Feed item: Anonymous — Sapling — $45 — 8 min ago -->
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border2)">
+              <div style="width:34px;height:34px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">🌿</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-weight:600;font-size:13.5px;color:var(--muted)">Anonymous Supporter</div>
+                <div style="font-size:11.5px;color:var(--muted);margin-top:1px">8 min ago</div>
+              </div>
+              <span class="pill pill-blue" style="font-size:10px">🌿 Sapling</span>
+              <div style="font-family:'DM Mono',monospace;font-weight:700;font-size:14px;color:var(--forest2);min-width:44px;text-align:right">$45</div>
+            </div>
+
+            <!-- Feed item: James T. — Legacy — $156 — 14 min ago -->
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border2)">
+              <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#c87a0a);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0">JT</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-weight:600;font-size:13.5px;color:var(--ink)">James T.</div>
+                <div style="font-size:11.5px;color:var(--muted);margin-top:1px">14 min ago</div>
+              </div>
+              <span class="pill pill-gold" style="font-size:10px">🏛️ Legacy</span>
+              <div style="font-family:'DM Mono',monospace;font-weight:700;font-size:14px;color:var(--forest2);min-width:44px;text-align:right">$156</div>
+            </div>
+
+            <!-- Feed item: Priya K. — Seed — $15 — 22 min ago -->
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border2)">
+              <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--mint),var(--forest3));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0">PK</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-weight:600;font-size:13.5px;color:var(--ink)">Priya K.</div>
+                <div style="font-size:11.5px;color:var(--muted);margin-top:1px">22 min ago</div>
+              </div>
+              <span class="pill pill-gray" style="font-size:10px">🌱 Seed</span>
+              <div style="font-family:'DM Mono',monospace;font-weight:700;font-size:14px;color:var(--forest2);min-width:44px;text-align:right">$15</div>
+            </div>
+
+            <!-- Feed item: Anonymous — Grove — $84 — 31 min ago -->
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border2)">
+              <div style="width:34px;height:34px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">🌿</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-weight:600;font-size:13.5px;color:var(--muted)">Anonymous Supporter</div>
+                <div style="font-size:11.5px;color:var(--muted);margin-top:1px">31 min ago</div>
+              </div>
+              <span class="pill pill-green" style="font-size:10px">🌳 Grove</span>
+              <div style="font-family:'DM Mono',monospace;font-weight:700;font-size:14px;color:var(--forest2);min-width:44px;text-align:right">$84</div>
+            </div>
+
+            <!-- Feed item: Robert L. — Sapling — $45 — 45 min ago -->
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 0">
+              <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--forest3),var(--forest4));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0">RL</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-weight:600;font-size:13.5px;color:var(--ink)">Robert L.</div>
+                <div style="font-size:11.5px;color:var(--muted);margin-top:1px">45 min ago</div>
+              </div>
+              <span class="pill pill-blue" style="font-size:10px">🌿 Sapling</span>
+              <div style="font-family:'DM Mono',monospace;font-weight:700;font-size:14px;color:var(--forest2);min-width:44px;text-align:right">$45</div>
+            </div>
+
+          </div><!-- /contributions-feed -->
+        </div>
+
+        <!-- CHANGE-P8: Contributions by Tier -->
+        <div class="card card-sm mb24">
+          <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:4px">Contributions by Tier</div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:16px;font-family:'DM Mono',monospace">Spring Tree Drive 2025 · 96 total contributions · $4,650</div>
+          <!-- Seed -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+            <div style="min-width:130px;font-size:13px;color:var(--ink2)">🌱 Seed <span style="font-size:11px;color:var(--muted)">$15 · 1 tree</span></div>
+            <div class="prog-track" style="flex:1"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,var(--forest3),var(--mint))"></div></div>
+            <div style="min-width:80px;text-align:right;font-size:12px;color:var(--muted)">42 · <strong style="font-family:'DM Mono',monospace;color:var(--forest2)">$630</strong></div>
+          </div>
+          <!-- Sapling -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+            <div style="min-width:130px;font-size:13px;color:var(--ink2)">🌿 Sapling <span style="font-size:11px;color:var(--muted)">$45 · 3 trees</span></div>
+            <div class="prog-track" style="flex:1"><div class="prog-fill" style="width:67%;background:linear-gradient(90deg,var(--forest2),var(--forest3))"></div></div>
+            <div style="min-width:80px;text-align:right;font-size:12px;color:var(--muted)">28 · <strong style="font-family:'DM Mono',monospace;color:var(--forest2)">$1,260</strong></div>
+          </div>
+          <!-- Grove -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+            <div style="min-width:130px;font-size:13px;color:var(--ink2)">🌳 Grove <span style="font-size:11px;color:var(--muted)">$84 · 6 trees</span></div>
+            <div class="prog-track" style="flex:1"><div class="prog-fill" style="width:43%;background:linear-gradient(90deg,var(--gold),#c87a0a)"></div></div>
+            <div style="min-width:80px;text-align:right;font-size:12px;color:var(--muted)">18 · <strong style="font-family:'DM Mono',monospace;color:var(--forest2)">$1,512</strong></div>
+          </div>
+          <!-- Legacy -->
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="min-width:130px;font-size:13px;color:var(--ink2)">🏛️ Legacy <span style="font-size:11px;color:var(--muted)">$156 · 12 trees</span></div>
+            <div class="prog-track" style="flex:1"><div class="prog-fill" style="width:19%;background:linear-gradient(90deg,#8b5cf6,#6d28d9)"></div></div>
+            <div style="min-width:80px;text-align:right;font-size:12px;color:var(--muted)">8 · <strong style="font-family:'DM Mono',monospace;color:var(--forest2)">$1,248</strong></div>
           </div>
         </div>
 
@@ -987,84 +1297,234 @@
     </div>
 
     <!-- ══════════════════════════════════════════
-         PAGE: SETUP CHECKLIST
+         PAGE: SETUP / CAMPAIGN WIZARD
     ══════════════════════════════════════════ -->
     <div id="page-setup" class="page">
       <div class="page-header">
         <div class="page-header-inner">
           <div>
             <div class="ph-label">Get Started</div>
-            <div class="ph-title">Setup Checklist</div>
-            <div class="ph-sub">Complete all 5 steps to launch your first campaign · avg 15 min</div>
+            <div class="ph-title">Campaign Setup Wizard</div>
+            <div class="ph-sub">6 steps to launch your first campaign · avg 5 min</div>
           </div>
           <div class="ph-actions">
-            <span class="pill pill-gold">3 of 5 complete</span>
+            <span class="pill pill-gold" id="wz-progress-pill">Step 1 of 6</span>
           </div>
         </div>
       </div>
       <div class="content">
-        <div class="g2">
-          <div>
-            <!-- Progress -->
-            <div class="card card-p mb16">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-                <div style="font-family:'Fraunces',serif;font-size:18px;color:var(--ink);font-weight:600">Overall Progress</div>
-                <div style="font-family:'Fraunces',serif;font-size:28px;color:var(--forest2);font-weight:700">60%</div>
-              </div>
-              <div class="prog-track mb16"><div class="prog-fill" style="width:60%"></div></div>
-              <div style="display:flex;flex-direction:column;gap:0">
-                <div class="cl-item done"><div class="cl-num">✓</div><div class="cl-body"><div class="cl-title">Organization Profile</div><div class="cl-desc">Logo, colors, and details confirmed.</div></div><span class="pill pill-green">Done</span></div>
-                <div class="cl-item done"><div class="cl-num">✓</div><div class="cl-body"><div class="cl-title">Portal Access Activated</div><div class="cl-desc">Connected to veritree impact API.</div></div><span class="pill pill-green">Done</span></div>
-                <div class="cl-item done"><div class="cl-num">✓</div><div class="cl-body"><div class="cl-title">Campaign Template Selected</div><div class="cl-desc">School Drive template applied.</div></div><span class="pill pill-green">Done</span></div>
-                <div class="cl-item current" id="cl-step4"><div class="cl-num" id="cl-n4">4</div><div class="cl-body"><div class="cl-title">Add Your First Campaign</div><div class="cl-desc" id="cl-d4">Name it, set your goal, pick dates, write a description. The veritree counter activates automatically.</div><div class="cl-time">⏱ ~5 minutes</div></div><span class="pill pill-gold">Active</span></div>
-                <div class="cl-item" id="cl-step5"><div class="cl-num" id="cl-n5">5</div><div class="cl-body"><div class="cl-title">Invite Your Team</div><div class="cl-desc" id="cl-d5">Add co-organizers and finance contacts with role-scoped access.</div><div class="cl-time">⏱ ~2 minutes · unlocks after Step 4</div></div><span class="pill pill-gray">Pending</span></div>
-              </div>
+        <div class="wizard-wrap">
+
+          <!-- Step indicator bar -->
+          <div class="wz-steps">
+            <div class="wz-dot active"  id="wz-dot-1">1</div>
+            <div class="wz-line"        id="wz-line-1"></div>
+            <div class="wz-dot pending" id="wz-dot-2">2</div>
+            <div class="wz-line"        id="wz-line-2"></div>
+            <div class="wz-dot pending" id="wz-dot-3">3</div>
+            <div class="wz-line"        id="wz-line-3"></div>
+            <div class="wz-dot pending" id="wz-dot-4">4</div>
+            <div class="wz-line"        id="wz-line-4"></div>
+            <div class="wz-dot pending" id="wz-dot-5">5</div>
+            <div class="wz-line"        id="wz-line-5"></div>
+            <div class="wz-dot pending" id="wz-dot-6">6</div>
+          </div>
+
+          <!-- ── Step 1: Organization Name ── -->
+          <div class="wz-step active" id="wz-step-1">
+            <div class="wz-label">Step 1 of 6</div>
+            <div class="wz-title">What is your organization's name?</div>
+            <div class="wz-sub">This will appear on your public campaign page.</div>
+            <div class="field">
+              <input type="text" id="wz-org-name" placeholder="e.g. Riverside Elementary PTA"
+                style="font-size:15px;padding:12px 16px"
+                oninput="document.getElementById('wz-1-next').disabled = this.value.trim().length < 2">
+            </div>
+            <div class="wz-nav">
+              <button class="btn btn-primary" id="wz-1-next" onclick="goWizard(2)" disabled style="opacity:.45;cursor:not-allowed">Next →</button>
             </div>
           </div>
 
-          <div>
-            <!-- Onboarding Lane -->
-            <div class="card card-p mb16">
-              <div class="sec-head mb16"><div class="sec-title">Your Onboarding Lane</div></div>
-              <div class="lane-cards" style="grid-template-columns:1fr;gap:10px">
-                <div class="lane-card active" onclick="setLane(this)">
-                  <div class="lane-num">1</div>
-                  <div class="lane-title">Self-Serve <span class="pill pill-green" style="margin-left:6px">Your lane</span></div>
-                  <div class="lane-desc">Guided checklist. Complete setup autonomously at your own pace. Most partners are live in under 15 minutes.</div>
-                </div>
-                <div class="lane-card" onclick="setLane(this)">
-                  <div class="lane-num">2</div>
-                  <div class="lane-title">Assisted Setup</div>
-                  <div class="lane-desc">A TreeRaise team member joins a 30-min call to walk through setup with you and answer questions live.</div>
-                </div>
-                <div class="lane-card" onclick="setLane(this)">
-                  <div class="lane-num">3</div>
-                  <div class="lane-title">White-Glove Concierge</div>
-                  <div class="lane-desc">We handle everything. Dedicated account manager configures your portal, builds your first campaign, and stays on for 30 days.</div>
-                </div>
+          <!-- ── Step 2: Sector Selection ── -->
+          <div class="wz-step" id="wz-step-2">
+            <div class="wz-label">Step 2 of 6</div>
+            <div class="wz-title">What type of organization are you?</div>
+            <div class="wz-sub">We'll tailor your campaign templates and messaging to fit your community.</div>
+            <div class="wz-sector-grid">
+              <div class="wz-card" onclick="selectWzCard(this,'sector')">
+                <span class="wc-icon">🏫</span>
+                <div class="wc-name">School / PTA</div>
+                <div class="wc-sub">K-12, PTAs, student groups</div>
+              </div>
+              <div class="wz-card" onclick="selectWzCard(this,'sector')">
+                <span class="wc-icon">💚</span>
+                <div class="wc-name">Nonprofit</div>
+                <div class="wc-sub">501(c)(3) organizations</div>
+              </div>
+              <div class="wz-card" onclick="selectWzCard(this,'sector')">
+                <span class="wc-icon">⛪</span>
+                <div class="wc-name">Faith Community</div>
+                <div class="wc-sub">Churches, mosques, synagogues</div>
+              </div>
+              <div class="wz-card" onclick="selectWzCard(this,'sector')">
+                <span class="wc-icon">⚽</span>
+                <div class="wc-name">Civic / Sports</div>
+                <div class="wc-sub">Clubs, leagues, HOAs</div>
               </div>
             </div>
-
-            <!-- Campaign Templates -->
-            <div class="card card-p mb16">
-              <div class="sec-head mb14"><div class="sec-title">Campaign Templates</div></div>
-              <div class="g3" style="gap:10px">
-                <div class="tmpl-card"><div class="tmpl-head"><div class="tmpl-icon">🏫</div><div class="tmpl-name">School Drive</div><div class="tmpl-type">K-12 / PTA</div></div><div class="tmpl-body">Donation tiers + tree counter. Avg raise: $12,400.</div></div>
-                <div class="tmpl-card"><div class="tmpl-head"><div class="tmpl-icon">⛪</div><div class="tmpl-name">Faith Campaign</div><div class="tmpl-type">Church</div></div><div class="tmpl-body">Stewardship-first messaging. Community-driven.</div></div>
-                <div class="tmpl-card"><div class="tmpl-head"><div class="tmpl-icon">💚</div><div class="tmpl-name">Nonprofit Drive</div><div class="tmpl-type">501(c)(3)</div></div><div class="tmpl-body">EIN verified, branded receipts, full reporting.</div></div>
-              </div>
-            </div>
-
-            <!-- Alert Triggers -->
-            <div class="card card-p">
-              <div class="sec-head mb14"><div class="sec-title">Automated Alert Triggers</div></div>
-              <div class="trigger-item"><div class="trig-icon">🎯</div><div><div class="trig-title">70% Goal Reached</div><div class="trig-desc">Sends push notification + email to campaign owner. "You're in the home stretch."</div><div class="trig-action">→ Avg. +38% lift in final donations</div></div></div>
-              <div class="trigger-item"><div class="trig-icon">🌳</div><div><div class="trig-title">Milestone Trees Planted</div><div class="trig-desc">Auto-email to all donors when your tree count hits 100, 500, 1,000 etc.</div><div class="trig-action">→ Triggers donor re-share behavior</div></div></div>
-              <div class="trigger-item"><div class="trig-icon">⏰</div><div><div class="trig-title">24-Hour Countdown</div><div class="trig-desc">Final-day push to all supporters who haven't donated yet.</div><div class="trig-action">→ Sends 1 day before campaign end</div></div></div>
+            <div class="wz-nav">
+              <button class="btn btn-ghost" onclick="goWizard(1)">← Back</button>
+              <button class="btn btn-primary" id="wz-2-next" onclick="goWizard(3)" disabled style="opacity:.45;cursor:not-allowed">Next →</button>
             </div>
           </div>
-        </div>
-      </div>
+
+          <!-- ── Step 3: Logo & Banner Upload ── -->
+          <div class="wz-step" id="wz-step-3">
+            <div class="wz-label">Step 3 of 6</div>
+            <div class="wz-title">Upload your organization logo and banner</div>
+            <div class="wz-sub">These appear on your public campaign page and donor receipts.</div>
+
+            <div style="margin-bottom:6px">
+              <div style="font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:8px">Logo <span style="color:var(--muted);font-weight:400">(square, min 200×200px · JPG or PNG up to 5MB)</span></div>
+              <div class="wz-upload-zone" onclick="showToast('File selected: logo.png')">
+                <div style="font-size:32px;margin-bottom:8px">🖼️</div>
+                <div style="font-size:13.5px;font-weight:600;color:var(--ink2)">Click to upload logo</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:4px">or drag and drop · JPG / PNG · up to 5MB</div>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:8px">Campaign banner <span style="color:var(--muted);font-weight:400">(wide, min 1200×400px · JPG or PNG up to 5MB)</span></div>
+              <div class="wz-upload-zone" onclick="showToast('File selected: banner.png')" style="padding:20px">
+                <div style="font-size:32px;margin-bottom:8px">🖼️</div>
+                <div style="font-size:13.5px;font-weight:600;color:var(--ink2)">Click to upload banner</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:4px">or drag and drop · JPG / PNG · up to 5MB · wide format</div>
+              </div>
+            </div>
+
+            <div class="wz-nav">
+              <button class="btn btn-ghost" onclick="goWizard(2)">← Back</button>
+              <button class="btn btn-primary" onclick="goWizard(4)">Next →</button>
+              <button class="btn btn-ghost btn-sm" onclick="goWizard(4)" style="margin-left:auto;color:var(--muted)">Skip for now</button>
+            </div>
+          </div>
+
+          <!-- ── Step 4: Fundraising Goal ── -->
+          <div class="wz-step" id="wz-step-4">
+            <div class="wz-label">Step 4 of 6</div>
+            <div class="wz-title">Set your fundraising goal</div>
+            <div class="wz-sub">You can adjust this later. We'll show you what to expect from the 50/50 split.</div>
+
+            <div class="field" style="margin-bottom:4px">
+              <div class="wz-goal-prefix">
+                <span>$</span>
+                <input type="number" id="wz-goal-input" placeholder="12,400" min="0" oninput="calcWzGoal()">
+              </div>
+            </div>
+
+            <div class="wz-split-preview" id="wz-split-preview">
+              <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+                <div>
+                  <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--forest3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">Your org keeps (50%)</div>
+                  <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--forest2)" id="wz-org-share">$0</div>
+                </div>
+                <div>
+                  <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">TreeRaise share (50%)</div>
+                  <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--muted)" id="wz-tr-share">$0</div>
+                </div>
+                <div>
+                  <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">Est. trees planted</div>
+                  <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--forest3)" id="wz-tree-est">0</div>
+                </div>
+              </div>
+              <div style="font-size:11.5px;color:var(--forest3);margin-top:10px">🌳 Based on avg $15/tree · Trees are GPS-verified by veritree</div>
+            </div>
+
+            <div class="wz-nav">
+              <button class="btn btn-ghost" onclick="goWizard(3)">← Back</button>
+              <button class="btn btn-primary" id="wz-4-next" onclick="goWizard(5)" disabled style="opacity:.45;cursor:not-allowed">Next →</button>
+            </div>
+          </div>
+
+          <!-- ── Step 5: Impact Region ── -->
+          <div class="wz-step" id="wz-step-5">
+            <div class="wz-label">Step 5 of 6</div>
+            <div class="wz-title">Choose your reforestation region</div>
+            <div class="wz-sub">Your donors will see the GPS-verified location where their trees are planted.</div>
+            <div class="wz-sector-grid">
+              <div class="wz-card" onclick="selectWzCard(this,'region')">
+                <span class="wc-icon">🌿</span>
+                <div class="wc-name">Haiti</div>
+                <div class="wc-sub">Agroforestry</div>
+              </div>
+              <div class="wz-card" onclick="selectWzCard(this,'region')">
+                <span class="wc-icon">🌊</span>
+                <div class="wc-name">East Africa</div>
+                <div class="wc-sub">Mangrove Restoration</div>
+              </div>
+              <div class="wz-card" onclick="selectWzCard(this,'region')">
+                <span class="wc-icon">🌳</span>
+                <div class="wc-name">Peru</div>
+                <div class="wc-sub">Tropical Rainforest</div>
+              </div>
+              <div class="wz-card" onclick="selectWzCard(this,'region')">
+                <span class="wc-icon">🌲</span>
+                <div class="wc-name">Indonesia</div>
+                <div class="wc-sub">Kalimantan Coast</div>
+              </div>
+            </div>
+            <div class="wz-nav">
+              <button class="btn btn-ghost" onclick="goWizard(4)">← Back</button>
+              <button class="btn btn-primary" id="wz-5-next" onclick="goWizard(6)" disabled style="opacity:.45;cursor:not-allowed">Next →</button>
+            </div>
+          </div>
+
+          <!-- ── Step 6: Campaign Duration ── -->
+          <div class="wz-step" id="wz-step-6">
+            <div class="wz-label">Step 6 of 6</div>
+            <div class="wz-title">How long will your campaign run?</div>
+            <div class="wz-sub">Choose a duration and set a start date. We'll calculate your end date automatically.</div>
+
+            <!-- Duration buttons -->
+            <div style="font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:10px">Campaign duration</div>
+            <div class="wz-dur-opts" id="wz-dur-opts">
+              <button class="wz-dur-btn" onclick="selectWzDuration(15,this)">15 days</button>
+              <button class="wz-dur-btn selected" onclick="selectWzDuration(30,this)">30 days <span style="display:block;font-size:10px;font-weight:400;color:var(--forest3)">Recommended</span></button>
+              <button class="wz-dur-btn" onclick="selectWzDuration(45,this)">45 days</button>
+            </div>
+
+            <!-- Start date -->
+            <div class="field">
+              <label>Start date</label>
+              <input type="date" id="wz-start-date" oninput="calcWzEndDate()" style="font-family:'DM Mono',monospace">
+            </div>
+
+            <!-- End date display -->
+            <div id="wz-end-display" style="display:none;background:var(--mint3);border:1px solid var(--border);border-radius:var(--r-sm);padding:11px 14px;font-size:13.5px;color:var(--forest2);margin-bottom:18px">
+              📅 Campaign ends: <strong id="wz-end-date-label">—</strong>
+            </div>
+
+            <!-- Success state (hidden until Finish) -->
+            <div class="wz-success" id="wz-success">
+              <div style="font-size:52px;margin-bottom:12px">🎉</div>
+              <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:var(--ink);margin-bottom:6px">Your campaign is ready!</div>
+              <div style="font-size:13.5px;color:var(--muted);margin-bottom:20px">Share this link with your community to start collecting contributions.</div>
+              <div class="wz-url-box" id="wz-campaign-url">treeraise.com/c/riverside-pta-spring-2026</div>
+              <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                <button class="btn btn-secondary" onclick="showToast('Campaign link copied to clipboard!')">📋 Copy Link</button>
+                <button class="btn btn-primary" onclick="showPage('page-home', document.querySelector('[onclick*=page-home]'))">Go to Dashboard →</button>
+              </div>
+            </div>
+
+            <!-- Finish button (hidden once success shows) -->
+            <div id="wz-finish-wrap" class="wz-nav">
+              <button class="btn btn-ghost" onclick="goWizard(5)">← Back</button>
+              <button class="btn btn-primary" onclick="finishWizard()">Finish &amp; Generate URL 🚀</button>
+            </div>
+          </div>
+
+        </div><!-- /wizard-wrap -->
+      </div><!-- /content -->
     </div>
 
     <!-- ══════════════════════════════════════════
@@ -1186,12 +1646,110 @@
       </div>
       <div class="content">
         <div class="alert alert-info mb24">📢 You have 1 active campaign. <strong>Spring Tree Drive 2025</strong> is 39% to goal with 29 days remaining.</div>
-        <div class="camp-row">
-          <span class="camp-icon">🌱</span>
-          <div style="flex:1"><div class="camp-name">Spring Tree Drive 2025</div><div class="camp-date">Mar 1 – Apr 15, 2025 · 312 donors</div><div style="margin-top:6px"><div class="prog-track" style="height:5px;max-width:200px"><div class="prog-fill" style="width:39%"></div></div></div></div>
-          <div><div class="camp-raised">$4,820</div><div class="camp-trees">322 trees · 39% of $12,400</div></div>
-          <span class="pill pill-green" style="margin-left:8px">● Live</span>
+
+        <!-- Active live campaign — wrapped in .camp-card for JS targeting -->
+        <div class="camp-card" style="margin-bottom:10px">
+          <div class="camp-row" style="margin-bottom:0;border-radius:var(--r) var(--r) 0 0;border-bottom:none">
+            <span class="camp-icon">🌱</span>
+            <div style="flex:1"><div class="camp-name">Spring Tree Drive 2025</div><div class="camp-date">Mar 1 – Apr 15, 2025 · 312 donors</div><div style="margin-top:6px"><div class="prog-track" style="height:5px;max-width:200px"><div class="prog-fill" style="width:39%"></div></div></div></div>
+            <div><div class="camp-raised">$4,820</div><div class="camp-trees">322 trees · 39% of $12,400</div></div>
+            <span class="pill pill-green" style="margin-left:8px">● Live</span>
+          </div>
+          <!-- Campaign action row -->
+          <div style="display:flex;align-items:center;gap:9px;padding:10px 18px;background:var(--bg2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r)">
+            <button class="btn btn-secondary btn-sm" onclick="showPage('page-campaigns', document.querySelector('[onclick*=campaigns]'))">📊 View Details</button>
+            <button class="btn btn-secondary btn-sm" onclick="showToast('Campaign link copied to clipboard!')">🔗 Share Link</button>
+            <div style="margin-left:auto">
+              <button class="btn btn-danger btn-sm" onclick="closeCampaign(this)">🔒 Close Campaign</button>
+            </div>
+          </div>
+          <!-- Confirmation alert — hidden until Close is triggered -->
+          <div id="close-campaign-alert" class="alert alert-success" style="display:none;margin-top:12px;border-radius:var(--r-sm)">
+            ✅ Campaign closed. Impact report will be ready within 24 hours. Disbursement record created.
+          </div>
         </div>
+
+        <!-- CHANGE-P6: Email Sequence Manager -->
+        <div class="card" style="overflow:hidden;margin-bottom:14px">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;cursor:pointer;background:var(--bg2);border-bottom:1px solid var(--border)" onclick="toggleEmailSeq()">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="font-size:16px">📧</span>
+              <div>
+                <div style="font-weight:600;font-size:14px;color:var(--ink)">Email Sequence — Spring Tree Drive 2025</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:2px">4 automated emails · 1 sent · 2 scheduled · 1 pending</div>
+              </div>
+            </div>
+            <span id="email-seq-chevron" style="font-size:18px;color:var(--muted);transition:transform .2s">▾</span>
+          </div>
+          <div id="email-seq-body">
+            <div style="padding:0 20px">
+
+              <!-- Row 1: Launch Email — Sent -->
+              <div class="comms-row">
+                <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:14px;flex-shrink:0">1</div>
+                <div class="comms-row-left">
+                  <div class="comms-row-title">Launch Email <span style="font-size:11px;color:var(--muted);font-weight:400">· Day 0</span></div>
+                  <div class="comms-row-sub">Our TreeRaise Fundraiser Starts Today</div>
+                </div>
+                <div style="flex-shrink:0"><span class="pill pill-green" style="font-size:10px">✅ Sent Mar 1</span></div>
+                <div class="comms-row-actions">
+                  <button class="btn btn-secondary btn-sm" onclick="showToast('Email preview opened')">Preview</button>
+                </div>
+              </div>
+
+              <!-- Row 2: Mid-Drive — Scheduled -->
+              <div class="comms-row">
+                <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:14px;flex-shrink:0">2</div>
+                <div class="comms-row-left">
+                  <div class="comms-row-title">Mid-Drive <span style="font-size:11px;color:var(--muted);font-weight:400">· Day 15</span></div>
+                  <div class="comms-row-sub">Halfway There — Thank You for Your Support</div>
+                </div>
+                <div style="flex-shrink:0"><span class="pill pill-blue" style="font-size:10px">🕐 Scheduled Mar 16</span></div>
+                <div class="comms-row-actions">
+                  <button class="btn btn-secondary btn-sm" onclick="showToast('Email preview opened')">Preview</button>
+                  <button class="btn btn-secondary btn-sm" onclick="showToast('Email editor opened — customize your message before it sends')">Edit</button>
+                </div>
+              </div>
+
+              <!-- Row 3: Final Push — Scheduled -->
+              <div class="comms-row">
+                <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:14px;flex-shrink:0">3</div>
+                <div class="comms-row-left">
+                  <div class="comms-row-title">Final Push <span style="font-size:11px;color:var(--muted);font-weight:400">· Day 28–29</span></div>
+                  <div class="comms-row-sub">Last Day to Support Our TreeRaise Fundraiser</div>
+                </div>
+                <div style="flex-shrink:0"><span class="pill pill-blue" style="font-size:10px">🕐 Scheduled Mar 29</span></div>
+                <div class="comms-row-actions">
+                  <button class="btn btn-secondary btn-sm" onclick="showToast('Email preview opened')">Preview</button>
+                  <button class="btn btn-secondary btn-sm" onclick="showToast('Email editor opened — customize your message before it sends')">Edit</button>
+                </div>
+              </div>
+
+              <!-- Row 4: Wrap-Up — Pending close -->
+              <div class="comms-row" style="opacity:.6">
+                <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:14px;flex-shrink:0">4</div>
+                <div class="comms-row-left">
+                  <div class="comms-row-title">Wrap-Up <span style="font-size:11px;color:var(--muted);font-weight:400">· Within 24h of close</span></div>
+                  <div class="comms-row-sub">Thank You for Supporting Our TreeRaise Fundraiser</div>
+                </div>
+                <div style="flex-shrink:0"><span class="pill pill-gray" style="font-size:10px">⏸ Pending campaign close</span></div>
+                <div class="comms-row-actions">
+                  <span style="font-size:12px;color:var(--muted)">—</span>
+                </div>
+              </div>
+
+            </div>
+            <div style="padding:11px 20px;background:var(--bg2);border-top:1px solid var(--border2);font-size:12px;color:var(--muted);font-style:italic;line-height:1.8">
+              Templates use merge tags:
+              <code style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{ORG_NAME}</code>
+              <code style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{CAMPAIGN_URL}</code>
+              <code style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{TREE_COUNT}</code>
+              <code style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{TOTAL_RAISED}</code>
+              <code style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{GOAL}</code>
+            </div>
+          </div>
+        </div>
+
         <div class="camp-row">
           <span class="camp-icon">❄️</span>
           <div style="flex:1"><div class="camp-name">Winter Community Drive 2024</div><div class="camp-date">Dec 1 – Dec 31, 2024 · 482 donors</div></div>
@@ -1203,6 +1761,23 @@
           <div style="flex:1"><div class="camp-name">Fall Roots Campaign 2024</div><div class="camp-date">Sep 15 – Oct 31, 2024 · 386 donors</div></div>
           <div><div class="camp-raised">$4,140</div><div class="camp-trees">322 trees planted</div></div>
           <span class="pill pill-gray" style="margin-left:8px">Ended</span>
+        </div>
+
+        <!-- Draft campaign — .camp-card wrapper for JS targeting -->
+        <div class="camp-card" style="margin-bottom:10px">
+          <div class="camp-row" style="margin-bottom:0;border-radius:var(--r) var(--r) 0 0;border-bottom:none">
+            <span class="camp-icon">☀️</span>
+            <div style="flex:1">
+              <div class="camp-name">Summer Tree Drive 2026</div>
+              <div class="camp-date">Goal: $15,000 · Start date TBD</div>
+            </div>
+            <div><div style="font-size:12px;color:var(--muted);text-align:right;font-family:'DM Mono',monospace">Not launched yet</div></div>
+            <span class="pill pill-gray" style="margin-left:8px">⏸ Draft</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:9px;padding:10px 18px;background:var(--bg2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r)">
+            <button class="btn btn-secondary btn-sm" onclick="showToast('Campaign editor opened')">✏️ Edit</button>
+            <button class="btn btn-primary btn-sm" onclick="launchCampaign(this)">🚀 Launch Campaign</button>
+          </div>
         </div>
 
         <!-- Campaign builder callout -->
@@ -2549,6 +3124,173 @@
       thread.appendChild(reply);
       thread.scrollTop = thread.scrollHeight;
     }, 1500);
+  }
+
+  /* ── TOAST ── */
+  function showToast(msg) {
+    const t = document.createElement('div');
+    t.style.cssText = 'position:fixed;bottom:24px;right:24px;background:var(--forest);color:#fff;border-radius:14px;padding:12px 20px;font-size:13.5px;font-weight:500;box-shadow:0 12px 60px rgba(15,45,28,.18);z-index:9999;animation:slideUp .3s ease;font-family:\'Instrument Sans\',sans-serif;max-width:360px;line-height:1.5';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity .4s'; setTimeout(() => t.remove(), 400); }, 3500);
+  }
+
+  /* ── CAMPAIGN LIFECYCLE ── */
+  function closeCampaign(btn) {
+    if (!confirm('Close this campaign? Contributions will be frozen, final totals locked, and an impact report will be generated.')) return;
+    const card = btn.closest('.camp-card');
+    const pill = card.querySelector('.pill-green');
+    if (pill) { pill.textContent = '● Closed'; pill.className = 'pill pill-blue'; }
+    btn.textContent = '✓ Closed';
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    // Show confirmation alert
+    const alert = document.getElementById('close-campaign-alert');
+    if (alert) alert.style.display = 'block';
+    showToast('Campaign closed. Impact report generation triggered. Wrap-up email queued.');
+  }
+
+  function launchCampaign(btn) {
+    const card = btn.closest('.camp-card');
+    const pill = card.querySelector('.pill-gray');
+    if (pill) { pill.textContent = '● Live'; pill.className = 'pill pill-green'; }
+    btn.textContent = '✓ Launched';
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    showToast('🚀 Campaign is now LIVE. Launch email queued for delivery within 60 seconds.');
+  }
+
+  /* ── SETUP WIZARD (CHANGE-P5) ── */
+  let wzCurrentStep = 1;
+  const WZ_TOTAL = 6;
+  let wzDuration = 30; // default 30 days
+
+  function goWizard(step) {
+    // Hide current, deactivate dot
+    document.getElementById('wz-step-' + wzCurrentStep).classList.remove('active');
+    document.getElementById('wz-dot-' + wzCurrentStep).classList.remove('active');
+    document.getElementById('wz-dot-' + wzCurrentStep).classList.add('done');
+    if (wzCurrentStep > 1) {
+      document.getElementById('wz-line-' + (wzCurrentStep - 1)).classList.add('done');
+    }
+
+    // Going back — undo done state
+    if (step < wzCurrentStep) {
+      document.getElementById('wz-dot-' + wzCurrentStep).classList.remove('done');
+      document.getElementById('wz-dot-' + wzCurrentStep).classList.add('pending');
+      if (wzCurrentStep > 1) {
+        document.getElementById('wz-line-' + (wzCurrentStep - 1)).classList.remove('done');
+      }
+    }
+
+    wzCurrentStep = step;
+
+    // Activate new dot
+    const newDot = document.getElementById('wz-dot-' + step);
+    newDot.classList.remove('pending', 'done');
+    newDot.classList.add('active');
+
+    // Show new step
+    document.getElementById('wz-step-' + step).classList.add('active');
+
+    // Update pill
+    const pill = document.getElementById('wz-progress-pill');
+    if (pill) pill.textContent = 'Step ' + step + ' of ' + WZ_TOTAL;
+  }
+
+  function selectWzCard(el, group) {
+    // Deselect all cards in the same step
+    el.closest('.wz-step').querySelectorAll('.wz-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    // Enable the Next button for this step
+    const nextBtn = document.getElementById('wz-' + wzCurrentStep + '-next');
+    if (nextBtn) {
+      nextBtn.disabled = false;
+      nextBtn.style.opacity = '1';
+      nextBtn.style.cursor = 'pointer';
+    }
+  }
+
+  function calcWzGoal() {
+    const raw = parseFloat(document.getElementById('wz-goal-input').value) || 0;
+    const preview = document.getElementById('wz-split-preview');
+    const nextBtn = document.getElementById('wz-4-next');
+    if (raw > 0) {
+      const half = raw / 2;
+      const fmt = v => '$' + Math.round(v).toLocaleString();
+      document.getElementById('wz-org-share').textContent = fmt(half);
+      document.getElementById('wz-tr-share').textContent  = fmt(half);
+      document.getElementById('wz-tree-est').textContent  = Math.floor(raw / 15).toLocaleString();
+      preview.style.display = 'block';
+      if (nextBtn) { nextBtn.disabled = false; nextBtn.style.opacity = '1'; nextBtn.style.cursor = 'pointer'; }
+    } else {
+      preview.style.display = 'none';
+      if (nextBtn) { nextBtn.disabled = true; nextBtn.style.opacity = '.45'; nextBtn.style.cursor = 'not-allowed'; }
+    }
+  }
+
+  function selectWzDuration(days, btn) {
+    wzDuration = days;
+    document.querySelectorAll('.wz-dur-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    calcWzEndDate();
+  }
+
+  function calcWzEndDate() {
+    const startVal = document.getElementById('wz-start-date').value;
+    const display  = document.getElementById('wz-end-display');
+    const label    = document.getElementById('wz-end-date-label');
+    if (!startVal) { display.style.display = 'none'; return; }
+    const end = new Date(startVal + 'T00:00:00');
+    end.setDate(end.getDate() + wzDuration);
+    const fmt = end.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    label.textContent = fmt;
+    display.style.display = 'block';
+  }
+
+  function finishWizard() {
+    // Build URL slug from org name
+    const orgName = (document.getElementById('wz-org-name').value || 'your-org').trim();
+    const slug = orgName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + '-spring-2026';
+    document.getElementById('wz-campaign-url').textContent = 'treeraise.com/c/' + slug;
+    document.getElementById('wz-finish-wrap').style.display = 'none';
+    document.getElementById('wz-success').style.display = 'block';
+    // Mark final dot done
+    document.getElementById('wz-dot-6').classList.remove('active');
+    document.getElementById('wz-dot-6').classList.add('done');
+    document.getElementById('wz-line-5').classList.add('done');
+    showToast('🎉 Campaign created! Your URL is ready to share.');
+  }
+
+  /* ── NOTIFICATIONS (CHANGE-P7) ── */
+  function toggleNotifications() {
+    const d = document.getElementById('notif-dropdown');
+    d.style.display = d.style.display === 'none' ? 'block' : 'none';
+    document.getElementById('notif-badge').style.display = 'none';
+  }
+  function markAllRead(e) {
+    e.preventDefault();
+    document.querySelectorAll('.timeline-item.unread').forEach(el => {
+      el.classList.remove('unread');
+    });
+    showToast('All notifications marked as read');
+  }
+  // Close dropdown on outside click
+  document.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('notif-dropdown');
+    if (!dropdown) return;
+    if (dropdown.style.display === 'block' && !dropdown.contains(e.target) && !e.target.closest('[onclick="toggleNotifications()"]')) {
+      dropdown.style.display = 'none';
+    }
+  });
+
+  /* ── EMAIL SEQUENCE TOGGLE (CHANGE-P6) ── */
+  function toggleEmailSeq() {
+    const body    = document.getElementById('email-seq-body');
+    const chevron = document.getElementById('email-seq-chevron');
+    const isOpen  = body.style.display !== 'none';
+    body.style.display = isOpen ? 'none' : 'block';
+    chevron.style.transform = isOpen ? 'rotate(-90deg)' : 'rotate(0deg)';
   }
 
   /* ── INIT ── */
