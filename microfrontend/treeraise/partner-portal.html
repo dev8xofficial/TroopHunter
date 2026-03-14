@@ -1754,13 +1754,13 @@
           <span class="camp-icon">❄️</span>
           <div style="flex:1"><div class="camp-name">Winter Community Drive 2024</div><div class="camp-date">Dec 1 – Dec 31, 2024 · 482 donors</div></div>
           <div><div class="camp-raised">$8,240</div><div class="camp-trees">825 trees planted</div></div>
-          <span class="pill pill-gray" style="margin-left:8px">Ended</span>
+          <span class="pill pill-gray" style="margin-left:8px">Closed</span>
         </div>
         <div class="camp-row">
           <span class="camp-icon">🍂</span>
           <div style="flex:1"><div class="camp-name">Fall Roots Campaign 2024</div><div class="camp-date">Sep 15 – Oct 31, 2024 · 386 donors</div></div>
           <div><div class="camp-raised">$4,140</div><div class="camp-trees">322 trees planted</div></div>
-          <span class="pill pill-gray" style="margin-left:8px">Ended</span>
+          <span class="pill pill-gray" style="margin-left:8px">Closed</span>
         </div>
 
         <!-- Draft campaign — .camp-card wrapper for JS targeting -->
@@ -1809,7 +1809,7 @@
         <div class="tab-row" id="billing-tabs">
           <button class="tab-btn active" onclick="switchTab('billing-tabs','billing-pane-',0)">🤝 Our Partnership</button>
           <button class="tab-btn" onclick="switchTab('billing-tabs','billing-pane-',1)">🧮 Revenue Calculator</button>
-          <button class="tab-btn" onclick="switchTab('billing-tabs','billing-pane-',2)">🌱 Plan Tiers</button>
+          <button class="tab-btn" onclick="switchTab('billing-tabs','billing-pane-',2)">🏷️ Support Lanes</button>
           <button class="tab-btn" onclick="switchTab('billing-tabs','billing-pane-',3)">🏦 Payout Account</button>
           <button class="tab-btn" onclick="switchTab('billing-tabs','billing-pane-',4)">📄 Invoice History</button>
         </div>
@@ -1841,32 +1841,25 @@
         <div id="billing-pane-1" class="tab-pane">
           <div class="rev-calc">
             <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:4px">Revenue Share Calculator</div>
-            <div style="font-size:13.5px;color:var(--muted);margin-bottom:22px">See exactly how the split works before you commit to anything.</div>
+            <div style="font-size:13.5px;color:var(--muted);margin-bottom:22px">See exactly how the 50/50 split works at any fundraising goal.</div>
             <div class="field"><label>Campaign fundraising goal: <span id="calc-goal-lbl" style="color:var(--forest2)">$10,000</span></label><input type="range" class="calc-slider" id="rev-slider" min="1000" max="100000" step="1000" value="10000" oninput="updateCalc()"></div>
-            <div class="field">
-              <label>Your plan:</label>
-              <div style="display:flex;gap:8px;flex-wrap:wrap">
-                <button onclick="setCalcPlan('starter',this)" class="btn btn-primary btn-sm calc-plan-btn">🌱 Starter (50%)</button>
-                <button onclick="setCalcPlan('growth',this)" class="btn btn-ghost btn-sm calc-plan-btn">🌳 Growth (50%)</button>
-                <button onclick="setCalcPlan('enterprise',this)" class="btn btn-ghost btn-sm calc-plan-btn">⭐ Enterprise (50%)</button>
-              </div>
-            </div>
             <div class="calc-boxes">
               <div class="calc-box"><span class="calc-bv" id="calc-total">$10,000</span><span class="calc-bl">Total Raised</span></div>
               <div class="calc-box highlight"><span class="calc-bv" id="calc-yours">$5,000</span><span class="calc-bl">Your Org Receives</span></div>
               <div class="calc-box"><span class="calc-bv" id="calc-fee">$5,000</span><span class="calc-bl">TreeRaise Share</span></div>
             </div>
-            <div class="alert alert-success" style="margin-top:14px">💡 At <span id="calc-pct-lbl" style="font-weight:700">50%</span> split · Splits at moment of donation · Direct deposit every 7 days</div>
+            <div class="alert alert-success" style="margin-top:14px">💡 Always a <span id="calc-pct-lbl" style="font-weight:700">50/50</span> split · Calculated at moment of each donation · Direct deposit every 7 days · No monthly fees</div>
           </div>
         </div>
 
         <!-- Pane 2: Plans -->
         <div id="billing-pane-2" class="tab-pane">
-          <div style="margin-bottom:14px"><div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:4px">Partnership Tiers</div><div style="font-size:13.5px;color:var(--muted)">Every tier is free to start. You only pay when you raise money.</div></div>
+          <div style="margin-bottom:14px"><div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:4px">Support Lanes</div><div style="font-size:13.5px;color:var(--muted)">Every lane has the same 50/50 split — no monthly fees, ever. Lanes differ only in how much hands-on coaching support you receive.</div></div>
+          <div class="alert alert-info mb24">💡 All lanes include the full platform: unlimited campaigns, Impact Certificates, veritree tracking, Digital Starter Kit, and automated email sequences. Your TreeRaiser Coach assigns your lane based on your organization's size and needs.</div>
           <div class="g3 mb24">
-            <div class="plan-card"><div class="plan-head"><div class="plan-tag">🌱 STARTER</div><div class="plan-price">$0</div><div class="plan-period">per month · Free forever</div></div><div class="plan-body"><div class="plan-fee" style="color:var(--forest2)">50% platform share</div><div class="plan-features">✓ 1 active campaign<br>✓ veritree live counter<br>✓ Basic impact dashboard<br>✓ Standard templates<br><span style="color:var(--muted2)">✗ Impact Certificate PDF<br>✗ PSM support</span></div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: New partners, first campaign</div></div></div>
-            <div class="plan-card featured"><div class="plan-head gold"><div style="position:absolute;top:0;right:0;background:rgba(255,255,255,.2);color:#fff;font-size:9px;font-weight:800;padding:4px 10px;border-radius:0 var(--r-lg) 0 8px;letter-spacing:.06em">POPULAR</div><div class="plan-tag" style="position:relative">🌳 GROWTH</div><div class="plan-price">$49</div><div class="plan-period">per month</div></div><div class="plan-body"><div class="plan-fee" style="color:var(--gold)">50% platform share</div><div class="plan-features">✓ 5 active campaigns<br>✓ Full impact dashboard<br>✓ Impact Certificates<br>✓ White-label emails<br>✓ Priority support</div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: Growing organizations</div></div></div>
-            <div class="plan-card"><div class="plan-head" style="background:linear-gradient(135deg,#1a1a2e,#16213e)"><div class="plan-tag">⭐ ENTERPRISE</div><div class="plan-price">$149</div><div class="plan-period">per month</div></div><div class="plan-body"><div class="plan-fee" style="color:#6366f1">50% platform share</div><div class="plan-features">✓ Unlimited campaigns<br>✓ Dedicated account mgr<br>✓ Custom integrations<br>✓ Priority payouts<br>✓ Advanced analytics</div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: Large nonprofits, schools</div></div></div>
+            <div class="plan-card"><div class="plan-head"><div class="plan-tag">🟢 LANE 1</div><div class="plan-price">$0</div><div class="plan-period">upfront, ever · 50/50 split only</div></div><div class="plan-body"><div class="plan-fee" style="color:var(--forest2)">Self-Serve</div><div class="plan-features">✓ Full platform access<br>✓ Setup checklist &amp; help center<br>✓ Automated email sequences<br>✓ Digital Starter Kit<br>✓ veritree impact tracking<br>✓ Impact Certificates</div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: Organizations comfortable launching independently. Most partners are live in under 15 min.</div></div></div>
+            <div class="plan-card featured"><div class="plan-head gold"><div style="position:absolute;top:0;right:0;background:rgba(255,255,255,.2);color:#fff;font-size:9px;font-weight:800;padding:4px 10px;border-radius:0 var(--r-lg) 0 8px;letter-spacing:.06em">MOST COMMON</div><div class="plan-tag" style="position:relative">🟡 LANE 2</div><div class="plan-price">$0</div><div class="plan-period">upfront, ever · 50/50 split only</div></div><div class="plan-body"><div class="plan-fee" style="color:var(--gold)">Assisted Launch</div><div class="plan-features">✓ Everything in Lane 1<br>✓ 20-min kickoff call with your TreeRaiser Coach<br>✓ Mid-drive check-in<br>✓ Coach available throughout campaign</div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: Organizations running their first campaign or wanting a guided launch.</div></div></div>
+            <div class="plan-card"><div class="plan-head" style="background:linear-gradient(135deg,var(--forest),var(--forest2))"><div class="plan-tag">🔴 LANE 3</div><div class="plan-price">$0</div><div class="plan-period">upfront, ever · 50/50 split only</div></div><div class="plan-body"><div class="plan-fee" style="color:var(--mint)">White Glove</div><div class="plan-features">✓ Everything in Lane 2<br>✓ Dedicated TreeRaiser Coach<br>✓ Full campaign setup support<br>✓ First-week monitoring<br>✓ Priority response throughout</div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: Large organizations, denomination networks, or school districts running high-volume campaigns.</div></div></div>
           </div>
         </div>
 
@@ -2452,7 +2445,7 @@
           <div>
             <div class="ph-label">Partner Support</div>
             <div class="ph-title">Support &amp; Messages</div>
-            <div class="ph-sub">Get help, message your Partner Success Manager, or schedule a call</div>
+            <div class="ph-sub">Get help, message your TreeRaiser Coach, or schedule a call</div>
           </div>
           <div class="ph-actions">
             <span class="pill pill-green">Avg. response: 4 hours</span>
@@ -2476,7 +2469,7 @@
                 onmouseover="this.style.borderColor='var(--forest3)';this.style.transform='translateY(-2px)'"
                 onmouseout="this.style.borderColor='var(--border)';this.style.transform=''">
                 <div style="font-size:28px;margin-bottom:8px">💬</div>
-                <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px">Message PSM</div>
+                <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px">Message Coach</div>
                 <div style="font-size:12px;color:var(--muted)">Send an async message. Response within 4 hours.</div>
               </div>
               <div
@@ -2485,7 +2478,7 @@
                 onmouseout="this.style.borderColor='var(--border)';this.style.transform=''">
                 <div style="font-size:28px;margin-bottom:8px">📞</div>
                 <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px">Book a Call</div>
-                <div style="font-size:12px;color:var(--muted)">Schedule a 20-min call with your PSM</div>
+                <div style="font-size:12px;color:var(--muted)">Schedule a 20-min call with your TreeRaiser Coach</div>
               </div>
             </div>
 
@@ -2498,7 +2491,7 @@
                   style="width:32px;height:32px;border-radius:99px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff">
                   TR</div>
                 <div>
-                  <div style="font-size:13px;font-weight:700;color:#fff">TreeRaise Partner Success</div>
+                  <div style="font-size:13px;font-weight:700;color:#fff">TreeRaise TreeRaiser Coach</div>
                   <div style="font-size:11px;color:rgba(255,255,255,.5)">Usually responds within 4 hours</div>
                 </div>
                 <div
@@ -2516,10 +2509,10 @@
                     <div
                       style="background:var(--bg2);border-radius:0 12px 12px 12px;padding:12px 16px;max-width:360px">
                       <div style="font-size:13px;color:var(--ink2);line-height:1.5">👋 Welcome to TreeRaise, Riverside
-                        Elementary PTA! I'm your Partner Success contact. Your portal is live and you're on track. Let
+                        Elementary PTA! I'm your assigned TreeRaiser Coach. Your portal is live and you're on track. Let
                         me know if you need any help with your first campaign setup.</div>
                     </div>
-                    <div style="font-size:11px;color:var(--muted);margin-top:4px;padding-left:4px">TreeRaise PSM · Just
+                    <div style="font-size:11px;color:var(--muted);margin-top:4px;padding-left:4px">TreeRaiser Coach · Just
                       now</div>
                   </div>
                 </div>
@@ -2553,13 +2546,13 @@
                 <div class="lane-card">
                   <div class="lane-num">2</div>
                   <div class="lane-title">Assisted Launch</div>
-                  <div class="lane-desc">One 20-min kickoff call with a Partner Success Manager to review your first
+                  <div class="lane-desc">One 20-min kickoff call with your TreeRaiser Coach to review your first
                     campaign.</div>
                 </div>
                 <div class="lane-card">
                   <div class="lane-num">3</div>
                   <div class="lane-title">White Glove</div>
-                  <div class="lane-desc">Dedicated Partner Success Manager. Full campaign setup and first-week
+                  <div class="lane-desc">Dedicated TreeRaiser Coach. Full campaign setup and first-week
                     monitoring included.</div>
                 </div>
               </div>
@@ -2848,16 +2841,9 @@
     document.getElementById('calc-total').textContent = '$' + val.toLocaleString();
     document.getElementById('calc-yours').textContent = '$' + Math.round(yours).toLocaleString();
     document.getElementById('calc-fee').textContent = '$' + Math.round(fee).toLocaleString();
-    document.getElementById('calc-pct-lbl').textContent = Math.round(calcPct * 100) + '%';
+    document.getElementById('calc-pct-lbl').textContent = '50/50';
   }
 
-  function setCalcPlan(plan, btn) {
-    calcPct = 0.50;
-    document.querySelectorAll('.calc-plan-btn').forEach(b => {
-      b.className = b === btn ? 'btn btn-primary btn-sm calc-plan-btn' : 'btn btn-ghost btn-sm calc-plan-btn';
-    });
-    updateCalc();
-  }
 
   /* ── TEAM ── */
   function changeRole(sel, name) {
@@ -3119,7 +3105,7 @@
           <div style="background:var(--bg2);border-radius:0 12px 12px 12px;padding:12px 16px;max-width:360px;border:1px solid var(--border)">
             <div style="font-size:13px;color:var(--ink2);line-height:1.5">Thanks for reaching out! I'll look into this and get back to you within 4 hours. 🌿</div>
           </div>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px;padding-left:4px">TreeRaise PSM · Just now</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;padding-left:4px">TreeRaiser Coach · Just now</div>
         </div>`;
       thread.appendChild(reply);
       thread.scrollTop = thread.scrollHeight;
