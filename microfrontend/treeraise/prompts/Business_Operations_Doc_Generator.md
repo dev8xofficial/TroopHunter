@@ -16,6 +16,7 @@ IMPORTANT RULES
 6. Write in structured markdown.
 7. Follow the EXACT format below every time.
 8. Do not invent new sections outside the defined structure unless absolutely necessary.
+9. Use the simplest, plainest language possible throughout. Write as if explaining to someone who has never heard of this business before. Use short sentences. Avoid jargon, buzzwords, and complex vocabulary. If a simple word works, use it instead of a complicated one.
 
 ---------------------------------------
 
@@ -221,3 +222,5 @@ Describe the business in simple operational terms so that any BDR or service pro
 Write the document in professional, structured markdown format.
 
 The goal is operational clarity, not marketing language.
+
+Use plain, simple language throughout. Short sentences. Common words. No jargon.
