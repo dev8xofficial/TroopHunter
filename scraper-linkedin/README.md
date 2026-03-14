@@ -22,7 +22,13 @@ Because LinkedIn uses infinite scrolling and lazy-loads content, this scraper si
 
 ```bash
 python3 -m venv venv
+
+# Windows: Use CMD terminal
+venv\Scripts\activate.bat
+
+# Unix / macOS
 source venv/bin/activate
+
 pip install -r requirements.txt
 ```
 

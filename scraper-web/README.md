@@ -38,8 +38,8 @@ From the project root:
 ```bash
 python3 -m venv venv
 
-# Windows
-venv\Scripts\activate
+# Windows: Use CMD terminal
+venv\Scripts\activate.bat
 
 # Unix / macOS
 source venv/bin/activate
@@ -94,7 +94,7 @@ Examples:
 python3 main.py "https://example.com" --max-pages 10 --concurrent-tabs 5 --headless
 
 # Scrape up to 15 pages with a visible browser window
-python3 main.py "https://example.com" --max-pages 15 --concurrent-tabs 5 --no-headless
+python main.py "https://treeraise.com/" --max-pages 15 --concurrent-tabs 5 --no-headless
 ```
 
 ## Usage (Web page)
