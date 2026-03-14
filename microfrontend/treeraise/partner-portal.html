@@ -1249,17 +1249,17 @@
             </div>
           </div>
           <div class="split-cards mb24">
-            <div class="split-card"><span class="split-pct">92%</span><span class="split-lbl">Goes to your org</span><span class="split-sub">Starter plan · $10k raised</span></div>
-            <div class="split-card"><span class="split-pct">8%</span><span class="split-lbl">TreeRaise platform fee</span><span class="split-sub">Only when you raise funds</span></div>
+            <div class="split-card"><span class="split-pct">50%</span><span class="split-lbl">Goes to your org</span><span class="split-sub">50/50 split · $10k raised</span></div>
+            <div class="split-card"><span class="split-pct">50%</span><span class="split-lbl">TreeRaise share</span><span class="split-sub">Only when you raise funds</span></div>
             <div class="split-card"><span class="split-pct">$0</span><span class="split-lbl">Upfront cost, ever</span><span class="split-sub">Free to start · Free to try</span></div>
           </div>
           <div class="g2 mb24">
             <div class="card card-p"><div style="font-size:22px;margin-bottom:10px">🏦</div><div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:6px">You get paid first</div><div style="font-size:13px;color:var(--muted);line-height:1.7">When a donor gives, funds are collected and split instantly. Your share deposits to your bank every 7 days.</div></div>
             <div class="card card-p"><div style="font-size:22px;margin-bottom:10px">📊</div><div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:6px">Complete transparency</div><div style="font-size:13px;color:var(--muted);line-height:1.7">Every fee deduction is itemized. You'll always know exactly what TreeRaise earned and what your org received.</div></div>
-            <div class="card card-p"><div style="font-size:22px;margin-bottom:10px">📉</div><div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:6px">The more you grow, the less we take</div><div style="font-size:13px;color:var(--muted);line-height:1.7">Fee drops from 8% → 5% → 3% as your organization scales. Our incentive is your success.</div></div>
+            <div class="card card-p"><div style="font-size:22px;margin-bottom:10px">🤝</div><div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:6px">A true 50/50 partnership</div><div style="font-size:13px;color:var(--muted);line-height:1.7">Every dollar raised is split equally — 50% goes directly to your organization, 50% to TreeRaise. No hidden fees. Our success is entirely tied to yours.</div></div>
             <div class="card card-p"><div style="font-size:22px;margin-bottom:10px">❌</div><div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:6px">No surprise charges. Ever.</div><div style="font-size:13px;color:var(--muted);line-height:1.7">No monthly minimums, no platform maintenance fees, no penalties for low-activity months.</div></div>
           </div>
-          <div class="card card-p"><div style="display:flex;gap:14px;align-items:flex-start"><span style="font-size:26px">💬</span><div><div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">A note from the TreeRaise team</div><div style="font-size:13px;color:var(--muted);line-height:1.7;font-style:italic">"We designed revenue share because we believe fundraising platforms should be partners, not vendors. When you run a $50,000 campaign, we earn $4,000 and you keep $46,000. We think that's fair — and you should always know exactly what you're paying and why."</div></div></div></div>
+          <div class="card card-p"><div style="display:flex;gap:14px;align-items:flex-start"><span style="font-size:26px">💬</span><div><div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">A note from the TreeRaise team</div><div style="font-size:13px;color:var(--muted);line-height:1.7;font-style:italic">"We designed revenue share because we believe fundraising platforms should be partners, not vendors. When you run a $50,000 campaign, we earn $25,000 and you keep $25,000. We think that's fair — and you should always know exactly what you're paying and why."</div></div></div></div>
         </div>
 
         <!-- Pane 1: Calculator -->
@@ -1271,17 +1271,17 @@
             <div class="field">
               <label>Your plan:</label>
               <div style="display:flex;gap:8px;flex-wrap:wrap">
-                <button onclick="setCalcPlan('starter',this)" class="btn btn-primary btn-sm calc-plan-btn">🌱 Starter (8%)</button>
-                <button onclick="setCalcPlan('growth',this)" class="btn btn-ghost btn-sm calc-plan-btn">🌳 Growth (5%)</button>
-                <button onclick="setCalcPlan('enterprise',this)" class="btn btn-ghost btn-sm calc-plan-btn">⭐ Enterprise (3%)</button>
+                <button onclick="setCalcPlan('starter',this)" class="btn btn-primary btn-sm calc-plan-btn">🌱 Starter (50%)</button>
+                <button onclick="setCalcPlan('growth',this)" class="btn btn-ghost btn-sm calc-plan-btn">🌳 Growth (50%)</button>
+                <button onclick="setCalcPlan('enterprise',this)" class="btn btn-ghost btn-sm calc-plan-btn">⭐ Enterprise (50%)</button>
               </div>
             </div>
             <div class="calc-boxes">
               <div class="calc-box"><span class="calc-bv" id="calc-total">$10,000</span><span class="calc-bl">Total Raised</span></div>
-              <div class="calc-box highlight"><span class="calc-bv" id="calc-yours">$9,200</span><span class="calc-bl">Your Org Receives</span></div>
-              <div class="calc-box"><span class="calc-bv" id="calc-fee">$800</span><span class="calc-bl">TreeRaise Fee</span></div>
+              <div class="calc-box highlight"><span class="calc-bv" id="calc-yours">$5,000</span><span class="calc-bl">Your Org Receives</span></div>
+              <div class="calc-box"><span class="calc-bv" id="calc-fee">$5,000</span><span class="calc-bl">TreeRaise Share</span></div>
             </div>
-            <div class="alert alert-success" style="margin-top:14px">💡 At <span id="calc-pct-lbl" style="font-weight:700">8%</span> fee · Splits at moment of donation · Direct deposit every 7 days</div>
+            <div class="alert alert-success" style="margin-top:14px">💡 At <span id="calc-pct-lbl" style="font-weight:700">50%</span> split · Splits at moment of donation · Direct deposit every 7 days</div>
           </div>
         </div>
 
@@ -1289,9 +1289,9 @@
         <div id="billing-pane-2" class="tab-pane">
           <div style="margin-bottom:14px"><div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:4px">Partnership Tiers</div><div style="font-size:13.5px;color:var(--muted)">Every tier is free to start. You only pay when you raise money.</div></div>
           <div class="g3 mb24">
-            <div class="plan-card"><div class="plan-head"><div class="plan-tag">🌱 STARTER</div><div class="plan-price">$0</div><div class="plan-period">per month · Free forever</div></div><div class="plan-body"><div class="plan-fee" style="color:var(--forest2)">8% platform fee</div><div class="plan-features">✓ 1 active campaign<br>✓ veritree live counter<br>✓ Basic impact dashboard<br>✓ Standard templates<br><span style="color:var(--muted2)">✗ Impact Certificate PDF<br>✗ PSM support</span></div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: New partners, first campaign</div></div></div>
-            <div class="plan-card featured"><div class="plan-head gold"><div style="position:absolute;top:0;right:0;background:rgba(255,255,255,.2);color:#fff;font-size:9px;font-weight:800;padding:4px 10px;border-radius:0 var(--r-lg) 0 8px;letter-spacing:.06em">POPULAR</div><div class="plan-tag" style="position:relative">🌳 GROWTH</div><div class="plan-price">$49</div><div class="plan-period">per month</div></div><div class="plan-body"><div class="plan-fee" style="color:var(--gold)">5% platform fee</div><div class="plan-features">✓ 5 active campaigns<br>✓ Full impact dashboard<br>✓ Impact Certificates<br>✓ White-label emails<br>✓ Priority support</div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: Growing organizations</div></div></div>
-            <div class="plan-card"><div class="plan-head" style="background:linear-gradient(135deg,#1a1a2e,#16213e)"><div class="plan-tag">⭐ ENTERPRISE</div><div class="plan-price">$149</div><div class="plan-period">per month</div></div><div class="plan-body"><div class="plan-fee" style="color:#6366f1">3% platform fee</div><div class="plan-features">✓ Unlimited campaigns<br>✓ Dedicated account mgr<br>✓ Custom integrations<br>✓ Priority payouts<br>✓ Advanced analytics</div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: Large nonprofits, schools</div></div></div>
+            <div class="plan-card"><div class="plan-head"><div class="plan-tag">🌱 STARTER</div><div class="plan-price">$0</div><div class="plan-period">per month · Free forever</div></div><div class="plan-body"><div class="plan-fee" style="color:var(--forest2)">50% platform share</div><div class="plan-features">✓ 1 active campaign<br>✓ veritree live counter<br>✓ Basic impact dashboard<br>✓ Standard templates<br><span style="color:var(--muted2)">✗ Impact Certificate PDF<br>✗ PSM support</span></div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: New partners, first campaign</div></div></div>
+            <div class="plan-card featured"><div class="plan-head gold"><div style="position:absolute;top:0;right:0;background:rgba(255,255,255,.2);color:#fff;font-size:9px;font-weight:800;padding:4px 10px;border-radius:0 var(--r-lg) 0 8px;letter-spacing:.06em">POPULAR</div><div class="plan-tag" style="position:relative">🌳 GROWTH</div><div class="plan-price">$49</div><div class="plan-period">per month</div></div><div class="plan-body"><div class="plan-fee" style="color:var(--gold)">50% platform share</div><div class="plan-features">✓ 5 active campaigns<br>✓ Full impact dashboard<br>✓ Impact Certificates<br>✓ White-label emails<br>✓ Priority support</div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: Growing organizations</div></div></div>
+            <div class="plan-card"><div class="plan-head" style="background:linear-gradient(135deg,#1a1a2e,#16213e)"><div class="plan-tag">⭐ ENTERPRISE</div><div class="plan-price">$149</div><div class="plan-period">per month</div></div><div class="plan-body"><div class="plan-fee" style="color:#6366f1">50% platform share</div><div class="plan-features">✓ Unlimited campaigns<br>✓ Dedicated account mgr<br>✓ Custom integrations<br>✓ Priority payouts<br>✓ Advanced analytics</div><div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Best for: Large nonprofits, schools</div></div></div>
           </div>
         </div>
 
@@ -1323,17 +1323,17 @@
             <!-- Next payout -->
             <div class="card card-p">
               <div class="sec-head mb14"><div class="sec-title">Next Payout</div><span class="pill pill-gold">Scheduled</span></div>
-              <div style="font-family:'Fraunces',serif;font-size:34px;color:var(--forest2);font-weight:700;line-height:1;margin-bottom:4px">$4,434.00</div>
+              <div style="font-family:'Fraunces',serif;font-size:34px;color:var(--forest2);font-weight:700;line-height:1;margin-bottom:4px">$2,410.00</div>
               <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Deposits Mar 22, 2025 · Chase ···· 4821</div>
               <div style="background:var(--bg2);border-radius:var(--r-sm);padding:12px;border:1px solid var(--border);margin-bottom:12px">
                 <div style="display:flex;justify-content:space-between;font-size:13px;padding-bottom:7px;border-bottom:1px solid var(--border);margin-bottom:7px">
                   <span style="color:var(--muted)">Spring Tree Drive 2025</span><span style="font-weight:600">$4,820</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;font-size:13px;padding-bottom:7px;border-bottom:1px solid var(--border);margin-bottom:7px">
-                  <span style="color:var(--muted)">Platform fee (8%)</span><span style="color:var(--red)">− $386</span>
+                  <span style="color:var(--muted)">TreeRaise share (50%)</span><span style="color:var(--red)">− $2,410</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:700">
-                  <span>Your deposit</span><span style="color:var(--forest2)">$4,434</span>
+                  <span>Your deposit</span><span style="color:var(--forest2)">$2,410</span>
                 </div>
               </div>
               <div style="font-size:12px;color:var(--muted)">Payouts process every 7 days automatically.</div>
@@ -1468,11 +1468,11 @@
           <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:20px">Invoice History</div>
           <div class="card" style="overflow:hidden">
             <table class="data-table">
-              <thead><tr><th>Date</th><th>Campaign</th><th>Total Raised</th><th>Your Share</th><th>TR Fee</th><th>Status</th></tr></thead>
+              <thead><tr><th>Date</th><th>Campaign</th><th>Total Raised</th><th>Your Share</th><th>TR Share</th><th>Status</th></tr></thead>
               <tbody>
-                <tr><td style="font-family:'DM Mono',monospace;font-size:12px">Mar 2025</td><td>Spring Tree Drive 2025</td><td>$4,820</td><td style="font-weight:700;color:var(--forest2)">$4,434</td><td>$386</td><td><span class="pill pill-gold">Pending</span></td></tr>
-                <tr><td style="font-family:'DM Mono',monospace;font-size:12px">Dec 2024</td><td>Winter Community Drive</td><td>$8,240</td><td style="font-weight:700;color:var(--forest2)">$7,581</td><td>$659</td><td><span class="pill pill-green">Paid</span></td></tr>
-                <tr><td style="font-family:'DM Mono',monospace;font-size:12px">Oct 2024</td><td>Fall Roots Campaign</td><td>$4,140</td><td style="font-weight:700;color:var(--forest2)">$3,809</td><td>$331</td><td><span class="pill pill-green">Paid</span></td></tr>
+                <tr><td style="font-family:'DM Mono',monospace;font-size:12px">Mar 2025</td><td>Spring Tree Drive 2025</td><td>$4,820</td><td style="font-weight:700;color:var(--forest2)">$2,410</td><td>$2,410</td><td><span class="pill pill-gold">Pending</span></td></tr>
+                <tr><td style="font-family:'DM Mono',monospace;font-size:12px">Dec 2024</td><td>Winter Community Drive</td><td>$8,240</td><td style="font-weight:700;color:var(--forest2)">$4,120</td><td>$4,120</td><td><span class="pill pill-green">Paid</span></td></tr>
+                <tr><td style="font-family:'DM Mono',monospace;font-size:12px">Oct 2024</td><td>Fall Roots Campaign</td><td>$4,140</td><td style="font-weight:700;color:var(--forest2)">$2,070</td><td>$2,070</td><td><span class="pill pill-green">Paid</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -2206,7 +2206,7 @@
   }
 
   /* ── FUNNEL ── */
-  let orgType = null, scaleData = null, calcPct = 0.08;
+  let orgType = null, scaleData = null, calcPct = 0.50;
 
   function selectOrg(el, type) {
     document.querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
@@ -2277,7 +2277,7 @@
   }
 
   function setCalcPlan(plan, btn) {
-    calcPct = plan === 'starter' ? 0.08 : plan === 'growth' ? 0.05 : 0.03;
+    calcPct = 0.50;
     document.querySelectorAll('.calc-plan-btn').forEach(b => {
       b.className = b === btn ? 'btn btn-primary btn-sm calc-plan-btn' : 'btn btn-ghost btn-sm calc-plan-btn';
     });

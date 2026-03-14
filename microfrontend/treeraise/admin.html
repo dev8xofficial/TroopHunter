@@ -555,6 +555,30 @@
     .broadcast-input:focus { border-color: var(--forest3); background: #fff; }
     .field-label { font-size: 12px; font-weight: 600; color: var(--ink2); margin-bottom: 5px; display: block; letter-spacing: .01em; }
 
+    /* ══ USER ROWS ══ */
+    .user-row {
+      display: grid;
+      grid-template-columns: 2fr 1.4fr 1fr 1fr 1fr 210px;
+      padding: 13px 16px; align-items: center;
+      border-bottom: 1px solid var(--border2);
+      transition: background .12s;
+    }
+    .user-row:last-child { border-bottom: none; }
+    .user-row:hover { background: var(--bg2); }
+    .user-name { font-weight: 600; font-size: 13.5px; color: var(--ink); }
+    .user-email { font-size: 11px; color: var(--muted); margin-top: 2px; font-family: 'DM Mono', monospace; }
+    .role-select {
+      -webkit-appearance: none; appearance: none;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 99px; padding: 3px 10px;
+      font-size: 11px; font-weight: 700;
+      font-family: 'DM Mono', monospace;
+      color: var(--forest2); cursor: pointer; outline: none;
+      transition: border-color .15s;
+    }
+    .role-select:focus { border-color: var(--forest3); background: var(--white); }
+    .user-actions { display: flex; gap: 5px; align-items: center; }
+
     /* ══ TOAST ══ */
     .toast {
       position: fixed; bottom: 24px; right: 24px;
@@ -607,6 +631,9 @@
     <div class="nav-item" onclick="showPanel('pending',this)">
       <span class="nav-icon">⏳</span> Pending Approvals
       <span class="nav-badge gold">5</span>
+    </div>
+    <div class="nav-item" onclick="showPanel('users', this)">
+      <span class="nav-icon">👥</span> User Management
     </div>
 
     <div class="sidebar-section">Finance</div>
@@ -689,8 +716,8 @@
           </div>
           <div class="kpi-card">
             <span class="kpi-icon">⚙️</span>
-            <div class="kpi-val">$38.9k</div>
-            <div class="kpi-label">TreeRaise Revenue (8%)</div>
+            <div class="kpi-val">$243k</div>
+            <div class="kpi-label">TreeRaise Revenue (50%)</div>
             <div class="kpi-trend up">↑ +$6.5k vs Feb</div>
           </div>
         </div>
@@ -994,24 +1021,24 @@
             <div class="kpi-label">Organization</div>
             <div class="kpi-label">Status</div>
             <div class="kpi-label">Total Raised</div>
-            <div class="kpi-label">TR Fee</div>
+            <div class="kpi-label">TR Share</div>
             <div class="kpi-label">Lane</div>
             <div class="kpi-label"></div>
           </div>
           <div id="orgs-table">
-            <div class="org-row" data-status="live" onclick="openOrgModal('Greenwood Elementary','$51,200','$4,096','4,120','Sarah Johnson','sarah@greenwood.edu','47-2819345','Aug 14, 2025','Lane 2','Fully Verified','live')">
+            <div class="org-row" data-status="live" onclick="openOrgModal('Greenwood Elementary','$51,200','$25,600','4,120','Sarah Johnson','sarah@greenwood.edu','47-2819345','Aug 14, 2025','Lane 2','Fully Verified','live')">
               <div><div class="org-name">🏫 Greenwood Elementary</div><div class="org-sub">School · Joined Aug 2025</div></div>
               <div class="org-meta text"><span class="pill pill-green">● Live</span></div>
               <div class="org-meta">$51,200</div>
-              <div class="org-meta">$4,096</div>
+              <div class="org-meta">$25,600</div>
               <div class="org-meta text">Lane 2</div>
-              <div><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openOrgModal('Greenwood Elementary','$51,200','$4,096','4,120','Sarah Johnson','sarah@greenwood.edu','47-2819345','Aug 14, 2025','Lane 2','Fully Verified','live')">View</button></div>
+              <div><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openOrgModal('Greenwood Elementary','$51,200','$25,600','4,120','Sarah Johnson','sarah@greenwood.edu','47-2819345','Aug 14, 2025','Lane 2','Fully Verified','live')">View</button></div>
             </div>
-            <div class="org-row" data-status="live" onclick="openOrgModal('Riverside K-8','$41,800','$3,344','3,344','Admin User','admin@riverside.edu','29-4710234','Sep 3, 2025','Lane 2','Fully Verified','live')">
+            <div class="org-row" data-status="live" onclick="openOrgModal('Riverside K-8','$41,800','$20,900','3,344','Admin User','admin@riverside.edu','29-4710234','Sep 3, 2025','Lane 2','Fully Verified','live')">
               <div><div class="org-name">🏫 Riverside K-8</div><div class="org-sub">School · Joined Sep 2025</div></div>
               <div class="org-meta text"><span class="pill pill-green">● Live</span></div>
               <div class="org-meta">$41,800</div>
-              <div class="org-meta">$3,344</div>
+              <div class="org-meta">$20,900</div>
               <div class="org-meta text">Lane 2</div>
               <div><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation()">View</button></div>
             </div>
@@ -1019,7 +1046,7 @@
               <div><div class="org-name">⛪ Hope Community Church</div><div class="org-sub">Church · Joined Oct 2025</div></div>
               <div class="org-meta text"><span class="pill pill-green">● Live</span></div>
               <div class="org-meta">$34,200</div>
-              <div class="org-meta">$2,736</div>
+              <div class="org-meta">$17,100</div>
               <div class="org-meta text">Lane 3</div>
               <div><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation()">View</button></div>
             </div>
@@ -1027,7 +1054,7 @@
               <div><div class="org-name">🏫 Sunrise High Booster Club</div><div class="org-sub">School · Joined Nov 2025</div></div>
               <div class="org-meta text"><span class="pill pill-green">● Live</span></div>
               <div class="org-meta">$26,100</div>
-              <div class="org-meta">$2,088</div>
+              <div class="org-meta">$13,050</div>
               <div class="org-meta text">Lane 1</div>
               <div><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation()">View</button></div>
             </div>
@@ -1035,7 +1062,7 @@
               <div><div class="org-name">⚽ Westside Soccer League</div><div class="org-sub">Civic · Joined Dec 2025</div></div>
               <div class="org-meta text"><span class="pill pill-green">● Live</span></div>
               <div class="org-meta">$19,400</div>
-              <div class="org-meta">$1,552</div>
+              <div class="org-meta">$9,700</div>
               <div class="org-meta text">Lane 1</div>
               <div><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation()">View</button></div>
             </div>
@@ -1043,7 +1070,7 @@
               <div><div class="org-name">⛪ St. Michael's Church <span class="badge badge-red">🚩 Fraud</span></div><div class="org-sub">Church · Joined Jan 2026 · $8,400 raised</div></div>
               <div class="org-meta text"><span class="pill pill-red">🚩 Review</span></div>
               <div class="org-meta">$8,400</div>
-              <div class="org-meta">$672</div>
+              <div class="org-meta">$4,200</div>
               <div class="org-meta text">Lane 1</div>
               <div><button class="btn btn-danger btn-sm" onclick="event.stopPropagation();showPanel('flags',document.querySelectorAll('.nav-item')[7])">Review</button></div>
             </div>
@@ -1067,7 +1094,7 @@
               <div><div class="org-name">🏫 Maplewood PTA <span class="badge badge-gold">⚠️ KYC</span></div><div class="org-sub">School · Joined Oct 2025 · KYC failed</div></div>
               <div class="org-meta text"><span class="pill pill-gray">⏸ Paused</span></div>
               <div class="org-meta">$12,300</div>
-              <div class="org-meta">$984</div>
+              <div class="org-meta">$6,150</div>
               <div class="org-meta text">Lane 2</div>
               <div><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation()">Review</button></div>
             </div>
@@ -1092,7 +1119,7 @@
         </div>
         <div class="modal-stats">
           <div class="modal-stat"><div class="modal-stat-label">Total Raised</div><div class="modal-stat-val" id="org-stat-raised">$51,200</div></div>
-          <div class="modal-stat"><div class="modal-stat-label">TreeRaise Fee (8%)</div><div class="modal-stat-val" id="org-stat-fee">$4,096</div></div>
+          <div class="modal-stat"><div class="modal-stat-label">TreeRaise Share (50%)</div><div class="modal-stat-val" id="org-stat-fee">$25,600</div></div>
           <div class="modal-stat"><div class="modal-stat-label">Trees Planted</div><div class="modal-stat-val" id="org-stat-trees">4,120</div></div>
           <div class="modal-stat"><div class="modal-stat-label">Active Campaigns</div><div class="modal-stat-val">2</div></div>
         </div>
@@ -1209,6 +1236,217 @@
     </div><!-- /pending -->
 
     <!-- ════════════════════════════
+         PANEL: USER MANAGEMENT
+    ════════════════════════════ -->
+    <div class="panel" id="panel-users">
+      <div class="page-header">
+        <div class="page-header-inner">
+          <div>
+            <div class="ph-label">Admin · Organizations</div>
+            <div class="ph-title">User Management</div>
+            <div class="ph-sub">All organizer accounts · Search, manage roles, deactivate</div>
+          </div>
+          <div class="ph-actions">
+            <div class="search-box">
+              <span style="color:var(--muted);font-size:13px">🔍</span>
+              <input type="text" placeholder="Search by email or org…" oninput="searchUsers(this.value)">
+            </div>
+            <button class="btn btn-primary" onclick="showToast('✉️ Invite sent — user will receive an email to create their account')">+ Invite User</button>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+
+        <!-- Filter chips -->
+        <div class="filter-chips mb16" id="users-filter-chips">
+          <span class="chip active" onclick="filterUsers('all',this)">All (52)</span>
+          <span class="chip" onclick="filterUsers('active',this)">🟢 Active (44)</span>
+          <span class="chip" onclick="filterUsers('deactivated',this)">⏸ Deactivated (5)</span>
+          <span class="chip" onclick="filterUsers('unverified',this)">⏳ Pending Verification (3)</span>
+        </div>
+
+        <!-- Users table -->
+        <div class="card" style="overflow:hidden">
+
+          <!-- Column headers -->
+          <div style="display:grid;grid-template-columns:2fr 1.4fr 1fr 1fr 1fr 210px;padding:10px 16px;background:var(--bg2);border-bottom:1.5px solid var(--border)">
+            <div class="kpi-label">User</div>
+            <div class="kpi-label">Organization</div>
+            <div class="kpi-label">Role</div>
+            <div class="kpi-label">Status</div>
+            <div class="kpi-label">Joined</div>
+            <div class="kpi-label">Actions</div>
+          </div>
+
+          <!-- User rows -->
+          <div id="users-table">
+
+            <!-- Row 1 -->
+            <div class="user-row" data-ustatus="active">
+              <div>
+                <div class="user-name">Sarah Johnson</div>
+                <div class="user-email">sarah@greenwood.edu</div>
+              </div>
+              <div style="font-size:13px;color:var(--ink2)">🏫 Greenwood Elementary</div>
+              <div>
+                <select class="role-select" onchange="updateUserRole(this,'Sarah Johnson')">
+                  <option selected>Organizer</option>
+                  <option>Coach</option>
+                  <option>Admin</option>
+                </select>
+              </div>
+              <div><span class="pill pill-green" id="ustatus-1">● Active</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">Aug 14, 2025</div>
+              <div class="user-actions">
+                <button class="btn btn-secondary btn-sm" onclick="showToast('✏️ Role editor opened for Sarah Johnson')">Edit Role</button>
+                <button class="btn btn-danger btn-sm" onclick="deactivateUser(this,'Sarah Johnson','ustatus-1')">Deactivate</button>
+                <button class="btn btn-secondary btn-sm" onclick="resetPassword('Sarah Johnson','sarah@greenwood.edu')">Reset PW</button>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="user-row" data-ustatus="active">
+              <div>
+                <div class="user-name">Admin User</div>
+                <div class="user-email">admin@riverside.edu</div>
+              </div>
+              <div style="font-size:13px;color:var(--ink2)">🏫 Riverside K-8</div>
+              <div>
+                <select class="role-select" onchange="updateUserRole(this,'Admin User')">
+                  <option selected>Organizer</option>
+                  <option>Coach</option>
+                  <option>Admin</option>
+                </select>
+              </div>
+              <div><span class="pill pill-green" id="ustatus-2">● Active</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">Sep 3, 2025</div>
+              <div class="user-actions">
+                <button class="btn btn-secondary btn-sm" onclick="showToast('✏️ Role editor opened for Admin User')">Edit Role</button>
+                <button class="btn btn-danger btn-sm" onclick="deactivateUser(this,'Admin User','ustatus-2')">Deactivate</button>
+                <button class="btn btn-secondary btn-sm" onclick="resetPassword('Admin User','admin@riverside.edu')">Reset PW</button>
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="user-row" data-ustatus="active">
+              <div>
+                <div class="user-name">Pastor David Okafor</div>
+                <div class="user-email">david@hopecommunity.org</div>
+              </div>
+              <div style="font-size:13px;color:var(--ink2)">⛪ Hope Community Church</div>
+              <div>
+                <select class="role-select" onchange="updateUserRole(this,'Pastor David Okafor')">
+                  <option selected>Organizer</option>
+                  <option>Coach</option>
+                  <option>Admin</option>
+                </select>
+              </div>
+              <div><span class="pill pill-green" id="ustatus-3">● Active</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">Oct 9, 2025</div>
+              <div class="user-actions">
+                <button class="btn btn-secondary btn-sm" onclick="showToast('✏️ Role editor opened for Pastor David Okafor')">Edit Role</button>
+                <button class="btn btn-danger btn-sm" onclick="deactivateUser(this,'Pastor David Okafor','ustatus-3')">Deactivate</button>
+                <button class="btn btn-secondary btn-sm" onclick="resetPassword('Pastor David Okafor','david@hopecommunity.org')">Reset PW</button>
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="user-row" data-ustatus="active">
+              <div>
+                <div class="user-name">Marcus Webb</div>
+                <div class="user-email">marcus@sunrisehigh.edu</div>
+              </div>
+              <div style="font-size:13px;color:var(--ink2)">🏫 Sunrise High Booster Club</div>
+              <div>
+                <select class="role-select" onchange="updateUserRole(this,'Marcus Webb')">
+                  <option selected>Organizer</option>
+                  <option>Coach</option>
+                  <option>Admin</option>
+                </select>
+              </div>
+              <div><span class="pill pill-green" id="ustatus-4">● Active</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">Nov 2, 2025</div>
+              <div class="user-actions">
+                <button class="btn btn-secondary btn-sm" onclick="showToast('✏️ Role editor opened for Marcus Webb')">Edit Role</button>
+                <button class="btn btn-danger btn-sm" onclick="deactivateUser(this,'Marcus Webb','ustatus-4')">Deactivate</button>
+                <button class="btn btn-secondary btn-sm" onclick="resetPassword('Marcus Webb','marcus@sunrisehigh.edu')">Reset PW</button>
+              </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="user-row" data-ustatus="active">
+              <div>
+                <div class="user-name">Coach Maria Santos</div>
+                <div class="user-email">maria@treeraise.com</div>
+              </div>
+              <div style="font-size:13px;color:var(--muted)">— TreeRaise Internal</div>
+              <div>
+                <select class="role-select" onchange="updateUserRole(this,'Coach Maria Santos')">
+                  <option>Organizer</option>
+                  <option selected>Coach</option>
+                  <option>Admin</option>
+                </select>
+              </div>
+              <div><span class="pill pill-green" id="ustatus-5">● Active</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">Jul 1, 2025</div>
+              <div class="user-actions">
+                <button class="btn btn-secondary btn-sm" onclick="showToast('✏️ Role editor opened for Coach Maria Santos')">Edit Role</button>
+                <button class="btn btn-danger btn-sm" onclick="deactivateUser(this,'Coach Maria Santos','ustatus-5')">Deactivate</button>
+                <button class="btn btn-secondary btn-sm" onclick="resetPassword('Coach Maria Santos','maria@treeraise.com')">Reset PW</button>
+              </div>
+            </div>
+
+            <!-- Row 6: Deactivated -->
+            <div class="user-row" data-ustatus="deactivated">
+              <div>
+                <div class="user-name" style="color:var(--muted)">James Whitfield</div>
+                <div class="user-email">james@maplewood.edu</div>
+              </div>
+              <div style="font-size:13px;color:var(--muted)">🏫 Maplewood PTA</div>
+              <div>
+                <select class="role-select" style="opacity:.5" disabled>
+                  <option selected>Organizer</option>
+                </select>
+              </div>
+              <div><span class="pill pill-gray" id="ustatus-6">⏸ Deactivated</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">Oct 22, 2025</div>
+              <div class="user-actions">
+                <button class="btn btn-secondary btn-sm" onclick="showToast('✏️ Role editor opened for James Whitfield')">Edit Role</button>
+                <button class="btn btn-success btn-sm" onclick="reactivateUser(this,'James Whitfield','ustatus-6')">Reactivate</button>
+                <button class="btn btn-secondary btn-sm" onclick="resetPassword('James Whitfield','james@maplewood.edu')">Reset PW</button>
+              </div>
+            </div>
+
+            <!-- Row 7: Pending Verification -->
+            <div class="user-row" data-ustatus="unverified">
+              <div>
+                <div class="user-name">Rachel Torres</div>
+                <div class="user-email">rachel@valleynature.org</div>
+              </div>
+              <div style="font-size:13px;color:var(--ink2)">🌿 Valley Nature Conservancy</div>
+              <div>
+                <select class="role-select" onchange="updateUserRole(this,'Rachel Torres')">
+                  <option selected>Organizer</option>
+                  <option>Coach</option>
+                  <option>Admin</option>
+                </select>
+              </div>
+              <div><span class="pill pill-gold" id="ustatus-7">⏳ Unverified</span></div>
+              <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace">Mar 5, 2026</div>
+              <div class="user-actions">
+                <button class="btn btn-secondary btn-sm" onclick="showToast('✏️ Role editor opened for Rachel Torres')">Edit Role</button>
+                <button class="btn btn-danger btn-sm" onclick="deactivateUser(this,'Rachel Torres','ustatus-7')">Deactivate</button>
+                <button class="btn btn-secondary btn-sm" onclick="resetPassword('Rachel Torres','rachel@valleynature.org')">Reset PW</button>
+              </div>
+            </div>
+
+            <div style="padding:13px 16px;text-align:center;font-size:12px;color:var(--muted)">… and 45 more users. Use search or filters to narrow results.</div>
+          </div><!-- /users-table -->
+        </div><!-- /card -->
+      </div><!-- /content -->
+    </div><!-- /users -->
+
+    <!-- ════════════════════════════
          PANEL: REVENUE & FEES
     ════════════════════════════ -->
     <div class="panel" id="panel-revenue">
@@ -1217,7 +1455,7 @@
           <div>
             <div class="ph-label">Admin · Finance</div>
             <div class="ph-title">Revenue & Fees</div>
-            <div class="ph-sub">TreeRaise 8% fee income · All time through Mar 2026</div>
+            <div class="ph-sub">TreeRaise 50% platform share · All time through Mar 2026</div>
           </div>
           <div class="ph-actions">
             <button class="btn btn-secondary" onclick="showToast('Revenue report exported')">↓ Export CSV</button>
@@ -1226,25 +1464,25 @@
       </div>
       <div class="content">
         <div class="kpi-grid-3">
-          <div class="kpi-card"><span class="kpi-icon">📈</span><div class="kpi-val">$38.9k</div><div class="kpi-label">Total Revenue (All Time)</div><div class="kpi-trend up">↑ 8% of $486k partner raises</div></div>
+          <div class="kpi-card"><span class="kpi-icon">📈</span><div class="kpi-val">$243k</div><div class="kpi-label">Total Revenue (All Time)</div><div class="kpi-trend up">↑ 50% of all contributions</div></div>
           <div class="kpi-card"><span class="kpi-icon">📅</span><div class="kpi-val">$6.5k</div><div class="kpi-label">This Month (Mar)</div><div class="kpi-trend up">↑ +20% vs February</div></div>
-          <div class="kpi-card"><span class="kpi-icon">🎯</span><div class="kpi-val">$138</div><div class="kpi-label">Avg Fee / Partner / Mo</div><div class="kpi-trend up">↑ Growing as cohorts mature</div></div>
+          <div class="kpi-card"><span class="kpi-icon">🎯</span><div class="kpi-val">$138</div><div class="kpi-label">Avg Share / Partner / Mo</div><div class="kpi-trend up">↑ Growing as cohorts mature</div></div>
         </div>
         <div class="chart-wrap">
           <div class="chart-header">
-            <div><div class="chart-title">Monthly TreeRaise Fee Income</div><div class="chart-meta">Aug 2025 → Mar 2026</div></div>
+            <div><div class="chart-title">Monthly TreeRaise Platform Share</div><div class="chart-meta">Aug 2025 → Mar 2026</div></div>
           </div>
           <canvas id="fee-chart" width="900" height="160" style="width:100%;height:160px"></canvas>
         </div>
         <div class="card" style="overflow:hidden">
           <table class="data-table">
-            <thead><tr><th>Organization</th><th>Gross Raised</th><th>Fee Rate</th><th>TR Fee</th><th>Status</th></tr></thead>
+            <thead><tr><th>Organization</th><th>Gross Raised</th><th>Split</th><th>TR Share</th><th>Status</th></tr></thead>
             <tbody>
-              <tr><td style="font-weight:600">Greenwood Elementary</td><td style="font-family:'DM Mono',monospace">$51,200</td><td style="font-family:'DM Mono',monospace">8%</td><td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$4,096</td><td><span class="pill pill-blue">● Paid</span></td></tr>
-              <tr><td style="font-weight:600">Riverside K-8</td><td style="font-family:'DM Mono',monospace">$41,800</td><td style="font-family:'DM Mono',monospace">8%</td><td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$3,344</td><td><span class="pill pill-blue">● Paid</span></td></tr>
-              <tr><td style="font-weight:600">Hope Community Church</td><td style="font-family:'DM Mono',monospace">$34,200</td><td style="font-family:'DM Mono',monospace">8%</td><td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$2,736</td><td><span class="pill pill-blue">● Paid</span></td></tr>
-              <tr style="background:var(--redl)"><td style="font-weight:600">Maplewood PTA</td><td style="font-family:'DM Mono',monospace">$12,300</td><td style="font-family:'DM Mono',monospace">8%</td><td style="font-family:'DM Mono',monospace;color:var(--gold);font-weight:700">$984</td><td><span class="pill pill-gold">⏳ KYC Hold</span></td></tr>
-              <tr><td style="color:var(--muted);font-size:12px" colspan="5">43 more orgs · Total collected: <strong>$38,900</strong></td></tr>
+              <tr><td style="font-weight:600">Greenwood Elementary</td><td style="font-family:'DM Mono',monospace">$51,200</td><td style="font-family:'DM Mono',monospace">50%</td><td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$25,600</td><td><span class="pill pill-blue">● Paid</span></td></tr>
+              <tr><td style="font-weight:600">Riverside K-8</td><td style="font-family:'DM Mono',monospace">$41,800</td><td style="font-family:'DM Mono',monospace">50%</td><td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$20,900</td><td><span class="pill pill-blue">● Paid</span></td></tr>
+              <tr><td style="font-weight:600">Hope Community Church</td><td style="font-family:'DM Mono',monospace">$34,200</td><td style="font-family:'DM Mono',monospace">50%</td><td style="font-family:'DM Mono',monospace;color:var(--forest2);font-weight:700">$17,100</td><td><span class="pill pill-blue">● Paid</span></td></tr>
+              <tr style="background:var(--redl)"><td style="font-weight:600">Maplewood PTA</td><td style="font-family:'DM Mono',monospace">$12,300</td><td style="font-family:'DM Mono',monospace">50%</td><td style="font-family:'DM Mono',monospace;color:var(--gold);font-weight:700">$6,150</td><td><span class="pill pill-gold">⏳ KYC Hold</span></td></tr>
+              <tr><td style="color:var(--muted);font-size:12px" colspan="5">43 more orgs · Total collected: <strong>$243,000</strong></td></tr>
             </tbody>
           </table>
         </div>
@@ -1596,6 +1834,65 @@
     t.textContent = msg;
     document.body.appendChild(t);
     setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity .4s'; setTimeout(() => t.remove(), 400); }, 3000);
+  }
+
+  /* ── USER MANAGEMENT ── */
+  function searchUsers(val) {
+    document.querySelectorAll('#users-table .user-row').forEach(r => {
+      r.style.display = r.textContent.toLowerCase().includes(val.toLowerCase()) ? '' : 'none';
+    });
+  }
+
+  function filterUsers(status, chip) {
+    document.querySelectorAll('#users-filter-chips .chip').forEach(c => c.classList.remove('active'));
+    if (chip) chip.classList.add('active');
+    document.querySelectorAll('#users-table .user-row').forEach(r => {
+      r.style.display = (status === 'all' || r.dataset.ustatus === status) ? '' : 'none';
+    });
+  }
+
+  function updateUserRole(sel, name) {
+    showToast('✅ Role updated for ' + name + ' → ' + sel.value);
+  }
+
+  function deactivateUser(btn, name, statusId) {
+    const pill = document.getElementById(statusId);
+    if (pill) {
+      pill.textContent = '⏸ Deactivated';
+      pill.className = 'pill pill-gray';
+    }
+    const row = btn.closest('.user-row');
+    if (row) {
+      row.dataset.ustatus = 'deactivated';
+      const nameEl = row.querySelector('.user-name');
+      if (nameEl) nameEl.style.color = 'var(--muted)';
+    }
+    btn.textContent = 'Reactivate';
+    btn.className = 'btn btn-success btn-sm';
+    btn.onclick = function() { reactivateUser(this, name, statusId); };
+    showToast('⏸ Account deactivated — ' + name);
+  }
+
+  function reactivateUser(btn, name, statusId) {
+    const pill = document.getElementById(statusId);
+    if (pill) {
+      pill.textContent = '● Active';
+      pill.className = 'pill pill-green';
+    }
+    const row = btn.closest('.user-row');
+    if (row) {
+      row.dataset.ustatus = 'active';
+      const nameEl = row.querySelector('.user-name');
+      if (nameEl) nameEl.style.color = '';
+    }
+    btn.textContent = 'Deactivate';
+    btn.className = 'btn btn-danger btn-sm';
+    btn.onclick = function() { deactivateUser(this, name, statusId); };
+    showToast('✅ Account reactivated — ' + name);
+  }
+
+  function resetPassword(name, email) {
+    showToast('🔑 Password reset email sent to ' + email);
   }
 
   /* ── COHORT ROWS ── */
