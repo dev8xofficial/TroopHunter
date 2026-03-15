@@ -1,29 +1,52 @@
-# Document Generation Pipeline
+# Dev8X — Document Generation Pipeline
 
-This pipeline converts raw business data into structured context files, then uses
-those files to generate professional documents: a Business Operations Manual, a
-Business Report, a Technical Specifications document, Implementation outputs,
-Sales outreach plans, and Outcome-Based sales reports.
+This pipeline moves a prospect through five phases: from raw research to a signed
+proposal. Every file is named with a phase prefix so its origin and position in
+the pipeline are immediately visible.
 
 **Token limit per Claude session: 190k**
 
 ---
 
-## Pipeline Overview
+## File Naming Convention
 
 ```
-Raw Data  →  Steps 1–3 (Clean & Structure)  →  context/ files (.md)
-context/ files  →  Step 4 (Synthesise)  →  Operations Manual (.docx)
-Operations Manual  →  Step 5 (Analyse)  →  Business Report (.docx)
-Operations Manual + Business Report  →  Step 6 (Specify)  →  Tech Spec (.docx)
-Tech Spec  →  Step 7 (Implement)  →  HTML / Code outputs
-Target CEO Profile + Operations Manual  →  Step 8 (Warm)  →  Lead Warming Plan
-Business Report + Operations Manual  →  Step 9 (Pitch)  →  Outcome Report (.html)
+p1_   Phase 1 — Research
+p2_   Phase 2 — Outreach
+p3_   Phase 3 — First Touch
+p4a_  Phase 4 — Step 1: Business Operations Manual
+p4b_  Phase 4 — Step 2: Business Report
+p4c_  Phase 4 — Step 3: Tech Spec
+p4d_  Phase 4 — Step 4: Implementation (portals)
+p4e_  Phase 4 — Step 5: Demo Pitch Script
+p5a_  Phase 5 — Step 1: Proposal
+p5b_  Phase 5 — Step 2: Proposal Pitch Script
+p5c_  Phase 5 — Step 3: Development Blueprint
 ```
 
-Steps 1–3 strip noise and compress raw data into token-efficient Markdown.
-Each downstream step builds on the distilled output of the step before it —
-**never re-attach raw context files to Steps 5, 6, 7, 8, or 9.**
+Every prompt in `prompts/` and every output in `context/` follows this prefix.
+The prompt and the output it generates share the same prefix and letter —
+e.g. `p4a_Business_Operations_Doc_Generator.md.md` (prompt) → `p4a_Business_Operations_Manual.docx` (output).
+
+---
+
+## The 5-Phase Pipeline
+
+```
+PHASE 1 — Research       Raw data → clean context files
+PHASE 2 — Outreach       Context → LinkedIn warming plan
+PHASE 3 — First Touch    Context → Outcome Report (video sent cold)
+PHASE 4 — Demo & Scoping Full analysis → working demos + demo pitch script
+PHASE 5 — Proposal       Demo outputs → Proposal + Pitch script + Blueprint
+```
+
+| Phase | Dev8X has done... | Prospect has seen... | Goal |
+|-------|-------------------|----------------------|------|
+| 1 | Researched the prospect | Nothing yet | Build intelligence |
+| 2 | Started LinkedIn comments | First comments from Abdul | Accept connection |
+| 3 | Sent outcome video | A personalised ROI report | Book a call |
+| 4 | Built and demoed the platform | Working portals + demo video | Agree to proposal |
+| 5 | Delivered full proposal suite | Proposal + pitch video + blueprint | Sign and start |
 
 ---
 
@@ -32,318 +55,438 @@ Each downstream step builds on the distilled output of the step before it —
 ```
 treeraise/
 ├── prompts/
-│   ├── README.md                              ← this file
-│   ├── 1_Website.md
-│   ├── 2a_Linkedin_Company.md
-│   ├── 2b_Linkedin_Owner.md                   ← separate prompt for person profiles
-│   ├── 3a_Document.md                         ← for PDF / DOCX company documents
-│   ├── 3b_Job_Posting.md                      ← for Upwork / LinkedIn job postings
-│   ├── 4_Business_Operations_Doc_Generator.md
-│   ├── 5_Business_Report_Doc_Generator.md
-│   ├── 6_Tech_Spec_Doc_Generator.md
-│   ├── 7_TreeRaise_Implementation_Changes.md
-│   ├── 8_Lead_Warming.md                      ← 3-comment LinkedIn warming plan
-│   └── 9_Outcome_Report.md                    ← visual HTML report for sales video
+│   ├── README.md
+│   ├── phase1_research/
+│   │   ├── p1a_Website.md
+│   │   ├── p1b_Linkedin_Company.md
+│   │   ├── p1c_Linkedin_Owner.md
+│   │   ├── p1d_Document.md
+│   │   └── p1e_Job_Posting.md
+│   ├── phase2_outreach/
+│   │   └── p2a_Lead_Warming.md
+│   ├── phase3_first_touch/
+│   │   └── p3a_Outcome_Report.md
+│   ├── phase4_demo_scoping/
+│   │   ├── p4a_Business_Operations_Doc_Generator.md.md
+│   │   ├── p4b_Business_Report_Doc_Generator.md
+│   │   ├── p4c_Tech_Spec_Doc_Generator.md
+│   │   ├── p4d_TreeRaise_Implementation_Changes.md
+│   │   └── p4e_Demo_Pitch.md
+│   └── phase5_proposal/
+│       ├── p5a_Proposal.md
+│       ├── p5b_Proposal_Pitch.md
+│       └── p5c_Proposal_Development_Blueprint.md
 │
-├── context/                                   ← all cleaned inputs AND generated outputs
-│   ├── 1_Website.md                           ← output of Step 1
-│   ├── 2a_Company.md                          ← output of Step 2a
-│   ├── 2b_Owner.md                            ← output of Step 2b
-│   ├── 3a_Faith_Based_Guide.md                ← output of Step 3a
-│   ├── 3a_Nonprofit_Guide.md                  ← output of Step 3a
-│   ├── 3a_School_Guide.md                     ← output of Step 3a
-│   ├── 3b_Job_Posting.md                      ← output of Step 3b
-│   ├── TreeRaise_System_Feature_Benefits.docx ← raw company document → run Step 3a
-│   ├── upwork.md                              ← raw job posting → run Step 3b
-│   ├── 4_Business_Operations_Manual.docx      ← output of Step 4
-│   ├── 5_TreeRaise_Company_Report.docx        ← output of Step 5
-│   └── 6_Tech_Spec_TreeRaise.docx             ← output of Step 6
+├── context/                                   ← flat, numbered by phase prefix
+│   ├── p1a_Website.md                          ← output of p1a_Website.md
+│   ├── p1b_Linkedin_Company.md                 ← output of p1b_Linkedin_Company.md
+│   ├── p1c_Linkedin_Owner.md                   ← output of p1_Linkedin_Person.md (owner)
+│   ├── p1d_Faith_Based_Guide.md                ← output of p1d_Document.md
+│   ├── p1d_Nonprofit_Guide.md                  ← output of p1d_Document.md
+│   ├── p1d_School_Guide.md                     ← output of p1d_Document.md
+│   ├── p1d_TreeRaise_System_Feature_Benefits.md          ← output of p1d_Document.md ← pending
+│   ├── p1e_Job_Posting.md                      ← output of p1e_Job_Posting.md
+│   ├── p2a_Lead_Warming.md                     ← output of p2a_Lead_Warming.md
+│   ├── p3a_Outcome_Report.html                 ← output of p3a_Outcome_Report.md
+│   ├── p4a_Business_Operations_Manual.docx    ← output of p4a_Business_Operations_Doc_Generator.md.md
+│   ├── p4b_TreeRaise_Company_Report.docx      ← output of p4b_Business_Report_Doc_Generator.md
+│   ├── p4c_Tech_Spec_TreeRaise.docx           ← output of p4c_Tech_Spec_Doc_Generator.md
+│   ├── p4e_Demo_Pitch_TreeRaise.docx          ← output of p4e_Demo_Pitch.md
+│   ├── p5a_Proposal_TreeRaise.docx            ← output of p5a_Proposal.md
+│   ├── p5b_Proposal_Pitch_TreeRaise.docx      ← output of p5b_Proposal_Pitch.md
+│   └── p5c_Dev_Blueprint_TreeRaise.html       ← output of p5c_Proposal_Development_Blueprint.md
 │
-├── admin.html                                 ← output of Step 7
-└── partner-portal.html                        ← output of Step 7
+└── portals/                                   ← Phase 4 Step 4 HTML demo outputs
+    ├── p4d_admin.html
+    └── p4d_partner_portal.html
 ```
 
-> **Note — two unprocessed raw files in context/:**
-> - `upwork.md` is a raw job posting scrape. Run Step 3b on it to produce a
->   cleaned `3b_Job_Posting.md` before using it in Step 4.
-> - `TreeRaise_System_Feature_Benefits.docx` is a raw company document. Run
->   Step 3a on it to produce a cleaned `3a_System_Feature_Benefits.md` before
->   using it in Step 4.
+> **Note — one unprocessed raw file:**
+> `p1d_TreeRaise_System_Feature_Benefits.md` is pending. Raw source exists — run
+> `prompts/phase1_research/p1d_Document.md` on it to produce the cleaned file
+> before including it in Phase 4 Step 4a.
+
+> **Note — target CEO files:**
+> When running `p1_Linkedin_Person.md` for a target lead CEO (Phase 2 prep),
+> save as `context/p1_Linkedin_<TargetCEOName>.md` to distinguish from the
+> owner file.
 
 ---
 
-## Steps
+## Phase 1 — Research
 
-### Step 1 — Website Context
+**What this phase does:** Convert raw scraped data into clean, token-efficient
+Markdown context files. Run each prompt once per data source. These files feed
+every downstream phase.
 
-**Purpose:** Strip navigation, footers, and HTML noise from the scraped website.
-Convert multi-page content into a single clean, deduplicated Markdown file.
+**When to run:** Before any outreach begins. Complete all available sources first.
+
+---
+
+### p1a_Website.md — Website Context
+
+**Purpose:** Strip noise from the scraped website and produce a single clean
+Markdown file covering all pages.
 
 **Attach to Claude:**
 | File | Role |
 |------|------|
-| `prompts/1_Website.md` | Prompt |
+| `prompts/phase1_research/p1a_Website.md` | Prompt |
 | Raw scraped website file | Input |
 
-**Save output as:** `context/1_Website.md`
+**Save output as:** `context/p1a_Website.md`
 
 ---
 
-### Step 2a — Company LinkedIn Context
+### p1b_Linkedin_Company.md — Company LinkedIn Context
 
-**Purpose:** Strip LinkedIn UI chrome and extract the company profile, About text,
-and posts into clean structured Markdown.
+**Purpose:** Clean the company LinkedIn page — About text, posts, employees.
 
 **Attach to Claude:**
 | File | Role |
 |------|------|
-| `prompts/2a_Linkedin_Company.md` | Prompt |
+| `prompts/phase1_research/p1b_Linkedin_Company.md` | Prompt |
 | Raw scraped company LinkedIn page | Input |
 
-**Save output as:** `context/2a_Company.md`
+**Save output as:** `context/p1b_Linkedin_Company.md`
 
 ---
 
-### Step 2b — Owner / Person LinkedIn Context
+### p1_Linkedin_Person.md — Person LinkedIn Context
 
-**Purpose:** Extract a personal LinkedIn profile — summary, full work history,
-education, skills, certifications, recommendations, and posts — into clean
-structured Markdown. Uses a dedicated prompt with person-specific sections.
+**Purpose:** Extract a personal LinkedIn profile — summary, full experience,
+recommendations, and posts. Reuse for any individual.
 
 **Attach to Claude:**
 | File | Role |
 |------|------|
-| `prompts/2b_Linkedin_Owner.md` | Prompt |
+| `prompts/phase1_research/p1_Linkedin_Person.md` | Prompt |
 | Raw LinkedIn profile page | Input |
 
-**Save output as:** `context/2b_<PersonName>.md`
+**Save output as:** `context/p1_Linkedin_<PersonName>.md`
 
-> This prompt is reused for any person profile — the owner, a target lead CEO,
-> or any individual. Name the output file to match the person.
+> Examples: `context/p1c_Linkedin_Owner.md`, `context/p1_Linkedin_WayneElsey.md`
+> When running for a target lead CEO, name the file with their name so it's
+> distinguishable from the owner file.
 
 ---
 
-### Step 3a — Company Document Context (repeat per document)
+### p1d_Document.md — Company Document Context (repeat per document)
 
 **Purpose:** Convert a PDF or DOCX company document into clean Markdown.
-Run once per document. Name the output to match its content.
+Run once per document.
 
 **Attach to Claude:**
 | File | Role |
 |------|------|
-| `prompts/3a_Document.md` | Prompt |
+| `prompts/phase1_research/p1d_Document.md` | Prompt |
 | One PDF or DOCX file | Input |
 
-**Save output as:** `context/3a_<DocumentName>.md`
+**Save output as:** `context/p1_<DocumentName>.md`
 
 Examples:
-- `context/3a_Faith_Based_Guide.md`
-- `context/3a_Nonprofit_Guide.md`
-- `context/3a_School_Guide.md`
-- `context/3a_System_Feature_Benefits.md` ← pending (raw .docx exists in context/)
+- `context/p1d_Faith_Based_Guide.md`
+- `context/p1d_Nonprofit_Guide.md`
+- `context/p1d_School_Guide.md`
+- `context/p1d_TreeRaise_System_Feature_Benefits.md` ← pending
 
 ---
 
-### Step 3b — Job Posting Context (repeat per posting)
+### p1e_Job_Posting.md — Job Posting Context (repeat per posting)
 
-**Purpose:** Strip platform chrome from a scraped Upwork or LinkedIn job posting
-and extract role, responsibilities, requirements, and client profile into clean
-structured Markdown.
+**Purpose:** Clean a scraped Upwork or LinkedIn job posting — role,
+responsibilities, requirements, and client profile.
 
 **Attach to Claude:**
 | File | Role |
 |------|------|
-| `prompts/3b_Job_Posting.md` | Prompt |
-| Raw job posting file (e.g. `context/upwork.md`) | Input |
+| `prompts/phase1_research/p1e_Job_Posting.md` | Prompt |
+| Raw job posting file | Input |
 
-**Save output as:** `context/3b_<Company>_Job.md`
-
-Example: `context/3b_Job_Posting.md` ← already generated from `context/upwork.md`
+**Save output as:** `context/p1e_Job_Posting.md`
 
 ---
 
-### Step 4 — Business Operations Manual
+## Phase 2 — Outreach
 
-**Purpose:** Synthesise all context files into a single comprehensive operations
-document. This is the master reference used by Steps 5, 6, 7, 8, and 9.
+**What this phase does:** Generate a 3-comment LinkedIn sequence warming the
+target CEO toward accepting a connection request.
+
+**When to run:** After Phase 1 is complete. Runs in parallel with Phase 3.
+
+---
+
+### p2a_Lead_Warming.md — Lead Warming Plan
+
+**Preparation:** Scrape the target CEO's LinkedIn profile and run
+`p1_Linkedin_Person.md` on it first. Save as `context/p1_Linkedin_<TargetCEOName>.md`.
 
 **Attach to Claude:**
 | File | Role |
 |------|------|
-| `prompts/4_Business_Operations_Doc_Generator.md` | Prompt |
-| `context/1_Website.md` | Website content |
-| `context/2a_Company.md` | Company LinkedIn |
-| `context/2b_Owner.md` | Owner LinkedIn |
-| `context/3a_Faith_Based_Guide.md` | Customer guide |
-| `context/3a_Nonprofit_Guide.md` | Customer guide |
-| `context/3a_School_Guide.md` | Customer guide |
-| `context/3a_System_Feature_Benefits.md` | Product detail ← process raw .docx first |
-| `context/3b_Job_Posting.md` | Hiring context |
+| `prompts/phase2_outreach/p2a_Lead_Warming.md` | Prompt |
+| `context/p1_Linkedin_<TargetCEOName>.md` | Target CEO's posts and background |
+| `context/p4a_Business_Operations_Manual.docx` | Dev8X context for finding genuine overlap |
 
-> **Attach all context files here — this is the only step that reads them all.**
-> Estimated token usage: 60k–130k depending on content volume.
-
-**Save output as:** `context/4_Business_Operations_Manual.docx`
-
----
-
-### Step 5 — Business Report
-
-**Purpose:** Analyse the business and identify digital transformation opportunities.
-The Operations Manual already contains all business context — do not re-attach
-context files.
-
-**Attach to Claude:**
-| File | Role |
-|------|------|
-| `prompts/5_Business_Report_Doc_Generator.md` | Prompt |
-| `context/4_Business_Operations_Manual.docx` | Full synthesised business context |
-
-> **Do not attach context/ files here.** The Operations Manual is a complete
-> synthesis of all of them. Re-attaching them doubles token usage with no benefit.
-> Estimated token usage: 30k–70k.
-
-**Save output as:** `context/5_TreeRaise_Company_Report.docx`
-
----
-
-### Step 6 — Technical Specifications Document
-
-**Purpose:** Translate business operations and digital opportunities into a full
-technical specification for the development team.
-
-**Attach to Claude:**
-| File | Role |
-|------|------|
-| `prompts/6_Tech_Spec_Doc_Generator.md` | Prompt |
-| `context/4_Business_Operations_Manual.docx` | Operational detail, workflows, team structure |
-| `context/5_TreeRaise_Company_Report.docx` | Digital opportunities, pain points, priorities |
-
-> **Do not attach context/ files here.** Steps 4 and 5 already cover all business
-> context. Adding raw context files would push the session over the 190k token limit.
-> Estimated token usage: 60k–120k.
-
-**Save output as:** `context/6_Tech_Spec_TreeRaise.docx`
-
----
-
-### Step 7 — Implementation
-
-**Purpose:** Generate working HTML, code, or other implementation outputs from
-the technical specification. Current outputs: `admin.html`, `partner-portal.html`.
-
-**Attach to Claude:**
-| File | Role |
-|------|------|
-| `prompts/7_TreeRaise_Implementation_Changes.md` | Prompt |
-| `context/6_Tech_Spec_TreeRaise.docx` | Technical requirements and architecture |
-
-> The tech spec is the authoritative source for what to build — do not re-attach
-> earlier documents. If a specific implementation change requires business context,
-> attach `context/4_Business_Operations_Manual.docx` as well.
-> Estimated token usage: 40k–100k.
-
-**Save outputs to:** project root (e.g. `admin.html`, `partner-portal.html`)
-
----
-
-### Step 8 — Lead Warming Plan
-
-**Purpose:** Generate a 3-comment LinkedIn engagement plan to warm a target CEO
-toward accepting a connection request from the seller's CEO. Run once per lead.
-Each plan covers post selection, a staged 5-day comment sequence (Comments 1, 2,
-and 3 on Days 1, 3, and 5), and an optional connection request note.
-
-**Preparation — run Step 2b on the target CEO first:**
-Before running Step 8, scrape the target CEO's LinkedIn profile and pass it
-through `prompts/2b_Linkedin_Owner.md` to produce their cleaned context file.
-Save it as `context/2b_<TargetCEOName>.md`. Then use that file as the input
-for Step 8.
-
-**Attach to Claude:**
-| File | Role |
-|------|------|
-| `prompts/8_Lead_Warming.md` | Prompt |
-| `context/2b_<TargetCEOName>.md` | Target CEO's posts, summary, and background |
-| `context/4_Business_Operations_Manual.docx` | Seller's business context for finding genuine overlap |
-
-> If the Operations Manual is not yet generated, attach `context/1_Website.md`
-> and `context/2a_Company.md` as a fallback — less overlap detail, but functional.
+> If Phase 4 Step 4a hasn't run yet, substitute `context/p1a_Website.md` and
+> `context/p1b_Linkedin_Company.md` as a fallback.
 > Estimated token usage: 20k–50k.
 
-**Save output as:** `context/8_Lead_Warming_<TargetCEOName>.md`
+**Save output as:** `context/p2_Lead_Warming_<TargetCEOName>.md`
+
+**Sequence:** Comment Day 1 → Day 3 → Day 5. Send connection request after a
+reply or once Comment 3 lands well.
 
 ---
 
-### Step 9 — Outcome-Based Report
+## Phase 3 — First Touch
 
-**Purpose:** Generate a personalised, visual HTML report showing the prospect
-exactly what changes in their business, with every outcome quantified in time,
-cost, and effort. This report is screen-recorded as a 2–3 minute walkthrough
-video and sent to the prospect CEO in the first outreach touchpoint to move them
-toward a demo.
+**What this phase does:** Generate a personalised visual HTML report quantifying
+the business impact Dev8X can deliver. Screen-record it as a 2–3 minute video
+and send it as the first direct message after connection is accepted.
+
+**When to run:** After Phase 1 context files exist. Runs in parallel with Phase 2.
+
+---
+
+### p3a_Outcome_Report.md — Outcome-Based Report
 
 **The report includes:**
-- Three headline impact numbers (hours saved, monthly cost impact, workflows
-  automated) calculated from the prospect's actual pain points
-- A current-state challenge table drawn from their real operations
-- 4–7 solution cards, each with Time Saved / Cost Impact / Effort Reduction and
-  a before/after comparison
-- A projected annual impact section with Chart.js bar charts
-- A deliverables checklist showing what specifically gets built
-- A CTA section with a "Watch the Demo →" button the sender replaces with a link
+- Three headline numbers: hours saved/week, monthly cost impact, workflows automated
+- Current-state challenge table from real operations
+- 4–7 solution cards (Time Saved / Cost Impact / Effort Reduction + before/after)
+- Projected annual impact charts (Chart.js)
+- Deliverables checklist and CTA button (replace `href="#"` before sending)
 
 **Attach to Claude:**
 | File | Role |
 |------|------|
-| `prompts/9_Outcome_Report.md` | Prompt |
-| `context/5_<Company>_Report.docx` | Primary source — pain points and transformation opportunities |
-| `context/4_Business_Operations_Manual.docx` | Workflow detail for quantifying outcomes |
+| `prompts/phase3_first_touch/p3a_Outcome_Report.md` | Prompt |
+| `context/p4b_TreeRaise_Company_Report.docx` | Pain points and transformation opportunities |
+| `context/p4a_Business_Operations_Manual.docx` | Workflow detail for quantification |
 
-> The Business Report (Step 5) is the primary source. The Operations Manual
-> provides the workflow granularity needed to put real numbers on each outcome.
-> Do not attach raw context/ files — Steps 4 and 5 already synthesise them.
+> If Phase 4 hasn't run yet, substitute `context/p1a_Website.md` and
+> `context/p1b_Linkedin_Company.md` as a fallback — less precise but functional.
 > Estimated token usage: 30k–60k.
 
-**Save output as:** `context/9_Outcome_Report_<CompanyName>.html`
+**Save output as:** `context/p3_Outcome_Report_TreeRaise.html`
 
-> Before sending the video, open the HTML file and replace the `href="#"` on the
-> "Watch the Demo" button with the real demo video link.
-
----
-
-## Sales Sequence — How Steps 8 and 9 Work Together
-
-Steps 8 and 9 are both sales tools that run in parallel, not in sequence.
-They serve different moments in the same outreach campaign:
-
-```
-Step 8 — Lead Warming     →  LinkedIn comments over 5 days  →  Connection accepted
-Step 9 — Outcome Report   →  Screen-recorded video sent     →  Demo booked
-```
-
-**Typical usage pattern for a new prospect:**
-1. Run Step 2b on the prospect CEO's LinkedIn profile → `context/2b_<Name>.md`
-2. Run Step 8 → start the 5-day LinkedIn comment sequence
-3. Run Step 9 → record the video walkthrough of the outcome report
-4. After connection is accepted (Step 8 succeeds), send the video (Step 9 output)
-   as the first direct message
-5. Follow up with the demo link if they watch but don't respond within 3 days
+> **Before sending:** replace `href="#"` on the "Watch the Demo" button with
+> the real demo video link.
 
 ---
 
-## Token Budget Summary
+## Phase 4 — Demo & Scoping
 
-| Step | Inputs | Estimated tokens |
-|------|--------|-----------------|
-| 1–3 | Prompt + one raw file | 10k–40k |
-| 4 | Prompt + all context/ .md files | 60k–130k |
-| 5 | Prompt + Operations Manual only | 30k–70k |
-| 6 | Prompt + Operations Manual + Business Report | 60k–120k |
-| 7 | Prompt + Tech Spec | 40k–100k |
-| 8 | Prompt + Target CEO LinkedIn + Operations Manual | 20k–50k |
-| 9 | Prompt + Business Report + Operations Manual | 30k–60k |
+**What this phase does:** Build the full business analysis stack, generate
+working demo portals, and produce the demo pitch script. Run Steps 4a → 4b →
+4c → 4d → 4e in sequence.
 
-Steps 5–9 are kept lean by design. Each receives only the distilled output of
-the previous step — not the original source files. This keeps every session
-within the 190k limit and reduces noise in the context window.
+**When to run:** After the prospect has engaged — replied on LinkedIn, watched
+the outcome video, or booked a discovery call. Do not run this phase for
+prospects who have not shown interest.
+
+---
+
+### p4a — Business Operations Manual
+
+**Purpose:** Synthesise all Phase 1 context files into the master reference
+document used by every subsequent step.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase4_demo_scoping/p4a_Business_Operations_Doc_Generator.md.md` | Prompt |
+| `context/p1a_Website.md` | Website content |
+| `context/p1b_Linkedin_Company.md` | Company LinkedIn |
+| `context/p1c_Linkedin_Owner.md` | Owner LinkedIn |
+| `context/p1d_Faith_Based_Guide.md` | Customer guide |
+| `context/p1d_Nonprofit_Guide.md` | Customer guide |
+| `context/p1d_School_Guide.md` | Customer guide |
+| `context/p1d_TreeRaise_System_Feature_Benefits.md` | Product detail ← produce this first |
+| `context/p1e_Job_Posting.md` | Hiring context |
+
+> **This is the only step that reads all Phase 1 context files.**
+> Estimated token usage: 60k–130k.
+
+**Save output as:** `context/p4a_Business_Operations_Manual.docx`
+
+---
+
+### p4b — Business Report
+
+**Purpose:** Identify digital transformation opportunities and pain points.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase4_demo_scoping/p4b_Business_Report_Doc_Generator.md` | Prompt |
+| `context/p4a_Business_Operations_Manual.docx` | Full synthesised context |
+
+> Estimated token usage: 30k–70k.
+
+**Save output as:** `context/p4b_TreeRaise_Company_Report.docx`
+
+---
+
+### p4c — Technical Specifications Document
+
+**Purpose:** Translate business operations into a full technical spec for the
+development team.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase4_demo_scoping/p4c_Tech_Spec_Doc_Generator.md` | Prompt |
+| `context/p4a_Business_Operations_Manual.docx` | Operational detail and workflows |
+| `context/p4b_TreeRaise_Company_Report.docx` | Digital opportunities and priorities |
+
+> Estimated token usage: 60k–120k.
+
+**Save output as:** `context/p4c_Tech_Spec_TreeRaise.docx`
+
+---
+
+### p4d — Implementation (Demo Portals)
+
+**Purpose:** Generate the working HTML demo portals from the tech spec.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase4_demo_scoping/p4d_TreeRaise_Implementation_Changes.md` | Prompt |
+| `context/p4c_Tech_Spec_TreeRaise.docx` | Technical requirements |
+
+> Add `context/p4a_Business_Operations_Manual.docx` if business context is needed
+> for implementation decisions.
+> Estimated token usage: 40k–100k.
+
+**Save outputs to:** `portals/p4d_admin.html`, `portals/p4d_partner_portal.html`
+
+---
+
+### p4e — Demo Pitch Script
+
+**Purpose:** Generate a 5–7 minute screen-recorded walkthrough script of the
+live demo portals. Sent to the prospect after Phase 3 engagement or used during
+the discovery call.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase4_demo_scoping/p4e_Demo_Pitch.md` | Prompt |
+| `portals/p4d_admin.html` | Primary demo portal |
+| `portals/p4d_partner_portal.html` | Secondary demo portal |
+| `context/p4a_Business_Operations_Manual.docx` | Pain points for Before vs After framing |
+
+> Estimated token usage: 25k–55k.
+
+**Save output as:** `context/p4e_Demo_Pitch_TreeRaise.docx`
+
+---
+
+## Phase 5 — Proposal
+
+**What this phase does:** Deliver the complete proposal package. Run Steps 5a →
+5b → 5c in sequence — each feeds the next.
+
+**When to run:** After the prospect has seen the demo and verbally agreed to
+receive a proposal.
+
+---
+
+### p5a — Proposal Document
+
+**Purpose:** Generate the full project proposal — team, rates, cost estimate,
+market comparison, and references.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase5_proposal/p5a_Proposal.md` | Prompt |
+| `context/p4c_Tech_Spec_TreeRaise.docx` | Screens, portals, phases, team, hours |
+
+> Estimated token usage: 20k–50k.
+
+**Save output as:** `context/p5a_Proposal_TreeRaise.docx`
+
+---
+
+### p5b — Proposal Pitch Script
+
+**Purpose:** Generate the 12–14 minute video script Abdul reads while
+screen-recording a walkthrough of the Proposal and Blueprint together.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase5_proposal/p5b_Proposal_Pitch.md` | Prompt |
+| `context/p5a_Proposal_TreeRaise.docx` | All numbers, names, and phases |
+
+> Estimated token usage: 15k–35k.
+
+**Save output as:** `context/p5b_Proposal_Pitch_TreeRaise.docx`
+
+---
+
+### p5c — Development Blueprint
+
+**Purpose:** Generate the animated HTML blueprint showing the three delivery
+iterations, five development phases, and all portals with their screen lists.
+Shown on-screen alongside the Proposal during the pitch video.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase5_proposal/p5c_Proposal_Development_Blueprint.md` | Prompt |
+| `context/p4c_Tech_Spec_TreeRaise.docx` | Portals, screens, phases, team |
+| `context/p5a_Proposal_TreeRaise.docx` | Screen counts and week ranges |
+
+> Estimated token usage: 20k–50k.
+
+**Save output as:** `context/p5c_Dev_Blueprint_TreeRaise.html`
+
+---
+
+## How the Phases Connect
+
+```
+Phase 1        Phase 2       Phase 3        Phase 4               Phase 5
+──────────     ──────────    ────────────   ──────────────────    ───────────────────
+p1_ files  →  p2_ Warming   p3_ Outcome    p4a_ Ops Manual       p5a_ Proposal
+               (parallel)    Report         p4b_ Report      →   p5b_ Pitch Script
+                             (parallel)     p4c_ Tech Spec        p5c_ Blueprint
+                                            p4d_ Portals
+                                            p4e_ Demo Pitch
+```
+
+**Phases 2 and 3 run in parallel** — start LinkedIn comments on Day 1 while
+preparing and recording the outcome report video.
+
+**Phase 4 only starts after prospect engagement** — a reply, a watched video,
+or a booked call. Do not invest 60k–130k tokens on the full analysis stack until
+there is confirmed interest.
+
+**Phase 5 runs 5a → 5b → 5c in order** — the pitch script reads the proposal,
+the blueprint reads both.
+
+---
+
+## Token Budget
+
+| Phase | Prompt | Inputs | Est. tokens |
+|-------|--------|--------|-------------|
+| 1 | p1_ (each) | Prompt + one raw file | 10k–40k |
+| 2 | p2_ | Prompt + CEO LinkedIn + Ops Manual | 20k–50k |
+| 3 | p3_ | Prompt + Business Report + Ops Manual | 30k–60k |
+| 4 | p4a_ | Prompt + all p1_ context files | 60k–130k |
+| 4 | p4b_ | Prompt + p4a_ only | 30k–70k |
+| 4 | p4c_ | Prompt + p4a_ + p4b_ | 60k–120k |
+| 4 | p4d_ | Prompt + p4c_ | 40k–100k |
+| 4 | p4e_ | Prompt + 2 portal HTML + p4a_ | 25k–55k |
+| 5 | p5a_ | Prompt + p4c_ | 20k–50k |
+| 5 | p5b_ | Prompt + p5a_ only | 15k–35k |
+| 5 | p5c_ | Prompt + p4c_ + p5a_ | 20k–50k |
+
+p4a_ is the only step that reads all Phase 1 files.
+Every other step reads only the direct output of the previous step.
