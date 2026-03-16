@@ -3762,7 +3762,7 @@
         <div class="profile-popup-item" onclick="showToast('Available · Status updated', '🟢'); closeProfilePopup()">
           <span class="pp-icon">🟢</span> Set Status
         </div>
-        <div class="profile-popup-item danger" onclick="showToast('Logging out…', '👋'); closeProfilePopup()">
+        <div class="profile-popup-item danger" onclick="doLogout()">
           <span class="pp-icon">🚪</span> Log Out
         </div>
       </div>
@@ -11426,6 +11426,11 @@
     </script>
 
     <script>
+      function doLogout() {
+        sessionStorage.removeItem('d8x_authed');
+        window.location.href = 'auth.html';
+      }
+
       function stopAndCall_OpenMoveStageModal_A004(event) {
         event.stopPropagation();
         openMoveStageModal('A004', 'Omar Farooq', 'Data Analyst', 'applied', 'OF', '#e67e00');
