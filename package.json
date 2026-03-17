@@ -23,6 +23,7 @@
     "install:cdns:troophunter": "cd cdns/troophunter && npm install",
     "install:ferrari": "cd microfrontend/ferrari && npm install",
     "build:dev8x": "npm run build -- --filter=dev8x",
+    "build:burkes": "npm run build -- --filter=burkes",
     "build:helloabdul": "npm run build -- --filter=helloabdul",
     "build:ferrari": "npm run build -- --filter=ferrari",
     "build:troophunter": "npm run build -- --filter=troophunter",

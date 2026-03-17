@@ -11,6 +11,9 @@ import styles from './../../DataDisplay/OpenRolesList/index.module.css';
 export const INTERNSHIP_ROLES: RoleProject[] = [
   /**
    * Sequence of Roles by Departments
+   *  - Lead Generation
+   *  - Business Development
+   *  - Digital Marketing
    *  - Graphic Designer
    *  - UI/UX Design
    *  - ASO (App Store Optimization)
@@ -19,13 +22,259 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
    *  - Backend Development
    *  - DevOps Engineering
    *  - AI Engineering
-   *  - Business Development
-   *  - Lead Generation
+   *  - Linkedin Lead Generation
    *  - Upwork Bidder
    *  - Customer Support
    *  - Human Resources
    **/
+  {
+    subTitle: 'OPEN ROLES',
+    title: ' Lead Generation',
+    type: 'Internship',
+    salary: 'Unpaid',
+    location: 'Remote / Lahore',
+    description: (
+      <div>
+        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+          <p>Kickstart Your Career with Dev8X – Remote Lead Generation Internship Opportunity!</p>
+        </div>
 
+        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+          <p>Are you curious about how modern sales engines are built? Want hands-on experience in data-driven growth, automation, and B2B lead generation while working on real pipelines that drive revenue?</p>
+
+          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3-months remote Lead Generation Internship</caption>where you’ll become the engine of the sales funnel — building, cleaning, and scaling high-quality lead databases that fuel outbound growth.
+          </p>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Sales & growth mindset: B2B sales funnels, lead pipelines, and revenue systems.</li>
+              <li>Data research & intelligence: market mapping, ICP research, and prospect profiling.</li>
+              <li>Lead mining & sourcing: Upwork, LinkedIn, Fiverr, Apollo, and databases.</li>
+              <li>Email verification & data hygiene systems.</li>
+              <li>CRM architecture & pipeline management.</li>
+              <li>Segmentation strategies (industry, company size, region, intent).</li>
+              <li>Automation workflows & enrichment pipelines.</li>
+              <li>Sales operations fundamentals. </li>
+              <li>Outbound systems thinking. </li>
+              <li>Real-world funnel building experience.</li>
+            </ul>
+          </div>
+          <div className={ProjectContentStyles['project-content__block-image']}>
+            <div className={ProjectContentStyles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+              <div
+                className="WorkCard_work-card-wrapper__DfwMI"
+                style={
+                  {
+                    '--aspect-x': 1452,
+                    '--aspect-y': 890,
+                    opacity: 1,
+                    transform: 'translateY(0px)'
+                  } as React.CSSProperties
+                }
+              >
+                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="/" target="_blank">
+                  <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
+                    <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
+                    <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
+                      <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
+                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+                      </picture>
+                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption>Lead Generation Intern (Sales Operations Focus)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption>3 Months
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption>Remote / Lahore
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption>5:00 PM to 2:00 AM (PKT)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption>Unpaid
+              </li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>Mine leads from platforms (Upwork, LinkedIn, Fiverr, databases, directories).</li>
+              <li>Scrape, extract, and structure large datasets.</li>
+              <li>Verify email addresses and contact data.</li>
+              <li>Segment leads by industry, company size, geography, and intent.</li>
+              <li>Maintain CRM cleanliness, structure, and data integrity.</li>
+              <li>Build and manage lead pipelines.</li>
+              <li>Support outbound sales operations.</li>
+              <li>Create structured lead databases for sales teams.</li>
+              <li>Document workflows and build scalable lead systems.</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}> Tools You’ll Use:</caption> LinkedIn, Upwork, Apollo.io, ZoomInfo, Clay, HubSpot or Salesforce, and data enrichment tools.
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Open to remote applicants (preferably Pakistan-based)
+              </li>
+              <li>Strong research and data-handling skills.</li>
+              <li>Interest in sales systems, growth, and B2B funnels.</li>
+              <li>Basic understanding of CRM and lead pipelines.</li>
+              <li>Comfort working with large datasets.</li>
+              <li>Organized, process-driven personality.</li>
+              <li>Willingness to learn automation and scraping workflows.</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Work on real-world projects, not just practice concepts</li>
+              <li>Receive 1-on-1 mentorship from experienced sales engineers</li>
+              <li>Build a portfolio that makes you stand out in sales operations roles</li>
+              <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    subTitle: 'OPEN ROLES',
+    title: 'Business Development',
+    type: 'Internship',
+    salary: 'Unpaid',
+    location: 'Remote / Lahore',
+    description: (
+      <div>
+        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
+          <p>Launch Your Career in Tech Sales with Dev8X – Remote Business Development Internship Opportunity!</p>
+        </div>
+
+        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
+          <p>Are you a persuasive communicator with a passion for connecting with people and growing businesses? Looking to gain hands-on experience in client acquisition, outreach, and tech sales?</p>
+
+          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3-months remote Business Development internship</caption> where you'll grow, build, and innovate alongside a talented team!
+          </p>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Get real-world experience in B2B tech sales and lead generation</li>
+              <li>Learn how to pitch, negotiate, and close deals</li>
+              <li>Build a solid portfolio of sales strategies and client engagement work</li>
+              <li>Collaborate with a growth-driven and supportive remote team</li>
+            </ul>
+          </div>
+          <div className={ProjectContentStyles['project-content__block-image']}>
+            <div className={ProjectContentStyles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
+              <div
+                className="WorkCard_work-card-wrapper__DfwMI"
+                style={
+                  {
+                    '--aspect-x': 1452,
+                    '--aspect-y': 890,
+                    opacity: 1,
+                    transform: 'translateY(0px)'
+                  } as React.CSSProperties
+                }
+              >
+                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/r/3-month-bd-roadmap-for-interns-weekly-skills-sales-crm-outreach-research-client-comms-tasks-kpis-format-in-bullettable" target="_blank">
+                  <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
+                    <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
+                    <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
+                      <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
+                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
+                      </picture>
+                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption>Business Development Intern
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption>3 Months
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption>Remote / Lahore
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption>5:00 PM to 2:00 AM (PKT)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption>Unpaid
+              </li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>Identify, research, and qualify potential leads</li>
+              <li>Write and send winning proposals on Upwork</li>
+              <li>Connect with decision-makers on LinkedIn and build lasting relationships</li>
+              <li>Launch and manage cold email campaigns using tools like Mailshake or Instantly</li>
+              <li>Conduct cold calls and introductory meetings with potential clients</li>
+              <li>Maintain CRM data, track responses, and report weekly performance</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
+            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Open to remote applicants (preferably Pakistan-based)
+              </li>
+              <li>
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Skills:</caption> Excellent written and verbal English communication
+              </li>
+              <li>Confident in making cold calls and presenting over video meetings</li>
+              <li>Familiar with Upwork, LinkedIn, or other B2B platforms</li>
+              <li>Knowledge of CRM tools, email outreach platforms, or lead-gen tools is a bonus</li>
+              <li>Eagerness to learn and a results-driven mindset</li>
+            </ul>
+          </div>
+
+          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
+            <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
+            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
+              <li>Work on real client acquisition projects from Day 1</li>
+              <li>Receive 1-on-1 mentorship from seasoned business developers</li>
+              <li>Learn end-to-end sales workflows in the IT services space</li>
+              <li>Build a portfolio that makes you stand out in tech business roles</li>
+              <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  },
   {
     subTitle: 'OPEN ROLES',
     title: 'Digital Marketing',
@@ -38,25 +287,27 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Launch Your Career with Dev8X – Remote Digital Marketing Internship Opportunity!</p>
         </div>
         <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
-          <p>Are you curious about how websites and mobile apps grow? Want to gain hands-on experience across SEO, ads, social media, and App Store Optimization (ASO) while working on real campaigns that drive leads, traffic, and app installs?</p>
+          <p>Are you curious about how websites, brands, and online businesses grow? Want to gain hands-on experience across SEO, ads, social media, content, and freelancing platforms while working on real campaigns that drive leads, traffic, and conversions?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote Digital Marketing internship</caption> where you’ll learn how to manage multi-channel campaigns, optimize app visibility, and contribute to real-world growth projects! </p>
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3 month remote Digital Marketing internship</caption>where you’ll learn how to manage multi-channel campaigns, rank websites and freelancing profiles, and contribute to real-world growth projects!{' '}
+          </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
               <li>Digital marketing mindset: SEO, SEM, SMM, Email, Content.</li>
-              <li>Market research, competitor analysis, and consumer psychology.</li>
+              <li>SEO fundamentals (on-page, off-page, technical, local SEO).</li>
               <li>Content & campaign basics (blogs, social media, email).</li>
-              <li>App market research & keyword strategy (SensorTower, AppTweak).</li>
-              <li>Metadata optimization (titles, descriptions, keywords, localization).</li>
-              <li>Creative optimization (icons, screenshots, videos).</li>
-              <li>Reviews, ratings & reputation management.</li>
-              <li>A/B testing & performance tracking for apps.</li>
-              <li>Retention & lifecycle marketing (email flows, push notifications).</li>
-              <li>Creative production for ads & app stores.</li>
-              <li>Community building & review management.</li>
+              <li>Website ranking strategies & keyword research.</li>
+              <li>Fiverr profile optimization & gig ranking strategies.</li>
+              <li>Upwork profile optimization & proposal positioning.</li>
+              <li>Personal brand positioning on freelance platforms.</li>
+              <li>Creative optimization (graphics, thumbnails, ad creatives).</li>
+              <li>A/B testing & performance tracking.</li>
+              <li>Retention & lifecycle marketing (email flows, funnels, automation).</li>
+              <li>Creative production for ads & landing pages.</li>
+              <li>Community building & brand engagement.</li>
             </ul>
           </div>
 
@@ -91,19 +342,19 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Digital Marketing Intern (Mobile Growth Focus)
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption>Digital Marketing Intern (SEO & Growth Focus)
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption>3 Months
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption>Remote / Lahore
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption>5:00 PM to 2:00 AM (PKT)
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption>Unpaid
               </li>
             </ul>
           </div>
@@ -112,9 +363,10 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
               <li>Assist in SEO, ads, content, and social media execution.</li>
-              <li>Support app store optimization projects (keywords, creatives, reviews).</li>
+              <li>Support website ranking projects (keywords, content, optimization). </li>
+              <li>Work on Fiverr & Upwork profile building and ranking strategies.</li>
               <li>Run market research & competitor benchmarking.</li>
-              <li>Track & analyze performance using Google Analytics, Firebase, and app store consoles.</li>
+              <li>Track & analyze performance using Google Analytics, Firebase, and marketing tools.</li>
               <li>Help design, test & optimize landing pages, creatives, and campaigns.</li>
               <li>Document results → build case studies for portfolio.</li>
             </ul>
@@ -124,20 +376,20 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
               <li>Basic understanding of digital marketing concepts (SEO, social, ads).</li>
-              <li>Interest in mobile app growth & ASO.</li>
+              <li>Interest in growth marketing and freelancing platforms.</li>
               <li>Research skills and analytical mindset.</li>
               <li>Strong written communication & willingness to learn.</li>
-              <li>Familiarity with GA4, Firebase, Ads Manager, SensorTower, AppTweak (a plus).</li>
+              <li>Familiarity with GA4, Ads Manager, Fiverr, Upwork, SEO tools (a plus).</li>
             </ul>
           </div>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
-              <li>Structured roadmap-based training → go from foundations to ASO to growth.</li>
+              <li>Structured roadmap-based training → go from foundations to SEO  to growth.</li>
               <li>Work on real apps & campaigns → not just theory.</li>
               <li>Mentorship from experienced growth marketers.</li>
-              <li>Build a portfolio covering SEO, ASO, Ads, and Growth Marketing.</li>
+              <li>Build a portfolio covering SEO, Freelancing Growth, Ads, and Growth Marketing.</li>
               <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
             </ul>
           </div>
@@ -160,7 +412,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you passionate about crafting delightful user experiences and elegant user interfaces? Looking to gain hands-on experience in real-world projects that users love?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote Graphic Designer internship</caption> where you'll grow, build, and innovate alongside a talented team!
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3 month remote Graphic Designer internship</caption> where you'll grow, build, and innovate alongside a talented team!
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -186,7 +438,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                   } as React.CSSProperties
                 }
               >
-                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/r/graphic-designer-internship-roadmap--6-months" target="_blank">
+                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/r/graphic-designer-internship-roadmap--3-monthss" target="_blank">
                   <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
                     <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
                     <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
@@ -204,19 +456,19 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Graphic Designer Intern
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption>Graphic Designer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption>3 Months
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption>Remote / Lahore
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption>5:00 PM to 2:00 AM (PKT)
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption>Unpaid
               </li>
             </ul>
           </div>
@@ -275,7 +527,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you passionate about crafting delightful user experiences and elegant user interfaces? Looking to gain hands-on experience in real-world projects that users love?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote UI/UX Designer internship</caption> where you'll grow, build, and innovate alongside a talented team!
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3 month remote UI/UX Designer internship</caption> where you'll grow, build, and innovate alongside a talented team!
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -319,19 +571,19 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> UI/UX Designer Intern
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption>UI/UX Designer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption>3 Months
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption>Remote / Lahore
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption>5:00 PM to 2:00 AM (PKT)
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption>Unpaid
               </li>
             </ul>
           </div>
@@ -390,7 +642,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p> Are you passionate about mobile apps, curious about how apps grow on the App Store & Google Play, and eager to learn real ASO strategies? Looking to gain hands-on experience in keyword research, competitor analysis, and app growth?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}> 6-month remote ASO internship</caption> where you’ll learn how to boost app visibility, drive downloads, and contribute to real-world growth projects!
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}> 3-months remote ASO internship</caption> where you’ll learn how to boost app visibility, drive downloads, and contribute to real-world growth projects!
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -435,19 +687,19 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> ASO Specialist Intern
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption>ASO Specialist Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption>3 Months
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption>Remote / Lahore
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption>5:00 PM to 2:00 AM (PKT)
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption>Unpaid
               </li>
             </ul>
           </div>
@@ -455,17 +707,12 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']}`}>
-              <li>Conduct market & competitor analysis to find trending niches and opportunities.
-              </li>
-              <li>Perform keyword research & strategy using ASO tools.
-              </li>
+              <li>Conduct market & competitor analysis to find trending niches and opportunities.</li>
+              <li>Perform keyword research & strategy using ASO tools.</li>
               <li>Draft metadata (titles, descriptions, subtitles) for iOS & Android apps.</li>
-              <li>Assist in creating creative assets (icons, screenshots, feature graphics).
-              </li>
-              <li>Monitor reviews & ratings, track sentiment, and escalate feedback.
-              </li>
-              <li>Analyze user engagement & retention metrics.
-              </li>
+              <li>Assist in creating creative assets (icons, screenshots, feature graphics).</li>
+              <li>Monitor reviews & ratings, track sentiment, and escalate feedback.</li>
+              <li>Analyze user engagement & retention metrics.</li>
               <li>Support A/B testing experiments for app creatives & metadata.</li>
             </ul>
           </div>
@@ -490,14 +737,10 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
             <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
             <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
-              <li>Work on meaningful ASO projects with real impact.
-              </li>
-              <li>Receive mentorship from experienced ASO specialists.
-              </li>
-              <li>Learn how to rank apps, optimize conversions, and manage app store presence.
-              </li>
-              <li>Internship certificate, recommendation letter, and a potential path to full-time.
-              </li>
+              <li>Work on meaningful ASO projects with real impact.</li>
+              <li>Receive mentorship from experienced ASO specialists.</li>
+              <li>Learn how to rank apps, optimize conversions, and manage app store presence.</li>
+              <li>Internship certificate, recommendation letter, and a potential path to full-time.</li>
             </ul>
           </div>
         </div>
@@ -520,7 +763,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you a Flutter enthusiast with a passion for building beautiful, high-performance mobile apps? Looking to take your cross-platform development skills to the next level in a real-world setting?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote Flutter internship</caption> where you'll grow, build, and innovate alongside a talented team!
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3 month remote Flutter internship</caption> where you'll grow, build, and innovate alongside a talented team!
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -565,19 +808,19 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
             <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Flutter Developer Intern
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption>Flutter Developer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption>3 Months
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption>Remote / Lahore
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption>5:00 PM to 2:00 AM (PKT)
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption>Unpaid
               </li>
             </ul>
           </div>
@@ -635,7 +878,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you passionate about crafting sleek, responsive web interfaces with React and Next.js? Ready to sharpen your skills in a real-world development environment?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote Frontend Development internship</caption> where you'll grow, build, and innovate alongside a talented team!
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3 month remote Frontend Development internship</caption> where you'll grow, build, and innovate alongside a talented team!
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -680,19 +923,19 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
             <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Web Frontend Developer Intern
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption>Web Frontend Developer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption>3 Months
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption>Remote / Lahore
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption>5:00 PM to 2:00 AM (PKT)
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption>Unpaid
               </li>
             </ul>
           </div>
@@ -754,7 +997,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you passionate about building robust and scalable backend systems using Node.js and PostgreSQL? Ready to dive deep into real-world backend development with modern ORMs like Sequelize and Prisma?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote Backend Development internship</caption> where you'll grow, build, and innovate alongside a talented team!
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3 month remote Backend Development internship</caption> where you'll grow, build, and innovate alongside a talented team!
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -797,19 +1040,19 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
             <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Web Backend Developer Intern
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption>Web Backend Developer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption>3 Months
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption>Remote / Lahore
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption>5:00 PM to 2:00 AM (PKT)
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption>Unpaid
               </li>
             </ul>
           </div>
@@ -870,7 +1113,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you passionate about AI, automation, and building intelligent agents that solve real-world problems? Looking to get hands-on experience with cutting-edge tools like OpenAI and n8n?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6 month remote AI Engineer internship</caption> where you'll grow, build, and innovate alongside a talented team!
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3 month remote AI Engineer internship</caption> where you'll grow, build, and innovate alongside a talented team!
           </p>
 
           {/* Optional Preview Section */}
@@ -915,19 +1158,19 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
             <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
             <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> AI Engineer Intern
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption>AI Engineer Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption>3 Months
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption>Remote / Lahore
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption>5:00 PM to 2:00 AM (PKT)
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption>Unpaid
               </li>
             </ul>
           </div>
@@ -973,125 +1216,6 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
   },
   {
     subTitle: 'OPEN ROLES',
-    title: 'Business Development',
-    type: 'Internship',
-    salary: 'Unpaid',
-    location: 'Remote / Lahore',
-    description: (
-      <div>
-        <div className={`${CaseStudySiderbarStyles['sidebar__intro']}`}>
-          <p>Launch Your Career in Tech Sales with Dev8X – Remote Business Development Internship Opportunity!</p>
-        </div>
-
-        <div className={`${CaseStudySiderbarStyles['sidebar__body']}`}>
-          <p>Are you a persuasive communicator with a passion for connecting with people and growing businesses? Looking to gain hands-on experience in client acquisition, outreach, and tech sales?</p>
-
-          <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6-month remote Business Development internship</caption> where you'll grow, build, and innovate alongside a talented team!
-          </p>
-
-          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <h4 className={`${styles['mb-0']}`}>What's in it for you?</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
-              <li>Get real-world experience in B2B tech sales and lead generation</li>
-              <li>Learn how to pitch, negotiate, and close deals</li>
-              <li>Build a solid portfolio of sales strategies and client engagement work</li>
-              <li>Collaborate with a growth-driven and supportive remote team</li>
-            </ul>
-          </div>
-          <div className={ProjectContentStyles['project-content__block-image']}>
-            <div className={ProjectContentStyles['project-content__image']} style={{ opacity: 1, transform: 'translateY(0px)' }}>
-              <div
-                className="WorkCard_work-card-wrapper__DfwMI"
-                style={
-                  {
-                    '--aspect-x': 1452,
-                    '--aspect-y': 890,
-                    opacity: 1,
-                    transform: 'translateY(0px)'
-                  } as React.CSSProperties
-                }
-              >
-                <a className={`${WorkCardStyles['work-card']} ${WorkCardStyles['work-card--landscape']} ${styles['block-image-spacing']}`} href="https://roadmap.sh/r/3-month-bd-roadmap-for-interns-weekly-skills-sales-crm-outreach-research-client-comms-tasks-kpis-format-in-bullettable" target="_blank">
-                  <div className={WorkCardStyles['work-card__thumbnail-wrapper']}>
-                    <div className={`${WorkCardStyles['work-card__thumbnail-outer']} ${WorkCardStyles['bg--troophunter-light']}`} style={{ height: '200%' }}></div>
-                    <div className={`${WorkCardStyles['work-card__thumbnail-inner']} undefined`}>
-                      <picture className="Picture_picture__gpFzt WorkCard_work-card__picture__6Naim" style={{ height: '100%' }}>
-                        <img src={prefixed('/api/images/placeholder/1080-transparent.png/m/312x178/filters:quality(80)')} loading="lazy" width={312} height={178} alt="AI Workflow Preview" draggable={false} />
-                      </picture>
-                      <video className={WorkCardStyles['work-card__video']} autoPlay loop playsInline src={prefixed('/videos/work/ai/1080.mp4')}></video>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <h4 className={`${styles['mb-0']}`}>Internship Details:</h4>
-            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Business Development Intern
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
-              </li>
-            </ul>
-          </div>
-
-          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <h4 className={`${styles['mb-0']}`}>Key Responsibilities:</h4>
-            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
-              <li>Identify, research, and qualify potential leads</li>
-              <li>Write and send winning proposals on Upwork</li>
-              <li>Connect with decision-makers on LinkedIn and build lasting relationships</li>
-              <li>Launch and manage cold email campaigns using tools like Mailshake or Instantly</li>
-              <li>Conduct cold calls and introductory meetings with potential clients</li>
-              <li>Maintain CRM data, track responses, and report weekly performance</li>
-            </ul>
-          </div>
-
-          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <h4 className={`${styles['mb-0']}`}>Requirements:</h4>
-            <ul className={CaseStudySiderbarStyles['custom-icon-list']}>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Open to remote applicants (preferably Pakistan-based)
-              </li>
-              <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Skills:</caption> Excellent written and verbal English communication
-              </li>
-              <li>Confident in making cold calls and presenting over video meetings</li>
-              <li>Familiar with Upwork, LinkedIn, or other B2B platforms</li>
-              <li>Knowledge of CRM tools, email outreach platforms, or lead-gen tools is a bonus</li>
-              <li>Eagerness to learn and a results-driven mindset</li>
-            </ul>
-          </div>
-
-          <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <h4 className={`${styles['mb-0']}`}>Why Join Dev8X?</h4>
-            <ul className={`${CaseStudySiderbarStyles['custom-icon-list']} ${styles['mb-0']}`}>
-              <li>Work on real client acquisition projects from Day 1</li>
-              <li>Receive 1-on-1 mentorship from seasoned business developers</li>
-              <li>Learn end-to-end sales workflows in the IT services space</li>
-              <li>Build a portfolio that makes you stand out in tech business roles</li>
-              <li>Internship certificate, recommendation letter, and a potential path to full-time</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    )
-  },
-  {
-    subTitle: 'OPEN ROLES',
     title: 'LinkedIn Lead Generation',
     type: 'Internship',
     salary: 'Unpaid',
@@ -1106,7 +1230,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you passionate about building professional connections and identifying new business opportunities? This internship is your chance to gain real-world experience in LinkedIn-based lead generation and contribute directly to our growth journey?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6-month remote LinkedIn Lead Generation internship</caption> where you'll work directly with the sales and marketing team to identify, connect, and qualify potential clients on LinkedIn while driving new business opportunities.
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3-months remote LinkedIn Lead Generation internship</caption> where you'll work directly with the sales and marketing team to identify, connect, and qualify potential clients on LinkedIn while driving new business opportunities.
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -1154,13 +1278,13 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> LinkedIn Lead Generation Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 5:00 PM to 2:00 AM (PKT)
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
@@ -1188,9 +1312,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Open to remote applicants (preferably Pakistan-based)
               </li>
-              <li>
-                Currently pursuing or recently completed a degree in Marketing, Business Administration, or a related field
-              </li>
+              <li>Currently pursuing or recently completed a degree in Marketing, Business Administration, or a related field</li>
               <li>Familiarity with LinkedIn and its features, including Sales Navigator</li>
               <li>Strong research and analytical skills</li>
               <li>Proficiency in Microsoft Office Suite (Excel, Word, PowerPoint) and Google Workspace</li>
@@ -1230,7 +1352,7 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
           <p>Are you someone who loves exploring freelancing platforms, spotting new opportunities, and building client relationships? Looking to gain real-world experience in proposals, bidding, and client acquisition?</p>
 
           <p className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
-            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>6-month remote  Upwork Bidder internship</caption>where you’ll collaborate with our leadership team to explore new growth opportunities across platforms such as Upwork, LinkedIn, Email, and Cold Calling.
+            <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>Dev8X</caption> invites you to be part of an exciting <caption className={`${styles['inline-block']} ${styles['pb-0']}`}>3-months remote Upwork Bidder internship</caption>where you’ll collaborate with our leadership team to explore new growth opportunities across platforms such as Upwork, LinkedIn, Email, and Cold Calling.
           </p>
 
           <div className={`${CaseStudySiderbarStyles['sidebar__awards']}`}>
@@ -1278,13 +1400,13 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Position:</caption> Upwork Bidder Intern
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 6 Months
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Duration:</caption> 3 Months
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Location:</caption> Remote / Lahore
               </li>
               <li>
-                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 8:00 PM to 2:00 AM (PKT)
+                <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Timings:</caption> 5:00 PM to 2:00 AM (PKT)
               </li>
               <li>
                 <caption className={`${styles['flex']} ${styles['align-items-end']} ${styles['pb-0']}`}>Internship Type:</caption> Unpaid
@@ -1337,5 +1459,5 @@ export const INTERNSHIP_ROLES: RoleProject[] = [
         </div>
       </div>
     )
-  },
+  }
 ];

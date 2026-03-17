@@ -22,19 +22,21 @@ export const HomepageShowreel: React.FC<HomepageShowreelProps> = ({ children, ho
 
   useEffect(() => {
     const video = videoRef.current;
+    if (!video) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          const el = videoRef.current;
+          if (!el) return;
           if (entry.isIntersecting) {
             // When visible → play
-            video
-              .play()
+            el.play()
               .then(() => setIsPlaying(true))
               .catch((err) => console.warn('Autoplay failed:', err));
           } else {
             // When out of view → pause only
-            video.pause();
+            el.pause();
             setIsPlaying(false);
           }
         });

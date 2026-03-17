@@ -21,8 +21,14 @@ Because LinkedIn uses infinite scrolling and lazy-loads content, this scraper si
 ## Installation
 
 ```bash
-python -m venv venv
+python3 -m venv venv
+
+# Windows: Use CMD terminal
+venv\Scripts\activate.bat
+
+# Unix / macOS
 source venv/bin/activate
+
 pip install -r requirements.txt
 ```
 
@@ -31,7 +37,7 @@ pip install -r requirements.txt
 Activate your virtual environment, then run:
 
 ```bash
-python main.py "https://pk.linkedin.com/company/developers-inc" --no-headless
+python3 main.py "https://www.linkedin.com/company/treeraise/" --max-scrolls 15 --no-headless
 ```
 
 The scraper will:
@@ -51,7 +57,7 @@ Optional flags:
 You can also run this via a simple local Flask app:
 
 ```bash
-python web_app.py
+python3 web_app.py
 ```
 
 Then visit `http://127.0.0.1:5000/`. Enter the LinkedIn URL and your max-scroll count and let the tool do the rest.

@@ -19,7 +19,7 @@ from urllib.parse import urlparse
 from selenium.common.exceptions import WebDriverException
 
 import config
-from helpers import browser, extraction, navigation, output_md, sitemap
+from helpers import browser, extraction, navigation, output_md, sitemap, crawler
 
 
 def parse_args(argv: List[str]) -> argparse.Namespace:
@@ -157,7 +157,7 @@ def run_scraper(
     Run the scraping loop and return the path to the generated Markdown file.
 
     1. Auto-discover the sitemap to get page URLs.
-    2. Fall back to scraping just the start URL if no sitemap is found.
+    2. Fall back to link-based crawling if no sitemap is found.
     3. Open each page in a separate browser tab.
     """
     global _seen
@@ -167,7 +167,31 @@ def run_scraper(
 
     # --- Discover pages via sitemap ---
     urls = sitemap.discover_sitemap_urls(start_url, limit=max_pages)
+    
+    # --- If no sitemap, crawl the website for internal links ---
     if not urls:
+        print("[info] No sitemap found. Starting link discovery crawl...")
+        discovery_driver = browser.create_driver(headless=headless)
+        try:
+            # Use fast batch crawl: load first 10-15 pages to discover links,
+            # then queue remaining pages without loading them.
+            urls = crawler.crawl_website_batch(
+                discovery_driver,
+                start_url,
+                max_pages=max_pages,
+                discovery_phase_pages=10,
+            )
+        except Exception as e:
+            print(f"[warn] Crawl failed: {e}. Falling back to start URL only.")
+            urls = [start_url]
+        finally:
+            try:
+                discovery_driver.quit()
+            except WebDriverException:
+                pass
+    
+    if not urls:
+        print("[info] No pages discovered. Using start URL.")
         urls = [start_url]
 
     # --- Scrape in browser tabs ---

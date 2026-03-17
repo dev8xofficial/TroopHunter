@@ -1,4 +1,5 @@
 import { AboutContent } from '@repo/components';
+import { COPYRIGHT_YEAR } from '../constants';
 
 const PageData: AboutContent = {
   meta: {
@@ -90,7 +91,7 @@ const PageData: AboutContent = {
     //   linkText: 'Explore Careers'
     // },
     copyright: {
-      year: '2025',
+      year: COPYRIGHT_YEAR,
       text: 'Privacy Policy',
       privacyLink: '/privacy'
     }

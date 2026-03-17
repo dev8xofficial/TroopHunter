@@ -18,7 +18,6 @@ const pageToUrlMap = {
   // Main pages
   index: '/',
   'about/index': '/about',
-  'work/index': '/work',
   'pricing/index': '/pricing',
   'contact/index': '/contact',
   'our-process/index': '/our-process',
@@ -28,19 +27,18 @@ const pageToUrlMap = {
   'web-applications/index': '/web-applications',
   'saas-applications/index': '/saas-applications',
   'mobile-applications/index': '/mobile-applications',
+  'internships/index': '/internships',
   'privacy/index': '/privacy',
   '404/index': '/404',
 
   // Dynamic routes (these will be handled separately)
   'pricing/[slug]': '/pricing/[slug]',
-  'work/[slug]': '/work/[slug]'
 };
 
 // Function to read dynamic routes from data files
 const readDynamicRoutes = () => {
   const dynamicRoutes = {
-    pricing: [],
-    work: []
+    pricing: []
   };
 
   try {
@@ -68,31 +66,8 @@ const readDynamicRoutes = () => {
       }
     }
 
-    // Read work routes (This section was already correct)
-    const workDataPath = path.join(__dirname, './data/work/index.d.tsx');
-    if (fs.existsSync(workDataPath)) {
-      const workContent = fs.readFileSync(workDataPath, 'utf-8');
-
-      // This regex captures the array content into group [1]
-      const workMatch = workContent.match(/const WORK_PROJECTS:\s*WorkDetail\[\]\s*=\s*\[([\s\S]*?)\];/);
-      if (workMatch) {
-        // Correctly uses workMatch[1]
-        const workArrayContent = workMatch[1];
-
-        // Extract slug properties using regex
-        const slugMatches = workArrayContent.match(/slug:\s*['"`]([^'"`]+)['"`]/g);
-        if (slugMatches) {
-          slugMatches.forEach((match) => {
-            const slug = match.match(/slug:\s*['"`]([^'"`]+)['"`]/)[1];
-            dynamicRoutes.work.push(slug);
-          });
-        }
-      }
-    }
-
     console.log('📊 Dynamic routes found:');
     console.log(`   Pricing: ${dynamicRoutes.pricing.length} routes`);
-    console.log(`   Work: ${dynamicRoutes.work.length} routes`);
 
     return dynamicRoutes;
   } catch (error) {
@@ -117,7 +92,7 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
 
     if (!process.env.NEXT_PUBLIC_DEV8X_APP_URL) {
       console.warn('Warning: NEXT_PUBLIC_DEV8X_APP_URL is not defined, using default');
-      process.env.NEXT_PUBLIC_DEV8X_APP_URL = 'https://dev8x.com';
+      process.env.NEXT_PUBLIC_DEV8X_APP_URL = 'https://www.dev8x.com';
     }
 
     const sitemapStream = new SitemapStream({ hostname: process.env.NEXT_PUBLIC_DEV8X_APP_URL });
@@ -136,25 +111,22 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
       let priority = 0.9;
 
       if (urlPath === '/') {
-        changefreq = 'daily';
+        changefreq = 'monthly';
         priority = 1.0;
       } else if (urlPath === '/about') {
-        changefreq = 'daily';
-        priority = 0.9;
-      } else if (urlPath === '/work') {
-        changefreq = 'daily';
+        changefreq = 'yearly';
         priority = 0.9;
       } else if (urlPath === '/contact') {
-        changefreq = 'monthly';
+        changefreq = 'yearly';
         priority = 0.7;
       } else if (urlPath === '/cto-as-a-service') {
-        changefreq = 'weekly';
+        changefreq = 'monthly';
         priority = 0.6;
       } else if (urlPath === '/services-for-early-stage-startups') {
-        changefreq = 'weekly';
+        changefreq = 'monthly';
         priority = 0.6;
       } else if (urlPath === '/services-for-growth-stage-startups') {
-        changefreq = 'weekly';
+        changefreq = 'monthly';
         priority = 0.5;
       } else if (urlPath === '/web-applications') {
         changefreq = 'monthly';
@@ -172,7 +144,7 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
         changefreq = 'yearly';
         priority = 0.4;
       } else if (urlPath === '/pricing') {
-        changefreq = 'yearly';
+        changefreq = 'monthly';
         priority = 0.8;
       }
 
@@ -190,16 +162,6 @@ const generateSitemap = async (updatedPaths = new Set(Object.values(pageToUrlMap
         url: `/pricing/${slug}`,
         changefreq: 'weekly',
         priority: 0.7,
-        lastmod: getCurrentDate()
-      });
-    }
-
-    // Add dynamic work routes
-    for (const slug of dynamicRoutes.work) {
-      sitemapStream.write({
-        url: `/work/${slug}`,
-        changefreq: 'weekly',
-        priority: 0.6,
         lastmod: getCurrentDate()
       });
     }
@@ -242,15 +204,15 @@ const startFileWatcher = () => {
   watcher.on('change', (filePath) => {
     console.log(`File changed: ${filePath}`);
 
-    // Check if it's a data file (pricing or work)
-    if (filePath.includes('/data/pricing/') || filePath.includes('/data/work/')) {
+    // Check if it's a data file (pricing)
+    if (filePath.includes('/data/pricing/')) {
       console.log('Data file changed, regenerating sitemap with dynamic routes...');
 
       // Debounce updates (wait for 5 seconds of inactivity)
       if (updateTimeout !== null) clearTimeout(updateTimeout);
 
       updateTimeout = setTimeout(() => {
-        generateSitemap(new Set(['/pricing', '/work']));
+        generateSitemap(new Set(['/pricing']));
       }, 5000);
       return;
     }
@@ -286,9 +248,9 @@ const startFileWatcher = () => {
     console.log(`File removed: ${filePath}`);
 
     // Check if it's a data file
-    if (filePath.includes('/data/pricing/') || filePath.includes('/data/work/')) {
+    if (filePath.includes('/data/pricing/')) {
       console.log('Data file removed, regenerating sitemap...');
-      generateSitemap(new Set(['/pricing', '/work']));
+      generateSitemap(new Set(['/pricing']));
       return;
     }
 

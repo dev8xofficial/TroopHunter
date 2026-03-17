@@ -24,7 +24,7 @@
   "dependencies": {
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
-    "@microsoft/clarity": "^1.0.0",
+    "@microsoft/clarity": "^1.0.2",
     "@repo/components": "*",
     "formidable": "^3.5.4",
     "framer-motion": "^12.9.4",

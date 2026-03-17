@@ -19,7 +19,7 @@ interface HeroProps extends Omit<ExpertiseContent, 'meta' | 'slug' | 'iconCards'
 
 export const Hero: React.FC<HeroProps> = ({ tagText, heading, variant, icon, image, paragraph }): JSX.Element => {
   const router = useRouter();
-  const isOffersPage = router.pathname.includes('/offers');
+  const isOffersPage = router.pathname.includes('/pricing');
   return (
     <>
       <div>

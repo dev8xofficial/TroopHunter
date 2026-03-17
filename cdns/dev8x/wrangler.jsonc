@@ -10,7 +10,8 @@
 	"observability": {
 		"enabled": true,
 	},
-	// ✅ Bind the ./public folder
+	// ✅ Bind the ./public folder. Large files (e.g. videos >25 MiB) are excluded via
+	// microfrontend/dev8x/public/.assetsignore and served from R2 by this Worker.
 	"assets": {
 		"directory": "../../microfrontend/dev8x/public",
 		"binding": "ASSETS",

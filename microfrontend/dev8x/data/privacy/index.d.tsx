@@ -1,4 +1,5 @@
 import { PageLayoutContent } from '@repo/components/src/Interfaces/PageLayout/PageLayout';
+import { COPYRIGHT_YEAR } from '../constants';
 
 const PageData: PageLayoutContent = {
   meta: {
@@ -35,7 +36,7 @@ const PageData: PageLayoutContent = {
     //   linkText: 'Explore Careers'
     // },
     copyright: {
-      year: '2025',
+      year: COPYRIGHT_YEAR,
       text: 'Privacy Policy',
       privacyLink: '/privacy'
     }

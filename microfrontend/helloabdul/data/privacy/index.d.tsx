@@ -1,4 +1,5 @@
 import { PrivacyPageContent } from '@repo/components/src/Interfaces/Privacy/Privacy';
+import { COPYRIGHT_YEAR } from '../constants';
 
 const PageData: PrivacyPageContent = {
   meta: {
@@ -197,7 +198,7 @@ const PageData: PrivacyPageContent = {
     //   linkText: 'Explore Careers'
     // },
     copyright: {
-      year: '2025',
+      year: COPYRIGHT_YEAR,
       text: 'Privacy Policy',
       privacyLink: '/privacy'
     }

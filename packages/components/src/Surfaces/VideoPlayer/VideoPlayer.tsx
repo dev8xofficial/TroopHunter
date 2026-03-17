@@ -9,6 +9,8 @@ import HomepageShowreelStyles from '../HomepageShowreel/index.module.css';
 interface VideoPlayerProps {
   src: string;
   poster?: string;
+  autoplay?: boolean;
+  isMuted?: boolean;
   hideQualityControls?: boolean;
   hideFullscreen?: boolean;
   hidePlayControls?: boolean;
@@ -23,14 +25,14 @@ interface QualityLevel {
   label: string;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityControls = false, hideFullscreen = false, hidePlayControls = false, hideMuteControls = false }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, autoplay = true, isMuted = true, hideQualityControls = false, hideFullscreen = false, hidePlayControls = false, hideMuteControls = false }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<Hls | null>(null);
   const [qualityLevels, setQualityLevels] = useState<QualityLevel[]>([]);
   const [currentQuality, setCurrentQuality] = useState<number>(0);
   const [showQualityMenu, setShowQualityMenu] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(autoplay);
+  const [isMutedState, setIsMutedState] = useState(isMuted);
   const [dataSubmenuOpen, setDataSubmenuOpen] = useState(false);
   const [height, setHeight] = useState(45);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -112,8 +114,18 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityContr
 
   useEffect(() => {
     const video = videoRef.current;
+    if (!video) return;
 
-    if (video && Hls.isSupported()) {
+    // Helper function to determine if source is HLS
+    const isHlsSource = (url: string) => {
+      return url.includes('.m3u8') || url.includes('application/vnd.apple.mpegurl');
+    };
+
+    // Check if this is an HLS source
+    const needsHls = isHlsSource(src);
+
+    if (needsHls && Hls.isSupported()) {
+      // HLS playback using hls.js
       const hls = new Hls();
       hlsRef.current = hls;
       hls.loadSource(src);
@@ -140,10 +152,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityContr
           setCurrentQuality(default1080.index);
         }
 
-        video
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch((err) => console.warn('Autoplay failed:', err));
+        if (autoplay) {
+          video
+            .play()
+            .then(() => setIsPlaying(true))
+            .catch((err) => console.warn('Autoplay failed:', err));
+        }
       });
 
       hls.on(Hls.Events.LEVEL_SWITCHED, (_, data) => {
@@ -158,21 +172,42 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityContr
         hls.destroy();
         hlsRef.current = null;
       };
-    } else if (video?.canPlayType('application/vnd.apple.mpegurl')) {
+    } else if (needsHls && video.canPlayType('application/vnd.apple.mpegurl')) {
+      // Native HLS support (Safari)
       video.src = src;
-      video
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => console.warn('Autoplay failed:', err));
+      if (autoplay) {
+        video
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((err) => console.warn('Autoplay failed:', err));
+      }
+    } else {
+      // MP4 or other native HTML5 video formats
+      video.src = src;
+
+      // Clear quality levels for non-HLS sources
+      setQualityLevels([]);
+
+      if (autoplay) {
+        video
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((err) => console.warn('Autoplay failed:', err));
+      }
+
+      return () => {
+        // Cleanup for non-HLS playback
+        video.src = '';
+      };
     }
-  }, [src]);
+  }, [src, autoplay]);
 
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      video.muted = isMuted;
+      video.muted = isMutedState;
     }
-  }, [isMuted]);
+  }, [isMutedState]);
 
   const handlePlayPause = () => {
     const video = videoRef.current;
@@ -187,7 +222,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityContr
   };
 
   const handleMuteUnmute = () => {
-    setIsMuted(!isMuted);
+    setIsMutedState(!isMutedState);
   };
 
   const handleShowreelClick = () => {
@@ -198,7 +233,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityContr
         .play()
         .then(() => {
           setIsPlaying(true);
-          setIsMuted(false);
+          setIsMutedState(false);
         })
         .catch((err) => console.warn('Manual play failed:', err));
     }
@@ -334,12 +369,16 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityContr
   );
 
   if (!isClient) {
-    return <video ref={videoRef} controls={false} loop playsInline muted={true} poster={poster} style={{ width: '100%', borderRadius: '8px' }} preload='metadata'/>;
+    return (
+      <div>
+        <video ref={videoRef} controls={false} autoPlay={isPlaying} loop playsInline muted={isMutedState} poster={poster} style={{ width: '100%', borderRadius: '8px' }} preload="metadata" />
+      </div>
+    );
   }
 
   return (
-    <>
-      <video ref={videoRef} controls={false} loop playsInline muted={true} poster={poster} style={{ width: '100%', borderRadius: '8px' }} />
+    <div>
+      <video ref={videoRef} controls={false} autoPlay={isPlaying} loop playsInline muted={isMutedState} poster={poster} style={{ width: '100%', borderRadius: '8px' }} />
       <div className={`${HomepageShowreelStyles['showreel__controls']} ${isPlaying ? HomepageShowreelStyles['showreel__controls--playing'] : HomepageShowreelStyles['showreel__controls--paused']} ${dataSubmenuOpen ? `${HomepageShowreelStyles['showreel__controls-submenu-transition']}` : ''} ${dataSubmenuOpen ? `${HomepageShowreelStyles['showreel__controls-submenu-open']}` : ''}`} data-submenu-open={`${dataSubmenuOpen}`} style={{ '--height': height } as React.CSSProperties}>
         {!hideQualityControls && (
           <div className={HomepageShowreelStyles['showreel__controls-menu']}>
@@ -358,12 +397,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, hideQualityContr
               <div style={{ position: 'relative' }}>{renderResolutionIcon()}</div>
             </button>
           )}
-          {!isMobile && !hidePlayControls && <button onClick={handlePlayPause}>{isPlaying ? renderPauseIcon() : renderPlayIcon()}</button>}
-          {!isMobile && !hideMuteControls && <button onClick={handleMuteUnmute}>{isMuted ? renderUnmuteIcon() : renderMuteIcon()}</button>}
+          {!hidePlayControls && (!isMobile || !autoplay) && <button onClick={handlePlayPause}>{isPlaying ? renderPauseIcon() : renderPlayIcon()}</button>}
+          {!isMobile && !hideMuteControls && <button onClick={handleMuteUnmute}>{isMutedState ? renderUnmuteIcon() : renderMuteIcon()}</button>}
           {!hideFullscreen && <button onClick={handleFullscreen}>{isFullscreen ? renderExitFullscreenIcon() : renderFullScreenIcon()}</button>}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

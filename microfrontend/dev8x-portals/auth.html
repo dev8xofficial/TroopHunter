@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev8X — Sign In</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --rausch: #ff5a5f;
+        --rausch-dark: #e0484d;
+        --rausch-light: #fff0f0;
+        --baia: #00a699;
+        --baia-light: #e6f7f6;
+        --arches: #fc642d;
+        --hof: #484848;
+        --foggy: #767676;
+        --border: #ebebeb;
+        --white: #ffffff;
+        --bg: #f7f7f7;
+        --text: #222222;
+        --text-light: #717171;
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+        --shadow-md: 0 6px 16px rgba(0,0,0,0.12);
+        --shadow-lg: 0 14px 36px rgba(0,0,0,0.15);
+        --radius: 16px;
+        --radius-sm: 10px;
+        --green: #2f9e44;
+        --green-light: #e6f9ee;
+        --amber: #e67e00;
+        --amber-light: #fff8e6;
+        --blue: #3b5bdb;
+        --blue-light: #eef2ff;
+        --purple: #7048e8;
+        --purple-light: #f3f0ff;
+
+        /* portal accent variables — overridden per-portal */
+        --accent: #ff5a5f;
+        --accent-dark: #e0484d;
+        --accent-light: #fff0f0;
+        --grad-start: #ff5a5f;
+        --grad-mid: #fc642d;
+        --grad-end: #ff8c42;
+      }
+      * { margin:0; padding:0; box-sizing:border-box; }
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      /* ═══ WRAPPER ═══ */
+      .auth-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 100vh;
+      }
+
+      /* ═══ LEFT PANEL ═══ */
+      .auth-left {
+        background: linear-gradient(145deg, var(--grad-start) 0%, var(--grad-mid) 50%, var(--grad-end) 100%);
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.6s ease;
+      }
+      .auth-left::before {
+        content: '';
+        position: absolute;
+        width: 500px; height: 500px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.07);
+        top: -150px; right: -150px;
+      }
+      .auth-left::after {
+        content: '';
+        position: absolute;
+        width: 300px; height: 300px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.05);
+        bottom: -100px; left: -80px;
+      }
+      .auth-brand {
+        display: flex; align-items: center; gap: 12px;
+        position: relative; z-index: 2;
+      }
+      .auth-logo-mark {
+        width: 48px; height: 48px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 14px;
+        border: 1.5px solid rgba(255,255,255,0.4);
+        display: flex; align-items: center; justify-content: center;
+        color: white; font-weight: 800; font-size: 18px;
+      }
+      .auth-brand-text .name { color: white; font-size: 22px; font-weight: 800; }
+      .auth-brand-text .tag { color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 500; }
+      .auth-hero { position: relative; z-index: 2; }
+      .auth-hero-tag {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: rgba(255,255,255,0.15);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 20px;
+        padding: 6px 14px;
+        font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 600;
+        margin-bottom: 24px;
+      }
+      .auth-hero h1 {
+        color: white; font-size: 42px; font-weight: 800;
+        line-height: 1.15; margin-bottom: 20px;
+      }
+      .auth-hero p {
+        color: rgba(255,255,255,0.8); font-size: 16px;
+        line-height: 1.6; max-width: 400px;
+      }
+      .auth-steps {
+        display: flex; flex-direction: column; gap: 16px;
+        position: relative; z-index: 2;
+      }
+      .auth-step {
+        display: flex; align-items: center; gap: 14px;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 12px; padding: 14px 18px;
+      }
+      .step-num {
+        width: 32px; height: 32px; border-radius: 50%;
+        background: rgba(255,255,255,0.25);
+        display: flex; align-items: center; justify-content: center;
+        color: white; font-weight: 800; font-size: 14px; flex-shrink: 0;
+      }
+      .step-text { color: rgba(255,255,255,0.9); font-size: 13px; font-weight: 600; }
+
+      /* portal-specific bullet icons replacing step-num */
+      .step-icon {
+        width: 32px; height: 32px; border-radius: 50%;
+        background: rgba(255,255,255,0.25);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 16px; flex-shrink: 0;
+      }
+
+      /* ═══ RIGHT PANEL ═══ */
+      .auth-right {
+        background: var(--white);
+        display: flex; align-items: center; justify-content: center;
+        padding: 60px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* ── SCREENS ── */
+      .auth-screen {
+        width: 100%; max-width: 460px;
+        position: absolute;
+        transition: opacity 0.35s ease, transform 0.35s ease;
+        opacity: 0;
+        transform: translateX(40px);
+        pointer-events: none;
+      }
+      .auth-screen.active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: all;
+        position: relative;
+      }
+      .auth-screen.exit {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+
+      /* ═══ PORTAL SELECTOR ═══ */
+      .selector-heading {
+        font-size: 28px; font-weight: 800; margin-bottom: 8px;
+      }
+      .selector-sub {
+        font-size: 14px; color: var(--foggy); margin-bottom: 36px;
+      }
+      .portal-cards {
+        display: flex; flex-direction: column; gap: 14px;
+      }
+      .portal-card {
+        display: flex; align-items: center; gap: 18px;
+        padding: 20px 22px;
+        border: 2px solid var(--border);
+        border-radius: var(--radius);
+        cursor: pointer;
+        transition: all 0.2s;
+        background: var(--white);
+        position: relative;
+        overflow: hidden;
+      }
+      .portal-card::after {
+        content: '›';
+        position: absolute; right: 22px; top: 50%;
+        transform: translateY(-50%);
+        font-size: 22px; color: var(--border);
+        transition: all 0.2s;
+        font-weight: 300;
+      }
+      .portal-card:hover { border-color: var(--card-accent); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+      .portal-card:hover::after { color: var(--card-accent); right: 18px; }
+      .portal-card-icon {
+        width: 52px; height: 52px; border-radius: 14px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 24px; flex-shrink: 0;
+        background: var(--card-icon-bg);
+      }
+      .portal-card-info { flex: 1; }
+      .portal-card-title { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+      .portal-card-desc { font-size: 13px; color: var(--foggy); line-height: 1.4; }
+      .portal-card-badge {
+        font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;
+        text-transform: uppercase; letter-spacing: 0.5px;
+      }
+
+      /* Candidate card */
+      .portal-card.candidate { --card-accent: #ff5a5f; --card-icon-bg: #fff0f0; }
+      .portal-card.candidate .portal-card-badge { background: #fff0f0; color: #ff5a5f; }
+
+      /* Client card */
+      .portal-card.client { --card-accent: #00a699; --card-icon-bg: #e6f7f6; }
+      .portal-card.client .portal-card-badge { background: #e6f7f6; color: #00a699; }
+
+      /* Admin card */
+      .portal-card.admin { --card-accent: #7048e8; --card-icon-bg: #f3f0ff; }
+      .portal-card.admin .portal-card-badge { background: #f3f0ff; color: #7048e8; }
+
+      /* ═══ AUTH FORM ═══ */
+      .back-btn {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 13px; font-weight: 700; color: var(--foggy);
+        cursor: pointer; margin-bottom: 28px;
+        transition: color 0.15s;
+        background: none; border: none; font-family: inherit; padding: 0;
+      }
+      .back-btn:hover { color: var(--text); }
+      .back-btn svg { transition: transform 0.15s; }
+      .back-btn:hover svg { transform: translateX(-3px); }
+
+      .portal-badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 12px; font-weight: 700; padding: 5px 12px;
+        border-radius: 20px; margin-bottom: 18px;
+      }
+
+      .auth-tabs {
+        display: flex; background: var(--bg);
+        border-radius: var(--radius-sm); padding: 4px; margin-bottom: 32px;
+      }
+      .auth-tab {
+        flex: 1; padding: 10px; text-align: center;
+        border-radius: 8px; font-size: 14px; font-weight: 700;
+        cursor: pointer; transition: all 0.2s; color: var(--foggy);
+      }
+      .auth-tab.active {
+        background: var(--white); color: var(--text);
+        box-shadow: var(--shadow-sm);
+      }
+      .auth-form-title { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+      .auth-form-sub { font-size: 14px; color: var(--foggy); margin-bottom: 28px; }
+      .form-group { margin-bottom: 16px; }
+      .form-label { font-size: 13px; font-weight: 700; color: var(--hof); margin-bottom: 6px; display: block; }
+      .form-input-wrap { position: relative; }
+      .form-icon {
+        position: absolute; left: 14px; top: 50%;
+        transform: translateY(-50%); font-size: 16px;
+      }
+      .form-input {
+        width: 100%; padding: 12px 14px 12px 42px;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-family: inherit; font-size: 14px; color: var(--text);
+        background: var(--white); outline: none; transition: all 0.2s;
+      }
+      .form-input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-light);
+      }
+      .form-input.no-icon { padding-left: 14px; }
+      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+      .auth-btn {
+        width: 100%; padding: 14px;
+        background: var(--accent); color: white; border: none;
+        border-radius: var(--radius-sm); font-family: inherit;
+        font-size: 15px; font-weight: 700; cursor: pointer;
+        transition: all 0.2s; margin-top: 8px;
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+      }
+      .auth-btn:hover {
+        background: var(--accent-dark); transform: translateY(-1px);
+        box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 40%, transparent);
+      }
+      .divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; }
+      .divider-line { flex: 1; height: 1px; background: var(--border); }
+      .divider-text { font-size: 12px; color: var(--foggy); font-weight: 600; }
+      .google-btn {
+        width: 100%; padding: 12px; background: var(--white);
+        border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+        font-family: inherit; font-size: 14px; font-weight: 600;
+        cursor: pointer; display: flex; align-items: center;
+        justify-content: center; gap: 10px; transition: all 0.15s; color: var(--text);
+      }
+      .google-btn:hover { background: var(--bg); border-color: var(--text-light); }
+      .forgot-link { font-size: 13px; color: var(--accent); cursor: pointer; font-weight: 600; }
+
+      /* ═══ LEFT PANEL CONTENT TRANSITIONS ═══ */
+      .left-content {
+        position: absolute; z-index: 2;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        width: calc(100% - 120px);
+      }
+      .left-content.hidden { opacity: 0; transform: translateY(20px); pointer-events: none; }
+      .left-steps-wrap {
+        display: flex; flex-direction: column; gap: 16px;
+        position: relative; z-index: 2;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      .left-steps-wrap.hidden { opacity: 0; transform: translateY(20px); }
+
+      /* ═══ RESPONSIVE ═══ */
+      @media (max-width: 860px) {
+        .auth-wrapper { grid-template-columns: 1fr; }
+        .auth-left { display: none; }
+        .auth-right { padding: 40px 24px; min-height: 100vh; align-items: flex-start; padding-top: 60px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-wrapper">
+
+      <!-- ═══ LEFT PANEL ═══ -->
+      <div class="auth-left" id="authLeft">
+        <div class="auth-brand">
+          <div class="auth-logo-mark">D8</div>
+          <div class="auth-brand-text">
+            <div class="name">Dev8X</div>
+            <div class="tag" id="leftTag">Talent Management Platform</div>
+          </div>
+        </div>
+
+        <!-- Selector hero (default) -->
+        <div class="left-content" id="leftHeroSelector" style="top:50%;transform:translateY(-50%)">
+          <div class="auth-hero-tag" id="leftHeroTag">🚀 Automated Talent Engine</div>
+          <h1 id="leftHeroH1">One Platform.<br />Three Portals.<br />All Connected.</h1>
+          <p id="leftHeroP">Dev8X brings candidates, clients, and HR together in one seamless platform. Choose your portal to get started.</p>
+        </div>
+
+        <!-- Steps (shown per portal) -->
+        <div class="left-steps-wrap hidden" id="leftSteps">
+          <div class="auth-step" id="leftStep1">
+            <div class="step-icon" id="leftStepIcon1">🎯</div>
+            <div class="step-text" id="leftStepText1">Step one text</div>
+          </div>
+          <div class="auth-step" id="leftStep2">
+            <div class="step-icon" id="leftStepIcon2">📋</div>
+            <div class="step-text" id="leftStepText2">Step two text</div>
+          </div>
+          <div class="auth-step" id="leftStep3">
+            <div class="step-icon" id="leftStepIcon3">✅</div>
+            <div class="step-text" id="leftStepText3">Step three text</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ RIGHT PANEL ═══ -->
+      <div class="auth-right">
+
+        <!-- ── SCREEN 1: PORTAL SELECTOR ── -->
+        <div class="auth-screen active" id="screenSelector">
+          <div class="selector-heading">Welcome to Dev8X 👋</div>
+          <div class="selector-sub">Select the portal you'd like to access to continue.</div>
+          <div class="portal-cards">
+
+            <div class="portal-card candidate" onclick="goToPortalAuth('candidate')">
+              <div class="portal-card-icon">🎓</div>
+              <div class="portal-card-info">
+                <div class="portal-card-title">Candidate Portal</div>
+                <div class="portal-card-desc">Track applications, schedule interviews & sign documents</div>
+              </div>
+              <span class="portal-card-badge">Applicants</span>
+            </div>
+
+            <div class="portal-card client" onclick="goToPortalAuth('client')">
+              <div class="portal-card-icon">💼</div>
+              <div class="portal-card-info">
+                <div class="portal-card-title">Client Portal</div>
+                <div class="portal-card-desc">Monitor projects, manage invoices & collaborate with your team</div>
+              </div>
+              <span class="portal-card-badge">Clients</span>
+            </div>
+
+            <div class="portal-card admin" onclick="goToPortalAuth('admin')">
+              <div class="portal-card-icon">⚙️</div>
+              <div class="portal-card-info">
+                <div class="portal-card-title">Admin Panel</div>
+                <div class="portal-card-desc">Manage all applicants, jobs, interviews & HR operations</div>
+              </div>
+              <span class="portal-card-badge">HR Team</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── SCREEN 2: CANDIDATE AUTH ── -->
+        <div class="auth-screen" id="screenCandidate">
+          <button class="back-btn" onclick="goBack()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back to portals
+          </button>
+          <div class="portal-badge" style="background:#fff0f0;color:#ff5a5f;">🎓 Candidate Portal</div>
+
+          <div class="auth-tabs">
+            <div class="auth-tab active" id="cTab-login" onclick="switchTab('c','login')">Sign In</div>
+            <div class="auth-tab" id="cTab-signup" onclick="switchTab('c','signup')">Create Account</div>
+          </div>
+
+          <!-- Login Form -->
+          <div id="cLoginForm">
+            <div class="auth-form-title">Welcome back 👋</div>
+            <div class="auth-form-sub">Sign in to track your application status</div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <div class="form-input-wrap"><span class="form-icon">📧</span><input class="form-input" type="email" placeholder="your@email.com" id="cLoginEmail" /></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <div class="form-input-wrap"><span class="form-icon">🔒</span><input class="form-input" type="password" placeholder="••••••••" id="cLoginPass" /></div>
+            </div>
+            <div style="text-align:right;margin-bottom:4px"><span class="forgot-link">Forgot password?</span></div>
+            <button class="auth-btn" onclick="doLogin('candidate')">Sign In →</button>
+            <div class="divider"><div class="divider-line"></div><div class="divider-text">or</div><div class="divider-line"></div></div>
+            <button class="google-btn">
+              <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18z"/><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 0 1-7.18-2.54H1.83v2.07A8 8 0 0 0 8.98 17z"/><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 0 1 0-3.04V5.41H1.83a8 8 0 0 0 0 7.18l2.67-2.07z"/><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3z"/></svg>
+              Continue with Google
+            </button>
+            <div style="text-align:center;margin-top:20px;font-size:13px;color:var(--foggy)">Don't have an account? <span style="color:var(--accent);font-weight:700;cursor:pointer" onclick="switchTab('c','signup')">Create one</span></div>
+          </div>
+
+          <!-- Signup Form -->
+          <div id="cSignupForm" style="display:none">
+            <div class="auth-form-title">Create Account ✨</div>
+            <div class="auth-form-sub">Join Dev8X — start your journey today</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <div class="form-input-wrap"><span class="form-icon">👤</span><input class="form-input" type="text" placeholder="Ayesha" /></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <div class="form-input-wrap"><span class="form-icon">👤</span><input class="form-input" type="text" placeholder="Khan" /></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <div class="form-input-wrap"><span class="form-icon">📧</span><input class="form-input" type="email" placeholder="your@email.com" /></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <div class="form-input-wrap"><span class="form-icon">📱</span><input class="form-input" type="tel" placeholder="+92 300 0000000" /></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <div class="form-input-wrap"><span class="form-icon">🔒</span><input class="form-input" type="password" placeholder="Create a strong password" /></div>
+            </div>
+            <button class="auth-btn" onclick="doLogin('candidate')">Create Account →</button>
+            <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--foggy)">By creating an account you agree to Dev8X's <span style="color:var(--accent);cursor:pointer">Terms & Policies</span></div>
+            <div style="text-align:center;margin-top:10px;font-size:13px;color:var(--foggy)">Already have an account? <span style="color:var(--accent);font-weight:700;cursor:pointer" onclick="switchTab('c','login')">Sign in</span></div>
+          </div>
+        </div>
+
+        <!-- ── SCREEN 3: CLIENT AUTH ── -->
+        <div class="auth-screen" id="screenClient">
+          <button class="back-btn" onclick="goBack()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back to portals
+          </button>
+          <div class="portal-badge" style="background:#e6f7f6;color:#00a699;">💼 Client Portal</div>
+          <div class="auth-form-title">Welcome back 👋</div>
+          <div class="auth-form-sub">Sign in to your Dev8X client portal</div>
+          <div class="form-group">
+            <label class="form-label">Work Email</label>
+            <div class="form-input-wrap"><span class="form-icon">📧</span><input class="form-input" type="email" placeholder="you@company.com" id="clLoginEmail" /></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <div class="form-input-wrap"><span class="form-icon">🔒</span><input class="form-input" type="password" placeholder="••••••••" id="clLoginPass" /></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--foggy);cursor:pointer"><input type="checkbox" checked style="accent-color:var(--accent)" /> Remember me</label>
+            <span class="forgot-link">Forgot password?</span>
+          </div>
+          <button class="auth-btn" onclick="doLogin('client')">Sign In →</button>
+          <div class="divider"><div class="divider-line"></div><div class="divider-text">or continue with</div><div class="divider-line"></div></div>
+          <button class="google-btn">
+            <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18z"/><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 0 1-7.18-2.54H1.83v2.07A8 8 0 0 0 8.98 17z"/><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 0 1 0-3.04V5.41H1.83a8 8 0 0 0 0 7.18l2.67-2.07z"/><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3z"/></svg>
+            Continue with Google
+          </button>
+          <p style="text-align:center;margin-top:18px;font-size:13px;color:var(--foggy)">New client? <span style="color:var(--accent);font-weight:700;cursor:pointer">Contact Dev8X</span> to get set up.</p>
+        </div>
+
+        <!-- ── SCREEN 4: ADMIN AUTH ── -->
+        <div class="auth-screen" id="screenAdmin">
+          <button class="back-btn" onclick="goBack()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back to portals
+          </button>
+          <div class="portal-badge" style="background:#f3f0ff;color:#7048e8;">⚙️ Admin Panel</div>
+          <div class="auth-form-title">HR Admin Sign In 🔐</div>
+          <div class="auth-form-sub">Restricted access — authorised personnel only</div>
+          <div class="form-group">
+            <label class="form-label">Admin Email</label>
+            <div class="form-input-wrap"><span class="form-icon">📧</span><input class="form-input" type="email" placeholder="admin@dev8x.com" id="adLoginEmail" /></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <div class="form-input-wrap"><span class="form-icon">🔒</span><input class="form-input" type="password" placeholder="••••••••" id="adLoginPass" /></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">2FA Code <span style="font-size:11px;color:var(--foggy);font-weight:500">(if enabled)</span></label>
+            <div class="form-input-wrap"><span class="form-icon">🛡️</span><input class="form-input" type="text" placeholder="000000" maxlength="6" /></div>
+          </div>
+          <div style="text-align:right;margin-bottom:4px"><span class="forgot-link">Forgot password?</span></div>
+          <button class="auth-btn" onclick="doLogin('admin')">Access Admin Panel →</button>
+          <div style="margin-top:18px;padding:14px 16px;background:#fff8e6;border:1px solid #ffd88a;border-radius:10px;display:flex;gap:10px;align-items:flex-start">
+            <span style="font-size:16px;flex-shrink:0">⚠️</span>
+            <span style="font-size:12px;color:var(--amber);font-weight:600;line-height:1.5">Unauthorised access is strictly prohibited and may result in legal action. All sessions are logged.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      /* ── PORTAL CONFIG ── */
+      const portalConfig = {
+        candidate: {
+          tag: 'Candidate Portal',
+          gradStart: '#ff5a5f', gradMid: '#fc642d', gradEnd: '#ff8c42',
+          accent: '#ff5a5f', accentDark: '#e0484d', accentLight: '#fff0f0',
+          heroTag: '🚀 Automated Talent Engine',
+          h1: 'Your Career<br />Journey Starts<br />Here.',
+          heroP: 'Track your application in real-time, schedule interviews, sign documents, and get onboarded — all in one place.',
+          steps: [
+            { icon: '📝', text: 'Apply and get shortlisted automatically' },
+            { icon: '📅', text: 'Track every stage of your interview journey live' },
+            { icon: '✍️', text: 'Sign documents and get onboarded seamlessly' },
+          ],
+          dest: 'candidate-portal.html',
+        },
+        client: {
+          tag: 'Client Portal',
+          gradStart: '#1e3a5f', gradMid: '#2d6a9f', gradEnd: '#00a699',
+          accent: '#00a699', accentDark: '#008f83', accentLight: '#e6f7f6',
+          heroTag: '📊 Real-time Project Visibility',
+          h1: 'Your Projects.<br />Your Invoices.<br />All in One Place.',
+          heroP: 'The Dev8X Client Portal gives you real-time visibility into everything happening on your project — 24/7.',
+          steps: [
+            { icon: '📊', text: 'Real-time project dashboards & timelines' },
+            { icon: '💳', text: 'One-click invoice payments via Stripe' },
+            { icon: '💬', text: 'Live chat with your dev team & document storage' },
+          ],
+          dest: 'client-portal.html',
+        },
+        admin: {
+          tag: 'HR Admin Panel',
+          gradStart: '#3b1d8a', gradMid: '#5a3abd', gradEnd: '#7048e8',
+          accent: '#7048e8', accentDark: '#5a39c8', accentLight: '#f3f0ff',
+          heroTag: '⚙️ HR Operations Centre',
+          h1: 'Manage Talent.<br />Run Operations.<br />Drive Hiring.',
+          heroP: 'Full-stack HR control panel — applicant tracking, interview management, document workflows, and team analytics in one place.',
+          steps: [
+            { icon: '👥', text: 'Track all applicants across every hiring stage' },
+            { icon: '📋', text: 'Manage jobs, interviews & document workflows' },
+            { icon: '📈', text: 'Analytics, reports & HR team collaboration' },
+          ],
+          dest: 'admin-panel.html',
+        },
+      };
+
+      let activeScreen = 'selector';
+      let currentPortal = null;
+
+      /* ── NAVIGATE TO PORTAL AUTH ── */
+      function goToPortalAuth(portal) {
+        const cfg = portalConfig[portal];
+        currentPortal = portal;
+
+        // Update CSS accent vars
+        document.documentElement.style.setProperty('--accent', cfg.accent);
+        document.documentElement.style.setProperty('--accent-dark', cfg.accentDark);
+        document.documentElement.style.setProperty('--accent-light', cfg.accentLight);
+
+        // Update left panel gradient
+        const left = document.getElementById('authLeft');
+        left.style.background = `linear-gradient(145deg, ${cfg.gradStart} 0%, ${cfg.gradMid} 50%, ${cfg.gradEnd} 100%)`;
+
+        // Update left content
+        document.getElementById('leftTag').textContent = cfg.tag;
+        document.getElementById('leftHeroTag').textContent = cfg.heroTag;
+        document.getElementById('leftHeroH1').innerHTML = cfg.h1;
+        document.getElementById('leftHeroP').textContent = cfg.heroP;
+
+        // Swap hero to steps after a beat
+        document.getElementById('leftHeroSelector').classList.add('hidden');
+        setTimeout(() => {
+          const steps = document.getElementById('leftSteps');
+          cfg.steps.forEach((s, i) => {
+            document.getElementById(`leftStepIcon${i+1}`).textContent = s.icon;
+            document.getElementById(`leftStepText${i+1}`).textContent = s.text;
+          });
+          steps.classList.remove('hidden');
+        }, 250);
+
+        // Switch right panel screen
+        transitionTo(`screen${portal.charAt(0).toUpperCase() + portal.slice(1)}`);
+        activeScreen = portal;
+      }
+
+      /* ── BACK TO SELECTOR ── */
+      function goBack() {
+        // Reset left panel
+        document.getElementById('leftHeroSelector').classList.remove('hidden');
+        document.getElementById('leftSteps').classList.add('hidden');
+        document.getElementById('leftTag').textContent = 'Talent Management Platform';
+        document.getElementById('authLeft').style.background = 'linear-gradient(145deg, #ff5a5f 0%, #fc642d 50%, #ff8c42 100%)';
+
+        // Reset accent
+        document.documentElement.style.setProperty('--accent', '#ff5a5f');
+        document.documentElement.style.setProperty('--accent-dark', '#e0484d');
+        document.documentElement.style.setProperty('--accent-light', '#fff0f0');
+
+        transitionTo('screenSelector');
+        activeScreen = 'selector';
+        currentPortal = null;
+      }
+
+      /* ── SCREEN TRANSITION ── */
+      function transitionTo(nextId) {
+        const current = document.querySelector('.auth-screen.active');
+        const next = document.getElementById(nextId);
+        if (!current || !next || current === next) return;
+
+        current.classList.add('exit');
+        setTimeout(() => {
+          current.classList.remove('active', 'exit');
+          next.classList.add('active');
+          // Scroll right panel to top
+          next.closest('.auth-right').scrollTop = 0;
+        }, 300);
+      }
+
+      /* ── TAB SWITCH (candidate signup/login) ── */
+      function switchTab(prefix, tab) {
+        ['login','signup'].forEach(t => {
+          const btn = document.getElementById(`${prefix}Tab-${t}`);
+          const form = document.getElementById(`${prefix}${t.charAt(0).toUpperCase() + t.slice(1)}Form`);
+          if (btn) btn.classList.toggle('active', t === tab);
+          if (form) form.style.display = t === tab ? 'block' : 'none';
+        });
+      }
+
+      /* ── LOGIN / REDIRECT ── */
+      function doLogin(portal) {
+        const cfg = portalConfig[portal];
+        // Simple validation
+        const emailId = portal === 'candidate' ? 'cLoginEmail' : portal === 'client' ? 'clLoginEmail' : 'adLoginEmail';
+        const passId  = portal === 'candidate' ? 'cLoginPass'  : portal === 'client' ? 'clLoginPass'  : 'adLoginPass';
+        const email = document.getElementById(emailId)?.value;
+        const pass  = document.getElementById(passId)?.value;
+        if (!email || !pass) {
+          shakeBtn(portal);
+          return;
+        }
+        // Store portal hint for the destination page
+        sessionStorage.setItem('d8x_portal', portal);
+        sessionStorage.setItem('d8x_authed', '1');
+        window.location.href = cfg.dest;
+      }
+
+      /* ── SHAKE ANIMATION ON ERROR ── */
+      function shakeBtn(portal) {
+        const map = { candidate: 'screenCandidate', client: 'screenClient', admin: 'screenAdmin' };
+        const btn = document.querySelector(`#${map[portal]} .auth-btn`);
+        if (!btn) return;
+        btn.style.animation = 'none';
+        btn.offsetHeight; // reflow
+        btn.style.animation = 'shake 0.4s ease';
+        btn.textContent = '⚠️ Please fill in all fields';
+        setTimeout(() => {
+          btn.textContent = portal === 'admin' ? 'Access Admin Panel →' : 'Sign In →';
+          btn.style.animation = '';
+        }, 2000);
+      }
+
+      /* Fix left-content to sit in its proper place */
+      document.getElementById('leftHeroSelector').style.position = 'relative';
+      document.getElementById('leftHeroSelector').style.top = '';
+      document.getElementById('leftHeroSelector').style.transform = '';
+    </script>
+    <style>
+      @keyframes shake {
+        0%,100%{ transform: translateX(0); }
+        20%    { transform: translateX(-6px); }
+        40%    { transform: translateX(6px); }
+        60%    { transform: translateX(-4px); }
+        80%    { transform: translateX(4px); }
+      }
+    </style>
+  </body>
+</html>

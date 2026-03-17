@@ -19,7 +19,7 @@ export const selectedRoleAtom = atom<string | null, [string | null], void>(null,
 export const selectedRoleFirstParagraphAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleFirstParagraphAtom, newValue));
 export const selectedRoleThirdParagraphAtom = atom<string | null, [string | null], void>(null, (get, set, newValue) => set(selectedRoleThirdParagraphAtom, newValue));
 export const isInternshipAtom = atom<boolean, [boolean], void>(false, (get, set, newValue) => set(isInternshipAtom, newValue));
-const HIDDEN_INTERNSHIP_TITLES = ['Graphic Designer', 'App Store Optimization (ASO)', 'AI Engineer', 'LinkedIn Lead Generation', 'Upwork Bidder'];
+const HIDDEN_INTERNSHIP_TITLES = ['LinkedIn Lead Generation', 'Upwork Bidder', 'Flutter Developer', 'App Store Optimization (ASO)', 'Graphic Designer'];
 
 const firstRoleDescription = (description: React.ReactNode): string => {
   if (React.isValidElement(description)) {

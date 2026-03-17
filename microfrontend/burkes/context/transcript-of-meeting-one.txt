@@ -1,0 +1,1089 @@
+Tom  00:00
+Oh, I can't show my camera.
+
+Tom  00:16
+I don't know why.
+
+Abdul  00:18
+That's fine.
+
+Tom  00:21
+Those are the apps that might be using your camera.
+
+Tom  00:29
+I guess we're going to skip the camera side.
+
+Tom  00:31
+I apologize.
+
+Abdul  00:32
+Yeah, completely fine.
+
+Tom  00:35
+I am not you.
+
+Tom  00:39
+Let me see.
+
+Tom  00:40
+Wait, I don't even know where I am.
+
+Tom  00:41
+Give me a second.
+
+Tom  00:44
+Google Meet.
+
+Tom  00:45
+Where's my Google Meet?
+
+Tom  00:47
+There we go.
+
+Tom  00:51
+All right, sir.
+
+Tom  00:51
+How's it going?
+
+Abdul  00:53
+My day is going good, and I was waiting for this meeting.
+
+Tom  00:57
+Control.
+
+Tom  01:03
+OK, so yes, can you take a look at, can I share my screen?
+
+Tom  01:10
+Yeah, yeah, you can share.
+
+Tom  01:12
+Share screen.
+
+Tom  01:17
+Select a new tab.
+
+Tom  01:19
+OK.
+
+Tom  01:19
+One of the other co-operating brokers that
+
+Tom  01:26
+What are you going to offer them?
+
+Tom  01:28
+So that's why I have three percent.
+
+Tom  01:29
+There you go.
+
+Tom  01:30
+And then right below there, it adds.
+
+Abdul  01:33
+So I can't see your screen right now.
+
+TomTom  01:38
+OK, good.
+
+Tom  01:40
+So I guess you have seen, I mean,
+
+Tom  01:44
+you have demonstrated what your concept versus what we do
+
+Tom  01:51
+is how we need it, right?
+
+Tom  01:53
+Am I correct?
+
+Abdul  01:53
+Yes.
+
+Tom  01:57
+What we need is to have, well, what do you see here?
+
+Tom  02:04
+How about that?
+
+Tom  02:06
+Do we want to build this function,
+
+Tom  02:08
+or do we want to have a new skeleton in place?
+
+Tom  02:12
+And my objective is to have attorneys portal, agent portal,
+
+Tom  02:22
+maybe, that's a question mark, and a client portal.
+
+Tom  02:28
+Agent would be, for example, a mortgage lender or...
+
+Tom  02:34
+Let's leave that for now.
+
+TomTom  02:35
+It will be identical dashboard, but a different person.
+
+TomTom  02:39
+So two types of user would be attorneys.
+
+TomTom  02:45
+We can call a CPA.
+
+TomTom  02:46
+We could call it something else too.
+
+TomTom  02:48
+And the consumer, the client, and what we are trying to do is
+
+TomTom  02:57
+We want to take the attorney's real estate transactions.
+
+TomTom  03:06
+We want to remove all the barrier
+
+TomTom  03:09
+and have a streamlined platform
+
+TomTom  03:12
+to see how their clients are doing
+
+TomTom  03:16
+within the real estate transaction.
+
+TomTom  03:18
+For example, you show us,
+
+TomTom  03:19
+we have to upload whatever document is for the,
+
+TomTom  03:23
+real estate agent, the mortgage broker,
+
+TomTom  03:26
+if there's an insurance,
+
+TomTom  03:28
+and then if the client can also see what type of insurance,
+
+TomTom  03:33
+auto insurance, if they want to have that, home insurance,
+
+TomTom  03:38
+if there is other documents such as others,
+
+TomTom  03:41
+maybe home warranty,
+
+TomTom  03:46
+that's probably about what I need on that side.
+
+TomTom  03:52
+Yeah. I don't know if I explained to you correctly. Maybe we can work on that.
+
+TomTom  03:57
+Yeah, we need to work on that.
+
+TomTom  03:59
+And probably we're going to have a couple of meetings to, uh,
+
+TomTom  04:04
+to spread all of these concepts on, on the designs.
+
+TomTom  04:08
+So my approach would be to first, uh,
+
+TomTom  04:13
+draw the design and give you those screens so that each
+
+TomTom  04:17
+role can play.
+
+TomTom  04:19
+you can play the role of the users and you will see how your customers will use your system
+
+TomTom  04:27
+and eventually you will have all the understanding so we have to develop the system step by step
+
+TomTom  04:32
+so it might it might require a couple of meetings and i will be providing sketches or
+
+TomTom  04:41
+you can say design limited design of each screens for each user so yes we have to work on it
+
+TomTom  04:51
+Would you be able to share your screen on what you have done already?
+
+TomTom  04:58
+Basically, I have gave you the last time I gave you the prototype
+
+TomTom  05:05
+and that I also recorded the screen and provided it to you and I explained
+
+TomTom  05:12
+that you gave me three concepts basically, document management,
+
+TomTom  05:17
+And they were two other concepts.
+
+TomTom  05:20
+So I worked on them and I created few screens
+
+TomTom  05:24
+and I gave you an idea how these things will work.
+
+TomTom  05:28
+But right now you introduced another
+
+TomTom  05:32
+user, which is attorney.
+
+TomTom  05:34
+And I obviously have to work on that part as well.
+
+TomTom  05:38
+Probably I will create more screen and give you more ideas
+
+TomTom  05:41
+how those how that user will will
+
+TomTom  05:46
+play its role in your system and how that system will handle that.
+
+TomTom  05:50
+And those users, basically, if you want to see, uh, my last prototype again,
+
+TomTom  05:56
+I can show it in the screen.
+
+TomTom  05:58
+Yes.
+
+TomTom  05:59
+Go ahead.
+
+TomTom  06:00
+And my business partner is actually on the phone when he's off.
+
+TomTom  06:03
+He can, uh, give us some advice on that.
+
+TomTom  06:06
+Yeah.
+
+TomTom  06:07
+That's completely fine.
+
+TomTom  06:09
+Uh, we can give him time and maybe he will join right now
+
+TomTom  06:13
+after, after he finished his goal.
+
+TomTom  06:17
+okay how long he's uh he's making money for us so
+
+TomTom  06:25
+oh he's you coming in can you come in are you busy um the i.t gentleman that we
+
+TomTom  06:34
+saw the video on all right he's physically here um so would you explain to abdul on what you saw
+
+TomTom  06:44
+TomTom  06:51
+and what is probably needed on our side.
+
+TomTom  06:52
+Okay. Oh, this is right on the spot. I would have to look at it again.
+
+TomTom  06:57
+Yeah, that's what he's doing to give you more detail. Yeah.
+
+TomTom  07:05
+So this is the, the, the client's portal, right? Yeah, exactly. Okay.
+
+TomTom  07:10
+Okay. So they'll sign, they'll log in, they will log in.
+
+TomTom  07:15
+And after that they will go to the dashboard where they can
+
+TomTom  07:18
+see the progress of the transaction.
+
+TomTom  07:22
+and all the contracts they will have, they will see the documents
+
+TomTom  07:25
+and probably the messages with the agents
+
+TomTom  07:29
+and they can quickly upload the documents
+
+TomTom  07:32
+and maybe probably
+
+TomTom  07:35
+schedule an appointment.
+
+TomTom  07:38
+This is the dashboard view.
+
+TomTom  07:40
+I'll do that if they want to upload a document.
+
+TomTom  07:43
+Here's your document view.
+
+TomTom  07:46
+There are multiple views to sort these documents, basically.
+
+TomTom  07:53
+And if they want to send a message, they have to click on this button and
+
+TomTom  07:55
+they will send messages to the agents.
+
+TomTom  07:57
+Okay.
+
+TomTom  08:03
+And if, uh, after that they can even update their profile and add other
+
+TomTom  08:09
+information if we need, and this is the admin view admin can basically
+
+TomTom  08:11
+see all the active clients.
+
+TomTom  08:14
+and their documents.
+
+TomTom  08:16
+Obviously admin will approve those documents.
+
+TomTom  08:20
+So he has to watch all the documents, what's going on,
+
+TomTom  08:25
+their statuses and those transactions basically.
+
+TomTom  08:32
+And I think so, yeah, this is the approval screen
+
+TomTom  08:35
+where the agent will approve the documents.
+
+TomTom  08:37
+Okay.
+
+TomTom  08:44
+Can we upload forms or attach it to the mortgage side?
+
+TomTom  08:49
+Yeah, well, we would have to find a way to integrate the mortgage link
+
+TomTom  08:52
+because I would be concerned about the security of this
+
+TomTom  08:57
+because they have to upload personal financial documents.
+
+TomTom  08:59
+The insurance I can take care of manually.
+
+TomTom  09:01
+I mean, just add address and sign.
+
+TomTom  09:04
+Well, this will work good for only the real estate side.
+
+TomTom  09:07
+But how can we integrate mortgage into it?
+
+TomTom  09:13
+So basically I have, I had worked on three systems and Tom gave me just the
+
+TomTom  09:15
+hint about those three systems.
+
+TomTom  09:19
+One is the client portal or there's this document and third
+
+TomTom  09:20
+one is probably the dashboard.
+
+TomTom  09:24
+So I had figured it out what these three systems should be.
+
+TomTom  09:29
+And definitely I have to work on the mortgage and, uh, the other stuff.
+
+TomTom  09:31
+Okay.
+
+TomTom  09:33
+Now, um,
+
+TomTom  09:36
+I like the concept, of course.
+
+TomTom  09:39
+I mean, there are still, you know, some refining that needs to be done
+
+TomTom  09:41
+for it to fit us exactly.
+
+TomTom  09:44
+But what would be the cost, typical cost associated with this?
+
+TomTom  09:51
+So basically, first, my approach is to draw the whole system,
+
+TomTom  09:52
+at least in
+
+TomTom  09:57
+diagrams so that we can have a complete understanding
+
+TomTom  09:59
+what we're going to build.
+
+TomTom  10:02
+And after that, I can decide
+
+TomTom  10:06
+in which technologies tag you want to choose.
+
+TomTom  10:10
+So probably we will definitely go to a custom solution,
+
+TomTom  10:13
+which requires some technologies.
+
+TomTom  10:18
+I don't think so I'm gonna build this system in WordPress
+
+TomTom  10:22
+because I think this system will be a bit complex
+
+TomTom  10:24
+for to be built in WordPress.
+
+TomTom  10:27
+So we're gonna use some other technologies.
+
+TomTom  10:31
+And after that, once we have all the complete sketch,
+
+TomTom  10:37
+the tech stack, which, uh, which we required and the infrastructure,
+
+TomTom  10:42
+which we need to run this whole system 24 or seven so that if we have
+
+TomTom  10:46
+hundreds and thousands of customers who are using this system, we can easily
+
+TomTom  10:47
+manage that.
+
+TomTom  10:50
+After that, we can give you a complete cost.
+
+TomTom  10:56
+So for now, if we talk about we need to add a few more systems,
+
+TomTom  11:01
+and it won't give a complete clear picture about the cost.
+
+TomTom  11:03
+So definitely, I have to wait.
+
+TomTom  11:05
+I have to get all the requirements
+
+TomTom  11:07
+and give you the whole picture so that you
+
+TomTom  11:10
+can add whatever you want.
+
+TomTom  11:13
+So after the complete picture and clarity,
+
+TomTom  11:14
+I can provide you the complete cost.
+
+TomTom  11:20
+Yeah. And of course, I'll do like, um, we're not like a massive corporation,
+
+TomTom  11:23
+so we will have to do this, this in steps. Um,
+
+TomTom  11:27
+I would take it that the system that you've already built,
+
+TomTom  11:29
+that could kind of be like the foundation of it.
+
+TomTom  11:32
+And we can expand on that as we grow. Is that correct?
+
+TomTom  11:37
+Yup. This basically this, uh, the screens, which I'm showing you right now,
+
+TomTom  11:43
+it's, you can say it's a static screens. It's, it doesn't work.
+
+TomTom  11:44
+It's just a static stuff.
+
+TomTom  11:47
+It's just to give you an idea.
+
+TomTom  11:47
+Okay.
+
+TomTom  11:52
+Well, no, I'm saying if we said, Hey, we want to move forward with this idea.
+
+TomTom  11:59
+Could we have this operational and still add on to it as we go?
+
+TomTom  12:04
+Yeah, we can definitely add as much new requirements of features
+
+TomTom  12:05
+you want to add, we can add it.
+
+TomTom  12:10
+That is the power of using of node using WordPress and moving to those
+
+TomTom  12:13
+technologies, which enterprise, um,
+
+TomTom  12:17
+agencies provide to the, to their customers clients.
+
+TomTom  12:18
+Okay.
+
+TomTom  12:19
+Yeah.
+
+TomTom  12:24
+And so for, let's say for this particular package right here, if we were to start,
+
+TomTom  12:26
+how much would our cost be?
+
+TomTom  12:33
+Um, I have to think because, uh, I can, I can write down all the details.
+
+TomTom  12:40
+If you want the, uh, the pack, the price of this, uh, multiple screens, I have to
+
+TomTom  12:42
+write down a price and I will share it to the Dom.
+
+TomTom  12:49
+Okay. So that you can have the initial idea of where we might be going in that direction.
+
+TomTom  12:55
+Yeah, yeah, we would definitely want that. I mean, and just looking at this like quick view.
+
+TomTom  13:02
+Another thing that I would want to have on there is our partner services.
+
+TomTom  13:08
+So like, you know, like we typically partner with plumbing companies, roofing companies, credit repair companies.
+
+TomTom  13:13
+So let's say if they're buying a property within a certain zip code,
+
+TomTom  13:19
+is there a way that we could put those referrals on there
+
+TomTom  13:24
+for them to kind of like, hey, well, you bought in 77433.
+
+TomTom  13:28
+This is the recommended plumbing company,
+
+TomTom  13:32
+recommended electrical company, and so forth for them.
+
+TomTom  13:34
+Is that stuff that we can add to it?
+
+TomTom  13:36
+I have to work on it.
+
+TomTom  13:39
+I have to find out how we will make sure to work it.
+
+TomTom  13:45
+That will enhance the customer experience.
+
+TomTom  13:47
+One-stop shop.
+
+TomTom  13:49
+Maybe we put it next to.
+
+TomTom  13:51
+Right next to.
+
+TomTom  13:56
+I have basically asked Tom to have a couple of meetings
+
+TomTom  13:58
+so that I can have the complete idea.
+
+TomTom  14:00
+Whatever you guys are asking.
+
+TomTom  14:03
+And once I will write down, I will work on it
+
+TomTom  14:05
+and I will provide you a complete feedback about it.
+
+TomTom  14:07
+Okay, that sounds good to me.
+
+TomTom  14:08
+Great.
+
+TomTom  14:11
+Because that's a little bit more information
+
+TomTom  14:13
+I was expecting, so I have to work.
+
+TomTom  14:15
+So just- Okay.
+
+TomTom  14:15
+Yeah.
+
+TomTom  14:19
+But I like this, this is great.
+
+TomTom  14:20
+We're moving in the right direction
+
+TomTom  14:22
+and I would love to see the cost
+
+TomTom  14:24
+and see what we can do to put it together.
+
+TomTom  14:27
+Definitely, I would love to work with you as well.
+
+TomTom  14:31
+Is there anything else?
+
+TomTom  14:34
+I don't have anything else.
+
+TomTom  14:45
+Well, I guess while you're building the system, we will want to have automation coming in and going out.
+
+TomTom  14:47
+I guess that's probably the next step.
+
+TomTom  14:50
+Automation? About what?
+
+TomTom  14:56
+Automation on, for example, the forms, as Jaquorian, my partner, was mentioning.
+
+TomTom  15:00
+When you want to do a mortgage application,
+
+TomTom  15:04
+can the consumer put it in this platform
+
+TomTom  15:08
+and securely send it to a mortgage lender platform?
+
+TomTom  15:13
+It would be quite helpful if you show me
+
+TomTom  15:16
+how what you're talking about probably.
+
+TomTom  15:19
+Okay, so for example,
+
+TomTom  15:24
+you need to fill up a credit card application on a bank.
+
+TomTom  15:30
+Can you use a different platform and send it directly to the bank?
+
+TomTom  15:36
+Use our platform and send it directly to the bank so we don't have to touch it.
+
+TomTom  15:38
+Uh, I think so.
+
+TomTom  15:39
+I do.
+
+TomTom  15:43
+Uh, I think it can be done, but, uh, I have to work on it clearly.
+
+TomTom  15:48
+If, uh, honestly, if I give the, my view about it, I have to work on it.
+
+TomTom  15:49
+And then I will tell you about this.
+
+TomTom  15:54
+I have recording the com I have, uh, I'm recording the complete, uh, meeting.
+
+TomTom  15:57
+And later I will be working on all of these details
+
+TomTom  15:59
+and I will keep providing you the information
+
+TomTom  16:01
+where we will be moving forward.
+
+TomTom  16:03
+Okay, very good.
+
+TomTom  16:09
+It's, if you think that about this system,
+
+TomTom  16:11
+you have to share more information,
+
+TomTom  16:12
+you can share it right now.
+
+TomTom  16:13
+It's recording right now.
+
+TomTom  16:19
+Mention to you,
+
+TomTom  16:26
+a different portal for a, uh, for the professional that is going to build this.
+
+TomTom  16:34
+Um, not just the admin, for example, the attorney needs to look at this or
+
+TomTom  16:39
+whoever's can look at this, can they upload or can they not upload restriction?
+
+TomTom  16:47
+I guess, user, user restriction in the portal that will automatically say, okay,
+
+TomTom  16:49
+these are the restriction on that portal.
+
+TomTom  16:52
+Right?
+
+TomTom  16:53
+Okay.
+
+TomTom  16:59
+For example, the real estate agent, right?
+
+TomTom  17:00
+They have another portal.
+
+TomTom  17:05
+They will only insert the purchase and sales agreement.
+
+TomTom  17:08
+And then the mortgage lender will share the information
+
+TomTom  17:09
+to the title company.
+
+TomTom  17:13
+The attorney have to view it,
+
+TomTom  17:15
+make sure everything is closed,
+
+TomTom  17:17
+make sure the dollar amount is correct.
+
+TomTom  17:20
+And then as you can see our,
+
+TomTom  17:25
+our vision is we want to work with divorce attorneys.
+
+TomTom  17:27
+So they can split the money.
+
+TomTom  17:30
+So for now, if I ask you a question
+
+TomTom  17:35
+that have you find a solution which can provide this,
+
+TomTom  17:38
+which can provide a solution?
+
+TomTom  17:41
+Have you found any websites or any other system
+
+TomTom  17:43
+who can handle this thing?
+
+TomTom  17:48
+I do not have,
+
+TomTom  17:51
+You know what, you're right. I can look for it.
+
+TomTom  17:54
+No, I have not looked into that the way that we just mentioned. No.
+
+TomTom  18:02
+I think so rather than if this system is bit complex and you want to add it in
+
+TomTom  18:08
+in your website, I would recommend to find already build system,
+
+TomTom  18:13
+which probably fulfill all of these requirements rather than building a new one.
+
+TomTom  18:21
+Definitely, I'm going to work on it and I will find out all the, I will do my R&D and I will provide all the details with you.
+
+TomTom  18:25
+Is there any already built systems or not?
+
+TomTom  18:27
+Or should we build it or not?
+
+TomTom  18:30
+Because it definitely will cost us.
+
+TomTom  18:42
+If there is a system who will quite cheap to use, definitely we should proceed there rather than building more complex and more expensive system in our.
+
+TomTom  18:50
+website. Are you agree with me? Well, for example, the payment option is like
+
+TomTom  18:55
+entering the credit card and running through it to a payment channel, right? It
+
+TomTom  18:59
+would be identical for the mortgage side.
+
+TomTom  19:09
+Contact information, same thing. It would be similar to everything else. AI bot maybe.
+
+TomTom  19:20
+just uploading the document and a portal for dashboard for consumer and attorney and admin.
+
+TomTom  19:30
+Did I put it too simple or that's not enough information?
+
+TomTom  19:37
+I think so, which you have mentioned.
+
+TomTom  19:51
+the credit card information you want to fetch and probably the transactions and the documents you want to get from the dashboard. It makes sense.
+
+TomTom  20:00
+We basically just need the same information from the mortgage lender and copy that list
+
+TomTom  20:06
+of things that they need, put it in our website and then transmit it safely.
+
+TomTom  20:14
+Okay, Tom, can you give me, can you allow me to explain this in another meeting?
+
+TomTom  20:18
+So that I can work and I will come with more information, with right information.
+
+TomTom  20:19
+OK, let's do that.
+
+TomTom  20:23
+Are you working on a similar site for you?
+
+TomTom  20:24
+Yeah.
+
+TomTom  20:29
+Then when we will be when we will have another meeting next meeting.
+
+TomTom  20:35
+Any time when you're ready,
+
+TomTom  20:37
+no rush, but
+
+TomTom  20:39
+yeah, just give me a heads up.
+
+TomTom  20:42
+We are flexible because we we are mobile.
+
+TomTom  20:44
+OK.
+
+TomTom  20:47
+So I will I'll
+
+TomTom  20:53
+I will try to provide you the enough information maybe on LinkedIn or email,
+
+TomTom  20:55
+which platform you prefer.
+
+TomTom  21:01
+Uh, let's do, uh, outlook.
+
+TomTom  21:02
+Outlook.
+
+TomTom  21:03
+Yeah.
+
+TomTom  21:08
+Give me, uh, can you repeat what you said?
+
+TomTom  21:16
+Uh, the outlook email, just give me the email address and I will reach you there.
+
+TomTom  21:22
+and we will have a detailed conversation over all of these things there.
+
+TomTom  21:26
+And I will try to...
+
+TomTom  21:33
+What could be your working hours in which I can bring you there at that time?
+
+TomTom  21:44
+We are central time, any time basically, between 10 and 6.
+
+TomTom  21:51
+Got it. I will have a chat in that time range.
+
+TomTom  21:59
+And probably after I provide you enough information, maybe we'll have another meeting.
+
+TomTom  22:03
+Meanwhile, I will try to deliver all the information on email.
+
+TomTom  22:08
+And it will be comfortable for us. Then we have another meeting.
+
+TomTom  22:11
+Yeah, I'm sending you emails now.
+
+TomTom  22:13
+Got it.
+
+TomTom  22:25
+Do you think that the pages which I have displayed here,
+
+TomTom  22:30
+you guys need any kind of changes in these pages?
+
+TomTom  22:40
+I guess what we probably need is one or two more modules
+
+TomTom  22:45
+on extracting the information from one place to another.
+
+TomTom  22:49
+Like I mentioned to you, the portal, right?
+
+TomTom  22:55
+capability of each user.
+
+TomTom  22:57
+So far we like exactly what it is.
+
+TomTom  23:02
+I have no compliment or complain about this
+
+TomTom  23:05
+until we look into this a little bit further.
+
+TomTom  23:07
+But this is, I would say this is,
+
+TomTom  23:09
+we can work on this standard.
+
+TomTom  23:11
+Sounds fair?
+
+TomTom  23:13
+Yeah, I got it.
+
+TomTom  23:14
+So basically I-
+
+TomTom  23:16
+And you can take a look at our website,
+
+TomTom  23:18
+see what we actually need.
+
+TomTom  23:26
+yeah basically we need a few more users potentially and we need a few more modules
+
+TomTom  23:34
+and uh it would be uh it would be good if you write down a little bit description about those
+
+TomTom  23:40
+modules otherwise i will extract the information from this meeting after we finish this meeting
+
+TomTom  23:47
+i'm recording right now so um it's basically insurance yeah yeah insurance side um um
+
+TomTom  23:58
+insurance would be needed to be added in the forms that is needed for the consumer to put in now the
+
+TomTom  24:05
+insurance side i don't need any more information than is basic information basic information means
+
+TomTom  24:13
+their name birthday and if they want to do vehicle i need the vin number that's only
+
+TomTom  24:16
+three information that i need on the insurance side everything else has to be manual put in
+
+TomTom  24:24
+Okay, got it. Is there anything else?
+
+TomTom  24:28
+So far? No, no.
+
+TomTom  24:35
+Then let's end this meeting and let me work on it and I will
+
+TomTom  24:36
+reach you again.
+
+TomTom  24:39
+Okay, Abdul. Good job.
+
+TomTom  24:42
+Thank you so much. Take care. Thank you. Thank you.

@@ -1,5 +1,6 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
+import { COPYRIGHT_YEAR } from '../constants';
 
 const MOBILE: OffersContent[] = [
   {
@@ -57,7 +58,7 @@ const MOBILE: OffersContent[] = [
         title: 'Types of Mobile Apps',
         paragraph: 'From internal business apps to customer-facing solutions, Dev8X creates apps that drive productivity, engagement, and operational efficiency.',
         icon: { name: 'MapPinIcon', size: 64 },
-        image: prefixed('/api/images/work/honeydu/desktop/10.png')
+        image: prefixed('/api/images/work/scheduler/mobile/1.png')
       },
       {
         title: 'UI/UX Excellence',
@@ -106,7 +107,7 @@ const MOBILE: OffersContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: COPYRIGHT_YEAR,
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }

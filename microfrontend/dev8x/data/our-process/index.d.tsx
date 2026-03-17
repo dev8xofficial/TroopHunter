@@ -1,5 +1,6 @@
 import { ExpertiseContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
+import { COPYRIGHT_YEAR } from '../constants';
 
 const PROCESS: ExpertiseContent[] = [
   {
@@ -128,7 +129,7 @@ const PROCESS: ExpertiseContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: COPYRIGHT_YEAR,
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }

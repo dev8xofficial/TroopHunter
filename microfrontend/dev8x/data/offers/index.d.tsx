@@ -1,5 +1,6 @@
 import { OffersContent } from '@repo/components';
 import { prefixed } from '../../utils/helpers';
+import { COPYRIGHT_YEAR } from '../constants';
 
 const OFFERS: OffersContent[] = [
   {
@@ -121,7 +122,7 @@ const OFFERS: OffersContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: COPYRIGHT_YEAR,
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -332,7 +333,7 @@ const OFFERS: OffersContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: COPYRIGHT_YEAR,
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -648,7 +649,7 @@ const OFFERS: OffersContent[] = [
       //   linkText: 'Explore Careers'
       // },
       copyright: {
-        year: '2025',
+        year: COPYRIGHT_YEAR,
         text: 'Privacy Policy',
         privacyLink: '/privacy'
       }
@@ -927,7 +928,7 @@ const OFFERS: OffersContent[] = [
   //   },
   //   footerForm: {
   //     privacy: {
-  //       year: '2025',
+  //       year: '2026',
   //       text: 'Privacy'
   //     },
   //     button: {
