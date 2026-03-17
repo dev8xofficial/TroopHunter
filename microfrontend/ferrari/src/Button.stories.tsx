@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 // Simple test component
-const TestButton = ({ children, variant = "primary" }: { children: string; variant?: "primary" | "secondary" }) => (
+const TestButton = ({ children, variant = 'primary' }: { children: string; variant?: 'primary' | 'secondary' }) => (
   <button
     style={{
-      padding: "12px 24px",
-      borderRadius: "8px",
-      border: "none",
-      background: variant === "primary" ? "#ef4444" : "#6b7280",
-      color: "white",
-      cursor: "pointer",
+      padding: '12px 24px',
+      borderRadius: '8px',
+      border: 'none',
+      background: variant === 'primary' ? '#ef4444' : '#6b7280',
+      color: 'white',
+      cursor: 'pointer'
     }}
   >
     {children}
@@ -17,25 +17,25 @@ const TestButton = ({ children, variant = "primary" }: { children: string; varia
 );
 
 const meta: Meta<typeof TestButton> = {
-  title: "Test/Button",
+  title: 'Test/Button',
   component: TestButton,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {
-    layout: "centered",
+    layout: 'centered'
   },
   argTypes: {
     variant: {
-      control: { type: "select" },
-      options: ["primary", "secondary"],
+      control: { type: 'select' },
+      options: ['primary', 'secondary']
     },
     children: {
-      control: "text",
-    },
+      control: 'text'
+    }
   },
   args: {
-    children: "Click me",
-    variant: "primary",
-  },
+    children: 'Click me',
+    variant: 'primary'
+  }
 };
 
 export default meta;
@@ -43,14 +43,14 @@ type Story = StoryObj<typeof TestButton>;
 
 export const Primary: Story = {
   args: {
-    children: "Primary Button",
-    variant: "primary",
-  },
+    children: 'Primary Button',
+    variant: 'primary'
+  }
 };
 
 export const Secondary: Story = {
   args: {
-    children: "Secondary Button",
-    variant: "secondary",
-  },
+    children: 'Secondary Button',
+    variant: 'secondary'
+  }
 };

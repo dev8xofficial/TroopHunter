@@ -8,8 +8,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
-      { protocol: 'http', hostname: 'localhost' },
-    ],
+      { protocol: 'http', hostname: 'localhost' }
+    ]
   },
   headers: async () => [
     {
@@ -17,14 +17,14 @@ const nextConfig: NextConfig = {
       headers: [
         {
           key: 'Cache-Control',
-          value: 'public, max-age=31536000, must-revalidate',
-        },
-      ],
+          value: 'public, max-age=31536000, must-revalidate'
+        }
+      ]
     },
     {
       source: '/fonts/:path*',
-      headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }],
-    },
+      headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }]
+    }
   ],
   assetPrefix: isLocal ? undefined : process.env.NEXT_PUBLIC_ASSET_HOST,
   async rewrites() {
@@ -33,9 +33,9 @@ const nextConfig: NextConfig = {
       { source: '/fonts/:path*', destination: `${assetHost}/fonts/:path*` },
       { source: '/favicon.svg', destination: `${assetHost}/favicon.svg` },
       { source: '/robots.txt', destination: `${assetHost}/robots.txt` },
-      { source: '/sitemap.xml', destination: `${assetHost}/sitemap.xml` },
+      { source: '/sitemap.xml', destination: `${assetHost}/sitemap.xml` }
     ];
-  },
+  }
 };
 
 export default nextConfig;
