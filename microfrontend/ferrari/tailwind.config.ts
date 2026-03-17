@@ -8,6 +8,12 @@ const config: Config = {
         sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif']
       },
       colors: {
+        semantic: {
+          bg: 'var(--color-bg-primary)',
+          text: 'var(--color-text-primary)',
+          muted: 'var(--color-text-muted)',
+          brand: 'var(--color-brand-primary)'
+        },
         ferrari: {
           50: '#fef2f2',
           100: '#fee2e2',

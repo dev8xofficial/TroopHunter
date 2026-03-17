@@ -1,27 +1,39 @@
-import { cn } from '@/shared/lib/utils';
+import * as React from 'react';
+import { ButtonHeadless, type ButtonHeadlessProps } from '@/shared/ui/headless';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
-  children: React.ReactNode;
+type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+type ButtonSize = 'sm' | 'md' | 'lg';
+
+export interface ButtonProps extends Omit<ButtonHeadlessProps, 'className'> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
 }
 
-const variants = {
-  primary: 'bg-[var(--ferrari-dark)] text-white hover:opacity-90',
-  secondary: 'bg-white text-[var(--ferrari-dark)] border border-black/10 hover:bg-black/5',
-  ghost: 'bg-transparent text-[var(--ferrari-dark)] hover:bg-black/5'
+const variantClasses: Record<ButtonVariant, string> = {
+  primary: 'bg-[var(--color-btn-primary-bg)] text-[var(--color-btn-primary-text)] hover:opacity-90',
+  secondary:
+    'bg-[var(--color-btn-secondary-bg)] text-[var(--color-btn-secondary-text)] border border-[var(--color-btn-secondary-border)] hover:bg-[var(--color-btn-secondary-hover-bg)]',
+  ghost: 'bg-transparent text-[var(--color-btn-ghost-text)] hover:bg-[var(--color-btn-ghost-hover-bg)]'
 };
 
-const sizes = {
+const sizeClasses: Record<ButtonSize, string> = {
   sm: 'px-3 py-1.5 text-xs',
   md: 'px-5 py-2.5 text-sm',
   lg: 'px-7 py-3 text-base'
 };
 
-export function Button({ variant = 'primary', size = 'md', className, children, ...props }: ButtonProps) {
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ variant = 'primary', size = 'md', ...props }, ref) => {
   return (
-    <button className={cn('inline-flex items-center justify-center rounded-full font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ferrari-dark)] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none', variants[variant], sizes[size], className)} {...props}>
-      {children}
-    </button>
+    <ButtonHeadless
+      ref={ref}
+      {...props}
+      className={[
+        'inline-flex items-center justify-center rounded-full font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+        variantClasses[variant],
+        sizeClasses[size]
+      ].join(' ')}
+    />
   );
-}
+});
+
+Button.displayName = 'Button';

@@ -32,6 +32,119 @@ html.lenis body {
   --ferrari-muted: rgba(10, 10, 10, 0.6);
   --header-height: 5rem;
   --container-gutter: 1.25rem;
+
+  /* ─── MBO Semantic Tokens (default = Ferrari) ─── */
+  --color-bg-primary: var(--ferrari-light);
+  --color-surface-primary: #ffffff;
+  --color-text-primary: var(--ferrari-dark);
+  --color-text-muted: var(--ferrari-muted);
+  --color-border-muted: rgba(0, 0, 0, 0.1);
+  --color-brand-primary: var(--ferrari-red);
+  --color-focus-ring: var(--ferrari-dark);
+  --color-danger: var(--ferrari-red);
+
+  --color-btn-primary-bg: var(--ferrari-dark);
+  --color-btn-primary-text: #ffffff;
+  --color-btn-secondary-bg: #ffffff;
+  --color-btn-secondary-text: var(--ferrari-dark);
+  --color-btn-secondary-border: rgba(0, 0, 0, 0.1);
+  --color-btn-secondary-hover-bg: rgba(0, 0, 0, 0.03);
+  --color-btn-ghost-text: var(--ferrari-dark);
+  --color-btn-ghost-hover-bg: rgba(0, 0, 0, 0.03);
+
+  --color-input-bg: #ffffff;
+  --color-input-border: rgba(0, 0, 0, 0.1);
+  --color-input-ring: var(--ferrari-dark);
+  --color-input-border-error: var(--ferrari-red);
+  --color-input-ring-error: var(--ferrari-red);
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.theme-ferrari {
+  --color-bg-primary: var(--ferrari-light);
+  --color-surface-primary: #ffffff;
+  --color-text-primary: var(--ferrari-dark);
+  --color-text-muted: var(--ferrari-muted);
+  --color-border-muted: rgba(0, 0, 0, 0.1);
+  --color-brand-primary: var(--ferrari-red);
+  --color-focus-ring: var(--ferrari-dark);
+  --color-danger: var(--ferrari-red);
+
+  --color-btn-primary-bg: var(--ferrari-dark);
+  --color-btn-primary-text: #ffffff;
+  --color-btn-secondary-bg: #ffffff;
+  --color-btn-secondary-text: var(--ferrari-dark);
+  --color-btn-secondary-border: rgba(0, 0, 0, 0.1);
+  --color-btn-secondary-hover-bg: rgba(0, 0, 0, 0.03);
+  --color-btn-ghost-text: var(--ferrari-dark);
+  --color-btn-ghost-hover-bg: rgba(0, 0, 0, 0.03);
+
+  --color-input-bg: #ffffff;
+  --color-input-border: rgba(0, 0, 0, 0.1);
+  --color-input-ring: var(--ferrari-dark);
+  --color-input-border-error: var(--ferrari-red);
+  --color-input-ring-error: var(--ferrari-red);
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.theme-admin {
+  /* placeholder: clone of Ferrari for now */
+  --color-bg-primary: var(--ferrari-light);
+  --color-surface-primary: #ffffff;
+  --color-text-primary: var(--ferrari-dark);
+  --color-text-muted: var(--ferrari-muted);
+  --color-border-muted: rgba(0, 0, 0, 0.1);
+  --color-brand-primary: var(--ferrari-red);
+  --color-focus-ring: var(--ferrari-dark);
+  --color-danger: var(--ferrari-red);
+
+  --color-btn-primary-bg: var(--ferrari-dark);
+  --color-btn-primary-text: #ffffff;
+  --color-btn-secondary-bg: #ffffff;
+  --color-btn-secondary-text: var(--ferrari-dark);
+  --color-btn-secondary-border: rgba(0, 0, 0, 0.1);
+  --color-btn-secondary-hover-bg: rgba(0, 0, 0, 0.03);
+  --color-btn-ghost-text: var(--ferrari-dark);
+  --color-btn-ghost-hover-bg: rgba(0, 0, 0, 0.03);
+
+  --color-input-bg: #ffffff;
+  --color-input-border: rgba(0, 0, 0, 0.1);
+  --color-input-ring: var(--ferrari-dark);
+  --color-input-border-error: var(--ferrari-red);
+  --color-input-ring-error: var(--ferrari-red);
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.theme-client {
+  /* placeholder: clone of Ferrari for now */
+  --color-bg-primary: var(--ferrari-light);
+  --color-surface-primary: #ffffff;
+  --color-text-primary: var(--ferrari-dark);
+  --color-text-muted: var(--ferrari-muted);
+  --color-border-muted: rgba(0, 0, 0, 0.1);
+  --color-brand-primary: var(--ferrari-red);
+  --color-focus-ring: var(--ferrari-dark);
+  --color-danger: var(--ferrari-red);
+
+  --color-btn-primary-bg: var(--ferrari-dark);
+  --color-btn-primary-text: #ffffff;
+  --color-btn-secondary-bg: #ffffff;
+  --color-btn-secondary-text: var(--ferrari-dark);
+  --color-btn-secondary-border: rgba(0, 0, 0, 0.1);
+  --color-btn-secondary-hover-bg: rgba(0, 0, 0, 0.03);
+  --color-btn-ghost-text: var(--ferrari-dark);
+  --color-btn-ghost-hover-bg: rgba(0, 0, 0, 0.03);
+
+  --color-input-bg: #ffffff;
+  --color-input-border: rgba(0, 0, 0, 0.1);
+  --color-input-ring: var(--ferrari-dark);
+  --color-input-border-error: var(--ferrari-red);
+  --color-input-ring-error: var(--ferrari-red);
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 @media (min-width: 768px) {
@@ -61,12 +174,12 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  color: var(--ferrari-dark);
+  color: var(--color-text-primary);
   font-weight: 400;
   font-size: 1rem;
   overflow-x: hidden;
   overscroll-behavior: none;
-  background: var(--ferrari-light);
+  background: var(--color-bg-primary);
 }
 
 main {
@@ -76,7 +189,7 @@ main {
 
 body ::selection {
   color: #fff;
-  background-color: var(--ferrari-red);
+  background-color: var(--color-brand-primary);
 }
 
 *,
@@ -139,7 +252,7 @@ p:last-child {
 }
 
 :focus-visible {
-  outline: 3px dashed var(--ferrari-red);
+  outline: 3px dashed var(--color-brand-primary);
   outline-offset: 2px;
 }
 

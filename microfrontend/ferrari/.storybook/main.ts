@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
+import path from 'path';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -34,6 +35,14 @@ const config: StorybookConfig = {
       return true;
     });
 
+    // Remove Storybook's implicit CSS rule(s) so we can run Tailwind/PostCSS exactly once.
+    config.module.rules = (config.module.rules || []).filter((rule) => {
+      if (!rule || typeof rule !== 'object' || !('test' in rule)) return true;
+      const testStr = String((rule as { test?: unknown }).test);
+      if (!testStr.includes('css')) return true;
+      return false;
+    });
+
     // Add our own Babel rule for TypeScript and JSX
     config.module.rules.push({
       test: /\.(ts|tsx|js|jsx)$/,
@@ -46,8 +55,34 @@ const config: StorybookConfig = {
       }
     });
 
+    // Ensure Tailwind/PostCSS runs for imported CSS (e.g. globals.css)
+    config.module.rules.push({
+      test: /\.css$/,
+      sideEffects: true,
+      include: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../.storybook')],
+      use: [
+        require.resolve('style-loader'),
+        {
+          loader: require.resolve('css-loader'),
+          options: { importLoaders: 1 }
+        },
+        {
+          loader: require.resolve('postcss-loader'),
+          options: {
+            postcssOptions: {
+              config: path.resolve(__dirname, '../postcss.config.cjs')
+            }
+          }
+        }
+      ]
+    });
+
     config.resolve = config.resolve || {};
     config.resolve.extensions = [...(config.resolve.extensions || []), '.ts', '.tsx'];
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      '@': path.resolve(__dirname, '../src')
+    };
 
     return config;
   }

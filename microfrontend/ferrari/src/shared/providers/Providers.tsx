@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { StoreProvider } from '@/shared/store/provider';
 import { LenisProvider } from './LenisProvider';
 import { AnimationProvider } from './AnimationProvider';
+import { ThemeProvider } from './ThemeProvider';
 
 interface ProvidersProps {
   children: ReactNode;
@@ -17,7 +18,9 @@ export function Providers({ children }: ProvidersProps) {
   return (
     <StoreProvider>
       <LenisProvider>
-        <AnimationProvider>{children}</AnimationProvider>
+        <ThemeProvider brandId="ferrari">
+          <AnimationProvider>{children}</AnimationProvider>
+        </ThemeProvider>
       </LenisProvider>
     </StoreProvider>
   );

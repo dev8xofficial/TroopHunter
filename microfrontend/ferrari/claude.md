@@ -82,23 +82,22 @@
 # File Structure
 
 ferrari/
+┣ .storybook/
+┃ ┣ main.ts
+┃ ┗ preview.ts
 ┣ src/
 ┃ ┣ app/
 ┃ ┃ ┣ (main)/
 ┃ ┃ ┃ ┣ [slug]/
 ┃ ┃ ┃ ┃ ┗ page.tsx
 ┃ ┃ ┃ ┗ layout.tsx
-┃ ┃ ┣ (portals)/
-┃ ┃ ┃ ┣ admin/
-┃ ┃ ┃ ┣ agent/
-┃ ┃ ┃ ┗ client/
 ┃ ┃ ┣ @modal/
 ┃ ┃ ┃ ┣ (.)preview/
 ┃ ┃ ┃ ┃ ┗ [id]/
 ┃ ┃ ┃ ┗ default.tsx
 ┃ ┃ ┣ api/
 ┃ ┃ ┃ ┗ health/
-┃ ┃ ┃ ┗ route.ts
+┃ ┃ ┃   ┗ route.ts
 ┃ ┃ ┣ error.tsx
 ┃ ┃ ┣ layout.tsx
 ┃ ┃ ┣ loading.tsx
@@ -115,7 +114,6 @@ ferrari/
 ┃ ┃ ┃ ┣ client.ts
 ┃ ┃ ┃ ┗ schemas.ts
 ┃ ┃ ┣ config/
-┃ ┃ ┃ ┣ theme/
 ┃ ┃ ┃ ┗ env.ts
 ┃ ┃ ┣ lib/
 ┃ ┃ ┃ ┣ animations/
@@ -126,7 +124,7 @@ ferrari/
 ┃ ┃ ┃ ┃ ┣ index.ts
 ┃ ┃ ┃ ┃ ┗ useBreakpoint.ts
 ┃ ┃ ┃ ┗ utils/
-┃ ┃ ┃ ┗ index.ts
+┃ ┃ ┃   ┗ index.ts
 ┃ ┃ ┣ providers/
 ┃ ┃ ┃ ┣ AnimationProvider.tsx
 ┃ ┃ ┃ ┣ LenisProvider.tsx
@@ -138,36 +136,23 @@ ferrari/
 ┃ ┃ ┃ ┣ index.ts
 ┃ ┃ ┃ ┗ provider.tsx
 ┃ ┃ ┣ styles/
-┃ ┃ ┃ ┣ themes/
-┃ ┃ ┃ ┣ tokens/
-┃ ┃ ┃ ┃ ┣ global/
-┃ ┃ ┃ ┃ ┗ semantic/
 ┃ ┃ ┃ ┗ globals.css
 ┃ ┃ ┗ ui/
-┃ ┃ ┣ Button/
-┃ ┃ ┃ ┃ ┣ Button.tsx
-┃ ┃ ┃ ┃ ┗ index.ts
-┃ ┃ ┣ Card/
-┃ ┃ ┣ headless/
-┃ ┃ ┗ Input/
+┃ ┃   ┗ Button/
+┃ ┃ ┃   ┣ Button.tsx
+┃ ┃ ┃   ┗ index.ts
 ┃ ┗ Button.stories.tsx
-┣ .env.development
-┣ .env.local
-┣ .env.production
-┣ .env.staging
 ┣ .gitignore
 ┣ .prettierignore
 ┣ .prettierrc
+┣ Dockerfile
 ┣ babel.config.js
 ┣ claude.md
 ┣ directory-files.md
-┣ Dockerfile
-┣ ferrari_tsc_error.txt
+┣ mbo.md
 ┣ next-env.d.ts
 ┣ next.config.ts
 ┣ package.json
 ┣ postcss.config.mjs
 ┣ tailwind.config.ts
-┣ tsconfig.json
-┣ tsconfig.tsbuildinfo
-┗ tsc_error.log
+┗ tsconfig.json

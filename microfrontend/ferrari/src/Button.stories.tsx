@@ -1,24 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from '@/shared/ui/Button';
 
-// Simple test component
-const TestButton = ({ children, variant = 'primary' }: { children: string; variant?: 'primary' | 'secondary' }) => (
-  <button
-    style={{
-      padding: '12px 24px',
-      borderRadius: '8px',
-      border: 'none',
-      background: variant === 'primary' ? '#ef4444' : '#6b7280',
-      color: 'white',
-      cursor: 'pointer'
-    }}
-  >
-    {children}
-  </button>
-);
-
-const meta: Meta<typeof TestButton> = {
-  title: 'Test/Button',
-  component: TestButton,
+const meta: Meta<typeof Button> = {
+  title: 'MBO/Button',
+  component: Button,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered'
@@ -26,7 +11,7 @@ const meta: Meta<typeof TestButton> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['primary', 'secondary']
+      options: ['primary', 'secondary', 'ghost']
     },
     children: {
       control: 'text'
@@ -39,7 +24,7 @@ const meta: Meta<typeof TestButton> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof TestButton>;
+type Story = StoryObj<typeof Button>;
 
 export const Primary: Story = {
   args: {
@@ -52,5 +37,12 @@ export const Secondary: Story = {
   args: {
     children: 'Secondary Button',
     variant: 'secondary'
+  }
+};
+
+export const Ghost: Story = {
+  args: {
+    children: 'Ghost Button',
+    variant: 'ghost'
   }
 };
