@@ -44,3 +44,116 @@
 - **Always** fix lint errors before committing and ensure new code passes `npm run lint` and any workspace-local `lint` script.
 - **Always** format code before commit using the configured Prettier version; **never** rely on IDE-specific formatting that diverges from Prettier.
 - **Always** keep import order, naming conventions, and unused code rules consistent with the shared ESLint config; **never** disable lint rules inline unless strictly necessary and well-justified.
+
+
+
+
+TroopHunter/
+┣ .turbo/
+┃ ┣ cache/
+┃ ┣ cookies/
+┃ ┗ daemon/
+┣ .vscode/
+┃ ┣ launch.json
+┃ ┣ PythonImportHelper-v2-Completion.json
+┃ ┣ settings.json
+┃ ┗ tasks.json
+┣ ansible/
+┃ ┣ docs/
+┃ ┣ inventories/
+┃ ┣ playbooks/
+┃ ┣ roles/
+┃ ┣ .gitignore
+┃ ┣ ansible.cfg
+┃ ┗ Dockerfile
+┣ cdns/
+┃ ┣ dev8x/
+┃ ┣ helloabdul/
+┃ ┣ troophunter/
+┃ ┗ HELP.md
+┣ ci/
+┃ ┣ .gitignore
+┃ ┣ Dockerfile
+┃ ┣ index.js
+┃ ┗ package.json
+┣ content/
+┃ ┣ all-platforms/
+┃ ┣ data/
+┃ ┣ dev8x/
+┃ ┣ master-dataset/
+┃ ┣ menu/
+┃ ┗ Profiles prompt/
+┣ content-new/
+┃ ┣ content-files/
+┃ ┣ fiverGigsdata/
+┃ ┣ fiverrGigsData/
+┃ ┣ master-dataset/
+┃ ┣ master-prompt/
+┃ ┣ notebook-llm-data/
+┃ ┣ profiles-format.json/
+┃ ┗ profiles-prompts/
+┣ kubernetes/
+┃ ┣ cluster-resources/
+┃ ┣ docs/
+┃ ┣ istio/
+┃ ┣ k8s/
+┃ ┗ monitoring/
+┣ microfrontend/
+┃ ┣ dev8x/
+┃ ┣ ferrari/
+┃ ┣ helloabdul/
+┃ ┗ troophunter/
+┣ microservices/
+┃ ┣ auth/
+┃ ┣ businesses/
+┃ ┣ countries/
+┃ ┣ main/
+┃ ┣ queues/
+┃ ┗ users/
+┣ packages/
+┃ ┣ components/
+┃ ┣ eslint-config/
+┃ ┣ messages/
+┃ ┣ middlewares/
+┃ ┣ services/
+┃ ┣ tsconfig-backend/
+┃ ┣ tsconfig-frontend/
+┃ ┣ utils/
+┃ ┗ validator/
+┣ scraper/
+┃ ┣ driver/
+┃ ┣ logs/
+┃ ┣ src/
+┃ ┣ tests/
+┃ ┣ .gitignore
+┃ ┣ config.py
+┃ ┣ doc.txt
+┃ ┣ main.py
+┃ ┣ README.md
+┃ ┗ requirements.txt
+┣ terraform/
+┃ ┣ docs/
+┃ ┣ modules/
+┃ ┣ .gitignore
+┃ ┣ locals.tf
+┃ ┣ main.tf
+┃ ┣ outputs.tf
+┃ ┣ provider.tf
+┃ ┣ variables.tf
+┃ ┗ versions.tf
+┣ .dockerignore
+┣ .gitignore
+┣ .prettierrc
+┣ claude.md
+┣ docker-compose.ci.yml
+┣ docker-compose.crm.yml
+┣ docker-compose.dev.yml
+┣ docker-compose.devops.yml
+┣ docker-compose.loc.yml
+┣ docker-compose.network.yml
+┣ docker-compose.pgadmin.yml
+┣ docker-compose.prod.yml
+┣ docker-compose.stag.yml
+┣ package-lock.json
+┣ package.json
+┗ turbo.json
