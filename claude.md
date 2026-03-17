@@ -49,40 +49,39 @@
 
 
 TroopHunter/
-┣ .turbo/
-┃ ┣ cache/
-┃ ┣ cookies/
-┃ ┗ daemon/
 ┣ .vscode/
-┃ ┣ launch.json
 ┃ ┣ PythonImportHelper-v2-Completion.json
+┃ ┣ launch.json
 ┃ ┣ settings.json
 ┃ ┗ tasks.json
 ┣ ansible/
 ┃ ┣ docs/
 ┃ ┣ inventories/
+┃ ┣ kubernetes/
 ┃ ┣ playbooks/
 ┃ ┣ roles/
+┃ ┣ secrets/
 ┃ ┣ .gitignore
-┃ ┣ ansible.cfg
-┃ ┗ Dockerfile
+┃ ┣ Dockerfile
+┃ ┗ ansible.cfg
 ┣ cdns/
 ┃ ┣ dev8x/
 ┃ ┣ helloabdul/
 ┃ ┣ troophunter/
 ┃ ┗ HELP.md
 ┣ ci/
+┃ ┣ .env
 ┃ ┣ .gitignore
 ┃ ┣ Dockerfile
 ┃ ┣ index.js
 ┃ ┗ package.json
 ┣ content/
+┃ ┣ Profiles prompt/
 ┃ ┣ all-platforms/
 ┃ ┣ data/
 ┃ ┣ dev8x/
 ┃ ┣ master-dataset/
-┃ ┣ menu/
-┃ ┗ Profiles prompt/
+┃ ┗ menu/
 ┣ content-new/
 ┃ ┣ content-files/
 ┃ ┣ fiverGigsdata/
@@ -92,6 +91,15 @@ TroopHunter/
 ┃ ┣ notebook-llm-data/
 ┃ ┣ profiles-format.json/
 ┃ ┗ profiles-prompts/
+┣ governance/
+┃ ┣ Executive Side/
+┃ ┣ Technical Side/
+┃ ┣ prompt-role-based.md
+┃ ┣ prompts-final-segments.md
+┃ ┣ prompts-find-promissing-segments.md
+┃ ┣ prompts-find-segments.md
+┃ ┣ software_evolution.json
+┃ ┗ software_evolution.pdf
 ┣ kubernetes/
 ┃ ┣ cluster-resources/
 ┃ ┣ docs/
@@ -100,6 +108,8 @@ TroopHunter/
 ┃ ┗ monitoring/
 ┣ microfrontend/
 ┃ ┣ dev8x/
+┃ ┣ dev8x-auth/
+┃ ┣ dev8x-client-portal/
 ┃ ┣ ferrari/
 ┃ ┣ helloabdul/
 ┃ ┗ troophunter/
@@ -120,21 +130,54 @@ TroopHunter/
 ┃ ┣ tsconfig-frontend/
 ┃ ┣ utils/
 ┃ ┗ validator/
+┣ production/
+┃ ┣ database/
+┃ ┗ database-migration/
 ┣ scraper/
 ┃ ┣ driver/
+┃ ┣ googlePlaces/
 ┃ ┣ logs/
+┃ ┣ places/
 ┃ ┣ src/
 ┃ ┣ tests/
+┃ ┣ venv/
+┃ ┣ .env
 ┃ ┣ .gitignore
+┃ ┣ README.md
 ┃ ┣ config.py
 ┃ ┣ doc.txt
 ┃ ┣ main.py
-┃ ┣ README.md
 ┃ ┗ requirements.txt
+┣ scraper-linkedin/
+┃ ┣ __pycache__/
+┃ ┣ helpers/
+┃ ┣ output/
+┃ ┣ venv/
+┃ ┣ .gitignore
+┃ ┣ README.md
+┃ ┣ config.py
+┃ ┣ main.py
+┃ ┣ requirements.txt
+┃ ┗ web_app.py
+┣ scraper-web/
+┃ ┣ __pycache__/
+┃ ┣ helpers/
+┃ ┣ output/
+┃ ┣ venv/
+┃ ┣ .gitignore
+┃ ┣ README.md
+┃ ┣ config.py
+┃ ┣ main.py
+┃ ┣ requirements.txt
+┃ ┗ web_app.py
 ┣ terraform/
+┃ ┣ .terraform/
 ┃ ┣ docs/
 ┃ ┣ modules/
+┃ ┣ secrets/
+┃ ┣ terraform.tfstate.d/
 ┃ ┣ .gitignore
+┃ ┣ .terraform.lock.hcl
 ┃ ┣ locals.tf
 ┃ ┣ main.tf
 ┃ ┣ outputs.tf
