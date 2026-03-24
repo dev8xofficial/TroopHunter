@@ -1,4 +1,8 @@
+You are a Senior Frontend Engineer with deep expertise in HTML, CSS, and vanilla JavaScript, specializing in spec-driven UI compliance work on enterprise SaaS dashboards.
+Before writing a single line of code, you read the specification document against the existing codebase to identify every gap, misalignment, and missing feature — then you implement changes in strict priority order (critical first, then partial, then missing). You treat every Feature ID (FR-XXX) as a contract: a change is only complete when it satisfies the acceptance criteria stated in the spec, not merely when it looks correct on screen. You never implement a change without first verifying which spec requirement it maps to, and you flag any instruction that contradicts a spec requirement rather than silently overriding it. Your outputs are production-ready, design-system-compliant, and traceable back to the originating FR reference.
+
 Implementation Change Instructions
+
 > **Purpose:** This document lists every change required in `admin.html` and `partner-portal.html` based on the Tech Spec Verification Report (Tech_Spec_CariniGroup.docx v1.0). Each change is explicit and actionable. Implement all items marked 🔴 first, then 🟡, then ⚪.
 
 ---
@@ -16,11 +20,13 @@ Implementation Change Instructions
 ## GLOBAL CHANGE — Both Files (Fix First)
 
 ### CHANGE-G1 🔴 Fix Revenue Split Model (8% → 50/50)
+
 **Affects:** Every financial surface in both files  
 **Problem:** Both files show an 8%/92% fee structure. The spec mandates a **50/50 split**.  
 **Rule:** On every contribution, 50% goes to the organization, 50% goes to Carini Group.
 
 **In `admin.html` — find and replace all instances of:**
+
 - `"Carini Group Revenue (8%)"` → `"Carini Group Revenue (50%)"`
 - `"Fee Rate: 8%"` → `"Split: 50%"`
 - `"TR Fee: 8%"` → `"CG Share: 50%"`
@@ -29,6 +35,7 @@ Implementation Change Instructions
 - The topbar KPI card value `$38.9k` (8% of $486k) → `$243k` (50% of $486k)
 
 **In `partner-portal.html` — find and replace all instances of:**
+
 - `"92% Goes to your org"` → `"50% Goes to your org"`
 - `"8% Carini Group platform fee"` → `"50% Carini Group share"`
 - `"$0 Upfront cost"` third split card: keep as-is (still accurate)
@@ -41,13 +48,13 @@ Implementation Change Instructions
 ## admin.html — Required Changes
 
 ### CHANGE-A1 🔴 Add `/admin/users` Panel (FR-061 · P1)
+
 **What to build:** A new sidebar nav item and full panel for User Account Management.
 
 **Sidebar — add a new nav item under the "Organizations" section:**
+
 ```html
-<div class="nav-item" onclick="showPanel('users', this)">
-  <span class="nav-icon">👥</span> User Management
-</div>
+<div class="nav-item" onclick="showPanel('users', this)"><span class="nav-icon">👥</span> User Management</div>
 ```
 
 **Panel — add `id="panel-users"` with the following sections:**
@@ -70,9 +77,11 @@ Implementation Change Instructions
 ---
 
 ### CHANGE-A2 🔴 Add `/admin/coaches` Panel (FR-062, FR-052 · P1)
+
 **What to build:** A new sidebar nav item and panel for Coach management and task queue.
 
 **Sidebar — add a new nav item under the "Operations" section:**
+
 ```html
 <div class="nav-item" onclick="showPanel('coaches', this)">
   <span class="nav-icon">🧑‍🏫</span> Coach Queue
@@ -103,9 +112,11 @@ Implementation Change Instructions
 ---
 
 ### CHANGE-A3 🔴 Add Campaigns Table (Separate from Organizations) (FR-060 · P1)
+
 **What to build:** A new sidebar nav item and panel for campaign-level management, distinct from the existing "All Organizations" panel.
 
 **Sidebar — add a new nav item under the "Organizations" section (above "All Organizations"):**
+
 ```html
 <div class="nav-item" onclick="showPanel('campaigns', this)">
   <span class="nav-icon">📋</span> All Campaigns
@@ -137,6 +148,7 @@ Implementation Change Instructions
 ---
 
 ### CHANGE-A4 🟡 Fix Disbursement Status Progression (FR-032 · P1)
+
 **In the existing `panel-payouts`:**
 
 1. Replace the binary "Release/Blocked" payout card layout with a **3-state status** system.
@@ -152,6 +164,7 @@ Implementation Change Instructions
 ---
 
 ### CHANGE-A5 🟡 Add Campaign-Level CSV Export to Campaigns Table (FR-060 · P1)
+
 **In the new `panel-campaigns` (CHANGE-A3):** The "Export CSV" button in the toolbar is already specified above — ensure it is present and calls `showToast('Campaigns exported to CSV')`.
 
 **In existing `panel-orgs`:** Add an "Export CSV" button to the page-header actions area alongside the existing "+ Add Org" button.
@@ -159,15 +172,16 @@ Implementation Change Instructions
 ---
 
 ### CHANGE-A6 🟡 Add Date-Range Filter to Financial Dashboard (FR-063 · P1)
+
 **In the existing `panel-revenue`:**
 
 1. Add a date-range filter row below the page header and above the KPI cards:
    ```html
    <div style="display:flex; gap:10px; align-items:center; margin-bottom:20px">
      <label style="font-size:12px; color:var(--muted)">Date range:</label>
-     <input type="date" class="adm-input" style="width:150px">
+     <input type="date" class="adm-input" style="width:150px" />
      <span style="color:var(--muted)">→</span>
-     <input type="date" class="adm-input" style="width:150px">
+     <input type="date" class="adm-input" style="width:150px" />
      <button class="btn btn-secondary btn-sm" onclick="showToast('Filter applied')">Apply</button>
    </div>
    ```
@@ -179,6 +193,7 @@ Implementation Change Instructions
 ---
 
 ### CHANGE-A7 ⚪ Add Refund Processing UI (FR-033 · P2)
+
 **In the existing `panel-revenue` fee table:**
 
 1. Add a fifth column "Actions" to the table header.
@@ -191,6 +206,7 @@ Implementation Change Instructions
 ## partner-portal.html — Required Changes
 
 ### CHANGE-P1 🔴 Add Campaign Close Flow (FR-016 · P1)
+
 **In the existing `page-campaigns`:**
 
 1. On the **active campaign card** (the "Spring Tree Drive 2025" card currently showing `● Live`), add a "Close Campaign" button in the card actions row:
@@ -204,7 +220,10 @@ Implementation Change Instructions
      const card = btn.closest('.camp-card'); // or equivalent parent selector
      // Change the status pill from Live (green) to Closed (blue/gray)
      const pill = card.querySelector('.pill-green');
-     if (pill) { pill.textContent = '● Closed'; pill.className = 'pill pill-blue'; }
+     if (pill) {
+       pill.textContent = '● Closed';
+       pill.className = 'pill pill-blue';
+     }
      btn.textContent = '✓ Closed';
      btn.disabled = true;
      showToast('Campaign closed. Impact report generation triggered. Wrap-up email queued.');
@@ -212,21 +231,18 @@ Implementation Change Instructions
    ```
 3. Add a **confirmation alert banner** below the campaign card after closing:
    ```html
-   <div class="alert alert-success" style="margin-top:12px">
-     ✅ Campaign closed. Impact report will be ready within 24 hours. Disbursement record created.
-   </div>
+   <div class="alert alert-success" style="margin-top:12px">✅ Campaign closed. Impact report will be ready within 24 hours. Disbursement record created.</div>
    ```
 
 ---
 
 ### CHANGE-P2 🔴 Add Starter Kit Download (FR-015 · P1)
+
 **In the existing `page-home` (dashboard overview):**
 
 1. Add a new "Quick Actions" card below the existing quick actions section (or add to the existing quick actions list if one exists):
    ```html
-   <button class="btn btn-secondary btn-block" onclick="showToast('Starter Kit ZIP downloading…')">
-     📦 Download Starter Kit
-   </button>
+   <button class="btn btn-secondary btn-block" onclick="showToast('Starter Kit ZIP downloading…')">📦 Download Starter Kit</button>
    ```
 2. Add a **Starter Kit info card** in the dashboard using the existing `.card.card-p` style:
    - Title: "Your Digital Starter Kit"
@@ -242,6 +258,7 @@ Implementation Change Instructions
 ---
 
 ### CHANGE-P3 🔴 Add Campaign Launch Button (DRAFT → LIVE) (FR-012 · P1)
+
 **In the existing `page-campaigns`:**
 
 1. Any campaign card showing `● Draft` status must have a **"🚀 Launch Campaign"** button.
@@ -255,7 +272,10 @@ Implementation Change Instructions
    function launchCampaign(btn) {
      const card = btn.closest('.camp-card'); // or equivalent
      const pill = card.querySelector('.pill-gray');
-     if (pill) { pill.textContent = '● Live'; pill.className = 'pill pill-green'; }
+     if (pill) {
+       pill.textContent = '● Live';
+       pill.className = 'pill pill-green';
+     }
      btn.textContent = '✓ Launched';
      btn.disabled = true;
      showToast('🚀 Campaign is now LIVE. Launch email queued for delivery within 60 seconds.');
@@ -265,6 +285,7 @@ Implementation Change Instructions
 ---
 
 ### CHANGE-P4 🟡 Add Live Contributions Feed (FR-013 · P1)
+
 **In the existing `page-home` dashboard:**
 
 1. Add a new section below the active campaign progress bar titled **"Live Contributions Feed"** with a green `● Live` badge.
@@ -285,33 +306,39 @@ Implementation Change Instructions
 ---
 
 ### CHANGE-P5 🟡 Rebuild Campaign Setup as 6-Step Wizard (FR-011 · P1)
+
 **Replace the existing 5-step checklist in `page-setup` with a proper step-by-step wizard.**
 
 The wizard must have 6 steps. Use a step indicator bar at the top showing Step 1 of 6, Step 2 of 6, etc. Only the active step is visible at a time; a "Next →" and "← Back" button navigate between steps.
 
 **Step 1 — Organization Name**
+
 - Label: "What is your organization's name?"
 - Input: text field, placeholder "e.g. Riverside Elementary PTA"
 - Sub-label: "This will appear on your public campaign page."
 
 **Step 2 — Sector Selection**
+
 - Label: "What type of organization are you?"
 - Four clickable cards: 🏫 School / PTA · 💚 Nonprofit · ⛪ Faith Community · ⚽ Civic / Sports
 - Only one selectable at a time (highlight selected with `--mint3` background and `--forest2` border)
 
 **Step 3 — Logo & Banner Upload**
+
 - Label: "Upload your organization logo and banner"
 - Logo upload: drag-and-drop zone, accepts JPG/PNG up to 5MB. Label: "Logo (square, min 200×200px)"
 - Banner upload: drag-and-drop zone, accepts JPG/PNG up to 5MB. Label: "Campaign banner (wide, min 1200×400px)"
 - Both can be simulated — clicking the zone calls `showToast('File selected: logo.png')`
 
 **Step 4 — Fundraising Goal**
+
 - Label: "Set your fundraising goal"
 - Number input with `$` prefix, placeholder `12,400`
 - Below: live preview showing "At 50% split, your organization keeps: **$X**" (calculate dynamically as user types — 50% of input value)
 - Also show: estimated tree count based on average $15/tree
 
 **Step 5 — Impact Region**
+
 - Label: "Choose your reforestation region"
 - Four selectable cards with map thumbnail placeholder:
   - 🌿 Haiti — Agroforestry
@@ -321,6 +348,7 @@ The wizard must have 6 steps. Use a step indicator bar at the top showing Step 1
 - Only one selectable at a time
 
 **Step 6 — Campaign Duration**
+
 - Label: "How long will your campaign run?"
 - Three option buttons: 15 days · 30 days (recommended, pre-selected) · 45 days
 - Start date picker (date input)
@@ -330,25 +358,27 @@ The wizard must have 6 steps. Use a step indicator bar at the top showing Step 1
 ---
 
 ### CHANGE-P6 🟡 Add 4-Stage Email Sequence Manager (FR-050 · P1)
+
 **In the existing `page-campaigns` or as a new sub-section within the campaign detail:**
 
 Add an **"Email Sequence"** collapsible section or tab below the active campaign card. It must show the 4 automated emails as a timeline:
 
-| # | Stage | Timing | Subject Line | Status | Actions |
-|---|---|---|---|---|---|
-| 1 | Launch Email | Day 0 (on go-live) | Our Fundraiser Starts Today | ✅ Sent Mar 1 | Preview |
-| 2 | Mid-Drive | Day 15 | Halfway There — Thank You for Your Support | 🕐 Scheduled Mar 16 | Preview · Edit |
-| 3 | Final Push | Day 28–29 | Last Day to Support Our Fundraiser | 🕐 Scheduled Mar 29 | Preview · Edit |
-| 4 | Wrap-Up | Within 24h of close | Thank You for Supporting Our Fundraiser | ⏸ Pending campaign close | — |
+| #   | Stage        | Timing              | Subject Line                               | Status                    | Actions        |
+| --- | ------------ | ------------------- | ------------------------------------------ | ------------------------- | -------------- |
+| 1   | Launch Email | Day 0 (on go-live)  | Our Fundraiser Starts Today                | ✅ Sent Mar 1             | Preview        |
+| 2   | Mid-Drive    | Day 15              | Halfway There — Thank You for Your Support | 🕐 Scheduled Mar 16       | Preview · Edit |
+| 3   | Final Push   | Day 28–29           | Last Day to Support Our Fundraiser         | 🕐 Scheduled Mar 29       | Preview · Edit |
+| 4   | Wrap-Up      | Within 24h of close | Thank You for Supporting Our Fundraiser    | ⏸ Pending campaign close | —              |
 
 - "Preview" button calls `showToast('Email preview opened')`
 - "Edit" button calls `showToast('Email editor opened — customize your message before it sends')`
 - Each row uses the existing `.comms-row` style pattern already in admin.html (replicate that pattern here)
-- Include a note below the table: *"Templates use merge tags: {ORG_NAME} {CAMPAIGN_URL} {TREE_COUNT} {TOTAL_RAISED} {GOAL}"*
+- Include a note below the table: _"Templates use merge tags: {ORG_NAME} {CAMPAIGN_URL} {TREE_COUNT} {TOTAL_RAISED} {GOAL}"_
 
 ---
 
 ### CHANGE-P7 ⚪ Add Notification Bell to Topbar (FR-051 · P2)
+
 **In the existing topbar of `partner-portal.html`:**
 
 1. Add a notification bell icon button between the `.topbar-live` veritree badge and the user avatar:
@@ -360,7 +390,7 @@ Add an **"Email Sequence"** collapsible section or tab below the active campaign
    ```
 2. Add a notification dropdown panel (hidden by default, toggled by the bell click):
    ```html
-   <div id="notif-dropdown" style="display:none; position:absolute; top:56px; right:80px; width:320px; background:var(--white); border:1px solid var(--border); border-radius:var(--r); box-shadow:var(--shadow3); z-index:300;">
+   <div id="notif-dropdown" style="display:none; position:absolute; top:56px; right:80px; width:320px; background:var(--white); border:1px solid var(--border); border-radius:var(--r); box-shadow:var(--shadow3); z-index:300;"></div>
    ```
 3. Dropdown contents:
    - Header row: "Notifications" (bold) + "Mark all read" link
@@ -381,6 +411,7 @@ Add an **"Email Sequence"** collapsible section or tab below the active campaign
 ---
 
 ### CHANGE-P8 🟡 Add Contribution Tier Breakdown (FR-021)
+
 **In the existing `page-home` dashboard:**
 
 Add a **"Contributions by Tier"** card in the secondary stats section using the existing `.card.card-sm` pattern:
@@ -398,24 +429,24 @@ Add a **"Contributions by Tier"** card in the secondary stats section using the 
 
 ## Summary Table
 
-| ID | Change | Priority | File |
-|---|---|---|---|
-| G1 | Fix revenue split 8% → 50/50 everywhere | 🔴 Critical | Both |
-| A1 | Add `/admin/users` panel | 🔴 P1 | admin.html |
-| A2 | Add `/admin/coaches` panel + task queue | 🔴 P1 | admin.html |
-| A3 | Add `/admin/campaigns` table (separate from orgs) | 🔴 P1 | admin.html |
-| A4 | Fix disbursement status: Pending → Processing → Disbursed | 🟡 P1 | admin.html |
-| A5 | Add CSV export to campaigns table | 🟡 P1 | admin.html |
-| A6 | Add date-range filter + by-sector breakdown to Financial Dashboard | 🟡 P1 | admin.html |
-| A7 | Add refund processing UI to Revenue table | ⚪ P2 | admin.html |
-| P1 | Add Campaign Close button and LIVE → CLOSED flow | 🔴 P1 | partner-portal.html |
-| P2 | Add Starter Kit download section to dashboard | 🔴 P1 | partner-portal.html |
-| P3 | Add Launch Campaign button (DRAFT → LIVE) | 🔴 P1 | partner-portal.html |
-| P4 | Add live contributions feed to dashboard | 🟡 P1 | partner-portal.html |
-| P5 | Rebuild setup as 6-step wizard | 🟡 P1 | partner-portal.html |
-| P6 | Add 4-stage email sequence manager | 🟡 P1 | partner-portal.html |
-| P7 | Add notification bell to topbar | ⚪ P2 | partner-portal.html |
-| P8 | Add contribution tier breakdown card to dashboard | 🟡 — | partner-portal.html |
+| ID  | Change                                                             | Priority    | File                |
+| --- | ------------------------------------------------------------------ | ----------- | ------------------- |
+| G1  | Fix revenue split 8% → 50/50 everywhere                            | 🔴 Critical | Both                |
+| A1  | Add `/admin/users` panel                                           | 🔴 P1       | admin.html          |
+| A2  | Add `/admin/coaches` panel + task queue                            | 🔴 P1       | admin.html          |
+| A3  | Add `/admin/campaigns` table (separate from orgs)                  | 🔴 P1       | admin.html          |
+| A4  | Fix disbursement status: Pending → Processing → Disbursed          | 🟡 P1       | admin.html          |
+| A5  | Add CSV export to campaigns table                                  | 🟡 P1       | admin.html          |
+| A6  | Add date-range filter + by-sector breakdown to Financial Dashboard | 🟡 P1       | admin.html          |
+| A7  | Add refund processing UI to Revenue table                          | ⚪ P2       | admin.html          |
+| P1  | Add Campaign Close button and LIVE → CLOSED flow                   | 🔴 P1       | partner-portal.html |
+| P2  | Add Starter Kit download section to dashboard                      | 🔴 P1       | partner-portal.html |
+| P3  | Add Launch Campaign button (DRAFT → LIVE)                          | 🔴 P1       | partner-portal.html |
+| P4  | Add live contributions feed to dashboard                           | 🟡 P1       | partner-portal.html |
+| P5  | Rebuild setup as 6-step wizard                                     | 🟡 P1       | partner-portal.html |
+| P6  | Add 4-stage email sequence manager                                 | 🟡 P1       | partner-portal.html |
+| P7  | Add notification bell to topbar                                    | ⚪ P2       | partner-portal.html |
+| P8  | Add contribution tier breakdown card to dashboard                  | 🟡 —        | partner-portal.html |
 
 ---
 
@@ -424,6 +455,7 @@ Add a **"Contributions by Tier"** card in the secondary stats section using the 
 The following are correctly implemented and should not be modified:
 
 **admin.html:**
+
 - Impact Registry panel (panel-impact) — veritree GPS table, CO₂, sync status ✅
 - Communications panel (panel-comms) — automated triggers, broadcast composer ✅
 - Flagged Accounts panel (panel-flags) — fraud risk signals, action controls ✅
@@ -432,6 +464,7 @@ The following are correctly implemented and should not be modified:
 - Super Admin role display in topbar and sidebar footer ✅
 
 **partner-portal.html:**
+
 - Impact page (page-impact) — GPS map, species, Donor Receipt, Impact Certificate ✅
 - Team management page (page-team) — role invite, role warnings ✅
 - Campaign history list in page-campaigns ✅
@@ -441,4 +474,4 @@ The following are correctly implemented and should not be modified:
 
 ---
 
-*Based on Tech_Spec_CariniGroup.docx v1.0 · Verified March 14, 2026*
+_Based on Tech_Spec_CariniGroup.docx v1.0 · Verified March 14, 2026_

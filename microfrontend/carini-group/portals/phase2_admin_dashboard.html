@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carini Group — Admin Dashboard</title>
+  
+  <style>
+    :root {
+  --dark:  #ffffff;
+  --dark2: #f8f7f5;
+  --dark3: #f1efeb;
+  --dark4: #e8e4de;
+  --dark5: #ddd8d0;
+
+  --gold:       #c49a2e;
+  --gold-light: #d4a843;
+  --gold-l:     #d4a843;
+  --gold-soft:  #b08a24;
+  --gold-dim:   rgba(196, 154, 46, 0.10);
+  --gold-glow:  rgba(196, 154, 46, 0.16);
+
+  --cream:      #1a1510;
+  --text:       #1a1510;
+  --text-muted: rgba(26, 21, 16, 0.60);
+  --muted:      rgba(26, 21, 16, 0.46);
+  --body:       rgba(26, 21, 16, 0.74);
+
+  --border:      rgba(212, 168, 67, 0.26);
+  --border-soft: rgba(212, 168, 67, 0.14);
+  --border-hard: rgba(212, 168, 67, 0.48);
+
+  --success:     #3fd68a;
+  --success-dim: rgba(63, 214, 138, 0.14);
+  --warn:        #f5a623;
+  --warn-dim:    rgba(245, 166, 35, 0.14);
+  --danger:      #f05252;
+  --danger-dim:  rgba(240, 82, 82, 0.14);
+  --blue:        #4dc8ff;
+  --blue-dim:    rgba(77, 200, 255, 0.13);
+  --green:       #4dd98a;
+  --green-dim:   rgba(77, 217, 138, 0.13);
+  --red:         #f06060;
+  --red-dim:     rgba(240, 96, 96, 0.13);
+  --amber:       #e8b24a;
+  --amber-dim:   rgba(232, 178, 74, 0.13);
+
+  --font-serif:     'Playfair Display', serif;
+  --font-sans:      'DM Sans', sans-serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
+
+  --r:      5px;
+  --radius: 5px;
+  --t:      0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --shadow-sm:   0 1px 4px rgba(0,0,0,0.06);
+  --shadow-md:   0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg:   0 16px 48px rgba(0,0,0,0.12);
+  --shadow-gold: 0 0 28px rgba(212, 168, 67, 0.14);
+}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{background:var(--dark2);color:var(--cream);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.35}
+
+    /* ── LAYOUT ── */
+    .app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+
+    /* ── SIDEBAR ── */
+    .sb{background:var(--dark);border-right:1px solid rgba(201,168,76,.08);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+    .sb-head{padding:24px 20px;border-bottom:1px solid rgba(201,168,76,.08)}
+    .sb-logo{font-family:'Playfair Display',serif;font-size:15px;color:var(--gold)}
+    .sb-badge-admin{display:inline-block;padding:1px 7px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;background:var(--red-dim);color:var(--red);border:1px solid rgba(207,107,107,.2);margin-top:3px}
+    .sb-section{padding:14px 16px 5px;font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);border-top:1px solid rgba(201,168,76,.06);margin-top:6px}
+    .sb-item{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:12.5px;color:var(--muted);cursor:pointer;transition:all .2s;border-left:2px solid transparent;margin:1px 8px;border-radius:2px}
+    .sb-item:hover{color:var(--cream);background:var(--gold-dim)}
+    .sb-item.active{color:var(--gold);background:var(--gold-dim);border-left-color:var(--gold)}
+    .sb-badge{margin-left:auto;background:var(--red);color:white;font-size:9px;padding:1px 6px;border-radius:10px;min-width:18px;text-align:center}
+    .sb-badge.gold{background:var(--gold);color:var(--dark)}
+    .sb-footer{margin-top:auto;padding:16px;border-top:1px solid rgba(201,168,76,.08)}
+    .sb-user{display:flex;align-items:center;gap:10px}
+    .sb-avatar{width:34px;height:34px;border-radius:50%;background:var(--red-dim);border:1px solid rgba(207,107,107,.3);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--red);font-family:'Playfair Display',serif;flex-shrink:0}
+    .sb-uname{font-size:12.5px;color:var(--cream)}
+    .sb-urole{font-size:9.5px;color:var(--red)}
+
+    /* ── TOPBAR ── */
+    .topbar{padding:14px 28px;background:var(--dark);border-bottom:1px solid rgba(201,168,76,.08);display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:50}
+    .topbar-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--cream)}
+    .topbar-sub{font-size:10.5px;color:var(--muted);margin-left:4px}
+    .topbar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+    .live-badge{display:flex;align-items:center;gap:6px;padding:5px 12px;background:var(--green-dim);border:1px solid rgba(107,191,107,.25);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
+    .live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    .notif-btn{position:relative;padding:7px;background:var(--dark3);border:1px solid rgba(201,168,76,.12);color:var(--muted);cursor:pointer;transition:all .2s;line-height:1}
+    .notif-btn:hover{color:var(--gold);border-color:rgba(201,168,76,.3)}
+    .notif-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--red);border:1.5px solid var(--dark)}
+
+    /* ── MAIN ── */
+    .main{display:flex;flex-direction:column;min-height:100vh}
+    .content{padding:24px 28px;flex:1}
+
+    /* ── NAV TABS ── */
+    .nav-tabs{display:flex;gap:0;background:var(--dark);border-bottom:1px solid rgba(201,168,76,.1);padding:0 28px}
+    .n-tab{padding:13px 0;margin-right:26px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;background:none;border-left:none;border-right:none;border-top:none;font-family:'DM Sans',sans-serif}
+    .n-tab:hover{color:var(--cream)}
+    .n-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+    /* ── KPI TILES ── */
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+    .kpi-tile{background:var(--dark3);border:1px solid rgba(201,168,76,.1);padding:20px 22px;position:relative;overflow:hidden;cursor:pointer;transition:border-color .25s}
+    .kpi-tile:hover{border-color:rgba(201,168,76,.3)}
+    .kpi-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--tile-color,var(--gold));opacity:.7}
+    .kpi-icon{font-size:22px;margin-bottom:8px}
+    .kpi-val{font-family:'Playfair Display',serif;font-size:28px;color:var(--cream);line-height:1;margin-bottom:4px}
+    .kpi-label{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+    .kpi-change{font-size:11px;margin-top:6px}
+    .kpi-change.up{color:var(--green)}
+    .kpi-change.down{color:var(--red)}
+    .kpi-change.neutral{color:var(--muted)}
+
+    /* ── SECTION CARD ── */
+    .s-card{background:var(--dark3);border:1px solid rgba(201,168,76,.1);padding:20px 22px;margin-bottom:16px}
+    .s-card-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(201,168,76,.08)}
+    .s-card-title{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);flex:1}
+    .s-card-action{font-size:10px;color:var(--muted);cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:color .2s;background:transparent;border:1px solid rgba(201,168,76,.15);padding:4px 10px;font-family:'DM Sans',sans-serif}
+    .s-card-action:hover{color:var(--gold);border-color:rgba(201,168,76,.35)}
+
+    /* ── PIPELINE OVERVIEW ── */
+    .pipe-bars{display:flex;gap:8px;align-items:flex-end;height:120px;padding-bottom:8px}
+    .pipe-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+    .pipe-bar{width:100%;background:var(--bar-color,var(--gold));opacity:.75;transition:height .6s ease,opacity .2s;cursor:pointer;border-radius:1px 1px 0 0;min-height:4px}
+    .pipe-bar:hover{opacity:1}
+    .pipe-bar-label{font-size:9px;text-align:center;color:var(--muted);white-space:nowrap}
+    .pipe-bar-count{font-size:11px;color:var(--cream);font-family:'Playfair Display',serif}
+    .pipe-legend{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+    .pl-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--body)}
+    .pl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+    /* ── TABLE ── */
+    table{width:100%;border-collapse:collapse}
+    th{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid rgba(201,168,76,.1)}
+    td{padding:11px 12px;border-bottom:1px solid rgba(201,168,76,.05);font-size:12.5px;color:var(--body);vertical-align:middle}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:rgba(201,168,76,.03)}
+    .td-name{color:var(--cream);font-weight:500}
+    .role-pill{padding:2px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;border-radius:2px}
+    .role-super{background:var(--red-dim);color:var(--red)}
+    .role-agent{background:var(--gold-dim);color:var(--gold)}
+    .role-client{background:var(--blue-dim);color:var(--blue)}
+    .role-investor{background:var(--green-dim);color:var(--green)}
+    .status-active{color:var(--green);display:flex;align-items:center;gap:4px}
+    .status-active::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--green)}
+    .status-inactive{color:var(--muted)}
+    .action-btn{padding:4px 10px;font-size:9.5px;background:none;border:1px solid rgba(201,168,76,.15);color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;margin-right:4px;transition:all .2s;letter-spacing:.08em;text-transform:uppercase}
+    .action-btn:hover{border-color:rgba(201,168,76,.4);color:var(--gold)}
+    .action-btn.danger:hover{border-color:rgba(207,107,107,.4);color:var(--red)}
+
+    /* ── AUDIT LOG ── */
+    .audit-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(201,168,76,.05)}
+    .audit-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+    .audit-content{flex:1}
+    .audit-text{font-size:12.5px;color:var(--body);line-height:1.4}
+    .audit-meta{font-size:10px;color:var(--muted);margin-top:2px}
+    .audit-hash{font-size:9px;color:rgba(201,168,76,.4);font-family:monospace}
+
+    /* ── CRM CONFIG ── */
+    .config-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(201,168,76,.06)}
+    .config-label{flex:1;font-size:12.5px;color:var(--cream)}
+    .config-sub{font-size:10.5px;color:var(--muted);display:block;margin-top:1px}
+    .config-val{font-size:13px;color:var(--gold);font-family:'Playfair Display',serif;margin-right:8px}
+    .config-slider{appearance:none;width:100px;height:3px;background:rgba(201,168,76,.2);outline:none;cursor:pointer}
+    .config-slider::-webkit-slider-thumb{appearance:none;width:14px;height:14px;border-radius:50%;background:var(--gold);cursor:pointer}
+    .save-btn{padding:10px 24px;background:var(--gold);color:var(--dark);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:background .2s;margin-top:16px}
+    .save-btn:hover{background:var(--gold-l)}
+
+    /* ── TOGGLE ── */
+    .toggle-wrap{display:flex;align-items:center;gap:8px}
+    .toggle{position:relative;width:36px;height:20px;cursor:pointer}
+    .toggle input{opacity:0;width:0;height:0}
+    .toggle-track{position:absolute;inset:0;background:rgba(201,168,76,.15);border-radius:10px;transition:.3s}
+    .toggle input:checked+.toggle-track{background:var(--gold)}
+    .toggle-thumb{position:absolute;width:14px;height:14px;background:var(--muted);border-radius:50%;top:3px;left:3px;transition:.3s}
+    .toggle input:checked~.toggle-thumb{left:19px;background:var(--dark)}
+
+    /* ── TOAST ── */
+    #toast{position:fixed;bottom:28px;right:28px;padding:12px 18px;background:var(--dark3);border:1px solid rgba(201,168,76,.25);font-size:12px;color:var(--cream);z-index:10000;transform:translateY(80px);opacity:0;transition:all .35s;max-width:320px;box-shadow:0 16px 32px rgba(0,0,0,.5)}
+    #toast.show{transform:none;opacity:1}
+  
+/* ── v2.0 MODERNIZATION OVERRIDES ── */
+
+/* Nav bars */
+nav {
+  background: rgba(6,5,10,0.96) !important;
+  backdrop-filter: blur(28px) saturate(2) !important;
+  border-bottom-color: rgba(212,168,67,0.28) !important;
+}
+.nav-logo { color: #d4a843 !important; letter-spacing: .10em !important; }
+.nav-links a { color: rgba(240,235,224,0.55) !important; font-size: 11.5px; letter-spacing:.05em; }
+.nav-links a:hover, .nav-links a.active { color: #d4a843 !important; }
+
+/* Top bar in app pages */
+.topbar {
+  background: rgba(6,5,10,0.95) !important;
+  border-bottom-color: rgba(212,168,67,0.22) !important;
+  backdrop-filter: blur(20px) !important;
+}
+.topbar-title { color: #f5efe3 !important; font-size: 18px !important; }
+
+/* Sidebar */
+.sb { background: #0d0c10 !important; border-right-color: rgba(212,168,67,0.18) !important; }
+.sb-head { border-bottom-color: rgba(212,168,67,0.18) !important; }
+.sb-logo { color: #d4a843 !important; }
+.sb-sub  { color: rgba(240,235,224,0.42) !important; }
+.sidebar { background: #0d0c10 !important; border-right-color: rgba(212,168,67,0.20) !important; }
+
+/* Cards */
+.module-card { background: #0d0c10 !important; border-color: rgba(212,168,67,0.22) !important; }
+.module-card .card-top { border-bottom-color: rgba(212,168,67,0.16) !important; }
+.module-card .card-name { color: #f5efe3 !important; }
+.module-card .card-phase { color: #d4a843 !important; }
+.module-card .card-desc { color: rgba(240,235,224,0.60) !important; }
+.module-card:hover { border-color: #d4a843 !important; }
+
+/* Hero area */
+.hero-title { color: #f5efe3 !important; }
+.hero-sub { color: rgba(240,235,224,0.68) !important; }
+.hero-badge { color: #d4a843 !important; border-color: rgba(212,168,67,0.30) !important; }
+.hero-stat-val { color: #d4a843 !important; }
+.hero-stat-label { color: rgba(240,235,224,0.55) !important; }
+.hero-divider { background: rgba(212,168,67,0.22) !important; }
+
+/* Section labels */
+.section-label { color: #d4a843 !important; }
+.section-title { color: #f5efe3 !important; }
+.section-sub { color: rgba(240,235,224,0.60) !important; }
+
+/* KPI tiles */
+.kpi { background: #0d0c10 !important; border-color: rgba(212,168,67,0.20) !important; }
+.kpi-val { color: #d4a843 !important; }
+.kpi-lbl { color: rgba(240,235,224,0.55) !important; }
+.kpi-delta { font-size: 10px !important; }
+.delta-up { color: #3fd68a !important; }
+.delta-down { color: #f05252 !important; }
+
+/* Panels */
+.panel { background: #0d0c10 !important; border-color: rgba(212,168,67,0.18) !important; }
+.panel-header, .ph { border-bottom-color: rgba(212,168,67,0.14) !important; }
+.panel-title, .ph-title { color: #f5efe3 !important; }
+.s-card { background: #0d0c10 !important; border-color: rgba(212,168,67,0.18) !important; }
+.s-card-head { border-bottom-color: rgba(212,168,67,0.14) !important; }
+.s-card-title { color: #f5efe3 !important; font-weight: 500 !important; }
+
+/* Pills & tags */
+.pill-g { background: rgba(63,214,138,0.14) !important; color: #3fd68a !important; border-color: rgba(63,214,138,0.28) !important; }
+.pill-b { background: rgba(77,200,255,0.13) !important; color: #4dc8ff !important; border-color: rgba(77,200,255,0.28) !important; }
+.pill-r { background: rgba(240,82,82,0.14) !important;  color: #f05252 !important; border-color: rgba(240,82,82,0.28) !important; }
+.pill-y { background: rgba(245,166,35,0.14) !important; color: #f5a623 !important; border-color: rgba(245,166,35,0.28) !important; }
+.pill-a { background: rgba(232,178,74,0.13) !important; color: #e8b24a !important; }
+
+/* Table */
+.data-table th { color: rgba(240,235,224,0.50) !important; letter-spacing: .10em !important; }
+.data-table td { color: #f0ebe0 !important; }
+.data-table tr:hover td { background: rgba(212,168,67,0.06) !important; }
+
+/* Build bar (index page) */
+.build-bar { background: #0d0c10 !important; border-color: rgba(212,168,67,0.22) !important; }
+.build-pct { color: #d4a843 !important; }
+.build-fill { background: linear-gradient(90deg,#d4a843,#f0c55a) !important; }
+
+/* Flow dots */
+.flow-dot { background: #0d0c10 !important; border-color: rgba(212,168,67,0.28) !important; }
+.flow-dot.gold { border-color: #d4a843 !important; background: rgba(212,168,67,0.14) !important; }
+.flow-dot:hover { border-color: #d4a843 !important; background: rgba(212,168,67,0.16) !important; }
+.flow-step-name { color: rgba(240,235,224,0.58) !important; }
+.flow-step-name strong { color: #f0ebe0 !important; }
+
+/* Topbar actions */
+.ph-action, .panel-action { 
+  color: rgba(240,235,224,0.55) !important; 
+  border-color: rgba(212,168,67,0.22) !important;
+  font-size: 11px !important;
+}
+.ph-action:hover, .panel-action:hover { color: #d4a843 !important; border-color: #d4a843 !important; }
+
+/* Footer */
+footer { border-top-color: rgba(212,168,67,0.22) !important; }
+.footer-logo { color: #d4a843 !important; }
+.footer-note { color: rgba(240,235,224,0.38) !important; }
+.footer-links a { color: rgba(240,235,224,0.45) !important; }
+.footer-links a:hover { color: #d4a843 !important; }
+
+
+/* ── ADMIN DASHBOARD ENHANCEMENTS ── */
+.badge-admin { background: rgba(240,82,82,0.14) !important; color: #f05252 !important; border-color: rgba(240,82,82,0.28) !important; }
+.config-label { color: #f0ebe0 !important; font-weight: 500 !important; }
+.config-sub   { color: rgba(240,235,224,0.52) !important; }
+.config-val   { color: #d4a843 !important; }
+.config-slider { accent-color: #d4a843 !important; }
+.role-pill { font-size: 10px !important; letter-spacing: .08em !important; font-weight: 600 !important; }
+.role-pill.role-super  { background: rgba(212,168,67,0.15) !important; color: #d4a843 !important; border-color: rgba(212,168,67,0.32) !important; }
+.role-pill.role-agent  { background: rgba(77,200,255,0.12) !important; color: #4dc8ff !important; border-color: rgba(77,200,255,0.28) !important; }
+.role-pill.role-client { background: rgba(63,214,138,0.12) !important; color: #3fd68a !important; border-color: rgba(63,214,138,0.28) !important; }
+.role-pill.role-investor { background: rgba(232,178,74,0.12) !important; color: #e8b24a !important; border-color: rgba(232,178,74,0.28) !important; }
+.status-active   { color: #3fd68a !important; }
+.status-inactive { color: rgba(240,235,224,0.40) !important; }
+.audit-text { color: rgba(240,235,224,0.78) !important; }
+.audit-meta { color: rgba(240,235,224,0.42) !important; }
+.audit-hash { color: rgba(212,168,67,0.55) !important; font-family: monospace !important; }
+.td-name { color: #f0ebe0 !important; font-weight: 500 !important; }
+.pipe-bar { background: var(--bar-color, #d4a843) !important; border-radius: 3px 3px 0 0 !important; }
+.pipe-bar-count { color: #f0ebe0 !important; font-weight: 600 !important; }
+.pipe-bar-label { color: rgba(240,235,224,0.48) !important; font-size: 10px !important; }
+
+</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/shared.js" defer></script>
+</head>
+<body>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sb">
+    <div class="sb-head">
+      <div class="sb-logo">Carini Group</div>
+      <div class="sb-badge-admin">Super Admin</div>
+    </div>
+    <nav style="padding:8px 0">
+      <div class="sb-section">Admin</div>
+      <div class="sb-item active" onclick="showSection('dashboard',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        KPI Dashboard
+      </div>
+      <div class="sb-item" onclick="showSection('pipeline',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Pipeline Overview
+      </div>
+      <div class="sb-item" onclick="showSection('users',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        User Management <span class="sb-badge gold">12</span>
+      </div>
+      <div class="sb-item" onclick="showSection('crm-config',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        CRM Configuration
+      </div>
+      <div class="sb-item" onclick="showSection('audit',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Audit Log
+      </div>
+      <div class="sb-section">Team</div>
+      <div class="sb-item" onclick="location.href='phase1_crm_pipeline.html'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="5" height="18"/><rect x="10" y="8" width="5" height="13"/><rect x="17" y="5" width="5" height="16"/></svg>
+        CRM Pipeline
+      </div>
+      <div class="sb-item" onclick="location.href='phase2_deal_room.html'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        Deal Rooms
+      </div>
+      <div class="sb-item" onclick="location.href='phase3_dashboards.html'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Client Portal
+      </div>
+    </nav>
+    <div class="sb-footer">
+      <div class="sb-user">
+        <div class="sb-avatar">SA</div>
+        <div>
+          <div class="sb-uname">Super Admin</div>
+          <div class="sb-urole">Full System Access</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <span class="topbar-title" id="page-title">KPI Dashboard</span>
+        <span class="topbar-sub">FR-009 · Admin · Real-Time</span>
+      </div>
+      <div class="topbar-right">
+        <div class="live-badge"><div class="live-dot"></div> Live Data</div>
+        <div style="font-size:11.5px;color:var(--muted)" id="live-clock"></div>
+        <div class="notif-btn" onclick="showToast('5 new notifications — 3 overdue tasks, 2 new leads routed','info')">
+          🔔<div class="notif-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: DASHBOARD -->
+    <div id="section-dashboard" class="content">
+      <div class="kpi-grid">
+        <div class="kpi-tile" style="--tile-color:var(--gold)" onclick="showSection('pipeline')">
+          <div class="kpi-icon">📊</div>
+          <div class="kpi-val" id="kpi-leads">47</div>
+          <div class="kpi-label">Active Leads</div>
+          <div class="kpi-change up">↑ +6 this week</div>
+        </div>
+        <div class="kpi-tile" style="--tile-color:var(--blue)" onclick="showSection('pipeline')">
+          <div class="kpi-icon">🏢</div>
+          <div class="kpi-val">12</div>
+          <div class="kpi-label">Active Deal Rooms</div>
+          <div class="kpi-change up">↑ +2 this month</div>
+        </div>
+        <div class="kpi-tile" style="--tile-color:var(--green)" onclick="showSection('pipeline')">
+          <div class="kpi-icon">💰</div>
+          <div class="kpi-val">$8.4M</div>
+          <div class="kpi-label">Pipeline Value</div>
+          <div class="kpi-change up">↑ +14% vs last month</div>
+        </div>
+        <div class="kpi-tile" style="--tile-color:var(--amber)" onclick="showToast('New enquiries report: 8 in the last 24h, 3 auto-routed to Alex','info')">
+          <div class="kpi-icon">✉️</div>
+          <div class="kpi-val" id="kpi-enq">8</div>
+          <div class="kpi-label">New Enquiries (24h)</div>
+          <div class="kpi-change neutral">3 IT/ES → Alex</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <!-- Commission Forecast -->
+        <div class="s-card">
+          <div class="s-card-head">
+            <span class="s-card-title">Commission Forecast</span>
+            <button class="s-card-action" onclick="showToast('Export pipeline forecast to CSV','success')">Export CSV</button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+                          <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:10px;color:var(--green);width:90px;text-transform:uppercase;letter-spacing:.1em">Contract</span>
+                <div style="flex:1;height:3px;background:rgba(201,168,76,.1);border-radius:2px"><div style="height:100%;width:90%;background:var(--green);border-radius:2px;transition:width .6s ease"></div></div>
+                <span style="font-size:11.5px;color:var(--cream);width:65px;text-align:right">$42,000</span>
+                <span style="font-size:10px;color:var(--muted);width:32px;text-align:right">90%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:10px;color:var(--gold);width:90px;text-transform:uppercase;letter-spacing:.1em">Negotiation</span>
+                <div style="flex:1;height:3px;background:rgba(201,168,76,.1);border-radius:2px"><div style="height:100%;width:65%;background:var(--gold);border-radius:2px;transition:width .6s ease"></div></div>
+                <span style="font-size:11.5px;color:var(--cream);width:65px;text-align:right">$26,200</span>
+                <span style="font-size:10px;color:var(--muted);width:32px;text-align:right">65%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:10px;color:var(--amber);width:90px;text-transform:uppercase;letter-spacing:.1em">Offer</span>
+                <div style="flex:1;height:3px;background:rgba(201,168,76,.1);border-radius:2px"><div style="height:100%;width:45%;background:var(--amber);border-radius:2px;transition:width .6s ease"></div></div>
+                <span style="font-size:11.5px;color:var(--cream);width:65px;text-align:right">$19,800</span>
+                <span style="font-size:10px;color:var(--muted);width:32px;text-align:right">45%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:10px;color:var(--blue);width:90px;text-transform:uppercase;letter-spacing:.1em">Viewings</span>
+                <div style="flex:1;height:3px;background:rgba(201,168,76,.1);border-radius:2px"><div style="height:100%;width:25%;background:var(--blue);border-radius:2px;transition:width .6s ease"></div></div>
+                <span style="font-size:11.5px;color:var(--cream);width:65px;text-align:right">$14,600</span>
+                <span style="font-size:10px;color:var(--muted);width:32px;text-align:right">25%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:10px;color:var(--muted);width:90px;text-transform:uppercase;letter-spacing:.1em">Consultation</span>
+                <div style="flex:1;height:3px;background:rgba(201,168,76,.1);border-radius:2px"><div style="height:100%;width:12%;background:var(--muted);border-radius:2px;transition:width .6s ease"></div></div>
+                <span style="font-size:11.5px;color:var(--cream);width:65px;text-align:right">$8,100</span>
+                <span style="font-size:10px;color:var(--muted);width:32px;text-align:right">12%</span>
+              </div>
+            <div style="border-top:1px solid rgba(201,168,76,.1);padding-top:10px;display:flex;justify-content:space-between">
+              <span style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Total Weighted Forecast</span>
+              <span style="font-family:'Playfair Display',serif;font-size:18px;color:var(--gold)">$110,700</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Activity -->
+        <div class="s-card">
+          <div class="s-card-head"><span class="s-card-title">Team Activity Today</span></div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);flex-shrink:0">A</div>
+            <div style="flex:1"><div style="font-size:13px;color:var(--cream)">Alex Carini ⭐ 9.4</div><div style="font-size:10.5px;color:var(--muted)">Senior Agent · EN/IT/ES</div></div>
+            <div style="text-align:right"><span style="color:var(--gold);font-size:13px;font-family:'Playfair Display',serif;display:block">8</span>Tasks</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);flex-shrink:0">E</div>
+            <div style="flex:1"><div style="font-size:13px;color:var(--cream)">Eddie Romano ⭐ 8.8</div><div style="font-size:10.5px;color:var(--muted)">Senior Agent · EN/IT</div></div>
+            <div style="text-align:right"><span style="color:var(--gold);font-size:13px;font-family:'Playfair Display',serif;display:block">6</span>Tasks</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);flex-shrink:0">V</div>
+            <div style="flex:1"><div style="font-size:13px;color:var(--cream)">Vivek Shah ⭐ 9.1</div><div style="font-size:10.5px;color:var(--muted)">Investment Specialist · EN/ES</div></div>
+            <div style="text-align:right"><span style="color:var(--gold);font-size:13px;font-family:'Playfair Display',serif;display:block">5</span>Tasks</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);flex-shrink:0">M</div>
+            <div style="flex:1"><div style="font-size:13px;color:var(--cream)">Maria Chen ⭐ 8.5</div><div style="font-size:10.5px;color:var(--muted)">Buyer Specialist · EN/CN</div></div>
+            <div style="text-align:right"><span style="color:var(--gold);font-size:13px;font-family:'Playfair Display',serif;display:block">4</span>Tasks</div>
+          </div></div>
+              <div style="flex:1">
+              </div>
+              <div style="text-align:center;font-size:10px;color:var(--muted)">
+              </div>
+              <div style="text-align:center;font-size:10px;color:var(--muted)">
+              </div>
+              <div style="text-align:center;font-size:10px;color:var(--muted)">
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Recent Leads -->
+      <div class="s-card">
+        <div class="s-card-head">
+          <span class="s-card-title">Recent Lead Intake (24h)</span>
+          <button class="s-card-action" onclick="location.href='phase1_crm_pipeline.html'">Open Pipeline →</button>
+        </div>
+        <table>
+          <thead><tr><th>Lead</th><th>Source</th><th>Language</th><th>Type</th><th>Score</th><th>Routed To</th><th>Time</th></tr></thead>
+          <tbody>
+            <tr><td class="td-name">Sofia Bianchi</td><td>Website</td><td><span style="color:var(--gold)">🇮🇹 IT</span></td><td>Rental</td><td><span style="color:var(--green)">5/10</span></td><td style="color:var(--gold)">Alex Carini</td><td>30m ago</td></tr>
+            <tr><td class="td-name">Pietro Conti</td><td>Referral</td><td><span style="color:var(--gold)">🇮🇹 IT</span></td><td>Buyer</td><td><span style="color:var(--green)">8/10</span></td><td style="color:var(--gold)">Alex Carini</td><td>1h ago</td></tr>
+            <tr><td class="td-name">Derek Phillips</td><td>LinkedIn</td><td>🇺🇸 EN</td><td>Buyer</td><td><span style="color:var(--amber)">5/10</span></td><td>Lead Queue</td><td>2h ago</td></tr>
+            <tr><td class="td-name">Isabella Costa</td><td>Website</td><td><span style="color:var(--gold)">🇮🇹 IT</span></td><td>Buyer</td><td><span style="color:var(--green)">7/10</span></td><td style="color:var(--gold)">Alex Carini</td><td>3h ago</td></tr>
+            <tr><td class="td-name">Carlos Vega</td><td>LinkedIn</td><td><span style="color:var(--blue)">🇪🇸 ES</span></td><td>Investor</td><td><span style="color:var(--green)">7/10</span></td><td style="color:var(--gold)">Alex Carini</td><td>5h ago</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION: PIPELINE -->
+    <div id="section-pipeline" class="content" style="display:none">
+      <div class="s-card">
+        <div class="s-card-head"><span class="s-card-title">Pipeline by Stage — All Agents</span><button class="s-card-action" onclick="showToast('Export pipeline report to CSV','success')">Export</button></div>
+        <div class="pipe-bars" id="pipe-chart">
+                    <div class="pipe-bar-count">8</div>
+          <div class="pipe-bar" style="--bar-color:var(--muted);height:22%" onclick="showToast('Inquiry: 8 leads')"></div>
+          <div class="pipe-bar-label" style="writing-mode:vertical-lr;transform:rotate(180deg)">Inquiry</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;gap:4px">
+          <div class="pipe-bar-count">6</div>
+          <div class="pipe-bar" style="--bar-color:var(--blue);height:35%" onclick="showToast('Consultation: 6 leads')"></div>
+          <div class="pipe-bar-label" style="writing-mode:vertical-lr;transform:rotate(180deg)">Consult</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;gap:4px">
+          <div class="pipe-bar-count">5</div>
+          <div class="pipe-bar" style="--bar-color:var(--blue);height:48%" onclick="showToast('Property Search: 5 leads')"></div>
+          <div class="pipe-bar-label" style="writing-mode:vertical-lr;transform:rotate(180deg)">Search</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;gap:4px">
+          <div class="pipe-bar-count">7</div>
+          <div class="pipe-bar" style="--bar-color:var(--amber);height:62%" onclick="showToast('Viewings: 7 leads')"></div>
+          <div class="pipe-bar-label" style="writing-mode:vertical-lr;transform:rotate(180deg)">Viewings</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;gap:4px">
+          <div class="pipe-bar-count">4</div>
+          <div class="pipe-bar" style="--bar-color:var(--gold);height:78%" onclick="showToast('Offer: 4 leads')"></div>
+          <div class="pipe-bar-label" style="writing-mode:vertical-lr;transform:rotate(180deg)">Offer</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;gap:4px">
+          <div class="pipe-bar-count">3</div>
+          <div class="pipe-bar" style="--bar-color:var(--gold);height:88%" onclick="showToast('Negotiation: 3 leads')"></div>
+          <div class="pipe-bar-label" style="writing-mode:vertical-lr;transform:rotate(180deg)">Negotiate</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;gap:4px">
+          <div class="pipe-bar-count">3</div>
+          <div class="pipe-bar" style="--bar-color:var(--green);height:95%" onclick="showToast('Contract: 3 leads')"></div>
+          <div class="pipe-bar-label" style="writing-mode:vertical-lr;transform:rotate(180deg)">Contract</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;gap:4px">
+          <div class="pipe-bar-count">2</div>
+          <div class="pipe-bar" style="--bar-color:var(--green);height:100%" onclick="showToast('Close: 2 leads')"></div>
+          <div class="pipe-bar-label" style="writing-mode:vertical-lr;transform:rotate(180deg)">Close</div>
+        </div>
+        <div class="pipe-legend">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="s-card">
+          <div class="s-card-head"><span class="s-card-title">Agent Performance</span></div>
+          <table>
+            <thead><tr><th>Agent</th><th>Leads</th><th>Offers</th><th>Closed</th><th>Revenue</th></tr></thead>
+            <tbody>
+              <tr><td class="td-name">Alex Carini</td><td>28</td><td>8</td><td>6</td><td style="color:var(--gold)">$81,400</td></tr>
+              <tr><td class="td-name">Maria Santos</td><td>12</td><td>3</td><td>2</td><td style="color:var(--gold)">$22,300</td></tr>
+              <tr><td class="td-name">David Chen</td><td>7</td><td>1</td><td>1</td><td style="color:var(--gold)">$7,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="s-card">
+          <div class="s-card-head"><span class="s-card-title">Lead Source Attribution</span></div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:6px 0">
+            <div style="width:70px;font-size:11.5px;color:var(--cream)">Referral</div>
+            <div style="flex:1;height:5px;background:rgba(201,168,76,.1);border-radius:2px"><div style="height:100%;width:42%;background:var(--gold);border-radius:2px;transition:width .8s ease"></div></div>
+            <div style="font-size:11px;color:var(--muted);width:30px;text-align:right">42%</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:6px 0">
+            <div style="width:70px;font-size:11.5px;color:var(--cream)">Website</div>
+            <div style="flex:1;height:5px;background:rgba(201,168,76,.1);border-radius:2px"><div style="height:100%;width:28%;background:var(--blue);border-radius:2px;transition:width .8s ease"></div></div>
+            <div style="font-size:11px;color:var(--muted);width:30px;text-align:right">28%</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:6px 0">
+            <div style="width:70px;font-size:11.5px;color:var(--cream)">Int'l Hub</div>
+            <div style="flex:1;height:5px;background:rgba(201,168,76,.1);border-radius:2px"><div style="height:100%;width:18%;background:var(--green);border-radius:2px;transition:width .8s ease"></div></div>
+            <div style="font-size:11px;color:var(--muted);width:30px;text-align:right">18%</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:6px 0">
+            <div style="width:70px;font-size:11.5px;color:var(--cream)">Social</div>
+            <div style="flex:1;height:5px;background:rgba(201,168,76,.1);border-radius:2px"><div style="height:100%;width:8%;background:var(--amber);border-radius:2px;transition:width .8s ease"></div></div>
+            <div style="font-size:11px;color:var(--muted);width:30px;text-align:right">8%</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:6px 0">
+            <div style="width:70px;font-size:11.5px;color:var(--cream)">Other</div>
+            <div style="flex:1;height:5px;background:rgba(201,168,76,.1);border-radius:2px"><div style="height:100%;width:4%;background:var(--muted);border-radius:2px;transition:width .8s ease"></div></div>
+            <div style="font-size:11px;color:var(--muted);width:30px;text-align:right">4%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: USERS -->
+    <div id="section-users" class="content" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div style="font-size:12px;color:var(--muted)">12 users · 3 agents · 1 admin · Cannot delete users with active deals</div>
+        <button style="padding:9px 18px;background:var(--gold);color:var(--dark);font-size:10px;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500" onclick="showToast('Create user modal — set role, email, temp password','info')">+ Create User</button>
+      </div>
+      <div class="s-card" style="margin-bottom:0">
+        <div class="s-card-head"><span class="s-card-title">All Users — FR-052</span></div>
+        <table>
+          <thead><tr><th>User</th><th>Role</th><th>Language</th><th>Status</th><th>Last Active</th><th>Active Deals</th><th>Actions</th></tr></thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION: CRM CONFIG -->
+    <div id="section-crm-config" class="content" style="display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="s-card">
+          <div class="s-card-head"><span class="s-card-title">Lead Scoring Weights — FR-054</span></div>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Score recalculates on any field change. Range 0–10. Changes logged in audit trail and applied immediately.</p>
+          <button class="save-btn" onclick="showToast('✓ Lead scoring weights updated · Applied immediately · Logged in audit trail','success')">Save Configuration</button>
+        </div>
+        <div>
+          <div class="s-card" style="margin-bottom:16px">
+            <div class="s-card-head"><span class="s-card-title">Pipeline Stage Names</span></div>
+            <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Rename Kanban columns. Changes affect all agents immediately.</p>
+                      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:11px;color:var(--muted);width:18px;text-align:right">1</span>
+            <input style="flex:1;background:var(--dark4);border:1px solid rgba(201,168,76,.12);color:var(--cream);padding:8px 12px;font-size:12px;border-radius:3px;font-family:'DM Sans',sans-serif" value="Inquiry" oninput="showToast('Stage renamed — save to apply')">
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:11px;color:var(--muted);width:18px;text-align:right">2</span>
+            <input style="flex:1;background:var(--dark4);border:1px solid rgba(201,168,76,.12);color:var(--cream);padding:8px 12px;font-size:12px;border-radius:3px;font-family:'DM Sans',sans-serif" value="Consultation" oninput="showToast('Stage renamed — save to apply')">
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:11px;color:var(--muted);width:18px;text-align:right">3</span>
+            <input style="flex:1;background:var(--dark4);border:1px solid rgba(201,168,76,.12);color:var(--cream);padding:8px 12px;font-size:12px;border-radius:3px;font-family:'DM Sans',sans-serif" value="Property Search" oninput="showToast('Stage renamed — save to apply')">
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:11px;color:var(--muted);width:18px;text-align:right">4</span>
+            <input style="flex:1;background:var(--dark4);border:1px solid rgba(201,168,76,.12);color:var(--cream);padding:8px 12px;font-size:12px;border-radius:3px;font-family:'DM Sans',sans-serif" value="Viewings" oninput="showToast('Stage renamed — save to apply')">
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:11px;color:var(--muted);width:18px;text-align:right">5</span>
+            <input style="flex:1;background:var(--dark4);border:1px solid rgba(201,168,76,.12);color:var(--cream);padding:8px 12px;font-size:12px;border-radius:3px;font-family:'DM Sans',sans-serif" value="Offer" oninput="showToast('Stage renamed — save to apply')">
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:11px;color:var(--muted);width:18px;text-align:right">6</span>
+            <input style="flex:1;background:var(--dark4);border:1px solid rgba(201,168,76,.12);color:var(--cream);padding:8px 12px;font-size:12px;border-radius:3px;font-family:'DM Sans',sans-serif" value="Negotiation" oninput="showToast('Stage renamed — save to apply')">
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:11px;color:var(--muted);width:18px;text-align:right">7</span>
+            <input style="flex:1;background:var(--dark4);border:1px solid rgba(201,168,76,.12);color:var(--cream);padding:8px 12px;font-size:12px;border-radius:3px;font-family:'DM Sans',sans-serif" value="Contract" oninput="showToast('Stage renamed — save to apply')">
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:11px;color:var(--muted);width:18px;text-align:right">8</span>
+            <input style="flex:1;background:var(--dark4);border:1px solid rgba(201,168,76,.12);color:var(--cream);padding:8px 12px;font-size:12px;border-radius:3px;font-family:'DM Sans',sans-serif" value="Close" oninput="showToast('Stage renamed — save to apply')">
+          </div>
+            <button class="save-btn" style="margin-top:8px" onclick="showToast('Stage names updated · Pipeline refreshed','success')">Save Stage Names</button>
+          </div>
+          <div class="s-card">
+            <div class="s-card-head"><span class="s-card-title">Language Routing Rules</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: AUDIT LOG -->
+    <div id="section-audit" class="content" style="display:none">
+      <div class="s-card">
+        <div class="s-card-head">
+          <span class="s-card-title">Audit Log — FR-056 · Immutable · 7-Year Retention</span>
+          <button class="s-card-action" onclick="showToast('Audit log exported to CSV (all entries — immutable)','success')">Export CSV</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+          <button style="padding:5px 12px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold);border-radius:2px;cursor:pointer;font-family:var(--font-sans)" onclick="showToast('Filtering: All')">All</button>
+          <button style="padding:5px 12px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--dark4);border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;font-family:var(--font-sans)" onclick="showToast('Filtering: User Mgmt')">User Mgmt</button>
+          <button style="padding:5px 12px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--dark4);border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;font-family:var(--font-sans)" onclick="showToast('Filtering: CRM Config')">CRM Config</button>
+          <button style="padding:5px 12px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--dark4);border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;font-family:var(--font-sans)" onclick="showToast('Filtering: Deal Room')">Deal Room</button>
+          <button style="padding:5px 12px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--dark4);border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;font-family:var(--font-sans)" onclick="showToast('Filtering: Lead')">Lead</button>
+          <button style="padding:5px 12px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--dark4);border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;font-family:var(--font-sans)" onclick="showToast('Filtering: System')">System</button>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:16px;padding:10px;background:var(--dark4);border:1px solid rgba(201,168,76,.06)">
+          🔒 Audit log entries are cryptographically hashed, immutable, and retained for 7 years. Not editable or deletable by any user, including Super Admin.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+  function showSection(section, btn) {
+    ['dashboard','pipeline','users','crm-config','audit'].forEach(s=>{
+      document.getElementById('section-'+s).style.display = s===section?'':'none';
+    });
+    if(btn){
+      document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    const titles = {dashboard:'KPI Dashboard',pipeline:'Pipeline Overview',users:'User Management',['crm-config']:'CRM Configuration',audit:'Audit Log'};
+    document.getElementById('page-title').textContent = titles[section]||section;
+  }
+
+  function showToast(msg,type='info'){
+    const t=document.getElementById('toast');
+    t.textContent=msg;
+    t.style.borderColor=type==='success'?'rgba(107,191,107,.4)':type==='error'?'rgba(207,107,107,.4)':'rgba(201,168,76,.25)';
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer=setTimeout(()=>t.classList.remove('show'),3500);
+  }
+
+  // Live clock
+  function tick(){
+    const now = new Date();
+    document.getElementById('live-clock').textContent = now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'America/New_York'}) + ' EST';
+  }
+  tick(); setInterval(tick,1000);
+
+  // Simulate live KPI updates
+  setInterval(()=>{
+    const kpi = document.getElementById('kpi-leads');
+    const enq = document.getElementById('kpi-enq');
+    if(kpi && Math.random()<0.3){ kpi.textContent = 47+Math.floor(Math.random()*2); }
+    if(enq && Math.random()<0.2){ enq.textContent = 8+Math.floor(Math.random()*2); }
+  },5000);
+</script>
+</div>
+
+</body>
+</html>

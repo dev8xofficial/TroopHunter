@@ -1,1252 +1,1837 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carini Group — International Investor Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-    <style>
-      :root {
-        --gold: #c9a84c;
-        --gold-l: #e8c97a;
-        --gold-dim: rgba(201, 168, 76, 0.12);
-        --cream: #f5f0e8;
-        --dark: #0c0b09;
-        --dark2: #141210;
-        --dark3: #1c1a15;
-        --muted: rgba(245, 240, 232, 0.42);
-        --body: rgba(245, 240, 232, 0.75);
-      }
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        background: var(--dark);
-        color: var(--cream);
-        font-family: 'DM Sans', sans-serif;
-        overflow-x: hidden;
-      }
-      body::after {
-        content: '';
-        position: fixed;
-        inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-        pointer-events: none;
-        z-index: 9999;
-        opacity: 0.35;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carini Group — International Investor Hub</title>
+
+  <style>
+    :root {
+      --dark: #ffffff;
+      --dark2: #f8f7f5;
+      --dark3: #f1efeb;
+      --dark4: #e8e4de;
+      --dark5: #ddd8d0;
+
+      --gold: #c49a2e;
+      --gold-light: #d4a843;
+      --gold-l: #d4a843;
+      --gold-soft: #b08a24;
+      --gold-dim: rgba(196, 154, 46, 0.10);
+      --gold-glow: rgba(196, 154, 46, 0.16);
+
+      --cream: #1a1510;
+      --text: #1a1510;
+      --text-muted: rgba(26, 21, 16, 0.60);
+      --muted: rgba(26, 21, 16, 0.46);
+      --body: rgba(26, 21, 16, 0.74);
+
+      --border: rgba(212, 168, 67, 0.26);
+      --border-soft: rgba(212, 168, 67, 0.14);
+      --border-hard: rgba(212, 168, 67, 0.48);
+
+      --success: #3fd68a;
+      --success-dim: rgba(63, 214, 138, 0.14);
+      --warn: #f5a623;
+      --warn-dim: rgba(245, 166, 35, 0.14);
+      --danger: #f05252;
+      --danger-dim: rgba(240, 82, 82, 0.14);
+      --blue: #4dc8ff;
+      --blue-dim: rgba(77, 200, 255, 0.13);
+      --green: #4dd98a;
+      --green-dim: rgba(77, 217, 138, 0.13);
+      --red: #f06060;
+      --red-dim: rgba(240, 96, 96, 0.13);
+      --amber: #e8b24a;
+      --amber-dim: rgba(232, 178, 74, 0.13);
+
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-cormorant: 'Cormorant Garamond', serif;
+
+      --r: 5px;
+      --radius: 5px;
+      --t: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+      --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --shadow-gold: 0 0 28px rgba(212, 168, 67, 0.14);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(12, 11, 9, 0.85);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      color: var(--gold);
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0;
+      border: 1px solid rgba(201, 168, 76, 0.2);
+    }
+
+    .lang-btn {
+      padding: 9px 18px;
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.3s;
+    }
+
+    .lang-btn.active {
+      background: var(--gold);
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 60px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fu 0.9s 0.2s forwards;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 5.5vw, 82px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fu 0.9s 0.4s forwards;
+    }
+
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--gold-l);
+    }
+
+    .hero-p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 300;
+      color: var(--body);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fu 0.9s 0.6s forwards;
+    }
+
+    .hero-flags {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fu 0.9s 0.7s forwards;
+    }
+
+    .flag-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      font-size: 12px;
+      color: var(--body);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .flag-pill:hover,
+    .flag-pill.active-lang {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    .hero-btn {
+      padding: 16px 40px;
+      background: var(--gold);
+      color: #ffffff;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      opacity: 0;
+      animation: fu 0.9s 0.8s forwards;
+      transition: background 0.3s;
+    }
+
+    .hero-btn:hover {
+      background: var(--gold-l);
+    }
+
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 40px 40px;
+      position: relative;
+    }
+
+    .globe-wrap {
+      position: relative;
+      width: 320px;
+      height: 320px;
+    }
+
+    .globe {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 1.5px solid rgba(201, 168, 76, 0.2);
+      background: radial-gradient(circle at 38% 35%, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.02) 55%, transparent);
+      box-shadow:
+        0 0 80px rgba(201, 168, 76, 0.06),
+        inset 0 0 60px rgba(201, 168, 76, 0.04);
+      animation: glow 5s ease-in-out infinite;
+      position: relative;
+    }
+
+    @keyframes glow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 80px rgba(201, 168, 76, 0.06);
       }
 
-      /* NAV */
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 60px;
-        border-bottom: 1px solid rgba(201, 168, 76, 0.1);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        backdrop-filter: blur(20px);
-        background: rgba(12, 11, 9, 0.85);
+      50% {
+        box-shadow: 0 0 120px rgba(201, 168, 76, 0.14);
       }
-      .logo {
-        font-family: 'Playfair Display', serif;
-        font-size: 17px;
-        color: var(--gold);
-      }
-      .lang-switcher {
-        display: flex;
-        gap: 0;
-        border: 1px solid rgba(201, 168, 76, 0.2);
-      }
-      .lang-btn {
-        padding: 9px 18px;
-        font-size: 10.5px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        cursor: pointer;
-        background: transparent;
-        color: var(--muted);
-        border: none;
-        font-family: 'DM Sans', sans-serif;
-        transition: all 0.3s;
-      }
-      .lang-btn.active {
-        background: var(--gold);
-        color: var(--dark);
-        font-weight: 500;
-      }
+    }
 
-      /* HERO */
-      .hero {
-        min-height: 90vh;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        position: relative;
-        overflow: hidden;
-      }
-      .hero-left {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 140px 60px 80px;
-        position: relative;
-        z-index: 2;
-      }
-      .hero-bg {
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(ellipse 70% 70% at 20% 60%, rgba(201, 168, 76, 0.07), transparent 60%), linear-gradient(135deg, #0c0b09, #12100c);
-      }
-      .hero-eyebrow {
-        font-size: 10px;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: var(--gold);
-        margin-bottom: 22px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        opacity: 0;
-        animation: fu 0.9s 0.2s forwards;
-      }
-      .hero-eyebrow::before {
-        content: '';
-        width: 28px;
-        height: 1px;
-        background: var(--gold);
-      }
-      .hero-h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(42px, 5.5vw, 82px);
-        font-weight: 400;
-        line-height: 0.95;
-        letter-spacing: -0.02em;
-        margin-bottom: 24px;
-        opacity: 0;
-        animation: fu 0.9s 0.4s forwards;
-      }
-      .hero-h1 em {
-        font-style: italic;
-        color: var(--gold-l);
-      }
-      .hero-p {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 19px;
-        font-weight: 300;
-        color: var(--body);
-        line-height: 1.7;
-        max-width: 420px;
-        margin-bottom: 44px;
-        opacity: 0;
-        animation: fu 0.9s 0.6s forwards;
-      }
-      .hero-flags {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 36px;
-        opacity: 0;
-        animation: fu 0.9s 0.7s forwards;
-      }
-      .flag-pill {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 18px;
-        border: 1px solid rgba(201, 168, 76, 0.2);
-        font-size: 12px;
-        color: var(--body);
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-      .flag-pill:hover,
-      .flag-pill.active-lang {
-        border-color: var(--gold);
-        background: var(--gold-dim);
-        color: var(--gold);
-      }
-      .hero-btn {
-        padding: 16px 40px;
-        background: var(--gold);
-        color: var(--dark);
-        font-size: 11px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        font-family: 'DM Sans', sans-serif;
-        font-weight: 500;
-        border: none;
-        cursor: pointer;
-        opacity: 0;
-        animation: fu 0.9s 0.8s forwards;
-        transition: background 0.3s;
-      }
-      .hero-btn:hover {
-        background: var(--gold-l);
-      }
-      .hero-right {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 120px 40px 40px;
-        position: relative;
-      }
-      .globe-wrap {
-        position: relative;
-        width: 320px;
-        height: 320px;
-      }
-      .globe {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 1.5px solid rgba(201, 168, 76, 0.2);
-        background: radial-gradient(circle at 38% 35%, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.02) 55%, transparent);
-        box-shadow:
-          0 0 80px rgba(201, 168, 76, 0.06),
-          inset 0 0 60px rgba(201, 168, 76, 0.04);
-        animation: glow 5s ease-in-out infinite;
-        position: relative;
-      }
-      @keyframes glow {
-        0%,
-        100% {
-          box-shadow: 0 0 80px rgba(201, 168, 76, 0.06);
-        }
-        50% {
-          box-shadow: 0 0 120px rgba(201, 168, 76, 0.14);
-        }
-      }
-      .globe-ring {
-        position: absolute;
-        border: 1px solid rgba(201, 168, 76, 0.1);
-        border-radius: 50%;
-      }
-      .gr1 {
-        inset: 15%;
-        transform: rotateX(72deg) rotateZ(20deg);
-      }
-      .gr2 {
-        inset: 5%;
-        transform: rotateX(72deg) rotateZ(-30deg);
-      }
-      .gr3 {
-        top: 50%;
-        left: 5%;
-        right: 5%;
-        height: 1px;
-        border: none;
-        border-radius: 0;
-        background: rgba(201, 168, 76, 0.12);
-      }
-      .gr4 {
-        top: 30%;
-        left: 0;
-        right: 0;
-        height: 1px;
-        border: none;
-        border-radius: 0;
-        background: rgba(201, 168, 76, 0.07);
-      }
-      .globe-dot {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--gold);
-        box-shadow: 0 0 14px rgba(201, 168, 76, 0.8);
-        animation: dp 2.5s ease-in-out infinite;
-      }
-      .globe-dot::after {
-        content: '';
-        position: absolute;
-        inset: -5px;
-        border-radius: 50%;
-        border: 1px solid rgba(201, 168, 76, 0.3);
-        animation: ring-out 2.5s ease-in-out infinite;
-      }
-      @keyframes dp {
-        0%,
-        100% {
-          transform: scale(1);
-          opacity: 1;
-        }
-        50% {
-          transform: scale(1.3);
-          opacity: 0.7;
-        }
-      }
-      @keyframes ring-out {
-        0% {
-          transform: scale(0.5);
-          opacity: 0.8;
-        }
-        100% {
-          transform: scale(2);
-          opacity: 0;
-        }
-      }
-      .gd-it {
-        top: 28%;
-        left: 32%;
-        animation-delay: 0s;
-      }
-      .gd-es {
-        top: 36%;
-        left: 22%;
-        animation-delay: 0.8s;
-      }
-      .gd-nyc {
-        top: 42%;
-        left: 68%;
-        animation-delay: 1.6s;
-      }
-      .globe-label {
-        position: absolute;
-        font-size: 10px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--gold);
-        white-space: nowrap;
-        background: rgba(12, 11, 9, 0.8);
-        padding: 4px 10px;
-        border: 1px solid rgba(201, 168, 76, 0.2);
-      }
-      .gl-it {
-        top: 20%;
-        left: 38%;
-      }
-      .gl-es {
-        top: 44%;
-        left: 4%;
-      }
-      .gl-nyc {
-        top: 38%;
-        right: 0%;
-      }
-      /* Connection lines via SVG */
-      .globe-svg {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-      }
-      .conn-line {
-        stroke: rgba(201, 168, 76, 0.2);
-        stroke-width: 1;
-        stroke-dasharray: 4, 4;
-        fill: none;
-        animation: dash-anim 3s linear infinite;
-      }
-      @keyframes dash-anim {
-        to {
-          stroke-dashoffset: -40;
-        }
-      }
+    .globe-ring {
+      position: absolute;
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      border-radius: 50%;
+    }
 
-      /* CONTENT */
-      .content {
-        max-width: 1180px;
-        margin: 0 auto;
-        padding: 0 60px;
-      }
+    .gr1 {
+      inset: 15%;
+      transform: rotateX(72deg) rotateZ(20deg);
+    }
 
-      /* TOOLS GRID */
-      .tools {
-        padding: 100px 0;
-        border-top: 1px solid rgba(201, 168, 76, 0.1);
-      }
-      .tools-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 32px;
-        margin-top: 60px;
-      }
-      .tool-panel {
-        background: var(--dark2);
-        border: 1px solid rgba(201, 168, 76, 0.12);
-        padding: 44px 40px;
-      }
-      .tool-label {
-        font-size: 10px;
-        letter-spacing: 0.26em;
-        text-transform: uppercase;
-        color: var(--gold);
-        margin-bottom: 18px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .tool-label::before {
-        content: '';
-        width: 20px;
-        height: 1px;
-        background: var(--gold);
-      }
-      .tool-h {
-        font-family: 'Playfair Display', serif;
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 8px;
-        line-height: 1.2;
-      }
-      .tool-sub {
-        font-size: 13px;
-        color: var(--muted);
-        margin-bottom: 32px;
-        line-height: 1.6;
-      }
+    .gr2 {
+      inset: 5%;
+      transform: rotateX(72deg) rotateZ(-30deg);
+    }
 
-      /* CALCULATOR */
-      .calc-row {
-        margin-bottom: 18px;
-      }
-      .calc-label {
-        font-size: 10.5px;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 8px;
-      }
-      .calc-input-wrap {
-        display: flex;
-        align-items: stretch;
-        border: 1px solid rgba(201, 168, 76, 0.18);
-        overflow: hidden;
-      }
-      .calc-prefix {
-        padding: 0 16px;
-        background: var(--dark3);
-        font-size: 14px;
-        color: var(--gold);
-        display: flex;
-        align-items: center;
-        border-right: 1px solid rgba(201, 168, 76, 0.15);
-        font-family: 'Playfair Display', serif;
-      }
-      .calc-input {
-        flex: 1;
-        background: var(--dark3);
-        border: none;
-        outline: none;
-        color: var(--cream);
-        padding: 14px 16px;
-        font-size: 15px;
-        font-family: 'DM Sans', sans-serif;
-      }
-      .calc-slider {
-        width: 100%;
-        -webkit-appearance: none;
-        height: 3px;
-        background: linear-gradient(to right, var(--gold) 0%, var(--gold) 50%, rgba(201, 168, 76, 0.15) 50%);
-        border-radius: 2px;
-        margin-top: 10px;
-        cursor: pointer;
-      }
-      .calc-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: var(--gold);
-        box-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
-        cursor: pointer;
-      }
-      .calc-select {
-        width: 100%;
-        background: var(--dark3);
-        border: 1px solid rgba(201, 168, 76, 0.18);
-        color: var(--cream);
-        padding: 14px 16px;
-        font-size: 14px;
-        font-family: 'DM Sans', sans-serif;
-        outline: none;
-      }
-      .calc-select option {
-        background: var(--dark3);
-      }
-      .calc-result {
-        background: var(--dark3);
-        border: 1px solid rgba(201, 168, 76, 0.2);
-        padding: 24px 28px;
-        margin-top: 24px;
-      }
-      .cr-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 8px 0;
-        border-bottom: 1px solid rgba(201, 168, 76, 0.06);
-        font-size: 13px;
-        color: var(--muted);
-      }
-      .cr-row:last-child {
-        border-bottom: none;
-        font-family: 'Playfair Display', serif;
-        font-size: 16px;
-        color: var(--cream);
-        padding-top: 14px;
-        margin-top: 6px;
-      }
-      .cr-row span:last-child {
-        color: var(--gold-l);
-        font-weight: 600;
-      }
-      .cr-row:last-child span:last-child {
-        color: var(--gold);
-        font-size: 20px;
-      }
+    .gr3 {
+      top: 50%;
+      left: 5%;
+      right: 5%;
+      height: 1px;
+      border: none;
+      border-radius: 0;
+      background: rgba(212, 168, 67, 0.14);
+    }
 
-      /* 1031 TOOL */
-      .steps-1031 {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-      }
-      .s1031 {
-        display: flex;
-        gap: 18px;
-        padding: 20px 0;
-        border-bottom: 1px solid rgba(201, 168, 76, 0.08);
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-      .s1031:last-child {
-        border-bottom: none;
-      }
-      .s1031:hover .s1031-content {
-        color: var(--cream);
-      }
-      .s1031-num {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        border: 1px solid rgba(201, 168, 76, 0.25);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        color: var(--gold);
-        flex-shrink: 0;
-        font-family: 'Playfair Display', serif;
-        transition: all 0.3s;
-      }
-      .s1031:hover .s1031-num {
-        background: var(--gold);
-        color: var(--dark);
-      }
-      .s1031-content {
-        flex: 1;
-      }
-      .s1031-title {
-        font-size: 13.5px;
-        font-weight: 500;
-        margin-bottom: 4px;
-        color: var(--cream);
-      }
-      .s1031-desc {
-        font-size: 12px;
-        color: var(--muted);
-        line-height: 1.55;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .s1031.open .s1031-desc {
-        max-height: 80px;
-      }
-      .s1031.open .s1031-num {
-        background: var(--gold);
-        color: var(--dark);
-      }
-      .s1031-time {
-        font-size: 10px;
-        color: var(--gold);
-        letter-spacing: 0.1em;
-        margin-top: 6px;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      .s1031.open .s1031-time {
+    .gr4 {
+      top: 30%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      border: none;
+      border-radius: 0;
+      background: rgba(201, 168, 76, 0.07);
+    }
+
+    .globe-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 14px rgba(201, 168, 76, 0.8);
+      animation: dp 2.5s ease-in-out infinite;
+    }
+
+    .globe-dot::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      animation: ring-out 2.5s ease-in-out infinite;
+    }
+
+    @keyframes dp {
+
+      0%,
+      100% {
+        transform: scale(1);
         opacity: 1;
       }
 
-      /* CHECKLIST */
-      .checklist-section {
-        padding: 80px 0;
-        border-top: 1px solid rgba(201, 168, 76, 0.1);
+      50% {
+        transform: scale(1.3);
+        opacity: 0.7;
       }
-      .checklist-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2px;
-        margin-top: 52px;
-      }
-      .cl-card {
-        background: var(--dark2);
-        border: 1px solid rgba(201, 168, 76, 0.08);
-        padding: 36px 32px;
-      }
-      .cl-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 22px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .cl-flag {
-        font-size: 18px;
-      }
-      .cl-items {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .cl-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        font-size: 13px;
-        color: var(--body);
-        line-height: 1.55;
-      }
-      .cl-check {
-        width: 18px;
-        height: 18px;
-        border: 1px solid rgba(201, 168, 76, 0.3);
-        border-radius: 3px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--gold);
-        font-size: 10px;
-        flex-shrink: 0;
-        margin-top: 1px;
-        cursor: pointer;
-        transition: all 0.3s;
-        background: transparent;
-      }
-      .cl-check.done {
-        background: var(--gold-dim);
-        border-color: var(--gold);
-      }
-      .cl-dl {
-        margin-top: 24px;
-        padding: 12px 20px;
-        border: 1px solid rgba(201, 168, 76, 0.2);
-        background: var(--gold-dim);
-        font-size: 11px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--gold);
-        cursor: pointer;
-        display: inline-block;
-        transition: all 0.3s;
-      }
-      .cl-dl:hover {
-        background: rgba(201, 168, 76, 0.2);
+    }
+
+    @keyframes ring-out {
+      0% {
+        transform: scale(0.5);
+        opacity: 0.8;
       }
 
-      /* BOOKING */
-      .booking-section {
-        padding: 80px 0 120px;
-        border-top: 1px solid rgba(201, 168, 76, 0.1);
-      }
-      .booking-inner {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 48px;
-        align-items: start;
-      }
-      .booking-info {
-        padding-right: 20px;
-      }
-      .tz-display {
-        background: var(--dark2);
-        border: 1px solid rgba(201, 168, 76, 0.15);
-        padding: 20px 24px;
-        margin-top: 28px;
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-      .tz-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 13px;
-      }
-      .tz-city {
-        color: var(--muted);
-      }
-      .tz-time {
-        font-family: 'Playfair Display', serif;
-        font-size: 18px;
-        color: var(--gold-l);
-      }
-      .tz-divider {
-        height: 1px;
-        background: rgba(201, 168, 76, 0.1);
-      }
-      .booking-form {
-        background: var(--dark2);
-        border: 1px solid rgba(201, 168, 76, 0.15);
-        padding: 36px 32px;
-      }
-      .bf-row {
-        margin-bottom: 16px;
-      }
-      .bf-label {
-        font-size: 10px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 8px;
-      }
-      .bf-input,
-      .bf-select {
-        width: 100%;
-        background: var(--dark3);
-        border: 1px solid rgba(201, 168, 76, 0.15);
-        color: var(--cream);
-        padding: 13px 16px;
-        font-size: 14px;
-        font-family: 'DM Sans', sans-serif;
-        outline: none;
-        transition: border-color 0.3s;
-      }
-      .bf-input:focus,
-      .bf-select:focus {
-        border-color: rgba(201, 168, 76, 0.5);
-      }
-      .bf-select option {
-        background: var(--dark3);
-      }
-      .slots {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        margin-top: 4px;
-      }
-      .slot {
-        padding: 10px;
-        border: 1px solid rgba(201, 168, 76, 0.12);
-        font-size: 12px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s;
-        color: var(--body);
-      }
-      .slot:hover,
-      .slot.sel {
-        border-color: var(--gold);
-        background: var(--gold-dim);
-        color: var(--gold);
-      }
-      .book-btn {
-        width: 100%;
-        padding: 16px;
-        background: var(--gold);
-        color: var(--dark);
-        font-size: 11px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        font-family: 'DM Sans', sans-serif;
-        font-weight: 500;
-        border: none;
-        cursor: pointer;
-        margin-top: 20px;
-        transition: background 0.3s;
-      }
-      .book-btn:hover {
-        background: var(--gold-l);
-      }
-
-      /* UTILS */
-      .sec-label {
-        font-size: 10px;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        color: var(--gold);
-        margin-bottom: 16px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .sec-label::before {
-        content: '';
-        width: 24px;
-        height: 1px;
-        background: var(--gold);
-      }
-      .sec-title {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(28px, 3.5vw, 48px);
-        font-weight: 400;
-        line-height: 1.1;
-        margin-bottom: 12px;
-      }
-      .sec-title em {
-        font-style: italic;
-        color: var(--gold-l);
-      }
-      .reveal {
+      100% {
+        transform: scale(2);
         opacity: 0;
-        transform: translateY(22px);
-        transition:
-          opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      .reveal.vis {
+    }
+
+    .gd-it {
+      top: 28%;
+      left: 32%;
+      animation-delay: 0s;
+    }
+
+    .gd-es {
+      top: 36%;
+      left: 22%;
+      animation-delay: 0.8s;
+    }
+
+    .gd-nyc {
+      top: 42%;
+      left: 68%;
+      animation-delay: 1.6s;
+    }
+
+    .globe-label {
+      position: absolute;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+      background: rgba(12, 11, 9, 0.8);
+      padding: 4px 10px;
+      border: 1px solid rgba(201, 168, 76, 0.2);
+    }
+
+    .gl-it {
+      top: 20%;
+      left: 38%;
+    }
+
+    .gl-es {
+      top: 44%;
+      left: 4%;
+    }
+
+    .gl-nyc {
+      top: 38%;
+      right: 0%;
+    }
+
+    /* Connection lines via SVG */
+    .globe-svg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .conn-line {
+      stroke: rgba(201, 168, 76, 0.2);
+      stroke-width: 1;
+      stroke-dasharray: 4, 4;
+      fill: none;
+      animation: dash-anim 3s linear infinite;
+    }
+
+    @keyframes dash-anim {
+      to {
+        stroke-dashoffset: -40;
+      }
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 60px;
+    }
+
+    /* TOOLS GRID */
+    .tools {
+      padding: 100px 0;
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    .tool-panel {
+      background: var(--dark2);
+      border: 1px solid rgba(212, 168, 67, 0.14);
+      padding: 44px 40px;
+    }
+
+    .tool-label {
+      font-size: 10px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tool-label::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .tool-h {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .tool-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    /* CALCULATOR */
+    .calc-row {
+      margin-bottom: 18px;
+    }
+
+    .calc-label {
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .calc-input-wrap {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid rgba(212, 168, 67, 0.26);
+      overflow: hidden;
+    }
+
+    .calc-prefix {
+      padding: 0 16px;
+      background: var(--dark3);
+      font-size: 14px;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      border-right: 1px solid rgba(212, 168, 67, 0.16);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .calc-input {
+      flex: 1;
+      background: var(--dark3);
+      border: none;
+      outline: none;
+      color: var(--cream);
+      padding: 14px 16px;
+      font-size: 15px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .calc-slider {
+      width: 100%;
+      -webkit-appearance: none;
+      height: 3px;
+      background: linear-gradient(to right, var(--gold) 0%, var(--gold) 50%, rgba(212, 168, 67, 0.16) 50%);
+      border-radius: 2px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+      cursor: pointer;
+    }
+
+    .calc-select {
+      width: 100%;
+      background: var(--dark3);
+      border: 1px solid rgba(212, 168, 67, 0.26);
+      color: var(--cream);
+      padding: 14px 16px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+    }
+
+    .calc-select option {
+      background: var(--dark3);
+    }
+
+    .calc-result {
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      padding: 24px 28px;
+      margin-top: 24px;
+    }
+
+    .cr-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.06);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .cr-row:last-child {
+      border-bottom: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--cream);
+      padding-top: 14px;
+      margin-top: 6px;
+    }
+
+    .cr-row span:last-child {
+      color: var(--gold-l);
+      font-weight: 600;
+    }
+
+    .cr-row:last-child span:last-child {
+      color: var(--gold);
+      font-size: 20px;
+    }
+
+    /* 1031 TOOL */
+    .steps-1031 {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .s1031 {
+      display: flex;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(212, 168, 67, 0.09);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .s1031:last-child {
+      border-bottom: none;
+    }
+
+    .s1031:hover .s1031-content {
+      color: var(--cream);
+    }
+
+    .s1031-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--gold);
+      flex-shrink: 0;
+      font-family: 'Playfair Display', serif;
+      transition: all 0.3s;
+    }
+
+    .s1031:hover .s1031-num {
+      background: var(--gold);
+      color: #ffffff;
+    }
+
+    .s1031-content {
+      flex: 1;
+    }
+
+    .s1031-title {
+      font-size: 13.5px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--cream);
+    }
+
+    .s1031-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .s1031.open .s1031-desc {
+      max-height: 80px;
+    }
+
+    .s1031.open .s1031-num {
+      background: var(--gold);
+      color: #ffffff;
+    }
+
+    .s1031-time {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-top: 6px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .s1031.open .s1031-time {
+      opacity: 1;
+    }
+
+    /* CHECKLIST */
+    .checklist-section {
+      padding: 80px 0;
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 52px;
+    }
+
+    .cl-card {
+      background: var(--dark2);
+      border: 1px solid rgba(212, 168, 67, 0.09);
+      padding: 36px 32px;
+    }
+
+    .cl-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cl-flag {
+      font-size: 18px;
+    }
+
+    .cl-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--body);
+      line-height: 1.55;
+    }
+
+    .cl-check {
+      width: 18px;
+      height: 18px;
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 10px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: transparent;
+    }
+
+    .cl-check.done {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+    }
+
+    .cl-dl {
+      margin-top: 24px;
+      padding: 12px 20px;
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      background: var(--gold-dim);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      cursor: pointer;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+
+    .cl-dl:hover {
+      background: rgba(201, 168, 76, 0.2);
+    }
+
+    /* BOOKING */
+    .booking-section {
+      padding: 80px 0 120px;
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .booking-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .booking-info {
+      padding-right: 20px;
+    }
+
+    .tz-display {
+      background: var(--dark2);
+      border: 1px solid rgba(212, 168, 67, 0.16);
+      padding: 20px 24px;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .tz-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .tz-city {
+      color: var(--muted);
+    }
+
+    .tz-time {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--gold-l);
+    }
+
+    .tz-divider {
+      height: 1px;
+      background: rgba(201, 168, 76, 0.1);
+    }
+
+    .booking-form {
+      background: var(--dark2);
+      border: 1px solid rgba(212, 168, 67, 0.16);
+      padding: 36px 32px;
+    }
+
+    .bf-row {
+      margin-bottom: 16px;
+    }
+
+    .bf-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .bf-input,
+    .bf-select {
+      width: 100%;
+      background: var(--dark3);
+      border: 1px solid rgba(212, 168, 67, 0.16);
+      color: var(--cream);
+      padding: 13px 16px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .bf-input:focus,
+    .bf-select:focus {
+      border-color: rgba(201, 168, 76, 0.5);
+    }
+
+    .bf-select option {
+      background: var(--dark3);
+    }
+
+    .slots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .slot {
+      padding: 10px;
+      border: 1px solid rgba(212, 168, 67, 0.14);
+      font-size: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: var(--body);
+    }
+
+    .slot:hover,
+    .slot.sel {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    .book-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      color: #ffffff;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+
+    .book-btn:hover {
+      background: var(--gold-l);
+    }
+
+    /* UTILS */
+    .sec-label {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sec-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .sec-title em {
+      font-style: italic;
+      color: var(--gold-l);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.vis {
+      opacity: 1;
+      transform: none;
+    }
+
+    .d1 {
+      transition-delay: 0.1s;
+    }
+
+    .d2 {
+      transition-delay: 0.2s;
+    }
+
+    .d3 {
+      transition-delay: 0.3s;
+    }
+
+    @keyframes fu {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
         opacity: 1;
         transform: none;
       }
-      .d1 {
-        transition-delay: 0.1s;
-      }
-      .d2 {
-        transition-delay: 0.2s;
-      }
-      .d3 {
-        transition-delay: 0.3s;
-      }
-      @keyframes fu {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- NAV -->
-    <nav>
-      <div class="logo">Carini Group</div>
-      <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLang(this,'en')">🇺🇸 EN</button>
-        <button class="lang-btn" onclick="setLang(this,'it')">🇮🇹 IT</button>
-        <button class="lang-btn" onclick="setLang(this,'es')">🇪🇸 ES</button>
-      </div>
-    </nav>
+    }
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-left">
-        <div class="hero-eyebrow" data-en="International Investor Hub" data-it="Hub per Investitori Internazionali" data-es="Hub para Inversores Internacionales">International Investor Hub</div>
-        <h1 class="hero-h1">
-          <span data-en="New York City.<br>Your next <em>great investment.</em>" data-it="New York City.<br>Il tuo prossimo <em>grande investimento.</em>" data-es="Nueva York.<br>Tu próxima <em>gran inversión.</em>">New York City.<br />Your next <em>great investment.</em></span>
-        </h1>
-        <p
-          class="hero-p"
-          data-en="We've guided investors from Italy, Spain, and 30+ countries through the complexities of NYC real estate. Every tool you need — in your language."
-          data-it="Abbiamo guidato investitori dall'Italia, dalla Spagna e da oltre 30 paesi nella complessità del mercato immobiliare di New York. Ogni strumento necessario — nella tua lingua."
-          data-es="Hemos guiado a inversores de Italia, España y más de 30 países en el complejo mercado inmobiliario de Nueva York. Todas las herramientas que necesitas — en tu idioma."
-        >
-          We've guided investors from Italy, Spain, and 30+ countries through the complexities of NYC real estate. Every tool you need — in your language.
-        </p>
-        <div class="hero-flags">
-          <div class="flag-pill active-lang" onclick="setLang2(this,'en')">🇺🇸 United States</div>
-          <div class="flag-pill" onclick="setLang2(this,'it')">🇮🇹 Italia</div>
-          <div class="flag-pill" onclick="setLang2(this,'es')">🇪🇸 España</div>
-        </div>
-        <button class="hero-btn" data-en="Explore the Hub" data-it="Esplora il Hub" data-es="Explorar el Hub">Explore the Hub</button>
+    /* ── v2.0 MODERNIZATION OVERRIDES ── */
+
+    /* Nav bars */
+    nav {
+      background: rgba(6, 5, 10, 0.96) !important;
+      backdrop-filter: blur(28px) saturate(2) !important;
+      border-bottom-color: rgba(212, 168, 67, 0.28) !important;
+    }
+
+    .nav-logo {
+      color: #d4a843 !important;
+      letter-spacing: .10em !important;
+    }
+
+    .nav-links a {
+      color: rgba(240, 235, 224, 0.55) !important;
+      font-size: 11.5px;
+      letter-spacing: .05em;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #d4a843 !important;
+    }
+
+    /* Top bar in app pages */
+    .topbar {
+      background: rgba(6, 5, 10, 0.95) !important;
+      border-bottom-color: rgba(212, 168, 67, 0.22) !important;
+      backdrop-filter: blur(20px) !important;
+    }
+
+    .topbar-title {
+      color: #f5efe3 !important;
+      font-size: 18px !important;
+    }
+
+    /* Sidebar */
+    .sb {
+      background: #0d0c10 !important;
+      border-right-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .sb-head {
+      border-bottom-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .sb-logo {
+      color: #d4a843 !important;
+    }
+
+    .sb-sub {
+      color: rgba(240, 235, 224, 0.42) !important;
+    }
+
+    .sidebar {
+      background: #0d0c10 !important;
+      border-right-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    /* Cards */
+    .module-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .module-card .card-top {
+      border-bottom-color: rgba(212, 168, 67, 0.16) !important;
+    }
+
+    .module-card .card-name {
+      color: #f5efe3 !important;
+    }
+
+    .module-card .card-phase {
+      color: #d4a843 !important;
+    }
+
+    .module-card .card-desc {
+      color: rgba(240, 235, 224, 0.60) !important;
+    }
+
+    .module-card:hover {
+      border-color: #d4a843 !important;
+    }
+
+    /* Hero area */
+    .hero-title {
+      color: #f5efe3 !important;
+    }
+
+    .hero-sub {
+      color: rgba(240, 235, 224, 0.68) !important;
+    }
+
+    .hero-badge {
+      color: #d4a843 !important;
+      border-color: rgba(212, 168, 67, 0.30) !important;
+    }
+
+    .hero-stat-val {
+      color: #d4a843 !important;
+    }
+
+    .hero-stat-label {
+      color: rgba(240, 235, 224, 0.55) !important;
+    }
+
+    .hero-divider {
+      background: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    /* Section labels */
+    .section-label {
+      color: #d4a843 !important;
+    }
+
+    .section-title {
+      color: #f5efe3 !important;
+    }
+
+    .section-sub {
+      color: rgba(240, 235, 224, 0.60) !important;
+    }
+
+    /* KPI tiles */
+    .kpi {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    .kpi-val {
+      color: #d4a843 !important;
+    }
+
+    .kpi-lbl {
+      color: rgba(240, 235, 224, 0.55) !important;
+    }
+
+    .kpi-delta {
+      font-size: 10px !important;
+    }
+
+    .delta-up {
+      color: #3fd68a !important;
+    }
+
+    .delta-down {
+      color: #f05252 !important;
+    }
+
+    /* Panels */
+    .panel {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .panel-header,
+    .ph {
+      border-bottom-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .panel-title,
+    .ph-title {
+      color: #f5efe3 !important;
+    }
+
+    .s-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .s-card-head {
+      border-bottom-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .s-card-title {
+      color: #f5efe3 !important;
+      font-weight: 500 !important;
+    }
+
+    /* Pills & tags */
+    .pill-g {
+      background: rgba(63, 214, 138, 0.14) !important;
+      color: #3fd68a !important;
+      border-color: rgba(63, 214, 138, 0.28) !important;
+    }
+
+    .pill-b {
+      background: rgba(77, 200, 255, 0.13) !important;
+      color: #4dc8ff !important;
+      border-color: rgba(77, 200, 255, 0.28) !important;
+    }
+
+    .pill-r {
+      background: rgba(240, 82, 82, 0.14) !important;
+      color: #f05252 !important;
+      border-color: rgba(240, 82, 82, 0.28) !important;
+    }
+
+    .pill-y {
+      background: rgba(245, 166, 35, 0.14) !important;
+      color: #f5a623 !important;
+      border-color: rgba(245, 166, 35, 0.28) !important;
+    }
+
+    .pill-a {
+      background: rgba(232, 178, 74, 0.13) !important;
+      color: #e8b24a !important;
+    }
+
+    /* Table */
+    .data-table th {
+      color: rgba(240, 235, 224, 0.50) !important;
+      letter-spacing: .10em !important;
+    }
+
+    .data-table td {
+      color: #f0ebe0 !important;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(212, 168, 67, 0.06) !important;
+    }
+
+    /* Build bar (index page) */
+    .build-bar {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .build-pct {
+      color: #d4a843 !important;
+    }
+
+    .build-fill {
+      background: linear-gradient(90deg, #d4a843, #f0c55a) !important;
+    }
+
+    /* Flow dots */
+    .flow-dot {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.28) !important;
+    }
+
+    .flow-dot.gold {
+      border-color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .flow-dot:hover {
+      border-color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.16) !important;
+    }
+
+    .flow-step-name {
+      color: rgba(240, 235, 224, 0.58) !important;
+    }
+
+    .flow-step-name strong {
+      color: #f0ebe0 !important;
+    }
+
+    /* Topbar actions */
+    .ph-action,
+    .panel-action {
+      color: rgba(240, 235, 224, 0.55) !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+      font-size: 11px !important;
+    }
+
+    .ph-action:hover,
+    .panel-action:hover {
+      color: #d4a843 !important;
+      border-color: #d4a843 !important;
+    }
+
+    /* Footer */
+    footer {
+      border-top-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .footer-logo {
+      color: #d4a843 !important;
+    }
+
+    .footer-note {
+      color: rgba(240, 235, 224, 0.38) !important;
+    }
+
+    .footer-links a {
+      color: rgba(240, 235, 224, 0.45) !important;
+    }
+
+    .footer-links a:hover {
+      color: #d4a843 !important;
+    }
+
+
+    /* ── INTERNATIONAL HUB ENHANCEMENTS ── */
+    .lang-pill {
+      color: rgba(240, 235, 224, 0.55) !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .lang-pill.active {
+      background: rgba(212, 168, 67, 0.14) !important;
+      border-color: #d4a843 !important;
+      color: #d4a843 !important;
+    }
+
+    .calc-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    .calc-label {
+      color: rgba(240, 235, 224, 0.65) !important;
+    }
+
+    .calc-val {
+      color: #d4a843 !important;
+    }
+
+    .accordion-item {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .accordion-title {
+      color: #f0ebe0 !important;
+    }
+
+    .accordion-body {
+      color: rgba(240, 235, 224, 0.70) !important;
+    }
+
+    .globe-wrap {
+      filter: drop-shadow(0 0 40px rgba(212, 168, 67, 0.12));
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/shared.js" defer></script>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Carini Group</div>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang(this,'en')">🇺🇸 EN</button>
+      <button class="lang-btn" onclick="setLang(this,'it')">🇮🇹 IT</button>
+      <button class="lang-btn" onclick="setLang(this,'es')">🇪🇸 ES</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-left">
+      <div class="hero-eyebrow" data-en="International Investor Hub" data-it="Hub per Investitori Internazionali"
+        data-es="Hub para Inversores Internacionales">International Investor Hub</div>
+      <h1 class="hero-h1">
+        <span data-en="New York City.<br>Your next <em>great investment.</em>"
+          data-it="New York City.<br>Il tuo prossimo <em>grande investimento.</em>"
+          data-es="Nueva York.<br>Tu próxima <em>gran inversión.</em>">New York City.<br />Your next <em>great
+            investment.</em></span>
+      </h1>
+      <p class="hero-p"
+        data-en="We've guided investors from Italy, Spain, and 30+ countries through the complexities of NYC real estate. Every tool you need — in your language."
+        data-it="Abbiamo guidato investitori dall'Italia, dalla Spagna e da oltre 30 paesi nella complessità del mercato immobiliare di New York. Ogni strumento necessario — nella tua lingua."
+        data-es="Hemos guiado a inversores de Italia, España y más de 30 países en el complejo mercado inmobiliario de Nueva York. Todas las herramientas que necesitas — en tu idioma.">
+        We've guided investors from Italy, Spain, and 30+ countries through the complexities of NYC real estate. Every
+        tool you need — in your language.
+      </p>
+      <div class="hero-flags">
+        <div class="flag-pill active-lang" onclick="setLang2(this,'en')">🇺🇸 United States</div>
+        <div class="flag-pill" onclick="setLang2(this,'it')">🇮🇹 Italia</div>
+        <div class="flag-pill" onclick="setLang2(this,'es')">🇪🇸 España</div>
       </div>
-      <div class="hero-right">
-        <div class="globe-wrap">
-          <div class="globe">
-            <div class="globe-ring gr1"></div>
-            <div class="globe-ring gr2"></div>
-            <div class="globe-ring gr3"></div>
-            <div class="globe-ring gr4"></div>
-            <div class="globe-dot gd-it"></div>
-            <div class="globe-dot gd-es"></div>
-            <div class="globe-dot gd-nyc"></div>
-            <svg class="globe-svg" viewBox="0 0 320 320">
-              <path class="conn-line" d="M105 90 C 160 90, 180 137, 218 135" />
-              <path class="conn-line" d="M71 116 C 120 110, 160 130, 218 135" style="animation-delay: 0.5s" />
-            </svg>
+      <button class="hero-btn" data-en="Explore the Hub" data-it="Esplora il Hub" data-es="Explorar el Hub">Explore the
+        Hub</button>
+    </div>
+    <div class="hero-right">
+      <div class="globe-wrap">
+        <div class="globe">
+          <div class="globe-ring gr1"></div>
+          <div class="globe-ring gr2"></div>
+          <div class="globe-ring gr3"></div>
+          <div class="globe-ring gr4"></div>
+          <div class="globe-dot gd-it"></div>
+          <div class="globe-dot gd-es"></div>
+          <div class="globe-dot gd-nyc"></div>
+          <svg class="globe-svg" viewBox="0 0 320 320">
+            <path class="conn-line" d="M105 90 C 160 90, 180 137, 218 135" />
+            <path class="conn-line" d="M71 116 C 120 110, 160 130, 218 135" style="animation-delay: 0.5s" />
+          </svg>
+        </div>
+        <div class="globe-label gl-it">🇮🇹 Milano</div>
+        <div class="globe-label gl-es">🇪🇸 Madrid</div>
+        <div class="globe-label gl-nyc">🗽 New York</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <div class="content">
+    <section class="tools">
+      <div class="sec-label reveal" data-en="Financial Tools" data-it="Strumenti Finanziari"
+        data-es="Herramientas Financieras">Financial Tools</div>
+      <h2 class="sec-title reveal d1" data-en="Remove every <em>friction point</em><br>before the first call."
+        data-it="Elimina ogni <em>punto di attrito</em><br>prima della prima chiamata."
+        data-es="Elimina cada <em>punto de fricción</em><br>antes de la primera llamada.">Remove every <em>friction
+          point</em><br />before the first call.</h2>
+
+      <div class="tools-grid">
+        <!-- CALCULATOR -->
+        <div class="tool-panel reveal">
+          <div class="tool-label" data-en="Currency & ROI Calculator" data-it="Calcolatore Valuta & ROI"
+            data-es="Calculadora de Divisa & ROI">Currency & ROI Calculator</div>
+          <div class="tool-h" data-en="Your investment in real numbers" data-it="Il tuo investimento in numeri reali"
+            data-es="Tu inversión en números reales">Your investment in real numbers</div>
+          <p class="tool-sub" data-en="Enter your budget in EUR. See your potential NYC returns instantly."
+            data-it="Inserisci il tuo budget in EUR. Vedi immediatamente i tuoi potenziali rendimenti a NYC."
+            data-es="Ingresa tu presupuesto en EUR. Ve al instante tus posibles retornos en Nueva York.">Enter your
+            budget in EUR. See your potential NYC returns instantly.</p>
+
+          <div class="calc-row">
+            <div class="calc-label" data-en="Your Budget" data-it="Il Tuo Budget" data-es="Tu Presupuesto">Your Budget
+            </div>
+            <div class="calc-input-wrap">
+              <div class="calc-prefix" id="currency-prefix">€</div>
+              <input class="calc-input" id="budget-input" type="number" value="2000000" oninput="calcROI()" />
+            </div>
+            <input class="calc-slider" type="range" id="budget-slider" min="500000" max="20000000" step="100000"
+              value="2000000" oninput="syncSlider(this)" />
           </div>
-          <div class="globe-label gl-it">🇮🇹 Milano</div>
-          <div class="globe-label gl-es">🇪🇸 Madrid</div>
-          <div class="globe-label gl-nyc">🗽 New York</div>
+
+          <div class="calc-row">
+            <div class="calc-label" data-en="Home Currency" data-it="Valuta di Origine" data-es="Moneda de Origen">Home
+              Currency</div>
+            <select class="calc-select" id="currency-select" onchange="calcROI()">
+              <option value="EUR" data-rate="1.09" data-sym="€">Euro (EUR)</option>
+              <option value="GBP" data-rate="1.27" data-sym="£">British Pound (GBP)</option>
+              <option value="CHF" data-rate="1.12" data-sym="₣">Swiss Franc (CHF)</option>
+              <option value="AED" data-rate="0.272" data-sym="د.إ">UAE Dirham (AED)</option>
+              <option value="CNY" data-rate="0.138" data-sym="¥">Chinese Yuan (CNY)</option>
+            </select>
+          </div>
+
+          <div class="calc-row">
+            <div class="calc-label" data-en="Neighborhood / Yield Profile" data-it="Quartiere / Profilo di Rendimento"
+              data-es="Vecindario / Perfil de Rentabilidad">Neighborhood / Yield Profile</div>
+            <select class="calc-select" id="yield-select" onchange="calcROI()">
+              <option value="4.2">Midtown / Park Avenue (4.2%)</option>
+              <option value="4.8">Tribeca / Soho (4.8%)</option>
+              <option value="5.4">Brooklyn Heights / DUMBO (5.4%)</option>
+              <option value="5.9">Long Island City / Astoria (5.9%)</option>
+              <option value="6.2">Williamsburg / Bushwick (6.2%)</option>
+            </select>
+          </div>
+
+          <div class="calc-result" id="calc-output">
+            <div class="cr-row"><span data-en="Exchange Rate" data-it="Tasso di cambio"
+                data-es="Tipo de cambio">Exchange Rate</span><span id="rate-out">1 EUR = 1.09 USD</span></div>
+            <div class="cr-row"><span data-en="USD Equivalent" data-it="Equivalente USD" data-es="Equivalente USD">USD
+                Equivalent</span><span id="usd-out">$2,180,000</span></div>
+            <div class="cr-row"><span data-en="Est. Property Value Range" data-it="Range di Valore Stimato"
+                data-es="Rango de Valor Estimado">Est. Property Value Range</span><span id="prop-out">$1.9M –
+                $2.5M</span></div>
+            <div class="cr-row"><span data-en="Annual Gross Yield" data-it="Rendimento Lordo Annuale"
+                data-es="Rendimiento Bruto Anual">Annual Gross Yield</span><span id="yield-out">4.2%</span></div>
+            <div class="cr-row"><span data-en="Projected Annual Income" data-it="Reddito Annuale Previsto"
+                data-es="Ingresos Anuales Proyectados">Projected Annual Income</span><span
+                id="income-out">$91,560</span></div>
+            <div class="cr-row" style="border-top: 1px solid rgba(212, 168, 67, 0.16); margin-top: 8px"><span
+                data-en="5-Year Wealth Growth (est.)" data-it="Crescita Patrimoniale 5 anni (stimata)"
+                data-es="Crecimiento de Patrimonio 5 años (est.)">5-Year Wealth Growth (est.)</span><span
+                id="growth-out">$2,849,720</span></div>
+          </div>
+        </div>
+
+        <!-- 1031 TOOL -->
+        <div class="tool-panel reveal d1">
+          <div class="tool-label" data-en="1031 Exchange Guide" data-it="Guida al 1031 Exchange"
+            data-es="Guía del 1031 Exchange">1031 Exchange Guide</div>
+          <div class="tool-h" data-en="Defer taxes. Grow faster." data-it="Differisci le tasse. Cresci più velocemente."
+            data-es="Difiere impuestos. Crece más rápido.">Defer taxes. Grow faster.</div>
+          <p class="tool-sub"
+            data-en="The 1031 Exchange allows you to defer capital gains taxes when reinvesting proceeds into a new property. Step-by-step, for international investors."
+            data-it="Il 1031 Exchange consente di differire le imposte sulle plusvalenze reinvestendo i proventi in una nuova proprietà. Passo dopo passo, per investitori internazionali."
+            data-es="El 1031 Exchange le permite diferir el impuesto sobre las ganancias de capital al reinvertir los ingresos en una nueva propiedad. Paso a paso, para inversores internacionales.">
+            The 1031 Exchange allows you to defer capital gains taxes when reinvesting proceeds into a new property.
+            Step-by-step, for international investors.
+          </p>
+
+          <div class="steps-1031">
+            <div class="s1031 open" onclick="toggle1031(this)">
+              <div class="s1031-num">1</div>
+              <div class="s1031-content">
+                <div class="s1031-title" data-en="Sell Your Relinquished Property" data-it="Vendi la Proprietà Ceduta"
+                  data-es="Vende tu Propiedad Cedida">Sell Your Relinquished Property</div>
+                <div class="s1031-desc"
+                  data-en="Close on your existing investment property. The sale proceeds are held by a Qualified Intermediary (QI) — never touching your hands to maintain tax-deferred status."
+                  data-it="Chiudi sulla tua proprietà di investimento esistente. I proventi sono detenuti da un Intermediario Qualificato — senza mai passare per le tue mani."
+                  data-es="Cierra tu propiedad de inversión existente. Los ingresos los retiene un Intermediario Calificado — sin pasar por tus manos para mantener el estado de diferimiento fiscal.">
+                  Close on your existing investment property. The sale proceeds are held by a Qualified Intermediary
+                  (QI) — never touching your hands to maintain tax-deferred status.
+                </div>
+                <div class="s1031-time">⏱ Day 0 — Begin identification clock</div>
+              </div>
+            </div>
+            <div class="s1031" onclick="toggle1031(this)">
+              <div class="s1031-num">2</div>
+              <div class="s1031-content">
+                <div class="s1031-title" data-en="Identify Replacement Property"
+                  data-it="Identifica la Proprietà Sostitutiva" data-es="Identifica la Propiedad de Reemplazo">Identify
+                  Replacement Property</div>
+                <div class="s1031-desc"
+                  data-en="You have 45 days to formally identify up to 3 replacement properties in writing. Carini Group's network gives you access to pre-market NYC opportunities within this window."
+                  data-it="Hai 45 giorni per identificare formalmente fino a 3 proprietà sostitutive per iscritto. La rete di Carini Group ti dà accesso a opportunità pre-mercato a NYC entro questo periodo."
+                  data-es="Tienes 45 días para identificar formalmente hasta 3 propiedades de reemplazo por escrito. La red de Carini Group te da acceso a oportunidades pre-mercado en NYC dentro de este plazo.">
+                  You have 45 days to formally identify up to 3 replacement properties in writing. Carini Group's
+                  network gives you access to pre-market NYC opportunities within this window.
+                </div>
+                <div class="s1031-time">⏱ Day 1–45 — Identification period</div>
+              </div>
+            </div>
+            <div class="s1031" onclick="toggle1031(this)">
+              <div class="s1031-num">3</div>
+              <div class="s1031-content">
+                <div class="s1031-title" data-en="Close on the Replacement Property"
+                  data-it="Chiudi sulla Proprietà Sostitutiva" data-es="Cierra la Propiedad de Reemplazo">Close on the
+                  Replacement Property</div>
+                <div class="s1031-desc"
+                  data-en="Complete the purchase of your replacement property within 180 days of the original sale. The QI transfers funds directly to the closing. You defer 100% of capital gains."
+                  data-it="Completa l'acquisto della tua proprietà sostitutiva entro 180 giorni dalla vendita originale. Il QI trasferisce i fondi direttamente alla chiusura. Differisci il 100% delle plusvalenze."
+                  data-es="Completa la compra de tu propiedad de reemplazo dentro de los 180 días posteriores a la venta original. El QI transfiere los fondos directamente al cierre. Diferís el 100% de las ganancias de capital.">
+                  Complete the purchase of your replacement property within 180 days of the original sale. The QI
+                  transfers funds directly to the closing. You defer 100% of capital gains.
+                </div>
+                <div class="s1031-time">⏱ Day 46–180 — Exchange window</div>
+              </div>
+            </div>
+            <div class="s1031" onclick="toggle1031(this)">
+              <div class="s1031-num">4</div>
+              <div class="s1031-content">
+                <div class="s1031-title" data-en="Report & Grow Tax-Free" data-it="Dichiara e Cresci Esentasse"
+                  data-es="Declara y Crece Libre de Impuestos">Report & Grow Tax-Free</div>
+                <div class="s1031-desc"
+                  data-en="File IRS Form 8824 with your tax return. Your capital gains are deferred — not eliminated, but rolled into the new asset, compounding your wealth without a tax drag."
+                  data-it="Presenta il Modulo IRS 8824 con la tua dichiarazione dei redditi. Le plusvalenze sono differite — non eliminate, ma reinvestite nel nuovo asset."
+                  data-es="Presenta el Formulario IRS 8824 con tu declaración de impuestos. Las ganancias de capital se difieren — no se eliminan, sino que se transfieren al nuevo activo.">
+                  File IRS Form 8824 with your tax return. Your capital gains are deferred — not eliminated, but rolled
+                  into the new asset, compounding your wealth without a tax drag.
+                </div>
+                <div class="s1031-time">⏱ Tax filing season — Complete exchange</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- TOOLS -->
-    <div class="content">
-      <section class="tools">
-        <div class="sec-label reveal" data-en="Financial Tools" data-it="Strumenti Finanziari" data-es="Herramientas Financieras">Financial Tools</div>
-        <h2 class="sec-title reveal d1" data-en="Remove every <em>friction point</em><br>before the first call." data-it="Elimina ogni <em>punto di attrito</em><br>prima della prima chiamata." data-es="Elimina cada <em>punto de fricción</em><br>antes de la primera llamada.">Remove every <em>friction point</em><br />before the first call.</h2>
+    <!-- CHECKLIST -->
+    <section class="checklist-section">
+      <div class="sec-label reveal" data-en="Fund Requirements" data-it="Requisiti di Finanziamento"
+        data-es="Requisitos de Financiación">Fund Requirements</div>
+      <h2 class="sec-title reveal d1" data-en="What you need to prepare<br><em>before you buy.</em>"
+        data-it="Cosa devi preparare<br><em>prima di acquistare.</em>"
+        data-es="Lo que necesitas preparar<br><em>antes de comprar.</em>">What you need to prepare<br /><em>before you
+          buy.</em></h2>
 
-        <div class="tools-grid">
-          <!-- CALCULATOR -->
-          <div class="tool-panel reveal">
-            <div class="tool-label" data-en="Currency & ROI Calculator" data-it="Calcolatore Valuta & ROI" data-es="Calculadora de Divisa & ROI">Currency & ROI Calculator</div>
-            <div class="tool-h" data-en="Your investment in real numbers" data-it="Il tuo investimento in numeri reali" data-es="Tu inversión en números reales">Your investment in real numbers</div>
-            <p class="tool-sub" data-en="Enter your budget in EUR. See your potential NYC returns instantly." data-it="Inserisci il tuo budget in EUR. Vedi immediatamente i tuoi potenziali rendimenti a NYC." data-es="Ingresa tu presupuesto en EUR. Ve al instante tus posibles retornos en Nueva York.">Enter your budget in EUR. See your potential NYC returns instantly.</p>
+      <div class="checklist-grid">
+        <div class="cl-card reveal">
+          <div class="cl-title"><span class="cl-flag">🇮🇹</span> <span data-en="Italian Investor Checklist"
+              data-it="Checklist per Investitore Italiano" data-es="Checklist para Inversor Italiano">Italian Investor
+              Checklist</span></div>
+          <ul class="cl-items">
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="Valid passport + codice fiscale" data-it="Passaporto valido + codice fiscale"
+                data-es="Pasaporte válido + codice fiscale">Valid passport + codice fiscale</span>
+            </li>
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="3 years Italian tax returns (CUD / 730)"
+                data-it="3 anni di dichiarazioni dei redditi italiane (CUD / 730)"
+                data-es="3 años de declaraciones de renta italianas (CUD / 730)">3 years Italian tax returns (CUD /
+                730)</span>
+            </li>
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="Bank statements: 3–6 months (all accounts)"
+                data-it="Estratti conto bancari: 3–6 mesi (tutti i conti)"
+                data-es="Estados de cuenta bancarios: 3–6 meses (todas las cuentas)">Bank statements: 3–6 months (all
+                accounts)</span>
+            </li>
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="Proof of funds source (letter from Italian bank)"
+                data-it="Prova della provenienza dei fondi (lettera dalla banca italiana)"
+                data-es="Prueba del origen de fondos (carta del banco italiano)">Proof of funds source (letter from
+                Italian bank)</span>
+            </li>
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="ITIN (Individual Taxpayer ID) — Carini assists"
+                data-it="ITIN (Codice Fiscale USA) — Carini Group assiste"
+                data-es="ITIN (ID de Contribuyente Individual) — Carini asiste">ITIN (Individual Taxpayer ID) — Carini
+                assists</span>
+            </li>
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="Employer letter or business ownership proof"
+                data-it="Lettera del datore di lavoro o prova di proprietà aziendale"
+                data-es="Carta del empleador o prueba de propiedad empresarial">Employer letter or business ownership
+                proof</span>
+            </li>
+          </ul>
+          <div class="cl-dl" data-en="↓ Download Italian Checklist (PDF)" data-it="↓ Scarica Checklist Italiana (PDF)"
+            data-es="↓ Descargar Lista Italiana (PDF)">↓ Download Italian Checklist (PDF)</div>
+        </div>
+        <div class="cl-card reveal d1">
+          <div class="cl-title"><span class="cl-flag">🇪🇸</span> <span data-en="Spanish Investor Checklist"
+              data-it="Checklist per Investitore Spagnolo" data-es="Checklist para Inversor Español">Spanish Investor
+              Checklist</span></div>
+          <ul class="cl-items">
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="Valid passport + NIE number" data-it="Passaporto valido + numero NIE"
+                data-es="Pasaporte válido + número NIE">Valid passport + NIE number</span>
+            </li>
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="3 years Spanish tax returns (Declaración de IRPF)"
+                data-it="3 anni di dichiarazioni dei redditi spagnole (IRPF)"
+                data-es="3 años de declaraciones de renta españolas (IRPF)">3 years Spanish tax returns (Declaración de
+                IRPF)</span>
+            </li>
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="Spanish bank statements: 3–6 months" data-it="Estratti conto bancari spagnoli: 3–6 mesi"
+                data-es="Estados de cuenta bancarios españoles: 3–6 meses">Spanish bank statements: 3–6 months</span>
+            </li>
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="Proof of funds + origin declaration" data-it="Prova dei fondi + dichiarazione di origine"
+                data-es="Prueba de fondos + declaración de origen">Proof of funds + origin declaration</span>
+            </li>
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="ITIN (Individual Taxpayer ID) — Carini assists"
+                data-it="ITIN (Codice Fiscale USA) — Carini Group assiste"
+                data-es="ITIN (ID de Contribuyente) — Carini asiste">ITIN (Individual Taxpayer ID) — Carini
+                assists</span>
+            </li>
+            <li>
+              <div class="cl-check" onclick="toggleCheck(this)">✓</div>
+              <span data-en="Property registration / ownership proof"
+                data-it="Registrazione immobiliare / prova di proprietà"
+                data-es="Registro de propiedad / prueba de titularidad">Property registration / ownership proof</span>
+            </li>
+          </ul>
+          <div class="cl-dl" data-en="↓ Download Spanish Checklist (PDF)" data-it="↓ Scarica Checklist Spagnola (PDF)"
+            data-es="↓ Descargar Lista Española (PDF)">↓ Download Spanish Checklist (PDF)</div>
+        </div>
+      </div>
+    </section>
 
-            <div class="calc-row">
-              <div class="calc-label" data-en="Your Budget" data-it="Il Tuo Budget" data-es="Tu Presupuesto">Your Budget</div>
-              <div class="calc-input-wrap">
-                <div class="calc-prefix" id="currency-prefix">€</div>
-                <input class="calc-input" id="budget-input" type="number" value="2000000" oninput="calcROI()" />
-              </div>
-              <input class="calc-slider" type="range" id="budget-slider" min="500000" max="20000000" step="100000" value="2000000" oninput="syncSlider(this)" />
+    <!-- BOOKING -->
+    <section class="booking-section">
+      <div class="sec-label reveal" data-en="International Consultation" data-it="Consulenza Internazionale"
+        data-es="Consulta Internacional">International Consultation</div>
+      <h2 class="sec-title reveal d1" data-en="Book a call in<br><em>your timezone.</em>"
+        data-it="Prenota una chiamata nel<br><em>tuo fuso orario.</em>"
+        data-es="Reserva una llamada en<br><em>tu zona horaria.</em>">Book a call in<br /><em>your timezone.</em></h2>
+      <div class="booking-inner" style="margin-top: 48px">
+        <div class="booking-info reveal">
+          <p style="font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--body); line-height: 1.7; margin-bottom: 28px"
+            data-en="Alex Carini conducts private consultations in English, Italian, and Spanish — scheduled around your local business hours."
+            data-it="Alex Carini conduce consulenze private in inglese, italiano e spagnolo — programmate secondo il tuo orario lavorativo locale."
+            data-es="Alex Carini realiza consultas privadas en inglés, italiano y español — programadas según tu horario laboral local.">
+            Alex Carini conducts private consultations in English, Italian, and Spanish — scheduled around your local
+            business hours.
+          </p>
+          <div class="tz-display">
+            <div class="tz-row"><span class="tz-city">🗽 New York (EST)</span><span class="tz-time" id="tz-nyc">—</span>
             </div>
-
-            <div class="calc-row">
-              <div class="calc-label" data-en="Home Currency" data-it="Valuta di Origine" data-es="Moneda de Origen">Home Currency</div>
-              <select class="calc-select" id="currency-select" onchange="calcROI()">
-                <option value="EUR" data-rate="1.09" data-sym="€">Euro (EUR)</option>
-                <option value="GBP" data-rate="1.27" data-sym="£">British Pound (GBP)</option>
-                <option value="CHF" data-rate="1.12" data-sym="₣">Swiss Franc (CHF)</option>
-                <option value="AED" data-rate="0.272" data-sym="د.إ">UAE Dirham (AED)</option>
-                <option value="CNY" data-rate="0.138" data-sym="¥">Chinese Yuan (CNY)</option>
-              </select>
+            <div class="tz-divider"></div>
+            <div class="tz-row"><span class="tz-city">🇮🇹 Milan (CET)</span><span class="tz-time" id="tz-mil">—</span>
             </div>
-
-            <div class="calc-row">
-              <div class="calc-label" data-en="Neighborhood / Yield Profile" data-it="Quartiere / Profilo di Rendimento" data-es="Vecindario / Perfil de Rentabilidad">Neighborhood / Yield Profile</div>
-              <select class="calc-select" id="yield-select" onchange="calcROI()">
-                <option value="4.2">Midtown / Park Avenue (4.2%)</option>
-                <option value="4.8">Tribeca / Soho (4.8%)</option>
-                <option value="5.4">Brooklyn Heights / DUMBO (5.4%)</option>
-                <option value="5.9">Long Island City / Astoria (5.9%)</option>
-                <option value="6.2">Williamsburg / Bushwick (6.2%)</option>
-              </select>
-            </div>
-
-            <div class="calc-result" id="calc-output">
-              <div class="cr-row"><span data-en="Exchange Rate" data-it="Tasso di cambio" data-es="Tipo de cambio">Exchange Rate</span><span id="rate-out">1 EUR = 1.09 USD</span></div>
-              <div class="cr-row"><span data-en="USD Equivalent" data-it="Equivalente USD" data-es="Equivalente USD">USD Equivalent</span><span id="usd-out">$2,180,000</span></div>
-              <div class="cr-row"><span data-en="Est. Property Value Range" data-it="Range di Valore Stimato" data-es="Rango de Valor Estimado">Est. Property Value Range</span><span id="prop-out">$1.9M – $2.5M</span></div>
-              <div class="cr-row"><span data-en="Annual Gross Yield" data-it="Rendimento Lordo Annuale" data-es="Rendimiento Bruto Anual">Annual Gross Yield</span><span id="yield-out">4.2%</span></div>
-              <div class="cr-row"><span data-en="Projected Annual Income" data-it="Reddito Annuale Previsto" data-es="Ingresos Anuales Proyectados">Projected Annual Income</span><span id="income-out">$91,560</span></div>
-              <div class="cr-row" style="border-top: 1px solid rgba(201, 168, 76, 0.15); margin-top: 8px"><span data-en="5-Year Wealth Growth (est.)" data-it="Crescita Patrimoniale 5 anni (stimata)" data-es="Crecimiento de Patrimonio 5 años (est.)">5-Year Wealth Growth (est.)</span><span id="growth-out">$2,849,720</span></div>
-            </div>
-          </div>
-
-          <!-- 1031 TOOL -->
-          <div class="tool-panel reveal d1">
-            <div class="tool-label" data-en="1031 Exchange Guide" data-it="Guida al 1031 Exchange" data-es="Guía del 1031 Exchange">1031 Exchange Guide</div>
-            <div class="tool-h" data-en="Defer taxes. Grow faster." data-it="Differisci le tasse. Cresci più velocemente." data-es="Difiere impuestos. Crece más rápido.">Defer taxes. Grow faster.</div>
-            <p
-              class="tool-sub"
-              data-en="The 1031 Exchange allows you to defer capital gains taxes when reinvesting proceeds into a new property. Step-by-step, for international investors."
-              data-it="Il 1031 Exchange consente di differire le imposte sulle plusvalenze reinvestendo i proventi in una nuova proprietà. Passo dopo passo, per investitori internazionali."
-              data-es="El 1031 Exchange le permite diferir el impuesto sobre las ganancias de capital al reinvertir los ingresos en una nueva propiedad. Paso a paso, para inversores internacionales."
-            >
-              The 1031 Exchange allows you to defer capital gains taxes when reinvesting proceeds into a new property. Step-by-step, for international investors.
-            </p>
-
-            <div class="steps-1031">
-              <div class="s1031 open" onclick="toggle1031(this)">
-                <div class="s1031-num">1</div>
-                <div class="s1031-content">
-                  <div class="s1031-title" data-en="Sell Your Relinquished Property" data-it="Vendi la Proprietà Ceduta" data-es="Vende tu Propiedad Cedida">Sell Your Relinquished Property</div>
-                  <div
-                    class="s1031-desc"
-                    data-en="Close on your existing investment property. The sale proceeds are held by a Qualified Intermediary (QI) — never touching your hands to maintain tax-deferred status."
-                    data-it="Chiudi sulla tua proprietà di investimento esistente. I proventi sono detenuti da un Intermediario Qualificato — senza mai passare per le tue mani."
-                    data-es="Cierra tu propiedad de inversión existente. Los ingresos los retiene un Intermediario Calificado — sin pasar por tus manos para mantener el estado de diferimiento fiscal."
-                  >
-                    Close on your existing investment property. The sale proceeds are held by a Qualified Intermediary (QI) — never touching your hands to maintain tax-deferred status.
-                  </div>
-                  <div class="s1031-time">⏱ Day 0 — Begin identification clock</div>
-                </div>
-              </div>
-              <div class="s1031" onclick="toggle1031(this)">
-                <div class="s1031-num">2</div>
-                <div class="s1031-content">
-                  <div class="s1031-title" data-en="Identify Replacement Property" data-it="Identifica la Proprietà Sostitutiva" data-es="Identifica la Propiedad de Reemplazo">Identify Replacement Property</div>
-                  <div
-                    class="s1031-desc"
-                    data-en="You have 45 days to formally identify up to 3 replacement properties in writing. Carini Group's network gives you access to pre-market NYC opportunities within this window."
-                    data-it="Hai 45 giorni per identificare formalmente fino a 3 proprietà sostitutive per iscritto. La rete di Carini Group ti dà accesso a opportunità pre-mercato a NYC entro questo periodo."
-                    data-es="Tienes 45 días para identificar formalmente hasta 3 propiedades de reemplazo por escrito. La red de Carini Group te da acceso a oportunidades pre-mercado en NYC dentro de este plazo."
-                  >
-                    You have 45 days to formally identify up to 3 replacement properties in writing. Carini Group's network gives you access to pre-market NYC opportunities within this window.
-                  </div>
-                  <div class="s1031-time">⏱ Day 1–45 — Identification period</div>
-                </div>
-              </div>
-              <div class="s1031" onclick="toggle1031(this)">
-                <div class="s1031-num">3</div>
-                <div class="s1031-content">
-                  <div class="s1031-title" data-en="Close on the Replacement Property" data-it="Chiudi sulla Proprietà Sostitutiva" data-es="Cierra la Propiedad de Reemplazo">Close on the Replacement Property</div>
-                  <div
-                    class="s1031-desc"
-                    data-en="Complete the purchase of your replacement property within 180 days of the original sale. The QI transfers funds directly to the closing. You defer 100% of capital gains."
-                    data-it="Completa l'acquisto della tua proprietà sostitutiva entro 180 giorni dalla vendita originale. Il QI trasferisce i fondi direttamente alla chiusura. Differisci il 100% delle plusvalenze."
-                    data-es="Completa la compra de tu propiedad de reemplazo dentro de los 180 días posteriores a la venta original. El QI transfiere los fondos directamente al cierre. Diferís el 100% de las ganancias de capital."
-                  >
-                    Complete the purchase of your replacement property within 180 days of the original sale. The QI transfers funds directly to the closing. You defer 100% of capital gains.
-                  </div>
-                  <div class="s1031-time">⏱ Day 46–180 — Exchange window</div>
-                </div>
-              </div>
-              <div class="s1031" onclick="toggle1031(this)">
-                <div class="s1031-num">4</div>
-                <div class="s1031-content">
-                  <div class="s1031-title" data-en="Report & Grow Tax-Free" data-it="Dichiara e Cresci Esentasse" data-es="Declara y Crece Libre de Impuestos">Report & Grow Tax-Free</div>
-                  <div
-                    class="s1031-desc"
-                    data-en="File IRS Form 8824 with your tax return. Your capital gains are deferred — not eliminated, but rolled into the new asset, compounding your wealth without a tax drag."
-                    data-it="Presenta il Modulo IRS 8824 con la tua dichiarazione dei redditi. Le plusvalenze sono differite — non eliminate, ma reinvestite nel nuovo asset."
-                    data-es="Presenta el Formulario IRS 8824 con tu declaración de impuestos. Las ganancias de capital se difieren — no se eliminan, sino que se transfieren al nuevo activo."
-                  >
-                    File IRS Form 8824 with your tax return. Your capital gains are deferred — not eliminated, but rolled into the new asset, compounding your wealth without a tax drag.
-                  </div>
-                  <div class="s1031-time">⏱ Tax filing season — Complete exchange</div>
-                </div>
-              </div>
+            <div class="tz-divider"></div>
+            <div class="tz-row"><span class="tz-city">🇪🇸 Madrid (CET)</span><span class="tz-time" id="tz-mad">—</span>
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- CHECKLIST -->
-      <section class="checklist-section">
-        <div class="sec-label reveal" data-en="Fund Requirements" data-it="Requisiti di Finanziamento" data-es="Requisitos de Financiación">Fund Requirements</div>
-        <h2 class="sec-title reveal d1" data-en="What you need to prepare<br><em>before you buy.</em>" data-it="Cosa devi preparare<br><em>prima di acquistare.</em>" data-es="Lo que necesitas preparar<br><em>antes de comprar.</em>">What you need to prepare<br /><em>before you buy.</em></h2>
-
-        <div class="checklist-grid">
-          <div class="cl-card reveal">
-            <div class="cl-title"><span class="cl-flag">🇮🇹</span> <span data-en="Italian Investor Checklist" data-it="Checklist per Investitore Italiano" data-es="Checklist para Inversor Italiano">Italian Investor Checklist</span></div>
-            <ul class="cl-items">
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="Valid passport + codice fiscale" data-it="Passaporto valido + codice fiscale" data-es="Pasaporte válido + codice fiscale">Valid passport + codice fiscale</span>
-              </li>
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="3 years Italian tax returns (CUD / 730)" data-it="3 anni di dichiarazioni dei redditi italiane (CUD / 730)" data-es="3 años de declaraciones de renta italianas (CUD / 730)">3 years Italian tax returns (CUD / 730)</span>
-              </li>
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="Bank statements: 3–6 months (all accounts)" data-it="Estratti conto bancari: 3–6 mesi (tutti i conti)" data-es="Estados de cuenta bancarios: 3–6 meses (todas las cuentas)">Bank statements: 3–6 months (all accounts)</span>
-              </li>
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="Proof of funds source (letter from Italian bank)" data-it="Prova della provenienza dei fondi (lettera dalla banca italiana)" data-es="Prueba del origen de fondos (carta del banco italiano)">Proof of funds source (letter from Italian bank)</span>
-              </li>
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="ITIN (Individual Taxpayer ID) — Carini assists" data-it="ITIN (Codice Fiscale USA) — Carini Group assiste" data-es="ITIN (ID de Contribuyente Individual) — Carini asiste">ITIN (Individual Taxpayer ID) — Carini assists</span>
-              </li>
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="Employer letter or business ownership proof" data-it="Lettera del datore di lavoro o prova di proprietà aziendale" data-es="Carta del empleador o prueba de propiedad empresarial">Employer letter or business ownership proof</span>
-              </li>
-            </ul>
-            <div class="cl-dl" data-en="↓ Download Italian Checklist (PDF)" data-it="↓ Scarica Checklist Italiana (PDF)" data-es="↓ Descargar Lista Italiana (PDF)">↓ Download Italian Checklist (PDF)</div>
+        <div class="booking-form reveal d1">
+          <div class="bf-row">
+            <div class="bf-label" data-en="Full Name" data-it="Nome Completo" data-es="Nombre Completo">Full Name</div>
+            <input class="bf-input" type="text" placeholder="Alessandro Rossi" />
           </div>
-          <div class="cl-card reveal d1">
-            <div class="cl-title"><span class="cl-flag">🇪🇸</span> <span data-en="Spanish Investor Checklist" data-it="Checklist per Investitore Spagnolo" data-es="Checklist para Inversor Español">Spanish Investor Checklist</span></div>
-            <ul class="cl-items">
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="Valid passport + NIE number" data-it="Passaporto valido + numero NIE" data-es="Pasaporte válido + número NIE">Valid passport + NIE number</span>
-              </li>
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="3 years Spanish tax returns (Declaración de IRPF)" data-it="3 anni di dichiarazioni dei redditi spagnole (IRPF)" data-es="3 años de declaraciones de renta españolas (IRPF)">3 years Spanish tax returns (Declaración de IRPF)</span>
-              </li>
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="Spanish bank statements: 3–6 months" data-it="Estratti conto bancari spagnoli: 3–6 mesi" data-es="Estados de cuenta bancarios españoles: 3–6 meses">Spanish bank statements: 3–6 months</span>
-              </li>
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="Proof of funds + origin declaration" data-it="Prova dei fondi + dichiarazione di origine" data-es="Prueba de fondos + declaración de origen">Proof of funds + origin declaration</span>
-              </li>
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="ITIN (Individual Taxpayer ID) — Carini assists" data-it="ITIN (Codice Fiscale USA) — Carini Group assiste" data-es="ITIN (ID de Contribuyente) — Carini asiste">ITIN (Individual Taxpayer ID) — Carini assists</span>
-              </li>
-              <li>
-                <div class="cl-check" onclick="toggleCheck(this)">✓</div>
-                <span data-en="Property registration / ownership proof" data-it="Registrazione immobiliare / prova di proprietà" data-es="Registro de propiedad / prueba de titularidad">Property registration / ownership proof</span>
-              </li>
-            </ul>
-            <div class="cl-dl" data-en="↓ Download Spanish Checklist (PDF)" data-it="↓ Scarica Checklist Spagnola (PDF)" data-es="↓ Descargar Lista Española (PDF)">↓ Download Spanish Checklist (PDF)</div>
+          <div class="bf-row">
+            <div class="bf-label" data-en="Email" data-it="Email" data-es="Email">Email</div>
+            <input class="bf-input" type="email" placeholder="your@email.com" />
           </div>
+          <div class="bf-row">
+            <div class="bf-label" data-en="Preferred Language" data-it="Lingua Preferita" data-es="Idioma Preferido">
+              Preferred Language</div>
+            <select class="bf-select">
+              <option data-en="English" data-it="Inglese" data-es="Inglés">English</option>
+              <option data-en="Italian" data-it="Italiano" data-es="Italiano">Italian</option>
+              <option data-en="Spanish" data-it="Spagnolo" data-es="Español">Spanish</option>
+            </select>
+          </div>
+          <div class="bf-row">
+            <div class="bf-label" data-en="Available Time Slots (NYC EST)" data-it="Fasce Orarie Disponibili (NYC EST)"
+              data-es="Horarios Disponibles (NYC EST)">Available Time Slots (NYC EST)</div>
+            <div class="slots">
+              <div class="slot" onclick="pickSlot(this)">Mon 9AM</div>
+              <div class="slot" onclick="pickSlot(this)">Mon 2PM</div>
+              <div class="slot" onclick="pickSlot(this)">Tue 10AM</div>
+              <div class="slot sel" onclick="pickSlot(this)">Tue 4PM</div>
+              <div class="slot" onclick="pickSlot(this)">Wed 9AM</div>
+              <div class="slot" onclick="pickSlot(this)">Thu 11AM</div>
+            </div>
+          </div>
+          <button class="book-btn" data-en="Book My Private Consultation" data-it="Prenota la Mia Consulenza Privata"
+            data-es="Reservar Mi Consulta Privada">Book My Private Consultation</button>
         </div>
-      </section>
+      </div>
+    </section>
+  </div>
 
-      <!-- BOOKING -->
-      <section class="booking-section">
-        <div class="sec-label reveal" data-en="International Consultation" data-it="Consulenza Internazionale" data-es="Consulta Internacional">International Consultation</div>
-        <h2 class="sec-title reveal d1" data-en="Book a call in<br><em>your timezone.</em>" data-it="Prenota una chiamata nel<br><em>tuo fuso orario.</em>" data-es="Reserva una llamada en<br><em>tu zona horaria.</em>">Book a call in<br /><em>your timezone.</em></h2>
-        <div class="booking-inner" style="margin-top: 48px">
-          <div class="booking-info reveal">
-            <p
-              style="font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--body); line-height: 1.7; margin-bottom: 28px"
-              data-en="Alex Carini conducts private consultations in English, Italian, and Spanish — scheduled around your local business hours."
-              data-it="Alex Carini conduce consulenze private in inglese, italiano e spagnolo — programmate secondo il tuo orario lavorativo locale."
-              data-es="Alex Carini realiza consultas privadas en inglés, italiano y español — programadas según tu horario laboral local."
-            >
-              Alex Carini conducts private consultations in English, Italian, and Spanish — scheduled around your local business hours.
-            </p>
-            <div class="tz-display">
-              <div class="tz-row"><span class="tz-city">🗽 New York (EST)</span><span class="tz-time" id="tz-nyc">—</span></div>
-              <div class="tz-divider"></div>
-              <div class="tz-row"><span class="tz-city">🇮🇹 Milan (CET)</span><span class="tz-time" id="tz-mil">—</span></div>
-              <div class="tz-divider"></div>
-              <div class="tz-row"><span class="tz-city">🇪🇸 Madrid (CET)</span><span class="tz-time" id="tz-mad">—</span></div>
-            </div>
-          </div>
-          <div class="booking-form reveal d1">
-            <div class="bf-row">
-              <div class="bf-label" data-en="Full Name" data-it="Nome Completo" data-es="Nombre Completo">Full Name</div>
-              <input class="bf-input" type="text" placeholder="Alessandro Rossi" />
-            </div>
-            <div class="bf-row">
-              <div class="bf-label" data-en="Email" data-it="Email" data-es="Email">Email</div>
-              <input class="bf-input" type="email" placeholder="your@email.com" />
-            </div>
-            <div class="bf-row">
-              <div class="bf-label" data-en="Preferred Language" data-it="Lingua Preferita" data-es="Idioma Preferido">Preferred Language</div>
-              <select class="bf-select">
-                <option data-en="English" data-it="Inglese" data-es="Inglés">English</option>
-                <option data-en="Italian" data-it="Italiano" data-es="Italiano">Italian</option>
-                <option data-en="Spanish" data-it="Spagnolo" data-es="Español">Spanish</option>
-              </select>
-            </div>
-            <div class="bf-row">
-              <div class="bf-label" data-en="Available Time Slots (NYC EST)" data-it="Fasce Orarie Disponibili (NYC EST)" data-es="Horarios Disponibles (NYC EST)">Available Time Slots (NYC EST)</div>
-              <div class="slots">
-                <div class="slot" onclick="pickSlot(this)">Mon 9AM</div>
-                <div class="slot" onclick="pickSlot(this)">Mon 2PM</div>
-                <div class="slot" onclick="pickSlot(this)">Tue 10AM</div>
-                <div class="slot sel" onclick="pickSlot(this)">Tue 4PM</div>
-                <div class="slot" onclick="pickSlot(this)">Wed 9AM</div>
-                <div class="slot" onclick="pickSlot(this)">Thu 11AM</div>
-              </div>
-            </div>
-            <button class="book-btn" data-en="Book My Private Consultation" data-it="Prenota la Mia Consulenza Privata" data-es="Reservar Mi Consulta Privada">Book My Private Consultation</button>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <script>
-      // Language system
-      let currentLang = 'en';
-      function setLang(btn, lang) {
-        document.querySelectorAll('.lang-btn').forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-        setLang2(null, lang);
+  <script>
+    // Language system
+    let currentLang = 'en';
+    function setLang(btn, lang) {
+      document.querySelectorAll('.lang-btn').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      setLang2(null, lang);
+    }
+    function setLang2(el, lang) {
+      currentLang = lang;
+      if (el) {
+        document.querySelectorAll('.flag-pill').forEach((f) => f.classList.remove('active-lang'));
+        el.classList.add('active-lang');
       }
-      function setLang2(el, lang) {
-        currentLang = lang;
-        if (el) {
-          document.querySelectorAll('.flag-pill').forEach((f) => f.classList.remove('active-lang'));
-          el.classList.add('active-lang');
-        }
-        document.querySelectorAll('[data-' + lang + ']').forEach((el) => {
-          const val = el.getAttribute('data-' + lang);
-          if (el.tagName === 'INPUT' || el.tagName === 'BUTTON') el.value = val;
-          else el.innerHTML = val;
-        });
-        calcROI();
-      }
-
-      // Calculator
-      function syncSlider(el) {
-        document.getElementById('budget-input').value = el.value;
-        updateSliderBg(el);
-        calcROI();
-      }
-      function updateSliderBg(el) {
-        const min = +el.min,
-          max = +el.max,
-          val = +el.value;
-        const pct = ((val - min) / (max - min)) * 100;
-        el.style.background = `linear-gradient(to right, var(--gold) 0%, var(--gold) ${pct}%, rgba(201,168,76,0.15) ${pct}%)`;
-      }
-      function calcROI() {
-        const budgetInput = document.getElementById('budget-input');
-        const slider = document.getElementById('budget-slider');
-        const budget = +budgetInput.value;
-        slider.value = budget;
-        updateSliderBg(slider);
-
-        const currSel = document.getElementById('currency-select');
-        const rate = +currSel.selectedOptions[0].dataset.rate;
-        const sym = currSel.selectedOptions[0].dataset.sym;
-        const yieldRate = +document.getElementById('yield-select').value / 100;
-
-        document.getElementById('currency-prefix').textContent = sym;
-        const usd = budget * rate;
-        const income = usd * yieldRate;
-        const growth5 = usd * Math.pow(1.085, 5);
-
-        document.getElementById('rate-out').textContent = `1 ${currSel.value} = ${rate} USD`;
-        document.getElementById('usd-out').textContent = '$' + fmt(usd);
-        document.getElementById('prop-out').textContent = '$' + fmt(usd * 0.87) + ' – $' + fmt(usd * 1.15);
-        document.getElementById('yield-out').textContent = (yieldRate * 100).toFixed(1) + '%';
-        document.getElementById('income-out').textContent = '$' + fmt(income);
-        document.getElementById('growth-out').textContent = '$' + fmt(growth5);
-      }
-      function fmt(n) {
-        if (n >= 1000000) return (n / 1000000).toFixed(2) + 'M';
-        return Math.round(n).toLocaleString();
-      }
-
-      // 1031 accordion
-      function toggle1031(el) {
-        const isOpen = el.classList.contains('open');
-        document.querySelectorAll('.s1031').forEach((s) => s.classList.remove('open'));
-        if (!isOpen) el.classList.add('open');
-      }
-
-      // Checklist
-      function toggleCheck(el) {
-        el.classList.toggle('done');
-      }
-
-      // Slots
-      function pickSlot(el) {
-        el.closest('.slots')
-          .querySelectorAll('.slot')
-          .forEach((s) => s.classList.remove('sel'));
-        el.classList.add('sel');
-      }
-
-      // Clock
-      function updateClocks() {
-        const now = new Date();
-        const opts = { hour: '2-digit', minute: '2-digit', hour12: true };
-        document.getElementById('tz-nyc').textContent = now.toLocaleTimeString('en-US', { ...opts, timeZone: 'America/New_York' });
-        document.getElementById('tz-mil').textContent = now.toLocaleTimeString('en-US', { ...opts, timeZone: 'Europe/Rome' });
-        document.getElementById('tz-mad').textContent = now.toLocaleTimeString('en-US', { ...opts, timeZone: 'Europe/Madrid' });
-      }
-      updateClocks();
-      setInterval(updateClocks, 1000);
-
-      // Scroll reveal
-      const obs = new IntersectionObserver(
-        (es) =>
-          es.forEach((e) => {
-            if (e.isIntersecting) e.target.classList.add('vis');
-          }),
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
-      );
-      document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
-
-      // Init calculator
+      document.querySelectorAll('[data-' + lang + ']').forEach((el) => {
+        const val = el.getAttribute('data-' + lang);
+        if (el.tagName === 'INPUT' || el.tagName === 'BUTTON') el.value = val;
+        else el.innerHTML = val;
+      });
       calcROI();
-    </script>
-  </body>
+    }
+
+    // Calculator
+    function syncSlider(el) {
+      document.getElementById('budget-input').value = el.value;
+      updateSliderBg(el);
+      calcROI();
+    }
+    function updateSliderBg(el) {
+      const min = +el.min,
+        max = +el.max,
+        val = +el.value;
+      const pct = ((val - min) / (max - min)) * 100;
+      el.style.background = `linear-gradient(to right, var(--gold) 0%, var(--gold) ${pct}%, rgba(212,168,67,0.16) ${pct}%)`;
+    }
+    function calcROI() {
+      const budgetInput = document.getElementById('budget-input');
+      const slider = document.getElementById('budget-slider');
+      const budget = +budgetInput.value;
+      slider.value = budget;
+      updateSliderBg(slider);
+
+      const currSel = document.getElementById('currency-select');
+      const rate = +currSel.selectedOptions[0].dataset.rate;
+      const sym = currSel.selectedOptions[0].dataset.sym;
+      const yieldRate = +document.getElementById('yield-select').value / 100;
+
+      document.getElementById('currency-prefix').textContent = sym;
+      const usd = budget * rate;
+      const income = usd * yieldRate;
+      const growth5 = usd * Math.pow(1.085, 5);
+
+      document.getElementById('rate-out').textContent = `1 ${currSel.value} = ${rate} USD`;
+      document.getElementById('usd-out').textContent = '$' + fmt(usd);
+      document.getElementById('prop-out').textContent = '$' + fmt(usd * 0.87) + ' – $' + fmt(usd * 1.15);
+      document.getElementById('yield-out').textContent = (yieldRate * 100).toFixed(1) + '%';
+      document.getElementById('income-out').textContent = '$' + fmt(income);
+      document.getElementById('growth-out').textContent = '$' + fmt(growth5);
+    }
+    function fmt(n) {
+      if (n >= 1000000) return (n / 1000000).toFixed(2) + 'M';
+      return Math.round(n).toLocaleString();
+    }
+
+    // 1031 accordion
+    function toggle1031(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.s1031').forEach((s) => s.classList.remove('open'));
+      if (!isOpen) el.classList.add('open');
+    }
+
+    // Checklist
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+    }
+
+    // Slots
+    function pickSlot(el) {
+      el.closest('.slots')
+        .querySelectorAll('.slot')
+        .forEach((s) => s.classList.remove('sel'));
+      el.classList.add('sel');
+    }
+
+    // Clock
+    function updateClocks() {
+      const now = new Date();
+      const opts = { hour: '2-digit', minute: '2-digit', hour12: true };
+      document.getElementById('tz-nyc').textContent = now.toLocaleTimeString('en-US', { ...opts, timeZone: 'America/New_York' });
+      document.getElementById('tz-mil').textContent = now.toLocaleTimeString('en-US', { ...opts, timeZone: 'Europe/Rome' });
+      document.getElementById('tz-mad').textContent = now.toLocaleTimeString('en-US', { ...opts, timeZone: 'Europe/Madrid' });
+    }
+    updateClocks();
+    setInterval(updateClocks, 1000);
+
+    // Scroll reveal
+    const obs = new IntersectionObserver(
+      (es) =>
+        es.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add('vis');
+        }),
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
+    );
+    document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
+
+    // Init calculator
+    calcROI();
+  </script>
+  </div>
+
+
+</body>
+
 </html>

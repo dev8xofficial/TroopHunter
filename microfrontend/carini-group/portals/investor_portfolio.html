@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carini Group — Investor Portfolio & Analytics</title>
+
+
+  <style>
+    :root {
+      --dark: #ffffff;
+      --dark2: #f8f7f5;
+      --dark3: #f1efeb;
+      --dark4: #e8e4de;
+      --dark5: #ddd8d0;
+
+      --gold: #c49a2e;
+      --gold-light: #d4a843;
+      --gold-l: #d4a843;
+      --gold-soft: #b08a24;
+      --gold-dim: rgba(196, 154, 46, 0.10);
+      --gold-glow: rgba(196, 154, 46, 0.16);
+
+      --cream: #1a1510;
+      --text: #1a1510;
+      --text-muted: rgba(26, 21, 16, 0.60);
+      --muted: rgba(26, 21, 16, 0.46);
+      --body: rgba(26, 21, 16, 0.74);
+
+      --border: rgba(212, 168, 67, 0.26);
+      --border-soft: rgba(212, 168, 67, 0.14);
+      --border-hard: rgba(212, 168, 67, 0.48);
+
+      --success: #3fd68a;
+      --success-dim: rgba(63, 214, 138, 0.14);
+      --warn: #f5a623;
+      --warn-dim: rgba(245, 166, 35, 0.14);
+      --danger: #f05252;
+      --danger-dim: rgba(240, 82, 82, 0.14);
+      --blue: #4dc8ff;
+      --blue-dim: rgba(77, 200, 255, 0.13);
+      --green: #4dd98a;
+      --green-dim: rgba(77, 217, 138, 0.13);
+      --red: #f06060;
+      --red-dim: rgba(240, 96, 96, 0.13);
+      --amber: #e8b24a;
+      --amber-dim: rgba(232, 178, 74, 0.13);
+
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-cormorant: 'Cormorant Garamond', serif;
+
+      --r: 5px;
+      --radius: 5px;
+      --t: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+      --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --shadow-gold: 0 0 28px rgba(212, 168, 67, 0.14);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      overflow-x: hidden
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: .35
+    }
+
+    /* ── SIDEBAR ── */
+    .sb {
+      width: 240px;
+      flex-shrink: 0;
+      background: var(--dark2);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 50
+    }
+
+    .sb-head {
+      padding: 22px 20px;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .sb-logo {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      color: var(--gold);
+      letter-spacing: .08em
+    }
+
+    .sb-sub {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-top: 2px
+    }
+
+    .sb-user {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .sb-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 14px;
+      color: var(--gold);
+      flex-shrink: 0
+    }
+
+    .sb-uname {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text)
+    }
+
+    .sb-urole {
+      font-size: 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .05em
+    }
+
+    .sb-nav {
+      flex: 1;
+      padding: 10px 0;
+      overflow-y: auto
+    }
+
+    .sb-sec {
+      font-size: 9px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      padding: 10px 18px 5px
+    }
+
+    .sb-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 18px;
+      cursor: pointer;
+      transition: all var(--t);
+      border-left: 2px solid transparent;
+      font-size: 12.5px;
+      color: var(--muted)
+    }
+
+    .sb-item:hover {
+      background: var(--gold-dim);
+      color: var(--text)
+    }
+
+    .sb-item.active {
+      background: var(--gold-dim);
+      color: var(--gold);
+      border-left-color: var(--gold)
+    }
+
+    .sb-item .si-icon {
+      font-size: 14px;
+      width: 16px;
+      text-align: center;
+      flex-shrink: 0
+    }
+
+    .sb-item .si-badge {
+      margin-left: auto;
+      background: var(--gold);
+      color: var(--dark);
+      border-radius: 10px;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 6px
+    }
+
+    .sb-footer {
+      padding: 14px 18px;
+      border-top: 1px solid var(--border)
+    }
+
+    /* ── MAIN ── */
+    .main {
+      flex: 1;
+      margin-left: 240px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh
+    }
+
+    .topbar {
+      background: var(--dark2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 40
+    }
+
+    .topbar-title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      color: var(--cream)
+    }
+
+    .topbar-title span {
+      color: var(--gold);
+      font-style: italic
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .tb-btn {
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      cursor: pointer;
+      border-radius: var(--r);
+      transition: all var(--t)
+    }
+
+    .tb-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .tb-clock {
+      font-size: 11px;
+      color: var(--muted)
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      display: none;
+      padding: 26px 28px;
+      flex: 1
+    }
+
+    .content.active {
+      display: block;
+      animation: fadeIn .22s ease
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    /* ── SECTION HDR ── */
+    .sec-hdr {
+      margin-bottom: 22px
+    }
+
+    .sec-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: var(--cream)
+    }
+
+    .sec-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px
+    }
+
+    /* ── KPI ROW ── */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px
+    }
+
+    .kpi {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+      transition: all var(--t)
+    }
+
+    .kpi::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent)
+    }
+
+    .kpi:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px)
+    }
+
+    .kpi-icon {
+      font-size: 20px;
+      margin-bottom: 8px
+    }
+
+    .kpi-val {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: var(--gold);
+      font-weight: 600;
+      line-height: 1
+    }
+
+    .kpi-lbl {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-top: 4px
+    }
+
+    .kpi-delta {
+      font-size: 10px;
+      margin-top: 5px
+    }
+
+    .delta-up {
+      color: var(--success)
+    }
+
+    .delta-dn {
+      color: var(--danger)
+    }
+
+    .delta-n {
+      color: var(--muted)
+    }
+
+    /* ── PANEL ── */
+    .panel {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 18px
+    }
+
+    .ph {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .ph-title {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      color: var(--cream)
+    }
+
+    .ph-action {
+      font-size: 11px;
+      color: var(--gold);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: var(--font-sans)
+    }
+
+    .pb {
+      padding: 18px
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px
+    }
+
+    /* ── CHART CANVAS ── */
+    .chart-wrap {
+      position: relative;
+      padding: 0
+    }
+
+    .chart-area {
+      width: 100%;
+      height: 180px;
+      position: relative
+    }
+
+    svg.chart {
+      width: 100%;
+      height: 100%
+    }
+
+    .chart-line {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .chart-fill {
+      fill: url(#goldGrad);
+      opacity: .15
+    }
+
+    .chart-dot {
+      fill: var(--gold);
+      r: 3
+    }
+
+    .chart-dot:hover {
+      r: 5;
+      cursor: pointer
+    }
+
+    .chart-label {
+      font-size: 9px;
+      fill: var(--muted);
+      font-family: var(--font-sans)
+    }
+
+    .chart-grid {
+      stroke: rgba(255, 255, 255, .04);
+      stroke-width: 1
+    }
+
+    /* ── DONUT CHART ── */
+    .donut-wrap {
+      display: flex;
+      align-items: center;
+      gap: 24px
+    }
+
+    .donut-svg {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0
+    }
+
+    .donut-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1
+    }
+
+    .dl-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px
+    }
+
+    .dl-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    .dl-label {
+      color: var(--muted);
+      flex: 1
+    }
+
+    .dl-val {
+      color: var(--text);
+      font-weight: 500
+    }
+
+    /* ── TABLE ── */
+    .tbl {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px
+    }
+
+    .tbl th {
+      padding: 8px 12px;
+      text-align: left;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .tbl td {
+      padding: 11px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, .04);
+      vertical-align: middle
+    }
+
+    .tbl tr:hover td {
+      background: var(--gold-dim)
+    }
+
+    .tbl tr:last-child td {
+      border-bottom: none
+    }
+
+    .pill {
+      padding: 2px 9px;
+      border-radius: 10px;
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .05em
+    }
+
+    .pill-g {
+      background: rgba(76, 175, 125, .12);
+      color: var(--success);
+      border: 1px solid rgba(76, 175, 125, .2)
+    }
+
+    .pill-y {
+      background: rgba(201, 168, 76, .12);
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, .2)
+    }
+
+    .pill-b {
+      background: rgba(100, 200, 255, .1);
+      color: var(--blue);
+      border: 1px solid rgba(100, 200, 255, .2)
+    }
+
+    .pill-r {
+      background: rgba(232, 92, 92, .1);
+      color: var(--danger);
+      border: 1px solid rgba(232, 92, 92, .2)
+    }
+
+    /* ── STAT ROWS ── */
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .04);
+      font-size: 12px
+    }
+
+    .stat-row:last-child {
+      border-bottom: none
+    }
+
+    .sr-label {
+      color: var(--muted)
+    }
+
+    .sr-val {
+      font-weight: 500;
+      color: var(--text)
+    }
+
+    .sr-delta {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px
+    }
+
+    /* ── BRIEFING ── */
+    .briefing-card {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px;
+      margin-bottom: 12px
+    }
+
+    .bc-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 8px
+    }
+
+    .bc-time {
+      font-size: 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .08em
+    }
+
+    .bc-title {
+      font-size: 14px;
+      color: var(--cream);
+      font-weight: 500
+    }
+
+    .bc-body {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.65
+    }
+
+    .bc-tag {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-size: 10px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border);
+      color: var(--gold)
+    }
+
+    /* ── COMPS TABLE ── */
+    .comp-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .04)
+    }
+
+    .comp-row:last-child {
+      border-bottom: none
+    }
+
+    .comp-addr {
+      flex: 1;
+      font-size: 12px;
+      color: var(--text)
+    }
+
+    .comp-hood {
+      font-size: 10px;
+      color: var(--muted)
+    }
+
+    .comp-price {
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 500;
+      flex-shrink: 0
+    }
+
+    .comp-psf {
+      font-size: 10px;
+      color: var(--muted);
+      flex-shrink: 0
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 60px;
+      right: 20px;
+      background: var(--dark3);
+      border: 1px solid var(--gold);
+      color: var(--text);
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 12px;
+      z-index: 999;
+      opacity: 0;
+      transition: all .3s;
+      transform: translateY(6px)
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    /* ── v2.0 MODERNIZATION OVERRIDES ── */
+
+    /* Nav bars */
+    nav {
+      background: rgba(6, 5, 10, 0.96) !important;
+      backdrop-filter: blur(28px) saturate(2) !important;
+      border-bottom-color: rgba(212, 168, 67, 0.28) !important;
+    }
+
+    .nav-logo {
+      color: #d4a843 !important;
+      letter-spacing: .10em !important;
+    }
+
+    .nav-links a {
+      color: rgba(240, 235, 224, 0.55) !important;
+      font-size: 11.5px;
+      letter-spacing: .05em;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #d4a843 !important;
+    }
+
+    /* Top bar in app pages */
+    .topbar {
+      background: rgba(6, 5, 10, 0.95) !important;
+      border-bottom-color: rgba(212, 168, 67, 0.22) !important;
+      backdrop-filter: blur(20px) !important;
+    }
+
+    .topbar-title {
+      color: #f5efe3 !important;
+      font-size: 18px !important;
+    }
+
+    /* Sidebar */
+    .sb {
+      background: #0d0c10 !important;
+      border-right-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .sb-head {
+      border-bottom-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .sb-logo {
+      color: #d4a843 !important;
+    }
+
+    .sb-sub {
+      color: rgba(240, 235, 224, 0.42) !important;
+    }
+
+    .sidebar {
+      background: #0d0c10 !important;
+      border-right-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    /* Cards */
+    .module-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .module-card .card-top {
+      border-bottom-color: rgba(212, 168, 67, 0.16) !important;
+    }
+
+    .module-card .card-name {
+      color: #f5efe3 !important;
+    }
+
+    .module-card .card-phase {
+      color: #d4a843 !important;
+    }
+
+    .module-card .card-desc {
+      color: rgba(240, 235, 224, 0.60) !important;
+    }
+
+    .module-card:hover {
+      border-color: #d4a843 !important;
+    }
+
+    /* Hero area */
+    .hero-title {
+      color: #f5efe3 !important;
+    }
+
+    .hero-sub {
+      color: rgba(240, 235, 224, 0.68) !important;
+    }
+
+    .hero-badge {
+      color: #d4a843 !important;
+      border-color: rgba(212, 168, 67, 0.30) !important;
+    }
+
+    .hero-stat-val {
+      color: #d4a843 !important;
+    }
+
+    .hero-stat-label {
+      color: rgba(240, 235, 224, 0.55) !important;
+    }
+
+    .hero-divider {
+      background: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    /* Section labels */
+    .section-label {
+      color: #d4a843 !important;
+    }
+
+    .section-title {
+      color: #f5efe3 !important;
+    }
+
+    .section-sub {
+      color: rgba(240, 235, 224, 0.60) !important;
+    }
+
+    /* KPI tiles */
+    .kpi {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    .kpi-val {
+      color: #d4a843 !important;
+    }
+
+    .kpi-lbl {
+      color: rgba(240, 235, 224, 0.55) !important;
+    }
+
+    .kpi-delta {
+      font-size: 10px !important;
+    }
+
+    .delta-up {
+      color: #3fd68a !important;
+    }
+
+    .delta-down {
+      color: #f05252 !important;
+    }
+
+    /* Panels */
+    .panel {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .panel-header,
+    .ph {
+      border-bottom-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .panel-title,
+    .ph-title {
+      color: #f5efe3 !important;
+    }
+
+    .s-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .s-card-head {
+      border-bottom-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .s-card-title {
+      color: #f5efe3 !important;
+      font-weight: 500 !important;
+    }
+
+    /* Pills & tags */
+    .pill-g {
+      background: rgba(63, 214, 138, 0.14) !important;
+      color: #3fd68a !important;
+      border-color: rgba(63, 214, 138, 0.28) !important;
+    }
+
+    .pill-b {
+      background: rgba(77, 200, 255, 0.13) !important;
+      color: #4dc8ff !important;
+      border-color: rgba(77, 200, 255, 0.28) !important;
+    }
+
+    .pill-r {
+      background: rgba(240, 82, 82, 0.14) !important;
+      color: #f05252 !important;
+      border-color: rgba(240, 82, 82, 0.28) !important;
+    }
+
+    .pill-y {
+      background: rgba(245, 166, 35, 0.14) !important;
+      color: #f5a623 !important;
+      border-color: rgba(245, 166, 35, 0.28) !important;
+    }
+
+    .pill-a {
+      background: rgba(232, 178, 74, 0.13) !important;
+      color: #e8b24a !important;
+    }
+
+    /* Table */
+    .data-table th {
+      color: rgba(240, 235, 224, 0.50) !important;
+      letter-spacing: .10em !important;
+    }
+
+    .data-table td {
+      color: #f0ebe0 !important;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(212, 168, 67, 0.06) !important;
+    }
+
+    /* Build bar (index page) */
+    .build-bar {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .build-pct {
+      color: #d4a843 !important;
+    }
+
+    .build-fill {
+      background: linear-gradient(90deg, #d4a843, #f0c55a) !important;
+    }
+
+    /* Flow dots */
+    .flow-dot {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.28) !important;
+    }
+
+    .flow-dot.gold {
+      border-color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .flow-dot:hover {
+      border-color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.16) !important;
+    }
+
+    .flow-step-name {
+      color: rgba(240, 235, 224, 0.58) !important;
+    }
+
+    .flow-step-name strong {
+      color: #f0ebe0 !important;
+    }
+
+    /* Topbar actions */
+    .ph-action,
+    .panel-action {
+      color: rgba(240, 235, 224, 0.55) !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+      font-size: 11px !important;
+    }
+
+    .ph-action:hover,
+    .panel-action:hover {
+      color: #d4a843 !important;
+      border-color: #d4a843 !important;
+    }
+
+    /* Footer */
+    footer {
+      border-top-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .footer-logo {
+      color: #d4a843 !important;
+    }
+
+    .footer-note {
+      color: rgba(240, 235, 224, 0.38) !important;
+    }
+
+    .footer-links a {
+      color: rgba(240, 235, 224, 0.45) !important;
+    }
+
+    .footer-links a:hover {
+      color: #d4a843 !important;
+    }
+
+
+    /* ── INVESTOR PORTFOLIO ENHANCEMENTS ── */
+    .sb-avatar {
+      border-color: #d4a843 !important;
+      color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.12) !important;
+    }
+
+    .sb-uname {
+      color: #f0ebe0 !important;
+    }
+
+    .sb-urole {
+      color: #d4a843 !important;
+    }
+
+    .kpi-row .kpi {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .delta-up {
+      color: #3fd68a !important;
+    }
+
+    .delta-down {
+      color: #f05252 !important;
+    }
+
+    .ph-title {
+      color: #f5efe3 !important;
+      font-weight: 500 !important;
+    }
+
+    .chart-grid {
+      stroke: rgba(212, 168, 67, 0.10) !important;
+    }
+
+    .chart-label {
+      fill: rgba(240, 235, 224, 0.45) !important;
+    }
+
+    table.data-table tbody tr:hover {
+      background: rgba(212, 168, 67, 0.06) !important;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/shared.js" defer></script>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sb">
+    <div class="sb-head">
+      <div class="sb-logo">CARINI GROUP</div>
+      <div class="sb-sub">Investor Portal</div>
+    </div>
+    <div class="sb-user">
+      <div class="sb-avatar">R</div>
+      <div>
+        <div class="sb-uname">Roberto Ferri</div>
+        <div class="sb-urole">Investor · IT</div>
+      </div>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-sec">Portfolio</div>
+      <div class="sb-item active" onclick="show('overview',this)"><span class="si-icon">⌂</span> Portfolio Overview
+      </div>
+      <div class="sb-item" onclick="show('holdings',this)"><span class="si-icon">🏙</span> My Properties</div>
+      <div class="sb-item" onclick="show('performance',this)"><span class="si-icon">📈</span> Performance <span
+          class="si-badge">↑</span></div>
+      <div class="sb-sec">Research</div>
+      <div class="sb-item" onclick="show('market',this)"><span class="si-icon">📊</span> Market Analytics</div>
+      <div class="sb-item" onclick="show('comps',this)"><span class="si-icon">⚖</span> Comparables</div>
+      <div class="sb-item" onclick="show('briefing',this)"><span class="si-icon">📰</span> Daily Briefing <span
+          class="si-badge">3</span></div>
+      <div class="sb-sec">My Account</div>
+      <div class="sb-item" onclick="show('opportunities',this)"><span class="si-icon">✦</span> Opportunities</div>
+      <div class="sb-item" onclick="show('reports',this)"><span class="si-icon">📁</span> Reports</div>
+      <div class="sb-item" onclick="window.location.href='phase0_auth.html'"><span class="si-icon">→</span> Sign Out
+      </div>
+    </nav>
+    <div class="sb-footer" style="font-size:11px;color:var(--muted)">
+      <div>Last updated: <strong style="color:var(--text)">Now</strong></div>
+      <div style="margin-top:3px">Currency: <strong style="color:var(--gold)">USD</strong> · <button
+          onclick="showToast('Switching to EUR…')"
+          style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;font-family:var(--font-sans)">Switch
+          to EUR</button></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-title" id="topTitle">Portfolio <span>Overview</span></div>
+      <div class="topbar-right">
+        <span class="tb-clock" id="clock"></span>
+        <button class="tb-btn" onclick="showToast('Generating PDF report…')">↓ Export PDF</button>
+        <button class="tb-btn" onclick="window.location.href='phase3_property_search.html'">🔍 Search
+          Properties</button>
+      </div>
+    </div>
+
+    <!-- ── PORTFOLIO OVERVIEW (FR-010, FR-043) ── -->
+    <div class="content active" id="sec-overview">
+      <div class="sec-hdr">
+        <div class="sec-title">Portfolio Overview</div>
+        <div class="sec-sub">Roberto Ferri · Manhattan Real Estate Portfolio · As of March 18, 2026</div>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-icon">🏙</div>
+          <div class="kpi-val">4</div>
+          <div class="kpi-lbl">Properties Owned</div>
+          <div class="kpi-delta delta-up">↑ 1 acquired Q1 2026</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-icon">💰</div>
+          <div class="kpi-val">$22.4M</div>
+          <div class="kpi-lbl">Portfolio Value</div>
+          <div class="kpi-delta delta-up">↑ +$2.1M YTD</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-icon">📈</div>
+          <div class="kpi-val">+9.4%</div>
+          <div class="kpi-lbl">YTD Appreciation</div>
+          <div class="kpi-delta delta-up">↑ vs 6.2% market avg</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-icon">🏦</div>
+          <div class="kpi-val">$312K</div>
+          <div class="kpi-lbl">Annual Rental Income</div>
+          <div class="kpi-delta delta-up">↑ +8.3% YOY</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-icon">⚡</div>
+          <div class="kpi-val">3.6%</div>
+          <div class="kpi-lbl">Blended Yield</div>
+          <div class="kpi-delta delta-up">↑ vs 3.1% benchmark</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-icon">📊</div>
+          <div class="kpi-val">$12.8M</div>
+          <div class="kpi-lbl">Unrealised Gain</div>
+          <div class="kpi-delta delta-n">Since first acquisition</div>
+        </div>
+      </div>
+
+      <!-- VALUE CHART -->
+      <div class="two-col" style="margin-bottom:18px">
+        <div class="panel">
+          <div class="ph">
+            <div class="ph-title">Portfolio Value — 5 Year History</div><button class="ph-action"
+              onclick="showToast('Exporting chart data…')">↓ Export</button>
+          </div>
+          <div class="pb">
+            <svg class="chart" viewBox="0 0 480 170" style="height:170px">
+              <defs>
+                <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#d4a843" stop-opacity="0.4" />
+                  <stop offset="100%" stop-color="#d4a843" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <!-- Grid -->
+              <line x1="40" y1="20" x2="460" y2="20" class="chart-grid" />
+              <line x1="40" y1="60" x2="460" y2="60" class="chart-grid" />
+              <line x1="40" y1="100" x2="460" y2="100" class="chart-grid" />
+              <line x1="40" y1="140" x2="460" y2="140" class="chart-grid" />
+              <!-- Labels Y -->
+              <text x="35" y="24" class="chart-label" text-anchor="end">$24M</text>
+              <text x="35" y="64" class="chart-label" text-anchor="end">$20M</text>
+              <text x="35" y="104" class="chart-label" text-anchor="end">$16M</text>
+              <text x="35" y="144" class="chart-label" text-anchor="end">$12M</text>
+              <!-- Data points: 2021:$9.8M, 2022:$12.1M, 2023:$14.8M, 2024:$18.6M, 2025:$20.3M, 2026:$22.4M -->
+              <!-- Scale: $9M=152, $24M=20, range=$15M=132px. Each $M = 8.8px from bottom 152 -->
+              <!-- 9.8→(152-0.8*8.8)=145, 12.1→(152-3.1*8.8)=125, 14.8→(152-5.8*8.8)=101, 18.6→(152-9.6*8.8)=68, 20.3→(152-11.3*8.8)=53, 22.4→(152-13.4*8.8)=34 -->
+              <polygon class="chart-fill" points="60,145 148,125 236,101 324,68 412,53 460,34 460,145 60,145" />
+              <polyline class="chart-line" points="60,145 148,125 236,101 324,68 412,53 460,34" />
+              <circle cx="60" cy="145" r="4" class="chart-dot" onclick="showToast('2021: $9.8M')" />
+              <circle cx="148" cy="125" r="4" class="chart-dot" onclick="showToast('2022: $12.1M')" />
+              <circle cx="236" cy="101" r="4" class="chart-dot" onclick="showToast('2023: $14.8M')" />
+              <circle cx="324" cy="68" r="4" class="chart-dot" onclick="showToast('2024: $18.6M')" />
+              <circle cx="412" cy="53" r="4" class="chart-dot" onclick="showToast('2025: $20.3M')" />
+              <circle cx="460" cy="34" r="4" class="chart-dot" onclick="showToast('2026 YTD: $22.4M')" />
+              <!-- X labels -->
+              <text x="60" y="162" class="chart-label" text-anchor="middle">2021</text>
+              <text x="148" y="162" class="chart-label" text-anchor="middle">2022</text>
+              <text x="236" y="162" class="chart-label" text-anchor="middle">2023</text>
+              <text x="324" y="162" class="chart-label" text-anchor="middle">2024</text>
+              <text x="412" y="162" class="chart-label" text-anchor="middle">2025</text>
+              <text x="460" y="162" class="chart-label" text-anchor="middle">2026</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- ALLOCATION DONUT (FR-047) -->
+        <div class="panel">
+          <div class="ph">
+            <div class="ph-title">Asset Allocation</div>
+          </div>
+          <div class="pb">
+            <div class="donut-wrap">
+              <svg class="donut-svg" viewBox="0 0 120 120">
+                <!-- Donut: Tribeca 42%, SoHo 28%, Chelsea 18%, FiDi 12% -->
+                <circle cx="60" cy="60" r="48" fill="none" stroke="var(--dark3)" stroke-width="18" />
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#d4a843" stroke-width="18"
+                  stroke-dasharray="126.7 174.5" stroke-dashoffset="0" transform="rotate(-90 60 60)" />
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#f0c55a" stroke-width="18"
+                  stroke-dasharray="84.5 216.7" stroke-dashoffset="-126.7" transform="rotate(-90 60 60)" />
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#a07030" stroke-width="18"
+                  stroke-dasharray="54.3 246.9" stroke-dashoffset="-211.2" transform="rotate(-90 60 60)" />
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#604820" stroke-width="18"
+                  stroke-dasharray="36.2 265" stroke-dashoffset="-265.5" transform="rotate(-90 60 60)" />
+                <text x="60" y="56" text-anchor="middle" font-family="Playfair Display,serif" font-size="14"
+                  fill="#d4a843">$22.4M</text>
+                <text x="60" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8"
+                  fill="rgba(240,235,224,0.62)">Total Value</text>
+              </svg>
+              <div class="donut-legend">
+                <div class="dl-item">
+                  <div class="dl-dot" style="background:#d4a843"></div><span class="dl-label">Tribeca · 443
+                    Greenwich</span><span class="dl-val">$9.4M</span>
+                </div>
+                <div class="dl-item">
+                  <div class="dl-dot" style="background:#f0c55a"></div><span class="dl-label">SoHo · 151
+                    Wooster</span><span class="dl-val">$6.2M</span>
+                </div>
+                <div class="dl-item">
+                  <div class="dl-dot" style="background:#a07030"></div><span class="dl-label">Chelsea · 520 W
+                    28th</span><span class="dl-val">$4.1M</span>
+                </div>
+                <div class="dl-item">
+                  <div class="dl-dot" style="background:#604820"></div><span class="dl-label">FiDi · 70 Pine
+                    St</span><span class="dl-val">$2.7M</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOLDINGS QUICK VIEW -->
+      <div class="panel">
+        <div class="ph">
+          <div class="ph-title">Properties at a Glance</div><button class="ph-action"
+            onclick="show('holdings',document.querySelector('.sb-item:nth-child(2)'))">View All →</button>
+        </div>
+        <div class="pb" style="padding:0">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Neighbourhood</th>
+                <th>Acquisition</th>
+                <th>Current Value</th>
+                <th>Gain</th>
+                <th>Yield</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>443 Greenwich St, PH-A</strong><br><span style="font-size:10px;color:var(--muted)">4BR /
+                    4.5BA / 4,200 sqft</span></td>
+                <td>Tribeca</td>
+                <td>$7.2M · 2019</td>
+                <td style="color:var(--gold)">$9.4M</td>
+                <td><span style="color:var(--success)">+$2.2M (+30.6%)</span></td>
+                <td>2.8%</td>
+                <td><span class="pill pill-g">Owner-Occ</span></td>
+              </tr>
+              <tr>
+                <td><strong>151 Wooster St, 5N</strong><br><span style="font-size:10px;color:var(--muted)">3BR / 3BA /
+                    3,100 sqft</span></td>
+                <td>SoHo</td>
+                <td>$4.9M · 2021</td>
+                <td style="color:var(--gold)">$6.2M</td>
+                <td><span style="color:var(--success)">+$1.3M (+26.5%)</span></td>
+                <td>3.4%</td>
+                <td><span class="pill pill-b">Rented</span></td>
+              </tr>
+              <tr>
+                <td><strong>520 W 28th St, 24</strong><br><span style="font-size:10px;color:var(--muted)">3BR / 3.5BA /
+                    2,450 sqft</span></td>
+                <td>Chelsea</td>
+                <td>$3.2M · 2023</td>
+                <td style="color:var(--gold)">$4.1M</td>
+                <td><span style="color:var(--success)">+$0.9M (+28.1%)</span></td>
+                <td>4.1%</td>
+                <td><span class="pill pill-b">Rented</span></td>
+              </tr>
+              <tr>
+                <td><strong>70 Pine St, 52B</strong><br><span style="font-size:10px;color:var(--muted)">2BR / 2BA /
+                    1,480 sqft</span></td>
+                <td>Financial Dist.</td>
+                <td>$2.1M · 2026</td>
+                <td style="color:var(--gold)">$2.7M</td>
+                <td><span style="color:var(--success)">+$0.6M (+28.6%)</span></td>
+                <td>4.8%</td>
+                <td><span class="pill pill-y">Vacant</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MY PROPERTIES (FR-010) ── -->
+    <div class="content" id="sec-holdings">
+      <div class="sec-hdr">
+        <div class="sec-title">My Properties</div>
+        <div class="sec-sub">4 properties · Full portfolio detail</div>
+      </div>
+      <div class="panel" style="margin-bottom:16px">
+        <div class="ph">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div
+              style="width:48px;height:40px;background:var(--dark3);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
+              🏙</div>
+            <div>
+              <div class="ph-title">443 Greenwich St, PH-A</div>
+              <div style="font-size:11px;color:var(--gold)">Tribeca · 4BR / 4.5BA / 4,200 sqft</div>
+            </div>
+          </div>
+          <span class="pill pill-g">Owner-Occupied</span>
+        </div>
+        <div class="pb">
+          <div class="three-col" style="margin-bottom:14px">
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Acquisition (2019)</div>
+              <div style="font-size:14px;color:var(--text)">$7,200,000</div>
+            </div>
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Current Value</div>
+              <div style="font-size:14px;color:var(--gold);font-weight:500">$9,400,000</div>
+            </div>
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Total Gain</div>
+              <div style="font-size:14px;color:var(--success)">+30.6%</div>
+            </div>
+          </div>
+          <div
+            style="font-size:12px;color:var(--muted);background:var(--dark3);border:1px solid var(--border);padding:10px 12px;border-radius:4px;border-left:2px solid var(--gold)">
+            Primary Manhattan residence. Full-floor Penthouse. Private rooftop. Board approval completed.</div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button onclick="showToast('Opening property documents…')"
+              style="padding:7px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📁 Documents</button>
+            <button onclick="showToast('Opening deal room…')"
+              style="padding:7px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📋 Deal Room</button>
+            <button onclick="window.location.href='phase3_property_search.html'"
+              style="padding:7px 14px;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r)">🔍
+              Market Comps</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel" style="margin-bottom:16px">
+        <div class="ph">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div
+              style="width:48px;height:40px;background:var(--dark3);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
+              🏗</div>
+            <div>
+              <div class="ph-title">151 Wooster St, Unit 5N</div>
+              <div style="font-size:11px;color:var(--gold)">SoHo · 3BR / 3BA / 3,100 sqft</div>
+            </div>
+          </div>
+          <span class="pill pill-b">Rented</span>
+        </div>
+        <div class="pb">
+          <div class="three-col" style="margin-bottom:14px">
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Acquisition (2021)</div>
+              <div style="font-size:14px;color:var(--text)">$4,900,000</div>
+            </div>
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Current Value</div>
+              <div style="font-size:14px;color:var(--gold);font-weight:500">$6,200,000</div>
+            </div>
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Total Gain</div>
+              <div style="font-size:14px;color:var(--success)">+26.5%</div>
+            </div>
+          </div>
+          <div
+            style="font-size:12px;color:var(--muted);background:var(--dark3);border:1px solid var(--border);padding:10px 12px;border-radius:4px;border-left:2px solid var(--gold)">
+            Tenanted to creative director couple. 2-year lease to May 2027. Managed by Corcoran PM. Yield 3.4%.</div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button onclick="showToast('Opening property documents…')"
+              style="padding:7px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📁 Documents</button>
+            <button onclick="showToast('Opening deal room…')"
+              style="padding:7px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📋 Deal Room</button>
+            <button onclick="window.location.href='phase3_property_search.html'"
+              style="padding:7px 14px;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r)">🔍
+              Market Comps</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel" style="margin-bottom:16px">
+        <div class="ph">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div
+              style="width:48px;height:40px;background:var(--dark3);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
+              🏢</div>
+            <div>
+              <div class="ph-title">520 W 28th St, Unit 24</div>
+              <div style="font-size:11px;color:var(--gold)">Chelsea · 3BR / 3.5BA / 2,450 sqft</div>
+            </div>
+          </div>
+          <span class="pill pill-b">Rented</span>
+        </div>
+        <div class="pb">
+          <div class="three-col" style="margin-bottom:14px">
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Acquisition (2023)</div>
+              <div style="font-size:14px;color:var(--text)">$3,200,000</div>
+            </div>
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Current Value</div>
+              <div style="font-size:14px;color:var(--gold);font-weight:500">$4,100,000</div>
+            </div>
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Total Gain</div>
+              <div style="font-size:14px;color:var(--success)">+28.1%</div>
+            </div>
+          </div>
+          <div
+            style="font-size:12px;color:var(--muted);background:var(--dark3);border:1px solid var(--border);padding:10px 12px;border-radius:4px;border-left:2px solid var(--gold)">
+            High Line views. Finance professional tenant. 18-month lease to September 2026. 4.1% yield.</div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button onclick="showToast('Opening property documents…')"
+              style="padding:7px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📁 Documents</button>
+            <button onclick="showToast('Opening deal room…')"
+              style="padding:7px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📋 Deal Room</button>
+            <button onclick="window.location.href='phase3_property_search.html'"
+              style="padding:7px 14px;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r)">🔍
+              Market Comps</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel" style="margin-bottom:16px">
+        <div class="ph">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div
+              style="width:48px;height:40px;background:var(--dark3);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
+              🗽</div>
+            <div>
+              <div class="ph-title">70 Pine St, Unit 52B</div>
+              <div style="font-size:11px;color:var(--gold)">Financial District · 2BR / 2BA / 1,480 sqft</div>
+            </div>
+          </div>
+          <span class="pill pill-y">Vacant</span>
+        </div>
+        <div class="pb">
+          <div class="three-col" style="margin-bottom:14px">
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Acquisition (2026)</div>
+              <div style="font-size:14px;color:var(--text)">$2,100,000</div>
+            </div>
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Current Value</div>
+              <div style="font-size:14px;color:var(--gold);font-weight:500">$2,700,000</div>
+            </div>
+            <div>
+              <div
+                style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px">
+                Total Gain</div>
+              <div style="font-size:14px;color:var(--success)">+28.6%</div>
+            </div>
+          </div>
+          <div
+            style="font-size:12px;color:var(--muted);background:var(--dark3);border:1px solid var(--border);padding:10px 12px;border-radius:4px;border-left:2px solid var(--gold)">
+            Q1 2026 acquisition. Art Deco landmark conversion. Listing with Carini Group. Projected 4.8% yield at asking
+            rent.</div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button onclick="showToast('Opening property documents…')"
+              style="padding:7px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📁 Documents</button>
+            <button onclick="showToast('Opening deal room…')"
+              style="padding:7px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📋 Deal Room</button>
+            <button onclick="window.location.href='phase3_property_search.html'"
+              style="padding:7px 14px;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r)">🔍
+              Market Comps</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PERFORMANCE (FR-043, FR-046) ── -->
+    <div class="content" id="sec-performance">
+      <div class="sec-hdr">
+        <div class="sec-title">Performance Analytics</div>
+        <div class="sec-sub">FR-043 · Portfolio return analysis vs benchmark</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-icon">📈</div>
+          <div class="kpi-val">+$12.8M</div>
+          <div class="kpi-lbl">Unrealised Gain</div>
+          <div class="kpi-delta delta-up">↑ Since 2019</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-icon">💸</div>
+          <div class="kpi-val">+$1.9M</div>
+          <div class="kpi-lbl">Rental Income (All)</div>
+          <div class="kpi-delta delta-up">↑ Since 2021</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-icon">⚡</div>
+          <div class="kpi-val">+128%</div>
+          <div class="kpi-lbl">Total Return</div>
+          <div class="kpi-delta delta-up">↑ vs S&P 500 +81%</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-icon">🎯</div>
+          <div class="kpi-val">3.6%</div>
+          <div class="kpi-lbl">Current Yield</div>
+          <div class="kpi-delta delta-up">↑ vs NYC avg 3.0%</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="ph">
+            <div class="ph-title">Annual Return by Property</div>
+          </div>
+          <div class="pb">
+            <svg class="chart" viewBox="0 0 400 160" style="height:160px">
+              <!-- Bar chart: 4 properties YTD returns -->
+              <defs>
+                <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#d4a843" stop-opacity="1" />
+                  <stop offset="100%" stop-color="#d4a843" stop-opacity="0.5" />
+                </linearGradient>
+              </defs>
+              <line x1="40" y1="10" x2="380" y2="10" class="chart-grid" />
+              <line x1="40" y1="45" x2="380" y2="45" class="chart-grid" />
+              <line x1="40" y1="80" x2="380" y2="80" class="chart-grid" />
+              <line x1="40" y1="115" x2="380" y2="115" class="chart-grid" />
+              <text x="35" y="14" class="chart-label" text-anchor="end">+15%</text>
+              <text x="35" y="49" class="chart-label" text-anchor="end">+10%</text>
+              <text x="35" y="84" class="chart-label" text-anchor="end">+5%</text>
+              <text x="35" y="119" class="chart-label" text-anchor="end">0%</text>
+              <!-- 443 Greenwich: +12.4% → height = 12.4/15*105 = 87 → y = 115-87=28 -->
+              <rect x="60" y="28" width="50" height="87" fill="url(#barGrad)" rx="2"
+                onclick="showToast('443 Greenwich: +12.4% YTD')" />
+              <!-- 151 Wooster: +9.1% → 64px → y=51 -->
+              <rect x="150" y="51" width="50" height="64" fill="url(#barGrad)" rx="2" opacity=".85"
+                onclick="showToast('151 Wooster: +9.1% YTD')" />
+              <!-- 520 W 28th: +8.7% → 61px → y=54 -->
+              <rect x="240" y="54" width="50" height="61" fill="url(#barGrad)" rx="2" opacity=".7"
+                onclick="showToast('520 W 28th: +8.7% YTD')" />
+              <!-- 70 Pine: +6.2% → 43px → y=72 -->
+              <rect x="330" y="72" width="50" height="43" fill="url(#barGrad)" rx="2" opacity=".55"
+                onclick="showToast('70 Pine: +6.2% YTD')" />
+              <text x="85" y="148" class="chart-label" text-anchor="middle">443 Grn</text>
+              <text x="85" y="158" class="chart-label" text-anchor="middle">+12.4%</text>
+              <text x="175" y="148" class="chart-label" text-anchor="middle">Wooster</text>
+              <text x="175" y="158" class="chart-label" text-anchor="middle">+9.1%</text>
+              <text x="265" y="148" class="chart-label" text-anchor="middle">W 28th</text>
+              <text x="265" y="158" class="chart-label" text-anchor="middle">+8.7%</text>
+              <text x="355" y="148" class="chart-label" text-anchor="middle">Pine St</text>
+              <text x="355" y="158" class="chart-label" text-anchor="middle">+6.2%</text>
+            </svg>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph">
+            <div class="ph-title">vs Benchmark (FR-046)</div>
+          </div>
+          <div class="pb">
+            <div class="stat-row"><span class="sr-label">Portfolio Total Return (5yr)</span><span class="sr-val"
+                style="color:var(--success)">+128%</span></div>
+            <div class="stat-row"><span class="sr-label">S&P 500 (5yr)</span><span class="sr-val">+81%</span></div>
+            <div class="stat-row"><span class="sr-label">Manhattan RE Index (5yr)</span><span class="sr-val">+72%</span>
+            </div>
+            <div class="stat-row"><span class="sr-label">MSCI World (5yr)</span><span class="sr-val">+68%</span></div>
+            <div class="stat-row"><span class="sr-label">Italian BTP 10yr yield</span><span class="sr-val">3.9%</span>
+            </div>
+            <div class="stat-row"><span class="sr-label">Portfolio blended yield</span><span class="sr-val"
+                style="color:var(--gold)">3.6%</span></div>
+            <div class="stat-row"><span class="sr-label">Alpha vs RE index</span><span class="sr-val"
+                style="color:var(--success)">+56pt</span></div>
+            <div class="stat-row" style="border-bottom:none"><span class="sr-label">Sharpe Ratio (est.)</span><span
+                class="sr-val">1.84</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MARKET ANALYTICS (FR-048) ── -->
+    <div class="content" id="sec-market">
+      <div class="sec-hdr">
+        <div class="sec-title">Market Analytics</div>
+        <div class="sec-sub">FR-048 · Manhattan residential real estate intelligence</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-icon">🏙</div>
+          <div class="kpi-val">$2,180</div>
+          <div class="kpi-lbl">Manhattan Avg. $/sqft</div>
+          <div class="kpi-delta delta-up">↑ +6.1% YOY</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-icon">📅</div>
+          <div class="kpi-val">38</div>
+          <div class="kpi-lbl">Avg Days on Market</div>
+          <div class="kpi-delta delta-up">↓ -11% YOY</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-icon">📦</div>
+          <div class="kpi-val">1,840</div>
+          <div class="kpi-lbl">Active Listings</div>
+          <div class="kpi-delta delta-n">-3% YOY</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-icon">🔄</div>
+          <div class="kpi-val">94%</div>
+          <div class="kpi-lbl">Contract Rate</div>
+          <div class="kpi-delta delta-up">↑ +4pt YOY</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="ph">
+            <div class="ph-title">Neighbourhood Price Trend ($/sqft)</div>
+          </div>
+          <div class="pb">
+            <div class="stat-row"><span class="sr-label">Tribeca</span><span class="sr-val">$2,180</span><span
+                class="sr-delta delta-up">+8.4%</span></div>
+            <div class="stat-row"><span class="sr-label">Lincoln Square / CPW</span><span
+                class="sr-val">$2,340</span><span class="sr-delta delta-up">+11.2%</span></div>
+            <div class="stat-row"><span class="sr-label">Hudson Yards</span><span class="sr-val">$2,210</span><span
+                class="sr-delta delta-up">+14.8%</span></div>
+            <div class="stat-row"><span class="sr-label">SoHo</span><span class="sr-val">$2,050</span><span
+                class="sr-delta delta-up">+5.8%</span></div>
+            <div class="stat-row"><span class="sr-label">Chelsea</span><span class="sr-val">$1,960</span><span
+                class="sr-delta delta-up">+7.4%</span></div>
+            <div class="stat-row"><span class="sr-label">Gramercy / Flatiron</span><span
+                class="sr-val">$2,020</span><span class="sr-delta delta-up">+5.2%</span></div>
+            <div class="stat-row"><span class="sr-label">Upper East Side</span><span class="sr-val">$1,840</span><span
+                class="sr-delta delta-up">+3.9%</span></div>
+            <div class="stat-row"><span class="sr-label">Financial District</span><span
+                class="sr-val">$1,380</span><span class="sr-delta delta-up">+7.2%</span></div>
+            <div class="stat-row" style="border-bottom:none"><span class="sr-label">DUMBO, Brooklyn</span><span
+                class="sr-val">$1,490</span><span class="sr-delta delta-up">+9.8%</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph">
+            <div class="ph-title">Market Indicators</div>
+          </div>
+          <div class="pb">
+            <div class="stat-row"><span class="sr-label">30yr Fixed Rate (US)</span><span
+                class="sr-val">6.82%</span><span class="sr-delta delta-dn">-0.14pt MTD</span></div>
+            <div class="stat-row"><span class="sr-label">USD/EUR Rate</span><span class="sr-val">1.072</span><span
+                class="sr-delta delta-up">EUR weak vs USD</span></div>
+            <div class="stat-row"><span class="sr-label">USD/GBP Rate</span><span class="sr-val">0.789</span><span
+                class="sr-delta delta-n">Stable</span></div>
+            <div class="stat-row"><span class="sr-label">NY Mansion Tax Threshold</span><span
+                class="sr-val">$1M+</span><span class="sr-delta delta-n">No change</span></div>
+            <div class="stat-row"><span class="sr-label">Luxury Tax ($2M+)</span><span class="sr-val">3.9%</span><span
+                class="sr-delta delta-n">No change</span></div>
+            <div class="stat-row"><span class="sr-label">NYC Vacancy Rate</span><span class="sr-val">1.4%</span><span
+                class="sr-delta delta-up">Historically low</span></div>
+            <div class="stat-row"><span class="sr-label">New Dev. Absorption</span><span class="sr-val">88%</span><span
+                class="sr-delta delta-up">+6pt QOQ</span></div>
+            <div class="stat-row"><span class="sr-label">International Buyer %</span><span
+                class="sr-val">31%</span><span class="sr-delta delta-up">+7pt YOY</span></div>
+            <div class="stat-row" style="border-bottom:none"><span class="sr-label">EB-5 Visa Applications</span><span
+                class="sr-val">+24% YTD</span><span class="sr-delta delta-up">↑ Demand driver</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COMPARABLES (FR-048) ── -->
+    <div class="content" id="sec-comps">
+      <div class="sec-hdr">
+        <div class="sec-title">Market Comparables</div>
+        <div class="sec-sub">FR-048 · Recent sales comps for your portfolio properties</div>
+      </div>
+      <div class="panel">
+        <div class="ph">
+          <div class="ph-title">Recent Tribeca Comps — 443 Greenwich Reference</div>
+          <button class="ph-action" onclick="showToast('Refreshing RLS data via OQ-001 API…')">↻ Refresh from
+            RLS</button>
+        </div>
+        <div class="pb" style="padding:0">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Beds</th>
+                <th>Sq Ft</th>
+                <th>Sale Price</th>
+                <th>$/Sq Ft</th>
+                <th>vs Your Unit</th>
+                <th>Closed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>380 Broome St #4A</td>
+                <td>3</td>
+                <td>2,650</td>
+                <td style="color:var(--gold)">$4,250,000</td>
+                <td>$1,604</td>
+                <td><span class="pill pill-g">+36% vs ref.</span></td>
+                <td style="color:var(--muted)">45d ago</td>
+              </tr>
+              <tr>
+                <td>165 Duane St #8B</td>
+                <td>3</td>
+                <td>3,100</td>
+                <td style="color:var(--gold)">$5,100,000</td>
+                <td>$1,645</td>
+                <td><span class="pill pill-g">+40% vs ref.</span></td>
+                <td style="color:var(--muted)">62d ago</td>
+              </tr>
+              <tr>
+                <td>56 Leonard St #32A</td>
+                <td>4</td>
+                <td>3,750</td>
+                <td style="color:var(--gold)">$6,875,000</td>
+                <td>$1,833</td>
+                <td><span class="pill pill-g">+56% vs ref.</span></td>
+                <td style="color:var(--muted)">14d ago</td>
+              </tr>
+              <tr>
+                <td>21 Collister St #3A</td>
+                <td>2</td>
+                <td>1,980</td>
+                <td style="color:var(--gold)">$3,150,000</td>
+                <td>$1,591</td>
+                <td><span class="pill pill-y">+35% vs ref.</span></td>
+                <td style="color:var(--muted)">78d ago</td>
+              </tr>
+              <tr>
+                <td>250 W Broadway #5F</td>
+                <td>4</td>
+                <td>4,100</td>
+                <td style="color:var(--gold)">$7,200,000</td>
+                <td>$1,756</td>
+                <td><span class="pill pill-g">+50% vs ref.</span></td>
+                <td style="color:var(--muted)">9d ago</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:14px">
+        <div class="ph">
+          <div class="ph-title">Estimated Sell Value — Your Portfolio</div>
+        </div>
+        <div class="pb" style="padding:0">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Acq. Price</th>
+                <th>Est. Current Value</th>
+                <th>Est. Net Proceeds*</th>
+                <th>ROI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>443 Greenwich PH-A</strong></td>
+                <td>$7,200,000</td>
+                <td style="color:var(--gold)">$9,400,000</td>
+                <td>$8,742,000</td>
+                <td style="color:var(--success)">+21.4% net</td>
+              </tr>
+              <tr>
+                <td><strong>151 Wooster 5N</strong></td>
+                <td>$4,900,000</td>
+                <td style="color:var(--gold)">$6,200,000</td>
+                <td>$5,766,000</td>
+                <td style="color:var(--success)">+17.7% net</td>
+              </tr>
+              <tr>
+                <td><strong>520 W 28th #24</strong></td>
+                <td>$3,200,000</td>
+                <td style="color:var(--gold)">$4,100,000</td>
+                <td>$3,813,000</td>
+                <td style="color:var(--success)">+19.2% net</td>
+              </tr>
+              <tr>
+                <td><strong>70 Pine St 52B</strong></td>
+                <td>$2,100,000</td>
+                <td style="color:var(--gold)">$2,700,000</td>
+                <td>$2,511,000</td>
+                <td style="color:var(--success)">+19.6% net</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="padding:10px 14px;font-size:10px;color:var(--muted)">* Net proceeds after estimated 6.5% selling
+            costs (commission + transfer tax + legal). Values are estimates from RLS comps — not guaranteed.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DAILY BRIEFING (FR-045) ── -->
+    <div class="content" id="sec-briefing">
+      <div class="sec-hdr">
+        <div class="sec-title">Daily Briefing</div>
+        <div class="sec-sub">FR-045 · Personalised market intelligence — March 18, 2026</div>
+      </div>
+      <div class="briefing-card">
+        <div class="bc-header"><span class="bc-time">Market Move</span><span class="bc-title">Tribeca median hits new
+            record — $5.2M</span></div>
+        <div class="bc-body">The Tribeca luxury condo market has posted a new median price record of $5.2M this quarter,
+          driven by sustained demand from Italian and European buyers and critically low inventory. Your 443 Greenwich
+          penthouse is estimated to have appreciated 12.4% YTD — outpacing the broader Tribeca market by 4 percentage
+          points. Consider requesting a comparative market analysis from Alex Carini.</div>
+        <span class="bc-tag">▲ Relevant to Your Portfolio</span>
+      </div>
+      <div class="briefing-card">
+        <div class="bc-header"><span class="bc-time">Rate Watch</span><span class="bc-title">30yr mortgage rate falls to
+            6.82% — lowest since Q3 2025</span></div>
+        <div class="bc-body">The Federal Reserve's March meeting maintained the current rate, but mortgage market
+          anticipation of a June cut has pushed the 30yr fixed to 6.82%, down 14 basis points month-to-date. This may
+          increase buyer pool activity in the $2–5M range, positively impacting demand for your SoHo and Chelsea
+          properties when they next come to market.</div>
+        <span class="bc-tag">⚡ Rate Alert</span>
+      </div>
+      <div class="briefing-card">
+        <div class="bc-header"><span class="bc-time">Currency</span><span class="bc-title">EUR/USD at 1.072 — Italian
+            buyer purchasing power elevated</span></div>
+        <div class="bc-body">The EUR/USD rate has stabilised at 1.072, meaning Italian HNWI buyers currently see
+          Manhattan properties approximately 8% more expensive in euro terms than the 2022 peak. However, demand from
+          Italy remains strong — Carini Group has seen a 34% increase in Italian buyer enquiries in Q1 2026. Your 70
+          Pine St unit (asking $2.7M / ~€2.52M) is well-positioned for this buyer profile.</div>
+        <span class="bc-tag">🌍 International</span>
+      </div>
+      <div class="briefing-card">
+        <div class="bc-header"><span class="bc-time">Opportunity</span><span class="bc-title">New listing: 15 Hudson
+            Yards 31B — $7.6M — matches your investment criteria</span></div>
+        <div class="bc-body">A new listing matching your stated investment criteria ($5–10M, high-floor, 3BR+, new
+          development) has come to market at 15 Hudson Yards. At $7.6M / $1,925 per sqft, it is priced at a 12% discount
+          to comparable units sold in Q4 2025. Alex Carini has arranged a private preview for March 21.</div>
+        <span class="bc-tag">✦ Exclusive Preview</span>
+      </div>
+    </div>
+
+    <!-- ── OPPORTUNITIES ── -->
+    <div class="content" id="sec-opportunities">
+      <div class="sec-hdr">
+        <div class="sec-title">Investment Opportunities</div>
+        <div class="sec-sub">Curated for your portfolio profile — $5–12M range, Manhattan</div>
+      </div>
+      <div class="panel">
+        <div class="ph">
+          <div class="ph-title">Matched Listings</div><button class="ph-action"
+            onclick="window.location.href='phase3_property_search.html'">Search All →</button>
+        </div>
+        <div class="pb" style="padding:0">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Price</th>
+                <th>$/sqft</th>
+                <th>Est. Yield</th>
+                <th>Appreciation Potential</th>
+                <th>Match</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>15 Hudson Yards, 31B</strong><br><span style="font-size:10px;color:var(--muted)">3BR · 3,950
+                    sqft · New Dev</span></td>
+                <td style="color:var(--gold)">$7.6M</td>
+                <td>$1,925</td>
+                <td>3.2%</td>
+                <td><span style="color:var(--success)">High (+15% est.)</span></td>
+                <td><span class="pill pill-g">97%</span></td>
+                <td><button onclick="showToast('Requesting private preview…')"
+                    style="padding:5px 12px;background:var(--gold);border:none;color:var(--dark);font-family:var(--font-sans);font-size:10px;cursor:pointer;border-radius:var(--r)">Preview</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>250 W Broadway, 8A</strong><br><span style="font-size:10px;color:var(--muted)">4BR · 4,200
+                    sqft · Pre-war</span></td>
+                <td style="color:var(--gold)">$8.9M</td>
+                <td>$2,119</td>
+                <td>2.9%</td>
+                <td><span style="color:var(--success)">High (+12% est.)</span></td>
+                <td><span class="pill pill-g">94%</span></td>
+                <td><button onclick="showToast('Scheduling viewing…')"
+                    style="padding:5px 12px;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold);font-family:var(--font-sans);font-size:10px;cursor:pointer;border-radius:var(--r)">View</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>443 Greenwich, Unit 4A</strong><br><span style="font-size:10px;color:var(--muted)">3BR ·
+                    2,800 sqft · Same Building</span></td>
+                <td style="color:var(--gold)">$5.4M</td>
+                <td>$1,929</td>
+                <td>3.4%</td>
+                <td><span style="color:var(--success)">Very High</span></td>
+                <td><span class="pill pill-y">88%</span></td>
+                <td><button onclick="showToast('Requesting details…')"
+                    style="padding:5px 12px;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold);font-family:var(--font-sans);font-size:10px;cursor:pointer;border-radius:var(--r)">Details</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── REPORTS ── -->
+    <div class="content" id="sec-reports">
+      <div class="sec-hdr">
+        <div class="sec-title">Reports & Documents</div>
+      </div>
+      <div class="panel">
+        <div class="ph">
+          <div class="ph-title">Available Reports</div><button class="ph-action"
+            onclick="showToast('Generating custom report…')">+ Custom Report</button>
+        </div>
+        <div class="pb">
+          <div
+            style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+            <div style="font-size:24px;flex-shrink:0">📄</div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--text);font-weight:500">Q1 2026 Portfolio Report</div>
+              <div style="font-size:11px;color:var(--muted)">PDF · 24 pages · March 18, 2026</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px">Comprehensive quarterly review with
+                valuation, yield analysis, and market commentary</div>
+            </div>
+            <button onclick="showToast('Downloading Q1 2026 Portfolio Report…')"
+              style="padding:6px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);flex-shrink:0;transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">↓ Download</button>
+          </div>
+          <div
+            style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+            <div style="font-size:24px;flex-shrink:0">📄</div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--text);font-weight:500">Annual Tax Summary 2025</div>
+              <div style="font-size:11px;color:var(--muted)">PDF · 8 pages · February 28, 2026</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px">Rental income summary, depreciation
+                schedule, and supporting schedules for Italian tax filing</div>
+            </div>
+            <button onclick="showToast('Downloading Annual Tax Summary 2025…')"
+              style="padding:6px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);flex-shrink:0;transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">↓ Download</button>
+          </div>
+          <div
+            style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+            <div style="font-size:24px;flex-shrink:0">📄</div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--text);font-weight:500">Market Outlook — H1 2026</div>
+              <div style="font-size:11px;color:var(--muted)">PDF · 12 pages · March 1, 2026</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px">Carini Group research — Manhattan luxury
+                market forecast, neighbourhood-by-neighbourhood analysis</div>
+            </div>
+            <button onclick="showToast('Downloading Market Outlook — H1 2026…')"
+              style="padding:6px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);flex-shrink:0;transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">↓ Download</button>
+          </div>
+          <div
+            style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+            <div style="font-size:24px;flex-shrink:0">📄</div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--text);font-weight:500">Comparable Sales Report — Tribeca</div>
+              <div style="font-size:11px;color:var(--muted)">PDF · 6 pages · March 15, 2026</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px">RLS comparable sales analysis for 443
+                Greenwich valuation reference</div>
+            </div>
+            <button onclick="showToast('Downloading Comparable Sales Report — Tribeca…')"
+              style="padding:6px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);flex-shrink:0;transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">↓ Download</button>
+          </div>
+          <div
+            style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+            <div style="font-size:24px;flex-shrink:0">📄</div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--text);font-weight:500">Rental Market Report — SoHo &amp; Chelsea
+              </div>
+              <div style="font-size:11px;color:var(--muted)">PDF · 9 pages · March 10, 2026</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px">Rental yield trends, vacancy data, and
+                tenant demand analysis for your income properties</div>
+            </div>
+            <button onclick="showToast('Downloading Rental Market Report — SoHo &amp; Chelsea…')"
+              style="padding:6px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);flex-shrink:0;transition:all var(--t)"
+              onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">↓ Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    function show(id, el) {
+      document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+      const sec = document.getElementById('sec-' + id);
+      if (sec) sec.classList.add('active');
+      if (el) el.classList.add('active');
+      const titles = { overview: 'Portfolio <span>Overview</span>', holdings: 'My <span>Properties</span>', performance: 'Performance <span>Analytics</span>', market: 'Market <span>Analytics</span>', comps: 'Market <span>Comparables</span>', briefing: 'Daily <span>Briefing</span>', opportunities: 'Investment <span>Opportunities</span>', reports: 'Reports & <span>Documents</span>' };
+      document.getElementById('topTitle').innerHTML = titles[id] || id;
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    function updateClock() {
+      document.getElementById('clock').textContent = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'America/New_York' }) + ' EST';
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+  </div>
+
+
+</body>
+
+</html>
