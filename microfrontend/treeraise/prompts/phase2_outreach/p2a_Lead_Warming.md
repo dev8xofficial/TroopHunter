@@ -80,6 +80,9 @@ Rules:
   fully.
 - Tone: Direct, confident, peer-level. Not flattering. Not enthusiastic. Not
   corporate.
+- Length: 3-4 sentences.
+- Strict requirement: Total comment length must not exceed 50 words under any circumstance.
+
 
 #### Comment 2 — Deepen the Thread
 Goal: Move from noticed to remembered.
@@ -94,6 +97,9 @@ Rules:
 - Still no pitch. Still no ask.
 - Length: 4–6 sentences.
 - Tone: Slightly warmer than Comment 1 — familiar, not intimate.
+- Length: 3-4 sentences.
+- Strict requirement: Total comment length must not exceed 50 words under any circumstance.
+
 
 #### Comment 3 — The Ask
 Goal: Make accepting a connection request feel like the natural next step.
@@ -111,6 +117,8 @@ Rules:
   something that could help you", or anything that signals a pitch is coming.
 - Length: 4–6 sentences.
 - Tone: Confident, direct, zero pressure.
+- Length: 3-4 sentences.
+- Strict requirement: Total comment length must not exceed 50 words under any circumstance.
 
 ### 4. Comment Writing Rules (apply to all three)
 
@@ -126,6 +134,8 @@ Rules:
   script tell.
 - Every sentence must earn its place. If removing it changes nothing, remove it.
 - Read each comment aloud before finalising. If it sounds rehearsed, rewrite it.
+- Length: 3-4 sentences.
+- Strict requirement: Total comment length must not exceed 50 words under any circumstance.
 
 ### 5. Output Format
 
