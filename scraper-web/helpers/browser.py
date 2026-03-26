@@ -30,6 +30,8 @@ def create_driver(headless: bool = True) -> WebDriver:
     window size, and applies sensible timeouts suitable for scraping.
     """
     chrome_options = Options()
+    # Don't block on all subresources; enough for scraping while reducing renderer timeouts.
+    chrome_options.page_load_strategy = "eager"
 
     if headless:
         # Use the modern headless mode where supported.
@@ -42,12 +44,22 @@ def create_driver(headless: bool = True) -> WebDriver:
         chrome_options.add_argument("--start-maximized")
 
     chrome_options.add_argument(f"--window-size={config.WINDOW_SIZE}")
+    
+    # Additional stability improvements for concurrent tab handling
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    chrome_options.add_argument("--enable-features=NetworkService,NetworkServiceInProcess")
+    chrome_options.add_argument("--disable-background-networking")
+    chrome_options.add_argument("--disable-renderer-backgrounding")
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
+    # Increase timeouts for stability with concurrent tabs
     driver.set_page_load_timeout(CHROME_PAGE_LOAD_TIMEOUT)
-    driver.implicitly_wait(1)
+    driver.set_script_timeout(CHROME_PAGE_LOAD_TIMEOUT)
+    # Remove implicit wait as it can cause issues with concurrent operations
+    # Instead, use explicit waits where needed
+    driver.implicitly_wait(0)
 
     return driver
 
