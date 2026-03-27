@@ -11,8 +11,13 @@ MAX_PAGES: int = 100
 DEFAULT_MAX_PAGES: int = 20
 CONCURRENT_TABS: int = 5
 
-PAGE_LOAD_TIMEOUT: int = 30
+PAGE_LOAD_TIMEOUT: int = 60
+PAGE_LOAD_RETRIES: int = 3
+PAGE_LOAD_RETRY_DELAY: float = 2.0
 ELEMENT_WAIT_TIMEOUT: int = 15
+
+# If sitemap returns fewer than this many URLs, augment with link crawling.
+MIN_SITEMAP_URLS_BEFORE_CRAWL: int = 3
 
 HEADLESS: bool = True
 WINDOW_SIZE: str = "1600,900"

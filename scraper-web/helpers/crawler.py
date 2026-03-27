@@ -3,9 +3,33 @@ from __future__ import annotations
 from typing import Set, List, Optional
 from urllib.parse import urljoin, urlparse
 from collections import deque
+import time
 
+from selenium.common.exceptions import TimeoutException, WebDriverException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+
+import config
+
+
+def _recover_after_navigation_timeout(driver: WebDriver) -> bool:
+    """
+    Attempt to recover the current tab/session after a navigation timeout.
+
+    Returns True when the tab is still usable, False if it appears broken.
+    """
+    try:
+        # Stop the current page load if the renderer is still busy.
+        driver.execute_script("window.stop();")
+    except Exception:
+        pass
+
+    try:
+        # Quick sanity check that we can still talk to the renderer.
+        driver.execute_script("return document.readyState")
+        return True
+    except Exception:
+        return False
 
 _EXCLUDE_PATTERNS = {
     "/admin",
@@ -68,20 +92,70 @@ def _normalize_url(url: str, origin: str) -> Optional[str]:
         return None
 
 
+def safe_navigate(driver: WebDriver, url: str) -> bool:
+    """Navigate safely with retries for transient timeout errors."""
+    retries = getattr(config, "PAGE_LOAD_RETRIES", 3)
+    delay = getattr(config, "PAGE_LOAD_RETRY_DELAY", 2.0)
+
+    for attempt in range(1, retries + 1):
+        try:
+            driver.get(url)
+            return True
+        except (TimeoutException, WebDriverException) as exc:
+            print(f"[warn] Timeout/navigate failed ({attempt}/{retries}) for {url}: {exc}")
+            recover_ok = _recover_after_navigation_timeout(driver)
+            if not recover_ok:
+                try:
+                    # Recreate a healthy tab if the current one got stuck.
+                    current = driver.current_window_handle
+                    driver.execute_script("window.open('about:blank', '_blank');")
+                    new_handle = driver.window_handles[-1]
+                    driver.switch_to.window(new_handle)
+                    try:
+                        driver.switch_to.window(current)
+                        driver.close()
+                    except Exception:
+                        pass
+                    driver.switch_to.window(new_handle)
+                except Exception:
+                    pass
+            if attempt == retries:
+                return False
+            time.sleep(delay * attempt)
+        except Exception as exc:
+            print(f"[warn] Navigation failed for {url}: {exc}")
+            return False
+
+    return False
+
+
 def extract_links_from_page(driver: WebDriver, current_url: str, origin: str) -> List[str]:
+    """
+    Extract all internal links from the current page.
+    Uses JavaScript to avoid stale element reference errors.
+    """
     links = []
     
     try:
-        link_elements = driver.find_elements(By.CSS_SELECTOR, "a[href]")
+        # Use JavaScript to extract all hrefs at once to avoid stale element references
+        # This is more reliable than finding elements and then getting attributes
+        script = """
+        return Array.from(document.querySelectorAll('a[href]')).map(a => a.href).filter(h => h && h.length > 0);
+        """
+        hrefs = driver.execute_script(script)
         
-        for element in link_elements:
-            href = element.get_attribute("href")
+        if not hrefs:
+            return []
+        
+        for href in hrefs:
             if not href:
                 continue
             
             normalized = _normalize_url(href, origin)
             if normalized:
                 links.append(normalized)
+        
+        # Remove duplicates while preserving order
         seen = set()
         unique_links = []
         for link in links:
@@ -93,7 +167,57 @@ def extract_links_from_page(driver: WebDriver, current_url: str, origin: str) ->
     
     except Exception as e:
         print(f"[warn] Error extracting links from {current_url}: {e}")
-        return []
+        # Fallback to element-based extraction with retry logic
+        return _extract_links_fallback(driver, current_url, origin)
+
+
+def _extract_links_fallback(driver: WebDriver, current_url: str, origin: str) -> List[str]:
+    """
+    Fallback method for extracting links using element-based approach with retry logic.
+    Handles stale element references gracefully.
+    """
+    from selenium.common.exceptions import StaleElementReferenceException
+    
+    links = []
+    max_retries = 3
+    
+    for attempt in range(max_retries):
+        try:
+            # Re-find elements on each attempt to get fresh references
+            link_elements = driver.find_elements(By.CSS_SELECTOR, "a[href]")
+            
+            for element in link_elements:
+                try:
+                    href = element.get_attribute("href")
+                    if not href:
+                        continue
+                    
+                    normalized = _normalize_url(href, origin)
+                    if normalized:
+                        links.append(normalized)
+                
+                except StaleElementReferenceException:
+                    # Skip stale elements and continue with the next one
+                    continue
+            
+            # If we got here, dedup and return
+            seen = set()
+            unique_links = []
+            for link in links:
+                if link not in seen:
+                    seen.add(link)
+                    unique_links.append(link)
+            
+            return unique_links
+        
+        except StaleElementReferenceException:
+            if attempt < max_retries - 1:
+                # Wait a bit before retrying
+                import time
+                time.sleep(0.5)
+                continue
+    
+    return []
 
 
 def crawl_website(
@@ -102,6 +226,9 @@ def crawl_website(
     max_pages: int,
     on_discover: Optional[callable] = None,
 ) -> List[str]:
+    from selenium.common.exceptions import StaleElementReferenceException
+    import time
+    
     parsed = urlparse(start_url)
     origin = f"{parsed.scheme}://{parsed.netloc}"
     
@@ -127,7 +254,12 @@ def crawl_website(
         if on_discover:
             on_discover(current_url, page_count)
         try:
-            driver.get(current_url)
+            if not safe_navigate(driver, current_url):
+                print(f"[warn] Skipping {current_url} after navigation retries.")
+                continue
+            # Add wait for DOM stability
+            time.sleep(0.5)
+            
             links = extract_links_from_page(driver, current_url, origin)
             for link in links:
                 if link not in visited and len(discovered) + len(queue) < max_pages:
@@ -135,6 +267,13 @@ def crawl_website(
             
             print(f"[info]   Found {len(links)} internal links on this page")
         
+        except StaleElementReferenceException as e:
+            print(f"[warn] Stale element error on {current_url}, retrying: {e}")
+            # Re-add to queue for retry
+            queue.appendleft(current_url)
+            visited.discard(current_url)
+            discovered.pop()
+            time.sleep(1)
         except Exception as e:
             print(f"[warn] Error loading {current_url}: {e}")
             continue
@@ -149,6 +288,8 @@ def crawl_website_batch(
     max_pages: int,
     discovery_phase_pages: int = 20,
 ) -> List[str]:
+    import time
+    
     parsed = urlparse(start_url)
     origin = f"{parsed.scheme}://{parsed.netloc}"
     
@@ -176,7 +317,11 @@ def crawl_website_batch(
         if should_load:
             print(f"[info] Loading page {page_count}: {current_url}")
             try:
-                driver.get(current_url)
+                if not safe_navigate(driver, current_url):
+                    print(f"[warn] Skipping {current_url} after navigation retries.")
+                    continue
+                # Add wait for DOM stability
+                time.sleep(0.5)
                 pages_loaded += 1
                 links = extract_links_from_page(driver, current_url, origin)
                 

@@ -87,6 +87,8 @@ def _scrape_urls_in_tabs(driver, urls: List[str], concurrent_tabs: int) -> list:
     Load a batch of URLs into separate browser tabs concurrently,
     then extract content sequentially from each tab.
     """
+    from selenium.common.exceptions import StaleElementReferenceException, NoSuchWindowException
+    
     pages_data = []
     main_tab = driver.current_window_handle
     
@@ -98,43 +100,81 @@ def _scrape_urls_in_tabs(driver, urls: List[str], concurrent_tabs: int) -> list:
         # 1. Open all tabs for this batch
         for i, url in enumerate(batch_urls):
             page_index = batch_start + i + 1
-            if page_index == 1:
-                # The very first page loads in the existing main tab
-                driver.get(url)
-                batch_handles.append((main_tab, url, page_index))
-            else:
-                # Open a new tab
-                driver.execute_script("window.open(arguments[0], '_blank');", url)
-                # Find the newly created handle
-                new_tabs = [h for h in driver.window_handles if h != main_tab and h not in _seen]
-                if new_tabs:
-                    handle = new_tabs[0]
-                    _seen.add(handle)
-                    batch_handles.append((handle, url, page_index))
+            try:
+                if page_index == 1:
+                    # The very first page loads in the existing main tab
+                    if not crawler.safe_navigate(driver, url):
+                        print(f"[warn] Skipping first page {url} after retries")
+                        continue
+                    batch_handles.append((main_tab, url, page_index))
                 else:
-                    # Fallback
-                    handle = driver.window_handles[-1]
-                    _seen.add(handle)
-                    batch_handles.append((handle, url, page_index))
+                    # Open a new tab with a slight delay to ensure stability
+                    time.sleep(0.3)
+                    driver.execute_script("window.open(arguments[0], '_blank');", url)
+                    # Find the newly created handle
+                    new_tabs = [h for h in driver.window_handles if h != main_tab and h not in _seen]
+                    if new_tabs:
+                        handle = new_tabs[0]
+                        _seen.add(handle)
+                        batch_handles.append((handle, url, page_index))
+                    else:
+                        # Fallback
+                        handle = driver.window_handles[-1]
+                        _seen.add(handle)
+                        batch_handles.append((handle, url, page_index))
+            except Exception as e:
+                print(f"[warn] Failed to open tab for {url}: {e}")
+                continue
         
         # 2. Iterate through opened tabs, wait for ready, and extract
         for handle, url, page_index in batch_handles:
-            driver.switch_to.window(handle)
-            navigation.wait_for_page_ready(driver)
+            try:
+                driver.switch_to.window(handle)
+            except NoSuchWindowException:
+                print(f"[warn] Tab for page {page_index} no longer exists, skipping")
+                continue
             
-            page_data = extraction.extract_page_data(
-                driver=driver,
-                page_number=page_index,
-            )
-            pages_data.append(page_data)
-            print(f"[info] Scraped page {page_index}/{len(urls)}: {url}")
+            try:
+                # Wait for page to be ready before extracting
+                navigation.wait_for_page_ready(driver)
+                # Additional wait to ensure DOM is stable
+                time.sleep(0.5)
+                
+                page_data = extraction.extract_page_data(
+                    driver=driver,
+                    page_number=page_index,
+                )
+                pages_data.append(page_data)
+                print(f"[info] Scraped page {page_index}/{len(urls)}: {url}")
             
-            # Close the tab (unless it's the reusable main tab)
-            if handle != main_tab:
-                driver.close()
+            except (StaleElementReferenceException, Exception) as e:
+                print(f"[warn] Error extracting page {page_index}: {e}. Retrying...")
+                try:
+                    # Retry once after a brief wait
+                    time.sleep(1)
+                    page_data = extraction.extract_page_data(
+                        driver=driver,
+                        page_number=page_index,
+                    )
+                    pages_data.append(page_data)
+                    print(f"[info] Scraped page {page_index}/{len(urls)}: {url} (retry)")
+                except Exception as retry_error:
+                    print(f"[error] Failed to extract page {page_index} on retry: {retry_error}")
+            
+            finally:
+                # Close the tab (unless it's the reusable main tab)
+                if handle != main_tab:
+                    try:
+                        driver.close()
+                    except Exception:
+                        pass
                 
         # Switch back to the main tab for the next batch
-        driver.switch_to.window(main_tab)
+        try:
+            driver.switch_to.window(main_tab)
+        except NoSuchWindowException:
+            print(f"[warn] Main tab closed unexpectedly")
+            return pages_data
         
         # Small pause between batches
         if batch_start + concurrent_tabs < len(urls):
@@ -167,23 +207,45 @@ def run_scraper(
 
     # --- Discover pages via sitemap ---
     urls = sitemap.discover_sitemap_urls(start_url, limit=max_pages)
-    
-    # --- If no sitemap, crawl the website for internal links ---
-    if not urls:
-        print("[info] No sitemap found. Starting link discovery crawl...")
+
+    # --- If sitemap is missing or sparse, augment with internal-link crawl ---
+    min_sitemap_urls = getattr(config, "MIN_SITEMAP_URLS_BEFORE_CRAWL", 3)
+    should_augment_with_crawl = len(urls) < min_sitemap_urls or len(urls) < max_pages
+    if should_augment_with_crawl:
+        if not urls:
+            print("[info] No sitemap found. Starting link discovery crawl...")
+        else:
+            print(
+                f"[info] Sitemap returned {len(urls)} URL(s). "
+                "Running link discovery to capture missing pages..."
+            )
+
         discovery_driver = browser.create_driver(headless=headless)
         try:
-            # Use fast batch crawl: load first 10-15 pages to discover links,
-            # then queue remaining pages without loading them.
-            urls = crawler.crawl_website_batch(
+            discovered_urls = crawler.crawl_website_batch(
                 discovery_driver,
                 start_url,
                 max_pages=max_pages,
                 discovery_phase_pages=10,
             )
+
+            # Preserve sitemap priority, then append newly discovered URLs.
+            seen = set()
+            merged_urls = []
+            for item in urls + discovered_urls:
+                if item and item not in seen:
+                    seen.add(item)
+                    merged_urls.append(item)
+                if len(merged_urls) >= max_pages:
+                    break
+            urls = merged_urls
+            print(f"[info] Total URLs after merge: {len(urls)}")
         except Exception as e:
-            print(f"[warn] Crawl failed: {e}. Falling back to start URL only.")
-            urls = [start_url]
+            if urls:
+                print(f"[warn] Crawl augmentation failed: {e}. Using sitemap URLs only.")
+            else:
+                print(f"[warn] Crawl failed: {e}. Falling back to start URL only.")
+                urls = [start_url]
         finally:
             try:
                 discovery_driver.quit()

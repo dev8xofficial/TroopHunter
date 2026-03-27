@@ -21,15 +21,17 @@ Because LinkedIn uses infinite scrolling and lazy-loads content, this scraper si
 ## Installation
 
 ```bash
-python3 -m venv venv
+python -m venv venv
 
 # Windows: Use CMD terminal
+
 venv\Scripts\activate.bat
 
 # Unix / macOS
 source venv/bin/activate
 
 pip install -r requirements.txt
+
 ```
 
 ## Usage (CLI)
@@ -37,7 +39,7 @@ pip install -r requirements.txt
 Activate your virtual environment, then run:
 
 ```bash
-python3 main.py "https://www.linkedin.com/company/treeraise/" --max-scrolls 15 --no-headless
+python main.py "https://www.linkedin.com/company/inspired-ch/" --max-scrolls 30 --no-headless
 ```
 
 The scraper will:
