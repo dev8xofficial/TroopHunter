@@ -57,135 +57,7 @@
     </script>
 
     <style>
-      /* ============================================================
-         RESET & BASE
-         ============================================================ */
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-
-      button {
-        font-family: inherit;
-        cursor: pointer;
-      }
-
-      input,
-      textarea,
-      select {
-        font-family: inherit;
-      }
-
-      /* ============================================================
-         CSS CUSTOM PROPERTIES — required by JS inline styles
-         ============================================================ */
-      :root {
-        --rausch: #ff5a5f;
-        --rausch-dark: #e0484d;
-        --rausch-light: #fff0f0;
-        --baia: #00a699;
-        --baia-light: #e6f7f6;
-        --arches: #fc642d;
-        --hof: #484848;
-        --foggy: #767676;
-        --border: #ebebeb;
-        --white: #ffffff;
-        --bg: #f7f7f7;
-        --text: #222222;
-        --text-light: #717171;
-        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
-        --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.12);
-        --shadow-lg: 0 14px 36px rgba(0, 0, 0, 0.15);
-        --radius: 16px;
-        --radius-sm: 10px;
-        --green: #2f9e44;
-        --green-light: #e6f9ee;
-        --amber: #e67e00;
-        --amber-light: #fff8e6;
-        --red: #e03131;
-        --red-light: #fff0f0;
-        --blue: #3b5bdb;
-        --blue-light: #eef2ff;
-        --purple: #7048e8;
-        --purple-light: #f3f0ff;
-      }
-
-      /* ============================================================
-         KEYFRAME ANIMATIONS
-         ============================================================ */
-      @keyframes pulse {
-        0%,
-        100% {
-          box-shadow:
-            0 0 0 5px #fff0f0,
-            0 4px 12px rgba(255, 90, 95, 0.4);
-        }
-
-        50% {
-          box-shadow:
-            0 0 0 9px #fff0f0,
-            0 4px 12px rgba(255, 90, 95, 0.15);
-        }
-      }
-
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateY(-6px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes toastIn {
-        from {
-          opacity: 0;
-          transform: translateX(20px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      @keyframes growUp {
-        from {
-          height: 0;
-        }
-      }
-
-      @keyframes ph-blink {
-        0%,
-        100% {
-          opacity: 1;
-        }
-
-        50% {
-          opacity: 0.3;
-        }
-      }
-
-      /* ============================================================
-         JS-TOGGLED STATES
-         ============================================================ */
-
+      /* ── JS-TOGGLED STATES (cannot be Tailwind — JS uses class names) ── */
       .tab-panel {
         display: none;
       }
@@ -231,6 +103,7 @@
         border-bottom-color: #ff5a5f;
       }
 
+      /* perf-mode layout override (toggled by switchPortalTab JS) */
       .portal-body.perf-mode {
         grid-template-columns: 1fr !important;
         padding: 0 !important;
@@ -241,6 +114,12 @@
         display: none;
       }
 
+      /* unread message JS toggle */
+      .msg-item.unread {
+        background: #fffaf9;
+      }
+
+      /* step-dot pulse animation */
       .step-dot.current {
         animation: pulse 2s infinite;
       }
@@ -249,9 +128,276 @@
         animation: ph-blink 2s infinite;
       }
 
-      /* ============================================================
-         TIMELINE HTML (emitted by renderTimeline())
-         ============================================================ */
+      /* ── KEYFRAMES ── */
+      @keyframes pulse {
+
+        0%,
+        100% {
+          box-shadow: 0 0 0 5px #fff0f0, 0 4px 12px rgba(255, 90, 95, 0.4);
+        }
+
+        50% {
+          box-shadow: 0 0 0 9px #fff0f0, 0 4px 12px rgba(255, 90, 95, 0.15);
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes toastIn {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes growUp {
+        from {
+          height: 0;
+        }
+      }
+
+      @keyframes ph-blink {
+
+        0%,
+        100% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      /* ── BUTTON SYSTEM (complex interactive component — kept as CSS) ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        transition: all 0.15s;
+      }
+
+      .btn-primary {
+        background: #ff5a5f;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #e0484d;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(255, 90, 95, 0.35);
+      }
+
+      .btn-success {
+        background: #00a699;
+        color: white;
+      }
+
+      .btn-success:hover {
+        background: #008a7d;
+      }
+
+      .btn-secondary {
+        background: white;
+        color: #222222;
+        border: 1.5px solid #ebebeb;
+      }
+
+      .btn-secondary:hover {
+        background: #f7f7f7;
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 1.5px solid #ff5a5f;
+        color: #ff5a5f;
+      }
+
+      .btn-outline:hover {
+        background: #ff5a5f;
+        color: white;
+      }
+
+      .btn-danger {
+        background: #fff0f0;
+        color: #ff5a5f;
+        border: 1.5px solid #ff5a5f;
+      }
+
+      .btn-danger:hover {
+        background: #ff5a5f;
+        color: white;
+      }
+
+      .btn-full {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn-sm {
+        padding: 7px 14px;
+        font-size: 12px;
+      }
+
+      .btn-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+
+      .btn-row .btn {
+        flex: 1;
+        min-width: 120px;
+        justify-content: center;
+      }
+
+      /* ── TOAST (created dynamically by JS) ── */
+      .toast-container {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        z-index: 9999;
+      }
+
+      .toast {
+        padding: 12px 20px;
+        background: #484848;
+        color: white;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        animation: toastIn 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 340px;
+      }
+
+      .toast.success {
+        background: #00a699;
+      }
+
+      .toast.error {
+        background: #ff5a5f;
+      }
+
+      /* ── POLICY MODAL ── */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 500;
+        padding: 20px;
+      }
+
+      .modal-box {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 640px;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .modal-head {
+        padding: 20px 24px;
+        border-bottom: 1px solid #ebebeb;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+      }
+
+      .modal-head-title {
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .modal-close-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: none;
+        background: #f7f7f7;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-body {
+        padding: 24px;
+        overflow-y: auto;
+        flex: 1;
+      }
+
+      .modal-footer {
+        padding: 16px 24px;
+        border-top: 1px solid #ebebeb;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+
+      .policy-text {
+        font-size: 13px;
+        line-height: 1.8;
+        color: #484848;
+      }
+
+      .policy-text h3 {
+        font-size: 14px;
+        font-weight: 800;
+        margin: 16px 0 6px;
+        color: #222222;
+      }
+
+      .policy-text p {
+        margin-bottom: 10px;
+      }
+
+      .policy-text ul {
+        padding-left: 18px;
+        margin-bottom: 10px;
+      }
+
+      .policy-text ul li {
+        margin-bottom: 4px;
+      }
+
+      /* ── JS-RENDERED TIMELINE (getCandidatePanelContent / renderTimeline) ── */
+      /* These are emitted as innerHTML strings by JS — must remain CSS */
       .timeline-step {
         display: grid;
         grid-template-columns: 64px 1fr;
@@ -292,9 +438,7 @@
         background: #ff5a5f;
         border-color: #ff5a5f;
         color: white;
-        box-shadow:
-          0 0 0 5px #fff0f0,
-          0 4px 12px rgba(255, 90, 95, 0.4);
+        box-shadow: 0 0 0 5px #fff0f0, 0 4px 12px rgba(255, 90, 95, 0.4);
       }
 
       .step-dot.pending {
@@ -386,12 +530,6 @@
         border: 1px solid #ebebeb;
       }
 
-      .step-desc {
-        font-size: 12px;
-        color: #767676;
-        padding: 2px 0 6px;
-      }
-
       .chevron {
         color: #767676;
         font-size: 11px;
@@ -407,9 +545,7 @@
         margin-bottom: 12px;
       }
 
-      /* ============================================================
-         PANEL CONTENT HTML (emitted by getCandidatePanelContent())
-         ============================================================ */
+      /* Panel component HTML emitted by getCandidatePanelContent() */
       .panel-info-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -433,7 +569,7 @@
       }
 
       .action-card {
-        background: #ffffff;
+        background: white;
         border: 1px solid #ebebeb;
         border-radius: 10px;
         padding: 16px;
@@ -516,95 +652,6 @@
         color: rgba(255, 255, 255, 0.82);
         font-size: 12px;
         margin-top: 2px;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        padding: 10px 18px;
-        border-radius: 10px;
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 13px;
-        font-weight: 700;
-        cursor: pointer;
-        border: none;
-        transition: all 0.15s;
-      }
-
-      .btn-primary {
-        background: #ff5a5f;
-        color: white;
-      }
-
-      .btn-primary:hover {
-        background: #e0484d;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(255, 90, 95, 0.35);
-      }
-
-      .btn-success {
-        background: #00a699;
-        color: white;
-      }
-
-      .btn-success:hover {
-        background: #008a7d;
-      }
-
-      .btn-secondary {
-        background: white;
-        color: #222222;
-        border: 1.5px solid #ebebeb;
-      }
-
-      .btn-secondary:hover {
-        background: #f7f7f7;
-      }
-
-      .btn-outline {
-        background: transparent;
-        border: 1.5px solid #ff5a5f;
-        color: #ff5a5f;
-      }
-
-      .btn-outline:hover {
-        background: #ff5a5f;
-        color: white;
-      }
-
-      .btn-full {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .btn-sm {
-        padding: 7px 14px;
-        font-size: 12px;
-      }
-
-      .btn-danger {
-        background: #fff0f0;
-        color: #ff5a5f;
-        border: 1.5px solid #ff5a5f;
-      }
-
-      .btn-danger:hover {
-        background: #ff5a5f;
-        color: white;
-      }
-
-      .btn-row {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: 14px;
-      }
-
-      .btn-row .btn {
-        flex: 1;
-        min-width: 120px;
-        justify-content: center;
       }
 
       .time-slot-grid {
@@ -758,9 +805,7 @@
       .software-card:hover {
         border-color: #ff5a5f;
         transform: translateY(-2px);
-        box-shadow:
-          0 1px 2px rgba(0, 0, 0, 0.08),
-          0 4px 12px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
       }
 
       .software-card.installed {
@@ -925,93 +970,127 @@
         line-height: 1.65;
       }
 
-      /* ============================================================
-         TOAST (created dynamically by showToast())
-         ============================================================ */
-      .toast {
-        padding: 12px 20px;
-        background: #484848;
-        color: white;
-        border-radius: 10px;
-        font-size: 13px;
-        font-weight: 600;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-        animation: toastIn 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        max-width: 340px;
+      /* ── PERFORMANCE TAB (Chunk 3 — all perf CSS kept until next chunk) ── */
+      .perf-hero {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        padding: 36px 32px;
+        position: relative;
+        overflow: hidden;
       }
 
-      .toast.success {
+      .perf-hero::before {
+        content: '';
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: rgba(255, 90, 95, 0.08);
+        top: -200px;
+        right: -100px;
+      }
+
+      .perf-hero::after {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(0, 166, 153, 0.08);
+        bottom: -150px;
+        left: 200px;
+      }
+
+      .ph-inner {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .ph-eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .ph-eyebrow-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
         background: #00a699;
       }
 
-      .toast.error {
-        background: #ff5a5f;
+      .ph-title {
+        font-size: 28px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 6px;
       }
 
-      /* ============================================================
-         ATTENDANCE CALENDAR (renderPerfAttCal())
-         ============================================================ */
-      .att-cal-hdr {
-        font-size: 9px;
-        font-weight: 700;
-        color: #767676;
-        text-align: center;
-        text-transform: uppercase;
-        padding: 4px 0;
+      .ph-sub {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 20px;
       }
 
-      .cal-cell {
-        aspect-ratio: 1;
-        border-radius: 6px;
+      .ph-chips {
         display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .ph-chip {
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
-        font-size: 11px;
+        gap: 7px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 7px 14px;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 12px;
         font-weight: 600;
-        cursor: default;
-        transition: transform 0.1s;
       }
 
-      .cal-cell:hover {
-        transform: scale(1.1);
+      .ph-chip.warn {
+        background: rgba(230, 126, 0, 0.2);
+        border-color: rgba(230, 126, 0, 0.4);
+        color: #ffd699;
       }
 
-      .cal-cell.present {
-        background: #e6f9ee;
-        color: #2f9e44;
+      .ph-right {
+        display: flex;
+        gap: 16px;
+        flex-shrink: 0;
       }
 
-      .cal-cell.late {
-        background: #fff8e6;
-        color: #e67e00;
+      .score-globe {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1.5px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        padding: 20px 24px;
+        text-align: center;
+        min-width: 130px;
       }
 
-      .cal-cell.absent {
-        background: #fff0f0;
-        color: #e03131;
+      .score-globe-value {
+        font-size: 40px;
+        font-weight: 800;
+        color: white;
+        line-height: 1;
       }
 
-      .cal-cell.weekend {
-        background: #f4f4f4;
-        color: #ccc;
-      }
-
-      .cal-cell.future {
-        background: #f7f7f7;
-        color: #d0d0d0;
-      }
-
-      .cal-cell.today {
-        outline: 2px solid #ff5a5f;
-        outline-offset: 1px;
-      }
-
-      .cal-cell.empty {
-        background: transparent;
-      }
+      .
     </style>
   </head>
 
@@ -1115,184 +1194,237 @@
       <!-- ============================================================
              MAIN CONTENT (Chunk 2)
              ============================================================ -->
-      <div class="portal-body">
-        <!-- MAIN CONTENT -->
+      <!-- ============================================================
+     PORTAL BODY — Chunk 2 (Tailwind converted)
+     grid: 1fr 320px  |  perf-mode overridden via .portal-body.perf-mode CSS
+     ============================================================ -->
+      <div class="portal-body flex-1 py-7 px-8 grid grid-cols-[1fr_320px] gap-6 max-w-[1280px] mx-auto w-full">
+        <!-- ═══ MAIN COLUMN ═══ -->
         <div>
           <!-- ── TAB: APPLICATION JOURNEY ── -->
           <div class="tab-panel active" id="panel-journey">
-            <div class="card">
-              <div class="card-header">
+            <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+              <!-- Card Header -->
+              <div class="px-6 py-5 border-b border-[#ebebeb] flex items-center justify-between">
                 <div>
-                  <div class="card-title">Your Application Journey</div>
-                  <div class="card-sub">Click any stage to view details and take required actions</div>
+                  <div class="text-base font-bold">Your Application Journey</div>
+                  <div class="text-xs text-[#767676] mt-0.5">Click any stage to view details and take required actions</div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 16px">
-                  <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--baia)"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--baia); display: inline-block"></span>Completed</div>
-                  <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--rausch)"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--rausch); display: inline-block"></span>Active</div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-[6px] text-xs font-bold text-[#00a699]"><span class="w-[10px] h-[10px] rounded-full bg-[#00a699] inline-block"></span>Completed</div>
+                  <div class="flex items-center gap-[6px] text-xs font-bold text-[#ff5a5f]"><span class="w-[10px] h-[10px] rounded-full bg-[#ff5a5f] inline-block"></span>Active</div>
                 </div>
               </div>
-              <div class="card-body">
-                <div class="timeline-wrap" id="candidateTimeline"></div>
+              <!-- Card Body — populated by renderTimeline() JS -->
+              <div>
+                <div class="py-2" id="candidateTimeline"></div>
               </div>
             </div>
           </div>
 
           <!-- ── TAB: DOCUMENTS ── -->
           <div class="tab-panel" id="panel-documents">
-            <div class="card">
-              <div class="card-header">
+            <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+              <!-- Card Header -->
+              <div class="px-6 py-5 border-b border-[#ebebeb] flex items-center justify-between">
                 <div>
-                  <div class="card-title">My Documents</div>
-                  <div class="card-sub">All documents related to your application at Dev8X</div>
+                  <div class="text-base font-bold">My Documents</div>
+                  <div class="text-xs text-[#767676] mt-0.5">All documents related to your application at Dev8X</div>
                 </div>
                 <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading all documents…', '📥')">📥 Download All</button>
               </div>
-              <div class="card-body" style="padding: 24px">
-                <!-- Documents to Sign -->
-                <div class="doc-category">
-                  <div class="doc-category-title">📝 Pending Signatures <span style="background: var(--rausch-light); color: var(--rausch); font-size: 10px; padding: 2px 8px; border-radius: 10px; margin-left: 6px">2 required</span></div>
-                  <div class="doc-row">
-                    <div class="doc-row-left">
-                      <div class="doc-row-icon">📋</div>
+
+              <!-- Card Body -->
+              <div class="p-6">
+                <!-- ── Pending Signatures ── -->
+                <div class="mb-6">
+                  <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] pb-[10px] mb-2 border-b border-[#ebebeb]">
+                    📝 Pending Signatures
+                    <span class="bg-[#fff0f0] text-[#ff5a5f] text-[10px] font-bold py-0.5 px-2 rounded-[10px] ml-1.5">2 required</span>
+                  </div>
+
+                  <!-- Row: Internship Agreement -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">📋</div>
                       <div>
-                        <div class="doc-row-name">Internship / Employment Agreement</div>
-                        <div class="doc-row-meta">PDF · 0.8 MB · Added Feb 28, 2025 <span class="doc-tag doc-tag-pending">⚠ Signature Required</span></div>
+                        <div class="text-sm font-bold">Internship / Employment Agreement</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.8 MB · Added Feb 28, 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff0f0] text-[#ff5a5f]">⚠ Signature Required</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="doc-row-actions">
+                    <div class="flex gap-2 items-center">
                       <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('agreement')">👁 Read</button>
                       <button class="btn btn-outline btn-sm" onclick="signDocument(this, 'Internship Agreement')">✍ Sign</button>
                     </div>
                   </div>
-                  <div class="doc-row">
-                    <div class="doc-row-left">
-                      <div class="doc-row-icon">🔒</div>
+
+                  <!-- Row: NDA -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">🔒</div>
                       <div>
-                        <div class="doc-row-name">NDA / Confidentiality Agreement</div>
-                        <div class="doc-row-meta">PDF · 0.5 MB · Added Feb 28, 2025 <span class="doc-tag doc-tag-pending">⚠ Signature Required</span></div>
+                        <div class="text-sm font-bold">NDA / Confidentiality Agreement</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.5 MB · Added Feb 28, 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff0f0] text-[#ff5a5f]">⚠ Signature Required</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="doc-row-actions">
+                    <div class="flex gap-2 items-center">
                       <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('nda')">👁 Read</button>
                       <button class="btn btn-outline btn-sm" onclick="signDocument(this, 'NDA Agreement')">✍ Sign</button>
                     </div>
                   </div>
                 </div>
 
-                <!-- Company Policies to Read -->
-                <div class="doc-category">
-                  <div class="doc-category-title">📖 Company Policies — Required Reading</div>
-                  <div class="doc-row">
-                    <div class="doc-row-left">
-                      <div class="doc-row-icon">🌐</div>
+                <!-- ── Company Policies ── -->
+                <div class="mb-6">
+                  <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] pb-[10px] mb-2 border-b border-[#ebebeb]">📖 Company Policies — Required Reading</div>
+
+                  <!-- Remote Work -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">🌐</div>
                       <div>
-                        <div class="doc-row-name">Remote Work Policy</div>
-                        <div class="doc-row-meta">PDF · 0.3 MB · Effective Jan 2025 <span class="doc-tag doc-tag-required">Required</span></div>
+                        <div class="text-sm font-bold">Remote Work Policy</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.3 MB · Effective Jan 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff3cd] text-[#856404]">Required</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="doc-row-actions">
+                    <div class="flex gap-2 items-center">
                       <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('remote')">👁 Read Policy</button>
                       <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
-                  <div class="doc-row">
-                    <div class="doc-row-left">
-                      <div class="doc-row-icon">⚖️</div>
+
+                  <!-- Work Ethics -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">⚖️</div>
                       <div>
-                        <div class="doc-row-name">Work Ethics & Code of Conduct</div>
-                        <div class="doc-row-meta">PDF · 0.5 MB · Effective Jan 2025 <span class="doc-tag doc-tag-required">Required</span></div>
+                        <div class="text-sm font-bold">Work Ethics & Code of Conduct</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.5 MB · Effective Jan 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff3cd] text-[#856404]">Required</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="doc-row-actions">
+                    <div class="flex gap-2 items-center">
                       <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('ethics')">👁 Read Policy</button>
                       <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
-                  <div class="doc-row">
-                    <div class="doc-row-left">
-                      <div class="doc-row-icon">🏖</div>
+
+                  <!-- Vacation & Leave -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">🏖</div>
                       <div>
-                        <div class="doc-row-name">Vacation & Leave Policy</div>
-                        <div class="doc-row-meta">PDF · 0.2 MB · Effective Jan 2025 <span class="doc-tag doc-tag-required">Required</span></div>
+                        <div class="text-sm font-bold">Vacation & Leave Policy</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.2 MB · Effective Jan 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff3cd] text-[#856404]">Required</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="doc-row-actions">
+                    <div class="flex gap-2 items-center">
                       <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('leave')">👁 Read Policy</button>
                       <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
-                  <div class="doc-row">
-                    <div class="doc-row-left">
-                      <div class="doc-row-icon">⚠️</div>
+
+                  <!-- Penalty Standards -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">⚠️</div>
                       <div>
-                        <div class="doc-row-name">Penalty & Behaviour Standards</div>
-                        <div class="doc-row-meta">PDF · 0.3 MB · Effective Jan 2025 <span class="doc-tag doc-tag-required">Required</span></div>
+                        <div class="text-sm font-bold">Penalty & Behaviour Standards</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.3 MB · Effective Jan 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff3cd] text-[#856404]">Required</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="doc-row-actions">
+                    <div class="flex gap-2 items-center">
                       <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('penalty')">👁 Read Policy</button>
                       <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
                 </div>
 
-                <!-- Signed Documents -->
-                <div class="doc-category">
-                  <div class="doc-category-title">✅ Already Signed</div>
-                  <div class="doc-row signed-doc">
-                    <div class="doc-row-left">
-                      <div class="doc-row-icon">📄</div>
+                <!-- ── Already Signed ── -->
+                <div class="mb-6">
+                  <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] pb-[10px] mb-2 border-b border-[#ebebeb]">✅ Already Signed</div>
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#00a699] rounded-[10px] bg-[#e6f7f6] mb-2 transition-all duration-150">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">📄</div>
                       <div>
-                        <div class="doc-row-name">Application Form — UI/UX Designer</div>
-                        <div class="doc-row-meta">PDF · 0.2 MB · Signed Feb 12, 2025 <span class="doc-tag doc-tag-signed">✓ Signed</span></div>
+                        <div class="text-sm font-bold">Application Form — UI/UX Designer</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.2 MB · Signed Feb 12, 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#e6f7f6] text-[#00a699]">✓ Signed</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="doc-row-actions">
+                    <div class="flex gap-2 items-center">
                       <button class="btn btn-secondary btn-sm" onclick="showToast('Opening signed copy…', '📄')">👁 View</button>
                       <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
                 </div>
 
-                <!-- HR Uploaded Documents -->
-                <div class="doc-category">
-                  <div class="doc-category-title">📤 Shared by HR</div>
-                  <div class="doc-row">
-                    <div class="doc-row-left">
-                      <div class="doc-row-icon">📝</div>
+                <!-- ── Shared by HR ── -->
+                <div class="mb-6">
+                  <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] pb-[10px] mb-2 border-b border-[#ebebeb]">📤 Shared by HR</div>
+
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">📝</div>
                       <div>
-                        <div class="doc-row-name">Technical Interview Brief</div>
-                        <div class="doc-row-meta">PDF · 0.4 MB · Added Feb 10, 2025 <span class="doc-tag doc-tag-read">Info</span></div>
+                        <div class="text-sm font-bold">Technical Interview Brief</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.4 MB · Added Feb 10, 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#f0f5ff] text-[#3b5bdb]">Info</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="doc-row-actions">
+                    <div class="flex gap-2 items-center">
                       <button class="btn btn-secondary btn-sm" onclick="showToast('Opening document…', '📄')">👁 View</button>
                       <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
-                  <div class="doc-row">
-                    <div class="doc-row-left">
-                      <div class="doc-row-icon">🏢</div>
+
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">🏢</div>
                       <div>
-                        <div class="doc-row-name">Dev8X Company Overview</div>
-                        <div class="doc-row-meta">PDF · 1.2 MB · Added Feb 12, 2025 <span class="doc-tag doc-tag-read">Info</span></div>
+                        <div class="text-sm font-bold">Dev8X Company Overview</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 1.2 MB · Added Feb 12, 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#f0f5ff] text-[#3b5bdb]">Info</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="doc-row-actions">
+                    <div class="flex gap-2 items-center">
                       <button class="btn btn-secondary btn-sm" onclick="showToast('Opening document…', '📄')">👁 View</button>
                       <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
                 </div>
 
-                <!-- Upload your documents -->
-                <div class="doc-category">
-                  <div class="doc-category-title">📤 Upload Your Documents</div>
-                  <div style="border: 2px dashed var(--border); border-radius: var(--radius-sm); padding: 28px; text-align: center; background: var(--bg); cursor: pointer" onclick="showToast('File picker opened…', '📎')">
-                    <div style="font-size: 32px; margin-bottom: 8px">📎</div>
-                    <div style="font-size: 14px; font-weight: 700; margin-bottom: 4px">Drop files here or click to upload</div>
-                    <div style="font-size: 12px; color: var(--foggy)">PDF, DOC up to 10 MB · Resume, Portfolio, Certificates</div>
-                    <button class="btn btn-secondary btn-sm" style="margin-top: 14px" onclick="showToast('File picker opened…', '📎')">Choose File</button>
+                <!-- ── Upload Documents ── -->
+                <div class="mb-6">
+                  <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] pb-[10px] mb-2 border-b border-[#ebebeb]">📤 Upload Your Documents</div>
+                  <div class="border-2 border-dashed border-[#ebebeb] rounded-[10px] py-7 px-7 text-center bg-[#f7f7f7] cursor-pointer" onclick="showToast('File picker opened…', '📎')">
+                    <div class="text-[32px] mb-2">📎</div>
+                    <div class="text-sm font-bold mb-1">Drop files here or click to upload</div>
+                    <div class="text-xs text-[#767676]">PDF, DOC up to 10 MB · Resume, Portfolio, Certificates</div>
+                    <button class="btn btn-secondary btn-sm mt-[14px]" onclick="showToast('File picker opened…', '📎')">Choose File</button>
                   </div>
                 </div>
               </div>
@@ -1301,88 +1433,79 @@
 
           <!-- ── TAB: MESSAGES ── -->
           <div class="tab-panel" id="panel-messages">
-            <div class="card">
-              <div class="card-header">
+            <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+              <!-- Card Header -->
+              <div class="px-6 py-5 border-b border-[#ebebeb] flex items-center justify-between">
                 <div>
-                  <div class="card-title">Messages from HR</div>
-                  <div class="card-sub">All communications regarding your application</div>
+                  <div class="text-base font-bold">Messages from HR</div>
+                  <div class="text-xs text-[#767676] mt-0.5">All communications regarding your application</div>
                 </div>
-                <span style="font-size: 12px; color: var(--foggy)">3 unread</span>
+                <span class="text-xs text-[#767676]">3 unread</span>
               </div>
-              <div class="card-body msg-list">
+
+              <!-- Messages List -->
+              <div>
+                <!-- Message 1 — unread class retained for JS toggle -->
                 <div
-                  class="msg-item unread"
-                  onclick="
-                    openMessage(
-                      this,
-                      'Behzad Raza',
-                      'Interview Confirmation',
-                      'Your Technical Interview has been scheduled for Feb 14, 2025 at 10:00 AM on Google Meet. Please confirm your availability and ensure you have a stable internet connection, proper lighting, and a professional background. Your interviewer will be Ahmad — Backend Lead. The Google Meet link will be shared 30 minutes before your interview. Please reply to this message if you have any questions.',
-                    )
-                  "
+                  class="msg-item unread flex items-start gap-[14px] px-5 py-4 border-b border-[#ebebeb] cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
+                  onclick="openMessage(this,'Behzad Raza','Interview Confirmation','Your Technical Interview has been scheduled for Feb 14, 2025 at 10:00 AM on Google Meet. Please confirm your availability and ensure you have a stable internet connection, proper lighting, and a professional background. Your interviewer will be Ahmad — Backend Lead. The Google Meet link will be shared 30 minutes before your interview. Please reply to this message if you have any questions.')"
                 >
-                  <div class="msg-avatar" style="background: linear-gradient(135deg, var(--rausch), var(--arches))">BR</div>
-                  <div class="msg-body">
-                    <div class="msg-top"><span class="msg-sender">Behzad Raza — HR Lead</span><span class="msg-time">2 hours ago</span></div>
-                    <div class="msg-subject">📅 Your Technical Interview is Scheduled</div>
-                    <div class="msg-preview">Your interview has been scheduled for Feb 14, 2025 at 10:00 AM on Google Meet…</div>
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">BR</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                      <span class="text-sm font-bold">Behzad Raza — HR Lead</span>
+                      <span class="text-[11px] text-[#767676]">2 hours ago</span>
+                    </div>
+                    <div class="text-xs font-semibold text-[#222222] mt-0.5">📅 Your Technical Interview is Scheduled</div>
+                    <div class="text-[13px] text-[#767676] mt-[3px] whitespace-nowrap overflow-hidden text-ellipsis">Your interview has been scheduled for Feb 14, 2025 at 10:00 AM on Google Meet…</div>
                   </div>
-                  <div class="msg-unread-dot"></div>
+                  <div class="msg-unread-dot w-[9px] h-[9px] bg-[#ff5a5f] rounded-full flex-shrink-0 mt-[6px]"></div>
                 </div>
+
+                <!-- Message 2 -->
                 <div
-                  class="msg-item unread"
-                  onclick="
-                    openMessage(
-                      this,
-                      'Dev8X HR Team',
-                      'Shortlisting Notification',
-                      'Congratulations Ayesha! We are pleased to inform you that you have been shortlisted for the UI/UX Designer Internship position at Dev8X. Your profile and portfolio impressed our team. The next step is a Technical Interview with our design team lead. You will receive a separate email with interview scheduling options. In the meantime, please log in to your portal to review the interview preparation guide we have shared under your Documents section.',
-                    )
-                  "
+                  class="msg-item unread flex items-start gap-[14px] px-5 py-4 border-b border-[#ebebeb] cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
+                  onclick="openMessage(this,'Dev8X HR Team','Shortlisting Notification','Congratulations Ayesha! We are pleased to inform you that you have been shortlisted for the UI/UX Designer Internship position at Dev8X. Your profile and portfolio impressed our team. The next step is a Technical Interview with our design team lead. You will receive a separate email with interview scheduling options. In the meantime, please log in to your portal to review the interview preparation guide we have shared under your Documents section.')"
                 >
-                  <div class="msg-avatar" style="background: linear-gradient(135deg, var(--baia), #00796b)">D8</div>
-                  <div class="msg-body">
-                    <div class="msg-top"><span class="msg-sender">Dev8X HR Team</span><span class="msg-time">3 days ago</span></div>
-                    <div class="msg-subject">🎉 Congratulations — You've been Shortlisted!</div>
-                    <div class="msg-preview">We are pleased to inform you that you have been shortlisted for the UI/UX Designer role…</div>
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: linear-gradient(135deg, #00a699, #00796b)">D8</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                      <span class="text-sm font-bold">Dev8X HR Team</span>
+                      <span class="text-[11px] text-[#767676]">3 days ago</span>
+                    </div>
+                    <div class="text-xs font-semibold text-[#222222] mt-0.5">🎉 Congratulations — You've been Shortlisted!</div>
+                    <div class="text-[13px] text-[#767676] mt-[3px] whitespace-nowrap overflow-hidden text-ellipsis">We are pleased to inform you that you have been shortlisted for the UI/UX Designer role…</div>
                   </div>
-                  <div class="msg-unread-dot"></div>
+                  <div class="msg-unread-dot w-[9px] h-[9px] bg-[#ff5a5f] rounded-full flex-shrink-0 mt-[6px]"></div>
                 </div>
+
+                <!-- Message 3 -->
                 <div
-                  class="msg-item unread"
-                  onclick="
-                    openMessage(
-                      this,
-                      'Dev8X HR Team',
-                      'Application Acknowledgment',
-                      'Dear Ayesha, thank you for submitting your application for the UI/UX Designer Internship at Dev8X. We have received your application and will review it within 3-5 business days. You can track your application status anytime by logging into this portal. If you have any questions, feel free to reach out to our HR team at hr@dev8x.com. We will notify you of any updates via email and your portal notifications.',
-                    )
-                  "
+                  class="msg-item unread flex items-start gap-[14px] px-5 py-4 cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
+                  onclick="openMessage(this,'Dev8X HR Team','Application Acknowledgment','Dear Ayesha, thank you for submitting your application for the UI/UX Designer Internship at Dev8X. We have received your application and will review it within 3-5 business days. You can track your application status anytime by logging into this portal. If you have any questions, feel free to reach out to our HR team at hr@dev8x.com. We will notify you of any updates via email and your portal notifications.')"
                 >
-                  <div class="msg-avatar" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">D8</div>
-                  <div class="msg-body">
-                    <div class="msg-top"><span class="msg-sender">Dev8X HR Team</span><span class="msg-time">Feb 12, 2025</span></div>
-                    <div class="msg-subject">✅ Application Received — UI/UX Designer</div>
-                    <div class="msg-preview">Thank you for applying to Dev8X. We have received your application and will be in touch…</div>
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">D8</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                      <span class="text-sm font-bold">Dev8X HR Team</span>
+                      <span class="text-[11px] text-[#767676]">Feb 12, 2025</span>
+                    </div>
+                    <div class="text-xs font-semibold text-[#222222] mt-0.5">✅ Application Received — UI/UX Designer</div>
+                    <div class="text-[13px] text-[#767676] mt-[3px] whitespace-nowrap overflow-hidden text-ellipsis">Thank you for applying to Dev8X. We have received your application and will be in touch…</div>
                   </div>
-                  <div class="msg-unread-dot"></div>
+                  <div class="msg-unread-dot w-[9px] h-[9px] bg-[#ff5a5f] rounded-full flex-shrink-0 mt-[6px]"></div>
                 </div>
               </div>
-              <!-- Message reply -->
-              <div style="padding: 20px; border-top: 1px solid var(--border)">
-                <div id="msgThread" style="display: none; margin-bottom: 16px; padding: 16px; background: var(--bg); border-radius: var(--radius-sm); border: 1px solid var(--border)">
-                  <div style="font-size: 14px; font-weight: 700; margin-bottom: 8px" id="msgThreadTitle"></div>
-                  <div style="font-size: 13px; line-height: 1.7; color: var(--hof)" id="msgThreadBody"></div>
+
+              <!-- Reply area -->
+              <div class="p-5 border-t border-[#ebebeb]">
+                <div id="msgThread" style="display: none" class="mb-4 p-4 bg-[#f7f7f7] rounded-[10px] border border-[#ebebeb]">
+                  <div class="text-sm font-bold mb-2" id="msgThreadTitle"></div>
+                  <div class="text-[13px] leading-[1.7] text-[#484848]" id="msgThreadBody"></div>
                 </div>
-                <div style="font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--foggy)">REPLY TO HR</div>
-                <textarea
-                  id="replyBox"
-                  style="width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: inherit; font-size: 13px; resize: vertical; min-height: 80px; outline: none; transition: border 0.2s"
-                  onfocus="this.style.borderColor = 'var(--rausch)'"
-                  onblur="this.style.borderColor = 'var(--border)'"
-                  placeholder="Type your message to the HR team…"
-                ></textarea>
-                <div style="display: flex; justify-content: flex-end; margin-top: 10px">
+                <div class="text-[13px] font-bold mb-2 text-[#767676]">REPLY TO HR</div>
+                <textarea id="replyBox" class="w-full py-3 px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-[13px] resize-y min-h-[80px] outline-none transition-[border] duration-200 focus:border-[#ff5a5f]" onfocus="this.style.borderColor='#ff5a5f'" onblur="this.style.borderColor='#ebebeb'" placeholder="Type your message to the HR team…"></textarea>
+                <div class="flex justify-end mt-[10px]">
                   <button class="btn btn-primary" onclick="sendReply()">📤 Send Message</button>
                 </div>
               </div>
@@ -1391,125 +1514,132 @@
 
           <!-- ── TAB: PROFILE ── -->
           <div class="tab-panel" id="panel-profile">
-            <div class="card">
-              <div class="profile-avatar-wrap">
-                <div class="profile-avatar">AK</div>
-                <div class="profile-avatar-info">
-                  <div class="p-name">Ayesha Khan</div>
-                  <div class="p-role">UI/UX Designer Applicant · Internship</div>
-                  <div class="p-status">⚡ Stage 3 — Technical Interview</div>
+            <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+              <!-- Avatar Row -->
+              <div class="flex items-center gap-5 p-6 border-b border-[#ebebeb]">
+                <div class="w-20 h-20 rounded-full flex items-center justify-center text-white font-extrabold text-[28px] flex-shrink-0" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">AK</div>
+                <div>
+                  <div class="text-[22px] font-extrabold">Ayesha Khan</div>
+                  <div class="text-sm text-[#767676] mt-0.5">UI/UX Designer Applicant · Internship</div>
+                  <div class="inline-flex items-center gap-[5px] text-xs font-bold text-[#ff5a5f] bg-[#fff0f0] py-[3px] px-[10px] rounded-[20px] mt-[6px]">⚡ Stage 3 — Technical Interview</div>
                 </div>
               </div>
 
-              <div class="profile-section">
-                <div class="profile-section-title">Personal Information</div>
-                <div class="profile-grid">
+              <!-- Personal Information -->
+              <div class="p-6 border-b border-[#ebebeb]">
+                <div class="text-[13px] font-extrabold uppercase tracking-[0.8px] text-[#767676] mb-4">Personal Information</div>
+                <div class="grid grid-cols-2 gap-[14px]">
                   <div>
-                    <div class="profile-field-label">Full Name</div>
-                    <input class="profile-input" value="Ayesha Khan" type="text" />
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Full Name</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="Ayesha Khan" type="text" />
                   </div>
                   <div>
-                    <div class="profile-field-label">Email Address</div>
-                    <input class="profile-input" value="ayesha@gmail.com" type="email" />
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Email Address</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="ayesha@gmail.com" type="email" />
                   </div>
                   <div>
-                    <div class="profile-field-label">Phone Number</div>
-                    <input class="profile-input" value="+92 300 1234567" type="tel" />
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Phone Number</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="+92 300 1234567" type="tel" />
                   </div>
                   <div>
-                    <div class="profile-field-label">Location</div>
-                    <input class="profile-input" value="Lahore, Pakistan" type="text" />
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Location</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="Lahore, Pakistan" type="text" />
                   </div>
                   <div>
-                    <div class="profile-field-label">LinkedIn URL</div>
-                    <input class="profile-input" value="linkedin.com/in/ayeshakhan" type="url" />
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">LinkedIn URL</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="linkedin.com/in/ayeshakhan" type="url" />
                   </div>
                   <div>
-                    <div class="profile-field-label">Portfolio / Website</div>
-                    <input class="profile-input" value="ayeshakhan.design" type="url" />
-                  </div>
-                </div>
-              </div>
-
-              <div class="profile-section">
-                <div class="profile-section-title">Academic Background</div>
-                <div class="profile-grid">
-                  <div>
-                    <div class="profile-field-label">University</div>
-                    <input class="profile-input" value="LUMS — Lahore" type="text" />
-                  </div>
-                  <div>
-                    <div class="profile-field-label">Degree</div>
-                    <input class="profile-input" value="BS Design" type="text" />
-                  </div>
-                  <div>
-                    <div class="profile-field-label">Graduation Year</div>
-                    <input class="profile-input" value="2025" type="text" />
-                  </div>
-                  <div>
-                    <div class="profile-field-label">CGPA</div>
-                    <input class="profile-input" value="3.7 / 4.0" type="text" />
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Portfolio / Website</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="ayeshakhan.design" type="url" />
                   </div>
                 </div>
               </div>
 
-              <div class="profile-section">
-                <div class="profile-section-title">Application Details</div>
-                <div class="profile-grid">
+              <!-- Academic Background -->
+              <div class="p-6 border-b border-[#ebebeb]">
+                <div class="text-[13px] font-extrabold uppercase tracking-[0.8px] text-[#767676] mb-4">Academic Background</div>
+                <div class="grid grid-cols-2 gap-[14px]">
                   <div>
-                    <div class="profile-field-label">Applied Role</div>
-                    <div class="profile-field-value">UI/UX Designer</div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">University</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="LUMS — Lahore" type="text" />
                   </div>
                   <div>
-                    <div class="profile-field-label">Job Type</div>
-                    <div class="profile-field-value">Internship</div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Degree</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="BS Design" type="text" />
                   </div>
                   <div>
-                    <div class="profile-field-label">Source</div>
-                    <div class="profile-field-value">LinkedIn</div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Graduation Year</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="2025" type="text" />
                   </div>
                   <div>
-                    <div class="profile-field-label">Application ID</div>
-                    <div class="profile-field-value" style="font-family: monospace; font-size: 13px">A001</div>
-                  </div>
-                  <div>
-                    <div class="profile-field-label">Applied On</div>
-                    <div class="profile-field-value">Feb 12, 2025</div>
-                  </div>
-                  <div>
-                    <div class="profile-field-label">Years of Experience</div>
-                    <div class="profile-field-value">0 — 1 Year</div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">CGPA</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="3.7 / 4.0" type="text" />
                   </div>
                 </div>
               </div>
 
-              <div class="profile-section">
-                <div class="profile-section-title">Change Password</div>
-                <div class="profile-grid">
+              <!-- Application Details (read-only) -->
+              <div class="p-6 border-b border-[#ebebeb]">
+                <div class="text-[13px] font-extrabold uppercase tracking-[0.8px] text-[#767676] mb-4">Application Details</div>
+                <div class="grid grid-cols-2 gap-[14px]">
                   <div>
-                    <div class="profile-field-label">Current Password</div>
-                    <input class="profile-input" type="password" placeholder="••••••••" />
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Applied Role</div>
+                    <div class="text-sm font-semibold text-[#222222]">UI/UX Designer</div>
                   </div>
                   <div>
-                    <div class="profile-field-label">New Password</div>
-                    <input class="profile-input" type="password" placeholder="Min. 8 characters" />
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Job Type</div>
+                    <div class="text-sm font-semibold text-[#222222]">Internship</div>
                   </div>
-                  <div style="grid-column: 1/-1">
-                    <div class="profile-field-label">Confirm New Password</div>
-                    <input class="profile-input" type="password" placeholder="Repeat new password" style="max-width: 320px" />
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Source</div>
+                    <div class="text-sm font-semibold text-[#222222]">LinkedIn</div>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Application ID</div>
+                    <div class="font-mono text-[13px] font-semibold text-[#222222]">A001</div>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Applied On</div>
+                    <div class="text-sm font-semibold text-[#222222]">Feb 12, 2025</div>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Years of Experience</div>
+                    <div class="text-sm font-semibold text-[#222222]">0 — 1 Year</div>
                   </div>
                 </div>
               </div>
 
-              <div style="padding: 20px 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 10px">
+              <!-- Change Password -->
+              <div class="p-6 border-b border-[#ebebeb]">
+                <div class="text-[13px] font-extrabold uppercase tracking-[0.8px] text-[#767676] mb-4">Change Password</div>
+                <div class="grid grid-cols-2 gap-[14px]">
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Current Password</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" type="password" placeholder="••••••••" />
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">New Password</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" type="password" placeholder="Min. 8 characters" />
+                  </div>
+                  <div class="col-span-full">
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Confirm New Password</div>
+                    <input class="py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0] max-w-[320px] w-full" type="password" placeholder="Repeat new password" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Save Footer -->
+              <div class="py-5 px-6 border-t border-[#ebebeb] flex justify-end gap-[10px]">
                 <button class="btn btn-secondary" onclick="showToast('Changes discarded', '↩️')">Discard Changes</button>
                 <button class="btn btn-primary" onclick="showToast('Profile updated successfully', '✅', 'success')">💾 Save Profile</button>
               </div>
             </div>
           </div>
         </div>
+        <!-- /main column -->
 
-        <!-- ── TAB: PERFORMANCE ── -->
+        <!-- ── TAB: PERFORMANCE ── (Chunk 3 — keep source HTML exactly as-is) -->
         <div class="tab-panel" id="panel-performance">
           <!-- PERFORMANCE HERO (dark) -->
           <div class="perf-hero">
@@ -1542,8 +1672,7 @@
               </div>
             </div>
           </div>
-
-          <!-- PERIOD BAR -->
+          <!-- Period bar, perf-body, alerts, two-col, sidebar — all converted in Chunk 3 -->
           <div class="perf-period-bar">
             <div class="perf-period-tabs">
               <button class="perf-period-tab active" onclick="switchPerfPeriod('week', this)">📅 This Week</button>
@@ -1552,10 +1681,7 @@
             </div>
             <div class="clockify-pill">⏱ Powered by Clockify API</div>
           </div>
-
-          <!-- PERF BODY -->
           <div class="perf-body">
-            <!-- Alert Banners -->
             <div class="alert-banner warn" id="perfMainAlert">
               <span class="alert-icon">⚠️</span>
               <div>
@@ -1564,7 +1690,6 @@
               </div>
               <button class="btn btn-secondary btn-sm" onclick="closePerfAlert('perfMainAlert')" style="flex-shrink: 0; margin-left: auto">Dismiss</button>
             </div>
-
             <div class="alert-banner danger" id="perfLateAlert">
               <span class="alert-icon">🕙</span>
               <div>
@@ -1573,12 +1698,8 @@
               </div>
               <button class="btn btn-secondary btn-sm" onclick="closePerfAlert('perfLateAlert')" style="flex-shrink: 0; margin-left: auto">Got it</button>
             </div>
-
-            <!-- Two-column layout -->
             <div class="perf-two-col">
-              <!-- LEFT COLUMN -->
               <div>
-                <!-- Metric Cards -->
                 <div class="three-metrics">
                   <div class="metric-card">
                     <div class="metric-card-top">
@@ -1617,50 +1738,38 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- Weekly Hours Chart -->
+                <!-- Remaining perf-card sections preserved from source for Chunk 3 conversion -->
                 <div class="perf-card">
                   <div class="perf-card-header">
                     <div>
                       <div class="perf-card-title">⏱ Weekly Hours Breakdown</div>
                       <div class="perf-card-sub">Mar 3–9, 2026 · via Clockify</div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 8px">
-                      <span class="clockify-pill">⏱ Clockify</span>
-                      <button class="btn btn-secondary btn-sm" onclick="showToast('Opening Clockify dashboard…', '⏱')">Open Clockify</button>
-                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px"><span class="clockify-pill">⏱ Clockify</span><button class="btn btn-secondary btn-sm" onclick="showToast('Opening Clockify dashboard…','⏱')">Open Clockify</button></div>
                   </div>
                   <div class="week-chart-wrap">
                     <div class="chart-bars">
                       <div class="bar-col">
                         <div class="bar-outer">
-                          <div class="bar-inner" style="height: 75%; background: var(--amber)">
-                            <span class="bar-hours-tag" style="color: var(--amber)">7.5h</span>
-                          </div>
+                          <div class="bar-inner" style="height: 75%; background: var(--amber)"><span class="bar-hours-tag" style="color: var(--amber)">7.5h</span></div>
                         </div>
                         <div class="bar-label">Mon</div>
                       </div>
                       <div class="bar-col">
                         <div class="bar-outer">
-                          <div class="bar-inner" style="height: 82%; background: var(--baia)">
-                            <span class="bar-hours-tag" style="color: var(--baia)">8.2h</span>
-                          </div>
+                          <div class="bar-inner" style="height: 82%; background: var(--baia)"><span class="bar-hours-tag" style="color: var(--baia)">8.2h</span></div>
                         </div>
                         <div class="bar-label">Tue</div>
                       </div>
                       <div class="bar-col">
                         <div class="bar-outer">
-                          <div class="bar-inner" style="height: 78%; background: var(--amber)">
-                            <span class="bar-hours-tag" style="color: var(--amber)">7.8h</span>
-                          </div>
+                          <div class="bar-inner" style="height: 78%; background: var(--amber)"><span class="bar-hours-tag" style="color: var(--amber)">7.8h</span></div>
                         </div>
                         <div class="bar-label">Wed</div>
                       </div>
                       <div class="bar-col">
                         <div class="bar-outer">
-                          <div class="bar-inner" style="height: 80%; background: var(--baia)">
-                            <span class="bar-hours-tag" style="color: var(--baia)">8.0h</span>
-                          </div>
+                          <div class="bar-inner" style="height: 80%; background: var(--baia)"><span class="bar-hours-tag" style="color: var(--baia)">8.0h</span></div>
                         </div>
                         <div class="bar-label">Thu</div>
                       </div>
@@ -1698,8 +1807,6 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- Daily Time Log -->
                 <div class="perf-card">
                   <div class="perf-card-header">
                     <div>
@@ -1771,8 +1878,6 @@
                   </div>
                   <div style="padding: 12px 16px; background: #fafafa; border-top: 1px solid var(--border); font-size: 11px; color: var(--foggy)"><strong>Policy:</strong> Clock in by 10:00 AM · Work minimum 8 billable hours · Clock out no earlier than 6:00 PM · Report clock-in issues to HR within 30 minutes</div>
                 </div>
-
-                <!-- Performance Matrix -->
                 <div class="perf-card">
                   <div class="perf-card-header">
                     <div>
@@ -1827,13 +1932,11 @@
                       </div>
                     </div>
                     <div style="margin-top: 16px; padding: 12px 14px; background: var(--bg); border-radius: var(--radius-sm); font-size: 12px; color: var(--foggy); line-height: 1.6">
-                      <span style="font-weight: 700; color: var(--hof)">Scoring Guide: </span>
-                      <span style="color: var(--baia); font-weight: 700">90–100</span> Excellent &nbsp;·&nbsp; <span style="color: var(--green); font-weight: 700">75–89</span> On Track &nbsp;·&nbsp; <span style="color: var(--amber); font-weight: 700">60–74</span> At Risk &nbsp;·&nbsp; <span style="color: var(--red); font-weight: 700">&lt;60</span> Below Policy
+                      <span style="font-weight: 700; color: var(--hof)">Scoring Guide: </span><span style="color: var(--baia); font-weight: 700">90–100</span> Excellent &nbsp;·&nbsp; <span style="color: var(--green); font-weight: 700">75–89</span> On Track &nbsp;·&nbsp; <span style="color: var(--amber); font-weight: 700">60–74</span> At Risk &nbsp;·&nbsp;
+                      <span style="color: var(--red); font-weight: 700">&lt;60</span> Below Policy
                     </div>
                   </div>
                 </div>
-
-                <!-- Team Lead Concerns -->
                 <div class="perf-card">
                   <div class="perf-card-header">
                     <div>
@@ -1849,20 +1952,14 @@
                           <div class="concern-from">Arham (Frontend Lead)</div>
                           <div style="font-size: 11px; color: var(--foggy); margin-top: 2px">March 2, 2026 · Frontend Developer</div>
                         </div>
-                        <div class="concern-meta">
-                          <span class="sev-badge sev-med">🟠 Medium</span>
-                          <span class="concern-date">3 days ago</span>
-                        </div>
+                        <div class="concern-meta"><span class="sev-badge sev-med">🟠 Medium</span><span class="concern-date">3 days ago</span></div>
                       </div>
                       <div class="concern-body">You have been starting after 10:00 AM on multiple occasions this week. Your performance is otherwise acceptable, but punctuality needs to improve. The rest of the team is online from 9:30 AM and late starts affect coordination.</div>
                       <div class="concern-action">
                         <div class="concern-action-label">📋 Action Required from You:</div>
                         <div class="concern-action-text">Log in by 9:30 AM starting next Monday. If you anticipate being late, message the TL on WhatsApp before 10:00 AM.</div>
                       </div>
-                      <div style="margin-top: 12px; display: flex; gap: 8px">
-                        <button class="btn btn-primary btn-sm" onclick="showToast('Acknowledged! HR and TL have been notified ✅', '✅')">✅ Acknowledge</button>
-                        <button class="btn btn-secondary btn-sm" onclick="showToast('Reply sent to TL 💬', '💬')">💬 Reply to TL</button>
-                      </div>
+                      <div style="margin-top: 12px; display: flex; gap: 8px"><button class="btn btn-primary btn-sm" onclick="showToast('Acknowledged! HR and TL have been notified ✅','✅')">✅ Acknowledge</button><button class="btn btn-secondary btn-sm" onclick="showToast('Reply sent to TL 💬','💬')">💬 Reply to TL</button></div>
                     </div>
                     <div class="concern-card resolved">
                       <div class="concern-top">
@@ -1870,18 +1967,13 @@
                           <div class="concern-from">Ahmad (Backend Lead)</div>
                           <div style="font-size: 11px; color: var(--foggy); margin-top: 2px">February 20, 2026 · Resolved</div>
                         </div>
-                        <div class="concern-meta">
-                          <span class="sev-badge sev-low">🟡 Low</span>
-                          <span style="font-size: 11px; font-weight: 700; color: var(--green)">✅ Resolved</span>
-                        </div>
+                        <div class="concern-meta"><span class="sev-badge sev-low">🟡 Low</span><span style="font-size: 11px; font-weight: 700; color: var(--green)">✅ Resolved</span></div>
                       </div>
                       <div class="concern-body" style="opacity: 0.8">One PR was submitted without following the code review checklist. This is a minor process issue.</div>
                       <div style="margin-top: 8px; font-size: 11px; font-weight: 700; color: var(--green)">✅ Resolved on Feb 22 — Good job addressing this quickly.</div>
                     </div>
                   </div>
                 </div>
-
-                <!-- Policy Checklist -->
                 <div class="perf-card">
                   <div class="perf-card-header">
                     <div>
@@ -1937,11 +2029,7 @@
                   </div>
                 </div>
               </div>
-              <!-- /perf left col -->
-
-              <!-- RIGHT SIDEBAR -->
               <div class="perf-sidebar-sticky">
-                <!-- Score Ring -->
                 <div class="perf-card">
                   <div class="score-ring-wrap">
                     <div class="score-ring-outer" style="background: conic-gradient(#fc642d 0% 78%, #f0f0f0 78% 100%)">
@@ -1957,8 +2045,6 @@
                     <div style="padding: 12px; background: var(--amber-light); border-radius: var(--radius-sm); font-size: 12px; color: var(--amber); line-height: 1.55"><strong>To reach Excellent (90+):</strong> Improve punctuality and consistently hit 40h/week.</div>
                   </div>
                 </div>
-
-                <!-- Attendance Calendar -->
                 <div class="perf-card">
                   <div class="perf-card-header">
                     <div>
@@ -1998,14 +2084,12 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- Quick Actions -->
                 <div class="perf-card">
                   <div class="perf-card-header">
                     <div class="perf-card-title">⚡ Quick Actions</div>
                   </div>
                   <div class="perf-card-body">
-                    <div class="perf-quick-link" onclick="showToast('Opening Clockify…', '⏱')">
+                    <div class="perf-quick-link" onclick="showToast('Opening Clockify…','⏱')">
                       <div class="perf-quick-link-icon" style="background: #e3f2fd">⏱</div>
                       <div>
                         <div class="ql-title">Open Clockify</div>
@@ -2013,7 +2097,7 @@
                       </div>
                       <span class="ql-arrow">›</span>
                     </div>
-                    <div class="perf-quick-link" onclick="showToast('Connecting to HR WhatsApp…', '💬')">
+                    <div class="perf-quick-link" onclick="showToast('Connecting to HR WhatsApp…','💬')">
                       <div class="perf-quick-link-icon" style="background: #e8f5e9">💬</div>
                       <div>
                         <div class="ql-title">Message HR</div>
@@ -2021,7 +2105,7 @@
                       </div>
                       <span class="ql-arrow">›</span>
                     </div>
-                    <div class="perf-quick-link" onclick="showToast('Loading monthly report…', '📊')">
+                    <div class="perf-quick-link" onclick="showToast('Loading monthly report…','📊')">
                       <div class="perf-quick-link-icon" style="background: #f3f0ff">📊</div>
                       <div>
                         <div class="ql-title">Download Report</div>
@@ -2040,115 +2124,122 @@
                   </div>
                 </div>
               </div>
-              <!-- /perf right sidebar -->
             </div>
-            <!-- /perf-two-col -->
           </div>
-          <!-- /perf-body -->
         </div>
+        <!-- /panel-performance -->
 
-        <!-- SIDEBAR -->
-        <div class="sidebar-col">
+        <!-- ═══ SIDEBAR ═══ -->
+        <div class="flex flex-col gap-4 sidebar-col">
           <!-- Overall Progress -->
-          <div class="progress-card">
-            <div class="progress-title">Overall Progress</div>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar-fill" style="width: 28%"></div>
+          <div class="bg-white rounded-[16px] border border-[#ebebeb] p-5 shadow-portal-sm">
+            <div class="text-sm font-bold mb-[14px]">Overall Progress</div>
+            <div class="h-[6px] bg-[#f7f7f7] rounded-[3px] overflow-hidden mt-[14px] mb-[6px]">
+              <div class="h-full rounded-[3px] transition-[width] duration-500" style="width: 28%; background: linear-gradient(90deg, #00a699, #ff5a5f)"></div>
             </div>
-            <div class="progress-pct">Stage 3 of 9 · 28% complete</div>
-            <div style="margin-top: 14px">
-              <div class="progress-step-row">
-                <div class="ps-dot done">✓</div>
-                <div class="ps-label">Shortlisted</div>
+            <div class="text-[11px] text-[#767676] font-semibold text-right">Stage 3 of 9 · 28% complete</div>
+            <div class="mt-[14px]">
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#00a699] text-white flex items-center justify-center text-[11px] font-bold flex-shrink-0">✓</div>
+                <div class="text-xs font-semibold flex-1">Shortlisted</div>
               </div>
-              <div class="progress-step-row">
-                <div class="ps-dot done">✓</div>
-                <div class="ps-label">Application Reviewed</div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#00a699] text-white flex items-center justify-center text-[11px] font-bold flex-shrink-0">✓</div>
+                <div class="text-xs font-semibold flex-1">Application Reviewed</div>
               </div>
-              <div class="progress-step-row">
-                <div class="ps-dot current">●</div>
-                <div class="ps-label" style="color: var(--rausch); font-weight: 700">Technical Interview</div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#ff5a5f] text-white flex items-center justify-center text-[11px] font-bold flex-shrink-0">●</div>
+                <div class="text-xs font-bold flex-1 text-[#ff5a5f]">Technical Interview</div>
               </div>
-              <div class="progress-step-row">
-                <div class="ps-dot pending">4</div>
-                <div class="ps-label dimmed">Assignment</div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">4</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Assignment</div>
               </div>
-              <div class="progress-step-row">
-                <div class="ps-dot pending">5</div>
-                <div class="ps-label dimmed">Final Interview</div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">5</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Final Interview</div>
               </div>
-              <div class="progress-step-row">
-                <div class="ps-dot pending">6</div>
-                <div class="ps-label dimmed">Offer & Join</div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">6</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Offer & Join</div>
               </div>
-              <div class="progress-step-row">
-                <div class="ps-dot pending">7</div>
-                <div class="ps-label dimmed">Onboarding</div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">7</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Onboarding</div>
               </div>
-              <div class="progress-step-row">
-                <div class="ps-dot pending">8</div>
-                <div class="ps-label dimmed">Complete Internship</div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">8</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Complete Internship</div>
               </div>
-              <div class="progress-step-row">
-                <div class="ps-dot pending">9</div>
-                <div class="ps-label dimmed">Promotion (if eligible)</div>
+              <div class="flex items-center gap-[10px] py-2">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">9</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Promotion (if eligible)</div>
               </div>
             </div>
           </div>
 
           <!-- HR Contact -->
-          <div class="contact-card">
-            <div style="font-size: 14px; font-weight: 700; margin-bottom: 14px">Your HR Contact</div>
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px">
-              <div class="contact-avatar">BR</div>
+          <div class="bg-white rounded-[16px] border border-[#ebebeb] p-5 shadow-portal-sm">
+            <div class="text-sm font-bold mb-[14px]">Your HR Contact</div>
+            <div class="flex items-center gap-3 mb-[14px]">
+              <div class="w-[42px] h-[42px] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">BR</div>
               <div>
-                <div class="contact-name">Behzad Raza</div>
-                <div class="contact-role">HR Lead · Dev8X</div>
+                <div class="text-sm font-bold">Behzad Raza</div>
+                <div class="text-xs text-[#767676]">HR Lead · Dev8X</div>
               </div>
             </div>
-            <div class="contact-link" onclick="switchPortalTab('messages')">💬 Send Message</div>
-            <div class="contact-link" onclick="showToast('Email client opening…', '📧')">📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="68001a280c0d1e5010460b0705">[email&#160;protected]</a></div>
-            <div class="contact-link" onclick="showToast('WhatsApp opening…', '📱')">📱 WhatsApp (Notifications only)</div>
+            <div class="flex items-center gap-2 py-[10px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold text-[#222222] cursor-pointer transition-all duration-150 mt-2 hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="switchPortalTab('messages')">💬 Send Message</div>
+            <div class="flex items-center gap-2 py-[10px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold text-[#222222] cursor-pointer transition-all duration-150 mt-2 hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="showToast('Email client opening…', '📧')">📧 hr@dev8x.com</div>
+            <div class="flex items-center gap-2 py-[10px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold text-[#222222] cursor-pointer transition-all duration-150 mt-2 hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="showToast('WhatsApp opening…', '📱')">📱 WhatsApp (Notifications only)</div>
           </div>
 
           <!-- Upcoming Deadlines -->
-          <div class="deadline-card">
-            <div style="font-size: 14px; font-weight: 700; margin-bottom: 12px">Upcoming Deadlines</div>
-            <div class="deadline-item">
-              <div class="deadline-dot d-red"></div>
+          <div class="bg-white rounded-[16px] border border-[#ebebeb] p-5 shadow-portal-sm">
+            <div class="text-sm font-bold mb-3">Upcoming Deadlines</div>
+            <div class="flex items-start gap-3 py-[10px] border-b border-[#ebebeb]">
+              <div class="w-[10px] h-[10px] rounded-full mt-1 flex-shrink-0 bg-[#ff5a5f]"></div>
               <div>
-                <div class="deadline-label">Technical Interview</div>
-                <div class="deadline-date">Feb 14, 2025 · 10:00 AM</div>
+                <div class="text-[13px] font-semibold">Technical Interview</div>
+                <div class="text-[11px] text-[#767676] mt-0.5">Feb 14, 2025 · 10:00 AM</div>
               </div>
             </div>
-            <div class="deadline-item">
-              <div class="deadline-dot d-orange"></div>
+            <div class="flex items-start gap-3 py-[10px] border-b border-[#ebebeb]">
+              <div class="w-[10px] h-[10px] rounded-full mt-1 flex-shrink-0 bg-[#fc642d]"></div>
               <div>
-                <div class="deadline-label">Assignment Submission</div>
-                <div class="deadline-date">Feb 19, 2025 · End of day</div>
+                <div class="text-[13px] font-semibold">Assignment Submission</div>
+                <div class="text-[11px] text-[#767676] mt-0.5">Feb 19, 2025 · End of day</div>
               </div>
             </div>
-            <div class="deadline-item">
-              <div class="deadline-dot d-green"></div>
+            <div class="flex items-start gap-3 py-[10px]">
+              <div class="w-[10px] h-[10px] rounded-full mt-1 flex-shrink-0 bg-[#00a699]"></div>
               <div>
-                <div class="deadline-label">Document Signing</div>
-                <div class="deadline-date">After offer is extended</div>
+                <div class="text-[13px] font-semibold">Document Signing</div>
+                <div class="text-[11px] text-[#767676] mt-0.5">After offer is extended</div>
               </div>
             </div>
           </div>
 
           <!-- Quick Actions -->
-          <div class="quick-actions-card">
-            <div style="font-size: 13px; font-weight: 800; color: var(--foggy); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px">Quick Actions</div>
-            <button class="quick-action-btn" onclick="switchPortalTab('documents')"><span class="quick-action-icon">📂</span> View My Documents</button>
-            <button class="quick-action-btn" onclick="jumpToStage('technical')"><span class="quick-action-icon">📅</span> Book Interview Slot</button>
-            <button class="quick-action-btn" onclick="switchPortalTab('messages')"><span class="quick-action-icon">💬</span> Message HR Team</button>
-            <button class="quick-action-btn" onclick="showToast('Opening job page on dev8x.com…', '🌐')"><span class="quick-action-icon">🌐</span> View Job Posting</button>
-            <button class="quick-action-btn" onclick="switchPortalTab('profile')"><span class="quick-action-icon">✏️</span> Edit My Profile</button>
+          <div class="bg-white rounded-[16px] border border-[#ebebeb] p-5 shadow-portal-sm">
+            <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] mb-3">Quick Actions</div>
+            <button class="flex items-center gap-[10px] py-[11px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold cursor-pointer transition-all duration-150 w-full bg-white font-jakarta text-left mb-2 text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="switchPortalTab('documents')">
+              <span class="text-lg">📂</span> View My Documents
+            </button>
+            <button class="flex items-center gap-[10px] py-[11px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold cursor-pointer transition-all duration-150 w-full bg-white font-jakarta text-left mb-2 text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="jumpToStage('technical')">
+              <span class="text-lg">📅</span> Book Interview Slot
+            </button>
+            <button class="flex items-center gap-[10px] py-[11px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold cursor-pointer transition-all duration-150 w-full bg-white font-jakarta text-left mb-2 text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="switchPortalTab('messages')">
+              <span class="text-lg">💬</span> Message HR Team
+            </button>
+            <button class="flex items-center gap-[10px] py-[11px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold cursor-pointer transition-all duration-150 w-full bg-white font-jakarta text-left mb-2 text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="showToast('Opening job page on dev8x.com…', '🌐')">
+              <span class="text-lg">🌐</span> View Job Posting
+            </button>
+            <button class="flex items-center gap-[10px] py-[11px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold cursor-pointer transition-all duration-150 w-full bg-white font-jakarta text-left text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="switchPortalTab('profile')"><span class="text-lg">✏️</span> Edit My Profile</button>
           </div>
         </div>
-        <!-- /sidebar -->
+        <!-- /sidebar-col -->
       </div>
+      <!-- /portal-body -->
       <!-- /portal-body -->
     </div>
     <!-- /portal-screen -->
