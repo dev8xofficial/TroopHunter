@@ -3222,119 +3222,182 @@
         <!-- ============================================================
              PAGE: SUPPORT TICKETS (Chunk 8)
              ============================================================ -->
-        <div class="page" id="page-support">
-          <div class="flex items-center justify-between mb-6">
-            <div>
-              <div class="text-[20px] font-extrabold mb-[2px]">Support Tickets</div>
-              <div class="text-[13px] text-[#767676]">Submit and track support requests</div>
-            </div>
-            <button class="btn btn-primary" onclick="openModal('new-ticket-modal')">+ New Ticket</button>
-          </div>
-          <div class="stats-row grid grid-cols-3 mb-6">
-            <div class="stat-card">
-              <div class="stat-label">Open Tickets</div>
-              <div class="stat-value text-[#3b5bdb]">2</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-label">Avg Response Time</div>
-              <div class="stat-value">4.2h</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-label">Resolved This Month</div>
-              <div class="stat-value text-[#2b8a3e]">5</div>
-              <div class="stat-delta up">↑ Great month!</div>
-            </div>
-          </div>
-          <div class="table-card">
-            <div class="table-card-header">
-              <div class="filter-chips">
-                <div class="filter-chip active">All</div>
-                <div class="filter-chip">Open</div>
-                <div class="filter-chip">In Progress</div>
-                <div class="filter-chip">Resolved</div>
+    <div class="page" id="page-support">
+
+  <!-- ── Section Header ─────────────────────────────────────────── -->
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <div class="text-[20px] font-extrabold text-[#222222] mb-[2px]">Support Tickets</div>
+      <div class="text-[13px] text-[#767676]">Submit and track support requests</div>
+    </div>
+    <button
+      class="inline-flex items-center justify-center font-[inherit] font-semibold text-[14px] px-[18px] py-[9px] rounded-[8px] border border-[#ff5a5f] bg-[#ff5a5f] text-white cursor-pointer transition-all duration-150 hover:bg-[#e0484d] hover:border-[#e0484d]"
+      onclick="openModal('new-ticket-modal')"
+    >
+      + New Ticket
+    </button>
+  </div>
+
+  <!-- ── Stats Row (3-col) ───────────────────────────────────────── -->
+  <div class="grid grid-cols-3 gap-4 mb-7">
+
+    <!-- Open Tickets -->
+    <div class="bg-white rounded-[12px] px-6 py-5 border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] transition-shadow duration-200 hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+      <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-2">Open Tickets</div>
+      <div class="text-[28px] font-extrabold leading-none text-[#3b5bdb]">2</div>
+    </div>
+
+    <!-- Avg Response Time -->
+    <div class="bg-white rounded-[12px] px-6 py-5 border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] transition-shadow duration-200 hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+      <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-2">Avg Response Time</div>
+      <div class="text-[28px] font-extrabold leading-none text-[#222222]">4.2h</div>
+    </div>
+
+    <!-- Resolved This Month -->
+    <div class="bg-white rounded-[12px] px-6 py-5 border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] transition-shadow duration-200 hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+      <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-2">Resolved This Month</div>
+      <div class="text-[28px] font-extrabold leading-none text-[#2f9e44]">5</div>
+      <div class="inline-flex items-center gap-1 text-[12px] font-semibold mt-1.5 py-[2px] px-2 rounded-full bg-[#e6f7f0] text-[#008a4b]">
+        ↑ Great month!
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Table Card ─────────────────────────────────────────────── -->
+  <div class="bg-white rounded-[12px] border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden">
+    <div class="px-5 py-4 border-b border-[#ebebeb] flex items-center justify-between">
+      <div class="flex items-center gap-2 flex-wrap">
+        <div class="filter-chip active">All</div>
+        <div class="filter-chip">Open</div>
+        <div class="filter-chip">In Progress</div>
+        <div class="filter-chip">Resolved</div>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse text-[13px]">
+
+        <thead>
+          <tr class="border-b border-[#ebebeb]">
+            <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">#</th>
+            <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Subject</th>
+            <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Category</th>
+            <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Priority</th>
+            <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Status</th>
+            <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Created</th>
+            <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Last Update</th>
+            <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Assignee</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr class="border-b border-[#ebebeb] border-l-4 border-l-[#ff5a5f] transition-colors duration-150 cursor-pointer hover:bg-[#fafafa]">
+            <td class="px-4 py-[14px] align-middle text-[11px] font-bold text-[#767676]">TKT-015</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <b class="text-[#222222]">Checkout button not working on mobile Safari</b>
+            </td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <span class="inline-flex items-center gap-1 px-[9px] py-[3px] rounded-[6px] text-[11px] font-semibold bg-[#f7f7f7] text-[#484848]">Bug</span>
+            </td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#e03131] font-bold">Critical</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#eef2ff] text-[#3b5bdb] before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-current before:flex-shrink-0">
+                Open
+              </span>
+            </td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 16</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Just now</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <div class="flex items-center gap-[10px]">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold text-white" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">MJ</div>
+                <span class="text-[#222222]">Marcus</span>
               </div>
-            </div>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Subject</th>
-                    <th>Category</th>
-                    <th>Priority</th>
-                    <th>Status</th>
-                    <th>Created</th>
-                    <th>Last Update</th>
-                    <th>Assignee</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-l-[4px] border-l-[#ff5a5f]">
-                    <td class="td-id">TKT-015</td>
-                    <td><b>Checkout button not working on mobile Safari</b></td>
-                    <td><span class="tag">Bug</span></td>
-                    <td class="text-[#f03e3e] font-bold">Critical</td>
-                    <td><span class="status-pill pill-open">Open</span></td>
-                    <td>Mar 16</td>
-                    <td>Just now</td>
-                    <td>
-                      <div class="td-name">
-                        <div class="td-avatar" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">MJ</div>
-                        <span>Marcus</span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="border-l-[4px] border-l-[#f59f00]">
-                    <td class="td-id">TKT-014</td>
-                    <td><b>API timeout on product search</b></td>
-                    <td><span class="tag">Bug</span></td>
-                    <td class="text-[#f59f00] font-bold">High</td>
-                    <td><span class="status-pill pill-progress">In Progress</span></td>
-                    <td>Mar 14</td>
-                    <td>Mar 15</td>
-                    <td>
-                      <div class="td-name">
-                        <div class="td-avatar" style="background: linear-gradient(135deg, #fc642d, #e67e00)">AK</div>
-                        <span>Aisha</span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="border-l-[4px] border-l-[#3b5bdb]">
-                    <td class="td-id">TKT-013</td>
-                    <td>Request additional admin user account</td>
-                    <td><span class="tag">Feature</span></td>
-                    <td class="text-[#3b5bdb] font-bold">Medium</td>
-                    <td><span class="status-pill pill-resolved">Resolved</span></td>
-                    <td>Mar 10</td>
-                    <td>Mar 12</td>
-                    <td>
-                      <div class="td-name">
-                        <div class="td-avatar" style="background: linear-gradient(135deg, #00a699, #2f9e44)">LP</div>
-                        <span>Lisa</span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="border-l-[4px] border-l-[#ebebeb]">
-                    <td class="td-id">TKT-012</td>
-                    <td>Question about invoice payment timing</td>
-                    <td><span class="tag">Billing</span></td>
-                    <td class="text-[#767676] font-bold">Low</td>
-                    <td><span class="status-pill pill-resolved">Resolved</span></td>
-                    <td>Mar 8</td>
-                    <td>Mar 9</td>
-                    <td>
-                      <div class="td-name">
-                        <div class="td-avatar" style="background: linear-gradient(135deg, #7048e8, #3b5bdb)">JW</div>
-                        <span>Jane W.</span>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="table-footer"><div class="table-footer-info">Showing 4 tickets</div></div>
-          </div>
-        </div>
+            </td>
+          </tr>
+
+          <tr class="border-b border-[#ebebeb] border-l-4 border-l-[#e67e00] transition-colors duration-150 cursor-pointer hover:bg-[#fafafa]">
+            <td class="px-4 py-[14px] align-middle text-[11px] font-bold text-[#767676]">TKT-014</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <b class="text-[#222222]">API timeout on product search</b>
+            </td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <span class="inline-flex items-center gap-1 px-[9px] py-[3px] rounded-[6px] text-[11px] font-semibold bg-[#f7f7f7] text-[#484848]">Bug</span>
+            </td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#e67e00] font-bold">High</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#fff8e6] text-[#e67e00] before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-current before:flex-shrink-0">
+                In Progress
+              </span>
+            </td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 14</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 15</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <div class="flex items-center gap-[10px]">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold text-white" style="background: linear-gradient(135deg, #fc642d, #e67e00)">AK</div>
+                <span class="text-[#222222]">Aisha</span>
+              </div>
+            </td>
+          </tr>
+
+          <tr class="border-b border-[#ebebeb] border-l-4 border-l-[#3b5bdb] transition-colors duration-150 cursor-pointer hover:bg-[#fafafa]">
+            <td class="px-4 py-[14px] align-middle text-[11px] font-bold text-[#767676]">TKT-013</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Request additional admin user account</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <span class="inline-flex items-center gap-1 px-[9px] py-[3px] rounded-[6px] text-[11px] font-semibold bg-[#f7f7f7] text-[#484848]">Feature</span>
+            </td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#3b5bdb] font-bold">Medium</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#e6f9ee] text-[#2f9e44] before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-current before:flex-shrink-0">
+                Resolved
+              </span>
+            </td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 10</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 12</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <div class="flex items-center gap-[10px]">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold text-white" style="background: linear-gradient(135deg, #00a699, #2f9e44)">LP</div>
+                <span class="text-[#222222]">Lisa</span>
+              </div>
+            </td>
+          </tr>
+
+
+          <tr class="border-b-0 border-l-4 border-l-[#ebebeb] transition-colors duration-150 cursor-pointer hover:bg-[#fafafa]">
+            <td class="px-4 py-[14px] align-middle text-[11px] font-bold text-[#767676]">TKT-012</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Question about invoice payment timing</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <span class="inline-flex items-center gap-1 px-[9px] py-[3px] rounded-[6px] text-[11px] font-semibold bg-[#f7f7f7] text-[#484848]">Billing</span>
+            </td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#767676] font-bold">Low</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#e6f9ee] text-[#2f9e44] before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-current before:flex-shrink-0">
+                Resolved
+              </span>
+            </td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 8</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 9</td>
+            <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+              <div class="flex items-center gap-[10px]">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold text-white" style="background: linear-gradient(135deg, #7048e8, #3b5bdb)">JW</div>
+                <span class="text-[#222222]">Jane W.</span>
+              </div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Table Footer -->
+    <div class="px-5 py-[14px] flex items-center justify-between border-t border-[#ebebeb] bg-[#fafafa]">
+      <div class="text-[13px] text-[#767676]">Showing 4 tickets</div>
+    </div>
+
+  </div><!-- end table-card -->
+
+</div>
 
         <!-- ============================================================
              PAGE: DOCUMENTS (Chunk 9)
