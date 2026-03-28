@@ -2150,7 +2150,6 @@
   </head>
 
   <body class="bg-[#f7f7f7] text-[#222222] min-h-screen flex">
-
     <!-- ============================================================
          PORTAL WRAPPER
          ============================================================ -->
@@ -2576,7 +2575,6 @@
 
           <!-- Project Grid (2-col) -->
           <div class="grid grid-cols-2 gap-5">
-
             <!-- PROJECT 1 — Fixed Price -->
             <div class="project-card" onclick="openProject('alpha')">
               <div class="pt-5 px-5 pb-4">
@@ -2679,7 +2677,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -3470,7 +3467,7 @@
             </div>
           </div>
         </div>
-         
+
         <!-- ============================================================
              PAGE: PAYMENT METHODS (Chunk 10)
              ============================================================ -->
@@ -3762,7 +3759,6 @@
           </div>
         </div>
 
-
         <!-- ============================================================
              PAGE: SETTINGS (Chunk 13)
              ============================================================ -->
@@ -3947,7 +3943,6 @@
             </div>
           </div>
         </div>
-
       </div>
       <!-- end .main -->
     </div>
@@ -3960,23 +3955,20 @@
     <!-- Project Picker Modal (Files & Docs nav) -->
     <div class="modal-overlay" id="project-picker-modal">
       <div class="modal w-[520px]">
-        <div class="modal-header">
-          <div class="modal-title">📋 Choose a Project</div>
-          <button class="modal-close" onclick="closeModal('project-picker-modal')">✕</button>
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between px-6 py-5 border-b border-[#ebebeb]">
+          <div class="text-[17px] font-bold text-[#222222]">📋 Choose a Project</div>
+          <button class="w-8 h-8 rounded-full border-none bg-[#f7f7f7] cursor-pointer text-[16px] flex items-center justify-center transition-colors duration-150 hover:bg-[#ebebeb]" onclick="closeModal('project-picker-modal')">✕</button>
         </div>
-        <div class="modal-body flex flex-col gap-3 px-6 py-5">
+
+        <!-- Modal Body -->
+        <div class="flex flex-col gap-3 px-6 py-5 overflow-y-auto flex-1">
           <p class="text-[13px] text-[#767676] mb-1">Select a project to view its Files &amp; Docs:</p>
 
           <!-- Alpha -->
-          <div
-            class="border border-[#ebebeb] rounded-[6px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[rgba(255,90,95,0.05)]"
-            onclick="
-              closeModal('project-picker-modal');
-              openProject('alpha', true);
-            "
-          >
+          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('alpha', true);">
             <div class="flex items-center justify-between mb-[6px]">
-              <div class="text-[14px] font-bold">Alpha E-Commerce Redesign</div>
+              <div class="text-[14px] font-bold text-[#222222]">Alpha E-Commerce Redesign</div>
               <div class="flex items-center gap-[6px]">
                 <span class="status-pill pill-on-track">On Track</span>
                 <span class="payment-badge payment-fixed">💰 Fixed Price</span>
@@ -3990,15 +3982,9 @@
           </div>
 
           <!-- CRM -->
-          <div
-            class="border border-[#ebebeb] rounded-[6px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[rgba(255,90,95,0.05)]"
-            onclick="
-              closeModal('project-picker-modal');
-              openProject('crm', true);
-            "
-          >
+          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('crm', true);">
             <div class="flex items-center justify-between mb-[6px]">
-              <div class="text-[14px] font-bold">CRM Integration API</div>
+              <div class="text-[14px] font-bold text-[#222222]">CRM Integration API</div>
               <div class="flex items-center gap-[6px]">
                 <span class="status-pill pill-at-risk">At Risk</span>
                 <span class="payment-badge payment-hourly">⏱ Hourly</span>
@@ -4006,21 +3992,17 @@
             </div>
             <div class="text-[12px] text-[#767676]">🔗 API Development &nbsp;·&nbsp; Feb 1 – Mar 30, 2026 &nbsp;·&nbsp; 45% complete</div>
             <div class="flex items-center gap-2 mt-2">
-              <div class="progress-wrap h-[5px]"><div class="progress-bar w-[45%]" style="background: linear-gradient(90deg, var(--amber), var(--arches))"></div></div>
+              <div class="progress-wrap h-[5px]">
+                <div class="progress-bar w-[45%]" style="background: linear-gradient(90deg, var(--amber), var(--arches))"></div>
+              </div>
               <span class="text-[11px] font-semibold text-[#767676]">45%</span>
             </div>
           </div>
 
           <!-- Mobile -->
-          <div
-            class="border border-[#ebebeb] rounded-[6px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[rgba(255,90,95,0.05)]"
-            onclick="
-              closeModal('project-picker-modal');
-              openProject('mobile', true);
-            "
-          >
+          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('mobile', true);">
             <div class="flex items-center justify-between mb-[6px]">
-              <div class="text-[14px] font-bold">Mobile App MVP</div>
+              <div class="text-[14px] font-bold text-[#222222]">Mobile App MVP</div>
               <div class="flex items-center gap-[6px]">
                 <span class="status-pill pill-on-track">On Track</span>
                 <span class="payment-badge payment-monthly">📅 Monthly</span>
@@ -4214,7 +4196,7 @@
           siblings.forEach((t) => t.classList.remove('active'));
           tabEl.classList.add('active');
         }
-      }k
+      }
 
       // ---- Settings Panel ----
       function switchSettings(panel, navEl) {
@@ -4250,13 +4232,20 @@
 
       // ---- Login ----
       // ── INIT ──
-      window.addEventListener('DOMContentLoaded', function() {
+      window.addEventListener('DOMContentLoaded', function () {
         const dashPage = document.getElementById('page-dashboard');
-        if (dashPage) { dashPage.style.display = 'block'; dashPage.classList.add('active'); }
+        if (dashPage) {
+          dashPage.style.display = 'block';
+          dashPage.classList.add('active');
+        }
       });
 
-      function doLogout() { window.location.href = 'auth.html'; }
-      function doLogin() { window.location.href = 'auth.html'; }
+      function doLogout() {
+        window.location.href = 'auth.html';
+      }
+      function doLogin() {
+        window.location.href = 'auth.html';
+      }
 
       function togglePw() {
         const pw = document.getElementById('pw-input');
