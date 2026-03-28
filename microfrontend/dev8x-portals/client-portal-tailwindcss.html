@@ -909,43 +909,6 @@
       }
 
       /* ============================================================
-         FILE CARDS
-         ============================================================ */
-      .file-card {
-        background: #fff;
-        border: 1px solid #ebebeb;
-        border-radius: 12px;
-        padding: 16px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.2s;
-        box-shadow:
-          0 1px 2px rgba(0, 0, 0, 0.08),
-          0 4px 12px rgba(0, 0, 0, 0.05);
-      }
-      .file-card:hover {
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-        transform: translateY(-2px);
-        border-color: #ff5a5f;
-      }
-      .file-icon {
-        font-size: 36px;
-        margin-bottom: 10px;
-      }
-      .file-name {
-        font-size: 12px;
-        font-weight: 700;
-        color: #222;
-        margin-bottom: 4px;
-        word-break: break-word;
-        line-height: 1.3;
-      }
-      .file-meta {
-        font-size: 11px;
-        color: #767676;
-      }
-
-      /* ============================================================
          ALERT BANNERS
          ============================================================ */
       .alert-banner {
@@ -1180,25 +1143,6 @@
       /* ============================================================
          FOLDER TREE
          ============================================================ */
-      .folder-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 10px;
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 500;
-        color: #484848;
-        cursor: pointer;
-        transition: all 0.15s;
-      }
-      .folder-item:hover {
-        background: #f7f7f7;
-      }
-      .folder-item.active {
-        background: #fff0f0;
-        color: #ff5a5f;
-      }
 
       /* ============================================================
          SETTINGS
@@ -2244,7 +2188,6 @@
           </div>
         </nav>
 
-        <!-- Sidebar Footer -->
         <div class="px-5 py-4 border-t border-[#ebebeb] flex flex-col items-stretch gap-[10px] hover:bg-[#f7f7f7] transition-colors duration-150">
           <div class="flex items-center gap-[10px]">
             <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-[13px] text-white flex-shrink-0" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">SC</div>
@@ -2256,7 +2199,6 @@
           <button onclick="doLogout()" class="w-full px-[14px] py-[9px] bg-[#fff0f0] text-[#e03131] border border-[#ffd0d0] rounded-lg font-bold text-[13px] flex items-center justify-center gap-[6px] transition-all duration-200 hover:bg-[#fde0e0]">🚪 Log Out</button>
         </div>
       </aside>
-      <!-- end .sidebar -->
 
       <!-- ============================================================
            MAIN CONTENT
@@ -2266,44 +2208,36 @@
              TOPBAR
              ============================================================ -->
         <header class="h-16 bg-white border-b border-[#ebebeb] sticky top-0 z-50 flex items-center justify-between px-8">
-          <!-- Left: breadcrumb -->
           <div class="flex items-center gap-4">
             <div class="flex items-center gap-[6px] text-[14px]" id="breadcrumb">
               <span class="font-semibold text-[#222222]">Dashboard</span>
             </div>
           </div>
 
-          <!-- Right: search + icons -->
           <div class="flex items-center gap-[10px]">
-            <!-- Search -->
             <div class="flex items-center gap-2 bg-[#f7f7f7] border border-[#ebebeb] rounded-[24px] px-4 py-2 w-[220px] transition-colors duration-150 hover:border-[#767676]">
               <span class="text-[#767676] text-[14px]">🔍</span>
               <input type="text" placeholder="Search portal..." class="bg-transparent border-none outline-none text-[13px] text-[#222222] w-full placeholder-[#767676]" />
             </div>
 
-            <!-- Messages -->
             <button class="w-[38px] h-[38px] rounded-full border border-[#ebebeb] bg-white flex items-center justify-center text-base cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7] hover:border-[#767676] relative" onclick="navigate('messages', document.querySelector('[onclick*=messages]'))">
               💬
               <span class="absolute top-[3px] right-[3px] min-w-[16px] h-4 bg-[#ff5a5f] text-white rounded-lg text-[9px] font-bold flex items-center justify-center border-2 border-white px-[2px]">4</span>
             </button>
 
-            <!-- Notifications -->
             <button class="w-[38px] h-[38px] rounded-full border border-[#ebebeb] bg-white flex items-center justify-center text-base cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7] hover:border-[#767676] relative" onclick="navigate('notifications', document.querySelector('[onclick*=notifications]'))">
               🔔
               <span class="absolute top-[5px] right-[5px] w-2 h-2 bg-[#ff5a5f] rounded-full border-2 border-white"></span>
             </button>
 
-            <!-- Avatar -->
             <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-[13px] text-white cursor-pointer" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)" onclick="navigate('settings', document.querySelector('[onclick*=settings]'))">SC</div>
           </div>
         </header>
-        <!-- end .topbar -->
 
         <!-- ============================================================
              PAGE: DASHBOARD
              ============================================================ -->
         <div class="page active" id="page-dashboard">
-          <!-- Welcome Banner -->
           <div class="rounded-xl p-7 mb-6 flex items-center justify-between text-white" style="background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 60%, #00a699 100%)">
             <div>
               <div class="text-[22px] font-extrabold mb-1">Good morning, Sarah! 👋</div>
@@ -2316,7 +2250,7 @@
             </div>
           </div>
 
-          <!-- Quick Links -->
+
           <div class="flex gap-[10px] mb-6">
             <div class="quick-link" onclick="openModal('new-ticket-modal')"><span class="text-base">🛟</span> New Ticket</div>
             <div class="quick-link"><span class="text-base">📎</span> Upload File</div>
@@ -2325,7 +2259,6 @@
             <div class="quick-link"><span class="text-base">📞</span> Book a Call</div>
           </div>
 
-          <!-- Stats Row (4 columns) -->
           <div class="grid grid-cols-4 gap-4 mb-7">
             <div class="stat-card">
               <div class="stat-label">Active Projects</div>
@@ -2352,11 +2285,8 @@
             </div>
           </div>
 
-          <!-- Dashboard Grid: 3-col (2-wide + 1 sidebar) -->
           <div class="grid grid-cols-3 gap-5">
-            <!-- LEFT: span 2 -->
             <div class="col-span-2 flex flex-col gap-5">
-              <!-- Project Health Overview -->
               <div class="card">
                 <div class="card-header">
                   <div class="card-title">Project Health Overview</div>
@@ -2379,7 +2309,6 @@
                     <button class="btn btn-secondary btn-sm" onclick="openProject('alpha')">View</button>
                   </div>
 
-                  <!-- CRM -->
                   <div class="border border-[#ebebeb] rounded-lg p-[14px] flex items-center gap-4">
                     <div class="flex-1">
                       <div class="flex items-center gap-2 mb-[6px]">
@@ -2395,7 +2324,6 @@
                     <button class="btn btn-secondary btn-sm" onclick="openProject('crm')">View</button>
                   </div>
 
-                  <!-- Mobile -->
                   <div class="border border-[#ebebeb] rounded-lg p-[14px] flex items-center gap-4">
                     <div class="flex-1">
                       <div class="flex items-center gap-2 mb-[6px]">
@@ -2412,9 +2340,6 @@
                   </div>
                 </div>
               </div>
-              <!-- end Project Health -->
-
-              <!-- Recent Activity -->
               <div class="card">
                 <div class="card-header">
                   <div class="card-title">Recent Activity</div>
@@ -2461,11 +2386,8 @@
                   </div>
                 </div>
               </div>
-              <!-- end Recent Activity -->
             </div>
-            <!-- end col-span-2 -->
 
-            <!-- RIGHT SIDEBAR COLUMN -->
             <div class="flex flex-col gap-5">
               <!-- Outstanding Invoice Widget -->
               <div class="card border-[#ff5a5f]">
@@ -2481,7 +2403,6 @@
                 </div>
               </div>
 
-              <!-- Pending Approvals -->
               <div class="card">
                 <div class="card-header">
                   <div class="card-title">Pending Approvals</div>
@@ -2507,7 +2428,6 @@
                 </div>
               </div>
 
-              <!-- Messages Preview -->
               <div class="card">
                 <div class="card-header">
                   <div class="card-title">Recent Messages</div>
@@ -2539,11 +2459,8 @@
                 </div>
               </div>
             </div>
-            <!-- end right sidebar col -->
           </div>
-          <!-- end dash-grid -->
         </div>
-        <!-- end #page-dashboard -->
 
         <!-- ============================================================
             PAGE: PROJECTS LIST (Chunk 2)
@@ -2558,7 +2475,7 @@
             <button class="btn btn-primary">+ Request New Project</button>
           </div>
 
-          <!-- Filter Bar -->
+  
           <div class="flex items-center justify-between mb-5">
             <div class="flex items-center gap-2 flex-wrap">
               <div class="filter-chip active">All (3)</div>
@@ -2573,9 +2490,9 @@
             </select>
           </div>
 
-          <!-- Project Grid (2-col) -->
+
           <div class="grid grid-cols-2 gap-5">
-            <!-- PROJECT 1 — Fixed Price -->
+ 
             <div class="project-card" onclick="openProject('alpha')">
               <div class="pt-5 px-5 pb-4">
                 <div class="flex items-center justify-between mb-2">
@@ -2610,7 +2527,6 @@
               </div>
             </div>
 
-            <!-- PROJECT 2 — Hourly -->
             <div class="project-card" onclick="openProject('crm')">
               <div class="pt-5 px-5 pb-4">
                 <div class="flex items-center justify-between mb-2">
@@ -2644,7 +2560,6 @@
               </div>
             </div>
 
-            <!-- PROJECT 3 — Monthly Retainer -->
             <div class="project-card" onclick="openProject('mobile')">
               <div class="pt-5 px-5 pb-4">
                 <div class="flex items-center justify-between mb-2">
@@ -2684,7 +2599,7 @@
             PAGE: PROJECT DETAIL (Chunk 3)
             ============================================================ -->
         <div class="page" id="page-project-detail">
-          <!-- Dynamic header -->
+   
           <div class="flex items-center justify-between mb-4" id="pd-header">
             <div class="flex-1">
               <div class="flex items-center gap-3 mb-[6px]" id="pd-title-row"></div>
@@ -2706,7 +2621,6 @@
             <div class="page-tab" onclick="switchTab('pd', 'activity-tab', this)">Activity Log</div>
           </div>
 
-          <!-- Overview Tab -->
           <div class="tab-panel active" id="pd-overview">
             <div class="grid grid-cols-3 gap-4">
               <div class="card">
@@ -2724,7 +2638,6 @@
             </div>
           </div>
 
-          <!-- Timeline Tab -->
           <div class="tab-panel" id="pd-timeline">
             <div class="table-card">
               <div class="table-card-header">
@@ -2735,7 +2648,7 @@
             </div>
           </div>
 
-          <!-- Milestones Tab -->
+          
           <div class="tab-panel" id="pd-milestones-tab">
             <div class="table-card">
               <div class="table-card-header">
@@ -2769,9 +2682,7 @@
               </div>
               <div class="fph-right" id="pd-files-right"></div>
             </div>
-            <!-- Payment banner -->
             <div id="pd-payment-banner" class="mb-5"></div>
-            <!-- Upload zone -->
             <div class="mb-5">
               <div class="upload-zone">
                 <div class="upload-zone-icon">&#128206;</div>
@@ -2793,12 +2704,9 @@
             </div>
           </div>
 
-          <!-- Working Hours Tab (Clockify) -->
           <div class="tab-panel" id="pd-hours-tab">
-            <!-- Dynamic header banner — populated by JS -->
             <div id="pd-hours-header"></div>
 
-            <!-- Period selector bar -->
             <div class="wh-period-bar">
               <div class="wh-period-tabs">
                 <button class="wh-period-tab active" onclick="switchWhPeriod('week', this)">📅 This Week</button>
@@ -2808,11 +2716,9 @@
               <span class="clockify-pill">⏱ Powered by Clockify API</span>
             </div>
 
-            <!-- Dynamic body — populated by JS per project/period -->
             <div id="pd-hours-body"></div>
           </div>
 
-          <!-- Activity Log Tab -->
           <div class="tab-panel" id="pd-activity-tab">
             <div class="card">
               <div class="card-body" id="pd-activity-body"></div>
@@ -3434,72 +3340,125 @@
              PAGE: DOCUMENTS (Chunk 9)
              ============================================================ -->
         <div class="page" id="page-documents">
+          <!-- Section Header -->
           <div class="flex items-center justify-between mb-6">
             <div>
-              <div class="text-[20px] font-extrabold mb-[2px]">Documents & Contracts</div>
+              <div class="text-[20px] font-extrabold text-[#222222] mb-[2px]">Documents &amp; Contracts</div>
               <div class="text-[13px] text-[#767676]">All your signed documents, SOWs, and NDAs</div>
             </div>
             <button class="btn btn-secondary">📎 Upload Document</button>
           </div>
-          <div class="docs-layout">
-            <div class="folder-tree">
+
+          <!-- docs-layout → grid grid-cols-[220px_1fr] gap-5 -->
+          <div class="grid grid-cols-[220px_1fr] gap-5">
+            <!-- ── FOLDER TREE SIDEBAR ─────────────────────────────────── -->
+            <!-- folder-tree → bg-white border rounded-[12px] p-3 shadow-sm self-start -->
+            <div class="bg-white border border-[#ebebeb] rounded-[12px] p-3 shadow-sm self-start">
+              <!-- Section label -->
               <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] py-[6px] px-[10px] mb-1">Folders</div>
-              <div class="folder-item active">📁 All Documents</div>
-              <div class="folder-item">📋 Contracts</div>
-              <div class="folder-item">📝 Statements of Work</div>
-              <div class="folder-item">🤝 NDAs</div>
-              <div class="folder-item">🧾 Invoice Archive</div>
-              <div class="folder-item">🖼 Project Assets</div>
+
+              <!-- folder-item.active → bg-[#fff0f0] text-[#ff5a5f] -->
+              <div class="flex items-center gap-2 py-2 px-[10px] rounded-[8px] text-[13px] font-medium bg-[#fff0f0] text-[#ff5a5f] cursor-pointer transition-all duration-150">📁 All Documents</div>
+
+              <!-- folder-item (inactive) → hover:bg-[#f7f7f7] text-[#484848] -->
+              <div class="flex items-center gap-2 py-2 px-[10px] rounded-[8px] text-[13px] font-medium text-[#484848] cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7]">📋 Contracts</div>
+              <div class="flex items-center gap-2 py-2 px-[10px] rounded-[8px] text-[13px] font-medium text-[#484848] cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7]">📝 Statements of Work</div>
+              <div class="flex items-center gap-2 py-2 px-[10px] rounded-[8px] text-[13px] font-medium text-[#484848] cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7]">🤝 NDAs</div>
+              <div class="flex items-center gap-2 py-2 px-[10px] rounded-[8px] text-[13px] font-medium text-[#484848] cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7]">🧾 Invoice Archive</div>
+              <div class="flex items-center gap-2 py-2 px-[10px] rounded-[8px] text-[13px] font-medium text-[#484848] cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7]">🖼 Project Assets</div>
             </div>
+            <!-- ── END FOLDER TREE SIDEBAR ────────────────────────────── -->
+
+            <!-- ── MAIN CONTENT AREA ──────────────────────────────────── -->
             <div>
-              <div class="alert-banner info mb-4">
-                <span class="alert-icon">📝</span>
-                <div>
-                  <div class="alert-title">1 document awaiting your signature</div>
-                  <div class="alert-desc">Mobile App MVP — Change Order #1 requires your e-signature to proceed.</div>
+              <!-- alert-banner.info → flex items-start gap-[14px] py-4 px-5 rounded-[8px]
+                               border border-[#748ffc] bg-[#eef2ff] mb-4 -->
+              <div class="flex items-start gap-[14px] py-4 px-5 rounded-[8px] border border-[#748ffc] bg-[#eef2ff] mb-4">
+                <!-- alert-icon → text-[20px] flex-shrink-0 mt-[1px] -->
+                <span class="text-[20px] flex-shrink-0 mt-[1px]">📝</span>
+
+                <div class="flex-1">
+                  <!-- alert-title → text-[13px] font-bold text-[#222222] mb-[3px] -->
+                  <div class="text-[13px] font-bold text-[#222222] mb-[3px]">1 document awaiting your signature</div>
+                  <!-- alert-desc → text-[12px] text-[#717171] leading-[1.5] -->
+                  <div class="text-[12px] text-[#717171] leading-[1.5]">Mobile App MVP — Change Order #1 requires your e-signature to proceed.</div>
                 </div>
+
                 <button class="btn btn-primary btn-sm ml-auto shrink-0">Sign Now</button>
               </div>
-              <div class="file-grid">
-                <div class="file-card">
-                  <div class="file-icon">📋</div>
-                  <div class="file-name">Alpha_Redesign_SOW.pdf</div>
-                  <div class="file-meta">PDF · 1.2 MB</div>
-                  <div class="mt-2"><span class="status-pill pill-signed">Signed</span></div>
+
+              <!-- file-grid → grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-[14px] -->
+              <div class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-[14px]">
+                <!-- ── FILE CARD: Alpha Redesign SOW — Signed ────────── -->
+                <!-- file-card base + hover states all inlined -->
+                <div class="bg-white border border-[#ebebeb] rounded-[12px] p-4 text-center cursor-pointer transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-[#ff5a5f]">
+                  <!-- file-icon → text-[36px] mb-[10px] -->
+                  <div class="text-[36px] mb-[10px]">📋</div>
+                  <!-- file-name → text-[12px] font-bold text-[#222222] mb-1 break-words leading-[1.3] -->
+                  <div class="text-[12px] font-bold text-[#222222] mb-1 break-words leading-[1.3]">Alpha_Redesign_SOW.pdf</div>
+                  <!-- file-meta → text-[11px] text-[#767676] -->
+                  <div class="text-[11px] text-[#767676]">PDF · 1.2 MB</div>
+                  <div class="mt-2">
+                    <span class="status-pill pill-signed">Signed</span>
+                  </div>
                 </div>
-                <div class="file-card">
-                  <div class="file-icon">📋</div>
-                  <div class="file-name">CRM_Integration_SOW.pdf</div>
-                  <div class="file-meta">PDF · 0.9 MB</div>
-                  <div class="mt-2"><span class="status-pill pill-signed">Signed</span></div>
+
+                <!-- ── FILE CARD: CRM Integration SOW — Signed ────────── -->
+                <div class="bg-white border border-[#ebebeb] rounded-[12px] p-4 text-center cursor-pointer transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-[#ff5a5f]">
+                  <div class="text-[36px] mb-[10px]">📋</div>
+                  <div class="text-[12px] font-bold text-[#222222] mb-1 break-words leading-[1.3]">CRM_Integration_SOW.pdf</div>
+                  <div class="text-[11px] text-[#767676]">PDF · 0.9 MB</div>
+                  <div class="mt-2">
+                    <span class="status-pill pill-signed">Signed</span>
+                  </div>
                 </div>
-                <div class="file-card !border-[#f59f00]">
-                  <div class="file-icon">📋</div>
-                  <div class="file-name">Mobile_App_Change_Order_1.pdf</div>
-                  <div class="file-meta">PDF · 0.6 MB</div>
-                  <div class="mt-2"><span class="status-pill pill-pending">Needs Signature</span></div>
+
+                <!-- ── FILE CARD: Mobile Change Order — Needs Signature (amber border) ── -->
+                <!-- Special: border-[#f59f00] overrides default #ebebeb to signal pending action -->
+                <div class="bg-white border border-[#f59f00] rounded-[12px] p-4 text-center cursor-pointer transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-[#ff5a5f]">
+                  <div class="text-[36px] mb-[10px]">📋</div>
+                  <div class="text-[12px] font-bold text-[#222222] mb-1 break-words leading-[1.3]">Mobile_App_Change_Order_1.pdf</div>
+                  <div class="text-[11px] text-[#767676]">PDF · 0.6 MB</div>
+                  <div class="mt-2">
+                    <span class="status-pill pill-pending">Needs Signature</span>
+                  </div>
                 </div>
-                <div class="file-card">
-                  <div class="file-icon">🤝</div>
-                  <div class="file-name">Mutual_NDA_2026.pdf</div>
-                  <div class="file-meta">PDF · 0.3 MB</div>
-                  <div class="mt-2"><span class="status-pill pill-signed">Signed</span></div>
+
+                <!-- ── FILE CARD: Mutual NDA — Signed ────────────────── -->
+                <div class="bg-white border border-[#ebebeb] rounded-[12px] p-4 text-center cursor-pointer transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-[#ff5a5f]">
+                  <div class="text-[36px] mb-[10px]">🤝</div>
+                  <div class="text-[12px] font-bold text-[#222222] mb-1 break-words leading-[1.3]">Mutual_NDA_2026.pdf</div>
+                  <div class="text-[11px] text-[#767676]">PDF · 0.3 MB</div>
+                  <div class="mt-2">
+                    <span class="status-pill pill-signed">Signed</span>
+                  </div>
                 </div>
-                <div class="file-card">
-                  <div class="file-icon">📋</div>
-                  <div class="file-name">Mobile_App_MVP_SOW.pdf</div>
-                  <div class="file-meta">PDF · 1.5 MB</div>
-                  <div class="mt-2"><span class="status-pill pill-signed">Signed</span></div>
+
+                <!-- ── FILE CARD: Mobile App MVP SOW — Signed ─────────── -->
+                <div class="bg-white border border-[#ebebeb] rounded-[12px] p-4 text-center cursor-pointer transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-[#ff5a5f]">
+                  <div class="text-[36px] mb-[10px]">📋</div>
+                  <div class="text-[12px] font-bold text-[#222222] mb-1 break-words leading-[1.3]">Mobile_App_MVP_SOW.pdf</div>
+                  <div class="text-[11px] text-[#767676]">PDF · 1.5 MB</div>
+                  <div class="mt-2">
+                    <span class="status-pill pill-signed">Signed</span>
+                  </div>
                 </div>
-                <div class="file-card">
-                  <div class="file-icon">📄</div>
-                  <div class="file-name">Master_Services_Agreement.pdf</div>
-                  <div class="file-meta">PDF · 2.1 MB</div>
-                  <div class="mt-2"><span class="status-pill pill-signed">Signed</span></div>
+
+                <!-- ── FILE CARD: Master Services Agreement — Signed ──── -->
+                <div class="bg-white border border-[#ebebeb] rounded-[12px] p-4 text-center cursor-pointer transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-[#ff5a5f]">
+                  <div class="text-[36px] mb-[10px]">📄</div>
+                  <div class="text-[12px] font-bold text-[#222222] mb-1 break-words leading-[1.3]">Master_Services_Agreement.pdf</div>
+                  <div class="text-[11px] text-[#767676]">PDF · 2.1 MB</div>
+                  <div class="mt-2">
+                    <span class="status-pill pill-signed">Signed</span>
+                  </div>
                 </div>
               </div>
+              <!-- end file-grid -->
             </div>
+            <!-- ── END MAIN CONTENT AREA ──────────────────────────────── -->
           </div>
+          <!-- end docs-layout -->
         </div>
 
         <!-- ============================================================
@@ -3799,95 +3758,142 @@
         <div class="page" id="page-settings">
           <div class="flex items-center justify-between mb-6">
             <div>
-              <div class="text-[20px] font-extrabold mb-[2px]">Settings</div>
+              <div class="text-[20px] font-extrabold text-[#222222] mb-[2px]">Settings</div>
               <div class="text-[13px] text-[#767676]">Manage your account and preferences</div>
             </div>
           </div>
-          <div class="settings-layout">
-            <div class="settings-nav">
-              <div class="settings-nav-item active" onclick="switchSettings('profile', this)">👤 Profile</div>
-              <div class="settings-nav-item" onclick="switchSettings('security', this)">🔐 Security</div>
-              <div class="settings-nav-item" onclick="switchSettings('notif-settings', this)">🔔 Notifications</div>
-              <div class="settings-nav-item" onclick="switchSettings('billing-settings', this)">💳 Billing</div>
-              <div class="settings-nav-item text-[#f03e3e]" onclick="switchSettings('danger', this)">⚠️ Danger Zone</div>
+
+          <div class="grid grid-cols-[220px_1fr] gap-6">
+            <div class="bg-white border border-[#ebebeb] rounded-[12px] p-2 shadow-sm self-start">
+              <div class="settings-nav-item active" onclick="switchSettings('profile',       this)">👤 Profile</div>
+              <div class="settings-nav-item" onclick="switchSettings('security',      this)">🔐 Security</div>
+              <div class="settings-nav-item" onclick="switchSettings('notif-settings',this)">🔔 Notifications</div>
+              <div class="settings-nav-item" onclick="switchSettings('billing-settings',this)">💳 Billing</div>
+              <!-- Danger item: base colour red; active state overrides to rausch per .settings-nav-item.active -->
+              <div class="settings-nav-item" onclick="switchSettings('danger',        this)" style="color: #e03131">⚠️ Danger Zone</div>
             </div>
+
             <div>
-              <!-- Profile -->
+              <!-- ══════════════════════════════════════════════════════
+               PANEL: PROFILE
+          ══════════════════════════════════════════════════════ -->
               <div class="settings-panel active" id="settings-profile">
-                <div class="settings-section">
-                  <div class="settings-section-header"><div class="settings-section-title">Profile Information</div></div>
-                  <div class="settings-section-body">
+                <div class="bg-white border border-[#ebebeb] rounded-[12px] shadow-sm mb-5 overflow-hidden">
+               
+                  <div class="px-6 py-4 border-b border-[#ebebeb]">
+                    <div class="text-[15px] font-bold text-[#222222]">Profile Information</div>
+                  </div>
+
+                  <div class="p-6">
                     <div class="flex items-center gap-5 mb-6">
-                      <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center text-[26px] font-extrabold text-white" style="background: linear-gradient(135deg, var(--rausch), var(--arches))">SC</div>
+                      <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center text-[26px] font-extrabold text-white flex-shrink-0" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">SC</div>
                       <div>
                         <button class="btn btn-secondary btn-sm">Change Photo</button>
                         <div class="text-[11px] text-[#767676] mt-1">JPG or PNG, max 5MB</div>
                       </div>
                     </div>
-                    <div class="form-row mb-4">
-                      <div class="form-group"><label class="form-label">First Name</label><input class="form-input" value="Sarah" /></div>
-                      <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" value="Chen" /></div>
-                    </div>
-                    <div class="form-row mb-4">
-                      <div class="form-group"><label class="form-label">Job Title</label><input class="form-input" value="CEO" /></div>
-                      <div class="form-group"><label class="form-label">Phone</label><input class="form-input" value="+1 (555) 234-5678" /></div>
-                    </div>
-                    <div class="form-row mb-4">
-                      <div class="form-group"><label class="form-label">Email</label><input class="form-input" value="sarah@acmecorp.com" /></div>
+
+                    <div class="grid grid-cols-2 gap-4 mb-4">
                       <div class="form-group">
-                        <label class="form-label">Timezone</label
-                        ><select class="form-select">
+                        <label class="form-label">First Name</label>
+                        <input class="form-input" value="Sarah" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input class="form-input" value="Chen" />
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                      <div class="form-group">
+                        <label class="form-label">Job Title</label>
+                        <input class="form-input" value="CEO" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input class="form-input" value="+1 (555) 234-5678" />
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                      <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input class="form-input" value="sarah@acmecorp.com" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Timezone</label>
+                        <select class="form-select">
                           <option>Eastern Time (ET) — UTC-5</option>
                           <option>Pacific Time (PT) — UTC-8</option>
                         </select>
                       </div>
                     </div>
+
                     <button class="btn btn-primary" onclick="showToast('Profile updated! ✓', 'success')">Save Changes</button>
                   </div>
                 </div>
               </div>
-              <!-- Security -->
+              <!-- ══════════════════════════════════════════════════════
+               PANEL: SECURITY
+          ══════════════════════════════════════════════════════ -->
               <div class="settings-panel" id="settings-security">
-                <div class="settings-section mb-5">
-                  <div class="settings-section-header"><div class="settings-section-title">Change Password</div></div>
-                  <div class="settings-section-body">
-                    <div class="form-group"><label class="form-label">Current Password</label><input class="form-input" type="password" placeholder="••••••••" /></div>
-                    <div class="form-row">
-                      <div class="form-group"><label class="form-label">New Password</label><input class="form-input" type="password" placeholder="••••••••" /></div>
-                      <div class="form-group"><label class="form-label">Confirm New Password</label><input class="form-input" type="password" placeholder="••••••••" /></div>
+                <div class="bg-white border border-[#ebebeb] rounded-[12px] shadow-sm mb-5 overflow-hidden">
+                  <div class="px-6 py-4 border-b border-[#ebebeb]">
+                    <div class="text-[15px] font-bold text-[#222222]">Change Password</div>
+                  </div>
+                  <div class="p-6">
+                    <div class="form-group">
+                      <label class="form-label">Current Password</label>
+                      <input class="form-input" type="password" placeholder="••••••••" />
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                      <div class="form-group">
+                        <label class="form-label">New Password</label>
+                        <input class="form-input" type="password" placeholder="••••••••" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Confirm New Password</label>
+                        <input class="form-input" type="password" placeholder="••••••••" />
+                      </div>
                     </div>
                     <button class="btn btn-primary" onclick="showToast('Password updated! 🔐', 'success')">Update Password</button>
                   </div>
                 </div>
-                <div class="settings-section mb-5">
-                  <div class="settings-section-header">
-                    <div class="settings-section-title">Two-Factor Authentication</div>
-                    <div class="settings-section-sub">Add an extra layer of security</div>
+
+                <div class="bg-white border border-[#ebebeb] rounded-[12px] shadow-sm mb-5 overflow-hidden">
+                  <div class="px-6 py-4 border-b border-[#ebebeb]">
+                    <div class="text-[15px] font-bold text-[#222222]">Two-Factor Authentication</div>
+                
+                    <div class="text-[12px] text-[#767676] mt-[2px]">Add an extra layer of security</div>
                   </div>
-                  <div class="settings-section-body">
-                    <div class="alert-banner success mb-4">
-                      <span class="alert-icon">✅</span>
+                  <div class="p-6">
+            
+                    <div class="flex items-start gap-[14px] p-[16px_20px] rounded-[8px] bg-[#e6f9ee] border border-[#69db7c] mb-4">
+                      <span class="text-[20px] flex-shrink-0 mt-[1px]">✅</span>
                       <div>
-                        <div class="alert-title">2FA is enabled</div>
-                        <div class="alert-desc">Your account is protected with an authenticator app.</div>
+                        <div class="text-[13px] font-bold text-[#222222] mb-[3px]">2FA is enabled</div>
+                        <div class="text-[12px] text-[#717171] leading-[1.5]">Your account is protected with an authenticator app.</div>
                       </div>
                     </div>
                     <button class="btn btn-secondary">Manage 2FA</button>
                   </div>
                 </div>
-                <div class="settings-section">
-                  <div class="settings-section-header"><div class="settings-section-title">Active Sessions</div></div>
-                  <div class="settings-section-body flex flex-col gap-3">
-                    <div class="flex items-center justify-between p-3 bg-[#f7f7f7] rounded-[6px]">
+
+                <div class="bg-white border border-[#ebebeb] rounded-[12px] shadow-sm overflow-hidden">
+                  <div class="px-6 py-4 border-b border-[#ebebeb]">
+                    <div class="text-[15px] font-bold text-[#222222]">Active Sessions</div>
+                  </div>
+                  <div class="p-6 flex flex-col gap-3">
+                    <div class="flex items-center justify-between p-3 bg-[#f7f7f7] rounded-[8px]">
                       <div>
-                        <div class="text-[13px] font-bold">Chrome on Mac · New York, USA</div>
+                        <div class="text-[13px] font-bold text-[#222222]">Chrome on Mac · New York, USA</div>
                         <div class="text-[11px] text-[#767676]">Current session · Active now</div>
                       </div>
-                      <span class="status-pill pill-on-track text-[10px]">Current</span>
+                      <span class="status-pill pill-on-track" style="font-size: 10px">Current</span>
                     </div>
-                    <div class="flex items-center justify-between p-3 bg-[#f7f7f7] rounded-[6px]">
+                    <div class="flex items-center justify-between p-3 bg-[#f7f7f7] rounded-[8px]">
                       <div>
-                        <div class="text-[13px] font-bold">Safari on iPhone · New York, USA</div>
+                        <div class="text-[13px] font-bold text-[#222222]">Safari on iPhone · New York, USA</div>
                         <div class="text-[11px] text-[#767676]">Last active Mar 15, 2026</div>
                       </div>
                       <button class="btn btn-danger btn-sm">Revoke</button>
@@ -3895,42 +3901,51 @@
                   </div>
                 </div>
               </div>
-              <!-- Notification Settings -->
+
+              <!-- ══════════════════════════════════════════════════════
+               PANEL: NOTIFICATIONS
+          ══════════════════════════════════════════════════════ -->
               <div class="settings-panel" id="settings-notif-settings">
-                <div class="settings-section">
-                  <div class="settings-section-header"><div class="settings-section-title">Notification Settings</div></div>
-                  <div class="settings-section-body">
-                    <div class="toggle-wrap">
+                <div class="bg-white border border-[#ebebeb] rounded-[12px] shadow-sm overflow-hidden">
+                  <div class="px-6 py-4 border-b border-[#ebebeb]">
+                    <div class="text-[15px] font-bold text-[#222222]">Notification Settings</div>
+                  </div>
+                  <div class="p-6">
+                    <div class="flex items-center justify-between py-[10px] border-b border-[#ebebeb]">
                       <div>
-                        <div class="text-[13px] font-bold">Email notifications</div>
+                        <div class="text-[13px] font-bold text-[#222222]">Email notifications</div>
                         <div class="text-[12px] text-[#767676]">Receive important alerts by email</div>
                       </div>
                       <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
                     </div>
-                    <div class="toggle-wrap">
+
+                    <div class="flex items-center justify-between py-[10px] border-b border-[#ebebeb]">
                       <div>
-                        <div class="text-[13px] font-bold">Invoice due reminders</div>
+                        <div class="text-[13px] font-bold text-[#222222]">Invoice due reminders</div>
                         <div class="text-[12px] text-[#767676]">3 days before and on due date</div>
                       </div>
                       <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
                     </div>
-                    <div class="toggle-wrap">
+
+                    <div class="flex items-center justify-between py-[10px] border-b border-[#ebebeb]">
                       <div>
-                        <div class="text-[13px] font-bold">Project milestone updates</div>
+                        <div class="text-[13px] font-bold text-[#222222]">Project milestone updates</div>
                         <div class="text-[12px] text-[#767676]">When milestones are submitted for review</div>
                       </div>
                       <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
                     </div>
-                    <div class="toggle-wrap">
+
+                    <div class="flex items-center justify-between py-[10px] border-b border-[#ebebeb]">
                       <div>
-                        <div class="text-[13px] font-bold">New message alerts</div>
+                        <div class="text-[13px] font-bold text-[#222222]">New message alerts</div>
                         <div class="text-[12px] text-[#767676]">Push notifications for unread messages</div>
                       </div>
                       <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
                     </div>
-                    <div class="toggle-wrap">
+
+                    <div class="flex items-center justify-between py-[10px]">
                       <div>
-                        <div class="text-[13px] font-bold">Support ticket updates</div>
+                        <div class="text-[13px] font-bold text-[#222222]">Support ticket updates</div>
                         <div class="text-[12px] text-[#767676]">Status changes on your tickets</div>
                       </div>
                       <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
@@ -3938,38 +3953,52 @@
                   </div>
                 </div>
               </div>
-              <!-- Billing Settings -->
+
+              <!-- ══════════════════════════════════════════════════════
+               PANEL: BILLING
+          ══════════════════════════════════════════════════════ -->
               <div class="settings-panel" id="settings-billing-settings">
-                <div class="settings-section">
-                  <div class="settings-section-header"><div class="settings-section-title">Billing Preferences</div></div>
-                  <div class="settings-section-body">
-                    <div class="form-group mb-4"><label class="form-label">Billing Contact Email</label><input class="form-input" value="billing@acmecorp.com" /></div>
-                    <div class="flex items-center gap-4 p-4 bg-[#f7f7f7] rounded-[6px] mb-4">
-                      <div class="w-12 h-8 bg-[#1a1f71] rounded-[6px] flex items-center justify-center text-white text-[11px] font-bold">VISA</div>
+                <div class="bg-white border border-[#ebebeb] rounded-[12px] shadow-sm overflow-hidden">
+                  <div class="px-6 py-4 border-b border-[#ebebeb]">
+                    <div class="text-[15px] font-bold text-[#222222]">Billing Preferences</div>
+                  </div>
+                  <div class="p-6">
+                    <div class="form-group mb-4">
+                      <label class="form-label">Billing Contact Email</label>
+                      <input class="form-input" value="billing@acmecorp.com" />
+                    </div>
+
+                    <div class="flex items-center gap-4 p-4 bg-[#f7f7f7] rounded-[8px] mb-4">
+                      <div class="w-12 h-8 bg-[#1a1f71] rounded-[6px] flex items-center justify-center text-white text-[11px] font-bold flex-shrink-0">VISA</div>
                       <div class="flex-1">
-                        <div class="text-[14px] font-bold">Visa ending in 4242</div>
+                        <div class="text-[14px] font-bold text-[#222222]">Visa ending in 4242</div>
                         <div class="text-[12px] text-[#767676]">Expires 09/28 · Default</div>
                       </div>
                       <button class="btn btn-secondary btn-sm">Change</button>
                     </div>
+
                     <button class="btn btn-primary" onclick="showToast('Billing settings saved! ✓', 'success')">Save Changes</button>
                   </div>
                 </div>
               </div>
-              <!-- Danger Zone -->
+
+              <!-- ══════════════════════════════════════════════════════
+               PANEL: DANGER ZONE
+              ══════════════════════════════════════════════════════ -->
               <div class="settings-panel" id="settings-danger">
-                <div class="settings-section danger-zone">
-                  <div class="settings-section-header">
-                    <div class="settings-section-title text-[#f03e3e]">⚠️ Danger Zone</div>
-                    <div class="settings-section-sub">These actions are irreversible. Please be careful.</div>
+                <div class="bg-white border border-[#e03131] rounded-[12px] shadow-sm overflow-hidden">
+                  <div class="px-6 py-4 bg-[#fff0f0] border-b border-[#ffc9c9]">
+                    <div class="text-[15px] font-bold text-[#e03131]">⚠️ Danger Zone</div>
+                    <div class="text-[12px] text-[#767676] mt-[2px]">These actions are irreversible. Please be careful.</div>
                   </div>
-                  <div class="settings-section-body">
-                    <div class="flex items-center justify-between p-4 border border-[#f03e3e] rounded-[6px]">
-                      <div>
+
+                  <div class="p-6">
+                    <div class="flex items-center justify-between p-4 border border-[#e03131] rounded-[8px]">
+                      <div class="flex-1 pr-6">
                         <div class="text-[14px] font-bold text-[#222222]">Request Account Deletion</div>
                         <div class="text-[12px] text-[#767676] mt-[3px]">Permanently delete your portal account and all associated data. This cannot be undone.</div>
                       </div>
-                      <button class="btn btn-danger btn-sm" onclick="showToast('Account deletion request submitted. Our team will follow up.', 'error')">Delete Account</button>
+                      <button class="btn btn-danger btn-sm flex-shrink-0" onclick="showToast('Account deletion request submitted. Our team will follow up.', 'error')">Delete Account</button>
                     </div>
                   </div>
                 </div>
@@ -3978,9 +4007,7 @@
           </div>
         </div>
       </div>
-      <!-- end .main -->
     </div>
-    <!-- end #portal -->
 
     <!-- ============================================================
      MODALS (Chunk 14)
@@ -4233,9 +4260,10 @@
       }
 
       // ---- Settings Panel ----
-      function switchSettings(panel, navEl) {
+        function switchSettings(panel, navEl) {
         document.querySelectorAll('.settings-panel').forEach((p) => p.classList.remove('active'));
-        document.getElementById('settings-' + panel).classList.add('active');
+        const target = document.getElementById('settings-' + panel);
+        if (target) target.classList.add('active');
         document.querySelectorAll('.settings-nav-item').forEach((n) => n.classList.remove('active'));
         if (navEl) navEl.classList.add('active');
       }
@@ -4255,13 +4283,13 @@
       });
 
       // ---- Toast System ----
-      function showToast(msg, type = '') {
-        const container = document.getElementById('toast-container');
-        const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
-        toast.textContent = msg;
-        container.appendChild(toast);
-        setTimeout(() => toast.remove(), 3500);
+   function showToast(msg, type = '') {
+        const c = document.getElementById('toast-container');
+        const t = document.createElement('div');
+        t.className = `toast ${type}`;
+        t.textContent = msg;
+        c.appendChild(t);
+        setTimeout(() => t.remove(), 3500);
       }
 
       // ---- Login ----
