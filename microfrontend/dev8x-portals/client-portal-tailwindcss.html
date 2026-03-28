@@ -2150,7 +2150,6 @@
   </head>
 
   <body class="bg-[#f7f7f7] text-[#222222] min-h-screen flex">
-
     <!-- ============================================================
          PORTAL WRAPPER
          ============================================================ -->
@@ -2576,7 +2575,6 @@
 
           <!-- Project Grid (2-col) -->
           <div class="grid grid-cols-2 gap-5">
-
             <!-- PROJECT 1 — Fixed Price -->
             <div class="project-card" onclick="openProject('alpha')">
               <div class="pt-5 px-5 pb-4">
@@ -2679,7 +2677,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -3161,108 +3158,139 @@
              PAGE: MESSAGES (Chunk 7)
              ============================================================ -->
         <div class="page p-0 h-[calc(100vh-64px)] hidden" id="page-messages">
-          <div class="chat-layout h-full">
-            <div class="thread-list">
+          <div class="grid grid-cols-[320px_1fr] h-full gap-0">
+            <!-- ── THREAD LIST SIDEBAR ────────────────────────────────── -->
+            <div class="bg-white border border-[#ebebeb] flex flex-col rounded-l-[12px] overflow-hidden">
+              <!-- Sidebar header -->
               <div class="py-[14px] px-4 border-b border-[#ebebeb] flex items-center justify-between">
                 <span class="text-[15px] font-extrabold text-[#222222]">Messages</span>
                 <button class="btn btn-primary btn-sm">+ New</button>
               </div>
-              <div class="thread-search">
+
+              <!-- Search bar -->
+              <div class="py-3 px-4 border-b border-[#ebebeb]">
                 <input class="form-input rounded-[20px]" placeholder="🔍 Search messages..." />
               </div>
+
+              <!-- Scrollable thread list -->
               <div class="overflow-y-auto flex-1">
-                <div class="thread-item active">
+                <!-- Thread 1: Marcus — ACTIVE -->
+                <div class="flex items-start gap-3 py-[14px] px-4 cursor-pointer transition-colors duration-150 border-b border-[#ebebeb] bg-[#fff0f0]">
                   <div class="avatar w-[38px] h-[38px] text-[12px]" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">MJ</div>
-                  <div class="thread-info">
-                    <div class="thread-name">Marcus Johnson <span class="text-[11px] font-normal text-[#767676]">· PM</span></div>
-                    <div class="thread-preview">API testing results are in...</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="text-[14px] font-bold text-[#222222] mb-[2px]">Marcus Johnson <span class="text-[11px] font-normal text-[#767676]">· PM</span></div>
+                    <div class="text-[12px] text-[#767676] whitespace-nowrap overflow-hidden text-ellipsis">API testing results are in...</div>
                   </div>
-                  <div class="thread-meta">
-                    <div class="thread-time">11:00 AM</div>
-                    <div class="thread-unread"></div>
+                  <div class="text-right flex flex-col items-end gap-1">
+                    <div class="text-[11px] text-[#767676]">11:00 AM</div>
+                    <div class="w-2 h-2 bg-[#ff5a5f] rounded-full"></div>
                   </div>
                 </div>
-                <!-- ... other threads ... -->
-                <div class="thread-item">
+
+                <!-- Thread 2: Lisa Park -->
+                <div class="flex items-start gap-3 py-[14px] px-4 cursor-pointer transition-colors duration-150 border-b border-[#ebebeb] hover:bg-[#f7f7f7]">
                   <div class="avatar w-[38px] h-[38px] text-[12px]" style="background: linear-gradient(135deg, #00a699, #2f9e44)">LP</div>
-                  <div class="thread-info">
-                    <div class="thread-name">Lisa Park <span class="text-[11px] font-normal text-[#767676]">· PM</span></div>
-                    <div class="thread-preview">Wireframes uploaded for review</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="text-[14px] font-bold text-[#222222] mb-[2px]">Lisa Park <span class="text-[11px] font-normal text-[#767676]">· PM</span></div>
+                    <div class="text-[12px] text-[#767676] whitespace-nowrap overflow-hidden text-ellipsis">Wireframes uploaded for review</div>
                   </div>
-                  <div class="thread-meta">
-                    <div class="thread-time">Yesterday</div>
-                    <div class="thread-unread"></div>
+                  <div class="text-right flex flex-col items-end gap-1">
+                    <div class="text-[11px] text-[#767676]">Yesterday</div>
+                    <div class="w-2 h-2 bg-[#ff5a5f] rounded-full"></div>
                   </div>
                 </div>
-                <div class="thread-item">
+
+                <!-- Thread 3: Ravi Kumar -->
+                <div class="flex items-start gap-3 py-[14px] px-4 cursor-pointer transition-colors duration-150 border-b border-[#ebebeb] hover:bg-[#f7f7f7]">
                   <div class="avatar w-[38px] h-[38px] text-[12px]" style="background: linear-gradient(135deg, #fc642d, #e67e00)">RK</div>
-                  <div class="thread-info">
-                    <div class="thread-name">Ravi Kumar <span class="text-[11px] font-normal text-[#767676]">· PM</span></div>
-                    <div class="thread-preview">Mobile app kickoff scheduled...</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="text-[14px] font-bold text-[#222222] mb-[2px]">Ravi Kumar <span class="text-[11px] font-normal text-[#767676]">· PM</span></div>
+                    <div class="text-[12px] text-[#767676] whitespace-nowrap overflow-hidden text-ellipsis">Mobile app kickoff scheduled...</div>
                   </div>
-                  <div class="thread-meta"><div class="thread-time">Mar 14</div></div>
+                  <div class="text-right flex flex-col items-end gap-1">
+                    <div class="text-[11px] text-[#767676]">Mar 14</div>
+                  </div>
                 </div>
-                <div class="thread-item">
+
+                <!-- Thread 4: Dev8X Support -->
+                <div class="flex items-start gap-3 py-[14px] px-4 cursor-pointer transition-colors duration-150 border-b border-[#ebebeb] hover:bg-[#f7f7f7]">
                   <div class="avatar w-[38px] h-[38px] text-[12px]" style="background: linear-gradient(135deg, #7048e8, #3b5bdb)">Dev8X</div>
-                  <div class="thread-info">
-                    <div class="thread-name">Dev8X Support</div>
-                    <div class="thread-preview">Your ticket #TKT-014 has been...</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="text-[14px] font-bold text-[#222222] mb-[2px]">Dev8X Support</div>
+                    <div class="text-[12px] text-[#767676] whitespace-nowrap overflow-hidden text-ellipsis">Your ticket #TKT-014 has been...</div>
                   </div>
-                  <div class="thread-meta"><div class="thread-time">Mar 12</div></div>
+                  <div class="text-right flex flex-col items-end gap-1">
+                    <div class="text-[11px] text-[#767676]">Mar 12</div>
+                  </div>
                 </div>
               </div>
             </div>
+            <!-- ── END THREAD LIST SIDEBAR ────────────────────────────── -->
 
-            <div class="chat-window">
-              <div class="chat-header">
+            <!-- ── CHAT WINDOW ───────────────────────────────────────── -->
+            <div class="flex flex-col bg-white border border-[#ebebeb] border-l-0 rounded-r-[12px] overflow-hidden">
+              <!-- Chat header -->
+              <div class="py-[14px] px-5 border-b border-[#ebebeb] flex items-center gap-3 bg-white">
                 <div class="avatar" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">MJ</div>
                 <div class="flex-1">
                   <div class="flex items-center gap-2">
                     <span class="text-[15px] font-bold text-[#222222]">Marcus Johnson</span>
-                    <div class="online-dot"></div>
-                    <span class="text-[12px] text-[#2b8a3e]">Online</span>
+                    <div class="w-2 h-2 rounded-full bg-[#2f9e44]"></div>
+                    <span class="text-[12px] text-[#2f9e44]">Online</span>
                   </div>
                   <div class="text-[11px] text-[#767676]">Project Manager · Alpha E-Commerce Redesign</div>
                 </div>
                 <span class="tag">Alpha E-Commerce</span>
               </div>
 
-              <div class="chat-messages">
-                <div class="msg-row">
+              <!-- Messages scroll area — keep class="chat-messages" for sendMsg() JS hook -->
+              <div class="chat-messages flex-1 overflow-y-auto p-5 flex flex-col gap-4 bg-[#fafafa]">
+                <!-- Marcus → Sarah -->
+                <div class="flex gap-[10px] items-end">
                   <div class="avatar w-7 h-7 text-[10px]" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">MJ</div>
                   <div>
-                    <div class="msg-bubble theirs">Hi Sarah! Quick update — we've just finished the checkout flow designs and uploaded them to your Milestones tab for review. The interactive prototype is linked there too.</div>
-                    <div class="msg-time">Mar 14 · 10:30 AM</div>
+                    <div class="max-w-[60%] py-[10px] px-[14px] rounded-xl rounded-bl-[4px] text-[13px] leading-[1.5] bg-white border border-[#ebebeb] text-[#484848]">Hi Sarah! Quick update — we've just finished the checkout flow designs and uploaded them to your Milestones tab for review. The interactive prototype is linked there too.</div>
+                    <div class="text-[11px] text-[#767676] mt-1">Mar 14 · 10:30 AM</div>
                   </div>
                 </div>
-                <div class="msg-row mine">
-                  <div class="avatar w-7 h-7 text-[10px]" style="background: linear-gradient(135deg, var(--rausch), var(--arches))">SC</div>
+
+                <!-- Sarah → Marcus (mine = reverse) -->
+                <div class="flex gap-[10px] items-end flex-row-reverse">
+                  <div class="avatar w-7 h-7 text-[10px]" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">SC</div>
                   <div>
-                    <div class="msg-bubble mine">Thanks Marcus! I'll take a look this afternoon. Looks great from the preview screenshots 🎉</div>
-                    <div class="msg-time text-right">Mar 14 · 2:15 PM</div>
+                    <div class="max-w-[60%] py-[10px] px-[14px] rounded-xl rounded-br-[4px] text-[13px] leading-[1.5] bg-[#2d9cdb] text-white">Thanks Marcus! I'll take a look this afternoon. Looks great from the preview screenshots 🎉</div>
+                    <div class="text-[11px] text-[#767676] mt-1 text-right">Mar 14 · 2:15 PM</div>
                   </div>
                 </div>
-                <div class="msg-row">
+
+                <!-- Marcus → Sarah -->
+                <div class="flex gap-[10px] items-end">
                   <div class="avatar w-7 h-7 text-[10px]" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">MJ</div>
                   <div>
-                    <div class="msg-bubble theirs">Glad you like it! A few things to specifically look at: the guest checkout flow (Screen 4) and the mobile cart behavior (Screen 7). We'd love your feedback on those before dev kicks off.</div>
-                    <div class="msg-time">Mar 14 · 3:00 PM</div>
+                    <div class="max-w-[60%] py-[10px] px-[14px] rounded-xl rounded-bl-[4px] text-[13px] leading-[1.5] bg-white border border-[#ebebeb] text-[#484848]">Glad you like it! A few things to specifically look at: the guest checkout flow (Screen 4) and the mobile cart behavior (Screen 7). We'd love your feedback on those before dev kicks off.</div>
+                    <div class="text-[11px] text-[#767676] mt-1">Mar 14 · 3:00 PM</div>
                   </div>
                 </div>
-                <div class="msg-row mine">
-                  <div class="avatar w-7 h-7 text-[10px]" style="background: linear-gradient(135deg, var(--rausch), var(--arches))">SC</div>
+
+                <!-- Sarah → Marcus (mine = reverse) -->
+                <div class="flex gap-[10px] items-end flex-row-reverse">
+                  <div class="avatar w-7 h-7 text-[10px]" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">SC</div>
                   <div>
-                    <div class="msg-bubble mine">Will do! Also, when do you expect API testing to be done on the CRM side?</div>
-                    <div class="msg-time text-right">Mar 15 · 9:00 AM</div>
+                    <div class="max-w-[60%] py-[10px] px-[14px] rounded-xl rounded-br-[4px] text-[13px] leading-[1.5] bg-[#2d9cdb] text-white">Will do! Also, when do you expect API testing to be done on the CRM side?</div>
+                    <div class="text-[11px] text-[#767676] mt-1 text-right">Mar 15 · 9:00 AM</div>
                   </div>
                 </div>
-                <div class="msg-row">
+
+                <!-- Marcus → Sarah -->
+                <div class="flex gap-[10px] items-end">
                   <div class="avatar w-7 h-7 text-[10px]" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">MJ</div>
                   <div>
-                    <div class="msg-bubble theirs">API testing results are in — most endpoints passing. There's one auth issue we're investigating but shouldn't delay the timeline significantly. Full report by EOD today.</div>
-                    <div class="msg-time">Today · 11:00 AM</div>
+                    <div class="max-w-[60%] py-[10px] px-[14px] rounded-xl rounded-bl-[4px] text-[13px] leading-[1.5] bg-white border border-[#ebebeb] text-[#484848]">API testing results are in — most endpoints passing. There's one auth issue we're investigating but shouldn't delay the timeline significantly. Full report by EOD today.</div>
+                    <div class="text-[11px] text-[#767676] mt-1">Today · 11:00 AM</div>
                   </div>
                 </div>
+
+                <!-- Typing indicator -->
                 <div class="flex items-center gap-2 pl-[38px]">
                   <div class="flex gap-1">
                     <div class="w-2 h-2 rounded-full bg-[#ebebeb] animate-[blink_1.4s_infinite_0s]"></div>
@@ -3272,13 +3300,16 @@
                   <span class="text-[11px] text-[#767676]">Marcus is typing...</span>
                 </div>
               </div>
+              <!-- END chat-messages -->
 
-              <div class="chat-input-area">
-                <button class="icon-btn w-9 h-9 rounded-[8px]">📎</button>
-                <input class="chat-input" placeholder="Type a message..." id="chat-input-field" />
+              <!-- Input area -->
+              <div class="py-3 px-4 border-t border-[#ebebeb] flex items-center gap-[10px] bg-white">
+                <button class="w-9 h-9 rounded-[8px] border border-[#ebebeb] bg-white flex items-center justify-center text-base cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7] hover:border-[#767676]">📎</button>
+                <input class="flex-1 py-[10px] px-[14px] border border-[#ebebeb] rounded-[24px] text-[13px] font-[inherit] outline-none transition-[border-color] duration-150 focus:border-[#ff5a5f]" placeholder="Type a message..." id="chat-input-field" />
                 <button class="btn btn-primary rounded-[20px]" onclick="sendMsg()">Send</button>
               </div>
             </div>
+            <!-- ── END CHAT WINDOW ────────────────────────────────────── -->
           </div>
         </div>
 
@@ -3470,7 +3501,7 @@
             </div>
           </div>
         </div>
-         
+
         <!-- ============================================================
              PAGE: PAYMENT METHODS (Chunk 10)
              ============================================================ -->
@@ -3762,7 +3793,6 @@
           </div>
         </div>
 
-
         <!-- ============================================================
              PAGE: SETTINGS (Chunk 13)
              ============================================================ -->
@@ -3947,7 +3977,6 @@
             </div>
           </div>
         </div>
-
       </div>
       <!-- end .main -->
     </div>
@@ -3960,23 +3989,20 @@
     <!-- Project Picker Modal (Files & Docs nav) -->
     <div class="modal-overlay" id="project-picker-modal">
       <div class="modal w-[520px]">
-        <div class="modal-header">
-          <div class="modal-title">📋 Choose a Project</div>
-          <button class="modal-close" onclick="closeModal('project-picker-modal')">✕</button>
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between px-6 py-5 border-b border-[#ebebeb]">
+          <div class="text-[17px] font-bold text-[#222222]">📋 Choose a Project</div>
+          <button class="w-8 h-8 rounded-full border-none bg-[#f7f7f7] cursor-pointer text-[16px] flex items-center justify-center transition-colors duration-150 hover:bg-[#ebebeb]" onclick="closeModal('project-picker-modal')">✕</button>
         </div>
-        <div class="modal-body flex flex-col gap-3 px-6 py-5">
+
+        <!-- Modal Body -->
+        <div class="flex flex-col gap-3 px-6 py-5 overflow-y-auto flex-1">
           <p class="text-[13px] text-[#767676] mb-1">Select a project to view its Files &amp; Docs:</p>
 
           <!-- Alpha -->
-          <div
-            class="border border-[#ebebeb] rounded-[6px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[rgba(255,90,95,0.05)]"
-            onclick="
-              closeModal('project-picker-modal');
-              openProject('alpha', true);
-            "
-          >
+          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('alpha', true);">
             <div class="flex items-center justify-between mb-[6px]">
-              <div class="text-[14px] font-bold">Alpha E-Commerce Redesign</div>
+              <div class="text-[14px] font-bold text-[#222222]">Alpha E-Commerce Redesign</div>
               <div class="flex items-center gap-[6px]">
                 <span class="status-pill pill-on-track">On Track</span>
                 <span class="payment-badge payment-fixed">💰 Fixed Price</span>
@@ -3990,15 +4016,9 @@
           </div>
 
           <!-- CRM -->
-          <div
-            class="border border-[#ebebeb] rounded-[6px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[rgba(255,90,95,0.05)]"
-            onclick="
-              closeModal('project-picker-modal');
-              openProject('crm', true);
-            "
-          >
+          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('crm', true);">
             <div class="flex items-center justify-between mb-[6px]">
-              <div class="text-[14px] font-bold">CRM Integration API</div>
+              <div class="text-[14px] font-bold text-[#222222]">CRM Integration API</div>
               <div class="flex items-center gap-[6px]">
                 <span class="status-pill pill-at-risk">At Risk</span>
                 <span class="payment-badge payment-hourly">⏱ Hourly</span>
@@ -4006,21 +4026,17 @@
             </div>
             <div class="text-[12px] text-[#767676]">🔗 API Development &nbsp;·&nbsp; Feb 1 – Mar 30, 2026 &nbsp;·&nbsp; 45% complete</div>
             <div class="flex items-center gap-2 mt-2">
-              <div class="progress-wrap h-[5px]"><div class="progress-bar w-[45%]" style="background: linear-gradient(90deg, var(--amber), var(--arches))"></div></div>
+              <div class="progress-wrap h-[5px]">
+                <div class="progress-bar w-[45%]" style="background: linear-gradient(90deg, var(--amber), var(--arches))"></div>
+              </div>
               <span class="text-[11px] font-semibold text-[#767676]">45%</span>
             </div>
           </div>
 
           <!-- Mobile -->
-          <div
-            class="border border-[#ebebeb] rounded-[6px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[rgba(255,90,95,0.05)]"
-            onclick="
-              closeModal('project-picker-modal');
-              openProject('mobile', true);
-            "
-          >
+          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('mobile', true);">
             <div class="flex items-center justify-between mb-[6px]">
-              <div class="text-[14px] font-bold">Mobile App MVP</div>
+              <div class="text-[14px] font-bold text-[#222222]">Mobile App MVP</div>
               <div class="flex items-center gap-[6px]">
                 <span class="status-pill pill-on-track">On Track</span>
                 <span class="payment-badge payment-monthly">📅 Monthly</span>
@@ -4214,7 +4230,7 @@
           siblings.forEach((t) => t.classList.remove('active'));
           tabEl.classList.add('active');
         }
-      }k
+      }
 
       // ---- Settings Panel ----
       function switchSettings(panel, navEl) {
@@ -4250,13 +4266,20 @@
 
       // ---- Login ----
       // ── INIT ──
-      window.addEventListener('DOMContentLoaded', function() {
+      window.addEventListener('DOMContentLoaded', function () {
         const dashPage = document.getElementById('page-dashboard');
-        if (dashPage) { dashPage.style.display = 'block'; dashPage.classList.add('active'); }
+        if (dashPage) {
+          dashPage.style.display = 'block';
+          dashPage.classList.add('active');
+        }
       });
 
-      function doLogout() { window.location.href = 'auth.html'; }
-      function doLogin() { window.location.href = 'auth.html'; }
+      function doLogout() {
+        window.location.href = 'auth.html';
+      }
+      function doLogin() {
+        window.location.href = 'auth.html';
+      }
 
       function togglePw() {
         const pw = document.getElementById('pw-input');
@@ -4295,12 +4318,12 @@
         if (!input.value.trim()) return;
         const messages = document.querySelector('.chat-messages');
         const msg = document.createElement('div');
-        msg.className = 'msg-row mine';
+        msg.className = 'flex gap-[10px] items-end flex-row-reverse';
         msg.innerHTML = `
-          <div class="avatar" style="width:28px;height:28px;font-size:10px;background:linear-gradient(135deg,var(--rausch),var(--arches))">SC</div>
+          <div class="avatar" style="width:28px;height:28px;font-size:10px;background:linear-gradient(135deg,#ff5a5f,#fc642d)">SC</div>
           <div>
-            <div class="msg-bubble mine">${input.value}</div>
-            <div class="msg-time" style="text-align:right">Just now</div>
+            <div class="max-w-[60%] py-[10px] px-[14px] rounded-xl rounded-br-[4px] text-[13px] leading-[1.5] bg-[#2d9cdb] text-white">${input.value}</div>
+            <div class="text-[11px] text-[#767676] mt-1 text-right">Just now</div>
           </div>
         `;
         messages.appendChild(msg);
