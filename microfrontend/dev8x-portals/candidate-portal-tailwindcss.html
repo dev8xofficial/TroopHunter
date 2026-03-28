@@ -1,0 +1,2956 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev8X — Candidate Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              rausch: '#ff5a5f',
+              'rausch-dark': '#e0484d',
+              'rausch-light': '#fff0f0',
+              baia: '#00a699',
+              'baia-light': '#e6f7f6',
+              arches: '#fc642d',
+              hof: '#484848',
+              foggy: '#767676',
+              'c-border': '#ebebeb',
+              'c-bg': '#f7f7f7',
+              'text-main': '#222222',
+              'text-muted': '#717171',
+              'c-green': '#2f9e44',
+              'green-lt': '#e6f9ee',
+              'c-amber': '#e67e00',
+              'amber-lt': '#fff8e6',
+              'c-red': '#e03131',
+              'red-lt': '#fff0f0',
+              'c-blue': '#3b5bdb',
+              'blue-lt': '#eef2ff',
+              'c-purple': '#7048e8',
+              'purple-lt': '#f3f0ff',
+            },
+            fontFamily: {
+              jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+            },
+            borderRadius: {
+              10: '10px',
+              11: '11px',
+              14: '14px',
+              16: '16px',
+              20: '20px',
+              '24px': '24px',
+            },
+            boxShadow: {
+              'portal-sm': '0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05)',
+              'portal-md': '0 6px 16px rgba(0,0,0,0.12)',
+              'portal-lg': '0 14px 36px rgba(0,0,0,0.15)',
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* ============================================================
+         RESET & BASE
+         ============================================================ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      button {
+        font-family: inherit;
+        cursor: pointer;
+      }
+
+      input,
+      textarea,
+      select {
+        font-family: inherit;
+      }
+
+      /* ============================================================
+         CSS CUSTOM PROPERTIES — required by JS inline styles
+         ============================================================ */
+      :root {
+        --rausch: #ff5a5f;
+        --rausch-dark: #e0484d;
+        --rausch-light: #fff0f0;
+        --baia: #00a699;
+        --baia-light: #e6f7f6;
+        --arches: #fc642d;
+        --hof: #484848;
+        --foggy: #767676;
+        --border: #ebebeb;
+        --white: #ffffff;
+        --bg: #f7f7f7;
+        --text: #222222;
+        --text-light: #717171;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.12);
+        --shadow-lg: 0 14px 36px rgba(0, 0, 0, 0.15);
+        --radius: 16px;
+        --radius-sm: 10px;
+        --green: #2f9e44;
+        --green-light: #e6f9ee;
+        --amber: #e67e00;
+        --amber-light: #fff8e6;
+        --red: #e03131;
+        --red-light: #fff0f0;
+        --blue: #3b5bdb;
+        --blue-light: #eef2ff;
+        --purple: #7048e8;
+        --purple-light: #f3f0ff;
+      }
+
+      /* ============================================================
+         KEYFRAME ANIMATIONS
+         ============================================================ */
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow:
+            0 0 0 5px #fff0f0,
+            0 4px 12px rgba(255, 90, 95, 0.4);
+        }
+
+        50% {
+          box-shadow:
+            0 0 0 9px #fff0f0,
+            0 4px 12px rgba(255, 90, 95, 0.15);
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes toastIn {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes growUp {
+        from {
+          height: 0;
+        }
+      }
+
+      @keyframes ph-blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      /* ============================================================
+         JS-TOGGLED STATES
+         ============================================================ */
+
+      .tab-panel {
+        display: none;
+      }
+
+      .tab-panel.active {
+        display: block;
+      }
+
+      #panel-performance.active {
+        display: block;
+      }
+
+      .step-panel {
+        display: none;
+      }
+
+      .step-panel.open {
+        display: block;
+        animation: slideIn 0.2s ease;
+      }
+
+      .chevron.open {
+        transform: rotate(180deg);
+      }
+
+      .modal-overlay {
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-overlay.open {
+        display: flex;
+      }
+
+      .portal-nav-tab.active {
+        background-color: #fff0f0 !important;
+        color: #ff5a5f !important;
+      }
+
+      .perf-period-tab.active {
+        color: #ff5a5f;
+        border-bottom-color: #ff5a5f;
+      }
+
+      .portal-body.perf-mode {
+        grid-template-columns: 1fr !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+
+      .portal-body.perf-mode .sidebar-col {
+        display: none;
+      }
+
+      .step-dot.current {
+        animation: pulse 2s infinite;
+      }
+
+      .ph-eyebrow-dot {
+        animation: ph-blink 2s infinite;
+      }
+
+      /* ============================================================
+         TIMELINE HTML (emitted by renderTimeline())
+         ============================================================ */
+      .timeline-step {
+        display: grid;
+        grid-template-columns: 64px 1fr;
+        position: relative;
+      }
+
+      .step-line {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px 0;
+      }
+
+      .step-dot {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        z-index: 2;
+        flex-shrink: 0;
+        border: 2.5px solid transparent;
+        font-weight: 700;
+        transition: all 0.3s;
+      }
+
+      .step-dot.done {
+        background: #00a699;
+        border-color: #00a699;
+        color: white;
+        box-shadow: 0 4px 12px rgba(0, 166, 153, 0.3);
+        font-size: 14px;
+      }
+
+      .step-dot.current {
+        background: #ff5a5f;
+        border-color: #ff5a5f;
+        color: white;
+        box-shadow:
+          0 0 0 5px #fff0f0,
+          0 4px 12px rgba(255, 90, 95, 0.4);
+      }
+
+      .step-dot.pending {
+        background: #f7f7f7;
+        border-color: #ebebeb;
+        color: #767676;
+        font-size: 13px;
+      }
+
+      .step-dot.skipped {
+        background: #f8f8f8;
+        border-color: #ddd;
+        color: #bbb;
+        font-size: 13px;
+      }
+
+      .step-connector {
+        width: 2px;
+        flex: 1;
+        min-height: 20px;
+        margin: 4px 0;
+        border-radius: 2px;
+      }
+
+      .connector-done {
+        background: #00a699;
+      }
+
+      .connector-pending {
+        background: #ebebeb;
+      }
+
+      .connector-partial {
+        background: linear-gradient(to bottom, #00a699, #ebebeb);
+      }
+
+      .step-right {
+        padding: 12px 24px 12px 4px;
+      }
+
+      .step-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        padding: 4px 0;
+        border-radius: 8px;
+        transition: background 0.12s;
+      }
+
+      .step-header:hover {
+        background: #fafafa;
+      }
+
+      .step-title-text {
+        font-size: 15px;
+        font-weight: 700;
+        flex: 1;
+      }
+
+      .step-title-text.dimmed {
+        color: #767676;
+        font-weight: 600;
+      }
+
+      .step-badge {
+        font-size: 10px;
+        font-weight: 800;
+        padding: 3px 9px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+      }
+
+      .badge-done {
+        background: #e6f7f6;
+        color: #00a699;
+      }
+
+      .badge-current {
+        background: #fff0f0;
+        color: #ff5a5f;
+      }
+
+      .badge-pending {
+        background: #f7f7f7;
+        color: #767676;
+        border: 1px solid #ebebeb;
+      }
+
+      .step-desc {
+        font-size: 12px;
+        color: #767676;
+        padding: 2px 0 6px;
+      }
+
+      .chevron {
+        color: #767676;
+        font-size: 11px;
+        transition: transform 0.2s;
+        flex-shrink: 0;
+      }
+
+      .step-panel {
+        background: #fafafa;
+        border: 1px solid #ebebeb;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 12px;
+      }
+
+      /* ============================================================
+         PANEL CONTENT HTML (emitted by getCandidatePanelContent())
+         ============================================================ */
+      .panel-info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .panel-info-label {
+        font-size: 10px;
+        font-weight: 700;
+        color: #767676;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 3px;
+      }
+
+      .panel-info-value {
+        font-size: 13px;
+        font-weight: 700;
+        color: #222222;
+      }
+
+      .action-card {
+        background: #ffffff;
+        border: 1px solid #ebebeb;
+        border-radius: 10px;
+        padding: 16px;
+        margin-top: 12px;
+      }
+
+      .action-card-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: #767676;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+      }
+
+      .highlight-box {
+        padding: 13px 16px;
+        border-radius: 10px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.5;
+        margin: 10px 0;
+      }
+
+      .highlight-rausch {
+        background: #fff0f0;
+        color: #c0393e;
+        border: 1px solid #ffcdd0;
+      }
+
+      .highlight-baia {
+        background: #e6f7f6;
+        color: #007a73;
+        border: 1px solid #b2e8e5;
+      }
+
+      .highlight-yellow {
+        background: #fffbeb;
+        color: #856404;
+        border: 1px solid #f5e687;
+      }
+
+      .highlight-purple {
+        background: #f8f0ff;
+        color: #5e35b1;
+        border: 1px solid #dec8f8;
+      }
+
+      .highlight-green {
+        background: #f0fff4;
+        color: #276749;
+        border: 1px solid #b2e8c8;
+      }
+
+      .congrats-banner {
+        background: linear-gradient(135deg, #00a699 0%, #00c9b8 100%);
+        border-radius: 10px;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+
+      .congrats-icon {
+        font-size: 30px;
+        flex-shrink: 0;
+      }
+
+      .congrats-text .title {
+        color: white;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .congrats-text .sub {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 12px;
+        margin-top: 2px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        transition: all 0.15s;
+      }
+
+      .btn-primary {
+        background: #ff5a5f;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #e0484d;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(255, 90, 95, 0.35);
+      }
+
+      .btn-success {
+        background: #00a699;
+        color: white;
+      }
+
+      .btn-success:hover {
+        background: #008a7d;
+      }
+
+      .btn-secondary {
+        background: white;
+        color: #222222;
+        border: 1.5px solid #ebebeb;
+      }
+
+      .btn-secondary:hover {
+        background: #f7f7f7;
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 1.5px solid #ff5a5f;
+        color: #ff5a5f;
+      }
+
+      .btn-outline:hover {
+        background: #ff5a5f;
+        color: white;
+      }
+
+      .btn-full {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn-sm {
+        padding: 7px 14px;
+        font-size: 12px;
+      }
+
+      .btn-danger {
+        background: #fff0f0;
+        color: #ff5a5f;
+        border: 1.5px solid #ff5a5f;
+      }
+
+      .btn-danger:hover {
+        background: #ff5a5f;
+        color: white;
+      }
+
+      .btn-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+
+      .btn-row .btn {
+        flex: 1;
+        min-width: 120px;
+        justify-content: center;
+      }
+
+      .time-slot-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .time-slot {
+        padding: 10px;
+        border: 1.5px solid #ebebeb;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.15s;
+        color: #222222;
+      }
+
+      .time-slot:hover {
+        border-color: #ff5a5f;
+        color: #ff5a5f;
+      }
+
+      .time-slot.selected {
+        background: #ff5a5f;
+        border-color: #ff5a5f;
+        color: white;
+      }
+
+      .time-slot.taken {
+        background: #f5f5f5;
+        color: #bbb;
+        cursor: not-allowed;
+        text-decoration: line-through;
+      }
+
+      .doc-sign-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 13px 16px;
+        border: 1px solid #ebebeb;
+        border-radius: 10px;
+        margin-bottom: 8px;
+        background: white;
+        transition: border-color 0.15s;
+      }
+
+      .doc-sign-row:hover {
+        border-color: #ff5a5f;
+      }
+
+      .doc-sign-row.signed {
+        border-color: #00a699;
+        background: #e6f7f6;
+      }
+
+      .doc-sign-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .doc-file-icon {
+        font-size: 22px;
+      }
+
+      .doc-file-name {
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .doc-file-size {
+        font-size: 11px;
+        color: #767676;
+      }
+
+      .account-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border: 1px solid #ebebeb;
+        border-radius: 10px;
+        margin-bottom: 8px;
+        background: #f7f7f7;
+      }
+
+      .account-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .account-icon-wrap {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+
+      .account-service {
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .account-value {
+        font-size: 12px;
+        color: #767676;
+      }
+
+      .copy-btn {
+        padding: 6px 14px;
+        border-radius: 20px;
+        border: 1px solid #ebebeb;
+        background: white;
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+
+      .copy-btn:hover {
+        border-color: #ff5a5f;
+        color: #ff5a5f;
+      }
+
+      .software-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .software-card {
+        border: 1px solid #ebebeb;
+        border-radius: 10px;
+        padding: 14px 10px;
+        text-align: center;
+        background: white;
+        transition: all 0.15s;
+        cursor: pointer;
+      }
+
+      .software-card:hover {
+        border-color: #ff5a5f;
+        transform: translateY(-2px);
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.08),
+          0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .software-card.installed {
+        border-color: #00a699;
+        background: #e6f7f6;
+      }
+
+      .software-icon {
+        font-size: 26px;
+        margin-bottom: 5px;
+      }
+
+      .software-name {
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .software-desc {
+        font-size: 10px;
+        color: #767676;
+        margin-top: 2px;
+      }
+
+      .software-status {
+        font-size: 10px;
+        font-weight: 700;
+        margin-top: 4px;
+        color: #00a699;
+      }
+
+      .setup-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 13px 16px;
+        border: 1px solid #ebebeb;
+        border-radius: 10px;
+        margin-bottom: 8px;
+        background: white;
+      }
+
+      .setup-icon {
+        font-size: 20px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .setup-title {
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+
+      .setup-desc {
+        font-size: 12px;
+        color: #767676;
+      }
+
+      .checklist {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .check-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        background: #f7f7f7;
+        border-radius: 10px;
+        border: 1px solid #ebebeb;
+      }
+
+      .check-row-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .check-row input[type='checkbox'] {
+        width: 16px;
+        height: 16px;
+        accent-color: #ff5a5f;
+        cursor: pointer;
+      }
+
+      .tip-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        background: white;
+        border: 1px solid #ebebeb;
+        border-radius: 10px;
+        margin-bottom: 8px;
+      }
+
+      .tip-icon {
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+
+      .tip-text {
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .form-group-sm {
+        margin-bottom: 12px;
+      }
+
+      .form-label-sm {
+        font-size: 11px;
+        font-weight: 700;
+        color: #767676;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        margin-bottom: 5px;
+        display: block;
+      }
+
+      .form-input-sm {
+        width: 100%;
+        padding: 9px 12px;
+        border: 1.5px solid #ebebeb;
+        border-radius: 10px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 13px;
+        color: #222222;
+        background: white;
+        outline: none;
+        transition: border-color 0.15s;
+      }
+
+      .form-input-sm:focus {
+        border-color: #ff5a5f;
+        box-shadow: 0 0 0 3px #fff0f0;
+      }
+
+      .ns-hero {
+        text-align: center;
+        padding: 24px 16px;
+      }
+
+      .ns-icon {
+        font-size: 52px;
+        margin-bottom: 14px;
+      }
+
+      .ns-title {
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+
+      .ns-text {
+        font-size: 14px;
+        color: #767676;
+        line-height: 1.65;
+      }
+
+      /* ============================================================
+         TOAST (created dynamically by showToast())
+         ============================================================ */
+      .toast {
+        padding: 12px 20px;
+        background: #484848;
+        color: white;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        animation: toastIn 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 340px;
+      }
+
+      .toast.success {
+        background: #00a699;
+      }
+
+      .toast.error {
+        background: #ff5a5f;
+      }
+
+      /* ============================================================
+         ATTENDANCE CALENDAR (renderPerfAttCal())
+         ============================================================ */
+      .att-cal-hdr {
+        font-size: 9px;
+        font-weight: 700;
+        color: #767676;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 4px 0;
+      }
+
+      .cal-cell {
+        aspect-ratio: 1;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: default;
+        transition: transform 0.1s;
+      }
+
+      .cal-cell:hover {
+        transform: scale(1.1);
+      }
+
+      .cal-cell.present {
+        background: #e6f9ee;
+        color: #2f9e44;
+      }
+
+      .cal-cell.late {
+        background: #fff8e6;
+        color: #e67e00;
+      }
+
+      .cal-cell.absent {
+        background: #fff0f0;
+        color: #e03131;
+      }
+
+      .cal-cell.weekend {
+        background: #f4f4f4;
+        color: #ccc;
+      }
+
+      .cal-cell.future {
+        background: #f7f7f7;
+        color: #d0d0d0;
+      }
+
+      .cal-cell.today {
+        outline: 2px solid #ff5a5f;
+        outline-offset: 1px;
+      }
+
+      .cal-cell.empty {
+        background: transparent;
+      }
+    </style>
+  </head>
+
+  <body class="font-jakarta bg-[#f7f7f7] text-[#222222] min-h-screen">
+    <!-- ============================================================
+         PORTAL SCREEN
+         ============================================================ -->
+    <div class="flex flex-col min-h-screen" id="portalScreen">
+      <!-- ============================================================
+            HEADER
+           ============================================================ -->
+      <header class="bg-white border-b border-[#ebebeb] px-8 h-[68px] flex items-center justify-between sticky top-0 z-[200]">
+        <!-- Logo -->
+        <div class="flex items-center gap-[10px]">
+          <div class="w-[38px] h-[38px] bg-[#ff5a5f] rounded-[11px] flex items-center justify-center text-white font-extrabold text-[15px]">D8</div>
+          <div>
+            <div class="font-extrabold text-[18px]">Dev8X</div>
+            <div class="text-[11px] text-[#767676] font-medium">Candidate Portal</div>
+          </div>
+        </div>
+
+        <!-- Nav tabs (center) -->
+        <div class="flex items-center gap-1">
+          <button class="portal-nav-tab active py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-journey" onclick="switchPortalTab('journey')">🗺 My Journey</button>
+
+          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-documents" onclick="switchPortalTab('documents')">
+            📂 My Documents
+            <span class="bg-[#ff5a5f] text-white text-[10px] font-extrabold py-[1px] px-[6px] rounded-[10px]" id="docsBadge">2</span>
+          </button>
+
+          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-messages" onclick="switchPortalTab('messages')">
+            💬 Messages
+            <span class="bg-[#ff5a5f] text-white text-[10px] font-extrabold py-[1px] px-[6px] rounded-[10px]" id="msgBadge">3</span>
+          </button>
+
+          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-performance" onclick="switchPortalTab('performance')">📊 My Performance</button>
+
+          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-profile" onclick="switchPortalTab('profile')">👤 My Profile</button>
+        </div>
+
+        <!-- Header right actions -->
+        <div class="flex items-center gap-3">
+          <!-- Notification bell -->
+          <div class="w-[38px] h-[38px] rounded-full border border-[#ebebeb] bg-white flex items-center justify-center cursor-pointer text-base relative transition-all duration-150 hover:bg-[#f7f7f7]" onclick="showToast('You have 2 new notifications', '🔔')">
+            🔔
+            <div class="absolute top-[6px] right-[6px] w-2 h-2 bg-[#ff5a5f] rounded-full border-2 border-white"></div>
+          </div>
+
+          <!-- User chip -->
+          <div class="flex items-center gap-[10px] py-[6px] pr-[14px] pl-[6px] border border-[#ebebeb] rounded-[24px] cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7]">
+            <div class="w-[30px] h-[30px] rounded-full flex items-center justify-center text-white font-bold text-[12px]" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">AK</div>
+            <div class="text-[13px] font-bold">Ayesha K.</div>
+          </div>
+
+          <!-- Logout -->
+          <button class="py-2 px-4 rounded-full border border-[#ebebeb] bg-white font-jakarta text-[13px] font-semibold cursor-pointer text-[#767676] transition-all duration-150 hover:text-[#ff5a5f] hover:border-[#ff5a5f]" onclick="doLogout()">Log out</button>
+        </div>
+      </header>
+      <!-- PORTAL HEADER -->
+
+      <!-- ============================================================
+        HERO
+           ============================================================ -->
+      <div class="relative overflow-hidden px-8 py-9" style="background: linear-gradient(135deg, #ff5a5f 0%, #fc642d 100%)">
+        <!-- Decorative circle — top-right (replaces ::before pseudo-element) -->
+        <div class="absolute w-[400px] h-[400px] rounded-full pointer-events-none" style="background: rgba(255, 255, 255, 0.06); top: -200px; right: -100px"></div>
+
+        <!-- Decorative circle — bottom-left (replaces ::after pseudo-element) -->
+        <div class="absolute w-[200px] h-[200px] rounded-full pointer-events-none" style="background: rgba(255, 255, 255, 0.04); bottom: -100px; left: 200px"></div>
+
+        <!-- Hero content -->
+        <div class="relative z-10 flex items-start justify-between">
+          <!-- Left block -->
+          <div>
+            <div class="text-white/80 text-[14px] font-semibold mb-1">👋 Good morning,</div>
+            <div class="text-white text-[28px] font-extrabold mb-1">Ayesha Khan</div>
+            <div class="text-white/75 text-[14px]">UI/UX Designer · Internship Application · Applied via LinkedIn</div>
+
+            <!-- Hero chips -->
+            <div class="flex gap-[10px] mt-[18px] flex-wrap">
+              <div class="flex items-center gap-2 rounded-full px-4 py-[7px] text-white text-[12px] font-semibold" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25)">📅 Applied: Feb 12, 2025</div>
+              <div class="flex items-center gap-2 rounded-full px-4 py-[7px] text-white text-[12px] font-semibold" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25)">📍 Lahore, Pakistan</div>
+              <div class="flex items-center gap-2 rounded-full px-4 py-[7px] text-white text-[12px] font-semibold" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25)">🎓 LUMS — BS Design</div>
+              <!-- Active chip (brighter) -->
+              <div class="flex items-center gap-2 rounded-full px-4 py-[7px] text-white text-[12px] font-semibold" style="background: rgba(255, 255, 255, 0.28); border: 1px solid rgba(255, 255, 255, 0.5)">⚡ Stage 3 of 9 · Technical Interview</div>
+            </div>
+          </div>
+
+          <!-- Right: status box -->
+          <div class="flex-shrink-0 text-right">
+            <div class="rounded-[14px] px-5 py-4 min-w-[200px]" style="background: rgba(255, 255, 255, 0.18); border: 1.5px solid rgba(255, 255, 255, 0.35)">
+              <div class="text-[10px] font-bold text-white/70 uppercase tracking-[0.8px] mb-[6px]">Current Stage</div>
+              <div class="text-[18px] font-extrabold text-white">Technical Interview</div>
+              <div class="text-[11px] text-white/70 mt-1">⏰ Action required · Confirm your slot</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PORTAL HERO -->
+
+      <!-- ============================================================
+             MAIN CONTENT (Chunk 2)
+             ============================================================ -->
+      <div class="portal-body">
+        <!-- MAIN CONTENT -->
+        <div>
+          <!-- ── TAB: APPLICATION JOURNEY ── -->
+          <div class="tab-panel active" id="panel-journey">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Your Application Journey</div>
+                  <div class="card-sub">Click any stage to view details and take required actions</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 16px">
+                  <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--baia)"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--baia); display: inline-block"></span>Completed</div>
+                  <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--rausch)"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--rausch); display: inline-block"></span>Active</div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="timeline-wrap" id="candidateTimeline"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── TAB: DOCUMENTS ── -->
+          <div class="tab-panel" id="panel-documents">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">My Documents</div>
+                  <div class="card-sub">All documents related to your application at Dev8X</div>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading all documents…', '📥')">📥 Download All</button>
+              </div>
+              <div class="card-body" style="padding: 24px">
+                <!-- Documents to Sign -->
+                <div class="doc-category">
+                  <div class="doc-category-title">📝 Pending Signatures <span style="background: var(--rausch-light); color: var(--rausch); font-size: 10px; padding: 2px 8px; border-radius: 10px; margin-left: 6px">2 required</span></div>
+                  <div class="doc-row">
+                    <div class="doc-row-left">
+                      <div class="doc-row-icon">📋</div>
+                      <div>
+                        <div class="doc-row-name">Internship / Employment Agreement</div>
+                        <div class="doc-row-meta">PDF · 0.8 MB · Added Feb 28, 2025 <span class="doc-tag doc-tag-pending">⚠ Signature Required</span></div>
+                      </div>
+                    </div>
+                    <div class="doc-row-actions">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('agreement')">👁 Read</button>
+                      <button class="btn btn-outline btn-sm" onclick="signDocument(this, 'Internship Agreement')">✍ Sign</button>
+                    </div>
+                  </div>
+                  <div class="doc-row">
+                    <div class="doc-row-left">
+                      <div class="doc-row-icon">🔒</div>
+                      <div>
+                        <div class="doc-row-name">NDA / Confidentiality Agreement</div>
+                        <div class="doc-row-meta">PDF · 0.5 MB · Added Feb 28, 2025 <span class="doc-tag doc-tag-pending">⚠ Signature Required</span></div>
+                      </div>
+                    </div>
+                    <div class="doc-row-actions">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('nda')">👁 Read</button>
+                      <button class="btn btn-outline btn-sm" onclick="signDocument(this, 'NDA Agreement')">✍ Sign</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Company Policies to Read -->
+                <div class="doc-category">
+                  <div class="doc-category-title">📖 Company Policies — Required Reading</div>
+                  <div class="doc-row">
+                    <div class="doc-row-left">
+                      <div class="doc-row-icon">🌐</div>
+                      <div>
+                        <div class="doc-row-name">Remote Work Policy</div>
+                        <div class="doc-row-meta">PDF · 0.3 MB · Effective Jan 2025 <span class="doc-tag doc-tag-required">Required</span></div>
+                      </div>
+                    </div>
+                    <div class="doc-row-actions">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('remote')">👁 Read Policy</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+                  <div class="doc-row">
+                    <div class="doc-row-left">
+                      <div class="doc-row-icon">⚖️</div>
+                      <div>
+                        <div class="doc-row-name">Work Ethics & Code of Conduct</div>
+                        <div class="doc-row-meta">PDF · 0.5 MB · Effective Jan 2025 <span class="doc-tag doc-tag-required">Required</span></div>
+                      </div>
+                    </div>
+                    <div class="doc-row-actions">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('ethics')">👁 Read Policy</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+                  <div class="doc-row">
+                    <div class="doc-row-left">
+                      <div class="doc-row-icon">🏖</div>
+                      <div>
+                        <div class="doc-row-name">Vacation & Leave Policy</div>
+                        <div class="doc-row-meta">PDF · 0.2 MB · Effective Jan 2025 <span class="doc-tag doc-tag-required">Required</span></div>
+                      </div>
+                    </div>
+                    <div class="doc-row-actions">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('leave')">👁 Read Policy</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+                  <div class="doc-row">
+                    <div class="doc-row-left">
+                      <div class="doc-row-icon">⚠️</div>
+                      <div>
+                        <div class="doc-row-name">Penalty & Behaviour Standards</div>
+                        <div class="doc-row-meta">PDF · 0.3 MB · Effective Jan 2025 <span class="doc-tag doc-tag-required">Required</span></div>
+                      </div>
+                    </div>
+                    <div class="doc-row-actions">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('penalty')">👁 Read Policy</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Signed Documents -->
+                <div class="doc-category">
+                  <div class="doc-category-title">✅ Already Signed</div>
+                  <div class="doc-row signed-doc">
+                    <div class="doc-row-left">
+                      <div class="doc-row-icon">📄</div>
+                      <div>
+                        <div class="doc-row-name">Application Form — UI/UX Designer</div>
+                        <div class="doc-row-meta">PDF · 0.2 MB · Signed Feb 12, 2025 <span class="doc-tag doc-tag-signed">✓ Signed</span></div>
+                      </div>
+                    </div>
+                    <div class="doc-row-actions">
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Opening signed copy…', '📄')">👁 View</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- HR Uploaded Documents -->
+                <div class="doc-category">
+                  <div class="doc-category-title">📤 Shared by HR</div>
+                  <div class="doc-row">
+                    <div class="doc-row-left">
+                      <div class="doc-row-icon">📝</div>
+                      <div>
+                        <div class="doc-row-name">Technical Interview Brief</div>
+                        <div class="doc-row-meta">PDF · 0.4 MB · Added Feb 10, 2025 <span class="doc-tag doc-tag-read">Info</span></div>
+                      </div>
+                    </div>
+                    <div class="doc-row-actions">
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Opening document…', '📄')">👁 View</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+                  <div class="doc-row">
+                    <div class="doc-row-left">
+                      <div class="doc-row-icon">🏢</div>
+                      <div>
+                        <div class="doc-row-name">Dev8X Company Overview</div>
+                        <div class="doc-row-meta">PDF · 1.2 MB · Added Feb 12, 2025 <span class="doc-tag doc-tag-read">Info</span></div>
+                      </div>
+                    </div>
+                    <div class="doc-row-actions">
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Opening document…', '📄')">👁 View</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Upload your documents -->
+                <div class="doc-category">
+                  <div class="doc-category-title">📤 Upload Your Documents</div>
+                  <div style="border: 2px dashed var(--border); border-radius: var(--radius-sm); padding: 28px; text-align: center; background: var(--bg); cursor: pointer" onclick="showToast('File picker opened…', '📎')">
+                    <div style="font-size: 32px; margin-bottom: 8px">📎</div>
+                    <div style="font-size: 14px; font-weight: 700; margin-bottom: 4px">Drop files here or click to upload</div>
+                    <div style="font-size: 12px; color: var(--foggy)">PDF, DOC up to 10 MB · Resume, Portfolio, Certificates</div>
+                    <button class="btn btn-secondary btn-sm" style="margin-top: 14px" onclick="showToast('File picker opened…', '📎')">Choose File</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── TAB: MESSAGES ── -->
+          <div class="tab-panel" id="panel-messages">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Messages from HR</div>
+                  <div class="card-sub">All communications regarding your application</div>
+                </div>
+                <span style="font-size: 12px; color: var(--foggy)">3 unread</span>
+              </div>
+              <div class="card-body msg-list">
+                <div
+                  class="msg-item unread"
+                  onclick="
+                    openMessage(
+                      this,
+                      'Behzad Raza',
+                      'Interview Confirmation',
+                      'Your Technical Interview has been scheduled for Feb 14, 2025 at 10:00 AM on Google Meet. Please confirm your availability and ensure you have a stable internet connection, proper lighting, and a professional background. Your interviewer will be Ahmad — Backend Lead. The Google Meet link will be shared 30 minutes before your interview. Please reply to this message if you have any questions.',
+                    )
+                  "
+                >
+                  <div class="msg-avatar" style="background: linear-gradient(135deg, var(--rausch), var(--arches))">BR</div>
+                  <div class="msg-body">
+                    <div class="msg-top"><span class="msg-sender">Behzad Raza — HR Lead</span><span class="msg-time">2 hours ago</span></div>
+                    <div class="msg-subject">📅 Your Technical Interview is Scheduled</div>
+                    <div class="msg-preview">Your interview has been scheduled for Feb 14, 2025 at 10:00 AM on Google Meet…</div>
+                  </div>
+                  <div class="msg-unread-dot"></div>
+                </div>
+                <div
+                  class="msg-item unread"
+                  onclick="
+                    openMessage(
+                      this,
+                      'Dev8X HR Team',
+                      'Shortlisting Notification',
+                      'Congratulations Ayesha! We are pleased to inform you that you have been shortlisted for the UI/UX Designer Internship position at Dev8X. Your profile and portfolio impressed our team. The next step is a Technical Interview with our design team lead. You will receive a separate email with interview scheduling options. In the meantime, please log in to your portal to review the interview preparation guide we have shared under your Documents section.',
+                    )
+                  "
+                >
+                  <div class="msg-avatar" style="background: linear-gradient(135deg, var(--baia), #00796b)">D8</div>
+                  <div class="msg-body">
+                    <div class="msg-top"><span class="msg-sender">Dev8X HR Team</span><span class="msg-time">3 days ago</span></div>
+                    <div class="msg-subject">🎉 Congratulations — You've been Shortlisted!</div>
+                    <div class="msg-preview">We are pleased to inform you that you have been shortlisted for the UI/UX Designer role…</div>
+                  </div>
+                  <div class="msg-unread-dot"></div>
+                </div>
+                <div
+                  class="msg-item unread"
+                  onclick="
+                    openMessage(
+                      this,
+                      'Dev8X HR Team',
+                      'Application Acknowledgment',
+                      'Dear Ayesha, thank you for submitting your application for the UI/UX Designer Internship at Dev8X. We have received your application and will review it within 3-5 business days. You can track your application status anytime by logging into this portal. If you have any questions, feel free to reach out to our HR team at hr@dev8x.com. We will notify you of any updates via email and your portal notifications.',
+                    )
+                  "
+                >
+                  <div class="msg-avatar" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">D8</div>
+                  <div class="msg-body">
+                    <div class="msg-top"><span class="msg-sender">Dev8X HR Team</span><span class="msg-time">Feb 12, 2025</span></div>
+                    <div class="msg-subject">✅ Application Received — UI/UX Designer</div>
+                    <div class="msg-preview">Thank you for applying to Dev8X. We have received your application and will be in touch…</div>
+                  </div>
+                  <div class="msg-unread-dot"></div>
+                </div>
+              </div>
+              <!-- Message reply -->
+              <div style="padding: 20px; border-top: 1px solid var(--border)">
+                <div id="msgThread" style="display: none; margin-bottom: 16px; padding: 16px; background: var(--bg); border-radius: var(--radius-sm); border: 1px solid var(--border)">
+                  <div style="font-size: 14px; font-weight: 700; margin-bottom: 8px" id="msgThreadTitle"></div>
+                  <div style="font-size: 13px; line-height: 1.7; color: var(--hof)" id="msgThreadBody"></div>
+                </div>
+                <div style="font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--foggy)">REPLY TO HR</div>
+                <textarea
+                  id="replyBox"
+                  style="width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: inherit; font-size: 13px; resize: vertical; min-height: 80px; outline: none; transition: border 0.2s"
+                  onfocus="this.style.borderColor = 'var(--rausch)'"
+                  onblur="this.style.borderColor = 'var(--border)'"
+                  placeholder="Type your message to the HR team…"
+                ></textarea>
+                <div style="display: flex; justify-content: flex-end; margin-top: 10px">
+                  <button class="btn btn-primary" onclick="sendReply()">📤 Send Message</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── TAB: PROFILE ── -->
+          <div class="tab-panel" id="panel-profile">
+            <div class="card">
+              <div class="profile-avatar-wrap">
+                <div class="profile-avatar">AK</div>
+                <div class="profile-avatar-info">
+                  <div class="p-name">Ayesha Khan</div>
+                  <div class="p-role">UI/UX Designer Applicant · Internship</div>
+                  <div class="p-status">⚡ Stage 3 — Technical Interview</div>
+                </div>
+              </div>
+
+              <div class="profile-section">
+                <div class="profile-section-title">Personal Information</div>
+                <div class="profile-grid">
+                  <div>
+                    <div class="profile-field-label">Full Name</div>
+                    <input class="profile-input" value="Ayesha Khan" type="text" />
+                  </div>
+                  <div>
+                    <div class="profile-field-label">Email Address</div>
+                    <input class="profile-input" value="ayesha@gmail.com" type="email" />
+                  </div>
+                  <div>
+                    <div class="profile-field-label">Phone Number</div>
+                    <input class="profile-input" value="+92 300 1234567" type="tel" />
+                  </div>
+                  <div>
+                    <div class="profile-field-label">Location</div>
+                    <input class="profile-input" value="Lahore, Pakistan" type="text" />
+                  </div>
+                  <div>
+                    <div class="profile-field-label">LinkedIn URL</div>
+                    <input class="profile-input" value="linkedin.com/in/ayeshakhan" type="url" />
+                  </div>
+                  <div>
+                    <div class="profile-field-label">Portfolio / Website</div>
+                    <input class="profile-input" value="ayeshakhan.design" type="url" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="profile-section">
+                <div class="profile-section-title">Academic Background</div>
+                <div class="profile-grid">
+                  <div>
+                    <div class="profile-field-label">University</div>
+                    <input class="profile-input" value="LUMS — Lahore" type="text" />
+                  </div>
+                  <div>
+                    <div class="profile-field-label">Degree</div>
+                    <input class="profile-input" value="BS Design" type="text" />
+                  </div>
+                  <div>
+                    <div class="profile-field-label">Graduation Year</div>
+                    <input class="profile-input" value="2025" type="text" />
+                  </div>
+                  <div>
+                    <div class="profile-field-label">CGPA</div>
+                    <input class="profile-input" value="3.7 / 4.0" type="text" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="profile-section">
+                <div class="profile-section-title">Application Details</div>
+                <div class="profile-grid">
+                  <div>
+                    <div class="profile-field-label">Applied Role</div>
+                    <div class="profile-field-value">UI/UX Designer</div>
+                  </div>
+                  <div>
+                    <div class="profile-field-label">Job Type</div>
+                    <div class="profile-field-value">Internship</div>
+                  </div>
+                  <div>
+                    <div class="profile-field-label">Source</div>
+                    <div class="profile-field-value">LinkedIn</div>
+                  </div>
+                  <div>
+                    <div class="profile-field-label">Application ID</div>
+                    <div class="profile-field-value" style="font-family: monospace; font-size: 13px">A001</div>
+                  </div>
+                  <div>
+                    <div class="profile-field-label">Applied On</div>
+                    <div class="profile-field-value">Feb 12, 2025</div>
+                  </div>
+                  <div>
+                    <div class="profile-field-label">Years of Experience</div>
+                    <div class="profile-field-value">0 — 1 Year</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="profile-section">
+                <div class="profile-section-title">Change Password</div>
+                <div class="profile-grid">
+                  <div>
+                    <div class="profile-field-label">Current Password</div>
+                    <input class="profile-input" type="password" placeholder="••••••••" />
+                  </div>
+                  <div>
+                    <div class="profile-field-label">New Password</div>
+                    <input class="profile-input" type="password" placeholder="Min. 8 characters" />
+                  </div>
+                  <div style="grid-column: 1/-1">
+                    <div class="profile-field-label">Confirm New Password</div>
+                    <input class="profile-input" type="password" placeholder="Repeat new password" style="max-width: 320px" />
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding: 20px 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 10px">
+                <button class="btn btn-secondary" onclick="showToast('Changes discarded', '↩️')">Discard Changes</button>
+                <button class="btn btn-primary" onclick="showToast('Profile updated successfully', '✅', 'success')">💾 Save Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── TAB: PERFORMANCE ── -->
+        <div class="tab-panel" id="panel-performance">
+          <!-- PERFORMANCE HERO (dark) -->
+          <div class="perf-hero">
+            <div class="ph-inner">
+              <div>
+                <div class="ph-eyebrow">
+                  <div class="ph-eyebrow-dot"></div>
+                  Live via Clockify · Last synced 11:47 AM
+                </div>
+                <div class="ph-title">My Performance Dashboard</div>
+                <div class="ph-sub">Ayesha Khan · UI/UX Designer Intern · Week of Mar 3–9, 2026</div>
+                <div class="ph-chips">
+                  <div class="ph-chip">📅 Day 47 of Internship</div>
+                  <div class="ph-chip warn">⚠️ 38h this week (need 40h)</div>
+                  <div class="ph-chip warn">🕙 3 late starts this week</div>
+                  <div class="ph-chip">📋 1 open concern from TL</div>
+                </div>
+              </div>
+              <div class="ph-right">
+                <div class="score-globe" style="background: rgba(252, 100, 45, 0.15); border-color: rgba(252, 100, 45, 0.3)">
+                  <div class="score-globe-value" style="color: #fc642d">78</div>
+                  <div class="score-globe-label">Overall Score</div>
+                  <div class="score-globe-sub"><span class="p-pill p-pill-warn">⚠️ At Risk</span></div>
+                </div>
+                <div class="score-globe">
+                  <div class="score-globe-value" style="color: var(--baia)">38h</div>
+                  <div class="score-globe-label">This Week</div>
+                  <div class="score-globe-sub" style="color: rgba(255, 255, 255, 0.5); font-size: 11px">Target: 40h</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PERIOD BAR -->
+          <div class="perf-period-bar">
+            <div class="perf-period-tabs">
+              <button class="perf-period-tab active" onclick="switchPerfPeriod('week', this)">📅 This Week</button>
+              <button class="perf-period-tab" onclick="switchPerfPeriod('month', this)">📆 This Month</button>
+              <button class="perf-period-tab" onclick="switchPerfPeriod('all', this)">📊 All Time</button>
+            </div>
+            <div class="clockify-pill">⏱ Powered by Clockify API</div>
+          </div>
+
+          <!-- PERF BODY -->
+          <div class="perf-body">
+            <!-- Alert Banners -->
+            <div class="alert-banner warn" id="perfMainAlert">
+              <span class="alert-icon">⚠️</span>
+              <div>
+                <div class="alert-title">You're 2 hours short of this week's target</div>
+                <div class="alert-desc">You've logged 38 hours this week. The minimum policy requires 40 hours. You still have Friday — log at least 2 more hours today to stay compliant.</div>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="closePerfAlert('perfMainAlert')" style="flex-shrink: 0; margin-left: auto">Dismiss</button>
+            </div>
+
+            <div class="alert-banner danger" id="perfLateAlert">
+              <span class="alert-icon">🕙</span>
+              <div>
+                <div class="alert-title">Late clock-ins detected — 3 times this week</div>
+                <div class="alert-desc">You started after 10:00 AM on Monday (10:25), Wednesday (10:38), and Thursday (10:55). Policy requires you to be active by 10:00 AM. Your team lead has been notified.</div>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="closePerfAlert('perfLateAlert')" style="flex-shrink: 0; margin-left: auto">Got it</button>
+            </div>
+
+            <!-- Two-column layout -->
+            <div class="perf-two-col">
+              <!-- LEFT COLUMN -->
+              <div>
+                <!-- Metric Cards -->
+                <div class="three-metrics">
+                  <div class="metric-card">
+                    <div class="metric-card-top">
+                      <div class="metric-icon" style="background: #fff8e6">⏱</div>
+                      <span class="metric-badge" style="background: var(--amber-light); color: var(--amber)">−2h</span>
+                    </div>
+                    <div class="metric-value" style="color: var(--amber)">38h</div>
+                    <div class="metric-label">Hours This Week</div>
+                    <div class="metric-sub"><span style="color: var(--amber)">⚠️</span> 2h short of 40h target</div>
+                    <div class="metric-bar-wrap">
+                      <div class="metric-bar-fill" style="width: 95%; background: var(--amber)"></div>
+                    </div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-card-top">
+                      <div class="metric-icon" style="background: #eef2ff">📅</div>
+                      <span class="metric-badge" style="background: var(--amber-light); color: var(--amber)">3 Late</span>
+                    </div>
+                    <div class="metric-value" style="color: var(--amber)">90%</div>
+                    <div class="metric-label">Attendance Rate</div>
+                    <div class="metric-sub"><span style="color: var(--amber)">🕙</span> 3 late starts detected</div>
+                    <div class="metric-bar-wrap">
+                      <div class="metric-bar-fill" style="width: 90%; background: var(--amber)"></div>
+                    </div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-card-top">
+                      <div class="metric-icon" style="background: #f3f0ff">🎯</div>
+                      <span class="metric-badge" style="background: var(--amber-light); color: var(--amber)">At Risk</span>
+                    </div>
+                    <div class="metric-value" style="color: #fc642d">78</div>
+                    <div class="metric-label">Performance Score</div>
+                    <div class="metric-sub">Target score: ≥ 75 to stay enrolled</div>
+                    <div class="metric-bar-wrap">
+                      <div class="metric-bar-fill" style="width: 78%; background: #fc642d"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Weekly Hours Chart -->
+                <div class="perf-card">
+                  <div class="perf-card-header">
+                    <div>
+                      <div class="perf-card-title">⏱ Weekly Hours Breakdown</div>
+                      <div class="perf-card-sub">Mar 3–9, 2026 · via Clockify</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px">
+                      <span class="clockify-pill">⏱ Clockify</span>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Opening Clockify dashboard…', '⏱')">Open Clockify</button>
+                    </div>
+                  </div>
+                  <div class="week-chart-wrap">
+                    <div class="chart-bars">
+                      <div class="bar-col">
+                        <div class="bar-outer">
+                          <div class="bar-inner" style="height: 75%; background: var(--amber)">
+                            <span class="bar-hours-tag" style="color: var(--amber)">7.5h</span>
+                          </div>
+                        </div>
+                        <div class="bar-label">Mon</div>
+                      </div>
+                      <div class="bar-col">
+                        <div class="bar-outer">
+                          <div class="bar-inner" style="height: 82%; background: var(--baia)">
+                            <span class="bar-hours-tag" style="color: var(--baia)">8.2h</span>
+                          </div>
+                        </div>
+                        <div class="bar-label">Tue</div>
+                      </div>
+                      <div class="bar-col">
+                        <div class="bar-outer">
+                          <div class="bar-inner" style="height: 78%; background: var(--amber)">
+                            <span class="bar-hours-tag" style="color: var(--amber)">7.8h</span>
+                          </div>
+                        </div>
+                        <div class="bar-label">Wed</div>
+                      </div>
+                      <div class="bar-col">
+                        <div class="bar-outer">
+                          <div class="bar-inner" style="height: 80%; background: var(--baia)">
+                            <span class="bar-hours-tag" style="color: var(--baia)">8.0h</span>
+                          </div>
+                        </div>
+                        <div class="bar-label">Thu</div>
+                      </div>
+                      <div class="bar-col">
+                        <div class="bar-outer" style="outline: 2px solid var(--rausch); outline-offset: 2px; border-radius: 6px">
+                          <div class="bar-inner" style="height: 65%; background: linear-gradient(180deg, var(--rausch), #fc642d); animation: growUp 1s ease">
+                            <span class="bar-hours-tag" style="color: var(--rausch)">6.5h ▶</span>
+                          </div>
+                        </div>
+                        <div class="bar-label" style="color: var(--rausch)">Fri ▶</div>
+                      </div>
+                      <div class="bar-col" style="opacity: 0.35">
+                        <div class="bar-outer">
+                          <div class="bar-inner" style="height: 0%; background: #eee"></div>
+                        </div>
+                        <div class="bar-label">Sat</div>
+                      </div>
+                      <div class="bar-col" style="opacity: 0.35">
+                        <div class="bar-outer">
+                          <div class="bar-inner" style="height: 0%; background: #eee"></div>
+                        </div>
+                        <div class="bar-label">Sun</div>
+                      </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 16px">
+                      <div class="chart-policy-note">
+                        <div class="chart-policy-line"></div>
+                        Policy min: 8h/day
+                      </div>
+                      <div style="display: flex; gap: 12px; font-size: 11px; color: var(--foggy)">
+                        <span style="display: inline-flex; align-items: center; gap: 4px"><span style="width: 10px; height: 10px; border-radius: 3px; background: var(--baia); display: inline-block"></span>Met target</span>
+                        <span style="display: inline-flex; align-items: center; gap: 4px"><span style="width: 10px; height: 10px; border-radius: 3px; background: var(--amber); display: inline-block"></span>Below target</span>
+                        <span style="display: inline-flex; align-items: center; gap: 4px"><span style="width: 10px; height: 10px; border-radius: 3px; background: var(--rausch); display: inline-block"></span>Today (live)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Daily Time Log -->
+                <div class="perf-card">
+                  <div class="perf-card-header">
+                    <div>
+                      <div class="perf-card-title">🕐 Daily Time Log</div>
+                      <div class="perf-card-sub">Clock-in/out times pulled from Clockify</div>
+                    </div>
+                    <span class="clockify-pill">⏱ Clockify API</span>
+                  </div>
+                  <div style="overflow-x: auto">
+                    <table class="time-table">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Clock In</th>
+                          <th>Clock Out</th>
+                          <th>Break</th>
+                          <th>Billable Hours</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>Mon, Mar 3</strong></td>
+                          <td><span class="t-chip t-late">🕙 10:25 AM</span></td>
+                          <td><span class="t-chip t-out">🕕 6:25 PM</span></td>
+                          <td>1h</td>
+                          <td><strong style="color: var(--amber)">7.5h</strong></td>
+                          <td><span class="t-chip t-late">⚠️ Late Start</span></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Tue, Mar 4</strong></td>
+                          <td><span class="t-chip t-in">🕘 9:50 AM</span></td>
+                          <td><span class="t-chip t-out">🕕 6:28 PM</span></td>
+                          <td>1h</td>
+                          <td><strong style="color: var(--baia)">8.2h</strong></td>
+                          <td><span class="t-chip t-good">✅ Good</span></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Wed, Mar 5</strong></td>
+                          <td><span class="t-chip t-late">🕙 10:38 AM</span></td>
+                          <td><span class="t-chip t-out">🕕 6:30 PM</span></td>
+                          <td>1h</td>
+                          <td><strong style="color: var(--amber)">7.8h</strong></td>
+                          <td><span class="t-chip t-late">⚠️ Late Start</span></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Thu, Mar 6</strong></td>
+                          <td><span class="t-chip t-late">🕙 10:55 AM</span></td>
+                          <td><span class="t-chip t-out">🕕 6:20 PM</span></td>
+                          <td>1h</td>
+                          <td><strong style="color: var(--baia)">8.0h</strong></td>
+                          <td><span class="t-chip t-late">⚠️ Late Start</span></td>
+                        </tr>
+                        <tr style="background: #fffdf5">
+                          <td><strong>Fri, Mar 7 ▶</strong> <span style="font-size: 10px; color: var(--rausch); font-weight: 700">IN PROGRESS</span></td>
+                          <td><span class="t-chip t-in">🕘 9:42 AM</span></td>
+                          <td><span style="font-size: 12px; color: var(--foggy)">Still logged in…</span></td>
+                          <td>—</td>
+                          <td><strong style="color: var(--rausch)">6.5h so far</strong></td>
+                          <td><span class="t-chip" style="background: #fff0f0; color: var(--rausch)">▶ Active</span></td>
+                        </tr>
+                        <tr style="opacity: 0.4">
+                          <td><strong>Sat, Mar 8</strong></td>
+                          <td colspan="4" style="color: var(--foggy); font-size: 12px">Weekend — no work expected</td>
+                          <td><span class="t-chip" style="background: #f4f4f4; color: #aaa">Weekend</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div style="padding: 12px 16px; background: #fafafa; border-top: 1px solid var(--border); font-size: 11px; color: var(--foggy)"><strong>Policy:</strong> Clock in by 10:00 AM · Work minimum 8 billable hours · Clock out no earlier than 6:00 PM · Report clock-in issues to HR within 30 minutes</div>
+                </div>
+
+                <!-- Performance Matrix -->
+                <div class="perf-card">
+                  <div class="perf-card-header">
+                    <div>
+                      <div class="perf-card-title">🎯 Performance Matrix</div>
+                      <div class="perf-card-sub">Evaluated against Dev8X company policies</div>
+                    </div>
+                    <span class="p-pill p-pill-warn">⚠️ At Risk</span>
+                  </div>
+                  <div class="perf-card-body">
+                    <div class="matrix-list">
+                      <div>
+                        <div class="matrix-row-top"><span class="matrix-name">⏱ Hours Logged</span><span class="matrix-score-label" style="color: var(--amber)">78/100</span></div>
+                        <div class="matrix-bar-wrap">
+                          <div class="matrix-bar-fill" style="width: 78%; background: var(--amber)"></div>
+                        </div>
+                        <div class="matrix-policy">Policy: Minimum 40 hours/week · You logged 38h this week</div>
+                      </div>
+                      <div>
+                        <div class="matrix-row-top"><span class="matrix-name">🕘 Punctuality</span><span class="matrix-score-label" style="color: var(--red)">65/100</span></div>
+                        <div class="matrix-bar-wrap">
+                          <div class="matrix-bar-fill" style="width: 65%; background: var(--red)"></div>
+                        </div>
+                        <div class="matrix-policy">Policy: Clock-in by 10:00 AM · 3 late starts this week</div>
+                      </div>
+                      <div>
+                        <div class="matrix-row-top"><span class="matrix-name">📅 Attendance</span><span class="matrix-score-label" style="color: var(--green)">90/100</span></div>
+                        <div class="matrix-bar-wrap">
+                          <div class="matrix-bar-fill" style="width: 90%; background: var(--green)"></div>
+                        </div>
+                        <div class="matrix-policy">Policy: Present all 5 days · No unexcused absences (max 2/month)</div>
+                      </div>
+                      <div>
+                        <div class="matrix-row-top"><span class="matrix-name">📋 Task Completion</span><span class="matrix-score-label" style="color: var(--green)">82/100</span></div>
+                        <div class="matrix-bar-wrap">
+                          <div class="matrix-bar-fill" style="width: 82%; background: var(--green)"></div>
+                        </div>
+                        <div class="matrix-policy">Policy: Submit all tasks on time · Raise blockers proactively</div>
+                      </div>
+                      <div>
+                        <div class="matrix-row-top"><span class="matrix-name">💬 Communication</span><span class="matrix-score-label" style="color: var(--baia)">88/100</span></div>
+                        <div class="matrix-bar-wrap">
+                          <div class="matrix-bar-fill" style="width: 88%; background: var(--baia)"></div>
+                        </div>
+                        <div class="matrix-policy">Policy: Respond within 2 hours during work hours</div>
+                      </div>
+                      <div>
+                        <div class="matrix-row-top"><span class="matrix-name">🖥️ Remote Setup</span><span class="matrix-score-label" style="color: var(--green)">80/100</span></div>
+                        <div class="matrix-bar-wrap">
+                          <div class="matrix-bar-fill" style="width: 80%; background: var(--green)"></div>
+                        </div>
+                        <div class="matrix-policy">Policy: Working camera, stable internet, proper desk, good lighting</div>
+                      </div>
+                    </div>
+                    <div style="margin-top: 16px; padding: 12px 14px; background: var(--bg); border-radius: var(--radius-sm); font-size: 12px; color: var(--foggy); line-height: 1.6">
+                      <span style="font-weight: 700; color: var(--hof)">Scoring Guide: </span>
+                      <span style="color: var(--baia); font-weight: 700">90–100</span> Excellent &nbsp;·&nbsp; <span style="color: var(--green); font-weight: 700">75–89</span> On Track &nbsp;·&nbsp; <span style="color: var(--amber); font-weight: 700">60–74</span> At Risk &nbsp;·&nbsp; <span style="color: var(--red); font-weight: 700">&lt;60</span> Below Policy
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Team Lead Concerns -->
+                <div class="perf-card">
+                  <div class="perf-card-header">
+                    <div>
+                      <div class="perf-card-title">⚠️ Team Lead Feedback &amp; Concerns</div>
+                      <div class="perf-card-sub">Flagged by your team lead or HR · Respond to open items</div>
+                    </div>
+                    <span class="p-pill p-pill-warn">1 Open</span>
+                  </div>
+                  <div class="perf-card-body">
+                    <div class="concern-card open">
+                      <div class="concern-top">
+                        <div>
+                          <div class="concern-from">Arham (Frontend Lead)</div>
+                          <div style="font-size: 11px; color: var(--foggy); margin-top: 2px">March 2, 2026 · Frontend Developer</div>
+                        </div>
+                        <div class="concern-meta">
+                          <span class="sev-badge sev-med">🟠 Medium</span>
+                          <span class="concern-date">3 days ago</span>
+                        </div>
+                      </div>
+                      <div class="concern-body">You have been starting after 10:00 AM on multiple occasions this week. Your performance is otherwise acceptable, but punctuality needs to improve. The rest of the team is online from 9:30 AM and late starts affect coordination.</div>
+                      <div class="concern-action">
+                        <div class="concern-action-label">📋 Action Required from You:</div>
+                        <div class="concern-action-text">Log in by 9:30 AM starting next Monday. If you anticipate being late, message the TL on WhatsApp before 10:00 AM.</div>
+                      </div>
+                      <div style="margin-top: 12px; display: flex; gap: 8px">
+                        <button class="btn btn-primary btn-sm" onclick="showToast('Acknowledged! HR and TL have been notified ✅', '✅')">✅ Acknowledge</button>
+                        <button class="btn btn-secondary btn-sm" onclick="showToast('Reply sent to TL 💬', '💬')">💬 Reply to TL</button>
+                      </div>
+                    </div>
+                    <div class="concern-card resolved">
+                      <div class="concern-top">
+                        <div>
+                          <div class="concern-from">Ahmad (Backend Lead)</div>
+                          <div style="font-size: 11px; color: var(--foggy); margin-top: 2px">February 20, 2026 · Resolved</div>
+                        </div>
+                        <div class="concern-meta">
+                          <span class="sev-badge sev-low">🟡 Low</span>
+                          <span style="font-size: 11px; font-weight: 700; color: var(--green)">✅ Resolved</span>
+                        </div>
+                      </div>
+                      <div class="concern-body" style="opacity: 0.8">One PR was submitted without following the code review checklist. This is a minor process issue.</div>
+                      <div style="margin-top: 8px; font-size: 11px; font-weight: 700; color: var(--green)">✅ Resolved on Feb 22 — Good job addressing this quickly.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Policy Checklist -->
+                <div class="perf-card">
+                  <div class="perf-card-header">
+                    <div>
+                      <div class="perf-card-title">📋 Policy Checklist</div>
+                      <div class="perf-card-sub">Are you meeting Dev8X standards?</div>
+                    </div>
+                  </div>
+                  <div class="perf-card-body">
+                    <div class="policy-list">
+                      <div class="policy-item fail">
+                        <div class="policy-item-icon">❌</div>
+                        <div>
+                          <div class="policy-item-text" style="color: var(--red)">Min 40 hours/week</div>
+                          <div class="policy-item-sub" style="color: var(--red)">You logged 38h — need 2 more today</div>
+                        </div>
+                      </div>
+                      <div class="policy-item warn">
+                        <div class="policy-item-icon">⚠️</div>
+                        <div>
+                          <div class="policy-item-text" style="color: var(--amber)">Clock-in by 10:00 AM</div>
+                          <div class="policy-item-sub" style="color: var(--amber)">3 late starts this week</div>
+                        </div>
+                      </div>
+                      <div class="policy-item pass">
+                        <div class="policy-item-icon">✅</div>
+                        <div>
+                          <div class="policy-item-text" style="color: var(--green)">Attendance ≥ 90%</div>
+                          <div class="policy-item-sub" style="color: var(--green)">You're at 90% — good!</div>
+                        </div>
+                      </div>
+                      <div class="policy-item pass">
+                        <div class="policy-item-icon">✅</div>
+                        <div>
+                          <div class="policy-item-text" style="color: var(--green)">No unexcused absences</div>
+                          <div class="policy-item-sub" style="color: var(--green)">0 absences this month</div>
+                        </div>
+                      </div>
+                      <div class="policy-item pass">
+                        <div class="policy-item-icon">✅</div>
+                        <div>
+                          <div class="policy-item-text" style="color: var(--green)">Communication standards</div>
+                          <div class="policy-item-sub" style="color: var(--green)">Responding within 2h</div>
+                        </div>
+                      </div>
+                      <div class="policy-item pass">
+                        <div class="policy-item-icon">✅</div>
+                        <div>
+                          <div class="policy-item-text" style="color: var(--green)">Remote setup standards</div>
+                          <div class="policy-item-sub" style="color: var(--green)">Camera &amp; setup verified</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /perf left col -->
+
+              <!-- RIGHT SIDEBAR -->
+              <div class="perf-sidebar-sticky">
+                <!-- Score Ring -->
+                <div class="perf-card">
+                  <div class="score-ring-wrap">
+                    <div class="score-ring-outer" style="background: conic-gradient(#fc642d 0% 78%, #f0f0f0 78% 100%)">
+                      <div class="score-ring-inner">
+                        <div class="score-ring-value" style="color: #fc642d">78</div>
+                        <div class="score-ring-max" style="color: var(--foggy)">/100</div>
+                      </div>
+                    </div>
+                    <div class="score-ring-label">Overall Score</div>
+                    <div class="score-ring-desc" style="margin-bottom: 12px">You're in the <span style="color: var(--amber); font-weight: 700">At Risk</span> zone. Improving punctuality and hours will push you to <span style="color: var(--green); font-weight: 700">On Track</span>.</div>
+                  </div>
+                  <div style="padding: 0 20px 20px">
+                    <div style="padding: 12px; background: var(--amber-light); border-radius: var(--radius-sm); font-size: 12px; color: var(--amber); line-height: 1.55"><strong>To reach Excellent (90+):</strong> Improve punctuality and consistently hit 40h/week.</div>
+                  </div>
+                </div>
+
+                <!-- Attendance Calendar -->
+                <div class="perf-card">
+                  <div class="perf-card-header">
+                    <div>
+                      <div class="perf-card-title">📅 March Attendance</div>
+                      <div class="perf-card-sub">Month-to-date calendar</div>
+                    </div>
+                  </div>
+                  <div class="perf-card-body">
+                    <div class="att-cal" id="perfAttCalendar"></div>
+                    <div class="att-legend">
+                      <div class="att-legend-item">
+                        <div class="att-dot" style="background: var(--green-light); border: 1px solid var(--green)"></div>
+                        Present
+                      </div>
+                      <div class="att-legend-item">
+                        <div class="att-dot" style="background: var(--amber-light); border: 1px solid var(--amber)"></div>
+                        Late
+                      </div>
+                      <div class="att-legend-item">
+                        <div class="att-dot" style="background: var(--red-light); border: 1px solid var(--red)"></div>
+                        Absent
+                      </div>
+                    </div>
+                    <div class="att-stats">
+                      <div class="att-stat">
+                        <div class="att-stat-value" style="color: var(--green)">17</div>
+                        <div class="att-stat-label">Present</div>
+                      </div>
+                      <div class="att-stat">
+                        <div class="att-stat-value" style="color: var(--amber)">3</div>
+                        <div class="att-stat-label">Late</div>
+                      </div>
+                      <div class="att-stat">
+                        <div class="att-stat-value" style="color: var(--red)">0</div>
+                        <div class="att-stat-label">Absent</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="perf-card">
+                  <div class="perf-card-header">
+                    <div class="perf-card-title">⚡ Quick Actions</div>
+                  </div>
+                  <div class="perf-card-body">
+                    <div class="perf-quick-link" onclick="showToast('Opening Clockify…', '⏱')">
+                      <div class="perf-quick-link-icon" style="background: #e3f2fd">⏱</div>
+                      <div>
+                        <div class="ql-title">Open Clockify</div>
+                        <div class="ql-sub">Start/stop your timer</div>
+                      </div>
+                      <span class="ql-arrow">›</span>
+                    </div>
+                    <div class="perf-quick-link" onclick="showToast('Connecting to HR WhatsApp…', '💬')">
+                      <div class="perf-quick-link-icon" style="background: #e8f5e9">💬</div>
+                      <div>
+                        <div class="ql-title">Message HR</div>
+                        <div class="ql-sub">Report issues or absences</div>
+                      </div>
+                      <span class="ql-arrow">›</span>
+                    </div>
+                    <div class="perf-quick-link" onclick="showToast('Loading monthly report…', '📊')">
+                      <div class="perf-quick-link-icon" style="background: #f3f0ff">📊</div>
+                      <div>
+                        <div class="ql-title">Download Report</div>
+                        <div class="ql-sub">Export your monthly performance</div>
+                      </div>
+                      <span class="ql-arrow">›</span>
+                    </div>
+                    <div class="perf-quick-link" onclick="switchPortalTab('documents')">
+                      <div class="perf-quick-link-icon" style="background: #fff8e6">📋</div>
+                      <div>
+                        <div class="ql-title">View Policies</div>
+                        <div class="ql-sub">Work ethics &amp; standards</div>
+                      </div>
+                      <span class="ql-arrow">›</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /perf right sidebar -->
+            </div>
+            <!-- /perf-two-col -->
+          </div>
+          <!-- /perf-body -->
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar-col">
+          <!-- Overall Progress -->
+          <div class="progress-card">
+            <div class="progress-title">Overall Progress</div>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-fill" style="width: 28%"></div>
+            </div>
+            <div class="progress-pct">Stage 3 of 9 · 28% complete</div>
+            <div style="margin-top: 14px">
+              <div class="progress-step-row">
+                <div class="ps-dot done">✓</div>
+                <div class="ps-label">Shortlisted</div>
+              </div>
+              <div class="progress-step-row">
+                <div class="ps-dot done">✓</div>
+                <div class="ps-label">Application Reviewed</div>
+              </div>
+              <div class="progress-step-row">
+                <div class="ps-dot current">●</div>
+                <div class="ps-label" style="color: var(--rausch); font-weight: 700">Technical Interview</div>
+              </div>
+              <div class="progress-step-row">
+                <div class="ps-dot pending">4</div>
+                <div class="ps-label dimmed">Assignment</div>
+              </div>
+              <div class="progress-step-row">
+                <div class="ps-dot pending">5</div>
+                <div class="ps-label dimmed">Final Interview</div>
+              </div>
+              <div class="progress-step-row">
+                <div class="ps-dot pending">6</div>
+                <div class="ps-label dimmed">Offer & Join</div>
+              </div>
+              <div class="progress-step-row">
+                <div class="ps-dot pending">7</div>
+                <div class="ps-label dimmed">Onboarding</div>
+              </div>
+              <div class="progress-step-row">
+                <div class="ps-dot pending">8</div>
+                <div class="ps-label dimmed">Complete Internship</div>
+              </div>
+              <div class="progress-step-row">
+                <div class="ps-dot pending">9</div>
+                <div class="ps-label dimmed">Promotion (if eligible)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- HR Contact -->
+          <div class="contact-card">
+            <div style="font-size: 14px; font-weight: 700; margin-bottom: 14px">Your HR Contact</div>
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px">
+              <div class="contact-avatar">BR</div>
+              <div>
+                <div class="contact-name">Behzad Raza</div>
+                <div class="contact-role">HR Lead · Dev8X</div>
+              </div>
+            </div>
+            <div class="contact-link" onclick="switchPortalTab('messages')">💬 Send Message</div>
+            <div class="contact-link" onclick="showToast('Email client opening…', '📧')">📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="68001a280c0d1e5010460b0705">[email&#160;protected]</a></div>
+            <div class="contact-link" onclick="showToast('WhatsApp opening…', '📱')">📱 WhatsApp (Notifications only)</div>
+          </div>
+
+          <!-- Upcoming Deadlines -->
+          <div class="deadline-card">
+            <div style="font-size: 14px; font-weight: 700; margin-bottom: 12px">Upcoming Deadlines</div>
+            <div class="deadline-item">
+              <div class="deadline-dot d-red"></div>
+              <div>
+                <div class="deadline-label">Technical Interview</div>
+                <div class="deadline-date">Feb 14, 2025 · 10:00 AM</div>
+              </div>
+            </div>
+            <div class="deadline-item">
+              <div class="deadline-dot d-orange"></div>
+              <div>
+                <div class="deadline-label">Assignment Submission</div>
+                <div class="deadline-date">Feb 19, 2025 · End of day</div>
+              </div>
+            </div>
+            <div class="deadline-item">
+              <div class="deadline-dot d-green"></div>
+              <div>
+                <div class="deadline-label">Document Signing</div>
+                <div class="deadline-date">After offer is extended</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="quick-actions-card">
+            <div style="font-size: 13px; font-weight: 800; color: var(--foggy); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px">Quick Actions</div>
+            <button class="quick-action-btn" onclick="switchPortalTab('documents')"><span class="quick-action-icon">📂</span> View My Documents</button>
+            <button class="quick-action-btn" onclick="jumpToStage('technical')"><span class="quick-action-icon">📅</span> Book Interview Slot</button>
+            <button class="quick-action-btn" onclick="switchPortalTab('messages')"><span class="quick-action-icon">💬</span> Message HR Team</button>
+            <button class="quick-action-btn" onclick="showToast('Opening job page on dev8x.com…', '🌐')"><span class="quick-action-icon">🌐</span> View Job Posting</button>
+            <button class="quick-action-btn" onclick="switchPortalTab('profile')"><span class="quick-action-icon">✏️</span> Edit My Profile</button>
+          </div>
+        </div>
+        <!-- /sidebar -->
+      </div>
+      <!-- /portal-body -->
+    </div>
+    <!-- /portal-screen -->
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+             PAGE: MODALS (Chunk 3)
+             ============================================================ -->
+
+    <!-- POLICY MODAL -->
+    <div class="modal-overlay" id="policyModal" onclick="closePolicyModal(event)">
+      <div class="modal-box">
+        <div class="modal-head">
+          <div class="modal-head-title" id="policyModalTitle">Policy Document</div>
+          <button class="modal-close-btn" onclick="document.getElementById('policyModal').classList.remove('open')">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="policy-text" id="policyModalContent"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="document.getElementById('policyModal').classList.remove('open')">Close</button>
+          <button
+            class="btn btn-primary"
+            onclick="
+              showToast('Downloading policy…', '📥');
+              document.getElementById('policyModal').classList.remove('open');
+            "
+          >
+            📥 Download PDF
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+     JAVASCRIPT (Chunk 4)
+     ============================================================ -->
+    <script>
+      // ── INIT ──
+      window.addEventListener('DOMContentLoaded', function () {
+        renderTimeline();
+        openPanelByKey('technical');
+      });
+
+      // ── AUTH ──
+      function doLogout() {
+        window.location.href = 'auth.html';
+      }
+
+      // ── PORTAL TABS ──
+      function switchPortalTab(tab) {
+        document.querySelectorAll('.portal-nav-tab').forEach((t) => t.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
+        document.getElementById('ptab-' + tab).classList.add('active');
+        document.getElementById('panel-' + tab).classList.add('active');
+        // Full-width mode for performance tab
+        const body = document.querySelector('.portal-body');
+        if (tab === 'performance') {
+          body.classList.add('perf-mode');
+          renderPerfAttCal();
+        } else {
+          body.classList.remove('perf-mode');
+        }
+      }
+
+      // ── PERFORMANCE: ATTENDANCE CALENDAR ──
+      function renderPerfAttCal() {
+        const cal = document.getElementById('perfAttCalendar');
+        if (!cal || cal.dataset.rendered) return;
+        const headers = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        let html = headers.map((d) => `<div class="att-cal-hdr">${d}</div>`).join('');
+        // March 2026 starts on Sunday; pattern for Ayesha
+        const pat = ['P', 'L', 'P', 'P', 'P', 'W', 'W', 'P', 'L', 'P', 'P', 'P', 'W', 'W', 'P', 'P', 'L', 'P', 'P', 'W', 'W', 'F', 'F', 'F', 'F', 'F', 'W', 'W', 'F', 'F', 'F'];
+        for (let d = 1; d <= 31; d++) {
+          const s = pat[d - 1];
+          const cls = s === 'P' ? 'present' : s === 'L' ? 'late' : s === 'A' ? 'absent' : s === 'W' ? 'weekend' : 'future';
+          const today = d === 4 ? ' today' : '';
+          const title = s === 'P' ? 'Present' : s === 'L' ? 'Late (after 10 AM)' : s === 'W' ? 'Weekend' : 'Upcoming';
+          html += `<div class="cal-cell ${cls}${today}" title="${title}">${d}</div>`;
+        }
+        cal.innerHTML = html;
+        cal.dataset.rendered = '1';
+      }
+
+      // ── PERFORMANCE: PERIOD SWITCHER ──
+      function switchPerfPeriod(period, el) {
+        document.querySelectorAll('.perf-period-tab').forEach((t) => t.classList.remove('active'));
+        el.classList.add('active');
+        const msgs = { week: 'Showing data for Mar 3–9, 2026', month: 'Showing data for March 2026', all: 'Showing all-time performance data' };
+        showToast(msgs[period] || 'Period switched', '📊');
+      }
+
+      // ── PERFORMANCE: ALERT CLOSE ──
+      function closePerfAlert(id) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      }
+      function jumpToStage(key) {
+        switchPortalTab('journey');
+        setTimeout(() => openPanelByKey(key), 100);
+      }
+
+      // ── TIMELINE DATA ──
+      const candidateSteps = [
+        {
+          key: 'shortlisted',
+          icon: '✅',
+          label: 'Shortlisted',
+          desc: 'Your profile was reviewed and shortlisted by the HR team',
+          state: 'done',
+        },
+        {
+          key: 'technical',
+          icon: '💻',
+          label: 'Technical Interview',
+          desc: 'Technical skills evaluation by our Team Lead — action required',
+          state: 'done',
+        },
+        {
+          key: 'assignment',
+          icon: '📝',
+          label: 'Practical Assignment',
+          desc: 'Real-world task to demonstrate your skills',
+          state: 'done',
+        },
+        {
+          key: 'psychological',
+          icon: '🧠',
+          label: 'Final / Psychological Interview',
+          desc: 'Values and culture alignment interview with the CEO',
+          state: 'done',
+        },
+        {
+          key: 'ask_join',
+          icon: '🤝',
+          label: 'Offer to Join',
+          desc: 'Review your offer letter, read policies, and sign documents',
+          state: 'done',
+        },
+        {
+          key: 'joined',
+          icon: '🎉',
+          label: 'Joined Dev8X',
+          desc: 'You are now officially part of the Dev8X team',
+          state: 'done',
+        },
+        {
+          key: 'onboarding',
+          icon: '🖥',
+          label: 'Onboarding',
+          desc: 'Software setup, tools, workspace requirements, and first-week goals',
+          state: 'current',
+        },
+        {
+          key: 'completed',
+          icon: '🏁',
+          label: 'Internship Completed',
+          desc: 'Your internship journey at Dev8X has concluded',
+          state: 'pending',
+        },
+        {
+          key: 'promoted',
+          icon: '🚀',
+          label: 'Promoted to Full-time',
+          desc: 'Eligible candidates may receive a full-time offer',
+          state: 'pending',
+        },
+        {
+          key: 'not_selected',
+          icon: '💙',
+          label: 'Not Selected',
+          desc: 'Application closed — we appreciate your effort',
+          state: 'hidden',
+        },
+      ];
+
+      let openPanels = {};
+
+      function renderTimeline() {
+        const container = document.getElementById('candidateTimeline');
+        const visible = candidateSteps.filter((s) => s.state !== 'hidden');
+
+        container.innerHTML = visible
+          .map((step, i) => {
+            const isLast = i === visible.length - 1;
+            const prev = visible[i - 1];
+            const dotClass = step.state;
+            const dotContent = step.state === 'done' ? '✓' : step.state === 'current' ? step.icon : i + 1;
+            const connClass = step.state === 'done' ? 'connector-done' : prev?.state === 'done' ? 'connector-partial' : 'connector-pending';
+            const panelOpen = openPanels[step.key] ? 'open' : '';
+            const dimmed = step.state === 'pending' ? 'dimmed' : '';
+            const badgeClass = step.state === 'done' ? 'badge-done' : step.state === 'current' ? 'badge-current' : 'badge-pending';
+            const badgeText = step.state === 'done' ? '✓ Completed' : step.state === 'current' ? '⚡ Action Required' : 'Upcoming';
+
+            return `
+    <div class="timeline-step">
+      <div class="step-line">
+        <div class="step-dot ${dotClass}">${dotContent}</div>
+        ${!isLast ? `<div class="step-connector ${connClass}"></div>` : ''}
+      </div>
+      <div class="step-right">
+        <div class="step-header" onclick="togglePanel('${step.key}')">
+          <div class="step-title-text ${dimmed}">${step.label}</div>
+          <span class="step-badge ${badgeClass}">${badgeText}</span>
+          <span class="chevron ${panelOpen}">▼</span>
+        </div>
+        <div class="step-desc">${step.desc}</div>
+        <div class="step-panel ${panelOpen}" id="cpanel-${step.key}">
+          ${getCandidatePanelContent(step.key, step.state)}
+        </div>
+      </div>
+    </div>`;
+          })
+          .join('');
+      }
+
+      function togglePanel(key) {
+        openPanels[key] = !openPanels[key];
+        const panel = document.getElementById('cpanel-' + key);
+        if (panel) panel.classList.toggle('open', openPanels[key]);
+        document.querySelectorAll('.step-header').forEach((h) => {
+          const match = h.getAttribute('onclick')?.match(/'(.+?)'/)?.[1];
+          if (match === key) h.querySelector('.chevron')?.classList.toggle('open', openPanels[key]);
+        });
+      }
+
+      function openPanelByKey(key) {
+        openPanels[key] = true;
+        const panel = document.getElementById('cpanel-' + key);
+        if (panel) {
+          panel.classList.add('open');
+          panel.closest('.timeline-step')?.querySelector('.chevron')?.classList.add('open');
+          panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+
+      // ── PANEL CONTENT ──
+      function getCandidatePanelContent(key, state) {
+        const locked = state === 'pending';
+        const lockedMsg = `
+    <div class="highlight-box highlight-yellow">
+      ⏳ <div><strong>Not yet active.</strong> This stage will unlock once you complete the previous step. You will receive an email and portal notification when it's your turn to take action here.</div>
+    </div>`;
+
+        const panels = {
+          // ── SHORTLISTED ──
+          shortlisted: `
+      <div class="congrats-banner">
+        <div class="congrats-icon">🎉</div>
+        <div class="congrats-text">
+          <div class="title">Congratulations! You've been shortlisted.</div>
+          <div class="sub">Your profile and portfolio impressed our HR team. Here's what to expect next.</div>
+        </div>
+      </div>
+      <div class="panel-info-grid">
+        <div><div class="panel-info-label">Applied Role</div><div class="panel-info-value">UI/UX Designer</div></div>
+        <div><div class="panel-info-label">Job Type</div><div class="panel-info-value">Internship</div></div>
+        <div><div class="panel-info-label">Date Shortlisted</div><div class="panel-info-value">Feb 12, 2025</div></div>
+        <div><div class="panel-info-label">Next Step</div><div class="panel-info-value">Technical Interview</div></div>
+      </div>
+      <div class="highlight-box highlight-baia">
+        ℹ️ Our HR team will reach out within 24–48 hours to schedule your technical interview. Keep your email and phone active.
+      </div>`,
+
+          // ── TECHNICAL INTERVIEW ──
+          technical: `
+      <div class="highlight-box highlight-rausch">
+        ⚡ <strong>Action required</strong> — Please confirm your preferred interview slot below before Feb 13, 2025.
+      </div>
+      <div class="panel-info-grid">
+        <div><div class="panel-info-label">Interview Type</div><div class="panel-info-value">Video Call — Google Meet</div></div>
+        <div><div class="panel-info-label">Interviewer</div><div class="panel-info-value">Ahmad — Backend Lead</div></div>
+        <div><div class="panel-info-label">Duration</div><div class="panel-info-value">45 – 60 minutes</div></div>
+        <div><div class="panel-info-label">Language</div><div class="panel-info-value">English / Urdu</div></div>
+      </div>
+      <div class="action-card">
+        <div class="action-card-title">Select Your Preferred Slot</div>
+        <div class="form-group-sm">
+          <label class="form-label-sm">Interview Date</label>
+          <input class="form-input-sm" type="date" value="2025-02-14" style="max-width:200px;">
+        </div>
+        <div class="action-card-title" style="margin-top:12px;">Available Time Slots (PKT)</div>
+        <div class="time-slot-grid">
+          <div class="time-slot selected" onclick="selectSlot(this)">10:00 AM</div>
+          <div class="time-slot" onclick="selectSlot(this)">11:30 AM</div>
+          <div class="time-slot taken">01:00 PM</div>
+          <div class="time-slot" onclick="selectSlot(this)">02:00 PM</div>
+          <div class="time-slot" onclick="selectSlot(this)">03:30 PM</div>
+          <div class="time-slot" onclick="selectSlot(this)">05:00 PM</div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="showToast('Slot confirmed! Confirmation email sent 📧','✅','success')">✅ Confirm My Slot</button>
+          <button class="btn btn-secondary" onclick="showToast('Reschedule request sent to HR','📅')">📅 Request Different Date</button>
+        </div>
+      </div>
+      <div class="action-card" style="margin-top:12px;">
+        <div class="action-card-title">Interview Preparation Tips</div>
+        <div class="tip-row"><div class="tip-icon">💡</div><div class="tip-text">Review your past design projects and be ready to walk through your process</div></div>
+        <div class="tip-row"><div class="tip-icon">📷</div><div class="tip-text">Test your camera, mic, and internet connection 15 minutes before</div></div>
+        <div class="tip-row"><div class="tip-icon">🎨</div><div class="tip-text">Have your portfolio open in a separate tab for screen sharing</div></div>
+        <div class="tip-row"><div class="tip-icon">👔</div><div class="tip-text">Professional attire and neutral background required — no casual settings</div></div>
+        <div class="tip-row"><div class="tip-icon">🔕</div><div class="tip-text">Join from a quiet environment — no background noise or interruptions</div></div>
+      </div>
+      <div class="highlight-box highlight-yellow" style="margin-top:8px;">
+        💡 The Google Meet link will be sent to your email 30 minutes before the interview starts.
+      </div>`,
+
+          // ── ASSIGNMENT ──
+          assignment: locked
+            ? lockedMsg
+            : `
+      <div class="congrats-banner" style="background:linear-gradient(135deg,#3b5bdb,#7048e8)">
+        <div class="congrats-icon">📝</div>
+        <div class="congrats-text">
+          <div class="title">You've passed the Technical Interview!</div>
+          <div class="sub">Complete the practical assignment below to advance to the next stage.</div>
+        </div>
+      </div>
+      <div class="panel-info-grid">
+        <div><div class="panel-info-label">Task Title</div><div class="panel-info-value">Design a SaaS Landing Page</div></div>
+        <div><div class="panel-info-label">Deadline</div><div class="panel-info-value">Feb 19, 2025 · EOD</div></div>
+        <div><div class="panel-info-label">Duration Allowed</div><div class="panel-info-value">5 days</div></div>
+        <div><div class="panel-info-label">Tools</div><div class="panel-info-value">Figma · Adobe XD</div></div>
+      </div>
+      <div class="action-card">
+        <div class="action-card-title">Task Brief</div>
+        <p style="font-size:13px;line-height:1.75;color:var(--hof);margin-bottom:14px;">Design a complete landing page for a fictional SaaS productivity tool named <strong>FlowDesk</strong>. Your design must include: hero section, key features section, pricing table (3 tiers), testimonials, and a clear CTA. Submit your Figma file link below.</p>
+        <div style="padding:12px;background:var(--bg);border-radius:var(--radius-sm);border:1px solid var(--border);margin-bottom:14px;">
+          <div style="font-size:11px;font-weight:700;color:var(--foggy);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Evaluation Criteria</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;font-weight:600;color:var(--hof);">
+            <div>✦ Visual hierarchy & layout</div><div>✦ Figma component usage</div>
+            <div>✦ Responsive design awareness</div><div>✦ Color & typography system</div>
+          </div>
+        </div>
+        <div class="form-group-sm">
+          <label class="form-label-sm">Submit Figma / Drive Link</label>
+          <input class="form-input-sm" placeholder="https://figma.com/file/...">
+        </div>
+        <div class="form-group-sm">
+          <label class="form-label-sm">Additional Notes (optional)</label>
+          <textarea class="form-input-sm" style="min-height:60px;resize:vertical;" placeholder="Any context or notes about your submission…"></textarea>
+        </div>
+        <button class="btn btn-primary btn-full" style="margin-top:8px;" onclick="showToast('Assignment submitted! HR will review shortly 🎉','✅','success')">📤 Submit Assignment</button>
+      </div>`,
+
+          // ── PSYCHOLOGICAL / FINAL INTERVIEW ──
+          psychological: locked
+            ? lockedMsg
+            : `
+      <div class="highlight-box highlight-purple">
+        🧠 <div><strong>This is the Final Interview</strong> conducted by the CEO. It focuses entirely on your values, long-term intentions, discipline, and culture fit — not technical skills. Be yourself and be honest.</div>
+      </div>
+      <div class="panel-info-grid">
+        <div><div class="panel-info-label">Interviewer</div><div class="panel-info-value">CEO — Dev8X</div></div>
+        <div><div class="panel-info-label">Duration</div><div class="panel-info-value">30 – 45 minutes</div></div>
+        <div><div class="panel-info-label">Format</div><div class="panel-info-value">Video Call (Google Meet)</div></div>
+        <div><div class="panel-info-label">Focus</div><div class="panel-info-value">Values · Mindset · Discipline</div></div>
+      </div>
+      <div class="action-card">
+        <div class="action-card-title">Choose Your Interview Slot</div>
+        <div class="time-slot-grid">
+          <div class="time-slot" onclick="selectSlot(this)">10:00 AM</div>
+          <div class="time-slot" onclick="selectSlot(this)">12:00 PM</div>
+          <div class="time-slot" onclick="selectSlot(this)">02:00 PM</div>
+          <div class="time-slot" onclick="selectSlot(this)">04:00 PM</div>
+          <div class="time-slot taken">05:30 PM</div>
+          <div class="time-slot" onclick="selectSlot(this)">06:00 PM</div>
+        </div>
+        <button class="btn btn-primary btn-full" style="margin-top:14px;" onclick="showToast('Final interview slot confirmed! Email sent.','🧠','success')">✅ Confirm Slot</button>
+      </div>
+      <div class="action-card" style="margin-top:12px;">
+        <div class="action-card-title">What to Expect</div>
+        <div class="tip-row"><div class="tip-icon">🤝</div><div class="tip-text">Why do you want to work at Dev8X specifically?</div></div>
+        <div class="tip-row"><div class="tip-icon">🎯</div><div class="tip-text">What are your 1-year and 3-year career goals?</div></div>
+        <div class="tip-row"><div class="tip-icon">⚡</div><div class="tip-text">How do you handle pressure, deadlines, and feedback?</div></div>
+        <div class="tip-row"><div class="tip-icon">🌱</div><div class="tip-text">Are you committed to growing with the team long-term?</div></div>
+      </div>`,
+
+          // ── ASK TO JOIN ──
+          ask_join: locked
+            ? lockedMsg
+            : `
+      <div class="congrats-banner" style="background:linear-gradient(135deg,#FF5A5F,#FC642D)">
+        <div class="congrats-icon">🤝</div>
+        <div class="congrats-text">
+          <div class="title">You've received an offer from Dev8X!</div>
+          <div class="sub">Please review the details, read all policies, and sign the required documents before confirming.</div>
+        </div>
+      </div>
+      <div class="panel-info-grid">
+        <div><div class="panel-info-label">Offer Type</div><div class="panel-info-value">Internship (Unpaid)</div></div>
+        <div><div class="panel-info-label">Start Date</div><div class="panel-info-value">Mar 1, 2025</div></div>
+        <div><div class="panel-info-label">Duration</div><div class="panel-info-value">3 months</div></div>
+        <div><div class="panel-info-label">Reporting To</div><div class="panel-info-value">Ali — Design Lead</div></div>
+        <div><div class="panel-info-label">Work Mode</div><div class="panel-info-value">Remote (Full-time hours)</div></div>
+        <div><div class="panel-info-label">Offer Expires</div><div class="panel-info-value">Feb 28, 2025</div></div>
+      </div>
+      <div class="highlight-box highlight-yellow">
+        ⚠️ <div><strong>Important:</strong> This internship is unpaid. A job offer after completion depends solely on your performance and available positions. The company may provide a job offer or an experience letter only.</div>
+      </div>
+      <div class="action-card">
+        <div class="action-card-title">Documents to Read & Sign — All Required</div>
+        <div class="doc-sign-row" id="sign-agreement">
+          <div class="doc-sign-left"><span class="doc-file-icon">📋</span><div><div class="doc-file-name">Internship / Employment Agreement</div><div class="doc-file-size">PDF · 0.8 MB · Defines expectations, duration, and terms</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('agreement')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Internship Agreement')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="doc-sign-row" id="sign-remote">
+          <div class="doc-sign-left"><span class="doc-file-icon">🌐</span><div><div class="doc-file-name">Remote Work Policy</div><div class="doc-file-size">PDF · 0.3 MB · Setup standards & meeting requirements</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('remote')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Remote Work Policy')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="doc-sign-row" id="sign-ethics">
+          <div class="doc-sign-left"><span class="doc-file-icon">⚖️</span><div><div class="doc-file-name">Work Ethics & Code of Conduct</div><div class="doc-file-size">PDF · 0.5 MB · Behavioral standards and professionalism</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('ethics')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Code of Conduct')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="doc-sign-row" id="sign-nda">
+          <div class="doc-sign-left"><span class="doc-file-icon">🔒</span><div><div class="doc-file-name">NDA / Confidentiality Agreement</div><div class="doc-file-size">PDF · 0.4 MB · Protects company intellectual property</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('nda')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'NDA Agreement')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="doc-sign-row" id="sign-leave">
+          <div class="doc-sign-left"><span class="doc-file-icon">🏖</span><div><div class="doc-file-name">Vacation & Leave Policy</div><div class="doc-file-size">PDF · 0.2 MB · Leave entitlements and procedures</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('leave')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Vacation Policy')">✍ Sign</button>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top:16px;">
+        <button class="btn btn-success" onclick="showToast('Offer accepted! Welcome to Dev8X 🎉 HR will contact you shortly.','🎉','success')">🎉 I Accept — Confirm Joining</button>
+        <button class="btn btn-danger" onclick="showToast('Offer declined. HR has been notified.','❌')">❌ Decline Offer</button>
+      </div>`,
+
+          // ── JOINED ──
+          joined: locked
+            ? lockedMsg
+            : `
+      <div class="congrats-banner">
+        <div class="congrats-icon">🎊</div>
+        <div class="congrats-text">
+          <div class="title">Welcome to Dev8X! You're officially in.</div>
+          <div class="sub">Your company accounts and tools access are provided below. Keep these secure.</div>
+        </div>
+      </div>
+      <div class="highlight-box highlight-rausch">
+        🔒 <strong>Security notice:</strong> Do not share these credentials with anyone. Use your company email only for work-related communication.
+      </div>
+      <div class="action-card">
+        <div class="action-card-title">Your Company Accounts</div>
+        <div class="account-item">
+          <div class="account-left"><div class="account-icon-wrap" style="background:#e8f0fe;">📧</div><div><div class="account-service">Company Email</div><div class="account-value">ayesha@dev8x.com</div></div></div>
+          <button class="copy-btn" onclick="copyText('ayesha@dev8x.com')">Copy</button>
+        </div>
+        <div class="account-item">
+          <div class="account-left"><div class="account-icon-wrap" style="background:#f0f5ff;">💬</div><div><div class="account-service">Slack Workspace</div><div class="account-value">dev8x.slack.com · #design-team</div></div></div>
+          <button class="copy-btn" onclick="copyText('dev8x.slack.com')">Copy</button>
+        </div>
+        <div class="account-item">
+          <div class="account-left"><div class="account-icon-wrap" style="background:#f5f5f5;">🐙</div><div><div class="account-service">GitHub Organisation</div><div class="account-value">github.com/dev8x</div></div></div>
+          <button class="copy-btn" onclick="copyText('github.com/dev8x')">Copy</button>
+        </div>
+        <div class="account-item">
+          <div class="account-left"><div class="account-icon-wrap" style="background:#fff0f5;">🎨</div><div><div class="account-service">Figma Team</div><div class="account-value">figma.com/team/dev8x — invite via company email</div></div></div>
+          <button class="copy-btn" onclick="copyText('figma.com/team/dev8x')">Copy</button>
+        </div>
+        <div class="account-item">
+          <div class="account-left"><div class="account-icon-wrap" style="background:#f8f0ff;">📒</div><div><div class="account-service">Notion Workspace</div><div class="account-value">notion.so/dev8x — check email for invite</div></div></div>
+          <button class="copy-btn" onclick="copyText('notion.so/dev8x')">Copy</button>
+        </div>
+        <div class="account-item">
+          <div class="account-left"><div class="account-icon-wrap" style="background:#e8f5e9;">📊</div><div><div class="account-service">Jira (Task Tracker)</div><div class="account-value">dev8x.atlassian.net</div></div></div>
+          <button class="copy-btn" onclick="copyText('dev8x.atlassian.net')">Copy</button>
+        </div>
+      </div>
+      <div class="highlight-box highlight-baia" style="margin-top:12px;">
+        ℹ️ If you can't access any of the above, please message HR immediately at hr@dev8x.com — do not wait until your first day.
+      </div>`,
+
+          // ── ONBOARDING ──
+          onboarding: locked
+            ? lockedMsg
+            : `
+      <div class="highlight-box highlight-baia">
+        🖥 <strong>Your first week defines your trajectory.</strong> Complete all setup items below before your official start date. Notify HR once done.
+      </div>
+      <div class="action-card">
+        <div class="action-card-title">Required Software — Install & Set Up</div>
+        <div class="software-grid">
+          <div class="software-card installed" onclick="showToast('Figma setup guide: figma.com/downloads','🎨')">
+            <div class="software-icon">🎨</div>
+            <div class="software-name">Figma</div>
+            <div class="software-desc">Design & Prototype</div>
+            <div class="software-status">✓ Required</div>
+          </div>
+          <div class="software-card" onclick="showToast('Slack: slack.com/downloads','💬')">
+            <div class="software-icon">💬</div>
+            <div class="software-name">Slack</div>
+            <div class="software-desc">Team Communication</div>
+            <div class="software-status" style="color:var(--foggy)">Install</div>
+          </div>
+          <div class="software-card" onclick="showToast('Notion: notion.so/desktop','📒')">
+            <div class="software-icon">📒</div>
+            <div class="software-name">Notion</div>
+            <div class="software-desc">Docs & Projects</div>
+            <div class="software-status" style="color:var(--foggy)">Install</div>
+          </div>
+          <div class="software-card" onclick="showToast('GitHub Desktop: desktop.github.com','🐙')">
+            <div class="software-icon">🐙</div>
+            <div class="software-name">GitHub Desktop</div>
+            <div class="software-desc">Version Control</div>
+            <div class="software-status" style="color:var(--foggy)">Install</div>
+          </div>
+          <div class="software-card" onclick="showToast('Google Meet works in browser — no install needed','📹')">
+            <div class="software-icon">📹</div>
+            <div class="software-name">Google Meet</div>
+            <div class="software-desc">Video Meetings</div>
+            <div class="software-status" style="color:var(--foggy)">Browser</div>
+          </div>
+          <div class="software-card" onclick="showToast('Jira: dev8x.atlassian.net','📊')">
+            <div class="software-icon">📊</div>
+            <div class="software-name">Jira</div>
+            <div class="software-desc">Task Tracking</div>
+            <div class="software-status" style="color:var(--foggy)">Web App</div>
+          </div>
+        </div>
+      </div>
+      <div class="action-card" style="margin-top:12px;">
+        <div class="action-card-title">Remote Workspace Requirements</div>
+        <div class="setup-item">
+          <div class="setup-icon">💡</div>
+          <div><div class="setup-title">Proper Lighting</div><div class="setup-desc">Natural light or ring light. No harsh shadows. Your face must be clearly visible at all times during meetings.</div></div>
+        </div>
+        <div class="setup-item">
+          <div class="setup-icon">📷</div>
+          <div><div class="setup-title">Working Camera</div><div class="setup-desc">HD webcam is recommended. Built-in laptop camera is acceptable if image quality is clear and stable.</div></div>
+        </div>
+        <div class="setup-item">
+          <div class="setup-icon">🔇</div>
+          <div><div class="setup-title">Quiet Environment</div><div class="setup-desc">Dedicated workspace with minimal background noise. Use a headset with mic for clearer audio during standups.</div></div>
+        </div>
+        <div class="setup-item">
+          <div class="setup-icon">🌐</div>
+          <div><div class="setup-title">Stable Internet</div><div class="setup-desc">Minimum 10 Mbps for smooth video calls. Test your connection before your first team meeting or standup.</div></div>
+        </div>
+        <div class="setup-item">
+          <div class="setup-icon">🖥</div>
+          <div><div class="setup-title">Professional Background</div><div class="setup-desc">Neutral wall or an approved virtual background. No clutter, personal items, or distracting environments visible.</div></div>
+        </div>
+        <div class="setup-item">
+          <div class="setup-icon">👔</div>
+          <div><div class="setup-title">Professional Attire</div><div class="setup-desc">Business casual during all video calls and meetings. Smart-casual minimum — no casual or informal clothing.</div></div>
+        </div>
+      </div>
+      <div class="action-card" style="margin-top:12px;">
+        <div class="action-card-title">Onboarding Completion Checklist</div>
+        <div class="checklist">
+          <div class="check-row"><div class="check-row-left"><input type="checkbox" id="ob1"><label for="ob1">Installed and logged into all required software</label></div><span style="font-size:11px;color:var(--foggy)">Step 1</span></div>
+          <div class="check-row"><div class="check-row-left"><input type="checkbox" id="ob2"><label for="ob2">Set up dedicated workspace with proper lighting</label></div><span style="font-size:11px;color:var(--foggy)">Step 2</span></div>
+          <div class="check-row"><div class="check-row-left"><input type="checkbox" id="ob3"><label for="ob3">Tested camera, audio, and internet speed</label></div><span style="font-size:11px;color:var(--foggy)">Step 3</span></div>
+          <div class="check-row"><div class="check-row-left"><input type="checkbox" id="ob4"><label for="ob4">Joined Slack workspace and introduced yourself in #general</label></div><span style="font-size:11px;color:var(--foggy)">Step 4</span></div>
+          <div class="check-row"><div class="check-row-left"><input type="checkbox" id="ob5"><label for="ob5">Set up company email and signed in to all tools</label></div><span style="font-size:11px;color:var(--foggy)">Step 5</span></div>
+          <div class="check-row"><div class="check-row-left"><input type="checkbox" id="ob6"><label for="ob6">Read and acknowledged the onboarding handbook in Notion</label></div><span style="font-size:11px;color:var(--foggy)">Step 6</span></div>
+          <div class="check-row"><div class="check-row-left"><input type="checkbox" id="ob7"><label for="ob7">Attended first team call / introduction meeting</label></div><span style="font-size:11px;color:var(--foggy)">Step 7</span></div>
+        </div>
+        <button class="btn btn-success btn-full" style="margin-top:14px;" onclick="showToast('Onboarding checklist submitted! HR notified.','🖥','success')">✅ Mark Onboarding as Complete</button>
+      </div>`,
+
+          // ── COMPLETED ──
+          completed: locked
+            ? lockedMsg
+            : `
+      <div class="congrats-banner" style="background:linear-gradient(135deg,#7048E8,#9B59B6)">
+        <div class="congrats-icon">🏁</div>
+        <div class="congrats-text">
+          <div class="title">Internship Successfully Completed!</div>
+          <div class="sub">Thank you for your dedication and hard work during your time at Dev8X.</div>
+        </div>
+      </div>
+      <div class="panel-info-grid">
+        <div><div class="panel-info-label">Start Date</div><div class="panel-info-value">Mar 1, 2025</div></div>
+        <div><div class="panel-info-label">End Date</div><div class="panel-info-value">May 31, 2025</div></div>
+        <div><div class="panel-info-label">Duration</div><div class="panel-info-value">3 Months</div></div>
+        <div><div class="panel-info-label">Final Rating</div><div class="panel-info-value">Excellent ⭐⭐⭐⭐⭐</div></div>
+        <div><div class="panel-info-label">Team</div><div class="panel-info-value">Design Team</div></div>
+        <div><div class="panel-info-label">Manager</div><div class="panel-info-value">Ali — Design Lead</div></div>
+      </div>
+      <div class="action-card">
+        <div class="action-card-title">Your Documents</div>
+        <div class="doc-sign-row">
+          <div class="doc-sign-left"><span class="doc-file-icon">📄</span><div><div class="doc-file-name">Experience Letter</div><div class="doc-file-size">PDF · Ready to download · Signed by HR</div></div></div>
+          <button class="btn btn-primary btn-sm" onclick="showToast('Experience letter downloading…','📄')">📥 Download</button>
+        </div>
+        <div class="doc-sign-row">
+          <div class="doc-sign-left"><span class="doc-file-icon">🏅</span><div><div class="doc-file-name">Internship Completion Certificate</div><div class="doc-file-size">PDF · Signed by CEO</div></div></div>
+          <button class="btn btn-primary btn-sm" onclick="showToast('Certificate downloading…','🏅')">📥 Download</button>
+        </div>
+      </div>
+      <div class="highlight-box highlight-baia" style="margin-top:12px;">
+        🚀 Our HR team will evaluate your performance for a full-time offer. You will be notified within 7 days of your internship end date.
+      </div>`,
+
+          // ── PROMOTED ──
+          promoted: locked
+            ? lockedMsg
+            : `
+      <div class="congrats-banner" style="background:linear-gradient(135deg,#FC642D,#FF5A5F)">
+        <div class="congrats-icon">🚀</div>
+        <div class="congrats-text">
+          <div class="title">You've been offered a Full-time Role!</div>
+          <div class="sub">Welcome to the permanent Dev8X team. Please review and sign your new offer documents.</div>
+        </div>
+      </div>
+      <div class="panel-info-grid">
+        <div><div class="panel-info-label">New Role</div><div class="panel-info-value">Junior UI/UX Designer</div></div>
+        <div><div class="panel-info-label">Department</div><div class="panel-info-value">Design Team</div></div>
+        <div><div class="panel-info-label">Start Date</div><div class="panel-info-value">Jun 1, 2025</div></div>
+        <div><div class="panel-info-label">Reporting To</div><div class="panel-info-value">Ali — Design Lead</div></div>
+      </div>
+      <div class="highlight-box highlight-yellow">
+        ⚠️ Please review all employment documents carefully before signing. This is a legally binding agreement. Reach out to HR if you have any questions.
+      </div>
+      <div class="action-card">
+        <div class="action-card-title">Employment Documents to Sign</div>
+        <div class="doc-sign-row">
+          <div class="doc-sign-left"><span class="doc-file-icon">📋</span><div><div class="doc-file-name">Full-time Employment Agreement</div><div class="doc-file-size">PDF · 1.2 MB · Defines role, responsibilities & terms</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('employment')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Employment Agreement')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="doc-sign-row">
+          <div class="doc-sign-left"><span class="doc-file-icon">💰</span><div><div class="doc-file-name">Salary & Benefits Policy</div><div class="doc-file-size">PDF · 0.4 MB</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('salary')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Salary Policy')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="doc-sign-row">
+          <div class="doc-sign-left"><span class="doc-file-icon">🚫</span><div><div class="doc-file-name">Non-Compete Agreement</div><div class="doc-file-size">PDF · 0.3 MB</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('nda')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Non-Compete')">✍ Sign</button>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top:16px;">
+        <button class="btn btn-success" onclick="showToast('Promotion accepted! Welcome to the full team 🚀','🚀','success')">🎉 Accept Full-time Offer</button>
+        <button class="btn btn-danger" onclick="showToast('HR has been notified of your decision.','❌')">❌ Decline</button>
+      </div>`,
+
+          // ── NOT SELECTED ──
+          not_selected: `
+      <div class="ns-hero">
+        <div class="ns-icon">💙</div>
+        <div class="ns-title">Thank you for applying to Dev8X</div>
+        <div class="ns-text">We genuinely appreciated your time, effort, and interest in joining our team. While we are not moving forward with your application at this stage, this does not reflect your overall potential or talent.</div>
+      </div>
+      <div class="highlight-box highlight-yellow">
+        💡 Your profile may be added to our <strong>Future Talent Pool</strong>. If a position that matches your skills opens up, our HR team will reach out to you directly.
+      </div>
+      <div class="action-card">
+        <div class="action-card-title">What You Can Do</div>
+        <div class="tip-row"><div class="tip-icon">📧</div><div class="tip-text">Request feedback from HR to understand areas for improvement</div></div>
+        <div class="tip-row"><div class="tip-icon">🔔</div><div class="tip-text">Follow Dev8X on LinkedIn for future openings</div></div>
+        <div class="tip-row"><div class="tip-icon">🌐</div><div class="tip-text">Visit dev8x.com/careers to apply for future roles</div></div>
+        <button class="btn btn-secondary btn-full" style="margin-top:12px;" onclick="showToast('Feedback request sent to HR','📧')">📧 Request Feedback</button>
+      </div>`,
+        };
+
+        return panels[key] || `<div style="font-size:13px;color:var(--foggy);padding:8px 0">Details for this stage will appear when it becomes active.</div>`;
+      }
+
+      // ── SLOT PICKER ──
+      function selectSlot(el) {
+        if (el.classList.contains('taken')) return;
+        el.closest('.time-slot-grid')
+          .querySelectorAll('.time-slot')
+          .forEach((s) => s.classList.remove('selected'));
+        el.classList.add('selected');
+      }
+
+      // ── COPY TEXT ──
+      function copyText(text) {
+        navigator.clipboard.writeText(text).catch(() => {});
+        showToast(text + ' copied!', '📋');
+      }
+
+      // ── SIGN DOCUMENT ──
+      function signDocument(btn, name) {
+        btn.textContent = '✓ Signed';
+        btn.classList.remove('btn-outline');
+        btn.classList.add('btn-success');
+        btn.disabled = true;
+        btn.style.opacity = '0.8';
+        const row = btn.closest('.doc-sign-row');
+        if (row) row.classList.add('signed');
+        showToast(name + ' signed successfully!', '✅', 'success');
+      }
+
+      // ── MESSAGES ──
+      function openMessage(el, sender, subject, body) {
+        el.classList.remove('unread');
+        el.querySelector('.msg-unread-dot')?.remove();
+        document.getElementById('msgThread').style.display = 'block';
+        document.getElementById('msgThreadTitle').textContent = '📨 ' + subject + ' — ' + sender;
+        document.getElementById('msgThreadBody').textContent = body;
+        updateBadge('msg', document.querySelectorAll('.msg-item.unread').length);
+      }
+      function sendReply() {
+        const box = document.getElementById('replyBox');
+        if (!box.value.trim()) {
+          showToast('Please type a message first', '⚠️');
+          return;
+        }
+        showToast('Message sent to HR team 📧', '✅', 'success');
+        box.value = '';
+      }
+
+      // ── POLICY MODAL ──
+      const policyContent = {
+        remote: {
+          title: '🌐 Remote Work Policy',
+          content: `<h3>1. Purpose</h3><p>This policy governs remote work arrangements for all Dev8X team members to ensure productivity, professionalism, and consistent communication standards.</p><h3>2. Workspace Requirements</h3><ul><li>Dedicated, quiet workspace with minimal distractions</li><li>Professional background — neutral wall or approved virtual background</li><li>Stable internet connection (minimum 10 Mbps)</li><li>Working HD camera and clear audio microphone</li><li>Proper lighting at all times during video calls</li></ul><h3>3. Working Hours</h3><p>All team members must be available during core hours (10 AM – 5 PM PKT). Flexibility beyond these hours is allowed but core hour availability is mandatory.</p><h3>4. Communication Standards</h3><ul><li>Respond to Slack messages within 2 hours during working hours</li><li>Attend all scheduled standups and team meetings with camera on</li><li>Notify your manager immediately if you are unable to attend a meeting</li></ul><h3>5. Equipment Responsibility</h3><p>Team members are responsible for maintaining their own equipment. Dev8X is not liable for hardware failures during remote work.</p>`,
+        },
+        ethics: {
+          title: '⚖️ Work Ethics & Code of Conduct',
+          content: `<h3>1. Professional Standards</h3><p>All Dev8X team members are expected to maintain the highest level of professionalism in every interaction — with colleagues, clients, and external partners.</p><h3>2. Communication</h3><ul><li>Be respectful, inclusive, and constructive in all communications</li><li>No offensive, discriminatory, or unprofessional language at any time</li><li>Provide honest and timely updates on your work progress</li></ul><h3>3. Work Quality & Deadlines</h3><ul><li>Always deliver on commitments and communicate proactively if blockers arise</li><li>No plagiarism, copying of designs, or misrepresentation of work</li><li>Take ownership of your work — document, share, and iterate consistently</li></ul><h3>4. Confidentiality</h3><p>All client information, product details, and internal processes must remain strictly confidential. Violations will result in immediate termination.</p><h3>5. Conflict Resolution</h3><p>All disputes must be escalated through proper channels — never handled informally or through social media.</p>`,
+        },
+        agreement: {
+          title: '📋 Internship / Employment Agreement',
+          content: `<h3>1. Purpose of Internship</h3><p>This internship is designed to provide practical, hands-on learning experience in your field of study or interest. Dev8X commits to providing meaningful work, mentorship, and structured feedback.</p><h3>2. Duration</h3><p>This internship is for a period of 3 months, commencing Mar 1, 2025 and concluding May 31, 2025, unless terminated earlier by either party with 7 days written notice.</p><h3>3. Compensation</h3><p>This internship is unpaid. No salary, stipend, allowance, or any monetary benefit is guaranteed or implied unless separately stated in writing.</p><h3>4. Expectations</h3><ul><li>Full-time availability during core working hours</li><li>Timely delivery of assigned tasks and projects</li><li>Active participation in team meetings and standups</li><li>Professional conduct in all company interactions</li></ul><h3>5. Important Disclaimer</h3><p>Completion of this internship does NOT guarantee a job offer. Any employment offer post-internship is subject to performance evaluation, available positions, and company requirements. The company reserves the right to offer either a job offer or an experience letter only.</p><h3>6. Intellectual Property</h3><p>All work produced during the internship remains the exclusive property of Dev8X Pvt. Ltd.</p>`,
+        },
+        nda: {
+          title: '🔒 NDA / Confidentiality Agreement',
+          content: `<h3>1. Definition of Confidential Information</h3><p>Confidential Information includes but is not limited to: product designs, source code, business strategies, client data, financial information, internal processes, and any non-public information disclosed during your engagement with Dev8X.</p><h3>2. Obligations</h3><ul><li>You must not disclose any Confidential Information to any third party without prior written consent</li><li>You must not use Confidential Information for personal benefit or for any purpose outside your role</li><li>You must immediately report any accidental disclosure to HR</li></ul><h3>3. Duration</h3><p>This agreement remains in effect for 2 years after the termination of your internship or employment.</p><h3>4. Penalties</h3><p>Breach of this agreement may result in legal action and financial liability as permitted under applicable law.</p>`,
+        },
+        leave: {
+          title: '🏖 Vacation & Leave Policy',
+          content: `<h3>1. Internship Leave Entitlement</h3><p>Interns are entitled to 2 casual leave days per month (non-cumulative). No paid annual leave is applicable during the internship period.</p><h3>2. Leave Application Process</h3><ul><li>Submit leave requests at least 48 hours in advance via Slack or email to HR</li><li>Emergency leaves must be communicated immediately with a valid reason</li><li>Unapproved absences may impact your final performance evaluation</li></ul><h3>3. Public Holidays</h3><p>Dev8X observes all Pakistani national public holidays. A list of approved holidays will be shared at the start of each month.</p><h3>4. Sick Leave</h3><p>1 sick day per month is available. A medical certificate may be required for absences exceeding 2 consecutive days.</p>`,
+        },
+        penalty: {
+          title: '⚠️ Penalty & Behaviour Standards',
+          content: `<h3>1. Zero Tolerance Violations</h3><p>The following result in immediate termination without notice: data breach, harassment, falsification of work, sharing confidential client data, or any criminal activity.</p><h3>2. Performance Warnings</h3><ul><li>First offence (minor): Verbal warning documented in HR records</li><li>Second offence: Written warning with a 7-day improvement plan</li><li>Third offence: Termination of internship or employment</li></ul><h3>3. Attendance & Punctuality</h3><p>3 consecutive unexplained absences will result in automatic termination. Repeated tardiness (more than 3 times a month) will result in a formal warning.</p><h3>4. Work Quality</h3><p>Consistently missing deadlines without valid communication will result in a performance review and may impact your internship completion rating.</p>`,
+        },
+        employment: {
+          title: '📋 Full-time Employment Agreement',
+          content: `<h3>1. Employment Terms</h3><p>This is a full-time employment agreement between the employee and Dev8X Pvt. Ltd. The employee agrees to serve in the capacity of Junior UI/UX Designer effective June 1, 2025.</p><h3>2. Compensation</h3><p>Monthly salary and benefits will be detailed in the separately provided Compensation Letter. Salary is disbursed on the last working day of each month.</p><h3>3. Probation Period</h3><p>The first 3 months constitute a probation period. Either party may terminate employment within this period with 7 days written notice.</p><h3>4. Working Hours</h3><p>Standard working hours are 40 hours/week. Remote work is allowed within the framework of the Remote Work Policy.</p><h3>5. Termination</h3><p>Post-probation, a 30-day notice period is required by either party. Dev8X reserves the right to pay in lieu of notice.</p>`,
+        },
+        salary: {
+          title: '💰 Salary & Benefits Policy',
+          content: `<h3>1. Compensation Structure</h3><p>Compensation is competitive and reviewed annually based on performance and market benchmarks. Details of your specific package are contained in your personal Compensation Letter.</p><h3>2. Benefits</h3><ul><li>Annual performance bonus (up to 15% of annual salary)</li><li>Paid annual leave: 18 days per year</li><li>Remote work flexibility (as per Remote Work Policy)</li><li>Learning & development budget: PKR 20,000/year</li></ul><h3>3. Salary Disbursement</h3><p>Salary is disbursed on the last working day of each calendar month directly to your registered bank account.</p><h3>4. Deductions</h3><p>Applicable tax deductions will be made as per Government of Pakistan regulations. A monthly payslip will be shared via your company email.</p>`,
+        },
+      };
+
+      function openPolicyModal(key) {
+        const data = policyContent[key];
+        if (!data) return;
+        document.getElementById('policyModalTitle').textContent = data.title;
+        document.getElementById('policyModalContent').innerHTML = data.content;
+        document.getElementById('policyModal').classList.add('open');
+      }
+      function closePolicyModal(e) {
+        if (e.target === document.getElementById('policyModal')) {
+          document.getElementById('policyModal').classList.remove('open');
+        }
+      }
+
+      // ── BADGE UPDATES ──
+      function updateBadge(type, count) {
+        const el = document.getElementById(type === 'msg' ? 'msgBadge' : 'docsBadge');
+        if (el) {
+          el.textContent = count;
+          el.style.display = count > 0 ? 'inline' : 'none';
+        }
+      }
+
+      // ── TOAST ──
+      function showToast(msg, icon = 'ℹ️', type = '') {
+        const c = document.getElementById('toastContainer');
+        const t = document.createElement('div');
+        t.className = 'toast ' + type;
+        t.innerHTML = `<span>${icon}</span> ${msg}`;
+        c.appendChild(t);
+        setTimeout(() => t.remove(), 3800);
+      }
+
+      // ── INIT ──
+      window.addEventListener('DOMContentLoaded', () => {
+        renderTimeline();
+        openPanelByKey('technical');
+      });
+    </script>
+  </body>
+</html>
