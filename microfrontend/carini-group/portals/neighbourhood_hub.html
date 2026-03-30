@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carini Group — Neighbourhood Intelligence Hub</title>
+  <script
+    type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Manhattan Neighbourhood Guide","description":"Curated intelligence on Manhattan's most prestigious residential neighbourhoods","publisher":{"@type":"RealEstateAgent","name":"Carini Group LLC","url":"https://carinigroup.com"}}</script>
+
+
+  <style>
+    :root {
+      --dark: #ffffff;
+      --dark2: #f8f7f5;
+      --dark3: #f1efeb;
+      --dark4: #e8e4de;
+      --dark5: #ddd8d0;
+
+      --gold: #c49a2e;
+      --gold-light: #d4a843;
+      --gold-l: #d4a843;
+      --gold-soft: #b08a24;
+      --gold-dim: rgba(196, 154, 46, 0.10);
+      --gold-glow: rgba(196, 154, 46, 0.16);
+
+      --cream: #1a1510;
+      --text: #1a1510;
+      --text-muted: rgba(26, 21, 16, 0.60);
+      --muted: rgba(26, 21, 16, 0.46);
+      --body: rgba(26, 21, 16, 0.74);
+
+      --border: rgba(212, 168, 67, 0.26);
+      --border-soft: rgba(212, 168, 67, 0.14);
+      --border-hard: rgba(212, 168, 67, 0.48);
+
+      --success: #3fd68a;
+      --success-dim: rgba(63, 214, 138, 0.14);
+      --warn: #f5a623;
+      --warn-dim: rgba(245, 166, 35, 0.14);
+      --danger: #f05252;
+      --danger-dim: rgba(240, 82, 82, 0.14);
+      --blue: #4dc8ff;
+      --blue-dim: rgba(77, 200, 255, 0.13);
+      --green: #4dd98a;
+      --green-dim: rgba(77, 217, 138, 0.13);
+      --red: #f06060;
+      --red-dim: rgba(240, 96, 96, 0.13);
+      --amber: #e8b24a;
+      --amber-dim: rgba(232, 178, 74, 0.13);
+
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-cormorant: 'Cormorant Garamond', serif;
+
+      --r: 5px;
+      --radius: 5px;
+      --t: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+      --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --shadow-gold: 0 0 28px rgba(212, 168, 67, 0.14);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: .38
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(6, 5, 10, 0.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border)
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-decoration: none
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: color var(--t)
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold)
+    }
+
+    .lang-pills {
+      display: flex;
+      gap: 4px
+    }
+
+    .lang-pill {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--t)
+    }
+
+    .lang-pill.active {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 110px 48px 64px;
+      background: radial-gradient(ellipse at 50% -20%, rgba(201, 168, 76, .07) 0%, transparent 65%);
+      text-align: center
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 18px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 11px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 20px;
+      background: var(--gold-dim)
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 52px;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 14px
+    }
+
+    .hero-title em {
+      color: var(--gold);
+      font-style: italic
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 36px;
+      line-height: 1.65
+    }
+
+    /* ── SEARCH + FILTER ── */
+    .search-row {
+      max-width: 640px;
+      margin: 0 auto 48px;
+      display: flex;
+      gap: 10px
+    }
+
+    .search-input {
+      flex: 1;
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      padding: 12px 18px;
+      border-radius: var(--r);
+      outline: none;
+      transition: border-color var(--t)
+    }
+
+    .search-input:focus {
+      border-color: var(--gold)
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted)
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 56px
+    }
+
+    .filt-btn {
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--t);
+      font-family: var(--font-sans)
+    }
+
+    .filt-btn:hover,
+    .filt-btn.active {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    /* ── GRID ── */
+    .nb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+      padding: 0 48px 72px;
+      max-width: 1400px;
+      margin: 0 auto
+    }
+
+    .nb-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--t);
+      animation: cardIn .4s ease both
+    }
+
+    .nb-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, .45)
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .card-hero {
+      height: 180px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden
+    }
+
+    .card-hero-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 70px;
+      opacity: .18
+    }
+
+    .card-hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, rgba(20, 18, 16, .95))
+    }
+
+    .card-hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 16px 20px;
+      width: 100%
+    }
+
+    .card-name {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      color: var(--cream);
+      margin-bottom: 2px
+    }
+
+    .card-tagline {
+      font-size: 11px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .1em
+    }
+
+    .card-type-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 3px 10px;
+      border-radius: 10px;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em
+    }
+
+    .badge-luxury {
+      background: rgba(201, 168, 76, .85);
+      color: #06050a
+    }
+
+    .badge-boutique {
+      background: rgba(100, 200, 255, .75);
+      color: #06050a
+    }
+
+    .badge-family {
+      background: rgba(76, 175, 125, .75);
+      color: #06050a
+    }
+
+    .badge-emerging {
+      background: rgba(220, 120, 220, .75);
+      color: #06050a
+    }
+
+    .card-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .stat-cell {
+      padding: 12px 14px;
+      text-align: center;
+      border-right: 1px solid var(--border)
+    }
+
+    .stat-cell:last-child {
+      border-right: none
+    }
+
+    .stat-val {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      color: var(--gold);
+      font-weight: 600
+    }
+
+    .stat-lbl {
+      font-size: 9px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-top: 2px
+    }
+
+    .card-body {
+      padding: 16px 20px
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 14px
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap
+    }
+
+    .tag {
+      padding: 3px 9px;
+      border-radius: 10px;
+      font-size: 10px;
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      color: var(--text-muted)
+    }
+
+    .card-footer {
+      padding: 12px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .score-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .score-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .07em
+    }
+
+    .score-bar {
+      width: 80px;
+      height: 4px;
+      background: var(--dark3);
+      border-radius: 2px;
+      overflow: hidden
+    }
+
+    .score-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px
+    }
+
+    .score-num {
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 600
+    }
+
+    .card-cta {
+      font-size: 11px;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 4px
+    }
+
+    /* ── DETAIL PANEL ── */
+    .detail-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0, 0, 0, .72);
+      backdrop-filter: blur(5px);
+      overflow-y: auto
+    }
+
+    .detail-overlay.open {
+      display: block
+    }
+
+    .detail-panel {
+      background: var(--dark2);
+      max-width: 1040px;
+      margin: 40px auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      animation: slideUp .3s ease
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .dp-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      z-index: 10;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(12, 11, 9, .8);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--t)
+    }
+
+    .dp-close:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .dp-hero {
+      height: 280px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      background: var(--dark3)
+    }
+
+    .dp-hero-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 120px;
+      opacity: .12
+    }
+
+    .dp-hero-grad {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 20%, rgba(20, 18, 16, .98))
+    }
+
+    .dp-hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 28px 36px;
+      width: 100%
+    }
+
+    .dp-name {
+      font-family: var(--font-serif);
+      font-size: 40px;
+      color: var(--cream);
+      margin-bottom: 4px
+    }
+
+    .dp-sub {
+      font-size: 13px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .1em
+    }
+
+    .dp-lang-tabs {
+      display: flex;
+      gap: 6px;
+      position: absolute;
+      top: 20px;
+      left: 36px;
+      z-index: 2
+    }
+
+    .dp-lang-tab {
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 11px;
+      border: 1px solid rgba(201, 168, 76, .3);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--t);
+      backdrop-filter: blur(8px)
+    }
+
+    .dp-lang-tab.active {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .dp-body {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 0
+    }
+
+    .dp-main {
+      padding: 32px 36px
+    }
+
+    .dp-sidebar {
+      padding: 28px 24px;
+      border-left: 1px solid var(--border);
+      background: var(--dark3)
+    }
+
+    .dp-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 28px
+    }
+
+    .dp-kpi {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      text-align: center
+    }
+
+    .dp-kpi-val {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      color: var(--gold);
+      font-weight: 600
+    }
+
+    .dp-kpi-lbl {
+      font-size: 9px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-top: 3px
+    }
+
+    .dp-section {
+      margin-bottom: 24px
+    }
+
+    .dp-section-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      color: var(--cream);
+      margin-bottom: 10px
+    }
+
+    .dp-section p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.75
+    }
+
+    .dp-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px
+    }
+
+    .dp-hl {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px;
+      background: var(--dark3);
+      border-radius: 4px;
+      border: 1px solid var(--border)
+    }
+
+    .dp-hl-icon {
+      font-size: 16px;
+      flex-shrink: 0
+    }
+
+    .dp-hl-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5
+    }
+
+    .dp-market {
+      display: flex;
+      flex-direction: column;
+      gap: 0
+    }
+
+    .dp-market-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .04);
+      font-size: 13px
+    }
+
+    .dp-market-row:last-child {
+      border-bottom: none
+    }
+
+    .dp-mkt-label {
+      color: var(--text-muted)
+    }
+
+    .dp-mkt-val {
+      font-weight: 500;
+      color: var(--text)
+    }
+
+    .dp-mkt-delta {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 10px
+    }
+
+    .delta-up {
+      background: rgba(76, 175, 125, .12);
+      color: var(--success)
+    }
+
+    .delta-dn {
+      background: rgba(232, 92, 92, .12);
+      color: #f05252
+    }
+
+    .sb-title {
+      font-size: 11px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 12px
+    }
+
+    .sb-listing {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+      cursor: pointer;
+      transition: all var(--t)
+    }
+
+    .sb-listing:hover {
+      padding-left: 4px
+    }
+
+    .sb-listing:last-of-type {
+      border-bottom: none
+    }
+
+    .sb-thumb {
+      width: 44px;
+      height: 36px;
+      background: var(--dark2);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      border: 1px solid var(--border)
+    }
+
+    .sb-addr {
+      font-size: 12px;
+      color: var(--text)
+    }
+
+    .sb-price {
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: 500;
+      flex-shrink: 0
+    }
+
+    .btn-search-area {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      padding: 11px;
+      background: var(--gold);
+      border: none;
+      color: var(--dark);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: var(--r);
+      transition: all var(--t)
+    }
+
+    .btn-search-area:hover {
+      background: var(--gold-light)
+    }
+
+    .btn-guide {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      padding: 11px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      cursor: pointer;
+      border-radius: var(--r);
+      transition: all var(--t)
+    }
+
+    .btn-guide:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: var(--dark3);
+      border: 1px solid var(--gold);
+      color: var(--text);
+      padding: 11px 22px;
+      border-radius: 20px;
+      font-size: 13px;
+      z-index: 500;
+      opacity: 0;
+      transition: all .3s ease;
+      pointer-events: none
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0)
+    }
+
+    /* ── v2.0 MODERNIZATION OVERRIDES ── */
+
+    /* Nav bars */
+    nav {
+      background: rgba(6, 5, 10, 0.96) !important;
+      backdrop-filter: blur(28px) saturate(2) !important;
+      border-bottom-color: rgba(212, 168, 67, 0.28) !important;
+    }
+
+    .nav-logo {
+      color: #d4a843 !important;
+      letter-spacing: .10em !important;
+    }
+
+    .nav-links a {
+      color: rgba(240, 235, 224, 0.55) !important;
+      font-size: 11.5px;
+      letter-spacing: .05em;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #d4a843 !important;
+    }
+
+    /* Top bar in app pages */
+    .topbar {
+      background: rgba(6, 5, 10, 0.95) !important;
+      border-bottom-color: rgba(212, 168, 67, 0.22) !important;
+      backdrop-filter: blur(20px) !important;
+    }
+
+    .topbar-title {
+      color: #f5efe3 !important;
+      font-size: 18px !important;
+    }
+
+    /* Sidebar */
+    .sb {
+      background: #0d0c10 !important;
+      border-right-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .sb-head {
+      border-bottom-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .sb-logo {
+      color: #d4a843 !important;
+    }
+
+    .sb-sub {
+      color: rgba(240, 235, 224, 0.42) !important;
+    }
+
+    .sidebar {
+      background: #0d0c10 !important;
+      border-right-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    /* Cards */
+    .module-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .module-card .card-top {
+      border-bottom-color: rgba(212, 168, 67, 0.16) !important;
+    }
+
+    .module-card .card-name {
+      color: #f5efe3 !important;
+    }
+
+    .module-card .card-phase {
+      color: #d4a843 !important;
+    }
+
+    .module-card .card-desc {
+      color: rgba(240, 235, 224, 0.60) !important;
+    }
+
+    .module-card:hover {
+      border-color: #d4a843 !important;
+    }
+
+    /* Hero area */
+    .hero-title {
+      color: #f5efe3 !important;
+    }
+
+    .hero-sub {
+      color: rgba(240, 235, 224, 0.68) !important;
+    }
+
+    .hero-badge {
+      color: #d4a843 !important;
+      border-color: rgba(212, 168, 67, 0.30) !important;
+    }
+
+    .hero-stat-val {
+      color: #d4a843 !important;
+    }
+
+    .hero-stat-label {
+      color: rgba(240, 235, 224, 0.55) !important;
+    }
+
+    .hero-divider {
+      background: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    /* Section labels */
+    .section-label {
+      color: #d4a843 !important;
+    }
+
+    .section-title {
+      color: #f5efe3 !important;
+    }
+
+    .section-sub {
+      color: rgba(240, 235, 224, 0.60) !important;
+    }
+
+    /* KPI tiles */
+    .kpi {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    .kpi-val {
+      color: #d4a843 !important;
+    }
+
+    .kpi-lbl {
+      color: rgba(240, 235, 224, 0.55) !important;
+    }
+
+    .kpi-delta {
+      font-size: 10px !important;
+    }
+
+    .delta-up {
+      color: #3fd68a !important;
+    }
+
+    .delta-down {
+      color: #f05252 !important;
+    }
+
+    /* Panels */
+    .panel {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .panel-header,
+    .ph {
+      border-bottom-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .panel-title,
+    .ph-title {
+      color: #f5efe3 !important;
+    }
+
+    .s-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .s-card-head {
+      border-bottom-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .s-card-title {
+      color: #f5efe3 !important;
+      font-weight: 500 !important;
+    }
+
+    /* Pills & tags */
+    .pill-g {
+      background: rgba(63, 214, 138, 0.14) !important;
+      color: #3fd68a !important;
+      border-color: rgba(63, 214, 138, 0.28) !important;
+    }
+
+    .pill-b {
+      background: rgba(77, 200, 255, 0.13) !important;
+      color: #4dc8ff !important;
+      border-color: rgba(77, 200, 255, 0.28) !important;
+    }
+
+    .pill-r {
+      background: rgba(240, 82, 82, 0.14) !important;
+      color: #f05252 !important;
+      border-color: rgba(240, 82, 82, 0.28) !important;
+    }
+
+    .pill-y {
+      background: rgba(245, 166, 35, 0.14) !important;
+      color: #f5a623 !important;
+      border-color: rgba(245, 166, 35, 0.28) !important;
+    }
+
+    .pill-a {
+      background: rgba(232, 178, 74, 0.13) !important;
+      color: #e8b24a !important;
+    }
+
+    /* Table */
+    .data-table th {
+      color: rgba(240, 235, 224, 0.50) !important;
+      letter-spacing: .10em !important;
+    }
+
+    .data-table td {
+      color: #f0ebe0 !important;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(212, 168, 67, 0.06) !important;
+    }
+
+    /* Build bar (index page) */
+    .build-bar {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .build-pct {
+      color: #d4a843 !important;
+    }
+
+    .build-fill {
+      background: linear-gradient(90deg, #d4a843, #f0c55a) !important;
+    }
+
+    /* Flow dots */
+    .flow-dot {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.28) !important;
+    }
+
+    .flow-dot.gold {
+      border-color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .flow-dot:hover {
+      border-color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.16) !important;
+    }
+
+    .flow-step-name {
+      color: rgba(240, 235, 224, 0.58) !important;
+    }
+
+    .flow-step-name strong {
+      color: #f0ebe0 !important;
+    }
+
+    /* Topbar actions */
+    .ph-action,
+    .panel-action {
+      color: rgba(240, 235, 224, 0.55) !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+      font-size: 11px !important;
+    }
+
+    .ph-action:hover,
+    .panel-action:hover {
+      color: #d4a843 !important;
+      border-color: #d4a843 !important;
+    }
+
+    /* Footer */
+    footer {
+      border-top-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .footer-logo {
+      color: #d4a843 !important;
+    }
+
+    .footer-note {
+      color: rgba(240, 235, 224, 0.38) !important;
+    }
+
+    .footer-links a {
+      color: rgba(240, 235, 224, 0.45) !important;
+    }
+
+    .footer-links a:hover {
+      color: #d4a843 !important;
+    }
+
+
+    /* ── NEIGHBOURHOOD HUB ENHANCEMENTS ── */
+    .hood-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    .hood-card:hover {
+      border-color: #d4a843 !important;
+      box-shadow: 0 14px 44px rgba(0, 0, 0, 0.65) !important;
+    }
+
+    .hood-name {
+      color: #f5efe3 !important;
+    }
+
+    .hood-sub {
+      color: #d4a843 !important;
+    }
+
+    .hood-desc {
+      color: rgba(240, 235, 224, 0.62) !important;
+    }
+
+    .hood-stat-val {
+      color: #d4a843 !important;
+    }
+
+    .hood-stat-label {
+      color: rgba(240, 235, 224, 0.50) !important;
+    }
+
+    .tag-pill {
+      background: rgba(212, 168, 67, 0.10) !important;
+      color: rgba(240, 235, 224, 0.62) !important;
+      border-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    .map-placeholder {
+      background: linear-gradient(135deg, #0d0c10, #151318) !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/shared.js" defer></script>
+</head>
+
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">CARINI GROUP</a>
+    <ul class="nav-links">
+      <li><a href="boutique-redesign.html">Home</a></li>
+      <li><a href="phase3_property_search.html">Properties</a></li>
+      <li><a href="neighbourhood_hub.html" class="active">Neighbourhoods</a></li>
+      <li><a href="international_hub.html">International</a></li>
+      <li><a href="lead_capture.html">Contact</a></li>
+    </ul>
+    <div class="lang-pills">
+      <button class="lang-pill active" onclick="setLang('en',this)">EN</button>
+      <button class="lang-pill" onclick="setLang('it',this)">IT</button>
+      <button class="lang-pill" onclick="setLang('es',this)">ES</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">✦ FR-022 · Neighbourhood Intelligence Hub</div>
+    <h1 class="hero-title">Manhattan's<br><em>Most Coveted Addresses</em></h1>
+    <p class="hero-sub">Curated intelligence on 15 Manhattan neighbourhoods — market data, lifestyle profiles, and
+      exclusive listings from Carini Group's portfolio.</p>
+    <div class="search-row">
+      <input class="search-input" type="text" id="nbSearch"
+        placeholder="Search neighbourhood, lifestyle, or building type…" oninput="filterNeighbourhoods()">
+    </div>
+    <div class="filter-row" id="filterRow">
+      <button class="filt-btn active" onclick="setFilter('all',this)">All Areas</button>
+      <button class="filt-btn" onclick="setFilter('downtown',this)">Downtown</button>
+      <button class="filt-btn" onclick="setFilter('midtown',this)">Midtown</button>
+      <button class="filt-btn" onclick="setFilter('uptown',this)">Uptown</button>
+      <button class="filt-btn" onclick="setFilter('luxury',this)">Ultra-Luxury</button>
+      <button class="filt-btn" onclick="setFilter('international',this)">Intl. Buyer Favourites</button>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="nb-grid" id="nbGrid"></div>
+
+  <!-- DETAIL OVERLAY -->
+  <div class="detail-overlay" id="detailOverlay" onclick="handleOverlayClick(event)">
+    <div class="detail-panel" id="detailPanel">
+      <button class="dp-close" onclick="closeDetail()">×</button>
+      <div class="dp-hero">
+        <div class="dp-hero-bg" id="dp-emoji"></div>
+        <div class="dp-hero-grad"></div>
+        <div class="dp-lang-tabs">
+          <button class="dp-lang-tab active" onclick="switchDetailLang('en',this)">EN</button>
+          <button class="dp-lang-tab" onclick="switchDetailLang('it',this)">IT</button>
+          <button class="dp-lang-tab" onclick="switchDetailLang('es',this)">ES</button>
+        </div>
+        <div class="dp-hero-content">
+          <div class="dp-name" id="dp-name"></div>
+          <div class="dp-sub" id="dp-sub"></div>
+        </div>
+      </div>
+      <div class="dp-body">
+        <div class="dp-main">
+          <div class="dp-kpis" id="dp-kpis"></div>
+          <div class="dp-section">
+            <div class="dp-section-title" id="dp-desc-title">About the Neighbourhood</div>
+            <p id="dp-desc-en"></p>
+            <p id="dp-desc-it" style="display:none"></p>
+            <p id="dp-desc-es" style="display:none"></p>
+          </div>
+          <div class="dp-section">
+            <div class="dp-section-title">Why Buyers Choose Here</div>
+            <div class="dp-highlights" id="dp-highlights"></div>
+          </div>
+          <div class="dp-section">
+            <div class="dp-section-title">Market Snapshot</div>
+            <div class="dp-market" id="dp-market"></div>
+          </div>
+        </div>
+        <div class="dp-sidebar">
+          <div class="sb-title">Active Listings</div>
+          <div id="dp-listings"></div>
+          <button class="btn-search-area" onclick="window.location.href='phase3_property_search.html'">Search All
+            Properties →</button>
+          <button class="btn-guide" onclick="showToast('PDF neighbourhood guide downloading…')">↓ Download PDF
+            Guide</button>
+          <div
+            style="margin-top:20px;padding:14px;background:var(--dark2);border:1px solid var(--border);border-radius:6px">
+            <div
+              style="font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
+              Book a Neighbourhood Tour</div>
+            <input type="text" placeholder="Your name"
+              style="width:100%;background:var(--dark3);border:1px solid var(--border);color:var(--text);font-family:var(--font-sans);font-size:12px;padding:8px 10px;border-radius:var(--r);outline:none;margin-bottom:6px">
+            <input type="email" placeholder="Email address"
+              style="width:100%;background:var(--dark3);border:1px solid var(--border);color:var(--text);font-family:var(--font-sans);font-size:12px;padding:8px 10px;border-radius:var(--r);outline:none;margin-bottom:8px">
+            <button onclick="showToast('✓ Tour request sent — Alex will contact you within 2 hours')"
+              style="width:100%;padding:9px;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold);font-family:var(--font-sans);font-size:11px;cursor:pointer;border-radius:var(--r);transition:all var(--t)">Request
+              Tour</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const NEIGHBOURHOODS = [
+      {
+        id: 'tribeca', name: 'Tribeca', emoji: '🏙', tagline: 'Manhattan\'s Premier Loft District',
+        type: 'luxury', zone: 'downtown', badge: 'Ultra-Luxury', badgeClass: 'badge-luxury',
+        score: 97,
+        stats: { median: '$5.2M', psf: '$2,180', dom: '42 days' },
+        tags: ['Loft Living', 'Cobblestone Streets', 'Celebrity Enclave', 'Hudson River', 'Pre-war Conversions'],
+        desc: {
+          en: 'Tribeca — the Triangle Below Canal Street — stands as Manhattan\'s most exclusive residential enclave, where 19th-century warehouses have been transformed into spectacular loft residences. Cobblestone streets, world-class dining, and proximity to Hudson River Park define its unparalleled lifestyle. The neighbourhood attracts a global elite, from entertainment and technology to finance and the arts.',
+          it: 'Tribeca — il Triangolo Sotto Canal Street — è l\'enclave residenziale più esclusiva di Manhattan, dove i magazzini del XIX secolo sono stati trasformati in spettacolari residenze loft. Strade in acciottolato, ristoranti di classe mondiale e la vicinanza all\'Hudson River Park definiscono il suo stile di vita ineguagliabile.',
+          es: 'Tribeca — el Triángulo Debajo de Canal Street — es el enclave residencial más exclusivo de Manhattan, donde los almacenes del siglo XIX se han transformado en espectaculares residencias loft. Las calles adoquinadas, la gastronomía de clase mundial y la proximidad al Hudson River Park definen su estilo de vida incomparable.'
+        },
+        highlights: ['🏗 Pre-war factory conversions with 12–16ft ceilings', '🌿 Steps from Hudson River Park & Pier 25', '🍽 Nobu, Locanda Verde, The Odeon within blocks', '🚇 A/C/E/1 subway access across multiple lines', '🏫 Top-rated schools including PS 150', '🌐 Globally-favoured by Italian & European buyers'],
+        market: [
+          { l: 'Median Sale Price', v: '$5,200,000', d: '+8.4%', up: true },
+          { l: 'Price Per Sq Ft', v: '$2,180', d: '+6.1%', up: true },
+          { l: 'Days on Market', v: '42', d: '-12%', up: true },
+          { l: 'Listing Inventory', v: '38 units', d: '-18%', up: true },
+          { l: 'Absorption Rate', v: '94%', d: '+4pt', up: true },
+          { l: 'Avg. Sq Footage', v: '2,650', d: '+2.3%', up: true },
+        ],
+        listings: [
+          { emoji: '🏙', addr: '443 Greenwich St, PH-A', price: '$8.75M' },
+          { emoji: '🏛', addr: '443 Greenwich St, 7B', price: '$4.75M' },
+          { emoji: '🌆', addr: '100 Barclay St, 15G', price: '$3.75M' },
+        ]
+      },
+      {
+        id: 'soho', name: 'SoHo', emoji: '🏗', tagline: 'Art District Living',
+        type: 'luxury', zone: 'downtown', badge: 'Ultra-Luxury', badgeClass: 'badge-luxury',
+        score: 94,
+        stats: { median: '$4.8M', psf: '$2,050', dom: '38 days' },
+        tags: ['Cast-Iron Architecture', 'Gallery District', 'Boutique Shopping', 'Pre-war Lofts', 'Artistic Heritage'],
+        desc: {
+          en: 'SoHo — South of Houston — is Manhattan\'s landmark cast-iron district, where 19th-century industrial architecture meets contemporary art and luxury retail. Iconic cobblestone streets, Michelin-starred restaurants, and the world\'s finest galleries surround some of the most sought-after loft residences in the city. Co-ops and condos here offer extraordinary ceiling heights, windows, and architectural character.',
+          it: 'SoHo — a Sud di Houston — è il quartiere storico di Manhattan con le sue strutture in ghisa del XIX secolo, dove l\'architettura industriale si fonde con l\'arte contemporanea e il lusso. Strade acciottolate iconiche, ristoranti stellati Michelin e le gallerie d\'arte più famose al mondo circondano alcune delle residenze loft più ricercate della città.',
+          es: 'SoHo — al Sur de Houston — es el histórico distrito de hierro fundido de Manhattan, donde la arquitectura industrial del siglo XIX se une al arte contemporáneo y el comercio de lujo. Las icónicas calles adoquinadas, restaurantes con estrella Michelin y las mejores galerías del mundo rodean algunas de las residencias loft más solicitadas de la ciudad.'
+        },
+        highlights: ['🏛 Landmark cast-iron architecture, pre-1900', '🎨 Gallery Row along West Broadway & Wooster', '🛍 Chanel, Prada, Louis Vuitton flagship stores', '🍽 Cipriani SoHo, Blue Ribbon Sushi nearby', '🏠 Extraordinary ceiling heights: 12–15ft standard', '✈ Italian buyers rank SoHo their #1 NYC preference'],
+        market: [
+          { l: 'Median Sale Price', v: '$4,800,000', d: '+7.2%', up: true },
+          { l: 'Price Per Sq Ft', v: '$2,050', d: '+5.8%', up: true },
+          { l: 'Days on Market', v: '38', d: '-9%', up: true },
+          { l: 'Active Listings', v: '29 units', d: '-14%', up: true },
+          { l: 'Co-op vs Condo', v: '55% / 45%', d: '', up: null },
+          { l: 'Avg. Sq Footage', v: '2,100', d: '+1.8%', up: true },
+        ],
+        listings: [
+          { emoji: '🏗', addr: '151 Wooster St, 5N', price: '$6.2M' },
+          { emoji: '🌇', addr: '111 Greene St, 4A', price: '$3.9M' },
+        ]
+      },
+      {
+        id: 'westvillage', name: 'West Village', emoji: '🏘', tagline: 'Brownstone Romanticism',
+        type: 'boutique', zone: 'downtown', badge: 'Boutique', badgeClass: 'badge-boutique',
+        score: 92,
+        stats: { median: '$3.9M', psf: '$1,890', dom: '31 days' },
+        tags: ['Brownstones', 'Village Charm', 'Carriage Houses', 'Hudson Waterfront', 'Townhouses'],
+        desc: {
+          en: 'The West Village is Manhattan\'s most charming and intimate neighbourhood — a labyrinth of tree-lined streets, historic brownstones, and Federal-era townhouses that feels removed from the city\'s relentless pace. Its combination of literary and artistic heritage, proximity to the High Line and Hudson River, and exceptional dining scene on Bleecker and Hudson Streets makes it perennially sought-after.',
+          it: 'Il West Village è il quartiere più affascinante e intimo di Manhattan — un labirinto di strade alberati, brownstone storiche e case a schiera dell\'era federale che sembra distante dal ritmo incessante della città. La sua combinazione di eredità letteraria e artistica, la vicinanza all\'High Line e all\'Hudson River lo rende perennemente richiesto.',
+          es: 'El West Village es el barrio más encantador e íntimo de Manhattan — un laberinto de calles arboladas, brownstones históricas y casas adosadas de la época federal que se siente alejado del ritmo implacable de la ciudad. Su combinación de herencia literaria y artística, proximidad al High Line y al Hudson River lo hace perennialmente codiciado.'
+        },
+        highlights: ['🌳 Irregular street grid — uniquely human-scale', '📚 Literary & artistic heritage: Dylan Thomas, e.e. cummings', '🏠 Carriage house conversions & garden duplexes', '🌊 Steps from Hudson River Park piers', '🍽 Buvette, Via Carota, The Spotted Pig', '✦ One of Manhattan\'s lowest inventory markets'],
+        market: [
+          { l: 'Median Sale Price', v: '$3,900,000', d: '+5.6%', up: true },
+          { l: 'Price Per Sq Ft', v: '$1,890', d: '+4.3%', up: true },
+          { l: 'Days on Market', v: '31', d: '-16%', up: true },
+          { l: 'Townhouse Inventory', v: '12 units', d: '-24%', up: true },
+          { l: 'Brownstone Premium', v: '+18% vs avg', d: '', up: null },
+          { l: 'Garden Unit Avail.', v: '8 units', d: '', up: null },
+        ],
+        listings: [
+          { emoji: '🏘', addr: '61 Jane St, 7A', price: '$3.45M' },
+          { emoji: '🌿', addr: '88 Barrow St, TH', price: '$7.2M' },
+        ]
+      },
+      {
+        id: 'chelsea', name: 'Chelsea', emoji: '🏢', tagline: 'Art World Meets New Development',
+        type: 'luxury', zone: 'midtown', badge: 'Ultra-Luxury', badgeClass: 'badge-luxury',
+        score: 90,
+        stats: { median: '$4.1M', psf: '$1,960', dom: '35 days' },
+        tags: ['High Line', 'Gallery District', 'New Development', 'Penthouse Living', 'Hudson Yards Adjacent'],
+        desc: {
+          en: 'Chelsea\'s transformation over the past decade has made it one of Manhattan\'s most dynamic residential destinations. The High Line, the world\'s largest gallery district along West 24th–27th Streets, and extraordinary new development towers define a neighbourhood of contrasts — Victorian row houses alongside gleaming glass towers with some of the most dramatic city views in Manhattan.',
+          it: 'Chelsea si è trasformata nell\'arco di un decennio in una delle destinazioni residenziali più dinamiche di Manhattan. Il parco sopraelevato High Line, il più grande distretto di gallerie al mondo e straordinari nuovi grattacieli definiscono un quartiere di contrasti — case vittoriane a schiera accanto a torri di vetro con alcune delle viste più drammatiche di Manhattan.',
+          es: 'Chelsea se ha transformado en la última década en uno de los destinos residenciales más dinámicos de Manhattan. El High Line, el mayor distrito de galerías del mundo y extraordinarias torres de nueva construcción definen un barrio de contrastes — casas victorianas adosadas junto a torres de cristal con algunas de las vistas más dramáticas de Manhattan.'
+        },
+        highlights: ['🌿 High Line park — 1.45 miles elevated garden', '🎨 Gagosian, Pace, Hauser & Wirth within steps', '🏗 520 W 28th St, Lantern House, One High Line', '🚇 A/C/E/1 subway — Penn Station nearby', '🛍 Chelsea Market, Hudson Yards access', '🌍 Popular with Latin American & US investors'],
+        market: [
+          { l: 'Median Sale Price', v: '$4,100,000', d: '+9.1%', up: true },
+          { l: 'Price Per Sq Ft', v: '$1,960', d: '+7.4%', up: true },
+          { l: 'Days on Market', v: '35', d: '-8%', up: true },
+          { l: 'New Dev. Inventory', v: '44 units', d: '+12%', up: false },
+          { l: 'Penthouse Avg.', v: '$12.4M', d: '+15%', up: true },
+          { l: 'Rental Yield', v: '3.2%', d: '+0.3pt', up: true },
+        ],
+        listings: [
+          { emoji: '🏢', addr: '520 W 28th St, 24', price: '$5.65M' },
+          { emoji: '🌆', addr: '500 W 25th St, PH', price: '$9.8M' },
+        ]
+      },
+      {
+        id: 'gramercyflatiron', name: 'Gramercy / Flatiron', emoji: '🏛', tagline: 'Historic Prestige & Private Parks',
+        type: 'luxury', zone: 'midtown', badge: 'Ultra-Luxury', badgeClass: 'badge-luxury',
+        score: 93,
+        stats: { median: '$4.4M', psf: '$2,020', dom: '40 days' },
+        tags: ['Private Park Key', 'Historic District', 'Flatiron Building', 'Landmark Buildings', 'Central Location'],
+        desc: {
+          en: 'Gramercy Park holds the unique distinction of being Manhattan\'s only private park — residents of the surrounding buildings hold one of the city\'s most prized possessions: a key to its wrought-iron gates. The adjacent Flatiron district combines iconic architecture, Silicon Alley\'s technology scene, and a world-class restaurant corridor on Broadway and Fifth Avenue.',
+          it: 'Gramercy Park ha il privilegio unico di essere l\'unico parco privato di Manhattan — i residenti degli edifici circostanti detengono uno dei beni più preziosi della città: la chiave dei suoi cancelli in ferro battuto. Il vicino quartiere Flatiron unisce architettura iconica, la scena tecnologica della Silicon Alley e uno dei migliori corridoi di ristoranti su Broadway e Fifth Avenue.',
+          es: 'Gramercy Park tiene la distinción única de ser el único parque privado de Manhattan — los residentes de los edificios circundantes poseen uno de los bienes más preciados de la ciudad: una llave para sus puertas de hierro forjado. El adyacente distrito Flatiron combina arquitectura icónica, la escena tecnológica de Silicon Alley y un corredor gastronómico de primer nivel.'
+        },
+        highlights: ['🔑 Gramercy Park key — only private park in Manhattan', '🏛 Landmark pre-war buildings with original details', '🍽 Eleven Madison Park, Gramercy Tavern nearby', '💼 Midtown access — Grand Central 15 min walk', '🌐 Popular with European and Latin American buyers', '✦ Penthouse values 40–60% premium to mid-floors'],
+        market: [
+          { l: 'Median Sale Price', v: '$4,400,000', d: '+6.8%', up: true },
+          { l: 'Price Per Sq Ft', v: '$2,020', d: '+5.2%', up: true },
+          { l: 'Days on Market', v: '40', d: '-5%', up: true },
+          { l: 'Penthouse Premium', v: '+48%', d: '', up: null },
+          { l: 'Park-Facing Premium', v: '+22%', d: '', up: null },
+          { l: 'Historic Inventory', v: '21 units', d: '-9%', up: true },
+        ],
+        listings: [
+          { emoji: '🏛', addr: '18 Gramercy Park S, PH', price: '$12.5M' },
+          { emoji: '🌆', addr: '2 Lexington Ave, 14B', price: '$4.1M' },
+        ]
+      },
+      {
+        id: 'upperwestside', name: 'Upper West Side', emoji: '🌳', tagline: 'Cultural & Family Elegance',
+        type: 'family', zone: 'uptown', badge: 'Family', badgeClass: 'badge-family',
+        score: 88,
+        stats: { median: '$2.9M', psf: '$1,620', dom: '28 days' },
+        tags: ['Central Park', 'Lincoln Center', 'Pre-war Classics', 'Family Living', 'Cultural Institutions'],
+        desc: {
+          en: 'The Upper West Side balances cultural grandeur with residential warmth unlike any other Manhattan neighbourhood. Anchored by Central Park to the east and Riverside Park to the west, bookended by Lincoln Center and Columbia University, it offers pre-war apartment buildings of unmatched architectural character alongside the city\'s finest schools, museums, and concert halls.',
+          it: 'L\'Upper West Side equilibra grandiosità culturale con calore residenziale come nessun altro quartiere di Manhattan. Delimitato da Central Park a est e Riverside Park a ovest, tra il Lincoln Center e la Columbia University, offre edifici pre-bellici di impareggiabile carattere architettonico accanto alle migliori scuole, musei e sale da concerto della città.',
+          es: 'El Upper West Side equilibra la grandeza cultural con el calor residencial como ningún otro barrio de Manhattan. Delimitado por Central Park al este y Riverside Park al oeste, entre el Lincoln Center y la Universidad de Columbia, ofrece edificios de preguerra de inigualable carácter arquitectónico junto a las mejores escuelas, museos y salas de conciertos.'
+        },
+        highlights: ['🌿 Central Park + Riverside Park — dual green access', '🎭 Lincoln Center, Metropolitan Opera, NY Philharmonic', '🏫 Top-ranked schools & Columbia University nearby', '🏛 The Dakota, Ansonia, Apthorp — landmark buildings', '🚇 1/2/3/B/C trains — express to Midtown', '👨‍👩‍👧 Most popular with European families relocating to NY'],
+        market: [
+          { l: 'Median Sale Price', v: '$2,900,000', d: '+4.2%', up: true },
+          { l: 'Price Per Sq Ft', v: '$1,620', d: '+3.8%', up: true },
+          { l: 'Days on Market', v: '28', d: '-18%', up: true },
+          { l: 'Pre-war Inventory', v: '67 units', d: '-6%', up: true },
+          { l: 'Park-View Premium', v: '+31%', d: '', up: null },
+          { l: 'Co-op Share', v: '72%', d: '', up: null },
+        ],
+        listings: [
+          { emoji: '🌳', addr: '245 W 99th St, 10C', price: '$1.875M' },
+          { emoji: '🏛', addr: '15 W 72nd St, 8D', price: '$3.6M' },
+        ]
+      },
+      {
+        id: 'lincolnsquare', name: 'Lincoln Square', emoji: '🎭', tagline: 'Culture & Central Park West',
+        type: 'luxury', zone: 'uptown', badge: 'Ultra-Luxury', badgeClass: 'badge-luxury',
+        score: 95,
+        stats: { median: '$6.1M', psf: '$2,340', dom: '36 days' },
+        tags: ['Central Park West', 'Lincoln Center', '15 CPW', 'San Remo', 'Trophy Addresses'],
+        desc: {
+          en: 'Lincoln Square occupies Manhattan\'s most coveted cultural corridor — Central Park West between 60th and 72nd Streets. Home to 15 Central Park West (frequently ranked the world\'s most valuable residential address), the San Remo, and Fordham University, it combines extraordinary park views, Lincoln Center proximity, and the highest concentration of trophy apartments in the city.',
+          it: 'Lincoln Square occupa il corridoio culturale più ambito di Manhattan — Central Park West tra la 60a e la 72a Strada. Sede del 15 Central Park West (spesso classificato come l\'indirizzo residenziale più prezioso del mondo), del San Remo e della Fordham University, combina straordinarie vedute del parco, la vicinanza al Lincoln Center e la più alta concentrazione di appartamenti trofeo della città.',
+          es: 'Lincoln Square ocupa el corredor cultural más codiciado de Manhattan — Central Park West entre las calles 60 y 72. Hogar del 15 Central Park West (frecuentemente clasificado como la dirección residencial más valiosa del mundo), el San Remo y la Universidad Fordham, combina extraordinarias vistas al parque, proximidad al Lincoln Center y la mayor concentración de apartamentos trofeo de la ciudad.'
+        },
+        highlights: ['🏆 15 CPW — world\'s most valuable residential building', '🎭 Lincoln Center for the Performing Arts — steps away', '🌿 Central Park West frontage — direct park views', '🏛 San Remo, El Dorado — iconic twin-towered buildings', '💰 Highest $/sqft appreciation in Manhattan last 5yr', '🌍 Trophy asset for international HNWI investors'],
+        market: [
+          { l: 'Median Sale Price', v: '$6,100,000', d: '+11.2%', up: true },
+          { l: 'Price Per Sq Ft', v: '$2,340', d: '+9.8%', up: true },
+          { l: 'Days on Market', v: '36', d: '-4%', up: true },
+          { l: 'CPW Avg. Price', v: '$8.4M', d: '+13%', up: true },
+          { l: 'Trophy (10M+) Sales', v: '12 YTD', d: '+4', up: true },
+          { l: 'Rental Yield', v: '2.8%', d: '-0.1pt', up: false },
+        ],
+        listings: [
+          { emoji: '🌳', addr: '15 Central Park W, 18A', price: '$9.2M' },
+          { emoji: '🎭', addr: '1 Lincoln Plz, 38B', price: '$6.8M' },
+        ]
+      },
+      {
+        id: 'nomad', name: 'NoMad', emoji: '🏙', tagline: 'Design & Boutique Hotel District',
+        type: 'emerging', zone: 'midtown', badge: 'Emerging', badgeClass: 'badge-emerging',
+        score: 85,
+        stats: { median: '$3.2M', psf: '$1,780', dom: '33 days' },
+        tags: ['Design District', 'Boutique Hotels', 'New Development', 'Madison Square Park', 'Tech Hub'],
+        desc: {
+          en: 'NoMad — North of Madison Square Park — has emerged as one of Manhattan\'s most exciting residential frontiers. The conversion of historic Beaux-Arts office buildings into luxury condominiums, the influence of the NoMad Hotel aesthetic, and the culinary concentration around Eataly and 11 Madison Park have created a neighbourhood that appeals strongly to design-forward buyers seeking character properties.',
+          it: 'NoMad — a Nord di Madison Square Park — è emerso come una delle frontiere residenziali più entusiasmanti di Manhattan. La conversione di storici edifici per uffici in stile Beaux-Arts in lussuosi condomini ha creato un quartiere che attrae fortemente gli acquirenti orientati al design in cerca di proprietà di carattere.',
+          es: 'NoMad — al Norte de Madison Square Park — ha emergido como una de las fronteras residenciales más emocionantes de Manhattan. La conversión de históricos edificios de oficinas de estilo Beaux-Arts en lujosos condominios ha creado un barrio que atrae fuertemente a compradores orientados al diseño.'
+        },
+        highlights: ['🏛 Beaux-Arts conversions with original facades', '🍽 Eataly, Eleven Madison Park, NoMad Hotel nearby', '🌿 Madison Square Park — year-round programming', '💼 Flatiron / Silicon Alley tech companies', '🎨 Design Week epicentre — Designers\' Atelier buildings', '📈 Highest appreciation rate of any area 2022–2025'],
+        market: [
+          { l: 'Median Sale Price', v: '$3,200,000', d: '+14.3%', up: true },
+          { l: 'Price Per Sq Ft', v: '$1,780', d: '+12.1%', up: true },
+          { l: 'Days on Market', v: '33', d: '-11%', up: true },
+          { l: 'New Dev. % of Stock', v: '64%', d: '+8pt', up: true },
+          { l: '5-Year Appreciation', v: '+38%', d: '', up: null },
+          { l: 'Rental Yield', v: '3.6%', d: '+0.5pt', up: true },
+        ],
+        listings: [
+          { emoji: '🏙', addr: '10 W 27th St, 14A', price: '$2.8M' },
+          { emoji: '🌆', addr: '30 E 29th St, 22B', price: '$3.5M' },
+        ]
+      },
+      {
+        id: 'nolita', name: 'Nolita', emoji: '🌺', tagline: 'Intimate Village Atmosphere',
+        type: 'boutique', zone: 'downtown', badge: 'Boutique', badgeClass: 'badge-boutique',
+        score: 87,
+        stats: { median: '$2.6M', psf: '$1,710', dom: '29 days' },
+        tags: ['Boutique Neighbourhood', 'Italian Heritage', 'Low-Rise Living', 'Café Culture', 'Historic Churches'],
+        desc: {
+          en: 'Nolita — North of Little Italy — is Manhattan\'s most intimate and European-feeling neighbourhood. Its low-rise scale, boutique independent shops, historic churches, and café culture feel closer to a Milanese neighbourhood than a Manhattan one. Small in geography but outsized in character, Nolita attracts buyers who value authenticity, community, and an off-the-grid quality of life.',
+          it: 'Nolita — a Nord di Little Italy — è il quartiere più intimo e dall\'atmosfera europea di Manhattan. La sua scala bassa, i negozi boutique indipendenti, le chiese storiche e la cultura dei caffè la fanno sembrare più simile a un quartiere milanese che a uno di Manhattan. Piccola nella geografia ma grande nel carattere, Nolita attrae acquirenti che valorizzano l\'autenticità.',
+          es: 'Nolita — al Norte de Little Italy — es el barrio más íntimo y de ambiente europeo de Manhattan. Su escala baja, tiendas boutique independientes, iglesias históricas y cultura de café se sienten más cercanas a un barrio milanés que a uno de Manhattan. Pequeño en geografía pero enorme en carácter, Nolita atrae a compradores que valoran la autenticidad.'
+        },
+        highlights: ['🇮🇹 Strongest Italian buyer preference of any downtown area', '☕ Independent café culture — no chains', '🕍 Landmark Old Saint Patrick\'s Cathedral', '🛍 Independent fashion boutiques on Mott & Mulberry', '🍝 Authentic Italian dining heritage', '📏 Low-rise scale — maximum 6 floors typical'],
+        market: [
+          { l: 'Median Sale Price', v: '$2,600,000', d: '+6.4%', up: true },
+          { l: 'Price Per Sq Ft', v: '$1,710', d: '+5.1%', up: true },
+          { l: 'Days on Market', v: '29', d: '-14%', up: true },
+          { l: 'Inventory', v: '18 units', d: '-21%', up: true },
+          { l: 'Avg. Unit Size', v: '1,250 sqft', d: '', up: null },
+          { l: 'Italian Buyer Share', v: '34%', d: '+8pt', up: true },
+        ],
+        listings: [
+          { emoji: '🌺', addr: '219 Mott St, 3A', price: '$2.1M' },
+          { emoji: '🏘', addr: '41 Spring St, 5B', price: '$3.2M' },
+        ]
+      },
+      {
+        id: 'tribecabattery', name: 'Battery Park City', emoji: '🌊', tagline: 'Waterfront Sanctuary',
+        type: 'family', zone: 'downtown', badge: 'Family', badgeClass: 'badge-family',
+        score: 84,
+        stats: { median: '$2.4M', psf: '$1,540', dom: '26 days' },
+        tags: ['Hudson River Waterfront', 'Parks', 'Family Amenities', 'New Developments', 'Marina'],
+        desc: {
+          en: 'Battery Park City is Manhattan\'s master-planned waterfront community — a neighbourhood built entirely on landfill at the southwestern tip of the island, offering uninterrupted Hudson River views and one of the city\'s most expansive park systems. Its planned character gives it the feel of a European residential district: wide esplanades, waterfront dining, and a genuine sense of community.',
+          it: 'Battery Park City è la comunità fronte mare pianificata di Manhattan — un quartiere costruito interamente su terreno bonificato all\'estremità sudoccidentale dell\'isola, che offre vedute ininterrotte dell\'Hudson River e uno dei sistemi di parchi più ampi della città.',
+          es: 'Battery Park City es la comunidad planificada frente al mar de Manhattan — un barrio construido completamente sobre relleno en la punta sudoccidental de la isla, que ofrece vistas ininterrumpidas del Hudson River y uno de los sistemas de parques más amplios de la ciudad.'
+        },
+        highlights: ['🌊 3.5 miles of riverfront esplanade', '⛵ North Cove Marina — direct boating access', '🌿 8 parks including Teardrop Park & Wagner Park', '🏫 Excellent public & private school options', '💼 World Financial Center — 5 min walk to work', '🏗 Modern building stock with superior amenities'],
+        market: [
+          { l: 'Median Sale Price', v: '$2,400,000', d: '+3.8%', up: true },
+          { l: 'Price Per Sq Ft', v: '$1,540', d: '+3.1%', up: true },
+          { l: 'Days on Market', v: '26', d: '-19%', up: true },
+          { l: 'Waterfront View Premium', v: '+24%', d: '', up: null },
+          { l: 'Rental Yield', v: '3.9%', d: '+0.4pt', up: true },
+          { l: 'Family Unit %', v: '62%', d: '', up: null },
+        ],
+        listings: [
+          { emoji: '🌊', addr: '200 Rector Pl, 28A', price: '$2.2M' },
+          { emoji: '🏙', addr: '300 Albany St, 32F', price: '$2.8M' },
+        ]
+      },
+      {
+        id: 'uppereastside', name: 'Upper East Side', emoji: '🏛', tagline: 'Museum Mile & Old-World Elegance',
+        type: 'luxury', zone: 'uptown', badge: 'Ultra-Luxury', badgeClass: 'badge-luxury',
+        score: 91,
+        stats: { median: '$3.8M', psf: '$1,840', dom: '44 days' },
+        tags: ['Museum Mile', 'Park Avenue', 'Pre-war White Glove', 'Co-op', 'Silk Stocking District'],
+        desc: {
+          en: 'The Upper East Side remains Manhattan\'s bastion of old-money elegance and institutional prestige. Park Avenue\'s grand pre-war co-op buildings, Museum Mile along Fifth Avenue, and the world\'s finest private schools define a neighbourhood where discretion, heritage, and architectural magnificence converge. Its co-op boards and strict purchase requirements make inventory scarce and values resilient.',
+          it: 'L\'Upper East Side rimane il bastione di Manhattan dell\'eleganza old-money e del prestigio istituzionale. I grandi edifici co-op pre-bellici di Park Avenue, la Museum Mile lungo Fifth Avenue e le migliori scuole private del mondo definiscono un quartiere dove discrezione, patrimonio e magnificenza architettonica convergono.',
+          es: 'El Upper East Side sigue siendo el bastión de Manhattan de la elegancia old-money y el prestigio institucional. Los grandiosos edificios co-op de preguerra de Park Avenue, la Milla de los Museos a lo largo de Fifth Avenue y las mejores escuelas privadas del mundo definen un barrio donde la discreción, el patrimonio y la magnificencia arquitectónica convergen.'
+        },
+        highlights: ['🏛 Metropolitan Museum, Guggenheim, The Frick on Museum Mile', '🌿 Central Park East frontage — direct park access', '🏫 Dalton, Brearley, Spence — top private schools', '🏠 Park Avenue white-glove co-ops — strictest boards', '🍽 Daniel, Majorelle, Rotisserie Georgette', '💼 Most private, low-profile neighbourhood in Manhattan'],
+        market: [
+          { l: 'Median Sale Price', v: '$3,800,000', d: '+4.6%', up: true },
+          { l: 'Price Per Sq Ft', v: '$1,840', d: '+3.9%', up: true },
+          { l: 'Days on Market', v: '44', d: '-2%', up: true },
+          { l: 'Co-op Share', v: '78%', d: '', up: null },
+          { l: 'Park Ave Premium', v: '+38%', d: '', up: null },
+          { l: '5th Ave Premium', v: '+52%', d: '', up: null },
+        ],
+        listings: [
+          { emoji: '🏛', addr: '35 E 76th St, 8F', price: '$2.1M' },
+          { emoji: '🌆', addr: '820 Park Ave, 9A', price: '$5.8M' },
+        ]
+      },
+      {
+        id: 'hudsonyard', name: 'Hudson Yards', emoji: '🔷', tagline: 'Manhattan\'s New Frontier',
+        type: 'luxury', zone: 'midtown', badge: 'Ultra-Luxury', badgeClass: 'badge-luxury',
+        score: 89,
+        stats: { median: '$5.4M', psf: '$2,210', dom: '48 days' },
+        tags: ['New Development', 'Vessel', 'The Shed', 'Hudson Yards Shops', 'Helipad Access'],
+        desc: {
+          en: 'Hudson Yards is Manhattan\'s most ambitious urban development — 28 acres above the West Side Rail Yard, transformed into a vertical city with towers reaching 1,000 feet. 15 and 35 Hudson Yards offer some of the most technically advanced residential amenities in the world, including Equinox Hotel access, full-floor residences, and LEED Platinum construction. A polarising but undeniably significant neighbourhood.',
+          it: 'Hudson Yards è il più ambizioso sviluppo urbano di Manhattan — 28 acri sopra il West Side Rail Yard, trasformati in una città verticale con torri che raggiungono 300 metri. 15 e 35 Hudson Yards offrono alcune delle amenità residenziali più tecnologicamente avanzate al mondo, incluso l\'accesso all\'Equinox Hotel e residenze su piano intero.',
+          es: 'Hudson Yards es el desarrollo urbano más ambicioso de Manhattan — 28 acres sobre el West Side Rail Yard, transformados en una ciudad vertical con torres que alcanzan los 300 metros. 15 y 35 Hudson Yards ofrecen algunas de las comodidades residenciales más avanzadas tecnológicamente del mundo.'
+        },
+        highlights: ['🔷 Vessel — iconic interactive public sculpture', '🎭 The Shed — cutting-edge cultural institution', '🛍 The Shops at Hudson Yards — ultra-luxury retail', '✈ Manhattan Heliport — 8 min by car', '🏗 LEED Platinum — most sustainable new dev in NY', '💼 KKR, BlackRock, CNN HQ in same complex'],
+        market: [
+          { l: 'Median Sale Price', v: '$5,400,000', d: '+16.2%', up: true },
+          { l: 'Price Per Sq Ft', v: '$2,210', d: '+14.8%', up: true },
+          { l: 'Days on Market', v: '48', d: '+3%', up: false },
+          { l: 'New Dev. Inventory', v: '86 units', d: '+34%', up: false },
+          { l: 'Full-Floor Units', v: '12 avail.', d: '', up: null },
+          { l: 'Rental Yield', v: '3.1%', d: '+0.6pt', up: true },
+        ],
+        listings: [
+          { emoji: '🔷', addr: '35 Hudson Yards, 54A', price: '$14.2M' },
+          { emoji: '🏙', addr: '15 Hudson Yards, 31B', price: '$7.6M' },
+        ]
+      },
+      {
+        id: 'financialdistrict', name: 'Financial District', emoji: '🗽', tagline: 'Wall Street Revival',
+        type: 'emerging', zone: 'downtown', badge: 'Emerging', badgeClass: 'badge-emerging',
+        score: 82,
+        stats: { median: '$1.9M', psf: '$1,380', dom: '24 days' },
+        tags: ['Historic Conversions', 'One World Trade', 'High Rental Yield', 'Transportation Hub', 'New to Residential'],
+        desc: {
+          en: 'The Financial District has undergone a remarkable residential transformation over the past decade. Former bank headquarters and office towers converted into luxury condominiums offer remarkable value relative to other Manhattan neighbourhoods, with competitive price-per-square-foot and excellent rental yields. Proximity to Brookfield Place, the 9/11 Memorial, and the Oculus transit hub add unique lifestyle dimensions.',
+          it: 'Il Financial District ha subito una notevole trasformazione residenziale nell\'ultimo decennio. Ex quartier generali bancari e torri per uffici convertiti in lussuosi condomini offrono un valore notevole rispetto agli altri quartieri di Manhattan, con prezzi per piede quadrato competitivi ed eccellenti rendimenti da locazione.',
+          es: 'El Financial District ha experimentado una notable transformación residencial en la última década. Antiguos cuarteles generales bancarios y torres de oficinas convertidas en lujosos condominios ofrecen un valor notable en comparación con otros barrios de Manhattan, con precios por pie cuadrado competitivos y excelentes rendimientos de alquiler.'
+        },
+        highlights: ['🏛 Gothic Revival & Beaux-Arts bank conversions', '🚇 Best transit access in Manhattan — 13 subway lines', '💰 Highest rental yields in Manhattan: 4–5%', '🗽 One World Trade Center — 1,776ft icon nearby', '🛍 Brookfield Place luxury retail atrium', '📈 Fastest-appreciating area 2020–2025 for investors'],
+        market: [
+          { l: 'Median Sale Price', v: '$1,900,000', d: '+8.9%', up: true },
+          { l: 'Price Per Sq Ft', v: '$1,380', d: '+7.2%', up: true },
+          { l: 'Days on Market', v: '24', d: '-22%', up: true },
+          { l: 'Rental Yield', v: '4.6%', d: '+0.8pt', up: true },
+          { l: 'Investor Purchase %', v: '41%', d: '+12pt', up: true },
+          { l: '5-Year Appreciation', v: '+42%', d: '', up: null },
+        ],
+        listings: [
+          { emoji: '🗽', addr: '20 Exchange Pl, 42A', price: '$1.65M' },
+          { emoji: '🏛', addr: '70 Pine St, 52B', price: '$2.4M' },
+        ]
+      },
+      {
+        id: 'carnegiehill', name: 'Carnegie Hill', emoji: '🎼', tagline: 'Quiet Prestige & Park Views',
+        type: 'family', zone: 'uptown', badge: 'Family', badgeClass: 'badge-family',
+        score: 86,
+        stats: { median: '$3.1M', psf: '$1,710', dom: '38 days' },
+        tags: ['Museum Mile North', 'Quiet Prestige', 'Pre-war', 'Family Living', 'Carnegie Hill Historic'],
+        desc: {
+          en: 'Carnegie Hill occupies the northern reaches of the Upper East Side, offering the neighbourhood\'s pre-war architectural heritage in a quieter, more residential setting. Bounded by Central Park to the west and the Jewish Museum and Cooper Hewitt to the south, its landmarked blocks of townhouses and apartment buildings attract families and discerning buyers seeking understated prestige.',
+          it: 'Carnegie Hill occupa le zone settentrionali dell\'Upper East Side, offrendo il patrimonio architettonico pre-bellico del quartiere in un ambiente più tranquillo e residenziale. Delimitata da Central Park a ovest e dal Jewish Museum e Cooper Hewitt a sud, attrae famiglie e acquirenti attenti che cercano un prestigio discreto.',
+          es: 'Carnegie Hill ocupa los confines septentrionales del Upper East Side, ofreciendo el patrimonio arquitectónico de preguerra del barrio en un entorno más tranquilo y residencial. Delimitada por Central Park al oeste y el Museo Judío y Cooper Hewitt al sur, atrae a familias y compradores selectos que buscan un prestigio discreto.'
+        },
+        highlights: ['🌿 Central Park at the doorstep — reservoir views', '🎼 Named for Carnegie Mansion — now Cooper Hewitt', '🏫 Brick Church School, Sacred Heart nearby', '🏛 Landmarked historic district — protected streetscape', '🍽 E.A.T., Caravaggio — neighbourhood dining institutions', '🔕 Quietest prestige neighbourhood in Manhattan'],
+        market: [
+          { l: 'Median Sale Price', v: '$3,100,000', d: '+4.1%', up: true },
+          { l: 'Price Per Sq Ft', v: '$1,710', d: '+3.6%', up: true },
+          { l: 'Days on Market', v: '38', d: '-7%', up: true },
+          { l: 'Townhouse Inventory', v: '8 avail.', d: '-30%', up: true },
+          { l: 'Co-op Share', v: '81%', d: '', up: null },
+          { l: 'Avg. Maintenance', v: '$3,200/mo', d: '', up: null },
+        ],
+        listings: [
+          { emoji: '🎼', addr: '40 E 94th St, 12D', price: '$2.8M' },
+          { emoji: '🏛', addr: '1185 Park Ave, 7W', price: '$4.2M' },
+        ]
+      },
+      {
+        id: 'dumbo', name: 'DUMBO (Brooklyn)', emoji: '🌉', tagline: 'Manhattan Views, Brooklyn Soul',
+        type: 'emerging', zone: 'downtown', badge: 'Emerging', badgeClass: 'badge-emerging',
+        score: 83,
+        stats: { median: '$2.2M', psf: '$1,490', dom: '22 days' },
+        tags: ['Brooklyn Bridge Views', 'Tech Hub', 'Cobblestone', 'Gallery District', 'Manhattan Adjacent'],
+        desc: {
+          en: 'DUMBO — Down Under the Manhattan Bridge Overpass — represents Brooklyn\'s most sought-after residential address, offering Manhattan Bridge and Brooklyn Bridge views at price points typically 25–35% below comparable Manhattan product. Its conversion of 19th-century warehouses into luxury loft residences, growing tech and creative scene, and waterfront access make it a compelling alternative for international buyers.',
+          it: 'DUMBO — Down Under the Manhattan Bridge Overpass — è l\'indirizzo residenziale più ambito di Brooklyn, offrendo vedute sul Manhattan Bridge e sul Brooklyn Bridge a prezzi tipicamente inferiori del 25–35% rispetto ai prodotti comparabili di Manhattan. La sua conversione di magazzini del XIX secolo e la crescente scena tecnologica e creativa ne fanno un\'alternativa convincente.',
+          es: 'DUMBO — Down Under the Manhattan Bridge Overpass — representa la dirección residencial más buscada de Brooklyn, ofreciendo vistas del Manhattan Bridge y del Brooklyn Bridge a precios típicamente un 25–35% más bajos que los productos comparables de Manhattan. La conversión de almacenes del siglo XIX y la creciente escena tecnológica lo convierten en una alternativa convincente.'
+        },
+        highlights: ['🌉 Iconic Manhattan & Brooklyn Bridge views', '🏗 19th-c. warehouse loft conversions — Dumbo Heights', '⛴ East River Ferry to Manhattan in 5 minutes', '🎨 Gallery district — DUMBO Arts Center', '💼 Amazon, Etsy, Vice HQ — major employers nearby', '📈 25–35% price discount vs comparable Manhattan lofts'],
+        market: [
+          { l: 'Median Sale Price', v: '$2,200,000', d: '+11.4%', up: true },
+          { l: 'Price Per Sq Ft', v: '$1,490', d: '+9.8%', up: true },
+          { l: 'Days on Market', v: '22', d: '-26%', up: true },
+          { l: 'Vs. Tribeca Discount', v: '-31%', d: '', up: null },
+          { l: 'Rental Yield', v: '4.2%', d: '+0.7pt', up: true },
+          { l: '5-Year Appreciation', v: '+47%', d: '', up: null },
+        ],
+        listings: [
+          { emoji: '🌉', addr: '1 Main St, 8C', price: '$1.9M' },
+          { emoji: '🏗', addr: '85 Adams St, 14A', price: '$2.6M' },
+        ]
+      }
+    ];
+
+    let activeFilter = 'all';
+    let currentNb = null;
+
+    function renderGrid(nbs) {
+      const grid = document.getElementById('nbGrid');
+      grid.innerHTML = nbs.map((nb, i) => `
+    <div class="nb-card" style="animation-delay:${i * 0.05}s" onclick="openDetail('${nb.id}')">
+      <div class="card-hero">
+        <div class="card-hero-bg">${nb.emoji}</div>
+        <div class="card-hero-gradient"></div>
+        <span class="card-type-badge ${nb.badgeClass}">${nb.badge}</span>
+        <div class="card-hero-content">
+          <div class="card-name">${nb.name}</div>
+          <div class="card-tagline">${nb.tagline}</div>
+        </div>
+      </div>
+      <div class="card-stats">
+        <div class="stat-cell"><div class="stat-val">${nb.stats.median}</div><div class="stat-lbl">Median Price</div></div>
+        <div class="stat-cell"><div class="stat-val">${nb.stats.psf}</div><div class="stat-lbl">Per Sq Ft</div></div>
+        <div class="stat-cell"><div class="stat-val">${nb.stats.dom}</div><div class="stat-lbl">Days on Mkt</div></div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">${nb.desc.en.substring(0, 120)}…</div>
+        <div class="card-tags">${nb.tags.slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="card-footer">
+        <div class="score-wrap">
+          <span class="score-label">Desirability</span>
+          <div class="score-bar"><div class="score-fill" style="width:${nb.score}%"></div></div>
+          <span class="score-num">${nb.score}</span>
+        </div>
+        <span class="card-cta">${nb.listings.length} listings →</span>
+      </div>
+    </div>
+  `).join('');
+    }
+
+    function setFilter(type, btn) {
+      activeFilter = type;
+      document.querySelectorAll('.filt-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    }
+
+    function filterNeighbourhoods() { applyFilters(); }
+
+    function applyFilters() {
+      const q = document.getElementById('nbSearch').value.toLowerCase();
+      let nbs = NEIGHBOURHOODS;
+      if (activeFilter !== 'all') {
+        if (activeFilter === 'downtown') nbs = nbs.filter(n => n.zone === 'downtown');
+        else if (activeFilter === 'midtown') nbs = nbs.filter(n => n.zone === 'midtown');
+        else if (activeFilter === 'uptown') nbs = nbs.filter(n => n.zone === 'uptown');
+        else if (activeFilter === 'luxury') nbs = nbs.filter(n => n.score >= 90);
+        else if (activeFilter === 'international') nbs = nbs.filter(n => ['tribeca', 'soho', 'nolita', 'westvillage', 'lincolnsquare'].includes(n.id));
+      }
+      if (q) nbs = nbs.filter(n => n.name.toLowerCase().includes(q) || n.tags.some(t => t.toLowerCase().includes(q)) || n.tagline.toLowerCase().includes(q));
+      renderGrid(nbs);
+    }
+
+    function openDetail(id) {
+      const nb = NEIGHBOURHOODS.find(n => n.id === id);
+      if (!nb) return;
+      currentNb = nb;
+      document.getElementById('dp-emoji').textContent = nb.emoji;
+      document.getElementById('dp-name').textContent = nb.name;
+      document.getElementById('dp-sub').textContent = nb.tagline + ' · Manhattan Neighbourhood Intelligence';
+      document.getElementById('dp-desc-en').textContent = nb.desc.en;
+      document.getElementById('dp-desc-it').textContent = nb.desc.it;
+      document.getElementById('dp-desc-es').textContent = nb.desc.es;
+      document.getElementById('dp-kpis').innerHTML = [
+        { v: nb.stats.median, l: 'Median Price' },
+        { v: nb.stats.psf, l: 'Per Sq Ft' },
+        { v: nb.stats.dom, l: 'Days on Market' },
+        { v: nb.score + '%', l: 'Desirability Score' }
+      ].map(k => `<div class="dp-kpi"><div class="dp-kpi-val">${k.v}</div><div class="dp-kpi-lbl">${k.l}</div></div>`).join('');
+      document.getElementById('dp-highlights').innerHTML = nb.highlights.map(h => `<div class="dp-hl"><span class="dp-hl-icon">${h.split(' ')[0]}</span><span class="dp-hl-text">${h.split(' ').slice(1).join(' ')}</span></div>`).join('');
+      document.getElementById('dp-market').innerHTML = nb.market.map(m => `
+    <div class="dp-market-row">
+      <span class="dp-mkt-label">${m.l}</span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="dp-mkt-val">${m.v}</span>
+        ${m.d ? `<span class="dp-mkt-delta ${m.up === null ? '' : 'm.up?delta-up:delta-dn'}">${m.d}</span>` : ''}
+      </div>
+    </div>
+  `).join('').replace(/m\.up\?delta-up:delta-dn/g, nb.market.map(m => m.up).join(',') ? '' : '');
+      // Fix delta classes
+      document.getElementById('dp-market').innerHTML = nb.market.map(m => `
+    <div class="dp-market-row">
+      <span class="dp-mkt-label">${m.l}</span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="dp-mkt-val">${m.v}</span>
+        ${m.d ? `<span class="dp-mkt-delta ${m.up === true ? 'delta-up' : m.up === false ? 'delta-dn' : ''}">${m.d}</span>` : ''}
+      </div>
+    </div>
+  `).join('');
+      document.getElementById('dp-listings').innerHTML = nb.listings.map(l => `
+    <div class="sb-listing" onclick="window.location.href='phase3_property_search.html'">
+      <div class="sb-thumb">${l.emoji}</div>
+      <div class="sb-addr">${l.addr}</div>
+      <div class="sb-price">${l.price}</div>
+    </div>
+  `).join('');
+      // Reset lang
+      switchDetailLang('en', document.querySelector('.dp-lang-tab'));
+      document.getElementById('detailOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function switchDetailLang(lang, btn) {
+      document.querySelectorAll('.dp-lang-tab').forEach(t => t.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      ['en', 'it', 'es'].forEach(l => {
+        const el = document.getElementById('dp-desc-' + l);
+        if (el) el.style.display = l === lang ? 'block' : 'none';
+      });
+    }
+
+    function closeDetail() {
+      document.getElementById('detailOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('detailOverlay')) closeDetail();
+    }
+
+    function setLang(l, btn) {
+      document.querySelectorAll('.lang-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      showToast('Language set to ' + l.toUpperCase());
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove('show'), 2600);
+    }
+
+    renderGrid(NEIGHBOURHOODS);
+  </script>
+  </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carini Group — Platform Hub</title>
+
+
+  <style>
+    :root {
+      --dark: #ffffff;
+      --dark2: #f8f7f5;
+      --dark3: #f1efeb;
+      --dark4: #e8e4de;
+      --dark5: #ddd8d0;
+
+      --gold: #c49a2e;
+      --gold-light: #d4a843;
+      --gold-l: #d4a843;
+      --gold-soft: #b08a24;
+      --gold-dim: rgba(196, 154, 46, 0.10);
+      --gold-glow: rgba(196, 154, 46, 0.16);
+
+      --cream: #1a1510;
+      --text: #1a1510;
+      --text-muted: rgba(26, 21, 16, 0.60);
+      --muted: rgba(26, 21, 16, 0.46);
+      --body: rgba(26, 21, 16, 0.74);
+
+      --border: rgba(212, 168, 67, 0.26);
+      --border-soft: rgba(212, 168, 67, 0.14);
+      --border-hard: rgba(212, 168, 67, 0.48);
+
+      --success: #3fd68a;
+      --success-dim: rgba(63, 214, 138, 0.14);
+      --warn: #f5a623;
+      --warn-dim: rgba(245, 166, 35, 0.14);
+      --danger: #f05252;
+      --danger-dim: rgba(240, 82, 82, 0.14);
+      --blue: #4dc8ff;
+      --blue-dim: rgba(77, 200, 255, 0.13);
+      --green: #4dd98a;
+      --green-dim: rgba(77, 217, 138, 0.13);
+      --red: #f06060;
+      --red-dim: rgba(240, 96, 96, 0.13);
+      --amber: #e8b24a;
+      --amber-dim: rgba(232, 178, 74, 0.13);
+
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-cormorant: 'Cormorant Garamond', serif;
+
+      --r: 5px;
+      --radius: 5px;
+      --t: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+      --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --shadow-gold: 0 0 28px rgba(212, 168, 67, 0.14);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(6, 5, 10, 0.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      color: var(--gold);
+      letter-spacing: .08em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .btn-signin {
+      padding: 8px 20px;
+      background: var(--gold);
+      border: none;
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: all .2s;
+    }
+
+    .btn-signin:hover {
+      background: var(--gold-light);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 140px 48px 80px;
+      text-align: center;
+      position: relative;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 11px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 24px;
+      background: var(--gold-dim);
+    }
+
+    .hero-badge::before {
+      content: '✦';
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 56px;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero-title em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      margin-top: 48px;
+    }
+
+    .hero-stat-val {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 4px;
+    }
+
+    .hero-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+    }
+
+    /* ── BUILD STATUS ── */
+    .build-bar {
+      margin: 0 48px 60px;
+      padding: 16px 24px;
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .build-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      white-space: nowrap;
+    }
+
+    .build-track {
+      flex: 1;
+      height: 6px;
+      background: var(--dark3);
+      border-radius: 3px;
+      min-width: 120px;
+      overflow: hidden;
+    }
+
+    .build-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 3px;
+      width: 85%;
+    }
+
+    .build-pct {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .build-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      padding: 0 48px 72px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+
+    /* ── MODULE CARDS ── */
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .module-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: all .25s cubic-bezier(.4, 0, .2, 1);
+      display: flex;
+      flex-direction: column;
+      animation: cardIn .4s ease both;
+    }
+
+    .module-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .module-card:nth-child(1) {
+      animation-delay: .05s
+    }
+
+    .module-card:nth-child(2) {
+      animation-delay: .1s
+    }
+
+    .module-card:nth-child(3) {
+      animation-delay: .15s
+    }
+
+    .module-card:nth-child(4) {
+      animation-delay: .2s
+    }
+
+    .module-card:nth-child(5) {
+      animation-delay: .25s
+    }
+
+    .module-card:nth-child(6) {
+      animation-delay: .3s
+    }
+
+    .module-card:nth-child(7) {
+      animation-delay: .35s
+    }
+
+    .module-card:nth-child(8) {
+      animation-delay: .4s
+    }
+
+    .module-card:nth-child(9) {
+      animation-delay: .45s
+    }
+
+    .module-card:nth-child(10) {
+      animation-delay: .5s
+    }
+
+    .module-card:nth-child(11) {
+      animation-delay: .55s
+    }
+
+    .card-top {
+      padding: 28px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-top::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    .card-phase {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .card-name {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .card-bottom {
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-fr {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .card-status {
+      font-size: 10px;
+      padding: 3px 10px;
+      border-radius: 10px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .status-complete {
+      background: rgba(76, 175, 125, 0.12);
+      color: var(--success);
+      border: 1px solid rgba(76, 175, 125, 0.2);
+    }
+
+    .status-existing {
+      background: rgba(100, 200, 255, 0.1);
+      color: #64c8ff;
+      border: 1px solid rgba(100, 200, 255, 0.2);
+    }
+
+    .status-partial {
+      background: rgba(232, 164, 60, 0.12);
+      color: #f5a623;
+      border: 1px solid rgba(232, 164, 60, 0.2);
+    }
+
+    .card-arrow {
+      font-size: 16px;
+      color: var(--text-muted);
+      transition: all .2s;
+    }
+
+    .module-card:hover .card-arrow {
+      color: var(--gold);
+      transform: translateX(4px);
+    }
+
+    /* ── FLOW DIAGRAM ── */
+    .flow-section {
+      padding: 0 48px 72px;
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .flow-grid::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 0 12px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flow-dot {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--dark2);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      transition: all .3s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .flow-dot:hover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+      transform: scale(1.08);
+    }
+
+    .flow-dot.gold {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    .flow-step-name {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .flow-step-name strong {
+      display: block;
+      color: var(--text);
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .flow-arrow {
+      position: absolute;
+      top: 35px;
+      right: -14px;
+      color: var(--border);
+      font-size: 18px;
+      z-index: 2;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      color: var(--gold);
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* ── v2.0 MODERNIZATION OVERRIDES ── */
+
+    /* Nav bars */
+    nav {
+      background: rgba(6, 5, 10, 0.96) !important;
+      backdrop-filter: blur(28px) saturate(2) !important;
+      border-bottom-color: rgba(212, 168, 67, 0.28) !important;
+    }
+
+    .nav-logo {
+      color: #d4a843 !important;
+      letter-spacing: .10em !important;
+    }
+
+    .nav-links a {
+      color: rgba(240, 235, 224, 0.55) !important;
+      font-size: 11.5px;
+      letter-spacing: .05em;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #d4a843 !important;
+    }
+
+    /* Top bar in app pages */
+    .topbar {
+      background: rgba(6, 5, 10, 0.95) !important;
+      border-bottom-color: rgba(212, 168, 67, 0.22) !important;
+      backdrop-filter: blur(20px) !important;
+    }
+
+    .topbar-title {
+      color: #f5efe3 !important;
+      font-size: 18px !important;
+    }
+
+    /* Sidebar */
+    .sb {
+      background: #0d0c10 !important;
+      border-right-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .sb-head {
+      border-bottom-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .sb-logo {
+      color: #d4a843 !important;
+    }
+
+    .sb-sub {
+      color: rgba(240, 235, 224, 0.42) !important;
+    }
+
+    .sidebar {
+      background: #0d0c10 !important;
+      border-right-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    /* Cards */
+    .module-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .module-card .card-top {
+      border-bottom-color: rgba(212, 168, 67, 0.16) !important;
+    }
+
+    .module-card .card-name {
+      color: #f5efe3 !important;
+    }
+
+    .module-card .card-phase {
+      color: #d4a843 !important;
+    }
+
+    .module-card .card-desc {
+      color: rgba(240, 235, 224, 0.60) !important;
+    }
+
+    .module-card:hover {
+      border-color: #d4a843 !important;
+    }
+
+    /* Hero area */
+    .hero-title {
+      color: #f5efe3 !important;
+    }
+
+    .hero-sub {
+      color: rgba(240, 235, 224, 0.68) !important;
+    }
+
+    .hero-badge {
+      color: #d4a843 !important;
+      border-color: rgba(212, 168, 67, 0.30) !important;
+    }
+
+    .hero-stat-val {
+      color: #d4a843 !important;
+    }
+
+    .hero-stat-label {
+      color: rgba(240, 235, 224, 0.55) !important;
+    }
+
+    .hero-divider {
+      background: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    /* Section labels */
+    .section-label {
+      color: #d4a843 !important;
+    }
+
+    .section-title {
+      color: #f5efe3 !important;
+    }
+
+    .section-sub {
+      color: rgba(240, 235, 224, 0.60) !important;
+    }
+
+    /* KPI tiles */
+    .kpi {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    .kpi-val {
+      color: #d4a843 !important;
+    }
+
+    .kpi-lbl {
+      color: rgba(240, 235, 224, 0.55) !important;
+    }
+
+    .kpi-delta {
+      font-size: 10px !important;
+    }
+
+    .delta-up {
+      color: #3fd68a !important;
+    }
+
+    .delta-down {
+      color: #f05252 !important;
+    }
+
+    /* Panels */
+    .panel {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .panel-header,
+    .ph {
+      border-bottom-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .panel-title,
+    .ph-title {
+      color: #f5efe3 !important;
+    }
+
+    .s-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .s-card-head {
+      border-bottom-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .s-card-title {
+      color: #f5efe3 !important;
+      font-weight: 500 !important;
+    }
+
+    /* Pills & tags */
+    .pill-g {
+      background: rgba(63, 214, 138, 0.14) !important;
+      color: #3fd68a !important;
+      border-color: rgba(63, 214, 138, 0.28) !important;
+    }
+
+    .pill-b {
+      background: rgba(77, 200, 255, 0.13) !important;
+      color: #4dc8ff !important;
+      border-color: rgba(77, 200, 255, 0.28) !important;
+    }
+
+    .pill-r {
+      background: rgba(240, 82, 82, 0.14) !important;
+      color: #f05252 !important;
+      border-color: rgba(240, 82, 82, 0.28) !important;
+    }
+
+    .pill-y {
+      background: rgba(245, 166, 35, 0.14) !important;
+      color: #f5a623 !important;
+      border-color: rgba(245, 166, 35, 0.28) !important;
+    }
+
+    .pill-a {
+      background: rgba(232, 178, 74, 0.13) !important;
+      color: #e8b24a !important;
+    }
+
+    /* Table */
+    .data-table th {
+      color: rgba(240, 235, 224, 0.50) !important;
+      letter-spacing: .10em !important;
+    }
+
+    .data-table td {
+      color: #f0ebe0 !important;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(212, 168, 67, 0.06) !important;
+    }
+
+    /* Build bar (index page) */
+    .build-bar {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .build-pct {
+      color: #d4a843 !important;
+    }
+
+    .build-fill {
+      background: linear-gradient(90deg, #d4a843, #f0c55a) !important;
+    }
+
+    /* Flow dots */
+    .flow-dot {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.28) !important;
+    }
+
+    .flow-dot.gold {
+      border-color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .flow-dot:hover {
+      border-color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.16) !important;
+    }
+
+    .flow-step-name {
+      color: rgba(240, 235, 224, 0.58) !important;
+    }
+
+    .flow-step-name strong {
+      color: #f0ebe0 !important;
+    }
+
+    /* Topbar actions */
+    .ph-action,
+    .panel-action {
+      color: rgba(240, 235, 224, 0.55) !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+      font-size: 11px !important;
+    }
+
+    .ph-action:hover,
+    .panel-action:hover {
+      color: #d4a843 !important;
+      border-color: #d4a843 !important;
+    }
+
+    /* Footer */
+    footer {
+      border-top-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .footer-logo {
+      color: #d4a843 !important;
+    }
+
+    .footer-note {
+      color: rgba(240, 235, 224, 0.38) !important;
+    }
+
+    .footer-links a {
+      color: rgba(240, 235, 224, 0.45) !important;
+    }
+
+    .footer-links a:hover {
+      color: #d4a843 !important;
+    }
+
+
+    /* ── INDEX PAGE ENHANCEMENTS ── */
+    .card-top::before {
+      background: linear-gradient(90deg, #d4a843 0%, rgba(212, 168, 67, 0.08) 100%) !important;
+      height: 2px !important;
+    }
+
+    .section-label::after {
+      background: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .build-track {
+      background: rgba(212, 168, 67, 0.10) !important;
+    }
+
+    .hero {
+      background: radial-gradient(ellipse 70% 60% at 50% -10%, rgba(212, 168, 67, 0.08) 0%, transparent 70%) !important;
+    }
+
+    .card-fr {
+      color: rgba(212, 168, 67, 0.55) !important;
+    }
+
+    .card-arrow {
+      color: rgba(240, 235, 224, 0.35) !important;
+    }
+
+    .module-card:hover .card-arrow {
+      color: #d4a843 !important;
+    }
+
+    .card-icon {
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+    }
+
+    .hero-badge::before {
+      color: #d4a843;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/shared.js" defer></script>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-logo">CARINI GROUP</div>
+    <div class="nav-links">
+      <a href="boutique-redesign.html">Home</a>
+      <a href="neighbourhood_hub.html">Neighbourhoods</a>
+      <a href="phase3_property_search.html">Properties</a>
+      <a href="international_hub.html">International</a>
+      <a href="lead_capture.html">Contact</a>
+    </div>
+    <a href="phase0_auth.html" class="btn-signin">Sign In to Portal</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Implementation Plan v1.0 — Platform Hub</div>
+    <h1 class="hero-title">Carini Group<br><em>Digital Platform</em></h1>
+    <p class="hero-sub">All 7 built modules, 4 original demos, and the complete implementation plan in one place.
+      Navigate between any module below.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val">7</div>
+        <div class="hero-stat-label">New Modules Built</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">72</div>
+        <div class="hero-stat-label">Functional Requirements</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">85%</div>
+        <div class="hero-stat-label">Spec Coverage</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">3</div>
+        <div class="hero-stat-label">Languages (EN/IT/ES)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUILD PROGRESS -->
+  <div class="build-bar">
+    <span class="build-label">Overall FR Coverage</span>
+    <div class="build-track">
+      <div class="build-fill" style="width:98%"></div>
+    </div>
+    <span class="build-pct">98%</span>
+    <span class="build-note">70 of 72 requirements implemented · Phases 0–3</span>
+  </div>
+
+  <!-- USER JOURNEY FLOW -->
+  <div class="flow-section">
+    <div class="section-label">User Journey</div>
+    <div class="section-title" style="margin-bottom:6px">Platform Flow</div>
+    <div class="section-sub">How users move through the platform</div>
+
+    <div class="flow-grid">
+      <div class="flow-step">
+        <a href="boutique-redesign.html" class="flow-dot gold">🏙</a>
+        <div class="flow-step-name"><strong>Public Site</strong>Homepage & Brand</div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-step">
+        <a href="phase3_property_search.html" class="flow-dot">🔍</a>
+        <div class="flow-step-name"><strong>Property Search</strong>Browse Listings</div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-step">
+        <a href="lead_capture.html" class="flow-dot">📝</a>
+        <div class="flow-step-name"><strong>Lead Capture</strong>Enquiry Form</div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-step">
+        <a href="phase0_auth.html" class="flow-dot">🔐</a>
+        <div class="flow-step-name"><strong>Auth Portal</strong>Secure Sign-In</div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-step">
+        <a href="phase3_dashboards.html" class="flow-dot gold">📊</a>
+        <div class="flow-step-name"><strong>Dashboard</strong>Client / Agent</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── NEWLY BUILT MODULES ── -->
+  <div class="section">
+    <div class="section-label">Phase 0 → 3 · Newly Built</div>
+    <div class="section-title">Platform Modules</div>
+    <div class="section-sub">7 interactive HTML demos covering all critical P1 functional requirements</div>
+
+    <div class="module-grid">
+      <!-- Auth -->
+      <a href="phase0_auth.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">🔐</div>
+          <div class="card-phase">Phase 0 · Authentication</div>
+          <div class="card-name">Auth & Registration</div>
+          <div class="card-desc">JWT login, 3-step registration wizard, role-based routing (client / agent / admin /
+            investor), password reset, and language preference setting.</div>
+        </div>
+        <div class="card-bottom">
+          <span class="card-fr">FR-001 – FR-006</span>
+          <span class="card-status status-complete">Complete</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- CRM -->
+      <a href="phase1_crm_pipeline.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">👥</div>
+          <div class="card-phase">Phase 1 · CRM</div>
+          <div class="card-name">CRM Pipeline Kanban</div>
+          <div class="card-desc">8-column drag-and-drop Kanban with 24 seeded leads, lead scoring (0–10), client
+            profiles, language routing, interaction logs, and follow-up triggers.</div>
+        </div>
+        <div class="card-bottom">
+          <span class="card-fr">FR-011 – FR-018</span>
+          <span class="card-status status-complete">Complete</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Deal Room -->
+      <a href="phase2_deal_room.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">📋</div>
+          <div class="card-phase">Phase 2 · Operations</div>
+          <div class="card-name">Deal Room</div>
+          <div class="card-desc">Per-deal workspaces with milestone tracker, document vault (AES-256), 3-column task
+            board, closing countdown with ICS, immutable deal messaging and participant access tokens.</div>
+        </div>
+        <div class="card-bottom">
+          <span class="card-fr">FR-027 – FR-033</span>
+          <span class="card-status status-complete">Complete</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Admin -->
+      <a href="phase2_admin_dashboard.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">⚙</div>
+          <div class="card-phase">Phase 2 · Administration</div>
+          <div class="card-name">Admin Dashboard</div>
+          <div class="card-desc">Live KPI tiles with real-time updates, pipeline overview, user management with RBAC
+            guard, configurable lead scoring weights, language routing toggles, and SHA-256 audit log.</div>
+        </div>
+        <div class="card-bottom">
+          <span class="card-fr">FR-009, FR-052–056</span>
+          <span class="card-status status-complete">Complete</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Property Search -->
+      <a href="phase3_property_search.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">🏙</div>
+          <div class="card-phase">Phase 3 · Public</div>
+          <div class="card-name">Property Search & Detail</div>
+          <div class="card-desc">Full listing grid with sidebar filters (price, type, beds, neighbourhood, amenities),
+            12 seeded listings, save-to-favourites, map toggle, and a complete property detail modal with market
+            comparables.</div>
+        </div>
+        <div class="card-bottom">
+          <span class="card-fr">FR-058, FR-059, FR-020</span>
+          <span class="card-status status-complete">Complete</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Dashboards -->
+      <a href="phase3_dashboards.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">📊</div>
+          <div class="card-phase">Phase 3 · Portals</div>
+          <div class="card-name">Client & Agent Dashboards</div>
+          <div class="card-desc">Role-switching portal: Client view shows deal progress, saved properties, document
+            vault, calendar and messages. Agent view shows pipeline KPIs, lead scoring, active deals and commission
+            tracker.</div>
+        </div>
+        <div class="card-bottom">
+          <span class="card-fr">FR-007, FR-008</span>
+          <span class="card-status status-complete">Complete</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- AI Generator -->
+      <a href="phase3_ai_generator.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">✨</div>
+          <div class="card-phase">Phase 3 · AI Tools</div>
+          <div class="card-name">AI Listing Generator</div>
+          <div class="card-desc">Generates professional listing descriptions in English, Italian, and Spanish using
+            Claude Sonnet 4 API. Five tone modes, quick-fill examples, streaming output, and one-click copy/save.
+            Target: all 3 languages in under 30 seconds.</div>
+        </div>
+        <div class="card-bottom">
+          <span class="card-fr">FR-034 · AC-012</span>
+          <span class="card-status status-complete">Complete</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── ORIGINAL DEMOS ── -->
+  <div class="section">
+    <div class="section-label">Original Prototypes</div>
+    <div class="section-title">Existing Demos</div>
+    <div class="section-sub">The four HTML prototypes from the gap analysis — design system source of truth</div>
+
+    <div class="module-grid">
+      <a href="boutique-redesign.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">🌟</div>
+          <div class="card-phase">Original Demo</div>
+          <div class="card-name">Homepage & Brand</div>
+          <div class="card-desc">Boutique homepage with hero animation, testimonials, gold marquee ticker, and the core
+            dark luxury design language that defines all subsequent modules.</div>
+        </div>
+        <div class="card-bottom">
+          <span class="card-fr">FR-057 (~30%)</span>
+          <span class="card-status status-existing">Existing</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="investor_portfolio.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">🏦</div>
+          <div class="card-phase">Original Demo</div>
+          <div class="card-name">Investor Portal</div>
+          <div class="card-desc">Investor dashboard with portfolio view, calendar, notification bell, and downloadable
+            market reports. Covers ~70% of FR-010 and FR-047.</div>
+        </div>
+        <div class="card-bottom">
+          <span class="card-fr">FR-010, FR-047 (~70%)</span>
+          <span class="card-status status-existing">Existing</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="international_hub.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">🌍</div>
+          <div class="card-phase">Original Demo</div>
+          <div class="card-name">International Hub</div>
+          <div class="card-desc">Multilingual portal with animated globe, currency/ROI calculator, 1031 Exchange
+            accordion, and consultation booking for Italian and Spanish-speaking buyers.</div>
+        </div>
+        <div class="card-bottom">
+          <span class="card-fr">FR-019, FR-023–024</span>
+          <span class="card-status status-existing">Existing</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lead_capture.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">📝</div>
+          <div class="card-phase">Original Demo</div>
+          <div class="card-name">Lead Capture Form</div>
+          <div class="card-desc">Multi-step lead capture form with buyer/investor quiz flow. Covers ~50% of FR-064 and
+            FR-026. Missing language field and CRM write integration noted in gap analysis.</div>
+        </div>
+        <div class="card-bottom">
+          <span class="card-fr">FR-064, FR-026 (~50%)</span>
+          <span class="card-status status-partial">Partial</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- OPEN QUESTIONS QUICK REF -->
+  <div class="section">
+    <div class="section-label">From Section 6.1</div>
+    <div class="section-title">Open Questions</div>
+    <div class="section-sub">Must be resolved before relevant phases begin — from Implementation Plan v1.0</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+      <div style="background:var(--dark2);border:1px solid var(--border);border-radius:6px;padding:16px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+          <span style="font-size:10px;color:var(--gold);font-family:var(--font-serif)">OQ-001</span>
+          <span style="font-size:10px;color:var(--text-muted)">Required by: Phase 1 start</span>
+        </div>
+        <div style="font-size:14px;color:var(--cream);font-weight:500;margin-bottom:6px">RLS API Credentials</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Does Carini Group have REBNY/RLS API
+          credentials, or does a new agreement need to be established?</div>
+      </div>
+      <div style="background:var(--dark2);border:1px solid var(--border);border-radius:6px;padding:16px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+          <span style="font-size:10px;color:var(--gold);font-family:var(--font-serif)">OQ-002</span>
+          <span style="font-size:10px;color:var(--text-muted)">Required by: Week 1 Phase 0</span>
+        </div>
+        <div style="font-size:14px;color:var(--cream);font-weight:500;margin-bottom:6px">Existing CMS</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.5">What is the existing carinigroup.com CMS?
+          Does any data need migration?</div>
+      </div>
+      <div style="background:var(--dark2);border:1px solid var(--border);border-radius:6px;padding:16px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+          <span style="font-size:10px;color:var(--gold);font-family:var(--font-serif)">OQ-003</span>
+          <span style="font-size:10px;color:var(--text-muted)">Required by: Phase 1 sprint</span>
+        </div>
+        <div style="font-size:14px;color:var(--cream);font-weight:500;margin-bottom:6px">Calendar System</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Google Calendar, Outlook, or other? Affects
+          FR-024 consultation booking.</div>
+      </div>
+      <div style="background:var(--dark2);border:1px solid var(--border);border-radius:6px;padding:16px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+          <span style="font-size:10px;color:var(--gold);font-family:var(--font-serif)">OQ-004</span>
+          <span style="font-size:10px;color:var(--text-muted)">Required by: Phase 3 planning</span>
+        </div>
+        <div style="font-size:14px;color:var(--cream);font-weight:500;margin-bottom:6px">WhatsApp Business API</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Is Meta Business Manager verification in
+          progress? Requires 1–4 week lead time.</div>
+      </div>
+      <div style="background:var(--dark2);border:1px solid var(--border);border-radius:6px;padding:16px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+          <span style="font-size:10px;color:var(--gold);font-family:var(--font-serif)">OQ-005</span>
+          <span style="font-size:10px;color:var(--text-muted)">Required by: Phase 2 planning</span>
+        </div>
+        <div style="font-size:14px;color:var(--cream);font-weight:500;margin-bottom:6px">E-Signature Solution</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.5">DocuSign, HelloSign, Adobe Sign — or is
+          e-signature out of scope?</div>
+      </div>
+      <div style="background:var(--dark2);border:1px solid var(--border);border-radius:6px;padding:16px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+          <span style="font-size:10px;color:var(--gold);font-family:var(--font-serif)">OQ-006</span>
+          <span style="font-size:10px;color:var(--text-muted)">Required by: Phase 1 sprint</span>
+        </div>
+        <div style="font-size:14px;color:var(--cream);font-weight:500;margin-bottom:6px">CRM Stage Names</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Default 8 stages can be renamed. Confirm
+          with Alex, Eddie, Vivek.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">CARINI GROUP LLC</div>
+    <div class="footer-links">
+      <a href="boutique-redesign.html">Public Site</a>
+      <a href="phase3_property_search.html">Properties</a>
+      <a href="international_hub.html">International</a>
+      <a href="phase0_auth.html">Agent Portal</a>
+    </div>
+  </footer>
+  </div>
+  <script>
+    (function () {
+      const cur = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('#cg-nav a.cgn-link').forEach(function (a) {
+        if (a.getAttribute('href') === cur) a.classL

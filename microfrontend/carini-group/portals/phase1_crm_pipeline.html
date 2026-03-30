@@ -1,0 +1,1906 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carini Group — CRM Pipeline</title>
+
+  <style>
+    :root {
+      --dark: #ffffff;
+      --dark2: #f8f7f5;
+      --dark3: #f1efeb;
+      --dark4: #e8e4de;
+      --dark5: #ddd8d0;
+
+      --gold: #c49a2e;
+      --gold-light: #d4a843;
+      --gold-l: #d4a843;
+      --gold-soft: #b08a24;
+      --gold-dim: rgba(196, 154, 46, 0.10);
+      --gold-glow: rgba(196, 154, 46, 0.16);
+
+      --cream: #1a1510;
+      --text: #1a1510;
+      --text-muted: rgba(26, 21, 16, 0.60);
+      --muted: rgba(26, 21, 16, 0.46);
+      --body: rgba(26, 21, 16, 0.74);
+
+      --border: rgba(212, 168, 67, 0.26);
+      --border-soft: rgba(212, 168, 67, 0.14);
+      --border-hard: rgba(212, 168, 67, 0.48);
+
+      --success: #3fd68a;
+      --success-dim: rgba(63, 214, 138, 0.14);
+      --warn: #f5a623;
+      --warn-dim: rgba(245, 166, 35, 0.14);
+      --danger: #f05252;
+      --danger-dim: rgba(240, 82, 82, 0.14);
+      --blue: #4dc8ff;
+      --blue-dim: rgba(77, 200, 255, 0.13);
+      --green: #4dd98a;
+      --green-dim: rgba(77, 217, 138, 0.13);
+      --red: #f06060;
+      --red-dim: rgba(240, 96, 96, 0.13);
+      --amber: #e8b24a;
+      --amber-dim: rgba(232, 178, 74, 0.13);
+
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-cormorant: 'Cormorant Garamond', serif;
+
+      --r: 5px;
+      --radius: 5px;
+      --t: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+      --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --shadow-gold: 0 0 28px rgba(212, 168, 67, 0.14);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      background: var(--dark2);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .35
+    }
+
+    /* ── LAYOUT ── */
+    .app {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh
+    }
+
+    /* ── SIDEBAR ── */
+    .sb {
+      background: var(--dark);
+      border-right: 1px solid rgba(201, 168, 76, .08);
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto
+    }
+
+    .sb-head {
+      padding: 24px 20px;
+      border-bottom: 1px solid rgba(201, 168, 76, .08)
+    }
+
+    .sb-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--gold);
+      margin-bottom: 1px
+    }
+
+    .sb-sub {
+      font-size: 8.5px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .sb-section {
+      padding: 16px 12px 8px;
+      font-size: 8.5px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid rgba(201, 168, 76, .06);
+      margin-top: 4px
+    }
+
+    .sb-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      font-size: 12.5px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s;
+      border-left: 2px solid transparent;
+      margin: 1px 8px;
+      border-radius: 2px
+    }
+
+    .sb-item:hover {
+      color: var(--cream);
+      background: var(--gold-dim)
+    }
+
+    .sb-item.active {
+      color: var(--gold);
+      background: var(--gold-dim);
+      border-left-color: var(--gold)
+    }
+
+    .sb-item svg {
+      opacity: .7;
+      flex-shrink: 0
+    }
+
+    .sb-badge {
+      margin-left: auto;
+      background: var(--red);
+      color: white;
+      font-size: 9px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      min-width: 18px;
+      text-align: center
+    }
+
+    .sb-badge.gold {
+      background: var(--gold);
+      color: var(--dark)
+    }
+
+    .sb-footer {
+      margin-top: auto;
+      padding: 16px;
+      border-top: 1px solid rgba(201, 168, 76, .08)
+    }
+
+    .sb-user {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .sb-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201, 168, 76, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      flex-shrink: 0
+    }
+
+    .sb-uname {
+      font-size: 12.5px;
+      color: var(--cream)
+    }
+
+    .sb-urole {
+      font-size: 9.5px;
+      color: var(--muted)
+    }
+
+    /* ── MAIN ── */
+    .main {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow: hidden
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      padding: 16px 28px;
+      background: var(--dark);
+      border-bottom: 1px solid rgba(201, 168, 76, .08);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 50
+    }
+
+    .topbar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--cream);
+      flex-shrink: 0
+    }
+
+    .topbar-title span {
+      font-size: 11px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--muted);
+      letter-spacing: .1em;
+      display: block;
+      margin-top: 1px
+    }
+
+    .topbar-search {
+      flex: 1;
+      max-width: 320px;
+      position: relative
+    }
+
+    .topbar-search input {
+      width: 100%;
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, .12);
+      color: var(--cream);
+      padding: 9px 14px 9px 36px;
+      font-size: 12.5px;
+      font-family: 'DM Sans', sans-serif;
+      outline: none
+    }
+
+    .topbar-search input::placeholder {
+      color: var(--muted)
+    }
+
+    .topbar-search svg {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: .4
+    }
+
+    .tb-filters {
+      display: flex;
+      gap: 8px;
+      margin-left: auto;
+      flex-wrap: wrap
+    }
+
+    .tb-filter {
+      padding: 7px 14px;
+      font-size: 10.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, .12);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s;
+      font-family: 'DM Sans', sans-serif
+    }
+
+    .tb-filter:hover,
+    .tb-filter.active {
+      border-color: rgba(201, 168, 76, .4);
+      color: var(--gold);
+      background: var(--gold-dim)
+    }
+
+    .tb-filter select {
+      background: none;
+      border: none;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      outline: none;
+      cursor: pointer;
+      padding: 0
+    }
+
+    option {
+      background: var(--dark2)
+    }
+
+    .tb-btn {
+      padding: 8px 18px;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 10.5px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .2s
+    }
+
+    .tb-btn:hover {
+      background: var(--gold-l)
+    }
+
+    /* ── PIPELINE METRICS ── */
+    .metrics-bar {
+      display: flex;
+      gap: 0;
+      padding: 0 28px;
+      background: var(--dark);
+      border-bottom: 1px solid rgba(201, 168, 76, .06);
+      overflow-x: auto
+    }
+
+    .metric {
+      padding: 14px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(201, 168, 76, .06);
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: background .2s
+    }
+
+    .metric:hover {
+      background: var(--gold-dim)
+    }
+
+    .metric-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--cream);
+      display: block
+    }
+
+    .metric-val.gold {
+      color: var(--gold)
+    }
+
+    .metric-label {
+      font-size: 9px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap
+    }
+
+    /* ── KANBAN WRAPPER ── */
+    .kanban-wrap {
+      flex: 1;
+      overflow-x: auto;
+      padding: 20px 24px;
+      background: var(--dark2)
+    }
+
+    .kanban {
+      display: flex;
+      gap: 10px;
+      min-width: max-content;
+      align-items: flex-start
+    }
+
+    /* ── COLUMN ── */
+    .col {
+      width: 220px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0
+    }
+
+    .col-head {
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid var(--col-color, rgba(201, 168, 76, .3));
+      background: var(--dark3);
+      margin-bottom: 8px;
+      position: sticky;
+      top: 0;
+      z-index: 10
+    }
+
+    .col-name {
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--cream);
+      flex: 1
+    }
+
+    .col-count {
+      font-size: 10px;
+      background: rgba(201, 168, 76, .15);
+      color: var(--gold);
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-weight: 500
+    }
+
+    .col-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-height: 80px
+    }
+
+    /* ── LEAD CARD ── */
+    .card {
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, .1);
+      padding: 12px 13px;
+      cursor: pointer;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2.5px;
+      background: var(--col-color, var(--gold));
+      opacity: .6
+    }
+
+    .card:hover {
+      border-color: rgba(201, 168, 76, .3);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .35)
+    }
+
+    .card.dragging {
+      opacity: .5;
+      border-style: dashed
+    }
+
+    .card.drag-over {
+      border-color: var(--gold);
+      background: var(--gold-dim)
+    }
+
+    .card-name {
+      font-size: 13px;
+      color: var(--cream);
+      font-weight: 500;
+      margin-bottom: 3px
+    }
+
+    .card-meta {
+      font-size: 10.5px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      line-height: 1.4
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-bottom: 8px
+    }
+
+    .tag {
+      padding: 2px 7px;
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-radius: 2px
+    }
+
+    .tag-lang {
+      background: rgba(107, 155, 207, .15);
+      color: var(--blue)
+    }
+
+    .tag-type {
+      background: var(--gold-dim);
+      color: var(--gold)
+    }
+
+    .tag-source {
+      background: rgba(107, 191, 107, .12);
+      color: var(--green)
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .card-score {
+      display: flex;
+      align-items: center;
+      gap: 5px
+    }
+
+    .score-dots {
+      display: flex;
+      gap: 2px
+    }
+
+    .score-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, .2)
+    }
+
+    .score-dot.on {
+      background: var(--gold)
+    }
+
+    .score-dot.high {
+      background: var(--green)
+    }
+
+    .score-num {
+      font-size: 10px;
+      color: var(--muted)
+    }
+
+    .card-date {
+      font-size: 9.5px;
+      color: var(--muted)
+    }
+
+    .card-actions {
+      display: none;
+      gap: 4px;
+      margin-top: 8px;
+      border-top: 1px solid rgba(201, 168, 76, .08);
+      padding-top: 8px
+    }
+
+    .card:hover .card-actions {
+      display: flex
+    }
+
+    .ca-btn {
+      flex: 1;
+      padding: 5px;
+      font-size: 9px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: none;
+      border: 1px solid rgba(201, 168, 76, .2);
+      color: var(--muted);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .2s
+    }
+
+    .ca-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    /* ── LEAD MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .75);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px
+    }
+
+    .modal-overlay.open {
+      display: flex
+    }
+
+    .modal {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, .2);
+      width: 640px;
+      max-width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, .6);
+      animation: fadeUp .3s ease
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .modal-head {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid rgba(201, 168, 76, .1);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px
+    }
+
+    .modal-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201, 168, 76, .25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--gold);
+      flex-shrink: 0
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--cream)
+    }
+
+    .modal-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px
+    }
+
+    .modal-close {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 20px;
+      padding: 0;
+      line-height: 1;
+      transition: color .2s
+    }
+
+    .modal-close:hover {
+      color: var(--cream)
+    }
+
+    .modal-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(201, 168, 76, .1);
+      padding: 0 28px
+    }
+
+    .m-tab {
+      padding: 12px 0;
+      margin-right: 24px;
+      font-size: 10.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 1.5px solid transparent;
+      transition: all .2s;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      font-family: 'DM Sans', sans-serif
+    }
+
+    .m-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold)
+    }
+
+    .modal-body {
+      padding: 24px 28px
+    }
+
+    .m-panel {
+      display: none
+    }
+
+    .m-panel.active {
+      display: block
+    }
+
+    .m-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px
+    }
+
+    .m-field label {
+      font-size: 9.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 5px
+    }
+
+    .m-field .val {
+      font-size: 13.5px;
+      color: var(--cream)
+    }
+
+    .m-field .val.gold {
+      color: var(--gold)
+    }
+
+    .score-bar-wrap {
+      margin: 16px 0
+    }
+
+    .score-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10.5px;
+      color: var(--muted);
+      margin-bottom: 6px
+    }
+
+    .score-bar {
+      height: 5px;
+      background: rgba(201, 168, 76, .12);
+      border-radius: 2px;
+      overflow: hidden
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--green));
+      border-radius: 2px;
+      transition: width .6s ease
+    }
+
+    .log-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(201, 168, 76, .06)
+    }
+
+    .log-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--dark3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0
+    }
+
+    .log-text {
+      font-size: 12.5px;
+      color: var(--body);
+      line-height: 1.5
+    }
+
+    .log-time {
+      font-size: 10.5px;
+      color: var(--muted);
+      display: block;
+      margin-top: 2px
+    }
+
+    .stage-select-wrap {
+      padding: 16px 0
+    }
+
+    .stage-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px
+    }
+
+    .stage-pill {
+      padding: 7px 12px;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(201, 168, 76, .15);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .stage-pill:hover {
+      border-color: rgba(201, 168, 76, .35);
+      color: var(--gold)
+    }
+
+    .stage-pill.current {
+      background: var(--gold);
+      color: var(--dark);
+      border-color: var(--gold)
+    }
+
+    /* ── NEW LEAD PANEL ── */
+    .nl-panel {
+      background: var(--dark3);
+      border: 1px dashed rgba(201, 168, 76, .2);
+      padding: 14px;
+      margin: 0 0 8px
+    }
+
+    .nl-panel input,
+    .nl-panel select {
+      width: 100%;
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, .12);
+      color: var(--cream);
+      padding: 9px 12px;
+      font-size: 12.5px;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      margin-bottom: 8px
+    }
+
+    .nl-panel input::placeholder {
+      color: var(--muted)
+    }
+
+    option {
+      background: var(--dark2)
+    }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      padding: 12px 18px;
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, .25);
+      font-size: 12px;
+      color: var(--cream);
+      z-index: 10000;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all .35s;
+      max-width: 280px;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, .5)
+    }
+
+    #toast.show {
+      transform: none;
+      opacity: 1
+    }
+
+    /* ── EMPTY COL ── */
+    .col-empty {
+      padding: 16px;
+      text-align: center;
+      border: 1px dashed rgba(201, 168, 76, .1);
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    /* ── ADD CARD BTN ── */
+    .add-card-btn {
+      width: 100%;
+      padding: 8px;
+      background: none;
+      border: 1px dashed rgba(201, 168, 76, .12);
+      color: var(--muted);
+      font-size: 11px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 6px
+    }
+
+    .add-card-btn:hover {
+      border-color: rgba(201, 168, 76, .35);
+      color: var(--gold)
+    }
+
+    /* ── v2.0 MODERNIZATION OVERRIDES ── */
+
+    /* Nav bars */
+    nav {
+      background: rgba(6, 5, 10, 0.96) !important;
+      backdrop-filter: blur(28px) saturate(2) !important;
+      border-bottom-color: rgba(212, 168, 67, 0.28) !important;
+    }
+
+    .nav-logo {
+      color: #d4a843 !important;
+      letter-spacing: .10em !important;
+    }
+
+    .nav-links a {
+      color: rgba(240, 235, 224, 0.55) !important;
+      font-size: 11.5px;
+      letter-spacing: .05em;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #d4a843 !important;
+    }
+
+    /* Top bar in app pages */
+    .topbar {
+      background: rgba(6, 5, 10, 0.95) !important;
+      border-bottom-color: rgba(212, 168, 67, 0.22) !important;
+      backdrop-filter: blur(20px) !important;
+    }
+
+    .topbar-title {
+      color: #f5efe3 !important;
+      font-size: 18px !important;
+    }
+
+    /* Sidebar */
+    .sb {
+      background: #0d0c10 !important;
+      border-right-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .sb-head {
+      border-bottom-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .sb-logo {
+      color: #d4a843 !important;
+    }
+
+    .sb-sub {
+      color: rgba(240, 235, 224, 0.42) !important;
+    }
+
+    .sidebar {
+      background: #0d0c10 !important;
+      border-right-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    /* Cards */
+    .module-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .module-card .card-top {
+      border-bottom-color: rgba(212, 168, 67, 0.16) !important;
+    }
+
+    .module-card .card-name {
+      color: #f5efe3 !important;
+    }
+
+    .module-card .card-phase {
+      color: #d4a843 !important;
+    }
+
+    .module-card .card-desc {
+      color: rgba(240, 235, 224, 0.60) !important;
+    }
+
+    .module-card:hover {
+      border-color: #d4a843 !important;
+    }
+
+    /* Hero area */
+    .hero-title {
+      color: #f5efe3 !important;
+    }
+
+    .hero-sub {
+      color: rgba(240, 235, 224, 0.68) !important;
+    }
+
+    .hero-badge {
+      color: #d4a843 !important;
+      border-color: rgba(212, 168, 67, 0.30) !important;
+    }
+
+    .hero-stat-val {
+      color: #d4a843 !important;
+    }
+
+    .hero-stat-label {
+      color: rgba(240, 235, 224, 0.55) !important;
+    }
+
+    .hero-divider {
+      background: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    /* Section labels */
+    .section-label {
+      color: #d4a843 !important;
+    }
+
+    .section-title {
+      color: #f5efe3 !important;
+    }
+
+    .section-sub {
+      color: rgba(240, 235, 224, 0.60) !important;
+    }
+
+    /* KPI tiles */
+    .kpi {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    .kpi-val {
+      color: #d4a843 !important;
+    }
+
+    .kpi-lbl {
+      color: rgba(240, 235, 224, 0.55) !important;
+    }
+
+    .kpi-delta {
+      font-size: 10px !important;
+    }
+
+    .delta-up {
+      color: #3fd68a !important;
+    }
+
+    .delta-down {
+      color: #f05252 !important;
+    }
+
+    /* Panels */
+    .panel {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .panel-header,
+    .ph {
+      border-bottom-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .panel-title,
+    .ph-title {
+      color: #f5efe3 !important;
+    }
+
+    .s-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .s-card-head {
+      border-bottom-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .s-card-title {
+      color: #f5efe3 !important;
+      font-weight: 500 !important;
+    }
+
+    /* Pills & tags */
+    .pill-g {
+      background: rgba(63, 214, 138, 0.14) !important;
+      color: #3fd68a !important;
+      border-color: rgba(63, 214, 138, 0.28) !important;
+    }
+
+    .pill-b {
+      background: rgba(77, 200, 255, 0.13) !important;
+      color: #4dc8ff !important;
+      border-color: rgba(77, 200, 255, 0.28) !important;
+    }
+
+    .pill-r {
+      background: rgba(240, 82, 82, 0.14) !important;
+      color: #f05252 !important;
+      border-color: rgba(240, 82, 82, 0.28) !important;
+    }
+
+    .pill-y {
+      background: rgba(245, 166, 35, 0.14) !important;
+      color: #f5a623 !important;
+      border-color: rgba(245, 166, 35, 0.28) !important;
+    }
+
+    .pill-a {
+      background: rgba(232, 178, 74, 0.13) !important;
+      color: #e8b24a !important;
+    }
+
+    /* Table */
+    .data-table th {
+      color: rgba(240, 235, 224, 0.50) !important;
+      letter-spacing: .10em !important;
+    }
+
+    .data-table td {
+      color: #f0ebe0 !important;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(212, 168, 67, 0.06) !important;
+    }
+
+    /* Build bar (index page) */
+    .build-bar {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .build-pct {
+      color: #d4a843 !important;
+    }
+
+    .build-fill {
+      background: linear-gradient(90deg, #d4a843, #f0c55a) !important;
+    }
+
+    /* Flow dots */
+    .flow-dot {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.28) !important;
+    }
+
+    .flow-dot.gold {
+      border-color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .flow-dot:hover {
+      border-color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.16) !important;
+    }
+
+    .flow-step-name {
+      color: rgba(240, 235, 224, 0.58) !important;
+    }
+
+    .flow-step-name strong {
+      color: #f0ebe0 !important;
+    }
+
+    /* Topbar actions */
+    .ph-action,
+    .panel-action {
+      color: rgba(240, 235, 224, 0.55) !important;
+      border-color: rgba(212, 168, 67, 0.22) !important;
+      font-size: 11px !important;
+    }
+
+    .ph-action:hover,
+    .panel-action:hover {
+      color: #d4a843 !important;
+      border-color: #d4a843 !important;
+    }
+
+    /* Footer */
+    footer {
+      border-top-color: rgba(212, 168, 67, 0.22) !important;
+    }
+
+    .footer-logo {
+      color: #d4a843 !important;
+    }
+
+    .footer-note {
+      color: rgba(240, 235, 224, 0.38) !important;
+    }
+
+    .footer-links a {
+      color: rgba(240, 235, 224, 0.45) !important;
+    }
+
+    .footer-links a:hover {
+      color: #d4a843 !important;
+    }
+
+
+    /* ── CRM PIPELINE ENHANCEMENTS ── */
+    .col-header {
+      background: linear-gradient(180deg, #151318, #0d0c10) !important;
+      border-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    .col-title {
+      color: #f5efe3 !important;
+      font-weight: 600 !important;
+    }
+
+    .col-count {
+      background: rgba(212, 168, 67, 0.14) !important;
+      color: #d4a843 !important;
+      border-color: rgba(212, 168, 67, 0.28) !important;
+    }
+
+    .lead-card {
+      
+      border-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .lead-card:hover {
+      border-color: rgba(212, 168, 67, 0.38) !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55) !important;
+    }
+
+    .lead-name {
+      color: #f0ebe0 !important;
+      font-weight: 500 !important;
+    }
+
+    .lead-prop {
+      color: rgba(240, 235, 224, 0.58) !important;
+    }
+
+    .lead-score {
+      background: rgba(212, 168, 67, 0.14) !important;
+      color: #d4a843 !important;
+    }
+
+    .score-high {
+      color: #3fd68a !important;
+      background: rgba(63, 214, 138, 0.12) !important;
+    }
+
+    .score-med {
+      color: #f5a623 !important;
+      background: rgba(245, 166, 35, 0.12) !important;
+    }
+
+    .score-low {
+      color: #f05252 !important;
+      background: rgba(240, 82, 82, 0.12) !important;
+    }
+
+    .tag {
+      background: rgba(212, 168, 67, 0.10) !important;
+      color: rgba(240, 235, 224, 0.58) !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .tag-it {
+      background: rgba(212, 168, 67, 0.12) !important;
+      color: #d4a843 !important;
+    }
+
+    .tag-es {
+      background: rgba(77, 200, 255, 0.10) !important;
+      color: #4dc8ff !important;
+    }
+
+    .kanban-col {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.14) !important;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/shared.js" defer></script>
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sb">
+      <div class="sb-head">
+        <div class="sb-logo">Carini Group</div>
+        <div class="sb-sub">CRM · Pipeline</div>
+      </div>
+      <nav style="padding:8px 0">
+        <div class="sb-section">Overview</div>
+        <div class="sb-item" onclick="location.href='phase3_dashboards.html'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+          </svg>
+          Dashboard
+        </div>
+        <div class="sb-section">CRM</div>
+        <div class="sb-item active">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="5" height="18" />
+            <rect x="10" y="8" width="5" height="13" />
+            <rect x="17" y="5" width="5" height="16" />
+          </svg>
+          Pipeline <span class="sb-badge">3</span>
+        </div>
+        <div class="sb-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          All Leads <span class="sb-badge gold">47</span>
+        </div>
+        <div class="sb-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          Clients
+        </div>
+        <div class="sb-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Follow-Ups <span class="sb-badge">5</span>
+        </div>
+        <div class="sb-section">Properties</div>
+        <div class="sb-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9,22 9,12 15,12 15,22" />
+          </svg>
+          Listings
+        </div>
+        <div class="sb-item" onclick="location.href='international_hub.html'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+          </svg>
+          International
+        </div>
+        <div class="sb-section">Reports</div>
+        <div class="sb-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+          Analytics
+        </div>
+      </nav>
+      <div class="sb-footer">
+        <div class="sb-user">
+          <div class="sb-avatar">AC</div>
+          <div>
+            <div class="sb-uname">Alex Carini</div>
+            <div class="sb-urole">Agent · NYC</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+      <!-- TOPBAR -->
+      <div class="topbar">
+        <div class="topbar-title">
+          Pipeline Board
+          <span>CRM · Lead Management · FR-011–018</span>
+        </div>
+        <div class="topbar-search">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input placeholder="Search leads…" oninput="filterCards(this.value)" />
+        </div>
+        <div class="tb-filters">
+          <div class="tb-filter">
+            <select onchange="filterByLang(this.value)">
+              <option value="">All Languages</option>
+              <option value="EN">English</option>
+              <option value="IT">Italiano</option>
+              <option value="ES">Español</option>
+            </select>
+          </div>
+          <div class="tb-filter">
+            <select onchange="filterByType(this.value)">
+              <option value="">All Types</option>
+              <option value="Buy">Buyer</option>
+              <option value="Sell">Seller</option>
+              <option value="Invest">Investor</option>
+              <option value="Rent">Rental</option>
+            </select>
+          </div>
+          <button class="tb-btn" onclick="openNewLead()">+ New Lead</button>
+        </div>
+      </div>
+
+      <!-- METRICS BAR -->
+      <div class="metrics-bar">
+        <div class="metric"><span class="metric-val gold">47</span><span class="metric-label">Total Active Leads</span>
+        </div>
+        <div class="metric"><span class="metric-val">$8.4M</span><span class="metric-label">Pipeline Value</span></div>
+        <div class="metric"><span class="metric-val" style="color:var(--green)">12</span><span class="metric-label">Hot
+            Leads (Score 8+)</span></div>
+        <div class="metric"><span class="metric-val" style="color:var(--blue)">8</span><span
+            class="metric-label">International Buyers</span></div>
+        <div class="metric"><span class="metric-val">14d</span><span class="metric-label">Avg. Time to Offer</span>
+        </div>
+        <div class="metric"><span class="metric-val" style="color:var(--amber)">5</span><span
+            class="metric-label">Follow-ups Due Today</span></div>
+      </div>
+
+      <!-- KANBAN BOARD -->
+      <div class="kanban-wrap">
+        <div class="kanban" id="kanban">
+
+          <!-- Inquiry -->
+          <div class="col" id="col-inquiry">
+            <div class="col-head" style="--col-color:#6b9bcf">
+              <span class="col-name">Inquiry</span>
+              <span class="col-count" id="cnt-inquiry">5</span>
+            </div>
+            <div class="col-cards" id="cards-inquiry" ondragover="onDragOver(event,'inquiry')"
+              ondrop="onDrop(event,'inquiry')" ondragleave="onDragLeave(event)"></div>
+            <button class="add-card-btn" onclick="openNewLead('inquiry')">+ Add Lead</button>
+          </div>
+
+          <!-- Consultation -->
+          <div class="col" id="col-consultation">
+            <div class="col-head" style="--col-color:#d4a843">
+              <span class="col-name">Consultation</span>
+              <span class="col-count" id="cnt-consultation">4</span>
+            </div>
+            <div class="col-cards" id="cards-consultation" ondragover="onDragOver(event,'consultation')"
+              ondrop="onDrop(event,'consultation')" ondragleave="onDragLeave(event)"></div>
+            <button class="add-card-btn" onclick="openNewLead('consultation')">+ Add Lead</button>
+          </div>
+
+          <!-- Property Search -->
+          <div class="col" id="col-search">
+            <div class="col-head" style="--col-color:#f0c55a">
+              <span class="col-name">Prop. Search</span>
+              <span class="col-count" id="cnt-search">6</span>
+            </div>
+            <div class="col-cards" id="cards-search" ondragover="onDragOver(event,'search')"
+              ondrop="onDrop(event,'search')" ondragleave="onDragLeave(event)"></div>
+            <button class="add-card-btn" onclick="openNewLead('search')">+ Add Lead</button>
+          </div>
+
+          <!-- Viewings -->
+          <div class="col" id="col-viewings">
+            <div class="col-head" style="--col-color:#cfaa6b">
+              <span class="col-name">Viewings</span>
+              <span class="col-count" id="cnt-viewings">5</span>
+            </div>
+            <div class="col-cards" id="cards-viewings" ondragover="onDragOver(event,'viewings')"
+              ondrop="onDrop(event,'viewings')" ondragleave="onDragLeave(event)"></div>
+            <button class="add-card-btn" onclick="openNewLead('viewings')">+ Add Lead</button>
+          </div>
+
+          <!-- Offer -->
+          <div class="col" id="col-offer">
+            <div class="col-head" style="--col-color:#f06060">
+              <span class="col-name">Offer</span>
+              <span class="col-count" id="cnt-offer">3</span>
+            </div>
+            <div class="col-cards" id="cards-offer" ondragover="onDragOver(event,'offer')"
+              ondrop="onDrop(event,'offer')" ondragleave="onDragLeave(event)"></div>
+            <button class="add-card-btn" onclick="openNewLead('offer')">+ Add Lead</button>
+          </div>
+
+          <!-- Negotiation -->
+          <div class="col" id="col-negotiation">
+            <div class="col-head" style="--col-color:#e89090">
+              <span class="col-name">Negotiation</span>
+              <span class="col-count" id="cnt-negotiation">3</span>
+            </div>
+            <div class="col-cards" id="cards-negotiation" ondragover="onDragOver(event,'negotiation')"
+              ondrop="onDrop(event,'negotiation')" ondragleave="onDragLeave(event)"></div>
+            <button class="add-card-btn" onclick="openNewLead('negotiation')">+ Add Lead</button>
+          </div>
+
+          <!-- Contract -->
+          <div class="col" id="col-contract">
+            <div class="col-head" style="--col-color:#90c890">
+              <span class="col-name">Contract</span>
+              <span class="col-count" id="cnt-contract">3</span>
+            </div>
+            <div class="col-cards" id="cards-contract" ondragover="onDragOver(event,'contract')"
+              ondrop="onDrop(event,'contract')" ondragleave="onDragLeave(event)"></div>
+            <button class="add-card-btn" onclick="openNewLead('contract')">+ Add Lead</button>
+          </div>
+
+          <!-- Close -->
+          <div class="col" id="col-close">
+            <div class="col-head" style="--col-color:#4dd98a">
+              <span class="col-name">Closed ✓</span>
+              <span class="col-count" id="cnt-close">3</span>
+            </div>
+            <div class="col-cards" id="cards-close" ondragover="onDragOver(event,'close')"
+              ondrop="onDrop(event,'close')" ondragleave="onDragLeave(event)"></div>
+            <button class="add-card-btn" onclick="openNewLead('close')">+ Add Lead</button>
+          </div>
+
+        </div>
+      </div>
+    </div><!-- /main -->
+  </div>
+
+  <!-- LEAD MODAL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+    <div class="modal" id="modal">
+      <div class="modal-head">
+        <div class="modal-avatar" id="modal-avatar">?</div>
+        <div>
+          <div class="modal-title" id="modal-name">Lead Name</div>
+          <div class="modal-subtitle" id="modal-sub">Stage · Source</div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-tabs">
+        <button class="m-tab active" onclick="mTab('profile',this)">Profile</button>
+        <button class="m-tab" onclick="mTab('score',this)">Lead Score</button>
+        <button class="m-tab" onclick="mTab('log',this)">Activity Log</button>
+        <button class="m-tab" onclick="mTab('stage',this)">Move Stage</button>
+      </div>
+      <div class="modal-body">
+        <div id="m-profile" class="m-panel active">
+          <div class="m-grid" id="profile-grid"></div>
+        </div>
+        <div id="m-score" class="m-panel">
+          <div class="score-bar-wrap">
+            <div class="score-bar-label"><span>Lead Score</span><span id="score-display"
+                style="color:var(--gold);font-size:16px;font-family:'Playfair Display',serif">–</span></div>
+            <div class="score-bar">
+              <div class="score-bar-fill" id="score-fill" style="width:0%"></div>
+            </div>
+          </div>
+          <div class="m-grid" id="score-factors" style="gap:10px;margin-top:16px"></div>
+        </div>
+        <div id="m-log" class="m-panel">
+          <div id="log-list"></div>
+        </div>
+        <div id="m-stage" class="m-panel">
+          <p style="font-size:12.5px;color:var(--muted);margin-bottom:16px">Select a new stage for this lead. An
+            automated follow-up email will be sent within 60 seconds in the client's preferred language.</p>
+          <div class="stage-pills" id="stage-pills"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW LEAD MODAL -->
+  <div class="modal-overlay" id="nl-overlay" onclick="closeNL(event)">
+    <div class="modal" style="max-width:480px">
+      <div class="modal-head">
+        <div class="modal-avatar">+</div>
+        <div>
+          <div class="modal-title">New Lead</div>
+          <div class="modal-subtitle">Creates CRM record with source tag and auto-scores within 5s</div>
+        </div>
+        <button class="modal-close" onclick="closeNL()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="f-group">
+          <label class="f-label">Full Name</label>
+          <input id="nl-name" class="f-input"
+            style="width:100%;background:var(--dark3);border:1px solid rgba(201,168,76,.15);color:var(--cream);padding:11px 14px;font-size:13.5px;font-family:'DM Sans',sans-serif;outline:none"
+            placeholder="Client full name" type="text" />
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+          <div>
+            <label class="f-label">Language</label>
+            <select id="nl-lang" class="f-input f-select"
+              style="width:100%;background:var(--dark3);border:1px solid rgba(201,168,76,.15);color:var(--cream);padding:11px 14px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none">
+              <option value="EN">English</option>
+              <option value="IT">Italiano</option>
+              <option value="ES">Español</option>
+            </select>
+          </div>
+          <div>
+            <label class="f-label">Type</label>
+            <select id="nl-type" class="f-input f-select"
+              style="width:100%;background:var(--dark3);border:1px solid rgba(201,168,76,.15);color:var(--cream);padding:11px 14px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none">
+              <option value="Buy">Buyer</option>
+              <option value="Sell">Seller</option>
+              <option value="Invest">Investor</option>
+              <option value="Rent">Rental</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+          <div>
+            <label class="f-label">Budget</label>
+            <select id="nl-budget" class="f-input f-select"
+              style="width:100%;background:var(--dark3);border:1px solid rgba(201,168,76,.15);color:var(--cream);padding:11px 14px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none">
+              <option value="low">Under $1M</option>
+              <option value="mid" selected>$1M – $3M</option>
+              <option value="high">$3M – $7M</option>
+              <option value="ultra">$7M+</option>
+            </select>
+          </div>
+          <div>
+            <label class="f-label">Lead Source</label>
+            <select id="nl-source" class="f-input f-select"
+              style="width:100%;background:var(--dark3);border:1px solid rgba(201,168,76,.15);color:var(--cream);padding:11px 14px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none">
+              <option>Website</option>
+              <option>Referral</option>
+              <option>LinkedIn</option>
+              <option>Portal</option>
+              <option>Phone</option>
+            </select>
+          </div>
+        </div>
+        <button class="f-btn" style="margin-top:20px;width:100%;padding:13px" onclick="createLead()">Create Lead &
+          Auto-Score</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    const STAGES = ['inquiry', 'consultation', 'search', 'viewings', 'offer', 'negotiation', 'contract', 'close'];
+    const STAGE_LABELS = { inquiry: 'Inquiry', consultation: 'Consultation', search: 'Prop. Search', viewings: 'Viewings', offer: 'Offer', negotiation: 'Negotiation', contract: 'Contract', close: 'Closed ✓' };
+
+    let leads = [
+      { id: 1, name: 'Marco Rossi', email: 'marco@email.com', stage: 'consultation', lang: 'IT', type: 'Buy', source: 'Portal', score: 9, budget: '$3.2M', neighbourhood: 'Upper West Side', timeline: '60 days', notes: 'Relocating from Milan. Pre-approved. Urgent.', log: [{ icon: '📞', text: 'Initial call — 45 min. Very motivated buyer, relocating for work.', time: '2h ago' }, { icon: '✉️', text: 'Sent property brochures for UWS listings in Italian.', time: '1d ago' }] },
+      { id: 2, name: 'Sarah Chen', email: 'sarah@email.com', stage: 'viewings', lang: 'EN', type: 'Buy', source: 'Website', score: 8, budget: '$2.1M', neighbourhood: 'Tribeca', timeline: '90 days', notes: 'Cash buyer. Prefers modern construction.', log: [{ icon: '🏠', text: 'Viewing at 320 Canal St — very positive response.', time: '3h ago' }, { icon: '📝', text: 'Updated budget preference to $2.1M from $1.8M.', time: '2d ago' }] },
+      { id: 3, name: 'Eduardo García', email: 'edu@email.com', stage: 'inquiry', lang: 'ES', type: 'Invest', source: 'LinkedIn', score: 7, budget: '$5M+', neighbourhood: 'Any', timeline: '180 days', notes: 'Looking to diversify portfolio into NYC real estate.', log: [{ icon: '✉️', text: 'Inbound inquiry via LinkedIn — responded with intro deck.', time: '1h ago' }] },
+      { id: 4, name: 'Jennifer Walsh', email: 'jen@email.com', stage: 'offer', lang: 'EN', type: 'Sell', source: 'Referral', score: 9, budget: '$4.5M', neighbourhood: 'Park Slope', timeline: '30 days', notes: 'Listing prep complete. Ready to go live.', log: [{ icon: '📄', text: 'Listing agreement signed.', time: 'Yesterday' }, { icon: '📸', text: 'Photography and virtual tour completed.', time: '3d ago' }] },
+      { id: 5, name: 'Luca Ferretti', email: 'luca@email.com', stage: 'search', lang: 'IT', type: 'Buy', source: 'Website', score: 6, budget: '$1.8M', neighbourhood: 'West Village', timeline: '120 days', notes: 'First NYC purchase. Needs guidance on co-op process.', log: [{ icon: '✉️', text: 'Sent West Village guide and co-op buyer checklist in Italian.', time: '4h ago' }] },
+      { id: 6, name: 'Amanda Torres', email: 'amanda@email.com', stage: 'contract', lang: 'EN', type: 'Buy', source: 'Referral', score: 10, budget: '$6.2M', neighbourhood: 'TriBeCa', timeline: '2 weeks', notes: 'Contract out. Awaiting board approval.', log: [{ icon: '⚖️', text: 'Contract signed. Board package submitted to 210 Hudson.', time: 'Today' }, { icon: '🎉', text: 'Offer accepted at $6.05M — $150K under ask.', time: '5d ago' }] },
+      { id: 7, name: 'David Kim', email: 'david@email.com', stage: 'consultation', lang: 'EN', type: 'Invest', source: 'Phone', score: 7, budget: '$10M+', neighbourhood: 'Midtown', timeline: 'Flexible', notes: 'Seeking commercial investment opportunities.', log: [{ icon: '📞', text: '30-min consultation scheduled for Friday 2PM.', time: '1d ago' }] },
+      { id: 8, name: 'Sofia Bianchi', email: 'sofia@email.com', stage: 'inquiry', lang: 'IT', type: 'Rent', source: 'Website', score: 5, budget: '$8K/mo', neighbourhood: 'Gramercy', timeline: '60 days', notes: 'Corporate relocation from Rome.', log: [{ icon: '✉️', text: 'Auto-routed to Alex Carini — Italian language lead.', time: '30m ago' }] },
+      { id: 9, name: 'Robert Finch', email: 'rob@email.com', stage: 'close', lang: 'EN', type: 'Buy', source: 'Referral', score: 10, budget: '$3.8M', neighbourhood: 'Chelsea', timeline: 'Closed', notes: 'Closed 14 Mar 2026 at $3.72M.', log: [{ icon: '🎉', text: 'CLOSED · 220 W 20th St #8D · $3,720,000', time: '3 days ago' }, { icon: '⚖️', text: 'Title transferred. All parties notified.', time: '3 days ago' }] },
+      { id: 10, name: 'Elena Marchetti', email: 'elena@email.com', stage: 'negotiation', lang: 'IT', type: 'Buy', source: 'Portal', score: 8, budget: '$2.8M', neighbourhood: 'SoHo', timeline: '45 days', notes: 'Counter-offer submitted. Client reviewing.', log: [{ icon: '💬', text: 'Counter-offer: $2.82M. Client response expected 48h.', time: '6h ago' }] },
+      { id: 11, name: 'Tom Bradley', email: 'tom@email.com', stage: 'search', lang: 'EN', type: 'Buy', source: 'LinkedIn', score: 6, budget: '$1.2M', neighbourhood: 'Brooklyn Heights', timeline: '90 days', notes: 'Pre-approval in progress.', log: [{ icon: '📋', text: 'Pre-approval letter requested from lender.', time: '2d ago' }] },
+      { id: 12, name: 'Camille Dubois', email: 'camille@email.com', stage: 'viewings', lang: 'EN', type: 'Rent', source: 'Website', score: 5, budget: '$5K/mo', neighbourhood: 'Lower East Side', timeline: '30 days', notes: '4 viewings scheduled this week.', log: [{ icon: '🏠', text: 'Viewings at 3 LES properties — feedback: positive on 2.', time: 'Yesterday' }] },
+      { id: 13, name: 'Pietro Conti', email: 'pietro@email.com', stage: 'inquiry', lang: 'IT', type: 'Buy', source: 'Referral', score: 8, budget: '$4M', neighbourhood: 'Financial District', timeline: '90 days', notes: 'High-net-worth Italian buyer, prefers new development.', log: [{ icon: '✉️', text: 'Auto-routed to Alex Carini. Intro call scheduled.', time: '1h ago' }] },
+      { id: 14, name: 'James Park', email: 'james@email.com', stage: 'negotiation', lang: 'EN', type: 'Sell', source: 'Referral', score: 7, budget: '$5.5M', neighbourhood: 'Upper East Side', timeline: 'Listing', notes: 'Price adjustment discussion underway.', log: [{ icon: '📊', text: 'Comparable analysis presented. Seller reviewing.', time: '2d ago' }] },
+      { id: 15, name: 'Lisa Wong', email: 'lisa@email.com', stage: 'contract', lang: 'EN', type: 'Buy', source: 'Website', score: 9, budget: '$2.3M', neighbourhood: 'Astoria', timeline: 'Closing', notes: 'Inspection contingency cleared.', log: [{ icon: '✅', text: 'Inspection passed. Mortgage commitment received.', time: 'Today' }] },
+      { id: 16, name: 'Carlos Vega', email: 'carlos@email.com', stage: 'search', lang: 'ES', type: 'Invest', source: 'LinkedIn', score: 7, budget: '$3M', neighbourhood: 'Any', timeline: '120 days', notes: 'Seeking investment properties, 1031 exchange.', log: [{ icon: '✉️', text: 'Sent 1031 exchange guide and investment property report in Spanish.', time: '3d ago' }] },
+      { id: 17, name: 'Anna Kowalski', email: 'anna@email.com', stage: 'close', lang: 'EN', type: 'Buy', source: 'Referral', score: 10, budget: '$1.6M', neighbourhood: 'Park Slope', timeline: 'Closed', notes: 'Closed 10 Mar 2026.', log: [{ icon: '🎉', text: 'CLOSED · 52 Garfield Pl · $1,595,000', time: '1 week ago' }] },
+      { id: 18, name: 'Michael Scott', email: 'mscott@email.com', stage: 'consultation', lang: 'EN', type: 'Sell', source: 'Phone', score: 6, budget: '$3.1M', neighbourhood: 'Upper West Side', timeline: 'Flexible', notes: 'Considering downsizing. Early stage.', log: [{ icon: '📞', text: 'Initial call — not ready to list for 3 months.', time: '1d ago' }] },
+      { id: 19, name: 'Giulia Romano', email: 'giulia@email.com', stage: 'offer', lang: 'IT', type: 'Buy', source: 'Portal', score: 9, budget: '$2.6M', neighbourhood: 'NoHo', timeline: '45 days', notes: 'Offer submitted on 48 Bond St.', log: [{ icon: '📄', text: 'Offer at $2.55M submitted. Awaiting response.', time: '5h ago' }] },
+      { id: 20, name: 'Henry Liu', email: 'henry@email.com', stage: 'close', lang: 'EN', type: 'Invest', source: 'Referral', score: 10, budget: '$8.5M', neighbourhood: 'Midtown', timeline: 'Closed', notes: 'Portfolio acquisition closed.', log: [{ icon: '🎉', text: 'CLOSED · Multi-unit acquisition · $8,450,000', time: '2 weeks ago' }] },
+      { id: 21, name: 'Isabella Costa', email: 'isabella@email.com', stage: 'offer', lang: 'IT', type: 'Buy', source: 'Website', score: 7, budget: '$1.9M', neighbourhood: 'Bushwick', timeline: '60 days', notes: 'First offer submitted.', log: [{ icon: '📄', text: 'Offer at $1.88M submitted.', time: '1d ago' }] },
+      { id: 22, name: 'Derek Phillips', email: 'derek@email.com', stage: 'inquiry', lang: 'EN', type: 'Buy', source: 'LinkedIn', score: 5, budget: '$900K', neighbourhood: 'Queens', timeline: '120 days', notes: 'Researching neighborhoods, early stage.', log: [{ icon: '✉️', text: 'Sent NYC neighborhood guide.', time: '2h ago' }] },
+      { id: 23, name: 'Marta Esposito', email: 'marta@email.com', stage: 'viewings', lang: 'IT', type: 'Buy', source: 'Referral', score: 8, budget: '$3.4M', neighbourhood: 'Flatiron', timeline: '60 days', notes: '3 viewings completed, strong interest in Flatiron.', log: [{ icon: '🏠', text: 'Viewing at 28 W 20th St — very positive.', time: 'Today' }] },
+      { id: 24, name: 'Richard Banks', email: 'richard@email.com', stage: 'contract', lang: 'EN', type: 'Buy', source: 'Website', score: 9, budget: '$4.2M', neighbourhood: 'SoHo', timeline: '3 weeks', notes: 'Final walkthrough scheduled.', log: [{ icon: '✅', text: 'Final walkthrough confirmed for March 20.', time: 'Today' }] },
+    ];
+
+    let draggedId = null;
+    let filterLang = '';
+    let filterType = '';
+    let searchQuery = '';
+    let newLeadStage = 'inquiry';
+
+    function renderKanban() {
+      STAGES.forEach(stage => {
+        const container = document.getElementById('cards-' + stage);
+        let filtered = leads.filter(l => l.stage === stage);
+        if (filterLang) filtered = filtered.filter(l => l.lang === filterLang);
+        if (filterType) filtered = filtered.filter(l => l.type === filterType);
+        if (searchQuery) filtered = filtered.filter(l => l.name.toLowerCase().includes(searchQuery.toLowerCase()) || l.neighbourhood.toLowerCase().includes(searchQuery.toLowerCase()));
+
+        document.getElementById('cnt-' + stage).textContent = filtered.length;
+
+        if (filtered.length === 0) {
+          container.innerHTML = '<div class="col-empty">Drop cards here</div>';
+        } else {
+          container.innerHTML = filtered.map(lead => `
+        <div class="card" draggable="true" id="card-${lead.id}" 
+             ondragstart="onDragStart(event,${lead.id})" 
+             ondragend="onDragEnd(event)"
+             onclick="openModal(${lead.id})">
+          <div class="card-name">${lead.name}</div>
+          <div class="card-meta">${lead.neighbourhood} · ${lead.budget}</div>
+          <div class="card-tags">
+            <span class="tag tag-lang">${lead.lang}</span>
+            <span class="tag tag-type">${lead.type}</span>
+            <span class="tag tag-source">${lead.source}</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-score">
+              <div class="score-dots">${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => `<div class="score-dot${i <= lead.score ? (lead.score >= 8 ? ' high' : ' on') : ''}"></div>`).join('')}</div>
+              <span class="score-num">${lead.score}/10</span>
+            </div>
+            <span class="card-date">${lead.log[0]?.time || ''}</span>
+          </div>
+          <div class="card-actions">
+            <button class="ca-btn" onclick="event.stopPropagation();moveCard(${lead.id},'prev')">← Move Back</button>
+            <button class="ca-btn" onclick="event.stopPropagation();moveCard(${lead.id},'next')">Move Forward →</button>
+          </div>
+        </div>
+      `).join('');
+        }
+      });
+    }
+
+    function onDragStart(e, id) { draggedId = id; setTimeout(() => document.getElementById('card-' + id)?.classList.add('dragging'), 0); }
+    function onDragEnd(e) { document.querySelectorAll('.card').forEach(c => c.classList.remove('dragging', 'drag-over')); }
+    function onDragOver(e, stage) { e.preventDefault(); document.getElementById('cards-' + stage).classList.add('drag-over'); }
+    function onDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+    function onDrop(e, stage) {
+      e.preventDefault();
+      document.getElementById('cards-' + stage).classList.remove('drag-over');
+      if (draggedId === null) return;
+      const lead = leads.find(l => l.id === draggedId);
+      if (lead && lead.stage !== stage) {
+        const prevStage = lead.stage;
+        lead.stage = stage;
+        lead.log.unshift({ icon: '🔄', text: `Stage changed: ${STAGE_LABELS[prevStage]} → ${STAGE_LABELS[stage]}. Follow-up email queued.`, time: 'Just now' });
+        showToast(`${lead.name} moved to ${STAGE_LABELS[stage]} · Follow-up email queued`, 'success');
+        renderKanban();
+      }
+      draggedId = null;
+    }
+
+    function moveCard(id, dir) {
+      const lead = leads.find(l => l.id === id);
+      const idx = STAGES.indexOf(lead.stage);
+      const newIdx = dir === 'next' ? Math.min(idx + 1, STAGES.length - 1) : Math.max(idx - 1, 0);
+      if (newIdx !== idx) {
+        const prevStage = lead.stage;
+        lead.stage = STAGES[newIdx];
+        lead.log.unshift({ icon: '🔄', text: `Stage: ${STAGE_LABELS[prevStage]} → ${STAGE_LABELS[lead.stage]}. Follow-up email queued.`, time: 'Just now' });
+        showToast(`${lead.name} → ${STAGE_LABELS[lead.stage]}`, 'success');
+        renderKanban();
+      }
+    }
+
+    function filterByLang(v) { filterLang = v; renderKanban(); }
+    function filterByType(v) { filterType = v; renderKanban(); }
+    function filterCards(v) { searchQuery = v; renderKanban(); }
+
+    let activeModal = null;
+    function openModal(id) {
+      activeModal = leads.find(l => l.id === id);
+      const l = activeModal;
+      document.getElementById('modal-avatar').textContent = l.name.split(' ').map(n => n[0]).join('').slice(0, 2);
+      document.getElementById('modal-name').textContent = l.name;
+      document.getElementById('modal-sub').textContent = `${STAGE_LABELS[l.stage]} · ${l.source} · ${l.lang}`;
+
+      // Profile
+      document.getElementById('profile-grid').innerHTML = [
+        ['Stage', STAGE_LABELS[l.stage], 'gold'],
+        ['Language', l.lang === 'IT' ? '🇮🇹 Italiano' : l.lang === 'ES' ? '🇪🇸 Español' : '🇺🇸 English', ''],
+        ['Transaction', l.type, ''],
+        ['Budget', l.budget, 'gold'],
+        ['Neighbourhood', l.neighbourhood, ''],
+        ['Timeline', l.timeline, ''],
+        ['Source', l.source, ''],
+        ['Score', `${l.score}/10`, 'gold'],
+      ].map(([k, v, cls]) => `<div class="m-field"><label>${k}</label><div class="val ${cls}">${v}</div></div>`).join('');
+      if (l.notes) document.getElementById('profile-grid').innerHTML += `<div class="m-field" style="grid-column:1/-1"><label>Notes</label><div class="val">${l.notes}</div></div>`;
+
+      // Score
+      document.getElementById('score-display').textContent = `${l.score}/10`;
+      document.getElementById('score-fill').style.width = `${l.score * 10}%`;
+      const factors = [
+        ['Budget Range', l.budget.includes('M') ? 8 : 4],
+        ['Timeline', l.timeline === 'Flexible' ? 5 : l.timeline.includes('day') ? 9 : 7],
+        ['Language Routing', l.lang !== 'EN' ? 9 : 5],
+        ['Lead Source', l.source === 'Referral' ? 9 : l.source === 'Portal' ? 8 : 6],
+        ['Transaction Type', l.type === 'Invest' || l.type === 'Buy' ? 8 : 5],
+      ];
+      document.getElementById('score-factors').innerHTML = factors.map(([k, v]) => `
+    <div class="m-field">
+      <label>${k}</label>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+        <div style="flex:1;height:3px;background:rgba(201,168,76,.12);border-radius:2px"><div style="height:100%;width:${v * 10}%;background:${v >= 8 ? 'var(--green)' : v >= 6 ? 'var(--gold)' : 'var(--amber)'};border-radius:2px;transition:width .5s ease"></div></div>
+        <span style="font-size:11px;color:var(--gold)">${v}/10</span>
+      </div>
+    </div>
+  `).join('');
+
+      // Log
+      document.getElementById('log-list').innerHTML = l.log.map(e => `
+    <div class="log-item">
+      <div class="log-icon">${e.icon}</div>
+      <div><div class="log-text">${e.text}</div><span class="log-time">${e.time}</span></div>
+    </div>
+  `).join('') || '<p style="color:var(--muted);font-size:12.5px">No activity logged yet.</p>';
+
+      // Stage picker
+      document.getElementById('stage-pills').innerHTML = STAGES.map(s => `
+    <div class="stage-pill ${s === l.stage ? 'current' : ''}" onclick="changeStage('${s}')">${STAGE_LABELS[s]}</div>
+  `).join('');
+
+      document.getElementById('modal-overlay').classList.add('open');
+    }
+
+    function changeStage(stage) {
+      if (!activeModal) return;
+      const old = activeModal.stage;
+      activeModal.stage = stage;
+      activeModal.log.unshift({ icon: '🔄', text: `Stage: ${STAGE_LABELS[old]} → ${STAGE_LABELS[stage]}. Follow-up email queued in ${activeModal.lang === 'IT' ? 'Italian' : activeModal.lang === 'ES' ? 'Spanish' : 'English'}.`, time: 'Just now' });
+      showToast(`Moved to ${STAGE_LABELS[stage]} · Email trigger activated`, 'success');
+      closeModal();
+      renderKanban();
+    }
+
+    function closeModal(e) { if (!e || e.target === document.getElementById('modal-overlay')) { document.getElementById('modal-overlay').classList.remove('open'); } }
+    function mTab(panel, btn) { document.querySelectorAll('.m-tab').forEach(t => t.classList.remove('active')); btn.classList.add('active'); document.querySelectorAll('.m-panel').forEach(p => p.classList.remove('active')); document.getElementById('m-' + panel).classList.add('active'); }
+
+    function openNewLead(stage) { newLeadStage = stage || 'inquiry'; document.getElementById('nl-overlay').classList.add('open'); }
+    function closeNL(e) { if (!e || e.target === document.getElementById('nl-overlay')) { document.getElementById('nl-overlay').classList.remove('open'); } }
+
+    function createLead() {
+      const name = document.getElementById('nl-name').value.trim();
+      if (!name) { showToast('Please enter a name', 'error'); return; }
+      const lang = document.getElementById('nl-lang').value;
+      const type = document.getElementById('nl-type').value;
+      const source = document.getElementById('nl-source').value;
+      const budgetVal = document.getElementById('nl-budget').value;
+      const budgets = { low: 'Under $1M', mid: '$1M–$3M', high: '$3M–$7M', ultra: '$7M+' };
+
+      const newLead = {
+        id: leads.length + 100, name, email: '', stage: newLeadStage, lang, type, source,
+        score: Math.floor(Math.random() * 3) + 5,
+        budget: budgets[budgetVal], neighbourhood: 'TBD', timeline: '90 days',
+        notes: 'Created from CRM. Auto-scored.',
+        log: [{ icon: '✨', text: `Lead created from CRM. Source: ${source}. Auto-scoring in progress…`, time: 'Just now' }]
+      };
+
+      if (lang === 'IT' || lang === 'ES') {
+        newLead.log.push({ icon: '🔀', text: `Routed to Alex Carini — ${lang === 'IT' ? 'Italian' : 'Spanish'} language preference.`, time: 'Just now' });
+      }
+
+      leads.push(newLead);
+      closeNL();
+      renderKanban();
+      showToast(`✓ ${name} added · Score computed · ${lang !== 'EN' ? 'Routed to Alex Carini' : 'Assigned to queue'}`, 'success');
+      document.getElementById('nl-name').value = '';
+    }
+
+    function showToast(msg, type = 'info') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.borderColor = type === 'success' ? 'rgba(107,191,107,.4)' : type === 'error' ? 'rgba(207,107,107,.4)' : 'rgba(201,168,76,.25)';
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    // Init
+    renderKanban();
+  </script>
+  </div>
+
+
+</body>
+
+</html>

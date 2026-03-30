@@ -1,0 +1,2452 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev8X — Candidate Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              rausch: '#ff5a5f',
+              'rausch-dark': '#e0484d',
+              'rausch-light': '#fff0f0',
+              baia: '#00a699',
+              'baia-light': '#e6f7f6',
+              arches: '#fc642d',
+              hof: '#484848',
+              foggy: '#767676',
+              'c-border': '#ebebeb',
+              'c-bg': '#f7f7f7',
+              'text-main': '#222222',
+              'text-muted': '#717171',
+              'c-green': '#2f9e44',
+              'green-lt': '#e6f9ee',
+              'c-amber': '#e67e00',
+              'amber-lt': '#fff8e6',
+              'c-red': '#e03131',
+              'red-lt': '#fff0f0',
+              'c-blue': '#3b5bdb',
+              'blue-lt': '#eef2ff',
+              'c-purple': '#7048e8',
+              'purple-lt': '#f3f0ff',
+            },
+            fontFamily: {
+              jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+            },
+            borderRadius: {
+              10: '10px',
+              11: '11px',
+              14: '14px',
+              16: '16px',
+              20: '20px',
+              '24px': '24px',
+            },
+            boxShadow: {
+              'portal-sm': '0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05)',
+              'portal-md': '0 6px 16px rgba(0,0,0,0.12)',
+              'portal-lg': '0 14px 36px rgba(0,0,0,0.15)',
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* ── JS-TOGGLED STATES (cannot be Tailwind — JS uses class names) ── */
+      .tab-panel {
+        display: none;
+      }
+
+      .tab-panel.active {
+        display: block;
+      }
+
+      #panel-performance.active {
+        display: block;
+      }
+
+      .step-panel {
+        display: none;
+      }
+
+      .step-panel.open {
+        display: block;
+        animation: slideIn 0.2s ease;
+      }
+
+      .chevron.open {
+        transform: rotate(180deg);
+      }
+
+      .modal-overlay {
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-overlay.open {
+        display: flex;
+      }
+
+      .portal-nav-tab.active {
+        background-color: #fff0f0 !important;
+        color: #ff5a5f !important;
+      }
+
+      .perf-period-tab.active {
+        color: #ff5a5f;
+        border-bottom-color: #ff5a5f;
+      }
+
+      /* perf-mode layout override (toggled by switchPortalTab JS) */
+      .portal-body.perf-mode {
+        grid-template-columns: 1fr !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+
+      .portal-body.perf-mode .sidebar-col {
+        display: none;
+      }
+
+      /* unread message JS toggle */
+      .msg-item.unread {
+        background: #fffaf9;
+      }
+
+      /* step-dot pulse animation */
+      .step-dot.current {
+        animation: pulse 2s infinite;
+      }
+
+      .ph-eyebrow-dot {
+        animation: ph-blink 2s infinite;
+      }
+
+      /* ── KEYFRAMES ── */
+      @keyframes pulse {
+
+        0%,
+        100% {
+          box-shadow: 0 0 0 5px #fff0f0, 0 4px 12px rgba(255, 90, 95, 0.4);
+        }
+
+        50% {
+          box-shadow: 0 0 0 9px #fff0f0, 0 4px 12px rgba(255, 90, 95, 0.15);
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes toastIn {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes growUp {
+        from {
+          height: 0;
+        }
+      }
+
+      @keyframes ph-blink {
+
+        0%,
+        100% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      /* ── BUTTON SYSTEM (complex interactive component — kept as CSS) ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        transition: all 0.15s;
+      }
+
+      .btn-primary {
+        background: #ff5a5f;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #e0484d;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(255, 90, 95, 0.35);
+      }
+
+      .btn-success {
+        background: #00a699;
+        color: white;
+      }
+
+      .btn-success:hover {
+        background: #008a7d;
+      }
+
+      .btn-secondary {
+        background: white;
+        color: #222222;
+        border: 1.5px solid #ebebeb;
+      }
+
+      .btn-secondary:hover {
+        background: #f7f7f7;
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 1.5px solid #ff5a5f;
+        color: #ff5a5f;
+      }
+
+      .btn-outline:hover {
+        background: #ff5a5f;
+        color: white;
+      }
+
+      .btn-danger {
+        background: #fff0f0;
+        color: #ff5a5f;
+        border: 1.5px solid #ff5a5f;
+      }
+
+      .btn-danger:hover {
+        background: #ff5a5f;
+        color: white;
+      }
+
+      .btn-full {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn-sm {
+        padding: 7px 14px;
+        font-size: 12px;
+      }
+
+      .btn-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+
+      .btn-row .btn {
+        flex: 1;
+        min-width: 120px;
+        justify-content: center;
+      }
+
+      /* ── TOAST (created dynamically by JS) ── */
+      .toast-container {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        z-index: 9999;
+      }
+
+      .toast {
+        padding: 12px 20px;
+        background: #484848;
+        color: white;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        animation: toastIn 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 340px;
+      }
+
+      .toast.success {
+        background: #00a699;
+      }
+
+      .toast.error {
+        background: #ff5a5f;
+      }
+
+      /* ── POLICY MODAL ── */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 500;
+        padding: 20px;
+      }
+
+      .modal-box {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 640px;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .modal-head {
+        padding: 20px 24px;
+        border-bottom: 1px solid #ebebeb;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+      }
+
+      .modal-head-title {
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .modal-close-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: none;
+        background: #f7f7f7;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-body {
+        padding: 24px;
+        overflow-y: auto;
+        flex: 1;
+      }
+
+      .modal-footer {
+        padding: 16px 24px;
+        border-top: 1px solid #ebebeb;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+
+      .policy-text {
+        font-size: 13px;
+        line-height: 1.8;
+        color: #484848;
+      }
+
+      .policy-text h3 {
+        font-size: 14px;
+        font-weight: 800;
+        margin: 16px 0 6px;
+        color: #222222;
+      }
+
+      .policy-text p {
+        margin-bottom: 10px;
+      }
+
+      .policy-text ul {
+        padding-left: 18px;
+        margin-bottom: 10px;
+      }
+
+      .policy-text ul li {
+        margin-bottom: 4px;
+      }
+
+      /* ── PERFORMANCE TAB (Chunk 3 — minimal CSS for pseudo-elements & JS-rendered) ── */
+
+      /* Perf hero pseudo-element decorative circles */
+      .perf-hero::before {
+        content: '';
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: rgba(255, 90, 95, 0.08);
+        top: -200px;
+        right: -100px;
+      }
+
+      .perf-hero::after {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(0, 166, 153, 0.08);
+        bottom: -150px;
+        left: 200px;
+      }
+
+      /* p-pill ::before dot (used in multiple places) */
+      .p-pill::before {
+        content: '';
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+      }
+
+      .p-pill-warn::before {
+        background: #e67e00;
+      }
+
+      .p-pill-danger::before {
+        background: #e03131;
+      }
+
+      .p-pill-good::before {
+        background: #2f9e44;
+      }
+
+      /* JS-rendered attendance calendar cells */
+      .att-cal-hdr {
+        font-size: 9px;
+        font-weight: 700;
+        color: #767676;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 4px 0;
+      }
+
+      .cal-cell {
+        aspect-ratio: 1;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: default;
+        transition: transform 0.1s;
+      }
+
+      .cal-cell:hover {
+        transform: scale(1.1);
+      }
+
+      .cal-cell.present {
+        background: #e6f9ee;
+        color: #2f9e44;
+      }
+
+      .cal-cell.late {
+        background: #fff8e6;
+        color: #e67e00;
+      }
+
+      .cal-cell.absent {
+        background: #fff0f0;
+        color: #e03131;
+      }
+
+      .cal-cell.weekend {
+        background: #f4f4f4;
+        color: #ccc;
+      }
+
+      .cal-cell.future {
+        background: #f7f7f7;
+        color: #d0d0d0;
+      }
+
+      .cal-cell.today {
+        outline: 2px solid #ff5a5f;
+        outline-offset: 1px;
+      }
+
+      .cal-cell.empty {
+        background: transparent;
+      }
+    </style>
+  </head>
+
+  <body class="font-jakarta bg-[#f7f7f7] text-[#222222] min-h-screen">
+    <!-- ============================================================
+         PORTAL SCREEN
+         ============================================================ -->
+    <div class="flex flex-col min-h-screen" id="portalScreen">
+      <!-- ============================================================
+            HEADER
+           ============================================================ -->
+      <header class="bg-white border-b border-[#ebebeb] px-8 h-[68px] flex items-center justify-between sticky top-0 z-[200]">
+        <!-- Logo -->
+        <div class="flex items-center gap-[10px]">
+          <div class="w-[38px] h-[38px] bg-[#ff5a5f] rounded-[11px] flex items-center justify-center text-white font-extrabold text-[15px]">D8</div>
+          <div>
+            <div class="font-extrabold text-[18px]">Dev8X</div>
+            <div class="text-[11px] text-[#767676] font-medium">Candidate Portal</div>
+          </div>
+        </div>
+
+        <!-- Nav tabs (center) -->
+        <div class="flex items-center gap-1">
+          <button class="portal-nav-tab active py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-journey" onclick="switchPortalTab('journey')">🗺 My Journey</button>
+
+          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-documents" onclick="switchPortalTab('documents')">
+            📂 My Documents
+            <span class="bg-[#ff5a5f] text-white text-[10px] font-extrabold py-[1px] px-[6px] rounded-[10px]" id="docsBadge">2</span>
+          </button>
+
+          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-messages" onclick="switchPortalTab('messages')">
+            💬 Messages
+            <span class="bg-[#ff5a5f] text-white text-[10px] font-extrabold py-[1px] px-[6px] rounded-[10px]" id="msgBadge">3</span>
+          </button>
+
+          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-performance" onclick="switchPortalTab('performance')">📊 My Performance</button>
+
+          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-profile" onclick="switchPortalTab('profile')">👤 My Profile</button>
+        </div>
+
+        <!-- Header right actions -->
+        <div class="flex items-center gap-3">
+          <!-- Notification bell -->
+          <div class="w-[38px] h-[38px] rounded-full border border-[#ebebeb] bg-white flex items-center justify-center cursor-pointer text-base relative transition-all duration-150 hover:bg-[#f7f7f7]" onclick="showToast('You have 2 new notifications', '🔔')">
+            🔔
+            <div class="absolute top-[6px] right-[6px] w-2 h-2 bg-[#ff5a5f] rounded-full border-2 border-white"></div>
+          </div>
+
+          <!-- User chip -->
+          <div class="flex items-center gap-[10px] py-[6px] pr-[14px] pl-[6px] border border-[#ebebeb] rounded-[24px] cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7]">
+            <div class="w-[30px] h-[30px] rounded-full flex items-center justify-center text-white font-bold text-[12px]" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">AK</div>
+            <div class="text-[13px] font-bold">Ayesha K.</div>
+          </div>
+
+          <!-- Logout -->
+          <button class="py-2 px-4 rounded-full border border-[#ebebeb] bg-white font-jakarta text-[13px] font-semibold cursor-pointer text-[#767676] transition-all duration-150 hover:text-[#ff5a5f] hover:border-[#ff5a5f]" onclick="doLogout()">Log out</button>
+        </div>
+      </header>
+      <!-- PORTAL HEADER -->
+
+      <!-- ============================================================
+        HERO
+           ============================================================ -->
+      <div class="relative overflow-hidden px-8 py-9" style="background: linear-gradient(135deg, #ff5a5f 0%, #fc642d 100%)">
+        <!-- Decorative circle — top-right (replaces ::before pseudo-element) -->
+        <div class="absolute w-[400px] h-[400px] rounded-full pointer-events-none" style="background: rgba(255, 255, 255, 0.06); top: -200px; right: -100px"></div>
+
+        <!-- Decorative circle — bottom-left (replaces ::after pseudo-element) -->
+        <div class="absolute w-[200px] h-[200px] rounded-full pointer-events-none" style="background: rgba(255, 255, 255, 0.04); bottom: -100px; left: 200px"></div>
+
+        <!-- Hero content -->
+        <div class="relative z-10 flex items-start justify-between">
+          <!-- Left block -->
+          <div>
+            <div class="text-white/80 text-[14px] font-semibold mb-1">👋 Good morning,</div>
+            <div class="text-white text-[28px] font-extrabold mb-1">Ayesha Khan</div>
+            <div class="text-white/75 text-[14px]">UI/UX Designer · Internship Application · Applied via LinkedIn</div>
+
+            <!-- Hero chips -->
+            <div class="flex gap-[10px] mt-[18px] flex-wrap">
+              <div class="flex items-center gap-2 rounded-full px-4 py-[7px] text-white text-[12px] font-semibold" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25)">📅 Applied: Feb 12, 2025</div>
+              <div class="flex items-center gap-2 rounded-full px-4 py-[7px] text-white text-[12px] font-semibold" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25)">📍 Lahore, Pakistan</div>
+              <div class="flex items-center gap-2 rounded-full px-4 py-[7px] text-white text-[12px] font-semibold" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25)">🎓 LUMS — BS Design</div>
+              <!-- Active chip (brighter) -->
+              <div class="flex items-center gap-2 rounded-full px-4 py-[7px] text-white text-[12px] font-semibold" style="background: rgba(255, 255, 255, 0.28); border: 1px solid rgba(255, 255, 255, 0.5)">⚡ Stage 3 of 9 · Technical Interview</div>
+            </div>
+          </div>
+
+          <!-- Right: status box -->
+          <div class="flex-shrink-0 text-right">
+            <div class="rounded-[14px] px-5 py-4 min-w-[200px]" style="background: rgba(255, 255, 255, 0.18); border: 1.5px solid rgba(255, 255, 255, 0.35)">
+              <div class="text-[10px] font-bold text-white/70 uppercase tracking-[0.8px] mb-[6px]">Current Stage</div>
+              <div class="text-[18px] font-extrabold text-white">Technical Interview</div>
+              <div class="text-[11px] text-white/70 mt-1">⏰ Action required · Confirm your slot</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PORTAL HERO -->
+
+      <!-- ============================================================
+             MAIN CONTENT (Chunk 2)
+             ============================================================ -->
+      <!-- ============================================================
+     PORTAL BODY — Chunk 2 (Tailwind converted)
+     grid: 1fr 320px  |  perf-mode overridden via .portal-body.perf-mode CSS
+     ============================================================ -->
+      <div class="portal-body flex-1 py-7 px-8 grid grid-cols-[1fr_320px] gap-6 max-w-[1280px] mx-auto w-full">
+        <!-- ═══ MAIN COLUMN ═══ -->
+        <div>
+          <!-- ── TAB: APPLICATION JOURNEY ── -->
+          <div class="tab-panel active" id="panel-journey">
+            <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+              <!-- Card Header -->
+              <div class="px-6 py-5 border-b border-[#ebebeb] flex items-center justify-between">
+                <div>
+                  <div class="text-base font-bold">Your Application Journey</div>
+                  <div class="text-xs text-[#767676] mt-0.5">Click any stage to view details and take required actions</div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-[6px] text-xs font-bold text-[#00a699]"><span class="w-[10px] h-[10px] rounded-full bg-[#00a699] inline-block"></span>Completed</div>
+                  <div class="flex items-center gap-[6px] text-xs font-bold text-[#ff5a5f]"><span class="w-[10px] h-[10px] rounded-full bg-[#ff5a5f] inline-block"></span>Active</div>
+                </div>
+              </div>
+              <!-- Card Body — populated by renderTimeline() JS -->
+              <div>
+                <div class="py-2" id="candidateTimeline"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── TAB: DOCUMENTS ── -->
+          <div class="tab-panel" id="panel-documents">
+            <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+              <!-- Card Header -->
+              <div class="px-6 py-5 border-b border-[#ebebeb] flex items-center justify-between">
+                <div>
+                  <div class="text-base font-bold">My Documents</div>
+                  <div class="text-xs text-[#767676] mt-0.5">All documents related to your application at Dev8X</div>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading all documents…', '📥')">📥 Download All</button>
+              </div>
+
+              <!-- Card Body -->
+              <div class="p-6">
+                <!-- ── Pending Signatures ── -->
+                <div class="mb-6">
+                  <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] pb-[10px] mb-2 border-b border-[#ebebeb]">
+                    📝 Pending Signatures
+                    <span class="bg-[#fff0f0] text-[#ff5a5f] text-[10px] font-bold py-0.5 px-2 rounded-[10px] ml-1.5">2 required</span>
+                  </div>
+
+                  <!-- Row: Internship Agreement -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">📋</div>
+                      <div>
+                        <div class="text-sm font-bold">Internship / Employment Agreement</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.8 MB · Added Feb 28, 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff0f0] text-[#ff5a5f]">⚠ Signature Required</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('agreement')">👁 Read</button>
+                      <button class="btn btn-outline btn-sm" onclick="signDocument(this, 'Internship Agreement')">✍ Sign</button>
+                    </div>
+                  </div>
+
+                  <!-- Row: NDA -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">🔒</div>
+                      <div>
+                        <div class="text-sm font-bold">NDA / Confidentiality Agreement</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.5 MB · Added Feb 28, 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff0f0] text-[#ff5a5f]">⚠ Signature Required</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('nda')">👁 Read</button>
+                      <button class="btn btn-outline btn-sm" onclick="signDocument(this, 'NDA Agreement')">✍ Sign</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ── Company Policies ── -->
+                <div class="mb-6">
+                  <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] pb-[10px] mb-2 border-b border-[#ebebeb]">📖 Company Policies — Required Reading</div>
+
+                  <!-- Remote Work -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">🌐</div>
+                      <div>
+                        <div class="text-sm font-bold">Remote Work Policy</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.3 MB · Effective Jan 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff3cd] text-[#856404]">Required</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('remote')">👁 Read Policy</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+
+                  <!-- Work Ethics -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">⚖️</div>
+                      <div>
+                        <div class="text-sm font-bold">Work Ethics & Code of Conduct</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.5 MB · Effective Jan 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff3cd] text-[#856404]">Required</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('ethics')">👁 Read Policy</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+
+                  <!-- Vacation & Leave -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">🏖</div>
+                      <div>
+                        <div class="text-sm font-bold">Vacation & Leave Policy</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.2 MB · Effective Jan 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff3cd] text-[#856404]">Required</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('leave')">👁 Read Policy</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+
+                  <!-- Penalty Standards -->
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">⚠️</div>
+                      <div>
+                        <div class="text-sm font-bold">Penalty & Behaviour Standards</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.3 MB · Effective Jan 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#fff3cd] text-[#856404]">Required</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('penalty')">👁 Read Policy</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ── Already Signed ── -->
+                <div class="mb-6">
+                  <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] pb-[10px] mb-2 border-b border-[#ebebeb]">✅ Already Signed</div>
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#00a699] rounded-[10px] bg-[#e6f7f6] mb-2 transition-all duration-150">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">📄</div>
+                      <div>
+                        <div class="text-sm font-bold">Application Form — UI/UX Designer</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.2 MB · Signed Feb 12, 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#e6f7f6] text-[#00a699]">✓ Signed</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Opening signed copy…', '📄')">👁 View</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ── Shared by HR ── -->
+                <div class="mb-6">
+                  <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] pb-[10px] mb-2 border-b border-[#ebebeb]">📤 Shared by HR</div>
+
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">📝</div>
+                      <div>
+                        <div class="text-sm font-bold">Technical Interview Brief</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 0.4 MB · Added Feb 10, 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#f0f5ff] text-[#3b5bdb]">Info</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Opening document…', '📄')">👁 View</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between px-[18px] py-[14px] border border-[#ebebeb] rounded-[10px] bg-white mb-2 transition-all duration-150 hover:border-[#ff5a5f] hover:shadow-portal-sm">
+                    <div class="flex items-center gap-3">
+                      <div class="text-2xl">🏢</div>
+                      <div>
+                        <div class="text-sm font-bold">Dev8X Company Overview</div>
+                        <div class="text-[11px] text-[#767676] mt-0.5 flex items-center gap-2">
+                          PDF · 1.2 MB · Added Feb 12, 2025
+                          <span class="inline-block py-0.5 px-2 rounded-lg text-[10px] font-bold bg-[#f0f5ff] text-[#3b5bdb]">Info</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Opening document…', '📄')">👁 View</button>
+                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ── Upload Documents ── -->
+                <div class="mb-6">
+                  <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] pb-[10px] mb-2 border-b border-[#ebebeb]">📤 Upload Your Documents</div>
+                  <div class="border-2 border-dashed border-[#ebebeb] rounded-[10px] py-7 px-7 text-center bg-[#f7f7f7] cursor-pointer" onclick="showToast('File picker opened…', '📎')">
+                    <div class="text-[32px] mb-2">📎</div>
+                    <div class="text-sm font-bold mb-1">Drop files here or click to upload</div>
+                    <div class="text-xs text-[#767676]">PDF, DOC up to 10 MB · Resume, Portfolio, Certificates</div>
+                    <button class="btn btn-secondary btn-sm mt-[14px]" onclick="showToast('File picker opened…', '📎')">Choose File</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── TAB: MESSAGES ── -->
+          <div class="tab-panel" id="panel-messages">
+            <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+              <!-- Card Header -->
+              <div class="px-6 py-5 border-b border-[#ebebeb] flex items-center justify-between">
+                <div>
+                  <div class="text-base font-bold">Messages from HR</div>
+                  <div class="text-xs text-[#767676] mt-0.5">All communications regarding your application</div>
+                </div>
+                <span class="text-xs text-[#767676]">3 unread</span>
+              </div>
+
+              <!-- Messages List -->
+              <div>
+                <!-- Message 1 — unread class retained for JS toggle -->
+                <div
+                  class="msg-item unread flex items-start gap-[14px] px-5 py-4 border-b border-[#ebebeb] cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
+                  onclick="openMessage(this,'Behzad Raza','Interview Confirmation','Your Technical Interview has been scheduled for Feb 14, 2025 at 10:00 AM on Google Meet. Please confirm your availability and ensure you have a stable internet connection, proper lighting, and a professional background. Your interviewer will be Ahmad — Backend Lead. The Google Meet link will be shared 30 minutes before your interview. Please reply to this message if you have any questions.')"
+                >
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">BR</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                      <span class="text-sm font-bold">Behzad Raza — HR Lead</span>
+                      <span class="text-[11px] text-[#767676]">2 hours ago</span>
+                    </div>
+                    <div class="text-xs font-semibold text-[#222222] mt-0.5">📅 Your Technical Interview is Scheduled</div>
+                    <div class="text-[13px] text-[#767676] mt-[3px] whitespace-nowrap overflow-hidden text-ellipsis">Your interview has been scheduled for Feb 14, 2025 at 10:00 AM on Google Meet…</div>
+                  </div>
+                  <div class="msg-unread-dot w-[9px] h-[9px] bg-[#ff5a5f] rounded-full flex-shrink-0 mt-[6px]"></div>
+                </div>
+
+                <!-- Message 2 -->
+                <div
+                  class="msg-item unread flex items-start gap-[14px] px-5 py-4 border-b border-[#ebebeb] cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
+                  onclick="openMessage(this,'Dev8X HR Team','Shortlisting Notification','Congratulations Ayesha! We are pleased to inform you that you have been shortlisted for the UI/UX Designer Internship position at Dev8X. Your profile and portfolio impressed our team. The next step is a Technical Interview with our design team lead. You will receive a separate email with interview scheduling options. In the meantime, please log in to your portal to review the interview preparation guide we have shared under your Documents section.')"
+                >
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: linear-gradient(135deg, #00a699, #00796b)">D8</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                      <span class="text-sm font-bold">Dev8X HR Team</span>
+                      <span class="text-[11px] text-[#767676]">3 days ago</span>
+                    </div>
+                    <div class="text-xs font-semibold text-[#222222] mt-0.5">🎉 Congratulations — You've been Shortlisted!</div>
+                    <div class="text-[13px] text-[#767676] mt-[3px] whitespace-nowrap overflow-hidden text-ellipsis">We are pleased to inform you that you have been shortlisted for the UI/UX Designer role…</div>
+                  </div>
+                  <div class="msg-unread-dot w-[9px] h-[9px] bg-[#ff5a5f] rounded-full flex-shrink-0 mt-[6px]"></div>
+                </div>
+
+                <!-- Message 3 -->
+                <div
+                  class="msg-item unread flex items-start gap-[14px] px-5 py-4 cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
+                  onclick="openMessage(this,'Dev8X HR Team','Application Acknowledgment','Dear Ayesha, thank you for submitting your application for the UI/UX Designer Internship at Dev8X. We have received your application and will review it within 3-5 business days. You can track your application status anytime by logging into this portal. If you have any questions, feel free to reach out to our HR team at hr@dev8x.com. We will notify you of any updates via email and your portal notifications.')"
+                >
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">D8</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                      <span class="text-sm font-bold">Dev8X HR Team</span>
+                      <span class="text-[11px] text-[#767676]">Feb 12, 2025</span>
+                    </div>
+                    <div class="text-xs font-semibold text-[#222222] mt-0.5">✅ Application Received — UI/UX Designer</div>
+                    <div class="text-[13px] text-[#767676] mt-[3px] whitespace-nowrap overflow-hidden text-ellipsis">Thank you for applying to Dev8X. We have received your application and will be in touch…</div>
+                  </div>
+                  <div class="msg-unread-dot w-[9px] h-[9px] bg-[#ff5a5f] rounded-full flex-shrink-0 mt-[6px]"></div>
+                </div>
+              </div>
+
+              <!-- Reply area -->
+              <div class="p-5 border-t border-[#ebebeb]">
+                <div id="msgThread" style="display: none" class="mb-4 p-4 bg-[#f7f7f7] rounded-[10px] border border-[#ebebeb]">
+                  <div class="text-sm font-bold mb-2" id="msgThreadTitle"></div>
+                  <div class="text-[13px] leading-[1.7] text-[#484848]" id="msgThreadBody"></div>
+                </div>
+                <div class="text-[13px] font-bold mb-2 text-[#767676]">REPLY TO HR</div>
+                <textarea id="replyBox" class="w-full py-3 px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-[13px] resize-y min-h-[80px] outline-none transition-[border] duration-200 focus:border-[#ff5a5f]" onfocus="this.style.borderColor='#ff5a5f'" onblur="this.style.borderColor='#ebebeb'" placeholder="Type your message to the HR team…"></textarea>
+                <div class="flex justify-end mt-[10px]">
+                  <button class="btn btn-primary" onclick="sendReply()">📤 Send Message</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── TAB: PROFILE ── -->
+          <div class="tab-panel" id="panel-profile">
+            <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+              <!-- Avatar Row -->
+              <div class="flex items-center gap-5 p-6 border-b border-[#ebebeb]">
+                <div class="w-20 h-20 rounded-full flex items-center justify-center text-white font-extrabold text-[28px] flex-shrink-0" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">AK</div>
+                <div>
+                  <div class="text-[22px] font-extrabold">Ayesha Khan</div>
+                  <div class="text-sm text-[#767676] mt-0.5">UI/UX Designer Applicant · Internship</div>
+                  <div class="inline-flex items-center gap-[5px] text-xs font-bold text-[#ff5a5f] bg-[#fff0f0] py-[3px] px-[10px] rounded-[20px] mt-[6px]">⚡ Stage 3 — Technical Interview</div>
+                </div>
+              </div>
+
+              <!-- Personal Information -->
+              <div class="p-6 border-b border-[#ebebeb]">
+                <div class="text-[13px] font-extrabold uppercase tracking-[0.8px] text-[#767676] mb-4">Personal Information</div>
+                <div class="grid grid-cols-2 gap-[14px]">
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Full Name</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="Ayesha Khan" type="text" />
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Email Address</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="ayesha@gmail.com" type="email" />
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Phone Number</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="+92 300 1234567" type="tel" />
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Location</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="Lahore, Pakistan" type="text" />
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">LinkedIn URL</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="linkedin.com/in/ayeshakhan" type="url" />
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Portfolio / Website</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="ayeshakhan.design" type="url" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Academic Background -->
+              <div class="p-6 border-b border-[#ebebeb]">
+                <div class="text-[13px] font-extrabold uppercase tracking-[0.8px] text-[#767676] mb-4">Academic Background</div>
+                <div class="grid grid-cols-2 gap-[14px]">
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">University</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="LUMS — Lahore" type="text" />
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Degree</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="BS Design" type="text" />
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Graduation Year</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="2025" type="text" />
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">CGPA</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" value="3.7 / 4.0" type="text" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Application Details (read-only) -->
+              <div class="p-6 border-b border-[#ebebeb]">
+                <div class="text-[13px] font-extrabold uppercase tracking-[0.8px] text-[#767676] mb-4">Application Details</div>
+                <div class="grid grid-cols-2 gap-[14px]">
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Applied Role</div>
+                    <div class="text-sm font-semibold text-[#222222]">UI/UX Designer</div>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Job Type</div>
+                    <div class="text-sm font-semibold text-[#222222]">Internship</div>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Source</div>
+                    <div class="text-sm font-semibold text-[#222222]">LinkedIn</div>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Application ID</div>
+                    <div class="font-mono text-[13px] font-semibold text-[#222222]">A001</div>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Applied On</div>
+                    <div class="text-sm font-semibold text-[#222222]">Feb 12, 2025</div>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Years of Experience</div>
+                    <div class="text-sm font-semibold text-[#222222]">0 — 1 Year</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Change Password -->
+              <div class="p-6 border-b border-[#ebebeb]">
+                <div class="text-[13px] font-extrabold uppercase tracking-[0.8px] text-[#767676] mb-4">Change Password</div>
+                <div class="grid grid-cols-2 gap-[14px]">
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Current Password</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" type="password" placeholder="••••••••" />
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">New Password</div>
+                    <input class="w-full py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0]" type="password" placeholder="Min. 8 characters" />
+                  </div>
+                  <div class="col-span-full">
+                    <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-1">Confirm New Password</div>
+                    <input class="py-[10px] px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-sm text-[#222222] outline-none transition-all duration-200 focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0] max-w-[320px] w-full" type="password" placeholder="Repeat new password" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Save Footer -->
+              <div class="py-5 px-6 border-t border-[#ebebeb] flex justify-end gap-[10px]">
+                <button class="btn btn-secondary" onclick="showToast('Changes discarded', '↩️')">Discard Changes</button>
+                <button class="btn btn-primary" onclick="showToast('Profile updated successfully', '✅', 'success')">💾 Save Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /main column -->
+
+        <!-- ── TAB: PERFORMANCE ── (Chunk 3 — Tailwind converted) -->
+        <div class="tab-panel" id="panel-performance">
+          <!-- PERFORMANCE HERO (dark) -->
+          <div class="perf-hero relative overflow-hidden px-8 py-9" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)">
+            <div class="relative z-[2] flex items-start justify-between gap-6 max-w-[1200px] mx-auto">
+              <div>
+                <div class="text-[11px] font-bold text-white/50 uppercase tracking-[1px] mb-2 flex items-center gap-2">
+                  <div class="ph-eyebrow-dot w-[6px] h-[6px] rounded-full bg-baia"></div>
+                  Live via Clockify · Last synced 11:47 AM
+                </div>
+                <div class="text-[28px] font-extrabold text-white mb-[6px]">My Performance Dashboard</div>
+                <div class="text-sm text-white/60 mb-5">Ayesha Khan · UI/UX Designer Intern · Week of Mar 3–9, 2026</div>
+                <div class="flex gap-[10px] flex-wrap">
+                  <div class="inline-flex items-center gap-[7px] rounded-full py-[7px] px-[14px] text-xs font-semibold" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.85)">📅 Day 47 of Internship</div>
+                  <div class="inline-flex items-center gap-[7px] rounded-full py-[7px] px-[14px] text-xs font-semibold" style="background: rgba(230,126,0,0.2); border: 1px solid rgba(230,126,0,0.4); color: #ffd699">⚠️ 38h this week (need 40h)</div>
+                  <div class="inline-flex items-center gap-[7px] rounded-full py-[7px] px-[14px] text-xs font-semibold" style="background: rgba(230,126,0,0.2); border: 1px solid rgba(230,126,0,0.4); color: #ffd699">🕙 3 late starts this week</div>
+                  <div class="inline-flex items-center gap-[7px] rounded-full py-[7px] px-[14px] text-xs font-semibold" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.85)">📋 1 open concern from TL</div>
+                </div>
+              </div>
+              <div class="flex gap-4 shrink-0">
+                <div class="rounded-16 py-5 px-6 text-center min-w-[130px]" style="background: rgba(252,100,45,0.15); border: 1.5px solid rgba(252,100,45,0.3)">
+                  <div class="text-[40px] font-extrabold leading-none" style="color: #fc642d">78</div>
+                  <div class="text-[10px] font-bold text-white/50 uppercase tracking-[0.8px] mt-[6px]">Overall Score</div>
+                  <div class="text-[11px] mt-1"><span class="p-pill p-pill-warn inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-full text-[11px] font-bold uppercase tracking-[0.3px] whitespace-nowrap bg-[#fff8e6] text-[#e67e00]">⚠️ At Risk</span></div>
+                </div>
+                <div class="rounded-16 py-5 px-6 text-center min-w-[130px]" style="background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.15)">
+                  <div class="text-[40px] font-extrabold leading-none text-baia">38h</div>
+                  <div class="text-[10px] font-bold text-white/50 uppercase tracking-[0.8px] mt-[6px]">This Week</div>
+                  <div class="text-[11px] mt-1 text-white/50">Target: 40h</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- PERIOD BAR -->
+          <div class="bg-white border-b border-[#ebebeb] px-8 flex items-center justify-between">
+            <div class="flex">
+              <button class="perf-period-tab active py-4 px-[22px] text-[13px] font-bold cursor-pointer text-[#767676] border-b-2 border-transparent transition-all duration-150 font-jakarta border-t-0 border-l-0 border-r-0 bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchPerfPeriod('week', this)">📅 This Week</button>
+              <button class="perf-period-tab py-4 px-[22px] text-[13px] font-bold cursor-pointer text-[#767676] border-b-2 border-transparent transition-all duration-150 font-jakarta border-t-0 border-l-0 border-r-0 bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchPerfPeriod('month', this)">📆 This Month</button>
+              <button class="perf-period-tab py-4 px-[22px] text-[13px] font-bold cursor-pointer text-[#767676] border-b-2 border-transparent transition-all duration-150 font-jakarta border-t-0 border-l-0 border-r-0 bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchPerfPeriod('all', this)">📊 All Time</button>
+            </div>
+            <div class="inline-flex items-center gap-[6px] py-[5px] px-3 bg-[#e3f2fd] text-[#0288d1] rounded-full text-[11px] font-bold border border-[#b3d9f7]">⏱ Powered by Clockify API</div>
+          </div>
+
+          <!-- PERF BODY -->
+          <div class="py-7 px-8 max-w-[1200px] mx-auto">
+            <!-- Alert Banners -->
+            <div class="flex items-start gap-[14px] py-[14px] px-[18px] rounded-10 border border-[#f9c74f] bg-[#fff8e6] mb-4" id="perfMainAlert">
+              <span class="text-xl shrink-0 mt-[1px]">⚠️</span>
+              <div>
+                <div class="text-[13px] font-bold mb-[3px]">You're 2 hours short of this week's target</div>
+                <div class="text-xs text-[#717171] leading-[1.55]">You've logged 38 hours this week. The minimum policy requires 40 hours. You still have Friday — log at least 2 more hours today to stay compliant.</div>
+              </div>
+              <button class="btn btn-secondary btn-sm shrink-0 ml-auto" onclick="closePerfAlert('perfMainAlert')">Dismiss</button>
+            </div>
+
+            <div class="flex items-start gap-[14px] py-[14px] px-[18px] rounded-10 border border-[#ff5a5f] bg-[#fff0f0] mb-4" id="perfLateAlert">
+              <span class="text-xl shrink-0 mt-[1px]">🕙</span>
+              <div>
+                <div class="text-[13px] font-bold mb-[3px]">Late clock-ins detected — 3 times this week</div>
+                <div class="text-xs text-[#717171] leading-[1.55]">You started after 10:00 AM on Monday (10:25), Wednesday (10:38), and Thursday (10:55). Policy requires you to be active by 10:00 AM. Your team lead has been notified.</div>
+              </div>
+              <button class="btn btn-secondary btn-sm shrink-0 ml-auto" onclick="closePerfAlert('perfLateAlert')">Got it</button>
+            </div>
+            <!-- Two-column layout -->
+            <div class="grid grid-cols-[1fr_360px] gap-6 items-start">
+              <!-- LEFT COLUMN -->
+              <div>
+                <!-- Metric Cards -->
+                <div class="grid grid-cols-3 gap-4 mb-6">
+                  <div class="bg-white rounded-16 p-5 border border-[#ebebeb] shadow-portal-sm">
+                    <div class="flex items-start justify-between mb-3">
+                      <div class="w-[42px] h-[42px] rounded-[12px] flex items-center justify-center text-xl bg-[#fff8e6]">⏱</div>
+                      <span class="text-[11px] font-bold py-[3px] px-[9px] rounded-full bg-[#fff8e6] text-[#e67e00]">−2h</span>
+                    </div>
+                    <div class="text-[28px] font-extrabold leading-none mb-1 text-[#e67e00]">38h</div>
+                    <div class="text-xs font-semibold text-[#767676]">Hours This Week</div>
+                    <div class="text-[11px] text-[#717171] mt-1 flex items-center gap-1"><span class="text-[#e67e00]">⚠️</span> 2h short of 40h target</div>
+                    <div class="h-1 bg-[#f7f7f7] rounded-[4px] overflow-hidden mt-[10px]">
+                      <div class="h-full rounded-[4px]" style="width: 95%; background: #e67e00"></div>
+                    </div>
+                  </div>
+                  <div class="bg-white rounded-16 p-5 border border-[#ebebeb] shadow-portal-sm">
+                    <div class="flex items-start justify-between mb-3">
+                      <div class="w-[42px] h-[42px] rounded-[12px] flex items-center justify-center text-xl bg-[#eef2ff]">📅</div>
+                      <span class="text-[11px] font-bold py-[3px] px-[9px] rounded-full bg-[#fff8e6] text-[#e67e00]">3 Late</span>
+                    </div>
+                    <div class="text-[28px] font-extrabold leading-none mb-1 text-[#e67e00]">90%</div>
+                    <div class="text-xs font-semibold text-[#767676]">Attendance Rate</div>
+                    <div class="text-[11px] text-[#717171] mt-1 flex items-center gap-1"><span class="text-[#e67e00]">🕙</span> 3 late starts detected</div>
+                    <div class="h-1 bg-[#f7f7f7] rounded-[4px] overflow-hidden mt-[10px]">
+                      <div class="h-full rounded-[4px]" style="width: 90%; background: #e67e00"></div>
+                    </div>
+                  </div>
+                  <div class="bg-white rounded-16 p-5 border border-[#ebebeb] shadow-portal-sm">
+                    <div class="flex items-start justify-between mb-3">
+                      <div class="w-[42px] h-[42px] rounded-[12px] flex items-center justify-center text-xl bg-[#f3f0ff]">🎯</div>
+                      <span class="text-[11px] font-bold py-[3px] px-[9px] rounded-full bg-[#fff8e6] text-[#e67e00]">At Risk</span>
+                    </div>
+                    <div class="text-[28px] font-extrabold leading-none mb-1" style="color: #fc642d">78</div>
+                    <div class="text-xs font-semibold text-[#767676]">Performance Score</div>
+                    <div class="text-[11px] text-[#717171] mt-1">Target score: ≥ 75 to stay enrolled</div>
+                    <div class="h-1 bg-[#f7f7f7] rounded-[4px] overflow-hidden mt-[10px]">
+                      <div class="h-full rounded-[4px]" style="width: 78%; background: #fc642d"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Weekly Hours Chart -->
+                <div class="bg-white rounded-16 border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+                  <div class="py-[18px] px-[22px] border-b border-[#ebebeb] flex items-center justify-between">
+                    <div>
+                      <div class="text-[15px] font-bold flex items-center gap-2">⏱ Weekly Hours Breakdown</div>
+                      <div class="text-xs text-[#767676] mt-[2px]">Mar 3–9, 2026 · via Clockify</div>
+                    </div>
+                    <div class="flex items-center gap-2"><span class="inline-flex items-center gap-[6px] py-[5px] px-3 bg-[#e3f2fd] text-[#0288d1] rounded-full text-[11px] font-bold border border-[#b3d9f7]">⏱ Clockify</span><button class="btn btn-secondary btn-sm" onclick="showToast('Opening Clockify dashboard…','⏱')">Open Clockify</button></div>
+                  </div>
+                  <div class="py-5 px-[22px]">
+                    <div class="flex items-end gap-[10px] h-[120px] mb-3">
+                      <div class="flex-1 flex flex-col items-center gap-[6px] relative">
+                        <div class="w-full bg-[#f7f7f7] rounded-t-[6px] h-[100px] flex items-end relative overflow-hidden">
+                          <div class="w-full rounded-t-[6px] relative" style="height: 75%; background: #e67e00; transition: height 0.8s cubic-bezier(0.4,0,0.2,1)"><span class="text-[11px] font-bold absolute -top-[18px] left-1/2 -translate-x-1/2 whitespace-nowrap text-[#e67e00]">7.5h</span></div>
+                        </div>
+                        <div class="text-[10px] font-bold text-[#767676] uppercase">Mon</div>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-[6px] relative">
+                        <div class="w-full bg-[#f7f7f7] rounded-t-[6px] h-[100px] flex items-end relative overflow-hidden">
+                          <div class="w-full rounded-t-[6px] relative" style="height: 82%; background: #00a699; transition: height 0.8s cubic-bezier(0.4,0,0.2,1)"><span class="text-[11px] font-bold absolute -top-[18px] left-1/2 -translate-x-1/2 whitespace-nowrap text-baia">8.2h</span></div>
+                        </div>
+                        <div class="text-[10px] font-bold text-[#767676] uppercase">Tue</div>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-[6px] relative">
+                        <div class="w-full bg-[#f7f7f7] rounded-t-[6px] h-[100px] flex items-end relative overflow-hidden">
+                          <div class="w-full rounded-t-[6px] relative" style="height: 78%; background: #e67e00; transition: height 0.8s cubic-bezier(0.4,0,0.2,1)"><span class="text-[11px] font-bold absolute -top-[18px] left-1/2 -translate-x-1/2 whitespace-nowrap text-[#e67e00]">7.8h</span></div>
+                        </div>
+                        <div class="text-[10px] font-bold text-[#767676] uppercase">Wed</div>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-[6px] relative">
+                        <div class="w-full bg-[#f7f7f7] rounded-t-[6px] h-[100px] flex items-end relative overflow-hidden">
+                          <div class="w-full rounded-t-[6px] relative" style="height: 80%; background: #00a699; transition: height 0.8s cubic-bezier(0.4,0,0.2,1)"><span class="text-[11px] font-bold absolute -top-[18px] left-1/2 -translate-x-1/2 whitespace-nowrap text-baia">8.0h</span></div>
+                        </div>
+                        <div class="text-[10px] font-bold text-[#767676] uppercase">Thu</div>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-[6px] relative">
+                        <div class="w-full bg-[#f7f7f7] rounded-t-[6px] h-[100px] flex items-end relative overflow-hidden" style="outline: 2px solid #ff5a5f; outline-offset: 2px; border-radius: 6px">
+                          <div class="w-full rounded-t-[6px] relative" style="height: 65%; background: linear-gradient(180deg, #ff5a5f, #fc642d); animation: growUp 1s ease"><span class="text-[11px] font-bold absolute -top-[18px] left-1/2 -translate-x-1/2 whitespace-nowrap text-rausch">6.5h ▶</span></div>
+                        </div>
+                        <div class="text-[10px] font-bold text-rausch uppercase">Fri ▶</div>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-[6px] relative opacity-[0.35]">
+                        <div class="w-full bg-[#f7f7f7] rounded-t-[6px] h-[100px] flex items-end relative overflow-hidden"><div class="w-full rounded-t-[6px] relative" style="height: 0%; background: #eee"></div></div>
+                        <div class="text-[10px] font-bold text-[#767676] uppercase">Sat</div>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-[6px] relative opacity-[0.35]">
+                        <div class="w-full bg-[#f7f7f7] rounded-t-[6px] h-[100px] flex items-end relative overflow-hidden"><div class="w-full rounded-t-[6px] relative" style="height: 0%; background: #eee"></div></div>
+                        <div class="text-[10px] font-bold text-[#767676] uppercase">Sun</div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <div class="flex items-center gap-2 text-[11px] text-[#767676]">
+                        <div class="w-6 h-[2px] bg-rausch opacity-50"></div>
+                        Policy min: 8h/day
+                      </div>
+                      <div class="flex gap-3 text-[11px] text-[#767676]">
+                        <span class="inline-flex items-center gap-1"><span class="w-[10px] h-[10px] rounded-[3px] bg-baia inline-block"></span>Met target</span>
+                        <span class="inline-flex items-center gap-1"><span class="w-[10px] h-[10px] rounded-[3px] bg-[#e67e00] inline-block"></span>Below target</span>
+                        <span class="inline-flex items-center gap-1"><span class="w-[10px] h-[10px] rounded-[3px] bg-rausch inline-block"></span>Today (live)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Daily Time Log -->
+                <div class="bg-white rounded-16 border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+                  <div class="py-[18px] px-[22px] border-b border-[#ebebeb] flex items-center justify-between">
+                    <div>
+                      <div class="text-[15px] font-bold flex items-center gap-2">🕐 Daily Time Log</div>
+                      <div class="text-xs text-[#767676] mt-[2px]">Clock-in/out times pulled from Clockify</div>
+                    </div>
+                    <span class="inline-flex items-center gap-[6px] py-[5px] px-3 bg-[#e3f2fd] text-[#0288d1] rounded-full text-[11px] font-bold border border-[#b3d9f7]">⏱ Clockify API</span>
+                  </div>
+                  <div class="overflow-x-auto">
+                    <table class="w-full border-collapse text-[13px]">
+                      <thead>
+                        <tr>
+                          <th class="py-[10px] px-4 text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] bg-[#fafafa] border-b border-[#ebebeb] text-left">Date</th>
+                          <th class="py-[10px] px-4 text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] bg-[#fafafa] border-b border-[#ebebeb] text-left">Clock In</th>
+                          <th class="py-[10px] px-4 text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] bg-[#fafafa] border-b border-[#ebebeb] text-left">Clock Out</th>
+                          <th class="py-[10px] px-4 text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] bg-[#fafafa] border-b border-[#ebebeb] text-left">Break</th>
+                          <th class="py-[10px] px-4 text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] bg-[#fafafa] border-b border-[#ebebeb] text-left">Billable Hours</th>
+                          <th class="py-[10px] px-4 text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] bg-[#fafafa] border-b border-[#ebebeb] text-left">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="hover:bg-[#fafafa]">
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><strong>Mon, Mar 3</strong></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#fff8e6] text-[#e67e00]">🕙 10:25 AM</span></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#e6f9ee] text-[#2f9e44]">🕕 6:25 PM</span></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]">1h</td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><strong class="text-[#e67e00]">7.5h</strong></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#fff8e6] text-[#e67e00]">⚠️ Late Start</span></td>
+                        </tr>
+                        <tr class="hover:bg-[#fafafa]">
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><strong>Tue, Mar 4</strong></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#eef2ff] text-[#3b5bdb]">🕘 9:50 AM</span></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#e6f9ee] text-[#2f9e44]">🕕 6:28 PM</span></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]">1h</td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><strong class="text-baia">8.2h</strong></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#e6f9ee] text-[#2f9e44]">✅ Good</span></td>
+                        </tr>
+                        <tr class="hover:bg-[#fafafa]">
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><strong>Wed, Mar 5</strong></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#fff8e6] text-[#e67e00]">🕙 10:38 AM</span></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#e6f9ee] text-[#2f9e44]">🕕 6:30 PM</span></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]">1h</td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><strong class="text-[#e67e00]">7.8h</strong></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#fff8e6] text-[#e67e00]">⚠️ Late Start</span></td>
+                        </tr>
+                        <tr class="hover:bg-[#fafafa]">
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><strong>Thu, Mar 6</strong></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#fff8e6] text-[#e67e00]">🕙 10:55 AM</span></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#e6f9ee] text-[#2f9e44]">🕕 6:20 PM</span></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]">1h</td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><strong class="text-baia">8.0h</strong></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#fff8e6] text-[#e67e00]">⚠️ Late Start</span></td>
+                        </tr>
+                        <tr class="bg-[#fffdf5]">
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><strong>Fri, Mar 7 ▶</strong> <span class="text-[10px] text-rausch font-bold">IN PROGRESS</span></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#eef2ff] text-[#3b5bdb]">🕘 9:42 AM</span></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="text-xs text-[#767676]">Still logged in…</span></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]">—</td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><strong class="text-rausch">6.5h so far</strong></td>
+                          <td class="py-[13px] px-4 border-b border-[#ebebeb]"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#fff0f0] text-rausch">▶ Active</span></td>
+                        </tr>
+                        <tr class="opacity-40">
+                          <td class="py-[13px] px-4"><strong>Sat, Mar 8</strong></td>
+                          <td colspan="4" class="py-[13px] px-4 text-[#767676] text-xs">Weekend — no work expected</td>
+                          <td class="py-[13px] px-4"><span class="inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-[6px] text-xs font-semibold bg-[#f4f4f4] text-[#aaa]">Weekend</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="py-3 px-4 bg-[#fafafa] border-t border-[#ebebeb] text-[11px] text-[#767676]"><strong>Policy:</strong> Clock in by 10:00 AM · Work minimum 8 billable hours · Clock out no earlier than 6:00 PM · Report clock-in issues to HR within 30 minutes</div>
+                </div>
+                <!-- Performance Matrix -->
+                <div class="bg-white rounded-16 border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+                  <div class="py-[18px] px-[22px] border-b border-[#ebebeb] flex items-center justify-between">
+                    <div>
+                      <div class="text-[15px] font-bold flex items-center gap-2">🎯 Performance Matrix</div>
+                      <div class="text-xs text-[#767676] mt-[2px]">Evaluated against Dev8X company policies</div>
+                    </div>
+                    <span class="p-pill p-pill-warn inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-full text-[11px] font-bold uppercase tracking-[0.3px] whitespace-nowrap bg-[#fff8e6] text-[#e67e00]">⚠️ At Risk</span>
+                  </div>
+                  <div class="py-5 px-[22px]">
+                    <div class="flex flex-col gap-[14px]">
+                      <div>
+                        <div class="flex items-center justify-between mb-[6px]"><span class="text-[13px] font-bold text-[#484848]">⏱ Hours Logged</span><span class="text-[13px] font-extrabold text-[#e67e00]">78/100</span></div>
+                        <div class="h-2 bg-[#f7f7f7] rounded-[4px] overflow-hidden"><div class="h-full rounded-[4px]" style="width: 78%; background: #e67e00; transition: width 0.8s ease"></div></div>
+                        <div class="text-[11px] text-[#767676] mt-1">Policy: Minimum 40 hours/week · You logged 38h this week</div>
+                      </div>
+                      <div>
+                        <div class="flex items-center justify-between mb-[6px]"><span class="text-[13px] font-bold text-[#484848]">🕘 Punctuality</span><span class="text-[13px] font-extrabold text-[#e03131]">65/100</span></div>
+                        <div class="h-2 bg-[#f7f7f7] rounded-[4px] overflow-hidden"><div class="h-full rounded-[4px]" style="width: 65%; background: #e03131; transition: width 0.8s ease"></div></div>
+                        <div class="text-[11px] text-[#767676] mt-1">Policy: Clock-in by 10:00 AM · 3 late starts this week</div>
+                      </div>
+                      <div>
+                        <div class="flex items-center justify-between mb-[6px]"><span class="text-[13px] font-bold text-[#484848]">📅 Attendance</span><span class="text-[13px] font-extrabold text-[#2f9e44]">90/100</span></div>
+                        <div class="h-2 bg-[#f7f7f7] rounded-[4px] overflow-hidden"><div class="h-full rounded-[4px]" style="width: 90%; background: #2f9e44; transition: width 0.8s ease"></div></div>
+                        <div class="text-[11px] text-[#767676] mt-1">Policy: Present all 5 days · No unexcused absences (max 2/month)</div>
+                      </div>
+                      <div>
+                        <div class="flex items-center justify-between mb-[6px]"><span class="text-[13px] font-bold text-[#484848]">📋 Task Completion</span><span class="text-[13px] font-extrabold text-[#2f9e44]">82/100</span></div>
+                        <div class="h-2 bg-[#f7f7f7] rounded-[4px] overflow-hidden"><div class="h-full rounded-[4px]" style="width: 82%; background: #2f9e44; transition: width 0.8s ease"></div></div>
+                        <div class="text-[11px] text-[#767676] mt-1">Policy: Submit all tasks on time · Raise blockers proactively</div>
+                      </div>
+                      <div>
+                        <div class="flex items-center justify-between mb-[6px]"><span class="text-[13px] font-bold text-[#484848]">💬 Communication</span><span class="text-[13px] font-extrabold text-baia">88/100</span></div>
+                        <div class="h-2 bg-[#f7f7f7] rounded-[4px] overflow-hidden"><div class="h-full rounded-[4px]" style="width: 88%; background: #00a699; transition: width 0.8s ease"></div></div>
+                        <div class="text-[11px] text-[#767676] mt-1">Policy: Respond within 2 hours during work hours</div>
+                      </div>
+                      <div>
+                        <div class="flex items-center justify-between mb-[6px]"><span class="text-[13px] font-bold text-[#484848]">🖥️ Remote Setup</span><span class="text-[13px] font-extrabold text-[#2f9e44]">80/100</span></div>
+                        <div class="h-2 bg-[#f7f7f7] rounded-[4px] overflow-hidden"><div class="h-full rounded-[4px]" style="width: 80%; background: #2f9e44; transition: width 0.8s ease"></div></div>
+                        <div class="text-[11px] text-[#767676] mt-1">Policy: Working camera, stable internet, proper desk, good lighting</div>
+                      </div>
+                    </div>
+                    <div class="mt-4 py-3 px-[14px] bg-[#f7f7f7] rounded-10 text-xs text-[#767676] leading-[1.6]">
+                      <span class="font-bold text-[#484848]">Scoring Guide: </span><span class="text-baia font-bold">90–100</span> Excellent &nbsp;·&nbsp; <span class="text-[#2f9e44] font-bold">75–89</span> On Track &nbsp;·&nbsp; <span class="text-[#e67e00] font-bold">60–74</span> At Risk &nbsp;·&nbsp;
+                      <span class="text-[#e03131] font-bold">&lt;60</span> Below Policy
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Team Lead Concerns -->
+                <div class="bg-white rounded-16 border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+                  <div class="py-[18px] px-[22px] border-b border-[#ebebeb] flex items-center justify-between">
+                    <div>
+                      <div class="text-[15px] font-bold flex items-center gap-2">⚠️ Team Lead Feedback &amp; Concerns</div>
+                      <div class="text-xs text-[#767676] mt-[2px]">Flagged by your team lead or HR · Respond to open items</div>
+                    </div>
+                    <span class="p-pill p-pill-warn inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-full text-[11px] font-bold uppercase tracking-[0.3px] whitespace-nowrap bg-[#fff8e6] text-[#e67e00]">1 Open</span>
+                  </div>
+                  <div class="py-5 px-[22px]">
+                    <div class="rounded-10 py-[14px] px-4 mb-[10px] border border-[#f9c74f] bg-[#fff8e6]">
+                      <div class="flex items-start justify-between mb-2">
+                        <div>
+                          <div class="text-xs font-bold text-[#484848]">Arham (Frontend Lead)</div>
+                          <div class="text-[11px] text-[#767676] mt-[2px]">March 2, 2026 · Frontend Developer</div>
+                        </div>
+                        <div class="flex items-center gap-2"><span class="text-[10px] font-bold py-[2px] px-2 rounded-[10px] bg-[#fff8e6] text-[#e67e00]">🟠 Medium</span><span class="text-[11px] text-[#767676]">3 days ago</span></div>
+                      </div>
+                      <div class="text-[13px] text-[#222222] leading-[1.55]">You have been starting after 10:00 AM on multiple occasions this week. Your performance is otherwise acceptable, but punctuality needs to improve. The rest of the team is online from 9:30 AM and late starts affect coordination.</div>
+                      <div class="mt-[10px] py-[10px] px-3 bg-white/60 rounded-10 text-xs">
+                        <div class="font-bold text-[#484848] mb-[3px]">📋 Action Required from You:</div>
+                        <div class="text-[#717171]">Log in by 9:30 AM starting next Monday. If you anticipate being late, message the TL on WhatsApp before 10:00 AM.</div>
+                      </div>
+                      <div class="mt-3 flex gap-2"><button class="btn btn-primary btn-sm" onclick="showToast('Acknowledged! HR and TL have been notified ✅','✅')">✅ Acknowledge</button><button class="btn btn-secondary btn-sm" onclick="showToast('Reply sent to TL 💬','💬')">💬 Reply to TL</button></div>
+                    </div>
+                    <div class="rounded-10 py-[14px] px-4 mb-[10px] border border-[#b2f2bb] bg-[#e6f9ee] opacity-90">
+                      <div class="flex items-start justify-between mb-2">
+                        <div>
+                          <div class="text-xs font-bold text-[#484848]">Ahmad (Backend Lead)</div>
+                          <div class="text-[11px] text-[#767676] mt-[2px]">February 20, 2026 · Resolved</div>
+                        </div>
+                        <div class="flex items-center gap-2"><span class="text-[10px] font-bold py-[2px] px-2 rounded-[10px] bg-[#f1f3f5] text-[#767676]">🟡 Low</span><span class="text-[11px] font-bold text-[#2f9e44]">✅ Resolved</span></div>
+                      </div>
+                      <div class="text-[13px] text-[#222222] leading-[1.55] opacity-80">One PR was submitted without following the code review checklist. This is a minor process issue.</div>
+                      <div class="mt-2 text-[11px] font-bold text-[#2f9e44]">✅ Resolved on Feb 22 — Good job addressing this quickly.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Policy Checklist -->
+                <div class="bg-white rounded-16 border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5 last:mb-0">
+                  <div class="py-[18px] px-[22px] border-b border-[#ebebeb] flex items-center justify-between">
+                    <div>
+                      <div class="text-[15px] font-bold flex items-center gap-2">📋 Policy Checklist</div>
+                      <div class="text-xs text-[#767676] mt-[2px]">Are you meeting Dev8X standards?</div>
+                    </div>
+                  </div>
+                  <div class="py-5 px-[22px]">
+                    <div class="flex flex-col gap-2">
+                      <div class="flex items-center gap-[10px] py-[10px] px-[14px] rounded-10 border border-[#ffc9c9] bg-[#fff0f0]">
+                        <div class="text-base shrink-0">❌</div>
+                        <div>
+                          <div class="text-[13px] font-semibold text-[#e03131]">Min 40 hours/week</div>
+                          <div class="text-[11px] opacity-75 mt-[2px] text-[#e03131]">You logged 38h — need 2 more today</div>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-[10px] py-[10px] px-[14px] rounded-10 border border-[#ffe4a0] bg-[#fff8e6]">
+                        <div class="text-base shrink-0">⚠️</div>
+                        <div>
+                          <div class="text-[13px] font-semibold text-[#e67e00]">Clock-in by 10:00 AM</div>
+                          <div class="text-[11px] opacity-75 mt-[2px] text-[#e67e00]">3 late starts this week</div>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-[10px] py-[10px] px-[14px] rounded-10 border border-[#b2f2bb] bg-[#e6f9ee]">
+                        <div class="text-base shrink-0">✅</div>
+                        <div>
+                          <div class="text-[13px] font-semibold text-[#2f9e44]">Attendance ≥ 90%</div>
+                          <div class="text-[11px] opacity-75 mt-[2px] text-[#2f9e44]">You're at 90% — good!</div>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-[10px] py-[10px] px-[14px] rounded-10 border border-[#b2f2bb] bg-[#e6f9ee]">
+                        <div class="text-base shrink-0">✅</div>
+                        <div>
+                          <div class="text-[13px] font-semibold text-[#2f9e44]">No unexcused absences</div>
+                          <div class="text-[11px] opacity-75 mt-[2px] text-[#2f9e44]">0 absences this month</div>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-[10px] py-[10px] px-[14px] rounded-10 border border-[#b2f2bb] bg-[#e6f9ee]">
+                        <div class="text-base shrink-0">✅</div>
+                        <div>
+                          <div class="text-[13px] font-semibold text-[#2f9e44]">Communication standards</div>
+                          <div class="text-[11px] opacity-75 mt-[2px] text-[#2f9e44]">Responding within 2h</div>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-[10px] py-[10px] px-[14px] rounded-10 border border-[#b2f2bb] bg-[#e6f9ee]">
+                        <div class="text-base shrink-0">✅</div>
+                        <div>
+                          <div class="text-[13px] font-semibold text-[#2f9e44]">Remote setup standards</div>
+                          <div class="text-[11px] opacity-75 mt-[2px] text-[#2f9e44]">Camera &amp; setup verified</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--------------- End of Performance Tab ---------------->
+              <div class="sticky top-[96px]">
+                <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+                  <div class="flex flex-col items-center p-6">
+                    <div class="w-[120px] h-[120px] rounded-full flex items-center justify-center relative mb-4 bg-[conic-gradient(#fc642d_0%_78%,#f0f0f0_78%_100%)]">
+                      <div class="w-[90px] h-[90px] rounded-full bg-white flex items-center justify-center flex-col">
+                        <div class="text-[26px] font-extrabold leading-none text-[#fc642d]">78</div>
+                        <div class="text-[11px] text-[#767676]">/100</div>
+                      </div>
+                    </div>
+                    <div class="text-[13px] font-bold mb-1">Overall Score</div>
+                    <div class="text-xs text-[#767676] text-center mb-3">You're in the <span class="text-[#f9c74f] font-bold">At Risk</span> zone. Improving punctuality and hours will push you to <span class="text-[#2f9e44] font-bold">On Track</span>.</div>
+                  </div>
+                  <div class="px-5 pb-5">
+                    <div class="p-3 bg-[#fff3cd] rounded-[10px] text-xs text-[#f9c74f] leading-[1.55]"><strong>To reach Excellent (90+):</strong> Improve punctuality and consistently hit 40h/week.</div>
+                  </div>
+                </div>
+                <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+                  <div class="py-[18px] px-[22px] border-b border-[#ebebeb] flex items-center justify-between">
+                    <div>
+                      <div class="text-[15px] font-bold flex items-center gap-2">📅 March Attendance</div>
+                      <div class="text-xs text-[#767676] mt-0.5">Month-to-date calendar</div>
+                    </div>
+                  </div>
+                  <div class="py-5 px-[22px]">
+                    <div class="grid grid-cols-7 gap-[5px]" id="perfAttCalendar"></div>
+                    <div class="flex flex-wrap gap-[10px] mt-3">
+                      <div class="flex items-center gap-1 text-[11px] text-[#767676] font-semibold">
+                        <div class="w-2.5 h-2.5 rounded-[3px] bg-[#e6f9ee] border border-[#2f9e44]"></div>
+                        Present
+                      </div>
+                      <div class="flex items-center gap-1 text-[11px] text-[#767676] font-semibold">
+                        <div class="w-2.5 h-2.5 rounded-[3px] bg-[#fff3cd] border border-[#f9c74f]"></div>
+                        Late
+                      </div>
+                      <div class="flex items-center gap-1 text-[11px] text-[#767676] font-semibold">
+                        <div class="w-2.5 h-2.5 rounded-[3px] bg-[#ffe3e3] border border-[#e03131]"></div>
+                        Absent
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2.5 mt-[14px]">
+                      <div class="bg-[#f7f7f7] rounded-[10px] p-3 text-center">
+                        <div class="text-[20px] font-extrabold mb-[3px] text-[#2f9e44]">17</div>
+                        <div class="text-[10px] font-semibold text-[#767676] uppercase tracking-[0.3px]">Present</div>
+                      </div>
+                      <div class="bg-[#f7f7f7] rounded-[10px] p-3 text-center">
+                        <div class="text-[20px] font-extrabold mb-[3px] text-[#f9c74f]">3</div>
+                        <div class="text-[10px] font-semibold text-[#767676] uppercase tracking-[0.3px]">Late</div>
+                      </div>
+                      <div class="bg-[#f7f7f7] rounded-[10px] p-3 text-center">
+                        <div class="text-[20px] font-extrabold mb-[3px] text-[#e03131]">0</div>
+                        <div class="text-[10px] font-semibold text-[#767676] uppercase tracking-[0.3px]">Absent</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
+                  <div class="py-[18px] px-[22px] border-b border-[#ebebeb] flex items-center justify-between">
+                    <div class="text-[15px] font-bold flex items-center gap-2">⚡ Quick Actions</div>
+                  </div>
+                  <div class="py-5 px-[22px]">
+                    <div class="flex items-center gap-3 py-3 px-[14px] rounded-[10px] border border-[#ebebeb] cursor-pointer transition-all duration-[0.15s] mb-2 hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="showToast('Opening Clockify…','⏱')">
+                      <div class="w-9 h-9 rounded-[10px] flex items-center justify-center text-lg bg-[#e3f2fd]">⏱</div>
+                      <div>
+                        <div class="text-[13px] font-bold">Open Clockify</div>
+                        <div class="text-[11px] text-[#767676]">Start/stop your timer</div>
+                      </div>
+                      <span class="ml-auto text-base text-[#767676]">›</span>
+                    </div>
+                    <div class="flex items-center gap-3 py-3 px-[14px] rounded-[10px] border border-[#ebebeb] cursor-pointer transition-all duration-[0.15s] mb-2 hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="showToast('Connecting to HR WhatsApp…','💬')">
+                      <div class="w-9 h-9 rounded-[10px] flex items-center justify-center text-lg bg-[#e8f5e9]">💬</div>
+                      <div>
+                        <div class="text-[13px] font-bold">Message HR</div>
+                        <div class="text-[11px] text-[#767676]">Report issues or absences</div>
+                      </div>
+                      <span class="ml-auto text-base text-[#767676]">›</span>
+                    </div>
+                    <div class="flex items-center gap-3 py-3 px-[14px] rounded-[10px] border border-[#ebebeb] cursor-pointer transition-all duration-[0.15s] mb-2 hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="showToast('Loading monthly report…','📊')">
+                      <div class="w-9 h-9 rounded-[10px] flex items-center justify-center text-lg bg-[#f3f0ff]">📊</div>
+                      <div>
+                        <div class="text-[13px] font-bold">Download Report</div>
+                        <div class="text-[11px] text-[#767676]">Export your monthly performance</div>
+                      </div>
+                      <span class="ml-auto text-base text-[#767676]">›</span>
+                    </div>
+                    <div class="flex items-center gap-3 py-3 px-[14px] rounded-[10px] border border-[#ebebeb] cursor-pointer transition-all duration-[0.15s] mb-2 hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="switchPortalTab('documents')">
+                      <div class="w-9 h-9 rounded-[10px] flex items-center justify-center text-lg bg-[#fff8e6]">📋</div>
+                      <div>
+                        <div class="text-[13px] font-bold">View Policies</div>
+                        <div class="text-[11px] text-[#767676]">Work ethics &amp; standards</div>
+                      </div>
+                      <span class="ml-auto text-base text-[#767676]">›</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /panel-performance -->
+
+        <!-- ═══ SIDEBAR ═══ -->
+        <div class="flex flex-col gap-4 sidebar-col">
+          <!-- Overall Progress -->
+          <div class="bg-white rounded-[16px] border border-[#ebebeb] p-5 shadow-portal-sm">
+            <div class="text-sm font-bold mb-[14px]">Overall Progress</div>
+            <div class="h-[6px] bg-[#f7f7f7] rounded-[3px] overflow-hidden mt-[14px] mb-[6px]">
+              <div class="h-full rounded-[3px] transition-[width] duration-500" style="width: 28%; background: linear-gradient(90deg, #00a699, #ff5a5f)"></div>
+            </div>
+            <div class="text-[11px] text-[#767676] font-semibold text-right">Stage 3 of 9 · 28% complete</div>
+            <div class="mt-[14px]">
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#00a699] text-white flex items-center justify-center text-[11px] font-bold flex-shrink-0">✓</div>
+                <div class="text-xs font-semibold flex-1">Shortlisted</div>
+              </div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#00a699] text-white flex items-center justify-center text-[11px] font-bold flex-shrink-0">✓</div>
+                <div class="text-xs font-semibold flex-1">Application Reviewed</div>
+              </div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#ff5a5f] text-white flex items-center justify-center text-[11px] font-bold flex-shrink-0">●</div>
+                <div class="text-xs font-bold flex-1 text-[#ff5a5f]">Technical Interview</div>
+              </div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">4</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Assignment</div>
+              </div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">5</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Final Interview</div>
+              </div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">6</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Offer & Join</div>
+              </div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">7</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Onboarding</div>
+              </div>
+              <div class="flex items-center gap-[10px] py-2 border-b border-[#ebebeb]">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">8</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Complete Internship</div>
+              </div>
+              <div class="flex items-center gap-[10px] py-2">
+                <div class="w-6 h-6 rounded-full bg-[#f7f7f7] text-[#767676] border border-[#ebebeb] flex items-center justify-center text-[10px] font-bold flex-shrink-0">9</div>
+                <div class="text-xs font-semibold flex-1 text-[#767676]">Promotion (if eligible)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- HR Contact -->
+          <div class="bg-white rounded-[16px] border border-[#ebebeb] p-5 shadow-portal-sm">
+            <div class="text-sm font-bold mb-[14px]">Your HR Contact</div>
+            <div class="flex items-center gap-3 mb-[14px]">
+              <div class="w-[42px] h-[42px] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">BR</div>
+              <div>
+                <div class="text-sm font-bold">Behzad Raza</div>
+                <div class="text-xs text-[#767676]">HR Lead · Dev8X</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 py-[10px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold text-[#222222] cursor-pointer transition-all duration-150 mt-2 hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="switchPortalTab('messages')">💬 Send Message</div>
+            <div class="flex items-center gap-2 py-[10px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold text-[#222222] cursor-pointer transition-all duration-150 mt-2 hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="showToast('Email client opening…', '📧')">📧 hr@dev8x.com</div>
+            <div class="flex items-center gap-2 py-[10px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold text-[#222222] cursor-pointer transition-all duration-150 mt-2 hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="showToast('WhatsApp opening…', '📱')">📱 WhatsApp (Notifications only)</div>
+          </div>
+
+          <!-- Upcoming Deadlines -->
+          <div class="bg-white rounded-[16px] border border-[#ebebeb] p-5 shadow-portal-sm">
+            <div class="text-sm font-bold mb-3">Upcoming Deadlines</div>
+            <div class="flex items-start gap-3 py-[10px] border-b border-[#ebebeb]">
+              <div class="w-[10px] h-[10px] rounded-full mt-1 flex-shrink-0 bg-[#ff5a5f]"></div>
+              <div>
+                <div class="text-[13px] font-semibold">Technical Interview</div>
+                <div class="text-[11px] text-[#767676] mt-0.5">Feb 14, 2025 · 10:00 AM</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 py-[10px] border-b border-[#ebebeb]">
+              <div class="w-[10px] h-[10px] rounded-full mt-1 flex-shrink-0 bg-[#fc642d]"></div>
+              <div>
+                <div class="text-[13px] font-semibold">Assignment Submission</div>
+                <div class="text-[11px] text-[#767676] mt-0.5">Feb 19, 2025 · End of day</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 py-[10px]">
+              <div class="w-[10px] h-[10px] rounded-full mt-1 flex-shrink-0 bg-[#00a699]"></div>
+              <div>
+                <div class="text-[13px] font-semibold">Document Signing</div>
+                <div class="text-[11px] text-[#767676] mt-0.5">After offer is extended</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="bg-white rounded-[16px] border border-[#ebebeb] p-5 shadow-portal-sm">
+            <div class="text-[13px] font-extrabold text-[#767676] uppercase tracking-[0.8px] mb-3">Quick Actions</div>
+            <button class="flex items-center gap-[10px] py-[11px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold cursor-pointer transition-all duration-150 w-full bg-white font-jakarta text-left mb-2 text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="switchPortalTab('documents')">
+              <span class="text-lg">📂</span> View My Documents
+            </button>
+            <button class="flex items-center gap-[10px] py-[11px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold cursor-pointer transition-all duration-150 w-full bg-white font-jakarta text-left mb-2 text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="jumpToStage('technical')">
+              <span class="text-lg">📅</span> Book Interview Slot
+            </button>
+            <button class="flex items-center gap-[10px] py-[11px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold cursor-pointer transition-all duration-150 w-full bg-white font-jakarta text-left mb-2 text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="switchPortalTab('messages')">
+              <span class="text-lg">💬</span> Message HR Team
+            </button>
+            <button class="flex items-center gap-[10px] py-[11px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold cursor-pointer transition-all duration-150 w-full bg-white font-jakarta text-left mb-2 text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="showToast('Opening job page on dev8x.com…', '🌐')">
+              <span class="text-lg">🌐</span> View Job Posting
+            </button>
+            <button class="flex items-center gap-[10px] py-[11px] px-[14px] border border-[#ebebeb] rounded-[10px] text-[13px] font-semibold cursor-pointer transition-all duration-150 w-full bg-white font-jakarta text-left text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f] hover:bg-[#fff0f0]" onclick="switchPortalTab('profile')"><span class="text-lg">✏️</span> Edit My Profile</button>
+          </div>
+        </div>
+        <!-- /sidebar-col -->
+      </div>
+      <!-- /portal-body -->
+      <!-- /portal-body -->
+    </div>
+    <!-- /portal-screen -->
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+             PAGE: MODALS (Chunk 4)
+             ============================================================ -->
+
+    <!-- POLICY MODAL -->
+    <div class="modal-overlay fixed inset-0 z-[500] bg-black/55 p-5" id="policyModal" onclick="closePolicyModal(event)">
+      <div class="bg-white rounded-16 shadow-portal-lg w-full max-w-[640px] max-h-[80vh] flex flex-col overflow-hidden">
+        <div class="py-5 px-6 border-b border-c-border flex items-center justify-between shrink-0">
+          <div class="text-[16px] font-extrabold" id="policyModalTitle">Policy Document</div>
+          <button class="w-[30px] h-[30px] rounded-full border-none bg-c-bg cursor-pointer text-[16px] flex items-center justify-center transition hover:bg-[#ebebeb]" onclick="document.getElementById('policyModal').classList.remove('open')">✕</button>
+        </div>
+        <div class="p-6 overflow-y-auto flex-1">
+          <div class="text-[13px] leading-[1.8] text-hof [&_h3]:text-[14px] [&_h3]:font-extrabold [&_h3]:mt-4 [&_h3]:mb-1.5 [&_h3]:text-text-main [&_p]:mb-2.5 [&_ul]:pl-[18px] [&_ul]:mb-2.5 [&_ul]:list-disc [&_li]:mb-1" id="policyModalContent"></div>
+        </div>
+        <div class="py-4 px-6 border-t border-c-border flex justify-end gap-2.5 shrink-0">
+          <button class="btn btn-secondary" onclick="document.getElementById('policyModal').classList.remove('open')">Close</button>
+          <button
+            class="btn btn-primary"
+            onclick="
+              showToast('Downloading policy…', '📥');
+              document.getElementById('policyModal').classList.remove('open');
+            "
+          >
+            📥 Download PDF
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+     JAVASCRIPT (Chunk 5)
+     ============================================================ -->
+    <script>
+      // ── INIT ──
+      window.addEventListener('DOMContentLoaded', function () {
+        renderTimeline();
+        openPanelByKey('technical');
+      });
+
+      // ── AUTH ──
+      function doLogout() {
+        window.location.href = 'auth.html';
+      }
+
+      // ── PORTAL TABS ──
+      function switchPortalTab(tab) {
+        document.querySelectorAll('.portal-nav-tab').forEach((t) => t.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
+        document.getElementById('ptab-' + tab).classList.add('active');
+        document.getElementById('panel-' + tab).classList.add('active');
+        // Full-width mode for performance tab
+        const body = document.querySelector('.portal-body');
+        if (tab === 'performance') {
+          body.classList.add('perf-mode');
+          renderPerfAttCal();
+        } else {
+          body.classList.remove('perf-mode');
+        }
+      }
+
+      // ── PERFORMANCE: ATTENDANCE CALENDAR ──
+      function renderPerfAttCal() {
+        const cal = document.getElementById('perfAttCalendar');
+        if (!cal || cal.dataset.rendered) return;
+        const headers = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        let html = headers.map((d) => `<div class="att-cal-hdr">${d}</div>`).join('');
+        // March 2026 starts on Sunday; pattern for Ayesha
+        const pat = ['P', 'L', 'P', 'P', 'P', 'W', 'W', 'P', 'L', 'P', 'P', 'P', 'W', 'W', 'P', 'P', 'L', 'P', 'P', 'W', 'W', 'F', 'F', 'F', 'F', 'F', 'W', 'W', 'F', 'F', 'F'];
+        for (let d = 1; d <= 31; d++) {
+          const s = pat[d - 1];
+          const cls = s === 'P' ? 'present' : s === 'L' ? 'late' : s === 'A' ? 'absent' : s === 'W' ? 'weekend' : 'future';
+          const today = d === 4 ? ' today' : '';
+          const title = s === 'P' ? 'Present' : s === 'L' ? 'Late (after 10 AM)' : s === 'W' ? 'Weekend' : 'Upcoming';
+          html += `<div class="cal-cell ${cls}${today}" title="${title}">${d}</div>`;
+        }
+        cal.innerHTML = html;
+        cal.dataset.rendered = '1';
+      }
+
+      // ── PERFORMANCE: PERIOD SWITCHER ──
+      function switchPerfPeriod(period, el) {
+        document.querySelectorAll('.perf-period-tab').forEach((t) => t.classList.remove('active'));
+        el.classList.add('active');
+        const msgs = { week: 'Showing data for Mar 3–9, 2026', month: 'Showing data for March 2026', all: 'Showing all-time performance data' };
+        showToast(msgs[period] || 'Period switched', '📊');
+      }
+
+      // ── PERFORMANCE: ALERT CLOSE ──
+      function closePerfAlert(id) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      }
+      function jumpToStage(key) {
+        switchPortalTab('journey');
+        setTimeout(() => openPanelByKey(key), 100);
+      }
+
+      // ── TIMELINE DATA ──
+      const candidateSteps = [
+        {
+          key: 'shortlisted',
+          icon: '✅',
+          label: 'Shortlisted',
+          desc: 'Your profile was reviewed and shortlisted by the HR team',
+          state: 'done',
+        },
+        {
+          key: 'technical',
+          icon: '💻',
+          label: 'Technical Interview',
+          desc: 'Technical skills evaluation by our Team Lead — action required',
+          state: 'done',
+        },
+        {
+          key: 'assignment',
+          icon: '📝',
+          label: 'Practical Assignment',
+          desc: 'Real-world task to demonstrate your skills',
+          state: 'done',
+        },
+        {
+          key: 'psychological',
+          icon: '🧠',
+          label: 'Final / Psychological Interview',
+          desc: 'Values and culture alignment interview with the CEO',
+          state: 'done',
+        },
+        {
+          key: 'ask_join',
+          icon: '🤝',
+          label: 'Offer to Join',
+          desc: 'Review your offer letter, read policies, and sign documents',
+          state: 'done',
+        },
+        {
+          key: 'joined',
+          icon: '🎉',
+          label: 'Joined Dev8X',
+          desc: 'You are now officially part of the Dev8X team',
+          state: 'done',
+        },
+        {
+          key: 'onboarding',
+          icon: '🖥',
+          label: 'Onboarding',
+          desc: 'Software setup, tools, workspace requirements, and first-week goals',
+          state: 'current',
+        },
+        {
+          key: 'completed',
+          icon: '🏁',
+          label: 'Internship Completed',
+          desc: 'Your internship journey at Dev8X has concluded',
+          state: 'pending',
+        },
+        {
+          key: 'promoted',
+          icon: '🚀',
+          label: 'Promoted to Full-time',
+          desc: 'Eligible candidates may receive a full-time offer',
+          state: 'pending',
+        },
+        {
+          key: 'not_selected',
+          icon: '💙',
+          label: 'Not Selected',
+          desc: 'Application closed — we appreciate your effort',
+          state: 'hidden',
+        },
+      ];
+
+      let openPanels = {};
+
+      function renderTimeline() {
+        const container = document.getElementById('candidateTimeline');
+        const visible = candidateSteps.filter((s) => s.state !== 'hidden');
+
+        container.innerHTML = visible
+          .map((step, i) => {
+            const isLast = i === visible.length - 1;
+            const prev = visible[i - 1];
+            const dotClass = step.state;
+            const dotContent = step.state === 'done' ? '✓' : step.state === 'current' ? step.icon : i + 1;
+            const connClass = step.state === 'done' ? 'connector-done' : prev?.state === 'done' ? 'connector-partial' : 'connector-pending';
+            const panelOpen = openPanels[step.key] ? 'open' : '';
+            const dimmed = step.state === 'pending' ? 'dimmed' : '';
+            const badgeClass = step.state === 'done' ? 'badge-done' : step.state === 'current' ? 'badge-current' : 'badge-pending';
+            const badgeText = step.state === 'done' ? '✓ Completed' : step.state === 'current' ? '⚡ Action Required' : 'Upcoming';
+
+            return `
+    <div class="timeline-step">
+      <div class="step-line">
+        <div class="step-dot ${dotClass}">${dotContent}</div>
+        ${!isLast ? `<div class="step-connector ${connClass}"></div>` : ''}
+      </div>
+      <div class="step-right">
+        <div class="step-header" onclick="togglePanel('${step.key}')">
+          <div class="step-title-text ${dimmed}">${step.label}</div>
+          <span class="step-badge ${badgeClass}">${badgeText}</span>
+          <span class="chevron ${panelOpen}">▼</span>
+        </div>
+        <div class="step-desc">${step.desc}</div>
+        <div class="step-panel ${panelOpen}" id="cpanel-${step.key}">
+          ${getCandidatePanelContent(step.key, step.state)}
+        </div>
+      </div>
+    </div>`;
+          })
+          .join('');
+      }
+
+      function togglePanel(key) {
+        openPanels[key] = !openPanels[key];
+        const panel = document.getElementById('cpanel-' + key);
+        if (panel) panel.classList.toggle('open', openPanels[key]);
+        document.querySelectorAll('.step-header').forEach((h) => {
+          const match = h.getAttribute('onclick')?.match(/'(.+?)'/)?.[1];
+          if (match === key) h.querySelector('.chevron')?.classList.toggle('open', openPanels[key]);
+        });
+      }
+
+      function openPanelByKey(key) {
+        openPanels[key] = true;
+        const panel = document.getElementById('cpanel-' + key);
+        if (panel) {
+          panel.classList.add('open');
+          panel.closest('.timeline-step')?.querySelector('.chevron')?.classList.add('open');
+          panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+
+      // ── PANEL CONTENT ──
+      function getCandidatePanelContent(key, state) {
+        const locked = state === 'pending';
+        const lockedMsg = `
+    <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#fffbeb] text-[#856404] border border-[#f5e687]">
+      ⏳ <div><strong>Not yet active.</strong> This stage will unlock once you complete the previous step. You will receive an email and portal notification when it's your turn to take action here.</div>
+    </div>`;
+
+        const panels = {
+          // ── SHORTLISTED ──
+          shortlisted: `
+      <div class="bg-gradient-to-br from-[#00a699] to-[#00c9b8] rounded-[10px] py-4 px-5 flex items-center gap-[14px] mb-4">
+        <div class="text-[30px] shrink-0">🎉</div>
+        <div class="text-white">
+          <div class="text-[15px] font-extrabold text-white">Congratulations! You've been shortlisted.</div>
+          <div class="text-white/80 text-xs mt-0.5">Your profile and portfolio impressed our HR team. Here's what to expect next.</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Applied Role</div><div class="text-[13px] font-bold text-[#222222]">UI/UX Designer</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Job Type</div><div class="text-[13px] font-bold text-[#222222]">Internship</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Date Shortlisted</div><div class="text-[13px] font-bold text-[#222222]">Feb 12, 2025</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Next Step</div><div class="text-[13px] font-bold text-[#222222]">Technical Interview</div></div>
+      </div>
+      <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#e6f7f6] text-[#007a73] border border-[#b2e8e5]">
+        ℹ️ Our HR team will reach out within 24–48 hours to schedule your technical interview. Keep your email and phone active.
+      </div>`,
+
+          // ── TECHNICAL INTERVIEW ──
+          technical: `
+      <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#fff0f0] text-[#c0393e] border border-[#ffcdd0]">
+        ⚡ <strong>Action required</strong> — Please confirm your preferred interview slot below before Feb 13, 2025.
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Interview Type</div><div class="text-[13px] font-bold text-[#222222]">Video Call — Google Meet</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Interviewer</div><div class="text-[13px] font-bold text-[#222222]">Ahmad — Backend Lead</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Duration</div><div class="text-[13px] font-bold text-[#222222]">45 – 60 minutes</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Language</div><div class="text-[13px] font-bold text-[#222222]">English / Urdu</div></div>
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Select Your Preferred Slot</div>
+        <div class="mb-3">
+          <label class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-[5px] block">Interview Date</label>
+          <input class="w-full py-[9px] px-3 border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-[13px] text-[#222222] bg-white outline-none transition-colors duration-[0.15s] focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0] form-input-sm" type="date" value="2025-02-14" style="max-width:200px;">
+        </div>
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3" style="margin-top:12px;">Available Time Slots (PKT)</div>
+        <div class="grid grid-cols-3 gap-2">
+          <div class="time-slot selected p-[10px] border-[1.5px] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] bg-[#ff5a5f] border-[#ff5a5f] text-white" onclick="selectSlot(this)">10:00 AM</div>
+          <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">11:30 AM</div>
+          <div class="time-slot taken p-[10px] border-[1.5px] rounded-[10px] text-center text-xs font-bold bg-[#f5f5f5] text-[#bbb] border-[#f5f5f5] cursor-not-allowed line-through">01:00 PM</div>
+          <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">02:00 PM</div>
+          <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">03:30 PM</div>
+          <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">05:00 PM</div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="showToast('Slot confirmed! Confirmation email sent 📧','✅','success')">✅ Confirm My Slot</button>
+          <button class="btn btn-secondary" onclick="showToast('Reschedule request sent to HR','📅')">📅 Request Different Date</button>
+        </div>
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3" style="margin-top:12px;">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Interview Preparation Tips</div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">💡</div><div class="text-[13px] font-semibold">Review your past design projects and be ready to walk through your process</div></div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">📷</div><div class="text-[13px] font-semibold">Test your camera, mic, and internet connection 15 minutes before</div></div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">🎨</div><div class="text-[13px] font-semibold">Have your portfolio open in a separate tab for screen sharing</div></div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">👔</div><div class="text-[13px] font-semibold">Professional attire and neutral background required — no casual settings</div></div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">🔕</div><div class="text-[13px] font-semibold">Join from a quiet environment — no background noise or interruptions</div></div>
+      </div>
+      <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#fffbeb] text-[#856404] border border-[#f5e687]" style="margin-top:8px;">
+        💡 The Google Meet link will be sent to your email 30 minutes before the interview starts.
+      </div>`,
+
+          // ── ASSIGNMENT ──
+          assignment: locked
+            ? lockedMsg
+            : `
+      <div class="bg-gradient-to-br from-[#00a699] to-[#00c9b8] rounded-[10px] py-4 px-5 flex items-center gap-[14px] mb-4" style="background:linear-gradient(135deg,#3b5bdb,#7048e8)">
+        <div class="text-[30px] shrink-0">📝</div>
+        <div class="text-white">
+          <div class="text-[15px] font-extrabold text-white">You've passed the Technical Interview!</div>
+          <div class="text-white/80 text-xs mt-0.5">Complete the practical assignment below to advance to the next stage.</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Task Title</div><div class="text-[13px] font-bold text-[#222222]">Design a SaaS Landing Page</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Deadline</div><div class="text-[13px] font-bold text-[#222222]">Feb 19, 2025 · EOD</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Duration Allowed</div><div class="text-[13px] font-bold text-[#222222]">5 days</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Tools</div><div class="text-[13px] font-bold text-[#222222]">Figma · Adobe XD</div></div>
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Task Brief</div>
+        <p style="font-size:13px;line-height:1.75;color:var(--hof);margin-bottom:14px;">Design a complete landing page for a fictional SaaS productivity tool named <strong>FlowDesk</strong>. Your design must include: hero section, key features section, pricing table (3 tiers), testimonials, and a clear CTA. Submit your Figma file link below.</p>
+        <div style="padding:12px;background:var(--bg);border-radius:var(--radius-sm);border:1px solid var(--border);margin-bottom:14px;">
+          <div style="font-size:11px;font-weight:700;color:var(--foggy);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Evaluation Criteria</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;font-weight:600;color:var(--hof);">
+            <div>✦ Visual hierarchy & layout</div><div>✦ Figma component usage</div>
+            <div>✦ Responsive design awareness</div><div>✦ Color & typography system</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-[5px] block">Submit Figma / Drive Link</label>
+          <input class="w-full py-[9px] px-3 border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-[13px] text-[#222222] bg-white outline-none transition-colors duration-[0.15s] focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0] form-input-sm" placeholder="https://figma.com/file/...">
+        </div>
+        <div class="mb-3">
+          <label class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-[5px] block">Additional Notes (optional)</label>
+          <textarea class="w-full py-[9px] px-3 border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-[13px] text-[#222222] bg-white outline-none transition-colors duration-[0.15s] focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0] form-input-sm" style="min-height:60px;resize:vertical;" placeholder="Any context or notes about your submission…"></textarea>
+        </div>
+        <button class="btn btn-primary btn-full" style="margin-top:8px;" onclick="showToast('Assignment submitted! HR will review shortly 🎉','✅','success')">📤 Submit Assignment</button>
+      </div>`,
+
+          // ── PSYCHOLOGICAL / FINAL INTERVIEW ──
+          psychological: locked
+            ? lockedMsg
+            : `
+      <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#f8f0ff] text-[#5e35b1] border border-[#dec8f8]">
+        🧠 <div><strong>This is the Final Interview</strong> conducted by the CEO. It focuses entirely on your values, long-term intentions, discipline, and culture fit — not technical skills. Be yourself and be honest.</div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Interviewer</div><div class="text-[13px] font-bold text-[#222222]">CEO — Dev8X</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Duration</div><div class="text-[13px] font-bold text-[#222222]">30 – 45 minutes</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Format</div><div class="text-[13px] font-bold text-[#222222]">Video Call (Google Meet)</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Focus</div><div class="text-[13px] font-bold text-[#222222]">Values · Mindset · Discipline</div></div>
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Choose Your Interview Slot</div>
+        <div class="grid grid-cols-3 gap-2">
+          <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">10:00 AM</div>
+          <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">12:00 PM</div>
+          <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">02:00 PM</div>
+          <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">04:00 PM</div>
+          <div class="time-slot taken p-[10px] border-[1.5px] rounded-[10px] text-center text-xs font-bold bg-[#f5f5f5] text-[#bbb] border-[#f5f5f5] cursor-not-allowed line-through">05:30 PM</div>
+          <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">06:00 PM</div>
+        </div>
+        <button class="btn btn-primary btn-full" style="margin-top:14px;" onclick="showToast('Final interview slot confirmed! Email sent.','🧠','success')">✅ Confirm Slot</button>
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3" style="margin-top:12px;">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">What to Expect</div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">🤝</div><div class="text-[13px] font-semibold">Why do you want to work at Dev8X specifically?</div></div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">🎯</div><div class="text-[13px] font-semibold">What are your 1-year and 3-year career goals?</div></div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">⚡</div><div class="text-[13px] font-semibold">How do you handle pressure, deadlines, and feedback?</div></div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">🌱</div><div class="text-[13px] font-semibold">Are you committed to growing with the team long-term?</div></div>
+      </div>`,
+
+          // ── ASK TO JOIN ──
+          ask_join: locked
+            ? lockedMsg
+            : `
+      <div class="bg-gradient-to-br from-[#00a699] to-[#00c9b8] rounded-[10px] py-4 px-5 flex items-center gap-[14px] mb-4" style="background:linear-gradient(135deg,#FF5A5F,#FC642D)">
+        <div class="text-[30px] shrink-0">🤝</div>
+        <div class="text-white">
+          <div class="text-[15px] font-extrabold text-white">You've received an offer from Dev8X!</div>
+          <div class="text-white/80 text-xs mt-0.5">Please review the details, read all policies, and sign the required documents before confirming.</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Offer Type</div><div class="text-[13px] font-bold text-[#222222]">Internship (Unpaid)</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Start Date</div><div class="text-[13px] font-bold text-[#222222]">Mar 1, 2025</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Duration</div><div class="text-[13px] font-bold text-[#222222]">3 months</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Reporting To</div><div class="text-[13px] font-bold text-[#222222]">Ali — Design Lead</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Work Mode</div><div class="text-[13px] font-bold text-[#222222]">Remote (Full-time hours)</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Offer Expires</div><div class="text-[13px] font-bold text-[#222222]">Feb 28, 2025</div></div>
+      </div>
+      <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#fffbeb] text-[#856404] border border-[#f5e687]">
+        ⚠️ <div><strong>Important:</strong> This internship is unpaid. A job offer after completion depends solely on your performance and available positions. The company may provide a job offer or an experience letter only.</div>
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Documents to Read & Sign — All Required</div>
+        <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row" id="sign-agreement">
+          <div class="flex items-center gap-2.5"><span class="text-[22px]">📋</span><div><div class="text-[13px] font-semibold">Internship / Employment Agreement</div><div class="text-[11px] text-[#767676]">PDF · 0.8 MB · Defines expectations, duration, and terms</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('agreement')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Internship Agreement')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row" id="sign-remote">
+          <div class="flex items-center gap-2.5"><span class="text-[22px]">🌐</span><div><div class="text-[13px] font-semibold">Remote Work Policy</div><div class="text-[11px] text-[#767676]">PDF · 0.3 MB · Setup standards & meeting requirements</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('remote')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Remote Work Policy')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row" id="sign-ethics">
+          <div class="flex items-center gap-2.5"><span class="text-[22px]">⚖️</span><div><div class="text-[13px] font-semibold">Work Ethics & Code of Conduct</div><div class="text-[11px] text-[#767676]">PDF · 0.5 MB · Behavioral standards and professionalism</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('ethics')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Code of Conduct')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row" id="sign-nda">
+          <div class="flex items-center gap-2.5"><span class="text-[22px]">🔒</span><div><div class="text-[13px] font-semibold">NDA / Confidentiality Agreement</div><div class="text-[11px] text-[#767676]">PDF · 0.4 MB · Protects company intellectual property</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('nda')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'NDA Agreement')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row" id="sign-leave">
+          <div class="flex items-center gap-2.5"><span class="text-[22px]">🏖</span><div><div class="text-[13px] font-semibold">Vacation & Leave Policy</div><div class="text-[11px] text-[#767676]">PDF · 0.2 MB · Leave entitlements and procedures</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('leave')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Vacation Policy')">✍ Sign</button>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top:16px;">
+        <button class="btn btn-success" onclick="showToast('Offer accepted! Welcome to Dev8X 🎉 HR will contact you shortly.','🎉','success')">🎉 I Accept — Confirm Joining</button>
+        <button class="btn btn-danger" onclick="showToast('Offer declined. HR has been notified.','❌')">❌ Decline Offer</button>
+      </div>`,
+
+          // ── JOINED ──
+          joined: locked
+            ? lockedMsg
+            : `
+      <div class="bg-gradient-to-br from-[#00a699] to-[#00c9b8] rounded-[10px] py-4 px-5 flex items-center gap-[14px] mb-4">
+        <div class="text-[30px] shrink-0">🎊</div>
+        <div class="text-white">
+          <div class="text-[15px] font-extrabold text-white">Welcome to Dev8X! You're officially in.</div>
+          <div class="text-white/80 text-xs mt-0.5">Your company accounts and tools access are provided below. Keep these secure.</div>
+        </div>
+      </div>
+      <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#fff0f0] text-[#c0393e] border border-[#ffcdd0]">
+        🔒 <strong>Security notice:</strong> Do not share these credentials with anyone. Use your company email only for work-related communication.
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Your Company Accounts</div>
+        <div class="flex items-center justify-between py-3 px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-[#f7f7f7]">
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-[10px] flex items-center justify-center text-lg shrink-0" style="background:#e8f0fe;">📧</div><div><div class="text-[13px] font-bold">Company Email</div><div class="text-xs text-[#767676]">ayesha@dev8x.com</div></div></div>
+          <button class="py-1.5 px-3.5 rounded-[20px] border border-[#ebebeb] bg-white font-jakarta text-[11px] font-bold cursor-pointer transition-colors duration-[0.15s] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="copyText('ayesha@dev8x.com')">Copy</button>
+        </div>
+        <div class="flex items-center justify-between py-3 px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-[#f7f7f7]">
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-[10px] flex items-center justify-center text-lg shrink-0" style="background:#f0f5ff;">💬</div><div><div class="text-[13px] font-bold">Slack Workspace</div><div class="text-xs text-[#767676]">dev8x.slack.com · #design-team</div></div></div>
+          <button class="py-1.5 px-3.5 rounded-[20px] border border-[#ebebeb] bg-white font-jakarta text-[11px] font-bold cursor-pointer transition-colors duration-[0.15s] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="copyText('dev8x.slack.com')">Copy</button>
+        </div>
+        <div class="flex items-center justify-between py-3 px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-[#f7f7f7]">
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-[10px] flex items-center justify-center text-lg shrink-0" style="background:#f5f5f5;">🐙</div><div><div class="text-[13px] font-bold">GitHub Organisation</div><div class="text-xs text-[#767676]">github.com/dev8x</div></div></div>
+          <button class="py-1.5 px-3.5 rounded-[20px] border border-[#ebebeb] bg-white font-jakarta text-[11px] font-bold cursor-pointer transition-colors duration-[0.15s] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="copyText('github.com/dev8x')">Copy</button>
+        </div>
+        <div class="flex items-center justify-between py-3 px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-[#f7f7f7]">
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-[10px] flex items-center justify-center text-lg shrink-0" style="background:#fff0f5;">🎨</div><div><div class="text-[13px] font-bold">Figma Team</div><div class="text-xs text-[#767676]">figma.com/team/dev8x — invite via company email</div></div></div>
+          <button class="py-1.5 px-3.5 rounded-[20px] border border-[#ebebeb] bg-white font-jakarta text-[11px] font-bold cursor-pointer transition-colors duration-[0.15s] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="copyText('figma.com/team/dev8x')">Copy</button>
+        </div>
+        <div class="flex items-center justify-between py-3 px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-[#f7f7f7]">
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-[10px] flex items-center justify-center text-lg shrink-0" style="background:#f8f0ff;">📒</div><div><div class="text-[13px] font-bold">Notion Workspace</div><div class="text-xs text-[#767676]">notion.so/dev8x — check email for invite</div></div></div>
+          <button class="py-1.5 px-3.5 rounded-[20px] border border-[#ebebeb] bg-white font-jakarta text-[11px] font-bold cursor-pointer transition-colors duration-[0.15s] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="copyText('notion.so/dev8x')">Copy</button>
+        </div>
+        <div class="flex items-center justify-between py-3 px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-[#f7f7f7]">
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-[10px] flex items-center justify-center text-lg shrink-0" style="background:#e8f5e9;">📊</div><div><div class="text-[13px] font-bold">Jira (Task Tracker)</div><div class="text-xs text-[#767676]">dev8x.atlassian.net</div></div></div>
+          <button class="py-1.5 px-3.5 rounded-[20px] border border-[#ebebeb] bg-white font-jakarta text-[11px] font-bold cursor-pointer transition-colors duration-[0.15s] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="copyText('dev8x.atlassian.net')">Copy</button>
+        </div>
+      </div>
+      <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#e6f7f6] text-[#007a73] border border-[#b2e8e5]" style="margin-top:12px;">
+        ℹ️ If you can't access any of the above, please message HR immediately at hr@dev8x.com — do not wait until your first day.
+      </div>`,
+
+          // ── ONBOARDING ──
+          onboarding: locked
+            ? lockedMsg
+            : `
+      <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#e6f7f6] text-[#007a73] border border-[#b2e8e5]">
+        🖥 <strong>Your first week defines your trajectory.</strong> Complete all setup items below before your official start date. Notify HR once done.
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Required Software — Install & Set Up</div>
+        <div class="grid grid-cols-3 gap-2.5">
+          <div class="border rounded-[10px] py-[14px] px-2.5 text-center transition-all duration-[0.15s] cursor-pointer hover:border-[#ff5a5f] hover:-translate-y-[2px] hover:shadow-portal-sm border-[#00a699] bg-[#e6f7f6] software-card installed" onclick="showToast('Figma setup guide: figma.com/downloads','🎨')">
+            <div class="text-[26px] mb-[5px]">🎨</div>
+            <div class="text-[12px] font-bold">Figma</div>
+            <div class="text-[10px] text-[#767676] mt-0.5">Design & Prototype</div>
+            <div class="text-[10px] font-bold mt-1 text-[#00a699]">✓ Required</div>
+          </div>
+          <div class="border border-[#ebebeb] rounded-[10px] py-[14px] px-2.5 text-center bg-white transition-all duration-[0.15s] cursor-pointer hover:border-[#ff5a5f] hover:-translate-y-[2px] hover:shadow-portal-sm software-card" onclick="showToast('Slack: slack.com/downloads','💬')">
+            <div class="text-[26px] mb-[5px]">💬</div>
+            <div class="text-[12px] font-bold">Slack</div>
+            <div class="text-[10px] text-[#767676] mt-0.5">Team Communication</div>
+            <div class="text-[10px] font-bold mt-1 text-[#00a699]" style="color:var(--foggy)">Install</div>
+          </div>
+          <div class="border border-[#ebebeb] rounded-[10px] py-[14px] px-2.5 text-center bg-white transition-all duration-[0.15s] cursor-pointer hover:border-[#ff5a5f] hover:-translate-y-[2px] hover:shadow-portal-sm software-card" onclick="showToast('Notion: notion.so/desktop','📒')">
+            <div class="text-[26px] mb-[5px]">📒</div>
+            <div class="text-[12px] font-bold">Notion</div>
+            <div class="text-[10px] text-[#767676] mt-0.5">Docs & Projects</div>
+            <div class="text-[10px] font-bold mt-1 text-[#00a699]" style="color:var(--foggy)">Install</div>
+          </div>
+          <div class="border border-[#ebebeb] rounded-[10px] py-[14px] px-2.5 text-center bg-white transition-all duration-[0.15s] cursor-pointer hover:border-[#ff5a5f] hover:-translate-y-[2px] hover:shadow-portal-sm software-card" onclick="showToast('GitHub Desktop: desktop.github.com','🐙')">
+            <div class="text-[26px] mb-[5px]">🐙</div>
+            <div class="text-[12px] font-bold">GitHub Desktop</div>
+            <div class="text-[10px] text-[#767676] mt-0.5">Version Control</div>
+            <div class="text-[10px] font-bold mt-1 text-[#00a699]" style="color:var(--foggy)">Install</div>
+          </div>
+          <div class="border border-[#ebebeb] rounded-[10px] py-[14px] px-2.5 text-center bg-white transition-all duration-[0.15s] cursor-pointer hover:border-[#ff5a5f] hover:-translate-y-[2px] hover:shadow-portal-sm software-card" onclick="showToast('Google Meet works in browser — no install needed','📹')">
+            <div class="text-[26px] mb-[5px]">📹</div>
+            <div class="text-[12px] font-bold">Google Meet</div>
+            <div class="text-[10px] text-[#767676] mt-0.5">Video Meetings</div>
+            <div class="text-[10px] font-bold mt-1 text-[#00a699]" style="color:var(--foggy)">Browser</div>
+          </div>
+          <div class="border border-[#ebebeb] rounded-[10px] py-[14px] px-2.5 text-center bg-white transition-all duration-[0.15s] cursor-pointer hover:border-[#ff5a5f] hover:-translate-y-[2px] hover:shadow-portal-sm software-card" onclick="showToast('Jira: dev8x.atlassian.net','📊')">
+            <div class="text-[26px] mb-[5px]">📊</div>
+            <div class="text-[12px] font-bold">Jira</div>
+            <div class="text-[10px] text-[#767676] mt-0.5">Task Tracking</div>
+            <div class="text-[10px] font-bold mt-1 text-[#00a699]" style="color:var(--foggy)">Web App</div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3" style="margin-top:12px;">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Remote Workspace Requirements</div>
+        <div class="flex items-start gap-3 py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white">
+          <div class="text-[20px] shrink-0 mt-[1px]">💡</div>
+          <div><div class="text-[13px] font-bold mb-0.5">Proper Lighting</div><div class="text-[12px] text-[#767676]">Natural light or ring light. No harsh shadows. Your face must be clearly visible at all times during meetings.</div></div>
+        </div>
+        <div class="flex items-start gap-3 py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white">
+          <div class="text-[20px] shrink-0 mt-[1px]">📷</div>
+          <div><div class="text-[13px] font-bold mb-0.5">Working Camera</div><div class="text-[12px] text-[#767676]">HD webcam is recommended. Built-in laptop camera is acceptable if image quality is clear and stable.</div></div>
+        </div>
+        <div class="flex items-start gap-3 py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white">
+          <div class="text-[20px] shrink-0 mt-[1px]">🔇</div>
+          <div><div class="text-[13px] font-bold mb-0.5">Quiet Environment</div><div class="text-[12px] text-[#767676]">Dedicated workspace with minimal background noise. Use a headset with mic for clearer audio during standups.</div></div>
+        </div>
+        <div class="flex items-start gap-3 py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white">
+          <div class="text-[20px] shrink-0 mt-[1px]">🌐</div>
+          <div><div class="text-[13px] font-bold mb-0.5">Stable Internet</div><div class="text-[12px] text-[#767676]">Minimum 10 Mbps for smooth video calls. Test your connection before your first team meeting or standup.</div></div>
+        </div>
+        <div class="flex items-start gap-3 py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white">
+          <div class="text-[20px] shrink-0 mt-[1px]">🖥</div>
+          <div><div class="text-[13px] font-bold mb-0.5">Professional Background</div><div class="text-[12px] text-[#767676]">Neutral wall or an approved virtual background. No clutter, personal items, or distracting environments visible.</div></div>
+        </div>
+        <div class="flex items-start gap-3 py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white">
+          <div class="text-[20px] shrink-0 mt-[1px]">👔</div>
+          <div><div class="text-[13px] font-bold mb-0.5">Professional Attire</div><div class="text-[12px] text-[#767676]">Business casual during all video calls and meetings. Smart-casual minimum — no casual or informal clothing.</div></div>
+        </div>
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3" style="margin-top:12px;">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Onboarding Completion Checklist</div>
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between py-2.5 px-3.5 bg-[#f7f7f7] rounded-[10px] border border-[#ebebeb]"><div class="flex items-center gap-2.5 text-[13px] font-semibold"><input type="checkbox" id="ob1"><label for="ob1">Installed and logged into all required software</label></div><span style="font-size:11px;color:var(--foggy)">Step 1</span></div>
+          <div class="flex items-center justify-between py-2.5 px-3.5 bg-[#f7f7f7] rounded-[10px] border border-[#ebebeb]"><div class="flex items-center gap-2.5 text-[13px] font-semibold"><input type="checkbox" id="ob2"><label for="ob2">Set up dedicated workspace with proper lighting</label></div><span style="font-size:11px;color:var(--foggy)">Step 2</span></div>
+          <div class="flex items-center justify-between py-2.5 px-3.5 bg-[#f7f7f7] rounded-[10px] border border-[#ebebeb]"><div class="flex items-center gap-2.5 text-[13px] font-semibold"><input type="checkbox" id="ob3"><label for="ob3">Tested camera, audio, and internet speed</label></div><span style="font-size:11px;color:var(--foggy)">Step 3</span></div>
+          <div class="flex items-center justify-between py-2.5 px-3.5 bg-[#f7f7f7] rounded-[10px] border border-[#ebebeb]"><div class="flex items-center gap-2.5 text-[13px] font-semibold"><input type="checkbox" id="ob4"><label for="ob4">Joined Slack workspace and introduced yourself in #general</label></div><span style="font-size:11px;color:var(--foggy)">Step 4</span></div>
+          <div class="flex items-center justify-between py-2.5 px-3.5 bg-[#f7f7f7] rounded-[10px] border border-[#ebebeb]"><div class="flex items-center gap-2.5 text-[13px] font-semibold"><input type="checkbox" id="ob5"><label for="ob5">Set up company email and signed in to all tools</label></div><span style="font-size:11px;color:var(--foggy)">Step 5</span></div>
+          <div class="flex items-center justify-between py-2.5 px-3.5 bg-[#f7f7f7] rounded-[10px] border border-[#ebebeb]"><div class="flex items-center gap-2.5 text-[13px] font-semibold"><input type="checkbox" id="ob6"><label for="ob6">Read and acknowledged the onboarding handbook in Notion</label></div><span style="font-size:11px;color:var(--foggy)">Step 6</span></div>
+          <div class="flex items-center justify-between py-2.5 px-3.5 bg-[#f7f7f7] rounded-[10px] border border-[#ebebeb]"><div class="flex items-center gap-2.5 text-[13px] font-semibold"><input type="checkbox" id="ob7"><label for="ob7">Attended first team call / introduction meeting</label></div><span style="font-size:11px;color:var(--foggy)">Step 7</span></div>
+        </div>
+        <button class="btn btn-success btn-full" style="margin-top:14px;" onclick="showToast('Onboarding checklist submitted! HR notified.','🖥','success')">✅ Mark Onboarding as Complete</button>
+      </div>`,
+
+          // ── COMPLETED ──
+          completed: locked
+            ? lockedMsg
+            : `
+      <div class="bg-gradient-to-br from-[#00a699] to-[#00c9b8] rounded-[10px] py-4 px-5 flex items-center gap-[14px] mb-4" style="background:linear-gradient(135deg,#7048E8,#9B59B6)">
+        <div class="text-[30px] shrink-0">🏁</div>
+        <div class="text-white">
+          <div class="text-[15px] font-extrabold text-white">Internship Successfully Completed!</div>
+          <div class="text-white/80 text-xs mt-0.5">Thank you for your dedication and hard work during your time at Dev8X.</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Start Date</div><div class="text-[13px] font-bold text-[#222222]">Mar 1, 2025</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">End Date</div><div class="text-[13px] font-bold text-[#222222]">May 31, 2025</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Duration</div><div class="text-[13px] font-bold text-[#222222]">3 Months</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Final Rating</div><div class="text-[13px] font-bold text-[#222222]">Excellent ⭐⭐⭐⭐⭐</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Team</div><div class="text-[13px] font-bold text-[#222222]">Design Team</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Manager</div><div class="text-[13px] font-bold text-[#222222]">Ali — Design Lead</div></div>
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Your Documents</div>
+        <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row">
+          <div class="flex items-center gap-2.5"><span class="text-[22px]">📄</span><div><div class="text-[13px] font-semibold">Experience Letter</div><div class="text-[11px] text-[#767676]">PDF · Ready to download · Signed by HR</div></div></div>
+          <button class="btn btn-primary btn-sm" onclick="showToast('Experience letter downloading…','📄')">📥 Download</button>
+        </div>
+        <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row">
+          <div class="flex items-center gap-2.5"><span class="text-[22px]">🏅</span><div><div class="text-[13px] font-semibold">Internship Completion Certificate</div><div class="text-[11px] text-[#767676]">PDF · Signed by CEO</div></div></div>
+          <button class="btn btn-primary btn-sm" onclick="showToast('Certificate downloading…','🏅')">📥 Download</button>
+        </div>
+      </div>
+      <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#e6f7f6] text-[#007a73] border border-[#b2e8e5]" style="margin-top:12px;">
+        🚀 Our HR team will evaluate your performance for a full-time offer. You will be notified within 7 days of your internship end date.
+      </div>`,
+
+          // ── PROMOTED ──
+          promoted: locked
+            ? lockedMsg
+            : `
+      <div class="bg-gradient-to-br from-[#00a699] to-[#00c9b8] rounded-[10px] py-4 px-5 flex items-center gap-[14px] mb-4" style="background:linear-gradient(135deg,#FC642D,#FF5A5F)">
+        <div class="text-[30px] shrink-0">🚀</div>
+        <div class="text-white">
+          <div class="text-[15px] font-extrabold text-white">You've been offered a Full-time Role!</div>
+          <div class="text-white/80 text-xs mt-0.5">Welcome to the permanent Dev8X team. Please review and sign your new offer documents.</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">New Role</div><div class="text-[13px] font-bold text-[#222222]">Junior UI/UX Designer</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Department</div><div class="text-[13px] font-bold text-[#222222]">Design Team</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Start Date</div><div class="text-[13px] font-bold text-[#222222]">Jun 1, 2025</div></div>
+        <div><div class="text-[10px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[3px]">Reporting To</div><div class="text-[13px] font-bold text-[#222222]">Ali — Design Lead</div></div>
+      </div>
+      <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#fffbeb] text-[#856404] border border-[#f5e687]">
+        ⚠️ Please review all employment documents carefully before signing. This is a legally binding agreement. Reach out to HR if you have any questions.
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Employment Documents to Sign</div>
+        <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row">
+          <div class="flex items-center gap-2.5"><span class="text-[22px]">📋</span><div><div class="text-[13px] font-semibold">Full-time Employment Agreement</div><div class="text-[11px] text-[#767676]">PDF · 1.2 MB · Defines role, responsibilities & terms</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('employment')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Employment Agreement')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row">
+          <div class="flex items-center gap-2.5"><span class="text-[22px]">💰</span><div><div class="text-[13px] font-semibold">Salary & Benefits Policy</div><div class="text-[11px] text-[#767676]">PDF · 0.4 MB</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('salary')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Salary Policy')">✍ Sign</button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row">
+          <div class="flex items-center gap-2.5"><span class="text-[22px]">🚫</span><div><div class="text-[13px] font-semibold">Non-Compete Agreement</div><div class="text-[11px] text-[#767676]">PDF · 0.3 MB</div></div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('nda')">👁 Read</button>
+            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Non-Compete')">✍ Sign</button>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top:16px;">
+        <button class="btn btn-success" onclick="showToast('Promotion accepted! Welcome to the full team 🚀','🚀','success')">🎉 Accept Full-time Offer</button>
+        <button class="btn btn-danger" onclick="showToast('HR has been notified of your decision.','❌')">❌ Decline</button>
+      </div>`,
+
+          // ── NOT SELECTED ──
+          not_selected: `
+      <div class="text-center py-6 px-4">
+        <div class="text-[52px] mb-3.5">💙</div>
+        <div class="text-lg font-extrabold mb-2">Thank you for applying to Dev8X</div>
+        <div class="text-sm text-[#767676] leading-[1.65]">We genuinely appreciated your time, effort, and interest in joining our team. While we are not moving forward with your application at this stage, this does not reflect your overall potential or talent.</div>
+      </div>
+      <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#fffbeb] text-[#856404] border border-[#f5e687]">
+        💡 Your profile may be added to our <strong>Future Talent Pool</strong>. If a position that matches your skills opens up, our HR team will reach out to you directly.
+      </div>
+      <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3">
+        <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">What You Can Do</div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">📧</div><div class="text-[13px] font-semibold">Request feedback from HR to understand areas for improvement</div></div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">🔔</div><div class="text-[13px] font-semibold">Follow Dev8X on LinkedIn for future openings</div></div>
+        <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">🌐</div><div class="text-[13px] font-semibold">Visit dev8x.com/careers to apply for future roles</div></div>
+        <button class="btn btn-secondary btn-full" style="margin-top:12px;" onclick="showToast('Feedback request sent to HR','📧')">📧 Request Feedback</button>
+      </div>`,
+        };
+
+        return panels[key] || `<div style="font-size:13px;color:var(--foggy);padding:8px 0">Details for this stage will appear when it becomes active.</div>`;
+      }
+
+      // ── SLOT PICKER ──
+      function selectSlot(el) {
+        if (el.classList.contains('taken')) return;
+        el.closest('.time-slot-grid')
+          .querySelectorAll('.time-slot')
+          .forEach((s) => s.classList.remove('selected'));
+        el.classList.add('selected');
+      }
+
+      // ── COPY TEXT ──
+      function copyText(text) {
+        navigator.clipboard.writeText(text).catch(() => {});
+        showToast(text + ' copied!', '📋');
+      }
+
+      // ── SIGN DOCUMENT ──
+      function signDocument(btn, name) {
+        btn.textContent = '✓ Signed';
+        btn.classList.remove('btn-outline');
+        btn.classList.add('btn-success');
+        btn.disabled = true;
+        btn.style.opacity = '0.8';
+        const row = btn.closest('.doc-sign-row');
+        if (row) row.classList.add('signed');
+        showToast(name + ' signed successfully!', '✅', 'success');
+      }
+
+      // ── MESSAGES ──
+      function openMessage(el, sender, subject, body) {
+        el.classList.remove('unread');
+        el.querySelector('.msg-unread-dot')?.remove();
+        document.getElementById('msgThread').style.display = 'block';
+        document.getElementById('msgThreadTitle').textContent = '📨 ' + subject + ' — ' + sender;
+        document.getElementById('msgThreadBody').textContent = body;
+        updateBadge('msg', document.querySelectorAll('.msg-item.unread').length);
+      }
+      function sendReply() {
+        const box = document.getElementById('replyBox');
+        if (!box.value.trim()) {
+          showToast('Please type a message first', '⚠️');
+          return;
+        }
+        showToast('Message sent to HR team 📧', '✅', 'success');
+        box.value = '';
+      }
+
+      // ── POLICY MODAL ──
+      const policyContent = {
+        remote: {
+          title: '🌐 Remote Work Policy',
+          content: `<h3>1. Purpose</h3><p>This policy governs remote work arrangements for all Dev8X team members to ensure productivity, professionalism, and consistent communication standards.</p><h3>2. Workspace Requirements</h3><ul><li>Dedicated, quiet workspace with minimal distractions</li><li>Professional background — neutral wall or approved virtual background</li><li>Stable internet connection (minimum 10 Mbps)</li><li>Working HD camera and clear audio microphone</li><li>Proper lighting at all times during video calls</li></ul><h3>3. Working Hours</h3><p>All team members must be available during core hours (10 AM – 5 PM PKT). Flexibility beyond these hours is allowed but core hour availability is mandatory.</p><h3>4. Communication Standards</h3><ul><li>Respond to Slack messages within 2 hours during working hours</li><li>Attend all scheduled standups and team meetings with camera on</li><li>Notify your manager immediately if you are unable to attend a meeting</li></ul><h3>5. Equipment Responsibility</h3><p>Team members are responsible for maintaining their own equipment. Dev8X is not liable for hardware failures during remote work.</p>`,
+        },
+        ethics: {
+          title: '⚖️ Work Ethics & Code of Conduct',
+          content: `<h3>1. Professional Standards</h3><p>All Dev8X team members are expected to maintain the highest level of professionalism in every interaction — with colleagues, clients, and external partners.</p><h3>2. Communication</h3><ul><li>Be respectful, inclusive, and constructive in all communications</li><li>No offensive, discriminatory, or unprofessional language at any time</li><li>Provide honest and timely updates on your work progress</li></ul><h3>3. Work Quality & Deadlines</h3><ul><li>Always deliver on commitments and communicate proactively if blockers arise</li><li>No plagiarism, copying of designs, or misrepresentation of work</li><li>Take ownership of your work — document, share, and iterate consistently</li></ul><h3>4. Confidentiality</h3><p>All client information, product details, and internal processes must remain strictly confidential. Violations will result in immediate termination.</p><h3>5. Conflict Resolution</h3><p>All disputes must be escalated through proper channels — never handled informally or through social media.</p>`,
+        },
+        agreement: {
+          title: '📋 Internship / Employment Agreement',
+          content: `<h3>1. Purpose of Internship</h3><p>This internship is designed to provide practical, hands-on learning experience in your field of study or interest. Dev8X commits to providing meaningful work, mentorship, and structured feedback.</p><h3>2. Duration</h3><p>This internship is for a period of 3 months, commencing Mar 1, 2025 and concluding May 31, 2025, unless terminated earlier by either party with 7 days written notice.</p><h3>3. Compensation</h3><p>This internship is unpaid. No salary, stipend, allowance, or any monetary benefit is guaranteed or implied unless separately stated in writing.</p><h3>4. Expectations</h3><ul><li>Full-time availability during core working hours</li><li>Timely delivery of assigned tasks and projects</li><li>Active participation in team meetings and standups</li><li>Professional conduct in all company interactions</li></ul><h3>5. Important Disclaimer</h3><p>Completion of this internship does NOT guarantee a job offer. Any employment offer post-internship is subject to performance evaluation, available positions, and company requirements. The company reserves the right to offer either a job offer or an experience letter only.</p><h3>6. Intellectual Property</h3><p>All work produced during the internship remains the exclusive property of Dev8X Pvt. Ltd.</p>`,
+        },
+        nda: {
+          title: '🔒 NDA / Confidentiality Agreement',
+          content: `<h3>1. Definition of Confidential Information</h3><p>Confidential Information includes but is not limited to: product designs, source code, business strategies, client data, financial information, internal processes, and any non-public information disclosed during your engagement with Dev8X.</p><h3>2. Obligations</h3><ul><li>You must not disclose any Confidential Information to any third party without prior written consent</li><li>You must not use Confidential Information for personal benefit or for any purpose outside your role</li><li>You must immediately report any accidental disclosure to HR</li></ul><h3>3. Duration</h3><p>This agreement remains in effect for 2 years after the termination of your internship or employment.</p><h3>4. Penalties</h3><p>Breach of this agreement may result in legal action and financial liability as permitted under applicable law.</p>`,
+        },
+        leave: {
+          title: '🏖 Vacation & Leave Policy',
+          content: `<h3>1. Internship Leave Entitlement</h3><p>Interns are entitled to 2 casual leave days per month (non-cumulative). No paid annual leave is applicable during the internship period.</p><h3>2. Leave Application Process</h3><ul><li>Submit leave requests at least 48 hours in advance via Slack or email to HR</li><li>Emergency leaves must be communicated immediately with a valid reason</li><li>Unapproved absences may impact your final performance evaluation</li></ul><h3>3. Public Holidays</h3><p>Dev8X observes all Pakistani national public holidays. A list of approved holidays will be shared at the start of each month.</p><h3>4. Sick Leave</h3><p>1 sick day per month is available. A medical certificate may be required for absences exceeding 2 consecutive days.</p>`,
+        },
+        penalty: {
+          title: '⚠️ Penalty & Behaviour Standards',
+          content: `<h3>1. Zero Tolerance Violations</h3><p>The following result in immediate termination without notice: data breach, harassment, falsification of work, sharing confidential client data, or any criminal activity.</p><h3>2. Performance Warnings</h3><ul><li>First offence (minor): Verbal warning documented in HR records</li><li>Second offence: Written warning with a 7-day improvement plan</li><li>Third offence: Termination of internship or employment</li></ul><h3>3. Attendance & Punctuality</h3><p>3 consecutive unexplained absences will result in automatic termination. Repeated tardiness (more than 3 times a month) will result in a formal warning.</p><h3>4. Work Quality</h3><p>Consistently missing deadlines without valid communication will result in a performance review and may impact your internship completion rating.</p>`,
+        },
+        employment: {
+          title: '📋 Full-time Employment Agreement',
+          content: `<h3>1. Employment Terms</h3><p>This is a full-time employment agreement between the employee and Dev8X Pvt. Ltd. The employee agrees to serve in the capacity of Junior UI/UX Designer effective June 1, 2025.</p><h3>2. Compensation</h3><p>Monthly salary and benefits will be detailed in the separately provided Compensation Letter. Salary is disbursed on the last working day of each month.</p><h3>3. Probation Period</h3><p>The first 3 months constitute a probation period. Either party may terminate employment within this period with 7 days written notice.</p><h3>4. Working Hours</h3><p>Standard working hours are 40 hours/week. Remote work is allowed within the framework of the Remote Work Policy.</p><h3>5. Termination</h3><p>Post-probation, a 30-day notice period is required by either party. Dev8X reserves the right to pay in lieu of notice.</p>`,
+        },
+        salary: {
+          title: '💰 Salary & Benefits Policy',
+          content: `<h3>1. Compensation Structure</h3><p>Compensation is competitive and reviewed annually based on performance and market benchmarks. Details of your specific package are contained in your personal Compensation Letter.</p><h3>2. Benefits</h3><ul><li>Annual performance bonus (up to 15% of annual salary)</li><li>Paid annual leave: 18 days per year</li><li>Remote work flexibility (as per Remote Work Policy)</li><li>Learning & development budget: PKR 20,000/year</li></ul><h3>3. Salary Disbursement</h3><p>Salary is disbursed on the last working day of each calendar month directly to your registered bank account.</p><h3>4. Deductions</h3><p>Applicable tax deductions will be made as per Government of Pakistan regulations. A monthly payslip will be shared via your company email.</p>`,
+        },
+      };
+
+      function openPolicyModal(key) {
+        const data = policyContent[key];
+        if (!data) return;
+        document.getElementById('policyModalTitle').textContent = data.title;
+        document.getElementById('policyModalContent').innerHTML = data.content;
+        document.getElementById('policyModal').classList.add('open');
+      }
+      function closePolicyModal(e) {
+        if (e.target === document.getElementById('policyModal')) {
+          document.getElementById('policyModal').classList.remove('open');
+        }
+      }
+
+      // ── BADGE UPDATES ──
+      function updateBadge(type, count) {
+        const el = document.getElementById(type === 'msg' ? 'msgBadge' : 'docsBadge');
+        if (el) {
+          el.textContent = count;
+          el.style.display = count > 0 ? 'inline' : 'none';
+        }
+      }
+
+      // ── TOAST ──
+      function showToast(msg, icon = 'ℹ️', type = '') {
+        const c = document.getElementById('toastContainer');
+        const t = document.createElement('div');
+        t.className = 'toast ' + type;
+        t.innerHTML = `<span>${icon}</span> ${msg}`;
+        c.appendChild(t);
+        setTimeout(() => t.remove(), 3800);
+      }
+
+      // ── INIT ──
+      window.addEventListener('DOMContentLoaded', () => {
+        renderTimeline();
+        openPanelByKey('technical');
+      });
+    </script>
+  </body>
+</html>
