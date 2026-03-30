@@ -2250,7 +2250,6 @@
             </div>
           </div>
 
-
           <div class="flex gap-[10px] mb-6">
             <div class="quick-link" onclick="openModal('new-ticket-modal')"><span class="text-base">🛟</span> New Ticket</div>
             <div class="quick-link"><span class="text-base">📎</span> Upload File</div>
@@ -2475,7 +2474,6 @@
             <button class="btn btn-primary">+ Request New Project</button>
           </div>
 
-  
           <div class="flex items-center justify-between mb-5">
             <div class="flex items-center gap-2 flex-wrap">
               <div class="filter-chip active">All (3)</div>
@@ -2490,9 +2488,7 @@
             </select>
           </div>
 
-
           <div class="grid grid-cols-2 gap-5">
- 
             <div class="project-card" onclick="openProject('alpha')">
               <div class="pt-5 px-5 pb-4">
                 <div class="flex items-center justify-between mb-2">
@@ -2598,72 +2594,86 @@
         <!-- ============================================================
             PAGE: PROJECT DETAIL (Chunk 3)
             ============================================================ -->
+        <!-- ============================================================
+     PAGE: PROJECT DETAIL
+     ============================================================ -->
         <div class="page" id="page-project-detail">
-   
+          <!-- Header -->
           <div class="flex items-center justify-between mb-4" id="pd-header">
             <div class="flex-1">
               <div class="flex items-center gap-3 mb-[6px]" id="pd-title-row"></div>
               <div class="text-[13px] text-[#767676] flex items-center gap-4" id="pd-meta"></div>
               <div class="flex items-center gap-3 mt-3">
-                <div class="progress-wrap h-2 max-w-[400px]"><div class="progress-bar w-[72%]" id="pd-progress-bar"></div></div>
+                <div class="flex-1 h-2 bg-[#ebebeb] rounded-[3px] overflow-hidden max-w-[400px]">
+                  <div class="h-full rounded-[3px] bg-gradient-to-r from-[#ff5a5f] to-[#fc642d]" id="pd-progress-bar" style="width: 72%"></div>
+                </div>
                 <span class="text-[14px] font-extrabold text-[#222222]" id="pd-progress-label">72% Complete</span>
               </div>
             </div>
-            <button class="btn btn-secondary btn-sm" onclick="navigate('projects', document.querySelector('[onclick*=projects]'))">&#8592; Back to Projects</button>
+            <button class="inline-flex items-center justify-center font-[inherit] font-semibold text-[12px] px-3 py-[6px] rounded-[6px] border border-[#ebebeb] bg-white text-[#484848] cursor-pointer transition-all duration-150 whitespace-nowrap hover:bg-[#f7f7f7] hover:border-[#767676]" onclick="navigate('projects', document.querySelector('[onclick*=projects]'))">&#8592; Back to Projects</button>
           </div>
 
-          <div class="page-tabs" id="pd-tabs">
-            <div class="page-tab active" onclick="switchTab('pd', 'overview', this)">Overview</div>
-            <div class="page-tab" onclick="switchTab('pd', 'timeline', this)">Timeline</div>
-            <div class="page-tab" onclick="switchTab('pd', 'milestones-tab', this)">Milestones</div>
-            <div class="page-tab" onclick="switchTab('pd', 'files-tab', this)">Files &amp; Docs</div>
-            <div class="page-tab" id="pd-tab-hours" onclick="switchTab('pd', 'hours-tab', this)">⏱ Working Hours</div>
-            <div class="page-tab" onclick="switchTab('pd', 'activity-tab', this)">Activity Log</div>
+          <!-- Tab Bar -->
+          <div class="flex border-b-2 border-[#ebebeb] mb-6" id="pd-tabs">
+            <div class="page-tab active px-5 py-3 text-[14px] font-semibold text-[#767676] cursor-pointer border-b-2 border-transparent -mb-[2px] transition-all duration-150 hover:text-[#222222]" onclick="switchTab('pd', 'overview', this)">Overview</div>
+            <div class="page-tab px-5 py-3 text-[14px] font-semibold text-[#767676] cursor-pointer border-b-2 border-transparent -mb-[2px] transition-all duration-150 hover:text-[#222222]" onclick="switchTab('pd', 'timeline', this)">Timeline</div>
+            <div class="page-tab px-5 py-3 text-[14px] font-semibold text-[#767676] cursor-pointer border-b-2 border-transparent -mb-[2px] transition-all duration-150 hover:text-[#222222]" onclick="switchTab('pd', 'milestones-tab', this)">Milestones</div>
+            <div class="page-tab px-5 py-3 text-[14px] font-semibold text-[#767676] cursor-pointer border-b-2 border-transparent -mb-[2px] transition-all duration-150 hover:text-[#222222]" onclick="switchTab('pd', 'files-tab', this)">Files &amp; Docs</div>
+            <div class="page-tab px-5 py-3 text-[14px] font-semibold text-[#767676] cursor-pointer border-b-2 border-transparent -mb-[2px] transition-all duration-150 hover:text-[#222222]" id="pd-tab-hours" onclick="switchTab('pd', 'hours-tab', this)">⏱ Working Hours</div>
+            <div class="page-tab px-5 py-3 text-[14px] font-semibold text-[#767676] cursor-pointer border-b-2 border-transparent -mb-[2px] transition-all duration-150 hover:text-[#222222]" onclick="switchTab('pd', 'activity-tab', this)">Activity Log</div>
           </div>
 
+          <!-- ── OVERVIEW TAB ─────────────────────────────────── -->
           <div class="tab-panel active" id="pd-overview">
             <div class="grid grid-cols-3 gap-4">
-              <div class="card">
-                <div class="card-header"><div class="card-title">Project Details</div></div>
-                <div class="card-body py-4 px-5 flex flex-col gap-3" id="pd-details-body"></div>
+              <div class="bg-white rounded-[12px] border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                <div class="px-5 py-4 border-b border-[#ebebeb] flex items-center justify-between">
+                  <div class="text-[15px] font-bold text-[#222222]">Project Details</div>
+                </div>
+                <div class="p-5 flex flex-col gap-3" id="pd-details-body"></div>
               </div>
-              <div class="card">
-                <div class="card-header"><div class="card-title">Team Members</div></div>
-                <div class="card-body py-2 px-5 flex flex-col gap-0" id="pd-team-body"></div>
+              <div class="bg-white rounded-[12px] border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                <div class="px-5 py-4 border-b border-[#ebebeb] flex items-center justify-between">
+                  <div class="text-[15px] font-bold text-[#222222]">Team Members</div>
+                </div>
+                <div class="py-2 px-5" id="pd-team-body"></div>
               </div>
-              <div class="card">
-                <div class="card-header"><div class="card-title">Recent Updates</div></div>
-                <div class="card-body py-[10px] px-4" id="pd-updates-body"></div>
+              <div class="bg-white rounded-[12px] border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                <div class="px-5 py-4 border-b border-[#ebebeb] flex items-center justify-between">
+                  <div class="text-[15px] font-bold text-[#222222]">Recent Updates</div>
+                </div>
+                <div class="p-[10px_16px]" id="pd-updates-body"></div>
               </div>
             </div>
           </div>
 
+          <!-- ── TIMELINE TAB ─────────────────────────────────── -->
           <div class="tab-panel" id="pd-timeline">
-            <div class="table-card">
-              <div class="table-card-header">
-                <div class="card-title" id="pd-timeline-title">Project Gantt Timeline</div>
+            <div class="bg-white rounded-[12px] border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden">
+              <div class="px-5 py-4 border-b border-[#ebebeb] flex items-center justify-between">
+                <div class="text-[15px] font-bold text-[#222222]" id="pd-timeline-title">Project Gantt Timeline</div>
                 <div class="text-[12px] text-[#767676]" id="pd-timeline-range"></div>
               </div>
-              <div class="gantt-wrap pb-4 px-0 pt-0" id="pd-gantt"></div>
+              <div class="overflow-x-auto pb-2" id="pd-gantt"></div>
             </div>
           </div>
 
-          
+          <!-- ── MILESTONES TAB ───────────────────────────────── -->
           <div class="tab-panel" id="pd-milestones-tab">
-            <div class="table-card">
-              <div class="table-card-header">
-                <div class="card-title">Milestones</div>
+            <div class="bg-white rounded-[12px] border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden">
+              <div class="px-5 py-4 border-b border-[#ebebeb] flex items-center justify-between">
+                <div class="text-[15px] font-bold text-[#222222]">Milestones</div>
                 <span class="text-[12px] text-[#767676]" id="pd-milestone-sub"></span>
               </div>
-              <div class="table-wrap">
-                <table>
+              <div class="overflow-x-auto">
+                <table class="w-full border-collapse text-[13px]">
                   <thead>
-                    <tr>
-                      <th>Milestone</th>
-                      <th>Due Date</th>
-                      <th>Status</th>
-                      <th>Deliverables</th>
-                      <th>Actions</th>
+                    <tr class="border-b border-[#ebebeb]">
+                      <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Milestone</th>
+                      <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Due Date</th>
+                      <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Status</th>
+                      <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Deliverables</th>
+                      <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Actions</th>
                     </tr>
                   </thead>
                   <tbody id="pd-milestones-body"></tbody>
@@ -2672,56 +2682,60 @@
             </div>
           </div>
 
-          <!-- Files & Docs Tab -->
+          <!-- ── FILES & DOCS TAB ─────────────────────────────── -->
           <div class="tab-panel" id="pd-files-tab">
             <!-- Project header strip -->
-            <div class="files-project-header" id="pd-files-header">
+            <div class="rounded-[12px] px-6 py-[18px] mb-5 flex items-center justify-between text-white" id="pd-files-header" style="background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 70%, #00a699 100%)">
               <div>
-                <div class="fph-name" id="pd-files-projname"></div>
-                <div class="fph-meta" id="pd-files-meta"></div>
+                <div class="text-[18px] font-extrabold mb-1" id="pd-files-projname"></div>
+                <div class="text-[12px] opacity-[0.85] flex gap-4 flex-wrap" id="pd-files-meta"></div>
               </div>
-              <div class="fph-right" id="pd-files-right"></div>
+              <div class="text-right" id="pd-files-right"></div>
             </div>
+            <!-- Payment banner -->
             <div id="pd-payment-banner" class="mb-5"></div>
+            <!-- Upload zone -->
             <div class="mb-5">
-              <div class="upload-zone">
-                <div class="upload-zone-icon">&#128206;</div>
-                <div class="upload-zone-title">Drop files here or click to upload</div>
-                <div class="upload-zone-sub">PDF, Figma, ZIP, images &#8212; max 50MB</div>
+              <div class="border-2 border-dashed border-[#ebebeb] rounded-[12px] px-5 py-6 text-center bg-white cursor-pointer transition-all duration-200 flex flex-col items-center gap-[6px] hover:border-[#ff5a5f] hover:bg-[#fff0f0]">
+                <div class="text-[32px]">📄</div>
+                <div class="text-[14px] font-bold text-[#222222]">Drop files here or click to upload</div>
+                <div class="text-[12px] text-[#767676]">PDF, Figma, ZIP, images — max 50MB</div>
               </div>
             </div>
+            <!-- Grid controls -->
             <div class="flex items-center justify-between mb-[14px]">
               <div class="text-[15px] font-bold text-[#222222]">Project Files</div>
               <div class="flex gap-2">
-                <button class="btn btn-secondary btn-sm">&#8861; Grid</button>
-                <button class="btn btn-secondary btn-sm">&#8801; List</button>
+                <button class="inline-flex items-center justify-center font-[inherit] font-semibold text-[12px] px-3 py-[6px] rounded-[6px] border border-[#ebebeb] bg-white text-[#484848] cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7] hover:border-[#767676]">&#8861; Grid</button>
+                <button class="inline-flex items-center justify-center font-[inherit] font-semibold text-[12px] px-3 py-[6px] rounded-[6px] border border-[#ebebeb] bg-white text-[#484848] cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7] hover:border-[#767676]">&#8801; List</button>
               </div>
             </div>
-            <div class="file-grid" id="pd-file-grid"></div>
-            <div class="mt-7 mb-[14px]">
+            <div class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-[14px]" id="pd-file-grid"></div>
+            <div class="mt-7">
               <div class="text-[15px] font-bold text-[#222222] mb-[14px]">Contract &amp; Legal Documents</div>
-              <div class="file-grid" id="pd-contract-grid"></div>
+              <div class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-[14px]" id="pd-contract-grid"></div>
             </div>
           </div>
 
+          <!-- ── WORKING HOURS TAB ─────────────────────────────── -->
           <div class="tab-panel" id="pd-hours-tab">
             <div id="pd-hours-header"></div>
-
-            <div class="wh-period-bar">
-              <div class="wh-period-tabs">
-                <button class="wh-period-tab active" onclick="switchWhPeriod('week', this)">📅 This Week</button>
-                <button class="wh-period-tab" onclick="switchWhPeriod('month', this)">📆 This Month</button>
-                <button class="wh-period-tab" onclick="switchWhPeriod('project', this)">📊 All Time</button>
+            <!-- Period selector bar -->
+            <div class="bg-white border border-[#ebebeb] rounded-[12px] mb-6 flex items-center justify-between overflow-hidden">
+              <div class="flex">
+                <button class="wh-period-tab active px-5 py-[14px] text-[13px] font-bold text-[#767676] cursor-pointer border-b-2 border-transparent transition-all duration-150 font-[inherit] bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchWhPeriod('week', this)">📅 This Week</button>
+                <button class="wh-period-tab px-5 py-[14px] text-[13px] font-bold text-[#767676] cursor-pointer border-b-2 border-transparent transition-all duration-150 font-[inherit] bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchWhPeriod('month', this)">📆 This Month</button>
+                <button class="wh-period-tab px-5 py-[14px] text-[13px] font-bold text-[#767676] cursor-pointer border-b-2 border-transparent transition-all duration-150 font-[inherit] bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchWhPeriod('project', this)">📊 All Time</button>
               </div>
-              <span class="clockify-pill">⏱ Powered by Clockify API</span>
+              <span class="inline-flex items-center gap-[6px] px-3 py-[5px] bg-[#e3f2fd] text-[#0288d1] rounded-full text-[11px] font-bold border border-[#b3d9f7] mr-4">⏱ Powered by Clockify API</span>
             </div>
-
             <div id="pd-hours-body"></div>
           </div>
 
+          <!-- ── ACTIVITY TAB ──────────────────────────────────── -->
           <div class="tab-panel" id="pd-activity-tab">
-            <div class="card">
-              <div class="card-body" id="pd-activity-body"></div>
+            <div class="bg-white rounded-[12px] border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+              <div class="p-5" id="pd-activity-body"></div>
             </div>
           </div>
         </div>
@@ -3223,117 +3237,157 @@
              PAGE: SUPPORT TICKETS (Chunk 8)
              ============================================================ -->
         <div class="page" id="page-support">
+          <!-- ── Section Header ─────────────────────────────────────────── -->
           <div class="flex items-center justify-between mb-6">
             <div>
-              <div class="text-[20px] font-extrabold mb-[2px]">Support Tickets</div>
+              <div class="text-[20px] font-extrabold text-[#222222] mb-[2px]">Support Tickets</div>
               <div class="text-[13px] text-[#767676]">Submit and track support requests</div>
             </div>
-            <button class="btn btn-primary" onclick="openModal('new-ticket-modal')">+ New Ticket</button>
+            <button class="inline-flex items-center justify-center font-[inherit] font-semibold text-[14px] px-[18px] py-[9px] rounded-[8px] border border-[#ff5a5f] bg-[#ff5a5f] text-white cursor-pointer transition-all duration-150 hover:bg-[#e0484d] hover:border-[#e0484d]" onclick="openModal('new-ticket-modal')">+ New Ticket</button>
           </div>
-          <div class="stats-row grid grid-cols-3 mb-6">
-            <div class="stat-card">
-              <div class="stat-label">Open Tickets</div>
-              <div class="stat-value text-[#3b5bdb]">2</div>
+
+          <!-- ── Stats Row (3-col) ───────────────────────────────────────── -->
+          <div class="grid grid-cols-3 gap-4 mb-7">
+            <!-- Open Tickets -->
+            <div class="bg-white rounded-[12px] px-6 py-5 border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] transition-shadow duration-200 hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+              <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-2">Open Tickets</div>
+              <div class="text-[28px] font-extrabold leading-none text-[#3b5bdb]">2</div>
             </div>
-            <div class="stat-card">
-              <div class="stat-label">Avg Response Time</div>
-              <div class="stat-value">4.2h</div>
+
+            <!-- Avg Response Time -->
+            <div class="bg-white rounded-[12px] px-6 py-5 border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] transition-shadow duration-200 hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+              <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-2">Avg Response Time</div>
+              <div class="text-[28px] font-extrabold leading-none text-[#222222]">4.2h</div>
             </div>
-            <div class="stat-card">
-              <div class="stat-label">Resolved This Month</div>
-              <div class="stat-value text-[#2b8a3e]">5</div>
-              <div class="stat-delta up">↑ Great month!</div>
+
+            <!-- Resolved This Month -->
+            <div class="bg-white rounded-[12px] px-6 py-5 border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] transition-shadow duration-200 hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+              <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-2">Resolved This Month</div>
+              <div class="text-[28px] font-extrabold leading-none text-[#2f9e44]">5</div>
+              <div class="inline-flex items-center gap-1 text-[12px] font-semibold mt-1.5 py-[2px] px-2 rounded-full bg-[#e6f7f0] text-[#008a4b]">↑ Great month!</div>
             </div>
           </div>
-          <div class="table-card">
-            <div class="table-card-header">
-              <div class="filter-chips">
+
+          <!-- ── Table Card ─────────────────────────────────────────────── -->
+          <div class="bg-white rounded-[12px] border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden">
+            <div class="px-5 py-4 border-b border-[#ebebeb] flex items-center justify-between">
+              <div class="flex items-center gap-2 flex-wrap">
                 <div class="filter-chip active">All</div>
                 <div class="filter-chip">Open</div>
                 <div class="filter-chip">In Progress</div>
                 <div class="filter-chip">Resolved</div>
               </div>
             </div>
-            <div class="table-wrap">
-              <table>
+
+            <div class="overflow-x-auto">
+              <table class="w-full border-collapse text-[13px]">
                 <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Subject</th>
-                    <th>Category</th>
-                    <th>Priority</th>
-                    <th>Status</th>
-                    <th>Created</th>
-                    <th>Last Update</th>
-                    <th>Assignee</th>
+                  <tr class="border-b border-[#ebebeb]">
+                    <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">#</th>
+                    <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Subject</th>
+                    <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Category</th>
+                    <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Priority</th>
+                    <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Status</th>
+                    <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Created</th>
+                    <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Last Update</th>
+                    <th class="px-4 py-3 text-left text-[11px] font-bold text-[#767676] uppercase tracking-[0.6px] whitespace-nowrap bg-[#fafafa] cursor-pointer hover:text-[#222222]">Assignee</th>
                   </tr>
                 </thead>
+
                 <tbody>
-                  <tr class="border-l-[4px] border-l-[#ff5a5f]">
-                    <td class="td-id">TKT-015</td>
-                    <td><b>Checkout button not working on mobile Safari</b></td>
-                    <td><span class="tag">Bug</span></td>
-                    <td class="text-[#f03e3e] font-bold">Critical</td>
-                    <td><span class="status-pill pill-open">Open</span></td>
-                    <td>Mar 16</td>
-                    <td>Just now</td>
-                    <td>
-                      <div class="td-name">
-                        <div class="td-avatar" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">MJ</div>
-                        <span>Marcus</span>
+                  <tr class="border-b border-[#ebebeb] border-l-4 border-l-[#ff5a5f] transition-colors duration-150 cursor-pointer hover:bg-[#fafafa]">
+                    <td class="px-4 py-[14px] align-middle text-[11px] font-bold text-[#767676]">TKT-015</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <b class="text-[#222222]">Checkout button not working on mobile Safari</b>
+                    </td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-[9px] py-[3px] rounded-[6px] text-[11px] font-semibold bg-[#f7f7f7] text-[#484848]">Bug</span>
+                    </td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#e03131] font-bold">Critical</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#eef2ff] text-[#3b5bdb] before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-current before:flex-shrink-0"> Open </span>
+                    </td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 16</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Just now</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <div class="flex items-center gap-[10px]">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold text-white" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">MJ</div>
+                        <span class="text-[#222222]">Marcus</span>
                       </div>
                     </td>
                   </tr>
-                  <tr class="border-l-[4px] border-l-[#f59f00]">
-                    <td class="td-id">TKT-014</td>
-                    <td><b>API timeout on product search</b></td>
-                    <td><span class="tag">Bug</span></td>
-                    <td class="text-[#f59f00] font-bold">High</td>
-                    <td><span class="status-pill pill-progress">In Progress</span></td>
-                    <td>Mar 14</td>
-                    <td>Mar 15</td>
-                    <td>
-                      <div class="td-name">
-                        <div class="td-avatar" style="background: linear-gradient(135deg, #fc642d, #e67e00)">AK</div>
-                        <span>Aisha</span>
+
+                  <tr class="border-b border-[#ebebeb] border-l-4 border-l-[#e67e00] transition-colors duration-150 cursor-pointer hover:bg-[#fafafa]">
+                    <td class="px-4 py-[14px] align-middle text-[11px] font-bold text-[#767676]">TKT-014</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <b class="text-[#222222]">API timeout on product search</b>
+                    </td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-[9px] py-[3px] rounded-[6px] text-[11px] font-semibold bg-[#f7f7f7] text-[#484848]">Bug</span>
+                    </td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#e67e00] font-bold">High</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#fff8e6] text-[#e67e00] before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-current before:flex-shrink-0"> In Progress </span>
+                    </td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 14</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 15</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <div class="flex items-center gap-[10px]">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold text-white" style="background: linear-gradient(135deg, #fc642d, #e67e00)">AK</div>
+                        <span class="text-[#222222]">Aisha</span>
                       </div>
                     </td>
                   </tr>
-                  <tr class="border-l-[4px] border-l-[#3b5bdb]">
-                    <td class="td-id">TKT-013</td>
-                    <td>Request additional admin user account</td>
-                    <td><span class="tag">Feature</span></td>
-                    <td class="text-[#3b5bdb] font-bold">Medium</td>
-                    <td><span class="status-pill pill-resolved">Resolved</span></td>
-                    <td>Mar 10</td>
-                    <td>Mar 12</td>
-                    <td>
-                      <div class="td-name">
-                        <div class="td-avatar" style="background: linear-gradient(135deg, #00a699, #2f9e44)">LP</div>
-                        <span>Lisa</span>
+
+                  <tr class="border-b border-[#ebebeb] border-l-4 border-l-[#3b5bdb] transition-colors duration-150 cursor-pointer hover:bg-[#fafafa]">
+                    <td class="px-4 py-[14px] align-middle text-[11px] font-bold text-[#767676]">TKT-013</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Request additional admin user account</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-[9px] py-[3px] rounded-[6px] text-[11px] font-semibold bg-[#f7f7f7] text-[#484848]">Feature</span>
+                    </td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#3b5bdb] font-bold">Medium</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#e6f9ee] text-[#2f9e44] before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-current before:flex-shrink-0"> Resolved </span>
+                    </td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 10</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 12</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <div class="flex items-center gap-[10px]">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold text-white" style="background: linear-gradient(135deg, #00a699, #2f9e44)">LP</div>
+                        <span class="text-[#222222]">Lisa</span>
                       </div>
                     </td>
                   </tr>
-                  <tr class="border-l-[4px] border-l-[#ebebeb]">
-                    <td class="td-id">TKT-012</td>
-                    <td>Question about invoice payment timing</td>
-                    <td><span class="tag">Billing</span></td>
-                    <td class="text-[#767676] font-bold">Low</td>
-                    <td><span class="status-pill pill-resolved">Resolved</span></td>
-                    <td>Mar 8</td>
-                    <td>Mar 9</td>
-                    <td>
-                      <div class="td-name">
-                        <div class="td-avatar" style="background: linear-gradient(135deg, #7048e8, #3b5bdb)">JW</div>
-                        <span>Jane W.</span>
+
+                  <tr class="border-b-0 border-l-4 border-l-[#ebebeb] transition-colors duration-150 cursor-pointer hover:bg-[#fafafa]">
+                    <td class="px-4 py-[14px] align-middle text-[11px] font-bold text-[#767676]">TKT-012</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Question about invoice payment timing</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-[9px] py-[3px] rounded-[6px] text-[11px] font-semibold bg-[#f7f7f7] text-[#484848]">Billing</span>
+                    </td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#767676] font-bold">Low</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#e6f9ee] text-[#2f9e44] before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-current before:flex-shrink-0"> Resolved </span>
+                    </td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 8</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap text-[#222222]">Mar 9</td>
+                    <td class="px-4 py-[14px] align-middle whitespace-nowrap">
+                      <div class="flex items-center gap-[10px]">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold text-white" style="background: linear-gradient(135deg, #7048e8, #3b5bdb)">JW</div>
+                        <span class="text-[#222222]">Jane W.</span>
                       </div>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <div class="table-footer"><div class="table-footer-info">Showing 4 tickets</div></div>
+
+            <!-- Table Footer -->
+            <div class="px-5 py-[14px] flex items-center justify-between border-t border-[#ebebeb] bg-[#fafafa]">
+              <div class="text-[13px] text-[#767676]">Showing 4 tickets</div>
+            </div>
           </div>
+          <!-- end table-card -->
         </div>
 
         <!-- ============================================================
@@ -3587,161 +3641,194 @@
              ============================================================ -->
         <div class="page" id="page-notifications">
           <div class="flex items-center justify-between mb-6">
-            <div><div class="text-[20px] font-extrabold mb-[2px]">Notifications</div></div>
+            <div>
+              <div class="text-[20px] font-bold text-[#222222]">Notifications</div>
+            </div>
             <button class="btn btn-secondary btn-sm" onclick="showToast('All marked as read', 'success')">Mark all read</button>
           </div>
 
-          <div class="page-tabs mb-6">
+          <!-- Tabs -->
+          <div class="flex border-b-2 border-[#ebebeb] mb-6">
             <div class="page-tab active" onclick="switchTab('notif', 'notif-all', this)">All (7)</div>
             <div class="page-tab" onclick="switchTab('notif', 'notif-prefs', this)">Preferences</div>
           </div>
 
+          <!-- ── TAB: All Notifications ──────────────────────────────── -->
           <div class="tab-panel active" id="notif-notif-all">
-            <div class="notif-group">
-              <div class="notif-group-label">Today</div>
-              <div class="notif-item unread">
-                <div class="notif-icon" style="background: rgba(245, 159, 0, 0.15)">⚠️</div>
-                <div class="notif-content">
-                  <div class="notif-title">Invoice Due in 4 Days</div>
-                  <div class="notif-desc">Invoice #INV-043 for $4,800 is due on March 20. Pay now to avoid late fees.</div>
-                  <div class="notif-time">2 hours ago</div>
+            <!-- Today -->
+            <div class="mb-6">
+              <div class="text-[12px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[10px]">Today</div>
+
+              <!-- Invoice Due — UNREAD -->
+              <div class="flex items-start gap-[14px] py-[14px] px-4 bg-[#eef2ff] border border-[#c5d3ff] rounded-[8px] mb-2 transition-all duration-150 cursor-pointer hover:shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                <div class="w-10 h-10 rounded-full bg-[#fff8e6] flex items-center justify-center text-[18px] flex-shrink-0">⚠️</div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-[13px] font-bold text-[#222222] mb-[2px]">Invoice Due in 4 Days</div>
+                  <div class="text-[12px] text-[#767676] leading-[1.4]">Invoice #INV-043 for $4,800 is due on March 20. Pay now to avoid late fees.</div>
+                  <div class="text-[11px] text-[#767676] mt-1">2 hours ago</div>
                 </div>
-                <button class="btn btn-primary btn-sm" onclick="navigate('invoices', document.querySelector('[onclick*=invoices]'))">Pay Now</button>
+                <button class="btn btn-primary btn-sm flex-shrink-0" onclick="navigate('invoices', document.querySelector('[onclick*=invoices]'))">Pay Now</button>
               </div>
-              <div class="notif-item unread">
-                <div class="notif-icon" style="background: rgba(255, 90, 95, 0.15)">💬</div>
-                <div class="notif-content">
-                  <div class="notif-title">New Message from Marcus Johnson</div>
-                  <div class="notif-desc">API testing results are in — most endpoints passing. Full report by EOD today.</div>
-                  <div class="notif-time">1 hour ago</div>
+
+              <!-- New Message — UNREAD -->
+              <div class="flex items-start gap-[14px] py-[14px] px-4 bg-[#eef2ff] border border-[#c5d3ff] rounded-[8px] mb-2 transition-all duration-150 cursor-pointer hover:shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                <div class="w-10 h-10 rounded-full bg-[#fff0f0] flex items-center justify-center text-[18px] flex-shrink-0">💬</div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-[13px] font-bold text-[#222222] mb-[2px]">New Message from Marcus Johnson</div>
+                  <div class="text-[12px] text-[#767676] leading-[1.4]">API testing results are in — most endpoints passing. Full report by EOD today.</div>
+                  <div class="text-[11px] text-[#767676] mt-1">1 hour ago</div>
                 </div>
-                <button class="btn btn-secondary btn-sm" onclick="navigate('messages', document.querySelector('[onclick*=messages]'))">View</button>
-              </div>
-            </div>
-            <div class="notif-group">
-              <div class="notif-group-label">Yesterday</div>
-              <div class="notif-item unread">
-                <div class="notif-icon" style="background: rgba(59, 91, 219, 0.15)">✅</div>
-                <div class="notif-content">
-                  <div class="notif-title">Milestone Ready for Review</div>
-                  <div class="notif-desc">Checkout Flow Designs have been submitted for your approval on the Alpha E-Commerce Redesign project.</div>
-                  <div class="notif-time">Mar 15 · 2:30 PM</div>
-                </div>
-                <button class="btn btn-secondary btn-sm" onclick="navigate('milestones', document.querySelector('[onclick*=milestones]'))">Review</button>
-              </div>
-              <div class="notif-item">
-                <div class="notif-icon" style="background: rgba(43, 138, 62, 0.15)">📤</div>
-                <div class="notif-content">
-                  <div class="notif-title">File Uploaded</div>
-                  <div class="notif-desc">Wireframes_v2.fig has been added to the Alpha E-Commerce Redesign project files.</div>
-                  <div class="notif-time">Mar 15 · 1:00 PM</div>
-                </div>
+                <button class="btn btn-secondary btn-sm flex-shrink-0" onclick="navigate('messages', document.querySelector('[onclick*=messages]'))">View</button>
               </div>
             </div>
-            <div class="notif-group">
-              <div class="notif-group-label">Earlier This Week</div>
-              <div class="notif-item">
-                <div class="notif-icon" style="background: rgba(112, 72, 232, 0.15)">📋</div>
-                <div class="notif-content">
-                  <div class="notif-title">Document Requires Signature</div>
-                  <div class="notif-desc">Mobile App MVP — Change Order #1 has been sent for your e-signature.</div>
-                  <div class="notif-time">Mar 14 · 10:00 AM</div>
+
+            <!-- Yesterday -->
+            <div class="mb-6">
+              <div class="text-[12px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[10px]">Yesterday</div>
+
+              <!-- Milestone Ready — UNREAD -->
+              <div class="flex items-start gap-[14px] py-[14px] px-4 bg-[#eef2ff] border border-[#c5d3ff] rounded-[8px] mb-2 transition-all duration-150 cursor-pointer hover:shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                <div class="w-10 h-10 rounded-full bg-[#eef2ff] flex items-center justify-center text-[18px] flex-shrink-0">✅</div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-[13px] font-bold text-[#222222] mb-[2px]">Milestone Ready for Review</div>
+                  <div class="text-[12px] text-[#767676] leading-[1.4]">Checkout Flow Designs have been submitted for your approval on the Alpha E-Commerce Redesign project.</div>
+                  <div class="text-[11px] text-[#767676] mt-1">Mar 15 · 2:30 PM</div>
                 </div>
-                <button class="btn btn-warn btn-sm">Sign</button>
+                <button class="btn btn-secondary btn-sm flex-shrink-0" onclick="navigate('milestones', document.querySelector('[onclick*=milestones]'))">Review</button>
               </div>
-              <div class="notif-item">
-                <div class="notif-icon" style="background: rgba(245, 159, 0, 0.15)">🛟</div>
-                <div class="notif-content">
-                  <div class="notif-title">Support Ticket Updated</div>
-                  <div class="notif-desc">Ticket #TKT-014 "API timeout on product search" has been assigned to Aisha Khan.</div>
-                  <div class="notif-time">Mar 14 · 9:00 AM</div>
+
+              <!-- File Uploaded — READ -->
+              <div class="flex items-start gap-[14px] py-[14px] px-4 bg-white border border-[#ebebeb] rounded-[8px] mb-2 transition-all duration-150 cursor-pointer hover:shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                <div class="w-10 h-10 rounded-full bg-[#e6f9ee] flex items-center justify-center text-[18px] flex-shrink-0">📤</div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-[13px] font-bold text-[#222222] mb-[2px]">File Uploaded</div>
+                  <div class="text-[12px] text-[#767676] leading-[1.4]">Wireframes_v2.fig has been added to the Alpha E-Commerce Redesign project files.</div>
+                  <div class="text-[11px] text-[#767676] mt-1">Mar 15 · 1:00 PM</div>
                 </div>
               </div>
-              <div class="notif-item">
-                <div class="notif-icon" style="background: rgba(0, 166, 153, 0.15)">🚀</div>
-                <div class="notif-content">
-                  <div class="notif-title">Project Update</div>
-                  <div class="notif-desc">Mobile App MVP project has officially kicked off. Your PM Ravi Kumar has been assigned.</div>
-                  <div class="notif-time">Mar 10 · 8:00 AM</div>
+            </div>
+
+            <!-- Earlier This Week -->
+            <div class="mb-6">
+              <div class="text-[12px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-[10px]">Earlier This Week</div>
+
+              <!-- Document Signature — READ -->
+              <div class="flex items-start gap-[14px] py-[14px] px-4 bg-white border border-[#ebebeb] rounded-[8px] mb-2 transition-all duration-150 cursor-pointer hover:shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                <div class="w-10 h-10 rounded-full bg-[#f3f0ff] flex items-center justify-center text-[18px] flex-shrink-0">📋</div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-[13px] font-bold text-[#222222] mb-[2px]">Document Requires Signature</div>
+                  <div class="text-[12px] text-[#767676] leading-[1.4]">Mobile App MVP — Change Order #1 has been sent for your e-signature.</div>
+                  <div class="text-[11px] text-[#767676] mt-1">Mar 14 · 10:00 AM</div>
+                </div>
+                <button class="btn btn-warn btn-sm flex-shrink-0">Sign</button>
+              </div>
+
+              <!-- Support Ticket — READ -->
+              <div class="flex items-start gap-[14px] py-[14px] px-4 bg-white border border-[#ebebeb] rounded-[8px] mb-2 transition-all duration-150 cursor-pointer hover:shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                <div class="w-10 h-10 rounded-full bg-[#fff8e6] flex items-center justify-center text-[18px] flex-shrink-0">🛟</div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-[13px] font-bold text-[#222222] mb-[2px]">Support Ticket Updated</div>
+                  <div class="text-[12px] text-[#767676] leading-[1.4]">Ticket #TKT-014 "API timeout on product search" has been assigned to Aisha Khan.</div>
+                  <div class="text-[11px] text-[#767676] mt-1">Mar 14 · 9:00 AM</div>
+                </div>
+              </div>
+
+              <!-- Project Update — READ -->
+              <div class="flex items-start gap-[14px] py-[14px] px-4 bg-white border border-[#ebebeb] rounded-[8px] mb-2 transition-all duration-150 cursor-pointer hover:shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                <div class="w-10 h-10 rounded-full bg-[#e6f7f6] flex items-center justify-center text-[18px] flex-shrink-0">🚀</div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-[13px] font-bold text-[#222222] mb-[2px]">Project Update</div>
+                  <div class="text-[12px] text-[#767676] leading-[1.4]">Mobile App MVP project has officially kicked off. Your PM Ravi Kumar has been assigned.</div>
+                  <div class="text-[11px] text-[#767676] mt-1">Mar 10 · 8:00 AM</div>
                 </div>
               </div>
             </div>
           </div>
+          <!-- end #notif-notif-all -->
 
+          <!-- ── TAB: Preferences ─────────────────────────────────────── -->
           <div class="tab-panel" id="notif-notif-prefs">
-            <div class="settings-section">
-              <div class="settings-section-header">
-                <div class="settings-section-title">Notification Preferences</div>
-                <div class="settings-section-sub">Choose which events trigger notifications and how</div>
+            <!-- Preferences Card -->
+            <div class="bg-white border border-[#ebebeb] rounded-[12px] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden">
+              <!-- Card Header -->
+              <div class="px-6 py-4 border-b border-[#ebebeb]">
+                <div class="text-[15px] font-bold text-[#222222]">Notification Preferences</div>
+                <div class="text-[12px] text-[#767676] mt-[2px]">Choose which events trigger notifications and how</div>
               </div>
-              <div class="settings-section-body">
-                <table class="w-full">
+
+              <!-- Card Body -->
+              <div class="p-6">
+                <table class="w-full border-collapse">
                   <thead>
                     <tr>
-                      <th class="text-left">Event</th>
-                      <th class="text-center">In-App</th>
-                      <th class="text-center">Email</th>
-                      <th class="text-center">SMS</th>
+                      <th class="text-left py-3 px-4 text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] bg-[#fafafa] border-b border-[#ebebeb] whitespace-nowrap">Event</th>
+                      <th class="text-center py-3 px-4 text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] bg-[#fafafa] border-b border-[#ebebeb] whitespace-nowrap">In-App</th>
+                      <th class="text-center py-3 px-4 text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] bg-[#fafafa] border-b border-[#ebebeb] whitespace-nowrap">Email</th>
+                      <th class="text-center py-3 px-4 text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] bg-[#fafafa] border-b border-[#ebebeb] whitespace-nowrap">SMS</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="px-4 py-3">Invoice Due Reminders</td>
-                      <td class="text-center">
+                    <tr class="border-b border-[#ebebeb] transition-colors duration-150 hover:bg-[#fafafa]">
+                      <td class="px-4 py-3 text-[13px] text-[#222222]">Invoice Due Reminders</td>
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
                       </td>
-                      <td class="text-center">
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
                       </td>
-                      <td class="text-center">
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
                       </td>
                     </tr>
-                    <tr>
-                      <td class="px-4 py-3">New Messages</td>
-                      <td class="text-center">
+
+                    <tr class="border-b border-[#ebebeb] transition-colors duration-150 hover:bg-[#fafafa]">
+                      <td class="px-4 py-3 text-[13px] text-[#222222]">New Messages</td>
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
                       </td>
-                      <td class="text-center">
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
                       </td>
-                      <td class="text-center">
-                        <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="px-4 py-3">Milestone Ready for Review</td>
-                      <td class="text-center">
-                        <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
-                      </td>
-                      <td class="text-center">
-                        <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
-                      </td>
-                      <td class="text-center">
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
                       </td>
                     </tr>
-                    <tr>
-                      <td class="px-4 py-3">Support Ticket Updates</td>
-                      <td class="text-center">
+
+                    <tr class="border-b border-[#ebebeb] transition-colors duration-150 hover:bg-[#fafafa]">
+                      <td class="px-4 py-3 text-[13px] text-[#222222]">Milestone Ready for Review</td>
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
                       </td>
-                      <td class="text-center">
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
                       </td>
-                      <td class="text-center">
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
                       </td>
                     </tr>
-                    <tr>
-                      <td class="px-4 py-3">File Uploads</td>
-                      <td class="text-center">
+
+                    <tr class="border-b border-[#ebebeb] transition-colors duration-150 hover:bg-[#fafafa]">
+                      <td class="px-4 py-3 text-[13px] text-[#222222]">Support Ticket Updates</td>
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
                       </td>
-                      <td class="text-center">
+                      <td class="text-center px-4 py-3">
+                        <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                      </td>
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
                       </td>
-                      <td class="text-center">
+                    </tr>
+
+                    <tr class="transition-colors duration-150 hover:bg-[#fafafa]">
+                      <td class="px-4 py-3 text-[13px] text-[#222222]">File Uploads</td>
+                      <td class="text-center px-4 py-3">
+                        <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                      </td>
+                      <td class="text-center px-4 py-3">
+                        <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+                      </td>
+                      <td class="text-center px-4 py-3">
                         <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
                       </td>
                     </tr>
@@ -3779,7 +3866,6 @@
           ══════════════════════════════════════════════════════ -->
               <div class="settings-panel active" id="settings-profile">
                 <div class="bg-white border border-[#ebebeb] rounded-[12px] shadow-sm mb-5 overflow-hidden">
-               
                   <div class="px-6 py-4 border-b border-[#ebebeb]">
                     <div class="text-[15px] font-bold text-[#222222]">Profile Information</div>
                   </div>
@@ -3863,11 +3949,10 @@
                 <div class="bg-white border border-[#ebebeb] rounded-[12px] shadow-sm mb-5 overflow-hidden">
                   <div class="px-6 py-4 border-b border-[#ebebeb]">
                     <div class="text-[15px] font-bold text-[#222222]">Two-Factor Authentication</div>
-                
+
                     <div class="text-[12px] text-[#767676] mt-[2px]">Add an extra layer of security</div>
                   </div>
                   <div class="p-6">
-            
                     <div class="flex items-start gap-[14px] p-[16px_20px] rounded-[8px] bg-[#e6f9ee] border border-[#69db7c] mb-4">
                       <span class="text-[20px] flex-shrink-0 mt-[1px]">✅</span>
                       <div>
@@ -4014,64 +4099,64 @@
      ============================================================ -->
 
     <!-- Project Picker Modal (Files & Docs nav) -->
-    <div class="modal-overlay" id="project-picker-modal">
-      <div class="modal w-[520px]">
-        <!-- Modal Header -->
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-[4px] z-[1000] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-200 [&.open]:opacity-100 [&.open]:pointer-events-auto" id="project-picker-modal">
+      <div class="bg-white rounded-xl w-[520px] max-w-[95vw] max-h-[85vh] overflow-hidden flex flex-col shadow-[0_14px_36px_rgba(0,0,0,0.15)] translate-y-5 transition-transform duration-200 [.open_&]:translate-y-0">
         <div class="flex items-center justify-between px-6 py-5 border-b border-[#ebebeb]">
           <div class="text-[17px] font-bold text-[#222222]">📋 Choose a Project</div>
-          <button class="w-8 h-8 rounded-full border-none bg-[#f7f7f7] cursor-pointer text-[16px] flex items-center justify-center transition-colors duration-150 hover:bg-[#ebebeb]" onclick="closeModal('project-picker-modal')">✕</button>
+
+          <button class="w-8 h-8 rounded-full border-0 bg-[#f7f7f7] cursor-pointer text-base flex items-center justify-center transition-colors duration-150 hover:bg-[#ebebeb]" onclick="closeModal('project-picker-modal')">✕</button>
         </div>
 
-        <!-- Modal Body -->
-        <div class="flex flex-col gap-3 px-6 py-5 overflow-y-auto flex-1">
+        <div class="flex-1 overflow-y-auto px-6 py-5 flex flex-col gap-3">
           <p class="text-[13px] text-[#767676] mb-1">Select a project to view its Files &amp; Docs:</p>
 
-          <!-- Alpha -->
-          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('alpha', true);">
+          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer bg-white transition-all duration-150 hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('alpha', true);">
             <div class="flex items-center justify-between mb-[6px]">
               <div class="text-[14px] font-bold text-[#222222]">Alpha E-Commerce Redesign</div>
               <div class="flex items-center gap-[6px]">
-                <span class="status-pill pill-on-track">On Track</span>
-                <span class="payment-badge payment-fixed">💰 Fixed Price</span>
+                <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#eef2ff] text-[#3b5bdb] before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-current before:flex-shrink-0">On Track</span>
+                <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#eef2ff] text-[#3b5bdb]">💰 Fixed Price</span>
               </div>
             </div>
             <div class="text-[12px] text-[#767676]">🏗 Web Development &nbsp;·&nbsp; Jan 15 – Apr 30, 2026 &nbsp;·&nbsp; 72% complete</div>
             <div class="flex items-center gap-2 mt-2">
-              <div class="progress-wrap h-[5px]"><div class="progress-bar w-[72%]"></div></div>
+              <div class="flex-1 h-[5px] bg-[#ebebeb] rounded-[3px] overflow-hidden">
+                <div class="h-full rounded-[3px] bg-gradient-to-r from-[#ff5a5f] to-[#fc642d]" style="width: 72%"></div>
+              </div>
               <span class="text-[11px] font-semibold text-[#767676]">72%</span>
             </div>
           </div>
 
-          <!-- CRM -->
-          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('crm', true);">
+          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer bg-white transition-all duration-150 hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('crm', true);">
             <div class="flex items-center justify-between mb-[6px]">
               <div class="text-[14px] font-bold text-[#222222]">CRM Integration API</div>
               <div class="flex items-center gap-[6px]">
-                <span class="status-pill pill-at-risk">At Risk</span>
-                <span class="payment-badge payment-hourly">⏱ Hourly</span>
+                <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#fff8e6] text-[#e67e00] before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-current before:flex-shrink-0">At Risk</span>
+                <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#f3f0ff] text-[#7048e8]">⏱ Hourly</span>
               </div>
             </div>
             <div class="text-[12px] text-[#767676]">🔗 API Development &nbsp;·&nbsp; Feb 1 – Mar 30, 2026 &nbsp;·&nbsp; 45% complete</div>
             <div class="flex items-center gap-2 mt-2">
-              <div class="progress-wrap h-[5px]">
-                <div class="progress-bar w-[45%]" style="background: linear-gradient(90deg, var(--amber), var(--arches))"></div>
+              <div class="flex-1 h-[5px] bg-[#ebebeb] rounded-[3px] overflow-hidden">
+                <div class="h-full rounded-[3px]" style="width: 45%; background: linear-gradient(90deg, #e67e00, #fc642d)"></div>
               </div>
               <span class="text-[11px] font-semibold text-[#767676]">45%</span>
             </div>
           </div>
 
-          <!-- Mobile -->
-          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer transition-all duration-150 bg-white hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('mobile', true);">
+          <div class="border border-[#ebebeb] rounded-[8px] p-4 cursor-pointer bg-white transition-all duration-150 hover:border-[#ff5a5f] hover:bg-[#fff0f0]" onclick="closeModal('project-picker-modal'); openProject('mobile', true);">
             <div class="flex items-center justify-between mb-[6px]">
               <div class="text-[14px] font-bold text-[#222222]">Mobile App MVP</div>
               <div class="flex items-center gap-[6px]">
-                <span class="status-pill pill-on-track">On Track</span>
-                <span class="payment-badge payment-monthly">📅 Monthly</span>
+                <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#eef2ff] text-[#3b5bdb] before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-current before:flex-shrink-0">On Track</span>
+                <span class="inline-flex items-center gap-[5px] px-[10px] py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.3px] bg-[#e6f7f6] text-[#00a699]">📅 Monthly</span>
               </div>
             </div>
             <div class="text-[12px] text-[#767676]">📱 Mobile Development &nbsp;·&nbsp; Mar 1 – Jun 30, 2026 &nbsp;·&nbsp; 28% complete</div>
             <div class="flex items-center gap-2 mt-2">
-              <div class="progress-wrap h-[5px]"><div class="progress-bar w-[28%]"></div></div>
+              <div class="flex-1 h-[5px] bg-[#ebebeb] rounded-[3px] overflow-hidden">
+                <div class="h-full rounded-[3px] bg-gradient-to-r from-[#ff5a5f] to-[#fc642d]" style="width: 28%"></div>
+              </div>
               <span class="text-[11px] font-semibold text-[#767676]">28%</span>
             </div>
           </div>
@@ -4079,57 +4164,87 @@
       </div>
     </div>
 
-    <!-- Payment Modal -->
-    <div class="modal-overlay" id="pay-modal">
-      <div class="modal">
-        <div class="modal-header">
-          <div class="modal-title">💳 Pay Invoice #INV-043</div>
-          <button class="modal-close" onclick="closeModal('pay-modal')">✕</button>
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-[4px] z-[1000] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-200 [&.open]:opacity-100 [&.open]:pointer-events-auto" id="pay-modal">
+      <div class="bg-white rounded-xl w-[720px] max-w-[95vw] max-h-[85vh] overflow-hidden flex flex-col shadow-[0_14px_36px_rgba(0,0,0,0.15)] translate-y-5 transition-transform duration-200 [.open_&]:translate-y-0">
+        <div class="flex items-center justify-between px-6 py-5 border-b border-[#ebebeb]">
+          <div class="text-[17px] font-bold text-[#222222]">💳 Pay Invoice #INV-043</div>
+          <button class="w-8 h-8 rounded-full border-0 bg-[#f7f7f7] cursor-pointer text-base flex items-center justify-center transition-colors duration-150 hover:bg-[#ebebeb]" onclick="closeModal('pay-modal')">✕</button>
         </div>
-        <div class="modal-body">
-          <div class="flex items-center justify-between bg-[#f7f7f7] rounded-[6px] p-4 mb-5">
+
+        <div class="flex-1 overflow-y-auto p-6">
+          <div class="bg-[#f7f7f7] rounded-[8px] p-4 mb-5 flex justify-between items-center">
             <div>
-              <div class="text-[12px] font-bold text-[#767676] uppercase tracking-wide">Amount Due</div>
-              <div class="text-[28px] font-extrabold text-[#222222]">$4,800.00</div>
+              <div class="text-[12px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-2">Amount Due</div>
+              <div class="text-[28px] font-extrabold text-[#222222] leading-none">$4,800.00</div>
             </div>
             <div class="text-right">
               <div class="text-[12px] text-[#767676]">Due Date</div>
-              <div class="text-[16px] font-bold text-[#f03e3e]">Mar 20, 2026</div>
+              <div class="text-[16px] font-bold text-[#e03131]">Mar 20, 2026</div>
             </div>
           </div>
-          <div class="modal-tabs">
-            <div class="modal-tab active">Credit / Debit Card</div>
-            <div class="modal-tab">ACH Bank Transfer</div>
-            <div class="modal-tab">Saved Cards</div>
+
+          <div class="flex border-b border-[#ebebeb] -mx-6 px-6 mb-6 -mt-1">
+            <button class="px-[18px] py-3 text-[13px] font-semibold text-[#ff5a5f] border-b-2 border-[#ff5a5f] -mb-px cursor-pointer bg-transparent border-t-0 border-l-0 border-r-0 transition-all duration-150 font-[inherit]">Credit / Debit Card</button>
+            <button class="px-[18px] py-3 text-[13px] font-semibold text-[#767676] border-b-2 border-transparent -mb-px cursor-pointer bg-transparent border-t-0 border-l-0 border-r-0 transition-all duration-150 hover:text-[#222222] font-[inherit]">ACH Bank Transfer</button>
+            <button class="px-[18px] py-3 text-[13px] font-semibold text-[#767676] border-b-2 border-transparent -mb-px cursor-pointer bg-transparent border-t-0 border-l-0 border-r-0 transition-all duration-150 hover:text-[#222222] font-[inherit]">Saved Cards</button>
           </div>
-          <div class="form-group"><label class="form-label">Card Number</label><input class="form-input" placeholder="1234 5678 9012 3456" /></div>
+
+          <div class="flex flex-col gap-1.5 mb-4">
+            <label class="text-[13px] font-semibold text-[#484848]">Card Number</label>
+            <input class="w-full px-[14px] py-[10px] border border-[#ebebeb] rounded-[8px] text-[14px] font-[inherit] text-[#222222] outline-none transition-[border-color] duration-150 focus:border-[#ff5a5f] placeholder:text-[#767676] bg-white" placeholder="1234 5678 9012 3456" />
+          </div>
+
           <div class="grid grid-cols-2 gap-3 mb-4">
-            <div class="form-group"><label class="form-label">Expiry</label><input class="form-input" placeholder="MM/YY" /></div>
-            <div class="form-group"><label class="form-label">CVC</label><input class="form-input" placeholder="123" /></div>
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[13px] font-semibold text-[#484848]">Expiry</label>
+              <input class="w-full px-[14px] py-[10px] border border-[#ebebeb] rounded-[8px] text-[14px] font-[inherit] text-[#222222] outline-none transition-[border-color] duration-150 focus:border-[#ff5a5f] placeholder:text-[#767676] bg-white" placeholder="MM/YY" />
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[13px] font-semibold text-[#484848]">CVC</label>
+              <input class="w-full px-[14px] py-[10px] border border-[#ebebeb] rounded-[8px] text-[14px] font-[inherit] text-[#222222] outline-none transition-[border-color] duration-150 focus:border-[#ff5a5f] placeholder:text-[#767676] bg-white" placeholder="123" />
+            </div>
           </div>
-          <div class="form-group mb-4"><label class="form-label">Name on Card</label><input class="form-input" placeholder="Sarah Chen" value="Sarah Chen" /></div>
+
+          <div class="flex flex-col gap-1.5 mb-4">
+            <label class="text-[13px] font-semibold text-[#484848]">Name on Card</label>
+            <input class="w-full px-[14px] py-[10px] border border-[#ebebeb] rounded-[8px] text-[14px] font-[inherit] text-[#222222] outline-none transition-[border-color] duration-150 focus:border-[#ff5a5f] placeholder:text-[#767676] bg-white" placeholder="Sarah Chen" value="Sarah Chen" />
+          </div>
+
           <div class="text-center text-[12px] text-[#767676]">🔒 Payments secured by Stripe · PCI DSS compliant</div>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" onclick="closeModal('pay-modal')">Cancel</button>
-          <button class="btn btn-success" onclick="processPayment()">Pay $4,800.00</button>
+
+        <div class="flex items-center justify-between px-7 py-5 border-t border-[#ebebeb] bg-white">
+          <button class="inline-flex items-center justify-center font-[inherit] font-semibold text-[14px] px-[18px] py-[9px] rounded-[8px] border border-[#ebebeb] bg-white text-[#484848] cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7] hover:border-[#767676]" onclick="closeModal('pay-modal')">Cancel</button>
+          <button class="inline-flex items-center justify-center font-[inherit] font-semibold text-[14px] px-[18px] py-[9px] rounded-[8px] border border-[#2f9e44] bg-[#2f9e44] text-white cursor-pointer transition-all duration-150 hover:bg-[#267a37]" onclick="processPayment()">Pay $4,800.00</button>
         </div>
       </div>
     </div>
 
     <!-- New Ticket Modal -->
-    <div class="modal-overlay" id="new-ticket-modal">
-      <div class="modal">
-        <div class="modal-header">
-          <div class="modal-title">🛟 Submit Support Ticket</div>
-          <button class="modal-close" onclick="closeModal('new-ticket-modal')">✕</button>
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-[4px] z-[1000] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-200 [&.open]:opacity-100 [&.open]:pointer-events-auto" id="new-ticket-modal">
+      <div class="bg-white rounded-xl w-[720px] max-w-[95vw] max-h-[85vh] overflow-hidden flex flex-col shadow-[0_14px_36px_rgba(0,0,0,0.15)] translate-y-5 transition-transform duration-200 [.open_&]:translate-y-0">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between px-6 py-5 border-b border-[#ebebeb]">
+          <div class="text-[17px] font-bold text-[#222222]">🛟 Submit Support Ticket</div>
+          <button class="w-8 h-8 rounded-full border-0 bg-[#f7f7f7] cursor-pointer text-base flex items-center justify-center transition-colors duration-150 hover:bg-[#ebebeb]" onclick="closeModal('new-ticket-modal')">✕</button>
         </div>
-        <div class="modal-body">
-          <div class="form-group"><label class="form-label">Subject</label><input class="form-input" placeholder="Brief description of the issue" /></div>
+
+        <!-- Modal Body -->
+        <div class="flex-1 overflow-y-auto p-6">
+          <!-- Subject -->
+          <div class="flex flex-col gap-1.5 mb-4">
+            <label class="text-[13px] font-semibold text-[#484848]">Subject</label>
+            <input class="w-full px-[14px] py-[10px] border border-[#ebebeb] rounded-[8px] text-[14px] font-[inherit] text-[#222222] outline-none transition-[border-color] duration-150 focus:border-[#ff5a5f] placeholder:text-[#767676] bg-white" placeholder="Brief description of the issue" />
+          </div>
+
+          <!-- Category + Priority row -->
           <div class="grid grid-cols-2 gap-3 mb-2">
-            <div class="form-group">
-              <label class="form-label">Category</label
-              ><select class="form-select">
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[13px] font-semibold text-[#484848]">Category</label>
+              <!--
+            .form-select: same as form-input sizing, cursor-pointer
+          -->
+              <select class="w-full px-[14px] py-[10px] border border-[#ebebeb] rounded-[8px] text-[14px] font-[inherit] text-[#222222] outline-none bg-white cursor-pointer">
                 <option>Bug Report</option>
                 <option>Feature Request</option>
                 <option>Question</option>
@@ -4137,9 +4252,9 @@
                 <option>Other</option>
               </select>
             </div>
-            <div class="form-group">
-              <label class="form-label">Priority</label
-              ><select class="form-select">
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[13px] font-semibold text-[#484848]">Priority</label>
+              <select class="w-full px-[14px] py-[10px] border border-[#ebebeb] rounded-[8px] text-[14px] font-[inherit] text-[#222222] outline-none bg-white cursor-pointer">
                 <option>Low</option>
                 <option>Medium</option>
                 <option selected>High</option>
@@ -4147,25 +4262,53 @@
               </select>
             </div>
           </div>
-          <div class="form-group">
-            <label class="form-label">Project</label
-            ><select class="form-select">
+
+          <!-- Project -->
+          <div class="flex flex-col gap-1.5 mb-4">
+            <label class="text-[13px] font-semibold text-[#484848]">Project</label>
+            <select class="w-full px-[14px] py-[10px] border border-[#ebebeb] rounded-[8px] text-[14px] font-[inherit] text-[#222222] outline-none bg-white cursor-pointer">
               <option>Alpha E-Commerce Redesign</option>
               <option>CRM Integration API</option>
               <option>Mobile App MVP</option>
               <option>General</option>
             </select>
           </div>
-          <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" rows="4" placeholder="Describe the issue in detail. Include steps to reproduce if it's a bug..."></textarea></div>
-          <div class="upload-zone mt-2">
-            <div class="upload-zone-icon">📎</div>
-            <div class="upload-zone-title">Attach Files</div>
-            <div class="upload-zone-sub">Screenshots, logs, or relevant files</div>
+
+          <!-- Description -->
+          <div class="flex flex-col gap-1.5 mb-4">
+            <label class="text-[13px] font-semibold text-[#484848]">Description</label>
+            <!--
+          .form-textarea: same base styles as form-input, resize-y
+        -->
+            <textarea class="w-full px-[14px] py-[10px] border border-[#ebebeb] rounded-[8px] text-[14px] font-[inherit] text-[#222222] outline-none transition-[border-color] duration-150 focus:border-[#ff5a5f] placeholder:text-[#767676] bg-white resize-y" rows="4" placeholder="Describe the issue in detail. Include steps to reproduce if it's a bug..."></textarea>
+          </div>
+
+          <!--
+        .upload-zone:
+          border: 2px dashed var(--border) #ebebeb
+          border-radius: 12px
+          padding: 24px 20px
+          text-align: center
+          background: white
+          cursor: pointer
+          transition: all 0.2s
+          display: flex flex-col items-center gap-1.5
+          hover: border-color #ff5a5f, bg #fff0f0
+        .upload-zone-icon:  font-size 32px
+        .upload-zone-title: font-size 14px, font-weight 700
+        .upload-zone-sub:   font-size 12px, color var(--foggy)
+      -->
+          <div class="border-2 border-dashed border-[#ebebeb] rounded-xl px-5 py-6 text-center bg-white cursor-pointer transition-all duration-200 flex flex-col items-center gap-1.5 mt-2 hover:border-[#ff5a5f] hover:bg-[#fff0f0]">
+            <div class="text-[32px]">📎</div>
+            <div class="text-[14px] font-bold text-[#222222]">Attach Files</div>
+            <div class="text-[12px] text-[#767676]">Screenshots, logs, or relevant files</div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" onclick="closeModal('new-ticket-modal')">Cancel</button>
-          <button class="btn btn-primary" onclick="submitTicket()">Submit Ticket</button>
+
+        <!-- Modal Footer -->
+        <div class="flex items-center justify-between px-7 py-5 border-t border-[#ebebeb] bg-white">
+          <button class="inline-flex items-center justify-center font-[inherit] font-semibold text-[14px] px-[18px] py-[9px] rounded-[8px] border border-[#ebebeb] bg-white text-[#484848] cursor-pointer transition-all duration-150 hover:bg-[#f7f7f7] hover:border-[#767676]" onclick="closeModal('new-ticket-modal')">Cancel</button>
+          <button class="inline-flex items-center justify-center font-[inherit] font-semibold text-[14px] px-[18px] py-[9px] rounded-[8px] border border-[#ff5a5f] bg-[#ff5a5f] text-white cursor-pointer transition-all duration-150 hover:bg-[#e0484d] hover:border-[#e0484d]" onclick="submitTicket()">Submit Ticket</button>
         </div>
       </div>
     </div>
@@ -4260,7 +4403,7 @@
       }
 
       // ---- Settings Panel ----
-        function switchSettings(panel, navEl) {
+      function switchSettings(panel, navEl) {
         document.querySelectorAll('.settings-panel').forEach((p) => p.classList.remove('active'));
         const target = document.getElementById('settings-' + panel);
         if (target) target.classList.add('active');
@@ -4283,7 +4426,7 @@
       });
 
       // ---- Toast System ----
-   function showToast(msg, type = '') {
+      function showToast(msg, type = '') {
         const c = document.getElementById('toast-container');
         const t = document.createElement('div');
         t.className = `toast ${type}`;
