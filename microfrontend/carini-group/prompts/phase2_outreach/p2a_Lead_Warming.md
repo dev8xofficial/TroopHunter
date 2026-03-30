@@ -35,6 +35,7 @@ Before selecting posts or writing a single comment, read:
 - The target CEO's LinkedIn profile (posts, summary, experience, values)
 - The seller's business context (operations manual or company overview if provided)
 
+
 Extract:
 - The target CEO's recurring themes, beliefs, and language patterns from their posts
 - The target CEO's industry, business model, and likely pain points
@@ -55,6 +56,7 @@ Choose posts where:
   bury new voices
 - The three posts together cover different themes so each comment feels fresh,
   not repetitive
+- Post are only owner post not the company post.
 
 Avoid posts that are:
 - Pure announcements (new hire, award won, product launch) — comments here read
@@ -76,8 +78,9 @@ Rules:
 - Do NOT introduce yourself. Do NOT mention Dev8X. Do NOT hint at wanting
   to connect.
 - Write as one CEO who found the post genuinely interesting — nothing more.
-- Length: 3–5 sentences. Substantial enough to be read. Short enough to be read
+- Length: 2–3 sentences. Substantial enough to be read. Short enough to be read
   fully.
+  Words: under 30 
 - Tone: Direct, confident, peer-level. Not flattering. Not enthusiastic. Not
   corporate.
 
@@ -92,7 +95,8 @@ Rules:
   one sentence, woven in, not announced. E.g. "We ran into the same issue scaling
   our ops team at Dev8X — the fix wasn't what I expected."
 - Still no pitch. Still no ask.
-- Length: 4–6 sentences.
+- Length: 2–3 sentences. 
+  Words: under 30 
 - Tone: Slightly warmer than Comment 1 — familiar, not intimate.
 
 #### Comment 3 — The Ask
@@ -109,7 +113,8 @@ Rules:
   - "I'll send a request — seems like a conversation worth having."
 - Do NOT say: "I'd love to pick your brain", "Let's hop on a call", "I have
   something that could help you", or anything that signals a pitch is coming.
-- Length: 4–6 sentences.
+- Length: 2–3 sentences. 
+  Words: under 30 
 - Tone: Confident, direct, zero pressure.
 
 ### 4. Comment Writing Rules (apply to all three)

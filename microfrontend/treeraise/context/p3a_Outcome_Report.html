@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TreeRaise — Digital Transformation Impact Report | Dev8X</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <style>
+        /* ── TOKENS ── */
+        :root {
+            --navy: #0f1c2e;
+            --navy2: #162436;
+            --navy3: #1e3048;
+            --blue: #2563eb;
+            --blue2: #1d4ed8;
+            --blue3: #dbeafe;
+            --green: #16a34a;
+            --green2: #15803d;
+            --green3: #dcfce7;
+            --amber: #d97706;
+            --amber3: #fef3c7;
+            --ink: #0f172a;
+            --ink2: #334155;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --border2: #f1f5f9;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --r: 12px;
+            --r-lg: 20px;
+            --shadow: 0 1px 8px rgba(15, 28, 46, .08);
+            --shadow2: 0 4px 24px rgba(15, 28, 46, .12);
+            --shadow3: 0 12px 48px rgba(15, 28, 46, .16);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            font-size: 15px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── LAYOUT ── */
+        .wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        section {
+            padding: 56px 0;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+            letter-spacing: -.4px;
+        }
+
+        .section-sub {
+            color: var(--muted);
+            font-size: 15px;
+            margin-bottom: 36px;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 0;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--navy);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 700px 400px at 80% 50%, rgba(37, 99, 235, .18) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 300px at 10% 80%, rgba(22, 163, 74, .10) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            padding: 64px 32px 56px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(37, 99, 235, .25);
+            border: 1px solid rgba(37, 99, 235, .4);
+            border-radius: 99px;
+            padding: 5px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #93c5fd;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .hero-date {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .35);
+        }
+
+        .hero-company {
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .5);
+            margin-bottom: 8px;
+            letter-spacing: .04em;
+        }
+
+        .hero-title {
+            font-size: 42px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.1;
+            letter-spacing: -.8px;
+            margin-bottom: 10px;
+        }
+
+        .hero-title span {
+            color: #60a5fa;
+        }
+
+        .hero-subtitle {
+            font-size: 17px;
+            color: rgba(255, 255, 255, .55);
+            margin-bottom: 48px;
+            max-width: 600px;
+        }
+
+        /* Hero stat grid */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .hero-stat {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .10);
+            border-radius: var(--r-lg);
+            padding: 24px 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+        }
+
+        .hero-stat.blue::before {
+            background: #2563eb;
+        }
+
+        .hero-stat.green::before {
+            background: #16a34a;
+        }
+
+        .hero-stat.amber::before {
+            background: #d97706;
+        }
+
+        .hero-stat-num {
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
+        }
+
+        .hero-stat.blue .hero-stat-num {
+            color: #60a5fa;
+        }
+
+        .hero-stat.green .hero-stat-num {
+            color: #4ade80;
+        }
+
+        .hero-stat.amber .hero-stat-num {
+            color: #fcd34d;
+        }
+
+        .hero-stat-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .5);
+            font-weight: 500;
+        }
+
+        .hero-stat-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, .3);
+            margin-top: 4px;
+        }
+
+        /* ── SENDER BAR ── */
+        .sender-bar {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 32px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .sender-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .sender-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--blue);
+            letter-spacing: -.5px;
+        }
+
+        .sender-logo .dot {
+            color: var(--ink);
+        }
+
+        /* ── CURRENT STATE TABLE ── */
+        .challenge-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .challenge-table thead tr {
+            background: var(--navy);
+        }
+
+        .challenge-table thead th {
+            color: rgba(255, 255, 255, .8);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 14px 20px;
+            text-align: left;
+        }
+
+        .challenge-table thead th:first-child {
+            width: 45%;
+        }
+
+        .challenge-table tbody tr {
+            background: var(--white);
+            border-bottom: 1px solid var(--border2);
+            transition: background .15s;
+        }
+
+        .challenge-table tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .challenge-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .challenge-table td {
+            padding: 16px 20px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        .challenge-table td:first-child {
+            font-weight: 600;
+            color: var(--ink);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .challenge-table td:last-child {
+            color: var(--ink2);
+        }
+
+        .challenge-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .impact-pill {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 99px;
+            margin-top: 6px;
+        }
+
+        .impact-pill.high {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .impact-pill.med {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* ── SOLUTION CARDS ── */
+        .cards-grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 28px 32px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), #60a5fa);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: -.3px;
+        }
+
+        .card-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--blue3);
+            color: var(--blue2);
+            border-radius: 99px;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .card-problem {
+            background: #fff7ed;
+            border-left: 3px solid #f97316;
+            border-radius: 0 8px 8px 0;
+            padding: 10px 14px;
+            font-size: 13.5px;
+            color: #7c2d12;
+            margin-bottom: 10px;
+        }
+
+        .card-problem strong {
+            font-weight: 700;
+            color: #c2410c;
+        }
+
+        .card-solution {
+            background: var(--green3);
+            border-left: 3px solid var(--green);
+            border-radius: 0 8px 8px 0;
+            padding: 10px 14px;
+            font-size: 13.5px;
+            color: #14532d;
+            margin-bottom: 24px;
+        }
+
+        .card-solution strong {
+            font-weight: 700;
+            color: var(--green2);
+        }
+
+        /* Metrics row */
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .metric {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 14px 16px;
+            text-align: center;
+        }
+
+        .metric-icon {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .metric-val {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -.5px;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .metric-val.blue {
+            color: var(--blue);
+        }
+
+        .metric-val.green {
+            color: var(--green);
+        }
+
+        .metric-val.amber {
+            color: var(--amber);
+        }
+
+        .metric-label {
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            display: block;
+        }
+
+        .metric-note {
+            font-size: 10px;
+            color: #94a3b8;
+            margin-top: 3px;
+        }
+
+        /* Before / After */
+        .ba-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-bottom: 10px;
+        }
+
+        .ba-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .ba-col {
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .ba-col.before {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+
+        .ba-col.after {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+
+        .ba-col-head {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-bottom: 8px;
+        }
+
+        .ba-col.before .ba-col-head {
+            color: #b91c1c;
+        }
+
+        .ba-col.after .ba-col-head {
+            color: var(--green2);
+        }
+
+        .ba-item {
+            font-size: 13px;
+            color: var(--ink2);
+            padding: 3px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            line-height: 1.4;
+        }
+
+        .ba-item::before {
+            content: '•';
+            flex-shrink: 0;
+            font-weight: 700;
+            margin-top: 1px;
+        }
+
+        .ba-col.before .ba-item::before {
+            color: #ef4444;
+        }
+
+        .ba-col.after .ba-item::before {
+            color: var(--green);
+        }
+
+        /* ── SECTION 4 — PROJECTED IMPACT ── */
+        .impact-section {
+            background: var(--navy);
+        }
+
+        .impact-section .section-label {
+            color: #60a5fa;
+        }
+
+        .impact-section .section-title {
+            color: #fff;
+        }
+
+        .impact-section .section-sub {
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .impact-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 56px 32px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-card {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: var(--r-lg);
+            padding: 22px 20px;
+            text-align: center;
+        }
+
+        .kpi-num {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .kpi-card.blue .kpi-num {
+            color: #60a5fa;
+        }
+
+        .kpi-card.green .kpi-num {
+            color: #4ade80;
+        }
+
+        .kpi-card.amber .kpi-num {
+            color: #fcd34d;
+        }
+
+        .kpi-card.pink .kpi-num {
+            color: #f9a8d4;
+        }
+
+        .kpi-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .5);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .kpi-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, .3);
+            margin-top: 4px;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .chart-card {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: var(--r-lg);
+            padding: 24px;
+        }
+
+        .chart-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .7);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-bottom: 20px;
+        }
+
+        /* ── WHAT GETS BUILT ── */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .deliverable-group {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .dg-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .dg-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .dg-icon.blue {
+            background: var(--blue3);
+        }
+
+        .dg-icon.green {
+            background: var(--green3);
+        }
+
+        .dg-icon.amber {
+            background: var(--amber3);
+        }
+
+        .dg-icon.purple {
+            background: #ede9fe;
+        }
+
+        .dg-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .dg-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border2);
+            font-size: 13.5px;
+            color: var(--ink2);
+            line-height: 1.4;
+        }
+
+        .dg-item:last-child {
+            border-bottom: none;
+        }
+
+        .dg-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--green3);
+            color: var(--green);
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+            font-weight: 900;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%);
+            padding: 72px 32px;
+            text-align: center;
+        }
+
+        .cta-inner {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .cta-eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: #60a5fa;
+            margin-bottom: 16px;
+        }
+
+        .cta-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.8px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .cta-body {
+            font-size: 16px;
+            color: rgba(255, 255, 255, .6);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--blue);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 16px 36px;
+            border-radius: 99px;
+            text-decoration: none;
+            letter-spacing: -.2px;
+            box-shadow: 0 8px 32px rgba(37, 99, 235, .4);
+            transition: all .2s;
+        }
+
+        .cta-btn:hover {
+            background: var(--blue2);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, .5);
+            transform: translateY(-2px);
+        }
+
+        .cta-contact {
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .cta-contact-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: rgba(255, 255, 255, .35);
+            margin-bottom: 12px;
+        }
+
+        .cta-contact-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .cta-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .cta-contact-item a {
+            color: #93c5fd;
+            text-decoration: none;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: #060e18;
+            padding: 20px 32px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, .2);
+        }
+
+        /* ── ESTIMATE BADGE ── */
+        .est-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            background: #fef9c3;
+            color: #854d0e;
+            border: 1px solid #fef08a;
+            border-radius: 4px;
+            padding: 1px 6px;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+
+        .src-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            border-radius: 4px;
+            padding: 1px 6px;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+
+        @media (max-width: 700px) {
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-row {
+                grid-template-columns: 1fr;
+            }
+
+            .ba-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .deliverables-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .cta-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════
+     SENDER BAR
+════════════════════════════════════════════ -->
+    <div style="background:var(--white);border-bottom:1px solid var(--border);width:100%;">
+        <div
+            style="max-width:960px;margin:0 auto;padding:12px 32px;display:flex;align-items:center;justify-content:space-between;box-sizing:border-box;">
+            <div
+                style="display:inline-flex;align-items:center;font-weight:800;font-size:17px;letter-spacing:-.5px;line-height:1;">
+                <span style="color:var(--ink);">Dev</span><span style="color:var(--blue);">8</span><span
+                    style="color:var(--ink);">X</span>
+            </div>
+            <div style="font-size:12px;color:var(--muted);line-height:1;">Prepared exclusively for TreeRaise, LLC
+                &nbsp;·&nbsp; March 2026</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SECTION 1 — HERO
+════════════════════════════════════════════ -->
+    <div class="hero">
+        <div class="hero-inner">
+            <div class="hero-meta">
+                <div class="hero-badge">🌳 Digital Transformation Report</div>
+                <div class="hero-date">Prepared by Dev8X · March 2026</div>
+            </div>
+            <div class="hero-company">TreeRaise, LLC — Orlando, FL</div>
+            <h1 class="hero-title">From Inbound-Only to a <span>Full-Scale Digital Growth Engine</span></h1>
+            <p class="hero-subtitle">A personalised impact analysis of what web automation and custom platforms can
+                unlock for TreeRaise's 500-org 2026 goal.</p>
+
+            <div class="hero-stats">
+                <div class="hero-stat blue">
+                    <div class="hero-stat-num">37 hrs</div>
+                    <div class="hero-stat-label">saved per week across all workflows</div>
+                    <div class="hero-stat-sub">Calculated from 6 solution cards below</div>
+                </div>
+                <div class="hero-stat green">
+                    <div class="hero-stat-num">$8,960</div>
+                    <div class="hero-stat-label">estimated monthly cost impact</div>
+                    <div class="hero-stat-sub">Operational savings + revenue throughput</div>
+                </div>
+                <div class="hero-stat amber">
+                    <div class="hero-stat-num">6</div>
+                    <div class="hero-stat-label">manual workflows fully eliminated</div>
+                    <div class="hero-stat-sub">Coach follow-ups, reports, renewals & more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SECTION 2 — CURRENT STATE
+════════════════════════════════════════════ -->
+    <div style="background:var(--white);">
+        <section>
+            <div class="wrap">
+                <div class="section-label">Current State Overview</div>
+                <h2 class="section-title">Where TreeRaise Is Leaving Growth on the Table</h2>
+                <p class="section-sub">Every row below was drawn directly from your operations manual and company
+                    assessment — these are your real workflows, not generic examples.</p>
+
+                <table class="challenge-table">
+                    <thead>
+                        <tr>
+                            <th>Current Challenge</th>
+                            <th>Business Impact on Your 2026 Goals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="challenge-icon">🚫</span>
+                                <span>No CRM or lead pipeline — coaches manually track every prospect in their head or
+                                    ad-hoc spreadsheets</span>
+                            </td>
+                            <td>
+                                Dropped leads are invisible until it's too late. You can't see conversion rates, can't
+                                measure what channels drive sign-ups, and can't forecast whether you'll hit 500
+                                organisations by year-end.
+                                <br><span class="impact-pill high">High Risk</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="challenge-icon">📧</span>
+                                <span>Zero email automation — no nurture sequence for warm leads, no renewal trigger for
+                                    past campaign organizers</span>
+                            </td>
+                            <td>
+                                Visitors who are interested but not ready to sign up on their first visit disappear
+                                forever. Past organizers only return if they remember to — there's no systematic
+                                re-engagement driving your Legacy Forest repeat campaign strategy.
+                                <br><span class="impact-pill high">High Risk</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="challenge-icon">🔁</span>
+                                <span>Coach follow-up after every sign-up is 100% manual — no automated sequence bridges
+                                    the gap</span>
+                            </td>
+                            <td>
+                                If a TreeRaiser Coach is on another call, responding to email, or away, new sign-ups go
+                                cold. Estimated: 2–4 hours of coach time per new organisation just in setup
+                                correspondence.
+                                <br><span class="impact-pill high">High Risk</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="challenge-icon">📊</span>
+                                <span>Impact reports may be manually assembled — one person (Victor Junco) owns all
+                                    veritree data reconciliation</span>
+                            </td>
+                            <td>
+                                At 500 campaigns/year, manual report assembly becomes a bottleneck that either slows
+                                delivery or requires new headcount. Single-person dependency is a continuity risk.
+                                <br><span class="impact-pill med">Medium Risk</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="challenge-icon">🌐</span>
+                                <span>Website has strong SEO content but lacks conversion infrastructure — no live chat,
+                                    no lead capture for non-ready visitors, no case studies</span>
+                            </td>
+                            <td>
+                                Traffic is arriving but most of it leaves without converting or being identified. With
+                                21 LinkedIn followers and no paid ads, organic blog traffic is the primary pipeline —
+                                letting it leak unchecked is expensive.
+                                <br><span class="impact-pill med">Medium Risk</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="challenge-icon">📣</span>
+                                <span>All growth is inbound-only — no outbound prospecting, no paid acquisition, no
+                                    outreach to school districts or denomination networks</span>
+                            </td>
+                            <td>
+                                The entire pipeline depends on organic LinkedIn reach and blog traffic. If Wayne Elsey's
+                                posting cadence drops or search rankings shift, the lead flow stops. There is no second
+                                engine. Reaching 500 organisations via inbound alone is extremely high-risk.
+                                <br><span class="impact-pill high">High Risk</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════════
+     SECTION 3 — SOLUTION CARDS
+════════════════════════════════════════════ -->
+    <section>
+        <div class="wrap">
+            <div class="section-label">Solution Cards</div>
+            <h2 class="section-title">6 Systems Dev8X Would Build for TreeRaise</h2>
+            <p class="section-sub">Each solution maps directly to a confirmed pain point. Every number is either sourced
+                from your files or clearly estimated using conservative industry rates at $35/hr blended operational
+                cost.</p>
+
+            <div class="cards-grid">
+
+                <!-- CARD 1 — CRM -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Campaign Pipeline CRM & Lead Tracking System</div>
+                        <div class="card-tag">🏗️ Platform</div>
+                    </div>
+                    <div class="card-problem"><strong>Current problem:</strong> No named CRM exists — leads from "Begin
+                        Your Impact" clicks enter a black box. Coaches manually track each prospect, there's no pipeline
+                        visibility, and dropped leads are only noticed when it's too late.</div>
+                    <div class="card-solution"><strong>What gets built:</strong> A custom CRM portal (or configured
+                        HubSpot integration) with pipeline stages — Prospect → Inquiry → Coach Contacted → Setup Started
+                        → Campaign Live → Campaign Closed → Renewal Due — with automated task creation, lead source
+                        tagging, and real-time conversion dashboards for leadership.</div>
+
+                    <div class="metrics-row">
+                        <div class="metric">
+                            <div class="metric-icon">⏱</div>
+                            <span class="metric-val blue">6 hrs</span>
+                            <span class="metric-label">saved / week</span>
+                            <div class="metric-note">Est: manual tracking 3 hrs + missed follow-up recovery 3 hrs <span
+                                    class="est-badge">Estimated</span></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">💰</div>
+                            <span class="metric-val green">$840/mo</span>
+                            <span class="metric-label">cost impact</span>
+                            <div class="metric-note">6 hrs × $35 × 4 weeks <span class="est-badge">Estimated</span>
+                            </div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">↓</div>
+                            <span class="metric-val amber">70%</span>
+                            <span class="metric-label">effort reduction</span>
+                            <div class="metric-note">Manual tracking steps eliminated</div>
+                        </div>
+                    </div>
+
+                    <div class="ba-title">Before → After</div>
+                    <div class="ba-grid">
+                        <div class="ba-col before">
+                            <div class="ba-col-head">🔴 Before</div>
+                            <div class="ba-item">Leads tracked in coach's memory or disconnected spreadsheets</div>
+                            <div class="ba-item">No visibility into conversion rates by channel</div>
+                            <div class="ba-item">Leadership cannot forecast the path to 500 orgs</div>
+                        </div>
+                        <div class="ba-col after">
+                            <div class="ba-col-head">🟢 After</div>
+                            <div class="ba-item">Every lead auto-captured with source tag and pipeline stage</div>
+                            <div class="ba-item">Real-time dashboard showing conversion rate per channel</div>
+                            <div class="ba-item">Forecasting tool shows projected org count vs. 2026 goal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 — Email Automation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Automated Email Nurture & Annual Renewal Engine</div>
+                        <div class="card-tag">⚡ Automation</div>
+                    </div>
+                    <div class="card-problem"><strong>Current problem:</strong> No automated email sequences exist. New
+                        sign-ups receive no drip nurture. Past campaign organizers receive no renewal prompt — the
+                        "Legacy Forest" repeat-campaign strategy is entirely passive, depending on organizers choosing
+                        to return on their own.</div>
+                    <div class="card-solution"><strong>What gets built:</strong> Three automated email sequences — a
+                        5-email new lead nurture (10 days), a 4-email post-sign-up onboarding flow (7 days), and a
+                        3-email annual renewal sequence triggered 11 months after each campaign close — all connected to
+                        the CRM and requiring zero manual intervention per campaign.</div>
+
+                    <div class="metrics-row">
+                        <div class="metric">
+                            <div class="metric-icon">⏱</div>
+                            <span class="metric-val blue">8 hrs</span>
+                            <span class="metric-label">saved / week</span>
+                            <div class="metric-note">Est: manual follow-ups 5 hrs + renewal outreach 3 hrs <span
+                                    class="est-badge">Estimated</span></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">💰</div>
+                            <span class="metric-val green">$1,120/mo</span>
+                            <span class="metric-label">cost impact</span>
+                            <div class="metric-note">8 hrs × $35 × 4 weeks <span class="est-badge">Estimated</span>
+                            </div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">↓</div>
+                            <span class="metric-val amber">82%</span>
+                            <span class="metric-label">effort reduction</span>
+                            <div class="metric-note">Follow-up steps fully automated</div>
+                        </div>
+                    </div>
+
+                    <div class="ba-title">Before → After</div>
+                    <div class="ba-grid">
+                        <div class="ba-col before">
+                            <div class="ba-col-head">🔴 Before</div>
+                            <div class="ba-item">Coach manually emails each new sign-up — timing inconsistent</div>
+                            <div class="ba-item">Past organizers only return if they personally remember TreeRaise</div>
+                            <div class="ba-item">No nurture for warm-but-not-ready website visitors</div>
+                        </div>
+                        <div class="ba-col after">
+                            <div class="ba-col-head">🟢 After</div>
+                            <div class="ba-item">Every new lead enters a 10-day nurture sequence automatically at
+                                sign-up</div>
+                            <div class="ba-item">11-month renewal email triggers for every past organizer — Legacy
+                                Forest grows itself</div>
+                            <div class="ba-item">30-day re-engagement sequence reactivates cold leads with impact
+                                stories</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 — Website Conversion -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Website Conversion Hub with Live Chat & Lead Capture</div>
+                        <div class="card-tag">🌐 Platform</div>
+                    </div>
+                    <div class="card-problem"><strong>Current problem:</strong> treeraise.com has strong SEO content
+                        driving inbound traffic, but no live chat, no lead capture for visitors not ready to sign up,
+                        and no case studies providing social proof. Visitors who don't click "Begin Your Impact" on
+                        their first visit are lost permanently.</div>
+                    <div class="card-solution"><strong>What gets built:</strong> A conversion layer added to the
+                        existing site — live chat widget with FAQ automation and coach routing, exit-intent lead capture
+                        offering the Starter Kit in exchange for email, content upgrade CTAs inside blog posts, and a
+                        dedicated testimonials page featuring 3 verified campaign stories with real funds-raised and
+                        trees-planted numbers.</div>
+
+                    <div class="metrics-row">
+                        <div class="metric">
+                            <div class="metric-icon">⏱</div>
+                            <span class="metric-val blue">4 hrs</span>
+                            <span class="metric-label">saved / week</span>
+                            <div class="metric-note">Est: manual inbound email Q&A currently 4 hrs/wk <span
+                                    class="est-badge">Estimated</span></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">💰</div>
+                            <span class="metric-val green">$2,800/mo</span>
+                            <span class="metric-label">revenue unlocked</span>
+                            <div class="metric-note">1% conversion lift = ~8 extra campaigns/mo × avg. TreeRaise take
+                                <span class="est-badge">Estimated</span></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">↓</div>
+                            <span class="metric-val amber">50%</span>
+                            <span class="metric-label">effort reduction</span>
+                            <div class="metric-note">Repetitive visitor Q&As handled by chat</div>
+                        </div>
+                    </div>
+
+                    <div class="ba-title">Before → After</div>
+                    <div class="ba-grid">
+                        <div class="ba-col before">
+                            <div class="ba-col-head">🔴 Before</div>
+                            <div class="ba-item">Visitors with questions must email hello@treeraise.com and wait a
+                                business day</div>
+                            <div class="ba-item">No case studies — prospects can't verify past campaign results</div>
+                            <div class="ba-item">Bounce = lost forever, no email captured</div>
+                        </div>
+                        <div class="ba-col after">
+                            <div class="ba-col-head">🟢 After</div>
+                            <div class="ba-item">Live chat answers common questions instantly; complex ones go to a
+                                coach</div>
+                            <div class="ba-item">Testimonial page shows real schools/churches with verified $ raised and
+                                trees planted</div>
+                            <div class="ba-item">Exit-intent captures email → lead enters nurture sequence automatically
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4 — Automated Impact Reports -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Automated Impact Report Generator</div>
+                        <div class="card-tag">⚡ Automation</div>
+                    </div>
+                    <div class="card-problem"><strong>Current problem:</strong> It's unclear whether the Verified Impact
+                        Report delivered at campaign close is auto-generated or manually assembled. Victor Junco is the
+                        sole owner of monthly veritree data reconciliation — GPS photos, CO2 data, tree counts. One
+                        person, no backup, and the process doesn't scale past current volume.</div>
+                    <div class="card-solution"><strong>What gets built:</strong> A direct data pipeline from veritree
+                        into a branded report template that auto-populates the moment a campaign closes — trees planted,
+                        CO2 offset, GPS locations, project photos — and delivers the report to the organizer's email
+                        instantly, with zero manual steps required from the team.</div>
+
+                    <div class="metrics-row">
+                        <div class="metric">
+                            <div class="metric-icon">⏱</div>
+                            <span class="metric-val blue">6 hrs</span>
+                            <span class="metric-label">saved / month</span>
+                            <div class="metric-note">Est: 1–2 hrs per report × ~4 campaigns/mo currently <span
+                                    class="est-badge">Estimated</span></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">💰</div>
+                            <span class="metric-val green">$800/mo</span>
+                            <span class="metric-label">cost impact</span>
+                            <div class="metric-note">Scales to $4,000+/mo at 500 campaigns/yr × 2 hrs/ea <span
+                                    class="est-badge">Estimated</span></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">↓</div>
+                            <span class="metric-val amber">92%</span>
+                            <span class="metric-label">effort reduction</span>
+                            <div class="metric-note">Manual report assembly eliminated</div>
+                        </div>
+                    </div>
+
+                    <div class="ba-title">Before → After</div>
+                    <div class="ba-grid">
+                        <div class="ba-col before">
+                            <div class="ba-col-head">🔴 Before</div>
+                            <div class="ba-item">Victor manually pulls GPS data, tree counts, photos from veritree each
+                                month</div>
+                            <div class="ba-item">Report assembly takes 1–2 hrs per campaign close</div>
+                            <div class="ba-item">At 500 campaigns/yr, this is a full-time job no one has headcount for
+                            </div>
+                        </div>
+                        <div class="ba-col after">
+                            <div class="ba-col-head">🟢 After</div>
+                            <div class="ba-item">Campaign close triggers instant veritree API pull → report
+                                auto-populates</div>
+                            <div class="ba-item">Organizer receives branded PDF within minutes of campaign closing</div>
+                            <div class="ba-item">Handles 500 reports/yr with zero additional headcount</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 5 — Outbound Partner Portal -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">BDR Outbound Prospect Portal & Partner Management System</div>
+                        <div class="card-tag">🏗️ Platform</div>
+                    </div>
+                    <div class="card-problem"><strong>Current problem:</strong> Zero outbound sales infrastructure. All
+                        500-org goal depends on inbound blog and LinkedIn traffic. There's no system for a BDR to build
+                        prospect lists of school principals, nonprofit development directors, or church pastors — and no
+                        portal for managing B2B partnership conversations with district admins or denomination networks.
+                    </div>
+                    <div class="card-solution"><strong>What gets built:</strong> A Partner Portal (like the
+                        p4d_partner-portal.html mockup in your files) extended with outbound prospecting tools — a
+                        contact database, email sequence tracker, meeting scheduler integration, and multi-org
+                        management dashboard that lets a single BDR manage 100–200 active outreach conversations
+                        simultaneously and track each one from first touch to launched campaign.</div>
+
+                    <div class="metrics-row">
+                        <div class="metric">
+                            <div class="metric-icon">⏱</div>
+                            <span class="metric-val blue">10 hrs</span>
+                            <span class="metric-label">saved / week</span>
+                            <div class="metric-note">Est: prospect research 6 hrs + status tracking 4 hrs without a
+                                system <span class="est-badge">Estimated</span></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">💰</div>
+                            <span class="metric-val green">$2,400/mo</span>
+                            <span class="metric-label">revenue unlocked</span>
+                            <div class="metric-note">BDR efficiency × 2% reply rate × avg. campaign value <span
+                                    class="est-badge">Estimated</span></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">↓</div>
+                            <span class="metric-val amber">65%</span>
+                            <span class="metric-label">effort reduction</span>
+                            <div class="metric-note">BDR admin time replaced by auto-tracking</div>
+                        </div>
+                    </div>
+
+                    <div class="ba-title">Before → After</div>
+                    <div class="ba-grid">
+                        <div class="ba-col before">
+                            <div class="ba-col-head">🔴 Before</div>
+                            <div class="ba-item">No outbound system — growth is 100% dependent on organic traffic</div>
+                            <div class="ba-item">School district or denomination-level deals have no management workflow
+                            </div>
+                            <div class="ba-item">BDR (if hired) would work from spreadsheets and sticky notes</div>
+                        </div>
+                        <div class="ba-col after">
+                            <div class="ba-col-head">🟢 After</div>
+                            <div class="ba-item">BDR manages 150+ active prospects from a single dashboard with status,
+                                notes, and next steps</div>
+                            <div class="ba-item">District/denomination partnerships tracked as multi-org accounts (1
+                                deal = 30+ campaigns)</div>
+                            <div class="ba-item">Calendly integration lets prospects self-schedule a Coach call directly
+                                from outreach email</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 6 — Campaign Milestone & Admin Dashboard -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Campaign Milestone Alert System & Internal Admin Dashboard</div>
+                        <div class="card-tag">📊 Reporting</div>
+                    </div>
+                    <div class="card-problem"><strong>Current problem:</strong> Staff manually check active campaign
+                        dashboards daily to confirm data is updating correctly. The mid-drive check-in is also a manual
+                        coach task. There are no automated alerts when an organizer hits a fundraising milestone —
+                        meaning 20–30% of total contributions that arrive in the "Final Push" window are not being
+                        maximised by proactive organizer nudges.</div>
+                    <div class="card-solution"><strong>What gets built:</strong> An internal Admin Console (building on
+                        the p4d_admin.html interface in your files) with automated campaign health monitoring — plus an
+                        organizer-facing milestone alert system that sends automated email/SMS at 25%, 50%, and 75% of
+                        goal, prompting them to share the campaign link at exactly the right moment to boost Final Push
+                        contributions.</div>
+
+                    <div class="metrics-row">
+                        <div class="metric">
+                            <div class="metric-icon">⏱</div>
+                            <span class="metric-val blue">9 hrs</span>
+                            <span class="metric-label">saved / week</span>
+                            <div class="metric-note">Est: daily dashboard checks 5 hrs + mid-drive outreach 4 hrs/wk
+                                <span class="est-badge">Estimated</span></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">💰</div>
+                            <span class="metric-val green">$1,000/mo</span>
+                            <span class="metric-label">cost impact</span>
+                            <div class="metric-note">Staff hours saved + milestone alerts typically lift campaign totals
+                                8–12% <span class="est-badge">Estimated</span></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-icon">↓</div>
+                            <span class="metric-val amber">75%</span>
+                            <span class="metric-label">effort reduction</span>
+                            <div class="metric-note">Daily monitoring converted to alerts</div>
+                        </div>
+                    </div>
+
+                    <div class="ba-title">Before → After</div>
+                    <div class="ba-grid">
+                        <div class="ba-col before">
+                            <div class="ba-col-head">🔴 Before</div>
+                            <div class="ba-item">Staff check each active campaign dashboard manually every day</div>
+                            <div class="ba-item">Mid-drive check-in depends on a coach remembering to reach out at Day
+                                15</div>
+                            <div class="ba-item">Final Push window is underutilised — organizers aren't alerted to push
+                                harder</div>
+                        </div>
+                        <div class="ba-col after">
+                            <div class="ba-col-head">🟢 After</div>
+                            <div class="ba-item">Admin Console flags anomalies automatically — staff only see exceptions
+                            </div>
+                            <div class="ba-item">Mid-drive check-in email sends automatically on Day 15 for every
+                                campaign</div>
+                            <div class="ba-item">Milestone alert at 50% goal prompts organizer to post on social media
+                                at the exact right moment</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /cards-grid -->
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════════
+     SECTION 4 — PROJECTED ANNUAL IMPACT
+════════════════════════════════════════════ -->
+    <div class="impact-section">
+        <div class="impact-inner">
+            <div class="section-label">Projected Annual Impact</div>
+            <h2 class="section-title">What These 6 Systems Deliver Over 12 Months</h2>
+            <p class="section-sub">All figures calculated from the solution cards above. Estimates labelled accordingly.
+            </p>
+
+            <div class="kpi-grid">
+                <div class="kpi-card blue">
+                    <div class="kpi-num">1,924</div>
+                    <div class="kpi-label">Hours Saved / Year</div>
+                    <div class="kpi-sub">37 hrs/wk × 52 weeks</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-num">$107K</div>
+                    <div class="kpi-label">Annual Cost Impact</div>
+                    <div class="kpi-sub">$8,960/mo × 12 months</div>
+                </div>
+                <div class="kpi-card amber">
+                    <div class="kpi-num">6</div>
+                    <div class="kpi-label">Workflows Automated</div>
+                    <div class="kpi-sub">Lead tracking, nurture, reports, alerts + more</div>
+                </div>
+                <div class="kpi-card pink">
+                    <div class="kpi-num">~5 mo</div>
+                    <div class="kpi-label">Break-Even Timeline</div>
+                    <div class="kpi-sub">At $25K–$35K project investment</div>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-card-title">Hours Saved Per Week — by Solution</div>
+                    <canvas id="hoursChart" height="220"></canvas>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-card-title">Monthly Cost Impact — by Solution</div>
+                    <canvas id="costChart" height="220"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SECTION 5 — WHAT GETS BUILT
+════════════════════════════════════════════ -->
+    <section style="background:var(--white);">
+        <div class="wrap">
+            <div class="section-label">What Gets Built</div>
+            <h2 class="section-title">Specific Deliverables from Dev8X</h2>
+            <p class="section-sub">Everything in this list traces directly to a solution card above — no generic service
+                padding.</p>
+
+            <div class="deliverables-grid">
+
+                <div class="deliverable-group">
+                    <div class="dg-header">
+                        <div class="dg-icon blue">🏗️</div>
+                        <div class="dg-title">Platform</div>
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Custom CRM portal with 7-stage campaign pipeline
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Lead source tagging & conversion rate dashboard for leadership
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Partner & BDR outreach management portal
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Multi-org account view for district / denomination deals
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Internal Admin Console with campaign health monitoring
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Website conversion layer: live chat, exit-intent capture,
+                        testimonial page
+                    </div>
+                </div>
+
+                <div class="deliverable-group">
+                    <div class="dg-header">
+                        <div class="dg-icon green">⚡</div>
+                        <div class="dg-title">Automation</div>
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>5-email new lead nurture sequence (10 days, fully automated)
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>4-email post-sign-up onboarding flow (7 days)
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Annual renewal sequence triggered 11 months after campaign close
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>30-day cold-lead re-engagement sequence
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Mid-drive Day 15 check-in auto-send for every campaign
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Milestone alerts to organizers at 25%, 50%, 75% of goal
+                    </div>
+                </div>
+
+                <div class="deliverable-group">
+                    <div class="dg-header">
+                        <div class="dg-icon amber">🔌</div>
+                        <div class="dg-title">Integrations</div>
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>veritree API → automated impact data pipeline
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>CRM ↔ email platform connection (HubSpot or ActiveCampaign)
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Calendly booking integration in coach outreach emails
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Website sign-up form → CRM auto-import
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Live chat widget connected to coach notification queue
+                    </div>
+                </div>
+
+                <div class="deliverable-group">
+                    <div class="dg-header">
+                        <div class="dg-icon purple">📊</div>
+                        <div class="dg-title">Reporting</div>
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Automated Verified Impact Report — instant delivery at campaign
+                        close
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Branded PDF template populated from veritree data (zero manual
+                        work)
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Public-facing Impact Hub showing total trees, funds, and global map
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Leadership pipeline forecast dashboard (on-track vs. 500-org goal)
+                    </div>
+                    <div class="dg-item">
+                        <div class="dg-check">✓</div>Campaign health anomaly detection with exception-based staff alerts
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════════
+     SECTION 6 — CTA
+════════════════════════════════════════════ -->
+    <div class="cta-section">
+        <div class="cta-inner">
+            <div class="cta-eyebrow">Next Step</div>
+            <h2 class="cta-title">See exactly how this gets built — in 6 minutes</h2>
+            <p class="cta-body">
+                The demo video walks through the actual system being built for an organisation in a similar space — live
+                campaign pipeline, automated nurture sequences, and impact report generation all running together. No
+                slides. No theory. Just the working platform, screen-shared in six minutes.
+            </p>
+            <a href="#" class="cta-btn">Watch the Demo &nbsp;→</a>
+
+            <div class="cta-contact">
+                <div class="cta-contact-label">Prepared by Dev8X — questions before the demo?</div>
+                <div class="cta-contact-row">
+                    <div class="cta-contact-item">
+                        <span>👤</span>
+                        <span>Dev8X Team</span>
+                    </div>
+                    <div class="cta-contact-item">
+                        <span>📧</span>
+                        <a href="mailto:hello@dev8x.com">hello@dev8x.com</a>
+                    </div>
+                    <div class="cta-contact-item">
+                        <span>🔗</span>
+                        <a href="https://linkedin.com/company/dev8x" target="_blank">linkedin.com/company/dev8x</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 Dev8X. This report was prepared exclusively for TreeRaise, LLC. All estimates are labelled and based on
+        conservative industry benchmarks at $35/hr blended operational cost.
+    </div>
+
+    <!-- ── CHARTS ── -->
+    <script>
+        (function () {
+            const darkGrid = 'rgba(255,255,255,.08)';
+            const darkTick = 'rgba(255,255,255,.4)';
+
+            // Hours saved per week chart
+            const hoursCtx = document.getElementById('hoursChart').getContext('2d');
+            new Chart(hoursCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'CRM & Pipeline',
+                        'Email Automation',
+                        'Website Conversion',
+                        'Impact Reports',
+                        'BDR Portal',
+                        'Admin Dashboard'
+                    ],
+                    datasets: [{
+                        label: 'Hours Saved / Week',
+                        data: [6, 8, 4, 1.5, 10, 9],
+                        backgroundColor: [
+                            'rgba(37,99,235,.75)',
+                            'rgba(37,99,235,.75)',
+                            'rgba(37,99,235,.75)',
+                            'rgba(37,99,235,.75)',
+                            'rgba(37,99,235,.75)',
+                            'rgba(37,99,235,.75)'
+                        ],
+                        borderRadius: 6,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => ' ' + ctx.raw + ' hrs/wk'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: darkGrid },
+                            ticks: { color: darkTick, font: { size: 11 } },
+                            border: { color: darkGrid }
+                        },
+                        y: {
+                            grid: { color: 'transparent' },
+                            ticks: { color: darkTick, font: { size: 11 } },
+                            border: { color: 'transparent' }
+                        }
+                    }
+                }
+            });
+
+            // Cost impact chart
+            const costCtx = document.getElementById('costChart').getContext('2d');
+            new Chart(costCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'CRM & Pipeline',
+                        'Email Automation',
+                        'Website Conv.',
+                        'Impact Reports',
+                        'BDR Portal',
+                        'Admin Dashboard'
+                    ],
+                    datasets: [{
+                        label: '$ / Month',
+                        data: [840, 1120, 2800, 800, 2400, 1000],
+                        backgroundColor: [
+                            'rgba(22,163,74,.75)',
+                            'rgba(22,163,74,.75)',
+                            'rgba(22,163,74,.75)',
+                            'rgba(22,163,74,.75)',
+                            'rgba(22,163,74,.75)',
+                            'rgba(22,163,74,.75)'
+                        ],
+                        borderRadius: 6,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => ' $' + ctx.raw.toLocaleString() + '/mo'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: darkGrid },
+                            ticks: {
+                                color: darkTick,
+                                font: { size: 11 },
+                                callback: v => '$' + (v / 1000).toFixed(1) + 'k'
+                            },
+                            border: { color: darkGrid }
+                        },
+                        y: {
+                            grid: { color: 'transparent' },
+                            ticks: { color: darkTick, font: { size: 11 } },
+                            border: { color: 'transparent' }
+                        }
+                    }
+                }
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

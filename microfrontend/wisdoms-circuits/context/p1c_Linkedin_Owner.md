@@ -30,6 +30,22 @@ Specialties: EdTech, Enrollment, Family Engagement, Retention, Strategy, Vision,
 #### Post 1
 type: original
 
+1,700+ schools in New York City. Each one improvising its own AI policy, until last week when the city finally released guidance.
+
+Some banned it. Some embraced it. Most said nothing at all.
+
+This is the state of AI in American education right now. Not a revolution. A patchwork.
+
+Here's what bothers me: we keep treating AI like a test to pass or a threat to manage, instead of asking the real question. What does this student need, right now, to learn better?
+
+The schools doing it right aren't the ones with the most sophisticated policy documents. They're the ones that stayed focused on the learner while everything else was up for debate.
+
+That's the only thread worth pulling.
+
+
+#### Post 2
+type: original
+
 A glimpse into the future of education.
 Our new Future Report: Education 2028 explores how AI will reshape learning over the next few years and why the focus of education is shifting from getting answers to thinking, reasoning, and asking better questions.
 If you care about where education is headed, this is worth a read.
@@ -39,4 +55,5 @@ external_link: https://lnkd.in/gv7wCmzz
 #### Post 2
 type: original
 
-Excited to be part of this!
+Excited to be part of this!.
+
