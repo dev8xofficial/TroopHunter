@@ -1,0 +1,1077 @@
+Speaker 00:00 So I'm here with Jaquarian. Speaker 00:02 We are together
+in the vehicle now.
+
+Speaker 00:06 He just came off from a meeting. Speaker 00:09 JAQUARIAN
+BONILLA- Yes.
+
+Speaker 00:15 So yeah, feel free to have us go over whatever we need,
+
+Speaker 00:22 and if you need to show us anything. Speaker 00:26
+JAQUARIAN BONILLA- OK, so let me share my screen first.
+
+Speaker 00:49 Can you see my screen? Speaker 00:51 Yes.
+
+Speaker 00:56 So basically I recorded the video about the proposal in
+which I explained the
+
+Speaker 01:03 pricing, the project timeline, and the three phases in
+which we deliver this
+
+Speaker 01:11 whole system. Speaker 01:13 So I think, uh, in a previous
+conversation, uh, with you, Tom,
+
+Speaker 01:19 Uh, you were probably asking how we're going to deliver
+this whole system. Speaker 01:24 So I decided to deliver it in the
+iteration of way in three basically versions. Speaker 01:30 So each
+version will cover, um, multiple screens. Speaker 01:35 So I had
+recorded every information in a video, which I shared with you and
+
+Speaker 01:40 the Korean. Speaker 01:42 So, uh,
+
+Speaker 01:45 There was also market rate comparison and the complete
+timeline,
+
+Speaker 01:51 the estimated timeline of this project. Speaker 01:56 And
+I think in the right side of the screen, you can see how we're going
+
+Speaker 02:05 to deliver all those screens from each portal. Speaker
+02:10 So in this diagram you can see in the basic version,
+
+Speaker 02:14 we're gonna deliver 13 screens basically. Speaker 02:17
+And who gonna works?
+
+Speaker 02:20 Each person has mentioned here in each phase. Speaker
+02:25 And at the end, we're gonna deliver screens
+
+Speaker 02:30 for each portals. Speaker 02:31 For example, in admin
+portal,
+
+Speaker 02:33 we're gonna deliver all dashboard and users
+
+Speaker 02:36 and in agent portal we're going to deliver auth and
+dashboard and so on. Speaker 02:41 So I had created all of these things
+so that you both of you can easily understand
+
+Speaker 02:47 how we're going to collaborate and work
+
+Speaker 02:50 and how we're going to deliver
+
+Speaker 02:53 the system whole system. Speaker 02:55 If you have gone
+through it, I think you might have
+
+Speaker 03:00 more understanding about it. Speaker 03:03 If not, you can
+
+Speaker 03:04 freely ask any question about it. Speaker 03:08 Um,
+
+Speaker 03:10 to current,
+
+Speaker 03:10 do we need any integration on our system and how we're
+going to integrate? Speaker 03:16 Because we are working with,
+
+Speaker 03:17 um,
+
+Speaker 03:19 yeah,
+
+Speaker 03:19 multiple system now on our end. Speaker 03:21 Yeah,
+
+Speaker 03:21 we need to integrate,
+
+Speaker 03:22 um,
+
+Speaker 03:24 follow up boss. Speaker 03:26 Um,
+
+Speaker 03:27 yeah,
+
+Speaker 03:30 um,
+
+Speaker 03:32 Outlook and we also need to integrate a sales and average
+LinkedIn sales
+
+Speaker 03:38 navigator and, uh, what's the zoom agent zoom agency.
+Speaker 03:45 So basically, so I guess you need an outlook and you need
+a LinkedIn sales
+
+Speaker 03:53 navigator and the third one is zoom. Speaker 04:02 Follow
+up boss.
+
+Speaker 04:02 Follow up boss.
+
+Speaker 04:05 OK.
+
+Speaker 04:09 Oh, and Google Meeks. Speaker 04:12 Google Calendar.
+
+Speaker 04:13 Do we need that? Speaker 04:14 Well, hey, maybe is there a
+way to get your Google Calendar
+
+Speaker 04:20 and your Outlook Calendar to communicate with each other?
+Speaker 04:26 We can communicate with website with these calendars,
+
+Speaker 04:30 Uh, I have to look into it. Speaker 04:33 I can work
+together or not.
+
+Speaker 04:36 Maybe we can, uh, find an intermediate, uh, basically, um,
+middle
+
+Speaker 04:44 platform where both can communicate. Speaker 04:47 So
+they're probably these two options and I think we can work on it and we
+can,
+
+Speaker 04:54 uh, find out a way. Speaker 04:58 Okay.
+
+Speaker 04:59 Either we will integrate them into our system so that both
+of these calendars
+
+Speaker 05:06 push data into our system or we will find a third party
+platform. Speaker 05:11 Okay.
+
+Speaker 05:12 Okay.
+
+Speaker 05:17 So basically you, the Zoom, I'm asking a question about
+Zoom. Speaker 05:21 You are basically asking for the Zoom which you use
+for video conferencing
+
+Speaker 05:27 or it's something else. Speaker 05:29 Yeah. So I
+personally on my insurance side,
+
+Speaker 05:35 I use a software called Agency Zoom. Speaker 05:39 Okay.
+
+Speaker 05:40 It's by Verifone or something like that. Speaker 05:42 I
+forgot the actual name of that company. Speaker 05:44 And within that
+company,
+
+Speaker 05:47 there's also three tools that we use, right? Speaker 05:52
+So we kind of need the integration of
+
+Speaker 05:56 that to follow up boss. So I guess the follow up boss is
+our main hub. Speaker 06:03 And, and then the general question is, how
+does all these software speak to one
+
+Speaker 06:11 another using I guess is a follow up boss, or how maybe we
+will have to ask you some
+
+Speaker 06:20 suggestion on how everything would be running through?
+Speaker 06:24 Okay. So basically every software which has developed it,
+
+Speaker 06:29 they has an API, uh, application, uh,
+
+Speaker 06:35 application programming interface. So basically through
+those APIs,
+
+Speaker 06:40 uh, any system can talk to each other. So we can, uh,
+
+Speaker 06:45 basically integrate them into a system and we, when,
+
+Speaker 06:49 Uh, like in our previous case, uh, decoding wants to
+communicate
+
+Speaker 06:53 calendar and outlook with each other. Speaker 06:55 So
+they are possibilities.
+
+Speaker 06:58 We can do it. Speaker 06:59 So every software provides an
+API and, and those API, uh, would be paid or
+
+Speaker 07:05 free, uh, depends on the, uh, on those providers so we can
+use them. Speaker 07:12 so if these are the softwares which are which
+must be used by millions of people then they
+
+Speaker 07:19 they have very friendly api documentation we can use them
+and we can integrate them into a system
+
+Speaker 07:25 anytime okay yeah yeah so we will be able to utilize one
+platform for all communications
+
+Speaker 07:35 we can use them um i have to look into it um i have
+basically integrated
+
+Speaker 07:43 a video string platform previously in my in my previous
+client and
+
+Speaker 07:49 I think
+
+Speaker 07:51 Those you have mentioned have all the proper
+
+Speaker 07:55 Documentation we can go through it and I will give you a
+complete
+
+Speaker 08:01 You can say a complete
+
+Speaker 08:04 Recorded video about how we're gonna do it if you need
+more details about it
+
+Speaker 08:09 okay, yeah, cuz I think it will be great if we could have
+like a
+
+Speaker 08:13 maybe a tab and then just say it's like apps or something
+like that within our portal and then
+
+Speaker 08:19 it's it's a quick click to just go ahead and open up you
+know your teams or your uh follow-up balls
+
+Speaker 08:26 account or you know the things that that's worth basically
+that way you know yeah you
+
+Speaker 08:31 don't have to just jump to a different browser or anything
+of that sort
+
+Speaker 08:34 Yeah, we we we can do this, but the there are few concerns
+while integrating them. Speaker 08:41 We normally see the cost basically
+and the and the effort to integrate them. Speaker 08:48 So I hope these
+platforms must provide a very friendly APR documentation. Speaker 08:54
+and we can easily understand we can integrate them. Speaker 08:56 So you
+gave me two options and we will see
+
+Speaker 09:00 which one we can integrate. Speaker 09:02 And if you
+prefer,
+
+Speaker 09:05 if you prefer any single platform,
+
+Speaker 09:08 you can tell me first
+
+Speaker 09:09 and then I will go through the documentation. Speaker
+09:12 Okay, thank you.
+
+Speaker 09:14 I think we have to go over all that in,
+
+Speaker 09:18 in a separate meeting on how and what do we need it for
+before we have up to really study
+
+Speaker 09:26 on it. Speaker 09:27 Yeah, because we in my experience, I
+gave you two concerns. Speaker 09:32 One is the effort to integrate them
+and how much time that integration would take and
+
+Speaker 09:37 how reliable that integration would be, how effectively it
+will work. Speaker 09:43 And the second concern is about the cost.
+Speaker 09:46 So we normally see these two things
+
+Speaker 09:48 and we try to build a demo
+
+Speaker 09:52 where we can basically use that software in our platform
+
+Speaker 09:58 for a couple of days and do a thorough testing
+
+Speaker 10:02 and before we move completely. Speaker 10:06 Here at the
+yours.
+
+Speaker 10:08 I don't know how the integration
+
+Speaker 10:10 gonna be looking like because just different,
+
+Speaker 10:14 Well, most of the information are entered same. Speaker
+10:18 Yeah, we just need the CRM's to talk to each other. Speaker 10:22
+We just need the recording of all the phone calls
+
+Speaker 10:25 that are on my side. Speaker 10:27 So I don't get in
+trouble on E&O, or same as you. Speaker 10:31 And then we have to see
+who owns it.
+
+Speaker 10:33 That's another problem, right? Speaker 10:35 The marketing
+company has to own the software.
+
+Speaker 10:39 They have to pay for all these. Speaker 10:43 Yeah, I
+cannot pay for it. You cannot pay for it. Speaker 10:46 It has to be a
+third party.
+
+Speaker 10:47 They have to pay for what? Speaker 10:49 The bill for the
+connection of the system. Speaker 10:52 The marketing company has to own
+this or pay for this bill at least
+
+Speaker 10:57 so that we are compliant. Speaker 11:00 Right.
+
+Speaker 11:03 So I do.
+
+Speaker 11:04 We're just thinking out loud how the back end
+
+Speaker 11:09 business structure work on our side so that we don't,
+
+Speaker 11:14 we are compliant because everything that we do
+
+Speaker 11:17 is really sensitive. Speaker 11:18 We are not supposed to
+talk to one another,
+
+Speaker 11:21 except if there's a marketing company
+
+Speaker 11:24 that does this for a living. Speaker 11:26 And then we use
+that company to have a platform
+
+Speaker 11:30 that we can all use together. Speaker 11:32 Right?
+
+Speaker 11:33 Yeah, I can understand.
+
+Speaker 11:34 Basically you were discussing that
+
+Speaker 11:36 someone should pay for the subscription of these tools.
+Speaker 11:42 And they can use it if they want it, they have to pay.
+Speaker 11:46 And from that payment, you can transfer it
+
+Speaker 11:50 to those platforms. Speaker 11:54 This is what you want
+probably.
+
+Speaker 11:57 Something like that. Speaker 11:59 We need a third party
+that,
+
+Speaker 12:02 have the right to come collaborate or communicate with one
+another. Speaker 12:09 And because the mortgage person cannot, should
+not talk to the insurance
+
+Speaker 12:15 agency directly, uh, for compliance. Speaker 12:18 So the
+marketing firm that we are going to create own this platform. Speaker
+12:27 But what about data entry?
+
+Speaker 12:30 Do we rent it? Speaker 12:32 we have to, we're going to
+have to input data.
+
+Speaker 12:35 Yeah. Speaker 12:36 So Zola isn't putting data inside the
+Burks group at what cost? Speaker 12:41 No, the marketing group is going
+to rent it and rent it to Zola insurance,
+
+Speaker 12:46 rent it to you, rent it to Burks mortgage group, and then
+the real estate. Speaker 12:55 We all pay a dollar amount to the
+marketing firm to utilize this. Speaker 13:00 However, the marketing
+firm use the data for your company,
+
+Speaker 13:05 for my company is compliant. Speaker 13:10 We don't own
+the data.
+
+Speaker 13:11 The marketing company on the data. Speaker 13:14 We just,
+we just rent their platform to use it.
+
+Speaker 13:18 Okay.
+
+Speaker 13:20 Right. Speaker 13:21 So, um, I'll do this.
+
+Speaker 13:23 It's going to take less than two months. Speaker 13:28 Or
+maybe a little bit more less than three.
+
+Speaker 13:30 Yeah.
+
+Speaker 13:30 Less than three months. Speaker 13:31 You are basically
+asking about the integration platforms or. Speaker 13:37 Um, yeah, that
+will be a separate, it will be different than what we have
+
+Speaker 13:43 doing building out on the website. Speaker 13:46 This
+basically a CRM for the website for the, yeah.
+
+Speaker 13:51 That's what we need. Speaker 13:52 We needed our own CRM.
+
+Speaker 13:56 Because that's the only way that we can sell it as a
+software. Speaker 14:01 What do you think, Abdul?
+
+Speaker 14:04 What do you think we just mentioned? Speaker 14:07 The
+first question I would ask, I didn't create any CRM. Speaker 14:11 Do
+you guys have your own CRM, or you
+
+Speaker 14:13 are asking to create a CRM? Speaker 14:16 So currently,
+we're using two different CRMs.
+
+Speaker 14:20 Uh, what's the name of yours again? Speaker 14:22 Zoom
+agency.
+
+Speaker 14:23 So zoom agency and follow up box are the two CRMs that
+we're currently using. Speaker 14:27 Okay.
+
+Speaker 14:28 However, the same information is going inside of both.
+Speaker 14:33 And so that's why we're asking, is it a way to get them to
+communicate?
+
+Speaker 14:39 Okay. Speaker 14:39 So, so you basically want that data
+from the data from the CRM into our portals. Speaker 14:49 Hello, you
+are asking to, uh, to have a connection between our portals and your
+
+Speaker 14:56 CRMs so that both of them can communicate. Speaker 15:02
+Well, just more than that, the mortgage company too. Speaker 15:05 And
+then the actual platform that you just created for us.
+
+Speaker 15:11 Right. Speaker 15:14 Can you otherwise you have to build a
+brand new one and then we integrate
+
+Speaker 15:19 those information in there and then we don't use follow up
+boss. Speaker 15:22 We don't use a, no, we still have to use it.
+
+Speaker 15:25 Yeah.
+
+Speaker 15:25 Yeah. Speaker 15:26 Yeah.
+
+Speaker 15:26 We still have to use it.
+
+Speaker 15:27 The mortgage side, right? Speaker 15:29 Oh yeah.
+
+Speaker 15:29 Arrive.
+
+Speaker 15:30 We will have to integrate arrive into it.
+
+Speaker 15:33 Yeah. Speaker 15:34 All the software.
+
+Speaker 15:36 Because that's the only way it's going to be able to pull
+the
+
+Speaker 15:39 information from the mortgage. Speaker 15:40 Yeah.
+
+Speaker 15:41 And when they do an application. Speaker 15:42 He cannot
+create the application because it has to go through
+
+Speaker 15:47 The arrived software let's go to that movie software. Yeah
+
+Speaker 15:53 And
+
+Speaker 15:54 Mine is not automatic
+
+Speaker 15:56 These I still have to run the quote
+
+Speaker 15:58 independently and how would that go it will be that
+software translate back to follow a boss or
+
+Speaker 16:08 We're gonna create a brand new platform that we will have
+to create our own a
+
+Speaker 16:12 Eventually we have to, but I still need the agency 360.
+
+Speaker 16:16 Yeah. Speaker 16:17 Or do I, I don't need to know.
+
+Speaker 16:20 I don't need it. Speaker 16:21 You just need it to do with
+it. Speaker 16:22 It does exactly copy and paste a copy of the platform
+and put it in.
+
+Speaker 16:27 I still have to run it no matter what. Speaker 16:29 So,
+okay.
+
+Speaker 16:33 Yep.
+
+Speaker 16:34 Um, so on my side. Speaker 16:38 I don't really need
+agency 360, agency Zoom is because that my brokerage uses that. Speaker
+16:51 I don't really need to use that software to write the policy as
+long as I pay them. Speaker 17:00 Something like that.
+
+Speaker 17:01 Or it's going to be a short amount of time anyway before
+my brokerage open. Speaker 17:04 So we need our own.
+
+Speaker 17:08 In the long term, we are now... It's better to just build
+our own. Speaker 17:11 And the only thing we need to integrate is the
+Mortgage Helper. Speaker 17:17 The Follow-Up Boss will extract...
+
+Speaker 17:20 Follow-Up Boss will be cancelled if we build our own.
+Speaker 17:22 Exactly.
+
+Speaker 17:25 It's not needed.
+
+Speaker 17:26 Well, that saves us a lot of money in money. Speaker 17:29
+Yeah, and spare user also.
+
+Speaker 17:31 Yeah.
+
+Speaker 17:33 Okay.
+
+Speaker 17:35 And the Microsoft is Microsoft. Speaker 17:37 Everything
+is going to be communicated through the CRM
+
+Speaker 17:41 that we have and using Microsoft Outlook
+
+Speaker 17:46 as a integration between these call in, call out,
+
+Speaker 17:51 email in, email out. Speaker 17:57 So we are plugging in
+all the software,
+
+Speaker 17:59 bring it into our CRM until that is finished. Speaker
+18:05 So it's going to cost money to bring these system in, but we are
+fresh. Speaker 18:10 So we don't really need that. The old data that we
+have,
+
+Speaker 18:15 we just have to transfer it. Okay.
+
+Speaker 18:22 So I do, I think I could be wrong is we need a
+
+Speaker 18:26 CRM that integrates with the portal that you just
+
+Speaker 18:31 made the online system and
+
+Speaker 18:36 That's about it. Speaker 18:37 Yeah, that's it.
+
+Speaker 18:38 And then we use Microsoft Outlook for ex commu, external
+communication. Speaker 18:44 And we also using our CRM to call in, call
+out.
+
+Speaker 18:49 Okay.
+
+Speaker 18:50 That's it. Speaker 18:50 Right.
+
+Speaker 18:50 Yeah.
+
+Speaker 18:50 That's it.
+
+Speaker 18:51 Then just the integration, uh, one rhyme. Speaker 18:54
+Yeah.
+
+Speaker 18:55 And the arrive.
+
+Speaker 18:55 Yeah.
+
+Speaker 18:57 Then HR.
+
+Speaker 18:59 HR. Speaker 18:59 Okay.
+
+Speaker 19:01 Can I ask a question?
+
+Speaker 19:03 Yes. Speaker 19:04 Do CRMs provide any video conference
+feature to you or you are just managing your data
+
+Speaker 19:13 and your clients information there? Speaker 19:17 On the
+agency Zoom, I can do a recording. Speaker 19:23 uh, showing the screen
+share screen and we quote on the same share screen. Speaker 19:33 But
+normally you, but normally you guys are not using any video conference
+
+Speaker 19:37 or calling or you are using calling to,
+
+Speaker 19:41 no, we do that. Speaker 19:42 We're using Google meets or
+teams.
+
+Speaker 19:44 It's not within the CRM. Speaker 19:47 So they are not
+part of the CRM basically.
+
+Speaker 19:50 Yeah. Speaker 19:51 They're not part of the CRM.
+
+Speaker 19:53 Okay, so the total purpose of the CRM
+
+Speaker 19:55 is to manage the customer details
+
+Speaker 19:57 and in which stage they are and how they are moving
+forward. Speaker 20:01 Cause you can share your screen
+
+Speaker 20:03 with teams in Google Meets to go over the policy with
+them. Speaker 20:08 So we don't need that for the CRM.
+
+Speaker 20:10 This is already in the communication. Speaker 20:14 We
+just emailed them with a small, yeah.
+
+Speaker 20:20 You just attach it. Speaker 20:21 So pretty much the only
+thing we need from RCRM that we utilize a lot
+
+Speaker 20:26 is phone call recording, text, and email blast. Speaker
+20:38 Email in and out.
+
+Speaker 20:40 Yeah.
+
+Speaker 20:40 Yeah. Speaker 20:44 Okay, so --
+
+Speaker 20:46 phone call recording basically you are calling to your
+customers through your crm yes
+
+Speaker 20:47 Okay. Calling, texting, calling, texting, emails. Yeah.
+And okay. So these three things from the CRM and also the data
+management. Yeah. The data management, creating the leads in which stage
+they are, how they're moving forward. How much we have spend it. They
+have spend it. And so in some sense, I guess, and this is part of the
+automation portion, Tom and I are going to be working on the same
+clients. Speaker 21:19 So we don't want that data to go in double. It
+needs to kind of be like a handoff. Yeah. Yeah. One. So I think calling
+and SMS can be easily managed by VOIP services. Speaker 21:40 Email is
+also easy and the CRM data is easy because we are we are in the process
+to developing these portals so we can easily develop the CRM as well,
+but the Might be the hardest part is the choosing the right Service
+provider for the calls and service calls at SMS and how we gonna record
+them so after recording them you you just need to relisten them and
+
+Speaker 22:11 What do you guys do with that data? So, yeah, it's for
+pretty much quality control purposes. Okay. And also internal training.
+That's you. On my side is compliance. Yeah, compliance. Well, on my
+side, on the insurance side is when we record it, we confirm with the
+customer on the voice. We confirm it with the customer. This is what
+they want. Speaker 22:37 and they buy it in case they need to file a
+claim they don't point at tom or our agency that oh you didn't buy me
+you didn't sell me the right thing okay so you basically pulled those
+calls and gave it to them in case we need it how long are we gonna have
+those hold those calls it's in the cloud um like i don't know whatever
+years one two years i don't know because even if it's in the cloud
+that's
+
+Speaker 23:04
+
+-   And the videos.
+-   And I have one more question. How long you guys want that data to
+    keep?
+-   Yeah, we were just saying that. - I'm asking about the calls
+    specifically, not the SMS and emails.
+-   So you already know the PDFs and everything like that. For real
+    estate, we have to keep it for four years. - Four years, yes.
+-   On my, the attachment,
+
+Speaker 23:36 for that client's insurance history, I would say is
+minimum of two and a half years because one policy we knew another,
+right? So for example, January 1st, 2026, they have a new policy. 2027,
+we have to look back to it, right? And 2028, we have a track record. So
+maybe three and a half years, right? Speaker 24:04 The recording doesn't
+need to be that long. I think the recording would be one and a half
+year. That would be fine. Because when they file a claim, it's last
+year's, right? Unless we have an open claim, we keep that recording for
+a certain amount of time if there's an open claim. And I think in these
+data, you guys are not recording or saving, holding the video meetings
+as a proof. Speaker 24:45 Yeah, no, no, no. Yeah, we're not we're not
+doing that for video meetings. So probably the actual media. Yeah.
+Audio. I saw the actual media doesn't have to stay in that like on the
+cloud or anything like that. If we need to, we just need to be able to
+have it for a month for videos to share amongst each other. Probably.
+Yeah.
+
+Speaker 25:06 And then after that we can save it to either external hard
+drive or something. Because that's going to take up too much storage. A
+quarter, we leave it for three months. Okay. Put the standard procedure
+in. Do we need to save all these? The videos? No, that's going to take
+up a lot of space. So we try to avoid it, in other words. Or we can save
+it in Microsoft. Yeah, Microsoft Teams. OneDrive, no, it's still cost
+data. You can only put so much in one drive.
+
+Speaker 25:42 The email is no limit, right? Yeah. Yeah. Email is a
+mistake. Yeah. So we don't have to save it. We'll just email it. Oh
+yeah. So maybe there's would be an integration on, on a separate email
+account that we just sent stuff there, but we need to upgrade it to
+actually different trailer. Yeah. We just add another user as we go.
+Yeah. Okay. Yeah. That's avoid a lot of costs. Speaker 26:11 Once we
+have every year we send every January 1st, we have a new account that we
+will email. We won't do that because it's not going to stay on the
+cloud. It's just going to stay in the email. We'll let Microsoft deal
+with that. Stay user. But it's not doesn't it doesn't cost much. It will
+cost a lot cheaper to have an email account in Microsoft than hosting it
+ourselves. Okay.
+
+Speaker 26:46 Okay. So the price that you give us obviously is not
+including what we just mentioned. Yeah. Well, the only thing in addition
+we mentioned is CRM, right? With integration. A few items have been
+integrated. Yeah. My data doesn't have to be integrated right now. No,
+the CRMs don't need to be integrated. The only thing that needs to be
+integrated, HAR, which that's...
+
+Speaker 27:17 a simple thing because they already have the integration
+tool within their system. Yeah. But then arrive, I think that's
+something that you would probably have to research Abdul on how we can
+integrate arrive inside of it. On my side, we just have to keep the
+policy for two to three years. Yeah. And the customer data, I don't know
+how long we can keep it, but we should keep it. I'm pretty sure there's
+a cutoff time. Yeah.
+
+Speaker 27:53 Okay, yeah, just a CRM basically, right? With all the some
+of the tools that already have in the different CRM. If we integrate dot
+loop, then we don't even have to pull documents from PDF and dot loop.
+Yeah, because dot loop already has all the real estate contracts. Yeah,
+DocuSign. I use that same thing. It's like a DocuSign. And then we need
+Adobe.
+
+Speaker 28:24 Can we do that? Probably that's later on. We can tell, do
+whatever we want, but is it cost effective? Should we do this or
+whatnot? That's behind the scenes. Well, the most important thing is
+going to be the CRM to start off. The online portal will communicate
+with the CRM immediately so that we can send the QR code out and have
+people start filling us forms and stuff. And that...
+
+Speaker 28:54 and that has to be owned by the marketing firm and that
+information on insurance will bounce it back to us so i don't have to
+communicate them communicate with them that much here's the most
+important thing with the crm and i know it's little but it has to be
+able to share contact okay like if i if i text a contact over to a
+person that sends out a crm i want them to be able to save it like they
+would from a phone
+
+Speaker 29:27 Like they just click on it and then they're going to save
+it to their device. At least the name, right? Yeah. So when they text to
+us, we can save it in our CRM and then hopefully we can enter more
+information in there. Or maybe there's a tab that said just saved or
+saved last week, but no data. Because we always forget about that. Once
+you save it, that's it. Speaker 29:54 Someone has texted you in your
+phone and you want to save that contact in your CRM somehow. Yes. And
+then if the rest of the data is not there, it will have a bucket or the
+person, reminder person, put more information in there. Instead of not
+save or instead of just saving it, it just goes away to the data center,
+right? Speaker 30:22 Well, I'm saying like, remember the issue that we
+were having? We can't send our contact from follow-up boss. Yes, we can.
+Like, you know how I have my contact with everything? I have to text it
+all the way out. I can't just click the link in my contact and send it.
+I can. Let me see. I'll teach you that later. Yeah, we can do that. I
+know we can. I did it before. Okay. I thought you was having an issue
+with it too. No, it's just you're dumb. Okay. So what about when they
+send us their contact? Does it save automatically?
+
+Speaker 30:55 Good question. Depends on what kind of software they sent
+us. When you give people your number in an event, you give them the 617
+number or the follow-up boss number? If I text them, it's going to be
+follow-up boss number. But if they ask you for your phone number in
+public, what do you give them? I send them my contact card and they save
+it. From follow-up boss? No, from my contact. I know. That's what I'm
+saying. Can we send that from follow-up boss?
+
+Speaker 31:27 Yeah, yeah, yeah. I don't know if we can save it on our
+side on follow-up bots, but I know I can send it out. Okay. So it looks
+like, Abdul, we kind of narrowed down what is required in the future.
+You have the starting point. We know the end point, I guess, right? We
+know the goal. You need to start...
+
+Speaker 32:06 it doesn't seem like it's a one day or short amount of
+time that we could do this also the funds that we have is um we have
+lack of funds also on our side so i guess we will work with you on the
+dollar first um abdul will probably give us a dollar amount to uh of the
+total project and then increment it for if it takes two months every
+week she needs
+
+Speaker 32:42 \$100, \$500, whatever it is. Right. And then within
+three, four weeks, this is life. Within this amount of time, this is
+life. We already know that whatever we cost on this one is X amount
+already. So it's going to be actually just more. And what does it cost
+to maintain this? Yeah, there's another question. To CRM or these
+portals?
+
+Speaker 33:14 the CRM in the portal? Basically, I didn't work on the
+CRM, so I don't have much knowledge about it, how much resources and
+which platform API integration cost. And the cost basically combined
+from these platforms and the resources we use in that CRM. So I have no
+idea, but
+
+Speaker 33:43 For these portals, basically cost around around 200 to
+\$300 based on the servers, we saw was another resources we're going to
+use. And I think there are few DocuSign and few other third party
+services, which we probably going to use when we're going to start it.
+And I probably
+
+Speaker 34:13 I didn't mention those pricing here, but here I think you
+can see dedicated server DocuSign, SendGrid for the emails and any other
+third party services. So I have to calculate it and I will tell you, but
+probably my idea is around \$200 to \$300 if it includes a monthly
+maintenance and these basically servers and third party services.
+Speaker 34:45 okay okay yeah for these portals and i don't think so if
+we integrated the crm would cost us in servers no probably it would cost
+us in third-party services and how much they would they will cost i have
+no idea because i never used them before like the agency zoom agency i
+think those two three platforms you have mentioned i have to go through
+it and
+
+Speaker 35:12 And you also mentioned about the calling SMS providers as
+well. Those will also cost us something. So we don't cut our costs. We
+just get more. Something like that. This is paid. This license will now
+pay this license fee. And the leads that we have on agency Zoom is
+really good. Speaker 35:46 agency zoom and follow up boss okay so abdul
+you heard about the brainstorm that we have what do you need from us in
+order for you to think about how we're going to do things basically i
+have to how i used to do i basically give my transcript to the uh
+basically air models to understand what's going on and how we're going
+to move forward so i have to create this arm first
+
+Speaker 36:20 how it will, how it's going to look and how useful it
+would be for you. Because I don't understand all the details you guys,
+all the aspects or environment you are using in your CRM. So I have to
+create it first. It would take some time. And after that, we can reach a
+point to discuss about the cost, development time,
+
+Speaker 36:48 and how much those third-party services would cost us. So
+it would be our process about the CRM. It would be the same process in
+which we have built these CRM, these portals basically.
+
+-   Okay. - Yeah. - Yeah, basically is whatever Updo created, it just
+    translate back into the data center that Updo is gonna create and
+    then it spreads back out to different communication services that we
+    use. Speaker 37:22 Okay. Yeah. Just gonna cost more. And maybe a
+    little bit more time. But it does more. That's what we need. Yeah.
+    And it's actually a complete system. Yeah. Because, you know, we
+    want to eventually sell this as a SaaS product. Okay. Basically,
+    it's the... Go ahead. Speaker 37:49 A custom solution normally feels
+    probably a bit, you can say, expensive initially, but in terms of
+    time and effort saving, it becomes beneficial in future. So I also
+    use here, I mean, the Google Sheet basically, and it was cheap and
+    it was a little bit effective, but now
+
+Speaker 38:14 Because we are also working on lead generation and in the
+CRM. So I also moved to the custom solutions. I also created around five
+different portals, candidate HR, clients, CRM admins. So all of these
+are to reduce the amount of effort my team is putting in it and the, uh,
+
+Speaker 38:39 day to day time we are giving to them to those operations
+or whole HR process is automating or lead generation is around 80 to 90%
+will automate and the other areas are as well. So maybe it will feel
+initially a bit costly, but in longer run it is not. It is quite
+beneficial for us so that we can move or focus to other areas which are
+important for the business. Speaker 39:08 so in for crm i have to work
+on it if you want me to i will i will try to build the demo and i will
+give it to you so that you can have a view because i don't have any
+knowledge about your working environment regarding crm so i need time to
+understand it and i think ai will help me here
+
+Speaker 39:33 if the crm is integrated with the portal the information
+will auto populate once they start typing right that's another cost
+that's yes it could auto populate but once you have um 10 up do then it
+will right we have like 20 muhammad confidently say that
+
+Speaker 39:56 you will save your time and you will have you will save
+time and effort and a lot of the process will automate so I don't know
+what I can say else because I have no knowledge about those CLMs should
+we Should we build a custom solution or not? Once I will build it. I
+will give you a better opinion based on the cost and Should we build it?
+Speaker 40:26 Or should we not? Should we go for free solutions or less
+costly solutions? I think after the development of the CRM demo, I can
+give you my opinion. Yeah, we want to own the products that we use. So
+yeah, let's see what it looks like with the CRM built because we
+definitely need that to be part of the portal. Speaker 40:51 Yeah,
+definitely it will save a lot of time while moving that our copy pasting
+data from the portals into other CRMs as you have mentioned both of you
+guys were handling different port CRMs. Yeah So yeah the important piece
+of the CRM again, we need to be able to pass off the the client to one
+another And then also
+
+Speaker 41:22 be able to track the process of where people are. Track
+the stages of where they are in the home buying process. - That is also
+a very interesting aspect. We also want to track our customer, where
+they are, how they're using our systems.
+
+Speaker 41:23 where they are in the communication process, what sort of
+message they have in their mind while communicating with us. And there
+are so many areas where we normally need hidden information to analyze
+in which stage they are in the next generation, basically. So the thing
+is, when I input a client in, and Tom and I are both owners of the
+company, so I would like for him to know
+
+Speaker 41:54 you know, the clients that I'm working on in my pipeline
+versus, you know, me being able to see what's in his pipeline, you know,
+as well and what, and where they are in the process. So like, let's say
+for instance, right. If I have people, okay, just imported or
+pre-approved,
+
+Speaker 42:13 in contract, you know, et cetera. And things of that sort.
+So if Tom knows what process they're in, especially when it says in
+contract, then that should trigger for him to, okay, I need to give them
+a insurance quote. So maybe what we can do is have a data center for
+each individual customer that we bring in. And if I...
+
+Speaker 42:44 information into the insurance side but in the same time
+it will update the actual customer data platform and so will jacorian or
+other any other members of that can you repeat again uh it could just be
+it could just be a drop down tab for transfer lead and then i select
+tom's name you could do that we we will have to do that also yeah after
+that it says tama notification
+
+Speaker 43:13 stating that a lead has been transferred to him. And then
+at that point, he'll be able to see, okay, well, this person, they've
+been pre-approved, they've been in contract. Okay, now let me contact
+them for insurance. And the main tab is still there until everything is
+exhausted and then it goes to the pipeline. And the data will be all the
+one central tab
+
+Speaker 43:45 data center for each individual client. And out of that
+individual client, any department or all departments should know that
+this is a new client. They need to be department A, department B, and
+department C will receive it. However they do their things, we're going
+to put that particular, those information back into that data center of
+that client. Speaker 44:14 and until a certain level is done we'll pass
+it on to this. Until it's closed out. Yeah and then the maintenance
+after that. I have one question. Do you need data center for the CRMs or
+for the portals as well? Would it be based on client? Yeah it will be
+based off the type of person because you're not going to put attorneys
+in the batch of everyone. Speaker 44:51 Well, the customer data, I might
+be wrong of calling whatever term it is. Once we receive the client from
+any data point, which is the attorney or real estate partner, once it
+enters in, we
+
+Speaker 45:08 we will get a notification all of all the entire structure
+of the business maybe some of them can see maybe some of them cannot see
+it we just extra put keep putting data in this particular customer and
+okay let me repeat this thing in my words basically you want our data
+center for customer which holds client data for clients yeah i used to i
+interviewed the customer
+
+Speaker 45:37 And the only information that I'm going to enter initially
+is going to be their name, email, and phone number. Okay. But then I'll
+start entering in their real estate information. But at this point, I
+don't know their date of birth unless they're going through the mortgage
+process. Let's say, for instance, right, they're not going through the
+mortgage process and they're buying a home cash. Speaker 46:03 Well,
+when that is transferred over to Tom, once he started putting in his
+information, he's going to add the date of birth and other information
+regarding that home or their personal life. Speaker 46:14 and we want
+whatever information he adds to that to stick with that client so then
+when even when he transfers it back to me or to someone else within the
+company or is closed out that information is still there yeah this is
+how the crm should be behave like a customer who enters once in a in our
+system
+
+Speaker 46:37 All the data should stay there and whoever enters any kind
+of information regarding that customer should stay there. So yes, yeah,
+customer would be a central entity here among all the stakeholders.
+Yeah, so it'd be so you'll be able to add kids and everything. Yeah,
+that's obvious. Speaker 47:00 And the vehicles and how old they are,
+birthdays, shoot emails out, happy birthday, anniversary. You're looking
+to buy a home. We have a similar home. Well, that will be a lot. That's
+probably the vision. Yeah. So, Abdul, we're going to talk to one another
+for two centuries. Two centuries, 200 years? Yeah. Yeah.
+
+Speaker 47:30 Because we're going to keep building on this. We will,
+yeah. We're going to have a long-term relationship between Abdul and his
+team and us and our team. Basically, CRM is made for this purpose, to
+keep the customers for a very long period of time. So that you can have
+a more and more better relationship. And you can still track where...
+
+Speaker 47:57 the relationship was at the last stage or at the last
+time. What we, what was the last status? What was the last activity? Who
+talked to him? What's what they have said, whatever those things might
+be. So yeah, the CRM basically made for this purpose and client, a
+single client would hold all of his data in that system. I can
+understand this now.
+
+Speaker 48:29 And then not to interfere with your thoughts, but the
+phone also have a different application in. What's that? The
+note-taking? No, when you use Android phone to communicate within our
+CRM, it's a different data. Oh, versus Apple? Yeah.
+
+Speaker 48:51 no what's just the actual platform that we use if they use
+apple to enter in the system we have to recognize that as whatever it is
+we don't care if it's apple or not but we receive it as a different um
+data language versus we have to split it back out to a different
+language i guess abdul will figure that out regarding your phone i think
+you might be asking that if we have a conversation with with a client
+
+Speaker 49:25 could we upload that data to the CRM as well so that that
+client would have all kind of data including the chat which he had with
+you on your phone this is what you are asking no what I was saying that
+if we do design an app a phone app it has to obviously communicate with
+our our CRM but if it's Apple is one
+
+Speaker 49:53 way of speaking to our system. And if it's an app, what
+I'm trying to say is you handle that. Okay. Right? He's saying that
+eventually we're going to create an app where our clients can download
+and just have the information there. Our partners can download and have
+the information there. However, it's going to need to be able to speak
+to both Android or built for Android and Apple. And we need to be able
+to receive the information
+
+Speaker 50:24 from from either you know devices or operating systems
+okay so if i ask you a question about it in future they're going to have
+an app but in current time they would probably use the website these
+portal websites yes correct the website and at the beginning because
+actually should i keep that thing in my mind while building these
+portals these portals would probably
+
+Speaker 50:55 be used in future.
+
+-   Yeah, mobile friendly. - Yeah, they should be mobile friendly and
+    they should also follow Android or iOS based user flow, how those
+    applications basically move or-- - Whatever Appdo have built
+    already.
+-   What you said, Tom? - Yeah, whatever Appdo has built to show us that
+    from that data point should,
+
+Speaker 51:27 be mobile friendly to start with. Okay, so basically you
+are asking about these portals. They should be mobile friendly. Yeah,
+because most people will access it from their phone or tablet. They will
+be mobile friendly. But once we keep an idea about the mobile
+application, we basically ensure that our portals
+
+Speaker 51:55 Should not be much different. They should not look
+visually different in future Compared to app these Porter should not
+visually be different Compared to apps. This is what I'm asking. I'm
+telling you that so I have to keep this thing in my mind while
+developing it and maybe While we're designing this these portals. I
+
+Speaker 52:25 I will, I would ask my designer to keep the mobile design
+in your mind and I will approve from you so that we have to work less in
+future about the app. Yeah, like customer phone number, they can enter
+that. They can see their document and stuff of that sort. Try to do what
+we can provide because some of them are
+
+Speaker 52:53 Not able to do it actually I do can do everything. He's a
+Superman Okay, I also have one question or suggestion probably normally
+what happened if we run an application and They would there are pop-up
+appears which say install this website in your mobile mobile phone in
+your Android or iOS phone and it
+
+Speaker 53:21 in that website get installed into the phone and it start
+looking like an app would this solution works for you it would yeah save
+the cost of the mobile application yeah it works yeah cheaper yeah and
+and we can basically uh ask our customers maybe when they will start
+using our portals we will ask them we will
+
+Speaker 53:50 Show them some notifications or pop-ups to install this
+website in their web in their phones to have a complete view like a
+mobile application and they This is what we call a PWA progressive web
+apps basically a website into mobile application view
+
+Speaker 54:08 So it works like an application. It's not completely a
+mobile application, but it is-- Yeah. --closing the gap, basically. Save
+the website to your doc or something like that. Like if I do it on my
+Apple, it looks like an application, but it's really the website. Yeah.
+Or it's a link to my website. There is only one exception when we move
+towards app, when we really, really need to use the mobile hardware.
+Speaker 54:37 uh for some yeah for some it needs to be a two-factor
+verification yeah yeah probably you can say that two-step verification
+we can handle that two-step verification in the websites as well there
+are a lot of other security options but when we try to use the mobile
+hardwares we can say that like i want to use a camera with some filters
+so those things would be hard in websites
+
+Speaker 55:05 So we can use camera still for video calling for we can
+use the audios as well, but we cannot use like Snapchat camera in the
+website and we will provide so many filters and these sort of things. We
+will never do that. The only thing that we will probably need in the
+future. Speaker 55:29 is for them to be able to take a picture of a
+document and upload it yeah that is a super easy thing we can easily
+manage it and i don't think so we need an application here mobile
+application we can handle it with the website yeah yeah yeah yeah and
+also regarding the crm uh i think when i will uh build that demo there
+would be
+
+Speaker 55:57 a lot of options for us to see how much the dead cm would
+cost us or how much we can save what platform are you going to use go
+high level or a different one and no i i will uh if you are asking about
+the hardware in terms of hardware we will stay you know what base for
+the crm are you going to use
+
+Speaker 56:23 the stack will be the same the technology stack will be
+the same the only difference will be created due to the third party uh
+services otherwise they will there won't be any change in the technology
+well what i'm saying is that what we'll be building is proprietary to
+the burst group like it's not like overlaid on top of like go daddy or
+or wits or anything like that right so you are basically asking about
+
+Speaker 56:55 I need any kind of domain or services or servers to start
+working on this project? No, what I'm asking is that the completed
+product is, is, is it will be a hundred percent owned by the burst
+group? Are there like third party applications that have partial
+ownership of, of the way the system works? No, you guys, like, can we
+box this up and sell it to, um, um,
+
+Speaker 57:28 can we box this up and sell it to a dentist's office you
+can easily okay the first thing is uh you would be the for you would be
+the fully owner of this uh system and if you want to sell it to someone
+else you can easily rent it out on the subscription if you want even
+yeah that's what i mean you want to rent it out you we can read it out
+it as well we can put okay uh rbac's or role-based authentications this
+is how we give an access
+
+Speaker 57:59 of our system to others and we can charge uh on those
+subscriptions so okay great it won't be a big deal yeah premium diamond
+and super yeah and then they can customize it to their business
+basically you are asking to convert this whole system into a sas so it
+yes it is completely doable
+
+Speaker 58:22 Okay. Yeah. But that's our long-term vision. But
+completely transferring the ownership to other or selling it completely
+something else. You are asking about this renting stuff. Yeah. I'm
+asking about having other companies want to maybe utilize the software
+for their businesses. Yeah. We normally say about the, we call it
+subscription. Yes. Okay. That's nice. Yeah. Okay. Speaker 58:52 Anything
+else we need? Any more questions Abdul? We've bothered too much time
+already, but I think this is the best meeting that we had so far. I know
+that I have enough information now about this CRM. I have to work on it
+and regarding the previous meeting, I gave you the enough information
+about the proposal and the three basic versions of those portals, how
+those portals will be delivered. Speaker 59:21 so i don't think so i
+have anything else if you want me to work on the crm first it probably
+takes maybe more than a week i think other than that i don't think so i
+have anything else to share okay okay you want me to work on crm first
+yes yes please okay
+
+Speaker 59:47 I think I need those three software names and if any other
+third party services you guys are using right now in your workflow, you
+have to share those things with me so that I can understand your working
+environment completely. So it would be very helpful for us to build that
+CRM. - Yeah, that's not a problem. We can put a list together pretty
+quickly. We're gonna be together for the most part of the day. Speaker
+60:16 After, yeah, in a little bit, we'll send it to you. Yeah. I think
+that's it. You guys, if you guys have any question, you can ask.
+Otherwise, I have none now. Yeah. Now, we're probably going to send you
+a list of everything that we use. Yeah. But then you just dissect it for
+what's going to be best based off of the conversation we discussed and
+the utilization, but also keeping in mind the cost. Speaker 60:48 yeah
+we'll write up a list of things that we need yeah we just remind him
+okay and he'll uh yeah okay okay done i think well we should thank you
+thank you thank you so much tom and jacobian take care
