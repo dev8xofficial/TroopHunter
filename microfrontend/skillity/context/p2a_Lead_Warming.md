@@ -46,10 +46,9 @@ Both are founder-operators who believe that real capability is demonstrated unde
 **Comment timing:** Day 3
 
 #### Post 3
-**Post excerpt:** "Today, we're launching SkillityPrep™ to change that... We believe interviews shouldn't test performance. They should reveal who someone really is under pressure."
-**Why selected:** A product launch post is usually noise — but this one is built around a belief, not a feature list, which means a comment engaging with the *belief* rather than congratulating the launch stands out and earns the connection ask naturally.
+**Post excerpt:** "Today my team and I are proud to introduce allium. — a science-led supplement brand built around one of the most researched natural compounds in nutrition: Aged Black Garlic. 1,000+ published studies and 50 years of research say so."
+**Why selected:**  A product launch post is usually noise — but leading with peer-reviewed research rather than lifestyle claims is a positioning decision worth engaging with, which earns the connection ask naturally.
 **Comment timing:** Day 5
-
 ---
 
 ### Comments
@@ -72,11 +71,11 @@ The downstream effect: when signal disappears, hiring managers stop trusting the
 ---
 
 #### Comment 3 — Day 5
-"Reveal, not test" is the right frame. Will and Attitude almost never get designed for — everything else is just measuring performance of the assessment itself. Sending a connection request.
-(30 words)
+Congrats on the launch. Leading with 1,000+ peer-reviewed studies rather than lifestyle marketing is a different bet — one that holds up. Sending a connection request.
+
 
 **Stage:** The Ask
-**What this does:** Engages with the product's philosophical underpinning rather than its features, positions Abdul as someone who thinks at the same level Robert does, and frames the connection as a natural continuation of a substantive exchange rather than a sales approach.
+**What this does:** What this does: Skips the launch fanfare, engages with Robert's core positioning decision (science over feeling), signals Abdul thinks like a builder, and frames the connection as a natural continuation of a substantive exchange rather than a sales approach.
 
 ---
 
