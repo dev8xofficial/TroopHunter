@@ -97,7 +97,7 @@ python3 main.py "https://example.com" --max-pages 10 --concurrent-tabs 5 --headl
 python main.py "https://treeraise.com/" --max-pages 15 --concurrent-tabs 5 --no-headless
 
 # Simple crawl: discover & scrape
-python main.py "https://carinigroup.com" --max-pages 50 --concurrent-tabs 5 --no-headless
+python main.py "https://www.totaland.com/" --max-pages 50 --concurrent-tabs 5 --no-headless
 ```
 
 ## Usage (Web page)

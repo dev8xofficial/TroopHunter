@@ -55,7 +55,8 @@ Both Abdul and Justin are founder-CEOs building technology products using AI too
 ### Comments
 
 #### Comment 1 — Day 1
-The Melody story is the real data point here. When a 14-year-old ships something real, it exposes how much of "I can't build apps" is actually "I haven't been given the right constraints." Most adults just need the same thing she had — a deadline and stakes.
+The Melody story proves the point: when a 14-year-old ships something real, it shows that “I can’t build apps” is often just “I lack the right constraints.” Most adults just need what she had—a deadline and real stakes.
+
 
 **Stage:** Establish Presence
 **What this does:** Picks out the most specific, human detail from the post and reframes it as a sharp operational insight — signals to Justin that Abdul reads carefully and thinks independently, not in platitudes.
