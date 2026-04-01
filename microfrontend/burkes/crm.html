@@ -521,6 +521,132 @@
     .cal-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
     .cal-name { font-size: 13px; font-weight: 600; color: var(--n-800); margin-bottom: 2px; }
     .cal-meta { font-size: 11px; color: var(--n-500); }
+    /* ── merged from activities.html + calendar.html ── */
+    .stat-card.red::before { background: var(--red); }
+
+    /* ── ACTIVITY TIMELINE ── */
+    .timeline-feed { display: flex; flex-direction: column; }
+    .act-item { display: flex; gap: 14px; padding: 16px 22px; border-bottom: 1px solid var(--n-100); transition: background .15s; cursor: pointer; position: relative; }
+    .act-item:hover { background: #f8fafc; }
+    .act-item:last-child { border-bottom: none; }
+    .act-item.unread { background: #fefce8; border-left: 3px solid var(--gold); }
+    .act-icon-wrap { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+    .act-icon-call    { background: #d1fae5; }
+    .act-icon-sms     { background: var(--purple-bg); }
+    .act-icon-email   { background: var(--blue-bg); }
+    .act-icon-transfer{ background: var(--orange-bg); }
+    .act-icon-meeting { background: var(--gold-bg); }
+    .act-icon-task    { background: var(--n-100); }
+    .act-icon-note    { background: #fce7f3; }
+    .act-icon-login   { background: #e0eaf2; }
+    .act-title { font-size: 13.5px; font-weight: 700; color: var(--n-800); margin-bottom: 3px; }
+    .act-detail { font-size: 12px; color: var(--n-500); margin-bottom: 5px; line-height: 1.5; }
+    .act-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .act-time { font-size: 11px; color: var(--n-400); font-weight: 500; }
+    .act-agent-chip { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--n-600); font-weight: 600; }
+    .act-agent-dot { width: 18px; height: 18px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; color: white; }
+    .play-btn { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; background: var(--green-bg); color: var(--green-text); border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; border: none; font-family: 'Manrope', sans-serif; transition: all .15s; }
+    .play-btn:hover { background: var(--green); color: white; }
+
+    /* ── CALL LOG CARD ── */
+    .call-row { display: flex; align-items: center; gap: 12px; padding: 12px 22px; border-bottom: 1px solid var(--n-100); transition: background .15s; }
+    .call-row:hover { background: #f8fafc; }
+    .call-row:last-child { border-bottom: none; }
+    .call-dir-in  { color: var(--green);  font-size: 13px; }
+    .call-dir-out { color: var(--blue-text); font-size: 13px; }
+    .call-dir-missed { color: var(--red); font-size: 13px; }
+    .rec-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; background: var(--green-bg); color: var(--green-text); border-radius: 6px; font-size: 10px; font-weight: 700; }
+
+    /* ── WAVEFORM ── */
+    .waveform { display: flex; align-items: center; gap: 2px; height: 22px; }
+    .waveform-bar { width: 3px; background: var(--green); border-radius: 2px; animation: wave 1.2s ease-in-out infinite; }
+    .waveform-bar:nth-child(1) { height: 6px;  animation-delay: 0s; }
+    .waveform-bar:nth-child(2) { height: 14px; animation-delay: .1s; }
+    .waveform-bar:nth-child(3) { height: 10px; animation-delay: .2s; }
+    .waveform-bar:nth-child(4) { height: 18px; animation-delay: .3s; }
+    .waveform-bar:nth-child(5) { height: 8px;  animation-delay: .4s; }
+    .waveform-bar:nth-child(6) { height: 16px; animation-delay: .5s; }
+    .waveform-bar:nth-child(7) { height: 6px;  animation-delay: .6s; }
+    @keyframes wave { 0%, 100% { transform: scaleY(1); opacity: .7; } 50% { transform: scaleY(1.6); opacity: 1; } }
+
+    /* ── COMPLIANCE BOX ── */
+    .compliance-box { padding: 12px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; display: flex; align-items: flex-start; gap: 8px; }
+    .compliance-box.warning { background: var(--orange-bg); color: var(--orange-text); border: 1px solid #fde68a; }
+    .compliance-box.info    { background: var(--blue-bg); color: var(--blue-text); border: 1px solid #bfdbfe; }
+    .compliance-box.success { background: var(--green-bg); color: var(--green-text); border: 1px solid #a7f3d0; }
+
+    .s6 { animation-delay: .24s; }
+
+    /* ── EMPTY STATE ── */
+    .empty-state { text-align: center; padding: 48px 24px; color: var(--n-400); }
+    .empty-state .emoji { font-size: 42px; margin-bottom: 12px; }
+    .empty-state p { font-size: 14px; }
+
+    /* ── QUICK LOG GRID ── */
+    .quick-log-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .ql-btn { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 18px 12px; background: var(--n-50); border: 1.5px solid var(--n-200); border-radius: 12px; cursor: pointer; transition: all .2s; font-family: 'Manrope', sans-serif; }
+    .ql-btn:hover { border-color: var(--navy); background: white; box-shadow: var(--sh-md); }
+    .ql-btn .ql-ico { font-size: 24px; }
+    .ql-btn .ql-label { font-size: 12px; font-weight: 700; color: var(--n-700); }
+    .ql-btn .ql-sub { font-size: 10.5px; color: var(--n-400); }
+
+    .mini-tab:hover { color: var(--navy); }
+
+    /* ── CALENDAR PAGE (from calendar.html) ── */
+    #view-calendar .crm-cal-wrap .cal-panel { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+    #view-calendar .crm-cal-wrap .cal-sidebar { width: 320px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; }
+    .month-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .month-title { font-family: 'Archivo', sans-serif; font-size: 20px; font-weight: 800; color: var(--navy); }
+    .grid-header { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; margin-bottom: 4px; }
+    .grid-header-cell { text-align: center; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--n-400); padding: 6px 0; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; }
+    .cal-cell { min-height: 90px; background: white; border: 1px solid var(--n-200); border-radius: 8px; padding: 6px 7px; cursor: pointer; transition: all .18s; position: relative; }
+    .cal-cell:hover { border-color: var(--navy); background: #f8fafc; }
+    .cal-cell.other-month { background: var(--n-50); opacity: .55; }
+    .cal-cell.today { border-color: var(--gold); border-width: 2px; background: var(--gold-bg); }
+    .cal-cell.selected { border-color: var(--navy); border-width: 2px; background: #eef4fa; }
+    .cal-date { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+    .cal-cell.today .cal-date { background: var(--navy); color: white; }
+    .cal-cell.other-month .cal-date { color: var(--n-400); }
+    .cal-event-pill { display: block; font-size: 10px; font-weight: 600; padding: 2px 5px; border-radius: 4px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+    .ep-ins  { background: #fef3c7; color: #92400e; }
+    .ep-mort { background: #dbeafe; color: #1e40af; }
+    .ep-re   { background: #d1fae5; color: #065f46; }
+    .ep-meet { background: #f3e8ff; color: #7c3aed; }
+    .ep-call { background: #fce7f3; color: #be185d; }
+    .ep-more { background: var(--n-100); color: var(--n-600); }
+    .sched-item { display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--n-100); align-items: flex-start; }
+    .sched-item:last-child { border-bottom: none; }
+    .sched-time { font-size: 11px; color: var(--n-500); width: 58px; flex-shrink: 0; line-height: 1.4; padding-top: 2px; font-weight: 600; white-space: nowrap; }
+    .sched-bar { width: 3px; border-radius: 99px; flex-shrink: 0; align-self: stretch; margin-top: 2px; }
+    .sched-content { flex: 1; min-width: 0; }
+    .sched-name { font-size: 13px; font-weight: 700; color: var(--n-800); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sched-meta { font-size: 11px; color: var(--n-500); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .sched-actions { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+    .ts-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
+    .upcoming-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--n-100); align-items: flex-start; cursor: pointer; transition: background .15s; }
+    .upcoming-item:last-child { border-bottom: none; }
+    .upcoming-item:hover { background: var(--n-50); margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
+    .upcoming-date-block { width: 40px; flex-shrink: 0; text-align: center; }
+    .udb-day { font-family: 'Archivo', sans-serif; font-size: 20px; font-weight: 800; color: var(--navy); line-height: 1; }
+    .udb-month { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--n-400); }
+    .upcoming-detail { flex: 1; min-width: 0; }
+    .ud-title { font-size: 13px; font-weight: 700; color: var(--n-800); margin-bottom: 2px; }
+    .ud-meta { font-size: 11px; color: var(--n-500); }
+    #view-calendar .crm-cal-wrap .icon-btn { width: 28px; height: 28px; border-radius: 7px; border: 1.5px solid var(--n-200); background: white; color: var(--n-600); display: inline-flex; align-items: center; justify-content: center; font-size: 13px; cursor: pointer; transition: all .15s; }
+    #view-calendar .crm-cal-wrap .icon-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .quick-add { display: flex; gap: 8px; align-items: center; padding: 10px 12px; background: var(--n-50); border-radius: 10px; border: 1.5px dashed var(--n-200); cursor: pointer; transition: all .2s; }
+    .quick-add:hover { border-color: var(--navy); background: white; }
+    .quick-add-text { font-size: 13px; color: var(--n-500); font-weight: 500; }
+    .sync-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--n-100); font-size: 13px; }
+    .sync-row:last-child { border-bottom: none; }
+    .sync-label { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--n-700); }
+    .sync-logo { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+
+    #logModal .modal { width: 520px; max-width: 100%; }
+    #addEventModal .modal { width: 580px; max-width: 100%; }
+    #addEventModal .modal-footer { border-radius: 0 0 20px 20px; }
+
 
     /* ═══════════════════════════════════════
        PROGRESS BAR
@@ -1050,12 +1176,12 @@
       <div class="ni-icon">🔄</div>
       Pipeline
     </a>
-    <a class="nav-item" onclick="setActive(this)">
+    <a class="nav-item" data-view="activities" onclick="setActive(this)">
       <div class="ni-icon">📋</div>
       Activities
       <span class="nav-badge nav-badge-red">6</span>
     </a>
-    <a class="nav-item" onclick="setActive(this)">
+    <a class="nav-item" data-view="calendar" onclick="setActive(this)">
       <div class="ni-icon">🗓️</div>
       Calendar
     </a>
@@ -2574,9 +2700,1177 @@
       </div>
     </div><!-- /view-pipeline -->
 
+    <div id="view-activities" style="display:none;">
+      <!-- PAGE HEADER -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;" class="fade-in">
+        <div>
+          <h1 style="font-family:'Archivo',sans-serif;font-size:28px;font-weight:800;color:var(--navy);line-height:1.2;">Activities</h1>
+          <p style="font-size:14px;color:var(--n-600);margin-top:4px;">
+            Calls, SMS, emails, transfers, meetings &amp; tasks — all in one place
+          </p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <div class="mini-tabs" id="time-tabs">
+            <button class="mini-tab sel" onclick="switchTab(this)">Today</button>
+            <button class="mini-tab" onclick="switchTab(this)">This Week</button>
+            <button class="mini-tab" onclick="switchTab(this)">This Month</button>
+          </div>
+          <button class="btn btn-secondary btn-sm">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Export
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="openLogModal()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            Log Activity
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI STAT CARDS -->
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:24px;">
+        <div class="stat-card navy fade-in s1">
+          <div class="stat-label">Total Today</div>
+          <div class="stat-value">47</div>
+          <div class="stat-delta"><span class="delta-up">▲ 14%</span> vs yesterday</div>
+        </div>
+        <div class="stat-card gold fade-in s2">
+          <div class="stat-label">📞 Calls</div>
+          <div class="stat-value">34</div>
+          <div class="stat-delta"><span class="delta-up">▲ 8%</span> recorded</div>
+        </div>
+        <div class="stat-card blue fade-in s3">
+          <div class="stat-label">💬 SMS Sent</div>
+          <div class="stat-value">18</div>
+          <div class="stat-delta" style="color:var(--n-500);">3 replies received</div>
+        </div>
+        <div class="stat-card green fade-in s4">
+          <div class="stat-label">✉️ Emails</div>
+          <div class="stat-value">48</div>
+          <div class="stat-delta"><span class="delta-up">Blast + 1:1</span></div>
+        </div>
+        <div class="stat-card orange fade-in s5">
+          <div class="stat-label">🔁 Transfers</div>
+          <div class="stat-value">3</div>
+          <div class="stat-delta" style="color:var(--n-500);">Ins → RE today</div>
+        </div>
+        <div class="stat-card red fade-in s6">
+          <div class="stat-label">⏰ Overdue</div>
+          <div class="stat-value">6</div>
+          <div class="stat-delta" style="color:var(--red);">Action needed</div>
+        </div>
+      </div>
+
+      <!-- MAIN LAYOUT: activity feed + right column -->
+      <div style="display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start;">
+
+        <!-- LEFT: ACTIVITY FEED -->
+        <div>
+
+          <!-- QUICK LOG PANEL -->
+          <div class="card fade-in" style="margin-bottom:20px;">
+            <div class="card-header">
+              <div>
+                <div class="card-title">⚡ Quick Log</div>
+                <div class="card-subtitle">Instantly record an interaction</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="quick-log-grid">
+                <button class="ql-btn" onclick="openLogModal('call')">
+                  <div class="ql-ico">📞</div>
+                  <div class="ql-label">Log a Call</div>
+                  <div class="ql-sub">VOIP · Recorded</div>
+                </button>
+                <button class="ql-btn" onclick="openLogModal('sms')">
+                  <div class="ql-ico">💬</div>
+                  <div class="ql-label">Log SMS</div>
+                  <div class="ql-sub">Inbound / Outbound</div>
+                </button>
+                <button class="ql-btn" onclick="openLogModal('email')">
+                  <div class="ql-ico">✉️</div>
+                  <div class="ql-label">Log Email</div>
+                  <div class="ql-sub">Outlook integrated</div>
+                </button>
+                <button class="ql-btn" onclick="openLogModal('meeting')">
+                  <div class="ql-ico">🎥</div>
+                  <div class="ql-label">Log Meeting</div>
+                  <div class="ql-sub">Teams / Google Meet</div>
+                </button>
+                <button class="ql-btn" onclick="openLogModal('transfer')">
+                  <div class="ql-ico">🔁</div>
+                  <div class="ql-label">Lead Transfer</div>
+                  <div class="ql-sub">Agent handoff</div>
+                </button>
+                <button class="ql-btn" onclick="openLogModal('note')">
+                  <div class="ql-ico">📝</div>
+                  <div class="ql-label">Add Note</div>
+                  <div class="ql-sub">Internal only</div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ACTIVITY FEED FILTERS -->
+          <div class="card fade-in" style="margin-bottom:0;">
+            <div style="padding:14px 18px;border-bottom:1px solid var(--n-100);display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <div style="position:relative;">
+                <span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--n-400);font-size:13px;pointer-events:none;">🔍</span>
+                <input type="text" class="filter-input" placeholder="Search activities…" id="actSearch" oninput="filterFeed()" />
+              </div>
+              <select class="filter-select-sm" id="typeFilter" onchange="filterFeed()">
+                <option value="">All Types</option>
+                <option value="call">📞 Calls</option>
+                <option value="sms">💬 SMS</option>
+                <option value="email">✉️ Email</option>
+                <option value="meeting">🎥 Meetings</option>
+                <option value="transfer">🔁 Transfers</option>
+                <option value="task">✅ Tasks</option>
+                <option value="note">📝 Notes</option>
+              </select>
+              <select class="filter-select-sm" id="agentFeedFilter" onchange="filterFeed()">
+                <option value="">All Agents</option>
+                <option value="Jaquarian">Jaquarian Bonilla</option>
+                <option value="Tom">Tom Burke</option>
+              </select>
+              <select class="filter-select-sm" id="deptFeedFilter" onchange="filterFeed()">
+                <option value="">All Departments</option>
+                <option value="Insurance">🛡️ Insurance</option>
+                <option value="Mortgage">🏦 Mortgage</option>
+                <option value="Real Estate">🏘️ Real Estate</option>
+              </select>
+              <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
+                <span id="feedCount" style="font-size:12px;color:var(--n-500);font-weight:600;"></span>
+                <div class="mini-tabs" id="view-tabs">
+                  <button class="mini-tab sel" onclick="switchTab(this)">Feed</button>
+                  <button class="mini-tab" onclick="switchTab(this)">Table</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- TYPE QUICK FILTERS -->
+            <div style="padding:10px 18px;border-bottom:1px solid var(--n-100);display:flex;gap:7px;align-items:center;flex-wrap:wrap;">
+              <span style="font-size:11px;font-weight:700;color:var(--n-500);text-transform:uppercase;letter-spacing:.06em;margin-right:4px;">Quick:</span>
+              <button class="badge b-neutral" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickType('')">All (47)</button>
+              <button class="badge b-green" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickType('call')">📞 Calls (34)</button>
+              <button class="badge b-purple" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickType('sms')">💬 SMS (18)</button>
+              <button class="badge b-blue" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickType('email')">✉️ Emails (48)</button>
+              <button class="badge b-gold" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickType('meeting')">🎥 Meetings (4)</button>
+              <button class="badge b-orange" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickType('transfer')">🔁 Transfers (3)</button>
+              <div style="margin-left:auto;">
+                <button class="badge b-red" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickType('overdue')">⏰ Overdue (6)</button>
+              </div>
+            </div>
+
+            <!-- FEED -->
+            <div class="timeline-feed" id="activityFeed">
+
+              <!-- DATE DIVIDER -->
+              <div style="padding:8px 22px;background:var(--n-50);border-bottom:1px solid var(--n-100);font-size:11px;font-weight:700;color:var(--n-500);letter-spacing:.07em;text-transform:uppercase;">
+                Today — Feb 19, 2026
+              </div>
+
+              <!-- 1. VOIP Call — Recorded -->
+              <div class="act-item unread" data-type="call" data-agent="Jaquarian" data-dept="Insurance">
+                <div class="act-icon-wrap act-icon-call">📞</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+                    <div class="act-title">Outbound Call — Sandra Hayes</div>
+                    <span class="rec-badge">⏺ Recorded</span>
+                  </div>
+                  <div class="act-detail">Auto Renewal inquiry · Duration: <strong>4m 22s</strong> · VOIP Line 1 · Compliance-stored (18 months)</div>
+                  <div class="act-meta">
+                    <span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span>
+                    <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Completed</span>
+                    <div class="act-agent-chip">
+                      <div class="act-agent-dot" style="background:var(--orange);">JB</div>
+                      Jaquarian Bonilla
+                    </div>
+                    <span class="act-time">11:04 AM</span>
+                    <button class="play-btn" onclick="showToast('Playing recording: Sandra Hayes 4m 22s…')">▶ Play</button>
+                    <div class="waveform">
+                      <div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div>
+                      <div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div>
+                      <div class="waveform-bar"></div>
+                    </div>
+                  </div>
+                </div>
+                <div style="display:flex;gap:5px;align-items:flex-start;flex-shrink:0;">
+                  <button class="icon-btn" title="View Contact" onclick="showToast('Opening Sandra Hayes profile…')">👤</button>
+                  <button class="icon-btn" title="Follow-up task" onclick="showToast('Task created for follow-up…')">✅</button>
+                </div>
+              </div>
+
+              <!-- 2. Lead Transfer -->
+              <div class="act-item" data-type="transfer" data-agent="Jaquarian" data-dept="Real Estate">
+                <div class="act-icon-wrap act-icon-transfer">🔁</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="act-title">Lead Transferred — Terrence Cole</div>
+                  <div class="act-detail">Insurance → Real Estate · Jaquarian Bonilla → Tom Burke · Reason: <em>"Client pre-qualified, ready for property search"</em> · Outlook notification sent automatically</div>
+                  <div class="act-meta">
+                    <span class="badge b-purple" style="font-size:10px;">🔁 Handoff</span>
+                    <span class="status-pill sp-purple" style="font-size:10px;padding:3px 8px;">Transferred</span>
+                    <div class="act-agent-chip">
+                      <div class="act-agent-dot" style="background:var(--orange);">JB</div>
+                      Jaquarian → Tom Burke
+                    </div>
+                    <span class="act-time">9:02 AM</span>
+                  </div>
+                </div>
+                <div style="display:flex;gap:5px;align-items:flex-start;flex-shrink:0;">
+                  <button class="icon-btn" onclick="showToast('Opening Terrence Cole profile…')">👤</button>
+                </div>
+              </div>
+
+              <!-- 3. Email Blast -->
+              <div class="act-item" data-type="email" data-agent="Jaquarian" data-dept="Insurance">
+                <div class="act-icon-wrap act-icon-email">✉️</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="act-title">Email Blast Sent — 48 Contacts</div>
+                  <div class="act-detail">Campaign: <strong>Auto Insurance Renewal Reminder</strong> · Sent via Outlook integration · Open rate tracking active · Subject: "Your policy renews next month — let's review"</div>
+                  <div class="act-meta">
+                    <span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span>
+                    <span class="badge b-blue" style="font-size:10px;">✉️ Outlook</span>
+                    <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Delivered</span>
+                    <div class="act-agent-chip">
+                      <div class="act-agent-dot" style="background:var(--orange);">JB</div>
+                      Jaquarian Bonilla
+                    </div>
+                    <span class="act-time">8:47 AM</span>
+                  </div>
+                </div>
+                <div style="display:flex;gap:5px;align-items:flex-start;flex-shrink:0;">
+                  <button class="icon-btn" onclick="showToast('Opening campaign analytics…')">📊</button>
+                </div>
+              </div>
+
+              <!-- 4. Birthday Auto-Email -->
+              <div class="act-item" data-type="email" data-agent="Jaquarian" data-dept="Insurance">
+                <div class="act-icon-wrap act-icon-email">🎂</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="act-title">Birthday Email Auto-Sent — Sandra Hayes</div>
+                  <div class="act-detail">DOB trigger automation fired · Sent via Outlook · CRM auto-logged · No manual action required</div>
+                  <div class="act-meta">
+                    <span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span>
+                    <span class="badge b-green" style="font-size:10px;">🤖 Automated</span>
+                    <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Sent</span>
+                    <span class="act-time">8:00 AM</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. Outbound Call — Marcus Rivera -->
+              <div class="act-item" data-type="call" data-agent="Jaquarian" data-dept="Insurance">
+                <div class="act-icon-wrap act-icon-call">📞</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+                    <div class="act-title">Outbound Call — Marcus Rivera</div>
+                    <span class="rec-badge">⏺ Recorded</span>
+                  </div>
+                  <div class="act-detail">Auto quote follow-up · Duration: <strong>2m 08s</strong> · Callback pending — client requested 11:30 AM call · VOIP Line 1</div>
+                  <div class="act-meta">
+                    <span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span>
+                    <span class="status-pill sp-orange" style="font-size:10px;padding:3px 8px;">Follow-up due</span>
+                    <div class="act-agent-chip">
+                      <div class="act-agent-dot" style="background:var(--orange);">JB</div>
+                      Jaquarian Bonilla
+                    </div>
+                    <span class="act-time">9:30 AM</span>
+                    <button class="play-btn" onclick="showToast('Playing recording: Marcus Rivera 2m 08s…')">▶ Play</button>
+                  </div>
+                </div>
+                <div style="display:flex;gap:5px;align-items:flex-start;flex-shrink:0;">
+                  <button class="icon-btn" onclick="showToast('Opening Marcus Rivera profile…')">👤</button>
+                  <button class="icon-btn" onclick="showToast('Scheduling follow-up call…')">📅</button>
+                </div>
+              </div>
+
+              <!-- 6. Inbound SMS — Denise Lawrence -->
+              <div class="act-item" data-type="sms" data-agent="Jaquarian" data-dept="Mortgage">
+                <div class="act-icon-wrap act-icon-sms">💬</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="act-title">Inbound SMS — Denise Lawrence</div>
+                  <div class="act-detail">"Can we reschedule to 2pm?" · Mortgage pre-approval appointment · Auto-saved to contact · VOIP number received</div>
+                  <div class="act-meta">
+                    <span class="badge b-blue" style="font-size:10px;">🏦 Mortgage</span>
+                    <span class="status-pill sp-blue" style="font-size:10px;padding:3px 8px;">Inbound</span>
+                    <div class="act-agent-chip">
+                      <div class="act-agent-dot" style="background:var(--navy);">TB</div>
+                      Tom Burke
+                    </div>
+                    <span class="act-time">8:31 AM</span>
+                  </div>
+                </div>
+                <div style="display:flex;gap:5px;align-items:flex-start;flex-shrink:0;">
+                  <button class="icon-btn" onclick="showToast('Opening SMS thread…')">💬</button>
+                  <button class="icon-btn" onclick="showToast('Opening Denise Lawrence profile…')">👤</button>
+                </div>
+              </div>
+
+              <!-- 7. Vertafore Quote -->
+              <div class="act-item" data-type="note" data-agent="Jaquarian" data-dept="Insurance">
+                <div class="act-icon-wrap act-icon-note">🛡️</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="act-title">Vertafore Quote Generated — Marcus Rivera</div>
+                  <div class="act-detail">Auto policy · <strong>$187/mo</strong> · Quote synced from Vertafore into CRM automatically · Sent to contact email via Outlook</div>
+                  <div class="act-meta">
+                    <span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span>
+                    <span class="badge b-orange" style="font-size:10px;">Vertafore</span>
+                    <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Synced</span>
+                    <span class="act-time">7:52 AM</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DATE DIVIDER: Yesterday -->
+              <div style="padding:8px 22px;background:var(--n-50);border-bottom:1px solid var(--n-100);border-top:1px solid var(--n-200);font-size:11px;font-weight:700;color:var(--n-500);letter-spacing:.07em;text-transform:uppercase;">
+                Yesterday — Feb 18, 2026
+              </div>
+
+              <!-- 8. Google Meet -->
+              <div class="act-item" data-type="meeting" data-agent="Jaquarian" data-dept="Real Estate">
+                <div class="act-icon-wrap act-icon-meeting">🎥</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="act-title">Video Meeting — Terrence Cole (Real Estate Handoff)</div>
+                  <div class="act-detail">Google Meet · Duration: <strong>24m 10s</strong> · Covered: property search budget, pre-qualification, RE agent introduction. Video auto-purged after 90 days — exported to OneDrive.</div>
+                  <div class="act-meta">
+                    <span class="badge b-green" style="font-size:10px;">🏘️ Real Estate</span>
+                    <span class="badge b-blue" style="font-size:10px;">Google Meet</span>
+                    <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Completed</span>
+                    <div class="act-agent-chip">
+                      <div class="act-agent-dot" style="background:var(--orange);">JB</div>
+                      Jaquarian Bonilla
+                    </div>
+                    <span class="act-time">1:00 PM</span>
+                  </div>
+                </div>
+                <div style="display:flex;gap:5px;align-items:flex-start;flex-shrink:0;">
+                  <button class="icon-btn" onclick="showToast('Opening meeting notes…')">📋</button>
+                </div>
+              </div>
+
+              <!-- 9. Arive Sync -->
+              <div class="act-item" data-type="note" data-agent="Tom" data-dept="Mortgage">
+                <div class="act-icon-wrap act-icon-login">🏠</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="act-title">Arive Data Synced — Patricia Torres</div>
+                  <div class="act-detail">Mortgage application updated via Arive integration · 60% complete · Employment history section flagged as outstanding · Lender notified</div>
+                  <div class="act-meta">
+                    <span class="badge b-blue" style="font-size:10px;">🏦 Mortgage</span>
+                    <span class="badge b-green" style="font-size:10px;">Arive</span>
+                    <span class="status-pill sp-gold" style="font-size:10px;padding:3px 8px;">In Progress</span>
+                    <div class="act-agent-chip">
+                      <div class="act-agent-dot" style="background:var(--navy);">TB</div>
+                      Tom Burke
+                    </div>
+                    <span class="act-time">2:15 PM</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 10. Contact Saved from SMS -->
+              <div class="act-item" data-type="note" data-agent="Tom" data-dept="Insurance">
+                <div class="act-icon-wrap act-icon-login">👤</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="act-title">New Contact Saved — Kevin Watts (via SMS)</div>
+                  <div class="act-detail">Contact shared via VOIP SMS number · Name, phone, and initial note auto-populated in CRM · Assigned to Jaquarian Bonilla · Department: Insurance</div>
+                  <div class="act-meta">
+                    <span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span>
+                    <span class="badge b-purple" style="font-size:10px;">💬 SMS Import</span>
+                    <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Saved</span>
+                    <span class="act-time">3:42 PM</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 11. Teams Meeting -->
+              <div class="act-item" data-type="meeting" data-agent="Tom" data-dept="Insurance">
+                <div class="act-icon-wrap act-icon-meeting">🤝</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="act-title">Internal Strategy Meeting — CRM Planning</div>
+                  <div class="act-detail">Microsoft Teams · All departments · Duration: <strong>58m</strong> · Discussed: Arive integration, Follow Up Boss migration, VOIP compliance, call recording retention policies</div>
+                  <div class="act-meta">
+                    <span class="badge b-navy" style="font-size:10px;">All Depts</span>
+                    <span class="badge b-blue" style="font-size:10px;">MS Teams</span>
+                    <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Completed</span>
+                    <div class="act-agent-chip">
+                      <div class="act-agent-dot" style="background:var(--navy);">TB</div>
+                      Tom Burke
+                    </div>
+                    <span class="act-time">4:00 PM</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 12. Task Completed -->
+              <div class="act-item" data-type="task" data-agent="Jaquarian" data-dept="Insurance">
+                <div class="act-icon-wrap act-icon-task">✅</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="act-title">Task Completed — Update Vertafore Quotes (3 pending)</div>
+                  <div class="act-detail">All 3 outstanding auto policy quotes updated in Vertafore · Synced to CRM · Email confirmations sent via Outlook to clients</div>
+                  <div class="act-meta">
+                    <span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span>
+                    <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Done</span>
+                    <div class="act-agent-chip">
+                      <div class="act-agent-dot" style="background:var(--orange);">JB</div>
+                      Jaquarian Bonilla
+                    </div>
+                    <span class="act-time">3:00 PM</span>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /timeline-feed -->
+
+            <!-- PAGINATION -->
+            <div style="padding:14px 18px;border-top:1px solid var(--n-100);display:flex;align-items:center;justify-content:space-between;">
+              <div style="font-size:12px;color:var(--n-500);">Showing <span id="feedShowing">1–12</span> of <span id="feedTotal">47</span> activities today</div>
+              <div style="display:flex;gap:6px;align-items:center;">
+                <button class="btn btn-secondary btn-xs">← Prev</button>
+                <button class="btn btn-primary btn-xs">1</button>
+                <button class="btn btn-secondary btn-xs">2</button>
+                <button class="btn btn-secondary btn-xs">3</button>
+                <button class="btn btn-secondary btn-xs">Next →</button>
+              </div>
+            </div>
+          </div><!-- /feed card -->
+
+        </div><!-- /left col -->
+
+        <!-- RIGHT COLUMN -->
+        <div style="display:flex;flex-direction:column;gap:18px;">
+
+          <!-- CALL LOG SUMMARY -->
+          <div class="card fade-in s2">
+            <div class="card-header">
+              <div>
+                <div class="card-title">📞 Call Log — Today</div>
+                <div class="card-subtitle">VOIP · All recorded for compliance</div>
+              </div>
+              <span class="badge b-green" style="font-size:10px;">34 calls</span>
+            </div>
+
+            <div class="call-row">
+              <span class="call-dir-out">▶</span>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:700;color:var(--n-800);">Sandra Hayes</div>
+                <div style="font-size:11px;color:var(--n-500);">Insurance · 4m 22s</div>
+              </div>
+              <span class="act-time">11:04 AM</span>
+              <button class="play-btn" onclick="showToast('Playing…')">▶</button>
+            </div>
+            <div class="call-row">
+              <span class="call-dir-out">▶</span>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:700;color:var(--n-800);">Marcus Rivera</div>
+                <div style="font-size:11px;color:var(--n-500);">Insurance · 2m 08s</div>
+              </div>
+              <span class="act-time">9:30 AM</span>
+              <button class="play-btn" onclick="showToast('Playing…')">▶</button>
+            </div>
+            <div class="call-row">
+              <span class="call-dir-in" style="color:var(--blue-text);">◀</span>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:700;color:var(--n-800);">Patricia Torres</div>
+                <div style="font-size:11px;color:var(--n-500);">Mortgage · 7m 41s</div>
+              </div>
+              <span class="act-time">8:14 AM</span>
+              <button class="play-btn" onclick="showToast('Playing…')">▶</button>
+            </div>
+            <div class="call-row">
+              <span class="call-dir-missed" style="color:var(--red);">✕</span>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:700;color:var(--n-500);">Unknown (832-555-0299)</div>
+                <div style="font-size:11px;color:var(--n-400);">Missed · No voicemail</div>
+              </div>
+              <span class="act-time">7:58 AM</span>
+              <button class="tbl-btn" style="font-size:11px;padding:4px 9px;" onclick="showToast('Dialing back…')">Call Back</button>
+            </div>
+
+            <!-- Compliance notice -->
+            <div style="padding:12px 16px;border-top:1px solid var(--n-100);">
+              <div class="compliance-box success">
+                <span>🛡️</span>
+                <div>All calls automatically recorded &amp; stored via VOIP. Insurance: 18-month retention. Real Estate: 4-year retention. Videos: 90-day window, export to OneDrive.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OVERDUE TASKS -->
+          <div class="card fade-in s3">
+            <div class="card-header">
+              <div>
+                <div class="card-title">⏰ Overdue Activities</div>
+                <div class="card-subtitle">Needs immediate attention</div>
+              </div>
+              <span class="badge b-red">6 overdue</span>
+            </div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px;">
+
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--red-bg);border-radius:10px;border-left:3px solid var(--red);">
+                <input type="checkbox" style="width:15px;height:15px;margin-top:2px;" />
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:700;color:var(--n-800);">Call back Marcus Rivera</div>
+                  <div style="font-size:11px;color:var(--red-text);">🛡️ Insurance · Was due 11:30 AM · 47 min overdue</div>
+                </div>
+                <button class="tbl-btn" style="font-size:11px;padding:4px 9px;" onclick="showToast('Dialing Marcus Rivera…')">📞</button>
+              </div>
+
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--orange-bg);border-radius:10px;border-left:3px solid var(--orange);">
+                <input type="checkbox" style="width:15px;height:15px;margin-top:2px;" />
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:700;color:var(--n-800);">SMS confirmation — Denise rescheduled</div>
+                  <div style="font-size:11px;color:var(--orange-text);">🏦 Mortgage · Due 12:00 PM · 22 min overdue</div>
+                </div>
+                <button class="tbl-btn" style="font-size:11px;padding:4px 9px;" onclick="showToast('Opening SMS…')">💬</button>
+              </div>
+
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--orange-bg);border-radius:10px;border-left:3px solid var(--orange);">
+                <input type="checkbox" style="width:15px;height:15px;margin-top:2px;" />
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:700;color:var(--n-800);">Follow up — Kevin Watts new inquiry</div>
+                  <div style="font-size:11px;color:var(--orange-text);">🛡️ Insurance · Due 10:00 AM · Needs initial contact</div>
+                </div>
+                <button class="tbl-btn" style="font-size:11px;padding:4px 9px;" onclick="showToast('Dialing Kevin Watts…')">📞</button>
+              </div>
+
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--n-50);border-radius:10px;border-left:3px solid var(--n-300);">
+                <input type="checkbox" style="width:15px;height:15px;margin-top:2px;" />
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:700;color:var(--n-800);">Log Arive status — Patricia Torres</div>
+                  <div style="font-size:11px;color:var(--n-500);">🏦 Mortgage · Due 4:30 PM · Pending</div>
+                </div>
+              </div>
+
+              <button class="btn btn-secondary" style="width:100%;justify-content:center;font-size:12px;" onclick="showToast('Opening all overdue tasks…')">View All 6 Overdue</button>
+            </div>
+          </div>
+
+          <!-- UPCOMING ACTIVITIES -->
+          <div class="card fade-in s4">
+            <div class="card-header">
+              <div class="card-title">🗓️ Upcoming</div>
+              <button class="btn btn-secondary btn-xs" onclick="showToast('Opening calendar…')">View Calendar</button>
+            </div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px;">
+
+              <div style="display:flex;gap:12px;align-items:flex-start;padding-bottom:10px;border-bottom:1px solid var(--n-100);">
+                <div style="text-align:center;min-width:42px;background:var(--gold-bg);border-radius:8px;padding:6px 4px;border:1px solid var(--gold-border);">
+                  <div style="font-size:10px;font-weight:700;color:#92400e;text-transform:uppercase;">TODAY</div>
+                  <div style="font-family:'Archivo',sans-serif;font-size:18px;font-weight:800;color:var(--navy);">2P</div>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:700;color:var(--n-800);">Denise Lawrence — Mortgage Review</div>
+                  <div style="font-size:11px;color:var(--n-500);">MS Teams · Rescheduled to 2:00 PM · Arive data shared</div>
+                </div>
+              </div>
+
+              <div style="display:flex;gap:12px;align-items:flex-start;padding-bottom:10px;border-bottom:1px solid var(--n-100);">
+                <div style="text-align:center;min-width:42px;background:var(--blue-bg);border-radius:8px;padding:6px 4px;border:1px solid #bfdbfe;">
+                  <div style="font-size:10px;font-weight:700;color:var(--blue-text);text-transform:uppercase;">FRI</div>
+                  <div style="font-family:'Archivo',sans-serif;font-size:18px;font-weight:800;color:var(--navy);">20</div>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:700;color:var(--n-800);">Patricia Torres — Mortgage Q&amp;A</div>
+                  <div style="font-size:11px;color:var(--n-500);">Google Meet · Employment verification review</div>
+                </div>
+              </div>
+
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div style="text-align:center;min-width:42px;background:var(--purple-bg);border-radius:8px;padding:6px 4px;border:1px solid #e9d5ff;">
+                  <div style="font-size:10px;font-weight:700;color:var(--purple-text);text-transform:uppercase;">MON</div>
+                  <div style="font-family:'Archivo',sans-serif;font-size:18px;font-weight:800;color:var(--navy);">23</div>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:700;color:var(--n-800);">CRM Integration Review</div>
+                  <div style="font-size:11px;color:var(--n-500);">Teams · Arive + Outlook + VOIP setup</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- INTEGRATION STATUS -->
+          <div class="card fade-in s5">
+            <div class="card-header">
+              <div class="card-title">🔗 Activity Sources</div>
+              <div class="card-subtitle">Where data is syncing from</div>
+            </div>
+            <div style="padding:12px 16px;display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);">
+                <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--n-800);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" fill="#0078D4"/><path d="M2 8l10 6 10-6" stroke="white" stroke-width="1.5" fill="none"/></svg>
+                  Outlook
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <div style="width:7px;height:7px;border-radius:50%;background:var(--green);"></div>
+                  <span style="font-size:11px;color:var(--green-text);font-weight:700;">Active</span>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);">
+                <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--n-800);">🛡️ Vertafore</div>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <div style="width:7px;height:7px;border-radius:50%;background:var(--orange);animation:pulse 2s ease-in-out infinite;"></div>
+                  <span style="font-size:11px;color:var(--orange-text);font-weight:700;">Syncing</span>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);">
+                <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--n-800);">🏠 Arive</div>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <div style="width:7px;height:7px;border-radius:50%;background:var(--green);"></div>
+                  <span style="font-size:11px;color:var(--green-text);font-weight:700;">Active</span>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);opacity:.6;">
+                <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--n-700);">🏆 Follow Up Boss</div>
+                <span class="badge b-orange" style="font-size:10px;">Replacing</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /right col -->
+      </div><!-- /main layout -->
+
+    </div>
+
+    <div id="view-calendar" style="display:none;">
+      <div class="crm-cal-wrap" style="display:flex;gap:20px;align-items:flex-start;width:100%;">
+      <div class="cal-panel">
+
+        <!-- Page header -->
+        <div style="display:flex;align-items:center;justify-content:space-between;" class="fade-in">
+          <div>
+            <h1 style="font-family:'Archivo',sans-serif;font-size:26px;font-weight:800;color:var(--navy);">Calendar</h1>
+            <p style="font-size:13px;color:var(--n-600);margin-top:3px;">Outlook + Google Calendar + Teams synced</p>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <div class="mini-tabs">
+              <button class="mini-tab" onclick="switchView('day',this)">Day</button>
+              <button class="mini-tab" onclick="switchView('week',this)">Week</button>
+              <button class="mini-tab sel" onclick="switchView('month',this)">Month</button>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="goToToday()">Today</button>
+            <div class="btn-secondary" style="display:flex;border:1.5px solid var(--n-200);border-radius:8px;overflow:hidden;">
+              <button id="btn-prev" style="padding:6px 12px;border:none;background:white;cursor:pointer;font-size:14px;color:var(--navy);" onclick="prevMonth()">‹</button>
+              <button id="btn-next" style="padding:6px 12px;border:none;background:white;cursor:pointer;font-size:14px;color:var(--navy);border-left:1.5px solid var(--n-200);" onclick="nextMonth()">›</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calendar grid card -->
+        <div class="card fade-in s1" style="flex:1;">
+          <div class="card-header" style="padding:14px 18px;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span id="month-label" class="card-title" style="font-size:17px;"></span>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#92400e;"><span style="width:8px;height:8px;border-radius:2px;background:#fef3c7;display:inline-block;border:1px solid #fde68a;"></span>Insurance</span>
+                <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#1e40af;"><span style="width:8px;height:8px;border-radius:2px;background:#dbeafe;display:inline-block;"></span>Mortgage</span>
+                <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#065f46;"><span style="width:8px;height:8px;border-radius:2px;background:#d1fae5;display:inline-block;"></span>Real Estate</span>
+                <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#7c3aed;"><span style="width:8px;height:8px;border-radius:2px;background:#f3e8ff;display:inline-block;"></span>Meeting</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button class="btn btn-xs btn-secondary" onclick="openAddEventModal()">+ Event</button>
+            </div>
+          </div>
+          <div style="padding:14px 16px;">
+            <div class="grid-header">
+              <div class="grid-header-cell">Sun</div>
+              <div class="grid-header-cell">Mon</div>
+              <div class="grid-header-cell">Tue</div>
+              <div class="grid-header-cell">Wed</div>
+              <div class="grid-header-cell">Thu</div>
+              <div class="grid-header-cell">Fri</div>
+              <div class="grid-header-cell">Sat</div>
+            </div>
+            <div class="cal-grid" id="calGrid"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Sidebar -->
+      <div class="cal-sidebar">
+
+        <!-- Today's Schedule -->
+        <div class="card fade-in s2">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Today's Schedule</div>
+              <div class="card-subtitle" id="today-label"></div>
+            </div>
+            <span class="badge b-navy" id="event-count-badge">8 events</span>
+          </div>
+          <div style="padding:6px 18px 14px;max-height:360px;overflow-y:auto;">
+
+            <div class="sched-item">
+              <div class="sched-time">9:00 AM</div>
+              <div class="sched-bar" style="background:var(--navy);"></div>
+              <div class="sched-content">
+                <div class="sched-name">Team Standup</div>
+                <div class="sched-meta"><span class="ts-dot" style="background:#7c3aed;"></span>Teams · Internal · 15 min</div>
+              </div>
+              <div class="sched-actions">
+                <button class="icon-btn" title="Join Teams" onclick="showToast('Opening Microsoft Teams…')">🎥</button>
+              </div>
+            </div>
+
+            <div class="sched-item">
+              <div class="sched-time">10:00 AM</div>
+              <div class="sched-bar" style="background:var(--gold);"></div>
+              <div class="sched-content">
+                <div class="sched-name">Sandra Hayes — Policy Review</div>
+                <div class="sched-meta"><span class="ts-dot" style="background:#f59e0b;"></span>Phone · Insurance · 30 min</div>
+              </div>
+              <div class="sched-actions">
+                <button class="icon-btn" title="Call" onclick="showToast('Dialing Sandra Hayes…')">📞</button>
+              </div>
+            </div>
+
+            <div class="sched-item">
+              <div class="sched-time">11:30 AM</div>
+              <div class="sched-bar" style="background:#7c3aed;"></div>
+              <div class="sched-content">
+                <div class="sched-name">Marcus Rivera — Auto Quote F/U</div>
+                <div class="sched-meta"><span class="ts-dot" style="background:#7c3aed;"></span>Google Meet · Insurance · 30 min</div>
+              </div>
+              <div class="sched-actions">
+                <button class="icon-btn" title="Join Meet" onclick="showToast('Opening Google Meet…')">🎥</button>
+              </div>
+            </div>
+
+            <div class="sched-item">
+              <div class="sched-time">1:00 PM</div>
+              <div class="sched-bar" style="background:var(--green);"></div>
+              <div class="sched-content">
+                <div class="sched-name">Terrence Cole — RE Handoff</div>
+                <div class="sched-meta"><span class="ts-dot" style="background:var(--green);"></span>Google Meet · Real Estate · 45 min</div>
+              </div>
+              <div class="sched-actions">
+                <button class="icon-btn" title="Join Meet" onclick="showToast('Opening Google Meet…')">🎥</button>
+              </div>
+            </div>
+
+            <div class="sched-item">
+              <div class="sched-time">2:00 PM</div>
+              <div class="sched-bar" style="background:#3b82f6;"></div>
+              <div class="sched-content">
+                <div class="sched-name">Denise Lawrence — Mortgage</div>
+                <div class="sched-meta"><span class="ts-dot" style="background:#3b82f6;"></span>Teams · Mortgage · Arive data shared</div>
+              </div>
+              <div class="sched-actions">
+                <button class="icon-btn" title="Join Teams" onclick="showToast('Opening Teams…')">🎥</button>
+              </div>
+            </div>
+
+            <div class="sched-item">
+              <div class="sched-time">3:30 PM</div>
+              <div class="sched-bar" style="background:var(--gold);"></div>
+              <div class="sched-content">
+                <div class="sched-name">Kevin Watts — Home + Auto Bundle</div>
+                <div class="sched-meta"><span class="ts-dot" style="background:#f59e0b;"></span>VOIP Call · Insurance · New lead</div>
+              </div>
+              <div class="sched-actions">
+                <button class="icon-btn" title="Call" onclick="showToast('Opening VOIP line…')">📞</button>
+              </div>
+            </div>
+
+            <div class="sched-item">
+              <div class="sched-time">4:00 PM</div>
+              <div class="sched-bar" style="background:var(--red);"></div>
+              <div class="sched-content">
+                <div class="sched-name">CRM Strategy Meeting</div>
+                <div class="sched-meta"><span class="ts-dot" style="background:var(--red);"></span>Teams · All departments · 60 min</div>
+              </div>
+              <div class="sched-actions">
+                <button class="icon-btn" title="Join Teams" onclick="showToast('Opening Teams…')">🎥</button>
+              </div>
+            </div>
+
+            <div class="sched-item">
+              <div class="sched-time">5:00 PM</div>
+              <div class="sched-bar" style="background:var(--n-300);"></div>
+              <div class="sched-content">
+                <div class="sched-name">Daily Wrap-Up Notes</div>
+                <div class="sched-meta"><span class="ts-dot" style="background:var(--n-300);"></span>Personal · CRM log update · 15 min</div>
+              </div>
+              <div class="sched-actions"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Connected Integrations -->
+        <div class="card fade-in s3">
+          <div class="card-header">
+            <div class="card-title">🔗 Calendar Integrations</div>
+            <span class="badge b-green">2 Active</span>
+          </div>
+          <div style="padding:10px 16px;display:flex;flex-direction:column;gap:8px;">
+            <div class="sync-row">
+              <div class="sync-label">
+                <div class="sync-logo" style="background:#e8f1fb;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" fill="#0078D4"/><path d="M2 8l10 6 10-6" stroke="white" stroke-width="1.5" fill="none"/></svg>
+                </div>
+                Outlook Calendar
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Synced</span>
+                <div class="int-dot dot-green"></div>
+              </div>
+            </div>
+            <div class="sync-row">
+              <div class="sync-label">
+                <div class="sync-logo" style="background:#e8f0fe;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" fill="#4285F4"/><path d="M2 8l10 6 10-6" stroke="white" stroke-width="1.2" fill="none"/></svg>
+                </div>
+                Google Calendar
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Synced</span>
+                <div class="int-dot dot-green"></div>
+              </div>
+            </div>
+            <div class="sync-row">
+              <div class="sync-label">
+                <div class="sync-logo" style="background:#f0f0fc;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none"/></svg>
+                </div>
+                Microsoft Teams
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Active</span>
+                <div class="int-dot dot-green"></div>
+              </div>
+            </div>
+            <div class="sync-row">
+              <div class="sync-label">
+                <div class="sync-logo" style="background:#e8f0fe;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="13" height="12" rx="2" fill="#4285F4"/><path d="M15 10l7-4v12l-7-4v-4z" fill="#34A853"/></svg>
+                </div>
+                Google Meet
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Active</span>
+                <div class="int-dot dot-green"></div>
+              </div>
+            </div>
+            <div class="sync-row" style="border-bottom:none;">
+              <div class="sync-label">
+                <div class="sync-logo" style="background:var(--gold-bg);">📞</div>
+                VOIP / Call Center
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="status-pill sp-gold" style="font-size:10px;padding:3px 8px;">Dialer On</span>
+                <div class="int-dot dot-orange" style="animation:pulse 2s ease-in-out infinite;"></div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:0 16px 14px;">
+            <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;" onclick="showToast('Opening integration settings…')">Manage Integrations</button>
+          </div>
+        </div>
+
+        <!-- Upcoming events -->
+        <div class="card fade-in s4">
+          <div class="card-header">
+            <div class="card-title">Upcoming Events</div>
+            <button class="btn btn-xs btn-secondary">View All</button>
+          </div>
+          <div style="padding:4px 20px 14px;max-height:290px;overflow-y:auto;">
+
+            <div class="upcoming-item" onclick="showToast('Opening event: Sandra Hayes Policy Review')">
+              <div class="upcoming-date-block">
+                <div class="udb-day">13</div>
+                <div class="udb-month">Feb</div>
+              </div>
+              <div class="upcoming-detail">
+                <div class="ud-title">Sandra Hayes — Policy Renewal</div>
+                <div class="ud-meta">10:00 AM · VOIP Call · Insurance</div>
+              </div>
+              <span class="badge b-gold" style="flex-shrink:0;align-self:center;">Ins</span>
+            </div>
+
+            <div class="upcoming-item" onclick="showToast('Opening event: John Smith Closing Meeting')">
+              <div class="upcoming-date-block">
+                <div class="udb-day">15</div>
+                <div class="udb-month">Feb</div>
+              </div>
+              <div class="upcoming-detail">
+                <div class="ud-title">John Smith — Closing Day 🎉</div>
+                <div class="ud-meta">2:00 PM · 123 Main St · Real Estate</div>
+              </div>
+              <span class="badge b-green" style="flex-shrink:0;align-self:center;">RE</span>
+            </div>
+
+            <div class="upcoming-item" onclick="showToast('Opening event: Michael Brown Inspection')">
+              <div class="upcoming-date-block">
+                <div class="udb-day">18</div>
+                <div class="udb-month">Feb</div>
+              </div>
+              <div class="upcoming-detail">
+                <div class="ud-title">Michael Brown — Home Inspection</div>
+                <div class="ud-meta">10:00 AM · 321 Elm St · Real Estate</div>
+              </div>
+              <span class="badge b-green" style="flex-shrink:0;align-self:center;">RE</span>
+            </div>
+
+            <div class="upcoming-item" onclick="showToast('Opening event: Patricia Torres F/U')">
+              <div class="upcoming-date-block">
+                <div class="udb-day">20</div>
+                <div class="udb-month">Feb</div>
+              </div>
+              <div class="upcoming-detail">
+                <div class="ud-title">Patricia Torres — Refinance F/U</div>
+                <div class="ud-meta">11:00 AM · Teams · Mortgage · Arive</div>
+              </div>
+              <span class="badge b-blue" style="flex-shrink:0;align-self:center;">Mort</span>
+            </div>
+
+            <div class="upcoming-item" onclick="showToast('Opening event: Sarah Williams Walkthrough')">
+              <div class="upcoming-date-block">
+                <div class="udb-day">27</div>
+                <div class="udb-month">Feb</div>
+              </div>
+              <div class="upcoming-detail">
+                <div class="ud-title">Sarah Williams — Final Walkthrough</div>
+                <div class="ud-meta">3:00 PM · 789 Pine Rd · Real Estate</div>
+              </div>
+              <span class="badge b-green" style="flex-shrink:0;align-self:center;">RE</span>
+            </div>
+
+            <div class="upcoming-item" onclick="showToast('Opening event: CRM Review')">
+              <div class="upcoming-date-block">
+                <div class="udb-day">1</div>
+                <div class="udb-month">Mar</div>
+              </div>
+              <div class="upcoming-detail">
+                <div class="ud-title">Sarah Williams — Closing Day</div>
+                <div class="ud-meta">10:00 AM · 789 Pine Rd · Real Estate</div>
+              </div>
+              <span class="badge b-green" style="flex-shrink:0;align-self:center;">RE</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      </div>
+    </div>
+
+
     </div><!-- /content -->
   </div><!-- /main -->
 </div><!-- /app-body -->
+
+
+<!-- ══ LOG ACTIVITY MODAL ══ -->
+<div class="modal-overlay" id="logModal" onclick="if(event.target===this)closeModal('logModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="logModalTitle">Log Activity</div>
+        <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Record an interaction and sync to CRM</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('logModal')">×</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Type selection -->
+      <div class="form-group">
+        <label class="form-label">Activity Type <span style="color:var(--red);">*</span></label>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px;" id="typeGrid">
+          <button class="ql-btn" style="padding:12px 8px;" onclick="selectType(this,'call')"><div class="ql-ico" style="font-size:18px;">📞</div><div class="ql-label" style="font-size:11px;">Call</div></button>
+          <button class="ql-btn" style="padding:12px 8px;" onclick="selectType(this,'sms')"><div class="ql-ico" style="font-size:18px;">💬</div><div class="ql-label" style="font-size:11px;">SMS</div></button>
+          <button class="ql-btn" style="padding:12px 8px;" onclick="selectType(this,'email')"><div class="ql-ico" style="font-size:18px;">✉️</div><div class="ql-label" style="font-size:11px;">Email</div></button>
+          <button class="ql-btn" style="padding:12px 8px;" onclick="selectType(this,'meeting')"><div class="ql-ico" style="font-size:18px;">🎥</div><div class="ql-label" style="font-size:11px;">Meeting</div></button>
+          <button class="ql-btn" style="padding:12px 8px;" onclick="selectType(this,'transfer')"><div class="ql-ico" style="font-size:18px;">🔁</div><div class="ql-label" style="font-size:11px;">Transfer</div></button>
+          <button class="ql-btn" style="padding:12px 8px;" onclick="selectType(this,'note')"><div class="ql-ico" style="font-size:18px;">📝</div><div class="ql-label" style="font-size:11px;">Note</div></button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <label class="form-label">Contact <span style="color:var(--red);">*</span></label>
+          <select class="form-select" style="font-size:13px;padding:9px 12px;">
+            <option value="">Select contact…</option>
+            <option>Sandra Hayes</option>
+            <option>Marcus Rivera</option>
+            <option>Denise Lawrence</option>
+            <option>Terrence Cole</option>
+            <option>Kevin Watts</option>
+            <option>Patricia Torres</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Department</label>
+          <select class="form-select" style="font-size:13px;padding:9px 12px;">
+            <option>🛡️ Insurance</option>
+            <option>🏦 Mortgage</option>
+            <option>🏘️ Real Estate</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <label class="form-label">Date &amp; Time</label>
+          <input class="form-input" type="datetime-local" style="font-size:13px;padding:9px 12px;" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Duration (for calls)</label>
+          <input class="form-input" type="text" placeholder="e.g. 4m 22s" style="font-size:13px;padding:9px 12px;" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Notes / Summary</label>
+        <textarea class="form-textarea" style="font-size:13px;min-height:80px;" placeholder="What was discussed? Outcome? Next steps?"></textarea>
+      </div>
+
+      <!-- Sync options -->
+      <div style="padding:12px 14px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;margin-bottom:4px;">
+        <div style="font-size:11px;font-weight:700;color:var(--n-600);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Auto-Sync To:</div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" checked style="width:15px;height:15px;" /> Outlook</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" style="width:15px;height:15px;" /> Vertafore</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" style="width:15px;height:15px;" /> Arive</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" checked style="width:15px;height:15px;" /> Create Follow-up Task</label>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('logModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveLog()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        Save Activity
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ ADD EVENT MODAL ══ -->
+<div class="modal-overlay" id="addEventModal" onclick="handleOverlay(event,'addEventModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="eventModalTitle">New Event</div>
+        <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Schedule and sync across Outlook, Google Calendar &amp; Teams</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('addEventModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Event Title <span style="color:var(--red);">*</span></label>
+        <input class="form-input" type="text" id="ev-title" placeholder="e.g. Sandra Hayes — Policy Renewal Call" />
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <label class="form-label">Event Type <span style="color:var(--red);">*</span></label>
+          <select class="form-select" id="ev-type" onchange="updateMeetingOptions()">
+            <option value="">Select type…</option>
+            <option value="call">📞 VOIP Call</option>
+            <option value="meet-teams">Teams Meeting (Internal)</option>
+            <option value="meet-google">Google Meet (Client)</option>
+            <option value="followup">Follow-Up</option>
+            <option value="closing">Closing Meeting</option>
+            <option value="inspection">Home Inspection</option>
+            <option value="walkthrough">Final Walkthrough</option>
+            <option value="personal">Personal / Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Department</label>
+          <select class="form-select" id="ev-dept">
+            <option value="">All / General</option>
+            <option>🛡️ Insurance</option>
+            <option>🏦 Mortgage</option>
+            <option>🏘️ Real Estate</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <label class="form-label">Date <span style="color:var(--red);">*</span></label>
+          <input class="form-input" type="date" id="ev-date" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Time <span style="color:var(--red);">*</span></label>
+          <input class="form-input" type="time" id="ev-time" />
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <label class="form-label">Duration</label>
+          <select class="form-select" id="ev-duration">
+            <option>15 minutes</option>
+            <option>30 minutes</option>
+            <option selected>45 minutes</option>
+            <option>1 hour</option>
+            <option>1.5 hours</option>
+            <option>2 hours</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Link to Contact</label>
+          <select class="form-select" id="ev-contact">
+            <option value="">No contact linked</option>
+            <option>Sandra Hayes</option>
+            <option>Marcus Rivera</option>
+            <option>Denise Lawrence</option>
+            <option>Terrence Cole</option>
+            <option>John Smith · TRX-10247</option>
+            <option>Sarah Williams · TRX-10198</option>
+            <option>Michael Brown · TRX-10156</option>
+            <option>Patricia Torres</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Notes / Agenda</label>
+        <textarea class="form-textarea" id="ev-notes" placeholder="What's the purpose of this meeting? Key topics, agenda items, deal context…" style="min-height:70px;"></textarea>
+      </div>
+
+      <!-- Sync options -->
+      <div style="padding:12px 14px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;margin-bottom:4px;">
+        <div style="font-size:11.5px;font-weight:700;color:var(--n-600);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em;">Sync &amp; Notify</div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" checked /> Outlook Calendar
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" checked /> Google Calendar
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" /> Email invite to contact
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" checked /> CRM activity log
+          </label>
+        </div>
+      </div>
+
+      <!-- Meeting link info -->
+      <div id="meeting-link-row" style="display:none;margin-top:10px;padding:10px 13px;background:var(--purple-bg);border-radius:9px;font-size:12px;color:var(--purple-text);font-weight:600;display:flex;align-items:center;gap:8px;">
+        <span>🎥</span>
+        <span id="meeting-link-text">A Google Meet / Teams link will be auto-generated and added to the calendar invite.</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('addEventModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEvent()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        Save Event
+      </button>
+    </div>
+  </div>
+</div>
 
 
 <!-- ══════════════════════════════════════════════════════════════════════ -->
@@ -2956,10 +4250,14 @@
     const dash = document.getElementById('view-dashboard');
     const cont = document.getElementById('view-contacts');
     const pipe = document.getElementById('view-pipeline');
-    if (!dash || !cont || !pipe) return;
+    const act = document.getElementById('view-activities');
+    const cal = document.getElementById('view-calendar');
+    if (!dash || !cont || !pipe || !act || !cal) return;
     dash.style.display = name === 'dashboard' ? 'block' : 'none';
     cont.style.display = name === 'contacts' ? 'block' : 'none';
     pipe.style.display = name === 'pipeline' ? 'block' : 'none';
+    act.style.display = name === 'activities' ? 'block' : 'none';
+    cal.style.display = name === 'calendar' ? 'block' : 'none';
   }
 
   /* ── NAV ACTIVE ── */
@@ -3300,6 +4598,278 @@
       } else {
         row.style.opacity = '1';
         if (label) label.style.textDecoration = '';
+      }
+    });
+  });
+
+
+  /* ── ACTIVITIES (from activities.html) ── */
+  function openLogModal(type) {
+    document.getElementById('logModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (type) {
+      const btn = document.querySelector(`#typeGrid button[onclick*="${type}"]`);
+      if (btn) selectType(btn, type);
+    }
+  }
+  function saveLog() {
+    closeModal('logModal');
+    showToast('Activity logged and synced to Outlook.');
+  }
+
+  /* ── TYPE SELECT ── */
+  function selectType(btn, type) {
+    document.querySelectorAll('#typeGrid .ql-btn').forEach(b => {
+      b.style.borderColor = 'var(--n-200)';
+      b.style.background  = 'var(--n-50)';
+    });
+    btn.style.borderColor = 'var(--navy)';
+    btn.style.background  = 'white';
+    btn.style.boxShadow   = 'var(--sh-md)';
+    const labels = { call:'Log a Call', sms:'Log SMS', email:'Log Email', meeting:'Log Meeting', transfer:'Lead Transfer', note:'Add Note' };
+    document.getElementById('logModalTitle').textContent = labels[type] || 'Log Activity';
+  }
+
+  /* ── FEED FILTER ── */
+  function filterFeed() {
+    const q    = document.getElementById('actSearch').value.toLowerCase();
+    const type = document.getElementById('typeFilter').value;
+    const agent= document.getElementById('agentFeedFilter').value;
+    const dept = document.getElementById('deptFeedFilter').value;
+    let count = 0;
+    document.querySelectorAll('#activityFeed .act-item').forEach(item => {
+      const text = item.innerText.toLowerCase();
+      const t = item.dataset.type || '';
+      const a = item.dataset.agent || '';
+      const d = item.dataset.dept || '';
+      const show = (!q || text.includes(q)) &&
+                   (!type  || t.includes(type)) &&
+                   (!agent || a.includes(agent)) &&
+                   (!dept  || d.includes(dept));
+      item.style.display = show ? '' : 'none';
+      if (show) count++;
+    });
+    document.getElementById('feedCount').textContent = count + ' result' + (count !== 1 ? 's' : '');
+  }
+
+  function quickType(t) {
+    document.getElementById('typeFilter').value = t;
+    document.getElementById('actSearch').value = '';
+    document.getElementById('agentFeedFilter').value = '';
+    document.getElementById('deptFeedFilter').value = '';
+    filterFeed();
+  }
+
+  /* ── DATA ── */
+  const eventsData = {
+    '2026-02-10': [
+      { title:'Team Standup', type:'meet', dept:'Internal', cls:'ep-meet' },
+      { title:'Sandra Hayes', type:'call', dept:'Insurance', cls:'ep-ins' },
+      { title:'CRM Strategy', type:'meet', dept:'Internal', cls:'ep-meet' },
+    ],
+    '2026-02-11': [
+      { title:'Marcus Rivera F/U', type:'call', dept:'Insurance', cls:'ep-ins' },
+      { title:'Denise Lawrence', type:'meet', dept:'Mortgage', cls:'ep-mort' },
+    ],
+    '2026-02-12': [
+      { title:'Robert Wilson Refi', type:'call', dept:'Mortgage', cls:'ep-mort' },
+    ],
+    '2026-02-13': [
+      { title:'Team Standup', type:'meet', dept:'Internal', cls:'ep-meet' },
+      { title:'Sandra Hayes Renewal', type:'call', dept:'Insurance', cls:'ep-ins' },
+      { title:'Marcus Rivera GMeet', type:'meet', dept:'Insurance', cls:'ep-ins' },
+      { title:'Terrence Cole RE', type:'meet', dept:'Real Estate', cls:'ep-re' },
+    ],
+    '2026-02-15': [
+      { title:'John Smith CLOSING', type:'closing', dept:'Real Estate', cls:'ep-re' },
+      { title:'Lisa Anderson Close', type:'closing', dept:'Real Estate', cls:'ep-re' },
+    ],
+    '2026-02-16': [
+      { title:'Team Standup', type:'meet', dept:'Internal', cls:'ep-meet' },
+      { title:'Kevin Watts Bundle', type:'call', dept:'Insurance', cls:'ep-ins' },
+    ],
+    '2026-02-18': [
+      { title:'Michael Brown Inspection', type:'inspection', dept:'Real Estate', cls:'ep-re' },
+      { title:'Patricia Torres Arive', type:'meet', dept:'Mortgage', cls:'ep-mort' },
+    ],
+    '2026-02-20': [
+      { title:'Patricia Torres F/U', type:'meet', dept:'Mortgage', cls:'ep-mort' },
+    ],
+    '2026-02-23': [
+      { title:'Team Standup', type:'meet', dept:'Internal', cls:'ep-meet' },
+      { title:'Natalie Simmons', type:'call', dept:'Mortgage', cls:'ep-mort' },
+    ],
+    '2026-02-25': [
+      { title:'Email Blast Review', type:'meet', dept:'Insurance', cls:'ep-ins' },
+    ],
+    '2026-02-27': [
+      { title:'Sarah Williams Walkthrough', type:'walkthrough', dept:'Real Estate', cls:'ep-re' },
+    ],
+    '2026-03-01': [
+      { title:'Sarah Williams CLOSING', type:'closing', dept:'Real Estate', cls:'ep-re' },
+    ],
+  };
+
+  let viewYear  = 2026;
+  let viewMonth = 1; // 0-indexed, so 1 = Feb
+  const todayDate = new Date(2026, 1, 13); // Feb 13 2026 as "today"
+
+  /* ── MONTH LABEL ── */
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function updateMonthLabel() {
+    document.getElementById('month-label').textContent = MONTHS[viewMonth] + ' ' + viewYear;
+  }
+
+  /* ── TODAY LABEL ── */
+  function setTodayLabel() {
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    document.getElementById('today-label').textContent =
+      days[todayDate.getDay()] + ', ' + MONTHS[todayDate.getMonth()] + ' ' + todayDate.getDate() + ', ' + todayDate.getFullYear();
+  }
+
+  /* ── BUILD CALENDAR ── */
+  function buildCalendar() {
+    updateMonthLabel();
+    const grid = document.getElementById('calGrid');
+    grid.innerHTML = '';
+
+    const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    const daysInPrev  = new Date(viewYear, viewMonth, 0).getDate();
+
+    let cells = [];
+
+    for (let i = firstDay - 1; i >= 0; i--) {
+      cells.push({ day: daysInPrev - i, cur: false });
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      cells.push({ day: d, cur: true });
+    }
+    while (cells.length % 7 !== 0) {
+      cells.push({ day: cells.length - firstDay - daysInMonth + 1, cur: false });
+    }
+
+    cells.forEach(cell => {
+      const div = document.createElement('div');
+      div.className = 'cal-cell' + (!cell.cur ? ' other-month' : '');
+
+      const isToday = cell.cur &&
+        viewYear  === todayDate.getFullYear() &&
+        viewMonth === todayDate.getMonth() &&
+        cell.day  === todayDate.getDate();
+      if (isToday) div.classList.add('today');
+
+      const dateNum = document.createElement('div');
+      dateNum.className = 'cal-date';
+      dateNum.textContent = cell.day;
+      div.appendChild(dateNum);
+
+      if (cell.cur) {
+        const key = `${viewYear}-${String(viewMonth + 1).padStart(2,'0')}-${String(cell.day).padStart(2,'0')}`;
+        const evs = eventsData[key] || [];
+        const show = evs.slice(0, 2);
+        const rest = evs.length - 2;
+
+        show.forEach(ev => {
+          const pill = document.createElement('span');
+          pill.className = 'cal-event-pill ' + ev.cls;
+          pill.textContent = ev.title;
+          pill.title = ev.title + ' · ' + ev.dept;
+          pill.onclick = (e) => {
+            e.stopPropagation();
+            showToast(ev.title + ' — ' + ev.dept);
+          };
+          div.appendChild(pill);
+        });
+
+        if (rest > 0) {
+          const more = document.createElement('span');
+          more.className = 'cal-event-pill ep-more';
+          more.textContent = '+' + rest + ' more';
+          div.appendChild(more);
+        }
+      }
+
+      div.onclick = () => {
+        document.querySelectorAll('.cal-cell.selected').forEach(c => c.classList.remove('selected'));
+        div.classList.add('selected');
+      };
+
+      grid.appendChild(div);
+    });
+  }
+
+  function prevMonth() {
+    viewMonth--;
+    if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+    buildCalendar();
+  }
+  function nextMonth() {
+    viewMonth++;
+    if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+    buildCalendar();
+  }
+  function goToToday() {
+    viewMonth = todayDate.getMonth();
+    viewYear  = todayDate.getFullYear();
+    buildCalendar();
+    showToast('Jumped to today — Feb 13, 2026');
+  }
+
+  /* ── VIEW SWITCH ── */
+  function switchView(view, el) {
+    document.querySelectorAll('#view-calendar .mini-tab').forEach(t => t.classList.remove('sel'));
+    el.classList.add('sel');
+    showToast('Switched to ' + view[0].toUpperCase() + view.slice(1) + ' view');
+  }
+
+  /* ── MODAL ── */
+  function openAddEventModal() {
+    const today = todayDate.toISOString().split('T')[0];
+    document.getElementById('ev-date').value = today;
+    document.getElementById('ev-time').value = '09:00';
+    document.getElementById('addEventModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function updateMeetingOptions() {
+    const type = document.getElementById('ev-type').value;
+    const row  = document.getElementById('meeting-link-row');
+    const txt  = document.getElementById('meeting-link-text');
+    if (type === 'meet-teams') {
+      row.style.display = 'flex';
+      txt.textContent = 'A Microsoft Teams meeting link will be auto-generated and added to the Outlook invite.';
+    } else if (type === 'meet-google') {
+      row.style.display = 'flex';
+      txt.textContent = 'A Google Meet link will be auto-generated and synced to Google Calendar.';
+    } else {
+      row.style.display = 'none';
+    }
+  }
+
+  function saveEvent() {
+    const title = document.getElementById('ev-title').value.trim();
+    if (!title) { alert('Please enter an event title.'); return; }
+    closeModal('addEventModal');
+    showToast('Event saved and synced to Outlook + Google Calendar');
+    buildCalendar();
+  }
+
+
+  /* ── INIT ── */
+  buildCalendar();
+  setTodayLabel();
+  document.getElementById('feedCount').textContent = '12 results';
+
+  document.querySelectorAll('#view-activities input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', function() {
+      if (this.id === 'selectAll') return;
+      const row = this.closest('[style*="border-left"]');
+      if (!row) return;
+      if (this.checked) {
+        row.style.opacity = '.4';
+      } else {
+        row.style.opacity = '1';
       }
     });
   });
