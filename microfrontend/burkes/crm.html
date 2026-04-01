@@ -763,6 +763,201 @@
     }
     #addModal .modal-title { font-size: 20px; }
     #addModal .modal-footer { border-radius: 0 0 20px 20px; }
+
+    /* ═══════════════════════════════════════
+       PIPELINE KANBAN + DRAWER (from pipeline.html)
+    ═══════════════════════════════════════ */
+    .pipeline-board {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      min-height: 520px;
+    }
+
+    .pipeline-col {
+      min-width: 230px;
+      max-width: 230px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .col-header {
+      padding: 11px 14px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .col-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .col-count {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 99px;
+    }
+
+    .col-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .lead-card {
+      background: white;
+      border-radius: 10px;
+      border: 1.5px solid var(--n-200);
+      padding: 13px 14px;
+      cursor: pointer;
+      transition: all .18s;
+      box-shadow: var(--sh-sm);
+      position: relative;
+    }
+    .lead-card:hover {
+      border-color: var(--navy);
+      box-shadow: var(--sh-md);
+      transform: translateY(-1px);
+    }
+    .lead-card.hot { border-left: 3px solid var(--red); }
+    .lead-card.warm { border-left: 3px solid var(--orange); }
+    .lead-card.cool { border-left: 3px solid var(--blue-text); }
+
+    .lead-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .lead-detail {
+      font-size: 11px;
+      color: var(--n-500);
+      margin-bottom: 6px;
+    }
+
+    .lead-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    .lead-avatar {
+      width: 22px; height: 22px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 700; color: white;
+      flex-shrink: 0;
+    }
+
+    .col-new      { background: #f0f7ff; }
+    .col-new      .col-title { color: var(--blue-text); }
+    .col-new      .col-count { background: var(--blue-bg); color: var(--blue-text); }
+
+    .col-contact  { background: #fffbeb; }
+    .col-contact  .col-title { color: #92400e; }
+    .col-contact  .col-count { background: var(--gold-bg); color: #92400e; }
+
+    .col-quote    { background: var(--purple-bg); }
+    .col-quote    .col-title { color: var(--purple-text); }
+    .col-quote    .col-count { background: #ede9fe; color: var(--purple-text); }
+
+    .col-contract { background: #fff7ed; }
+    .col-contract .col-title { color: var(--orange-text); }
+    .col-contract .col-count { background: var(--orange-bg); color: var(--orange-text); }
+
+    .col-closing  { background: var(--green-bg); }
+    .col-closing  .col-title { color: var(--green-text); }
+    .col-closing  .col-count { background: #bbf7d0; color: var(--green-text); }
+
+    .col-closed   { background: var(--n-100); }
+    .col-closed   .col-title { color: var(--n-600); }
+    .col-closed   .col-count { background: var(--n-200); color: var(--n-600); }
+
+    .search-input-sm {
+      background: white;
+      border: 1.5px solid var(--n-200);
+      border-radius: 10px;
+      padding: 9px 14px 9px 36px;
+      font-size: 13px;
+      color: var(--n-800);
+      font-family: 'Manrope', sans-serif;
+      outline: none;
+      transition: border-color .2s;
+      width: 220px;
+    }
+    .search-input-sm:focus { border-color: var(--navy); }
+    .search-input-sm::placeholder { color: var(--n-400); }
+
+    .detail-drawer {
+      position: fixed;
+      top: 0; right: -420px;
+      width: 420px; height: 100vh;
+      background: white;
+      border-left: 1px solid var(--n-200);
+      box-shadow: -4px 0 24px rgba(0,0,0,.12);
+      z-index: 300;
+      transition: right .3s ease;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .detail-drawer.open { right: 0; }
+    .drawer-header {
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--n-200);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px;
+    }
+    .drawer-footer {
+      padding: 16px 22px;
+      border-top: 1px solid var(--n-100);
+      background: var(--n-50);
+      display: flex; gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .info-row {
+      display: flex;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--n-100);
+      gap: 12px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { font-size: 11.5px; font-weight: 600; color: var(--n-500); text-transform: uppercase; letter-spacing: .05em; min-width: 110px; padding-top: 1px; }
+    .info-value { font-size: 13.5px; color: var(--n-800); font-weight: 500; flex: 1; }
+
+    .timeline-item {
+      display: flex; gap: 12px;
+      padding: 10px 0;
+    }
+    .tl-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .tl-content { flex: 1; }
+    .tl-action { font-size: 12.5px; font-weight: 600; color: var(--n-800); }
+    .tl-time   { font-size: 11px; color: var(--n-400); margin-top: 1px; }
+
   </style>
 </head>
 <body>
@@ -851,7 +1046,7 @@
       Contacts
       <span class="nav-badge nav-badge-blue">1,284</span>
     </a>
-    <a class="nav-item" onclick="setActive(this)">
+    <a class="nav-item" data-view="pipeline" onclick="setActive(this)">
       <div class="ni-icon">🔄</div>
       Pipeline
     </a>
@@ -1748,6 +1943,637 @@
 
     </div><!-- /view-contacts -->
 
+    <div id="view-pipeline" style="display:none;">
+      <!-- PAGE HEADER -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;" class="fade-in">
+        <div>
+          <h1 style="font-family:'Archivo',sans-serif;font-size:26px;font-weight:800;color:var(--navy);line-height:1.2;">Lead Pipeline</h1>
+          <p style="font-size:13.5px;color:var(--n-600);margin-top:4px;">Track and manage leads across all three departments — Insurance, Mortgage &amp; Real Estate</p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <div class="mini-tabs" id="pipeline-view-tabs">
+            <button class="mini-tab sel" onclick="setView('kanban',this)">🗂 Kanban</button>
+            <button class="mini-tab" onclick="setView('list',this)">📋 List</button>
+            <button class="mini-tab" onclick="setView('forecast',this)">📈 Forecast</button>
+          </div>
+          <button class="btn btn-secondary btn-sm">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Export
+          </button>
+        </div>
+      </div>
+
+      <!-- STAT CARDS -->
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:22px;">
+        <div class="stat-card navy fade-in s1">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="stat-label">Total Leads</div>
+              <div class="stat-value">148</div>
+            </div>
+            <div class="stat-icon">👥</div>
+          </div>
+          <div class="stat-delta"><span class="delta-up">▲ 12%</span> this week</div>
+        </div>
+        <div class="stat-card gold fade-in s2">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="stat-label">In Negotiation</div>
+              <div class="stat-value">29</div>
+            </div>
+            <div class="stat-icon">🤝</div>
+          </div>
+          <div class="stat-delta"><span class="delta-up">▲ 5</span> from last week</div>
+        </div>
+        <div class="stat-card blue fade-in s3">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="stat-label">Under Contract</div>
+              <div class="stat-value">17</div>
+            </div>
+            <div class="stat-icon">📝</div>
+          </div>
+          <div class="stat-delta"><span class="delta-up">▲ 3</span> this month</div>
+        </div>
+        <div class="stat-card orange fade-in s4">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="stat-label">Pending Close</div>
+              <div class="stat-value">9</div>
+            </div>
+            <div class="stat-icon">⏳</div>
+          </div>
+          <div class="stat-delta"><span class="delta-down">▼ 2</span> delayed</div>
+        </div>
+        <div class="stat-card green fade-in s5">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="stat-label">Closed (MTD)</div>
+              <div class="stat-value">12</div>
+            </div>
+            <div class="stat-icon">✅</div>
+          </div>
+          <div class="stat-delta"><span class="delta-up">▲ 18%</span> vs prior month</div>
+        </div>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="card fade-in" style="margin-bottom:18px;">
+        <div style="padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div style="position:relative;">
+            <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--n-400);font-size:13px;pointer-events:none;">🔍</span>
+            <input type="text" class="search-input-sm" placeholder="Search leads by name…" id="pipelineSearch" oninput="filterCards()" />
+          </div>
+          <select class="filter-select-sm" id="pipeDeptFilter" onchange="filterCards()">
+            <option value="">All Departments</option>
+            <option value="Insurance">🛡️ Insurance</option>
+            <option value="Mortgage">🏦 Mortgage</option>
+            <option value="Real Estate">🏘️ Real Estate</option>
+          </select>
+          <select class="filter-select-sm" id="agentFilter" onchange="filterCards()">
+            <option value="">All Agents</option>
+            <option value="JB">Jaquarian Bonilla</option>
+            <option value="TB">Tom Burke</option>
+          </select>
+          <select class="filter-select-sm" id="tempFilter" onchange="filterCards()">
+            <option value="">All Priority</option>
+            <option value="hot">🔴 Hot</option>
+            <option value="warm">🟡 Warm</option>
+            <option value="cool">🔵 Cool</option>
+          </select>
+          <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
+            <span id="leadCountBadge" style="font-size:12px;color:var(--n-500);font-weight:600;">148 leads</span>
+            <button class="btn btn-xs btn-secondary" onclick="clearFilters()">Clear filters</button>
+          </div>
+        </div>
+
+        <!-- DEPT SUMMARY PILLS -->
+        <div style="padding:10px 18px;border-top:1px solid var(--n-100);display:flex;gap:10px;align-items:center;">
+          <span style="font-size:11px;font-weight:700;color:var(--n-500);text-transform:uppercase;letter-spacing:.06em;margin-right:4px;">Quick:</span>
+          <button class="badge b-neutral" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="pipeQuickFilter('')">All (148)</button>
+          <button class="badge b-gold" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="pipeQuickFilter('Insurance')">🛡️ Insurance (61)</button>
+          <button class="badge b-blue" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="pipeQuickFilter('Mortgage')">🏦 Mortgage (47)</button>
+          <button class="badge b-green" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="pipeQuickFilter('Real Estate')">🏘️ Real Estate (40)</button>
+          <div style="margin-left:auto;">
+            <button class="badge b-red" style="cursor:pointer;padding:5px 12px;font-size:11.5px;">🔴 Hot Leads (18)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- KANBAN BOARD -->
+      <div id="view-kanban">
+        <div class="pipeline-board fade-in">
+
+          <!-- COL 1: NEW INQUIRY -->
+          <div class="pipeline-col">
+            <div class="col-header col-new">
+              <span class="col-title">New Inquiry</span>
+              <span class="col-count" id="cnt-new">52</span>
+            </div>
+            <div class="col-body" id="col-new">
+              <div class="lead-card hot" data-dept="Insurance" data-agent="JB" data-temp="hot" onclick="openLeadDrawer('Kevin Watts','Insurance','JB','hot')">
+                <div class="lead-name">Kevin Watts</div>
+                <div class="lead-detail">🛡️ Home + Auto Bundle</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-gold" style="font-size:10px;">Insurance</span>
+                  <span class="badge b-red" style="font-size:10px;">🔴 Hot</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Today, 8:00 AM</span>
+                  <div class="lead-avatar" style="background:var(--orange);">JB</div>
+                </div>
+              </div>
+              <div class="lead-card warm" data-dept="Real Estate" data-agent="TB" data-temp="warm" onclick="openLeadDrawer('Angela Torres','Real Estate','TB','warm')">
+                <div class="lead-name">Angela Torres</div>
+                <div class="lead-detail">🏘️ First-time homebuyer · 77380</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-green" style="font-size:10px;">Real Estate</span>
+                  <span class="badge b-orange" style="font-size:10px;">🟡 Warm</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Today, 9:14 AM</span>
+                  <div class="lead-avatar" style="background:var(--navy);">TB</div>
+                </div>
+              </div>
+              <div class="lead-card cool" data-dept="Mortgage" data-agent="JB" data-temp="cool" onclick="openLeadDrawer('Derek Okafor','Mortgage','JB','cool')">
+                <div class="lead-name">Derek Okafor</div>
+                <div class="lead-detail">🏦 Refinance inquiry</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-blue" style="font-size:10px;">Mortgage</span>
+                  <span class="badge b-neutral" style="font-size:10px;">🔵 Cool</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Yesterday</span>
+                  <div class="lead-avatar" style="background:var(--orange);">JB</div>
+                </div>
+              </div>
+              <div class="lead-card warm" data-dept="Insurance" data-agent="JB" data-temp="warm" onclick="openLeadDrawer('Lisa Pham','Insurance','JB','warm')">
+                <div class="lead-name">Lisa Pham</div>
+                <div class="lead-detail">🛡️ Auto renewal inquiry</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-gold" style="font-size:10px;">Insurance</span>
+                  <span class="badge b-orange" style="font-size:10px;">🟡 Warm</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Jan 28</span>
+                  <div class="lead-avatar" style="background:var(--orange);">JB</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COL 2: CONTACTED -->
+          <div class="pipeline-col">
+            <div class="col-header col-contact">
+              <span class="col-title">Contacted</span>
+              <span class="col-count" id="cnt-contacted">38</span>
+            </div>
+            <div class="col-body" id="col-contacted">
+              <div class="lead-card hot" data-dept="Insurance" data-agent="JB" data-temp="hot" onclick="openLeadDrawer('Marcus Rivera','Insurance','JB','hot')">
+                <div class="lead-name">Marcus Rivera</div>
+                <div class="lead-detail">🛡️ Auto Quote · Callback pending</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-gold" style="font-size:10px;">Insurance</span>
+                  <span class="badge b-red" style="font-size:10px;">🔴 Hot</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Today, 9:30 AM</span>
+                  <div class="lead-avatar" style="background:var(--orange);">JB</div>
+                </div>
+              </div>
+              <div class="lead-card warm" data-dept="Mortgage" data-agent="TB" data-temp="warm" onclick="openLeadDrawer('Robert Wilson','Mortgage','TB','warm')">
+                <div class="lead-name">Robert Wilson</div>
+                <div class="lead-detail">🏦 Refinance · Follow-up scheduled</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-blue" style="font-size:10px;">Mortgage</span>
+                  <span class="badge b-orange" style="font-size:10px;">🟡 Warm</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Feb 12</span>
+                  <div class="lead-avatar" style="background:var(--navy);">TB</div>
+                </div>
+              </div>
+              <div class="lead-card cool" data-dept="Real Estate" data-agent="TB" data-temp="cool" onclick="openLeadDrawer('Brenda Hall','Real Estate','TB','cool')">
+                <div class="lead-name">Brenda Hall</div>
+                <div class="lead-detail">🏘️ Seller listing · 77381</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-green" style="font-size:10px;">Real Estate</span>
+                  <span class="badge b-neutral" style="font-size:10px;">🔵 Cool</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Feb 10</span>
+                  <div class="lead-avatar" style="background:var(--navy);">TB</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COL 3: QUOTED / OFFER -->
+          <div class="pipeline-col">
+            <div class="col-header col-quote">
+              <span class="col-title">Quoted / Offer</span>
+              <span class="col-count" id="cnt-quoted">29</span>
+            </div>
+            <div class="col-body" id="col-quoted">
+              <div class="lead-card hot" data-dept="Insurance" data-agent="JB" data-temp="hot" onclick="openLeadDrawer('Sandra Hayes','Insurance','JB','hot')">
+                <div class="lead-name">Sandra Hayes</div>
+                <div class="lead-detail">🛡️ Auto Renewal · $187/mo quoted</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-gold" style="font-size:10px;">Insurance</span>
+                  <span class="badge b-red" style="font-size:10px;">🔴 Hot</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Today, 11:04 AM</span>
+                  <div class="lead-avatar" style="background:var(--orange);">JB</div>
+                </div>
+              </div>
+              <div class="lead-card warm" data-dept="Real Estate" data-agent="TB" data-temp="warm" onclick="openLeadDrawer('Terrence Cole','Real Estate','TB','warm')">
+                <div class="lead-name">Terrence Cole</div>
+                <div class="lead-detail">🏘️ Purchase offer · $485,000</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-green" style="font-size:10px;">Real Estate</span>
+                  <span class="badge b-purple" style="font-size:10px;">↩ Transferred</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Yesterday</span>
+                  <div class="lead-avatar" style="background:var(--navy);">TB</div>
+                </div>
+              </div>
+              <div class="lead-card cool" data-dept="Mortgage" data-agent="JB" data-temp="cool" onclick="openLeadDrawer('Natalie Simmons','Mortgage','JB','cool')">
+                <div class="lead-name">Natalie Simmons</div>
+                <div class="lead-detail">🏦 Pre-approval estimate sent</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-blue" style="font-size:10px;">Mortgage</span>
+                  <span class="badge b-neutral" style="font-size:10px;">🔵 Cool</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Feb 8</span>
+                  <div class="lead-avatar" style="background:var(--orange);">JB</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COL 4: UNDER CONTRACT -->
+          <div class="pipeline-col">
+            <div class="col-header col-contract">
+              <span class="col-title">Under Contract</span>
+              <span class="col-count" id="cnt-contract">17</span>
+            </div>
+            <div class="col-body" id="col-contract">
+              <div class="lead-card hot" data-dept="Real Estate" data-agent="TB" data-temp="hot" onclick="openLeadDrawer('John Smith','Real Estate','TB','hot')">
+                <div class="lead-name">John Smith</div>
+                <div class="lead-detail">🏘️ 123 Main St · $485,000 purchase</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-green" style="font-size:10px;">Real Estate</span>
+                  <span class="badge b-red" style="font-size:10px;">🔴 Hot</span>
+                </div>
+                <div style="margin-bottom:6px;">
+                  <div style="font-size:10px;color:var(--n-500);margin-bottom:3px;">Closing Feb 15 · 6 days</div>
+                  <div class="prog-track"><div class="prog-fill" style="width:80%;background:linear-gradient(90deg,var(--green),#059669);"></div></div>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Attorney review</span>
+                  <div class="lead-avatar" style="background:var(--navy);">TB</div>
+                </div>
+              </div>
+              <div class="lead-card warm" data-dept="Mortgage" data-agent="TB" data-temp="warm" onclick="openLeadDrawer('Denise Lawrence','Mortgage','TB','warm')">
+                <div class="lead-name">Denise Lawrence</div>
+                <div class="lead-detail">🏦 Pre-Approval · Arive synced</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-blue" style="font-size:10px;">Mortgage</span>
+                  <span class="badge b-orange" style="font-size:10px;">🟡 Warm</span>
+                </div>
+                <div style="margin-bottom:6px;">
+                  <div style="font-size:10px;color:var(--n-500);margin-bottom:3px;">Application 60% complete</div>
+                  <div class="prog-track"><div class="prog-fill" style="width:60%;background:linear-gradient(90deg,#3b82f6,#1d4ed8);"></div></div>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Today, 8:31 AM</span>
+                  <div class="lead-avatar" style="background:var(--navy);">TB</div>
+                </div>
+              </div>
+              <div class="lead-card warm" data-dept="Real Estate" data-agent="TB" data-temp="warm" onclick="openLeadDrawer('Sarah Williams','Real Estate','TB','warm')">
+                <div class="lead-name">Sarah Williams</div>
+                <div class="lead-detail">🏘️ 789 Pine Rd · $389,500 sale</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-green" style="font-size:10px;">Real Estate</span>
+                  <span class="badge b-orange" style="font-size:10px;">🟡 Warm</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Closing Mar 1</span>
+                  <div class="lead-avatar" style="background:var(--navy);">TB</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COL 5: PENDING CLOSE -->
+          <div class="pipeline-col">
+            <div class="col-header col-closing">
+              <span class="col-title">Pending Close</span>
+              <span class="col-count" id="cnt-closing">9</span>
+            </div>
+            <div class="col-body" id="col-closing">
+              <div class="lead-card hot" data-dept="Real Estate" data-agent="TB" data-temp="hot" onclick="openLeadDrawer('Michael Brown','Real Estate','TB','hot')">
+                <div class="lead-name">Michael Brown</div>
+                <div class="lead-detail">🏘️ 321 Elm St · $512,000 purchase</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-green" style="font-size:10px;">Real Estate</span>
+                  <span class="badge b-red" style="font-size:10px;">🔴 Hot</span>
+                </div>
+                <div style="margin-bottom:6px;">
+                  <div style="font-size:10px;color:var(--n-500);margin-bottom:3px;">Docs signed · Final walkthrough</div>
+                  <div class="prog-track"><div class="prog-fill" style="width:92%;background:linear-gradient(90deg,var(--green),#059669);"></div></div>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Closing Mar 8</span>
+                  <div class="lead-avatar" style="background:var(--navy);">TB</div>
+                </div>
+              </div>
+              <div class="lead-card warm" data-dept="Insurance" data-agent="JB" data-temp="warm" onclick="openLeadDrawer('Patricia Torres','Insurance','JB','warm')">
+                <div class="lead-name">Patricia Torres</div>
+                <div class="lead-detail">🛡️ Home + Warranty bundle</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-gold" style="font-size:10px;">Insurance</span>
+                  <span class="badge b-orange" style="font-size:10px;">🟡 Warm</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Awaiting signature</span>
+                  <div class="lead-avatar" style="background:var(--orange);">JB</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COL 6: CLOSED -->
+          <div class="pipeline-col">
+            <div class="col-header col-closed">
+              <span class="col-title">Closed ✓</span>
+              <span class="col-count" id="cnt-closed">3</span>
+            </div>
+            <div class="col-body" id="col-closed">
+              <div class="lead-card cool" data-dept="Real Estate" data-agent="TB" data-temp="cool" onclick="openLeadDrawer('Lisa Anderson','Real Estate','TB','cool')">
+                <div class="lead-name">Lisa Anderson</div>
+                <div class="lead-detail">🏘️ 654 Maple Dr · $467,500 · TRX-10089</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-green" style="font-size:10px;">Real Estate</span>
+                  <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Closed</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Feb 15, 2026</span>
+                  <div class="lead-avatar" style="background:var(--navy);">TB</div>
+                </div>
+              </div>
+              <div class="lead-card cool" data-dept="Insurance" data-agent="JB" data-temp="cool" onclick="openLeadDrawer('Emily Davis','Insurance','JB','cool')">
+                <div class="lead-name">Emily Davis</div>
+                <div class="lead-detail">🛡️ Home + Auto bundle · Closed Nov 2025</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;">
+                  <span class="badge b-gold" style="font-size:10px;">Insurance</span>
+                  <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Closed</span>
+                </div>
+                <div class="lead-meta">
+                  <span style="font-size:11px;color:var(--n-400);">Nov 15, 2025</span>
+                  <div class="lead-avatar" style="background:var(--orange);">JB</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /pipeline-board -->
+      </div><!-- /view-kanban -->
+
+      <!-- LIST VIEW (hidden) -->
+      <div id="view-list" style="display:none;">
+        <div class="card fade-in">
+          <div class="card-header">
+            <div>
+              <div class="card-title">All Leads — List View</div>
+              <div class="card-subtitle">148 leads across all departments and stages</div>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button class="btn btn-secondary btn-sm">Filter</button>
+              <button class="btn btn-gold btn-sm">Export</button>
+            </div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;">
+              <thead>
+                <tr>
+                  <th style="text-align:left;padding:11px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--n-500);border-bottom:1px solid var(--n-200);background:var(--n-50);">Contact</th>
+                  <th style="text-align:left;padding:11px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--n-500);border-bottom:1px solid var(--n-200);background:var(--n-50);">Department</th>
+                  <th style="text-align:left;padding:11px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--n-500);border-bottom:1px solid var(--n-200);background:var(--n-50);">Stage</th>
+                  <th style="text-align:left;padding:11px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--n-500);border-bottom:1px solid var(--n-200);background:var(--n-50);">Assigned</th>
+                  <th style="text-align:left;padding:11px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--n-500);border-bottom:1px solid var(--n-200);background:var(--n-50);">Priority</th>
+                  <th style="text-align:left;padding:11px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--n-500);border-bottom:1px solid var(--n-200);background:var(--n-50);">Last Activity</th>
+                  <th style="text-align:center;padding:11px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--n-500);border-bottom:1px solid var(--n-200);background:var(--n-50);">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="cursor:pointer;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                      <div style="width:34px;height:34px;border-radius:8px;background:#1a3a52;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;flex-shrink:0;">SH</div>
+                      <div><div style="font-weight:700;color:var(--navy);font-size:13px;">Sandra Hayes</div><div style="font-size:11px;color:var(--n-500);">sandra.hayes@email.com</div></div>
+                    </div>
+                  </td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);"><span class="badge b-gold">🛡️ Insurance</span></td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);"><span class="status-pill sp-purple">Quoted</span></td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);font-size:13px;color:var(--n-600);">Jaquarian B.</td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);"><span class="badge b-red">🔴 Hot</span></td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);font-size:12px;color:var(--n-500);">Today, 11:04 AM</td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);text-align:center;">
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="btn btn-xs btn-secondary" onclick="openLeadDrawer('Sandra Hayes','Insurance','JB','hot')">View</button>
+                      <button class="btn btn-xs btn-secondary" onclick="openTransferModal('Sandra Hayes')">↩ Transfer</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr style="cursor:pointer;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                      <div style="width:34px;height:34px;border-radius:8px;background:#3b82f6;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;flex-shrink:0;">JS</div>
+                      <div><div style="font-weight:700;color:var(--navy);font-size:13px;">John Smith</div><div style="font-size:11px;color:var(--n-500);">john.smith@gmail.com</div></div>
+                    </div>
+                  </td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);"><span class="badge b-green">🏘️ Real Estate</span></td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);"><span class="status-pill sp-orange">Under Contract</span></td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);font-size:13px;color:var(--n-600);">Tom Burke</td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);"><span class="badge b-red">🔴 Hot</span></td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);font-size:12px;color:var(--n-500);">Today, 2h ago</td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);text-align:center;">
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="btn btn-xs btn-secondary" onclick="openLeadDrawer('John Smith','Real Estate','TB','hot')">View</button>
+                      <button class="btn btn-xs btn-secondary" onclick="openTransferModal('John Smith')">↩ Transfer</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr style="cursor:pointer;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                      <div style="width:34px;height:34px;border-radius:8px;background:#10b981;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;flex-shrink:0;">DL</div>
+                      <div><div style="font-weight:700;color:var(--navy);font-size:13px;">Denise Lawrence</div><div style="font-size:11px;color:var(--n-500);">denise.lawrence@email.com</div></div>
+                    </div>
+                  </td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);"><span class="badge b-blue">🏦 Mortgage</span></td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);"><span class="status-pill sp-blue">Under Review</span></td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);font-size:13px;color:var(--n-600);">Tom Burke</td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);"><span class="badge b-orange">🟡 Warm</span></td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);font-size:12px;color:var(--n-500);">Today, 8:31 AM</td>
+                  <td style="padding:13px 16px;border-bottom:1px solid var(--n-100);text-align:center;">
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="btn btn-xs btn-secondary" onclick="openLeadDrawer('Denise Lawrence','Mortgage','TB','warm')">View</button>
+                      <button class="btn btn-xs btn-secondary" onclick="openTransferModal('Denise Lawrence')">↩ Transfer</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding:14px 18px;border-top:1px solid var(--n-100);display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-size:12px;color:var(--n-500);">Showing 1–3 of 148 leads</div>
+            <div style="display:flex;gap:6px;align-items:center;">
+              <button class="btn btn-xs btn-secondary">← Prev</button>
+              <button class="btn btn-xs btn-primary">1</button>
+              <button class="btn btn-xs btn-secondary">2</button>
+              <button class="btn btn-xs btn-secondary">3</button>
+              <button class="btn btn-xs btn-secondary">Next →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORECAST VIEW (hidden) -->
+      <div id="view-forecast" style="display:none;">
+        <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:18px;" class="fade-in">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">📈 Revenue Forecast — Q1 2026</div>
+                <div class="card-subtitle">Projected close values by department</div>
+              </div>
+              <div class="mini-tabs">
+                <button class="mini-tab sel" onclick="switchTab(this)">Monthly</button>
+                <button class="mini-tab" onclick="switchTab(this)">Quarterly</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Dept breakdown bars -->
+              <div style="display:flex;flex-direction:column;gap:18px;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                    <span style="font-size:13px;font-weight:600;color:var(--n-700);">🛡️ Insurance</span>
+                    <span style="font-family:'Archivo',sans-serif;font-size:15px;font-weight:700;color:var(--navy);">$42,800</span>
+                  </div>
+                  <div class="prog-track" style="height:8px;">
+                    <div class="prog-fill" style="width:62%;background:linear-gradient(90deg,var(--gold),#e6a500);"></div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n-500);margin-top:4px;">61 leads · 18 likely to close this quarter</div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                    <span style="font-size:13px;font-weight:600;color:var(--n-700);">🏦 Mortgage</span>
+                    <span style="font-family:'Archivo',sans-serif;font-size:15px;font-weight:700;color:var(--navy);">$3.1M</span>
+                  </div>
+                  <div class="prog-track" style="height:8px;">
+                    <div class="prog-fill" style="width:48%;background:linear-gradient(90deg,#3b82f6,#1d4ed8);"></div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n-500);margin-top:4px;">47 leads · 12 pre-approvals in pipeline</div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                    <span style="font-size:13px;font-weight:600;color:var(--n-700);">🏘️ Real Estate</span>
+                    <span style="font-family:'Archivo',sans-serif;font-size:15px;font-weight:700;color:var(--navy);">$8.2M</span>
+                  </div>
+                  <div class="prog-track" style="height:8px;">
+                    <div class="prog-fill" style="width:74%;background:linear-gradient(90deg,var(--green),#059669);"></div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n-500);margin-top:4px;">40 leads · 9 under contract nearing close</div>
+                </div>
+              </div>
+
+              <div style="margin-top:22px;padding:14px 16px;background:var(--n-50);border-radius:10px;border:1px solid var(--n-200);">
+                <div style="font-size:11px;font-weight:700;color:var(--n-500);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;">Q1 Totals</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+                  <div style="text-align:center;">
+                    <div style="font-family:'Archivo',sans-serif;font-size:22px;font-weight:800;color:var(--navy);">$11.4M</div>
+                    <div style="font-size:11px;color:var(--n-500);">Total Pipeline</div>
+                  </div>
+                  <div style="text-align:center;">
+                    <div style="font-family:'Archivo',sans-serif;font-size:22px;font-weight:800;color:var(--green);">$4.8M</div>
+                    <div style="font-size:11px;color:var(--n-500);">Likely to Close</div>
+                  </div>
+                  <div style="text-align:center;">
+                    <div style="font-family:'Archivo',sans-serif;font-size:22px;font-weight:800;color:var(--orange);">$2.1M</div>
+                    <div style="font-size:11px;color:var(--n-500);">At Risk</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">🎯 Conversion Rates</div>
+              </div>
+              <div class="card-body">
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                  <div style="display:flex;justify-content:space-between;padding:10px;background:var(--n-50);border-radius:8px;">
+                    <span style="font-size:13px;color:var(--n-600);">New → Contacted</span>
+                    <span style="font-weight:700;font-family:'Archivo',sans-serif;color:var(--navy);">73%</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:10px;background:var(--n-50);border-radius:8px;">
+                    <span style="font-size:13px;color:var(--n-600);">Contacted → Quoted</span>
+                    <span style="font-weight:700;font-family:'Archivo',sans-serif;color:var(--navy);">54%</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:10px;background:var(--n-50);border-radius:8px;">
+                    <span style="font-size:13px;color:var(--n-600);">Quoted → Contract</span>
+                    <span style="font-weight:700;font-family:'Archivo',sans-serif;color:var(--orange);">41%</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:10px;background:var(--n-50);border-radius:8px;">
+                    <span style="font-size:13px;color:var(--n-600);">Contract → Closed</span>
+                    <span style="font-weight:700;font-family:'Archivo',sans-serif;color:var(--green);">88%</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:10px;background:linear-gradient(135deg,#e0eaf2,#d0e0ee);border-radius:8px;">
+                    <span style="font-size:13px;font-weight:700;color:var(--navy);">Overall Conversion</span>
+                    <span style="font-weight:800;font-family:'Archivo',sans-serif;color:var(--navy);">14.2%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">⏱ Avg Days per Stage</div>
+              </div>
+              <div class="card-body">
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;justify-content:space-between;font-size:13px;">
+                    <span style="color:var(--n-600);">New Inquiry</span><span style="font-weight:600;">1.4 days</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;">
+                    <span style="color:var(--n-600);">Contacted</span><span style="font-weight:600;">3.2 days</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;">
+                    <span style="color:var(--n-600);">Quoted / Offer</span><span style="font-weight:600;">5.8 days</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;">
+                    <span style="color:var(--n-600);">Under Contract</span><span style="font-weight:600;">22.1 days</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;">
+                    <span style="color:var(--n-600);">Pending Close</span><span style="font-weight:600;">7.4 days</span>
+                  </div>
+                  <div style="border-top:1px solid var(--n-100);padding-top:10px;display:flex;justify-content:space-between;font-size:13px;">
+                    <span style="font-weight:700;color:var(--navy);">Total Avg Cycle</span><span style="font-weight:700;color:var(--navy);">40 days</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /view-pipeline -->
+
     </div><!-- /content -->
   </div><!-- /main -->
 </div><!-- /app-body -->
@@ -2020,6 +2846,96 @@
   </div>
 </div>
 
+<!-- LEAD DETAIL DRAWER -->
+<div class="detail-drawer" id="leadDrawer">
+  <div class="drawer-header">
+    <div>
+      <div style="font-family:'Archivo',sans-serif;font-size:17px;font-weight:700;color:var(--navy);" id="drawerName">Lead Detail</div>
+      <div style="font-size:12px;color:var(--n-500);margin-top:3px;" id="drawerDeptLine">Department · Stage</div>
+    </div>
+    <button class="modal-close" onclick="closeDrawer()">×</button>
+  </div>
+  <div class="drawer-body">
+
+    <!-- Priority + Dept -->
+    <div style="display:flex;gap:8px;margin-bottom:18px;" id="drawerBadges">
+      <span class="badge b-gold">🛡️ Insurance</span>
+      <span class="badge b-red">🔴 Hot</span>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="card" style="margin-bottom:14px;border-radius:10px;">
+      <div style="padding:12px 14px;border-bottom:1px solid var(--n-100);font-size:12px;font-weight:700;color:var(--n-500);text-transform:uppercase;letter-spacing:.07em;">Contact Info</div>
+      <div style="padding:12px 14px;">
+        <div class="info-row"><span class="info-label">Phone</span><span class="info-value">(832) 555-0141</span></div>
+        <div class="info-row"><span class="info-label">Email</span><span class="info-value">lead@email.com</span></div>
+        <div class="info-row"><span class="info-label">Assigned</span><span class="info-value">Jaquarian Bonilla</span></div>
+        <div class="info-row"><span class="info-label">Source</span><span class="info-value">Website Inquiry</span></div>
+        <div class="info-row"><span class="info-label">Created</span><span class="info-value">Feb 10, 2026</span></div>
+      </div>
+    </div>
+
+    <!-- Update Stage -->
+    <div class="card" style="margin-bottom:14px;border-radius:10px;">
+      <div style="padding:12px 14px;border-bottom:1px solid var(--n-100);font-size:12px;font-weight:700;color:var(--n-500);text-transform:uppercase;letter-spacing:.07em;">Update Stage</div>
+      <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px;">
+        <select class="form-select" style="font-size:12px;padding:8px 12px;">
+          <option>New Inquiry</option>
+          <option selected>Quoted / Offer</option>
+          <option>Under Contract</option>
+          <option>Pending Close</option>
+          <option>Closed ✓</option>
+        </select>
+        <button class="btn btn-primary btn-sm" style="justify-content:center;" onclick="showToast('Stage updated successfully.')">Save Stage</button>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="card" style="margin-bottom:14px;border-radius:10px;">
+      <div style="padding:12px 14px;border-bottom:1px solid var(--n-100);font-size:12px;font-weight:700;color:var(--n-500);text-transform:uppercase;letter-spacing:.07em;">Notes</div>
+      <div style="padding:12px 14px;">
+        <textarea class="form-textarea" style="min-height:70px;font-size:12px;" placeholder="Add a note…">Auto renewal inquiry — quote sent at $187/mo. Follow-up call scheduled for today at 10:00 AM.</textarea>
+        <button class="btn btn-secondary btn-sm" style="margin-top:8px;width:100%;justify-content:center;" onclick="showToast('Note saved.')">Save Note</button>
+      </div>
+    </div>
+
+    <!-- Activity Timeline -->
+    <div class="card" style="border-radius:10px;">
+      <div style="padding:12px 14px;border-bottom:1px solid var(--n-100);font-size:12px;font-weight:700;color:var(--n-500);text-transform:uppercase;letter-spacing:.07em;">Activity Timeline</div>
+      <div style="padding:12px 14px;">
+        <div class="timeline-item">
+          <div class="tl-dot" style="background:var(--green);"></div>
+          <div class="tl-content">
+            <div class="tl-action">Quote sent via Vertafore — $187/mo</div>
+            <div class="tl-time">Today, 11:04 AM · Jaquarian B.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot" style="background:var(--orange);"></div>
+          <div class="tl-content">
+            <div class="tl-action">Outbound call — 4m 22s</div>
+            <div class="tl-time">Today, 9:30 AM · Recorded</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot" style="background:var(--blue-text);"></div>
+          <div class="tl-content">
+            <div class="tl-action">Lead created from website inquiry</div>
+            <div class="tl-time">Feb 10, 2026 · Auto-import</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="drawer-footer">
+    <button class="btn btn-secondary btn-sm" style="flex:1;justify-content:center;" onclick="openTransferModal(document.getElementById('drawerName').textContent)">↩ Transfer</button>
+    <button class="btn btn-primary btn-sm" style="flex:1;justify-content:center;" onclick="showToast('Opening call…')">📞 Call</button>
+    <button class="btn btn-secondary btn-sm" style="justify-content:center;" onclick="showToast('Opening SMS…')">💬</button>
+    <button class="btn btn-secondary btn-sm" style="justify-content:center;" onclick="showToast('Opening email…')">✉️</button>
+  </div>
+</div>
+
 <!-- Toast -->
 <div id="toast">
   <span>✓</span>
@@ -2039,14 +2955,11 @@
   function showView(name) {
     const dash = document.getElementById('view-dashboard');
     const cont = document.getElementById('view-contacts');
-    if (!dash || !cont) return;
-    if (name === 'contacts') {
-      dash.style.display = 'none';
-      cont.style.display = 'block';
-    } else {
-      dash.style.display = 'block';
-      cont.style.display = 'none';
-    }
+    const pipe = document.getElementById('view-pipeline');
+    if (!dash || !cont || !pipe) return;
+    dash.style.display = name === 'dashboard' ? 'block' : 'none';
+    cont.style.display = name === 'contacts' ? 'block' : 'none';
+    pipe.style.display = name === 'pipeline' ? 'block' : 'none';
   }
 
   /* ── NAV ACTIVE ── */
@@ -2090,6 +3003,93 @@
     t.classList.add('show');
     toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
   }
+
+
+  /* ── PIPELINE (from pipeline.html) ── */
+  function setView(name, el) {
+    const pv = document.getElementById('pipeline-view-tabs');
+    if (pv) pv.querySelectorAll('.mini-tab').forEach(t => t.classList.remove('sel'));
+    el.classList.add('sel');
+    document.getElementById('view-kanban').style.display = name === 'kanban' ? 'block' : 'none';
+    document.getElementById('view-list').style.display   = name === 'list' ? 'block' : 'none';
+    document.getElementById('view-forecast').style.display = name === 'forecast' ? 'block' : 'none';
+  }
+
+  function openTransferModal(name) {
+    document.getElementById('transferContactName').textContent = name;
+    document.getElementById('transferAgent').value = '';
+    document.getElementById('transferDept').value = '';
+    document.getElementById('transferReason').value = '';
+    document.getElementById('transferModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  let currentDrawerLead = null;
+  function openLeadDrawer(name, dept, agent, temp) {
+    currentDrawerLead = { name, dept, agent, temp };
+    document.getElementById('drawerName').textContent = name;
+    document.getElementById('drawerDeptLine').textContent = dept + ' · Quoted / Offer';
+
+    const deptBadges = {
+      'Insurance':   '<span class="badge b-gold">🛡️ Insurance</span>',
+      'Mortgage':    '<span class="badge b-blue">🏦 Mortgage</span>',
+      'Real Estate': '<span class="badge b-green">🏘️ Real Estate</span>',
+    };
+    const tempBadges = {
+      'hot':  '<span class="badge b-red">🔴 Hot</span>',
+      'warm': '<span class="badge b-orange">🟡 Warm</span>',
+      'cool': '<span class="badge b-neutral">🔵 Cool</span>',
+    };
+    document.getElementById('drawerBadges').innerHTML = (deptBadges[dept]||'') + (tempBadges[temp]||'');
+    document.getElementById('leadDrawer').classList.add('open');
+  }
+  function closeDrawer() {
+    document.getElementById('leadDrawer').classList.remove('open');
+  }
+
+  function filterCards() {
+    const q    = document.getElementById('pipelineSearch').value.toLowerCase();
+    const dept = document.getElementById('pipeDeptFilter').value;
+    const agent= document.getElementById('agentFilter').value;
+    const temp = document.getElementById('tempFilter').value;
+    let count = 0;
+    document.querySelectorAll('#view-pipeline .lead-card').forEach(card => {
+      const name     = card.querySelector('.lead-name').textContent.toLowerCase();
+      const cardDept = card.dataset.dept || '';
+      const cardAgent= card.dataset.agent || '';
+      const cardTemp = card.dataset.temp || '';
+      const show = (!q || name.includes(q)) &&
+                   (!dept  || cardDept  === dept) &&
+                   (!agent || cardAgent === agent) &&
+                   (!temp  || cardTemp  === temp);
+      card.style.display = show ? '' : 'none';
+      if (show) count++;
+    });
+    document.getElementById('leadCountBadge').textContent = count + ' lead' + (count !== 1 ? 's' : '');
+  }
+
+  function pipeQuickFilter(dept) {
+    document.getElementById('pipeDeptFilter').value = dept;
+    document.getElementById('pipelineSearch').value = '';
+    document.getElementById('agentFilter').value = '';
+    document.getElementById('tempFilter').value = '';
+    filterCards();
+  }
+
+  function clearFilters() {
+    document.getElementById('pipeDeptFilter').value = '';
+    document.getElementById('agentFilter').value = '';
+    document.getElementById('tempFilter').value = '';
+    document.getElementById('pipelineSearch').value = '';
+    filterCards();
+    document.getElementById('leadCountBadge').textContent = '148 leads';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#view-pipeline .lead-card').forEach(card => {
+      card.addEventListener('dragstart', () => {});
+    });
+  });
 
   /* ══ CONTACTS DATA & UI ══ */
   const allContacts = [
