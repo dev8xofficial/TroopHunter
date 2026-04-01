@@ -668,6 +668,101 @@
       animation: slideUp .3s ease;
     }
     #toast.show { display: flex; }
+
+    /* ═══════════════════════════════════════
+       CONTACTS
+    ═══════════════════════════════════════ */
+    .tbl-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      text-align: left; padding: 11px 16px;
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--n-500);
+      border-bottom: 1px solid var(--n-200);
+      background: var(--n-50);
+      white-space: nowrap;
+    }
+    td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--n-100);
+      font-size: 13.5px;
+      vertical-align: middle;
+    }
+    tbody tr:hover { background: #f8fafc; }
+    tbody tr:last-child td { border-bottom: none; }
+
+    .filter-bar {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .filter-input {
+      background: white;
+      border: 1.5px solid var(--n-200);
+      border-radius: 10px;
+      padding: 9px 14px 9px 36px;
+      font-size: 13px; color: var(--n-800);
+      font-family: 'Manrope', sans-serif;
+      outline: none;
+      transition: border-color .2s;
+      width: 240px;
+    }
+    .filter-input:focus { border-color: var(--navy); }
+    .filter-select-sm {
+      background: white;
+      border: 1.5px solid var(--n-200);
+      border-radius: 10px;
+      padding: 9px 32px 9px 12px;
+      font-size: 13px; color: var(--n-700);
+      font-family: 'Manrope', sans-serif;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      transition: border-color .2s;
+    }
+    .filter-select-sm:focus { border-color: var(--navy); }
+
+    .contact-row-hover { transition: background .15s; }
+    .contact-row-hover:hover { background: #f8fafc; cursor: pointer; }
+
+    .icon-btn {
+      width: 30px; height: 30px; border-radius: 7px;
+      border: 1.5px solid var(--n-200);
+      background: white; color: var(--n-600);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 13px; cursor: pointer; transition: all .15s;
+    }
+    .icon-btn:hover { border-color: var(--navy); color: var(--navy); background: var(--n-50); }
+    .icon-btn.danger:hover { border-color: var(--red); color: var(--red); }
+
+    .detail-panel {
+      width: 360px;
+      flex-shrink: 0;
+      background: white;
+      border-left: 1px solid var(--n-200);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+      transition: transform .3s ease;
+    }
+
+    .sp-gray { background: var(--n-100); color: var(--n-600); }
+
+    #view-contacts .avatar { color: white; }
+
+    #view-contacts .stat-card {
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+    #view-contacts .mini-tab {
+      padding: 5px 14px;
+      font-size: 12px;
+    }
+    #addModal .modal-title { font-size: 20px; }
+    #addModal .modal-footer { border-radius: 0 0 20px 20px; }
   </style>
 </head>
 <body>
@@ -747,11 +842,11 @@
     <!-- MAIN -->
     <div class="nav-section-label">Main</div>
 
-    <a class="nav-item active" onclick="setActive(this)">
+    <a class="nav-item active" data-view="dashboard" onclick="setActive(this)">
       <div class="ni-icon">📊</div>
       Dashboard
     </a>
-    <a class="nav-item" onclick="setActive(this)">
+    <a class="nav-item" data-view="contacts" onclick="setActive(this)">
       <div class="ni-icon">👥</div>
       Contacts
       <span class="nav-badge nav-badge-blue">1,284</span>
@@ -857,6 +952,8 @@
 
     <!-- PAGE CONTENT -->
     <div class="content">
+
+    <div id="view-dashboard">
 
       <!-- ── PAGE HEADER ── -->
       <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;" class="fade-in">
@@ -1488,6 +1585,169 @@
         </div><!-- /col 3 -->
       </div><!-- /3-col -->
 
+    </div><!-- /view-dashboard -->
+
+    <div id="view-contacts" style="display:none;">
+
+      <!-- PAGE HEADER -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;" class="fade-in">
+        <div>
+          <h1 style="font-family:'Archivo',sans-serif;font-size:26px;font-weight:800;color:var(--navy);line-height:1.2;">Contacts</h1>
+          <p style="font-size:14px;color:var(--n-600);margin-top:4px;">1,284 contacts across Insurance, Mortgage &amp; Real Estate</p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button class="btn btn-secondary btn-sm">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Export
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="alert('Import via Follow Up Boss or CSV')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            Import
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="openAddModal()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            New Contact
+          </button>
+        </div>
+      </div>
+
+      <!-- STAT CARDS -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">
+        <div class="stat-card navy fade-in s1">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--n-600);margin-bottom:6px;">Total Contacts</div>
+              <div style="font-family:'Archivo',sans-serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:4px;">1,284</div>
+            </div>
+            <div style="font-size:34px;opacity:.8;">👥</div>
+          </div>
+          <div style="font-size:12px;color:var(--n-500);margin-top:6px;display:flex;align-items:center;gap:4px;"><span style="color:var(--green);font-weight:700;">▲ 12%</span> vs last month</div>
+        </div>
+
+        <div class="stat-card gold fade-in s2">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--n-600);margin-bottom:6px;">New This Month</div>
+              <div style="font-family:'Archivo',sans-serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:4px;">87</div>
+            </div>
+            <div style="font-size:34px;opacity:.8;">✨</div>
+          </div>
+          <div style="font-size:12px;color:var(--n-500);margin-top:6px;">Across all departments</div>
+        </div>
+
+        <div class="stat-card blue fade-in s3">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--n-600);margin-bottom:6px;">Transferred Leads</div>
+              <div style="font-family:'Archivo',sans-serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:4px;">24</div>
+            </div>
+            <div style="font-size:34px;opacity:.8;">🔁</div>
+          </div>
+          <div style="font-size:12px;color:var(--n-500);margin-top:6px;">Agent-to-agent handoffs</div>
+        </div>
+
+        <div class="stat-card green fade-in s4">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--n-600);margin-bottom:6px;">Closed Clients</div>
+              <div style="font-family:'Archivo',sans-serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:4px;">312</div>
+            </div>
+            <div style="font-size:34px;opacity:.8;">✅</div>
+          </div>
+          <div style="font-size:12px;color:var(--n-500);margin-top:6px;"><span style="color:var(--green);font-weight:700;">▲ 18%</span> vs last quarter</div>
+        </div>
+      </div>
+
+      <!-- FILTER BAR + TABS -->
+      <div class="card fade-in" style="margin-bottom:20px;">
+        <div style="padding:14px 18px;border-bottom:1px solid var(--n-100);display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <!-- Search -->
+          <div style="position:relative;">
+            <span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--n-400);font-size:13px;pointer-events:none;">🔍</span>
+            <input type="text" class="filter-input" id="contactSearch" placeholder="Search by name, email, or phone…" oninput="filterContacts()" />
+          </div>
+
+          <!-- Department filter -->
+          <select class="filter-select-sm" id="deptFilter" onchange="filterContacts()">
+            <option value="">All Departments</option>
+            <option value="Insurance">🛡️ Insurance</option>
+            <option value="Mortgage">🏦 Mortgage</option>
+            <option value="Real Estate">🏘️ Real Estate</option>
+          </select>
+
+          <!-- Stage filter -->
+          <select class="filter-select-sm" id="stageFilter" onchange="filterContacts()">
+            <option value="">All Stages</option>
+            <option value="New">New Inquiry</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Quoted">Quoted / Offer</option>
+            <option value="Under Contract">Under Contract</option>
+            <option value="Closed">Closed</option>
+          </select>
+
+          <!-- Assigned filter -->
+          <select class="filter-select-sm" id="assignedFilter" onchange="filterContacts()">
+            <option value="">All Agents</option>
+            <option value="Jaquarian Bonilla">Jaquarian Bonilla</option>
+            <option value="Tom Burke">Tom Burke</option>
+          </select>
+
+          <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
+            <!-- View toggle -->
+            <div class="mini-tabs">
+              <button class="mini-tab sel" onclick="switchTab(this)">Table</button>
+              <button class="mini-tab" onclick="switchTab(this)">Cards</button>
+            </div>
+            <span id="contactCount" style="font-size:12px;color:var(--n-500);white-space:nowrap;font-weight:600;"></span>
+          </div>
+        </div>
+
+        <!-- DEPARTMENT QUICK FILTER PILLS -->
+        <div style="padding:10px 18px;border-bottom:1px solid var(--n-100);display:flex;gap:8px;align-items:center;">
+          <span style="font-size:11px;font-weight:700;color:var(--n-500);text-transform:uppercase;letter-spacing:.06em;margin-right:4px;">Quick:</span>
+          <button class="badge b-neutral" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickFilter('all')" id="qf-all">All (1,284)</button>
+          <button class="badge b-gold" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickFilter('Insurance')" id="qf-ins">🛡️ Insurance (512)</button>
+          <button class="badge b-blue" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickFilter('Mortgage')" id="qf-mort">🏦 Mortgage (381)</button>
+          <button class="badge b-green" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickFilter('Real Estate')" id="qf-re">🏘️ Real Estate (391)</button>
+          <div style="margin-left:auto;">
+            <button class="badge b-red" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickFilter('no-data')">⚠️ Missing Data (28)</button>
+          </div>
+        </div>
+
+        <!-- CONTACTS TABLE -->
+        <div class="tbl-wrap" id="contacts-table-view">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:36px;"><input type="checkbox" id="selectAll" onchange="toggleAll(this)" /></th>
+                <th>Contact</th>
+                <th>Department</th>
+                <th>Stage</th>
+                <th>Assigned To</th>
+                <th>Last Activity</th>
+                <th>Source</th>
+                <th style="text-align:center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="contactsBody">
+              <!-- Rows injected by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- PAGINATION -->
+        <div style="padding:14px 18px;border-top:1px solid var(--n-100);display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-size:12px;color:var(--n-500);">Showing <span id="showingRange">1–12</span> of <span id="totalShowing">1,284</span> contacts</div>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <button class="btn btn-secondary btn-xs" onclick="prevPage()">← Prev</button>
+            <div id="pageButtons" style="display:flex;gap:4px;"></div>
+            <button class="btn btn-secondary btn-xs" onclick="nextPage()">Next →</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /view-contacts -->
+
     </div><!-- /content -->
   </div><!-- /main -->
 </div><!-- /app-body -->
@@ -1608,6 +1868,158 @@
   </div>
 </div>
 
+<!-- ══════════════════════ ADD / EDIT CONTACT MODAL ══════════════════════ -->
+<div class="modal-overlay" id="addModal" onclick="handleOverlay(event,'addModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalTitle">New Contact</div>
+        <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Add a contact and assign to a department</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('addModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="form-group">
+          <label class="form-label">First Name <span style="color:var(--red);">*</span></label>
+          <input class="form-input" type="text" id="m-fname" placeholder="First name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name <span style="color:var(--red);">*</span></label>
+          <input class="form-input" type="text" id="m-lname" placeholder="Last name" />
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="form-group">
+          <label class="form-label">Phone <span style="color:var(--red);">*</span></label>
+          <input class="form-input" type="tel" id="m-phone" placeholder="(555) 000-0000" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" id="m-email" placeholder="email@example.com" />
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="form-group">
+          <label class="form-label">Department <span style="color:var(--red);">*</span></label>
+          <select class="form-select" id="m-dept">
+            <option value="">Select department…</option>
+            <option>🛡️ Insurance</option>
+            <option>🏦 Mortgage</option>
+            <option>🏘️ Real Estate</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Pipeline Stage</label>
+          <select class="form-select" id="m-stage">
+            <option>New Inquiry</option>
+            <option>Contacted</option>
+            <option>Quoted / Offer</option>
+            <option>Under Contract</option>
+            <option>Closed</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="form-group">
+          <label class="form-label">Lead Source</label>
+          <select class="form-select" id="m-source">
+            <option value="">Select source…</option>
+            <option>Follow Up Boss (Import)</option>
+            <option>Website Inquiry</option>
+            <option>Referral</option>
+            <option>Walk-in</option>
+            <option>Cold Call</option>
+            <option>Email Campaign</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Assigned Agent</label>
+          <select class="form-select" id="m-agent">
+            <option>Jaquarian Bonilla</option>
+            <option>Tom Burke</option>
+            <option>Unassigned</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date of Birth</label>
+        <input class="form-input" type="date" id="m-dob" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notes</label>
+        <textarea class="form-textarea" id="m-notes" placeholder="Initial notes about this contact…"></textarea>
+      </div>
+      <!-- Auto-sync -->
+      <div style="padding:12px 14px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;">
+        <div style="font-size:11.5px;font-weight:700;color:var(--n-600);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em;">Auto-Sync To:</div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" checked style="width:15px;height:15px;" /> Outlook
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" style="width:15px;height:15px;" /> Vertafore
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" style="width:15px;height:15px;" /> Arive
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('addModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveContact()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        Save Contact
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ TRANSFER LEAD MODAL ══════════════════════ -->
+<div class="modal-overlay" id="transferModal" onclick="handleOverlay(event,'transferModal')">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Transfer Lead</div>
+        <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Reassign this contact to another agent or department</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('transferModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="transferContactName" style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:16px;padding:12px 14px;background:var(--n-50);border-radius:8px;border-left:3px solid var(--gold);"></div>
+      <div class="form-group">
+        <label class="form-label">Transfer To (Agent) <span style="color:var(--red);">*</span></label>
+        <select class="form-select" id="transferAgent">
+          <option value="">Select agent…</option>
+          <option>Jaquarian Bonilla</option>
+          <option>Tom Burke</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">New Department</label>
+        <select class="form-select" id="transferDept">
+          <option value="">Keep current department</option>
+          <option>🛡️ Insurance</option>
+          <option>🏦 Mortgage</option>
+          <option>🏘️ Real Estate</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Reason for Transfer</label>
+        <textarea class="form-textarea" id="transferReason" placeholder="e.g. Client is pre-approved — handing off to real estate for property search…" style="min-height:70px;"></textarea>
+      </div>
+      <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+        <input type="checkbox" checked style="width:15px;height:15px;" /> Notify receiving agent via Outlook email
+      </label>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('transferModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmTransfer()">🔁 Confirm Transfer</button>
+    </div>
+  </div>
+</div>
+
 <!-- Toast -->
 <div id="toast">
   <span>✓</span>
@@ -1623,10 +2035,26 @@
   document.getElementById('live-date').textContent =
     new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
 
+  /* ── VIEWS (dashboard + contacts) ── */
+  function showView(name) {
+    const dash = document.getElementById('view-dashboard');
+    const cont = document.getElementById('view-contacts');
+    if (!dash || !cont) return;
+    if (name === 'contacts') {
+      dash.style.display = 'none';
+      cont.style.display = 'block';
+    } else {
+      dash.style.display = 'block';
+      cont.style.display = 'none';
+    }
+  }
+
   /* ── NAV ACTIVE ── */
   function setActive(el) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     el.classList.add('active');
+    const v = el.getAttribute('data-view');
+    showView(v || 'dashboard');
   }
 
   /* ── MINI TAB ── */
@@ -1654,11 +2082,210 @@
   }
 
   /* ── TOAST ── */
+  let toastTimer;
   function showToast(msg) {
+    clearTimeout(toastTimer);
     const t = document.getElementById('toast');
     document.getElementById('toast-msg').textContent = msg;
     t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3200);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+  }
+
+  /* ══ CONTACTS DATA & UI ══ */
+  const allContacts = [
+    { id:1,  fname:'Sandra',   lname:'Hayes',     phone:'(832) 555-0141', email:'sandra.hayes@email.com',    dept:'Insurance',    stage:'Quoted',         agent:'Jaquarian Bonilla', lastActivity:'Today, 11:04 AM',   source:'Referral',              dob:'1979-06-12', notes:'Auto renewal — quote sent.' },
+    { id:2,  fname:'Marcus',   lname:'Rivera',    phone:'(713) 555-0289', email:'marcus.rivera@email.com',   dept:'Insurance',    stage:'Contacted',      agent:'Jaquarian Bonilla', lastActivity:'Today, 9:30 AM',    source:'Cold Call',             dob:'1985-03-22', notes:'Pending callback re: auto quote.' },
+    { id:3,  fname:'Denise',   lname:'Lawrence',  phone:'(832) 555-0374', email:'denise.lawrence@email.com', dept:'Mortgage',     stage:'Under Contract', agent:'Tom Burke',          lastActivity:'Today, 8:31 AM',    source:'Arive (Import)',        dob:'1990-11-05', notes:'Pre-approval in progress. Arive synced.' },
+    { id:4,  fname:'Terrence', lname:'Cole',      phone:'(281) 555-0452', email:'terrence.cole@email.com',   dept:'Real Estate',  stage:'Quoted',         agent:'Jaquarian Bonilla', lastActivity:'Yesterday, 1:00 PM','source':'Transferred (Insurance)', dob:'1983-08-17', notes:'Transferred from Insurance. Offer stage.' },
+    { id:5,  fname:'Kevin',    lname:'Watts',     phone:'(832) 555-0567', email:'kevin.watts@email.com',     dept:'Insurance',    stage:'New Inquiry',    agent:'Jaquarian Bonilla', lastActivity:'Today, 8:00 AM',    source:'Website Inquiry',       dob:'1995-01-30', notes:'Home + auto bundle inquiry.' },
+    { id:6,  fname:'Patricia', lname:'Torres',    phone:'(713) 555-0618', email:'patricia.torres@email.com', dept:'Mortgage',     stage:'Under Contract', agent:'Tom Burke',          lastActivity:'Yesterday, 2:15 PM','source':'Referral',            dob:'1981-04-08', notes:'Refinance. Arive app in progress.' },
+    { id:7,  fname:'John',     lname:'Smith',     phone:'(512) 555-0198', email:'john.smith@gmail.com',      dept:'Real Estate',  stage:'Closed',         agent:'Tom Burke',          lastActivity:'Feb 15, 2026',      source:'Follow Up Boss',        dob:'1985-03-15', notes:'Closed on 123 Main Street. TRX-10247.' },
+    { id:8,  fname:'Sarah',    lname:'Williams',  phone:'(512) 555-0387', email:'sarah.williams@gmail.com',  dept:'Real Estate',  stage:'Under Contract', agent:'Tom Burke',          lastActivity:'Feb 10, 2026',      source:'Follow Up Boss',        dob:'1988-07-22', notes:'789 Pine Road. Closing Mar 1.' },
+    { id:9,  fname:'Michael',  lname:'Brown',     phone:'(512) 555-0502', email:'michael.brown@gmail.com',   dept:'Real Estate',  stage:'Under Contract', agent:'Tom Burke',          lastActivity:'Feb 8, 2026',       source:'Website Inquiry',       dob:'1982-12-10', notes:'321 Elm Street. TRX-10156.' },
+    { id:10, fname:'Lisa',     lname:'Anderson',  phone:'(281) 555-0731', email:'lisa.anderson@email.com',   dept:'Real Estate',  stage:'Closed',         agent:'Tom Burke',          lastActivity:'Dec 20, 2025',      source:'Referral',              dob:'1977-09-03', notes:'654 Maple Drive. TRX-10089 completed.' },
+    { id:11, fname:'Robert',   lname:'Wilson',    phone:'(832) 555-0844', email:'robert.wilson@email.com',   dept:'Mortgage',     stage:'Contacted',      agent:'Jaquarian Bonilla', lastActivity:'Feb 12, 2026',      source:'Cold Call',             dob:'1991-05-19', notes:'Refinance inquiry. Follow up pending.' },
+    { id:12, fname:'Emily',    lname:'Davis',     phone:'(713) 555-0955', email:'emily.davis@email.com',     dept:'Insurance',    stage:'Closed',         agent:'Jaquarian Bonilla', lastActivity:'Nov 15, 2025',      source:'Email Campaign',        dob:'1989-02-14', notes:'Home + auto bundle — closed Nov 2025.' },
+  ];
+
+  let filtered = [...allContacts];
+  let currentPage = 1;
+  const perPage = 12;
+  let editingId = null;
+
+  const deptConfig = {
+    'Insurance':   { badge:'b-gold',   icon:'🛡️' },
+    'Mortgage':    { badge:'b-blue',   icon:'🏦' },
+    'Real Estate': { badge:'b-green',  icon:'🏘️' },
+  };
+  const stageConfig = {
+    'New Inquiry':    'sp-orange',
+    'Contacted':      'sp-gold',
+    'Quoted':         'sp-blue',
+    'Under Contract': 'sp-purple',
+    'Closed':         'sp-green',
+  };
+  const avatarColors = [
+    '#1a3a52','#2d5a7b','#059669','#7c3aed','#d97706','#3b82f6','#ef4444','#ec4899',
+  ];
+  function avatarColor(name){ let h=0; for(let c of name) h=c.charCodeAt(0)+((h<<5)-h); return avatarColors[Math.abs(h)%avatarColors.length]; }
+  function initials(f,l){ return (f[0]||'')+(l[0]||''); }
+
+  function renderTable(){
+    const start=(currentPage-1)*perPage;
+    const slice=filtered.slice(start,start+perPage);
+    const tbody=document.getElementById('contactsBody');
+    tbody.innerHTML = slice.map(c=>{
+      const dcfg = deptConfig[c.dept]||{badge:'b-neutral',icon:'•'};
+      const scls  = stageConfig[c.stage]||'sp-gray';
+      const bg    = avatarColor(c.fname+c.lname);
+      return `
+      <tr class="contact-row-hover" onclick="openDetail(${c.id})">
+        <td onclick="event.stopPropagation()"><input type="checkbox" class="row-cb" data-id="${c.id}" /></td>
+        <td>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="avatar" style="background:${bg};">${initials(c.fname,c.lname)}</div>
+            <div>
+              <div style="font-weight:700;color:var(--navy);font-size:13.5px;">${c.fname} ${c.lname}</div>
+              <div style="font-size:11px;color:var(--n-500);">${c.email||'—'}</div>
+              <div style="font-size:11px;color:var(--n-500);">${c.phone}</div>
+            </div>
+          </div>
+        </td>
+        <td><span class="badge ${dcfg.badge}">${dcfg.icon} ${c.dept}</span></td>
+        <td><span class="status-pill ${scls}">${c.stage}</span></td>
+        <td>
+          <div style="font-size:13px;font-weight:600;color:var(--n-800);">${c.agent}</div>
+        </td>
+        <td style="font-size:12px;color:var(--n-500);">${c.lastActivity}</td>
+        <td style="font-size:12px;color:var(--n-600);">${c.source||'—'}</td>
+        <td onclick="event.stopPropagation()">
+          <div style="display:flex;gap:5px;justify-content:center;">
+            <button class="icon-btn" title="Call" onclick="showToast('Dialing ${c.fname}…')">📞</button>
+            <button class="icon-btn" title="SMS" onclick="showToast('Opening SMS to ${c.fname}…')">💬</button>
+            <button class="icon-btn" title="Email" onclick="showToast('Composing email to ${c.fname}…')">✉️</button>
+            <button class="icon-btn" title="Transfer" onclick="openTransfer(${c.id})">🔁</button>
+            <button class="icon-btn" title="Edit" onclick="openEdit(${c.id})">✏️</button>
+            <button class="icon-btn danger" title="Delete" onclick="deleteContact(${c.id})">🗑️</button>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+
+    document.getElementById('showingRange').textContent = filtered.length ? `${start+1}–${Math.min(start+perPage,filtered.length)}` : '0';
+    document.getElementById('totalShowing').textContent  = filtered.length.toLocaleString();
+    document.getElementById('contactCount').textContent  = `${filtered.length} contact${filtered.length!==1?'s':''}`;
+    renderPages();
+  }
+
+  function renderPages(){
+    const total = Math.ceil(filtered.length/perPage)||1;
+    const pb = document.getElementById('pageButtons');
+    let html='';
+    for(let i=1;i<=Math.min(total,5);i++){
+      html+=`<button class="btn btn-xs ${i===currentPage?'btn-primary':'btn-secondary'}" onclick="goPage(${i})">${i}</button>`;
+    }
+    if(total>5) html+=`<span style="font-size:12px;color:var(--n-400);align-self:center;">…${total}</span>`;
+    pb.innerHTML=html;
+  }
+  function goPage(p){ currentPage=p; renderTable(); }
+  function prevPage(){ if(currentPage>1){currentPage--;renderTable();} }
+  function nextPage(){ const t=Math.ceil(filtered.length/perPage); if(currentPage<t){currentPage++;renderTable();} }
+
+  function filterContacts(){
+    const q  = document.getElementById('contactSearch').value.toLowerCase();
+    const dp = document.getElementById('deptFilter').value;
+    const sg = document.getElementById('stageFilter').value;
+    const ag = document.getElementById('assignedFilter').value;
+    filtered = allContacts.filter(c=>{
+      const text = `${c.fname} ${c.lname} ${c.email} ${c.phone}`.toLowerCase();
+      return (!q||text.includes(q)) && (!dp||c.dept===dp) && (!sg||c.stage===sg) && (!ag||c.agent===ag);
+    });
+    currentPage=1; renderTable();
+  }
+
+  function quickFilter(key){
+    document.getElementById('deptFilter').value = (key==='all'||key==='no-data') ? '' : key;
+    document.getElementById('stageFilter').value = '';
+    document.getElementById('contactSearch').value = '';
+    document.getElementById('assignedFilter').value = '';
+    filterContacts();
+  }
+
+  function toggleAll(cb){ document.querySelectorAll('.row-cb').forEach(r=>r.checked=cb.checked); }
+
+  function openDetail(id){
+    const c = allContacts.find(x=>x.id===id);
+    if(!c) return;
+    const dcfg = deptConfig[c.dept]||{badge:'b-neutral',icon:'•'};
+    const scls  = stageConfig[c.stage]||'sp-gray';
+    const bg    = avatarColor(c.fname+c.lname);
+    const dob   = c.dob ? new Date(c.dob).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}) : '—';
+    showToast(`Viewing ${c.fname} ${c.lname}`);
+  }
+
+  function openAddModal(){
+    editingId=null;
+    document.getElementById('modalTitle').textContent='New Contact';
+    ['m-fname','m-lname','m-phone','m-email','m-notes','m-dob'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('m-dept').value='';
+    document.getElementById('m-stage').value='New Inquiry';
+    document.getElementById('m-source').value='';
+    document.getElementById('m-agent').value='Jaquarian Bonilla';
+    document.getElementById('addModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+
+  function openEdit(id){
+    const c=allContacts.find(x=>x.id===id);
+    if(!c) return;
+    editingId=id;
+    document.getElementById('modalTitle').textContent='Edit Contact';
+    document.getElementById('m-fname').value=c.fname;
+    document.getElementById('m-lname').value=c.lname;
+    document.getElementById('m-phone').value=c.phone;
+    document.getElementById('m-email').value=c.email||'';
+    document.getElementById('m-dob').value=c.dob||'';
+    document.getElementById('m-notes').value=c.notes||'';
+    document.getElementById('m-stage').value=c.stage;
+    document.getElementById('m-agent').value=c.agent;
+    const deptEl=document.getElementById('m-dept');
+    for(let opt of deptEl.options){ if(opt.value.includes(c.dept)||c.dept.includes(opt.value.replace(/[^a-zA-Z ]/g,'').trim())){ deptEl.value=opt.value; break; } }
+    document.getElementById('addModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+
+  function saveContact(){
+    const fname=document.getElementById('m-fname').value.trim();
+    const lname=document.getElementById('m-lname').value.trim();
+    const phone=document.getElementById('m-phone').value.trim();
+    if(!fname||!lname||!phone){ alert('First name, last name and phone are required.'); return; }
+    closeModal('addModal');
+    showToast(editingId ? `Contact updated — ${fname} ${lname}` : `Contact created — ${fname} ${lname}`);
+    renderTable();
+  }
+
+  function openTransfer(id){
+    const c=allContacts.find(x=>x.id===id);
+    if(!c) return;
+    document.getElementById('transferContactName').textContent=`${c.fname} ${c.lname} · ${c.dept} · ${c.stage}`;
+    document.getElementById('transferAgent').value='';
+    document.getElementById('transferDept').value='';
+    document.getElementById('transferReason').value='';
+    document.getElementById('transferModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+
+  function confirmTransfer(){
+    const agent=document.getElementById('transferAgent').value;
+    if(!agent){ alert('Please select an agent to transfer to.'); return; }
+    closeModal('transferModal');
+    showToast(`Lead transferred to ${agent} — notification sent via Outlook`);
+  }
+
+  function deleteContact(id){
+    if(!confirm('Delete this contact? This cannot be undone.')) return;
+    const idx=allContacts.findIndex(x=>x.id===id);
+    if(idx>-1){ allContacts.splice(idx,1); filterContacts(); showToast('Contact deleted.'); }
   }
 
   /* ── TASK CHECKBOXES ── */
@@ -1676,6 +2303,8 @@
       }
     });
   });
+
+  renderTable();
 </script>
 
 </body>
