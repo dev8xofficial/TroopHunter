@@ -2592,6 +2592,236 @@
         color: var(--n-400);
       }
 
+      /* ══════════════════════════════════════
+       EMAIL VIEW (from email.html)
+    ══════════════════════════════════════ */
+
+      #view-email {
+        display: none;
+        flex: 1;
+        flex-direction: column;
+        min-height: 0;
+        margin: -28px -32px;
+        padding: 0;
+        overflow: hidden;
+      }
+
+          /* Email layout: sidebar + thread list + reading pane */
+          #view-email .email-layout {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      height: 100%;
+          }
+
+          /* ── EMAIL SIDEBAR (folders/labels) ── */
+          #view-email .email-sidebar {
+      width: 200px;
+      flex-shrink: 0;
+      background: white;
+      border-right: 1px solid var(--n-200);
+      display: flex;
+      flex-direction: column;
+      padding: 16px 10px;
+      gap: 2px;
+      overflow-y: auto;
+          }
+          #view-email .email-folder {
+      display: flex; align-items: center; gap: 9px;
+      padding: 8px 10px; border-radius: 8px;
+      font-size: 13px; font-weight: 500;
+      color: var(--n-600); cursor: pointer;
+      transition: all .15s;
+          }
+          #view-email .email-folder:hover { background: var(--n-100); color: var(--navy); }
+          #view-email .email-folder.active { background: var(--navy); color: white; }
+          #view-email .email-folder.active .ef-count { background: rgba(255,255,255,.2); color: white; }
+          #view-email .ef-icon { font-size: 14px; flex-shrink: 0; }
+          #view-email .ef-count { margin-left: auto; font-size: 10px; font-weight: 700; background: var(--n-100); color: var(--n-600); padding: 2px 7px; border-radius: 99px; }
+          #view-email .ef-section { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--n-400); padding: 14px 10px 4px; }
+
+          /* ── THREAD LIST ── */
+          #view-email .thread-list {
+      width: 320px;
+      flex-shrink: 0;
+      border-right: 1px solid var(--n-200);
+      display: flex;
+      flex-direction: column;
+      background: var(--n-50);
+      overflow: hidden;
+          }
+          #view-email .thread-list-header {
+      padding: 14px 16px;
+      background: white;
+      border-bottom: 1px solid var(--n-200);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+          }
+          #view-email .thread-search {
+      padding: 8px 14px 8px 34px;
+      border: 1.5px solid var(--n-200);
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-family: 'Manrope', sans-serif;
+      background: var(--n-50);
+      outline: none;
+      width: 100%;
+      transition: border-color .2s;
+          }
+          #view-email .thread-search:focus { border-color: var(--navy); }
+          #view-email .threads { overflow-y: auto; flex: 1; }
+          #view-email .thread-item {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--n-200);
+      cursor: pointer;
+      transition: background .15s;
+      background: white;
+          }
+          #view-email .thread-item:hover { background: #f0f5fa; }
+          #view-email .thread-item.active { background: #eef4fa; border-left: 3px solid var(--navy); padding-left: 13px; }
+          #view-email .thread-item.unread { background: white; }
+          #view-email .thread-item.unread .ti-subject { font-weight: 800; }
+          #view-email .ti-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px; }
+          #view-email .ti-sender { font-size: 13px; font-weight: 700; color: var(--n-800); display: flex; align-items: center; gap: 6px; }
+          #view-email .ti-unread-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--navy); flex-shrink: 0; }
+          #view-email .ti-time { font-size: 11px; color: var(--n-400); white-space: nowrap; }
+          #view-email .ti-subject { font-size: 12.5px; font-weight: 600; color: var(--n-700); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          #view-email .ti-preview { font-size: 11.5px; color: var(--n-500); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          #view-email .ti-tags { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
+
+          /* ── READING PANE ── */
+          #view-email .reading-pane {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: white;
+          }
+          #view-email .reading-pane-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--n-200);
+      flex-shrink: 0;
+          }
+          #view-email .email-subject { font-family: 'Archivo', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+          #view-email .email-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+          #view-email .email-from { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+          #view-email .sender-avatar { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: white; flex-shrink: 0; }
+          #view-email .email-actions { display: flex; gap: 8px; margin-left: auto; }
+          #view-email .action-icon-btn { width: 34px; height: 34px; border-radius: 8px; border: 1.5px solid var(--n-200); background: white; color: var(--n-600); display: inline-flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; transition: all .15s; }
+          #view-email .action-icon-btn:hover { border-color: var(--navy); color: var(--navy); }
+          #view-email .reading-pane-body { flex: 1; overflow-y: auto; padding: 24px 28px; }
+          #view-email .email-body-text { font-size: 14px; line-height: 1.75; color: var(--n-700); }
+          #view-email .email-body-text p { margin-bottom: 12px; }
+          #view-email .email-body-text .salutation { font-weight: 700; color: var(--n-800); }
+          #view-email .email-body-text .signature { font-size: 13px; color: var(--n-500); margin-top: 20px; border-top: 1px solid var(--n-200); padding-top: 14px; }
+          #view-email .reading-pane-footer {
+      padding: 14px 24px;
+      border-top: 1px solid var(--n-200);
+      background: var(--n-50);
+      flex-shrink: 0;
+          }
+          #view-email .quick-reply { display: flex; gap: 10px; align-items: center; }
+          #view-email .quick-reply-input { flex: 1; padding: 10px 14px; border: 1.5px solid var(--n-200); border-radius: 10px; font-family: 'Manrope', sans-serif; font-size: 13px; outline: none; transition: border-color .2s; background: white; }
+          #view-email .quick-reply-input:focus { border-color: var(--navy); }
+          #view-email .quick-reply-input::placeholder { color: var(--n-400); }
+
+          /* ── CRM PANEL ── */
+          #view-email .crm-panel {
+      width: 280px;
+      flex-shrink: 0;
+      border-left: 1px solid var(--n-200);
+      background: var(--n-50);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      gap: 14px;
+          }
+          #view-email .crm-panel-card { background: white; border: 1px solid var(--n-200); border-radius: 12px; padding: 14px; }
+          #view-email .crm-panel-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--n-500); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+          #view-email .crm-info-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--n-100); font-size: 12.5px; }
+          #view-email .crm-info-row:last-child { border-bottom: none; }
+          #view-email .crm-info-label { color: var(--n-500); font-weight: 500; }
+          #view-email .crm-info-value { color: var(--n-800); font-weight: 600; text-align: right; max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          #view-email .crm-timeline-item { display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--n-100); }
+          #view-email .crm-timeline-item:last-child { border-bottom: none; }
+          #view-email .crm-tl-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+          #view-email .crm-tl-text { font-size: 12px; color: var(--n-700); line-height: 1.4; }
+          #view-email .crm-tl-time { font-size: 10.5px; color: var(--n-400); margin-top: 1px; }
+
+          /* ── STAT CARDS ── */
+          #view-email .stat-card {
+      background: white; border-radius: 16px; padding: 22px 24px;
+      border: 1px solid var(--n-200); box-shadow: var(--sh-md);
+      transition: all .3s ease; position: relative; overflow: hidden;
+          }
+          #view-email .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+          #view-email .stat-card.navy::before { background: var(--navy); }
+          #view-email .stat-card.gold::before { background: var(--gold); }
+          #view-email .stat-card.green::before { background: var(--green); }
+          #view-email .stat-card.blue::before { background: #3b82f6; }
+          #view-email .stat-card.orange::before { background: var(--orange); }
+          #view-email .stat-label { font-size: 13px; font-weight: 500; color: var(--n-600); margin-bottom: 8px; }
+          #view-email .stat-value { font-family: 'Archivo', sans-serif; font-size: 32px; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 5px; }
+          #view-email .stat-delta { font-size: 12px; color: var(--n-500); display: flex; align-items: center; gap: 4px; margin-top: 6px; }
+          #view-email .delta-up { color: var(--green); font-weight: 700; }
+          #view-email .delta-down { color: var(--red);   font-weight: 700; }
+
+          /* ── BLAST / TEMPLATE TABLE ── */
+          #view-email .data-table { width: 100%; border-collapse: collapse; }
+          #view-email .data-table th { text-align: left; padding: 11px 16px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--n-500); border-bottom: 1px solid var(--n-200); background: var(--n-50); white-space: nowrap; }
+          #view-email .data-table td { padding: 13px 16px; border-bottom: 1px solid var(--n-100); font-size: 13.5px; vertical-align: middle; }
+          #view-email .data-table tbody tr:hover { background: #f8fafc; cursor: pointer; }
+          #view-email .data-table tbody tr:last-child td { border-bottom: none; }
+
+          /* ── PROG BAR ── */
+          #view-email .prog-track { height: 6px; background: var(--n-100); border-radius: 99px; overflow: hidden; margin-top: 5px; }
+          #view-email .prog-fill { height: 100%; border-radius: 99px; }
+
+          /* ── ATTACHMENT CHIP ── */
+          #view-email .attachment-chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 12px; background: var(--n-50);
+      border: 1.5px solid var(--n-200); border-radius: 10px;
+      font-size: 12px; font-weight: 600; color: var(--n-700);
+      cursor: pointer; transition: all .15s;
+          }
+          #view-email .attachment-chip:hover { border-color: var(--navy); background: white; }
+
+          /* ── EMPTY STATE ── */
+          #view-email .empty-state { text-align: center; padding: 48px 24px; color: var(--n-400); }
+          #view-email .empty-state .emoji { font-size: 42px; margin-bottom: 12px; }
+
+          /* Tab views */
+          #view-email .tab-view { display: none; }
+          #view-email .tab-view.active-view { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+
+          /* ── BLAST SECTION ── */
+          #view-email .blast-layout { display: grid; grid-template-columns: 1fr 360px; gap: 20px; padding: 24px; overflow-y: auto; }
+          #view-email .card { background: white; border-radius: 16px; border: 1px solid var(--n-200); box-shadow: var(--sh-md); overflow: hidden; margin-bottom: 20px; }
+          #view-email .card:last-child { margin-bottom: 0; }
+          #view-email .card-header { padding: 18px 22px; border-bottom: 1px solid var(--n-100); background: linear-gradient(135deg, var(--n-50) 0%, white 100%); display: flex; align-items: center; justify-content: space-between; }
+          #view-email .card-title { font-family: 'Archivo', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); }
+          #view-email .card-subtitle { font-size: 12px; color: var(--n-500); margin-top: 2px; }
+          #view-email .card-body { padding: 18px 22px; }
+
+          /* Toolbar */
+          #view-email .email-toolbar { padding: 10px 16px; background: white; border-bottom: 1px solid var(--n-200); display: flex; align-items: center; gap: 8px; flex-shrink: 0; flex-wrap: wrap; }
+
+          /* Compose tag */
+          #view-email .recipient-tag { display: inline-flex; align-items: center; gap: 5px; background: var(--n-100); border: 1px solid var(--n-200); border-radius: 6px; padding: 3px 8px; font-size: 12px; font-weight: 600; color: var(--n-700); }
+          #view-email .recipient-tag button { background: none; border: none; font-size: 13px; cursor: pointer; color: var(--n-400); padding: 0; line-height: 1; }
+          #view-email .recipient-tag button:hover { color: var(--red); }
+      #view-email > .email-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+
+
       .detail-drawer {
         position: fixed;
         top: 0;
@@ -2792,9 +3022,10 @@
           SMS / Text
           <span class="nav-badge" style="background: var(--purple-bg); color: var(--purple-text)">2</span>
         </a>
-        <a class="nav-item" onclick="setActive(this)">
+        <a class="nav-item" data-view="email" onclick="setActive(this)">
           <div class="ni-icon">✉️</div>
           Email
+          <span class="nav-badge nav-badge-blue">14</span>
         </a>
         <a class="nav-item" onclick="setActive(this)">
           <div class="ni-icon">📢</div>
@@ -6351,7 +6582,749 @@
           </div>
           <!-- /view-sms -->
 
+          <div id="view-email" style="display: none">
+            <!-- VOIP bar -->
+            <div class="voip-bar">
+              <div class="pulse-dot"></div>
+              <span>Outlook Integration Active — Syncing email in / out</span>
+              <div style="margin-left:auto;display:flex;align-items:center;gap:10px;">
+                <span style="color:var(--n-500);font-weight:400;">Last sync: 2 minutes ago</span>
+                <span class="badge b-green" style="font-size:10px;">✓ Connected</span>
+                <button class="btn btn-xs btn-secondary" style="border-color:#a7f3d0;color:var(--green-text);background:var(--green-bg);" onclick="showToast('Syncing with Outlook…')">Sync Now</button>
+              </div>
+            </div>
+
+            <div class="email-content">
+
+              <!-- ── VIEW TABS BAR ── -->
+              <div style="background:white;border-bottom:1px solid var(--n-200);padding:0 24px;display:flex;align-items:center;gap:0;flex-shrink:0;">
+                <button class="view-tab active-tab" data-tab="inbox" onclick="switchEmailTab(this,'inbox')" style="padding:13px 20px;border:none;border-bottom:2px solid var(--navy);background:transparent;font-family:'Manrope',sans-serif;font-size:13.5px;font-weight:700;color:var(--navy);cursor:pointer;margin-bottom:-1px;">
+                  📥 Inbox <span style="background:var(--navy);color:white;padding:2px 8px;border-radius:99px;font-size:10px;margin-left:6px;">14</span>
+                </button>
+                <button class="view-tab" data-tab="sent" onclick="switchEmailTab(this,'sent')" style="padding:13px 20px;border:none;border-bottom:2px solid transparent;background:transparent;font-family:'Manrope',sans-serif;font-size:13.5px;font-weight:600;color:var(--n-500);cursor:pointer;margin-bottom:-1px;transition:all .15s;">
+                  📤 Sent
+                </button>
+                <button class="view-tab" data-tab="blast" onclick="switchEmailTab(this,'blast')" style="padding:13px 20px;border:none;border-bottom:2px solid transparent;background:transparent;font-family:'Manrope',sans-serif;font-size:13.5px;font-weight:600;color:var(--n-500);cursor:pointer;margin-bottom:-1px;transition:all .15s;">
+                  📢 Blast Campaigns
+                </button>
+                <button class="view-tab" data-tab="templates" onclick="switchEmailTab(this,'templates')" style="padding:13px 20px;border:none;border-bottom:2px solid transparent;background:transparent;font-family:'Manrope',sans-serif;font-size:13.5px;font-weight:600;color:var(--n-500);cursor:pointer;margin-bottom:-1px;transition:all .15s;">
+                  📄 Templates
+                </button>
+                <div style="margin-left:auto;display:flex;align-items:center;gap:8px;padding:6px 0;">
+                  <div class="mini-tabs">
+                    <button class="mini-tab sel" onclick="switchMiniTab(this)">All</button>
+                    <button class="mini-tab" onclick="switchMiniTab(this)">Insurance</button>
+                    <button class="mini-tab" onclick="switchMiniTab(this)">Mortgage</button>
+                    <button class="mini-tab" onclick="switchMiniTab(this)">Real Estate</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ══════ INBOX TAB ══════ -->
+              <div id="tab-inbox" class="tab-view active-view">
+                <div class="email-layout">
+
+                  <!-- Email sub-folders -->
+                  <div class="email-sidebar">
+                    <div class="ef-section">Folders</div>
+                    <div class="email-folder active"><span class="ef-icon">📥</span>Inbox<span class="ef-count">14</span></div>
+                    <div class="email-folder"><span class="ef-icon">⭐</span>Starred<span class="ef-count">3</span></div>
+                    <div class="email-folder"><span class="ef-icon">⏳</span>Snoozed<span class="ef-count">2</span></div>
+                    <div class="email-folder"><span class="ef-icon">📤</span>Sent</div>
+                    <div class="email-folder"><span class="ef-icon">📝</span>Drafts<span class="ef-count">1</span></div>
+                    <div class="email-folder"><span class="ef-icon">🗑️</span>Trash</div>
+                    <div class="ef-section">Labels</div>
+                    <div class="email-folder"><span class="ef-icon">🛡️</span>Insurance<span class="ef-count">7</span></div>
+                    <div class="email-folder"><span class="ef-icon">🏦</span>Mortgage<span class="ef-count">4</span></div>
+                    <div class="email-folder"><span class="ef-icon">🏘️</span>Real Estate<span class="ef-count">3</span></div>
+                    <div class="email-folder"><span class="ef-icon">🤖</span>Automated<span class="ef-count">12</span></div>
+                    <div class="ef-section">Integration</div>
+                    <div style="padding:10px 10px;border-radius:8px;background:var(--green-bg);border:1px solid #a7f3d0;margin:0 0 4px;">
+                      <div style="font-size:11px;font-weight:700;color:var(--green-text);margin-bottom:3px;">✓ Outlook Connected</div>
+                      <div style="font-size:10.5px;color:var(--green-text);opacity:.8;">Syncing bi-directionally</div>
+                    </div>
+                  </div>
+
+                  <!-- Thread list -->
+                  <div class="thread-list">
+                    <div class="thread-list-header">
+                      <div style="position:relative;flex:1;">
+                        <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--n-400);font-size:12px;pointer-events:none;">🔍</span>
+                        <input class="thread-search" placeholder="Search email…" />
+                      </div>
+                      <button class="btn btn-xs btn-secondary" style="margin-left:8px;flex-shrink:0;" onclick="showToast('Filtering emails…')">Filter</button>
+                    </div>
+                    <div class="threads">
+
+                      <!-- Thread 1 — Unread, active -->
+                      <div class="thread-item unread active" onclick="selectThread(this)">
+                        <div class="ti-row">
+                          <div class="ti-sender"><div class="ti-unread-dot"></div>Sandra Hayes</div>
+                          <div class="ti-time">11:22 AM</div>
+                        </div>
+                        <div class="ti-subject">Re: Auto Insurance Renewal — Policy #HO-2024-458</div>
+                        <div class="ti-preview">Thank you for the quote! I'll review and get back to you by end of day…</div>
+                        <div class="ti-tags">
+                          <span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span>
+                        </div>
+                      </div>
+
+                      <!-- Thread 2 — Unread -->
+                      <div class="thread-item unread" onclick="selectThread(this)">
+                        <div class="ti-row">
+                          <div class="ti-sender"><div class="ti-unread-dot"></div>Denise Lawrence</div>
+                          <div class="ti-time">10:45 AM</div>
+                        </div>
+                        <div class="ti-subject">Mortgage Pre-Approval Documents — Employment Verification</div>
+                        <div class="ti-preview">Hi Tom, attached are my W-2 and bank statements for the last 2 months…</div>
+                        <div class="ti-tags">
+                          <span class="badge b-blue" style="font-size:10px;">🏦 Mortgage</span>
+                          <span class="badge b-neutral" style="font-size:10px;">📎 2 attachments</span>
+                        </div>
+                      </div>
+
+                      <!-- Thread 3 — Unread -->
+                      <div class="thread-item unread" onclick="selectThread(this)">
+                        <div class="ti-row">
+                          <div class="ti-sender"><div class="ti-unread-dot"></div>Marcus Rivera</div>
+                          <div class="ti-time">9:58 AM</div>
+                        </div>
+                        <div class="ti-subject">Question about bundling — auto + home coverage</div>
+                        <div class="ti-preview">I was wondering if you could send me more info about the bundle discount…</div>
+                        <div class="ti-tags">
+                          <span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span>
+                        </div>
+                      </div>
+
+                      <!-- Thread 4 — Read -->
+                      <div class="thread-item" onclick="selectThread(this)">
+                        <div class="ti-row">
+                          <div class="ti-sender">James Carter (First National Bank)</div>
+                          <div class="ti-time">9:14 AM</div>
+                        </div>
+                        <div class="ti-subject">Loan Estimate Ready — John Smith · TRX-10247</div>
+                        <div class="ti-preview">Hi, the loan estimate for 123 Main Street is ready for your review…</div>
+                        <div class="ti-tags">
+                          <span class="badge b-blue" style="font-size:10px;">🏦 Mortgage</span>
+                          <span class="badge b-green" style="font-size:10px;">TRX-10247</span>
+                        </div>
+                      </div>
+
+                      <!-- Thread 5 — Read -->
+                      <div class="thread-item" onclick="selectThread(this)">
+                        <div class="ti-row">
+                          <div class="ti-sender">Sarah Mitchell — Mitchell Law</div>
+                          <div class="ti-time">Yesterday</div>
+                        </div>
+                        <div class="ti-subject">Closing Disclosure Review — 123 Main Street</div>
+                        <div class="ti-preview">I've reviewed the closing disclosure and verified all dollar amounts. Please see…</div>
+                        <div class="ti-tags">
+                          <span class="badge b-green" style="font-size:10px;">🏘️ Real Estate</span>
+                          <span class="badge b-neutral" style="font-size:10px;">📎 1 attachment</span>
+                        </div>
+                      </div>
+
+                      <!-- Thread 6 — Read, Automated -->
+                      <div class="thread-item" onclick="selectThread(this)">
+                        <div class="ti-row">
+                          <div class="ti-sender" style="color:var(--n-500);">🤖 Auto-Sent (Birthday)</div>
+                          <div class="ti-time">Today 8:00 AM</div>
+                        </div>
+                        <div class="ti-subject">Happy Birthday, Sandra! 🎂 — Burkes Group</div>
+                        <div class="ti-preview">Automated birthday email triggered by DOB — delivered via Outlook. Open rate: confirmed.</div>
+                        <div class="ti-tags">
+                          <span class="badge b-neutral" style="font-size:10px;">🤖 Automated</span>
+                          <span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span>
+                        </div>
+                      </div>
+
+                      <!-- Thread 7 — Read -->
+                      <div class="thread-item" onclick="selectThread(this)">
+                        <div class="ti-row">
+                          <div class="ti-sender">Kevin Watts</div>
+                          <div class="ti-time">Yesterday</div>
+                        </div>
+                        <div class="ti-subject">New Client Inquiry — Home + Auto Bundle</div>
+                        <div class="ti-preview">Hello, I found your contact from the website and I'm interested in bundling…</div>
+                        <div class="ti-tags">
+                          <span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span>
+                          <span class="badge b-orange" style="font-size:10px;">New Lead</span>
+                        </div>
+                      </div>
+
+                      <!-- Thread 8 -->
+                      <div class="thread-item" onclick="selectThread(this)">
+                        <div class="ti-row">
+                          <div class="ti-sender">Terrence Cole</div>
+                          <div class="ti-time">Feb 18</div>
+                        </div>
+                        <div class="ti-subject">Ready for property search — pre-qualification complete</div>
+                        <div class="ti-preview">Hi, I wanted to confirm the handoff to the real estate team. Is there anything…</div>
+                        <div class="ti-tags">
+                          <span class="badge b-green" style="font-size:10px;">🏘️ Real Estate</span>
+                          <span class="badge b-purple" style="font-size:10px;">↩ Transferred</span>
+                        </div>
+                      </div>
+
+                      <!-- Thread 9 -->
+                      <div class="thread-item" onclick="selectThread(this)">
+                        <div class="ti-row">
+                          <div class="ti-sender">Patricia Torres</div>
+                          <div class="ti-time">Feb 17</div>
+                        </div>
+                        <div class="ti-subject">Refinance Application — Updated Employment Docs</div>
+                        <div class="ti-preview">Please find attached my updated employment verification for the refinance…</div>
+                        <div class="ti-tags">
+                          <span class="badge b-blue" style="font-size:10px;">🏦 Mortgage</span>
+                          <span class="badge b-neutral" style="font-size:10px;">📎 3 attachments</span>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- Reading pane -->
+                  <div class="reading-pane">
+                    <div class="reading-pane-header">
+                      <div class="email-subject">Re: Auto Insurance Renewal — Policy #HO-2024-458</div>
+                      <div class="email-meta">
+                        <div class="email-from">
+                          <div class="sender-avatar" style="background:#1a3a52;">SH</div>
+                          <div>
+                            <div style="font-weight:700;font-size:13px;color:var(--n-800);">Sandra Hayes</div>
+                            <div style="font-size:11.5px;color:var(--n-500);">sandra.hayes@email.com · To: jaquarian@burkesgroup.com</div>
+                          </div>
+                        </div>
+                        <div style="font-size:12px;color:var(--n-400);margin-left:8px;">Today, 11:22 AM</div>
+                        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-left:12px;">
+                          <span class="badge b-gold">🛡️ Insurance</span>
+                          <span class="status-pill sp-purple" style="font-size:10px;padding:3px 8px;">Quoted</span>
+                        </div>
+                        <div class="email-actions">
+                          <button class="action-icon-btn" title="Reply" onclick="openEmailComposeModal()">↩</button>
+                          <button class="action-icon-btn" title="Reply All" onclick="openEmailComposeModal()">↩↩</button>
+                          <button class="action-icon-btn" title="Forward" onclick="openEmailComposeModal()">→</button>
+                          <button class="action-icon-btn" title="Star" onclick="showToast('Email starred.')">⭐</button>
+                          <button class="action-icon-btn" title="Archive" onclick="showToast('Email archived.')">📦</button>
+                          <button class="action-icon-btn" title="Log to CRM" onclick="showToast('Email logged to CRM activity feed.')">📋</button>
+                          <button class="action-icon-btn" title="Delete" style="color:var(--n-400);" onclick="showToast('Email deleted.')">🗑️</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="reading-pane-body">
+                      <div class="email-body-text">
+                        <p class="salutation">Hi Jaquarian,</p>
+                        <p>
+                          Thank you for sending over the quote for my auto insurance renewal! I appreciate how quickly you got that to me.
+                        </p>
+                        <p>
+                          The premium of <strong>$187/month</strong> looks reasonable compared to my current provider. I'd like to review the full coverage details before making a final decision, specifically around the collision deductible and uninsured motorist coverage.
+                        </p>
+                        <p>
+                          Could you send me a side-by-side comparison of my current policy vs. the new one? Also, do you offer a multi-policy discount if I were to bundle this with my home insurance?
+                        </p>
+                        <p>
+                          I'll get back to you with a final answer by end of business today. Looking forward to hearing from you.
+                        </p>
+                        <p>Best,<br/><strong>Sandra Hayes</strong></p>
+                        <div class="signature">
+                          Sandra Hayes · (832) 555-0141 · sandra.hayes@email.com<br/>
+                          <em>Auto-logged to CRM · Linked to: Insurance Pipeline — Quoted Stage</em>
+                        </div>
+                      </div>
+
+                      <!-- Thread history -->
+                      <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--n-200);">
+                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--n-400);margin-bottom:14px;">Earlier in this thread</div>
+
+                        <div style="padding:14px 16px;background:var(--n-50);border-radius:10px;margin-bottom:10px;border:1px solid var(--n-200);">
+                          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                            <div style="font-size:12.5px;font-weight:700;color:var(--n-700);">Jaquarian Bonilla → Sandra Hayes</div>
+                            <div style="font-size:11px;color:var(--n-400);">Today, 9:30 AM</div>
+                          </div>
+                          <div style="font-size:13px;color:var(--n-600);line-height:1.6;">Hi Sandra, please find attached your updated auto insurance quote for policy renewal. The quoted premium is <strong>$187/mo</strong> based on your current vehicle and driving record. Let me know if you have any questions...</div>
+                        </div>
+
+                        <div style="padding:14px 16px;background:var(--n-50);border-radius:10px;border:1px solid var(--n-200);">
+                          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                            <div style="font-size:12.5px;font-weight:700;color:var(--n-700);">Sandra Hayes → Jaquarian Bonilla</div>
+                            <div style="font-size:11px;color:var(--n-400);">Yesterday, 3:15 PM</div>
+                          </div>
+                          <div style="font-size:13px;color:var(--n-600);line-height:1.6;">Hi, my policy is up for renewal next month. Can you send me a quote for the same coverage? My policy number is HO-2024-458...</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="reading-pane-footer">
+                      <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+                        <button class="btn btn-xs btn-secondary" onclick="openEmailComposeModal()">↩ Reply</button>
+                        <button class="btn btn-xs btn-secondary" onclick="openEmailComposeModal()">→ Forward</button>
+                        <button class="btn btn-xs" style="background:var(--purple-bg);color:var(--purple-text);border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;" onclick="showToast('Lead linked: Sandra Hayes → Insurance — Quoted stage updated.')">📋 Log to CRM</button>
+                        <button class="btn btn-xs" style="background:var(--green-bg);color:var(--green-text);border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;" onclick="showToast('Follow-up task created for Sandra Hayes.')">✅ Create Task</button>
+                        <button class="btn btn-xs" style="background:var(--orange-bg);color:var(--orange-text);border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;" onclick="showToast('Email snoozed for 2 hours.')">⏰ Snooze</button>
+                      </div>
+                      <div class="quick-reply">
+                        <input class="quick-reply-input" placeholder="Quick reply to Sandra…" />
+                        <button class="btn btn-primary btn-sm" onclick="showToast('Reply sent via Outlook.')">Send</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- CRM Context Panel -->
+                  <div class="crm-panel">
+                    <div style="font-size:12px;font-weight:700;color:var(--n-500);text-transform:uppercase;letter-spacing:.07em;">Contact Context</div>
+
+                    <!-- Contact card -->
+                    <div class="crm-panel-card">
+                      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+                        <div style="width:38px;height:38px;border-radius:10px;background:#1a3a52;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0;">SH</div>
+                        <div>
+                          <div style="font-weight:700;font-size:13.5px;color:var(--navy);">Sandra Hayes</div>
+                          <div style="font-size:11.5px;color:var(--n-500);">Insurance Client</div>
+                        </div>
+                      </div>
+                      <div class="crm-info-row"><span class="crm-info-label">Phone</span><span class="crm-info-value">(832) 555-0141</span></div>
+                      <div class="crm-info-row"><span class="crm-info-label">Stage</span><span class="crm-info-value"><span class="status-pill sp-purple" style="font-size:10px;padding:2px 7px;">Quoted</span></span></div>
+                      <div class="crm-info-row"><span class="crm-info-label">Agent</span><span class="crm-info-value">Jaquarian B.</span></div>
+                      <div class="crm-info-row"><span class="crm-info-label">Dept</span><span class="crm-info-value"><span class="badge b-gold" style="font-size:10px;">🛡️ Insurance</span></span></div>
+                      <div class="crm-info-row"><span class="crm-info-label">DOB</span><span class="crm-info-value">Jun 12, 1979</span></div>
+                      <div style="margin-top:10px;display:flex;gap:6px;">
+                        <button class="btn btn-xs btn-secondary" style="flex:1;justify-content:center;" onclick="showToast('Opening Sandra Hayes profile…')">View Profile</button>
+                        <button class="btn btn-xs btn-secondary" onclick="showToast('Dialing Sandra Hayes…')">📞</button>
+                      </div>
+                    </div>
+
+                    <!-- Email stats for this contact -->
+                    <div class="crm-panel-card">
+                      <div class="crm-panel-title">Email History</div>
+                      <div class="crm-info-row"><span class="crm-info-label">Total Emails</span><span class="crm-info-value">14</span></div>
+                      <div class="crm-info-row"><span class="crm-info-label">Sent</span><span class="crm-info-value">8</span></div>
+                      <div class="crm-info-row"><span class="crm-info-label">Received</span><span class="crm-info-value">6</span></div>
+                      <div class="crm-info-row"><span class="crm-info-label">Open Rate</span><span class="crm-info-value" style="color:var(--green);font-weight:700;">92%</span></div>
+                      <div class="crm-info-row"><span class="crm-info-label">Last Reply</span><span class="crm-info-value">Today</span></div>
+                    </div>
+
+                    <!-- Recent activity timeline -->
+                    <div class="crm-panel-card">
+                      <div class="crm-panel-title">Recent Activity</div>
+                      <div class="crm-timeline-item">
+                        <div class="crm-tl-dot" style="background:var(--green);"></div>
+                        <div>
+                          <div class="crm-tl-text">Email reply received</div>
+                          <div class="crm-tl-time">Today, 11:22 AM</div>
+                        </div>
+                      </div>
+                      <div class="crm-timeline-item">
+                        <div class="crm-tl-dot" style="background:var(--orange);"></div>
+                        <div>
+                          <div class="crm-tl-text">Outbound call — 4m 22s (recorded)</div>
+                          <div class="crm-tl-time">Today, 11:04 AM</div>
+                        </div>
+                      </div>
+                      <div class="crm-timeline-item">
+                        <div class="crm-tl-dot" style="background:var(--blue-text);"></div>
+                        <div>
+                          <div class="crm-tl-text">Quote email sent — $187/mo auto</div>
+                          <div class="crm-tl-time">Today, 9:30 AM</div>
+                        </div>
+                      </div>
+                      <div class="crm-timeline-item">
+                        <div class="crm-tl-dot" style="background:var(--purple-text);"></div>
+                        <div>
+                          <div class="crm-tl-text">Birthday email sent (automated)</div>
+                          <div class="crm-tl-time">Today, 8:00 AM</div>
+                        </div>
+                      </div>
+                      <div class="crm-timeline-item">
+                        <div class="crm-tl-dot" style="background:var(--n-300);"></div>
+                        <div>
+                          <div class="crm-tl-text">Renewal inquiry received</div>
+                          <div class="crm-tl-time">Yesterday, 3:15 PM</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Suggested actions -->
+                    <div class="crm-panel-card">
+                      <div class="crm-panel-title">Suggested Actions</div>
+                      <div style="display:flex;flex-direction:column;gap:7px;">
+                        <button class="btn btn-xs btn-secondary" style="width:100%;justify-content:flex-start;gap:8px;" onclick="openEmailComposeModal()">
+                          <span>📊</span> Send comparison PDF
+                        </button>
+                        <button class="btn btn-xs btn-secondary" style="width:100%;justify-content:flex-start;gap:8px;" onclick="showToast('Bundle quote added to draft…')">
+                          <span>🏠</span> Quote home bundle
+                        </button>
+                        <button class="btn btn-xs btn-secondary" style="width:100%;justify-content:flex-start;gap:8px;" onclick="showToast('Follow-up task created.')">
+                          <span>✅</span> Schedule follow-up
+                        </button>
+                        <button class="btn btn-xs btn-secondary" style="width:100%;justify-content:flex-start;gap:8px;" onclick="showToast('Stage updated to: Negotiation.')">
+                          <span>🔄</span> Update pipeline stage
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- ══════ SENT TAB ══════ -->
+              <div id="tab-sent" class="tab-view">
+                <div style="padding:24px;overflow-y:auto;flex:1;">
+
+                  <!-- Stats row -->
+                  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">
+                    <div class="stat-card navy fade-in s1">
+                      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <div><div class="stat-label">Sent Today</div><div class="stat-value">48</div></div>
+                        <div style="font-size:34px;opacity:.8;">📤</div>
+                      </div>
+                      <div class="stat-delta"><span class="delta-up">▲ 15%</span> vs yesterday</div>
+                    </div>
+                    <div class="stat-card gold fade-in s2">
+                      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <div><div class="stat-label">Open Rate</div><div class="stat-value">74%</div></div>
+                        <div style="font-size:34px;opacity:.8;">👁</div>
+                      </div>
+                      <div class="stat-delta"><span class="delta-up">▲ 8%</span> this week</div>
+                    </div>
+                    <div class="stat-card blue fade-in s3">
+                      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <div><div class="stat-label">Reply Rate</div><div class="stat-value">38%</div></div>
+                        <div style="font-size:34px;opacity:.8;">↩</div>
+                      </div>
+                      <div class="stat-delta"><span class="delta-flat">— stable</span></div>
+                    </div>
+                    <div class="stat-card green fade-in s4">
+                      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <div><div class="stat-label">Leads Engaged</div><div class="stat-value">22</div></div>
+                        <div style="font-size:34px;opacity:.8;">✅</div>
+                      </div>
+                      <div class="stat-delta"><span class="delta-up">▲ 3</span> vs yesterday</div>
+                    </div>
+                  </div>
+
+                  <!-- Sent table -->
+                  <div class="card fade-in s2">
+                    <div class="card-header">
+                      <div><div class="card-title">📤 Sent Emails — Today &amp; Recent</div><div class="card-subtitle">Outlook sync · All outbound tracked for compliance</div></div>
+                      <div style="display:flex;gap:8px;">
+                        <div class="mini-tabs">
+                          <button class="mini-tab sel" onclick="switchMiniTab(this)">Today</button>
+                          <button class="mini-tab" onclick="switchMiniTab(this)">This Week</button>
+                          <button class="mini-tab" onclick="switchMiniTab(this)">This Month</button>
+                        </div>
+                        <button class="btn btn-sm btn-secondary" onclick="showToast('Exporting sent log…')">Export</button>
+                      </div>
+                    </div>
+                    <div style="overflow-x:auto;">
+                      <table class="data-table">
+                        <thead>
+                          <tr>
+                            <th>Recipient</th>
+                            <th>Subject</th>
+                            <th>Department</th>
+                            <th>Type</th>
+                            <th>Sent At</th>
+                            <th>Status</th>
+                            <th style="text-align:center;">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr onclick="showToast('Opening email thread…')">
+                            <td><div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;border-radius:8px;background:#1a3a52;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0;">SH</div><div><div style="font-weight:700;font-size:13px;color:var(--navy);">Sandra Hayes</div><div style="font-size:11px;color:var(--n-500);">sandra.hayes@email.com</div></div></div></td>
+                            <td style="font-size:13px;color:var(--n-700);">Auto Insurance Renewal Quote — $187/mo</td>
+                            <td><span class="badge b-gold">🛡️ Insurance</span></td>
+                            <td><span class="badge b-neutral" style="font-size:10px;">1:1 Email</span></td>
+                            <td style="font-size:12px;color:var(--n-500);">Today, 9:30 AM</td>
+                            <td><span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Opened</span></td>
+                            <td style="text-align:center;"><div style="display:flex;gap:5px;justify-content:center;"><button class="btn btn-xs btn-secondary" onclick="openEmailComposeModal()">↩ Reply</button><button class="btn btn-xs btn-secondary" onclick="showToast('Logging…')">📋 Log</button></div></td>
+                          </tr>
+                          <tr onclick="showToast('Opening email thread…')">
+                            <td><div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;border-radius:8px;background:#10b981;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0;">SH</div><div><div style="font-weight:700;font-size:13px;color:var(--navy);">Sandra Hayes</div><div style="font-size:11px;color:var(--n-500);">sandra.hayes@email.com</div></div></div></td>
+                            <td style="font-size:13px;color:var(--n-700);">🎂 Happy Birthday, Sandra! — Burkes Group</td>
+                            <td><span class="badge b-gold">🛡️ Insurance</span></td>
+                            <td><span class="badge b-neutral" style="font-size:10px;">🤖 Automated</span></td>
+                            <td style="font-size:12px;color:var(--n-500);">Today, 8:00 AM</td>
+                            <td><span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Delivered</span></td>
+                            <td style="text-align:center;"><div style="display:flex;gap:5px;justify-content:center;"><button class="btn btn-xs btn-secondary" onclick="showToast('Viewing auto-email…')">View</button></div></td>
+                          </tr>
+                          <tr onclick="showToast('Opening email thread…')">
+                            <td><div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;border-radius:8px;background:#3b82f6;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0;">MR</div><div><div style="font-weight:700;font-size:13px;color:var(--navy);">Marcus Rivera</div><div style="font-size:11px;color:var(--n-500);">marcus.rivera@email.com</div></div></div></td>
+                            <td style="font-size:13px;color:var(--n-700);">Auto Quote Follow-Up — Meeting Rescheduled</td>
+                            <td><span class="badge b-gold">🛡️ Insurance</span></td>
+                            <td><span class="badge b-neutral" style="font-size:10px;">1:1 Email</span></td>
+                            <td style="font-size:12px;color:var(--n-500);">Today, 9:45 AM</td>
+                            <td><span class="status-pill sp-gold" style="font-size:10px;padding:3px 8px;">Sent</span></td>
+                            <td style="text-align:center;"><div style="display:flex;gap:5px;justify-content:center;"><button class="btn btn-xs btn-secondary" onclick="openEmailComposeModal()">↩ Reply</button><button class="btn btn-xs btn-secondary" onclick="showToast('Logging…')">📋 Log</button></div></td>
+                          </tr>
+                          <tr onclick="showToast('Opening email thread…')">
+                            <td><div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;border-radius:8px;background:#7c3aed;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0;">TC</div><div><div style="font-weight:700;font-size:13px;color:var(--navy);">Terrence Cole</div><div style="font-size:11px;color:var(--n-500);">terrence.cole@email.com</div></div></div></td>
+                            <td style="font-size:13px;color:var(--n-700);">Lead Transfer — Real Estate Team Introduction</td>
+                            <td><span class="badge b-green">🏘️ Real Estate</span></td>
+                            <td><span class="badge b-purple" style="font-size:10px;">🔁 Transfer Notif.</span></td>
+                            <td style="font-size:12px;color:var(--n-500);">Today, 9:05 AM</td>
+                            <td><span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Opened</span></td>
+                            <td style="text-align:center;"><div style="display:flex;gap:5px;justify-content:center;"><button class="btn btn-xs btn-secondary" onclick="showToast('Viewing…')">View</button></div></td>
+                          </tr>
+                          <tr onclick="showToast('Opening email thread…')">
+                            <td colspan="7" style="text-align:center;padding:20px;font-size:13px;color:var(--n-500);">
+                              + 44 more emails sent today · <a href="#" style="color:var(--navy);font-weight:700;text-decoration:none;" onclick="showToast('Loading full sent history…')">View all</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ══════ BLAST TAB ══════ -->
+              <div id="tab-blast" class="tab-view">
+                <div class="blast-layout">
+                  <div>
+                    <!-- Recent Campaigns -->
+                    <div class="card fade-in s1">
+                      <div class="card-header">
+                        <div><div class="card-title">📢 Email Blast Campaigns</div><div class="card-subtitle">Outlook-integrated bulk emails across your contact list</div></div>
+                        <button class="btn btn-gold btn-sm" onclick="openEmailBlastModal()">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                          New Campaign
+                        </button>
+                      </div>
+                      <div style="overflow-x:auto;">
+                        <table class="data-table">
+                          <thead>
+                            <tr>
+                              <th>Campaign Name</th>
+                              <th>Department</th>
+                              <th>Sent To</th>
+                              <th>Open Rate</th>
+                              <th>Replies</th>
+                              <th>Sent At</th>
+                              <th>Status</th>
+                              <th style="text-align:center;">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><div style="font-weight:700;font-size:13px;color:var(--navy);">Auto Insurance Renewal Reminder</div><div style="font-size:11px;color:var(--n-500);">Subject: "Your policy renews next month — let's review"</div></td>
+                              <td><span class="badge b-gold">🛡️ Insurance</span></td>
+                              <td style="font-weight:600;">48 contacts</td>
+                              <td>
+                                <div style="font-weight:700;color:var(--green);font-size:13px;">74%</div>
+                                <div class="prog-track" style="width:80px;"><div class="prog-fill" style="width:74%;background:var(--green);"></div></div>
+                              </td>
+                              <td style="font-weight:600;color:var(--navy);">12</td>
+                              <td style="font-size:12px;color:var(--n-500);">Today, 8:47 AM</td>
+                              <td><span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Delivered</span></td>
+                              <td style="text-align:center;"><div style="display:flex;gap:5px;justify-content:center;"><button class="btn btn-xs btn-secondary" onclick="showToast('Opening campaign report…')">Report</button><button class="btn btn-xs btn-secondary" onclick="showToast('Duplicating campaign…')">Duplicate</button></div></td>
+                            </tr>
+                            <tr>
+                              <td><div style="font-weight:700;font-size:13px;color:var(--navy);">Home Buying Season — New Listings Alert</div><div style="font-size:11px;color:var(--n-500);">Subject: "Spring homes in your area are moving fast"</div></td>
+                              <td><span class="badge b-green">🏘️ Real Estate</span></td>
+                              <td style="font-weight:600;">136 contacts</td>
+                              <td>
+                                <div style="font-weight:700;color:var(--green);font-size:13px;">61%</div>
+                                <div class="prog-track" style="width:80px;"><div class="prog-fill" style="width:61%;background:var(--green);"></div></div>
+                              </td>
+                              <td style="font-weight:600;color:var(--navy);">28</td>
+                              <td style="font-size:12px;color:var(--n-500);">Feb 17, 9:00 AM</td>
+                              <td><span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Delivered</span></td>
+                              <td style="text-align:center;"><div style="display:flex;gap:5px;justify-content:center;"><button class="btn btn-xs btn-secondary" onclick="showToast('Opening campaign report…')">Report</button><button class="btn btn-xs btn-secondary" onclick="showToast('Duplicating campaign…')">Duplicate</button></div></td>
+                            </tr>
+                            <tr>
+                              <td><div style="font-weight:700;font-size:13px;color:var(--navy);">Mortgage Rates Alert — Lock In Now</div><div style="font-size:11px;color:var(--n-500);">Subject: "Rates may be rising — now is the time to act"</div></td>
+                              <td><span class="badge b-blue">🏦 Mortgage</span></td>
+                              <td style="font-weight:600;">89 contacts</td>
+                              <td>
+                                <div style="font-weight:700;color:var(--orange);font-size:13px;">52%</div>
+                                <div class="prog-track" style="width:80px;"><div class="prog-fill" style="width:52%;background:var(--orange);"></div></div>
+                              </td>
+                              <td style="font-weight:600;color:var(--navy);">9</td>
+                              <td style="font-size:12px;color:var(--n-500);">Feb 14, 10:00 AM</td>
+                              <td><span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Delivered</span></td>
+                              <td style="text-align:center;"><div style="display:flex;gap:5px;justify-content:center;"><button class="btn btn-xs btn-secondary" onclick="showToast('Opening campaign report…')">Report</button><button class="btn btn-xs btn-secondary" onclick="showToast('Duplicating campaign…')">Duplicate</button></div></td>
+                            </tr>
+                            <tr>
+                              <td><div style="font-weight:700;font-size:13px;color:var(--n-500);">Q1 Birthday Automation — Insurance Clients</div><div style="font-size:11px;color:var(--n-400);">Subject: "Happy Birthday from Burkes Group! 🎂"</div></td>
+                              <td><span class="badge b-gold">🛡️ Insurance</span></td>
+                              <td style="font-weight:600;color:var(--n-600);">Ongoing (DOB trigger)</td>
+                              <td>
+                                <div style="font-weight:700;color:var(--green);font-size:13px;">89%</div>
+                                <div class="prog-track" style="width:80px;"><div class="prog-fill" style="width:89%;background:var(--green);"></div></div>
+                              </td>
+                              <td style="font-weight:600;color:var(--navy);">—</td>
+                              <td style="font-size:12px;color:var(--n-500);">Recurring (Auto)</td>
+                              <td><span class="status-pill sp-purple" style="font-size:10px;padding:3px 8px;">🤖 Active Auto</span></td>
+                              <td style="text-align:center;"><div style="display:flex;gap:5px;justify-content:center;"><button class="btn btn-xs btn-secondary" onclick="showToast('Editing automation rule…')">Edit</button><button class="btn btn-xs" style="background:var(--red-bg);color:var(--red-text);border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;font-family:'Manrope',sans-serif;cursor:pointer;" onclick="showToast('Automation paused.')">Pause</button></div></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Blast sidebar -->
+                  <div>
+                    <div class="card fade-in s2" style="margin-bottom:0;">
+                      <div class="card-header"><div class="card-title">📊 Blast Performance</div></div>
+                      <div class="card-body">
+                        <div style="display:flex;flex-direction:column;gap:12px;">
+                          <div style="display:flex;justify-content:space-between;padding:10px;background:var(--n-50);border-radius:8px;">
+                            <span style="font-size:13px;color:var(--n-600);">Campaigns Sent (MTD)</span>
+                            <span style="font-weight:700;color:var(--navy);font-family:'Archivo',sans-serif;">12</span>
+                          </div>
+                          <div style="display:flex;justify-content:space-between;padding:10px;background:var(--n-50);border-radius:8px;">
+                            <span style="font-size:13px;color:var(--n-600);">Total Recipients</span>
+                            <span style="font-weight:700;color:var(--navy);font-family:'Archivo',sans-serif;">1,847</span>
+                          </div>
+                          <div style="display:flex;justify-content:space-between;padding:10px;background:var(--n-50);border-radius:8px;">
+                            <span style="font-size:13px;color:var(--n-600);">Avg Open Rate</span>
+                            <span style="font-weight:700;color:var(--green);font-family:'Archivo',sans-serif;">68%</span>
+                          </div>
+                          <div style="display:flex;justify-content:space-between;padding:10px;background:var(--n-50);border-radius:8px;">
+                            <span style="font-size:13px;color:var(--n-600);">Leads Engaged</span>
+                            <span style="font-weight:700;color:var(--navy);font-family:'Archivo',sans-serif;">94</span>
+                          </div>
+                          <div style="display:flex;justify-content:space-between;padding:10px;background:var(--n-50);border-radius:8px;">
+                            <span style="font-size:13px;color:var(--n-600);">Active Automations</span>
+                            <span style="font-weight:700;color:var(--purple-text);font-family:'Archivo',sans-serif;">3</span>
+                          </div>
+                        </div>
+
+                        <div style="margin-top:16px;padding:12px;background:var(--blue-bg);border-radius:10px;border:1px solid #bfdbfe;">
+                          <div style="font-size:12px;font-weight:700;color:var(--blue-text);margin-bottom:6px;">🔗 Outlook Integration</div>
+                          <div style="font-size:12px;color:var(--blue-text);line-height:1.5;">All blast emails are sent via your connected Outlook account (jaquarian@burkesgroup.com) and stored for compliance tracking.</div>
+                        </div>
+
+                        <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:14px;" onclick="openEmailBlastModal()">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                          Create New Campaign
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ══════ TEMPLATES TAB ══════ -->
+              <div id="tab-templates" class="tab-view">
+                <div style="padding:24px;overflow-y:auto;flex:1;">
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px;">
+
+                    <!-- Template cards -->
+                    <div class="card fade-in s1" style="margin-bottom:0;">
+                      <div class="card-header" style="padding:14px 16px;">
+                        <div>
+                          <div class="card-title" style="font-size:14px;">🛡️ Insurance Quote Email</div>
+                          <div class="card-subtitle">Sends Vertafore quote to client</div>
+                        </div>
+                        <span class="badge b-gold">Insurance</span>
+                      </div>
+                      <div class="card-body" style="padding:14px 16px;">
+                        <p style="font-size:12.5px;color:var(--n-600);line-height:1.6;margin-bottom:12px;">
+                          <em>"Hi [Name], please find your personalized auto insurance quote attached. The quoted premium is $[Amount]/mo based on your profile. Let me know if you'd like to review coverage…"</em>
+                        </p>
+                        <div style="display:flex;gap:6px;">
+                          <button class="btn btn-xs btn-primary" onclick="openEmailComposeModal()">Use Template</button>
+                          <button class="btn btn-xs btn-secondary" onclick="showToast('Opening template editor…')">Edit</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card fade-in s2" style="margin-bottom:0;">
+                      <div class="card-header" style="padding:14px 16px;">
+                        <div>
+                          <div class="card-title" style="font-size:14px;">🎂 Birthday Auto-Email</div>
+                          <div class="card-subtitle">DOB trigger — auto-sent via Outlook</div>
+                        </div>
+                        <span class="badge b-purple" style="font-size:10px;">🤖 Auto</span>
+                      </div>
+                      <div class="card-body" style="padding:14px 16px;">
+                        <p style="font-size:12.5px;color:var(--n-600);line-height:1.6;margin-bottom:12px;">
+                          <em>"Happy Birthday, [Name]! 🎂 Wishing you a wonderful day. As your insurance advisor, I'm always here if you need to review your coverage or have any questions…"</em>
+                        </p>
+                        <div style="display:flex;gap:6px;">
+                          <button class="btn btn-xs btn-secondary" onclick="showToast('Opening automation settings…')">Edit Trigger</button>
+                          <button class="btn btn-xs btn-secondary" onclick="showToast('Previewing template…')">Preview</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card fade-in s3" style="margin-bottom:0;">
+                      <div class="card-header" style="padding:14px 16px;">
+                        <div>
+                          <div class="card-title" style="font-size:14px;">🔁 Lead Transfer Notification</div>
+                          <div class="card-subtitle">Sent when lead transferred between agents</div>
+                        </div>
+                        <span class="badge b-orange">Handoff</span>
+                      </div>
+                      <div class="card-body" style="padding:14px 16px;">
+                        <p style="font-size:12.5px;color:var(--n-600);line-height:1.6;margin-bottom:12px;">
+                          <em>"Hi [Agent Name], I'm handing off [Client Name] to you from the Insurance team. They are pre-qualified and ready for the next step. Key notes: [Notes]…"</em>
+                        </p>
+                        <div style="display:flex;gap:6px;">
+                          <button class="btn btn-xs btn-primary" onclick="openEmailComposeModal()">Use Template</button>
+                          <button class="btn btn-xs btn-secondary" onclick="showToast('Opening template editor…')">Edit</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card fade-in s4" style="margin-bottom:0;">
+                      <div class="card-header" style="padding:14px 16px;">
+                        <div>
+                          <div class="card-title" style="font-size:14px;">🏠 Mortgage Pre-Approval Intro</div>
+                          <div class="card-subtitle">Connects client with mortgage lender</div>
+                        </div>
+                        <span class="badge b-blue">Mortgage</span>
+                      </div>
+                      <div class="card-body" style="padding:14px 16px;">
+                        <p style="font-size:12.5px;color:var(--n-600);line-height:1.6;margin-bottom:12px;">
+                          <em>"Hi [Name], as discussed, I'd like to connect you with [Lender Name] at [Bank] for your mortgage pre-approval. They'll need [Documents List] to get started…"</em>
+                        </p>
+                        <div style="display:flex;gap:6px;">
+                          <button class="btn btn-xs btn-primary" onclick="openEmailComposeModal()">Use Template</button>
+                          <button class="btn btn-xs btn-secondary" onclick="showToast('Opening template editor…')">Edit</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card fade-in s5" style="margin-bottom:0;">
+                      <div class="card-header" style="padding:14px 16px;">
+                        <div>
+                          <div class="card-title" style="font-size:14px;">🏘️ Real Estate Offer Update</div>
+                          <div class="card-subtitle">Notifies client of offer acceptance/counter</div>
+                        </div>
+                        <span class="badge b-green">Real Estate</span>
+                      </div>
+                      <div class="card-body" style="padding:14px 16px;">
+                        <p style="font-size:12.5px;color:var(--n-600);line-height:1.6;margin-bottom:12px;">
+                          <em>"Great news, [Name]! Your offer on [Address] has been [accepted/countered]. Next steps: [Steps]. The closing date is tentatively set for [Date]…"</em>
+                        </p>
+                        <div style="display:flex;gap:6px;">
+                          <button class="btn btn-xs btn-primary" onclick="openEmailComposeModal()">Use Template</button>
+                          <button class="btn btn-xs btn-secondary" onclick="showToast('Opening template editor…')">Edit</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- New template card -->
+                    <div onclick="showToast('Opening template builder…')" style="border:2px dashed var(--n-300);border-radius:16px;padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:all .2s;text-align:center;" onmouseover="this.style.borderColor='var(--navy)';this.style.background='white';" onmouseout="this.style.borderColor='var(--n-300)';this.style.background='transparent';">
+                      <div style="font-size:32px;">➕</div>
+                      <div style="font-weight:700;font-size:14px;color:var(--navy);">Create New Template</div>
+                      <div style="font-size:12px;color:var(--n-500);">Build a reusable email template for any department</div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
           <!-- /view-calls -->
+
         </div>
         <!-- /content -->
       </div>
@@ -6988,6 +7961,244 @@
       </div>
     </div>
     
+    <!-- EMAIL MODALS (from email.html) -->
+    <!-- ══ COMPOSE EMAIL MODAL ══ -->
+    <div class="modal-overlay" id="emailComposeModal" onclick="handleOverlay(event,'emailComposeModal')">
+      <div class="modal" style="width:720px;">
+        <div class="modal-header">
+          <div>
+            <div class="modal-title">✉️ Compose Email</div>
+            <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Sending via Outlook · jaquarian@burkesgroup.com</div>
+          </div>
+          <button class="modal-close" onclick="closeModal('emailComposeModal')">×</button>
+        </div>
+        <div class="modal-body" style="padding-bottom:8px;">
+
+          <!-- To field -->
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">To <span style="color:var(--red);">*</span></label>
+            <div style="display:flex;align-items:center;gap:6px;padding:8px 12px;border:1.5px solid var(--n-200);border-radius:10px;background:white;flex-wrap:wrap;" id="toField">
+              <div class="recipient-tag">Sandra Hayes <button onclick="removeTag(this)">×</button></div>
+              <input type="text" placeholder="Add recipient…" style="border:none;outline:none;font-family:'Manrope',sans-serif;font-size:13px;flex:1;min-width:120px;" onkeydown="addRecipient(event)" />
+            </div>
+            <div style="font-size:11.5px;color:var(--n-500);margin-top:5px;">
+              <strong>Quick contacts:</strong>
+              <span onclick="showToast('Sandra Hayes added.')" style="cursor:pointer;color:var(--navy);font-weight:600;text-decoration:underline;margin-right:8px;">Sandra Hayes</span>
+              <span onclick="showToast('Marcus Rivera added.')" style="cursor:pointer;color:var(--navy);font-weight:600;text-decoration:underline;margin-right:8px;">Marcus Rivera</span>
+              <span onclick="showToast('Denise Lawrence added.')" style="cursor:pointer;color:var(--navy);font-weight:600;text-decoration:underline;margin-right:8px;">Denise Lawrence</span>
+              <span onclick="showToast('Terrence Cole added.')" style="cursor:pointer;color:var(--navy);font-weight:600;text-decoration:underline;">Terrence Cole</span>
+            </div>
+          </div>
+
+          <!-- CC -->
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">CC / BCC</label>
+            <input class="form-input" style="padding:9px 12px;font-size:13px;" placeholder="Add CC or BCC recipients…" />
+          </div>
+
+          <!-- Subject -->
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Subject <span style="color:var(--red);">*</span></label>
+            <input class="form-input" style="padding:9px 12px;font-size:13px;" placeholder="Enter email subject…" value="Re: Auto Insurance Renewal — Policy #HO-2024-458" />
+          </div>
+
+          <!-- Options row -->
+          <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+            <div class="form-group" style="margin-bottom:0;flex:1;">
+              <label class="form-label">Department</label>
+              <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                <option>🛡️ Insurance</option>
+                <option>🏦 Mortgage</option>
+                <option>🏘️ Real Estate</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;flex:1;">
+              <label class="form-label">Template</label>
+              <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                <option value="">None</option>
+                <option>Insurance Quote Email</option>
+                <option>Birthday Auto-Email</option>
+                <option>Lead Transfer Notification</option>
+                <option>Mortgage Pre-Approval Intro</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;flex:1;">
+              <label class="form-label">Link to CRM Lead</label>
+              <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                <option>Sandra Hayes — Insurance</option>
+                <option>Marcus Rivera — Insurance</option>
+                <option>Denise Lawrence — Mortgage</option>
+                <option>Terrence Cole — Real Estate</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Body -->
+          <div class="form-group" style="margin-bottom:8px;">
+            <label class="form-label">Message <span style="color:var(--red);">*</span></label>
+            <!-- Toolbar -->
+            <div style="display:flex;gap:4px;padding:8px 10px;border:1.5px solid var(--n-200);border-bottom:none;border-radius:10px 10px 0 0;background:var(--n-50);flex-wrap:wrap;">
+              <button style="padding:4px 8px;border:1px solid var(--n-200);border-radius:5px;background:white;font-size:12px;font-weight:700;cursor:pointer;font-family:serif;" title="Bold">B</button>
+              <button style="padding:4px 8px;border:1px solid var(--n-200);border-radius:5px;background:white;font-size:12px;font-style:italic;cursor:pointer;" title="Italic">I</button>
+              <button style="padding:4px 8px;border:1px solid var(--n-200);border-radius:5px;background:white;font-size:12px;cursor:pointer;text-decoration:underline;" title="Underline">U</button>
+              <div style="width:1px;background:var(--n-200);margin:0 4px;"></div>
+              <button style="padding:4px 8px;border:1px solid var(--n-200);border-radius:5px;background:white;font-size:11px;cursor:pointer;" title="Bullet list">• List</button>
+              <button style="padding:4px 8px;border:1px solid var(--n-200);border-radius:5px;background:white;font-size:11px;cursor:pointer;" title="Link">🔗 Link</button>
+              <button style="padding:4px 8px;border:1px solid var(--n-200);border-radius:5px;background:white;font-size:11px;cursor:pointer;" onclick="showToast('Attaching file via Outlook…')" title="Attach file">📎 Attach</button>
+              <div style="margin-left:auto;display:flex;gap:4px;">
+                <button style="padding:4px 10px;border:1px solid var(--n-200);border-radius:5px;background:white;font-size:11px;font-weight:600;font-family:'Manrope',sans-serif;cursor:pointer;" onclick="showToast('Setting send schedule…')">⏰ Schedule</button>
+                <button style="padding:4px 10px;border:1px solid var(--n-200);border-radius:5px;background:white;font-size:11px;font-weight:600;font-family:'Manrope',sans-serif;cursor:pointer;" onclick="showToast('Draft saved.')">💾 Save Draft</button>
+              </div>
+            </div>
+            <textarea class="form-textarea" style="border-radius:0 0 10px 10px;min-height:160px;font-size:13.5px;line-height:1.7;border-top:none;">Hi Sandra,
+
+    Thank you for your inquiry about your auto insurance renewal! I've reviewed your policy and I'm happy to assist.
+
+    Please find your updated quote attached. Based on your current vehicle (2021 Honda Accord) and clean driving record, your premium comes in at $187/month with comprehensive + collision coverage.
+
+    If you'd like to bundle this with your home insurance, we can look at a multi-policy discount that could save you an additional 12-18%.
+
+    Please don't hesitate to reach out with any questions.
+
+    Best regards,
+    Jaquarian Bonilla
+    Insurance Agent — Burkes Group
+    (832) 555-0100 | jaquarian@burkesgroup.com</textarea>
+          </div>
+
+          <!-- CRM sync options -->
+          <div style="padding:10px 12px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;">
+            <div style="font-size:11px;font-weight:700;color:var(--n-600);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">CRM &amp; Compliance</div>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;">
+              <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" checked style="width:14px;height:14px;" /> Log to CRM activity feed</label>
+              <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" checked style="width:14px;height:14px;" /> Track open &amp; click rates</label>
+              <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" style="width:14px;height:14px;" /> Create follow-up task</label>
+              <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" checked style="width:14px;height:14px;" /> Store for compliance (18 months)</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeModal('emailComposeModal')">Cancel</button>
+          <button class="btn btn-secondary" onclick="showToast('Draft saved.')">💾 Save Draft</button>
+          <button class="btn btn-primary" onclick="sendEmail()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+            Send via Outlook
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ EMAIL BLAST MODAL ══ -->
+    <div class="modal-overlay" id="emailBlastModal" onclick="handleOverlay(event,'emailBlastModal')">
+      <div class="modal" style="width:680px;">
+        <div class="modal-header">
+          <div>
+            <div class="modal-title">📢 New Email Blast Campaign</div>
+            <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Bulk email sent via Outlook · All tracked for compliance</div>
+          </div>
+          <button class="modal-close" onclick="closeModal('emailBlastModal')">×</button>
+        </div>
+        <div class="modal-body">
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div class="form-group">
+              <label class="form-label">Campaign Name <span style="color:var(--red);">*</span></label>
+              <input class="form-input" style="padding:9px 12px;font-size:13px;" placeholder="e.g. Auto Renewal Blast — March 2026" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Department <span style="color:var(--red);">*</span></label>
+              <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                <option value="">Select department…</option>
+                <option>🛡️ Insurance</option>
+                <option>🏦 Mortgage</option>
+                <option>🏘️ Real Estate</option>
+                <option>All Departments</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Target Audience</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;">
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" checked style="width:14px;height:14px;" /> All Insurance Clients (512)</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" style="width:14px;height:14px;" /> Mortgage Leads (381)</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" style="width:14px;height:14px;" /> Real Estate Contacts (391)</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" style="width:14px;height:14px;" /> Renewal Due This Month (48)</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" style="width:14px;height:14px;" /> Inactive (90+ days) (124)</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" style="width:14px;height:14px;" /> Custom Segment</label>
+            </div>
+            <div style="font-size:12px;color:var(--n-500);margin-top:5px;">Selected: <strong>512 recipients</strong></div>
+          </div>
+
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Email Subject <span style="color:var(--red);">*</span></label>
+            <input class="form-input" style="padding:9px 12px;font-size:13px;" placeholder="Your policy renews next month — let's review" />
+          </div>
+
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Use Template</label>
+            <select class="form-select" style="font-size:13px;padding:9px 12px;">
+              <option value="">Start from scratch</option>
+              <option selected>Insurance Quote Email</option>
+              <option>Birthday Auto-Email</option>
+              <option>Lead Transfer Notification</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Message Body</label>
+            <textarea class="form-textarea" style="min-height:110px;font-size:13px;">Hi [First Name],
+
+    Your auto insurance policy is coming up for renewal. I'd love to review your coverage and make sure you're getting the best rate possible.
+
+    Click below to schedule a quick call, or simply reply to this email.
+
+    Best,
+    Jaquarian Bonilla
+    Burkes Group Insurance</textarea>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Send Time</label>
+              <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                <option>Send Now</option>
+                <option>Schedule: Today 9:00 AM</option>
+                <option>Schedule: Tomorrow 8:00 AM</option>
+                <option>Custom Date/Time</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Repeat / Automation</label>
+              <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                <option>One-time send</option>
+                <option>Monthly (same audience)</option>
+                <option>Trigger-based (DOB / policy date)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="padding:10px 12px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;">
+            <div style="font-size:11px;font-weight:700;color:var(--n-600);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Settings</div>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;">
+              <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" checked style="width:14px;height:14px;" /> Track open rates</label>
+              <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" checked style="width:14px;height:14px;" /> Log to CRM activity</label>
+              <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" checked style="width:14px;height:14px;" /> Compliance storage (18 mo)</label>
+              <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" style="width:14px;height:14px;" /> Auto-unsubscribe link</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeModal('emailBlastModal')">Cancel</button>
+          <button class="btn btn-secondary" onclick="showToast('Draft campaign saved.')">💾 Save Draft</button>
+          <button class="btn btn-primary" onclick="sendBlast()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+            Launch Campaign
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- TRANSFER MODAL -->
     <div class="modal-overlay" id="smsThreadTransferModal" onclick="if(event.target===this)closeModal('smsThreadTransferModal')">
       <div class="modal" style="max-width:420px;">
@@ -7345,7 +8556,8 @@
         const cal = document.getElementById('view-calendar');
         const calls = document.getElementById('view-calls');
         const sms = document.getElementById('view-sms');
-        if (!dash || !cont || !pipe || !act || !cal || !calls || !sms) return;
+        const email = document.getElementById('view-email');
+        if (!dash || !cont || !pipe || !act || !cal || !calls || !sms || !email) return;
         dash.style.display = name === 'dashboard' ? 'block' : 'none';
         cont.style.display = name === 'contacts' ? 'block' : 'none';
         pipe.style.display = name === 'pipeline' ? 'block' : 'none';
@@ -7353,6 +8565,7 @@
         cal.style.display = name === 'calendar' ? 'block' : 'none';
         calls.style.display = name === 'calls' ? 'block' : 'none';
         sms.style.display = name === 'sms' ? 'flex' : 'none';
+        email.style.display = name === 'email' ? 'flex' : 'none';
       }
 
       /* ── NAV ACTIVE ── */
@@ -7406,6 +8619,68 @@
         document.getElementById('blastModal').classList.add('open');
         document.body.style.overflow = 'hidden';
       }
+      /* ── Email view (from email.html) ── */
+      function openEmailComposeModal() {
+        document.getElementById('emailComposeModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function openEmailBlastModal() {
+        document.getElementById('emailBlastModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function switchEmailTab(el, tab) {
+        document.querySelectorAll('#view-email .view-tab').forEach((t) => {
+          t.style.borderBottomColor = 'transparent';
+          t.style.color = 'var(--n-500)';
+          t.style.fontWeight = '600';
+        });
+        el.style.borderBottomColor = 'var(--navy)';
+        el.style.color = 'var(--navy)';
+        el.style.fontWeight = '700';
+        document.querySelectorAll('#view-email .tab-view').forEach((v) => v.classList.remove('active-view'));
+        const target = document.getElementById('tab-' + tab);
+        if (target) target.classList.add('active-view');
+      }
+      function switchMiniTab(el) {
+        const tabs = el.closest('.mini-tabs');
+        if (!tabs) return;
+        tabs.querySelectorAll('.mini-tab').forEach((t) => t.classList.remove('sel'));
+        el.classList.add('sel');
+      }
+      function selectThread(el) {
+        document.querySelectorAll('#view-email .thread-item').forEach((t) => t.classList.remove('active'));
+        el.classList.add('active');
+        el.classList.remove('unread');
+        const dot = el.querySelector('.ti-unread-dot');
+        if (dot) dot.remove();
+      }
+      function addRecipient(e) {
+        if (e.key === 'Enter' || e.key === ',') {
+          e.preventDefault();
+          const val = e.target.value.trim().replace(',', '');
+          if (!val) return;
+          const tag = document.createElement('div');
+          tag.className = 'recipient-tag';
+          tag.innerHTML = val + ' <button onclick="removeTag(this)">×</button>';
+          e.target.parentNode.insertBefore(tag, e.target);
+          e.target.value = '';
+        }
+      }
+      function sendEmail() {
+        closeModal('emailComposeModal');
+        showToast('Email sent via Outlook · Logged to CRM activity feed.');
+      }
+      function sendBlast() {
+        closeModal('emailBlastModal');
+        showToast('Campaign launched · 512 recipients · Tracked via Outlook.');
+      }
+      document.querySelectorAll('#view-email .email-folder').forEach((f) => {
+        f.addEventListener('click', () => {
+          document.querySelectorAll('#view-email .email-folder').forEach((x) => x.classList.remove('active'));
+          f.classList.add('active');
+        });
+      });
+
       function openSmsThreadTransferModal() {
         document.getElementById('smsThreadTransferModal').classList.add('open');
         document.body.style.overflow = 'hidden';
