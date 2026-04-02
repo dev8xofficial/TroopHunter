@@ -2822,6 +2822,56 @@
       }
 
 
+      /* ══════════════════════════════════════
+       EMAIL BLAST PAGE (from emailBlast.html)
+    ══════════════════════════════════════ */
+    /* ── EMAIL BLAST SPECIFIC ── */
+    .template-card {
+      border: 2px solid var(--n-200); border-radius: 12px; padding: 16px 18px;
+      cursor: pointer; transition: all .2s; background: white;
+    }
+    .template-card:hover { border-color: var(--navy); box-shadow: var(--sh-md); }
+    .template-card.selected { border-color: var(--gold); background: var(--gold-bg); box-shadow: 0 0 0 3px rgba(253,185,19,.12); }
+    .template-preview { background: var(--n-50); border-radius: 8px; padding: 14px; margin-top: 10px; font-size: 12px; color: var(--n-600); line-height: 1.6; border: 1px solid var(--n-200); }
+
+    .recipient-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: var(--blue-bg); color: var(--blue-text); border-radius: 6px; font-size: 12px; font-weight: 600; margin: 3px; }
+    .recipient-tag button { background: none; border: none; cursor: pointer; color: inherit; font-size: 14px; line-height: 1; padding: 0; opacity: .7; }
+    .recipient-tag button:hover { opacity: 1; }
+
+    .stat-mini { background: var(--n-50); border-radius: 10px; padding: 12px 14px; text-align: center; border: 1px solid var(--n-200); }
+    .stat-mini .val { font-family: 'Archivo', sans-serif; font-size: 22px; font-weight: 800; color: var(--navy); }
+    .stat-mini .lbl { font-size: 10px; color: var(--n-500); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+
+    .campaign-row-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── EDITOR TOOLBAR ── */
+    .editor-toolbar { display: flex; gap: 4px; flex-wrap: wrap; padding: 8px 12px; background: var(--n-50); border: 1.5px solid var(--n-200); border-bottom: none; border-radius: 10px 10px 0 0; }
+    .toolbar-btn { padding: 5px 9px; border-radius: 6px; border: none; background: white; color: var(--n-700); font-size: 12px; font-weight: 700; cursor: pointer; border: 1px solid var(--n-200); transition: all .15s; }
+    .toolbar-btn:hover { background: var(--navy); color: white; border-color: var(--navy); }
+    .editor-body { border: 1.5px solid var(--n-200); border-radius: 0 0 10px 10px; min-height: 160px; padding: 14px; font-size: 13px; color: var(--n-700); line-height: 1.7; background: white; outline: none; font-family: 'Manrope', sans-serif; }
+    .editor-body:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26,58,82,.08); }
+
+    /* ── ICON BTN ── */
+    .icon-btn { width: 30px; height: 30px; border-radius: 7px; border: 1.5px solid var(--n-200); background: white; color: var(--n-600); display: inline-flex; align-items: center; justify-content: center; font-size: 13px; cursor: pointer; transition: all .15s; }
+    .icon-btn:hover { border-color: var(--navy); color: var(--navy); }
+
+    /* ── EMPTY STATE ── */
+    .empty-state { text-align: center; padding: 48px 24px; color: var(--n-400); }
+    .empty-state .emoji { font-size: 42px; margin-bottom: 12px; }
+    .empty-state p { font-size: 14px; }
+
+    /* ── FADE IN ── */
+    .fade-in { animation: fadeIn .4s ease forwards; opacity: 0; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .s1 { animation-delay: .04s; } .s2 { animation-delay: .08s; } .s3 { animation-delay: .12s; }
+    .s4 { animation-delay: .16s; } .s5 { animation-delay: .20s; }
+
+    /* ── COMPLIANCE BOX ── */
+    .compliance-box { padding: 12px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; display: flex; align-items: flex-start; gap: 8px; }
+    .compliance-box.warning { background: var(--orange-bg); color: var(--orange-text); border: 1px solid #fde68a; }
+    .compliance-box.info    { background: var(--blue-bg); color: var(--blue-text); border: 1px solid #bfdbfe; }
+    .compliance-box.success { background: var(--green-bg); color: var(--green-text); border: 1px solid #a7f3d0; }
+
       .detail-drawer {
         position: fixed;
         top: 0;
@@ -3027,7 +3077,7 @@
           Email
           <span class="nav-badge nav-badge-blue">14</span>
         </a>
-        <a class="nav-item" onclick="setActive(this)">
+        <a class="nav-item" data-view="emailblast" onclick="setActive(this)">
           <div class="ni-icon">📢</div>
           Email Blast
         </a>
@@ -7323,6 +7373,590 @@
             </div>
           </div>
 
+          <div id="view-emailblast" style="display: none">
+    <div class="voip-bar">
+      <div class="pulse-dot"></div>
+      <span>VOIP Active — Line 1 open</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:10px;">
+        <span style="color:var(--n-500);font-weight:400;">Outlook sync active · Email blasts route via your Outlook account</span>
+        <button class="btn btn-xs btn-secondary" style="border-color:#a7f3d0;color:var(--green-text);background:var(--green-bg);">Outlook Connected</button>
+      </div>
+    </div>
+      <!-- PAGE HEADER -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;" class="fade-in">
+        <div>
+          <h1 style="font-family:'Archivo',sans-serif;font-size:28px;font-weight:800;color:var(--navy);line-height:1.2;">Email Blast</h1>
+          <p style="font-size:14px;color:var(--n-600);margin-top:4px;">Send bulk campaigns via Outlook · Birthday triggers · Renewal reminders · Policy updates</p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <div class="mini-tabs">
+            <button class="mini-tab sel" onclick="switchTab(this,'tab-eb-campaigns')">Campaigns</button>
+            <button class="mini-tab" onclick="switchTab(this,'tab-eb-automations')">Automations</button>
+            <button class="mini-tab" onclick="switchTab(this,'tab-eb-templates')">Templates</button>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Report exported.')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Export
+          </button>
+          <button class="btn btn-primary" onclick="openComposeModal()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            New Campaign
+          </button>
+        </div>
+      </div>
+
+      <!-- STAT CARDS -->
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:24px;">
+        <div class="stat-card navy fade-in s1">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div><div class="stat-label">Sent This Month</div><div class="stat-value">2,184</div></div>
+            <div class="stat-icon">📤</div>
+          </div>
+          <div class="stat-delta"><span class="delta-up">▲ 22%</span> vs last month</div>
+        </div>
+        <div class="stat-card gold fade-in s2">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div><div class="stat-label">Open Rate</div><div class="stat-value">41%</div></div>
+            <div class="stat-icon">👁️</div>
+          </div>
+          <div class="stat-delta"><span class="delta-up">▲ 6%</span> above industry avg</div>
+        </div>
+        <div class="stat-card blue fade-in s3">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div><div class="stat-label">Click-Through</div><div class="stat-value">18%</div></div>
+            <div class="stat-icon">🖱️</div>
+          </div>
+          <div class="stat-delta"><span class="delta-up">▲ 4%</span> vs last campaign</div>
+        </div>
+        <div class="stat-card green fade-in s4">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div><div class="stat-label">Leads Generated</div><div class="stat-value">34</div></div>
+            <div class="stat-icon">🎯</div>
+          </div>
+          <div class="stat-delta"><span class="delta-up">▲ 12</span> from last blast</div>
+        </div>
+        <div class="stat-card orange fade-in s5">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div><div class="stat-label">Unsubscribes</div><div class="stat-value">7</div></div>
+            <div class="stat-icon">🚫</div>
+          </div>
+          <div class="stat-delta"><span style="color:var(--green);font-weight:700;">▼ 3</span> vs last month</div>
+        </div>
+      </div>
+
+      <!-- COMPLIANCE NOTICE -->
+      <div class="compliance-box info fade-in" style="margin-bottom:20px;">
+        <span>ℹ️</span>
+        <div>All email blasts are sent via <strong>Microsoft Outlook</strong> integration and automatically logged in CRM. CAN-SPAM compliance is enforced — unsubscribe links are appended to every outbound email. Contact data is owned by the Burkes Group Marketing entity.</div>
+      </div>
+
+      <!-- TAB: CAMPAIGNS -->
+      <div id="tab-eb-campaigns" class="fade-in">
+
+        <div style="display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start;">
+
+          <!-- LEFT: Campaign Table -->
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">📋 All Campaigns</div>
+                  <div class="card-subtitle">Sent, scheduled, and draft campaigns</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <div style="position:relative;">
+                    <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--n-400);font-size:13px;pointer-events:none;">🔍</span>
+                    <input type="text" placeholder="Search campaigns…" style="padding:7px 12px 7px 30px;border:1.5px solid var(--n-200);border-radius:8px;font-size:12px;font-family:'Manrope',sans-serif;outline:none;width:180px;background:var(--n-50);">
+                  </div>
+                  <select style="padding:7px 28px 7px 10px;border:1.5px solid var(--n-200);border-radius:8px;font-size:12px;font-family:'Manrope',sans-serif;appearance:none;background:white url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"10\" height=\"10\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"%23737373\" stroke-width=\"2\"%3E%3Cpath d=\"m6 9 6 6 6-6\"/%3E%3C/svg%3E') no-repeat right 8px center;outline:none;">
+                    <option>All Statuses</option>
+                    <option>Sent</option>
+                    <option>Scheduled</option>
+                    <option>Draft</option>
+                    <option>Paused</option>
+                  </select>
+                </div>
+              </div>
+              <div class="tbl-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Campaign Name</th>
+                      <th>Audience</th>
+                      <th>Sent / Total</th>
+                      <th>Open Rate</th>
+                      <th>Status</th>
+                      <th>Sent Date</th>
+                      <th style="text-align:center;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div style="font-weight:700;color:var(--navy);margin-bottom:2px;">Auto Insurance Renewal Reminder</div>
+                        <div style="font-size:11px;color:var(--n-500);">🛡️ Insurance · Renewal trigger</div>
+                      </td>
+                      <td style="font-size:13px;color:var(--n-700);">48 contacts</td>
+                      <td><span style="font-weight:700;color:var(--navy);">48</span><span style="color:var(--n-400);font-size:12px;"> / 48</span></td>
+                      <td>
+                        <div style="font-weight:700;color:var(--green);">44%</div>
+                        <div class="prog-track" style="width:80px;margin-top:4px;"><div class="prog-fill" style="width:44%;background:var(--green);"></div></div>
+                      </td>
+                      <td><span class="status-pill sp-green">✓ Sent</span></td>
+                      <td style="font-size:12px;color:var(--n-500);">Today, 8:47 AM</td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn btn-sm" onclick="openResultsModal('Auto Insurance Renewal Reminder','48','44','18')">Stats</button>
+                          <button class="tbl-btn btn-sm" onclick="showToast('Duplicating campaign…')">Clone</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="font-weight:700;color:var(--navy);margin-bottom:2px;">Birthday Greetings — February</div>
+                        <div style="font-size:11px;color:var(--n-500);">🎂 Auto-triggered · DOB match</div>
+                      </td>
+                      <td style="font-size:13px;color:var(--n-700);">3 contacts</td>
+                      <td><span style="font-weight:700;color:var(--navy);">3</span><span style="color:var(--n-400);font-size:12px;"> / 3</span></td>
+                      <td>
+                        <div style="font-weight:700;color:var(--green);">67%</div>
+                        <div class="prog-track" style="width:80px;margin-top:4px;"><div class="prog-fill" style="width:67%;background:var(--green);"></div></div>
+                      </td>
+                      <td><span class="status-pill sp-green">✓ Sent</span></td>
+                      <td style="font-size:12px;color:var(--n-500);">Today, 8:00 AM</td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn btn-sm" onclick="openResultsModal('Birthday Greetings — February','3','67','33')">Stats</button>
+                          <button class="tbl-btn btn-sm" onclick="showToast('Duplicating campaign…')">Clone</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="font-weight:700;color:var(--navy);margin-bottom:2px;">Home Buying Guide — Spring 2026</div>
+                        <div style="font-size:11px;color:var(--n-500);">🏘️ Real Estate · Nurture sequence</div>
+                      </td>
+                      <td style="font-size:13px;color:var(--n-700);">124 contacts</td>
+                      <td><span style="font-weight:700;color:var(--navy);">124</span><span style="color:var(--n-400);font-size:12px;"> / 124</span></td>
+                      <td>
+                        <div style="font-weight:700;color:var(--orange-text);">38%</div>
+                        <div class="prog-track" style="width:80px;margin-top:4px;"><div class="prog-fill" style="width:38%;background:var(--orange);"></div></div>
+                      </td>
+                      <td><span class="status-pill sp-green">✓ Sent</span></td>
+                      <td style="font-size:12px;color:var(--n-500);">Feb 12, 2026</td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn btn-sm" onclick="openResultsModal('Home Buying Guide — Spring 2026','124','38','14')">Stats</button>
+                          <button class="tbl-btn btn-sm" onclick="showToast('Duplicating campaign…')">Clone</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="font-weight:700;color:var(--navy);margin-bottom:2px;">Mortgage Rate Update — Feb 2026</div>
+                        <div style="font-size:11px;color:var(--n-500);">🏦 Mortgage · Rate alert</div>
+                      </td>
+                      <td style="font-size:13px;color:var(--n-700);">76 contacts</td>
+                      <td><span style="font-weight:700;color:var(--navy);">—</span><span style="color:var(--n-400);font-size:12px;"> / 76</span></td>
+                      <td><span style="color:var(--n-400);font-size:12px;">Pending</span></td>
+                      <td><span class="status-pill sp-gold">⏰ Scheduled</span></td>
+                      <td style="font-size:12px;color:var(--n-500);">Feb 20, 10:00 AM</td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn btn-sm" onclick="openComposeModal()">Edit</button>
+                          <button class="tbl-btn btn-sm tbl-btn-danger" onclick="showToast('Campaign paused.')">Pause</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="font-weight:700;color:var(--navy);margin-bottom:2px;">Welcome Series — New Clients</div>
+                        <div style="font-size:11px;color:var(--n-500);">👋 Onboarding · 3-email drip</div>
+                      </td>
+                      <td style="font-size:13px;color:var(--n-700);">12 contacts</td>
+                      <td><span style="font-weight:700;color:var(--navy);">—</span><span style="color:var(--n-400);font-size:12px;"> / 12</span></td>
+                      <td><span style="color:var(--n-400);font-size:12px;">—</span></td>
+                      <td><span class="status-pill sp-gray">📝 Draft</span></td>
+                      <td style="font-size:12px;color:var(--n-500);">Not scheduled</td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn btn-sm" onclick="openComposeModal()">Edit</button>
+                          <button class="tbl-btn btn-sm" onclick="showToast('Campaign deleted.')">Delete</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="font-weight:700;color:var(--navy);margin-bottom:2px;">Q1 Market Report — Woodlands</div>
+                        <div style="font-size:11px;color:var(--n-500);">🏘️ Real Estate · Market insight</div>
+                      </td>
+                      <td style="font-size:13px;color:var(--n-700);">203 contacts</td>
+                      <td><span style="font-weight:700;color:var(--navy);">203</span><span style="color:var(--n-400);font-size:12px;"> / 203</span></td>
+                      <td>
+                        <div style="font-weight:700;color:var(--green);">51%</div>
+                        <div class="prog-track" style="width:80px;margin-top:4px;"><div class="prog-fill" style="width:51%;background:var(--green);"></div></div>
+                      </td>
+                      <td><span class="status-pill sp-green">✓ Sent</span></td>
+                      <td style="font-size:12px;color:var(--n-500);">Feb 1, 2026</td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn btn-sm" onclick="openResultsModal('Q1 Market Report — Woodlands','203','51','22')">Stats</button>
+                          <button class="tbl-btn btn-sm" onclick="showToast('Duplicating campaign…')">Clone</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="padding:12px 18px;border-top:1px solid var(--n-100);display:flex;align-items:center;justify-content:space-between;">
+                <div style="font-size:12px;color:var(--n-500);">Showing 1–6 of 18 campaigns</div>
+                <div style="display:flex;gap:6px;">
+                  <button class="btn btn-secondary btn-xs">← Prev</button>
+                  <button class="btn btn-primary btn-xs">1</button>
+                  <button class="btn btn-secondary btn-xs">2</button>
+                  <button class="btn btn-secondary btn-xs">3</button>
+                  <button class="btn btn-secondary btn-xs">Next →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Quick compose + audience -->
+          <div style="display:flex;flex-direction:column;gap:18px;">
+
+            <!-- Quick Compose -->
+            <div class="card fade-in s2">
+              <div class="card-header">
+                <div class="card-title">⚡ Quick Blast</div>
+                <div class="card-subtitle">Send now via Outlook</div>
+              </div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:12px;">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label">Subject Line</label>
+                  <input type="text" class="form-input" placeholder="e.g. Your auto policy renews next month" style="font-size:13px;padding:9px 12px;">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label">Audience</label>
+                  <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                    <option>All Contacts (1,284)</option>
+                    <option>🛡️ Insurance — All (512)</option>
+                    <option>🛡️ Insurance — Renewals Due (87)</option>
+                    <option>🏦 Mortgage — Active (381)</option>
+                    <option>🏘️ Real Estate — Buyers (241)</option>
+                    <option>🏘️ Real Estate — Sellers (150)</option>
+                    <option>🎂 Birthday This Month (14)</option>
+                    <option>📍 77380 Zip Code (312)</option>
+                  </select>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label">Template</label>
+                  <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                    <option>Select a template…</option>
+                    <option>Auto Renewal Reminder</option>
+                    <option>Birthday Greeting</option>
+                    <option>Market Update</option>
+                    <option>New Listing Alert</option>
+                    <option>Rate Drop Alert</option>
+                    <option>Custom / Blank</option>
+                  </select>
+                </div>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="showToast('Campaign sent to 512 contacts via Outlook.')">
+                  📤 Send Now via Outlook
+                </button>
+                <button class="btn btn-secondary" style="width:100%;justify-content:center;" onclick="openComposeModal()">
+                  ✏️ Full Compose View
+                </button>
+              </div>
+            </div>
+
+            <!-- Audience Breakdown -->
+            <div class="card fade-in s3">
+              <div class="card-header">
+                <div class="card-title">👥 Audience Breakdown</div>
+              </div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--n-800);">🛡️ Insurance</div>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <span class="badge b-gold">512</span>
+                    <button class="icon-btn" onclick="showToast('Selecting Insurance audience…')">➕</button>
+                  </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--n-800);">🏦 Mortgage</div>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <span class="badge b-blue">381</span>
+                    <button class="icon-btn" onclick="showToast('Selecting Mortgage audience…')">➕</button>
+                  </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--n-800);">🏘️ Real Estate</div>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <span class="badge b-green">391</span>
+                    <button class="icon-btn" onclick="showToast('Selecting Real Estate audience…')">➕</button>
+                  </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--gold-bg);border-radius:8px;border:1px solid var(--gold-border);">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#92400e;">🎂 Birthdays This Month</div>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <span class="badge b-gold">14</span>
+                    <button class="icon-btn" onclick="showToast('Selecting birthday audience…')">➕</button>
+                  </div>
+                </div>
+                <div style="border-top:1px solid var(--n-100);padding-top:10px;font-size:11px;color:var(--n-500);font-weight:600;display:flex;align-items:center;gap:5px;">
+                  <span>⚠️</span> Unsubscribed contacts (23) are automatically excluded
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card fade-in s4">
+              <div class="card-header"><div class="card-title">⚡ Recent Activity</div></div>
+              <div style="display:flex;flex-direction:column;">
+                <div style="padding:11px 16px;border-bottom:1px solid var(--n-100);display:flex;gap:10px;align-items:flex-start;">
+                  <div style="width:30px;height:30px;border-radius:8px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">📤</div>
+                  <div style="flex:1;">
+                    <div style="font-size:12.5px;font-weight:700;color:var(--n-800);">Renewal blast sent · 48 contacts</div>
+                    <div style="font-size:11px;color:var(--n-500);">Outlook · Insurance · Today 8:47 AM</div>
+                  </div>
+                </div>
+                <div style="padding:11px 16px;border-bottom:1px solid var(--n-100);display:flex;gap:10px;align-items:flex-start;">
+                  <div style="width:30px;height:30px;border-radius:8px;background:var(--gold-bg);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">🎂</div>
+                  <div style="flex:1;">
+                    <div style="font-size:12.5px;font-weight:700;color:var(--n-800);">Birthday auto-sent · Sandra Hayes</div>
+                    <div style="font-size:11px;color:var(--n-500);">DOB trigger · Automated · 8:00 AM</div>
+                  </div>
+                </div>
+                <div style="padding:11px 16px;display:flex;gap:10px;align-items:flex-start;">
+                  <div style="width:30px;height:30px;border-radius:8px;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">📥</div>
+                  <div style="flex:1;">
+                    <div style="font-size:12.5px;font-weight:700;color:var(--n-800);">3 replies received from blast</div>
+                    <div style="font-size:11px;color:var(--n-500);">Feb 12 campaign · Real Estate</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: AUTOMATIONS -->
+      <div id="tab-eb-automations" style="display:none;" class="fade-in">
+        <div style="display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start;">
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div class="compliance-box warning" style="margin-bottom:2px;">
+              <span>⚠️</span>
+              <div>Automated emails are sent via <strong>Microsoft Outlook</strong> and stored per your email account's Microsoft retention policy. Birthday and renewal triggers fire at 8:00 AM on the event day.</div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div><div class="card-title">🤖 Automation Rules</div><div class="card-subtitle">Trigger-based emails synced with Outlook</div></div>
+                <button class="btn btn-primary btn-sm" onclick="showToast('New automation rule created.')">+ Add Rule</button>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:0;">
+
+                <!-- Rule 1 -->
+                <div style="padding:18px 22px;border-bottom:1px solid var(--n-100);display:flex;gap:14px;align-items:flex-start;">
+                  <div style="width:40px;height:40px;border-radius:10px;background:var(--gold-bg);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🎂</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:4px;">Birthday Email</div>
+                    <div style="font-size:12px;color:var(--n-600);margin-bottom:8px;">Triggers on client's DOB. Sends warm greeting with policy check-in via Outlook. Auto-logged in CRM.</div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <span class="badge b-gold">🛡️ Insurance</span>
+                      <span class="badge b-green">Active</span>
+                      <span class="badge b-navy">Outlook</span>
+                      <span style="font-size:11px;color:var(--n-500);align-self:center;">Sent 14 this month</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;gap:6px;align-items:flex-start;flex-shrink:0;">
+                    <button class="tbl-btn btn-sm" onclick="showToast('Rule edited.')">Edit</button>
+                    <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;font-weight:600;color:var(--green-text);">
+                      <input type="checkbox" checked onchange="this.parentElement.style.color=this.checked?'var(--green-text)':'var(--n-500)'"> ON
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Rule 2 -->
+                <div style="padding:18px 22px;border-bottom:1px solid var(--n-100);display:flex;gap:14px;align-items:flex-start;">
+                  <div style="width:40px;height:40px;border-radius:10px;background:var(--orange-bg);border:1px solid #fde68a;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">📅</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:4px;">Policy Renewal Reminder</div>
+                    <div style="font-size:12px;color:var(--n-600);margin-bottom:8px;">Sends 30 days and 7 days before policy expiration. Includes agent contact info and renewal link.</div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <span class="badge b-gold">🛡️ Insurance</span>
+                      <span class="badge b-green">Active</span>
+                      <span class="badge b-navy">Outlook</span>
+                      <span style="font-size:11px;color:var(--n-500);align-self:center;">87 contacts in queue</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;gap:6px;align-items:flex-start;flex-shrink:0;">
+                    <button class="tbl-btn btn-sm" onclick="showToast('Rule edited.')">Edit</button>
+                    <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;font-weight:600;color:var(--green-text);">
+                      <input type="checkbox" checked onchange="this.parentElement.style.color=this.checked?'var(--green-text)':'var(--n-500)'"> ON
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Rule 3 -->
+                <div style="padding:18px 22px;border-bottom:1px solid var(--n-100);display:flex;gap:14px;align-items:flex-start;">
+                  <div style="width:40px;height:40px;border-radius:10px;background:var(--green-bg);border:1px solid #a7f3d0;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🏠</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:4px;">Mortgage Pre-Approval Follow-Up</div>
+                    <div style="font-size:12px;color:var(--n-600);margin-bottom:8px;">Triggered when a lead is moved to "Mortgage" stage in CRM. Sends Arive application link and agent intro.</div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <span class="badge b-blue">🏦 Mortgage</span>
+                      <span class="badge b-green">Active</span>
+                      <span class="badge b-navy">Outlook + Arive</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;gap:6px;align-items:flex-start;flex-shrink:0;">
+                    <button class="tbl-btn btn-sm" onclick="showToast('Rule edited.')">Edit</button>
+                    <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;font-weight:600;color:var(--green-text);">
+                      <input type="checkbox" checked onchange="this.parentElement.style.color=this.checked?'var(--green-text)':'var(--n-500)'"> ON
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Rule 4 - Inactive -->
+                <div style="padding:18px 22px;display:flex;gap:14px;align-items:flex-start;opacity:.6;">
+                  <div style="width:40px;height:40px;border-radius:10px;background:var(--n-100);border:1px solid var(--n-200);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🎉</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:4px;">Home Closing Congratulations</div>
+                    <div style="font-size:12px;color:var(--n-600);margin-bottom:8px;">Sends after transaction marked Completed. Includes service partner referrals for new home.</div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <span class="badge b-neutral">🏘️ Real Estate</span>
+                      <span class="badge b-neutral">Paused</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;gap:6px;align-items:flex-start;flex-shrink:0;">
+                    <button class="tbl-btn btn-sm" onclick="showToast('Rule edited.')">Edit</button>
+                    <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;font-weight:600;color:var(--n-500);">
+                      <input type="checkbox" onchange="this.parentElement.style.color=this.checked?'var(--green-text)':'var(--n-500)'"> OFF
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div class="card">
+              <div class="card-header"><div class="card-title">📊 Automation Stats</div></div>
+              <div class="card-body" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <div class="stat-mini"><div class="val">4</div><div class="lbl">Active Rules</div></div>
+                <div class="stat-mini"><div class="val">47</div><div class="lbl">Sent This Month</div></div>
+                <div class="stat-mini"><div class="val" style="color:var(--green);">62%</div><div class="lbl">Avg Open Rate</div></div>
+                <div class="stat-mini"><div class="val">8</div><div class="lbl">Leads Generated</div></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><div class="card-title">🔗 Connected Triggers</div></div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);font-size:13px;">
+                  <span style="font-weight:600;">Outlook Calendar</span>
+                  <span class="badge b-green">Synced</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);font-size:13px;">
+                  <span style="font-weight:600;">CRM Stage Changes</span>
+                  <span class="badge b-green">Active</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);font-size:13px;">
+                  <span style="font-weight:600;">Arive (Mortgage)</span>
+                  <span class="badge b-green">Active</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);font-size:13px;">
+                  <span style="font-weight:600;">DOB / Anniversary</span>
+                  <span class="badge b-gold">Watching</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: TEMPLATES -->
+      <div id="tab-eb-templates" style="display:none;" class="fade-in">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;">
+
+          <div class="template-card selected" onclick="selectTemplate(this)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span style="font-weight:700;font-size:13.5px;color:var(--navy);">Auto Renewal Reminder</span>
+              <span class="badge b-gold">🛡️ Insurance</span>
+            </div>
+            <div style="font-size:11px;color:var(--n-500);margin-bottom:8px;">Last used: Today</div>
+            <div class="template-preview">Hi [First Name], your auto policy <strong>#[Policy #]</strong> renews on <strong>[Renewal Date]</strong>. Click below to review your coverage or call us at…</div>
+            <div style="display:flex;gap:6px;margin-top:10px;">
+              <button class="btn btn-primary btn-xs" onclick="openComposeModal();event.stopPropagation()">Use Template</button>
+              <button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();showToast('Template cloned.')">Clone</button>
+            </div>
+          </div>
+
+          <div class="template-card" onclick="selectTemplate(this)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span style="font-weight:700;font-size:13.5px;color:var(--navy);">Birthday Greeting</span>
+              <span class="badge b-gold">🎂 All</span>
+            </div>
+            <div style="font-size:11px;color:var(--n-500);margin-bottom:8px;">Used 14 times this month</div>
+            <div class="template-preview">Happy Birthday, [First Name]! 🎉 We value your trust and want to make sure you're covered the way you deserve. Let's catch up this week…</div>
+            <div style="display:flex;gap:6px;margin-top:10px;">
+              <button class="btn btn-primary btn-xs" onclick="openComposeModal();event.stopPropagation()">Use Template</button>
+              <button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();showToast('Template cloned.')">Clone</button>
+            </div>
+          </div>
+
+          <div class="template-card" onclick="selectTemplate(this)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span style="font-weight:700;font-size:13.5px;color:var(--navy);">Market Update</span>
+              <span class="badge b-green">🏘️ Real Estate</span>
+            </div>
+            <div style="font-size:11px;color:var(--n-500);margin-bottom:8px;">Last used: Feb 1</div>
+            <div class="template-preview">The Woodlands market is moving fast. Here's your Q1 2026 snapshot: [#] homes sold, median price [Price], avg days on market [Days]…</div>
+            <div style="display:flex;gap:6px;margin-top:10px;">
+              <button class="btn btn-primary btn-xs" onclick="openComposeModal();event.stopPropagation()">Use Template</button>
+              <button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();showToast('Template cloned.')">Clone</button>
+            </div>
+          </div>
+
+          <div class="template-card" onclick="selectTemplate(this)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span style="font-weight:700;font-size:13.5px;color:var(--navy);">Rate Drop Alert</span>
+              <span class="badge b-blue">🏦 Mortgage</span>
+            </div>
+            <div style="font-size:11px;color:var(--n-500);margin-bottom:8px;">Not used recently</div>
+            <div class="template-preview">Big news, [First Name]! Interest rates just dropped to [Rate]%. If you've been thinking about buying or refinancing, now is a great time to connect with our lender team…</div>
+            <div style="display:flex;gap:6px;margin-top:10px;">
+              <button class="btn btn-primary btn-xs" onclick="openComposeModal();event.stopPropagation()">Use Template</button>
+              <button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();showToast('Template cloned.')">Clone</button>
+            </div>
+          </div>
+
+          <div class="template-card" onclick="selectTemplate(this)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span style="font-weight:700;font-size:13.5px;color:var(--navy);">New Listing Alert</span>
+              <span class="badge b-green">🏘️ Real Estate</span>
+            </div>
+            <div style="font-size:11px;color:var(--n-500);margin-bottom:8px;">Last used: Jan 18</div>
+            <div class="template-preview">Just listed! [Address] in [Neighborhood] — [Beds]bd/[Baths]ba for $[Price]. Matches your search criteria. Schedule a showing today…</div>
+            <div style="display:flex;gap:6px;margin-top:10px;">
+              <button class="btn btn-primary btn-xs" onclick="openComposeModal();event.stopPropagation()">Use Template</button>
+              <button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();showToast('Template cloned.')">Clone</button>
+            </div>
+          </div>
+
+          <!-- Blank / New Template -->
+          <div class="template-card" style="border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;background:var(--n-50);" onclick="showToast('Opening blank template editor…')">
+            <div style="font-size:32px;margin-bottom:8px;">✏️</div>
+            <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:4px;">Create New Template</div>
+            <div style="font-size:12px;color:var(--n-500);">Start from scratch</div>
+          </div>
+
+        </div>
+      </div>
+
+          </div>
+
           <!-- /view-calls -->
 
         </div>
@@ -8199,6 +8833,189 @@
       </div>
     </div>
 
+<div class="modal-overlay" id="composeModal" onclick="if(event.target===this)closeModal('composeModal')">
+  <div class="modal" style="width:660px;">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">✉️ New Email Campaign</div>
+        <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Sent via Microsoft Outlook · CRM auto-logs delivery &amp; opens</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('composeModal')">×</button>
+    </div>
+    <div class="modal-body" style="display:flex;flex-direction:column;gap:14px;">
+
+      <div class="form-group" style="margin-bottom:0;">
+        <label class="form-label">Campaign Name <span style="color:var(--red);">*</span></label>
+        <input type="text" class="form-input" placeholder="e.g. Auto Renewal Blast — Feb 2026" />
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Audience / Segment <span style="color:var(--red);">*</span></label>
+          <select class="form-select">
+            <option>All Contacts (1,284)</option>
+            <option selected>🛡️ Insurance — Renewals Due (87)</option>
+            <option>🛡️ Insurance — All (512)</option>
+            <option>🏦 Mortgage — Active (381)</option>
+            <option>🏘️ Real Estate — Buyers (241)</option>
+            <option>🎂 Birthdays This Month (14)</option>
+            <option>📍 Zip Code 77380 (312)</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Department Tag</label>
+          <select class="form-select">
+            <option>🛡️ Insurance</option>
+            <option>🏦 Mortgage</option>
+            <option>🏘️ Real Estate</option>
+            <option>All Departments</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:0;">
+        <label class="form-label">From Name (Outlook Sender)</label>
+        <select class="form-select">
+          <option>Jaquarian Bonilla — jbonilla@burkesgroup.com</option>
+          <option>Burkes Group Team — team@burkesgroup.com</option>
+          <option>Tom Burke — tburke@burkesgroup.com</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="margin-bottom:0;">
+        <label class="form-label">Subject Line <span style="color:var(--red);">*</span></label>
+        <input type="text" class="form-input" placeholder="e.g. Your auto policy renews next month — let's review" />
+      </div>
+
+      <div class="form-group" style="margin-bottom:0;">
+        <label class="form-label">Email Body</label>
+        <div class="editor-toolbar">
+          <button class="toolbar-btn">B</button>
+          <button class="toolbar-btn"><i>I</i></button>
+          <button class="toolbar-btn"><u>U</u></button>
+          <button class="toolbar-btn">H1</button>
+          <button class="toolbar-btn">H2</button>
+          <button class="toolbar-btn">🔗</button>
+          <button class="toolbar-btn">📋</button>
+          <div style="width:1px;background:var(--n-200);margin:2px 4px;"></div>
+          <button class="toolbar-btn" title="Insert first name">[First Name]</button>
+          <button class="toolbar-btn" title="Insert policy number">[Policy #]</button>
+          <button class="toolbar-btn" title="Insert agent name">[Agent]</button>
+        </div>
+        <div class="editor-body" contenteditable="true">Hi [First Name],
+
+Your auto policy renews next month. We want to make sure you have the right coverage heading into the new year.
+
+Click the link below to review your policy, or reply to this email and we'll set up a quick call.
+
+Talk soon,
+[Agent Name]
+Burkes Group · Insurance Division</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Send Options</label>
+          <select class="form-select" id="sendOptionSelect" onchange="toggleSchedule(this.value)">
+            <option value="now">Send Now via Outlook</option>
+            <option value="schedule">Schedule for Later</option>
+            <option value="draft">Save as Draft</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom:0;" id="scheduleField">
+          <label class="form-label">Schedule Date &amp; Time</label>
+          <input type="datetime-local" class="form-input" />
+        </div>
+      </div>
+
+      <div style="padding:12px 14px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;">
+        <div style="font-size:11.5px;font-weight:700;color:var(--n-600);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em;">Sync &amp; Compliance</div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" checked> Log in CRM Activity Feed</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" checked> Track opens &amp; clicks</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;"><input type="checkbox" checked> Auto-append unsubscribe link</label>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('composeModal')">Cancel</button>
+      <button class="btn btn-secondary" onclick="showToast('Saved as draft.');closeModal('composeModal')">Save Draft</button>
+      <button class="btn btn-primary" onclick="showToast('Campaign sent to 87 contacts via Outlook.');closeModal('composeModal')">
+        📤 Send Campaign
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ── RESULTS MODAL ── -->
+<div class="modal-overlay" id="resultsModal" onclick="if(event.target===this)closeModal('resultsModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="resultsModalTitle">Campaign Results</div>
+        <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Delivery, engagement &amp; click analytics</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('resultsModal')">×</button>
+    </div>
+    <div class="modal-body">
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;">
+        <div class="stat-mini"><div class="val" id="res-sent">—</div><div class="lbl">Sent</div></div>
+        <div class="stat-mini"><div class="val" style="color:var(--green);" id="res-open">—</div><div class="lbl">Open Rate</div></div>
+        <div class="stat-mini"><div class="val" style="color:var(--blue-text);" id="res-ctr">—</div><div class="lbl">Click Rate</div></div>
+        <div class="stat-mini"><div class="val" style="color:var(--orange-text);">0.3%</div><div class="lbl">Unsub Rate</div></div>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <div style="font-size:12px;font-weight:700;color:var(--n-700);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em;">Engagement Breakdown</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:13px;color:var(--n-700);">📬 Delivered</span>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="prog-track" style="width:160px;margin-top:0;"><div class="prog-fill" style="width:98%;background:var(--navy);"></div></div>
+              <span style="font-size:12px;color:var(--n-600);width:36px;text-align:right;">98%</span>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:13px;color:var(--n-700);">👁️ Opened</span>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="prog-track" style="width:160px;margin-top:0;"><div class="prog-fill" id="prog-open" style="width:44%;background:var(--green);"></div></div>
+              <span style="font-size:12px;color:var(--n-600);width:36px;text-align:right;" id="prog-open-lbl">44%</span>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:13px;color:var(--n-700);">🖱️ Clicked</span>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="prog-track" style="width:160px;margin-top:0;"><div class="prog-fill" id="prog-ctr" style="width:18%;background:#3b82f6;"></div></div>
+              <span style="font-size:12px;color:var(--n-600);width:36px;text-align:right;" id="prog-ctr-lbl">18%</span>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:13px;color:var(--n-700);">🚫 Unsubscribed</span>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="prog-track" style="width:160px;margin-top:0;"><div class="prog-fill" style="width:0.3%;background:var(--red);"></div></div>
+              <span style="font-size:12px;color:var(--n-600);width:36px;text-align:right;">0.3%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--n-50);border-radius:10px;padding:14px 16px;border:1px solid var(--n-200);">
+        <div style="font-size:12px;font-weight:700;color:var(--n-700);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em;">Sent Via</div>
+        <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--n-700);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" fill="#0078D4"/><path d="M2 8l10 6 10-6" stroke="white" stroke-width="1.5" fill="none"/></svg>
+          <strong>Microsoft Outlook</strong> — CRM Activity log updated automatically
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('resultsModal')">Close</button>
+      <button class="btn btn-primary" onclick="showToast('Campaign cloned as new draft.');closeModal('resultsModal')">Clone Campaign</button>
+    </div>
+  </div>
+</div>
+
     <!-- TRANSFER MODAL -->
     <div class="modal-overlay" id="smsThreadTransferModal" onclick="if(event.target===this)closeModal('smsThreadTransferModal')">
       <div class="modal" style="max-width:420px;">
@@ -8557,7 +9374,8 @@
         const calls = document.getElementById('view-calls');
         const sms = document.getElementById('view-sms');
         const email = document.getElementById('view-email');
-        if (!dash || !cont || !pipe || !act || !cal || !calls || !sms || !email) return;
+        const emailblast = document.getElementById('view-emailblast');
+        if (!dash || !cont || !pipe || !act || !cal || !calls || !sms || !email || !emailblast) return;
         dash.style.display = name === 'dashboard' ? 'block' : 'none';
         cont.style.display = name === 'contacts' ? 'block' : 'none';
         pipe.style.display = name === 'pipeline' ? 'block' : 'none';
@@ -8566,6 +9384,7 @@
         calls.style.display = name === 'calls' ? 'block' : 'none';
         sms.style.display = name === 'sms' ? 'flex' : 'none';
         email.style.display = name === 'email' ? 'flex' : 'none';
+        emailblast.style.display = name === 'emailblast' ? 'block' : 'none';
       }
 
       /* ── NAV ACTIVE ── */
@@ -8577,7 +9396,17 @@
       }
 
       /* ── MINI TAB ── */
-      function switchTab(el) {
+      function switchTab(el, tabId) {
+        if (tabId !== undefined) {
+          const wrap = el.closest('.mini-tabs');
+          if (wrap) wrap.querySelectorAll('.mini-tab').forEach((t) => t.classList.remove('sel'));
+          el.classList.add('sel');
+          ['tab-eb-campaigns', 'tab-eb-automations', 'tab-eb-templates'].forEach((id) => {
+            const node = document.getElementById(id);
+            if (node) node.style.display = id === tabId ? '' : 'none';
+          });
+          return;
+        }
         const tabs = el.closest('.mini-tabs');
         tabs.querySelectorAll('.mini-tab').forEach((t) => t.classList.remove('sel'));
         el.classList.add('sel');
@@ -8627,6 +9456,30 @@
       function openEmailBlastModal() {
         document.getElementById('emailBlastModal').classList.add('open');
         document.body.style.overflow = 'hidden';
+      }
+      function openComposeModal() {
+        document.getElementById('composeModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function openResultsModal(name, sent, open, ctr) {
+        document.getElementById('resultsModalTitle').textContent = name;
+        document.getElementById('res-sent').textContent = sent;
+        document.getElementById('res-open').textContent = open + '%';
+        document.getElementById('res-ctr').textContent = ctr + '%';
+        document.getElementById('prog-open').style.width = open + '%';
+        document.getElementById('prog-open-lbl').textContent = open + '%';
+        document.getElementById('prog-ctr').style.width = ctr + '%';
+        document.getElementById('prog-ctr-lbl').textContent = ctr + '%';
+        document.getElementById('resultsModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function selectTemplate(el) {
+        document.querySelectorAll('#view-emailblast .template-card').forEach((c) => c.classList.remove('selected'));
+        el.classList.add('selected');
+      }
+      function toggleSchedule(val) {
+        const field = document.getElementById('scheduleField');
+        if (field) field.style.opacity = val === 'schedule' ? '1' : '0.4';
       }
       function switchEmailTab(el, tab) {
         document.querySelectorAll('#view-email .view-tab').forEach((t) => {
