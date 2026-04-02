@@ -762,6 +762,145 @@
         flex: 1;
         overflow-y: auto;
         padding: 28px 32px;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+
+      /* SMS / Text view (from sms-text.html) */
+      #view-sms {
+        display: none;
+        flex: 1;
+        flex-direction: column;
+        min-height: 0;
+        margin: -28px -32px;
+        padding: 0;
+        overflow: hidden;
+      }
+
+    /* SMS LAYOUT */
+    #view-sms .sms-shell { display: flex; flex: 1; overflow: hidden; }
+
+    /* LEFT THREAD LIST */
+    #view-sms .thread-panel { width: 300px; flex-shrink: 0; background: white; border-right: 1px solid var(--n-200); display: flex; flex-direction: column; overflow: hidden; }
+    #view-sms .tp-header { padding: 16px 16px 10px; border-bottom: 1px solid var(--n-100); flex-shrink: 0; }
+    #view-sms .tp-title { font-family: 'Archivo', sans-serif; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+    #view-sms .tp-search { position: relative; }
+    #view-sms .tp-search input { width: 100%; background: var(--n-50); border: 1.5px solid var(--n-200); border-radius: 9px; padding: 8px 12px 8px 34px; font-size: 12.5px; font-family: 'Manrope', sans-serif; outline: none; transition: border-color .2s; color: var(--n-800); }
+    #view-sms .tp-search input:focus { border-color: var(--navy); }
+    #view-sms .tp-search input::placeholder { color: var(--n-400); }
+    #view-sms .tp-srch-ico { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--n-400); pointer-events: none; }
+    #view-sms .tp-tabs { display: flex; gap: 2px; padding: 8px 16px; background: var(--n-50); border-bottom: 1px solid var(--n-100); flex-shrink: 0; }
+    #view-sms .tp-tab { flex: 1; padding: 6px 0; text-align: center; font-size: 11.5px; font-weight: 600; border-radius: 7px; cursor: pointer; color: var(--n-600); transition: all .15s; border: none; background: transparent; font-family: 'Manrope', sans-serif; }
+    #view-sms .tp-tab.active { background: white; color: var(--navy); box-shadow: var(--sh-sm); }
+    #view-sms .thread-list { overflow-y: auto; flex: 1; }
+    #view-sms .thread-item { display: flex; gap: 11px; padding: 13px 16px; border-bottom: 1px solid var(--n-100); cursor: pointer; transition: background .15s; position: relative; }
+    #view-sms .thread-item:hover { background: var(--n-50); }
+    #view-sms .thread-item.active { background: #eef3f8; border-left: 3px solid var(--navy); padding-left: 13px; }
+    #view-sms .thread-item.unread .t-name { font-weight: 700; }
+    #view-sms .thread-item.unread::after { content: ''; position: absolute; top: 16px; right: 14px; width: 8px; height: 8px; border-radius: 50%; background: var(--navy); }
+    #view-sms .t-av { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex-shrink: 0; color: white; }
+    #view-sms .t-info { flex: 1; min-width: 0; }
+    #view-sms .t-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+    #view-sms .t-name { font-size: 13px; font-weight: 500; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+    #view-sms .t-time { font-size: 10px; color: var(--n-400); white-space: nowrap; }
+    #view-sms .t-dept { font-size: 10px; font-weight: 700; color: var(--n-500); margin-bottom: 2px; }
+    #view-sms .t-prev { font-size: 11.5px; color: var(--n-500); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+    #view-sms .t-phone { font-size: 10.5px; color: var(--n-400); }
+
+    /* CHAT PANEL */
+    #view-sms .chat-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: var(--n-50); }
+    #view-sms .chat-header { background: white; border-bottom: 1px solid var(--n-200); padding: 14px 22px; display: flex; align-items: center; gap: 14px; flex-shrink: 0; box-shadow: var(--sh-sm); }
+    #view-sms .ch-avatar { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: white; flex-shrink: 0; }
+    #view-sms .ch-name { font-family: 'Archivo', sans-serif; font-size: 16px; font-weight: 700; color: var(--navy); }
+    #view-sms .ch-meta { font-size: 12px; color: var(--n-500); }
+    #view-sms .ch-actions { display: flex; gap: 7px; margin-left: auto; align-items: center; }
+    #view-sms .ch-btn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1.5px solid var(--n-200); background: white; color: var(--n-700); font-family: 'Manrope', sans-serif; transition: all .2s; }
+    #view-sms .ch-btn:hover { border-color: var(--navy); color: var(--navy); }
+    #view-sms .ch-btn.primary { background: var(--navy); color: white; border-color: var(--navy); }
+    #view-sms .ch-btn.primary:hover { background: var(--navy-hover); }
+
+    /* MESSAGES */
+    #view-sms .chat-body { flex: 1; overflow-y: auto; padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+    #view-sms .date-sep { display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--n-400); font-weight: 600; }
+    #view-sms .date-sep::before, #view-sms .date-sep::after { content: ''; flex: 1; height: 1px; background: var(--n-200); }
+    #view-sms .msg-grp { display: flex; flex-direction: column; gap: 3px; max-width: 68%; }
+    #view-sms .msg-grp.in { align-items: flex-start; }
+    #view-sms .msg-grp.out { align-items: flex-end; align-self: flex-end; }
+    #view-sms .msg-from { font-size: 10.5px; color: var(--n-400); margin-bottom: 3px; font-weight: 600; }
+    #view-sms .msg-bbl { padding: 10px 14px; border-radius: 13px; font-size: 13.5px; line-height: 1.55; }
+    #view-sms .msg-grp.in .msg-bbl { background: white; color: var(--n-800); border: 1px solid var(--n-200); border-bottom-left-radius: 4px; box-shadow: var(--sh-sm); }
+    #view-sms .msg-grp.out .msg-bbl { background: var(--navy); color: white; border-bottom-right-radius: 4px; }
+    #view-sms .msg-ts { font-size: 10px; color: var(--n-400); margin-top: 2px; }
+    #view-sms .msg-status { font-size: 10px; color: var(--n-400); display: flex; align-items: center; gap: 4px; }
+    #view-sms .msg-status.delivered { color: var(--green); }
+
+    /* SYSTEM NOTICE */
+    #view-sms .sys-notice { display: flex; align-items: center; gap: 8px; padding: 9px 14px; background: var(--gold-bg); border: 1px solid var(--gold-border); border-radius: 10px; font-size: 12px; font-weight: 600; color: var(--orange-text); align-self: center; }
+
+    /* CONTACT CARD BUBBLE */
+    #view-sms .contact-bubble { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--n-50); border: 1.5px solid var(--n-200); border-radius: 10px; margin-top: 5px; }
+    #view-sms .cb-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px; color: white; flex-shrink: 0; }
+    #view-sms .cb-name { font-size: 13px; font-weight: 700; color: var(--n-800); }
+    #view-sms .cb-detail { font-size: 11px; color: var(--n-500); }
+    #view-sms .cb-save-btn { margin-left: auto; padding: 5px 11px; border: 1.5px solid var(--navy); border-radius: 7px; background: white; color: var(--navy); font-size: 11px; font-weight: 700; cursor: pointer; font-family: 'Manrope', sans-serif; transition: all .2s; white-space: nowrap; }
+    #view-sms .cb-save-btn:hover { background: var(--navy); color: white; }
+
+    /* COMPOSE */
+    #view-sms .chat-compose { background: white; border-top: 1px solid var(--n-200); padding: 14px 18px; flex-shrink: 0; }
+    #view-sms .compose-toolbar { display: flex; gap: 6px; margin-bottom: 9px; align-items: center; }
+    #view-sms .c-tool-btn { width: 30px; height: 30px; border-radius: 7px; border: 1.5px solid var(--n-200); background: white; cursor: pointer; transition: all .15s; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--n-600); }
+    #view-sms .c-tool-btn:hover { border-color: var(--navy); color: var(--navy); }
+    #view-sms .compose-row { display: flex; gap: 9px; align-items: flex-end; }
+    #view-sms .compose-ta { flex: 1; padding: 10px 14px; border: 1.5px solid var(--n-200); border-radius: 10px; font-family: 'Manrope', sans-serif; font-size: 13.5px; resize: none; min-height: 44px; max-height: 110px; outline: none; transition: border-color .2s; color: var(--n-800); background: white; }
+    #view-sms .compose-ta:focus { border-color: var(--navy); }
+    #view-sms .compose-ta::placeholder { color: var(--n-400); }
+    #view-sms .send-btn { width: 44px; height: 44px; border-radius: 10px; background: var(--navy); color: white; border: none; cursor: pointer; font-size: 17px; display: flex; align-items: center; justify-content: center; transition: all .2s; flex-shrink: 0; }
+    #view-sms .send-btn:hover { background: var(--navy-hover); transform: translateY(-1px); }
+    #view-sms .char-count { font-size: 10.5px; color: var(--n-400); text-align: right; margin-top: 5px; }
+    #view-sms .voip-line-tag { font-size: 11px; font-weight: 600; color: var(--n-500); display: flex; align-items: center; gap: 5px; margin-top: 6px; }
+    #view-sms .vlt-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
+
+    /* RIGHT DETAIL PANEL */
+    #view-sms .detail-panel { width: 280px; flex-shrink: 0; background: white; border-left: 1px solid var(--n-200); display: flex; flex-direction: column; overflow-y: auto; }
+    #view-sms .dp-header { padding: 18px 16px 14px; border-bottom: 1px solid var(--n-100); }
+    #view-sms .dp-avatar { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; color: white; margin: 0 auto 10px; }
+    #view-sms .dp-name { font-family: 'Archivo', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); text-align: center; margin-bottom: 4px; }
+    #view-sms .dp-sub { font-size: 11.5px; color: var(--n-500); text-align: center; margin-bottom: 12px; }
+    #view-sms .dp-badges { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+    #view-sms .dp-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    #view-sms .dp-act-btn { display: flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 10px; border-radius: 8px; border: 1.5px solid var(--n-200); background: white; color: var(--n-700); font-size: 11.5px; font-weight: 600; cursor: pointer; font-family: 'Manrope', sans-serif; transition: all .2s; }
+    #view-sms .dp-act-btn:hover { border-color: var(--navy); color: var(--navy); }
+    #view-sms .dp-section { padding: 14px 16px; border-bottom: 1px solid var(--n-100); }
+    #view-sms .dp-section-title { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--n-400); margin-bottom: 10px; }
+    #view-sms .info-row { display: flex; padding: 6px 0; border-bottom: 1px solid var(--n-100); gap: 8px; }
+    #view-sms .info-row:last-child { border-bottom: none; }
+    #view-sms .info-lbl { font-size: 11px; font-weight: 600; color: var(--n-500); min-width: 72px; padding-top: 1px; }
+    #view-sms .info-val { font-size: 12.5px; color: var(--n-800); font-weight: 500; flex: 1; }
+
+      .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+      .tag-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 99px; background: var(--n-100); border: 1px solid var(--n-200); font-size: 12px; font-weight: 600; color: var(--n-700); }
+      .tag-remove { cursor: pointer; color: var(--n-400); font-size: 13px; line-height: 1; }
+      .tag-remove:hover { color: var(--red); }
+
+      .modal-body .ch-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 7px 14px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1.5px solid var(--n-200);
+        background: white;
+        color: var(--n-700);
+        font-family: 'Manrope', sans-serif;
+        transition: all 0.2s;
+      }
+      .modal-body .ch-btn:hover {
+        border-color: var(--navy);
+        color: var(--navy);
       }
 
       /* ═══════════════════════════════════════
@@ -2648,7 +2787,7 @@
           Calls (VOIP)
           <span class="nav-badge nav-badge-gold">4</span>
         </a>
-        <a class="nav-item" onclick="setActive(this)">
+        <a class="nav-item" data-view="sms" onclick="setActive(this)">
           <div class="ni-icon">💬</div>
           SMS / Text
           <span class="nav-badge" style="background: var(--purple-bg); color: var(--purple-text)">2</span>
@@ -5884,6 +6023,334 @@
               </div>
             </div>
           </div>
+          <div id="view-sms" style="display: none">
+            <!-- SMS SHELL -->
+            <div class="sms-shell">
+        
+              <!-- LEFT: THREAD LIST -->
+              <div class="thread-panel">
+                <div class="tp-header">
+                  <div class="tp-title">
+                    <span>Messages</span>
+                    <div style="display:flex;gap:6px;align-items:center;">
+                      <span class="badge b-red" style="font-size:10px;">2 new</span>
+                      <button class="icon-btn" onclick="openNewSMSModal()" title="New SMS">✏️</button>
+                    </div>
+                  </div>
+                  <div class="tp-search">
+                    <span class="tp-srch-ico">🔍</span>
+                    <input type="text" placeholder="Search messages…" id="threadSearch" oninput="filterThreads()" />
+                  </div>
+                </div>
+        
+                <div class="tp-tabs">
+                  <button class="tp-tab active" onclick="switchThreadTab(this,'all')">All (9)</button>
+                  <button class="tp-tab" onclick="switchThreadTab(this,'unread')">Unread (2)</button>
+                  <button class="tp-tab" onclick="switchThreadTab(this,'blast')">Blasts</button>
+                </div>
+        
+                <div class="thread-list" id="threadList">
+                  <!-- Thread 1 — UNREAD, Insurance -->
+                  <div class="thread-item unread active" onclick="openThread('marcus')">
+                    <div class="t-av" style="background:var(--orange);">MR</div>
+                    <div class="t-info">
+                      <div class="t-top">
+                        <span class="t-name">Marcus Rivera</span>
+                        <span class="t-time">11:32 AM</span>
+                      </div>
+                      <div class="t-dept">🛡️ Insurance</div>
+                      <div class="t-prev">Can we reschedule for 2pm today?</div>
+                    </div>
+                  </div>
+        
+                  <!-- Thread 2 — UNREAD, Mortgage -->
+                  <div class="thread-item unread" onclick="openThread('denise')">
+                    <div class="t-av" style="background:#10b981;">DL</div>
+                    <div class="t-info">
+                      <div class="t-top">
+                        <span class="t-name">Denise Lawrence</span>
+                        <span class="t-time">8:31 AM</span>
+                      </div>
+                      <div class="t-dept">🏦 Mortgage</div>
+                      <div class="t-prev">Thanks for the update on the app</div>
+                    </div>
+                  </div>
+        
+                  <!-- Thread 3 -->
+                  <div class="thread-item" onclick="openThread('sandra')">
+                    <div class="t-av" style="background:var(--navy);">SH</div>
+                    <div class="t-info">
+                      <div class="t-top">
+                        <span class="t-name">Sandra Hayes</span>
+                        <span class="t-time">Yesterday</span>
+                      </div>
+                      <div class="t-dept">🛡️ Insurance</div>
+                      <div class="t-prev">Got it, sounds good. Thank you!</div>
+                    </div>
+                  </div>
+        
+                  <!-- Thread 4 -->
+                  <div class="thread-item" onclick="openThread('kevin')">
+                    <div class="t-av" style="background:#f59e0b;">KW</div>
+                    <div class="t-info">
+                      <div class="t-top">
+                        <span class="t-name">Kevin Watts</span>
+                        <span class="t-time">Yesterday</span>
+                      </div>
+                      <div class="t-dept">🛡️ Insurance — New Lead</div>
+                      <div class="t-prev">Hi, I got your number from a friend</div>
+                    </div>
+                  </div>
+        
+                  <!-- Thread 5 — RE -->
+                  <div class="thread-item" onclick="openThread('terrence')">
+                    <div class="t-av" style="background:#7c3aed;">TC</div>
+                    <div class="t-info">
+                      <div class="t-top">
+                        <span class="t-name">Terrence Cole</span>
+                        <span class="t-time">Feb 18</span>
+                      </div>
+                      <div class="t-dept">🏘️ Real Estate</div>
+                      <div class="t-prev">What's the next step after the offer?</div>
+                    </div>
+                  </div>
+        
+                  <!-- Thread 6 -->
+                  <div class="thread-item" onclick="openThread('john')">
+                    <div class="t-av" style="background:#3b82f6;">JS</div>
+                    <div class="t-info">
+                      <div class="t-top">
+                        <span class="t-name">John Smith</span>
+                        <span class="t-time">Feb 15</span>
+                      </div>
+                      <div class="t-dept">🏘️ Real Estate</div>
+                      <div class="t-prev">Closing confirmed — see you at 2pm!</div>
+                    </div>
+                  </div>
+        
+                  <!-- Thread 7 -->
+                  <div class="thread-item" onclick="openThread('patricia')">
+                    <div class="t-av" style="background:#059669;">PT</div>
+                    <div class="t-info">
+                      <div class="t-top">
+                        <span class="t-name">Patricia Torres</span>
+                        <span class="t-time">Feb 14</span>
+                      </div>
+                      <div class="t-dept">🏦 Mortgage</div>
+                      <div class="t-prev">I uploaded my bank statements</div>
+                    </div>
+                  </div>
+        
+                  <!-- Thread 8 — Contact shared -->
+                  <div class="thread-item" onclick="openThread('unknown')">
+                    <div class="t-av" style="background:var(--n-400);">?</div>
+                    <div class="t-info">
+                      <div class="t-top">
+                        <span class="t-name">+1 (832) 555-0299</span>
+                        <span class="t-time">Feb 13</span>
+                      </div>
+                      <div class="t-dept" style="color:var(--orange-text);">⚠️ Unknown — not saved</div>
+                      <div class="t-prev">Hey is this Jaquarian from Burkes?</div>
+                    </div>
+                  </div>
+        
+                  <!-- Thread 9 — Blast -->
+                  <div class="thread-item" onclick="openThread('blast1')" style="background:linear-gradient(90deg,var(--gold-bg),white);">
+                    <div class="t-av" style="background:var(--navy);font-size:10px;">48x</div>
+                    <div class="t-info">
+                      <div class="t-top">
+                        <span class="t-name">Auto Renewal Blast</span>
+                        <span class="t-time">Feb 10</span>
+                      </div>
+                      <div class="t-dept">📢 SMS Blast · 48 recipients</div>
+                      <div class="t-prev">Your policy renews next month — let's…</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- CENTER: ACTIVE CHAT -->
+              <div class="chat-panel">
+                <div class="chat-header">
+                  <div class="ch-avatar" style="background:var(--orange);">MR</div>
+                  <div style="flex:1;min-width:0;">
+                    <div class="ch-name">Marcus Rivera</div>
+                    <div class="ch-meta">
+                      📞 (713) 555-0289 &nbsp;·&nbsp; 🛡️ Insurance &nbsp;·&nbsp;
+                      <span style="color:var(--green);font-weight:700;">Active</span>
+                      &nbsp;·&nbsp; VOIP Line 1
+                    </div>
+                  </div>
+                  <div class="ch-actions">
+                    <div class="mini-tabs">
+                      <button class="mini-tab sel" onclick="switchTab(this)">SMS</button>
+                      <button class="mini-tab" onclick="switchTab(this)">Notes</button>
+                      <button class="mini-tab" onclick="switchTab(this)">History</button>
+                    </div>
+                    <button class="ch-btn" onclick="showToast('Dialing Marcus Rivera via VOIP…')">📞 Call</button>
+                    <button class="ch-btn" onclick="showToast('Opening Marcus Rivera profile…')">👤 Profile</button>
+                    <button class="ch-btn primary" onclick="openSmsThreadTransferModal()">↩ Transfer</button>
+                  </div>
+                </div>
+        
+                <div class="chat-body">
+                  <div class="date-sep">February 18, 2026</div>
+        
+                  <!-- Outbound -->
+                  <div class="msg-grp out">
+                    <div class="msg-bbl">Hi Marcus! Just following up on the auto quote we sent over — $187/mo for full coverage. Did you get a chance to review it?</div>
+                    <div class="msg-ts">9:14 AM</div>
+                    <div class="msg-status delivered">✓✓ Delivered</div>
+                  </div>
+        
+                  <!-- Inbound -->
+                  <div class="msg-grp in">
+                    <div class="msg-from">Marcus Rivera · (713) 555-0289</div>
+                    <div class="msg-bbl">Yes I saw it, looks pretty good. Can we go over the deductible options? I'm comparing a couple quotes right now.</div>
+                    <div class="msg-ts">9:29 AM</div>
+                  </div>
+        
+                  <!-- Outbound -->
+                  <div class="msg-grp out">
+                    <div class="msg-bbl">Absolutely! Happy to walk you through the different deductible tiers. I've got $500, $1,000, and $2,000 options available — each changes the monthly rate. Would you prefer to go over this on a quick call, or should I text you the breakdown?</div>
+                    <div class="msg-ts">9:31 AM</div>
+                    <div class="msg-status delivered">✓✓ Delivered</div>
+                  </div>
+        
+                  <!-- Contact card shared -->
+                  <div class="msg-grp in">
+                    <div class="msg-from">Marcus Rivera · (713) 555-0289</div>
+                    <div class="msg-bbl">Actually, my wife might want to be included. Let me send you her contact.</div>
+                    <div class="contact-bubble">
+                      <div class="cb-icon" style="background:#7c3aed;">LR</div>
+                      <div>
+                        <div class="cb-name">Laura Rivera</div>
+                        <div class="cb-detail">(713) 555-0291 · Shared contact card</div>
+                      </div>
+                      <button class="cb-save-btn" onclick="showToast('Laura Rivera saved to CRM · Insurance · Assigned to Jaquarian')">+ Save to CRM</button>
+                    </div>
+                    <div class="msg-ts">9:47 AM</div>
+                  </div>
+        
+                  <!-- System notice -->
+                  <div class="sys-notice">
+                    <span style="font-size:14px;">💬</span>
+                    Contact card received — tap "Save to CRM" to add Laura Rivera as a new lead
+                  </div>
+        
+                  <!-- Outbound -->
+                  <div class="msg-grp out">
+                    <div class="msg-bbl">Got it, I'll add her to the quote. I can send over a joint policy option that covers both of you — often saves 10–15% vs two separate policies. I'll put the comparison together now.</div>
+                    <div class="msg-ts">9:52 AM</div>
+                    <div class="msg-status delivered">✓✓ Delivered</div>
+                  </div>
+        
+                  <!-- Inbound -->
+                  <div class="msg-grp in">
+                    <div class="msg-from">Marcus Rivera · (713) 555-0289</div>
+                    <div class="msg-bbl">That would be great, thanks. Also — can we reschedule our Google Meet for 2pm instead of 11:30?</div>
+                    <div class="msg-ts">11:32 AM</div>
+                  </div>
+        
+                  <!-- Outbound — auto-logged note -->
+                  <div style="background:var(--n-50);border:1px solid var(--n-200);border-radius:10px;padding:11px 14px;font-size:12px;color:var(--n-600);display:flex;gap:8px;align-items:flex-start;align-self:center;">
+                    <span style="font-size:14px;">🤖</span>
+                    <div><strong style="color:var(--navy);">Auto-logged:</strong> Rescheduled Google Meet from 11:30 AM → 2:00 PM. Calendar updated in Outlook &amp; Google Calendar. Activity logged to contact record.</div>
+                  </div>
+                </div>
+        
+                <!-- COMPOSE -->
+                <div class="chat-compose">
+                  <div class="compose-toolbar">
+                    <button class="c-tool-btn" title="Attach file" onclick="showToast('File picker…')">📎</button>
+                    <button class="c-tool-btn" title="Send contact card" onclick="showToast('Share your contact card via SMS…')">👤</button>
+                    <button class="c-tool-btn" title="Schedule message" onclick="showToast('Schedule SMS delivery…')">🕐</button>
+                    <button class="c-tool-btn" title="Quick templates" onclick="showToast('Opening SMS templates…')">📋</button>
+                    <div style="flex:1;"></div>
+                    <div class="voip-line-tag">
+                      <span class="vlt-dot"></span>
+                      Sending from VOIP Line 1 · (832) 555-0141
+                    </div>
+                  </div>
+                  <div class="compose-row">
+                    <textarea class="compose-ta" id="composeBox" placeholder="Type a message to Marcus…" rows="1" oninput="updateCharCount(this)"></textarea>
+                    <button class="send-btn" onclick="sendMessage()" title="Send">➤</button>
+                  </div>
+                  <div class="char-count" id="charCount">0 / 160 chars · 1 SMS segment</div>
+                </div>
+              </div>
+        
+              <!-- RIGHT: CONTACT DETAIL -->
+              <div class="detail-panel">
+                <div class="dp-header">
+                  <div class="dp-avatar" style="background:var(--orange);">MR</div>
+                  <div class="dp-name">Marcus Rivera</div>
+                  <div class="dp-sub">(713) 555-0289</div>
+                  <div class="dp-badges">
+                    <span class="badge b-gold">🛡️ Insurance</span>
+                    <span class="status-pill sp-gold">Contacted</span>
+                  </div>
+                  <div class="dp-actions">
+                    <button class="dp-act-btn" onclick="showToast('Dialing Marcus Rivera…')">📞 Call</button>
+                    <button class="dp-act-btn" onclick="showToast('Composing email…')">✉️ Email</button>
+                    <button class="dp-act-btn" onclick="showToast('Scheduling a meeting…')">🗓️ Meet</button>
+                    <button class="dp-act-btn" onclick="openSmsThreadTransferModal()">↩ Transfer</button>
+                  </div>
+                </div>
+        
+                <div class="dp-section">
+                  <div class="dp-section-title">Contact Info</div>
+                  <div class="info-row"><div class="info-lbl">Phone</div><div class="info-val">(713) 555-0289</div></div>
+                  <div class="info-row"><div class="info-lbl">Email</div><div class="info-val">marcus.rivera@email.com</div></div>
+                  <div class="info-row"><div class="info-lbl">Source</div><div class="info-val">Cold Call</div></div>
+                  <div class="info-row"><div class="info-lbl">Agent</div><div class="info-val">Jaquarian B.</div></div>
+                  <div class="info-row"><div class="info-lbl">Created</div><div class="info-val">Feb 10, 2026</div></div>
+                </div>
+        
+                <div class="dp-section">
+                  <div class="dp-section-title">Pipeline</div>
+                  <div class="info-row"><div class="info-lbl">Stage</div><div class="info-val"><span class="status-pill sp-gold">Contacted</span></div></div>
+                  <div class="info-row"><div class="info-lbl">Deal</div><div class="info-val">Auto Quote $187/mo</div></div>
+                  <div class="info-row"><div class="info-lbl">F/U Due</div><div class="info-val" style="color:var(--red);font-weight:700;">Today 2:00 PM</div></div>
+                </div>
+        
+                <div class="dp-section">
+                  <div class="dp-section-title">SMS History</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div style="padding:9px 11px;background:var(--n-50);border:1px solid var(--n-200);border-radius:8px;">
+                      <div style="font-size:10.5px;font-weight:700;color:var(--n-500);margin-bottom:3px;">Today · 11:32 AM</div>
+                      <div style="font-size:12px;color:var(--n-700);">Inbound: "Can we reschedule for 2pm today?"</div>
+                    </div>
+                    <div style="padding:9px 11px;background:var(--n-50);border:1px solid var(--n-200);border-radius:8px;">
+                      <div style="font-size:10.5px;font-weight:700;color:var(--n-500);margin-bottom:3px;">Today · 9:52 AM</div>
+                      <div style="font-size:12px;color:var(--n-700);">Outbound: "I can send over a joint policy option…"</div>
+                    </div>
+                    <div style="padding:9px 11px;background:var(--n-50);border:1px solid var(--n-200);border-radius:8px;">
+                      <div style="font-size:10.5px;font-weight:700;color:var(--n-500);margin-bottom:3px;">Today · 9:47 AM</div>
+                      <div style="font-size:12px;color:var(--n-700);">Inbound: Contact card received (Laura Rivera)</div>
+                    </div>
+                  </div>
+                  <button class="tbl-btn" style="width:100%;justify-content:center;margin-top:10px;font-size:11px;" onclick="showToast('Loading full SMS history…')">View All (14 messages)</button>
+                </div>
+        
+                <div class="dp-section">
+                  <div class="dp-section-title">Compliance</div>
+                  <div class="compliance-box success">
+                    <span>✓</span>
+                    <div>Thread stored · Insurance retention: 18 months · VOIP Line 1</div>
+                  </div>
+                </div>
+        
+                <div class="dp-section" style="border-bottom:none;">
+                  <div class="dp-section-title">Quick Note</div>
+                  <textarea class="form-textarea" style="font-size:12px;min-height:72px;" placeholder="Add a note about this conversation…">Auto renewal inquiry — quote sent at $187/mo. Wife (Laura Rivera) to be added. Callback rescheduled to 2pm.</textarea>
+                  <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;margin-top:8px;" onclick="showToast('Note saved to Marcus Rivera profile.')">Save Note</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /view-sms -->
+
           <!-- /view-calls -->
         </div>
         <!-- /content -->
@@ -6358,7 +6825,214 @@
       </div>
     </div>
 
-    <!-- LEAD DETAIL DRAWER -->
+    <!-- NEW SMS MODAL -->
+    <div class="modal-overlay" id="newSMSModal" onclick="if(event.target===this)closeModal('newSMSModal')">
+      <div class="modal">
+        <div class="modal-header">
+          <div>
+            <div class="modal-title">New SMS Message</div>
+            <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Send via VOIP · Auto-logged to contact record</div>
+          </div>
+          <button class="modal-close" onclick="closeModal('newSMSModal')">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">To (Contact or Phone Number) <span style="color:var(--red);">*</span></label>
+            <select class="form-select" style="font-size:13px;padding:9px 12px;">
+              <option value="">Search or select contact…</option>
+              <option>Marcus Rivera · (713) 555-0289 · Insurance</option>
+              <option>Denise Lawrence · (832) 555-0374 · Mortgage</option>
+              <option>Sandra Hayes · (832) 555-0141 · Insurance</option>
+              <option>Kevin Watts · (832) 555-0567 · Insurance</option>
+              <option>Terrence Cole · (281) 555-0452 · Real Estate</option>
+              <option>John Smith · (512) 555-0198 · Real Estate</option>
+              <option>Patricia Torres · (713) 555-0618 · Mortgage</option>
+            </select>
+            <div style="font-size:11px;color:var(--n-500);margin-top:5px;">Or type a new number below to send without saving to CRM first</div>
+            <input class="form-input" type="tel" placeholder="(555) 000-0000 — new number" style="margin-top:6px;font-size:13px;" />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group">
+              <label class="form-label">VOIP Line</label>
+              <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                <option>Line 1 — (832) 555-0141 (Jaquarian)</option>
+                <option>Line 2 — (832) 555-0142 (Tom Burke)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Department Tag</label>
+              <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                <option>🛡️ Insurance</option>
+                <option>🏦 Mortgage</option>
+                <option>🏘️ Real Estate</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message <span style="color:var(--red);">*</span></label>
+            <textarea class="form-textarea" id="newSmsBody" placeholder="Type your message…" style="min-height:100px;font-size:13.5px;" oninput="updateNewSmsCount(this)"></textarea>
+            <div style="display:flex;justify-content:space-between;margin-top:5px;">
+              <div style="font-size:11px;color:var(--n-400);" id="newSmsCount">0 / 160 chars · 1 SMS segment</div>
+              <button class="tbl-btn" style="font-size:11px;padding:4px 10px;" onclick="loadTemplate()">📋 Use Template</button>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group">
+              <label class="form-label">Schedule (optional)</label>
+              <input class="form-input" type="datetime-local" style="font-size:13px;" />
+            </div>
+            <div class="form-group" style="display:flex;align-items:flex-end;">
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;padding-bottom:4px;">
+                <input type="checkbox" checked style="width:15px;height:15px;" />
+                Auto-log to CRM activity feed
+              </label>
+            </div>
+          </div>
+          <div class="compliance-box info">
+            <span>ℹ️</span>
+            <div>SMS sent via VOIP are automatically stored per compliance rules: Insurance 18 months, Real Estate 4 years. The recipient can reply to this number directly.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeModal('newSMSModal')">Cancel</button>
+          <button class="btn btn-secondary" onclick="showToast('Message scheduled for later delivery.')">🕐 Schedule</button>
+          <button class="btn btn-primary" onclick="closeModal('newSMSModal');showToast('SMS sent and logged to CRM.')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            Send Now
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- SMS BLAST MODAL -->
+    <div class="modal-overlay" id="blastModal" onclick="if(event.target===this)closeModal('blastModal')">
+      <div class="modal" style="width:600px;">
+        <div class="modal-header">
+          <div>
+            <div class="modal-title">📢 SMS Blast</div>
+            <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Send a text to multiple contacts at once</div>
+          </div>
+          <button class="modal-close" onclick="closeModal('blastModal')">×</button>
+        </div>
+        <div class="modal-body">
+    
+          <!-- Audience -->
+          <div class="form-group">
+            <label class="form-label">Audience <span style="color:var(--red);">*</span></label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+              <button class="ch-btn" onclick="addAudienceTag('All Insurance (512)')">🛡️ All Insurance</button>
+              <button class="ch-btn" onclick="addAudienceTag('All Mortgage (381)')">🏦 All Mortgage</button>
+              <button class="ch-btn" onclick="addAudienceTag('All Real Estate (391)')">🏘️ All Real Estate</button>
+              <button class="ch-btn" onclick="addAudienceTag('Auto Renewal (48)')">🔄 Auto Renewals</button>
+              <button class="ch-btn" onclick="addAudienceTag('Active Pipeline (148)')">🔥 Active Pipeline</button>
+              <button class="ch-btn" onclick="addAudienceTag('Custom Segment')">+ Custom</button>
+            </div>
+            <div id="audienceTags" class="tag-list">
+              <span class="tag-pill">🛡️ Auto Renewal (48) <span class="tag-remove" onclick="removeTag(this)">×</span></span>
+            </div>
+            <div style="font-size:12px;color:var(--n-500);margin-top:6px;" id="recipientCount">📤 1 segment selected · ~48 recipients</div>
+          </div>
+    
+          <!-- Exclusions -->
+          <div class="form-group">
+            <label class="form-label">Exclude</label>
+            <select class="form-select" style="font-size:13px;padding:9px 12px;" multiple style="min-height:70px;">
+              <option>Opted-out contacts</option>
+              <option selected>Do Not Contact list</option>
+              <option>Already replied this month</option>
+              <option>Closed / Inactive leads</option>
+            </select>
+          </div>
+    
+          <!-- Message -->
+          <div class="form-group">
+            <label class="form-label">Message <span style="color:var(--red);">*</span></label>
+            <textarea class="form-textarea" id="blastBody" placeholder="Hi {{first_name}}, your auto policy renews next month. Let's review your coverage — reply YES to schedule a call or call us at (832) 555-0141." style="min-height:90px;font-size:13.5px;" oninput="updateBlastCount(this)">Hi {{first_name}}, your auto policy renews next month. Let's review your coverage — reply YES to schedule a call.</textarea>
+            <div style="display:flex;justify-content:space-between;margin-top:5px;align-items:center;">
+              <div style="font-size:11px;color:var(--n-400);" id="blastCount">132 / 160 chars · 1 SMS segment</div>
+              <div style="display:flex;gap:6px;">
+                <button class="tbl-btn" style="font-size:11px;padding:4px 10px;" onclick="showToast('Merge tag inserted: {{first_name}}')">+ {{first_name}}</button>
+                <button class="tbl-btn" style="font-size:11px;padding:4px 10px;" onclick="showToast('Opt-out footer added.')">+ Opt-out</button>
+                <button class="tbl-btn" style="font-size:11px;padding:4px 10px;">📋 Templates</button>
+              </div>
+            </div>
+          </div>
+    
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group">
+              <label class="form-label">VOIP Line</label>
+              <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                <option>Line 1 — (832) 555-0141 (Jaquarian)</option>
+                <option>Line 2 — (832) 555-0142 (Tom Burke)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Schedule</label>
+              <input class="form-input" type="datetime-local" style="font-size:13px;" />
+            </div>
+          </div>
+    
+          <div class="compliance-box warning">
+            <span>⚠️</span>
+            <div>Blasts auto-include opt-out language per TCPA compliance. All replies are saved and auto-routed to the sender's thread. Ensure contacts have consented to receive SMS from your VOIP number.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeModal('blastModal')">Cancel</button>
+          <button class="btn btn-secondary" onclick="showToast('Blast saved as draft.')">Save Draft</button>
+          <button class="btn btn-secondary" onclick="showToast('Sending test SMS to your number…')">Send Test</button>
+          <button class="btn btn-gold" onclick="closeModal('blastModal');showToast('SMS blast sent to 48 contacts — logged to CRM.')">
+            📢 Send Blast to 48 Contacts
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- TRANSFER MODAL -->
+    <div class="modal-overlay" id="smsThreadTransferModal" onclick="if(event.target===this)closeModal('smsThreadTransferModal')">
+      <div class="modal" style="max-width:420px;">
+        <div class="modal-header">
+          <div>
+            <div class="modal-title">Transfer Lead</div>
+            <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Handoff Marcus Rivera to another agent</div>
+          </div>
+          <button class="modal-close" onclick="closeModal('smsThreadTransferModal')">×</button>
+        </div>
+        <div class="modal-body">
+          <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:16px;padding:11px 13px;background:var(--n-50);border-radius:8px;border-left:3px solid var(--gold);">Marcus Rivera · Insurance · Contacted · Auto Quote</div>
+          <div class="form-group">
+            <label class="form-label">Transfer To <span style="color:var(--red);">*</span></label>
+            <select class="form-select" style="font-size:13px;padding:9px 12px;">
+              <option value="">Select agent…</option>
+              <option>Tom Burke</option>
+              <option>Jaquarian Bonilla</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Department</label>
+            <select class="form-select" style="font-size:13px;padding:9px 12px;">
+              <option>Keep current — Insurance</option>
+              <option>🏘️ Real Estate</option>
+              <option>🏦 Mortgage</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Reason</label>
+            <textarea class="form-textarea" placeholder="Why is this lead being transferred?" style="min-height:70px;font-size:13px;"></textarea>
+          </div>
+          <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" checked style="width:15px;height:15px;" /> Notify receiving agent via SMS + Outlook email
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeModal('smsThreadTransferModal')">Cancel</button>
+          <button class="btn btn-primary" onclick="closeModal('smsThreadTransferModal');showToast('Lead transferred — Tom Burke notified via SMS and Outlook.')">↩ Confirm Transfer</button>
+        </div>
+      </div>
+    </div>
+
+
+        <!-- LEAD DETAIL DRAWER -->
     <div class="detail-drawer" id="leadDrawer">
       <div class="drawer-header">
         <div>
@@ -6670,13 +7344,15 @@
         const act = document.getElementById('view-activities');
         const cal = document.getElementById('view-calendar');
         const calls = document.getElementById('view-calls');
-        if (!dash || !cont || !pipe || !act || !cal || !calls) return;
+        const sms = document.getElementById('view-sms');
+        if (!dash || !cont || !pipe || !act || !cal || !calls || !sms) return;
         dash.style.display = name === 'dashboard' ? 'block' : 'none';
         cont.style.display = name === 'contacts' ? 'block' : 'none';
         pipe.style.display = name === 'pipeline' ? 'block' : 'none';
         act.style.display = name === 'activities' ? 'block' : 'none';
         cal.style.display = name === 'calendar' ? 'block' : 'none';
         calls.style.display = name === 'calls' ? 'block' : 'none';
+        sms.style.display = name === 'sms' ? 'flex' : 'none';
       }
 
       /* ── NAV ACTIVE ── */
@@ -6719,6 +7395,130 @@
         document.getElementById('toast-msg').textContent = msg;
         t.classList.add('show');
         toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+      }
+
+      /* ── SMS / Text (from sms-text.html) ── */
+      function openNewSMSModal() {
+        document.getElementById('newSMSModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function openBlastModal() {
+        document.getElementById('blastModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function openSmsThreadTransferModal() {
+        document.getElementById('smsThreadTransferModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function switchThreadTab(el, mode) {
+        document.querySelectorAll('#view-sms .tp-tab').forEach((t) => t.classList.remove('active'));
+        el.classList.add('active');
+        const items = document.querySelectorAll('#view-sms .thread-item');
+        items.forEach((item) => {
+          if (mode === 'unread') {
+            item.style.display = item.classList.contains('unread') ? '' : 'none';
+          } else if (mode === 'blast') {
+            item.style.display =
+              item.querySelector('.t-dept') && item.querySelector('.t-dept').textContent.includes('Blast') ? '' : 'none';
+          } else {
+            item.style.display = '';
+          }
+        });
+      }
+      function openThread(id) {
+        document.querySelectorAll('#view-sms .thread-item').forEach((t) => t.classList.remove('active'));
+        const clicked = event.currentTarget;
+        clicked.classList.add('active');
+        clicked.classList.remove('unread');
+        const dot = clicked.querySelector('[data-unread]');
+        if (dot) dot.remove();
+        showToast(
+          'Opened thread for ' + (clicked.querySelector('.t-name') ? clicked.querySelector('.t-name').textContent : id)
+        );
+      }
+      function filterThreads() {
+        const q = document.getElementById('threadSearch').value.toLowerCase();
+        document.querySelectorAll('#view-sms .thread-item').forEach((item) => {
+          const text = item.textContent.toLowerCase();
+          item.style.display = !q || text.includes(q) ? '' : 'none';
+        });
+      }
+      function updateCharCount(ta) {
+        const len = ta.value.length;
+        const segs = Math.max(1, Math.ceil(len / 160));
+        document.getElementById('charCount').textContent =
+          len + ' / 160 chars · ' + segs + ' SMS segment' + (segs > 1 ? 's' : '');
+        ta.style.height = 'auto';
+        ta.style.height = Math.min(ta.scrollHeight, 110) + 'px';
+      }
+      function updateNewSmsCount(ta) {
+        const len = ta.value.length;
+        const segs = Math.max(1, Math.ceil(len / 160));
+        const el = document.getElementById('newSmsCount');
+        if (el) el.textContent = len + ' / 160 chars · ' + segs + ' SMS segment' + (segs > 1 ? 's' : '');
+      }
+      function updateBlastCount(ta) {
+        const len = ta.value.length;
+        const segs = Math.max(1, Math.ceil(len / 160));
+        const el = document.getElementById('blastCount');
+        if (el) el.textContent = len + ' / 160 chars · ' + segs + ' SMS segment' + (segs > 1 ? 's' : '');
+      }
+      function sendMessage() {
+        const ta = document.getElementById('composeBox');
+        const val = ta.value.trim();
+        if (!val) {
+          showToast('Please type a message first.');
+          return;
+        }
+        const chatBody = document.querySelector('#view-sms .chat-body');
+        const grp = document.createElement('div');
+        grp.className = 'msg-grp out';
+        grp.innerHTML =
+          '<div class="msg-bbl">' +
+          val.replace(/</g, '&lt;').replace(/>/g, '&gt;') +
+          '</div><div class="msg-ts">Now</div><div class="msg-status">Sending…</div>';
+        chatBody.appendChild(grp);
+        chatBody.scrollTop = chatBody.scrollHeight;
+        ta.value = '';
+        ta.style.height = 'auto';
+        document.getElementById('charCount').textContent = '0 / 160 chars · 1 SMS segment';
+        setTimeout(() => {
+          grp.querySelector('.msg-status').className = 'msg-status delivered';
+          grp.querySelector('.msg-status').textContent = '✓✓ Delivered';
+          showToast('SMS sent and logged to CRM activity feed.');
+        }, 800);
+      }
+      function addAudienceTag(label) {
+        const container = document.getElementById('audienceTags');
+        const existing = [...container.querySelectorAll('.tag-pill')].map((t) =>
+          t.textContent.trim().replace('×', '').trim()
+        );
+        if (existing.includes(label)) {
+          showToast(label + ' already added.');
+          return;
+        }
+        const pill = document.createElement('span');
+        pill.className = 'tag-pill';
+        pill.innerHTML = label + ' <span class="tag-remove" onclick="removeTag(this)">×</span>';
+        container.appendChild(pill);
+        updateRecipientCount();
+      }
+      function removeTag(el) {
+        el.parentElement.remove();
+        updateRecipientCount();
+      }
+      function updateRecipientCount() {
+        const tags = document.querySelectorAll('#audienceTags .tag-pill');
+        const el = document.getElementById('recipientCount');
+        if (el) el.textContent = '📤 ' + tags.length + ' segment' + (tags.length !== 1 ? 's' : '') + ' selected';
+      }
+      function loadTemplate() {
+        const ta = document.getElementById('newSmsBody');
+        if (ta) {
+          ta.value =
+            'Hi! This is Jaquarian from The Burkes Group. Following up on your insurance quote — would you like to schedule a quick call to go over your options?';
+          updateNewSmsCount(ta);
+        }
       }
 
       /* ── PIPELINE (from pipeline.html) ── */
