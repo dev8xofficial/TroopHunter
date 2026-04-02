@@ -2962,6 +2962,134 @@
         color: var(--n-400);
         margin-top: 1px;
       }
+
+      /* ── merged from insurance.html / video-meetings.html ── */
+      .policy-card {
+        background: white;
+        border: 1.5px solid var(--n-200);
+        border-radius: 12px;
+        padding: 16px 18px;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .policy-card:hover {
+        border-color: var(--gold);
+        box-shadow: var(--sh-md);
+        transform: translateY(-1px);
+      }
+      .policy-card.active {
+        border-color: var(--gold);
+        border-left: 4px solid var(--gold);
+      }
+      .policy-card.expiring {
+        border-color: var(--orange);
+        border-left: 4px solid var(--orange);
+        background: #fffbeb;
+      }
+      .policy-card.lapsed {
+        border-color: var(--red);
+        border-left: 4px solid var(--red);
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      .stat-card.purple::before {
+        background: #7c3aed;
+      }
+      .meeting-card {
+        background: white;
+        border: 1.5px solid var(--n-200);
+        border-radius: 14px;
+        padding: 18px 20px;
+        transition: all 0.2s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .meeting-card:hover {
+        border-color: var(--navy);
+        box-shadow: var(--sh-md);
+        transform: translateY(-2px);
+      }
+      .meeting-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+      }
+      .meeting-card.teams::before {
+        background: #6264a7;
+      }
+      .meeting-card.google::before {
+        background: #4285f4;
+      }
+      .meeting-card.internal::before {
+        background: var(--navy);
+      }
+      .meeting-card.upcoming {
+        background: linear-gradient(135deg, #f8faff, white);
+      }
+      .meeting-card.live {
+        border-color: var(--green);
+        background: linear-gradient(135deg, #f0fdf9, white);
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+      }
+      .meeting-card.live::before {
+        background: var(--green);
+      }
+      .live-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 10px;
+        border-radius: 99px;
+        background: var(--green);
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        animation: liveGlow 2s ease-in-out infinite;
+      }
+      @keyframes liveGlow {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+        }
+      }
+      .live-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: white;
+        animation: pulse 1.2s ease-in-out infinite;
+      }
+      .platform-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+      .pi-teams {
+        background: #f0f0fc;
+      }
+      .pi-google {
+        background: #e8f0fe;
+      }
+      .pi-phone {
+        background: var(--green-bg);
+      }
+
     </style>
   </head>
   <body>
@@ -3081,7 +3209,7 @@
           <div class="ni-icon">📢</div>
           Email Blast
         </a>
-        <a class="nav-item" onclick="setActive(this)">
+        <a class="nav-item" data-view="videomeetings" onclick="setActive(this)">
           <div class="ni-icon">🎥</div>
           Video Meetings
         </a>
@@ -3089,7 +3217,7 @@
         <!-- DEPARTMENTS -->
         <div class="nav-section-label">Departments</div>
 
-        <a class="nav-item" onclick="setActive(this)">
+        <a class="nav-item" data-view="insurance" onclick="setActive(this)">
           <div class="ni-icon">🛡️</div>
           Insurance
         </a>
@@ -7957,6 +8085,1818 @@
 
           </div>
 
+          <div id="view-videomeetings" style="display: none">
+    <div class="voip-bar">
+      <div class="pulse-dot gold"></div>
+      <span>Teams &amp; Google Meet integrations active — video storage: 90-day auto-purge window</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:10px;">
+        <span style="color:var(--n-500);font-weight:400;">Videos exported to OneDrive/Outlook before purge</span>
+        <button class="btn btn-xs btn-secondary" style="border-color:#a7f3d0;color:var(--green-text);background:var(--green-bg);" onclick="showToast('Opening storage settings…')">Manage Storage</button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- ── PAGE HEADER ── -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;" class="fade-in">
+        <div>
+          <h1 style="font-family:'Archivo',sans-serif;font-size:28px;font-weight:800;color:var(--navy);line-height:1.2;">Video Meetings</h1>
+          <p style="font-size:14px;color:var(--n-600);margin-top:4px;">
+            Microsoft Teams &amp; Google Meet — client calls, internal syncs, and deal reviews across Insurance, Mortgage &amp; Real Estate
+          </p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <div class="mini-tabs" id="main-tabs">
+            <button class="mini-tab sel" onclick="switchTab(this,'tab-upcoming')">Upcoming</button>
+            <button class="mini-tab" onclick="switchTab(this,'tab-recordings')">Recordings</button>
+            <button class="mini-tab" onclick="switchTab(this,'tab-storage')">Storage</button>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Exporting meeting log…')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Export
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="openScheduleModal()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            Schedule Meeting
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STAT CARDS ── -->
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:24px;">
+        <div class="stat-card navy fade-in s1">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="stat-label">Meetings Today</div>
+              <div class="stat-value">7</div>
+            </div>
+            <div class="stat-icon">🎥</div>
+          </div>
+          <div class="stat-delta"><span class="delta-up">▲ 3</span> vs yesterday</div>
+        </div>
+        <div class="stat-card blue fade-in s2">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="stat-label">Teams Calls</div>
+              <div class="stat-value">4</div>
+            </div>
+            <div class="stat-icon" style="font-size:28px;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7" opacity=".9"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none" opacity=".9"/><path d="M15 9a2 2 0 100-4 2 2 0 000 4z" fill="#6264A7" opacity=".5"/><path d="M15 11c1.7 0 3 1.5 3 3.5" stroke="#6264A7" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".5"/></svg>
+            </div>
+          </div>
+          <div class="stat-delta" style="color:var(--n-500);">Internal syncs</div>
+        </div>
+        <div class="stat-card green fade-in s3">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="stat-label">Google Meets</div>
+              <div class="stat-value">3</div>
+            </div>
+            <div class="stat-icon" style="font-size:28px;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="13" height="12" rx="2" fill="#4285F4"/><path d="M15 10l7-4v12l-7-4v-4z" fill="#34A853"/></svg>
+            </div>
+          </div>
+          <div class="stat-delta" style="color:var(--n-500);">Client-facing</div>
+        </div>
+        <div class="stat-card gold fade-in s4">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="stat-label">Avg Duration</div>
+              <div class="stat-value">28m</div>
+            </div>
+            <div class="stat-icon">⏱️</div>
+          </div>
+          <div class="stat-delta"><span class="delta-down">▼ 4min</span> vs last week</div>
+        </div>
+        <div class="stat-card orange fade-in s5">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="stat-label">Recordings</div>
+              <div class="stat-value">24</div>
+            </div>
+            <div class="stat-icon">⏺️</div>
+          </div>
+          <div class="stat-delta" style="color:var(--n-500);">90-day window</div>
+        </div>
+        <div class="stat-card purple fade-in s6">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="stat-label">Storage Used</div>
+              <div class="stat-value" style="font-size:24px;">3.2 GB</div>
+            </div>
+            <div class="stat-icon">💾</div>
+          </div>
+          <div class="stat-delta" style="color:var(--n-500);">of 10 GB quota</div>
+        </div>
+      </div>
+
+      <!-- ════════ TAB: UPCOMING ════════ -->
+      <div id="tab-upcoming">
+
+        <!-- Live meeting + Today grid -->
+        <div style="display:grid;grid-template-columns:1fr 360px;gap:20px;margin-bottom:20px;">
+
+          <!-- LEFT: Live + Upcoming meetings -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+
+            <!-- LIVE RIGHT NOW -->
+            <div class="meeting-card live fade-in">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+                <div style="display:flex;gap:14px;align-items:flex-start;flex:1;min-width:0;">
+                  <div class="platform-icon" style="background:#f0f0fc;width:44px;height:44px;border-radius:10px;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none"/><path d="M15 9a2 2 0 100-4 2 2 0 000 4z" fill="#6264A7" opacity=".6"/><path d="M15 11c1.7 0 3 1.5 3 3.5" stroke="#6264A7" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".6"/></svg>
+                  </div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:5px;">
+                      <div style="font-family:'Archivo',sans-serif;font-size:16px;font-weight:700;color:var(--navy);">CRM Strategy Meeting — All Departments</div>
+                      <div class="live-badge"><div class="live-dot"></div> LIVE</div>
+                    </div>
+                    <div style="font-size:13px;color:var(--n-600);margin-bottom:8px;">Microsoft Teams · Internal · Started at 4:00 PM · <strong style="color:var(--green-text);">42 min elapsed</strong></div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+                      <span class="badge b-navy">All Departments</span>
+                      <span class="badge b-blue" style="display:flex;align-items:center;gap:5px;">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/></svg>
+                        Teams
+                      </span>
+                    </div>
+                    <div style="font-size:12px;color:var(--n-500);">Participants: Tom Burke, Jaquarian Bonilla, Abdul (Dev Team), Real Estate Agent Sarah Anderson</div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px;flex-shrink:0;">
+                  <button class="btn btn-green btn-sm" onclick="showToast('Joining Teams meeting…')">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="13" height="12" rx="2"/><path d="M15 10l7-4v12l-7-4z"/></svg>
+                    Join Now
+                  </button>
+                  <button class="btn btn-secondary btn-sm" onclick="showToast('Opening meeting details…')">Details</button>
+                </div>
+              </div>
+              <!-- Waveform animation when live -->
+              <div style="margin-top:12px;padding:10px 12px;background:rgba(16,185,129,.08);border-radius:10px;display:flex;align-items:center;gap:14px;">
+                <div class="waveform">
+                  <div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div>
+                  <div class="waveform-bar"></div><div class="waveform-bar"></div>
+                </div>
+                <div style="font-size:12px;color:var(--green-text);font-weight:600;">Audio active · Agenda: Arive integration, Follow Up Boss migration, VOIP compliance, call recording policies</div>
+                <div style="margin-left:auto;display:flex;gap:6px;">
+                  <button class="icon-btn" title="Mute" onclick="showToast('Muted…')">🎙️</button>
+                  <button class="icon-btn" title="Camera" onclick="showToast('Camera toggled…')">📹</button>
+                  <button class="icon-btn danger" title="Leave" onclick="showToast('Left meeting…')">📵</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- TODAY'S REMAINING MEETINGS -->
+            <div class="card fade-in s1">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Today's Meetings — Feb 19, 2026</div>
+                  <div class="card-subtitle">7 meetings scheduled · 1 live · 3 completed · 3 upcoming</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <div class="mini-tabs">
+                    <button class="mini-tab sel" onclick="switchTab(this)">All</button>
+                    <button class="mini-tab" onclick="switchTab(this)">Teams</button>
+                    <button class="mini-tab" onclick="switchTab(this)">GMeet</button>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:0;">
+
+                <!-- Meeting 1 — Completed -->
+                <div class="meeting-card teams" style="border-radius:0;border-left:none;border-right:none;border-top:none;border-bottom:1px solid var(--n-100);padding:14px 22px;display:flex;gap:14px;align-items:center;opacity:.65;">
+                  <div style="width:58px;flex-shrink:0;text-align:center;">
+                    <div style="font-size:12px;font-weight:700;color:var(--n-500);">9:00 AM</div>
+                    <div style="font-size:10px;color:var(--n-400);">15 min</div>
+                  </div>
+                  <div style="width:3px;height:36px;background:#6264a7;border-radius:99px;flex-shrink:0;"></div>
+                  <div class="platform-icon pi-teams"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none"/></svg></div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-weight:700;color:var(--n-700);font-size:13.5px;">Team Standup</div>
+                    <div style="font-size:11px;color:var(--n-400);">Teams · Internal · Recurring</div>
+                  </div>
+                  <span class="status-pill sp-green">Done</span>
+                  <button class="tbl-btn" style="font-size:11px;" onclick="showToast('Opening meeting recording…')">▶ Replay</button>
+                </div>
+
+                <!-- Meeting 2 — Completed -->
+                <div class="meeting-card" style="border-radius:0;border-left:none;border-right:none;border-top:none;border-bottom:1px solid var(--n-100);padding:14px 22px;display:flex;gap:14px;align-items:center;opacity:.65;">
+                  <div style="width:58px;flex-shrink:0;text-align:center;">
+                    <div style="font-size:12px;font-weight:700;color:var(--n-500);">10:00 AM</div>
+                    <div style="font-size:10px;color:var(--n-400);">30 min</div>
+                  </div>
+                  <div style="width:3px;height:36px;background:#f59e0b;border-radius:99px;flex-shrink:0;"></div>
+                  <div class="platform-icon pi-phone"><span style="font-size:14px;">📞</span></div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-weight:700;color:var(--n-700);font-size:13.5px;">Sandra Hayes — Policy Review</div>
+                    <div style="font-size:11px;color:var(--n-400);">Phone · Insurance · Recorded 4m 22s</div>
+                  </div>
+                  <span class="status-pill sp-green">Done</span>
+                  <button class="tbl-btn" style="font-size:11px;" onclick="showToast('Playing call recording…')">▶ Play</button>
+                </div>
+
+                <!-- Meeting 3 — Completed -->
+                <div class="meeting-card google" style="border-radius:0;border-left:none;border-right:none;border-top:none;border-bottom:1px solid var(--n-100);padding:14px 22px;display:flex;gap:14px;align-items:center;opacity:.65;">
+                  <div style="width:58px;flex-shrink:0;text-align:center;">
+                    <div style="font-size:12px;font-weight:700;color:var(--n-500);">11:30 AM</div>
+                    <div style="font-size:10px;color:var(--n-400);">24 min</div>
+                  </div>
+                  <div style="width:3px;height:36px;background:#4285f4;border-radius:99px;flex-shrink:0;"></div>
+                  <div class="platform-icon pi-google"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="13" height="12" rx="2" fill="#4285F4"/><path d="M15 10l7-4v12l-7-4v-4z" fill="#34A853"/></svg></div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-weight:700;color:var(--n-700);font-size:13.5px;">Marcus Rivera — Auto Quote F/U</div>
+                    <div style="font-size:11px;color:var(--n-400);">Google Meet · Insurance · Completed</div>
+                  </div>
+                  <span class="status-pill sp-green">Done</span>
+                  <button class="tbl-btn" style="font-size:11px;" onclick="showToast('Video exported to OneDrive. Auto-purge in 87 days…')">📁 Saved</button>
+                </div>
+
+                <!-- Meeting 4 — LIVE -->
+                <div style="padding:14px 22px;background:linear-gradient(135deg,rgba(16,185,129,.06),transparent);border-bottom:1px solid #a7f3d0;display:flex;gap:14px;align-items:center;">
+                  <div style="width:58px;flex-shrink:0;text-align:center;">
+                    <div style="font-size:12px;font-weight:700;color:var(--green-text);">4:00 PM</div>
+                    <div style="font-size:10px;color:var(--n-400);">60 min</div>
+                  </div>
+                  <div style="width:3px;height:36px;background:var(--green);border-radius:99px;flex-shrink:0;"></div>
+                  <div class="platform-icon pi-teams"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none"/></svg></div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-weight:700;color:var(--navy);font-size:13.5px;">CRM Strategy Meeting — All Departments</div>
+                    <div style="font-size:11px;color:var(--green-text);font-weight:600;">Teams · In Progress · 42 min elapsed</div>
+                  </div>
+                  <div class="live-badge" style="font-size:10px;"><div class="live-dot"></div> LIVE</div>
+                  <button class="btn btn-green btn-sm" onclick="showToast('Joining Teams…')">Join</button>
+                </div>
+
+                <!-- Meeting 5 — Upcoming -->
+                <div class="meeting-card upcoming" style="border-radius:0;border-left:none;border-right:none;border-top:none;border-bottom:1px solid var(--n-100);padding:14px 22px;display:flex;gap:14px;align-items:center;">
+                  <div style="width:58px;flex-shrink:0;text-align:center;">
+                    <div style="font-size:12px;font-weight:700;color:var(--n-700);">5:00 PM</div>
+                    <div style="font-size:10px;color:var(--n-400);">15 min</div>
+                  </div>
+                  <div style="width:3px;height:36px;background:var(--n-300);border-radius:99px;flex-shrink:0;"></div>
+                  <div class="platform-icon" style="background:var(--n-100);"><span style="font-size:14px;">📝</span></div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-weight:700;color:var(--navy);font-size:13.5px;">Daily Wrap-Up &amp; CRM Log Update</div>
+                    <div style="font-size:11px;color:var(--n-500);">Personal · No recording needed</div>
+                  </div>
+                  <span class="status-pill sp-gray">Upcoming</span>
+                  <button class="tbl-btn" style="font-size:11px;" onclick="showToast('Opening event details…')">View</button>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- UPCOMING THIS WEEK -->
+            <div class="card fade-in s2">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">📅 Upcoming This Week</div>
+                  <div class="card-subtitle">Feb 20–23, 2026 — synced from Outlook &amp; Google Calendar</div>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="showToast('Opening full calendar view…')">Full Calendar</button>
+              </div>
+              <div style="overflow-x:auto;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Date &amp; Time</th>
+                      <th>Meeting</th>
+                      <th>Platform</th>
+                      <th>Contact / Team</th>
+                      <th>Department</th>
+                      <th>Duration</th>
+                      <th style="text-align:center;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div style="font-weight:700;color:var(--navy);font-size:13px;">Fri Feb 20</div>
+                        <div style="font-size:11px;color:var(--n-500);">11:00 AM</div>
+                      </td>
+                      <td>
+                        <div style="font-weight:700;color:var(--n-800);">Patricia Torres — Refinance Review</div>
+                        <div style="font-size:11px;color:var(--n-500);">Employment verification · Arive data shared</div>
+                      </td>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:6px;">
+                          <div class="platform-icon pi-google" style="width:24px;height:24px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="13" height="12" rx="2" fill="#4285F4"/><path d="M15 10l7-4v12l-7-4v-4z" fill="#34A853"/></svg></div>
+                          <span style="font-size:12px;font-weight:600;color:var(--n-700);">Google Meet</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:8px;">
+                          <div class="avatar" style="background:#10b981;color:white;width:30px;height:30px;font-size:10px;">PT</div>
+                          <div style="font-size:13px;color:var(--n-800);">Patricia Torres</div>
+                        </div>
+                      </td>
+                      <td><span class="badge b-blue">🏦 Mortgage</span></td>
+                      <td style="font-size:13px;color:var(--n-600);">45 min</td>
+                      <td>
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn" onclick="showToast('Joining Google Meet…')">🎥 Join</button>
+                          <button class="icon-btn" onclick="showToast('Opening details…')">👁️</button>
+                          <button class="icon-btn danger" onclick="showToast('Event cancelled.')">🗑️</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="font-weight:700;color:var(--navy);font-size:13px;">Mon Feb 23</div>
+                        <div style="font-size:11px;color:var(--n-500);">9:00 AM</div>
+                      </td>
+                      <td>
+                        <div style="font-weight:700;color:var(--n-800);">Team Standup</div>
+                        <div style="font-size:11px;color:var(--n-500);">Recurring · Internal · CRM updates</div>
+                      </td>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:6px;">
+                          <div class="platform-icon pi-teams" style="width:24px;height:24px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none"/></svg></div>
+                          <span style="font-size:12px;font-weight:600;color:var(--n-700);">Teams</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div style="font-size:13px;color:var(--n-800);">All Agents</div>
+                      </td>
+                      <td><span class="badge b-navy">Internal</span></td>
+                      <td style="font-size:13px;color:var(--n-600);">15 min</td>
+                      <td>
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn" onclick="showToast('Joining Teams…')">🎥 Join</button>
+                          <button class="icon-btn" onclick="showToast('Opening details…')">👁️</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="font-weight:700;color:var(--navy);font-size:13px;">Mon Feb 23</div>
+                        <div style="font-size:11px;color:var(--n-500);">2:00 PM</div>
+                      </td>
+                      <td>
+                        <div style="font-weight:700;color:var(--n-800);">CRM Integration Review — Arive + VOIP + Outlook</div>
+                        <div style="font-size:11px;color:var(--n-500);">API integration demo, cost breakdown, timeline</div>
+                      </td>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:6px;">
+                          <div class="platform-icon pi-teams" style="width:24px;height:24px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none"/></svg></div>
+                          <span style="font-size:12px;font-weight:600;color:var(--n-700);">Teams</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div style="font-size:13px;color:var(--n-800);">Tom, Jaquarian, Abdul (Dev)</div>
+                      </td>
+                      <td><span class="badge b-navy">Internal</span></td>
+                      <td style="font-size:13px;color:var(--n-600);">60 min</td>
+                      <td>
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn" onclick="showToast('Joining Teams…')">🎥 Join</button>
+                          <button class="icon-btn" onclick="showToast('Opening details…')">👁️</button>
+                          <button class="icon-btn danger" onclick="showToast('Event cancelled.')">🗑️</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="font-weight:700;color:var(--navy);font-size:13px;">Wed Feb 25</div>
+                        <div style="font-size:11px;color:var(--n-500);">10:30 AM</div>
+                      </td>
+                      <td>
+                        <div style="font-weight:700;color:var(--n-800);">Natalie Simmons — Pre-Approval Walkthrough</div>
+                        <div style="font-size:11px;color:var(--n-500);">Review mortgage estimate, Arive next steps</div>
+                      </td>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:6px;">
+                          <div class="platform-icon pi-google" style="width:24px;height:24px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="13" height="12" rx="2" fill="#4285F4"/><path d="M15 10l7-4v12l-7-4v-4z" fill="#34A853"/></svg></div>
+                          <span style="font-size:12px;font-weight:600;color:var(--n-700);">Google Meet</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:8px;">
+                          <div class="avatar" style="background:#7c3aed;color:white;width:30px;height:30px;font-size:10px;">NS</div>
+                          <div style="font-size:13px;color:var(--n-800);">Natalie Simmons</div>
+                        </div>
+                      </td>
+                      <td><span class="badge b-blue">🏦 Mortgage</span></td>
+                      <td style="font-size:13px;color:var(--n-600);">30 min</td>
+                      <td>
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn" onclick="showToast('Joining Google Meet…')">🎥 Join</button>
+                          <button class="icon-btn" onclick="showToast('Opening details…')">👁️</button>
+                          <button class="icon-btn danger" onclick="showToast('Event cancelled.')">🗑️</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="padding:14px 18px;border-top:1px solid var(--n-100);display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-size:12px;color:var(--n-500);">Showing 4 upcoming meetings this week</div>
+                <button class="btn btn-secondary btn-xs" onclick="showToast('Loading all meetings…')">View All</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT SIDEBAR -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+
+            <!-- Platform Status -->
+            <div class="card fade-in s1">
+              <div class="card-header">
+                <div class="card-title">🔗 Platform Status</div>
+                <span class="badge b-green">2 Active</span>
+              </div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:10px;">
+
+                <!-- Teams -->
+                <div style="padding:13px 14px;background:linear-gradient(135deg,#f0f0fc,#f8f8ff);border:1.5px solid #ddd9f3;border-radius:12px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                      <div style="width:36px;height:36px;border-radius:8px;background:white;display:flex;align-items:center;justify-content:center;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none"/><path d="M15 9a2 2 0 100-4 2 2 0 000 4z" fill="#6264A7" opacity=".6"/><path d="M15 11c1.7 0 3 1.5 3 3.5" stroke="#6264A7" stroke-width="1.5" fill="none" opacity=".6"/></svg>
+                      </div>
+                      <div>
+                        <div style="font-weight:700;font-size:13px;color:var(--n-800);">Microsoft Teams</div>
+                        <div style="font-size:11px;color:var(--n-500);">Internal meetings · Outlook synced</div>
+                      </div>
+                    </div>
+                    <div class="live-badge" style="font-size:10px;"><div class="live-dot"></div> In Use</div>
+                  </div>
+                  <div style="font-size:12px;color:var(--n-600);margin-bottom:8px;">4 meetings today · Calendar auto-sync enabled · Meeting links auto-generated</div>
+                  <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;" onclick="showToast('Opening Teams…')">Open Teams</button>
+                </div>
+
+                <!-- Google Meet -->
+                <div style="padding:13px 14px;background:linear-gradient(135deg,#e8f0fe,#f8fbff);border:1.5px solid #bfdbfe;border-radius:12px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                      <div style="width:36px;height:36px;border-radius:8px;background:white;display:flex;align-items:center;justify-content:center;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="13" height="12" rx="2" fill="#4285F4"/><path d="M15 10l7-4v12l-7-4v-4z" fill="#34A853"/></svg>
+                      </div>
+                      <div>
+                        <div style="font-weight:700;font-size:13px;color:var(--n-800);">Google Meet</div>
+                        <div style="font-size:11px;color:var(--n-500);">Client-facing meetings · Google Calendar</div>
+                      </div>
+                    </div>
+                    <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Active</span>
+                  </div>
+                  <div style="font-size:12px;color:var(--n-600);margin-bottom:8px;">3 meetings today · Screen sharing · Google Calendar synced</div>
+                  <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;" onclick="showToast('Opening Google Meet…')">Start Meet</button>
+                </div>
+
+                <!-- Compliance note -->
+                <div class="compliance-box warning">
+                  <span>⚠️</span>
+                  <div>Video recordings auto-purge after <strong>90 days</strong>. Export important client meetings to OneDrive or Outlook before the deadline.</div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Quick Schedule -->
+            <div class="card fade-in s2">
+              <div class="card-header">
+                <div class="card-title">⚡ Quick Schedule</div>
+                <div class="card-subtitle">One-click meeting creation</div>
+              </div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:8px;">
+                <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="openScheduleModal()">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                  Schedule New Meeting
+                </button>
+                <button style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;color:var(--n-800);cursor:pointer;transition:all .2s;width:100%;" onmouseover="this.style.borderColor='#6264a7';this.style.background='white'" onmouseout="this.style.borderColor='var(--n-200)';this.style.background='var(--n-50)'" onclick="showToast('Generating Teams link…')">
+                  <div style="width:28px;height:28px;border-radius:8px;background:#f0f0fc;display:flex;align-items:center;justify-content:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none"/></svg></div>
+                  Instant Teams Meeting
+                </button>
+                <button style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;color:var(--n-800);cursor:pointer;transition:all .2s;width:100%;" onmouseover="this.style.borderColor='#4285f4';this.style.background='white'" onmouseout="this.style.borderColor='var(--n-200)';this.style.background='var(--n-50)'" onclick="showToast('Generating Google Meet link…')">
+                  <div style="width:28px;height:28px;border-radius:8px;background:#e8f0fe;display:flex;align-items:center;justify-content:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="13" height="12" rx="2" fill="#4285F4"/><path d="M15 10l7-4v12l-7-4v-4z" fill="#34A853"/></svg></div>
+                  Instant Google Meet
+                </button>
+              </div>
+            </div>
+
+            <!-- Today's Participants -->
+            <div class="card fade-in s3">
+              <div class="card-header">
+                <div class="card-title">👥 Today's Participants</div>
+              </div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--n-100);">
+                  <div class="avatar" style="background:#1a3a52;color:white;font-size:11px;">TB</div>
+                  <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Tom Burke</div><div style="font-size:11px;color:var(--n-500);">Team Lead · 3 meetings</div></div>
+                  <span class="badge b-green" style="font-size:10px;">Active</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--n-100);">
+                  <div class="avatar" style="background:#f59e0b;color:white;font-size:11px;">JB</div>
+                  <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Jaquarian Bonilla</div><div style="font-size:11px;color:var(--n-500);">Insurance Agent · 4 meetings</div></div>
+                  <div class="live-badge" style="font-size:10px;"><div class="live-dot"></div> Live</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--n-100);">
+                  <div class="avatar" style="background:#10b981;color:white;font-size:11px;">SA</div>
+                  <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Sarah Anderson</div><div style="font-size:11px;color:var(--n-500);">RE Agent · 2 meetings</div></div>
+                  <span class="badge b-green" style="font-size:10px;">Active</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 0;">
+                  <div class="avatar" style="background:#7c3aed;color:white;font-size:11px;">AB</div>
+                  <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Abdul (Dev Team)</div><div style="font-size:11px;color:var(--n-500);">Invited to CRM Strategy</div></div>
+                  <span class="badge b-navy" style="font-size:10px;">External</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- ── END TAB: UPCOMING ── -->
+
+      <!-- ════════ TAB: RECORDINGS ════════ -->
+      <div id="tab-recordings" style="display:none;">
+
+        <!-- Filter bar -->
+        <div class="card fade-in" style="margin-bottom:20px;">
+          <div style="padding:14px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <div style="position:relative;">
+              <span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--n-400);font-size:13px;pointer-events:none;">🔍</span>
+              <input type="text" class="filter-input" placeholder="Search recordings by contact or topic…" />
+            </div>
+            <select class="filter-select-sm">
+              <option value="">All Platforms</option>
+              <option>Microsoft Teams</option>
+              <option>Google Meet</option>
+              <option>VOIP Call</option>
+            </select>
+            <select class="filter-select-sm">
+              <option value="">All Departments</option>
+              <option>🛡️ Insurance</option>
+              <option>🏦 Mortgage</option>
+              <option>🏘️ Real Estate</option>
+              <option>Internal</option>
+            </select>
+            <select class="filter-select-sm">
+              <option>Last 30 Days</option>
+              <option>Last 7 Days</option>
+              <option>Last 90 Days</option>
+            </select>
+            <div style="margin-left:auto;">
+              <button class="btn btn-secondary btn-sm" onclick="showToast('Exporting recordings list…')">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Export
+              </button>
+            </div>
+          </div>
+          <!-- Quick filters -->
+          <div style="padding:10px 18px;border-top:1px solid var(--n-100);display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+            <span style="font-size:11px;font-weight:700;color:var(--n-500);text-transform:uppercase;letter-spacing:.06em;margin-right:4px;">Quick:</span>
+            <button class="badge b-neutral" style="cursor:pointer;padding:5px 12px;font-size:11.5px;">All (24)</button>
+            <button class="badge b-gold" style="cursor:pointer;padding:5px 12px;font-size:11.5px;">🛡️ Insurance (10)</button>
+            <button class="badge b-blue" style="cursor:pointer;padding:5px 12px;font-size:11.5px;">🏦 Mortgage (7)</button>
+            <button class="badge b-green" style="cursor:pointer;padding:5px 12px;font-size:11.5px;">🏘️ Real Estate (4)</button>
+            <button class="badge b-navy" style="cursor:pointer;padding:5px 12px;font-size:11.5px;">Internal (3)</button>
+            <div style="margin-left:auto;">
+              <button class="badge b-orange" style="cursor:pointer;padding:5px 12px;font-size:11.5px;">⚠️ Expiring Soon (3)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recordings Table -->
+        <div class="card fade-in s1">
+          <div class="card-header">
+            <div>
+              <div class="card-title">⏺️ All Recordings — Last 30 Days</div>
+              <div class="card-subtitle">24 recordings · Video auto-purged after 90 days · Export to OneDrive before deadline</div>
+            </div>
+          </div>
+          <div class="tbl-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Meeting / Contact</th>
+                  <th>Platform</th>
+                  <th>Department</th>
+                  <th>Date &amp; Time</th>
+                  <th>Duration</th>
+                  <th>File Size</th>
+                  <th>Purge Date</th>
+                  <th>Status</th>
+                  <th style="text-align:center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div style="font-weight:700;color:var(--navy);font-size:13px;">Terrence Cole — RE Handoff Meeting</div>
+                    <div style="font-size:11px;color:var(--n-500);">Insurance → Real Estate · Tom + Jaquarian</div>
+                  </td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="13" height="12" rx="2" fill="#4285F4"/><path d="M15 10l7-4v12l-7-4v-4z" fill="#34A853"/></svg>
+                      <span style="font-size:12px;">Google Meet</span>
+                    </div>
+                  </td>
+                  <td><span class="badge b-green">🏘️ Real Estate</span></td>
+                  <td style="font-size:12px;color:var(--n-600);">Feb 18 · 1:00 PM</td>
+                  <td style="font-size:13px;font-weight:600;">24m 10s</td>
+                  <td style="font-size:12px;color:var(--n-600);">320 MB</td>
+                  <td style="font-size:12px;color:var(--n-600);">May 18, 2026</td>
+                  <td><span class="status-pill sp-green">Saved</span></td>
+                  <td>
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="tbl-btn" style="font-size:11px;" onclick="showToast('Playing recording…')">▶ Play</button>
+                      <button class="icon-btn" onclick="showToast('Exporting to OneDrive…')">📁</button>
+                      <button class="icon-btn danger" onclick="showToast('Recording deleted.')">🗑️</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="font-weight:700;color:var(--navy);font-size:13px;">CRM Strategy Meeting — All Departments</div>
+                    <div style="font-size:11px;color:var(--n-500);">Arive, VOIP, Follow Up Boss migration</div>
+                  </td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none"/></svg>
+                      <span style="font-size:12px;">Teams</span>
+                    </div>
+                  </td>
+                  <td><span class="badge b-navy">Internal</span></td>
+                  <td style="font-size:12px;color:var(--n-600);">Feb 18 · 4:00 PM</td>
+                  <td style="font-size:13px;font-weight:600;">58m 04s</td>
+                  <td style="font-size:12px;color:var(--n-600);">750 MB</td>
+                  <td style="font-size:12px;color:var(--n-600);">May 18, 2026</td>
+                  <td><span class="status-pill sp-green">Saved</span></td>
+                  <td>
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="tbl-btn" style="font-size:11px;" onclick="showToast('Playing recording…')">▶ Play</button>
+                      <button class="icon-btn" onclick="showToast('Exporting to OneDrive…')">📁</button>
+                      <button class="icon-btn danger" onclick="showToast('Recording deleted.')">🗑️</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="font-weight:700;color:var(--navy);font-size:13px;">Denise Lawrence — Mortgage Pre-Approval</div>
+                    <div style="font-size:11px;color:var(--n-500);">Arive data reviewed · Rescheduled to 2:00 PM</div>
+                  </td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none"/></svg>
+                      <span style="font-size:12px;">Teams</span>
+                    </div>
+                  </td>
+                  <td><span class="badge b-blue">🏦 Mortgage</span></td>
+                  <td style="font-size:12px;color:var(--n-600);">Feb 17 · 2:00 PM</td>
+                  <td style="font-size:13px;font-weight:600;">31m 44s</td>
+                  <td style="font-size:12px;color:var(--n-600);">420 MB</td>
+                  <td style="font-size:12px;color:var(--n-600);">May 17, 2026</td>
+                  <td><span class="status-pill sp-green">Saved</span></td>
+                  <td>
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="tbl-btn" style="font-size:11px;" onclick="showToast('Playing recording…')">▶ Play</button>
+                      <button class="icon-btn" onclick="showToast('Exporting to OneDrive…')">📁</button>
+                      <button class="icon-btn danger" onclick="showToast('Recording deleted.')">🗑️</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="font-weight:700;color:var(--navy);font-size:13px;">Marcus Rivera — Auto Quote Follow-Up</div>
+                    <div style="font-size:11px;color:var(--n-500);">Vertafore quote screen-share · $187/mo confirmed</div>
+                  </td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="13" height="12" rx="2" fill="#4285F4"/><path d="M15 10l7-4v12l-7-4v-4z" fill="#34A853"/></svg>
+                      <span style="font-size:12px;">Google Meet</span>
+                    </div>
+                  </td>
+                  <td><span class="badge b-gold">🛡️ Insurance</span></td>
+                  <td style="font-size:12px;color:var(--n-600);">Feb 19 · 11:30 AM</td>
+                  <td style="font-size:13px;font-weight:600;">18m 22s</td>
+                  <td style="font-size:12px;color:var(--n-600);">244 MB</td>
+                  <td style="font-size:12px;color:var(--orange-text);font-weight:600;">May 19, 2026 ⚠</td>
+                  <td><span class="status-pill sp-orange">Export Soon</span></td>
+                  <td>
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="tbl-btn" style="font-size:11px;" onclick="showToast('Playing recording…')">▶ Play</button>
+                      <button class="tbl-btn" style="font-size:11px;border-color:var(--orange);color:var(--orange-text);" onclick="showToast('Exporting to OneDrive…')">📁 Export</button>
+                      <button class="icon-btn danger" onclick="showToast('Recording deleted.')">🗑️</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="font-weight:700;color:var(--navy);font-size:13px;">Team Standup — Weekly Sync</div>
+                    <div style="font-size:11px;color:var(--n-500);">Internal · No client present</div>
+                  </td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 12a3 3 0 100-6 3 3 0 000 6z" fill="#6264A7"/><path d="M4 20c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#6264A7" stroke-width="1.5" fill="none"/></svg>
+                      <span style="font-size:12px;">Teams</span>
+                    </div>
+                  </td>
+                  <td><span class="badge b-navy">Internal</span></td>
+                  <td style="font-size:12px;color:var(--n-600);">Feb 16 · 9:00 AM</td>
+                  <td style="font-size:13px;font-weight:600;">14m 55s</td>
+                  <td style="font-size:12px;color:var(--n-600);">190 MB</td>
+                  <td style="font-size:12px;color:var(--n-600);">May 16, 2026</td>
+                  <td><span class="status-pill sp-green">Saved</span></td>
+                  <td>
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="tbl-btn" style="font-size:11px;" onclick="showToast('Playing recording…')">▶ Play</button>
+                      <button class="icon-btn" onclick="showToast('Exporting…')">📁</button>
+                      <button class="icon-btn danger" onclick="showToast('Deleted.')">🗑️</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding:14px 18px;border-top:1px solid var(--n-100);display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-size:12px;color:var(--n-500);">Showing 5 of 24 recordings</div>
+            <div style="display:flex;gap:6px;">
+              <button class="btn btn-xs btn-secondary">← Prev</button>
+              <button class="btn btn-xs btn-primary">1</button>
+              <button class="btn btn-xs btn-secondary">2</button>
+              <button class="btn btn-xs btn-secondary">3</button>
+              <button class="btn btn-xs btn-secondary">Next →</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- ── END TAB: RECORDINGS ── -->
+
+      <!-- ════════ TAB: STORAGE ════════ -->
+      <div id="tab-storage" style="display:none;">
+        <div style="display:grid;grid-template-columns:1fr 360px;gap:20px;">
+
+          <div style="display:flex;flex-direction:column;gap:16px;">
+
+            <!-- Storage Overview -->
+            <div class="card fade-in">
+              <div class="card-header">
+                <div class="card-title">💾 Video Storage — 90-Day Window</div>
+                <div class="card-subtitle">As confirmed in CRM meetings — videos are NOT stored permanently. Export to OneDrive or email before purge.</div>
+              </div>
+              <div class="card-body">
+                <div style="margin-bottom:20px;">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                    <span style="font-size:13px;font-weight:600;color:var(--n-700);">Total Video Storage Used</span>
+                    <span style="font-family:'Archivo',sans-serif;font-size:16px;font-weight:700;color:var(--navy);">3.2 GB / 10 GB</span>
+                  </div>
+                  <div class="prog-track" style="height:10px;">
+                    <div class="prog-fill" style="width:32%;background:linear-gradient(90deg,var(--navy),var(--navy-hover));"></div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n-500);margin-top:5px;">32% used · 6.8 GB available · Next purge cycle: May 18, 2026</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;">
+                  <div style="background:var(--n-50);border:1px solid var(--n-200);border-radius:10px;padding:14px 16px;text-align:center;">
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--n-500);margin-bottom:6px;">Teams Videos</div>
+                    <div style="font-family:'Archivo',sans-serif;font-size:22px;font-weight:800;color:var(--navy);">1.8 GB</div>
+                    <div style="font-size:11px;color:var(--n-500);">12 recordings</div>
+                  </div>
+                  <div style="background:var(--n-50);border:1px solid var(--n-200);border-radius:10px;padding:14px 16px;text-align:center;">
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--n-500);margin-bottom:6px;">Google Meet</div>
+                    <div style="font-family:'Archivo',sans-serif;font-size:22px;font-weight:800;color:var(--navy);">1.1 GB</div>
+                    <div style="font-size:11px;color:var(--n-500);">9 recordings</div>
+                  </div>
+                  <div style="background:var(--n-50);border:1px solid var(--n-200);border-radius:10px;padding:14px 16px;text-align:center;">
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--n-500);margin-bottom:6px;">VOIP Calls</div>
+                    <div style="font-family:'Archivo',sans-serif;font-size:22px;font-weight:800;color:var(--navy);">300 MB</div>
+                    <div style="font-size:11px;color:var(--n-500);">3 recordings</div>
+                  </div>
+                </div>
+
+                <!-- Expiring soon -->
+                <div style="padding:14px 16px;background:var(--orange-bg);border:1px solid var(--gold-border);border-radius:12px;margin-bottom:16px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                    <div style="font-size:13px;font-weight:700;color:var(--orange-text);">⚠️ Expiring Within 7 Days (3 recordings)</div>
+                    <button class="btn btn-xs" style="background:var(--orange);color:white;" onclick="showToast('Exporting 3 recordings to OneDrive…')">Export All Now</button>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:7px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:white;border-radius:8px;font-size:12px;">
+                      <span style="font-weight:600;color:var(--n-800);">Marcus Rivera — Auto Quote F/U</span>
+                      <span style="color:var(--red-text);font-weight:700;">Purges May 19</span>
+                      <button class="tbl-btn" style="font-size:11px;padding:4px 10px;" onclick="showToast('Exporting to OneDrive…')">📁 Export</button>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:white;border-radius:8px;font-size:12px;">
+                      <span style="font-weight:600;color:var(--n-800);">Sandra Hayes — Policy Review</span>
+                      <span style="color:var(--orange-text);font-weight:700;">Purges May 21</span>
+                      <button class="tbl-btn" style="font-size:11px;padding:4px 10px;" onclick="showToast('Exporting to OneDrive…')">📁 Export</button>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:white;border-radius:8px;font-size:12px;">
+                      <span style="font-weight:600;color:var(--n-800);">Team Standup Feb 17</span>
+                      <span style="color:var(--orange-text);font-weight:700;">Purges May 22</span>
+                      <button class="tbl-btn" style="font-size:11px;padding:4px 10px;" onclick="showToast('Exporting to OneDrive…')">📁 Export</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="compliance-box info">
+                  <span>ℹ️</span>
+                  <div>Per compliance policy agreed in CRM meetings: <strong>video recordings are saved for 90 days maximum</strong> to avoid excess storage costs. Client audio calls (Insurance: 18 months, Real Estate: 4 years) are retained separately in the VOIP call log. Export important client-facing video recordings to OneDrive or Outlook before they purge. A reminder email is sent automatically 7 days before purge.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Export Settings -->
+            <div class="card fade-in s1">
+              <div class="card-header">
+                <div class="card-title">📤 Auto-Export Settings</div>
+                <div class="card-subtitle">Configure automatic video exports to OneDrive or Outlook</div>
+              </div>
+              <div class="card-body">
+                <div style="display:flex;flex-direction:column;gap:12px;">
+
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 15px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;">
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--n-800);margin-bottom:3px;">Auto-export client meetings to OneDrive</div>
+                      <div style="font-size:11px;color:var(--n-500);">Export 30 days before purge deadline automatically</div>
+                    </div>
+                    <label style="position:relative;display:inline-block;width:46px;height:26px;cursor:pointer;">
+                      <input type="checkbox" checked style="opacity:0;width:0;height:0;" />
+                      <span style="position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--green);border-radius:26px;transition:.3s;"></span>
+                      <span style="position:absolute;content:'';height:20px;width:20px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s;"></span>
+                    </label>
+                  </div>
+
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 15px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;">
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--n-800);margin-bottom:3px;">Email purge reminder — 7 days before</div>
+                      <div style="font-size:11px;color:var(--n-500);">Sent via Outlook to meeting organizer</div>
+                    </div>
+                    <label style="position:relative;display:inline-block;width:46px;height:26px;cursor:pointer;">
+                      <input type="checkbox" checked style="opacity:0;width:0;height:0;" />
+                      <span style="position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--green);border-radius:26px;transition:.3s;"></span>
+                      <span style="position:absolute;content:'';height:20px;width:20px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s;"></span>
+                    </label>
+                  </div>
+
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 15px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;">
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--n-800);margin-bottom:3px;">Keep internal team meetings</div>
+                      <div style="font-size:11px;color:var(--n-500);">Don't auto-export internal-only meetings</div>
+                    </div>
+                    <label style="position:relative;display:inline-block;width:46px;height:26px;cursor:pointer;">
+                      <input type="checkbox" style="opacity:0;width:0;height:0;" />
+                      <span style="position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--n-300);border-radius:26px;transition:.3s;"></span>
+                      <span style="position:absolute;content:'';height:20px;width:20px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s;"></span>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Export Destination</label>
+                    <select class="form-select">
+                      <option selected>OneDrive — /CRM/VideoMeetings/</option>
+                      <option>Outlook Shared Mailbox</option>
+                      <option>Both OneDrive + Outlook</option>
+                    </select>
+                  </div>
+
+                  <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="showToast('Storage settings saved.')">Save Storage Settings</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT: Stats + Tips -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+
+            <div class="card fade-in s1">
+              <div class="card-header">
+                <div class="card-title">📊 Storage by Dept</div>
+              </div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:14px;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:13px;font-weight:600;color:var(--n-700);">🛡️ Insurance</span><span style="font-size:13px;font-weight:700;color:var(--navy);">1.2 GB</span></div>
+                  <div class="prog-track"><div class="prog-fill" style="width:38%;background:linear-gradient(90deg,var(--gold),#e6a500);"></div></div>
+                  <div style="font-size:11px;color:var(--n-500);margin-top:3px;">10 recordings · Avg 14m per meeting</div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:13px;font-weight:600;color:var(--n-700);">🏦 Mortgage</span><span style="font-size:13px;font-weight:700;color:var(--navy);">900 MB</span></div>
+                  <div class="prog-track"><div class="prog-fill" style="width:28%;background:linear-gradient(90deg,#3b82f6,#1d4ed8);"></div></div>
+                  <div style="font-size:11px;color:var(--n-500);margin-top:3px;">7 recordings · Avg 31m per meeting</div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:13px;font-weight:600;color:var(--n-700);">🏘️ Real Estate</span><span style="font-size:13px;font-weight:700;color:var(--navy);">750 MB</span></div>
+                  <div class="prog-track"><div class="prog-fill" style="width:23%;background:linear-gradient(90deg,var(--green),#059669);"></div></div>
+                  <div style="font-size:11px;color:var(--n-500);margin-top:3px;">4 recordings · Avg 28m per meeting</div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:13px;font-weight:600;color:var(--n-700);">Internal</span><span style="font-size:13px;font-weight:700;color:var(--navy);">350 MB</span></div>
+                  <div class="prog-track"><div class="prog-fill" style="width:11%;background:linear-gradient(90deg,var(--navy),var(--navy-hover));"></div></div>
+                  <div style="font-size:11px;color:var(--n-500);margin-top:3px;">3 recordings · Standups + strategy</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card fade-in s2">
+              <div class="card-header"><div class="card-title">💡 Storage Best Practices</div></div>
+              <div class="card-body" style="font-size:13px;line-height:1.7;color:var(--n-700);">
+                <p style="margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;"><span style="flex-shrink:0;">✅</span><span><strong>Client meetings:</strong> Always export to OneDrive before 90-day purge. Insurance: 18-month reference window. Real Estate: 4-year retention.</span></p>
+                <p style="margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;"><span style="flex-shrink:0;">✅</span><span><strong>Internal standups:</strong> No need to keep. Delete after review to save storage quota.</span></p>
+                <p style="margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;"><span style="flex-shrink:0;">✅</span><span><strong>Use Outlook email:</strong> For long-term sharing, send video links via Outlook. Storage is unlimited on email vs CRM quota.</span></p>
+                <p style="display:flex;gap:8px;align-items:flex-start;"><span style="flex-shrink:0;">⚠️</span><span><strong>OneDrive limit:</strong> Be mindful of OneDrive storage plan when bulk-exporting large meeting recordings.</span></p>
+              </div>
+            </div>
+
+            <div class="card fade-in s3">
+              <div class="card-header"><div class="card-title">🔗 Connected Storage</div></div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--n-100);">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--n-800);">
+                    <div style="width:22px;height:22px;border-radius:5px;background:#e8f1fb;display:flex;align-items:center;justify-content:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" fill="#0078D4"/><path d="M2 8l10 6 10-6" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
+                    OneDrive
+                  </div>
+                  <div style="font-size:12px;color:var(--n-500);">15 GB plan · 4.1 GB used</div>
+                  <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Connected</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--n-100);">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--n-800);">
+                    <div style="width:22px;height:22px;border-radius:5px;background:#e8f1fb;display:flex;align-items:center;justify-content:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" fill="#0078D4"/><path d="M2 8l10 6 10-6" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
+                    Outlook Mail
+                  </div>
+                  <div style="font-size:12px;color:var(--n-500);">Unlimited · No cost</div>
+                  <span class="status-pill sp-green" style="font-size:10px;padding:3px 8px;">Connected</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--n-800);">
+                    <div style="width:22px;height:22px;border-radius:5px;background:var(--n-100);display:flex;align-items:center;justify-content:center;font-size:11px;">☁️</div>
+                    External Drive
+                  </div>
+                  <div style="font-size:12px;color:var(--n-500);">For long-term archive</div>
+                  <button class="btn btn-xs btn-secondary" onclick="showToast('Configure external storage…')">Configure</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- ── END TAB: STORAGE ── -->
+
+    </div><!-- /content -->
+          </div>
+
+          <div id="view-insurance" style="display: none">
+    <div class="voip-bar">
+      <div class="pulse-dot"></div>
+      <span>VOIP Active — Line 1 open · Recording ON</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:10px;">
+        <span style="color:var(--n-500);font-weight:400;">Compliance: Insurance calls stored 18 months</span>
+        <button class="btn btn-xs btn-secondary" style="border-color:#a7f3d0;color:var(--green-text);background:var(--green-bg);">View Log</button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;" class="fade-in">
+        <div>
+          <h1 style="font-family:'Archivo',sans-serif;font-size:28px;font-weight:800;color:var(--navy);line-height:1.2;">Insurance</h1>
+          <p style="font-size:14px;color:var(--n-600);margin-top:4px;">Policies, quotes, renewals, and compliance — powered by Vertafore</p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <div class="mini-tabs" id="ins-view-tabs">
+            <button class="mini-tab sel" onclick="switchInsView('policies',this)">Policies</button>
+            <button class="mini-tab" onclick="switchInsView('quotes',this)">Quotes</button>
+            <button class="mini-tab" onclick="switchInsView('renewals',this)">Renewals</button>
+            <button class="mini-tab" onclick="switchInsView('compliance',this)">Compliance</button>
+          </div>
+          <button class="btn btn-secondary btn-sm">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Export
+          </button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:24px;">
+        <div class="stat-card navy fade-in s1">
+          <div class="stat-label">Active Policies</div>
+          <div class="stat-value">247</div>
+          <div class="stat-delta"><span class="delta-up">▲ 8%</span> vs last month</div>
+        </div>
+        <div class="stat-card gold fade-in s2">
+          <div class="stat-label">Open Quotes</div>
+          <div class="stat-value">31</div>
+          <div class="stat-delta"><span class="delta-up">▲ 5</span> this week</div>
+        </div>
+        <div class="stat-card orange fade-in s3">
+          <div class="stat-label">Renewals Due</div>
+          <div class="stat-value">14</div>
+          <div class="stat-delta" style="color:var(--orange-text);">Next 30 days</div>
+        </div>
+        <div class="stat-card red fade-in s4">
+          <div class="stat-label">Lapsed</div>
+          <div class="stat-value">3</div>
+          <div class="stat-delta" style="color:var(--red);">Immediate action</div>
+        </div>
+        <div class="stat-card green fade-in s5">
+          <div class="stat-label">Premium (MTD)</div>
+          <div class="stat-value" style="font-size:24px;">$42.8K</div>
+          <div class="stat-delta"><span class="delta-up">▲ 14%</span> vs prior month</div>
+        </div>
+        <div class="stat-card blue fade-in s6">
+          <div class="stat-label">Avg Premium</div>
+          <div class="stat-value" style="font-size:24px;">$173</div>
+          <div class="stat-delta" style="color:var(--n-500);">Per policy/mo</div>
+        </div>
+      </div>
+
+      <div id="view-policies" class="tab-content active">
+        <div style="display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start;">
+
+          <div>
+            <div class="card fade-in" style="margin-bottom:20px;">
+              <div style="padding:14px 18px;border-bottom:1px solid var(--n-100);display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                <div style="position:relative;">
+                  <span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--n-400);font-size:13px;pointer-events:none;">🔍</span>
+                  <input type="text" class="filter-input" placeholder="Search by client, policy number…" id="policySearch" oninput="filterPolicies()" />
+                </div>
+                <select class="filter-select-sm" id="policyTypeFilter" onchange="filterPolicies()">
+                  <option value="">All Types</option>
+                  <option value="auto">Auto</option>
+                  <option value="home">Home</option>
+                  <option value="life">Life</option>
+                  <option value="bundle">Bundle</option>
+                </select>
+                <select class="filter-select-sm" id="statusFilter" onchange="filterPolicies()">
+                  <option value="">All Statuses</option>
+                  <option value="Active">Active</option>
+                  <option value="Expiring">Expiring Soon</option>
+                  <option value="Lapsed">Lapsed</option>
+                  <option value="Pending">Pending</option>
+                </select>
+                <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
+                  <span id="policyCount" style="font-size:12px;color:var(--n-500);font-weight:600;"></span>
+                  <button class="btn btn-gold btn-sm" onclick="openNewQuoteModal()">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                    New Policy
+                  </button>
+                </div>
+              </div>
+
+              <div style="padding:10px 18px;border-bottom:1px solid var(--n-100);display:flex;gap:8px;flex-wrap:wrap;">
+                <button class="badge b-neutral" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickPolicyFilter('')">All (247)</button>
+                <button class="badge b-blue" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickPolicyFilter('auto')">Auto (98)</button>
+                <button class="badge b-green" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickPolicyFilter('home')">Home (87)</button>
+                <button class="badge b-purple" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickPolicyFilter('life')">Life (34)</button>
+                <button class="badge b-gold" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickPolicyFilter('bundle')">Bundle (28)</button>
+                <div style="margin-left:auto;">
+                  <button class="badge b-orange" style="cursor:pointer;padding:5px 12px;font-size:11.5px;" onclick="quickPolicyFilter('Expiring')">⏰ Expiring (14)</button>
+                </div>
+              </div>
+
+              <div style="overflow-x:auto;">
+                <table id="policyTable">
+                  <thead>
+                    <tr>
+                      <th style="width:28px;"><input type="checkbox" id="selectAll" onchange="toggleAll(this)" /></th>
+                      <th>Policyholder</th>
+                      <th>Policy #</th>
+                      <th>Type</th>
+                      <th>Premium/mo</th>
+                      <th>Carrier</th>
+                      <th>Effective</th>
+                      <th>Expires</th>
+                      <th>Status</th>
+                      <th style="text-align:center;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="policyBody"></tbody>
+                </table>
+              </div>
+
+              <div style="padding:14px 18px;border-top:1px solid var(--n-100);display:flex;align-items:center;justify-content:space-between;">
+                <div style="font-size:12px;color:var(--n-500);">Showing <span id="showRange">1–12</span> of <span id="totalPolicies">247</span> policies</div>
+                <div style="display:flex;gap:6px;">
+                  <button class="btn btn-secondary btn-xs">← Prev</button>
+                  <button class="btn btn-primary btn-xs">1</button>
+                  <button class="btn btn-secondary btn-xs">2</button>
+                  <button class="btn btn-secondary btn-xs">3</button>
+                  <button class="btn btn-secondary btn-xs">Next →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:18px;">
+
+            <div class="card fade-in s2">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">🛡️ Vertafore Integration</div>
+                  <div class="card-subtitle">Quote engine · Policy management</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <div class="int-dot dot-orange"></div>
+                  <span style="font-size:11px;color:var(--orange-text);font-weight:700;">Syncing</span>
+                </div>
+              </div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:10px;">
+                <div class="int-chip">
+                  <div class="int-logo" style="background:var(--gold-bg);">🛡️</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:13px;font-weight:700;color:var(--n-800);">Agency Zoom / Vertafore</div>
+                    <div style="font-size:11px;color:var(--n-500);">Quoting · Policy management</div>
+                  </div>
+                  <div class="int-dot dot-orange"></div>
+                </div>
+                <div class="int-chip">
+                  <div class="int-logo" style="background:#e8f1fb;">📧</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:13px;font-weight:700;color:var(--n-800);">Microsoft Outlook</div>
+                    <div style="font-size:11px;color:var(--n-500);">Email automation · Renewals</div>
+                  </div>
+                  <div class="int-dot dot-green"></div>
+                </div>
+                <div class="int-chip">
+                  <div class="int-logo" style="background:var(--green-bg);">📞</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:13px;font-weight:700;color:var(--n-800);">VOIP Call Center</div>
+                    <div style="font-size:11px;color:var(--n-500);">Call recording · Compliance</div>
+                  </div>
+                  <div class="int-dot dot-green"></div>
+                </div>
+                <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;" onclick="showToast('Opening integration settings…')">Manage Integrations</button>
+              </div>
+            </div>
+
+            <div class="card fade-in s3">
+              <div class="card-header">
+                <div class="card-title">⏰ Renewals Alert</div>
+                <span class="badge b-orange">14 due</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;padding:14px 18px;">
+                <div style="padding:12px 14px;background:var(--red-bg);border-radius:10px;border-left:3px solid var(--red);">
+                  <div style="font-size:13px;font-weight:700;color:var(--n-800);margin-bottom:3px;">Sandra Hayes — Auto</div>
+                  <div style="font-size:11px;color:var(--red-text);">Expires Feb 28 · $187/mo · URGENT</div>
+                  <div style="display:flex;gap:6px;margin-top:8px;">
+                    <button class="tbl-btn" style="font-size:11px;padding:4px 9px;" onclick="showToast('Calling Sandra Hayes…')">📞 Call</button>
+                    <button class="tbl-btn" style="font-size:11px;padding:4px 9px;" onclick="showToast('Sending renewal email…')">✉️ Email</button>
+                  </div>
+                </div>
+                <div style="padding:12px 14px;background:var(--orange-bg);border-radius:10px;border-left:3px solid var(--orange);">
+                  <div style="font-size:13px;font-weight:700;color:var(--n-800);margin-bottom:3px;">Marcus Rivera — Auto</div>
+                  <div style="font-size:11px;color:var(--orange-text);">Expires Mar 8 · $210/mo · 15 days</div>
+                  <div style="display:flex;gap:6px;margin-top:8px;">
+                    <button class="tbl-btn" style="font-size:11px;padding:4px 9px;" onclick="showToast('Calling Marcus Rivera…')">📞 Call</button>
+                    <button class="tbl-btn" style="font-size:11px;padding:4px 9px;" onclick="showToast('Sending renewal quote…')">🛡️ Quote</button>
+                  </div>
+                </div>
+                <div style="padding:12px 14px;background:var(--gold-bg);border-radius:10px;border-left:3px solid var(--gold);">
+                  <div style="font-size:13px;font-weight:700;color:var(--n-800);margin-bottom:3px;">Emily Davis — Home + Auto</div>
+                  <div style="font-size:11px;color:#92400e;">Expires Mar 15 · $340/mo · 22 days</div>
+                  <div style="display:flex;gap:6px;margin-top:8px;">
+                    <button class="tbl-btn" style="font-size:11px;padding:4px 9px;" onclick="showToast('Scheduling call…')">📅 Schedule</button>
+                    <button class="tbl-btn" style="font-size:11px;padding:4px 9px;" onclick="showToast('Sending renewal email…')">✉️ Email</button>
+                  </div>
+                </div>
+                <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;" onclick="switchInsView('renewals', document.querySelector('#ins-view-tabs .mini-tab:nth-child(3)'))">View All 14 Renewals</button>
+              </div>
+            </div>
+
+            <div class="card fade-in s4">
+              <div class="card-header">
+                <div class="card-title">🎂 Upcoming Birthdays</div>
+                <div class="card-subtitle">Auto-email via Outlook</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;padding:14px 18px;">
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);">
+                  <div style="width:34px;height:34px;background:#e0eaf2;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--navy);flex-shrink:0;">SH</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:700;color:var(--n-800);">Sandra Hayes</div>
+                    <div style="font-size:11px;color:var(--n-500);">Birthday: Feb 20 · Auto-email sent ✓</div>
+                  </div>
+                  <span class="badge b-green" style="font-size:10px;">Sent</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--gold-bg);border-radius:8px;border:1px solid var(--gold-border);">
+                  <div style="width:34px;height:34px;background:var(--gold-bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#92400e;flex-shrink:0;">KW</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:700;color:var(--n-800);">Kevin Watts</div>
+                    <div style="font-size:11px;color:#92400e;">Birthday: Feb 24 · Auto-email scheduled</div>
+                  </div>
+                  <span class="badge b-gold" style="font-size:10px;">Queued</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--n-50);border-radius:8px;border:1px solid var(--n-200);">
+                  <div style="width:34px;height:34px;background:var(--purple-bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--purple-text);flex-shrink:0;">PT</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:700;color:var(--n-800);">Patricia Torres</div>
+                    <div style="font-size:11px;color:var(--n-500);">Birthday: Mar 2 · Outlook trigger set</div>
+                  </div>
+                  <span class="badge b-purple" style="font-size:10px;">Scheduled</span>
+                </div>
+                <div class="compliance-box info" style="margin-top:4px;">
+                  <span style="font-size:14px;flex-shrink:0;">ℹ️</span>
+                  <div>Birthday emails auto-fire via Outlook at 8:00 AM on the client's DOB. All are CRM-logged automatically.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="view-quotes" class="tab-content">
+        <div style="display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start;">
+          <div>
+            <div class="card fade-in" style="margin-bottom:20px;">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">📋 Active Quotes</div>
+                  <div class="card-subtitle">Generated via Vertafore · Synced to CRM</div>
+                </div>
+                <button class="btn btn-gold btn-sm" onclick="openNewQuoteModal()">+ New Quote</button>
+              </div>
+              <div style="overflow-x:auto;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Client</th>
+                      <th>Quote #</th>
+                      <th>Type</th>
+                      <th>Coverage</th>
+                      <th>Premium/mo</th>
+                      <th>Carrier</th>
+                      <th>Quoted</th>
+                      <th>Expires</th>
+                      <th>Status</th>
+                      <th style="text-align:center;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><div style="font-weight:700;color:var(--navy);">Sandra Hayes</div><div style="font-size:11px;color:var(--n-500);">Auto renewal call · Today</div></td>
+                      <td style="font-weight:700;color:var(--blue-text);">VTF-2026-0441</td>
+                      <td><span class="badge b-blue">Auto</span></td>
+                      <td style="font-size:12px;color:var(--n-600);">100/300/100 · UM/UIM</td>
+                      <td><strong style="color:var(--navy);">$187</strong></td>
+                      <td style="font-size:12px;color:var(--n-600);">Progressive</td>
+                      <td style="font-size:12px;color:var(--n-500);">Today</td>
+                      <td style="font-size:12px;color:var(--n-500);">Mar 1</td>
+                      <td><span class="status-pill sp-orange">Pending</span></td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn" onclick="showToast('Sending quote to Sandra…')">✉️ Send</button>
+                          <button class="tbl-btn" onclick="showToast('Calling Sandra Hayes…')">📞 Call</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><div style="font-weight:700;color:var(--navy);">Marcus Rivera</div><div style="font-size:11px;color:var(--n-500);">Callback pending 11:30 AM</div></td>
+                      <td style="font-weight:700;color:var(--blue-text);">VTF-2026-0438</td>
+                      <td><span class="badge b-blue">Auto</span></td>
+                      <td style="font-size:12px;color:var(--n-600);">50/100/50 · Comp/Coll</td>
+                      <td><strong style="color:var(--navy);">$210</strong></td>
+                      <td style="font-size:12px;color:var(--n-600);">State Farm</td>
+                      <td style="font-size:12px;color:var(--n-500);">Today</td>
+                      <td style="font-size:12px;color:var(--n-500);">Feb 28</td>
+                      <td><span class="status-pill sp-orange">Pending</span></td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn" onclick="showToast('Sending quote to Marcus…')">✉️ Send</button>
+                          <button class="tbl-btn" onclick="showToast('Dialing Marcus Rivera…')">📞 Call</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><div style="font-weight:700;color:var(--navy);">Kevin Watts</div><div style="font-size:11px;color:var(--n-500);">New inquiry · Home + Auto bundle</div></td>
+                      <td style="font-weight:700;color:var(--blue-text);">VTF-2026-0445</td>
+                      <td><span class="badge b-gold">Bundle</span></td>
+                      <td style="font-size:12px;color:var(--n-600);">Auto + Home · Full coverage</td>
+                      <td><strong style="color:var(--navy);">$340</strong></td>
+                      <td style="font-size:12px;color:var(--n-600);">Nationwide</td>
+                      <td style="font-size:12px;color:var(--n-500);">Yesterday</td>
+                      <td style="font-size:12px;color:var(--n-500);">Mar 5</td>
+                      <td><span class="status-pill sp-blue">Draft</span></td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn" onclick="showToast('Opening quote in Vertafore…')">🛡️ Edit</button>
+                          <button class="tbl-btn" onclick="showToast('Calling Kevin Watts…')">📞 Call</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><div style="font-weight:700;color:var(--navy);">Patricia Torres</div><div style="font-size:11px;color:var(--n-500);">Home warranty add-on</div></td>
+                      <td style="font-weight:700;color:var(--blue-text);">VTF-2026-0439</td>
+                      <td><span class="badge b-green">Home</span></td>
+                      <td style="font-size:12px;color:var(--n-600);">HO-3 · $300K dwelling</td>
+                      <td><strong style="color:var(--navy);">$128</strong></td>
+                      <td style="font-size:12px;color:var(--n-600);">Allstate</td>
+                      <td style="font-size:12px;color:var(--n-500);">Feb 15</td>
+                      <td style="font-size:12px;color:var(--n-500);">Mar 10</td>
+                      <td><span class="status-pill sp-purple">Awaiting Signature</span></td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn green" onclick="showToast('Binding policy…')">✓ Bind</button>
+                          <button class="tbl-btn" onclick="showToast('Resending docs…')">📄 Docs</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><div style="font-weight:700;color:var(--navy);">Emily Davis</div><div style="font-size:11px;color:var(--n-500);">Accepted — awaiting payment</div></td>
+                      <td style="font-weight:700;color:var(--blue-text);">VTF-2026-0421</td>
+                      <td><span class="badge b-gold">Bundle</span></td>
+                      <td style="font-size:12px;color:var(--n-600);">Auto + Home · Full coverage</td>
+                      <td><strong style="color:var(--navy);">$325</strong></td>
+                      <td style="font-size:12px;color:var(--n-600);">Travelers</td>
+                      <td style="font-size:12px;color:var(--n-500);">Feb 10</td>
+                      <td style="font-size:12px;color:var(--n-500);">Feb 25</td>
+                      <td><span class="status-pill sp-green">Accepted</span></td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;">
+                          <button class="tbl-btn green" onclick="showToast('Converting to active policy…')">✓ Activate</button>
+                          <button class="tbl-btn" onclick="showToast('Viewing quote details…')">View</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div class="card fade-in s2">
+              <div class="card-header">
+                <div class="card-title">⚡ New Quote</div>
+                <div class="card-subtitle">Via Vertafore</div>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label class="form-label">Client</label>
+                  <select class="form-select" style="font-size:13px;padding:9px 12px;">
+                    <option value="">Select client…</option>
+                    <option>Sandra Hayes</option>
+                    <option>Marcus Rivera</option>
+                    <option>Kevin Watts</option>
+                    <option>Patricia Torres</option>
+                    <option>Emily Davis</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Insurance Type</label>
+                  <select class="form-select" style="font-size:13px;padding:9px 12px;" id="quoteType" onchange="updateQuoteFields()">
+                    <option value="">Select type…</option>
+                    <option value="auto">Auto</option>
+                    <option value="home">Home / Renters</option>
+                    <option value="life">Life</option>
+                    <option value="bundle">Auto + Home Bundle</option>
+                  </select>
+                </div>
+                <div class="form-group" id="vinRow" style="display:none;">
+                  <label class="form-label">VIN Number</label>
+                  <input class="form-input" type="text" placeholder="17-character VIN" style="font-size:13px;padding:9px 12px;text-transform:uppercase;" maxlength="17" />
+                  <div style="font-size:11px;color:var(--n-500);margin-top:4px;">Required for auto quotes · 3 data fields: name, DOB, VIN</div>
+                </div>
+                <div class="form-group" id="dobRow">
+                  <label class="form-label">Date of Birth</label>
+                  <input class="form-input" type="date" style="font-size:13px;padding:9px 12px;" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Notes</label>
+                  <textarea class="form-textarea" style="min-height:60px;font-size:13px;" placeholder="Special circumstances, discounts, prior carrier…"></textarea>
+                </div>
+                <button class="btn btn-gold" style="width:100%;justify-content:center;" onclick="showToast('Opening Vertafore quote engine…')">
+                  🛡️ Generate in Vertafore
+                </button>
+                <div style="margin-top:10px;padding:10px 12px;background:var(--blue-bg);border-radius:8px;font-size:11px;color:var(--blue-text);font-weight:600;">
+                  ℹ️ Quote runs in Vertafore and syncs back to CRM automatically. Only 3 data fields needed: Name · DOB · VIN (auto).
+                </div>
+              </div>
+            </div>
+
+            <div class="card fade-in s3">
+              <div class="card-header">
+                <div class="card-title">📊 Quote Stats</div>
+              </div>
+              <div class="card-body">
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--n-50);border-radius:8px;">
+                    <span style="font-size:13px;color:var(--n-600);">Acceptance Rate</span>
+                    <strong style="font-family:'Archivo',sans-serif;color:var(--navy);">68%</strong>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--n-50);border-radius:8px;">
+                    <span style="font-size:13px;color:var(--n-600);">Avg Response Time</span>
+                    <strong style="font-family:'Archivo',sans-serif;color:var(--navy);">1.8 days</strong>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--n-50);border-radius:8px;">
+                    <span style="font-size:13px;color:var(--n-600);">Quotes This Month</span>
+                    <strong style="font-family:'Archivo',sans-serif;color:var(--navy);">31</strong>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--n-50);border-radius:8px;">
+                    <span style="font-size:13px;color:var(--n-600);">Avg Premium Quoted</span>
+                    <strong style="font-family:'Archivo',sans-serif;color:var(--navy);">$238/mo</strong>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:9px 12px;background:linear-gradient(135deg,#e0eaf2,#d0e0ee);border-radius:8px;">
+                    <span style="font-size:13px;font-weight:700;color:var(--navy);">Pending Binding</span>
+                    <strong style="font-family:'Archivo',sans-serif;color:var(--navy);">$1,190/mo</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="view-renewals" class="tab-content">
+        <div class="card fade-in" style="margin-bottom:20px;">
+          <div class="card-header">
+            <div>
+              <div class="card-title">🔄 Renewal Pipeline</div>
+              <div class="card-subtitle">14 policies expiring within 30 days · Auto-reminders via Outlook</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button class="btn btn-secondary btn-sm" onclick="showToast('Sending bulk renewal emails…')">✉️ Email All</button>
+              <button class="btn btn-gold btn-sm" onclick="showToast('Generating renewal quotes in Vertafore…')">🛡️ Quote All in Vertafore</button>
+            </div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th><input type="checkbox" /></th>
+                  <th>Policyholder</th>
+                  <th>Policy #</th>
+                  <th>Type</th>
+                  <th>Current Premium</th>
+                  <th>Carrier</th>
+                  <th>Expiry Date</th>
+                  <th>Days Left</th>
+                  <th>Contact Method</th>
+                  <th>Renewal Status</th>
+                  <th style="text-align:center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td><div style="font-weight:700;color:var(--navy);">Sandra Hayes</div><div style="font-size:11px;color:var(--n-500);">(832) 555-0141</div></td>
+                  <td style="color:var(--blue-text);font-weight:700;">POL-2024-0812</td>
+                  <td><span class="badge b-blue">Auto</span></td>
+                  <td><strong>$187/mo</strong></td>
+                  <td style="color:var(--n-600);">Progressive</td>
+                  <td style="color:var(--red-text);font-weight:700;">Feb 28</td>
+                  <td><span class="badge b-red">8 days</span></td>
+                  <td><span class="badge b-gold">Call preferred</span></td>
+                  <td><span class="status-pill sp-orange">Contacted</span></td>
+                  <td style="text-align:center;">
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="tbl-btn" onclick="showToast('Dialing Sandra…')">📞</button>
+                      <button class="tbl-btn" onclick="showToast('Sending renewal email…')">✉️</button>
+                      <button class="tbl-btn green" onclick="showToast('Generating renewal quote…')">🛡️ Renew</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td><div style="font-weight:700;color:var(--navy);">Marcus Rivera</div><div style="font-size:11px;color:var(--n-500);">(713) 555-0289</div></td>
+                  <td style="color:var(--blue-text);font-weight:700;">POL-2024-0847</td>
+                  <td><span class="badge b-blue">Auto</span></td>
+                  <td><strong>$210/mo</strong></td>
+                  <td style="color:var(--n-600);">State Farm</td>
+                  <td style="color:var(--orange-text);font-weight:700;">Mar 8</td>
+                  <td><span class="badge b-orange">15 days</span></td>
+                  <td><span class="badge b-gold">Call preferred</span></td>
+                  <td><span class="status-pill sp-blue">Quote Sent</span></td>
+                  <td style="text-align:center;">
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="tbl-btn" onclick="showToast('Dialing Marcus…')">📞</button>
+                      <button class="tbl-btn green" onclick="showToast('Binding renewal…')">✓ Bind</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td><div style="font-weight:700;color:var(--navy);">Emily Davis</div><div style="font-size:11px;color:var(--n-500);">(713) 555-0955</div></td>
+                  <td style="color:var(--blue-text);font-weight:700;">POL-2023-0391</td>
+                  <td><span class="badge b-gold">Bundle</span></td>
+                  <td><strong>$340/mo</strong></td>
+                  <td style="color:var(--n-600);">Travelers</td>
+                  <td style="color:var(--orange-text);font-weight:700;">Mar 15</td>
+                  <td><span class="badge b-orange">22 days</span></td>
+                  <td><span class="badge b-blue">Email OK</span></td>
+                  <td><span class="status-pill sp-gray">Not Contacted</span></td>
+                  <td style="text-align:center;">
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="tbl-btn" onclick="showToast('Scheduling call…')">📅</button>
+                      <button class="tbl-btn" onclick="showToast('Sending renewal email…')">✉️</button>
+                      <button class="tbl-btn green" onclick="showToast('Generating renewal quote…')">🛡️ Quote</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td><div style="font-weight:700;color:var(--navy);">Lisa Pham</div><div style="font-size:11px;color:var(--n-500);">(832) 555-0198</div></td>
+                  <td style="color:var(--blue-text);font-weight:700;">POL-2024-0902</td>
+                  <td><span class="badge b-blue">Auto</span></td>
+                  <td><strong>$156/mo</strong></td>
+                  <td style="color:var(--n-600);">GEICO</td>
+                  <td style="color:var(--n-600);">Mar 22</td>
+                  <td><span class="badge b-neutral">29 days</span></td>
+                  <td><span class="badge b-blue">Email OK</span></td>
+                  <td><span class="status-pill sp-gray">Not Contacted</span></td>
+                  <td style="text-align:center;">
+                    <div style="display:flex;gap:5px;justify-content:center;">
+                      <button class="tbl-btn" onclick="showToast('Sending renewal email…')">✉️</button>
+                      <button class="tbl-btn green" onclick="showToast('Generating renewal quote…')">🛡️ Quote</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding:14px 18px;border-top:1px solid var(--n-100);display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-size:12px;color:var(--n-500);">Showing 4 of 14 upcoming renewals</div>
+            <div style="display:flex;gap:6px;">
+              <button class="btn btn-secondary btn-xs">← Prev</button>
+              <button class="btn btn-primary btn-xs">1</button>
+              <button class="btn btn-secondary btn-xs">2</button>
+              <button class="btn btn-secondary btn-xs">Next →</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;" class="fade-in s2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📧 Renewal Email Automation</div></div>
+            <div class="card-body">
+              <div style="font-size:13px;color:var(--n-600);margin-bottom:14px;line-height:1.6;">Outlook triggers automated renewal emails at 30, 15, and 7-day intervals. All are CRM-logged with open-rate tracking.</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--green-bg);border-radius:8px;">
+                  <span style="font-size:12px;font-weight:700;color:var(--green-text);">30-day reminder</span>
+                  <span class="badge b-green" style="font-size:10px;">Auto ✓</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--orange-bg);border-radius:8px;">
+                  <span style="font-size:12px;font-weight:700;color:var(--orange-text);">15-day reminder</span>
+                  <span class="badge b-orange" style="font-size:10px;">Auto ✓</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--red-bg);border-radius:8px;">
+                  <span style="font-size:12px;font-weight:700;color:var(--red-text);">7-day final notice</span>
+                  <span class="badge b-red" style="font-size:10px;">Auto ✓</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">📊 Renewal Metrics</div></div>
+            <div class="card-body">
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--n-50);border-radius:8px;">
+                  <span style="font-size:13px;color:var(--n-600);">Renewal Rate</span>
+                  <strong style="color:var(--green);">84%</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--n-50);border-radius:8px;">
+                  <span style="font-size:13px;color:var(--n-600);">Avg Days to Renew</span>
+                  <strong style="color:var(--navy);">11 days</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--n-50);border-radius:8px;">
+                  <span style="font-size:13px;color:var(--n-600);">Lapsed (MTD)</span>
+                  <strong style="color:var(--red);">3 policies</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--n-50);border-radius:8px;">
+                  <span style="font-size:13px;color:var(--n-600);">Retained Premium</span>
+                  <strong style="color:var(--navy);">$28.4K/mo</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">⚠️ Lapsed Policies</div><span class="badge b-red">3</span></div>
+            <div class="card-body">
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="padding:12px 14px;background:var(--red-bg);border-radius:10px;border-left:3px solid var(--red);">
+                  <div style="font-size:13px;font-weight:700;color:var(--n-800);margin-bottom:2px;">Derek Okafor — Auto</div>
+                  <div style="font-size:11px;color:var(--red-text);margin-bottom:8px;">Lapsed Feb 10 · $178/mo lost</div>
+                  <button class="tbl-btn" style="font-size:11px;padding:4px 9px;width:100%;justify-content:center;" onclick="showToast('Calling Derek Okafor to reinstate…')">📞 Call to Reinstate</button>
+                </div>
+                <div class="compliance-box warning">
+                  <span style="font-size:14px;flex-shrink:0;">⚠️</span>
+                  <div>Verify client has confirmed coverage to avoid E&amp;O liability. Record confirmation call via VOIP.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="view-compliance" class="tab-content">
+        <div style="display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start;">
+          <div>
+            <div class="card fade-in" style="margin-bottom:20px;">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">🎙 Call Recording Log</div>
+                  <div class="card-subtitle">All calls recorded for E&amp;O compliance · 18-month cloud retention</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="badge b-green">Compliant</span>
+                  <button class="btn btn-secondary btn-sm" onclick="showToast('Exporting call log…')">Export</button>
+                </div>
+              </div>
+              <div style="overflow-x:auto;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Client</th>
+                      <th>Direction</th>
+                      <th>Duration</th>
+                      <th>Topic</th>
+                      <th>Policy #</th>
+                      <th>Date / Time</th>
+                      <th>Agent</th>
+                      <th>Stored Until</th>
+                      <th style="text-align:center;">Recording</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong style="color:var(--navy);">Sandra Hayes</strong></td>
+                      <td><span class="badge b-green" style="font-size:10px;">Outbound</span></td>
+                      <td style="font-family:'Archivo',sans-serif;font-weight:700;">4m 22s</td>
+                      <td style="font-size:12px;color:var(--n-600);">Auto renewal discussion · confirmed $187/mo</td>
+                      <td style="color:var(--blue-text);font-size:12px;">POL-2024-0812</td>
+                      <td style="font-size:12px;color:var(--n-500);">Today · 11:04 AM</td>
+                      <td style="font-size:12px;color:var(--n-600);">Jaquarian B.</td>
+                      <td style="font-size:12px;color:var(--green-text);font-weight:600;">Aug 2027</td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;align-items:center;">
+                          <span class="rec-badge">⏺ Stored</span>
+                          <button class="play-btn" onclick="showToast('Playing recording…')">▶ Play</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong style="color:var(--navy);">Marcus Rivera</strong></td>
+                      <td><span class="badge b-green" style="font-size:10px;">Outbound</span></td>
+                      <td style="font-family:'Archivo',sans-serif;font-weight:700;">2m 08s</td>
+                      <td style="font-size:12px;color:var(--n-600);">Auto quote follow-up · callback requested</td>
+                      <td style="color:var(--blue-text);font-size:12px;">VTF-2026-0438</td>
+                      <td style="font-size:12px;color:var(--n-500);">Today · 9:30 AM</td>
+                      <td style="font-size:12px;color:var(--n-600);">Jaquarian B.</td>
+                      <td style="font-size:12px;color:var(--green-text);font-weight:600;">Aug 2027</td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;align-items:center;">
+                          <span class="rec-badge">⏺ Stored</span>
+                          <button class="play-btn" onclick="showToast('Playing recording…')">▶ Play</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong style="color:var(--navy);">Terrence Cole</strong></td>
+                      <td><span class="badge b-blue" style="font-size:10px;">Inbound</span></td>
+                      <td style="font-family:'Archivo',sans-serif;font-weight:700;">7m 41s</td>
+                      <td style="font-size:12px;color:var(--n-600);">Insurance inquiry · transferred to Real Estate</td>
+                      <td style="color:var(--n-400);font-size:12px;">—</td>
+                      <td style="font-size:12px;color:var(--n-500);">Yesterday · 1:00 PM</td>
+                      <td style="font-size:12px;color:var(--n-600);">Jaquarian B.</td>
+                      <td style="font-size:12px;color:var(--green-text);font-weight:600;">Aug 2027</td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;align-items:center;">
+                          <span class="rec-badge">⏺ Stored</span>
+                          <button class="play-btn" onclick="showToast('Playing recording…')">▶ Play</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong style="color:var(--navy);">Emily Davis</strong></td>
+                      <td><span class="badge b-green" style="font-size:10px;">Outbound</span></td>
+                      <td style="font-family:'Archivo',sans-serif;font-weight:700;">5m 14s</td>
+                      <td style="font-size:12px;color:var(--n-600);">Bundle confirmation · coverage verified on recording</td>
+                      <td style="color:var(--blue-text);font-size:12px;">POL-2023-0391</td>
+                      <td style="font-size:12px;color:var(--n-500);">Feb 10 · 3:00 PM</td>
+                      <td style="font-size:12px;color:var(--n-600);">Jaquarian B.</td>
+                      <td style="font-size:12px;color:var(--green-text);font-weight:600;">Aug 2027</td>
+                      <td style="text-align:center;">
+                        <div style="display:flex;gap:5px;justify-content:center;align-items:center;">
+                          <span class="rec-badge">⏺ Stored</span>
+                          <button class="play-btn" onclick="showToast('Playing recording…')">▶ Play</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong style="color:var(--navy);">Unknown</strong><div style="font-size:11px;color:var(--n-400);">(832) 555-0299</div></td>
+                      <td><span class="badge b-red" style="font-size:10px;">Missed</span></td>
+                      <td style="color:var(--n-400);">—</td>
+                      <td style="font-size:12px;color:var(--n-400);">No voicemail</td>
+                      <td style="color:var(--n-400);font-size:12px;">—</td>
+                      <td style="font-size:12px;color:var(--n-500);">Today · 7:58 AM</td>
+                      <td style="font-size:12px;color:var(--n-600);">Jaquarian B.</td>
+                      <td style="font-size:12px;color:var(--n-400);">N/A</td>
+                      <td style="text-align:center;">
+                        <button class="tbl-btn" style="font-size:11px;padding:4px 9px;" onclick="showToast('Calling back…')">📞 Call Back</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="padding:14px 18px;border-top:1px solid var(--n-100);display:flex;align-items:center;justify-content:space-between;">
+                <div style="font-size:12px;color:var(--n-500);">Showing 1–5 of 34 calls today</div>
+                <div style="display:flex;gap:6px;">
+                  <button class="btn btn-secondary btn-xs">← Prev</button>
+                  <button class="btn btn-primary btn-xs">1</button>
+                  <button class="btn btn-secondary btn-xs">2</button>
+                  <button class="btn btn-secondary btn-xs">Next →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div class="card fade-in s2">
+              <div class="card-header">
+                <div class="card-title">🛡️ Compliance Summary</div>
+                <span class="badge b-green">Compliant</span>
+              </div>
+              <div class="card-body">
+                <div style="margin-bottom:16px;">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                    <span style="font-size:12px;color:var(--n-600);font-weight:600;">Call Recording Storage</span>
+                    <span style="font-size:12px;font-weight:700;color:var(--navy);">2.4 GB / 10 GB</span>
+                  </div>
+                  <div class="prog-track">
+                    <div class="prog-fill" style="width:24%;background:linear-gradient(90deg,var(--green),#059669);"></div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n-500);margin-top:4px;">76% remaining capacity</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+                  <div style="background:var(--n-50);border-radius:10px;padding:12px;text-align:center;">
+                    <div style="font-size:10px;color:var(--n-400);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;">Retention Period</div>
+                    <div style="font-family:'Archivo',sans-serif;font-size:22px;font-weight:800;color:var(--navy);">18 mo</div>
+                    <div style="font-size:11px;color:var(--n-500);">Insurance calls</div>
+                  </div>
+                  <div style="background:var(--n-50);border-radius:10px;padding:12px;text-align:center;">
+                    <div style="font-size:10px;color:var(--n-400);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;">Calls Stored</div>
+                    <div style="font-family:'Archivo',sans-serif;font-size:22px;font-weight:800;color:var(--navy);">847</div>
+                    <div style="font-size:11px;color:var(--n-500);">Total recordings</div>
+                  </div>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div class="compliance-box success">
+                    <span style="font-size:14px;flex-shrink:0;">✓</span>
+                    <div>All VOIP calls automatically recorded. Stored to cloud for 18 months per insurance E&amp;O requirements.</div>
+                  </div>
+                  <div class="compliance-box warning">
+                    <span style="font-size:14px;flex-shrink:0;">⚠️</span>
+                    <div>Video meetings auto-purge after 90 days. Export to OneDrive before purge if needed for open claims.</div>
+                  </div>
+                  <div class="compliance-box info">
+                    <span style="font-size:14px;flex-shrink:0;">ℹ️</span>
+                    <div>All client coverage confirmations must be verbal on a recorded VOIP line. SMS/email confirmation alone is not sufficient.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card fade-in s3">
+              <div class="card-header">
+                <div class="card-title">📋 E&amp;O Checklist</div>
+                <div class="card-subtitle">Required for each policy bound</div>
+              </div>
+              <div class="card-body">
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <label style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--n-700);cursor:pointer;">
+                    <input type="checkbox" checked style="margin-top:2px;" />
+                    <div><div style="font-weight:600;">Coverage confirmed on recorded call</div><div style="font-size:11px;color:var(--n-500);">Client verbally confirms what they are purchasing</div></div>
+                  </label>
+                  <label style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--n-700);cursor:pointer;">
+                    <input type="checkbox" checked style="margin-top:2px;" />
+                    <div><div style="font-weight:600;">Quote generated in Vertafore</div><div style="font-size:11px;color:var(--n-500);">Not manually calculated — must come from rating engine</div></div>
+                  </label>
+                  <label style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--n-700);cursor:pointer;">
+                    <input type="checkbox" style="margin-top:2px;" />
+                    <div><div style="font-weight:600;">Disclosure documents sent</div><div style="font-size:11px;color:var(--n-500);">Policy summary emailed via Outlook before binding</div></div>
+                  </label>
+                  <label style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--n-700);cursor:pointer;">
+                    <input type="checkbox" style="margin-top:2px;" />
+                    <div><div style="font-weight:600;">Client is not obligated to use our services</div><div style="font-size:11px;color:var(--n-500);">Freedom of choice must be stated on disclosure</div></div>
+                  </label>
+                  <label style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--n-700);cursor:pointer;">
+                    <input type="checkbox" style="margin-top:2px;" />
+                    <div><div style="font-weight:600;">Activity logged in CRM</div><div style="font-size:11px;color:var(--n-500);">Call, quote, and binding all documented with timestamps</div></div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="card fade-in s4">
+              <div class="card-header">
+                <div class="card-title">🔗 Compliance Tools</div>
+              </div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:8px;">
+                <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;" onclick="showToast('Downloading call log export…')">⬇ Export Call Log (CSV)</button>
+                <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;" onclick="showToast('Opening E&O audit report…')">📋 E&amp;O Audit Report</button>
+                <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;" onclick="showToast('Opening OneDrive…')">☁️ Back Up to OneDrive</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+          </div>
+
           <!-- /view-calls -->
 
         </div>
@@ -9351,6 +11291,184 @@ Burkes Group · Insurance Division</div>
       </div>
     </div>
 
+<div class="modal-overlay" id="newQuoteModal" onclick="if(event.target===this)closeModal('newQuoteModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">New Insurance Quote</div>
+        <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Generated via Vertafore · 3 required fields</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('newQuoteModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="form-group">
+          <label class="form-label">First Name <span style="color:var(--red);">*</span></label>
+          <input class="form-input" type="text" placeholder="First name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name <span style="color:var(--red);">*</span></label>
+          <input class="form-input" type="text" placeholder="Last name" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date of Birth <span style="color:var(--red);">*</span></label>
+        <input class="form-input" type="date" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Insurance Type <span style="color:var(--red);">*</span></label>
+        <select class="form-select" id="modalQuoteType" onchange="toggleVIN()">
+          <option value="">Select type…</option>
+          <option value="auto">Auto</option>
+          <option value="home">Home / Renters</option>
+          <option value="life">Life</option>
+          <option value="bundle">Auto + Home Bundle</option>
+        </select>
+      </div>
+      <div class="form-group" id="modalVinRow" style="display:none;">
+        <label class="form-label">VIN Number <span style="color:var(--red);">*</span></label>
+        <input class="form-input" type="text" placeholder="17-character VIN" maxlength="17" style="text-transform:uppercase;" />
+        <div style="font-size:11px;color:var(--n-500);margin-top:4px;">Required for all auto insurance quotes</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone</label>
+        <input class="form-input" type="tel" placeholder="(555) 000-0000" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="email@example.com" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notes</label>
+        <textarea class="form-textarea" style="min-height:70px;" placeholder="Prior carrier, desired coverage limits, discounts…"></textarea>
+      </div>
+      <div style="padding:12px 14px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:10px;">
+        <div style="font-size:12px;font-weight:700;color:#92400e;margin-bottom:6px;">⚡ Vertafore will:</div>
+        <div style="font-size:12px;color:#92400e;line-height:1.7;">1. Run the quote using your brokerage credentials<br>2. Sync the premium back to this CRM record<br>3. Send the quote to the client via Outlook automatically</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('newQuoteModal')">Cancel</button>
+      <button class="btn btn-gold" onclick="submitQuote()">🛡️ Generate in Vertafore</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ SCHEDULE MEETING MODAL ══════════════════════ -->
+<div class="modal-overlay" id="scheduleModal" onclick="handleOverlay(event,'scheduleModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">📅 Schedule Video Meeting</div>
+        <div style="font-size:13px;color:var(--n-500);margin-top:3px;">Syncs to Outlook &amp; Google Calendar · Meeting link auto-generated</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('scheduleModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Meeting Title <span style="color:var(--red);">*</span></label>
+        <input class="form-input" type="text" placeholder="e.g. Denise Lawrence — Mortgage Pre-Approval Review" />
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <label class="form-label">Platform <span style="color:var(--red);">*</span></label>
+          <select class="form-select" id="sched-platform" onchange="updateScheduleLink()">
+            <option value="">Select platform…</option>
+            <option value="teams">Microsoft Teams (Internal)</option>
+            <option value="google">Google Meet (Client-facing)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Department</label>
+          <select class="form-select">
+            <option value="">All / General</option>
+            <option>🛡️ Insurance</option>
+            <option>🏦 Mortgage</option>
+            <option>🏘️ Real Estate</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <label class="form-label">Date <span style="color:var(--red);">*</span></label>
+          <input class="form-input" type="date" value="2026-02-20" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Time <span style="color:var(--red);">*</span></label>
+          <input class="form-input" type="time" value="10:00" />
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <label class="form-label">Duration</label>
+          <select class="form-select">
+            <option>15 minutes</option>
+            <option selected>30 minutes</option>
+            <option>45 minutes</option>
+            <option>1 hour</option>
+            <option>1.5 hours</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Link to Contact</label>
+          <select class="form-select">
+            <option value="">No contact linked</option>
+            <option>Sandra Hayes</option>
+            <option>Marcus Rivera</option>
+            <option>Denise Lawrence</option>
+            <option>Terrence Cole</option>
+            <option>Patricia Torres</option>
+            <option>John Smith · TRX-10247</option>
+            <option>Sarah Williams · TRX-10198</option>
+            <option>Michael Brown · TRX-10156</option>
+            <option>Natalie Simmons</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Agenda / Notes</label>
+        <textarea class="form-textarea" placeholder="Meeting purpose, key topics, documents to share, expected outcomes…"></textarea>
+      </div>
+
+      <!-- Meeting link preview -->
+      <div id="sched-link-preview" style="display:none;padding:11px 14px;background:var(--purple-bg);border-radius:10px;font-size:12px;color:var(--purple-text);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+        <span>🔗</span>
+        <span id="sched-link-text">A meeting link will be auto-generated and added to the invite.</span>
+      </div>
+
+      <!-- Sync options -->
+      <div style="padding:12px 14px;background:var(--n-50);border:1.5px solid var(--n-200);border-radius:10px;margin-bottom:4px;">
+        <div style="font-size:11.5px;font-weight:700;color:var(--n-600);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em;">Sync &amp; Notify</div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" checked /> Outlook Calendar
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" checked /> Google Calendar
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" /> Email invite to contact
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--n-700);font-weight:600;cursor:pointer;">
+            <input type="checkbox" checked /> Record meeting
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('scheduleModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveMeeting()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        Schedule Meeting
+      </button>
+    </div>
+  </div>
+</div>
+
     <!-- Toast -->
     <div id="toast">
       <span>✓</span>
@@ -9375,7 +11493,9 @@ Burkes Group · Insurance Division</div>
         const sms = document.getElementById('view-sms');
         const email = document.getElementById('view-email');
         const emailblast = document.getElementById('view-emailblast');
-        if (!dash || !cont || !pipe || !act || !cal || !calls || !sms || !email || !emailblast) return;
+        const videomeetings = document.getElementById('view-videomeetings');
+        const insurance = document.getElementById('view-insurance');
+        if (!dash || !cont || !pipe || !act || !cal || !calls || !sms || !email || !emailblast || !videomeetings || !insurance) return;
         dash.style.display = name === 'dashboard' ? 'block' : 'none';
         cont.style.display = name === 'contacts' ? 'block' : 'none';
         pipe.style.display = name === 'pipeline' ? 'block' : 'none';
@@ -9385,6 +11505,8 @@ Burkes Group · Insurance Division</div>
         sms.style.display = name === 'sms' ? 'flex' : 'none';
         email.style.display = name === 'email' ? 'flex' : 'none';
         emailblast.style.display = name === 'emailblast' ? 'block' : 'none';
+        videomeetings.style.display = name === 'videomeetings' ? 'block' : 'none';
+        insurance.style.display = name === 'insurance' ? 'block' : 'none';
       }
 
       /* ── NAV ACTIVE ── */
@@ -9401,6 +11523,13 @@ Burkes Group · Insurance Division</div>
           const wrap = el.closest('.mini-tabs');
           if (wrap) wrap.querySelectorAll('.mini-tab').forEach((t) => t.classList.remove('sel'));
           el.classList.add('sel');
+          if (['tab-upcoming', 'tab-recordings', 'tab-storage'].indexOf(tabId) >= 0) {
+            ['tab-upcoming', 'tab-recordings', 'tab-storage'].forEach((id) => {
+              const node = document.getElementById(id);
+              if (node) node.style.display = id === tabId ? 'block' : 'none';
+            });
+            return;
+          }
           ['tab-eb-campaigns', 'tab-eb-automations', 'tab-eb-templates'].forEach((id) => {
             const node = document.getElementById(id);
             if (node) node.style.display = id === tabId ? '' : 'none';
@@ -9726,7 +11855,153 @@ Burkes Group · Insurance Division</div>
         document.getElementById('leadCountBadge').textContent = '148 leads';
       }
 
+
+      /* ── Insurance view (from insurance.html) ── */
+      const policies = [
+        { id:1,  name:'Sandra Hayes',    policy:'POL-2024-0812', type:'auto',   premium:'$187', carrier:'Progressive', effective:'Feb 28, 2025', expires:'Feb 28, 2026', status:'Expiring' },
+        { id:2,  name:'Marcus Rivera',   policy:'POL-2024-0847', type:'auto',   premium:'$210', carrier:'State Farm',  effective:'Mar 8, 2025',  expires:'Mar 8, 2026',  status:'Expiring' },
+        { id:3,  name:'Kevin Watts',     policy:'POL-2025-0112', type:'bundle', premium:'$340', carrier:'Nationwide',  effective:'Jan 15, 2026', expires:'Jan 15, 2027', status:'Active' },
+        { id:4,  name:'Patricia Torres', policy:'POL-2025-0089', type:'home',   premium:'$128', carrier:'Allstate',    effective:'Dec 1, 2025',  expires:'Dec 1, 2026',  status:'Pending' },
+        { id:5,  name:'Emily Davis',     policy:'POL-2023-0391', type:'bundle', premium:'$325', carrier:'Travelers',   effective:'Mar 15, 2023', expires:'Mar 15, 2026', status:'Expiring' },
+        { id:6,  name:'Lisa Pham',       policy:'POL-2024-0902', type:'auto',   premium:'$156', carrier:'GEICO',       effective:'Mar 22, 2025', expires:'Mar 22, 2026', status:'Active' },
+        { id:7,  name:'Derek Okafor',    policy:'POL-2024-0721', type:'auto',   premium:'$178', carrier:'GEICO',       effective:'Feb 10, 2025', expires:'Feb 10, 2026', status:'Lapsed' },
+        { id:8,  name:'Angela Torres',   policy:'POL-2025-0203', type:'home',   premium:'$145', carrier:'State Farm',  effective:'Feb 1, 2026',  expires:'Feb 1, 2027',  status:'Active' },
+        { id:9,  name:'Robert Wilson',   policy:'POL-2024-0654', type:'life',   premium:'$95',  carrier:'Prudential',  effective:'Jun 1, 2024',  expires:'Jun 1, 2034',  status:'Active' },
+        { id:10, name:'Denise Lawrence', policy:'POL-2025-0177', type:'auto',   premium:'$198', carrier:'Progressive', effective:'Jan 10, 2026', expires:'Jan 10, 2027', status:'Active' },
+        { id:11, name:'Natalie Simmons', policy:'POL-2024-0588', type:'life',   premium:'$82',  carrier:'NY Life',      effective:'Apr 1, 2024',  expires:'Apr 1, 2034',  status:'Active' },
+        { id:12, name:'Brenda Hall',     policy:'POL-2025-0301', type:'home',   premium:'$167', carrier:'Allstate',    effective:'Feb 5, 2026',  expires:'Feb 5, 2027',  status:'Active' },
+      ];
+
+      let filteredPolicies = [...policies];
+
+      const insTypeBadge = { auto:'b-blue', home:'b-green', life:'b-purple', bundle:'b-gold' };
+      const insTypeIcon  = { auto:'🚗', home:'🏠', life:'❤️', bundle:'📦' };
+      const insStatusPill= { Active:'sp-green', Expiring:'sp-orange', Lapsed:'sp-red', Pending:'sp-blue' };
+      const avatarColorsIns = ['#1a3a52','#2d5a7b','#059669','#7c3aed','#d97706','#3b82f6','#ef4444','#ec4899'];
+      function acIn(n){ let h=0; for(let c of n) h=c.charCodeAt(0)+((h<<5)-h); return avatarColorsIns[Math.abs(h)%avatarColorsIns.length]; }
+      function iniIn(n){ const p=n.split(' '); return (p[0][0]||'')+(p[1]?p[1][0]:''); }
+
+      function renderPolicies(){
+        const body = document.getElementById('policyBody');
+        if (!body) return;
+        body.innerHTML = filteredPolicies.map(p => `
+      <tr>
+        <td><input type="checkbox" /></td>
+        <td>
+          <div style="display:flex;align-items:center;gap:9px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:${acIn(p.name)};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0;">${iniIn(p.name)}</div>
+            <div style="font-weight:700;color:var(--navy);">${p.name}</div>
+          </div>
+        </td>
+        <td style="font-weight:700;color:var(--blue-text);font-size:12px;">${p.policy}</td>
+        <td><span class="badge ${insTypeBadge[p.type]}">${insTypeIcon[p.type]} ${p.type.charAt(0).toUpperCase()+p.type.slice(1)}</span></td>
+        <td><strong style="color:var(--navy);">${p.premium}/mo</strong></td>
+        <td style="font-size:12px;color:var(--n-600);">${p.carrier}</td>
+        <td style="font-size:12px;color:var(--n-500);">${p.effective}</td>
+        <td style="font-size:12px;color:var(--n-500);">${p.expires}</td>
+        <td><span class="status-pill ${insStatusPill[p.status]}">${p.status}</span></td>
+        <td style="text-align:center;">
+          <div style="display:flex;gap:5px;justify-content:center;">
+            <button class="tbl-btn" style="font-size:11px;padding:4px 8px;" onclick="showToast('Viewing ${p.name} policy…')">View</button>
+            <button class="tbl-btn" style="font-size:11px;padding:4px 8px;" onclick="showToast('Calling ${p.name}…')">📞</button>
+            ${p.status === 'Expiring' ? `<button class="tbl-btn gold" style="font-size:11px;padding:4px 8px;" onclick="showToast('Generating renewal quote…')">Renew</button>` : ''}
+          </div>
+        </td>
+      </tr>
+    `).join('');
+        const pc = document.getElementById('policyCount');
+        const sr = document.getElementById('showRange');
+        const tp = document.getElementById('totalPolicies');
+        if (pc) pc.textContent = filteredPolicies.length + ' policies';
+        if (sr) sr.textContent = filteredPolicies.length ? `1–${Math.min(12, filteredPolicies.length)}` : '0';
+        if (tp) tp.textContent = String(filteredPolicies.length);
+      }
+
+      function filterPolicies(){
+        const ps = document.getElementById('policySearch');
+        const tf = document.getElementById('policyTypeFilter');
+        const sf = document.getElementById('statusFilter');
+        if (!ps || !tf || !sf) return;
+        const q = (ps.value || '').toLowerCase();
+        const t = tf.value;
+        const s = sf.value;
+        filteredPolicies = policies.filter(p => {
+          const match = p.name.toLowerCase().includes(q) || p.policy.toLowerCase().includes(q);
+          const typeMatch = !t || p.type === t;
+          const statusMatch = !s || p.status === s;
+          return match && typeMatch && statusMatch;
+        });
+        renderPolicies();
+      }
+
+      function quickPolicyFilter(key){
+        const tf = document.getElementById('policyTypeFilter');
+        const sf = document.getElementById('statusFilter');
+        const ps = document.getElementById('policySearch');
+        if (tf) tf.value = ['auto','home','life','bundle'].includes(key) ? key : '';
+        if (sf) sf.value = key === 'Expiring' ? 'Expiring' : '';
+        if (ps) ps.value = '';
+        filterPolicies();
+      }
+
+      function toggleAll(cb){
+        document.querySelectorAll('#policyBody input[type="checkbox"]').forEach(c=>c.checked=cb.checked);
+      }
+
+      function switchInsView(name, el){
+        document.querySelectorAll('#ins-view-tabs .mini-tab').forEach(t => t.classList.remove('sel'));
+        if(el) el.classList.add('sel');
+        document.querySelectorAll('#view-insurance .tab-content').forEach(tc => tc.classList.remove('active'));
+        const target = document.getElementById('view-' + name);
+        if(target) target.classList.add('active');
+      }
+
+      function openNewQuoteModal(){
+        document.getElementById('newQuoteModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function toggleVIN(){
+        const t = document.getElementById('modalQuoteType').value;
+        const row = document.getElementById('modalVinRow');
+        if (row) row.style.display = (t === 'auto' || t === 'bundle') ? 'block' : 'none';
+      }
+      function updateQuoteFields(){
+        const t = document.getElementById('quoteType');
+        const row = document.getElementById('vinRow');
+        if (!t || !row) return;
+        row.style.display = (t.value === 'auto' || t.value === 'bundle') ? 'block' : 'none';
+      }
+      function submitQuote(){
+        closeModal('newQuoteModal');
+        showToast('Quote generated in Vertafore · Syncing to CRM…');
+      }
+
+      function openScheduleModal() {
+        document.getElementById('scheduleModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function saveMeeting() {
+        closeModal('scheduleModal');
+        showToast('Meeting scheduled and synced to Outlook + Google Calendar.');
+      }
+      function updateScheduleLink() {
+        const val = document.getElementById('sched-platform').value;
+        const preview = document.getElementById('sched-link-preview');
+        const text = document.getElementById('sched-link-text');
+        if (!preview || !text) return;
+        if (val === 'teams') {
+          preview.style.display = 'flex';
+          text.textContent = 'A Microsoft Teams meeting link will be auto-generated and added to the Outlook invite.';
+        } else if (val === 'google') {
+          preview.style.display = 'flex';
+          text.textContent = 'A Google Meet link will be auto-generated and synced to Google Calendar.';
+        } else {
+          preview.style.display = 'none';
+        }
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
+        renderPolicies();
         document.querySelectorAll('#view-pipeline .lead-card').forEach((card) => {
           card.addEventListener('dragstart', () => {});
         });
