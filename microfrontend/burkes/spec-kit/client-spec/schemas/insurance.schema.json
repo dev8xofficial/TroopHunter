@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insurance.schema.json",
+  "title": "InsuranceRecord",
+  "type": "object",
+  "required": ["type", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "transaction_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["auto", "home", "warranty"],
+      "description": "Insurance category — drives which fields are applicable"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["not_started", "pending", "complete"],
+      "description": "Maps to StatusBadge: not_started→gray, pending→yellow, complete→green"
+    },
+    "policyholder_name": {
+      "type": "string",
+      "description": "Full name as shown on the insurance policy"
+    },
+    "date_of_birth": {
+      "type": "string",
+      "format": "date",
+      "description": "Policyholder date of birth"
+    },
+    "vin": {
+      "type": "string",
+      "minLength": 17,
+      "maxLength": 17,
+      "pattern": "^[A-HJ-NPR-Z0-9]{17}$",
+      "description": "17-character Vehicle Identification Number — required for type=auto only"
+    },
+    "property_address": {
+      "type": "string",
+      "description": "Address being insured or covered — required for type=home and type=warranty"
+    },
+    "additional_info": {
+      "type": "string",
+      "description": "Free-text field: policy number, provider name, agent contact, plan details, etc."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+
+  "if": { "properties": { "type": { "const": "auto" } } },
+  "then": { "required": ["policyholder_name", "date_of_birth", "vin"] },
+  "else": {
+    "if": { "properties": { "type": { "enum": ["home", "warranty"] } } },
+    "then": { "required": ["policyholder_name", "date_of_birth", "property_address"] }
+  },
+
+  "definitions": {
+    "InsuranceSummary": {
+      "type": "object",
+      "description": "Aggregated insurance state used by Dashboard InsuranceSummaryCard and Stats grid",
+      "required": ["complete_count", "total_count", "pending_count"],
+      "properties": {
+        "auto":    { "$ref": "#" },
+        "home":    { "$ref": "#" },
+        "warranty":{ "$ref": "#" },
+        "complete_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "total_count": {
+          "type": "integer",
+          "const": 3
+        },
+        "pending_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "summary_label": {
+          "type": "string",
+          "description": "e.g. 'Home complete, 2 pending'"
+        },
+        "documents": {
+          "type": "array",
+          "items": { "$ref": "document.schema.json" }
+        }
+      }
+    }
+  }
+}

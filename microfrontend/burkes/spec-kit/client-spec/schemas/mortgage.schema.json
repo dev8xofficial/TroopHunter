@@ -1,0 +1,187 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "mortgage.schema.json",
+  "title": "MortgageApplication",
+  "type": "object",
+  "required": ["id", "transaction_id", "progress_pct", "sections"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "transaction_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "progress_pct": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Overall completion percentage across all sections"
+    },
+    "sections": {
+      "$ref": "#/definitions/ApplicationSections"
+    },
+    "personal": {
+      "$ref": "#/definitions/PersonalInfo"
+    },
+    "property": {
+      "$ref": "#/definitions/PropertyInfo"
+    },
+    "employment": {
+      "$ref": "#/definitions/EmploymentInfo"
+    },
+    "lender": {
+      "$ref": "user.schema.json#/definitions/TeamMember",
+      "description": "Assigned mortgage lender — receives the completed application"
+    },
+    "documents": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ApplicationDocumentRow" }
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Null until all sections are complete and client submits"
+    },
+    "property_value": {
+      "type": "string",
+      "description": "Formatted display value, e.g. '$485,000' — used in MortgageSummaryCard"
+    },
+    "loan_amount": {
+      "type": "string",
+      "description": "Formatted display value, e.g. '$388,000'"
+    },
+    "estimated_rate": {
+      "type": "string",
+      "description": "Formatted display value, e.g. '6.75%'"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+
+  "definitions": {
+    "ApplicationSection": {
+      "type": "object",
+      "required": ["id", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": ["personal_info", "property_details", "employment_history", "financial_documents", "review_submit"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["complete", "in_progress", "pending"],
+          "description": "Maps to StatusBadge: complete→green, in_progress→yellow, pending→gray"
+        },
+        "completed_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+
+    "ApplicationSections": {
+      "type": "object",
+      "description": "Keyed section status — drives ProgressCard badges and SectionCard header badges",
+      "properties": {
+        "personal_info":        { "$ref": "#/definitions/ApplicationSection" },
+        "property_details":     { "$ref": "#/definitions/ApplicationSection" },
+        "employment_history":   { "$ref": "#/definitions/ApplicationSection" },
+        "financial_documents":  { "$ref": "#/definitions/ApplicationSection" },
+        "review_submit":        { "$ref": "#/definitions/ApplicationSection" }
+      }
+    },
+
+    "PersonalInfo": {
+      "type": "object",
+      "properties": {
+        "first_name":    { "type": "string" },
+        "last_name":     { "type": "string" },
+        "email":         { "type": "string", "format": "email" },
+        "phone":         { "type": "string" },
+        "date_of_birth": { "type": "string", "format": "date" },
+        "ssn_masked":    {
+          "type": "string",
+          "description": "Masked display value only — full SSN never returned to client",
+          "example": "***-**-4892"
+        }
+      }
+    },
+
+    "PropertyInfo": {
+      "type": "object",
+      "properties": {
+        "address":              { "type": "string" },
+        "purchase_price":       { "type": "number", "minimum": 0 },
+        "down_payment":         { "type": "number", "minimum": 0 },
+        "down_payment_display": {
+          "type": "string",
+          "description": "Formatted display, e.g. '$97,000 (20%)'"
+        },
+        "loan_amount":          { "type": "number", "minimum": 0 },
+        "type": {
+          "type": "string",
+          "enum": ["single_family", "condo", "townhouse", "multi_family"]
+        }
+      }
+    },
+
+    "EmploymentInfo": {
+      "type": "object",
+      "properties": {
+        "current": { "$ref": "#/definitions/EmployerRecord" },
+        "previous": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/EmployerRecord" },
+          "description": "Additional employer blocks added via '+ Add Previous Employer'"
+        }
+      }
+    },
+
+    "EmployerRecord": {
+      "type": "object",
+      "required": ["employer", "title", "start_date", "annual_income"],
+      "properties": {
+        "employer":      { "type": "string" },
+        "title":         { "type": "string" },
+        "start_date":    { "type": "string", "format": "date" },
+        "end_date":      { "type": "string", "format": "date", "description": "Null for current employer" },
+        "annual_income": { "type": "number", "minimum": 0 }
+      }
+    },
+
+    "ApplicationDocumentRow": {
+      "type": "object",
+      "required": ["type", "status"],
+      "description": "Row in the Application Documents table at the bottom of the Mortgage screen",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Human-readable document type label, e.g. 'Bank Statements (2 months)'"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["received", "pending", "in_progress"],
+          "description": "Maps to row_actions_map in mortgage.yaml"
+        },
+        "document_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Links to Document record when status=received"
+        },
+        "uploaded_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Null when not yet uploaded — displayed as '—' in table"
+        }
+      }
+    }
+  }
+}
