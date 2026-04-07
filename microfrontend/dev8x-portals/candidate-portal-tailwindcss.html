@@ -11,6 +11,35 @@
       tailwind.config = {
         theme: {
           extend: {
+            animation: {
+              pulse: 'pulse 2s infinite',
+              slideIn: 'slideIn 0.2s ease',
+              toastIn: 'toastIn 0.3s ease',
+              growUp: 'growUp 0.3s ease',
+              'ph-blink': 'ph-blink 2s infinite',
+            },
+            keyframes: {
+              pulse: {
+                '0%, 100%': { boxShadow: '0 0 0 5px #fff0f0, 0 4px 12px rgba(255, 90, 95, 0.4)' },
+                '50%': { boxShadow: '0 0 0 9px #fff0f0, 0 4px 12px rgba(255, 90, 95, 0.15)' },
+              },
+              slideIn: {
+                from: { opacity: '0', transform: 'translateY(-6px)' },
+                to: { opacity: '1', transform: 'translateY(0)' },
+              },
+              toastIn: {
+                from: { opacity: '0', transform: 'translateX(20px)' },
+                to: { opacity: '1', transform: 'translateX(0)' },
+              },
+              growUp: {
+                from: { height: '0' },
+              },
+              'ph-blink': {
+                '0%, 100%': { opacity: '1' },
+                '50%': { opacity: '0.3' },
+              },
+            },
+
             colors: {
               rausch: '#ff5a5f',
               'rausch-dark': '#e0484d',
@@ -56,451 +85,7 @@
       };
     </script>
 
-    <style>
-      /* ── JS-TOGGLED STATES (cannot be Tailwind — JS uses class names) ── */
-      .tab-panel {
-        display: none;
-      }
-
-      .tab-panel.active {
-        display: block;
-      }
-
-      #panel-performance.active {
-        display: block;
-      }
-
-      .step-panel {
-        display: none;
-      }
-
-      .step-panel.open {
-        display: block;
-        animation: slideIn 0.2s ease;
-      }
-
-      .chevron.open {
-        transform: rotate(180deg);
-      }
-
-      .modal-overlay {
-        display: none;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .modal-overlay.open {
-        display: flex;
-      }
-
-      .portal-nav-tab.active {
-        background-color: #fff0f0 !important;
-        color: #ff5a5f !important;
-      }
-
-      .perf-period-tab.active {
-        color: #ff5a5f;
-        border-bottom-color: #ff5a5f;
-      }
-
-      /* perf-mode layout override (toggled by switchPortalTab JS) */
-      .portal-body.perf-mode {
-        grid-template-columns: 1fr !important;
-        padding: 0 !important;
-        max-width: 100% !important;
-      }
-
-      .portal-body.perf-mode .sidebar-col {
-        display: none;
-      }
-
-      /* unread message JS toggle */
-      .msg-item.unread {
-        background: #fffaf9;
-      }
-
-      /* step-dot pulse animation */
-      .step-dot.current {
-        animation: pulse 2s infinite;
-      }
-
-      .ph-eyebrow-dot {
-        animation: ph-blink 2s infinite;
-      }
-
-      /* ── KEYFRAMES ── */
-      @keyframes pulse {
-
-        0%,
-        100% {
-          box-shadow: 0 0 0 5px #fff0f0, 0 4px 12px rgba(255, 90, 95, 0.4);
-        }
-
-        50% {
-          box-shadow: 0 0 0 9px #fff0f0, 0 4px 12px rgba(255, 90, 95, 0.15);
-        }
-      }
-
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateY(-6px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes toastIn {
-        from {
-          opacity: 0;
-          transform: translateX(20px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      @keyframes growUp {
-        from {
-          height: 0;
-        }
-      }
-
-      @keyframes ph-blink {
-
-        0%,
-        100% {
-          opacity: 1;
-        }
-
-        50% {
-          opacity: 0.3;
-        }
-      }
-
-      /* ── BUTTON SYSTEM (complex interactive component — kept as CSS) ── */
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        padding: 10px 18px;
-        border-radius: 10px;
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 13px;
-        font-weight: 700;
-        cursor: pointer;
-        border: none;
-        transition: all 0.15s;
-      }
-
-      .btn-primary {
-        background: #ff5a5f;
-        color: white;
-      }
-
-      .btn-primary:hover {
-        background: #e0484d;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(255, 90, 95, 0.35);
-      }
-
-      .btn-success {
-        background: #00a699;
-        color: white;
-      }
-
-      .btn-success:hover {
-        background: #008a7d;
-      }
-
-      .btn-secondary {
-        background: white;
-        color: #222222;
-        border: 1.5px solid #ebebeb;
-      }
-
-      .btn-secondary:hover {
-        background: #f7f7f7;
-      }
-
-      .btn-outline {
-        background: transparent;
-        border: 1.5px solid #ff5a5f;
-        color: #ff5a5f;
-      }
-
-      .btn-outline:hover {
-        background: #ff5a5f;
-        color: white;
-      }
-
-      .btn-danger {
-        background: #fff0f0;
-        color: #ff5a5f;
-        border: 1.5px solid #ff5a5f;
-      }
-
-      .btn-danger:hover {
-        background: #ff5a5f;
-        color: white;
-      }
-
-      .btn-full {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .btn-sm {
-        padding: 7px 14px;
-        font-size: 12px;
-      }
-
-      .btn-row {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: 14px;
-      }
-
-      .btn-row .btn {
-        flex: 1;
-        min-width: 120px;
-        justify-content: center;
-      }
-
-      /* ── TOAST (created dynamically by JS) ── */
-      .toast-container {
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        z-index: 9999;
-      }
-
-      .toast {
-        padding: 12px 20px;
-        background: #484848;
-        color: white;
-        border-radius: 10px;
-        font-size: 13px;
-        font-weight: 600;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-        animation: toastIn 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        max-width: 340px;
-      }
-
-      .toast.success {
-        background: #00a699;
-      }
-
-      .toast.error {
-        background: #ff5a5f;
-      }
-
-      /* ── POLICY MODAL ── */
-      .modal-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.55);
-        z-index: 500;
-        padding: 20px;
-      }
-
-      .modal-box {
-        background: white;
-        border-radius: 16px;
-        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.15);
-        width: 100%;
-        max-width: 640px;
-        max-height: 80vh;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-
-      .modal-head {
-        padding: 20px 24px;
-        border-bottom: 1px solid #ebebeb;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-shrink: 0;
-      }
-
-      .modal-head-title {
-        font-size: 16px;
-        font-weight: 800;
-      }
-
-      .modal-close-btn {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        border: none;
-        background: #f7f7f7;
-        cursor: pointer;
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .modal-body {
-        padding: 24px;
-        overflow-y: auto;
-        flex: 1;
-      }
-
-      .modal-footer {
-        padding: 16px 24px;
-        border-top: 1px solid #ebebeb;
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-        flex-shrink: 0;
-      }
-
-      .policy-text {
-        font-size: 13px;
-        line-height: 1.8;
-        color: #484848;
-      }
-
-      .policy-text h3 {
-        font-size: 14px;
-        font-weight: 800;
-        margin: 16px 0 6px;
-        color: #222222;
-      }
-
-      .policy-text p {
-        margin-bottom: 10px;
-      }
-
-      .policy-text ul {
-        padding-left: 18px;
-        margin-bottom: 10px;
-      }
-
-      .policy-text ul li {
-        margin-bottom: 4px;
-      }
-
-      /* ── PERFORMANCE TAB (Chunk 3 — minimal CSS for pseudo-elements & JS-rendered) ── */
-
-      /* Perf hero pseudo-element decorative circles */
-      .perf-hero::before {
-        content: '';
-        position: absolute;
-        width: 500px;
-        height: 500px;
-        border-radius: 50%;
-        background: rgba(255, 90, 95, 0.08);
-        top: -200px;
-        right: -100px;
-      }
-
-      .perf-hero::after {
-        content: '';
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        background: rgba(0, 166, 153, 0.08);
-        bottom: -150px;
-        left: 200px;
-      }
-
-      /* p-pill ::before dot (used in multiple places) */
-      .p-pill::before {
-        content: '';
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-      }
-
-      .p-pill-warn::before {
-        background: #e67e00;
-      }
-
-      .p-pill-danger::before {
-        background: #e03131;
-      }
-
-      .p-pill-good::before {
-        background: #2f9e44;
-      }
-
-      /* JS-rendered attendance calendar cells */
-      .att-cal-hdr {
-        font-size: 9px;
-        font-weight: 700;
-        color: #767676;
-        text-align: center;
-        text-transform: uppercase;
-        padding: 4px 0;
-      }
-
-      .cal-cell {
-        aspect-ratio: 1;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 11px;
-        font-weight: 600;
-        cursor: default;
-        transition: transform 0.1s;
-      }
-
-      .cal-cell:hover {
-        transform: scale(1.1);
-      }
-
-      .cal-cell.present {
-        background: #e6f9ee;
-        color: #2f9e44;
-      }
-
-      .cal-cell.late {
-        background: #fff8e6;
-        color: #e67e00;
-      }
-
-      .cal-cell.absent {
-        background: #fff0f0;
-        color: #e03131;
-      }
-
-      .cal-cell.weekend {
-        background: #f4f4f4;
-        color: #ccc;
-      }
-
-      .cal-cell.future {
-        background: #f7f7f7;
-        color: #d0d0d0;
-      }
-
-      .cal-cell.today {
-        outline: 2px solid #ff5a5f;
-        outline-offset: 1px;
-      }
-
-      .cal-cell.empty {
-        background: transparent;
-      }
-    </style>
+    
   </head>
 
   <body class="font-jakarta bg-[#f7f7f7] text-[#222222] min-h-screen">
@@ -523,21 +108,21 @@
 
         <!-- Nav tabs (center) -->
         <div class="flex items-center gap-1">
-          <button class="portal-nav-tab active py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-journey" onclick="switchPortalTab('journey')">🗺 My Journey</button>
+          <button class="portal-nav-tab [&.active]:!bg-[#fff0f0] [&.active]:!text-[#ff5a5f] active py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-journey" onclick="switchPortalTab('journey')">🗺 My Journey</button>
 
-          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-documents" onclick="switchPortalTab('documents')">
+          <button class="portal-nav-tab [&.active]:!bg-[#fff0f0] [&.active]:!text-[#ff5a5f] py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-documents" onclick="switchPortalTab('documents')">
             📂 My Documents
             <span class="bg-[#ff5a5f] text-white text-[10px] font-extrabold py-[1px] px-[6px] rounded-[10px]" id="docsBadge">2</span>
           </button>
 
-          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-messages" onclick="switchPortalTab('messages')">
+          <button class="portal-nav-tab [&.active]:!bg-[#fff0f0] [&.active]:!text-[#ff5a5f] py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-messages" onclick="switchPortalTab('messages')">
             💬 Messages
             <span class="bg-[#ff5a5f] text-white text-[10px] font-extrabold py-[1px] px-[6px] rounded-[10px]" id="msgBadge">3</span>
           </button>
 
-          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-performance" onclick="switchPortalTab('performance')">📊 My Performance</button>
+          <button class="portal-nav-tab [&.active]:!bg-[#fff0f0] [&.active]:!text-[#ff5a5f] py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-performance" onclick="switchPortalTab('performance')">📊 My Performance</button>
 
-          <button class="portal-nav-tab py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-profile" onclick="switchPortalTab('profile')">👤 My Profile</button>
+          <button class="portal-nav-tab [&.active]:!bg-[#fff0f0] [&.active]:!text-[#ff5a5f] py-2 px-[18px] rounded-full text-[13px] font-bold cursor-pointer transition-all duration-200 text-[#767676] border-0 bg-transparent font-jakarta flex items-center gap-[6px] hover:bg-[#f7f7f7] hover:text-[#222222]" id="ptab-profile" onclick="switchPortalTab('profile')">👤 My Profile</button>
         </div>
 
         <!-- Header right actions -->
@@ -607,11 +192,11 @@
      PORTAL BODY — Chunk 2 (Tailwind converted)
      grid: 1fr 320px  |  perf-mode overridden via .portal-body.perf-mode CSS
      ============================================================ -->
-      <div class="portal-body flex-1 py-7 px-8 grid grid-cols-[1fr_320px] gap-6 max-w-[1280px] mx-auto w-full">
+      <div class="portal-body [&.perf-mode]:!grid-cols-1 [&.perf-mode]:!p-0 [&.perf-mode]:!max-w-full flex-1 py-7 px-8 grid grid-cols-[1fr_320px] gap-6 max-w-[1280px] mx-auto w-full">
         <!-- ═══ MAIN COLUMN ═══ -->
         <div>
           <!-- ── TAB: APPLICATION JOURNEY ── -->
-          <div class="tab-panel active" id="panel-journey">
+          <div class="hidden [&.active]:block active" id="panel-journey">
             <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
               <!-- Card Header -->
               <div class="px-6 py-5 border-b border-[#ebebeb] flex items-center justify-between">
@@ -632,7 +217,7 @@
           </div>
 
           <!-- ── TAB: DOCUMENTS ── -->
-          <div class="tab-panel" id="panel-documents">
+          <div class="hidden [&.active]:block" id="panel-documents">
             <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
               <!-- Card Header -->
               <div class="px-6 py-5 border-b border-[#ebebeb] flex items-center justify-between">
@@ -640,7 +225,7 @@
                   <div class="text-base font-bold">My Documents</div>
                   <div class="text-xs text-[#767676] mt-0.5">All documents related to your application at Dev8X</div>
                 </div>
-                <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading all documents…', '📥')">📥 Download All</button>
+                <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Downloading all documents…', '📥')">📥 Download All</button>
               </div>
 
               <!-- Card Body -->
@@ -665,8 +250,8 @@
                       </div>
                     </div>
                     <div class="flex gap-2 items-center">
-                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('agreement')">👁 Read</button>
-                      <button class="btn btn-outline btn-sm" onclick="signDocument(this, 'Internship Agreement')">✍ Sign</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('agreement')">👁 Read</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-transparent border-[1.5px] border-solid border-[#ff5a5f] text-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white !px-[14px] !py-[7px] !text-[12px]" onclick="signDocument(this, 'Internship Agreement')">✍ Sign</button>
                     </div>
                   </div>
 
@@ -683,8 +268,8 @@
                       </div>
                     </div>
                     <div class="flex gap-2 items-center">
-                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('nda')">👁 Read</button>
-                      <button class="btn btn-outline btn-sm" onclick="signDocument(this, 'NDA Agreement')">✍ Sign</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('nda')">👁 Read</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-transparent border-[1.5px] border-solid border-[#ff5a5f] text-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white !px-[14px] !py-[7px] !text-[12px]" onclick="signDocument(this, 'NDA Agreement')">✍ Sign</button>
                     </div>
                   </div>
                 </div>
@@ -706,8 +291,8 @@
                       </div>
                     </div>
                     <div class="flex gap-2 items-center">
-                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('remote')">👁 Read Policy</button>
-                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('remote')">👁 Read Policy</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
 
@@ -724,8 +309,8 @@
                       </div>
                     </div>
                     <div class="flex gap-2 items-center">
-                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('ethics')">👁 Read Policy</button>
-                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('ethics')">👁 Read Policy</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
 
@@ -742,8 +327,8 @@
                       </div>
                     </div>
                     <div class="flex gap-2 items-center">
-                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('leave')">👁 Read Policy</button>
-                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('leave')">👁 Read Policy</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
 
@@ -760,8 +345,8 @@
                       </div>
                     </div>
                     <div class="flex gap-2 items-center">
-                      <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('penalty')">👁 Read Policy</button>
-                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('penalty')">👁 Read Policy</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
                 </div>
@@ -781,8 +366,8 @@
                       </div>
                     </div>
                     <div class="flex gap-2 items-center">
-                      <button class="btn btn-secondary btn-sm" onclick="showToast('Opening signed copy…', '📄')">👁 View</button>
-                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Opening signed copy…', '📄')">👁 View</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
                 </div>
@@ -803,8 +388,8 @@
                       </div>
                     </div>
                     <div class="flex gap-2 items-center">
-                      <button class="btn btn-secondary btn-sm" onclick="showToast('Opening document…', '📄')">👁 View</button>
-                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Opening document…', '📄')">👁 View</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
 
@@ -820,8 +405,8 @@
                       </div>
                     </div>
                     <div class="flex gap-2 items-center">
-                      <button class="btn btn-secondary btn-sm" onclick="showToast('Opening document…', '📄')">👁 View</button>
-                      <button class="btn btn-secondary btn-sm" onclick="showToast('Downloading…', '📥')">📥</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Opening document…', '📄')">👁 View</button>
+                      <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Downloading…', '📥')">📥</button>
                     </div>
                   </div>
                 </div>
@@ -833,7 +418,7 @@
                     <div class="text-[32px] mb-2">📎</div>
                     <div class="text-sm font-bold mb-1">Drop files here or click to upload</div>
                     <div class="text-xs text-[#767676]">PDF, DOC up to 10 MB · Resume, Portfolio, Certificates</div>
-                    <button class="btn btn-secondary btn-sm mt-[14px]" onclick="showToast('File picker opened…', '📎')">Choose File</button>
+                    <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px] mt-[14px]" onclick="showToast('File picker opened…', '📎')">Choose File</button>
                   </div>
                 </div>
               </div>
@@ -841,7 +426,7 @@
           </div>
 
           <!-- ── TAB: MESSAGES ── -->
-          <div class="tab-panel" id="panel-messages">
+          <div class="hidden [&.active]:block" id="panel-messages">
             <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
               <!-- Card Header -->
               <div class="px-6 py-5 border-b border-[#ebebeb] flex items-center justify-between">
@@ -856,7 +441,7 @@
               <div>
                 <!-- Message 1 — unread class retained for JS toggle -->
                 <div
-                  class="msg-item unread flex items-start gap-[14px] px-5 py-4 border-b border-[#ebebeb] cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
+                  class="msg-item [&.unread]:bg-[#fffaf9] unread flex items-start gap-[14px] px-5 py-4 border-b border-[#ebebeb] cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
                   onclick="openMessage(this,'Behzad Raza','Interview Confirmation','Your Technical Interview has been scheduled for Feb 14, 2025 at 10:00 AM on Google Meet. Please confirm your availability and ensure you have a stable internet connection, proper lighting, and a professional background. Your interviewer will be Ahmad — Backend Lead. The Google Meet link will be shared 30 minutes before your interview. Please reply to this message if you have any questions.')"
                 >
                   <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: linear-gradient(135deg, #ff5a5f, #fc642d)">BR</div>
@@ -873,7 +458,7 @@
 
                 <!-- Message 2 -->
                 <div
-                  class="msg-item unread flex items-start gap-[14px] px-5 py-4 border-b border-[#ebebeb] cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
+                  class="msg-item [&.unread]:bg-[#fffaf9] unread flex items-start gap-[14px] px-5 py-4 border-b border-[#ebebeb] cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
                   onclick="openMessage(this,'Dev8X HR Team','Shortlisting Notification','Congratulations Ayesha! We are pleased to inform you that you have been shortlisted for the UI/UX Designer Internship position at Dev8X. Your profile and portfolio impressed our team. The next step is a Technical Interview with our design team lead. You will receive a separate email with interview scheduling options. In the meantime, please log in to your portal to review the interview preparation guide we have shared under your Documents section.')"
                 >
                   <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: linear-gradient(135deg, #00a699, #00796b)">D8</div>
@@ -890,7 +475,7 @@
 
                 <!-- Message 3 -->
                 <div
-                  class="msg-item unread flex items-start gap-[14px] px-5 py-4 cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
+                  class="msg-item [&.unread]:bg-[#fffaf9] unread flex items-start gap-[14px] px-5 py-4 cursor-pointer transition-[background] duration-[120ms] hover:bg-[#fafafa]"
                   onclick="openMessage(this,'Dev8X HR Team','Application Acknowledgment','Dear Ayesha, thank you for submitting your application for the UI/UX Designer Internship at Dev8X. We have received your application and will review it within 3-5 business days. You can track your application status anytime by logging into this portal. If you have any questions, feel free to reach out to our HR team at hr@dev8x.com. We will notify you of any updates via email and your portal notifications.')"
                 >
                   <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: linear-gradient(135deg, #3b5bdb, #7048e8)">D8</div>
@@ -915,14 +500,14 @@
                 <div class="text-[13px] font-bold mb-2 text-[#767676]">REPLY TO HR</div>
                 <textarea id="replyBox" class="w-full py-3 px-[14px] border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-[13px] resize-y min-h-[80px] outline-none transition-[border] duration-200 focus:border-[#ff5a5f]" onfocus="this.style.borderColor='#ff5a5f'" onblur="this.style.borderColor='#ebebeb'" placeholder="Type your message to the HR team…"></textarea>
                 <div class="flex justify-end mt-[10px]">
-                  <button class="btn btn-primary" onclick="sendReply()">📤 Send Message</button>
+                  <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#ff5a5f] text-white hover:bg-[#e0484d] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(255,90,95,0.35)]" onclick="sendReply()">📤 Send Message</button>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- ── TAB: PROFILE ── -->
-          <div class="tab-panel" id="panel-profile">
+          <div class="hidden [&.active]:block" id="panel-profile">
             <div class="bg-white rounded-[16px] border border-[#ebebeb] shadow-portal-sm overflow-hidden mb-5">
               <!-- Avatar Row -->
               <div class="flex items-center gap-5 p-6 border-b border-[#ebebeb]">
@@ -1040,8 +625,8 @@
 
               <!-- Save Footer -->
               <div class="py-5 px-6 border-t border-[#ebebeb] flex justify-end gap-[10px]">
-                <button class="btn btn-secondary" onclick="showToast('Changes discarded', '↩️')">Discard Changes</button>
-                <button class="btn btn-primary" onclick="showToast('Profile updated successfully', '✅', 'success')">💾 Save Profile</button>
+                <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7]" onclick="showToast('Changes discarded', '↩️')">Discard Changes</button>
+                <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#ff5a5f] text-white hover:bg-[#e0484d] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(255,90,95,0.35)]" onclick="showToast('Profile updated successfully', '✅', 'success')">💾 Save Profile</button>
               </div>
             </div>
           </div>
@@ -1049,13 +634,13 @@
         <!-- /main column -->
 
         <!-- ── TAB: PERFORMANCE ── (Chunk 3 — Tailwind converted) -->
-        <div class="tab-panel" id="panel-performance">
+        <div class="hidden [&.active]:block" id="panel-performance">
           <!-- PERFORMANCE HERO (dark) -->
           <div class="perf-hero relative overflow-hidden px-8 py-9" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)">
             <div class="relative z-[2] flex items-start justify-between gap-6 max-w-[1200px] mx-auto">
               <div>
                 <div class="text-[11px] font-bold text-white/50 uppercase tracking-[1px] mb-2 flex items-center gap-2">
-                  <div class="ph-eyebrow-dot w-[6px] h-[6px] rounded-full bg-baia"></div>
+                  <div class="animate-ph-blink w-[6px] h-[6px] rounded-full bg-baia"></div>
                   Live via Clockify · Last synced 11:47 AM
                 </div>
                 <div class="text-[28px] font-extrabold text-white mb-[6px]">My Performance Dashboard</div>
@@ -1071,7 +656,7 @@
                 <div class="rounded-16 py-5 px-6 text-center min-w-[130px]" style="background: rgba(252,100,45,0.15); border: 1.5px solid rgba(252,100,45,0.3)">
                   <div class="text-[40px] font-extrabold leading-none" style="color: #fc642d">78</div>
                   <div class="text-[10px] font-bold text-white/50 uppercase tracking-[0.8px] mt-[6px]">Overall Score</div>
-                  <div class="text-[11px] mt-1"><span class="p-pill p-pill-warn inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-full text-[11px] font-bold uppercase tracking-[0.3px] whitespace-nowrap bg-[#fff8e6] text-[#e67e00]">⚠️ At Risk</span></div>
+                  <div class="text-[11px] mt-1"><span class="before:content-[''] before:w-[5px] before:h-[5px] before:rounded-full flex items-center gap-[6px] before:bg-[#e67e00] inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-full text-[11px] font-bold uppercase tracking-[0.3px] whitespace-nowrap bg-[#fff8e6] text-[#e67e00]">⚠️ At Risk</span></div>
                 </div>
                 <div class="rounded-16 py-5 px-6 text-center min-w-[130px]" style="background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.15)">
                   <div class="text-[40px] font-extrabold leading-none text-baia">38h</div>
@@ -1084,9 +669,9 @@
           <!-- PERIOD BAR -->
           <div class="bg-white border-b border-[#ebebeb] px-8 flex items-center justify-between">
             <div class="flex">
-              <button class="perf-period-tab active py-4 px-[22px] text-[13px] font-bold cursor-pointer text-[#767676] border-b-2 border-transparent transition-all duration-150 font-jakarta border-t-0 border-l-0 border-r-0 bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchPerfPeriod('week', this)">📅 This Week</button>
-              <button class="perf-period-tab py-4 px-[22px] text-[13px] font-bold cursor-pointer text-[#767676] border-b-2 border-transparent transition-all duration-150 font-jakarta border-t-0 border-l-0 border-r-0 bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchPerfPeriod('month', this)">📆 This Month</button>
-              <button class="perf-period-tab py-4 px-[22px] text-[13px] font-bold cursor-pointer text-[#767676] border-b-2 border-transparent transition-all duration-150 font-jakarta border-t-0 border-l-0 border-r-0 bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchPerfPeriod('all', this)">📊 All Time</button>
+              <button class="perf-period-tab [&.active]:!text-[#ff5a5f] [&.active]:!border-b-[#ff5a5f] active py-4 px-[22px] text-[13px] font-bold cursor-pointer text-[#767676] border-b-2 border-transparent transition-all duration-150 font-jakarta border-t-0 border-l-0 border-r-0 bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchPerfPeriod('week', this)">📅 This Week</button>
+              <button class="perf-period-tab [&.active]:!text-[#ff5a5f] [&.active]:!border-b-[#ff5a5f] py-4 px-[22px] text-[13px] font-bold cursor-pointer text-[#767676] border-b-2 border-transparent transition-all duration-150 font-jakarta border-t-0 border-l-0 border-r-0 bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchPerfPeriod('month', this)">📆 This Month</button>
+              <button class="perf-period-tab [&.active]:!text-[#ff5a5f] [&.active]:!border-b-[#ff5a5f] py-4 px-[22px] text-[13px] font-bold cursor-pointer text-[#767676] border-b-2 border-transparent transition-all duration-150 font-jakarta border-t-0 border-l-0 border-r-0 bg-transparent flex items-center gap-[6px] hover:text-[#222222]" onclick="switchPerfPeriod('all', this)">📊 All Time</button>
             </div>
             <div class="inline-flex items-center gap-[6px] py-[5px] px-3 bg-[#e3f2fd] text-[#0288d1] rounded-full text-[11px] font-bold border border-[#b3d9f7]">⏱ Powered by Clockify API</div>
           </div>
@@ -1100,7 +685,7 @@
                 <div class="text-[13px] font-bold mb-[3px]">You're 2 hours short of this week's target</div>
                 <div class="text-xs text-[#717171] leading-[1.55]">You've logged 38 hours this week. The minimum policy requires 40 hours. You still have Friday — log at least 2 more hours today to stay compliant.</div>
               </div>
-              <button class="btn btn-secondary btn-sm shrink-0 ml-auto" onclick="closePerfAlert('perfMainAlert')">Dismiss</button>
+              <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px] shrink-0 ml-auto" onclick="closePerfAlert('perfMainAlert')">Dismiss</button>
             </div>
 
             <div class="flex items-start gap-[14px] py-[14px] px-[18px] rounded-10 border border-[#ff5a5f] bg-[#fff0f0] mb-4" id="perfLateAlert">
@@ -1109,7 +694,7 @@
                 <div class="text-[13px] font-bold mb-[3px]">Late clock-ins detected — 3 times this week</div>
                 <div class="text-xs text-[#717171] leading-[1.55]">You started after 10:00 AM on Monday (10:25), Wednesday (10:38), and Thursday (10:55). Policy requires you to be active by 10:00 AM. Your team lead has been notified.</div>
               </div>
-              <button class="btn btn-secondary btn-sm shrink-0 ml-auto" onclick="closePerfAlert('perfLateAlert')">Got it</button>
+              <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px] shrink-0 ml-auto" onclick="closePerfAlert('perfLateAlert')">Got it</button>
             </div>
             <!-- Two-column layout -->
             <div class="grid grid-cols-[1fr_360px] gap-6 items-start">
@@ -1161,7 +746,7 @@
                       <div class="text-[15px] font-bold flex items-center gap-2">⏱ Weekly Hours Breakdown</div>
                       <div class="text-xs text-[#767676] mt-[2px]">Mar 3–9, 2026 · via Clockify</div>
                     </div>
-                    <div class="flex items-center gap-2"><span class="inline-flex items-center gap-[6px] py-[5px] px-3 bg-[#e3f2fd] text-[#0288d1] rounded-full text-[11px] font-bold border border-[#b3d9f7]">⏱ Clockify</span><button class="btn btn-secondary btn-sm" onclick="showToast('Opening Clockify dashboard…','⏱')">Open Clockify</button></div>
+                    <div class="flex items-center gap-2"><span class="inline-flex items-center gap-[6px] py-[5px] px-3 bg-[#e3f2fd] text-[#0288d1] rounded-full text-[11px] font-bold border border-[#b3d9f7]">⏱ Clockify</span><button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Opening Clockify dashboard…','⏱')">Open Clockify</button></div>
                   </div>
                   <div class="py-5 px-[22px]">
                     <div class="flex items-end gap-[10px] h-[120px] mb-3">
@@ -1296,7 +881,7 @@
                       <div class="text-[15px] font-bold flex items-center gap-2">🎯 Performance Matrix</div>
                       <div class="text-xs text-[#767676] mt-[2px]">Evaluated against Dev8X company policies</div>
                     </div>
-                    <span class="p-pill p-pill-warn inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-full text-[11px] font-bold uppercase tracking-[0.3px] whitespace-nowrap bg-[#fff8e6] text-[#e67e00]">⚠️ At Risk</span>
+                    <span class="before:content-[''] before:w-[5px] before:h-[5px] before:rounded-full flex items-center gap-[6px] before:bg-[#e67e00] inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-full text-[11px] font-bold uppercase tracking-[0.3px] whitespace-nowrap bg-[#fff8e6] text-[#e67e00]">⚠️ At Risk</span>
                   </div>
                   <div class="py-5 px-[22px]">
                     <div class="flex flex-col gap-[14px]">
@@ -1345,7 +930,7 @@
                       <div class="text-[15px] font-bold flex items-center gap-2">⚠️ Team Lead Feedback &amp; Concerns</div>
                       <div class="text-xs text-[#767676] mt-[2px]">Flagged by your team lead or HR · Respond to open items</div>
                     </div>
-                    <span class="p-pill p-pill-warn inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-full text-[11px] font-bold uppercase tracking-[0.3px] whitespace-nowrap bg-[#fff8e6] text-[#e67e00]">1 Open</span>
+                    <span class="before:content-[''] before:w-[5px] before:h-[5px] before:rounded-full flex items-center gap-[6px] before:bg-[#e67e00] inline-flex items-center gap-[5px] py-[3px] px-[10px] rounded-full text-[11px] font-bold uppercase tracking-[0.3px] whitespace-nowrap bg-[#fff8e6] text-[#e67e00]">1 Open</span>
                   </div>
                   <div class="py-5 px-[22px]">
                     <div class="rounded-10 py-[14px] px-4 mb-[10px] border border-[#f9c74f] bg-[#fff8e6]">
@@ -1361,7 +946,7 @@
                         <div class="font-bold text-[#484848] mb-[3px]">📋 Action Required from You:</div>
                         <div class="text-[#717171]">Log in by 9:30 AM starting next Monday. If you anticipate being late, message the TL on WhatsApp before 10:00 AM.</div>
                       </div>
-                      <div class="mt-3 flex gap-2"><button class="btn btn-primary btn-sm" onclick="showToast('Acknowledged! HR and TL have been notified ✅','✅')">✅ Acknowledge</button><button class="btn btn-secondary btn-sm" onclick="showToast('Reply sent to TL 💬','💬')">💬 Reply to TL</button></div>
+                      <div class="mt-3 flex gap-2"><button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#ff5a5f] text-white hover:bg-[#e0484d] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(255,90,95,0.35)] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Acknowledged! HR and TL have been notified ✅','✅')">✅ Acknowledge</button><button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Reply sent to TL 💬','💬')">💬 Reply to TL</button></div>
                     </div>
                     <div class="rounded-10 py-[14px] px-4 mb-[10px] border border-[#b2f2bb] bg-[#e6f9ee] opacity-90">
                       <div class="flex items-start justify-between mb-2">
@@ -1535,7 +1120,7 @@
         <!-- /panel-performance -->
 
         <!-- ═══ SIDEBAR ═══ -->
-        <div class="flex flex-col gap-4 sidebar-col">
+        <div class="flex flex-col gap-4 sidebar-col [.perf-mode_&]:hidden">
           <!-- Overall Progress -->
           <div class="bg-white rounded-[16px] border border-[#ebebeb] p-5 shadow-portal-sm">
             <div class="text-sm font-bold mb-[14px]">Overall Progress</div>
@@ -1649,14 +1234,14 @@
     </div>
     <!-- /portal-screen -->
 
-    <div class="toast-container" id="toastContainer"></div>
+    <div class="fixed bottom-6 right-6 flex flex-col gap-2 z-[9999]" id="toastContainer"></div>
 
     <!-- ============================================================
              PAGE: MODALS (Chunk 4)
              ============================================================ -->
 
     <!-- POLICY MODAL -->
-    <div class="modal-overlay fixed inset-0 z-[500] bg-black/55 p-5" id="policyModal" onclick="closePolicyModal(event)">
+    <div class="fixed inset-0 bg-black/55 z-[500] p-5 hidden items-center justify-center [&.open]:flex fixed inset-0 z-[500] bg-black/55 p-5" id="policyModal" onclick="closePolicyModal(event)">
       <div class="bg-white rounded-16 shadow-portal-lg w-full max-w-[640px] max-h-[80vh] flex flex-col overflow-hidden">
         <div class="py-5 px-6 border-b border-c-border flex items-center justify-between shrink-0">
           <div class="text-[16px] font-extrabold" id="policyModalTitle">Policy Document</div>
@@ -1666,9 +1251,9 @@
           <div class="text-[13px] leading-[1.8] text-hof [&_h3]:text-[14px] [&_h3]:font-extrabold [&_h3]:mt-4 [&_h3]:mb-1.5 [&_h3]:text-text-main [&_p]:mb-2.5 [&_ul]:pl-[18px] [&_ul]:mb-2.5 [&_ul]:list-disc [&_li]:mb-1" id="policyModalContent"></div>
         </div>
         <div class="py-4 px-6 border-t border-c-border flex justify-end gap-2.5 shrink-0">
-          <button class="btn btn-secondary" onclick="document.getElementById('policyModal').classList.remove('open')">Close</button>
+          <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7]" onclick="document.getElementById('policyModal').classList.remove('open')">Close</button>
           <button
-            class="btn btn-primary"
+            class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#ff5a5f] text-white hover:bg-[#e0484d] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(255,90,95,0.35)]"
             onclick="
               showToast('Downloading policy…', '📥');
               document.getElementById('policyModal').classList.remove('open');
@@ -1716,7 +1301,7 @@
         const cal = document.getElementById('perfAttCalendar');
         if (!cal || cal.dataset.rendered) return;
         const headers = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        let html = headers.map((d) => `<div class="att-cal-hdr">${d}</div>`).join('');
+        let html = headers.map((d) => `<div class="text-[9px] font-bold text-[#767676] text-center uppercase py-1">${d}</div>`).join('');
         // March 2026 starts on Sunday; pattern for Ayesha
         const pat = ['P', 'L', 'P', 'P', 'P', 'W', 'W', 'P', 'L', 'P', 'P', 'P', 'W', 'W', 'P', 'P', 'L', 'P', 'P', 'W', 'W', 'F', 'F', 'F', 'F', 'F', 'W', 'W', 'F', 'F', 'F'];
         for (let d = 1; d <= 31; d++) {
@@ -1724,7 +1309,7 @@
           const cls = s === 'P' ? 'present' : s === 'L' ? 'late' : s === 'A' ? 'absent' : s === 'W' ? 'weekend' : 'future';
           const today = d === 4 ? ' today' : '';
           const title = s === 'P' ? 'Present' : s === 'L' ? 'Late (after 10 AM)' : s === 'W' ? 'Weekend' : 'Upcoming';
-          html += `<div class="cal-cell ${cls}${today}" title="${title}">${d}</div>`;
+          html += `<div class="cal-cell aspect-square rounded-[6px] flex items-center justify-center text-[11px] font-semibold cursor-default transition-transform duration-100 hover:scale-110 [&.present]:bg-[#e6f9ee] [&.present]:text-[#2f9e44] [&.late]:bg-[#fff8e6] [&.late]:text-[#e67e00] [&.absent]:bg-[#fff0f0] [&.absent]:text-[#e03131] [&.weekend]:bg-[#f4f4f4] [&.weekend]:text-[#ccc] [&.future]:bg-[#f7f7f7] [&.future]:text-[#d0d0d0] [&.today]:outline [&.today]:outline-2 [&.today]:outline-[#ff5a5f] [&.today]:outline-offset-1 [&.empty]:bg-transparent ${cls}${today}" title="${title}">${d}</div>`;
         }
         cal.innerHTML = html;
         cal.dataset.rendered = '1';
@@ -1843,17 +1428,17 @@
             return `
     <div class="timeline-step">
       <div class="step-line">
-        <div class="step-dot ${dotClass}">${dotContent}</div>
+        <div class="step-dot [&.current]:animate-pulse ${dotClass}">${dotContent}</div>
         ${!isLast ? `<div class="step-connector ${connClass}"></div>` : ''}
       </div>
       <div class="step-right">
         <div class="step-header" onclick="togglePanel('${step.key}')">
           <div class="step-title-text ${dimmed}">${step.label}</div>
           <span class="step-badge ${badgeClass}">${badgeText}</span>
-          <span class="chevron ${panelOpen}">▼</span>
+          <span class="transition-transform [&.open]:rotate-180 ${panelOpen}">▼</span>
         </div>
         <div class="step-desc">${step.desc}</div>
-        <div class="step-panel ${panelOpen}" id="cpanel-${step.key}">
+        <div class="hidden [&.open]:block [&.open]:animate-slideIn ${panelOpen}" id="cpanel-${step.key}">
           ${getCandidatePanelContent(step.key, step.state)}
         </div>
       </div>
@@ -1936,9 +1521,9 @@
           <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">03:30 PM</div>
           <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">05:00 PM</div>
         </div>
-        <div class="btn-row">
-          <button class="btn btn-primary" onclick="showToast('Slot confirmed! Confirmation email sent 📧','✅','success')">✅ Confirm My Slot</button>
-          <button class="btn btn-secondary" onclick="showToast('Reschedule request sent to HR','📅')">📅 Request Different Date</button>
+        <div class="flex gap-[10px] flex-wrap mt-[14px] [&_.btn]:flex-1 [&_.btn]:min-w-[120px] [&_.btn]:justify-center">
+          <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#ff5a5f] text-white hover:bg-[#e0484d] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(255,90,95,0.35)]" onclick="showToast('Slot confirmed! Confirmation email sent 📧','✅','success')">✅ Confirm My Slot</button>
+          <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7]" onclick="showToast('Reschedule request sent to HR','📅')">📅 Request Different Date</button>
         </div>
       </div>
       <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3" style="margin-top:12px;">
@@ -1988,7 +1573,7 @@
           <label class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.4px] mb-[5px] block">Additional Notes (optional)</label>
           <textarea class="w-full py-[9px] px-3 border-[1.5px] border-[#ebebeb] rounded-[10px] font-jakarta text-[13px] text-[#222222] bg-white outline-none transition-colors duration-[0.15s] focus:border-[#ff5a5f] focus:shadow-[0_0_0_3px_#fff0f0] form-input-sm" style="min-height:60px;resize:vertical;" placeholder="Any context or notes about your submission…"></textarea>
         </div>
-        <button class="btn btn-primary btn-full" style="margin-top:8px;" onclick="showToast('Assignment submitted! HR will review shortly 🎉','✅','success')">📤 Submit Assignment</button>
+        <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#ff5a5f] text-white hover:bg-[#e0484d] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(255,90,95,0.35)] w-full justify-center" style="margin-top:8px;" onclick="showToast('Assignment submitted! HR will review shortly 🎉','✅','success')">📤 Submit Assignment</button>
       </div>`,
 
           // ── PSYCHOLOGICAL / FINAL INTERVIEW ──
@@ -2014,7 +1599,7 @@
           <div class="time-slot taken p-[10px] border-[1.5px] rounded-[10px] text-center text-xs font-bold bg-[#f5f5f5] text-[#bbb] border-[#f5f5f5] cursor-not-allowed line-through">05:30 PM</div>
           <div class="time-slot p-[10px] border-[1.5px] border-[#ebebeb] rounded-[10px] text-center text-xs font-bold cursor-pointer transition-colors duration-[0.15s] text-[#222222] hover:border-[#ff5a5f] hover:text-[#ff5a5f]" onclick="selectSlot(this)">06:00 PM</div>
         </div>
-        <button class="btn btn-primary btn-full" style="margin-top:14px;" onclick="showToast('Final interview slot confirmed! Email sent.','🧠','success')">✅ Confirm Slot</button>
+        <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#ff5a5f] text-white hover:bg-[#e0484d] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(255,90,95,0.35)] w-full justify-center" style="margin-top:14px;" onclick="showToast('Final interview slot confirmed! Email sent.','🧠','success')">✅ Confirm Slot</button>
       </div>
       <div class="bg-white border border-[#ebebeb] rounded-[10px] p-4 mt-3" style="margin-top:12px;">
         <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">What to Expect</div>
@@ -2051,42 +1636,42 @@
         <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row" id="sign-agreement">
           <div class="flex items-center gap-2.5"><span class="text-[22px]">📋</span><div><div class="text-[13px] font-semibold">Internship / Employment Agreement</div><div class="text-[11px] text-[#767676]">PDF · 0.8 MB · Defines expectations, duration, and terms</div></div></div>
           <div style="display:flex;gap:6px;">
-            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('agreement')">👁 Read</button>
-            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Internship Agreement')">✍ Sign</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('agreement')">👁 Read</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-transparent border-[1.5px] border-solid border-[#ff5a5f] text-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white !px-[14px] !py-[7px] !text-[12px]" onclick="signDocument(this,'Internship Agreement')">✍ Sign</button>
           </div>
         </div>
         <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row" id="sign-remote">
           <div class="flex items-center gap-2.5"><span class="text-[22px]">🌐</span><div><div class="text-[13px] font-semibold">Remote Work Policy</div><div class="text-[11px] text-[#767676]">PDF · 0.3 MB · Setup standards & meeting requirements</div></div></div>
           <div style="display:flex;gap:6px;">
-            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('remote')">👁 Read</button>
-            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Remote Work Policy')">✍ Sign</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('remote')">👁 Read</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-transparent border-[1.5px] border-solid border-[#ff5a5f] text-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white !px-[14px] !py-[7px] !text-[12px]" onclick="signDocument(this,'Remote Work Policy')">✍ Sign</button>
           </div>
         </div>
         <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row" id="sign-ethics">
           <div class="flex items-center gap-2.5"><span class="text-[22px]">⚖️</span><div><div class="text-[13px] font-semibold">Work Ethics & Code of Conduct</div><div class="text-[11px] text-[#767676]">PDF · 0.5 MB · Behavioral standards and professionalism</div></div></div>
           <div style="display:flex;gap:6px;">
-            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('ethics')">👁 Read</button>
-            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Code of Conduct')">✍ Sign</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('ethics')">👁 Read</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-transparent border-[1.5px] border-solid border-[#ff5a5f] text-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white !px-[14px] !py-[7px] !text-[12px]" onclick="signDocument(this,'Code of Conduct')">✍ Sign</button>
           </div>
         </div>
         <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row" id="sign-nda">
           <div class="flex items-center gap-2.5"><span class="text-[22px]">🔒</span><div><div class="text-[13px] font-semibold">NDA / Confidentiality Agreement</div><div class="text-[11px] text-[#767676]">PDF · 0.4 MB · Protects company intellectual property</div></div></div>
           <div style="display:flex;gap:6px;">
-            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('nda')">👁 Read</button>
-            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'NDA Agreement')">✍ Sign</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('nda')">👁 Read</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-transparent border-[1.5px] border-solid border-[#ff5a5f] text-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white !px-[14px] !py-[7px] !text-[12px]" onclick="signDocument(this,'NDA Agreement')">✍ Sign</button>
           </div>
         </div>
         <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row" id="sign-leave">
           <div class="flex items-center gap-2.5"><span class="text-[22px]">🏖</span><div><div class="text-[13px] font-semibold">Vacation & Leave Policy</div><div class="text-[11px] text-[#767676]">PDF · 0.2 MB · Leave entitlements and procedures</div></div></div>
           <div style="display:flex;gap:6px;">
-            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('leave')">👁 Read</button>
-            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Vacation Policy')">✍ Sign</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('leave')">👁 Read</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-transparent border-[1.5px] border-solid border-[#ff5a5f] text-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white !px-[14px] !py-[7px] !text-[12px]" onclick="signDocument(this,'Vacation Policy')">✍ Sign</button>
           </div>
         </div>
       </div>
-      <div class="btn-row" style="margin-top:16px;">
-        <button class="btn btn-success" onclick="showToast('Offer accepted! Welcome to Dev8X 🎉 HR will contact you shortly.','🎉','success')">🎉 I Accept — Confirm Joining</button>
-        <button class="btn btn-danger" onclick="showToast('Offer declined. HR has been notified.','❌')">❌ Decline Offer</button>
+      <div class="flex gap-[10px] flex-wrap mt-[14px] [&_.btn]:flex-1 [&_.btn]:min-w-[120px] [&_.btn]:justify-center" style="margin-top:16px;">
+        <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#00a699] text-white hover:bg-[#008a7d]" onclick="showToast('Offer accepted! Welcome to Dev8X 🎉 HR will contact you shortly.','🎉','success')">🎉 I Accept — Confirm Joining</button>
+        <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#fff0f0] text-[#ff5a5f] border-[1.5px] border-solid border-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white" onclick="showToast('Offer declined. HR has been notified.','❌')">❌ Decline Offer</button>
       </div>`,
 
           // ── JOINED ──
@@ -2220,7 +1805,7 @@
           <div class="flex items-center justify-between py-2.5 px-3.5 bg-[#f7f7f7] rounded-[10px] border border-[#ebebeb]"><div class="flex items-center gap-2.5 text-[13px] font-semibold"><input type="checkbox" id="ob6"><label for="ob6">Read and acknowledged the onboarding handbook in Notion</label></div><span style="font-size:11px;color:var(--foggy)">Step 6</span></div>
           <div class="flex items-center justify-between py-2.5 px-3.5 bg-[#f7f7f7] rounded-[10px] border border-[#ebebeb]"><div class="flex items-center gap-2.5 text-[13px] font-semibold"><input type="checkbox" id="ob7"><label for="ob7">Attended first team call / introduction meeting</label></div><span style="font-size:11px;color:var(--foggy)">Step 7</span></div>
         </div>
-        <button class="btn btn-success btn-full" style="margin-top:14px;" onclick="showToast('Onboarding checklist submitted! HR notified.','🖥','success')">✅ Mark Onboarding as Complete</button>
+        <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#00a699] text-white hover:bg-[#008a7d] w-full justify-center" style="margin-top:14px;" onclick="showToast('Onboarding checklist submitted! HR notified.','🖥','success')">✅ Mark Onboarding as Complete</button>
       </div>`,
 
           // ── COMPLETED ──
@@ -2246,11 +1831,11 @@
         <div class="text-[11px] font-bold text-[#767676] uppercase tracking-[0.5px] mb-3">Your Documents</div>
         <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row">
           <div class="flex items-center gap-2.5"><span class="text-[22px]">📄</span><div><div class="text-[13px] font-semibold">Experience Letter</div><div class="text-[11px] text-[#767676]">PDF · Ready to download · Signed by HR</div></div></div>
-          <button class="btn btn-primary btn-sm" onclick="showToast('Experience letter downloading…','📄')">📥 Download</button>
+          <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#ff5a5f] text-white hover:bg-[#e0484d] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(255,90,95,0.35)] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Experience letter downloading…','📄')">📥 Download</button>
         </div>
         <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row">
           <div class="flex items-center gap-2.5"><span class="text-[22px]">🏅</span><div><div class="text-[13px] font-semibold">Internship Completion Certificate</div><div class="text-[11px] text-[#767676]">PDF · Signed by CEO</div></div></div>
-          <button class="btn btn-primary btn-sm" onclick="showToast('Certificate downloading…','🏅')">📥 Download</button>
+          <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#ff5a5f] text-white hover:bg-[#e0484d] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(255,90,95,0.35)] !px-[14px] !py-[7px] !text-[12px]" onclick="showToast('Certificate downloading…','🏅')">📥 Download</button>
         </div>
       </div>
       <div class="py-[13px] px-4 rounded-[10px] flex items-start gap-2.5 text-[13px] font-medium leading-[1.5] my-2.5 bg-[#e6f7f6] text-[#007a73] border border-[#b2e8e5]" style="margin-top:12px;">
@@ -2282,28 +1867,28 @@
         <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row">
           <div class="flex items-center gap-2.5"><span class="text-[22px]">📋</span><div><div class="text-[13px] font-semibold">Full-time Employment Agreement</div><div class="text-[11px] text-[#767676]">PDF · 1.2 MB · Defines role, responsibilities & terms</div></div></div>
           <div style="display:flex;gap:6px;">
-            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('employment')">👁 Read</button>
-            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Employment Agreement')">✍ Sign</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('employment')">👁 Read</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-transparent border-[1.5px] border-solid border-[#ff5a5f] text-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white !px-[14px] !py-[7px] !text-[12px]" onclick="signDocument(this,'Employment Agreement')">✍ Sign</button>
           </div>
         </div>
         <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row">
           <div class="flex items-center gap-2.5"><span class="text-[22px]">💰</span><div><div class="text-[13px] font-semibold">Salary & Benefits Policy</div><div class="text-[11px] text-[#767676]">PDF · 0.4 MB</div></div></div>
           <div style="display:flex;gap:6px;">
-            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('salary')">👁 Read</button>
-            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Salary Policy')">✍ Sign</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('salary')">👁 Read</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-transparent border-[1.5px] border-solid border-[#ff5a5f] text-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white !px-[14px] !py-[7px] !text-[12px]" onclick="signDocument(this,'Salary Policy')">✍ Sign</button>
           </div>
         </div>
         <div class="flex items-center justify-between py-[13px] px-4 border border-[#ebebeb] rounded-[10px] mb-2 bg-white transition-colors duration-[0.15s] hover:border-[#ff5a5f] doc-sign-row">
           <div class="flex items-center gap-2.5"><span class="text-[22px]">🚫</span><div><div class="text-[13px] font-semibold">Non-Compete Agreement</div><div class="text-[11px] text-[#767676]">PDF · 0.3 MB</div></div></div>
           <div style="display:flex;gap:6px;">
-            <button class="btn btn-secondary btn-sm" onclick="openPolicyModal('nda')">👁 Read</button>
-            <button class="btn btn-outline btn-sm" onclick="signDocument(this,'Non-Compete')">✍ Sign</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] !px-[14px] !py-[7px] !text-[12px]" onclick="openPolicyModal('nda')">👁 Read</button>
+            <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-transparent border-[1.5px] border-solid border-[#ff5a5f] text-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white !px-[14px] !py-[7px] !text-[12px]" onclick="signDocument(this,'Non-Compete')">✍ Sign</button>
           </div>
         </div>
       </div>
-      <div class="btn-row" style="margin-top:16px;">
-        <button class="btn btn-success" onclick="showToast('Promotion accepted! Welcome to the full team 🚀','🚀','success')">🎉 Accept Full-time Offer</button>
-        <button class="btn btn-danger" onclick="showToast('HR has been notified of your decision.','❌')">❌ Decline</button>
+      <div class="flex gap-[10px] flex-wrap mt-[14px] [&_.btn]:flex-1 [&_.btn]:min-w-[120px] [&_.btn]:justify-center" style="margin-top:16px;">
+        <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#00a699] text-white hover:bg-[#008a7d]" onclick="showToast('Promotion accepted! Welcome to the full team 🚀','🚀','success')">🎉 Accept Full-time Offer</button>
+        <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-[#fff0f0] text-[#ff5a5f] border-[1.5px] border-solid border-[#ff5a5f] hover:bg-[#ff5a5f] hover:text-white" onclick="showToast('HR has been notified of your decision.','❌')">❌ Decline</button>
       </div>`,
 
           // ── NOT SELECTED ──
@@ -2321,7 +1906,7 @@
         <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">📧</div><div class="text-[13px] font-semibold">Request feedback from HR to understand areas for improvement</div></div>
         <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">🔔</div><div class="text-[13px] font-semibold">Follow Dev8X on LinkedIn for future openings</div></div>
         <div class="flex items-center gap-2.5 py-2.5 px-3.5 bg-white border border-[#ebebeb] rounded-[10px] mb-2"><div class="text-[18px] shrink-0">🌐</div><div class="text-[13px] font-semibold">Visit dev8x.com/careers to apply for future roles</div></div>
-        <button class="btn btn-secondary btn-full" style="margin-top:12px;" onclick="showToast('Feedback request sent to HR','📧')">📧 Request Feedback</button>
+        <button class="inline-flex items-center gap-[7px] px-[18px] py-[10px] rounded-[10px] font-jakarta text-[13px] font-bold cursor-pointer border-none transition-all duration-150 bg-white text-[#222222] border-[1.5px] border-solid border-[#ebebeb] hover:bg-[#f7f7f7] w-full justify-center" style="margin-top:12px;" onclick="showToast('Feedback request sent to HR','📧')">📧 Request Feedback</button>
       </div>`,
         };
 
@@ -2436,7 +2021,7 @@
       function showToast(msg, icon = 'ℹ️', type = '') {
         const c = document.getElementById('toastContainer');
         const t = document.createElement('div');
-        t.className = 'toast ' + type;
+        t.className = 'px-5 py-3 bg-[#484848] text-white rounded-[10px] text-[13px] font-semibold shadow-[0_6px_16px_rgba(0,0,0,0.12)] animate-toastIn flex items-center gap-[10px] max-w-[340px] ' + (type === 'success' ? '!bg-[#00a699]' : type === 'error' ? '!bg-[#ff5a5f]' : '');
         t.innerHTML = `<span>${icon}</span> ${msg}`;
         c.appendChild(t);
         setTimeout(() => t.remove(), 3800);

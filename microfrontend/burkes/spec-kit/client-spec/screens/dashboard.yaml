@@ -1,0 +1,168 @@
+---
+# ── Screen: Dashboard ─────────────────────────────────────────────────────────
+id: dashboard
+route: "/"
+title: "Dashboard"
+layout: page_body
+
+# ── Data Bindings ─────────────────────────────────────────────────────────────
+data:
+  transaction:     "$store.transaction"
+  user:            "$store.user"
+  documents:       "$store.documents.recent"         # top 3
+  activity:        "$store.activity.recent"          # top 6
+  team:            "$store.team"
+  mortgage:        "$store.mortgage"
+  insurance:       "$store.insurance"
+
+# ── Derived Values ────────────────────────────────────────────────────────────
+computed:
+  pending_signatures:   "documents.filter(d => d.status === 'needs_signature').length"
+  has_action_required:  "mortgage.progress < 100 || insurance.pending_count > 0"
+
+# ── Sections ──────────────────────────────────────────────────────────────────
+sections:
+
+  # ── Banner Alert ────────────────────────────────────────────────────────────
+  action_alert:
+    component: Alert
+    variant: warning
+    condition: "computed.has_action_required"
+    props:
+      icon: "⚠️"
+      title: "Action Required"
+      body: "Complete your mortgage application employment history section and add auto insurance & home warranty information."
+    actions:
+      - label: "Complete Mortgage"
+        variant: primary
+        navigate_to: mortgage
+      - label: "Update Insurance"
+        variant: secondary
+        navigate_to: insurance
+
+  # ── Stats Row ────────────────────────────────────────────────────────────────
+  stats_grid:
+    component: StatsGrid
+    layout: grids.stats_4col
+    items:
+      - label: "Transaction Status"
+        value: "transaction.progress_pct + '%'"
+        description: "transaction.status_label"
+        icon: "🏡"
+      - label: "Documents"
+        value: "transaction.document_count"
+        description: "computed.pending_signatures + ' need your signature'"
+        icon: "📄"
+      - label: "Insurance Status"
+        value: "insurance.complete_count + '/' + insurance.total_count"
+        description: "insurance.summary_label"
+        icon: "🛡️"
+      - label: "Next Appointment"
+        value: "transaction.next_appointment.date_short"
+        description: "transaction.next_appointment.label"
+        icon: "📅"
+
+  # ── Main + Sidebar ────────────────────────────────────────────────────────────
+  main_content:
+    layout: grids.dashboard_main
+    left_column:
+
+      mortgage_summary:
+        component: MortgageSummaryCard
+        data_source: "$store.mortgage"
+        props:
+          title: "Mortgage Application"
+          subtitle: "Securely transmitted to First National Bank"
+          progress_pct: "mortgage.progress_pct"
+          stats:
+            - label: "Property Value"
+              value: "mortgage.property_value"
+            - label: "Loan Amount"
+              value: "mortgage.loan_amount"
+            - label: "Est. Rate"
+              value: "mortgage.estimated_rate"
+        action:
+          label: "Continue →"
+          navigate_to: mortgage
+
+      insurance_summary:
+        component: InsuranceSummaryCard
+        data_source: "$store.insurance"
+        props:
+          title: "Insurance Information"
+          subtitle: "Protection coverage for your new home"
+          items:
+            - key: home
+              label: "Home"
+            - key: auto
+              label: "Auto"
+            - key: warranty
+              label: "Warranty"
+        action:
+          label: "Update →"
+          navigate_to: insurance
+
+      transaction_timeline:
+        component: TransactionTimeline
+        data_source: "$store.transaction.stages"
+        props:
+          title: "Transaction Progress"
+          subtitle: "Track every step of your home buying journey"
+          badge: "Step {transaction.current_stage} of {transaction.total_stages}"
+
+    right_column:
+
+      recent_documents:
+        component: DocumentPreviewList
+        data_source: "$store.documents.recent"
+        max_items: 3
+        action_link:
+          label: "View All"
+          navigate_to: documents
+
+      recent_activity:
+        component: ActivityFeed
+        data_source: "$store.activity.recent"
+        max_items: 6
+
+      transaction_team:
+        component: TeamMemberList
+        data_source: "$store.team"
+        action_per_item:
+          label: "Message"
+          navigate_to: messages
+
+      quick_actions:
+        component: QuickActionList
+        items:
+          - label: "Upload Documents"
+            icon: "📤"
+            navigate_to: documents
+          - label: "Message Your Agent"
+            icon: "💬"
+            navigate_to: messages
+          - label: "Schedule Appointment"
+            icon: "📅"
+            action: schedule_appointment
+          - label: "Continue Mortgage App"
+            icon: "🏦"
+            navigate_to: mortgage
+          - label: "Update Insurance Info"
+            icon: "🛡️"
+            navigate_to: insurance
+          - label: "Find Service Providers"
+            icon: "🤝"
+            navigate_to: services
+
+# ── States ────────────────────────────────────────────────────────────────────
+states:
+  loading:
+    show: SkeletonGrid
+    sections: [stats_grid, mortgage_summary, transaction_timeline]
+  error:
+    show: ErrorBanner
+    message: "Unable to load your transaction. Please refresh."
+  empty:
+    condition: "!transaction"
+    show: EmptyStateCard
+    message: "No active transaction found."

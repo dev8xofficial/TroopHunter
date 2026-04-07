@@ -1,0 +1,245 @@
+---
+# ── Screen: Mortgage ─────────────────────────────────────────────────────────
+id: mortgage
+route: "/mortgage"
+title: "Mortgage Application"
+layout: page_body
+
+# ── Data Bindings ─────────────────────────────────────────────────────────────
+data:
+  application:  "$store.mortgage.application"
+  lender:       "$store.mortgage.lender"
+  documents:    "$store.mortgage.documents"
+
+# ── Sections (ordered) ────────────────────────────────────────────────────────
+sections:
+
+  progress_overview:
+    component: ProgressCard
+    props:
+      title: "Application Progress"
+      subtitle: "Complete all sections to submit your application to the lender"
+      progress_pct: "application.progress_pct"
+      section_badges:
+        - id: personal_info
+          label: "Personal Info"
+        - id: property_details
+          label: "Property Details"
+        - id: employment_history
+          label: "Employment History"
+        - id: financial_documents
+          label: "Financial Documents"
+        - id: review_submit
+          label: "Review & Submit"
+    status_map:
+      complete:    bdg-green
+      in_progress: bdg-yellow
+      pending:     bdg-gray
+
+  form_grid:
+    layout: grids.mortgage_2col
+
+    left_column:
+
+      personal_information:
+        component: SectionCard
+        title: "👤 Personal Information"
+        subtitle: "Basic details about the applicant"
+        section_id: personal_info
+        status: "application.sections.personal_info.status"
+        form:
+          fields:
+            - row:
+              - id: first_name
+                label: "First Name"
+                type: text
+                bind: "application.personal.first_name"
+                required: true
+              - id: last_name
+                label: "Last Name"
+                type: text
+                bind: "application.personal.last_name"
+                required: true
+            - id: email
+              label: "Email Address"
+              type: email
+              bind: "application.personal.email"
+              required: true
+            - row:
+              - id: phone
+                label: "Phone Number"
+                type: tel
+                bind: "application.personal.phone"
+              - id: date_of_birth
+                label: "Date of Birth"
+                type: date
+                bind: "application.personal.date_of_birth"
+                required: true
+            - id: ssn
+              label: "Social Security Number"
+              type: text
+              bind: "application.personal.ssn_masked"
+              mask: "***-**-XXXX"
+              sensitive: true
+        action:
+          label: "Edit Information"
+          variant: secondary
+          size: sm
+
+      property_details:
+        component: SectionCard
+        title: "🏡 Property Details"
+        subtitle: "Information about the property"
+        section_id: property_details
+        status: "application.sections.property_details.status"
+        form:
+          fields:
+            - id: property_address
+              label: "Property Address"
+              type: text
+              bind: "application.property.address"
+              required: true
+            - row:
+              - id: purchase_price
+                label: "Purchase Price"
+                type: currency
+                bind: "application.property.purchase_price"
+              - id: down_payment
+                label: "Down Payment"
+                type: text
+                bind: "application.property.down_payment_display"
+            - id: loan_amount
+              label: "Loan Amount Requested"
+              type: currency
+              bind: "application.property.loan_amount"
+            - id: property_type
+              label: "Property Type"
+              type: select
+              bind: "application.property.type"
+              options:
+                - { value: single_family, label: "Single Family Home" }
+                - { value: condo,         label: "Condominium" }
+                - { value: townhouse,     label: "Townhouse" }
+                - { value: multi_family,  label: "Multi-Family" }
+        action:
+          label: "Edit Property Info"
+          variant: secondary
+          size: sm
+
+    right_column:
+
+      employment_history:
+        component: SectionCard
+        title: "💼 Employment History"
+        subtitle: "Current and previous employment"
+        section_id: employment_history
+        status: "application.sections.employment_history.status"
+        inline_alert:
+          variant: warning
+          title: "Action Required"
+          body: "Please complete your employment history. Your lender needs this information to process your application."
+          condition: "application.sections.employment_history.status !== 'complete'"
+        form:
+          fields:
+            - id: current_employer
+              label: "Current Employer"
+              type: text
+              placeholder: "Company name"
+              bind: "application.employment.current.employer"
+              required: true
+            - id: position
+              label: "Position/Title"
+              type: text
+              placeholder: "Your job title"
+              bind: "application.employment.current.title"
+              required: true
+            - row:
+              - id: start_date
+                label: "Start Date"
+                type: date
+                bind: "application.employment.current.start_date"
+                required: true
+              - id: annual_income
+                label: "Annual Income"
+                type: currency
+                placeholder: "$75,000"
+                bind: "application.employment.current.annual_income"
+                required: true
+        submit:
+          label: "Save Employment Info"
+          action: save_employment
+        secondary_action:
+          label: "+ Add Previous Employer"
+          variant: ghost
+          size: sm
+          action: add_previous_employer
+
+      financial_documents:
+        component: SectionCard
+        title: "📎 Financial Documents"
+        subtitle: "Required documentation"
+        section_id: financial_documents
+        status: "application.sections.financial_documents.status"
+        inline_alert:
+          variant: warning
+          title: "Documents Needed"
+          body: "Upload your last 2 bank statements to complete your application."
+          condition: "application.sections.financial_documents.status !== 'complete'"
+        upload_zone:
+          label: "Upload Bank Statements"
+          description: "Last 2 months required (PDF, JPG, PNG)"
+          action: upload_bank_statements
+        optional_list:
+          title: "Additional Documents (Optional):"
+          items:
+            - "Tax returns (last 2 years)"
+            - "Pay stubs (last 2 months)"
+            - "W-2 forms (last 2 years)"
+            - "Investment account statements"
+
+  lender_info:
+    component: LenderCard
+    data_source: "$store.mortgage.lender"
+    props:
+      title: "🏦 Your Mortgage Lender"
+      status_message: "Your application will be automatically shared with {lender.first_name} once you complete all sections. He'll review and reach out within 1 business day."
+    action:
+      label: "Message {lender.first_name}"
+      variant: ghost
+      size: sm
+      navigate_to: messages
+
+  application_documents:
+    component: DataTable
+    title: "📋 Application Documents"
+    source: "$store.mortgage.documents"
+    columns:
+      - id: type
+        label: "Document Type"
+      - id: status
+        label: "Status"
+        render: StatusBadge
+      - id: uploaded_date
+        label: "Uploaded"
+      - id: actions
+        label: "Actions"
+        render: DocumentActionsCell
+    row_actions_map:
+      received:     [{ label: "View", action: view_document, variant: ghost }]
+      pending:      [{ label: "Upload", action: upload_document, variant: primary }]
+      in_progress:  [{ label: "Complete Form", action: complete_form, variant: ghost }]
+
+# ── States ────────────────────────────────────────────────────────────────────
+states:
+  saving:
+    disable_all_submits: true
+    show_spinner: true
+  save_success:
+    show: SuccessToast
+    message: "Section saved successfully."
+  save_error:
+    show: ErrorToast
+    message: "Failed to save. Please try again."
+  submitted:
+    show: SuccessBanner
+    message: "Application submitted to your lender!"

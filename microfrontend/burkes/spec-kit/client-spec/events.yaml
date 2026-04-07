@@ -1,0 +1,193 @@
+---
+# ── Event System ──────────────────────────────────────────────────────────────
+# System-level events: triggers, payloads, and side-effects.
+
+# ── Document Events ───────────────────────────────────────────────────────────
+document_uploaded:
+  source: client | agent | lender | attorney | cpa
+  payload:
+    document_id:    string
+    transaction_id: string
+    uploaded_by:    UserRef
+    category:       string
+    status:         string
+  side_effects:
+    - update_document_count_badge_in_nav
+    - append_to_activity_feed
+    - send_notification_to_transaction_team
+    - if_status_is_needs_signature:
+        increment_pending_signatures_count
+        show_action_alert_on_dashboard
+
+document_status_changed:
+  payload:
+    document_id: string
+    old_status:  string
+    new_status:  string
+    changed_by:  UserRef
+  side_effects:
+    - update_document_row_status_badge
+    - append_to_activity_feed
+    - if_new_status_is_approved:
+        decrement_pending_review_count
+    - notify_relevant_parties(based_on_category)
+
+document_signed:
+  payload:
+    document_id:   string
+    signed_by:     UserRef
+    signed_at:     timestamp
+    signature_ref: string
+  side_effects:
+    - update_document_status(signed)
+    - decrement_pending_signatures_count
+    - append_to_activity_feed
+    - notify_document_owner
+
+# ── Message Events ────────────────────────────────────────────────────────────
+message_sent:
+  payload:
+    message_id:   string
+    thread_id:    string
+    sender:       UserRef
+    content:      string
+    attachments:  Attachment[]?
+    sent_at:      timestamp
+  side_effects:
+    - append_message_to_thread_ui
+    - update_thread_preview_and_timestamp
+    - scroll_chat_to_bottom
+    - send_push_notification_to_recipient
+
+message_received:
+  payload:
+    message_id:  string
+    thread_id:   string
+    sender:      UserRef
+    content:     string
+    sent_at:     timestamp
+  source: websocket | polling
+  side_effects:
+    - if_thread_is_active:
+        append_message_to_chat_body
+        scroll_to_bottom
+        mark_as_read
+    - if_thread_is_inactive:
+        increment_unread_dot
+        increment_nav_badge_count
+    - update_thread_list_sort_order
+
+typing_started:
+  payload:
+    thread_id: string
+    user:      UserRef
+  side_effects:
+    - show_typing_indicator(user)
+
+typing_stopped:
+  payload:
+    thread_id: string
+    user:      UserRef
+  side_effects:
+    - hide_typing_indicator(user)
+
+# ── Mortgage Events ───────────────────────────────────────────────────────────
+mortgage_section_saved:
+  payload:
+    transaction_id: string
+    section:        { enum: [personal_info, property_details, employment_history, financial_documents] }
+    progress_pct:   number
+  side_effects:
+    - update_section_status_badge
+    - update_progress_bar_pct
+    - update_dashboard_mortgage_mini_card
+    - append_to_activity_feed
+    - if_progress_pct_equals_100:
+        trigger(mortgage_application_complete)
+
+mortgage_application_complete:
+  payload:
+    transaction_id: string
+    application_id: string
+  side_effects:
+    - update_stage_status(mortgage_application, complete)
+    - notify_lender(application_ready_for_review)
+    - hide_action_required_alert_on_dashboard(mortgage)
+    - append_to_activity_feed
+
+mortgage_data_shared_with_lender:
+  payload:
+    transaction_id: string
+    lender:         UserRef
+    shared_at:      timestamp
+  side_effects:
+    - append_to_activity_feed
+    - update_transaction_stage_note
+
+# ── Insurance Events ──────────────────────────────────────────────────────────
+insurance_updated:
+  payload:
+    transaction_id: string
+    type:           { enum: [auto, home, warranty] }
+    status:         string
+  side_effects:
+    - update_insurance_status_card(type)
+    - update_dashboard_insurance_mini_card
+    - append_to_activity_feed
+    - if_all_complete:
+        hide_action_required_alert(insurance)
+        update_transaction_stage_status(insurance_setup, complete)
+
+# ── Transaction Events ────────────────────────────────────────────────────────
+transaction_stage_updated:
+  payload:
+    transaction_id: string
+    stage_id:       number
+    new_status:     { enum: [completed, in_progress, pending] }
+  side_effects:
+    - update_timeline_stage_ui
+    - update_stats_card_progress_pct
+    - if_all_stages_complete:
+        trigger(transaction_closed)
+
+appointment_scheduled:
+  payload:
+    transaction_id: string
+    type:           string
+    date:           date
+    time:           time
+  side_effects:
+    - update_next_appointment_stat_card
+    - send_calendar_invite_to_relevant_parties
+    - append_to_activity_feed
+
+# ── Access Control Events ─────────────────────────────────────────────────────
+role_access_granted:
+  payload:
+    transaction_id: string
+    granted_to:     UserRef
+    role:           string
+    granted_by:     UserRef
+  side_effects:
+    - add_team_member_to_portal
+    - append_to_activity_feed
+    - send_invitation_email(granted_to)
+
+# ── Event Bus Configuration ───────────────────────────────────────────────────
+delivery:
+  realtime_events:
+    - message_received
+    - typing_started
+    - typing_stopped
+    - mortgage_data_shared_with_lender
+  polling_fallback:
+    interval_seconds: 30
+    events:
+      - document_uploaded
+      - document_status_changed
+      - transaction_stage_updated
+  webhook_outbound:
+    events:
+      - document_signed
+      - mortgage_application_complete
+      - transaction_stage_updated

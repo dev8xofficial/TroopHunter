@@ -1,0 +1,119 @@
+---
+# ── Screen: Services ──────────────────────────────────────────────────────────
+id: services
+route: "/services"
+title: "Partner Services"
+layout: page_body
+
+# ── Data Bindings ─────────────────────────────────────────────────────────────
+data:
+  property:  "$store.transaction.property"
+  providers: "$store.services.providers"         # keyed by category_id
+  categories:"$store.services.categories"
+
+# ── Local UI State ────────────────────────────────────────────────────────────
+ui_state:
+  active_category: null    # null = all shown
+  zip_code: "property.zip_code"
+
+# ── Sections ──────────────────────────────────────────────────────────────────
+sections:
+
+  location_context:
+    component: LocationContextCard
+    props:
+      icon: "📍"
+      title: "Your Property Location"
+      address: "property.full_address"
+      zip: "property.zip_code"
+      description: "All recommended service providers below are pre-vetted professionals serving the {property.zip_code} zip code area."
+    action:
+      label: "Change Location"
+      variant: ghost
+      size: sm
+      action: change_location
+
+  featured_categories:
+    layout: grids.services_2col
+    component: ServiceCategoryCard
+    source: "categories.featured"
+    repeat: true
+    per_category:
+      header:
+        title: "category.icon + ' ' + category.label"
+        badge:
+          label: "{category.provider_count} Providers"
+          variant: bdg-navy
+      providers:
+        component: ProviderCard
+        source: "providers[category.id].slice(0, 2)"
+        repeat: true
+        per_provider:
+          name:       provider.name
+          description:provider.description
+          rating:     StarRating
+          review_count:"({provider.review_count} reviews)"
+          services:   provider.services_summary
+          phone:      provider.phone
+          contact:    provider.contact_name
+          badge:
+            condition: provider.is_recommended
+            label: "Recommended"
+            variant: bdg-green
+          primary_action:
+            label: "Contact Provider"
+            variant: "provider.is_recommended ? 'primary' : 'secondary'"
+            action: contact_provider
+      footer_action:
+        label: "View All {category.label} Providers"
+        variant: ghost
+        size: sm
+        action: view_category
+
+  additional_categories:
+    component: QuickCategoryGrid
+    title: "🔍 Looking for Other Services?"
+    layout: grids.services_quick_8col
+    source: "categories.quick"
+    per_item:
+      icon: "category.icon"
+      label: "category.label"
+      action: view_category
+
+# ── Category Definitions (static reference) ───────────────────────────────────
+categories_reference:
+  featured:
+    - id: plumbing
+      label: "Plumbing Services"
+      icon: "🔧"
+    - id: roofing
+      label: "Roofing Services"
+      icon: "🏠"
+    - id: electrical
+      label: "Electrical Services"
+      icon: "⚡"
+    - id: credit_repair
+      label: "Credit Repair Services"
+      icon: "💳"
+  quick:
+    - { id: painting,     icon: "🎨", label: "Painting" }
+    - { id: cleaning,     icon: "🧹", label: "Cleaning" }
+    - { id: landscaping,  icon: "🌳", label: "Landscaping" }
+    - { id: hvac,         icon: "❄️",  label: "HVAC" }
+    - { id: moving,       icon: "🚚", label: "Moving" }
+    - { id: locksmith,    icon: "🔒", label: "Locksmith" }
+    - { id: windows,      icon: "🪟", label: "Windows" }
+    - { id: handyman,     icon: "🛠️", label: "Handyman" }
+
+# ── States ────────────────────────────────────────────────────────────────────
+states:
+  loading:
+    show: ServiceCardSkeleton
+    count: 4
+  error:
+    show: ErrorBanner
+    message: "Failed to load service providers."
+  empty:
+    condition: "providers.length === 0"
+    show: EmptyState
+    message: "No providers found for your area."

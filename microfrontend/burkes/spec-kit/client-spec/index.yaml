@@ -1,0 +1,83 @@
+---
+spec_version: "1.0.0"
+name: burkes_group_client_portal
+display_name: "The Burkes Group – Client Portal"
+description: >
+  Real estate transaction management portal enabling buyers to track progress,
+  manage documents, communicate with their transaction team, complete mortgage
+  applications, and manage insurance.
+owner: "The Burkes Group"
+status: production
+
+# ── Metadata ──────────────────────────────────────────────────────────────────
+meta:
+  created: "2026-02-10"
+  framework_targets: [react, vue, nextjs]
+  api_style: REST
+  auth: jwt_session
+  primary_user: home_buyer
+
+# ── Manifest ──────────────────────────────────────────────────────────────────
+includes:
+  design_tokens:  "./design.tokens.yaml"
+  layout:         "./layout.yaml"
+  interactions:   "./interactions.yaml"
+  events:         "./events.yaml"
+  api:            "./api.yaml"
+  access_control: "./access_control.yaml"
+
+  screens:
+    dashboard:   "./screens/dashboard.yaml"
+    documents:   "./screens/documents.yaml"
+    messages:    "./screens/messages.yaml"
+    insurance:   "./screens/insurance.yaml"
+    mortgage:    "./screens/mortgage.yaml"
+    services:    "./screens/services.yaml"
+
+  components:
+    primitives:  "./components/primitives.yaml"
+    data_display:"./components/data_display.yaml"
+    forms:       "./components/forms.yaml"
+
+  schemas:
+    user:         "./schemas/user.schema.json"
+    transaction:  "./schemas/transaction.schema.json"
+    document:     "./schemas/document.schema.json"
+    message:      "./schemas/message.schema.json"
+    insurance:    "./schemas/insurance.schema.json"
+    mortgage:     "./schemas/mortgage.schema.json"
+
+# ── Navigation ────────────────────────────────────────────────────────────────
+navigation:
+  type: top_bar
+  default_screen: dashboard
+  items:
+    - id: dashboard
+      label: "Dashboard"
+      icon: "🏠"
+    - id: documents
+      label: "Documents"
+      icon: "📄"
+      badge: pending_signatures_count
+    - id: messages
+      label: "Messages"
+      icon: "💬"
+      badge: unread_messages_count
+    - id: insurance
+      label: "Insurance"
+      icon: "🛡️"
+    - id: mortgage
+      label: "Mortgage"
+      icon: "🏦"
+    - id: services
+      label: "Services"
+      icon: "🤝"
+
+# ── Roles ─────────────────────────────────────────────────────────────────────
+roles:
+  - client
+  - agent
+  - lender
+  - attorney
+  - cpa
+  - admin

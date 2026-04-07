@@ -1,0 +1,296 @@
+---
+# ── API Layer ─────────────────────────────────────────────────────────────────
+base_url: "/api/v1"
+auth: Bearer JWT (Authorization header)
+
+# ── Auth ──────────────────────────────────────────────────────────────────────
+auth:
+  POST /auth/login:
+    request:
+      email:    string
+      password: string
+    response:
+      access_token:  string (JWT)
+      refresh_token: string
+      user:          UserRef
+
+  POST /auth/refresh:
+    request:
+      refresh_token: string
+    response:
+      access_token: string
+
+  POST /auth/logout:
+    auth: required
+    response: { success: boolean }
+
+# ── Transaction ───────────────────────────────────────────────────────────────
+transaction:
+  GET /transactions/current:
+    description: Fetch authenticated user's active transaction
+    auth: required
+    response:
+      $ref: "#/schemas/transaction"
+
+  GET /transactions/{id}:
+    auth: required
+    params:
+      id: string (transaction_id)
+    response:
+      $ref: "#/schemas/transaction"
+
+  GET /transactions/{id}/stages:
+    auth: required
+    response:
+      stages: TransactionStage[]
+
+  PATCH /transactions/{id}/stages/{stage_id}:
+    roles: [admin, agent]
+    request:
+      status: { enum: [completed, in_progress, pending] }
+    response:
+      stage: TransactionStage
+
+  GET /transactions/{id}/team:
+    auth: required
+    response:
+      members: TeamMember[]
+
+  GET /transactions/{id}/activity:
+    auth: required
+    query:
+      limit:  { type: integer, default: 20 }
+      offset: { type: integer, default: 0 }
+    response:
+      items: ActivityItem[]
+      total: integer
+
+# ── Documents ─────────────────────────────────────────────────────────────────
+documents:
+  GET /documents:
+    auth: required
+    query:
+      transaction_id: string
+      status:    { enum: [all, needs_signature, under_review, approved] }
+      category:  string?
+      search:    string?
+    response:
+      items: Document[]
+      total: integer
+
+  POST /documents/upload:
+    auth: required
+    request:
+      content_type: multipart/form-data
+      fields:
+        file:           File (binary)
+        transaction_id: string
+        category:       string
+        name:           string?
+    response:
+      document: Document
+
+  GET /documents/{id}:
+    auth: required
+    response:
+      document: Document
+      download_url: string (presigned S3 URL, expires 15m)
+
+  PATCH /documents/{id}/status:
+    roles: [agent, lender, attorney, admin]
+    request:
+      status: { enum: [approved, under_review, rejected] }
+    response:
+      document: Document
+
+  POST /documents/{id}/sign:
+    roles: [client]
+    request:
+      signature_data: string (base64 image or docusign token)
+    response:
+      document: Document
+
+  DELETE /documents/{id}:
+    roles: [admin, agent]
+    response: { success: boolean }
+
+# ── Messages ──────────────────────────────────────────────────────────────────
+messages:
+  GET /messages/threads:
+    auth: required
+    query:
+      transaction_id: string
+    response:
+      threads: Thread[]
+
+  GET /messages/threads/{thread_id}:
+    auth: required
+    response:
+      thread: Thread
+
+  GET /messages/threads/{thread_id}/messages:
+    auth: required
+    query:
+      limit:  { type: integer, default: 50 }
+      before: string? (message_id cursor)
+    response:
+      items: Message[]
+      has_more: boolean
+
+  POST /messages:
+    auth: required
+    request:
+      thread_id:   string
+      content:     string
+      attachments: Attachment[]?
+    response:
+      message: Message
+
+  PATCH /messages/threads/{thread_id}/read:
+    auth: required
+    response: { success: boolean }
+
+  POST /messages/threads:
+    auth: required
+    request:
+      transaction_id:  string
+      participant_ids: string[]
+      initial_message: string?
+    response:
+      thread: Thread
+
+# ── Insurance ─────────────────────────────────────────────────────────────────
+insurance:
+  GET /insurance/{transaction_id}:
+    auth: required
+    response:
+      auto:     InsuranceRecord | null
+      home:     InsuranceRecord | null
+      warranty: InsuranceRecord | null
+      documents: Document[]
+
+  PUT /insurance/{transaction_id}/auto:
+    roles: [client]
+    request:
+      $ref: "#/schemas/insurance_record"
+    response:
+      record: InsuranceRecord
+
+  PUT /insurance/{transaction_id}/home:
+    roles: [client]
+    request:
+      $ref: "#/schemas/insurance_record"
+    response:
+      record: InsuranceRecord
+
+  PUT /insurance/{transaction_id}/warranty:
+    roles: [client]
+    request:
+      $ref: "#/schemas/insurance_record"
+    response:
+      record: InsuranceRecord
+
+# ── Mortgage ──────────────────────────────────────────────────────────────────
+mortgage:
+  GET /mortgage/application/{transaction_id}:
+    auth: required
+    response:
+      $ref: "#/schemas/mortgage_application"
+
+  PATCH /mortgage/application/{transaction_id}/personal:
+    roles: [client]
+    request:
+      first_name:    string
+      last_name:     string
+      email:         string
+      phone:         string
+      date_of_birth: date
+      ssn:           string
+    response:
+      section: ApplicationSection
+
+  PATCH /mortgage/application/{transaction_id}/property:
+    roles: [client]
+    request:
+      address:       string
+      purchase_price:number
+      down_payment:  number
+      loan_amount:   number
+      property_type: string
+    response:
+      section: ApplicationSection
+
+  PATCH /mortgage/application/{transaction_id}/employment:
+    roles: [client]
+    request:
+      current_employer: string
+      title:            string
+      start_date:       date
+      annual_income:    number
+      previous:         PreviousEmployer[]?
+    response:
+      section: ApplicationSection
+
+  POST /mortgage/application/{transaction_id}/documents:
+    roles: [client]
+    request:
+      content_type: multipart/form-data
+      fields:
+        file:      File
+        doc_type:  { enum: [bank_statement, tax_return, pay_stub, w2, other] }
+    response:
+      document: MortgageDocument
+
+  POST /mortgage/application/{transaction_id}/submit:
+    roles: [client]
+    precondition: all sections complete
+    response:
+      application: MortgageApplication
+      submitted_to: LenderRef
+
+# ── Services ──────────────────────────────────────────────────────────────────
+services:
+  GET /services/providers:
+    auth: required
+    query:
+      zip_code:   string
+      category:   string?
+      limit:      { type: integer, default: 10 }
+    response:
+      providers:  ServiceProvider[]
+      categories: ServiceCategory[]
+
+  GET /services/categories:
+    auth: required
+    response:
+      featured: ServiceCategory[]
+      quick:    ServiceCategory[]
+
+# ── Notifications ─────────────────────────────────────────────────────────────
+notifications:
+  GET /notifications:
+    auth: required
+    query:
+      unread_only: boolean?
+      limit: { type: integer, default: 20 }
+    response:
+      items: Notification[]
+      unread_count: integer
+
+  PATCH /notifications/{id}/read:
+    auth: required
+    response: { success: boolean }
+
+# ── WebSocket ─────────────────────────────────────────────────────────────────
+websocket:
+  endpoint: "wss://{host}/ws"
+  auth: query_param token=<jwt>
+  channels:
+    - "transaction:{transaction_id}"
+    - "messages:{thread_id}"
+  inbound_events:
+    - message_received
+    - typing_started
+    - typing_stopped
+    - document_uploaded
+    - transaction_stage_updated

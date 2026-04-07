@@ -1,0 +1,134 @@
+---
+# ── Layout System ─────────────────────────────────────────────────────────────
+
+page:
+  max_width: '1400px'
+  margin: '0 auto'
+  padding:
+    desktop: '32px'
+    tablet: '18px 14px'
+    mobile: '18px 14px'
+  background: 'neutral.100'
+
+# ── Top Navigation ────────────────────────────────────────────────────────────
+top_nav:
+  height: '72px'
+  background: 'white'
+  border_bottom: '1px solid neutral.200'
+  padding: '0 32px'
+  position: sticky
+  top: 0
+  z_index: 100
+  shadow: shadow.sm
+  sections:
+    logo:
+      type: flex
+      align: center
+      gap: '12px'
+      children: [logo_icon, logo_text]
+    nav_links:
+      type: flex
+      gap: '4px'
+    user_controls:
+      type: flex
+      align: center
+      gap: '14px'
+      children: [notification_bell, user_chip]
+
+# ── Screen Containers ─────────────────────────────────────────────────────────
+screen:
+  type: block
+  visibility: toggled # only active screen shown at a time
+  transition: none # instant switch, no fade
+
+# ── Standard Page Header ──────────────────────────────────────────────────────
+page_header:
+  margin_bottom: '26px'
+  title:
+    font_family: display
+    size: '28px'
+    weight: 700
+    color: 'brand.primary_navy'
+    margin_bottom: '5px'
+  subtitle:
+    size: '14px'
+    color: 'neutral.600'
+
+# ── Grid Layouts ──────────────────────────────────────────────────────────────
+grids:
+  stats_4col:
+    columns: 4
+    gap: '18px'
+    responsive:
+      - breakpoint: '1100px'
+        columns: 2
+      - breakpoint: '768px'
+        columns: 2
+
+  dashboard_main:
+    columns: '1fr 350px'
+    gap: '22px'
+    responsive:
+      - breakpoint: '1100px'
+        columns: 1
+
+  insurance_3col:
+    columns: 3
+    gap: '20px'
+    responsive:
+      - breakpoint: '900px'
+        columns: 1
+
+  mortgage_2col:
+    columns: '1fr 1fr'
+    gap: '20px'
+    responsive:
+      - breakpoint: '900px'
+        columns: 1
+
+  services_2col:
+    columns: '1fr 1fr'
+    gap: '20px'
+    responsive:
+      - breakpoint: '900px'
+        columns: 1
+
+  services_quick_8col:
+    columns: 'repeat(4, 1fr)'
+    gap: '12px'
+    responsive:
+      - breakpoint: '600px'
+        columns: 'repeat(4, 1fr)'
+
+# ── Messages Layout ───────────────────────────────────────────────────────────
+messages_layout:
+  type: grid
+  columns: '300px 1fr'
+  height: 'calc(100vh - 185px)'
+  min_height: '580px'
+  responsive:
+    - breakpoint: '768px'
+      columns: 1
+  sections:
+    sidebar:
+      width: '300px'
+      border_right: '1px solid neutral.200'
+      background: white
+      border_radius: '12px 0 0 12px'
+      overflow: hidden
+      display: flex
+      flex_direction: column
+    main:
+      background: white
+      border_radius: '0 12px 12px 0'
+      overflow: hidden
+      display: flex
+      flex_direction: column
+
+# ── Breakpoints ───────────────────────────────────────────────────────────────
+breakpoints:
+  sm: '640px'
+  md: '768px'
+  lg: '1024px'
+  xl: '1100px'
+  '2xl': '1400px'

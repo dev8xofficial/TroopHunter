@@ -1,0 +1,137 @@
+---
+# ── Access Control (RBAC) ─────────────────────────────────────────────────────
+
+# ── Role Definitions ─────────────────────────────────────────────────────────
+roles:
+  client:
+    label: 'Client (Buyer)'
+    color: 'color.role.client'
+    description: 'The home buyer. Primary portal user.'
+
+  agent:
+    label: 'Real Estate Agent'
+    color: 'color.role.agent'
+    description: 'Transaction lead. Uploads purchase docs, manages timeline.'
+
+  lender:
+    label: 'Mortgage Lender'
+    color: 'color.role.lender'
+    description: 'Processes mortgage application. Receives mortgage data.'
+
+  attorney:
+    label: 'Closing Attorney'
+    color: 'color.role.attorney'
+    description: 'Reviews legal/closing documents. Verifies closing details.'
+
+  cpa:
+    label: 'CPA / Tax Advisor'
+    color: 'color.role.cpa'
+    description: 'Read-only access to transaction docs for tax planning.'
+
+  admin:
+    label: 'Burkes Group Admin'
+    color: 'color.role.admin'
+    description: 'Full platform access. Transaction coordinator.'
+
+# ── Document Permissions ──────────────────────────────────────────────────────
+documents:
+  upload:
+    - client # personal docs
+    - agent # purchase & sale docs
+    - lender # mortgage docs
+    - attorney # legal docs
+    - admin # any category
+
+  view:
+    all: [client, agent, admin]
+    by_category:
+      purchase_sale: [client, agent, attorney, admin]
+      mortgage: [client, lender, attorney, admin]
+      legal_closing: [client, agent, attorney, admin]
+      insurance: [client, lender, attorney, admin]
+      tax: [client, cpa, admin]
+
+  download:
+    - client
+    - agent
+    - lender
+    - attorney
+    - cpa
+    - admin
+
+  change_status:
+    - agent
+    - lender
+    - attorney
+    - admin
+
+  delete:
+    - admin
+    - agent # only their own uploads
+
+  request_signature:
+    - agent
+    - attorney
+    - admin
+
+# ── Message Permissions ───────────────────────────────────────────────────────
+messages:
+  send: all_roles
+  view_own_thread: all_roles
+  view_all_threads:
+    - admin
+  create_thread:
+    - admin
+    - agent
+
+# ── Mortgage Application Permissions ─────────────────────────────────────────
+mortgage:
+  view_application:
+    - client
+    - lender
+    - admin
+  edit_sections:
+    - client
+  view_submitted_application:
+    - client
+    - lender
+    - admin
+
+# ── Insurance Permissions ─────────────────────────────────────────────────────
+insurance:
+  view: [client, lender, agent, attorney, admin]
+  edit: [client, admin]
+
+# ── Transaction Management ────────────────────────────────────────────────────
+transaction:
+  view_progress: all_roles
+  update_stages: [agent, admin]
+  view_team: all_roles
+  manage_team: [admin, agent]
+
+# ── Services ──────────────────────────────────────────────────────────────────
+services:
+  view_providers: [client, admin]
+  manage_providers: [admin]
+
+# ── Access Grant Flow ─────────────────────────────────────────────────────────
+access_grant:
+  who_can_grant:
+    - admin
+    - agent
+  process:
+    1: admin_invites_professional_by_email
+    2: professional_receives_invite_with_portal_link
+    3: professional_creates_account_or_logs_in
+    4: role_assigned_to_transaction_automatically
+    5: client_notified_of_new_team_member
+    6: activity_feed_updated
+
+# ── UI Visibility by Role ─────────────────────────────────────────────────────
+# Portal is client-facing only. Professionals have their own portals.
+# This spec covers the CLIENT portal exclusively.
+client_portal_nav:
+  all_screens_visible_to: [client]
+  note: >
+    Professionals access via separate agent/lender/attorney portals.
+    This spec does not define those portals.
