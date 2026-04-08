@@ -1,44 +1,59 @@
-Title:Website Redesign & Development – HTML/JavaScript (totaland.com)
+---
+platform: Upwork
+job_title: Website Redesign & Development – HTML/JavaScript (totaland.com)
+company: TotaLand Technologies
+location: Remote
+remote: true
+employment_type: Contract
+engagement: Hourly
+hours_per_week: Less than 30
+duration: 1–3 months
+experience_level: Intermediate
+compensation: Undisclosed
+---
 
-Summary
-**About the Project**
-TotaLand Technologies is a cloud-based land management software platform serving the oil & gas industry, and we're looking for a skilled front-end developer to fully redesign and redevelop our company website (https://www.totaland.com/).
+# Website Redesign & Development – HTML/JavaScript (totaland.com) — TotaLand Technologies — Job Posting
 
-Our current site is functional but outdated — we want a modern, polished, and professional online presence that better reflects the quality and sophistication of our software product. This is not a "build to spec" engagement. We want a developer who brings genuine creative energy to the project — someone who studies our brand, understands our audience, and proactively contributes design ideas, layout improvements, and UX enhancements throughout every phase of development.
+## Role Summary
 
-**Scope of Work**
-- Full redesign of the existing website with a modern, clean, and professional aesthetic
-- Mobile-first, fully responsive design across desktop, tablet, and mobile
-- Well-structured, maintainable HTML/CSS/JavaScript code
-- Improved site navigation, page hierarchy, and overall user flow
-- Stronger visual presentation of features, pricing, and client testimonials
-- Ongoing creative input and suggestions — we want a collaborator, not just a coder
+TotaLand Technologies is a cloud-based land management software platform serving the oil and gas industry. The developer hired for this role will fully redesign and redevelop the company website at totaland.com. The current site is functional but outdated; the primary outcome is a modern, polished, professional online presence that better reflects the quality and sophistication of the software product. This is a collaborative engagement — the developer is expected to bring genuine creative energy, proactively contribute design ideas, layout improvements, and UX enhancements throughout every phase, not simply execute a fixed specification.
 
-**Ideal Candidate**
-- Strong portfolio demonstrating HTML/JavaScript website builds and redesigns
-- Solid eye for design, layout, and UX best practices
-- Experience with B2B SaaS or technology company websites is a strong plus
-- Fluent English communication skills (written and spoken) are required — you will be participating in regular design discussions, reviews, and feedback sessions
-- Proactive, confident communicator who asks smart questions and brings ideas to the table
-- Comfortable working in an iterative, feedback-driven process
+## Responsibilities
 
-**Project Details**
-- Type: Fixed price, milestone-based preferred
-- Timeline: Target completion within 6–8 weeks
-- Communication: Regular video/written check-ins and design reviews are expected throughout
+- Deliver a full redesign of the existing website with a modern, clean, and professional aesthetic.
+- Build a mobile-first, fully responsive design across desktop, tablet, and mobile.
+- Produce well-structured, maintainable HTML/CSS/JavaScript code.
+- Improve site navigation, page hierarchy, and overall user flow.
+- Strengthen the visual presentation of features, pricing, and client testimonials.
+- Participate in regular video and written design reviews and feedback sessions throughout the project.
+- Proactively contribute design ideas, layout suggestions, and UX enhancements at every phase.
 
-**To Apply**
-Please include the following in your proposal:
-1. Links to 2–3 relevant websites you have built or redesigned
-2. A short paragraph on what you would improve about our current site at totaland.com — this is your chance to show us how you think creatively
-3. Your proposed timeline and general approach to the project
-4. Your proposed Total Cost for the project.
+## Requirements
 
-We are looking for someone who will treat this as a true creative partnership. If you are a developer who takes pride in both the craft of coding and the art of design, we'd love to hear from you.
+##### Must Have
 
-Less than 30 hrs/week
-Hourly
-1 to 3 months
-Duration
-Intermediate
-I am looking for a mix of experience and value
+- Strong portfolio demonstrating HTML/JavaScript website builds and redesigns.
+- Solid eye for design, layout, and UX best practices.
+- Fluent English communication skills (written and spoken) — required for regular design discussions, reviews, and feedback sessions.
+- Proactive communicator who asks smart questions and brings ideas independently.
+- Comfortable working in an iterative, feedback-driven process.
+
+##### Nice to Have
+
+- Experience with B2B SaaS or technology company websites.
+
+## Client / Company Profile
+
+- Company: TotaLand Technologies
+- Industry: IT Services and IT Consulting / Land Management Software
+- Location: Lafayette, LA, United States
+- Website: https://www.totaland.com
+
+## Compensation & Terms
+
+- Type: Hourly
+- Hours per week: Less than 30
+- Duration: 1–3 months
+- Project type: Fixed price, milestone-based preferred
+- Target timeline: 6–8 weeks
+- Employment classification: Contract

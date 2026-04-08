@@ -1,114 +1,71 @@
-Job Title
-Appointment Setter / SDR — B2B Digital Marketing Agency
+---
+platform: Upwork
+job_title: Appointment Setter / SDR — B2B Digital Marketing Agency
+company: Adfelt
+category: Sales & Business Development
+location: Worldwide
+remote: true
+employment_type: Contract
+engagement: Hourly
+hours_per_week: 10–20 (ramp to 40+)
+duration: 6+ months
+experience_level: Intermediate
+compensation: $5.00–$15.00/hour base + commission + performance bonuses
+---
 
-Job Description
+# Appointment Setter / SDR — Adfelt — Job Posting
 
-We're a growing growth firm looking for a dedicated appointment setter to join our sales team. You'll be the bridge between our lead generation system and our closer — your job is to warm up qualified leads, confirm booked appointments, and make sure prospects actually show up to their demo calls.
+## Role Summary
 
-This isn't cold calling from a random list. We run paid ads and AI-driven outreach that generate inbound and warm leads daily. Your role is to take those leads the last mile — follow up via DM, text, and email, build rapport, confirm appointments, and re-engage no-shows.
+Adfelt is a B2B growth agency specializing in client acquisition for home care agencies and senior living communities in the United States. The Appointment Setter / SDR serves as the bridge between Adfelt's AI-driven lead generation system and its sales closer. The primary outcome this person is responsible for is ensuring that qualified leads — generated daily through paid ads and AI outreach — actually show up to their booked demo calls, through fast follow-up, rapport building, confirmation, and no-show recovery.
 
-This role starts part-time (10-20 hours/week) and ramps to full-time as you prove yourself.
+## Responsibilities
 
-You'll be talking to business owners from the United States in a healthcare niche.
+- Follow up with qualified leads via text, DM, and email within minutes of pipeline entry.
+- Confirm booked appointments 24 hours before and again on the day of the call.
+- Re-engage no-shows and cancellations to rebook.
+- Nurture leads who are not yet ready to book, keeping them warm without being pushy.
+- Update CRM (GoHighLevel) with notes, status changes, and conversation logs after every interaction.
+- Coordinate with the closer before each call, sharing context and prospect background.
+- Report daily on leads contacted, appointments confirmed, and show vs. no-show rates.
 
-What You'll Do
+## Requirements
 
-- Follow up with qualified leads via text, DM, and email within minutes of them entering our pipeline
+##### Must Have
 
-- Confirm booked appointments 24 hours before and day-of
-- Re-engage no-shows and cancellations to rebook
+- 2+ years of experience as an appointment setter, SDR, or equivalent inbound/outbound sales support role.
+- B2B background — agency, SaaS, or professional services environment.
+- Comfortable communicating via text, DM, and email (not exclusively phone).
+- Fast response time — speed-to-lead is critical in this role.
+- Writes natural, conversational messages; not reliant on rigid templates.
+- Organized and self-directed on follow-up without being prompted.
+- CRM experience: GoHighLevel, HubSpot, Salesforce, or equivalent.
+- Available during US Eastern Time business hours with significant overlap.
+- Natural or fluent English with minimal accent.
 
-- Nurture leads who aren't ready to book yet — keep them warm without being pushy
+##### Nice to Have
 
-- Update our CRM (GoHighLevel) with notes, status changes, and conversation logs after every interaction
+- Prior appointment setting for a marketing or advertising agency.
+- Familiarity with GoHighLevel specifically.
+- Documented track record of high show rates (not just booking volume).
+- Experience working with AI-generated or AI-qualified leads.
 
-- Coordinate with our closer to ensure smooth handoffs and share context on each prospect before their call
+## Client / Company Profile
 
-- Report on daily activity: leads contacted, appointments confirmed, shows vs. no-shows
+- Company: Adfelt
+- Industry: Digital Marketing / Home Care Growth
+- Location: Miami, US
+- Website: https://www.adfelt.com
 
+## Compensation & Terms
 
-Who You Are
-
-- You have 2+ years of experience as an appointment setter, SDR, or similar outbound/inbound sales support role
-
-- You've worked in B2B — ideally in an agency, SaaS, or professional services environment
-
-- You're comfortable communicating via text, DM, and email (not just phone)
-
-- You're responsive and fast — speed-to-lead matters in this role
-
-- You can write natural, conversational messages (not robotic templates)
-
-- You're organized and reliable — you follow up without being told to
-
-- You have experience with a CRM (GoHighLevel, HubSpot, Salesforce, or similar)
-
-- You're available during US business hours with significant overlap with Eastern Time (open to international candidates)
-
-- You speak natural or fluent English with very little accent.
-
-
-Bonus Points
-
-Experience setting appointments for a marketing or advertising agency
-Familiarity with GoHighLevel
-Track record of high show rates (not just bookings)
-Experience working with AI-generated leads or AI SDR systems
-
-
-Compensation
-This role is designed to reward performance. The structure includes:
-
-- Monthly base salary — steady income so you can focus on the work, not worry about feast-or-famine months
-
-- Commission — a percentage of every deal that closes from your booked appointments (2-5% of closed deal revenue)
-
-- Performance bonuses:
-
-  - Show rate bonus if you maintain a 75%+ show rate on a minimum of 20 sets per month
-
-  - Set-to-close bonus if your set-to-close rate exceeds 20%
-
-
-On-track earnings: $2,000–$6,000/month depending on region and performance. 
-
-Top performers who hit bonus thresholds consistently will earn at the higher end of that range.
-
-Ramp period: Start part-time (10-20 hrs/week) with a clear path to full-time based on performance
-
-Exact base and commission rates discussed with qualified candidates
-
-
-How to Apply
-
-Step 1: Watch this short video first — it explains the assignment :
-https://www.loom.com/share/39a619a553534008aed89d076ca1e973
-
-Step 2: Submit your proposal with the following:
-
-1.  A 3-minute video application (upload to Loom, Google Drive, or YouTube unlisted and include the link).
-
-2.  Your average show rate or any metrics you can share from a previous role
-
-3.  Your availability and timezone
-
-**No video = no application denied** 
-
-This is a communication role — I need to hear how you sound and see how you carry yourself before we talk. Generic cover letters with no video will be skipped.
-
-
-
-Featured Job
-More than 30 hrs/week
-Hourly
-More than 6 months
-Duration
-Intermediate
-I am looking for a mix of experience and value
-$5.00
-
--
-
-$15.00
-
-Hourly
+- Type: Hourly
+- Rate: $5.00–$15.00/hour (base; varies by region and performance)
+- On-track earnings: $2,000–$6,000/month
+- Commission: 2–5% of closed deal revenue from appointments set
+- Performance bonus — Show rate: triggered at 75%+ show rate on minimum 20 sets/month
+- Performance bonus — Set-to-close: triggered when set-to-close rate exceeds 20%
+- Hours per week: 10–20 (part-time start); ramps to full-time based on performance
+- Duration: 6+ months, ongoing
+- Employment classification: Freelance / Contract
+- Project type: Ongoing

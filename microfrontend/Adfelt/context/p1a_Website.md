@@ -1,611 +1,245 @@
-# Scrape Results — adfelt.com
-
-- **Start URL**: https://www.adfelt.com/
-- **Scraped at**: 2026-03-31 19:11:08 UTC
-- **Total pages**: 2
-
-## Page 1 — The CARE Loop™ | AI Marketing System
-
-**🔗 URL:** https://www.adfelt.com/
-
-> Discover The CARE Loop™. Your AI system for filling caregiver schedules and beds fast. Watch the video and book a demo call now.
-
-### Stop Losing $15k-$90k+ Per Month From Unfilled Caregiver Schedules & Empty Beds
-
-Get qualified families calling YOU 24/7, automatically pre-screened and booked for assessments and tours - without paying premium prices for shared leads or waiting on unreliable referral agents
-
-##### Watch How Our Care Loop™ System Grows Your Census Consistently
-
-##### TRUSTED BY LEADING CARE PROVIDERS
-
-Book a free demo call to see exactly how the Care Loop™ system can fill your beds and caregiver schedules
-
-###### Demo Calendar
-
-###### Adfelt | Demo Call - FB
-
-In this demo call, we'll:
-
-- Audit Your Current Marketing and uncover any gaps that may be holding you back.
-- Show You How The CARE Loop™ can attract more qualified families consistently and streamline your sales process
-- Create a Customized Action Plan tailored to your agency’s or senior living's size and goals.
-
-###### Select Date & Time
-
-- 10:00 PM
-
-#### What You'll Get On This Call:
-
-#### ✅ Custom Strategy
-
-Tailored to your agency or community
-
-#### 📈 ROI Analysis
-
-Projected return on investment
-
-#### 🔍 Marketing Audit
-
-Current Process Review
-
-#### 🎯 Implementation Plan
-
-Step-by-Step Timeline
-
-See Owners Reactions to our CareIntake AI™
-
-These Are Live Calls With CareIntake AI And The Agency Owners Reactions
-
-##### How We Can Help You:
-
-#### 📞 Answers 24/7
-
-Never miss another lead
-
-#### 🎯 Qualifies Automatically
-
-Only Books Qualified Families
-
-#### 📅 Books Directly
-
-Into your calendar system
-
-#### 🔄 Follows Up Consistently
-
-Until they feel ready to move forward
-
-Real Clients, Real Results
-
-Look At The Success Our Clients Are Seeing With Our CARE Loop System
-
-### Andre | Home Care Agency
-One Patient At A Time
-
-In Less Than 30 Days:
-
-- $1,400 Spent on Google Ads
-
-- $32,820 Revenue Generated
-- 23x ROAS
-- 180 Weekly Billable Hours Added
-
-The Problem
-
-One Patient at a Time had been in business for five years but hit a plateau. Growth depended almost entirely on outbound calls and manual outreach—time-consuming work with inconsistent results.
-
-"We were banging our heads against the wall trying to get leads. Most of our business was outbound calls and outreach." — Andre, Administrative Director
-
-The Hesitation
-
-Andre found Adfelt through an Instagram ad—and was skeptical.
-
-"You never really know what you're getting with some of those ads. I was skeptical at first, I'm not gonna lie."
-
-What changed his mind wasn't hype. It was a clear strategy and a straightforward conversation about capabilities and alignment.
-
-Results (First 30 Days)
-
-$1,400 in ad spend → $32,820 in revenue. That's a 23x return.
-
-3 new clients signed—all from inbound leads. 180 billable hours added weekly.
-
-Call volume jumped 261% compared to last month. For the first time, families were calling them.
-
-"We're getting calls a lot more consistently now. Even while I'm talking to you, I'm getting a call. To be able to get calls coming in—the conversation is just different. There's not as many barriers."
-
-What Changed
-
-Beyond revenue, Andre pointed to something harder to measure: efficiency.
-
-"It's boosted overall productivity and our efficiency. The platform organizes leads depending on where they are in their journey. It makes it very easy to follow up."
-
-Our CareIntake AI™ handles qualification. The team focuses on families ready to move forward.
-
-The Verdict
-
-"Don't look at it as an expense—look at it for the value it brings. The results we talked about have come to fruition. Give it a chance."
-
-Google Ads: Results with Spend and Leads Generated
-
-Assessments booked by their CareIntake AI™ system
-
-### Uzzol | Enterprise Agency
-
-### All Care Living Assistance Services
-
-In Less than 4 Weeks:
-
-- 707 Calls Handled
-
-- 87% Non-Leads Filtered
-
-- 7.6 Hours Saved on Call Time
-
-- 10 Qualified leads
-
-- $50,000 Pipeline Revenue Generated
-
-All Care were generating some leads—but families were slipping through the cracks. Calls went to voicemail. The intake team was overwhelmed juggling calls, follow-ups, and assessments.
-
-Competitors who answered first were winning.
-
-The Solution
-
-CareIntake AI ("Sarah") now answers every call—days, nights, weekends—within 10 seconds. She qualifies families, filters out non-opportunities, and either live transfers ready leads or books them directly on the coordinator's calendar.
-
-Results:
-
-707 calls handled. 87% were noise the intake team never had to touch—wrong numbers, employment inquiries, existing clients, incomplete calls.
-
-10 qualified families surfaced and connected to the team. $50K+ in pipeline revenue generated from one month of calls.
-
-7.6 hours saved in talk time alone—reducing burnout, turnover, and labor costs for staff.
-
-~130 after-hours calls captured that would have gone to voicemail (and likely to a competitor).
-
-The Bigger Picture
-
-Within 4 weeks of partnering with us, All Care doubled their inbound call volume through SEO—from ~100/month to 200+ in January alone.
-
-With CareIntake AI handling the surge, their team only spends time on conversations that matter.
-
-CareIntake AI™ saved 7.65 Hours of talk time for the Intake Team
-
-Double call volume from ~100/month to 200/month
-
-### Bill | Home Care Agency
-
-### God's Hand Home Care
-
-In Less Than 30 Days:
-- 2,300 Calls made to Families
-
-- 37 Qualified Families still looking for care
-
-- 5 Assessments Scheduled by CIAI
-
-- $25,000 Pipeline Revenue Generated
-
-Bill, the owner of a home care agency, came to us with a simple goal:
-
-Increase census and scale in a predictable way.
-
-Before working with us, he had tried multiple marketing companies. He had also been using AgingCare for several years and had accumulated a list of roughly 400 old inquiries — families who had once asked about care but never converted.
-
-Like most agencies, those leads were sitting untouched.
-
-Instead of immediately launching new ads, we asked a different question:
-
-“What if your next clients are already in your old lead list?”
-
-The Strategy: Reactivation Before Acquisition
-
-We launched a 30-day lead reactivation campaign on his old List of 400 leads, using our CareIntake AI system.
-
-Over the course of the month:
-
-- 2,300 outbound calls were made to past inquiries
-
-- Conversations were had with families to determine current status
-
-- We filtered out those who had already placed care, passed away, or were no longer in need
-
-Out of those 400 old leads:
-
-- 37 families were still actively looking for care
-
-- 5 converted into in-home assessments
-
-- Resulting in $25,000 in pipeline revenue in under 30 days
-
-- No new ad spend required.
-
-Most marketing companies focus only on new lead generation.
-
-We focus on:
-
-- Maximizing existing opportunities first
-
-- Creating immediate ROI
-
-- Then scaling acquisition on top of that foundation
-
-Bill chose us after speaking with six other companies because our approach wasn’t just “run more ads.” It was about building a system that captures revenue that’s already within reach.
-
-And in less than 30 days, it more than paid for itself.
-
-Their CareIntake AI System making 2300 Calls and qualifying 37 Leads.
-
-### Mark | Home Care Agency
-
-### Hearts of Love Caregivers
-
-In 6 Months:
-- $0 in Marketing Spend
-
-- 122 Leads Generated
-
-- 1,253,25 Total Billable Hours Added
-
-- $30,181.25 Revenue Generated
-- 5x ROI
-
-The Starting Point
-
-A family-run agency with 15 clients, relying on A Place for Mom and manual outreach. Owner, Mark, was growing the business nights and weekends while working a full-time job.
-
-Core problems: Unresponsive leads, "just shopping" families, unpredictable growth, and no scalable system.
-
-Why They Took the Leap
-
-After being burned by agencies that overpromised, the family was skeptical. What convinced them: a clear, structured breakdown of demand generation, qualifying, and follow-up—not hype.
-
-The Results
-
-- Paid + Organic Systems: 247 inquiries in 12 months, ~20% converting to clients. Lead quality improved significantly over third-party vendors.
-
-- SEO Alone (6 Months): 122 leads, 1,253 billable hours added, $30K+ in revenue—with zero ad spend.
-
-The outcome: Mark left his full-time job to run Hearts of Love full-time.
-
-Solving the Next Bottleneck
-
-More leads meant more calls. Mark and his cousin were spending hours daily on the phone with unqualified inquiries.
-
-Solution: CareIntake AI—human-sounding Ai qualifying and scheduling families assessments.
-
-Impact:
-
-- No longer tied to phones
-
-- Low-intent calls filtered out
-
-- Hours reclaimed for business growth
-
-- Scaled volume without scaling stress
-
-Today
-
-Hearts of Love operates with a predictable lead engine, AI-assisted intake, and a scalable foundation—without lead brokers or sacrificing quality of life.
-
-#### See What Clients Have To Say About Our Work
-
-### Frequently Asked Questions
-
-How soon until I see results?
-
-###### Am I getting shared leads?
-
-###### Does this work for small agencies?
-
-###### Does the AI sound like a robot or a real human?
-
-This site is not a part of Facebook website or Facebook, Inc. This site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.
-
-Copyrights 2026 Adfelt, LLC. All right reserved.
-
-Privacy Policy | Terms of Service | Full Disclosure
-
+---
+site: Adfelt
+domain: https://www.adfelt.com
+copyright: "Copyrights 2026 Adfelt, LLC. All rights reserved."
+footer_links: [Privacy Policy, Terms of Service, Full Disclosure]
+social_links: [LinkedIn: https://www.linkedin.com/company/adfelt/]
 ---
 
-## Page 2 — The CARE Loop™ | AI Marketing System
+# Adfelt — Scraped Content
 
-**🔗 URL:** https://www.adfelt.com/
+## 1 — The CARE Loop™ | AI Marketing System
 
-> Discover The CARE Loop™. Your AI system for filling caregiver schedules and beds fast. Watch the video and book a demo call now.
+url: https://www.adfelt.com/
+type: landing
+meta: Discover The CARE Loop™. Your AI system for filling caregiver schedules and beds fast. Watch the video and book a demo call now.
 
-### Stop Losing $15k-$90k+ Per Month From Unfilled Caregiver Schedules & Empty Beds
+### Value Proposition
 
-Get qualified families calling YOU 24/7, automatically pre-screened and booked for assessments and tours - without paying premium prices for shared leads or waiting on unreliable referral agents
+Stop Losing $15k–$90k+ Per Month From Unfilled Caregiver Schedules & Empty Beds. Get qualified families calling you 24/7, automatically pre-screened and booked for assessments and tours — without paying premium prices for shared leads or waiting on unreliable referral agents.
 
-##### Watch How Our Care Loop™ System Grows Your Census Consistently
+### The CARE Loop™ System
 
-##### TRUSTED BY LEADING CARE PROVIDERS
+Adfelt's flagship system for home care agencies and senior living communities. Combines paid ads (Google Ads), SEO, AI-automated intake, and CRM follow-up into a unified client-acquisition engine.
 
-Book a free demo call to see exactly how the Care Loop™ system can fill your beds and caregiver schedules
+> CTA: Book a free demo call to see exactly how the Care Loop™ system can fill your beds and caregiver schedules.
 
-###### Demo Calendar
+#### What the Demo Call Covers
 
-###### Adfelt | Demo Call - FB
+- Audit of current marketing and gaps holding the agency back
+- Live walkthrough of the CARE Loop™ system
+- Customized action plan tailored to the agency's size and goals
 
-In this demo call, we'll:
+#### What You Get on the Call
 
-- Audit Your Current Marketing and uncover any gaps that may be holding you back.
-- Show You How The CARE Loop™ can attract more qualified families consistently and streamline your sales process
-- Create a Customized Action Plan tailored to your agency’s or senior living's size and goals.
+- Custom Strategy — tailored to your agency or community
+- ROI Analysis — projected return on investment
+- Marketing Audit — current process review
+- Implementation Plan — step-by-step timeline
 
-###### Select Date & Time
+### CareIntake AI™
 
-- 10:00 PM
+An AI voice assistant ("Sarah") that answers inbound calls 24/7, qualifies families, filters non-leads, live-transfers ready prospects, and books assessments directly into the coordinator's calendar. Handles outbound reactivation campaigns as well.
 
-#### What You'll Get On This Call:
+How it helps:
+- Answers every call within 10 seconds, day or night
+- Qualifies families and filters out wrong numbers, employment inquiries, and existing clients
+- Books directly into the calendar system
+- Follows up consistently until prospects are ready to move forward
 
-#### ✅ Custom Strategy
+### Client Case Studies
 
-Tailored to your agency or community
+#### Andre — One Patient At A Time (Home Care Agency)
 
-#### 📈 ROI Analysis
-
-Projected return on investment
-
-#### 🔍 Marketing Audit
-
-Current Process Review
-
-#### 🎯 Implementation Plan
-
-Step-by-Step Timeline
-
-See Owners Reactions to our CareIntake AI™
-
-These Are Live Calls With CareIntake AI And The Agency Owners Reactions
-
-##### How We Can Help You:
-
-#### 📞 Answers 24/7
-
-Never miss another lead
-
-#### 🎯 Qualifies Automatically
-
-Only Books Qualified Families
-
-#### 📅 Books Directly
-
-Into your calendar system
-
-#### 🔄 Follows Up Consistently
-
-Until they feel ready to move forward
-
-Real Clients, Real Results
-
-Look At The Success Our Clients Are Seeing With Our CARE Loop System
-
-### Andre | Home Care Agency
-One Patient At A Time
-
-In Less Than 30 Days:
-
-- $1,400 Spent on Google Ads
-
-- $32,820 Revenue Generated
-- 23x ROAS
-- 180 Weekly Billable Hours Added
-
-The Problem
-
-One Patient at a Time had been in business for five years but hit a plateau. Growth depended almost entirely on outbound calls and manual outreach—time-consuming work with inconsistent results.
-
-"We were banging our heads against the wall trying to get leads. Most of our business was outbound calls and outreach." — Andre, Administrative Director
-
-The Hesitation
-
-Andre found Adfelt through an Instagram ad—and was skeptical.
-
-"You never really know what you're getting with some of those ads. I was skeptical at first, I'm not gonna lie."
-
-What changed his mind wasn't hype. It was a clear strategy and a straightforward conversation about capabilities and alignment.
-
-Results (First 30 Days)
-
-$1,400 in ad spend → $32,820 in revenue. That's a 23x return.
-
-3 new clients signed—all from inbound leads. 180 billable hours added weekly.
-
-Call volume jumped 261% compared to last month. For the first time, families were calling them.
-
-"We're getting calls a lot more consistently now. Even while I'm talking to you, I'm getting a call. To be able to get calls coming in—the conversation is just different. There's not as many barriers."
-
-What Changed
-
-Beyond revenue, Andre pointed to something harder to measure: efficiency.
-
-"It's boosted overall productivity and our efficiency. The platform organizes leads depending on where they are in their journey. It makes it very easy to follow up."
-
-Our CareIntake AI™ handles qualification. The team focuses on families ready to move forward.
-
-The Verdict
-
-"Don't look at it as an expense—look at it for the value it brings. The results we talked about have come to fruition. Give it a chance."
-
-Google Ads: Results with Spend and Leads Generated
-
-Assessments booked by their CareIntake AI™ system
-
-### Uzzol | Enterprise Agency
-
-### All Care Living Assistance Services
-
-In Less than 4 Weeks:
-
-- 707 Calls Handled
-
-- 87% Non-Leads Filtered
-
-- 7.6 Hours Saved on Call Time
-
-- 10 Qualified leads
-
-- $50,000 Pipeline Revenue Generated
-
-All Care were generating some leads—but families were slipping through the cracks. Calls went to voicemail. The intake team was overwhelmed juggling calls, follow-ups, and assessments.
-
-Competitors who answered first were winning.
-
-The Solution
-
-CareIntake AI ("Sarah") now answers every call—days, nights, weekends—within 10 seconds. She qualifies families, filters out non-opportunities, and either live transfers ready leads or books them directly on the coordinator's calendar.
+Period: Less than 30 days
 
 Results:
+- $1,400 in Google Ads spend
+- $32,820 in revenue generated (23x ROAS)
+- 3 new clients signed from inbound leads
+- 180 weekly billable hours added
+- Call volume increased 261% month-over-month
 
-707 calls handled. 87% were noise the intake team never had to touch—wrong numbers, employment inquiries, existing clients, incomplete calls.
+Background: Agency had plateaued after 5 years, relying entirely on outbound calls and manual outreach. Found Adfelt via Instagram ad; was initially skeptical.
 
-10 qualified families surfaced and connected to the team. $50K+ in pipeline revenue generated from one month of calls.
+Outcome: Inbound calls now arrive consistently. CareIntake AI handles qualification; staff focuses on high-intent families. Lead pipeline organized by journey stage in GoHighLevel.
 
-7.6 hours saved in talk time alone—reducing burnout, turnover, and labor costs for staff.
+Quote: "Don't look at it as an expense — look at it for the value it brings."
 
-~130 after-hours calls captured that would have gone to voicemail (and likely to a competitor).
+#### Uzzol — All Care Living Assistance Services (Enterprise Agency)
 
-The Bigger Picture
+Period: Less than 4 weeks
 
-Within 4 weeks of partnering with us, All Care doubled their inbound call volume through SEO—from ~100/month to 200+ in January alone.
+Results:
+- 707 inbound calls handled by CareIntake AI
+- 87% of calls filtered as non-leads (freeing intake team entirely)
+- 7.6 hours of talk time saved
+- 10 qualified families surfaced
+- $50,000 in pipeline revenue generated
+- ~130 after-hours calls captured (previously lost to voicemail)
 
-With CareIntake AI handling the surge, their team only spends time on conversations that matter.
+Background: Leads were slipping through the cracks; intake team overwhelmed. Competitors who answered first were winning.
 
-CareIntake AI™ saved 7.65 Hours of talk time for the Intake Team
+Outcome: CareIntake AI answers every call within 10 seconds. SEO doubled inbound call volume from ~100/month to 200+ within 4 weeks of onboarding.
 
-Double call volume from ~100/month to 200/month
+#### Bill — God's Hand Home Care (Home Care Agency)
 
-### Bill | Home Care Agency
+Period: Less than 30 days
 
-### God's Hand Home Care
+Results:
+- 2,300 outbound calls made to 400 old leads
+- 37 families identified as still actively seeking care
+- 5 assessments scheduled
+- $25,000 in pipeline revenue generated
+- Zero new ad spend required
 
-In Less Than 30 Days:
-- 2,300 Calls made to Families
+Strategy: Lead reactivation before acquisition. Old list of ~400 past inquiries (from AgingCare, accumulated over several years) was fed into CareIntake AI for outbound reactivation.
 
-- 37 Qualified Families still looking for care
+Outcome: Bill had tried 6 other marketing companies before choosing Adfelt. The reactivation campaign paid for itself within 30 days without launching new ads.
 
-- 5 Assessments Scheduled by CIAI
+#### Mark — Hearts of Love Caregivers (Home Care Agency)
 
-- $25,000 Pipeline Revenue Generated
+Period: 6 months (SEO only)
 
-Bill, the owner of a home care agency, came to us with a simple goal:
+Results:
+- $0 in marketing spend
+- 122 leads generated
+- 1,253.25 total billable hours added
+- $30,181.25 in revenue generated (5x ROI)
 
-Increase census and scale in a predictable way.
+Full 12-month results (paid + organic):
+- 247 total inquiries
+- ~20% converted to clients
+- Lead quality significantly higher than third-party vendors (e.g., A Place for Mom)
 
-Before working with us, he had tried multiple marketing companies. He had also been using AgingCare for several years and had accumulated a list of roughly 400 old inquiries — families who had once asked about care but never converted.
+Background: Family-run agency with 15 clients; owner Mark was growing the business nights and weekends while holding a full-time job. Had been burned by agencies that overpromised.
 
-Like most agencies, those leads were sitting untouched.
-
-Instead of immediately launching new ads, we asked a different question:
-
-“What if your next clients are already in your old lead list?”
-
-The Strategy: Reactivation Before Acquisition
-
-We launched a 30-day lead reactivation campaign on his old List of 400 leads, using our CareIntake AI system.
-
-Over the course of the month:
-
-- 2,300 outbound calls were made to past inquiries
-
-- Conversations were had with families to determine current status
-
-- We filtered out those who had already placed care, passed away, or were no longer in need
-
-Out of those 400 old leads:
-
-- 37 families were still actively looking for care
-
-- 5 converted into in-home assessments
-
-- Resulting in $25,000 in pipeline revenue in under 30 days
-
-- No new ad spend required.
-
-Most marketing companies focus only on new lead generation.
-
-We focus on:
-
-- Maximizing existing opportunities first
-
-- Creating immediate ROI
-
-- Then scaling acquisition on top of that foundation
-
-Bill chose us after speaking with six other companies because our approach wasn’t just “run more ads.” It was about building a system that captures revenue that’s already within reach.
-
-And in less than 30 days, it more than paid for itself.
-
-Their CareIntake AI System making 2300 Calls and qualifying 37 Leads.
-
-### Mark | Home Care Agency
-
-### Hearts of Love Caregivers
-
-In 6 Months:
-- $0 in Marketing Spend
-
-- 122 Leads Generated
-
-- 1,253,25 Total Billable Hours Added
-
-- $30,181.25 Revenue Generated
-- 5x ROI
-
-The Starting Point
-
-A family-run agency with 15 clients, relying on A Place for Mom and manual outreach. Owner, Mark, was growing the business nights and weekends while working a full-time job.
-
-Core problems: Unresponsive leads, "just shopping" families, unpredictable growth, and no scalable system.
-
-Why They Took the Leap
-
-After being burned by agencies that overpromised, the family was skeptical. What convinced them: a clear, structured breakdown of demand generation, qualifying, and follow-up—not hype.
-
-The Results
-
-- Paid + Organic Systems: 247 inquiries in 12 months, ~20% converting to clients. Lead quality improved significantly over third-party vendors.
-
-- SEO Alone (6 Months): 122 leads, 1,253 billable hours added, $30K+ in revenue—with zero ad spend.
-
-The outcome: Mark left his full-time job to run Hearts of Love full-time.
-
-Solving the Next Bottleneck
-
-More leads meant more calls. Mark and his cousin were spending hours daily on the phone with unqualified inquiries.
-
-Solution: CareIntake AI—human-sounding Ai qualifying and scheduling families assessments.
-
-Impact:
-
-- No longer tied to phones
-
-- Low-intent calls filtered out
-
-- Hours reclaimed for business growth
-
-- Scaled volume without scaling stress
-
-Today
-
-Hearts of Love operates with a predictable lead engine, AI-assisted intake, and a scalable foundation—without lead brokers or sacrificing quality of life.
-
-#### See What Clients Have To Say About Our Work
+Outcome: Mark left his full-time job to run Hearts of Love full-time. CareIntake AI added to handle surge in inbound calls, filtering low-intent inquiries and reclaiming hours for business growth.
 
 ### Frequently Asked Questions
 
-How soon until I see results?
+- How soon until I see results?
+- Am I getting shared leads?
+- Does this work for small agencies?
+- Does the AI sound like a robot or a real human?
 
-###### Am I getting shared leads?
+***
 
-###### Does this work for small agencies?
+## 2 — Adfelt | LinkedIn Company Profile
 
-###### Does the AI sound like a robot or a real human?
+url: https://www.linkedin.com/company/adfelt/
+type: profile
+meta: Adfelt | 156 followers on LinkedIn. Your Home Care Growth Partner.
 
-This site is not a part of Facebook website or Facebook, Inc. This site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.
+### Company Overview
 
-Copyrights 2026 Adfelt, LLC. All right reserved.
+Adfelt helps home care agencies grow through increased referral sources, more clients, and increased revenue through online marketing.
 
-Privacy Policy | Terms of Service | Full Disclosure
+- Headquarters: Miami, US
+- Followers: 156
+
+### Team Members
+
+- Mazhar Abbas
+- Clarice Almirante
+- Elias Benedith
+- Elijah Benedith
+
+***
+
+## 3 — Elias Benedith | LinkedIn Profile
+
+url: https://www.linkedin.com/in/elias-benedith/ (inferred)
+type: profile
+meta: none
+author: Elias Benedith
+
+### About
+
+Founder of Adfelt. Helps established senior care businesses get more clients and residents profitably and consistently. Builds client-acquisition systems for home care agencies and senior care facilities using AI.
+
+Location: Miami, Florida, United States
+
+### Selected Posts
+
+#### Post 1 — Speaking Announcement
+
+Elias announced his first speaking engagement at the Home Care Bosses Event (June 6–8). Topics covered:
+
+- A Client Base Growth Roadmap
+- Creating Lead Sources for home care agencies
+- How to grow a client base by building a brand
+- Integrating AI to convert more leads into clients
+
+He noted plans to share marketing strategies his competition isn't using, drawn from working with dozens of U.S. agencies.
+
+#### Post 2 — Limited Offer (Lead Revival Campaign)
+
+Offer for two home care agencies: access to Adfelt's proven marketing system plus a new "Lead Revival" campaign that reactivates old, unconverted leads.
+
+System includes: Google Ads, SEO, automated follow-ups, and the Lead Revival reactivation component.
+
+Guarantee: qualified calls within the first 30 days, or no charge until achieved.
+
+Qualification criteria:
+- Home care agency accepting multiple payment sources (private pay, Medicaid, VA, etc.)
+- Office staff available to respond quickly to new and re-engaged leads (ideally 24/7)
+- Database of leads from the past 6–12 months that have not converted
+
+Claimed result benchmark: one agency went from 3–4 calls/month to 40+ leads in first 60 days.
+
+***
+
+## 4 — Appointment Setter / SDR — Job Posting
+
+url: (Upwork listing, inferred)
+type: utility
+meta: none
+
+### Role Summary
+
+Part-time to full-time appointment setter / SDR for Adfelt's B2B sales team. Focuses on warming inbound and warm AI-generated leads, confirming booked appointments, re-engaging no-shows, and ensuring high show rates for demo calls.
+
+This is not a cold-calling role. Leads come from paid ads and AI-driven outreach daily.
+
+### Responsibilities
+
+- Follow up with qualified leads via text, DM, and email within minutes of pipeline entry
+- Confirm appointments 24 hours before and day-of
+- Re-engage no-shows and cancellations to rebook
+- Nurture leads who aren't yet ready to book
+- Update CRM (GoHighLevel) with notes, status changes, and conversation logs
+- Coordinate with closer before each call; share prospect context
+- Report daily: leads contacted, appointments confirmed, show vs. no-show rates
+
+### Candidate Requirements
+
+- 2+ years as an appointment setter, SDR, or similar B2B sales support role
+- Experience in agency, SaaS, or professional services environment
+- Comfortable communicating via text, DM, and email (not phone-primary)
+- Responsive and fast (speed-to-lead critical)
+- Writes natural, conversational messages (not templates)
+- Organized and self-directed on follow-up
+- CRM experience: GoHighLevel, HubSpot, Salesforce, or similar
+- Available during US Eastern Time business hours
+- Natural or fluent English with minimal accent
+
+Bonus: experience setting appointments for a marketing agency; GoHighLevel familiarity; high show-rate track record; AI-generated lead experience.
+
+### Compensation
+
+- Monthly base salary
+- Commission: 2–5% of closed deal revenue from booked appointments
+- Show rate bonus: 75%+ show rate on 20+ sets/month
+- Set-to-close bonus: exceeds 20% set-to-close rate
+- On-track earnings: $2,000–$6,000/month depending on region and performance
+- Starts part-time (10–20 hrs/week); ramps to full-time based on performance
+- Rate range: $5.00–$15.00/hour
+
+### How to Apply
+
+1. Watch the Loom video explaining the assignment
+2. Submit a 3-minute video application (Loom, Google Drive, or YouTube unlisted)
+3. Include: average show rate or performance metrics from a previous role, availability, and timezone
+
+Note: No video = application not reviewed. This is a communication role.
